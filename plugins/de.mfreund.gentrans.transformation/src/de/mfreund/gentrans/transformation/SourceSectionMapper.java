@@ -557,7 +557,7 @@ public class SourceSectionMapper {
 		EObject element=contRefsToMap.remove(0);//source model element which we will now try to map
 		
 		start = System.nanoTime();
-		HashMap<Mapping,Integer> usedInMapping=new HashMap<Mapping,Integer>();
+		HashMap<MappingInstanceStorage,String> usedInMapping=new HashMap<MappingInstanceStorage,String>();
 		HashMap<String, MappingInstanceStorage> mappingData=new HashMap<String, MappingInstanceStorage>();
 			//find mapping rules that are applicable to a srcMM element 
 			for(Mapping m : mappingsToChooseFrom){
@@ -581,12 +581,12 @@ public class SourceSectionMapper {
 							if(!mappedSections.containsKey(c)){
 								mappedSections.put(c,new HashSet<EObject>());
 							}
-							used+=mappedSections.get(c).size();
+							used+=res.getRefs().get(c).size();
 							mappedSections.get(c).addAll(res.getRefs().get(c));
 							
 							contRefsToMap.removeAll(res.getRefs().get(c));//remove mapped elements from list of elements to be mapped
 						}
-						usedInMapping.put(m, used);
+						usedInMapping.put(res, String.valueOf(used));
 					}		
 				}
 			}
@@ -609,7 +609,7 @@ public class SourceSectionMapper {
 			}	
 			
 			if(returnVal != null){
-				System.out.println(','  + returnVal.getMapping().getName() + ", " + usedInMapping.get(returnVal.getMapping()) + " ,  "+ time );
+				System.out.println(','  + returnVal.getMapping().getName() + ", " + usedInMapping.get(returnVal) + " ,  "+ time );
 
 			}
 			

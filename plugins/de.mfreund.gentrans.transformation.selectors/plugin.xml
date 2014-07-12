@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.epsilon.common.dt.tool">
+      <tool
+            class="de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunner"
+            defaultName="PathAndInstanceSelectorRunner">
+      </tool>
+   </extension>
+   <extension
+         point="org.eclipse.epsilon.common.dt.tool">
+      <tool
+            class="de.mfreund.gentrans.transformation.selectors.ItemSelectorDialog"
+            defaultName="de.mfreund.gentrans.transformation.selectors.ItemSelectorDialog">
+      </tool>
+   </extension>
+
+</plugin>

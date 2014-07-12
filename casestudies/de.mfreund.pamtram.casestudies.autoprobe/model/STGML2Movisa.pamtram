@@ -4256,7 +4256,7 @@
       <modifier xsi:type="mapping:SubstringReplacer" name="Remove LocalHost" regex="..LocalHost" replacement=""/>
       <modifier xsi:type="mapping:SubstringReplacer" name="DollarSign" regex="\$" replacement=""/>
       <modifier xsi:type="mapping:SubstringReplacer" name="AT" regex="@" replacement="AT"/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="Hashtag" regex="#"/>
+      <modifier xsi:type="mapping:SubstringReplacer" name="Hashtag" regex="#" replacement=""/>
       <modifier xsi:type="mapping:SubstringReplacer" name="dot to _" regex="\." replacement="_"/>
       <modifier xsi:type="mapping:StringPrepender" name="DataItem" string="DataItem"/>
       <modifier xsi:type="mapping:StringAppender" name="_TP" string="_TP"/>

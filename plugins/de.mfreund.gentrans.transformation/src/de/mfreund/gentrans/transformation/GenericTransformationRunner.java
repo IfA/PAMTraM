@@ -1,5 +1,6 @@
 package de.mfreund.gentrans.transformation;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -58,7 +59,16 @@ public class GenericTransformationRunner {
 
 		//try to load pamtram model
 		 pamtramResource = (XMIResource) resourceSet.getResource(pamtramUri, true);
+		 
+		 try {
+			pamtramResource.load(Collections.EMPTY_MAP);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 		 PAMTraM pamtramModel= (PAMTraM) pamtramResource.getContents().get(0);
+		 
 		
 
 		// TODO check if the xmi resource already exists

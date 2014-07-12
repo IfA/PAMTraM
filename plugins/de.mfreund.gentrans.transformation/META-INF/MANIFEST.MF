@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Javahelpers
+Bundle-Name: transformation
 Bundle-SymbolicName: de.mfreund.gentrans.transformation;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: de.mfreund.gentrans.transformation.Activator

@@ -5,7 +5,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
 
-public class PamtramFileSelectorDialog extends Object {
+public class PamtramFileSelectorDialog {
 	private static String pamtramFile="";
 	private static String targetFile="";
 	public static String getPamtramFile() {

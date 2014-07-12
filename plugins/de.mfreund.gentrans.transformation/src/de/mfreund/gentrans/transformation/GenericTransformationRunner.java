@@ -122,6 +122,7 @@ public class GenericTransformationRunner {
 		System.out.println("Selecting Mappings for source model elements...");
 
 		int numSrcModelElements = contRefsToMap.size();
+		int unmapped=0;
 		while (contRefsToMap.size() > 0) {
 			// find mapping
 			// remove(0) automatically selects element highest in the hierarchy
@@ -139,10 +140,13 @@ public class GenericTransformationRunner {
 				selectedMappingsByMapping.get(selectedMapping.getMapping())
 						.add(selectedMapping);
 
+			} else {
+				unmapped++;
 			}
+
 		}
 		System.out.println("Used srcModel elements: "
-				+ (numSrcModelElements - contRefsToMap.size()));
+				+ (numSrcModelElements - unmapped));
 		targetSectionRegistry.analyseTargetMetaModel(pamtramModel.getTargetSectionModel().getMetaModelPackage());
 
 		// creating target Model first pass (containment references)

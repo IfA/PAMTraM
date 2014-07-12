@@ -596,7 +596,7 @@ public class SourceSectionMapper {
 			MappingInstanceStorage returnVal=null;
 			switch(mappingData.keySet().size()){
 				case 0:
-					System.out.println("No suitable mappping found for element\n'" + EObjectTransformationHelper.asString(element) + "'.");
+					System.out.println("No suitable mappping found for element\n'" + element.eClass().getName() + "'.");
 					break;
 				case 1:
 					returnVal= mappingData.get(mappingData.values().iterator().next());

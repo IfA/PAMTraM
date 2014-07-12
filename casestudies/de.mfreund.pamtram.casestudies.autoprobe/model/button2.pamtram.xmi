@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="ASCII"?>
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:metamodel="http://www.emftext.org/language/pamtram/metamodel" xmlns:pamtram="http://www.emftext.org/language/pamtram">
+  <targetMetaModelPackage href="http://stefan-hennig.de/movisa/platform#/"/>
+  <targetMetaModelSections name="Button">
+    <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//presentation/Button"/>
+    <references xsi:type="metamodel:ContainmentReference" name="Interaction">
+      <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Button/Interaction"/>
+      <value name="ButtonInteraction">
+        <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//presentation/ButtonInteraction"/>
+        <references xsi:type="metamodel:ContainmentReference" name="CommonTrigger">
+          <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Interaction/CommonTrigger"/>
+          <value name="Click">
+            <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//presentation/Click"/>
+            <references xsi:type="metamodel:NonContainmentReference" name="Effect" value="//@targetMetaModelSections.0/@references.0/@value.0/@references.1/@value.0">
+              <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Trigger/Effect"/>
+            </references>
+            <attributes name="Name" value="NAVTOP_StockDouble4_buttonSignalTrigger">
+              <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+            </attributes>
+          </value>
+        </references>
+        <references xsi:type="metamodel:ContainmentReference" name="OwnedEffect">
+          <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Interaction/OwnedEffect"/>
+          <value name="SendSignalEffect">
+            <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//presentation/SendSignalEffect"/>
+            <references xsi:type="metamodel:NonContainmentReference" name="Signal" value="//@targetMetaModelSections.1">
+              <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/SendSignalEffect/Signal"/>
+            </references>
+            <attributes name="Name" value="triggering_StockDouble4_button">
+              <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+            </attributes>
+          </value>
+        </references>
+      </value>
+    </references>
+    <references xsi:type="metamodel:ContainmentReference" name="Representation">
+      <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Button/Representation"/>
+      <value name="ButtonRepresentation">
+        <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//presentation/ButtonRepresentation"/>
+        <references xsi:type="metamodel:ContainmentReference" name="Alignment">
+          <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Representation/Alignment"/>
+          <value name="Alignment">
+            <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//presentation/Alignment"/>
+            <attributes name="Name" value="StockDouble3_alignment">
+              <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+            </attributes>
+            <attributes name="HorizontalAlignment" value="CENTER">
+              <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/Alignment/HorizontalAlignment"/>
+            </attributes>
+            <attributes name="VerticalAlignment" value="MIDDLE">
+              <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/Alignment/VerticalAlignment"/>
+            </attributes>
+          </value>
+        </references>
+        <references xsi:type="metamodel:ContainmentReference" name="Format">
+          <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Representation/Format"/>
+          <value name="Format">
+            <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//presentation/Format"/>
+            <references xsi:type="metamodel:ContainmentReference" name="FontSize">
+              <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Format/FontSize"/>
+              <value name="ScaledProperty">
+                <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty"/>
+                <attributes name="Name">
+                  <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+                </attributes>
+                <attributes name="Unit" value="POINT">
+                  <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty/Unit"/>
+                </attributes>
+                <attributes name="Value" value="8.0">
+                  <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty/Value"/>
+                </attributes>
+              </value>
+            </references>
+            <attributes name="Name" value="StockDouble2_format">
+              <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+            </attributes>
+            <attributes name="FontDecoration" value="NONE">
+              <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/Format/FontDecoration"/>
+            </attributes>
+            <attributes name="FontFace" value="VERDANA">
+              <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/Format/FontFace"/>
+            </attributes>
+            <attributes name="FontStyle" value="NORMAL">
+              <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/Format/FontStyle"/>
+            </attributes>
+            <attributes name="FontWeight" value="REGULAR">
+              <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/Format/FontWeight"/>
+            </attributes>
+          </value>
+        </references>
+        <references xsi:type="metamodel:ContainmentReference" name="Position">
+          <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Representation/Position"/>
+          <value name="Position">
+            <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//presentation/Position"/>
+            <references xsi:type="metamodel:ContainmentReference" name="X">
+              <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Position/X"/>
+              <value name="ScaledProperty">
+                <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty"/>
+                <attributes name="Name" value="_pos_x">
+                  <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+                </attributes>
+                <attributes name="Unit" value="PIXEL">
+                  <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty/Unit"/>
+                </attributes>
+                <attributes name="Value" value="6.0">
+                  <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty/Value"/>
+                </attributes>
+              </value>
+            </references>
+            <references xsi:type="metamodel:ContainmentReference" name="Y">
+              <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Position/Y"/>
+              <value name="ScaledProperty">
+                <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty"/>
+                <attributes name="Name" value="_pos_y">
+                  <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+                </attributes>
+                <attributes name="Unit" value="PIXEL">
+                  <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty/Unit"/>
+                </attributes>
+                <attributes name="Value" value="579.0">
+                  <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty/Value"/>
+                </attributes>
+              </value>
+            </references>
+            <references xsi:type="metamodel:ContainmentReference" name="Z">
+              <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Position/Z"/>
+              <value name="ScaledProperty">
+                <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty"/>
+                <attributes name="Name" value="_pos_z">
+                  <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+                </attributes>
+                <attributes name="Unit" value="PIXEL">
+                  <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty/Unit"/>
+                </attributes>
+                <attributes name="Value" value="0.0">
+                  <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty/Value"/>
+                </attributes>
+              </value>
+            </references>
+            <attributes name="Name" value="_pos">
+              <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+            </attributes>
+          </value>
+        </references>
+        <references xsi:type="metamodel:ContainmentReference" name="Size">
+          <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Representation/Size"/>
+          <value name="Size">
+            <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//presentation/Size"/>
+            <references xsi:type="metamodel:ContainmentReference" name="Height">
+              <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Size/Height"/>
+              <value name="ScaledProperty">
+                <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty"/>
+                <attributes name="Name" value="_height">
+                  <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+                </attributes>
+                <attributes name="Unit" value="PIXEL">
+                  <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty/Unit"/>
+                </attributes>
+                <attributes name="Value" value="31.0">
+                  <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty/Value"/>
+                </attributes>
+              </value>
+            </references>
+            <references xsi:type="metamodel:ContainmentReference" name="Width">
+              <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Size/Width"/>
+              <value name="ScaledProperty">
+                <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty"/>
+                <attributes name="Name" value="_width">
+                  <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+                </attributes>
+                <attributes name="Unit" value="PIXEL">
+                  <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty/Unit"/>
+                </attributes>
+                <attributes name="Value" value="114.0">
+                  <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty/Value"/>
+                </attributes>
+              </value>
+            </references>
+            <attributes name="Name" value="_size">
+              <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+            </attributes>
+          </value>
+        </references>
+        <references xsi:type="metamodel:NonContainmentReference" name="Text" value="//@targetMetaModelSections.3">
+          <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/TextContainingWidgetRepresentation/Text"/>
+        </references>
+        <attributes name="TextCanWrap" value="false">
+          <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/TextContainingWidgetRepresentation/TextCanWrap"/>
+        </attributes>
+        <attributes name="ToggleButton" value="false">
+          <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ButtonRepresentation/ToggleButton"/>
+        </attributes>
+      </value>
+    </references>
+    <attributes name="Name" value="NAVTOP_StockDouble4_button">
+      <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+    </attributes>
+    <attributes name="Comment">
+      <attribute href="http://stefan-hennig.de/movisa/platform#//CommentedMovisaModelElement/Comment"/>
+    </attributes>
+  </targetMetaModelSections>
+  <targetMetaModelSections name="Signal">
+    <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//algorithm/Signal"/>
+    <attributes name="Comment">
+      <attribute href="http://stefan-hennig.de/movisa/platform#//CommentedMovisaModelElement/Comment"/>
+    </attributes>
+    <attributes name="Name" value="NAVTOP_StockDouble_signal">
+      <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+    </attributes>
+  </targetMetaModelSections>
+  <targetMetaModelSections name="LanguageDefinition">
+    <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//presentation/LanguageDefinition"/>
+    <attributes name="Name" value="german">
+      <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+    </attributes>
+    <attributes name="LocaleId" value="de-DE">
+      <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/LanguageDefinition/LocaleId"/>
+    </attributes>
+  </targetMetaModelSections>
+  <targetMetaModelSections name="TextDefinition">
+    <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//presentation/TextDefinition"/>
+    <references xsi:type="metamodel:ContainmentReference" name="TranslatedTextItem">
+      <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/TextDefinition/TranslatedTextItem"/>
+      <value name="TextItem">
+        <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//presentation/TextItem"/>
+        <references xsi:type="metamodel:NonContainmentReference" name="Language" value="//@targetMetaModelSections.2">
+          <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/TextItem/Language"/>
+        </references>
+        <attributes name="Value" value="StockDouble">
+          <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/TextItem/Value"/>
+        </attributes>
+      </value>
+    </references>
+    <attributes name="Name" value="StockDouble_textDefinition">
+      <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+    </attributes>
+  </targetMetaModelSections>
+</pamtram:PAMTraM>

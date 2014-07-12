@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:pamtram="http://mfreund.de/pamtram">
+  <sourceSectionModel>
+    <metaModelSections name="source">
+      <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/Action"/>
+    </metaModelSections>
+    <metaModelPackage href="http://gfai.de/stgml.xsd#/"/>
+  </sourceSectionModel>
+  <targetSectionModel>
+    <metaModelSections name="target">
+      <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/AlarmControlAnimation"/>
+    </metaModelSections>
+    <metaModelPackage href="http://stefan-hennig.de/movisa/platform#/"/>
+  </targetSectionModel>
+  <mappingModel>
+    <mapping sourceMMSection="//@sourceSectionModel/@metaModelSections.0" targetMMSection="//@targetSectionModel/@metaModelSections.0"/>
+  </mappingModel>
+</pamtram:PAMTraM>

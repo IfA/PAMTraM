@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project name="pamtram.casestudies.autoprobe" default="statistics">
+	<!-- Log file-->
+	<record name="${basedir}${file.separator}build.log"/>
+	<echo>Logging to ${basedir}${file.separator}build.log</echo>
+	
+	<property name="projectName" value="de.mfreund.pamtram.casestudies.autoprobe"/>
+	
+	<property name="xsdSrcFile" value="metamodel/stgml.xsd"/>
+	<property name="srcModelFile" value="model/stgml-model.xml"/>
+	<property name="srcMetaModelFile" value="metamodel/stgml.xsd.ecore"/>
+	<property name="srcMetaModelUri" value="http://gfai.de/stgml.xsd"/>
+	
+	<!--property name="srcMappingModelFile" value="model/panelTest.pamtram" /-->
+	<property name="srcMappingModelFile" value="model/STGML2Movisa.pamtram" />
+
+	<property name="targetModelFile" value="movisa_out.xmi"/>
+	<property name="targetMetaModelFile" value="metamodel/movisa.ecore"/>
+	<property name="targetMetaModelUri" value="http://stefan-hennig.de/movisa"/>
+	
+	<property name="out" value="out"/>
+
+    <!-- ================================= 
+          target: cleanup              
+         ================================= -->
+    <target name="cleanup">
+        <delete dir="out" />
+    	<mkdir dir="out"/>
+    </target>
+	
+
+	<!-- ================================= 
+          target: load models              
+         ================================= -->
+    <target name="load-models" depends="cleanup"><!--"generate_xmi"-->
+    	
+    	<!-- source model -->
+    	<epsilon.emf.loadXmlModel
+    		name="xmlSrcModel"
+    		read="true"
+    		store="false"
+    		modelfile="${srcModelFile}"
+    		xsdfile="${xsdSrcFile}"/>
+
+    	<!-- XMI source model (generated, doesn't exist on filesystem)-->
+    	<epsilon.emf.loadModel
+    		name="srcModel"
+    		modelfile=""
+    		metamodeluri="${srcMetaModelUri}"
+    		read="false"
+    		store="false"/>    	
+    	
+    	<!-- source metamodel -->
+    	<epsilon.emf.loadModel 
+    		name="srcMetaModel"
+    		modelfile="${srcMetaModelFile}"
+    		metamodeluri="http://www.eclipse.org/emf/2002/Ecore"/>
+    	
+    	<!--target model -->
+    	<epsilon.emf.loadModel
+    		name="targetModel"
+    		modelfile="${out}${file.separator}${targetModelFile}"
+    		metamodeluri="${targetMetaModelUri}"
+    		read="false"/>
+    	
+    	<!-- target metamodel -->
+    	<epsilon.emf.loadModel
+    		name="targetMetaModel"
+    		modelfile="${targetMetaModelFile}"
+    		metamodeluri="http://www.eclipse.org/emf/2002/Ecore"/>
+    	
+    	<!-- mapping model -->
+    	<epsilon.emf.loadModel
+    		name="pamtram"
+    		modelfile="${srcMappingModelFile}"
+    		metamodeluri="http://mfreund.de/pamtram"/>    	
+    </target>
+	
+	<!-- =========================================
+          target: convert STGML XML to XMI              
+         ========================================= -->
+	<target name="convertStgmlXml" depends="load-models">
+		<echo>Converting STGML from XML format to XMI format</echo>
+		<epsilon.eol src="../de.mfreund.gentrans.transformation/template/xml2xmi.eol">
+			<model ref="xmlSrcModel"/>			
+			<model ref="srcModel"/>		
+		</epsilon.eol>
+	</target>
+	
+	<!-- =========================================
+          target: run transformation              
+         ========================================= -->
+	<target name="run-transformation" depends="convertStgmlXml">
+		<echo>Running Transformation</echo>
+		<epsilon.eol src="../de.mfreund.gentrans.transformation/template/main.eol" debug="false">
+			<model ref="srcModel"/>
+			<model ref="srcMetaModel"/>
+			<model ref="targetMetaModel"/>
+			<model ref="pamtram"/>
+			<model ref="targetModel" as="targetModel"/>	
+		</epsilon.eol>
+	</target>
+	
+
+	
+	<target name="store-model" depends="run-transformation">
+		<epsilon.storeModel  model="targetModel" target="${out}${file.separator}${targetModelFile}"/>
+	</target>
+	
+	<target name="statistics" depends="store-model" >
+		<exec executable="/usr/bin/python">
+			<arg value="${basedir}${file.separator}auswertung.py"/>
+		</exec>
+	</target>
+
+</project>

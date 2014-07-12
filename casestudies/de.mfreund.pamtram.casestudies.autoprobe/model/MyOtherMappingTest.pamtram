@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:pamtram="http://mfreund.de/pamtram">
+  <sourceSectionModel>
+    <metaModelSections name="event">
+      <eClass xsi:type="ecore:EClass" href="http://gfai.de/stgml.xsd#//Eventtype"/>
+      <attributes name="evNameAttr" value="">
+        <attribute href="http://gfai.de/stgml.xsd#//Eventtype/value"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections name="transition">
+      <eClass xsi:type="ecore:EClass" href="http://gfai.de/stgml.xsd#//Transition"/>
+      <attributes name="transition-eventName" value="">
+        <attribute href="http://gfai.de/stgml.xsd#//Transition/event"/>
+      </attributes>
+      <attributes name="transTargetName">
+        <attribute href="http://gfai.de/stgml.xsd#//Transition/target"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections name="configuration">
+      <eClass xsi:type="ecore:EClass" href="http://gfai.de/stgml.xsd#//ConfigurationType"/>
+    </metaModelSections>
+    <metaModelSections name="root">
+      <eClass xsi:type="ecore:EClass" href="http://gfai.de/stgml.xsd#//ScxmlType"/>
+    </metaModelSections>
+    <metaModelSections name="nonemptyret">
+      <eClass xsi:type="ecore:EClass" href="http://gfai.de/stgml.xsd#//ScxmlType"/>
+      <references xsi:type="metamodel:ContainmentReference" name="confiref">
+        <eReference href="http://gfai.de/stgml.xsd#//ScxmlType/configuration"/>
+        <value name="confi">
+          <eClass xsi:type="ecore:EClass" href="http://gfai.de/stgml.xsd#//ConfigurationType"/>
+          <references xsi:type="metamodel:ContainmentReference" name="eventRef" variableCardinality="true">
+            <eReference href="http://gfai.de/stgml.xsd#//ConfigurationType/event"/>
+            <value name="ev1">
+              <eClass xsi:type="ecore:EClass" href="http://gfai.de/stgml.xsd#//Eventtype"/>
+              <attributes name="evAttrTest1" value="">
+                <attribute href="http://gfai.de/stgml.xsd#//Eventtype/value"/>
+              </attributes>
+            </value>
+            <value name="ev2">
+              <eClass xsi:type="ecore:EClass" href="http://gfai.de/stgml.xsd#//Eventtype"/>
+              <attributes name="evAttrTest2" value="">
+                <attribute href="http://gfai.de/stgml.xsd#//Eventtype/value"/>
+              </attributes>
+            </value>
+          </references>
+        </value>
+      </references>
+    </metaModelSections>
+    <metaModelPackage href="http://gfai.de/stgml.xsd#/"/>
+  </sourceSectionModel>
+  <targetSectionModel>
+    <metaModelSections name="DataVariable">
+      <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//clientdata/opcua/DataVariable"/>
+      <references xsi:type="metamodel:ContainmentReference" name="DataType">
+        <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/opcua/DataVariable/DataType"/>
+        <value name="Boolean">
+          <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//clientdata/opcua/Boolean"/>
+          <attributes name="Name" value="Boolean">
+            <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+          </attributes>
+        </value>
+      </references>
+      <attributes name="Name" value="DataItem_AS_Variables_00HASHTAG00Stat_AssemblyRH5A55_Vis_Functions_StopStation_locked_locked00AT00Bool_TP">
+        <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+      </attributes>
+      <attributes name="BrowseName" value="locked00AT00Bool">
+        <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/opcua/OpcUaItem/BrowseName"/>
+      </attributes>
+      <attributes name="BrowsePath" value="/Objects/Supervision/00DOLLAR00AS/Variables/00HASHTAG00Stat/AssemblyRH5A55/Vis/Functions/StopStation/locked">
+        <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/opcua/OpcUaItem/BrowsePath"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections name="Signal">
+      <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//algorithm/Signal"/>
+      <attributes name="signal-name" value="signal-name">
+        <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections name="NavigationFlowTriggers">
+      <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//algorithm/Signal"/>
+      <attributes name="signal-name2" value="">
+        <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections name="UIComponents">
+      <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//algorithm/SignalCollection"/>
+      <references xsi:type="metamodel:ContainmentReference" name="uiSigRef">
+        <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/SignalCollection/Signal"/>
+        <value name="Signal_uiComponents">
+          <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//algorithm/Signal"/>
+          <attributes name="signal-nameUIC" value="">
+            <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+          </attributes>
+        </value>
+      </references>
+    </metaModelSections>
+    <metaModelSections name="visualizationApplicationModel">
+      <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//VisualizationApplicationModel"/>
+      <references xsi:type="metamodel:ContainmentReference" name="AM_Ref">
+        <eReference href="http://stefan-hennig.de/movisa/platform#//VisualizationApplicationModel/AlgorithmDomain"/>
+        <value name="AM">
+          <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//AlgorithmModel"/>
+          <references xsi:type="metamodel:ContainmentReference" name="Siggi_Ref" variableCardinality="true">
+            <eReference href="http://stefan-hennig.de/movisa/platform#//AlgorithmModel/OwnedElement"/>
+            <value name="Siggi1">
+              <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//algorithm/Signal"/>
+              <attributes name="siggi1Attr">
+                <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+              </attributes>
+            </value>
+            <value name="Siggi2">
+              <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//algorithm/Signal"/>
+              <attributes name="siggi2Attr">
+                <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+              </attributes>
+            </value>
+          </references>
+        </value>
+      </references>
+      <references xsi:type="metamodel:ContainmentReference" name="PM_Ref">
+        <eReference href="http://stefan-hennig.de/movisa/platform#//VisualizationApplicationModel/PresentationDomain"/>
+        <value name="PM">
+          <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//PresentationModel"/>
+        </value>
+      </references>
+      <references xsi:type="metamodel:ContainmentReference" name="CDM_Ref">
+        <eReference href="http://stefan-hennig.de/movisa/platform#//VisualizationApplicationModel/ClientDataDomain"/>
+        <value name="CDM">
+          <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//ClientDataModel"/>
+          <references xsi:type="metamodel:ContainmentReference" name="TDP_Ref">
+            <eReference href="http://stefan-hennig.de/movisa/platform#//ClientDataModel/TechnicalDataPerspective"/>
+            <value name="TDP">
+              <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//clientdata/TechnicalDataPerspective"/>
+            </value>
+          </references>
+          <references xsi:type="metamodel:ContainmentReference" name="LDP_Ref">
+            <eReference href="http://stefan-hennig.de/movisa/platform#//ClientDataModel/LogicalDataPerspective"/>
+            <value name="LDP">
+              <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//clientdata/LogicalDataPerspective"/>
+            </value>
+          </references>
+        </value>
+      </references>
+    </metaModelSections>
+    <metaModelSections name="visualizationApplicationModel2">
+      <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//VisualizationApplicationModel"/>
+      <references xsi:type="metamodel:ContainmentReference" name="am2_ref">
+        <eReference href="http://stefan-hennig.de/movisa/platform#//VisualizationApplicationModel/AlgorithmDomain"/>
+        <value name="AM2">
+          <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//AlgorithmModel"/>
+          <references xsi:type="metamodel:ContainmentReference" name="refToAbstract">
+            <eReference href="http://stefan-hennig.de/movisa/platform#//AlgorithmModel/OwnedElement"/>
+            <value name="AbstractValue">
+              <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa/platform#//algorithm/AMElement"/>
+              <attributes name="dummyAttribute"/>
+            </value>
+          </references>
+        </value>
+      </references>
+    </metaModelSections>
+    <metaModelPackage href="http://stefan-hennig.de/movisa/platform#/"/>
+  </targetSectionModel>
+  <mappingModel>
+    <mapping name="event-mapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.0" targetMMSection="//@targetSectionModel/@metaModelSections.3">
+      <mappingHints xsi:type="mapping:AttributeMapping" name="evNameMapping" source="//@sourceSectionModel/@metaModelSections.0/@attributes.0" target="//@targetSectionModel/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
+    </mapping>
+    <mapping name="transition-mapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.1" targetMMSection="//@targetSectionModel/@metaModelSections.2">
+      <mappingHints xsi:type="mapping:AttributeMapping" name="transEventNameMapping" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" target="//@targetSectionModel/@metaModelSections.2/@attributes.0"/>
+      <mappingHints xsi:type="mapping:AttributeMapping" name="transTargetNameMapping" source="//@sourceSectionModel/@metaModelSections.1/@attributes.1"/>
+    </mapping>
+    <mapping name="rootElement" sourceMMSection="//@sourceSectionModel/@metaModelSections.3" targetMMSection="//@targetSectionModel/@metaModelSections.4">
+      <mappingHints xsi:type="mapping:AttributeMapping" name=""/>
+    </mapping>
+    <mapping name="rootElementAlternative" sourceMMSection="//@sourceSectionModel/@metaModelSections.3" targetMMSection="//@targetSectionModel/@metaModelSections.2 //@targetSectionModel/@metaModelSections.1"/>
+    <mapping name="rt345" sourceMMSection="//@sourceSectionModel/@metaModelSections.4" targetMMSection="//@targetSectionModel/@metaModelSections.4">
+      <mappingHints xsi:type="mapping:AttributeMapping" name="rt45Attr1" source="//@sourceSectionModel/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0" target="//@targetSectionModel/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0"/>
+      <mappingHints xsi:type="mapping:AttributeMapping" name="rt45Attr2" source="//@sourceSectionModel/@metaModelSections.4/@references.0/@value.0/@references.0/@value.1/@attributes.0" target="//@targetSectionModel/@metaModelSections.4/@references.0/@value.0/@references.0/@value.1/@attributes.0"/>
+    </mapping>
+    <mapping name="rt789" sourceMMSection="//@sourceSectionModel/@metaModelSections.4" targetMMSection="//@targetSectionModel/@metaModelSections.4">
+      <mappingHints xsi:type="mapping:CardinalityMapping" name="cardTest" source="//@sourceSectionModel/@metaModelSections.4/@references.0/@value.0/@references.0" target="//@targetSectionModel/@metaModelSections.4/@references.0/@value.0/@references.0"/>
+    </mapping>
+  </mappingModel>
+</pamtram:PAMTraM>

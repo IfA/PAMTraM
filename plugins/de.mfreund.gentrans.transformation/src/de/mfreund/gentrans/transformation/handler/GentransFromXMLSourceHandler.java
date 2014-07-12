@@ -50,13 +50,11 @@ public class GentransFromXMLSourceHandler extends AbstractHandler {
 		// Create a resource set. 
 		ResourceSet resourceSet = new ResourceSetImpl(); 
 
-
-	    
-	    String pamtramFilePath=PamtramFileSelectorDialog.run(file.getFullPath().toOSString());
+	    String pamtramFilePath=PamtramFileSelectorDialog.run(file.getLocation().removeLastSegments(1).toOSString());
 	    
 	    // the selected resource (IMPORTANT: needs to be represented as absolute URI with "file://" scheme; 
 		// if other schemes are used, the relative paths to the wprops and other model files are not set correct!)
-		URI resourceUri = URI.createFileURI(new java.io.File(file.getFullPath().toString()).toString());
+		URI resourceUri = URI.createFileURI(new java.io.File(file.getLocation().toString()).toString());
 		// the source resource (xmi)
 		
 		Resource xmlResource=null;
@@ -70,8 +68,10 @@ public class GentransFromXMLSourceHandler extends AbstractHandler {
 		}
 		
 		// get the root object of the xml resource
+
 		EObject root = xmlResource.getContents().get(0).eContents().get(0);
-		new GenericTransformationRunner(root, xmlResource.getURI(),pamtramFilePath);
+		GenericTransformationRunner tr=new GenericTransformationRunner(root, xmlResource.getURI(),pamtramFilePath);
+		tr.runTransformation();
 	    
 	    return null;
 	}

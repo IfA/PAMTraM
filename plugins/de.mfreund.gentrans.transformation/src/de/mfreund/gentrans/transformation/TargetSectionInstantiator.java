@@ -10,7 +10,6 @@ import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.xmi.XMIResource;
 
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMatcher;
@@ -32,12 +31,10 @@ public class TargetSectionInstantiator {
 	
 	private TargetSectionRegistry targetSectionRegistry;
 	private AttributeValueRegistry attributeValueRegistry;
-	private XMIResource targetModel;
 
-	public TargetSectionInstantiator(TargetSectionRegistry targetSectionRegistry , AttributeValueRegistry attributeValueRegistry,	XMIResource targetModel) {
+	public TargetSectionInstantiator(TargetSectionRegistry targetSectionRegistry , AttributeValueRegistry attributeValueRegistry) {
 		this.targetSectionRegistry=targetSectionRegistry;
 		this.attributeValueRegistry=attributeValueRegistry;
-		this.targetModel=targetModel;
 	}
 	
 	
@@ -158,7 +155,6 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 			LinkedList<EObjectTransformationHelper> instances= new LinkedList<EObjectTransformationHelper>();
 			for(int i=0 ; i< cardinality; i++){
 				EObject inst =  metamodelSection.getEClass().getEPackage().getEFactoryInstance().create(metamodelSection.getEClass());
-				targetModel.getContents().add(inst);
 				instances.add(new EObjectTransformationHelper(inst, attributeValueRegistry));
 
 			}
@@ -183,9 +179,6 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 								} else{
 									System.out.println("Cardinality mismatch (expected: "+ cardinality + ", got :" +  hintValues.get(hint).size() +"): " + hint.getName() + " for Mapping "+ mapping.getName() 
 										+ " (Group: " + mappingGroup.getName() +") Maybe check Cardinality of Metamodel section?");
-									for (EObjectTransformationHelper i : instances){
-										targetModel.getContents().remove(i.getEObject());
-									}
 									return null;
 								}
 							}
@@ -232,34 +225,34 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 						 	if(children != null) { //error? //TODO also delete here?
 						 		childInstances.addAll(children);
 						 	} else{ 
-						 		for (EObjectTransformationHelper i : instances){
-						 			
-									targetModel.getContents().remove(i.getEObject());
-								}
 								System.out.println("NoChildren");
 						 		return null;
 						 	}
 						 }
-						 if(ref.getEReference().getUpperBound() == 1){
-						 	instance.getEObject().eSet(ref.getEReference(),childInstances.getFirst().getEObject());
-						 } else {
-							 LinkedList<EObject> childEObjects =new LinkedList<EObject>();
-						 	for(EObjectTransformationHelper o : childInstances){
-						 		childEObjects.add(o.getEObject());
-						 	}
-						 	instance.getEObject().eSet(ref.getEReference(),childEObjects);
-						 }
+						// we needed to create the targetSection
+						// even though we already knew we didn't want it to be part of the targetModel or else we
+						//would have gotten  problems with hintValues
+						if (!markedForDelete.contains(instance)) {
+
+							if (ref.getEReference().getUpperBound() == 1) {
+								instance.getEObject().eSet(ref.getEReference(),
+										childInstances.getFirst().getEObject());
+							} else {
+								LinkedList<EObject> childEObjects = new LinkedList<EObject>();
+								for (EObjectTransformationHelper o : childInstances) {
+									childEObjects.add(o.getEObject());
+								}
+								instance.getEObject().eSet(ref.getEReference(),
+										childEObjects);
+							}
+						}
 					} 
 				}
 			
 			}	
 			
 			//Remove instances marked for delete
-			for(EObjectTransformationHelper instance : markedForDelete){
-				instances.remove(instance);
-				targetModel.getContents().remove(instance.getEObject());
-
-			}
+			instances.removeAll(markedForDelete);
 			
 			//All went well...
 			for(EObjectTransformationHelper instance : instances){

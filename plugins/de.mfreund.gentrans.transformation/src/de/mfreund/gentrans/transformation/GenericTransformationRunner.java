@@ -96,7 +96,7 @@ public class GenericTransformationRunner {
 		TargetSectionConnector connectionHelpers = new TargetSectionConnector(
 				attrValueRegistry, targetSectionRegistry, targetModel);
 		TargetSectionInstantiator targetSectionInstantiator = new TargetSectionInstantiator(
-				targetSectionRegistry, attrValueRegistry, targetModel);
+				targetSectionRegistry, attrValueRegistry);
 
 		/*
 		 * create a list of all the containment references in the source model

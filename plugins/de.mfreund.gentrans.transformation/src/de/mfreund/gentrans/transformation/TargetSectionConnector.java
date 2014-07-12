@@ -1,5 +1,6 @@
 package de.mfreund.gentrans.transformation;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -176,6 +177,7 @@ public class TargetSectionConnector {
 					System.out.println("The ModelConnectionHint '"
 							+ connectionHint.getName() + " of MappingHintGroup " + mappingGroupName 
 							+ "(Mapping: " + mappingName + ") could not find an instance to connect the targetSections.\n" + contInstsByHintVal.keySet());
+					addToTargetModelRoot(rootInstancesByHintVal.get(hintVal));
 				}
 			}
 
@@ -264,6 +266,7 @@ public class TargetSectionConnector {
 						System.out.println("no  paths????????");// TODO should
 																// be more
 																// helpful
+						addToTargetModelRoot(rootInstancesByContainer.get(container));
 						continue;
 					}
 
@@ -283,6 +286,13 @@ public class TargetSectionConnector {
 			System.out
 					.println("Could not find a path that leads to the modelConnectionTarget Class specified for '"
 							+ mappingName + "' (" + mappingGroupName + ")");
+			addToTargetModelRoot(rootInstances);
+		}
+	}
+	
+	private void addToTargetModelRoot(Collection<EObjectTransformationHelper> i){
+		for(EObjectTransformationHelper h : i){
+			targetModel.getContents().add(h.getEObject());
 		}
 	}
 
@@ -313,6 +323,7 @@ public class TargetSectionConnector {
 										+ "' were created. Instances of the targetSection '"
 										+ section.getName()
 										+ "'specify that section as their container and can therefore not be linked to the target model.");
+						addToTargetModelRoot(rootInstances);
 						return;
 					}
 					for (Path p : (LinkedList<Path>) pathsToConsider.clone()) {
@@ -374,7 +385,7 @@ public class TargetSectionConnector {
 
 					LinkedList<String> namesAsList = new LinkedList<String>();
 					namesAsList.addAll(pathNames.keySet());
-					List<List<String>> instanceNames = new LinkedList<List<String>>();
+					List<List<String>> instanceNames = new LinkedList<List<String>>();//TODO this was only needed in EOL, should probably easier in Java
 					for (String k : namesAsList) {
 						LinkedList<String> instNamesAsList = new LinkedList<String>();
 						instNamesAsList.addAll(instancesByPath.get(k).keySet());
@@ -413,15 +424,17 @@ public class TargetSectionConnector {
 					System.out
 							.println("Could not find a path that leads to the container specified for targetSection '"
 									+ section.getName() + "'");
+					addToTargetModelRoot(rootInstances);
 				}
 
 			} else {// TODO handle limited capacity
-
+				addToTargetModelRoot(rootInstances);
 			}
 
 		} else {
 			System.out.println("No suitable path found for element:\n"
 					+ classToConnect);
+			addToTargetModelRoot(rootInstances);
 		}
 	}
 
@@ -447,7 +460,6 @@ public class TargetSectionConnector {
 				if (targetInst == null) {
 					EClass classToCreate=(EClass) invertedPath.get(0);
 					EObject inst =  classToCreate.getEPackage().getEFactoryInstance().create(classToCreate);
-					targetModel.getContents().add(inst);
 
 					targetSectionRegistry.addClassInstance(new EObjectTransformationHelper(inst,attrValRegistry));
 					refStartInstance.eSet(ref, inst);
@@ -484,7 +496,6 @@ public class TargetSectionConnector {
 				EClass classToCreate=(EClass) invertedPath.get(0);
 				
 				EObject instance = classToCreate.getEPackage().getEFactoryInstance().create(classToCreate);
-				targetModel.getContents().add(instance);
 				// instance.~description="Class '" + newSelf.first.name +
 				// "' (created to link targetSection):"; TODO seee above
 				newTarget.add(instance);
@@ -531,9 +542,6 @@ public class TargetSectionConnector {
 				for(EObjectTransformationHelper inst : instancesAtEnd){
 					newTarget.add(inst.getEObject());
 				}
-				// System.out.println(ref + " " + newTarget + "\n" +
-				// refStartInstance + "\n" +
-				// refStartInstance.eClass().getEAllContainments());
 
 				refStartInstance.eSet(ref, newTarget);
 

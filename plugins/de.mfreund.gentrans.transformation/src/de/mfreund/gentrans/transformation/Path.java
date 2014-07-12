@@ -103,13 +103,6 @@ public class Path {
 						// we only need those
 				EReference ref = (EReference) e;
 				if (instance != null) {
-
-					for (EReference r : instance.eClass().getEAllReferences()) {
-						if (r.getName().equals(ref.getName())) {
-							ref = r;
-							break;
-						}
-					}
 					Object targets = instance.eGet(ref);
 
 					if (targets != null) {

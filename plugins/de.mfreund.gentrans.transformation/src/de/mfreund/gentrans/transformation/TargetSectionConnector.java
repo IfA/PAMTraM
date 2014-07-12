@@ -446,13 +446,7 @@ public class TargetSectionConnector {
 			List<EObjectTransformationHelper> instancesAtEnd) {
 		invertedPath.remove(0);// EClass refStart=(EClass)
 		EReference ref = (EReference) invertedPath.remove(0);
-		Object targetInst = null;
-		for (EReference r : refStartInstance.eClass().getEAllContainments()) {
-			if (r.getName().equals(ref.getName())) {
-				ref = r;
-				targetInst = refStartInstance.eGet(ref);
-			}
-		}
+		Object targetInst = refStartInstance.eGet(ref);
 
 		if (invertedPath.size() > 1) {
 			if (ref.getUpperBound() == 1) {// only one target instance allowed,

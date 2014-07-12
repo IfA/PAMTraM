@@ -596,17 +596,16 @@ public class SourceSectionMapper {
 			MappingInstanceStorage returnVal=null;
 			switch(mappingData.keySet().size()){
 				case 0:
-					System.out.println("No suitable mappping found for element\n'" + element.eClass().getName() + "'.");
+					//System.out.println("No suitable mappping found for element\n'" + element.eClass().getName() + "'.");
 					break;
 				case 1:
-					returnVal= mappingData.get(mappingData.values().iterator().next());
+					returnVal= mappingData.values().iterator().next();
 					break;
 				default:
 					String selection= ItemSelectorDialog.run("Please select a Mapping for the source element\n'" 
 					+  EObjectTransformationHelper.asString(element) + "'" , 
 								mappingData.keySet(), mappingData.keySet().iterator().next());
 					returnVal= mappingData.get(selection);
-					break;
 			}	
 			
 			if(returnVal != null){

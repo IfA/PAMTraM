@@ -1,12 +1,15 @@
 package de.mfreund.gentrans.transformation;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -24,34 +27,46 @@ import pamtram.metamodel.Class;
  */
 public class GenericTransformationRunner {
 
-	public GenericTransformationRunner(XMIResource sourceModel,
-			EPackage targetModelPackage, URI targetModelResourceURI,
-			PAMTraM pamtramModel) {
+	public GenericTransformationRunner(EObject sourceModel, URI sourceModelURI,
+			String pamtramPathString) {
 		super();
 		this.sourceModel = sourceModel;
+		this.sourcemodelURI=sourceModelURI;
+		this.pamtramPathString = pamtramPathString;
 
-		this.targetModelResourceURI = targetModelResourceURI;
-		this.pamtramModel = pamtramModel;
-
-		this.targetModelPackage = targetModelPackage;
 	}
 
-	private XMIResource sourceModel;
-	private URI targetModelResourceURI;
-	private PAMTraM pamtramModel;
-	private EPackage targetModelPackage;
+	private EObject sourceModel;
+	private String pamtramPathString;
+	private URI sourcemodelURI;
 
 	/**
 	 * 
 	 */
 	@SuppressWarnings("unchecked")
 	public void runTransformation() {
-		XMIResource targetModel;
+		XMIResource targetModel, pamtramResource;
+		
+		XMIResourceFactoryImpl resFactory = new XMIResourceFactoryImpl();
+		
+		// Create a resource set. 
+		ResourceSet resourceSet = new ResourceSetImpl(); 
+
+		 // the selected resource (IMPORTANT: needs to be represented as absolute URI with "file://" scheme; 
+		// if other schemes are used, the relative paths to the wprops and other model files are not set correct!)
+		URI pamtramUri = URI.createFileURI(new java.io.File(pamtramPathString).toString());
+
+		//try to load pamtram model
+		 pamtramResource = (XMIResource) resourceSet.getResource(pamtramUri, true);
+		 PAMTraM pamtramModel= (PAMTraM) pamtramResource.getContents().get(0);
+		
 
 		// TODO check if the xmi resource already exists
 		try {
 			// try to create the xmi resource
-			XMIResourceFactoryImpl resFactory = new XMIResourceFactoryImpl();
+			URI targetModelResourceURI=sourcemodelURI.trimFileExtension();
+
+			targetModelResourceURI=targetModelResourceURI.trimSegments(1).appendSegment(targetModelResourceURI.lastSegment()+"_converted").appendFileExtension("xmi");
 			targetModel = (XMIResource) resFactory
 					.createResource(targetModelResourceURI);
 
@@ -81,7 +96,7 @@ public class GenericTransformationRunner {
 		// list of all unmapped nodes. obtained by iterating over all of the
 		// srcModels containment refs
 		List<EObject> contRefsToMap = SourceSectionMapper
-				.buildContainmentTree(sourceModel.getContents().get(0));
+				.buildContainmentTree(sourceModel);
 
 		// find and resolve ambiguous mappings as far as possible without user
 		// input
@@ -118,7 +133,7 @@ public class GenericTransformationRunner {
 		}
 		System.out.println("Used srcModel elements: "
 				+ (numSrcModelElements - contRefsToMap.size()));
-		targetSectionRegistry.analyseTargetMetaModel(targetModelPackage);
+		targetSectionRegistry.analyseTargetMetaModel(pamtramModel.getTargetSectionModel().getMetaModelPackage());
 
 		// creating target Model first pass (containment references)
 		System.out
@@ -224,6 +239,22 @@ public class GenericTransformationRunner {
 				}
 			}
 
+		}
+		
+		//save targetModel
+		try {
+			// try to save the xmi resource
+//			xmiResource.save(Collections.EMPTY_MAP);
+			Map<Object, Object> options = new HashMap<Object, Object>();
+			options.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
+			options.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.TRUE);
+			targetModel.save(Collections.EMPTY_MAP);
+		} catch (Exception e) {
+			MessageDialog.openError(
+					PlatformUI.getWorkbench()
+					.getActiveWorkbenchWindow().getShell(), "Error", "The XMI resource could not be saved.");
+			e.printStackTrace();
+			return;
 		}
 
 	}

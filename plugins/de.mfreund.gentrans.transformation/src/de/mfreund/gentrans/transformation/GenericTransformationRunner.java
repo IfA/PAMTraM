@@ -28,18 +28,18 @@ import pamtram.metamodel.Class;
  */
 public class GenericTransformationRunner {
 
-	public GenericTransformationRunner(EObject sourceModel, URI sourceModelURI,
-			String pamtramPathString) {
+	public GenericTransformationRunner(EObject sourceModel,
+			String pamtramPath, String targetFilePath) {
 		super();
 		this.sourceModel = sourceModel;
-		this.sourcemodelURI=sourceModelURI;
-		this.pamtramPathString = pamtramPathString;
+		this.pamtramPath = pamtramPath;
+		this.targetFilePath=targetFilePath;
 
 	}
 
 	private EObject sourceModel;
-	private String pamtramPathString;
-	private URI sourcemodelURI;
+	private String pamtramPath;
+	private String targetFilePath;
 
 	/**
 	 * 
@@ -55,7 +55,7 @@ public class GenericTransformationRunner {
 
 		 // the selected resource (IMPORTANT: needs to be represented as absolute URI with "file://" scheme; 
 		// if other schemes are used, the relative paths to the wprops and other model files are not set correct!)
-		URI pamtramUri = URI.createFileURI(new java.io.File(pamtramPathString).toString());
+		URI pamtramUri = URI.createFileURI(new java.io.File(pamtramPath).toString());
 
 		//try to load pamtram model
 		 pamtramResource = (XMIResource) resourceSet.getResource(pamtramUri, true);
@@ -74,11 +74,10 @@ public class GenericTransformationRunner {
 		// TODO check if the xmi resource already exists
 		try {
 			// try to create the xmi resource
-			URI targetModelResourceURI=sourcemodelURI.trimFileExtension();
-
-			targetModelResourceURI=targetModelResourceURI.trimSegments(1).appendSegment(targetModelResourceURI.lastSegment()+"_converted").appendFileExtension("xmi");
+			URI targetFileUri = URI.createFileURI(new java.io.File(targetFilePath).toString());
 			targetModel = (XMIResource) resFactory
-					.createResource(targetModelResourceURI);
+					.createResource(targetFileUri);
+
 
 		} catch (Exception e) {
 			MessageDialog

@@ -60,14 +60,14 @@ public class GentransFromXMLSourceHandler extends AbstractHandler {
 			xmlResource.load(Collections.EMPTY_MAP);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();//TODO Dialog
+			e.printStackTrace(System.out);
 			return null;
 		}
 		
 		
 		// get the root object of the xml resource
 		EObject root = xmlResource.getContents().get(0).eContents().get(0);
-		GenericTransformationRunner tr=new GenericTransformationRunner(root, xmlResource.getURI(),pamtramFilePath);
+		GenericTransformationRunner tr=new GenericTransformationRunner(root,pamtramFilePath,PamtramFileSelectorDialog.getTargetFile());
 		try{
 		tr.runTransformation();
 		} catch (Exception e){

@@ -43,9 +43,6 @@ public class GentransFromXMLSourceHandler extends AbstractHandler {
 		// TODO check if necessary if standard xml extension is used
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
 		    .put("xml", new GenericXMLResourceFactoryImpl());
-		
-//		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
-//	    .put("pamtram", new XMIResourceFactoryImpl());
 
 		// Create a resource set. 
 		ResourceSet resourceSet = new ResourceSetImpl(); 
@@ -69,11 +66,13 @@ public class GentransFromXMLSourceHandler extends AbstractHandler {
 		
 		
 		// get the root object of the xml resource
-
-		EObject root = xmlResource.getContents().get(0);
+		EObject root = xmlResource.getContents().get(0).eContents().get(0);
 		GenericTransformationRunner tr=new GenericTransformationRunner(root, xmlResource.getURI(),pamtramFilePath);
+		try{
 		tr.runTransformation();
-	    
+		} catch (Exception e){
+			 e.printStackTrace(System.out);
+		}
 	    return null;
 	}
 	

@@ -9,6 +9,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.Mapping;
@@ -43,11 +44,13 @@ public class SourceSectionMapper {
 	
 	}
 	
-	private LinkedList<MappingHint> getHints(Mapping m){
+	private List<MappingHint> getHints(Mapping m){
 		if(!mappingHints.containsKey(m)){
 			mappingHints.put(m, new LinkedList<MappingHint>());
 			for(MappingHintGroup g : m.getMappingHintGroups()){
-				mappingHints.get(m).addAll(g.getMappingHints());
+				if(g.getMappingHints() != null){
+					mappingHints.get(m).addAll(g.getMappingHints());					
+				}
 			}
 		}
 		
@@ -57,11 +60,13 @@ public class SourceSectionMapper {
 	
 	
 	
-	private LinkedList<ModelConnectionHint> getModelConnectionHints(Mapping m){
+	private List<ModelConnectionHint> getModelConnectionHints(Mapping m){
 		if(!modelConnectionHints.containsKey(m)){
 			modelConnectionHints.put(m, new LinkedList<ModelConnectionHint>());
 			for(MappingHintGroup g : m.getMappingHintGroups()){
-				modelConnectionHints.get(m).add(g.getModelConnectionMatcher());
+				if(g.getModelConnectionMatcher() != null){
+					modelConnectionHints.get(m).add(g.getModelConnectionMatcher());					
+				}
 			}
 		}
 		
@@ -117,12 +122,12 @@ public class SourceSectionMapper {
 	 * @param srcModelObject
 	 *            Element of the srcModel to be transformed
 	 * @param usedOkay
-	 *            specify whether elements already contained in newRefsAndHints
+	 *            specify whether elements already contained in newRefsAndHints can be mapped (needed for non-cont refs)
 	 * @param hints
+	 * @param connectionHints
 	 * @param srcSection
 	 * @param newRefsAndHints
-	 * @param srcModel
-	 * @throws EolModelElementTypeNotFoundException
+	 * @param srcInstanceMap
 	 */
 	@SuppressWarnings("unchecked")
 	private static MappingInstanceStorage findMappingIterate(
@@ -137,7 +142,7 @@ public class SourceSectionMapper {
 		// (we do not check any of the used elements of other mappings, since
 		// WILL be in a different section of the containment tree )
 		if ((!usedOkay && newRefsAndHints.containsRefValue(srcModelObject))
-				|| srcModelObject.eClass().equals( srcSection.getEClass())) {
+				|| !srcModelObject.eClass().equals( srcSection.getEClass())) {
 			return null;
 		}
 		// we will return this in Case we find the mapping to be applicable
@@ -174,7 +179,7 @@ public class SourceSectionMapper {
 																			// in
 																			// srcSection
 			
-			if(at instanceof ActualAttribute){//TODO handle virtual Attribute
+			if(at instanceof ActualAttribute){
 				ActualAttribute a = (ActualAttribute) at;
 			// does it exist in src model?
 
@@ -591,7 +596,7 @@ public class SourceSectionMapper {
 			MappingInstanceStorage returnVal=null;
 			switch(mappingData.keySet().size()){
 				case 0:
-					//System.out.println("No suitable mappping found for element '" + self + "'.");
+					System.out.println("No suitable mappping found for element\n'" + EObjectTransformationHelper.asString(element) + "'.");
 					break;
 				case 1:
 					returnVal= mappingData.get(mappingData.values().iterator().next());
@@ -604,7 +609,10 @@ public class SourceSectionMapper {
 					break;
 			}	
 			
-			System.out.println(','  + returnVal.getMapping().getName() + ", " + usedInMapping.get(returnVal.getMapping()) + " ,  "+ time );
+			if(returnVal != null){
+				System.out.println(','  + returnVal.getMapping().getName() + ", " + usedInMapping.get(returnVal.getMapping()) + " ,  "+ time );
+
+			}
 			
 			return returnVal;
 	}

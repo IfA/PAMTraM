@@ -4074,7 +4074,7 @@
     </OwnedPanel>
     <OwnedPanel Name="StockDouble"/>
     <OwnedPanel Name="StockDoublePLC">
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="CloseGripper_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="StockDoublePLC_CloseGripper" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.399">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="CloseGripper_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.2/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.2/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -4181,7 +4181,7 @@
       </OwnedUIComponent>
     </OwnedPanel>
     <OwnedPanel Name="MillAndTurn105MillCNC">
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="ATREF_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105MillCNC_ATREF" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.363">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="ATREF_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.4/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.4/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -4211,7 +4211,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="READY_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105MillCNC_READY" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.364">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="READY_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.4/@OwnedUIComponent.1/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.4/@OwnedUIComponent.1/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -4241,7 +4241,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="STATUS_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105MillCNC_STATUS" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.365">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="STATUS_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.4/@OwnedUIComponent.2/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.4/@OwnedUIComponent.2/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -4271,7 +4271,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="RMODE_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105MillCNC_RMODE" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.366">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="RMODE_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.4/@OwnedUIComponent.3/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.4/@OwnedUIComponent.3/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -4429,7 +4429,7 @@
       </OwnedUIComponent>
     </OwnedPanel>
     <OwnedPanel Name="MillAndTurn105TurnCNC">
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="ATREF_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105TurnCNC_ATREF" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.392">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="ATREF_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.5/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.5/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -4459,7 +4459,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="READY_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105TurnCNC_READY" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.393">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="READY_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.5/@OwnedUIComponent.1/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.5/@OwnedUIComponent.1/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -4489,7 +4489,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="STATUS_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105TurnCNC_STATUS" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.394">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="STATUS_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.5/@OwnedUIComponent.2/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.5/@OwnedUIComponent.2/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -4519,7 +4519,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="RMODE_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105TurnCNC_RMODE" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.395">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="RMODE_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.5/@OwnedUIComponent.3/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.5/@OwnedUIComponent.3/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -4677,7 +4677,7 @@
       </OwnedUIComponent>
     </OwnedPanel>
     <OwnedPanel Name="MillAndTurn105Robot">
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="HCLOSE1_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105Robot_HCLOSE1" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.368">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="HCLOSE1_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -4707,7 +4707,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="HOPEN1_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105Robot_HOPEN1" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.369">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="HOPEN1_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.1/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.1/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -4737,7 +4737,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="T_VCLOSE_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105Robot_T_VCLOSE" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.370">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="T_VCLOSE_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.2/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.2/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -4767,7 +4767,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="T_VOPEN_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105Robot_T_VOPEN" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.371">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="T_VOPEN_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.3/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.3/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -4797,7 +4797,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="T_DCLOSE_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105Robot_T_DCLOSE" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.372">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="T_DCLOSE_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.4/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.4/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -4827,7 +4827,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="T_DOPEN_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105Robot_T_DOPEN" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.373">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="T_DOPEN_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.5/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.5/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -4857,7 +4857,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="T_AUXON_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105Robot_T_AUXON" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.374">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="T_AUXON_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.6/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.6/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -4887,7 +4887,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="T_REF_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105Robot_T_REF" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.375">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="T_REF_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.7/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.7/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -4917,7 +4917,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="T_CMODE_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105Robot_T_CMODE" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.376">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="T_CMODE_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.8/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.8/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -4947,7 +4947,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="T_RUNPR_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105Robot_T_RUNPR" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.377">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="T_RUNPR_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.9/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.9/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -4977,7 +4977,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="M_VCLOSE_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105Robot_M_VCLOSE" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.378">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="M_VCLOSE_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.10/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.10/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -5007,7 +5007,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="M_VOPEN_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105Robot_M_VOPEN" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.379">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="M_VOPEN_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.11/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.11/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -5037,7 +5037,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="M_DCLOSE_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105Robot_M_DCLOSE" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.380">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="M_DCLOSE_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.12/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.12/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -5067,7 +5067,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="M_DOPEN_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105Robot_M_DOPEN" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.381">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="M_DOPEN_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.13/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.13/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -5097,7 +5097,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="M_AUXON_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105Robot_M_AUXON" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.382">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="M_AUXON_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.14/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.14/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -5127,7 +5127,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="M_REF_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105Robot_M_REF" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.383">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="M_REF_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.15/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.15/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -5157,7 +5157,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="M_CMODE_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105Robot_M_CMODE" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.384">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="M_CMODE_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.16/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.16/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -5187,7 +5187,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="M_RUNPR_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105Robot_M_RUNPR" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.385">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="M_RUNPR_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.17/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.17/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -5217,7 +5217,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="SEP_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105Robot_SEP" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.386">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="SEP_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.18/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.18/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -5247,7 +5247,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="LEDQ2_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105Robot_LEDQ2" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.387">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="LEDQ2_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.19/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.19/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -5277,7 +5277,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="LEDQ1_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105Robot_LEDQ1" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.388">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="LEDQ1_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.20/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.20/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -5307,7 +5307,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="HRESET_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105Robot_HRESET" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.389">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="HRESET_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.21/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.21/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -5337,7 +5337,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="HSTART_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105Robot_HSTART" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.390">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="HSTART_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.22/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.22/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -6693,7 +6693,7 @@
     <OwnedPanel Name="Magazine2"/>
     <OwnedPanel Name="BaseplateMagazine"/>
     <OwnedPanel Name="DiffuseSensor">
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Part_AV  Werkstrhanden_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="DiffuseSensor_Part_AV  Werkstrhanden" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.398">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="Part_AV  Werkstrhanden_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.10/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.10/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -6743,7 +6743,7 @@
     </OwnedPanel>
     <OwnedPanel Name="Palletholder_23"/>
     <OwnedPanel Name="PalletSensor_4">
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Ident_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PalletSensor_4_Ident" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.391">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="Ident_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.12/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.12/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -6793,7 +6793,7 @@
     </OwnedPanel>
     <OwnedPanel Name="Palletholder_20"/>
     <OwnedPanel Name="PalletSensor_1">
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Ident_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PalletSensor_1_Ident" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.397">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="Ident_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.14/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.14/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -6843,7 +6843,7 @@
     </OwnedPanel>
     <OwnedPanel Name="Palletholder_22"/>
     <OwnedPanel Name="PalletSensor_3">
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Ident_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PalletSensor_3_Ident" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.367">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="Ident_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.16/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.16/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -6893,7 +6893,7 @@
     </OwnedPanel>
     <OwnedPanel Name="Palletholder_21"/>
     <OwnedPanel Name="PalletSensor_2">
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Ident_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PalletSensor_2_Ident" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.396">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="Ident_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.18/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.18/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -6942,7 +6942,7 @@
       </OwnedUIComponent>
     </OwnedPanel>
     <OwnedPanel Name="RobotGripper">
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="GS_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="RobotGripper_GS" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.360">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="GS_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.19/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.19/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -6972,7 +6972,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AS_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="RobotGripper_AS" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.361">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="AS_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.19/@OwnedUIComponent.1/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.19/@OwnedUIComponent.1/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -7002,7 +7002,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="IsClosed_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="RobotGripper_IsClosed" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.362">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="IsClosed_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.19/@OwnedUIComponent.2/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.19/@OwnedUIComponent.2/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -7173,7 +7173,7 @@
       </OwnedUIComponent>
     </OwnedPanel>
     <OwnedPanel Name="Mill55Robot">
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="HCLOSE1_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55Robot_HCLOSE1" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.347">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="HCLOSE1_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.21/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.21/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -7203,7 +7203,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="HOPEN1_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55Robot_HOPEN1" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.348">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="HOPEN1_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.21/@OwnedUIComponent.1/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.21/@OwnedUIComponent.1/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -7233,7 +7233,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="VCLOSE_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55Robot_VCLOSE" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.349">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="VCLOSE_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.21/@OwnedUIComponent.2/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.21/@OwnedUIComponent.2/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -7263,7 +7263,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="VOPEN_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55Robot_VOPEN" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.350">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="VOPEN_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.21/@OwnedUIComponent.3/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.21/@OwnedUIComponent.3/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -7293,7 +7293,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="DCLOSE_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55Robot_DCLOSE" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.351">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="DCLOSE_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.21/@OwnedUIComponent.4/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.21/@OwnedUIComponent.4/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -7323,7 +7323,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="DOPEN_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55Robot_DOPEN" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.352">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="DOPEN_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.21/@OwnedUIComponent.5/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.21/@OwnedUIComponent.5/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -7353,7 +7353,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="REMOVEPLATE_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55Robot_REMOVEPLATE" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.353">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="REMOVEPLATE_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.21/@OwnedUIComponent.6/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.21/@OwnedUIComponent.6/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -7383,7 +7383,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="FSTOP_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55Robot_FSTOP" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.354">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="FSTOP_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.21/@OwnedUIComponent.7/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.21/@OwnedUIComponent.7/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -7413,7 +7413,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="RUNPR_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55Robot_RUNPR" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.355">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="RUNPR_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.21/@OwnedUIComponent.8/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.21/@OwnedUIComponent.8/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -7443,7 +7443,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="LEDQ2_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55Robot_LEDQ2" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.356">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="LEDQ2_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.21/@OwnedUIComponent.9/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.21/@OwnedUIComponent.9/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -7473,7 +7473,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="LEDQ1_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55Robot_LEDQ1" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.357">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="LEDQ1_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.21/@OwnedUIComponent.10/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.21/@OwnedUIComponent.10/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -7503,7 +7503,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="HRESET_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55Robot_HRESET" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.358">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="HRESET_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.21/@OwnedUIComponent.11/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.21/@OwnedUIComponent.11/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -7533,7 +7533,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="HSTART_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55Robot_HSTART" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.359">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="HSTART_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.21/@OwnedUIComponent.12/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.21/@OwnedUIComponent.12/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -8266,7 +8266,7 @@
       </OwnedUIComponent>
     </OwnedPanel>
     <OwnedPanel Name="Mill55CNC">
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="ReplPenBrass5_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55CNC_ReplPenBrass5" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.329">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="ReplPenBrass5_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -8296,7 +8296,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="ReplPenBrass4_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55CNC_ReplPenBrass4" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.330">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="ReplPenBrass4_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.1/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.1/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -8326,7 +8326,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="ReplPenBrass3_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55CNC_ReplPenBrass3" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.331">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="ReplPenBrass3_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.2/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.2/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -8356,7 +8356,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="ReplPenBrass2_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55CNC_ReplPenBrass2" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.332">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="ReplPenBrass2_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.3/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.3/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -8386,7 +8386,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="ReplPenBrass1_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55CNC_ReplPenBrass1" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.333">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="ReplPenBrass1_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.4/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.4/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -8416,7 +8416,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="ReplPenAlu5_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55CNC_ReplPenAlu5" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.334">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="ReplPenAlu5_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.5/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.5/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -8446,7 +8446,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="ReplPenAlu4_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55CNC_ReplPenAlu4" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.335">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="ReplPenAlu4_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.6/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.6/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -8476,7 +8476,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="ReplPenAlu3_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55CNC_ReplPenAlu3" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.336">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="ReplPenAlu3_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.7/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.7/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -8506,7 +8506,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="ReplPenAlu2_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55CNC_ReplPenAlu2" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.337">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="ReplPenAlu2_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.8/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.8/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -8536,7 +8536,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="ReplPenAlu1_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55CNC_ReplPenAlu1" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.338">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="ReplPenAlu1_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.9/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.9/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -8566,7 +8566,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="ReplBaseReject_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55CNC_ReplBaseReject" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.339">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="ReplBaseReject_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.10/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.10/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -8596,7 +8596,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="ReplBaseAlu5_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55CNC_ReplBaseAlu5" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.340">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="ReplBaseAlu5_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.11/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.11/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -8626,7 +8626,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="ReplBaseAlu4_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55CNC_ReplBaseAlu4" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.341">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="ReplBaseAlu4_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.12/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.12/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -8656,7 +8656,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="ReplBaseAlu3_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55CNC_ReplBaseAlu3" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.342">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="ReplBaseAlu3_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.13/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.13/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -8686,7 +8686,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="ReplBaseAlu2_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55CNC_ReplBaseAlu2" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.343">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="ReplBaseAlu2_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.14/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.14/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -8716,7 +8716,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="ReplBaseAlu1_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55CNC_ReplBaseAlu1" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.344">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="ReplBaseAlu1_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.15/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.15/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -8746,7 +8746,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="TrashPen_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55CNC_TrashPen" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.345">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="TrashPen_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.16/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.16/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -8776,7 +8776,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="TrashBase_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55CNC_TrashBase" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.346">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="TrashBase_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.17/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.17/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -9142,7 +9142,7 @@
       </OwnedUIComponent>
     </OwnedPanel>
     <OwnedPanel Name="MillRobotGripper">
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="IsClosed_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillRobotGripper_IsClosed" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.328">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="IsClosed_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.23/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.23/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -9222,7 +9222,7 @@
     </OwnedPanel>
     <OwnedPanel Name="PalletHolder_1"/>
     <OwnedPanel Name="PalletSensor_5">
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Ident_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PalletSensor_5_Ident" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.327">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="Ident_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.25/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.25/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -9272,7 +9272,7 @@
     </OwnedPanel>
     <OwnedPanel Name="PalletHolder_2"/>
     <OwnedPanel Name="PalletSensor_6">
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Ident_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PalletSensor_6_Ident" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.326">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="Ident_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.27/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.27/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -9322,7 +9322,7 @@
     </OwnedPanel>
     <OwnedPanel Name="PalletHolder_3"/>
     <OwnedPanel Name="PalletSensor_7">
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Ident_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PalletSensor_7_Ident" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.325">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="Ident_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.29/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.29/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -9429,7 +9429,7 @@
       </OwnedUIComponent>
     </OwnedPanel>
     <OwnedPanel Name="Turn55Robot">
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="HCLOSE1_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Turn55Robot_HCLOSE1" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.312">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="HCLOSE1_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.31/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.31/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -9459,7 +9459,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="HOPEN1_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Turn55Robot_HOPEN1" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.313">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="HOPEN1_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.31/@OwnedUIComponent.1/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.31/@OwnedUIComponent.1/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -9489,7 +9489,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="VCLOSE_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Turn55Robot_VCLOSE" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.314">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="VCLOSE_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.31/@OwnedUIComponent.2/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.31/@OwnedUIComponent.2/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -9519,7 +9519,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="VOPEN_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Turn55Robot_VOPEN" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.315">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="VOPEN_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.31/@OwnedUIComponent.3/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.31/@OwnedUIComponent.3/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -9549,7 +9549,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="DCLOSE_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Turn55Robot_DCLOSE" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.316">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="DCLOSE_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.31/@OwnedUIComponent.4/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.31/@OwnedUIComponent.4/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -9579,7 +9579,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="DOPEN_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Turn55Robot_DOPEN" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.317">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="DOPEN_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.31/@OwnedUIComponent.5/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.31/@OwnedUIComponent.5/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -9609,7 +9609,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="REMOVEPLATE_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Turn55Robot_REMOVEPLATE" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.318">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="REMOVEPLATE_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.31/@OwnedUIComponent.6/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.31/@OwnedUIComponent.6/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -9639,7 +9639,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="FSTOP_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Turn55Robot_FSTOP" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.319">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="FSTOP_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.31/@OwnedUIComponent.7/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.31/@OwnedUIComponent.7/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -9669,7 +9669,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="RUNPR_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Turn55Robot_RUNPR" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.320">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="RUNPR_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.31/@OwnedUIComponent.8/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.31/@OwnedUIComponent.8/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -9699,7 +9699,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="LEDQ2_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Turn55Robot_LEDQ2" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.321">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="LEDQ2_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.31/@OwnedUIComponent.9/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.31/@OwnedUIComponent.9/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -9729,7 +9729,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="LEDQ1_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Turn55Robot_LEDQ1" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.322">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="LEDQ1_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.31/@OwnedUIComponent.10/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.31/@OwnedUIComponent.10/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -9759,7 +9759,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="HRESET_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Turn55Robot_HRESET" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.323">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="HRESET_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.31/@OwnedUIComponent.11/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.31/@OwnedUIComponent.11/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -9789,7 +9789,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="HSTART_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Turn55Robot_HSTART" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.324">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="HSTART_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.31/@OwnedUIComponent.12/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.31/@OwnedUIComponent.12/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -10552,7 +10552,7 @@
       </OwnedUIComponent>
     </OwnedPanel>
     <OwnedPanel Name="TurnRobotGripper">
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="IsClosed_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="TurnRobotGripper_IsClosed" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.311">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="IsClosed_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.33/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.33/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -10632,7 +10632,7 @@
     </OwnedPanel>
     <OwnedPanel Name="PalletHolder_4"/>
     <OwnedPanel Name="PalletSensor_8">
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Ident_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PalletSensor_8_Ident" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.310">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="Ident_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.35/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.35/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -10682,7 +10682,7 @@
     </OwnedPanel>
     <OwnedPanel Name="PalletHolder_5"/>
     <OwnedPanel Name="PalletSensor_9">
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Ident_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PalletSensor_9_Ident" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.309">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="Ident_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.37/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.37/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -10732,7 +10732,7 @@
     </OwnedPanel>
     <OwnedPanel Name="PalletHolder_6"/>
     <OwnedPanel Name="PalletSensor_10">
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Ident_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PalletSensor_10_Ident" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.308">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="Ident_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.39/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.39/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -10839,7 +10839,7 @@
       </OwnedUIComponent>
     </OwnedPanel>
     <OwnedPanel Name="AssemblyRH5A55Robot">
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="HCLOSE4_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55Robot_HCLOSE4" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.286">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="HCLOSE4_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -10869,7 +10869,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="HOPEN4_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55Robot_HOPEN4" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.287">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="HOPEN4_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.1/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.1/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -10899,7 +10899,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="HCLOSE3_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55Robot_HCLOSE3" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.288">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="HCLOSE3_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.2/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.2/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -10929,7 +10929,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="HOPEN3_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55Robot_HOPEN3" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.289">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="HOPEN3_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.3/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.3/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -10959,7 +10959,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="HCLOSE2_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55Robot_HCLOSE2" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.290">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="HCLOSE2_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.4/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.4/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -10989,7 +10989,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="HOPEN2_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55Robot_HOPEN2" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.291">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="HOPEN2_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.5/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.5/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -11019,7 +11019,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="HCLOSE1_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55Robot_HCLOSE1" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.292">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="HCLOSE1_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.6/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.6/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -11049,7 +11049,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="HOPEN1_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55Robot_HOPEN1" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.293">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="HOPEN1_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.7/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.7/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -11079,7 +11079,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="VFCYL2_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55Robot_VFCYL2" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.294">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="VFCYL2_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.8/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.8/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -11109,7 +11109,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="VFCYL1_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55Robot_VFCYL1" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.295">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="VFCYL1_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.9/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.9/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -11139,7 +11139,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="VFED2_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55Robot_VFED2" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.296">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="VFED2_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.10/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.10/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -11169,7 +11169,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="VFED1_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55Robot_VFED1" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.297">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="VFED1_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.11/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.11/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -11199,7 +11199,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="LEDQ2ON_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55Robot_LEDQ2ON" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.298">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="LEDQ2ON_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.12/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.12/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -11229,7 +11229,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="LEDQ1ON_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55Robot_LEDQ1ON" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.299">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="LEDQ1ON_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.13/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.13/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -11259,7 +11259,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="HRESET_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55Robot_HRESET" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.300">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="HRESET_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.14/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.14/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -11289,7 +11289,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="HSTART_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55Robot_HSTART" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.301">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="HSTART_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.15/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.15/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -12313,7 +12313,7 @@
       </OwnedUIComponent>
     </OwnedPanel>
     <OwnedPanel Name="AssemblyRH5A55VisionData">
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Recognized_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55VisionData_Recognized" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.306">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="Recognized_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.42/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.42/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -12614,7 +12614,7 @@
       </OwnedUIComponent>
     </OwnedPanel>
     <OwnedPanel Name="RobotGripper_1">
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="IsClosed_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="RobotGripper_1_IsClosed" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.304">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="IsClosed_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.43/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.43/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -12700,7 +12700,7 @@
     <OwnedPanel Name="PenMagazin"/>
     <OwnedPanel Name="MagazinInstrument_2"/>
     <OwnedPanel Name="PalletSensor_11">
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Ident_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PalletSensor_11_Ident" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.303">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="Ident_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.51/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.51/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -12749,7 +12749,7 @@
       </OwnedUIComponent>
     </OwnedPanel>
     <OwnedPanel Name="PalletSensor_12">
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Ident_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PalletSensor_12_Ident" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.307">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="Ident_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.52/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.52/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -12798,7 +12798,7 @@
       </OwnedUIComponent>
     </OwnedPanel>
     <OwnedPanel Name="PalletSensor_13">
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Ident_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PalletSensor_13_Ident" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.302">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="Ident_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.53/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.53/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -12847,7 +12847,7 @@
       </OwnedUIComponent>
     </OwnedPanel>
     <OwnedPanel Name="PalletSensor_14">
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Ident_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PalletSensor_14_Ident" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.305">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="Ident_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.54/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.54/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -12898,7 +12898,7 @@
     <OwnedPanel Name="AssemblyRH5A55VisionControl"/>
     <OwnedPanel Name="Quality"/>
     <OwnedPanel Name="QualityPLC">
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Y11_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="QualityPLC_Y11" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.267">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="Y11_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.0/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -12928,7 +12928,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="S13_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="QualityPLC_S13" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.268">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="S13_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.1/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.1/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -12958,7 +12958,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="S11_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="QualityPLC_S11" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.269">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="S11_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.2/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.2/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -12988,7 +12988,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="S9_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="QualityPLC_S9" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.270">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="S9_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.3/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.3/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -13018,7 +13018,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PANEL_H4_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="QualityPLC_PANEL_H4" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.271">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="PANEL_H4_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.4/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.4/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -13048,7 +13048,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PANEL_H3_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="QualityPLC_PANEL_H3" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.272">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="PANEL_H3_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.5/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.5/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -13078,7 +13078,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PANEL_H2_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="QualityPLC_PANEL_H2" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.273">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="PANEL_H2_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.6/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.6/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -13108,7 +13108,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PANEL_H1_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="QualityPLC_PANEL_H1" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.274">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="PANEL_H1_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.7/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.7/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -13138,7 +13138,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="STATION_Y51_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="QualityPLC_STATION_Y51" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.275">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="STATION_Y51_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.8/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.8/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -13168,7 +13168,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="STATION_Y41_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="QualityPLC_STATION_Y41" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.276">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="STATION_Y41_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.9/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.9/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -13198,7 +13198,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="STATION_K2_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="QualityPLC_STATION_K2" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.277">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="STATION_K2_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.10/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.10/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -13228,7 +13228,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="STATION_K1_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="QualityPLC_STATION_K1" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.278">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="STATION_K1_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.11/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.11/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -13258,7 +13258,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="STATION_Y71_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="QualityPLC_STATION_Y71" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.279">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="STATION_Y71_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.12/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.12/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -13288,7 +13288,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="STATION_Y61_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="QualityPLC_STATION_Y61" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.280">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="STATION_Y61_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.13/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.13/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -13318,7 +13318,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="STATION_Y31_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="QualityPLC_STATION_Y31" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.281">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="STATION_Y31_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.14/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.14/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -13348,7 +13348,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="STATION_Y22_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="QualityPLC_STATION_Y22" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.282">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="STATION_Y22_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.15/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.15/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -13378,7 +13378,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="STATION_Y21_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="QualityPLC_STATION_Y21" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.283">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="STATION_Y21_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.16/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.16/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -13408,7 +13408,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="STATION_Y12_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="QualityPLC_STATION_Y12" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.284">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="STATION_Y12_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.17/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.17/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
@@ -13438,7 +13438,7 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="STATION_Y11_textLabel" Comment="RoleRestrictionComment TODO">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="QualityPLC_STATION_Y11" Comment="RoleRestrictionComment TODO">
         <Animation>
           <RepresentationAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.285">
             <OwnedComparator xsi:type="presentation:BooleanComparison" Name="STATION_Y11_alignment" FalseEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.18/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.18/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>

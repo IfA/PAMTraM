@@ -304,10 +304,9 @@ public class TargetSectionConnector {
 
 		if (targetSectionRegistry.getPaths(classToConnect).size() > 0) {
 			LinkedList<ModelConnectionPath> pathsToConsider = findPathsWithMinimumCapacity(
-					classToConnect, null, rootInstances.size());
+					classToConnect, null, rootInstances.size());//only go on with paths that could theoretically fit all of the elements
 
-			if (pathsToConsider.size() > 0) {// only go on with paths that
-												// guarantuee unlimited capacity
+			if (pathsToConsider.size() > 0) {
 				// handle container
 				LinkedList<EObjectTransformationHelper> containerInstances = targetSectionRegistry
 						.getFlattenedPamtramClassInstances(section

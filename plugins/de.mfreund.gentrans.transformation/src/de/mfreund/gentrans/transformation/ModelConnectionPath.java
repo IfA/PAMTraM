@@ -8,20 +8,20 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
-public class Path {
+public class ModelConnectionPath {
 
 	private TargetSectionRegistry targetSectionRegistry;
 
 	private LinkedList<EObject> pathElements;
 
-	public Path(TargetSectionRegistry targetSectionRegistry) {
+	public ModelConnectionPath(TargetSectionRegistry targetSectionRegistry) {
 		this.pathElements = new LinkedList<EObject>();
 		this.targetSectionRegistry=targetSectionRegistry;
 
 
 	}
 
-	private Path(LinkedList<EObject> pathElements,TargetSectionRegistry targetSectionRegistry) {
+	private ModelConnectionPath(LinkedList<EObject> pathElements,TargetSectionRegistry targetSectionRegistry) {
 
 		this.pathElements = new LinkedList<EObject>();
 		this.pathElements.addAll(pathElements);
@@ -30,7 +30,7 @@ public class Path {
 
 	}
 
-	private Path(LinkedList<EObject> pathElements, EObject newElement,TargetSectionRegistry targetSectionRegistry) {
+	private ModelConnectionPath(LinkedList<EObject> pathElements, EObject newElement,TargetSectionRegistry targetSectionRegistry) {
 
 		this.pathElements = new LinkedList<EObject>();
 		this.pathElements.addAll(pathElements);
@@ -46,7 +46,7 @@ public class Path {
 		if (targetSectionRegistry.getTargetClassInstances(targetSectionClass).size() > 0
 				&& pathElements.size() > 0) {
 			// add copy of path to possiblePaths
-			Path newSelf = new Path(this.pathElements, targetSectionClass,targetSectionRegistry);
+			ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements, targetSectionClass,targetSectionRegistry);
 
 			// self.first.~possiblePaths.add(newSelf);
 			targetSectionRegistry.addPath(newSelf, (EClass) this.pathElements.getFirst()); // first
@@ -56,7 +56,7 @@ public class Path {
 
 		// check for inherited types
 		for (EClass c : targetSectionRegistry.getChildClasses(targetSectionClass)) {
-			Path newSelf = new Path(this.pathElements,targetSectionRegistry);
+			ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements,targetSectionRegistry);
 			newSelf.findPathsToInstances(c);
 		}
 
@@ -75,7 +75,7 @@ public class Path {
 					.getClassReferences(targetSectionClass)) {
 
 				for (EClass s : targetSectionRegistry.getReferenceSources(cont)) {
-					Path newSelf = new Path(this.pathElements, cont,targetSectionRegistry);
+					ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements, cont,targetSectionRegistry);
 					newSelf.findPathsToInstances(s);
 				}
 			}

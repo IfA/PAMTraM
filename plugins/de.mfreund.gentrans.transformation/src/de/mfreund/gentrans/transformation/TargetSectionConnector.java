@@ -20,7 +20,7 @@ import de.mfreund.gentrans.transformation.selectors.ItemSelectorDialog;
 import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunner;
 
 public class TargetSectionConnector {
-	private  LinkedHashMap<ModelConnectionHint, Path> standardPaths;
+	private  LinkedHashMap<ModelConnectionHint, ModelConnectionPath> standardPaths;
 	private AttributeValueRegistry attrValRegistry;
 	private TargetSectionRegistry targetSectionRegistry;
 	private XMIResource targetModel;
@@ -28,16 +28,16 @@ public class TargetSectionConnector {
 	
 	public TargetSectionConnector(AttributeValueRegistry attrValRegistry, TargetSectionRegistry targetSectionRegistry,
 			XMIResource targetModel){
-		standardPaths = new LinkedHashMap<ModelConnectionHint, Path>();
+		standardPaths = new LinkedHashMap<ModelConnectionHint, ModelConnectionPath>();
 		this.attrValRegistry=attrValRegistry;
 		this.targetSectionRegistry=targetSectionRegistry;
 		this.targetModel=targetModel;
 	}
 
-	public  LinkedList<Path> getUnlimitedCapacityPaths(
+	public  LinkedList<ModelConnectionPath> getUnlimitedCapacityPaths(
 			EClass classToConnect, EObject startInstance, int minimumCapacity) {
-		LinkedList<Path> pathsToConsider = new LinkedList<Path>();
-		for (Path p : targetSectionRegistry.getPaths(classToConnect)) {
+		LinkedList<ModelConnectionPath> pathsToConsider = new LinkedList<ModelConnectionPath>();
+		for (ModelConnectionPath p : targetSectionRegistry.getPaths(classToConnect)) {
 			if (startInstance != null) {
 				if (!p.leadsToRootType(startInstance.eClass())) {
 					continue;// only consider paths with the right start
@@ -213,29 +213,29 @@ public class TargetSectionConnector {
 					}
 
 					// sort possible paths by path capacity
-					LinkedList<Path> pathsToConsider = new LinkedList<Path>();
+					LinkedList<ModelConnectionPath> pathsToConsider = new LinkedList<ModelConnectionPath>();
 					if (otherPathsNeeded) {
 						pathsToConsider = getUnlimitedCapacityPaths(
 								classToConnect, container.getEObject(),
 								rootInstancesByContainer.get(container).size());
 
 					} else {
-						pathsToConsider = new LinkedList<Path>();
+						pathsToConsider = new LinkedList<ModelConnectionPath>();
 						pathsToConsider.add(standardPaths.get(connectionHint));
 
 					}
 
-					Path path;
+					ModelConnectionPath modelConnectionPath;
 					if (pathsToConsider.size() == 1) {// only one path to choose
 														// from
-						path = pathsToConsider.getFirst();
+						modelConnectionPath = pathsToConsider.getFirst();
 					} else if (pathsToConsider.size() > 0) {// user decides
-						LinkedHashMap<String, Path> pathNames = new LinkedHashMap<String, Path>();
-						Path standardPath = pathsToConsider.getFirst();// get
+						LinkedHashMap<String, ModelConnectionPath> pathNames = new LinkedHashMap<String, ModelConnectionPath>();
+						ModelConnectionPath standardPath = pathsToConsider.getFirst();// get
 																		// shortest
 																		// path
 
-						for (Path p : pathsToConsider) {// prepare user
+						for (ModelConnectionPath p : pathsToConsider) {// prepare user
 														// selections
 							String name = p.toString();
 
@@ -261,7 +261,7 @@ public class TargetSectionConnector {
 										+ connectionHint.getName() + "'.",
 										pathNames.keySet(), standardPath.toString());
 
-						path = pathNames.get(selection);
+						modelConnectionPath = pathNames.get(selection);
 					} else {
 						System.out.println("no  paths????????");// TODO should
 																// be more
@@ -271,13 +271,13 @@ public class TargetSectionConnector {
 					}
 
 					if (!standardPaths.containsKey(connectionHint)) {
-						standardPaths.put(connectionHint, path);
+						standardPaths.put(connectionHint, modelConnectionPath);
 						System.out.println(section.getName() + "("
-								+ mappingName + "): " + path.toString());
+								+ mappingName + "): " + modelConnectionPath.toString());
 					}
 
 					// now instantiate path(s))
-					instantiateMissingPath(path.getInvertedPath(), container.getEObject(),
+					instantiateMissingPath(modelConnectionPath.getInvertedPath(), container.getEObject(),
 							new LinkedList<EObjectTransformationHelper>(rootInstancesByContainer.get(container)));
 
 				}
@@ -300,10 +300,10 @@ public class TargetSectionConnector {
 	public void linkToTargetModel(EClass classToConnect,
 			List<EObjectTransformationHelper> rootInstances, Class section, String mappingName,
 			String mappingGroupName){
-		Path path;// will use this for several purposes
+		ModelConnectionPath modelConnectionPath;// will use this for several purposes
 
 		if (targetSectionRegistry.getPaths(classToConnect).size() > 0) {
-			LinkedList<Path> pathsToConsider = getUnlimitedCapacityPaths(
+			LinkedList<ModelConnectionPath> pathsToConsider = getUnlimitedCapacityPaths(
 					classToConnect, null, rootInstances.size());
 
 			if (pathsToConsider.size() > 0) {// only go on with paths that
@@ -326,7 +326,7 @@ public class TargetSectionConnector {
 						addToTargetModelRoot(rootInstances);
 						return;
 					}
-					for (Path p : (LinkedList<Path>) pathsToConsider.clone()) {
+					for (ModelConnectionPath p : (LinkedList<ModelConnectionPath>) pathsToConsider.clone()) {
 						if (!p.leadsToRootType(section.getContainer()
 								.getEClass())) {
 							pathsToConsider.remove(p);// narrow down possible
@@ -344,28 +344,28 @@ public class TargetSectionConnector {
 				}
 
 				if (onlyOnePath) {// only one path to choose from
-					path = pathsToConsider.getFirst();
+					modelConnectionPath = pathsToConsider.getFirst();
 					// select instance of path end to associate elements to
 					EObjectTransformationHelper inst;
 					if (hasContainer) {
 						inst = containerInstances.getFirst();
 					} else {
 						inst = targetSectionRegistry.getTargetClassInstances(
-								path.getRootType()).getFirst();
+								modelConnectionPath.getRootType()).getFirst();
 					}
 
 					System.out.println(section.getName() + "(" + mappingName
-							+ "): " + path.toString());
-					instantiateMissingPath(path.getInvertedPath(), inst.getEObject(),
+							+ "): " + modelConnectionPath.toString());
+					instantiateMissingPath(modelConnectionPath.getInvertedPath(), inst.getEObject(),
 							rootInstances);
 
 				} else if (pathsToConsider.size() > 0) {// user decides
-					LinkedHashMap<String, Path> pathNames = new LinkedHashMap<String, Path>();
+					LinkedHashMap<String, ModelConnectionPath> pathNames = new LinkedHashMap<String, ModelConnectionPath>();
 					LinkedHashMap<String, LinkedHashMap<String, EObjectTransformationHelper>> instancesByPath = new LinkedHashMap<String, LinkedHashMap<String, EObjectTransformationHelper>>();
-					Path standardPath = pathsToConsider.getFirst();// get
+					ModelConnectionPath standardPath = pathsToConsider.getFirst();// get
 																	// shortest
 																	// path
-					for (Path p : pathsToConsider) {// prepare user selections
+					for (ModelConnectionPath p : pathsToConsider) {// prepare user selections
 						pathNames.put(p.toString(), p);
 						LinkedHashMap<String, EObjectTransformationHelper> instances = new LinkedHashMap<String, EObjectTransformationHelper>();
 						for (EObjectTransformationHelper inst : targetSectionRegistry.getTargetClassInstances(p
@@ -409,15 +409,15 @@ public class TargetSectionConnector {
 
 					// TODO Maybe add option to not do anything
 					// now ask user
-					path = pathNames.get(PathAndInstanceSelectorRunner
+					modelConnectionPath = pathNames.get(PathAndInstanceSelectorRunner
 							.getPath());
 					// select instance of path end to associate elements to
 					EObjectTransformationHelper inst = instancesByPath.get(
 							PathAndInstanceSelectorRunner.getPath()).get(
 							PathAndInstanceSelectorRunner.getInstance());
 					System.out.println(section.getName() + "(" + mappingName
-							+ "): " + path.toString());
-					instantiateMissingPath(path.getInvertedPath(), inst.getEObject(),
+							+ "): " + modelConnectionPath.toString());
+					instantiateMissingPath(modelConnectionPath.getInvertedPath(), inst.getEObject(),
 							rootInstances);
 
 				} else {// no suitable container found

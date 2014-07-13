@@ -26,7 +26,7 @@ public class TargetSectionRegistry {
 		return childClassesRegistry;
 	}
 
-	public LinkedHashMap<EClass, LinkedHashSet<Path>> getPossiblePathsRegistry() {
+	public LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>> getPossiblePathsRegistry() {
 		return possiblePathsRegistry;
 	}
 
@@ -41,7 +41,7 @@ public class TargetSectionRegistry {
 	private  LinkedHashMap<EClass, LinkedList<EObjectTransformationHelper>> targetClassInstanceRegistry;
 	private  LinkedHashMap<Class, LinkedHashMap<MappingHintGroup, LinkedList<EObjectTransformationHelper>>> targetClassInstanceByHintGroupRegistry;
 	private  LinkedHashMap<EClass, LinkedHashSet<EClass>> childClassesRegistry;
-	private  LinkedHashMap<EClass, LinkedHashSet<Path>> possiblePathsRegistry;
+	private  LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>> possiblePathsRegistry;
 	private  LinkedHashMap<EClass, LinkedHashSet<EReference>> targetClassReferencesRegistry; // ==refsToThis
 	private  LinkedHashMap<EReference, LinkedHashSet<EClass>> referenceSourcesRegistry; // ==sources
 
@@ -49,7 +49,7 @@ public class TargetSectionRegistry {
 		targetClassInstanceRegistry= new LinkedHashMap<EClass, LinkedList<EObjectTransformationHelper>>();
 		targetClassInstanceByHintGroupRegistry = new LinkedHashMap<Class, LinkedHashMap<MappingHintGroup, LinkedList<EObjectTransformationHelper>>>();
 		childClassesRegistry= new LinkedHashMap<EClass, LinkedHashSet<EClass>>();
-		possiblePathsRegistry= new LinkedHashMap<EClass, LinkedHashSet<Path>>();
+		possiblePathsRegistry= new LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>>();
 		targetClassReferencesRegistry= new LinkedHashMap<EClass, LinkedHashSet<EReference>>(); // ==refsToThis
 		referenceSourcesRegistry=new LinkedHashMap<EReference, LinkedHashSet<EClass>>(); // ==sources
 	}
@@ -121,12 +121,12 @@ public class TargetSectionRegistry {
 
 	}
 	
-	public  void addPath(Path path, EClass eClass) {
+	public  void addPath(ModelConnectionPath modelConnectionPath, EClass eClass) {
 
 		if (!possiblePathsRegistry.containsKey(eClass)) {
-			possiblePathsRegistry.put(eClass, new LinkedHashSet<Path>());
+			possiblePathsRegistry.put(eClass, new LinkedHashSet<ModelConnectionPath>());
 		}
-		possiblePathsRegistry.get(eClass).add(path);
+		possiblePathsRegistry.get(eClass).add(modelConnectionPath);
 
 	}
 
@@ -217,11 +217,11 @@ public class TargetSectionRegistry {
 
 	}
 
-	public  LinkedHashSet<Path> getPaths(EClass eClass) {
+	public  LinkedHashSet<ModelConnectionPath> getPaths(EClass eClass) {
 		if (!possiblePathsRegistry.containsKey(eClass)) {
-			possiblePathsRegistry.put(eClass, new LinkedHashSet<Path>());
+			possiblePathsRegistry.put(eClass, new LinkedHashSet<ModelConnectionPath>());
 
-			new Path(this).findPathsToInstances(eClass);
+			new ModelConnectionPath(this).findPathsToInstances(eClass);
 		}
 
 		return possiblePathsRegistry.get(eClass);

@@ -118,6 +118,7 @@ public class ItemSelectorDialog extends Dialog {
 			public void controlResized(ControlEvent e){
 				gd_dialogMessage.widthHint = shlPleaseSelectA.getClientArea().width -2*gridLayout.marginWidth;
 				shlPleaseSelectA.layout(true);
+				listWidget.showSelection();
 			}
 		});
 		
@@ -135,6 +136,7 @@ public class ItemSelectorDialog extends Dialog {
 		listViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 			public void selectionChanged(SelectionChangedEvent event) {
 				selectedItem=listWidget.getSelection()[0];
+				listWidget.showSelection();
 			}
 		});
 		listViewer.addDoubleClickListener(new IDoubleClickListener() {
@@ -145,6 +147,7 @@ public class ItemSelectorDialog extends Dialog {
 		listWidget = listViewer.getList();
 		listWidget.setItems(this.listItems.toArray(new String[1]));
 		listWidget.setSelection(standardSelectionIndex);
+		listWidget.showSelection();
 
 		
 		composite = new Composite(shlPleaseSelectA, SWT.NONE);

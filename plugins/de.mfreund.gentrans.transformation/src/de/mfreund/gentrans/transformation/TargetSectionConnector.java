@@ -34,7 +34,7 @@ public class TargetSectionConnector {
 		this.targetModel=targetModel;
 	}
 
-	public  LinkedList<ModelConnectionPath> getUnlimitedCapacityPaths(
+	public  LinkedList<ModelConnectionPath> findPathsWithMinimumCapacity(
 			EClass classToConnect, EObject startInstance, int minimumCapacity) {
 		LinkedList<ModelConnectionPath> pathsToConsider = new LinkedList<ModelConnectionPath>();
 		for (ModelConnectionPath p : targetSectionRegistry.getPaths(classToConnect)) {
@@ -215,7 +215,7 @@ public class TargetSectionConnector {
 					// sort possible paths by path capacity
 					LinkedList<ModelConnectionPath> pathsToConsider = new LinkedList<ModelConnectionPath>();
 					if (otherPathsNeeded) {
-						pathsToConsider = getUnlimitedCapacityPaths(
+						pathsToConsider = findPathsWithMinimumCapacity(
 								classToConnect, container.getEObject(),
 								rootInstancesByContainer.get(container).size());
 
@@ -303,7 +303,7 @@ public class TargetSectionConnector {
 		ModelConnectionPath modelConnectionPath;// will use this for several purposes
 
 		if (targetSectionRegistry.getPaths(classToConnect).size() > 0) {
-			LinkedList<ModelConnectionPath> pathsToConsider = getUnlimitedCapacityPaths(
+			LinkedList<ModelConnectionPath> pathsToConsider = findPathsWithMinimumCapacity(
 					classToConnect, null, rootInstances.size());
 
 			if (pathsToConsider.size() > 0) {// only go on with paths that

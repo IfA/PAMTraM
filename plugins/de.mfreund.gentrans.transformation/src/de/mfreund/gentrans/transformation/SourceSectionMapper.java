@@ -10,13 +10,13 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
-import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
+import pamtram.mapping.SimpleAttributeMapping;
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.Class;
@@ -202,8 +202,8 @@ public class SourceSectionMapper {
 				}
 				// handle possible attribute mappings
 				for (MappingHint hint : hints) {
-					if (hint instanceof AttributeMapping) {
-						AttributeMapping hintA = (AttributeMapping) hint;
+					if (hint instanceof SimpleAttributeMapping) {
+						SimpleAttributeMapping hintA = (SimpleAttributeMapping) hint;
 						if (hintA.getSource().equals(a)) {
 							String valCopy = srcAttrAsString;
 							// handle attribute modifiers
@@ -214,7 +214,7 @@ public class SourceSectionMapper {
 							// hintA.getName() + " " + valCopy + " " +
 							// srcAttrAsString);
 
-						}
+						}//TODO ComplexAttributeMapping
 					} else if (hint instanceof MappingInstanceSelector) {// handle
 																			// MappingInstanceSelector
 																			// with

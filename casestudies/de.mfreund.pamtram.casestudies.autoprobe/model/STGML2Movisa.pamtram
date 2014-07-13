@@ -3765,30 +3765,6 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelColorAnimationOnName" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.5" target="//@targetSectionModel/@metaModelSections.12/@references.1/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0" modifier="//@mappingModel/@modifierSets.27"/>
         <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelColorAnimationOffName" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.5" target="//@targetSectionModel/@metaModelSections.12/@references.1/@value.0/@references.1/@value.0/@references.1/@value.1/@attributes.0" modifier="//@mappingModel/@modifierSets.28"/>
         <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepBooleanCompName" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.5" target="//@targetSectionModel/@metaModelSections.12/@references.1/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0" modifier="//@mappingModel/@modifierSets.22"/>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="background RepColor" affectedReference="//@targetSectionModel/@metaModelSections.12/@references.0/@value.0/@references.4/@value.0/@references.0">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.0/@value.0/@references.0/@value.1"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="foreground RepColor" affectedReference="//@targetSectionModel/@metaModelSections.12/@references.0/@value.0/@references.4/@value.0/@references.1">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.0/@value.0/@references.0/@value.5"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="background AnimationOn" affectedReference="//@targetSectionModel/@metaModelSections.12/@references.1/@value.0/@references.1/@value.0/@references.1/@value.0/@references.0">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.0/@value.0/@references.0/@value.0"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="foreground AnimationOn" affectedReference="//@targetSectionModel/@metaModelSections.12/@references.1/@value.0/@references.1/@value.0/@references.1/@value.0/@references.1">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.0/@value.0/@references.0/@value.5"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="background AnimationOff" affectedReference="//@targetSectionModel/@metaModelSections.12/@references.1/@value.0/@references.1/@value.0/@references.1/@value.1/@references.0">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.0/@value.0/@references.0/@value.1"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="foreground AnimationOff" affectedReference="//@targetSectionModel/@metaModelSections.12/@references.1/@value.0/@references.1/@value.0/@references.1/@value.1/@references.1">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.0/@value.0/@references.0/@value.5"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="LineColor Border" affectedReference="//@targetSectionModel/@metaModelSections.12/@references.0/@value.0/@references.5/@value.0/@references.0">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.0/@value.0/@references.0/@value.6"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Text = &quot;0.0&quot;" affectedReference="//@targetSectionModel/@metaModelSections.12/@references.0/@value.0/@references.6">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.2/@value.0/@references.1/@value.1"/>
-        </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger vo" affectedReference="//@targetSectionModel/@metaModelSections.12/@references.1/@value.0/@references.0/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" sourceAttribute="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.13"/>
         </mappingHints>
@@ -3823,9 +3799,6 @@
       <mappingHintGroups name="TextDef @ Bool:Out" targetMMSection="//@targetSectionModel/@metaModelSections.14">
         <mappingHints xsi:type="mapping:AttributeMapping" name="Label value name @Bool:Out" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.5" target="//@targetSectionModel/@metaModelSections.14/@attributes.0" modifier="//@mappingModel/@modifierSets.30"/>
         <mappingHints xsi:type="mapping:AttributeMapping" name="Label value value @Bool:Out" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.5" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@attributes.0"/>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Language" affectedReference="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.0">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.2/@value.0/@references.0/@value.0"/>
-        </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups name="TextLabel Double:Out" targetMMSection="//@targetSectionModel/@metaModelSections.15">
         <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepSizeName @Double:Out" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel/@modifierSets.15"/>
@@ -3843,18 +3816,6 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelName@Double:Out" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.5" target="//@targetSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.23"/>
         <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepColorName@Double:Out" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.5" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.4/@value.0/@attributes.0" modifier="//@mappingModel/@modifierSets.25"/>
         <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepColorName@Double:Out" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.5" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.5/@value.0/@attributes.0" modifier="//@mappingModel/@modifierSets.26"/>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="background RepColor" affectedReference="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.4/@value.0/@references.0">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.0/@value.0/@references.0/@value.5"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="foreground RepColor" affectedReference="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.4/@value.0/@references.1">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.0/@value.0/@references.0/@value.6"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="LineColor Rep" affectedReference="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.5/@value.0/@references.0">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.0/@value.0/@references.0/@value.6"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Text 0.0" affectedReference="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.6">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.2/@value.0/@references.1/@value.1"/>
-        </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger vo" affectedReference="//@targetSectionModel/@metaModelSections.15/@references.1/@value.0/@references.0/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" sourceAttribute="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.13"/>
         </mappingHints>
@@ -3886,9 +3847,6 @@
       <mappingHintGroups name="TextDef @ Double:Out" targetMMSection="//@targetSectionModel/@metaModelSections.14">
         <mappingHints xsi:type="mapping:AttributeMapping" name="Label value name @Double:Out" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.5" target="//@targetSectionModel/@metaModelSections.14/@attributes.0" modifier="//@mappingModel/@modifierSets.30"/>
         <mappingHints xsi:type="mapping:AttributeMapping" name="Label value value @Double:Out" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.5" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@attributes.0"/>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Lang" affectedReference="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.0">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.2/@value.0/@references.0/@value.0"/>
-        </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups name="CheckBox Input:Bool" targetMMSection="//@targetSectionModel/@metaModelSections.17">
         <mappingHints xsi:type="mapping:AttributeMapping" name="RepSizeHeightName" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.2/@attributes.5" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel/@modifierSets.17"/>
@@ -3903,19 +3861,7 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="Name" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.2/@attributes.5" target="//@targetSectionModel/@metaModelSections.17/@attributes.0" modifier="//@mappingModel/@modifierSets.0"/>
         <mappingHints xsi:type="mapping:AttributeMapping" name="Repr. Value" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.2/@attributes.5" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@attributes.0"/>
         <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepColorName" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.2/@attributes.5" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.2/@value.0/@attributes.0" modifier="//@mappingModel/@modifierSets.25"/>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Color BG" affectedReference="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.2/@value.0/@references.0">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.0/@value.0/@references.0/@value.5"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Color FG" affectedReference="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.2/@value.0/@references.1">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.0/@value.0/@references.0/@value.6"/>
-        </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepBorderName" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.2/@attributes.5" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.3/@value.0/@attributes.0" modifier="//@mappingModel/@modifierSets.26"/>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Border Line Color" affectedReference="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.3/@value.0/@references.0">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.0/@value.0/@references.0/@value.6"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Text = &quot;CheckBox&quot;" affectedReference="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.4">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.2/@value.0/@references.1/@value.2"/>
-        </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger VO" affectedReference="//@targetSectionModel/@metaModelSections.17/@references.1/@value.0/@references.0/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" sourceAttribute="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.2/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.13"/>
         </mappingHints>
@@ -4083,18 +4029,6 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelName@Double:Out" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.5" target="//@targetSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.23"/>
         <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepColorName@Double:Out" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.5" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.4/@value.0/@attributes.0" modifier="//@mappingModel/@modifierSets.25"/>
         <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepColorName@Double:Out" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.5" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.5/@value.0/@attributes.0" modifier="//@mappingModel/@modifierSets.26"/>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="background RepColor" affectedReference="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.4/@value.0/@references.0">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.0/@value.0/@references.0/@value.5"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="foreground RepColor" affectedReference="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.4/@value.0/@references.1">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.0/@value.0/@references.0/@value.6"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="LineColor Rep" affectedReference="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.5/@value.0/@references.0">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.0/@value.0/@references.0/@value.6"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Text 0.0" affectedReference="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.6">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.2/@value.0/@references.1/@value.1"/>
-        </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger vo" affectedReference="//@targetSectionModel/@metaModelSections.15/@references.1/@value.0/@references.0/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" sourceAttribute="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.13"/>
         </mappingHints>
@@ -4126,9 +4060,6 @@
       <mappingHintGroups name="TextDef @ Double:In" targetMMSection="//@targetSectionModel/@metaModelSections.14">
         <mappingHints xsi:type="mapping:AttributeMapping" name="Label value name " source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.5" target="//@targetSectionModel/@metaModelSections.14/@attributes.0" modifier="//@mappingModel/@modifierSets.30"/>
         <mappingHints xsi:type="mapping:AttributeMapping" name="Label value value" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.5" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@attributes.0"/>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Lang" affectedReference="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.0">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.2/@value.0/@references.0/@value.0"/>
-        </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups name="FunctionButton" targetMMSection="//@targetSectionModel/@metaModelSections.18">
         <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepSizeName (Double:Output Label)" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" target="//@targetSectionModel/@metaModelSections.18/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel/@modifierSets.15"/>
@@ -4166,9 +4097,6 @@
       <mappingHintGroups name="TextDef FunctionButton" targetMMSection="//@targetSectionModel/@metaModelSections.14">
         <mappingHints xsi:type="mapping:AttributeMapping" name="Label value name" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.4/@attributes.5" target="//@targetSectionModel/@metaModelSections.14/@attributes.0" modifier="//@mappingModel/@modifierSets.30"/>
         <mappingHints xsi:type="mapping:AttributeMapping" name="Label value value" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.4/@attributes.5" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@attributes.0"/>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Lang" affectedReference="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.0">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.2/@value.0/@references.0/@value.0"/>
-        </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups name="MonitoredItem Boolean FuncInterface" targetMMSection="//@targetSectionModel/@metaModelSections.11">
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="MonitoredItem" affectedReference="//@targetSectionModel/@metaModelSections.11/@references.0">

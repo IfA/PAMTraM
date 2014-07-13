@@ -204,7 +204,7 @@ public class GenericTransformationRunner {
 										.get(m)) {
 									if (selMap.getInstances(g, section) != null) {
 										connectionHelpers
-												.linkToTargetModelUsingModelConnectionHints(
+												.linkToTargetModelUsingModelConnectionHint(
 														section.getEClass(),
 														(List<EObjectTransformationHelper>) selMap
 																.getInstances(
@@ -220,7 +220,7 @@ public class GenericTransformationRunner {
 									}
 								}
 							} else {// link using container attribute or nothing
-								connectionHelpers.linkToTargetModel(
+								connectionHelpers.linkToTargetModelNoConnectionHint(
 										section.getEClass(),
 										targetSectionRegistry
 												.getPamtramClassInstances(

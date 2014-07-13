@@ -56,7 +56,7 @@ public class TargetSectionConnector {
 		return pathsToConsider;
 	}
 
-	public void linkToTargetModelUsingModelConnectionHints(
+	public void linkToTargetModelUsingModelConnectionHint(
 			EClass classToConnect, List<EObjectTransformationHelper> rootInstances, Class section,
 			String mappingName, String mappingGroupName,
 			ModelConnectionHint connectionHint,
@@ -297,7 +297,7 @@ public class TargetSectionConnector {
 	}
 
 	@SuppressWarnings("unchecked")
-	public void linkToTargetModel(EClass classToConnect,
+	public void linkToTargetModelNoConnectionHint(EClass classToConnect,
 			List<EObjectTransformationHelper> rootInstances, Class section, String mappingName,
 			String mappingGroupName){
 		ModelConnectionPath modelConnectionPath;// will use this for several purposes

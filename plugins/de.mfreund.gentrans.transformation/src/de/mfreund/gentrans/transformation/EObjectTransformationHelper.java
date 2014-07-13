@@ -3,8 +3,8 @@
  */
 package de.mfreund.gentrans.transformation;
 
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
@@ -31,16 +31,16 @@ public class EObjectTransformationHelper {
 		return eObject;
 	}
 
-	private HashMap<VirtualAttribute,String> virtualAttributes;
+	private LinkedHashMap<VirtualAttribute,String> virtualAttributes;
 	
 	public EObjectTransformationHelper(EObject eObject, AttributeValueRegistry attrValRegistry) {
 		this.eObject=eObject;
 		this.attrValRegistry=attrValRegistry;
-		virtualAttributes=new HashMap<VirtualAttribute,String>();
+		virtualAttributes=new LinkedHashMap<VirtualAttribute,String>();
 		if(!attrValRegistry.getAttrValueRegistryActualAttributes().containsKey(eObject.eClass())){
 			
-			attrValRegistry.getAttrValueRegistryActualAttributes().put(eObject.eClass(), new HashMap<EAttribute,HashSet<String>>());
-			attrValRegistry.getAttrValueRegistryVirtualAttributes().put(eObject.eClass(), new HashMap<String,HashSet<String>>());
+			attrValRegistry.getAttrValueRegistryActualAttributes().put(eObject.eClass(), new LinkedHashMap<EAttribute,LinkedHashSet<String>>());
+			attrValRegistry.getAttrValueRegistryVirtualAttributes().put(eObject.eClass(), new LinkedHashMap<String,LinkedHashSet<String>>());
 		}		
 	}
 
@@ -54,7 +54,7 @@ public class EObjectTransformationHelper {
 			
 			//add value to registry
 			if(!attrValRegistry.getAttrValueRegistryVirtualAttributes().get(eObject.eClass()).containsKey(attr.getName())){
-				attrValRegistry.getAttrValueRegistryVirtualAttributes().get(eObject.eClass()).put(attr.getName(), new HashSet<String>());
+				attrValRegistry.getAttrValueRegistryVirtualAttributes().get(eObject.eClass()).put(attr.getName(), new LinkedHashSet<String>());
 			}
 			attrValRegistry.getAttrValueRegistryVirtualAttributes().get(eObject.eClass()).get(attr.getName()).add(value);
 		} else if(attr instanceof ActualAttribute){
@@ -64,7 +64,7 @@ public class EObjectTransformationHelper {
 					.createFromString(((ActualAttribute) attr).getAttribute().getEAttributeType(), value));
 			
 			if(!attrValRegistry.getAttrValueRegistryActualAttributes().get(eObject.eClass()).containsKey(((ActualAttribute) attr).getAttribute())){
-				attrValRegistry.getAttrValueRegistryActualAttributes().get(eObject.eClass()).put(((ActualAttribute) attr).getAttribute(), new HashSet<String>());
+				attrValRegistry.getAttrValueRegistryActualAttributes().get(eObject.eClass()).put(((ActualAttribute) attr).getAttribute(), new LinkedHashSet<String>());
 			}
 			attrValRegistry.getAttrValueRegistryActualAttributes().get(eObject.eClass()).get(((ActualAttribute) attr).getAttribute()).add(value);
 		}

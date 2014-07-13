@@ -1,11 +1,11 @@
 package de.mfreund.gentrans.transformation;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 
 import org.eclipse.emf.ecore.EObject;
 
-public class SrcSectionMappingResultsMap extends HashMap<pamtram.metamodel.Class, LinkedList<MappingInstanceStorage>>{
+public class SrcSectionMappingResultsMap extends LinkedHashMap<pamtram.metamodel.Class, LinkedList<MappingInstanceStorage>>{
 	/**
 	 * 
 	 */

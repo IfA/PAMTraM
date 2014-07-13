@@ -1,8 +1,8 @@
 package de.mfreund.gentrans.transformation;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -85,12 +85,12 @@ public class TargetSectionInstantiator {
 	/*
 		instantiate targetModelSection
 	*/
-	public HashMap<Class,LinkedList<EObjectTransformationHelper>> instantiateTargetSectionFirstPass(Class metamodelSection,
+	public LinkedHashMap<Class,LinkedList<EObjectTransformationHelper>> instantiateTargetSectionFirstPass(Class metamodelSection,
 																					MappingHintGroup mappingGroup,
 																					Map<MappingHint, LinkedList<String>> hintValues,
 																					Map<ModelConnectionHint, LinkedList<String>> conHintValues,																					
 																					Mapping mapping){
-		HashMap<Class,LinkedList<EObjectTransformationHelper>> instBySection=new HashMap<Class,LinkedList<EObjectTransformationHelper>> ();
+		LinkedHashMap<Class,LinkedList<EObjectTransformationHelper>> instBySection=new LinkedHashMap<Class,LinkedList<EObjectTransformationHelper>> ();
 		
 		if( instantiateTargetSectionFirstPass(metamodelSection, mappingGroup, hintValues, conHintValues,
 				instBySection,mapping) != null){
@@ -283,8 +283,8 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 			Mapping mapping,
 			MappingHintGroup group,
 			List<MappingHint> hints,
-			HashMap<MappingHint, LinkedList<String>> hintValues,
-			HashMap<pamtram.metamodel.Class, LinkedList<EObjectTransformationHelper>> instancesBySection) {
+			LinkedHashMap<MappingHint, LinkedList<String>> hintValues,
+			LinkedHashMap<pamtram.metamodel.Class, LinkedList<EObjectTransformationHelper>> instancesBySection) {
 
 		if (instancesBySection.get(targetMMSection) != null) {// only go on if
 																// any instances
@@ -355,7 +355,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 									for (String attrVal : newHintValues) {
 										EObjectTransformationHelper srcInst = instancesToConsider
 												.remove(0);
-										HashMap<String, EObjectTransformationHelper> fittingVals = new HashMap<String, EObjectTransformationHelper>();// TODO
+										LinkedHashMap<String, EObjectTransformationHelper> fittingVals = new LinkedHashMap<String, EObjectTransformationHelper>();// TODO
 																												// select
 																												// between
 																												// fittingVals,
@@ -429,8 +429,8 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 																			// all instances of this
 																			// mapping TODO
 				
-											HashMap<String, Class> targetSectionsToConsider = new HashMap<String, Class>();
-											HashMap<String, EObjectTransformationHelper> targetInstancesToConsider = new HashMap<String, EObjectTransformationHelper>();
+											LinkedHashMap<String, Class> targetSectionsToConsider = new LinkedHashMap<String, Class>();
+											LinkedHashMap<String, EObjectTransformationHelper> targetInstancesToConsider = new LinkedHashMap<String, EObjectTransformationHelper>();
 											LinkedList<String> targetSectionChoices = new LinkedList<String>();
 											LinkedList<LinkedList<String>> instanceChoices = new LinkedList<LinkedList<String>>();
 				
@@ -486,7 +486,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 					}
 
 					if (!hintFound) { // last chance
-						HashSet<Class> foundSections=new HashSet<Class>();
+						LinkedHashSet<Class> foundSections=new LinkedHashSet<Class>();
 						LinkedList<Class> refValue=new LinkedList<Class>();
 						refValue.addAll(ref.getValue());
 						
@@ -525,8 +525,8 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 							}
 							
 							//now sort instances by root
-							HashMap<EObjectTransformationHelper,EObjectTransformationHelper> rootBySourceInstance=new HashMap<EObjectTransformationHelper,EObjectTransformationHelper>();
-							HashMap<EObjectTransformationHelper,LinkedList<EObjectTransformationHelper>> targetInstancesByRoot=new HashMap<EObjectTransformationHelper,LinkedList<EObjectTransformationHelper>>();
+							LinkedHashMap<EObjectTransformationHelper,EObjectTransformationHelper> rootBySourceInstance=new LinkedHashMap<EObjectTransformationHelper,EObjectTransformationHelper>();
+							LinkedHashMap<EObjectTransformationHelper,LinkedList<EObjectTransformationHelper>> targetInstancesByRoot=new LinkedHashMap<EObjectTransformationHelper,LinkedList<EObjectTransformationHelper>>();
 							
 							for(EObjectTransformationHelper root : rootInstances){
 								targetInstancesByRoot.put(root, new LinkedList<EObjectTransformationHelper>());
@@ -610,8 +610,8 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 			Mapping mapping,
 			MappingHintGroup group,
 			List<MappingHint> hints,
-			HashMap<MappingHint, LinkedList<String>> hintValues,
-			HashMap<pamtram.metamodel.Class, LinkedList<EObjectTransformationHelper>> instancesBySection) {
+			LinkedHashMap<MappingHint, LinkedList<String>> hintValues,
+			LinkedHashMap<pamtram.metamodel.Class, LinkedList<EObjectTransformationHelper>> instancesBySection) {
 		for (Reference ref : targetMMSection.getReferences()) {
 			if (ref instanceof ContainmentReference) {
 				for (Class val : ref.getValue()) {// instantiate targets

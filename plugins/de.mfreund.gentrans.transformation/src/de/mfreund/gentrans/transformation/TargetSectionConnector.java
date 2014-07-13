@@ -1,8 +1,8 @@
 package de.mfreund.gentrans.transformation;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,7 +20,7 @@ import de.mfreund.gentrans.transformation.selectors.ItemSelectorDialog;
 import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunner;
 
 public class TargetSectionConnector {
-	private  HashMap<ModelConnectionHint, Path> standardPaths;
+	private  LinkedHashMap<ModelConnectionHint, Path> standardPaths;
 	private AttributeValueRegistry attrValRegistry;
 	private TargetSectionRegistry targetSectionRegistry;
 	private XMIResource targetModel;
@@ -28,7 +28,7 @@ public class TargetSectionConnector {
 	
 	public TargetSectionConnector(AttributeValueRegistry attrValRegistry, TargetSectionRegistry targetSectionRegistry,
 			XMIResource targetModel){
-		standardPaths = new HashMap<ModelConnectionHint, Path>();
+		standardPaths = new LinkedHashMap<ModelConnectionHint, Path>();
 		this.attrValRegistry=attrValRegistry;
 		this.targetSectionRegistry=targetSectionRegistry;
 		this.targetModel=targetModel;
@@ -68,7 +68,7 @@ public class TargetSectionConnector {
 		if (targetSectionRegistry.getPaths(classToConnect).size() > 0) {
 			// now search for target attributes
 
-			HashMap<ConnectionHintTargetAttribute,LinkedList<EObjectTransformationHelper>> containerInstancesByTargetAttribute = new HashMap<ConnectionHintTargetAttribute,LinkedList<EObjectTransformationHelper>>();
+			LinkedHashMap<ConnectionHintTargetAttribute,LinkedList<EObjectTransformationHelper>> containerInstancesByTargetAttribute = new LinkedHashMap<ConnectionHintTargetAttribute,LinkedList<EObjectTransformationHelper>>();
 			
 			for(ConnectionHintTargetAttribute targetAttr : connectionHint.getTargetAttributes()){
 				containerInstancesByTargetAttribute.put(targetAttr,targetSectionRegistry.getFlattenedPamtramClassInstances(
@@ -79,8 +79,8 @@ public class TargetSectionConnector {
 
 			// find container Instance for each element
 
-			HashMap<String, HashSet<EObjectTransformationHelper>> contInstsByHintVal = new HashMap<String, HashSet<EObjectTransformationHelper>>();
-			HashMap<String, HashSet<EObjectTransformationHelper>> rootInstancesByHintVal = new HashMap<String, HashSet<EObjectTransformationHelper>>();
+			LinkedHashMap<String, LinkedHashSet<EObjectTransformationHelper>> contInstsByHintVal = new LinkedHashMap<String, LinkedHashSet<EObjectTransformationHelper>>();
+			LinkedHashMap<String, LinkedHashSet<EObjectTransformationHelper>> rootInstancesByHintVal = new LinkedHashMap<String, LinkedHashSet<EObjectTransformationHelper>>();
 			LinkedList<String> connectionHintValuesCopy;
 
 			// again, we need to handle the special case, when there is only one
@@ -97,12 +97,12 @@ public class TargetSectionConnector {
 
 			for (String hintVal : connectionHintValuesCopy) {
 				if (!contInstsByHintVal.containsKey(hintVal)) {
-					contInstsByHintVal.put(hintVal, new HashSet<EObjectTransformationHelper>());
+					contInstsByHintVal.put(hintVal, new LinkedHashSet<EObjectTransformationHelper>());
 				}
 
 				if (!rootInstancesByHintVal.containsKey(hintVal)) {
 					rootInstancesByHintVal.put(hintVal,
-							new HashSet<EObjectTransformationHelper>());
+							new LinkedHashSet<EObjectTransformationHelper>());
 				}
 
 				rootInstancesByHintVal.get(hintVal)
@@ -140,7 +140,7 @@ public class TargetSectionConnector {
 			}
 
 			// now select targetInst
-			HashMap<EObjectTransformationHelper, HashSet<EObjectTransformationHelper>> rootInstancesByContainer = new HashMap<EObjectTransformationHelper, HashSet<EObjectTransformationHelper>>();
+			LinkedHashMap<EObjectTransformationHelper, LinkedHashSet<EObjectTransformationHelper>> rootInstancesByContainer = new LinkedHashMap<EObjectTransformationHelper, LinkedHashSet<EObjectTransformationHelper>>();
 			for (String hintVal : rootInstancesByHintVal.keySet()) {
 				if (contInstsByHintVal.get(hintVal).size() == 1) {
 					rootInstancesByContainer.put(contInstsByHintVal
@@ -149,7 +149,7 @@ public class TargetSectionConnector {
 				} else if (contInstsByHintVal.get(hintVal).size() > 1) {// let
 																		// user
 																		// decide
-					HashMap<String, EObjectTransformationHelper> containerDescriptions = new HashMap<String, EObjectTransformationHelper>();
+					LinkedHashMap<String, EObjectTransformationHelper> containerDescriptions = new LinkedHashMap<String, EObjectTransformationHelper>();
 					for (EObjectTransformationHelper contInst : contInstsByHintVal.get(hintVal)) {
 						containerDescriptions
 								.put(contInst.toString(), contInst);
@@ -230,7 +230,7 @@ public class TargetSectionConnector {
 														// from
 						path = pathsToConsider.getFirst();
 					} else if (pathsToConsider.size() > 0) {// user decides
-						HashMap<String, Path> pathNames = new HashMap<String, Path>();
+						LinkedHashMap<String, Path> pathNames = new LinkedHashMap<String, Path>();
 						Path standardPath = pathsToConsider.getFirst();// get
 																		// shortest
 																		// path
@@ -360,14 +360,14 @@ public class TargetSectionConnector {
 							rootInstances);
 
 				} else if (pathsToConsider.size() > 0) {// user decides
-					HashMap<String, Path> pathNames = new HashMap<String, Path>();
-					HashMap<String, HashMap<String, EObjectTransformationHelper>> instancesByPath = new HashMap<String, HashMap<String, EObjectTransformationHelper>>();
+					LinkedHashMap<String, Path> pathNames = new LinkedHashMap<String, Path>();
+					LinkedHashMap<String, LinkedHashMap<String, EObjectTransformationHelper>> instancesByPath = new LinkedHashMap<String, LinkedHashMap<String, EObjectTransformationHelper>>();
 					Path standardPath = pathsToConsider.getFirst();// get
 																	// shortest
 																	// path
 					for (Path p : pathsToConsider) {// prepare user selections
 						pathNames.put(p.toString(), p);
-						HashMap<String, EObjectTransformationHelper> instances = new HashMap<String, EObjectTransformationHelper>();
+						LinkedHashMap<String, EObjectTransformationHelper> instances = new LinkedHashMap<String, EObjectTransformationHelper>();
 						for (EObjectTransformationHelper inst : targetSectionRegistry.getTargetClassInstances(p
 								.getRootType())) {
 							if (!hasContainer

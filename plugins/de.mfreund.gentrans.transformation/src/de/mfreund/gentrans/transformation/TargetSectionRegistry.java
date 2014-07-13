@@ -1,7 +1,7 @@
 package de.mfreund.gentrans.transformation;
 
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -14,44 +14,44 @@ import pamtram.metamodel.Class;
 
 public class TargetSectionRegistry {
 
-	public HashMap<EClass, LinkedList<EObjectTransformationHelper>> getTargetClassInstanceRegistry() {
+	public LinkedHashMap<EClass, LinkedList<EObjectTransformationHelper>> getTargetClassInstanceRegistry() {
 		return targetClassInstanceRegistry;
 	}
 
-	public HashMap<Class, HashMap<MappingHintGroup, LinkedList<EObjectTransformationHelper>>> getTargetClassInstanceByHintGroupRegistry() {
+	public LinkedHashMap<Class, LinkedHashMap<MappingHintGroup, LinkedList<EObjectTransformationHelper>>> getTargetClassInstanceByHintGroupRegistry() {
 		return targetClassInstanceByHintGroupRegistry;
 	}
 
-	public HashMap<EClass, HashSet<EClass>> getChildClassesRegistry() {
+	public LinkedHashMap<EClass, LinkedHashSet<EClass>> getChildClassesRegistry() {
 		return childClassesRegistry;
 	}
 
-	public HashMap<EClass, HashSet<Path>> getPossiblePathsRegistry() {
+	public LinkedHashMap<EClass, LinkedHashSet<Path>> getPossiblePathsRegistry() {
 		return possiblePathsRegistry;
 	}
 
-	public HashMap<EClass, HashSet<EReference>> getTargetClassReferencesRegistry() {
+	public LinkedHashMap<EClass, LinkedHashSet<EReference>> getTargetClassReferencesRegistry() {
 		return targetClassReferencesRegistry;
 	}
 
-	public HashMap<EReference, HashSet<EClass>> getReferenceSourcesRegistry() {
+	public LinkedHashMap<EReference, LinkedHashSet<EClass>> getReferenceSourcesRegistry() {
 		return referenceSourcesRegistry;
 	}
 
-	private  HashMap<EClass, LinkedList<EObjectTransformationHelper>> targetClassInstanceRegistry;
-	private  HashMap<Class, HashMap<MappingHintGroup, LinkedList<EObjectTransformationHelper>>> targetClassInstanceByHintGroupRegistry;
-	private  HashMap<EClass, HashSet<EClass>> childClassesRegistry;
-	private  HashMap<EClass, HashSet<Path>> possiblePathsRegistry;
-	private  HashMap<EClass, HashSet<EReference>> targetClassReferencesRegistry; // ==refsToThis
-	private  HashMap<EReference, HashSet<EClass>> referenceSourcesRegistry; // ==sources
+	private  LinkedHashMap<EClass, LinkedList<EObjectTransformationHelper>> targetClassInstanceRegistry;
+	private  LinkedHashMap<Class, LinkedHashMap<MappingHintGroup, LinkedList<EObjectTransformationHelper>>> targetClassInstanceByHintGroupRegistry;
+	private  LinkedHashMap<EClass, LinkedHashSet<EClass>> childClassesRegistry;
+	private  LinkedHashMap<EClass, LinkedHashSet<Path>> possiblePathsRegistry;
+	private  LinkedHashMap<EClass, LinkedHashSet<EReference>> targetClassReferencesRegistry; // ==refsToThis
+	private  LinkedHashMap<EReference, LinkedHashSet<EClass>> referenceSourcesRegistry; // ==sources
 
 	public TargetSectionRegistry() {
-		targetClassInstanceRegistry= new HashMap<EClass, LinkedList<EObjectTransformationHelper>>();
-		targetClassInstanceByHintGroupRegistry = new HashMap<Class, HashMap<MappingHintGroup, LinkedList<EObjectTransformationHelper>>>();
-		childClassesRegistry= new HashMap<EClass, HashSet<EClass>>();
-		possiblePathsRegistry= new HashMap<EClass, HashSet<Path>>();
-		targetClassReferencesRegistry= new HashMap<EClass, HashSet<EReference>>(); // ==refsToThis
-		referenceSourcesRegistry=new HashMap<EReference, HashSet<EClass>>(); // ==sources
+		targetClassInstanceRegistry= new LinkedHashMap<EClass, LinkedList<EObjectTransformationHelper>>();
+		targetClassInstanceByHintGroupRegistry = new LinkedHashMap<Class, LinkedHashMap<MappingHintGroup, LinkedList<EObjectTransformationHelper>>>();
+		childClassesRegistry= new LinkedHashMap<EClass, LinkedHashSet<EClass>>();
+		possiblePathsRegistry= new LinkedHashMap<EClass, LinkedHashSet<Path>>();
+		targetClassReferencesRegistry= new LinkedHashMap<EClass, LinkedHashSet<EReference>>(); // ==refsToThis
+		referenceSourcesRegistry=new LinkedHashMap<EReference, LinkedHashSet<EClass>>(); // ==sources
 	}
 	
 	
@@ -66,7 +66,7 @@ public class TargetSectionRegistry {
 
 		if (!targetClassInstanceByHintGroupRegistry.containsKey(targetSection)) {
 			targetClassInstanceByHintGroupRegistry.put(targetSection,
-					new HashMap<MappingHintGroup, LinkedList<EObjectTransformationHelper>>());
+					new LinkedHashMap<MappingHintGroup, LinkedList<EObjectTransformationHelper>>());
 		}
 
 		if (!targetClassInstanceByHintGroupRegistry.get(targetSection)
@@ -96,10 +96,10 @@ public class TargetSectionRegistry {
 				.get(eClass) : new LinkedList<EObjectTransformationHelper>();
 	}
 
-	public  HashMap<MappingHintGroup, LinkedList<EObjectTransformationHelper>> getPamtramClassInstances(
+	public  LinkedHashMap<MappingHintGroup, LinkedList<EObjectTransformationHelper>> getPamtramClassInstances(
 			Class c) {
 		if (!targetClassInstanceByHintGroupRegistry.containsKey(c)) {
-			return new HashMap<MappingHintGroup, LinkedList<EObjectTransformationHelper>>();
+			return new LinkedHashMap<MappingHintGroup, LinkedList<EObjectTransformationHelper>>();
 		}
 
 		return targetClassInstanceByHintGroupRegistry.get(c);
@@ -124,29 +124,29 @@ public class TargetSectionRegistry {
 	public  void addPath(Path path, EClass eClass) {
 
 		if (!possiblePathsRegistry.containsKey(eClass)) {
-			possiblePathsRegistry.put(eClass, new HashSet<Path>());
+			possiblePathsRegistry.put(eClass, new LinkedHashSet<Path>());
 		}
 		possiblePathsRegistry.get(eClass).add(path);
 
 	}
 
-	public  HashSet<EClass> getChildClasses(EClass eClass) {
+	public  LinkedHashSet<EClass> getChildClasses(EClass eClass) {
 
 		return childClassesRegistry.containsKey(eClass) ? childClassesRegistry
-				.get(eClass) : new HashSet<EClass>();
+				.get(eClass) : new LinkedHashSet<EClass>();
 
 	}
 
-	public  HashSet<EReference> getClassReferences(EClass eClass) {
+	public  LinkedHashSet<EReference> getClassReferences(EClass eClass) {
 
 		return targetClassReferencesRegistry.containsKey(eClass) ? targetClassReferencesRegistry
-				.get(eClass) : new HashSet<EReference>();
+				.get(eClass) : new LinkedHashSet<EReference>();
 
 	}
 
-	public  HashSet<EClass> getReferenceSources(EReference ref) {
+	public  LinkedHashSet<EClass> getReferenceSources(EReference ref) {
 		return referenceSourcesRegistry.containsKey(ref) ? referenceSourcesRegistry
-				.get(ref) : new HashSet<EClass>();
+				.get(ref) : new LinkedHashSet<EClass>();
 
 	}
 	
@@ -157,9 +157,9 @@ public class TargetSectionRegistry {
 			if(c instanceof EClass){
 				classes.add((EClass) c);
 				
-				childClassesRegistry.put((EClass) c, new HashSet<EClass>());
+				childClassesRegistry.put((EClass) c, new LinkedHashSet<EClass>());
 				targetClassReferencesRegistry.put((EClass) c,
-						new HashSet<EReference>());
+						new LinkedHashSet<EReference>());
 			}
 		}
 		
@@ -193,7 +193,7 @@ public class TargetSectionRegistry {
 				if (targetClassReferencesRegistry.containsKey(c
 						.getEReferenceType())) {
 					if (!referenceSourcesRegistry.containsKey(c)) {
-						referenceSourcesRegistry.put(c, new HashSet<EClass>());
+						referenceSourcesRegistry.put(c, new LinkedHashSet<EClass>());
 					}
 					referenceSourcesRegistry.get(c).add(e);
 					targetClassReferencesRegistry.get(c.getEReferenceType())
@@ -217,9 +217,9 @@ public class TargetSectionRegistry {
 
 	}
 
-	public  HashSet<Path> getPaths(EClass eClass) {
+	public  LinkedHashSet<Path> getPaths(EClass eClass) {
 		if (!possiblePathsRegistry.containsKey(eClass)) {
-			possiblePathsRegistry.put(eClass, new HashSet<Path>());
+			possiblePathsRegistry.put(eClass, new LinkedHashSet<Path>());
 
 			new Path(this).findPathsToInstances(eClass);
 		}

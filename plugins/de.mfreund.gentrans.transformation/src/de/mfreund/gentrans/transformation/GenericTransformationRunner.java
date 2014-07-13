@@ -2,7 +2,7 @@ package de.mfreund.gentrans.transformation;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -117,7 +117,7 @@ public class GenericTransformationRunner {
 		 * at the sourceModel root node
 		 */
 		LinkedList<MappingInstanceStorage> selectedMappings = new LinkedList<MappingInstanceStorage>();
-		HashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping = new HashMap<Mapping, LinkedList<MappingInstanceStorage>>();
+		LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping = new LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>>();
 		System.out.println("Selecting Mappings for source model elements...");
 
 		int numSrcModelElements = contRefsToMap.size();
@@ -158,7 +158,7 @@ public class GenericTransformationRunner {
 			for (MappingHintGroup g : hintGroups) {
 				if (g.getTargetMMSection() != null) {
 
-					HashMap<Class, LinkedList<EObjectTransformationHelper>> instancesBySection = targetSectionInstantiator
+					LinkedHashMap<Class, LinkedList<EObjectTransformationHelper>> instancesBySection = targetSectionInstantiator
 							.instantiateTargetSectionFirstPass(
 									g.getTargetMMSection(), g,
 									selMap.getHintValues(),
@@ -258,7 +258,7 @@ public class GenericTransformationRunner {
 		try {
 			// try to save the xmi resource
 //			xmiResource.save(Collections.EMPTY_MAP);
-			Map<Object, Object> options = new HashMap<Object, Object>();
+			Map<Object, Object> options = new LinkedHashMap<Object, Object>();
 			options.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
 			options.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.TRUE);
 			targetModel.save(Collections.EMPTY_MAP);

@@ -1,7 +1,7 @@
 package de.mfreund.gentrans.transformation;
 
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
@@ -18,26 +18,26 @@ public class AttributeValueRegistry {
 	/*
 	Maps to help handling unique attribute values of pamtram!Attribute
 	*/
-	private  HashMap<EClass,HashMap<EAttribute,HashSet<String>>> actualAttributes;
-	public HashMap<EClass, HashMap<EAttribute, HashSet<String>>> getAttrValueRegistryActualAttributes() {
+	private  LinkedHashMap<EClass,LinkedHashMap<EAttribute,LinkedHashSet<String>>> actualAttributes;
+	public LinkedHashMap<EClass, LinkedHashMap<EAttribute, LinkedHashSet<String>>> getAttrValueRegistryActualAttributes() {
 		return actualAttributes;
 	}
 
 
-	public HashMap<EClass, HashMap<String, HashSet<String>>> getAttrValueRegistryVirtualAttributes() {
+	public LinkedHashMap<EClass, LinkedHashMap<String, LinkedHashSet<String>>> getAttrValueRegistryVirtualAttributes() {
 		return virtualAttributes;
 	}
 
 
 
 
-	private  HashMap<EClass,HashMap<String, HashSet<String>>> virtualAttributes;
+	private  LinkedHashMap<EClass,LinkedHashMap<String, LinkedHashSet<String>>> virtualAttributes;
 	
 	
 	
 	public AttributeValueRegistry() {
-		actualAttributes=new HashMap<EClass,HashMap<EAttribute,HashSet<String>>>();
-		virtualAttributes=new HashMap<EClass,HashMap<String, HashSet<String>>>();
+		actualAttributes=new LinkedHashMap<EClass,LinkedHashMap<EAttribute,LinkedHashSet<String>>>();
+		virtualAttributes=new LinkedHashMap<EClass,LinkedHashMap<String, LinkedHashSet<String>>>();
 	}
 	
 	

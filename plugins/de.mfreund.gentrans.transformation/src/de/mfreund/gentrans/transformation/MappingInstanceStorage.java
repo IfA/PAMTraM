@@ -4,8 +4,8 @@
 package de.mfreund.gentrans.transformation;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.Set;
 
@@ -21,25 +21,25 @@ import pamtram.mapping.ModelConnectionHint;
  * 
  */
 public class MappingInstanceStorage {// TODO rename this
-	private HashMap<pamtram.metamodel.Class, Set<EObject>> refs;
+	private LinkedHashMap<pamtram.metamodel.Class, Set<EObject>> refs;
 	private Mapping mapping;
 	private EObject associatedSourceModelElement;
-	private HashMap<MappingHintGroup, HashMap<pamtram.metamodel.Class, LinkedList<EObjectTransformationHelper>>> instancesBySection;
+	private LinkedHashMap<MappingHintGroup, LinkedHashMap<pamtram.metamodel.Class, LinkedList<EObjectTransformationHelper>>> instancesBySection;
 
-	private HashMap<pamtram.mapping.MappingHint, LinkedList<String>> hintValues;
+	private LinkedHashMap<pamtram.mapping.MappingHint, LinkedList<String>> hintValues;
 
-	private HashMap<ModelConnectionHint, LinkedList<String>> modelConnectionHintValues;
+	private LinkedHashMap<ModelConnectionHint, LinkedList<String>> modelConnectionHintValues;
 
 	/**
 	 * 
 	 */
 	public MappingInstanceStorage() {
-		refs = new HashMap<pamtram.metamodel.Class, Set<EObject>>();
-		hintValues = new HashMap<pamtram.mapping.MappingHint, LinkedList<String>>();
+		refs = new LinkedHashMap<pamtram.metamodel.Class, Set<EObject>>();
+		hintValues = new LinkedHashMap<pamtram.mapping.MappingHint, LinkedList<String>>();
 		mapping = null;
 		associatedSourceModelElement = null;
-		instancesBySection = new HashMap<MappingHintGroup, HashMap<pamtram.metamodel.Class, LinkedList<EObjectTransformationHelper>>>();
-		modelConnectionHintValues = new HashMap<ModelConnectionHint, LinkedList<String>>();
+		instancesBySection = new LinkedHashMap<MappingHintGroup, LinkedHashMap<pamtram.metamodel.Class, LinkedList<EObjectTransformationHelper>>>();
+		modelConnectionHintValues = new LinkedHashMap<ModelConnectionHint, LinkedList<String>>();
 
 	}
 
@@ -70,7 +70,7 @@ public class MappingInstanceStorage {// TODO rename this
 	}
 
 	public void addHintValues(
-			HashMap<pamtram.mapping.MappingHint, LinkedList<String>> newHintValues) {
+			LinkedHashMap<pamtram.mapping.MappingHint, LinkedList<String>> newHintValues) {
 		for (MappingHint h : newHintValues.keySet()) {
 			if (!hintValues.containsKey(h)) {
 				hintValues.put(h, new LinkedList<String>());
@@ -100,7 +100,7 @@ public class MappingInstanceStorage {// TODO rename this
 	}
 
 	public void addModelConnectionHintValues(
-			HashMap<ModelConnectionHint, LinkedList<String>> newHintValues) {
+			LinkedHashMap<ModelConnectionHint, LinkedList<String>> newHintValues) {
 		for (ModelConnectionHint h : newHintValues.keySet()) {
 			if (!modelConnectionHintValues.containsKey(h)) {
 				modelConnectionHintValues.put(h, new LinkedList<String>());
@@ -109,10 +109,10 @@ public class MappingInstanceStorage {// TODO rename this
 		}
 	}
 
-	public void addRefs(HashMap<pamtram.metamodel.Class, Set<EObject>> refs) {
+	public void addRefs(LinkedHashMap<pamtram.metamodel.Class, Set<EObject>> refs) {
 		for (pamtram.metamodel.Class key : refs.keySet()) {
 			if (!this.refs.containsKey(key)) {
-				this.refs.put(key, new HashSet<EObject>());
+				this.refs.put(key, new LinkedHashSet<EObject>());
 			}
 			this.refs.get(key).addAll(refs.get(key));
 		}
@@ -121,7 +121,7 @@ public class MappingInstanceStorage {// TODO rename this
 	public void addRefValue(EObject srcModelElement,
 			pamtram.metamodel.Class srcSectionClass) {
 		if (!refs.containsKey(srcModelElement)) {
-			refs.put(srcSectionClass, new HashSet<EObject>());
+			refs.put(srcSectionClass, new LinkedHashSet<EObject>());
 		}
 		refs.get(srcSectionClass).add(srcModelElement);
 
@@ -140,7 +140,7 @@ public class MappingInstanceStorage {// TODO rename this
 		if (!instancesBySection.containsKey(grp)) {
 			instancesBySection
 					.put(grp,
-							new HashMap<pamtram.metamodel.Class, LinkedList<EObjectTransformationHelper>>());
+							new LinkedHashMap<pamtram.metamodel.Class, LinkedList<EObjectTransformationHelper>>());
 		}
 
 		if (!instancesBySection.get(grp).containsKey(section)) {
@@ -152,12 +152,12 @@ public class MappingInstanceStorage {// TODO rename this
 		return associatedSourceModelElement;
 	}
 
-	public HashMap<MappingHint, LinkedList<String>> getHintValues() {
+	public LinkedHashMap<MappingHint, LinkedList<String>> getHintValues() {
 		return hintValues;
 	}
 
 	
-	public HashMap<pamtram.metamodel.Class, LinkedList<EObjectTransformationHelper>> getInstancesBySection(MappingHintGroup group) {
+	public LinkedHashMap<pamtram.metamodel.Class, LinkedList<EObjectTransformationHelper>> getInstancesBySection(MappingHintGroup group) {
 			return instancesBySection.get(group);
 	}
 	
@@ -172,8 +172,8 @@ public class MappingInstanceStorage {// TODO rename this
 		return mapping;
 	}
 
-	// public HashMap<MappingHint, LinkedList<Object>> getClonedHintValues() {
-	// HashMap<MappingHint, LinkedList<Object>> clone=new HashMap<MappingHint,
+	// public LinkedHashMap<MappingHint, LinkedList<Object>> getClonedHintValues() {
+	// LinkedHashMap<MappingHint, LinkedList<Object>> clone=new LinkedHashMap<MappingHint,
 	// LinkedList<Object>>();
 	// for(MappingHint h : hintValues.keySet()){
 	// clone.put(h, new LinkedList<Object>());
@@ -183,7 +183,7 @@ public class MappingInstanceStorage {// TODO rename this
 	// return clone;
 	// }
 
-	public final HashMap<ModelConnectionHint, LinkedList<String>> getModelConnectionHintValues() {
+	public final LinkedHashMap<ModelConnectionHint, LinkedList<String>> getModelConnectionHintValues() {
 		return modelConnectionHintValues;
 	}
 
@@ -197,7 +197,7 @@ public class MappingInstanceStorage {// TODO rename this
 		}
 	}
 
-	public final HashMap<pamtram.metamodel.Class, Set<EObject>> getRefs() {
+	public final LinkedHashMap<pamtram.metamodel.Class, Set<EObject>> getRefs() {
 		return refs;
 	}
 
@@ -219,7 +219,7 @@ public class MappingInstanceStorage {// TODO rename this
 	}
 
 	public void setHintValues(
-			HashMap<pamtram.mapping.MappingHint, LinkedList<String>> hintValues) {
+			LinkedHashMap<pamtram.mapping.MappingHint, LinkedList<String>> hintValues) {
 		this.hintValues = hintValues;
 	}
 
@@ -227,7 +227,7 @@ public class MappingInstanceStorage {// TODO rename this
 		this.mapping = mapping;
 	}
 
-	public void setRefs(HashMap<pamtram.metamodel.Class, Set<EObject>> refs) {
+	public void setRefs(LinkedHashMap<pamtram.metamodel.Class, Set<EObject>> refs) {
 		this.refs = refs;
 	}
 

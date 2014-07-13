@@ -1,7 +1,7 @@
 package de.mfreund.gentrans.transformation;
 
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -32,14 +32,14 @@ import de.mfreund.gentrans.transformation.selectors.ItemSelectorDialog;
  */
 public class SourceSectionMapper {
 	
-	private HashMap<Class,Set<EObject>> mappedSections;
-	private HashMap<Mapping, LinkedList<ModelConnectionHint>> modelConnectionHints;
-	private HashMap<Mapping,LinkedList<MappingHint>> mappingHints;
+	private LinkedHashMap<Class,Set<EObject>> mappedSections;
+	private LinkedHashMap<Mapping, LinkedList<ModelConnectionHint>> modelConnectionHints;
+	private LinkedHashMap<Mapping,LinkedList<MappingHint>> mappingHints;
 	
 	public SourceSectionMapper() {
-		mappedSections=new HashMap<Class,Set<EObject>> ();
-		mappingHints=new  HashMap<Mapping,LinkedList<MappingHint>>();
-		modelConnectionHints=new  HashMap<Mapping,LinkedList<ModelConnectionHint>>();
+		mappedSections=new LinkedHashMap<Class,Set<EObject>> ();
+		mappingHints=new  LinkedHashMap<Mapping,LinkedList<MappingHint>>();
+		modelConnectionHints=new  LinkedHashMap<Mapping,LinkedList<ModelConnectionHint>>();
 		
 	
 	}
@@ -136,7 +136,7 @@ public class SourceSectionMapper {
 			Iterable<ModelConnectionHint> connectionHints,
 			Class srcSection,
 			MappingInstanceStorage newRefsAndHints,
-			HashMap<pamtram.metamodel.Class, EObject> srcInstanceMap) {
+			LinkedHashMap<pamtram.metamodel.Class, EObject> srcInstanceMap) {
 
 		// first of all: check if usedRefs contains this item and if type fits
 		// (we do not check any of the used elements of other mappings, since
@@ -331,7 +331,7 @@ public class SourceSectionMapper {
 					}
 				}
 
-				HashSet<EObject> elementsUsableForVC = new HashSet<EObject>();
+				LinkedHashSet<EObject> elementsUsableForVC = new LinkedHashSet<EObject>();
 				// find possible srcElements for mmsections
 				for (EObject rt : refTargetL) {
 					boolean foundMapping = false;
@@ -428,7 +428,7 @@ public class SourceSectionMapper {
 				}
 
 				// try to map all vc-elements
-				HashSet<pamtram.metamodel.Class> usedKeys = new HashSet<pamtram.metamodel.Class>(); // for
+				LinkedHashSet<pamtram.metamodel.Class> usedKeys = new LinkedHashSet<pamtram.metamodel.Class>(); // for
 																														// counting
 																														// cardinality
 
@@ -508,7 +508,7 @@ public class SourceSectionMapper {
 			final LinkedList<MappingInstanceStorage> possibleElements) {
 		MappingInstanceStorage srcSectionResult;
 		// count how often a sourceModel Element is mapped
-		HashMap<EObject, Integer> usages = new HashMap<EObject, Integer>();
+		LinkedHashMap<EObject, Integer> usages = new LinkedHashMap<EObject, Integer>();
 		for (MappingInstanceStorage e : possibleElements) {
 			EObject element = e.getAssociatedSourceModelElement();
 			if (!usages.containsKey(element)) {
@@ -557,8 +557,8 @@ public class SourceSectionMapper {
 		EObject element=contRefsToMap.remove(0);//source model element which we will now try to map
 		
 		start = System.nanoTime();
-		HashMap<MappingInstanceStorage,String> usedInMapping=new HashMap<MappingInstanceStorage,String>();
-		HashMap<String, MappingInstanceStorage> mappingData=new HashMap<String, MappingInstanceStorage>();
+		LinkedHashMap<MappingInstanceStorage,String> usedInMapping=new LinkedHashMap<MappingInstanceStorage,String>();
+		LinkedHashMap<String, MappingInstanceStorage> mappingData=new LinkedHashMap<String, MappingInstanceStorage>();
 			//find mapping rules that are applicable to a srcMM element 
 			for(Mapping m : mappingsToChooseFrom){
 				//create  result map
@@ -570,7 +570,7 @@ public class SourceSectionMapper {
 					res= findMappingIterate(element, false, getHints(m), getModelConnectionHints(m),
 							m.getSourceMMSection(),
 							new MappingInstanceStorage(),
-							new HashMap<pamtram.metamodel.Class, EObject>());
+							new LinkedHashMap<pamtram.metamodel.Class, EObject>());
 					
 					if(res != null){//if mapping possible add to list
 						res.setMapping(m);
@@ -579,7 +579,7 @@ public class SourceSectionMapper {
 						int used=0;
 						for(Class c : res.getRefs().keySet()){
 							if(!mappedSections.containsKey(c)){
-								mappedSections.put(c,new HashSet<EObject>());
+								mappedSections.put(c,new LinkedHashSet<EObject>());
 							}
 							used+=res.getRefs().get(c).size();
 							mappedSections.get(c).addAll(res.getRefs().get(c));

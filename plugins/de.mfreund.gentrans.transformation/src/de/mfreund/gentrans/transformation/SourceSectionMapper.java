@@ -1,9 +1,11 @@
 package de.mfreund.gentrans.transformation;
 
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
@@ -11,6 +13,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
 import pamtram.mapping.AttributeMatcher;
+import pamtram.mapping.ComplexAttribueMappingSourceElement;
+import pamtram.mapping.ComplexAttributeMapping;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
@@ -18,6 +22,7 @@ import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.SimpleAttributeMapping;
 import pamtram.metamodel.ActualAttribute;
+import pamtram.metamodel.Attribute;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.Class;
 import pamtram.metamodel.ContainmentReference;
@@ -35,13 +40,25 @@ public class SourceSectionMapper {
 	private LinkedHashMap<Class,Set<EObject>> mappedSections;
 	private LinkedHashMap<Mapping, LinkedList<ModelConnectionHint>> modelConnectionHints;
 	private LinkedHashMap<Mapping,LinkedList<MappingHint>> mappingHints;
+	private LinkedHashMap<ComplexAttributeMapping,Class> deepestComplexAttrMappingSrcElementsByCmplxMapping;
+	private List<Mapping> mappingsToChooseFrom;
 	
-	public SourceSectionMapper() {
+	public SourceSectionMapper(List<Mapping> mappingsToChooseFrom) {
 		mappedSections=new LinkedHashMap<Class,Set<EObject>> ();
 		mappingHints=new  LinkedHashMap<Mapping,LinkedList<MappingHint>>();
 		modelConnectionHints=new  LinkedHashMap<Mapping,LinkedList<ModelConnectionHint>>();
+		deepestComplexAttrMappingSrcElementsByCmplxMapping= new LinkedHashMap<ComplexAttributeMapping,Class>();
+		this.mappingsToChooseFrom=mappingsToChooseFrom;
 		
-	
+		//this will fill some maps...
+		for(Mapping m : mappingsToChooseFrom){
+			getModelConnectionHints(m);
+			for(MappingHint h : getHints(m)){
+				if(h instanceof ComplexAttributeMapping){
+					buildDeepestCmplxAttrMappingElementsMap((ComplexAttributeMapping) h, m.getSourceMMSection());
+				}
+			}
+		}
 	}
 	
 	private List<MappingHint> getHints(Mapping m){
@@ -56,6 +73,49 @@ public class SourceSectionMapper {
 		
 		return mappingHints.get(m);
 		
+	}
+	
+	private boolean isSectionReferencedByDeepestCmplxAttrMappping(ComplexAttributeMapping m, Class srcSection){
+		return deepestComplexAttrMappingSrcElementsByCmplxMapping.get(m).equals(srcSection);
+		
+	}
+	
+	private void buildDeepestCmplxAttrMappingElementsMap(ComplexAttributeMapping m, Class srcSection){
+		if(!deepestComplexAttrMappingSrcElementsByCmplxMapping.containsKey(m)){
+			Set<ComplexAttribueMappingSourceElement> srcElements=new HashSet<ComplexAttribueMappingSourceElement>();
+			srcElements.addAll(m.getSourceAttributeMappings());
+			
+			sortOutElements(srcElements, srcSection);
+			if(srcElements.size() == 1){
+				deepestComplexAttrMappingSrcElementsByCmplxMapping.put(m,srcElements.iterator().next().getSource().getOwningClass());
+			}
+			
+		}
+	}
+	
+	private void sortOutElements(Set<ComplexAttribueMappingSourceElement> s, Class srcSection){
+		if(s.size() <= 1) return;//found
+		//sort out elements
+		for(Attribute a : srcSection.getAttributes()){
+			for(ComplexAttribueMappingSourceElement e : new HashSet<ComplexAttribueMappingSourceElement>(s)){
+				if(e.getSource().equals(a)){
+					s.remove(e);
+					if(s.size() <= 1){
+						return;
+					}
+				}
+			}
+		}
+		
+		//go deeper
+		for(Reference r : srcSection.getReferences()){
+			for(Class c : r.getValue()){
+				sortOutElements(s, c);
+				if(s.size() <= 1){
+					return;
+				}
+			}
+		}
 	}
 	
 	
@@ -130,7 +190,7 @@ public class SourceSectionMapper {
 	 * @param srcInstanceMap
 	 */
 	@SuppressWarnings("unchecked")
-	private static MappingInstanceStorage findMappingIterate(
+	private  MappingInstanceStorage findMappingIterate(
 			EObject srcModelObject, boolean usedOkay,
 			Iterable<MappingHint> hints,
 			Iterable<ModelConnectionHint> connectionHints,
@@ -151,16 +211,24 @@ public class SourceSectionMapper {
 
 		// init hintValues --TODO this is absolutely neccessary as of now, maybe
 		// find out why?-> naccessary f.i. in targetSectionMApper for determination of cardinality
+		Map<ComplexAttribueMappingSourceElement,String> complexSourceElementHintValues=new LinkedHashMap<ComplexAttribueMappingSourceElement,String>();
 		for (MappingHint hint : hints) {
+			
+			if( hint instanceof ComplexAttributeMapping){//ComplexAttributeMappings are handled differently because we want to make them work across vc-sections 
+				changedRefsAndHints.setHintValueList(hint, new LinkedList<String>());	
+				if(newRefsAndHints.getHintValues().containsKey(hint)){
+					changedRefsAndHints.getHintValues().get(hint).addAll(newRefsAndHints.getHintValues().get(hint));//the cardinality of 
+																												    //the existing hintval is either 0 or 1 at this point
+				}
+			} else {
+				changedRefsAndHints.setHintValueList(hint, new LinkedList<String>());				
+			}
 
-			changedRefsAndHints
-					.setHintValueList(hint, new LinkedList<String>());
 		}
 		
 		for (ModelConnectionHint hint : connectionHints) {
 
-			changedRefsAndHints
-					.setConnectionHintValueList(hint, new LinkedList<String>());
+			changedRefsAndHints.setConnectionHintValueList(hint, new LinkedList<String>());
 		}
 
 		// set refs
@@ -203,18 +271,23 @@ public class SourceSectionMapper {
 				// handle possible attribute mappings
 				for (MappingHint hint : hints) {
 					if (hint instanceof SimpleAttributeMapping) {
-						SimpleAttributeMapping hintA = (SimpleAttributeMapping) hint;
-						if (hintA.getSource().equals(a)) {
+						if (((SimpleAttributeMapping) hint).getSource().equals(a)) {
 							String valCopy = srcAttrAsString;
 							// handle attribute modifiers
 							valCopy = AttributeValueRegistry.applyAttributeValueModifiers(valCopy,
-									hintA.getModifier());
-							changedRefsAndHints.addHintValue(hintA, valCopy);
-							// System.out.println("Attr-Mapping " +
-							// hintA.getName() + " " + valCopy + " " +
-							// srcAttrAsString);
-
-						}//TODO ComplexAttributeMapping
+									((SimpleAttributeMapping) hint).getModifier());
+							changedRefsAndHints.addHintValue(hint, valCopy);
+						}
+					} else if(hint instanceof ComplexAttributeMapping){
+						for(ComplexAttribueMappingSourceElement m : ((ComplexAttributeMapping) hint).getSourceAttributeMappings()){
+							if (m.getSource().equals(a)) {
+								String valCopy = srcAttrAsString;
+								// handle attribute modifiers
+								valCopy = AttributeValueRegistry.applyAttributeValueModifiers(valCopy,
+										m.getModifier());
+								complexSourceElementHintValues.put(m,valCopy);
+							}
+						}
 					} else if (hint instanceof MappingInstanceSelector) {// handle
 																			// MappingInstanceSelector
 																			// with
@@ -245,10 +318,37 @@ public class SourceSectionMapper {
 				}
 
 			} else {// attribute not set / null
-				System.out.println("Unset attribute");
+				System.out.println("Unset attribute");//TODO we probably don't want any output here
 				return null;
 			}
 		}
+		}
+		
+		//now work on ComplexAttributeMappings
+		Set<ComplexAttributeMapping> complexAttributeMappingsFound=new HashSet<ComplexAttributeMapping>();
+		for(MappingHint h : hints){
+			if(h instanceof ComplexAttributeMapping){
+				String valueToAppend="";
+				boolean valuesFound=false;//we need this as an extra, since found values might be empty strings
+				//append the complex hint value (cardinality either 0 or 1) with found values in right order
+				for(ComplexAttribueMappingSourceElement s : ((ComplexAttributeMapping) h).getSourceAttributeMappings()){
+					if(complexSourceElementHintValues.containsKey(s)){
+						valuesFound=true;
+						valueToAppend+=complexSourceElementHintValues.get(s);
+					}
+				}
+				
+				if(valuesFound){
+					complexAttributeMappingsFound.add((ComplexAttributeMapping) h);
+					String oldVal;
+					if(changedRefsAndHints.getHintValues().get(h).size() == 0){
+						oldVal="";
+					} else {
+						oldVal=changedRefsAndHints.getHintValues().get(h).remove();
+					}
+					changedRefsAndHints.getHintValues().get(h).add(oldVal+valueToAppend);
+				}
+			}
 		}
 
 		// now go through all the srcMmSection refs
@@ -275,7 +375,6 @@ public class SourceSectionMapper {
 						connectionHints, reference.getValue().get(0),
 						changedRefsAndHints, srcInstanceMap);
 				if (res != null) {
-
 					// success: combine refs and hints
 					if (reference instanceof ContainmentReference) {
 						changedRefsAndHints.add(res);
@@ -363,6 +462,7 @@ public class SourceSectionMapper {
 										// was modeled in the srcMMSection
 					}
 				}
+				
 				LinkedList<EObject> allElementsMapped = new LinkedList<EObject>();
 
 				while (possibleSrcModelElementsNoVC.keySet().size() > 0) {
@@ -496,6 +596,15 @@ public class SourceSectionMapper {
 			}
 		}
 		// TODO Rest ;-)
+		
+		for(MappingHint h : hints){
+			if(h instanceof ComplexAttributeMapping){
+				if(!(complexAttributeMappingsFound.contains(h) && isSectionReferencedByDeepestCmplxAttrMappping((ComplexAttributeMapping) h, srcSection))){
+					changedRefsAndHints.getHintValues().get(h).remove();					
+				}
+			}
+		}
+		
 		return changedRefsAndHints;
 
 	}
@@ -550,7 +659,7 @@ public class SourceSectionMapper {
 //	 * @param EObject				the source meta-model element
 //	 * @return Mapping				the mapping
 //	 *-
-	public MappingInstanceStorage findMapping(List<Mapping> mappingsToChooseFrom,List<EObject> contRefsToMap){		
+	public MappingInstanceStorage findMapping(List<EObject> contRefsToMap){		
 		long start;//for statistics
 		long time;
 		

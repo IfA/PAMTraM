@@ -87,9 +87,14 @@ public class GenericTransformationRunner {
 			e.printStackTrace();
 			return;
 		}
+		
+		// find and resolve ambiguous mappings as far as possible without user
+		// input
+		List<Mapping> suitableMappings = pamtramModel.getMappingModel()
+				.getMapping();// TODO apply contextModel
 
 		// generate storage objects and generators
-		SourceSectionMapper sourceSectionMapper = new SourceSectionMapper();
+		SourceSectionMapper sourceSectionMapper = new SourceSectionMapper(suitableMappings);
 		TargetSectionRegistry targetSectionRegistry = new TargetSectionRegistry();
 		AttributeValueRegistry attrValueRegistry = new AttributeValueRegistry();
 		TargetSectionConnector connectionHelpers = new TargetSectionConnector(
@@ -107,11 +112,6 @@ public class GenericTransformationRunner {
 		List<EObject> contRefsToMap = SourceSectionMapper
 				.buildContainmentTree(sourceModel);
 
-		// find and resolve ambiguous mappings as far as possible without user
-		// input
-		List<Mapping> suitableMappings = pamtramModel.getMappingModel()
-				.getMapping();// TODO apply contextModel
-
 		/*
 		 * now start mapping each one of the references. We automatically start
 		 * at the sourceModel root node
@@ -128,7 +128,7 @@ public class GenericTransformationRunner {
 			// we currently try to map
 
 			MappingInstanceStorage selectedMapping = sourceSectionMapper
-					.findMapping(suitableMappings, contRefsToMap);
+					.findMapping(contRefsToMap);
 			if (selectedMapping != null) {
 				selectedMappings.add(selectedMapping);
 				if (!selectedMappingsByMapping.containsKey(selectedMapping

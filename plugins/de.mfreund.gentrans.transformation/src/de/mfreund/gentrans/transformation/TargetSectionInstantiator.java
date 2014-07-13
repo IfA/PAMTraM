@@ -43,8 +43,8 @@ public class TargetSectionInstantiator {
 	Will only look until next vc-reference
 	Will always return Hint with largest number of values
 	*/
-	private static MappingHint searchAttributeMapping(Class metaModelSection, Collection<MappingHint> hints,  Map<MappingHint, LinkedList<String>> hintValues ){
-		MappingHint selectedHint=null;
+	private static MappingHint searchAttributeMapping(Class metaModelSection, Collection<MappingHint> hints,  Map<MappingHint, LinkedList<String>> hintValues, MappingHint  oldSelectedHint){
+		MappingHint selectedHint=oldSelectedHint;
 		for(Attribute attr :  metaModelSection.getAttributes()){//check attributes		
 			for(MappingHint hint : hints){
 				if(hint instanceof AttributeMapping){
@@ -64,21 +64,21 @@ public class TargetSectionInstantiator {
 			}			 		
 		}
 		
-		if(selectedHint != null){
-		 return selectedHint;
-		 
-		 }
 			
 		for(Reference ref : metaModelSection.getReferences()){//check references
 			for(Class val : ref.getValue()){
 				if(val.getCardinality().equals(CardinalityType.ONE)){
-					MappingHint hint=searchAttributeMapping(val,hints, hintValues);
-					if(hint != null) return hint;
+					MappingHint hint=searchAttributeMapping(val,hints, hintValues,selectedHint);
+					if(hint == null && selectedHint != null){
+						return null;
+					} else {
+						selectedHint=hint;
+					}
 				}
 			}	
 		}
 		
-		return null;
+		return selectedHint;
 	}
 
 
@@ -130,14 +130,14 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 			 } 
 			 
 			 
-				MappingHint hint=searchAttributeMapping(metamodelSection,mappingGroup.getMappingHints(), hintValues);
+				MappingHint hint=searchAttributeMapping(metamodelSection,mappingGroup.getMappingHints(), hintValues,null);
 				if(hint != null){//there was an AttributeHint....
 					int hintCardinality=hintValues.get(hint).size();
 					if(hintCardinality > cardinality){
-				 		cardinality=hintValues.get(hint).size();				
+				 		cardinality=hintCardinality;				
 					}
 				 } else {
-				 	if(! hintFound){// || mappingGroup.getMappingHints().select(h | h.eClass.name == "AttributeMapping").size() > 0){
+				 	if(! hintFound){
 				 		cardinality=0;
 				 		
 				 	}

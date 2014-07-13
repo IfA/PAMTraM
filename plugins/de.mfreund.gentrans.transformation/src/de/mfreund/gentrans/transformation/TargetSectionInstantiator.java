@@ -485,13 +485,22 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 						}
 					}
 
+					/*
+					 * In case no suitable hint could be found we will try the following:
+					 * 
+					 * 1.only non-cont ref targets to other subsections of this targetMMSection are considered,
+					 * 	 we can resolve the reference if only one Instance of the ref Target was created
+					 * 	 in the same mapping instance
+					 * 
+					 * if that isn't the case:
+					 * 
+					 * 2. consider all available instances of the ref target 
+					 */
 					if (!hintFound) { // last chance
 						LinkedHashSet<Class> foundSections=new LinkedHashSet<Class>();
 						LinkedList<Class> refValue=new LinkedList<Class>();
 						refValue.addAll(ref.getValue());
-						
-						//no mapping instance selector ==> non-cont ref. may only point to other subSection of this targetMMSection
-						
+												
 						//first check root targetMMSection itself
 						if(refValue.contains(group.getTargetMMSection())){
 							foundSections.add(group.getTargetMMSection());
@@ -583,11 +592,49 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 								
 							}
 						} else {
+							LinkedHashMap<String, Class> targetSectionsToConsider = new LinkedHashMap<String, Class>();
+							LinkedHashMap<String, EObjectTransformationHelper> targetInstancesToConsider = new LinkedHashMap<String, EObjectTransformationHelper>();
+							LinkedList<String> targetSectionChoices = new LinkedList<String>();//TODO there seems to be some EOL legacy in here
+							LinkedList<LinkedList<String>> instanceChoices = new LinkedList<LinkedList<String>>();
+
+							for (Class v : refValueClone) {
+								String classString=v.getName() + " (" + v.hashCode() + ")";
+								LinkedList<EObjectTransformationHelper> insts = targetSectionRegistry.getFlattenedPamtramClassInstances(v);
+
+								if (insts.size() > 0) {
+									targetSectionsToConsider.put(classString, v);
+									targetSectionChoices.add(classString);
+									LinkedList<String> choices = new LinkedList<String>();
+									for (EObjectTransformationHelper i : insts) {
+										String description=i.toString();
+										targetInstancesToConsider.put(description,i);
+										choices.add(description);
+									}
+									instanceChoices.add(choices);
+								}
+							}
 							
-							System.out.println("No suitable hint targets found for non-cont reference '"
-												+ ref.getName() + "' of TargetMMSection "
-							+ group.getTargetMMSection().getName() + "(Section: "	+ targetMMSection.getName() 
-							+ ") in Mapping " + mapping.getName() + "(Group: " + group.getName() +"). Maybe add a MappingIstanceSelector?");
+							
+							EObjectTransformationHelper targetInstance = null;
+							if (targetInstancesToConsider.values().size() == 1) {
+								targetInstance = targetInstancesToConsider.values().iterator().next();
+							} else if (targetInstancesToConsider.values().size() > 1) {
+								//TODO Dialog
+								System.out.println("Dialog? " + ref.getName());
+							} else {
+								System.out.println("No suitable hint targets found for non-cont reference '"
+										+ ref.getName() + "' of TargetMMSection "
+										+ group.getTargetMMSection().getName() + "(Section: "	+ targetMMSection.getName() 
+										+ ") in Mapping " + mapping.getName() + "(Group: " + group.getName() +").");
+							}
+							
+							if(targetInstance != null){
+								for(EObjectTransformationHelper inst : instancesBySection.get(targetMMSection)){
+									setReference(ref, targetInstance.getEObject(), inst.getEObject());
+								}
+							}
+							
+
 						}
 						
 					}

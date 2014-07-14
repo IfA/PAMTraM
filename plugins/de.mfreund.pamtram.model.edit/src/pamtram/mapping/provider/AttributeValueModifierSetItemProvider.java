@@ -118,8 +118,8 @@ public class AttributeValueModifierSetItemProvider
 	public String getText(Object object) {
 		String label = ((AttributeValueModifierSet)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_AttributeValueModifierSet_type") :
-			getString("_UI_AttributeValueModifierSet_type") + " " + label;
+			"" :
+			 label;
 	}
 
 	/**

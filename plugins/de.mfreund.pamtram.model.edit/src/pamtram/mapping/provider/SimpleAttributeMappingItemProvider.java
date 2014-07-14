@@ -156,8 +156,8 @@ public class SimpleAttributeMappingItemProvider
 	public String getText(Object object) {
 		String label = ((SimpleAttributeMapping)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_SimpleAttributeMapping_type") :
-			getString("_UI_SimpleAttributeMapping_type") + " " + label;
+			getString("_UI_AttributeMapping_type") :
+			getString("_UI_AttributeMapping_type") + " " + label;
 	}
 
 	/**

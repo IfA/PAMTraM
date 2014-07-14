@@ -179,8 +179,8 @@ public class MappingItemProvider
 	public String getText(Object object) {
 		String label = ((Mapping)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Mapping_type") :
-			getString("_UI_Mapping_type") + " " + label;
+			"" :
+			label;
 	}
 
 	/**

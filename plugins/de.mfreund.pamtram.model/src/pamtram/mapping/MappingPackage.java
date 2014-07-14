@@ -1041,6 +1041,61 @@ public interface MappingPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeMappingSourceElementTypeImpl <em>Attribute Mapping Source Element Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.AttributeMappingSourceElementTypeImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMappingSourceElementType()
+	 * @generated
+	 */
+	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE = 23;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Attribute Mapping Source Element Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Attribute Mapping Source Element Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.ComplexAttribueMappingSourceElementImpl <em>Complex Attribue Mapping Source Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1057,7 +1112,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
+	int COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT__NAME = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -1066,7 +1121,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT__SOURCE = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT__SOURCE = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
@@ -1075,7 +1130,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT__MODIFIER = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT__MODIFIER = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER;
 
 	/**
 	 * The number of structural features of the '<em>Complex Attribue Mapping Source Element</em>' class.
@@ -1084,7 +1139,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT_FEATURE_COUNT = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Complex Attribue Mapping Source Element</em>' class.
@@ -1093,7 +1148,127 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT_OPERATION_COUNT = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE_OPERATION_COUNT + 0;
+
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.CalculatorMappingImpl <em>Calculator Mapping</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.CalculatorMappingImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getCalculatorMapping()
+	 * @generated
+	 */
+	int CALCULATOR_MAPPING = 21;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALCULATOR_MAPPING__NAME = ATTRIBUTE_MAPPING__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALCULATOR_MAPPING__TARGET = ATTRIBUTE_MAPPING__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Expression</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALCULATOR_MAPPING__EXPRESSION = ATTRIBUTE_MAPPING_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Variables</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALCULATOR_MAPPING__VARIABLES = ATTRIBUTE_MAPPING_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Calculator Mapping</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALCULATOR_MAPPING_FEATURE_COUNT = ATTRIBUTE_MAPPING_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Calculator Mapping</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALCULATOR_MAPPING_OPERATION_COUNT = ATTRIBUTE_MAPPING_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.ExpressionVariableImpl <em>Expression Variable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.ExpressionVariableImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getExpressionVariable()
+	 * @generated
+	 */
+	int EXPRESSION_VARIABLE = 22;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_VARIABLE__NAME = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_VARIABLE__SOURCE = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_VARIABLE__MODIFIER = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER;
+
+	/**
+	 * The number of structural features of the '<em>Expression Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_VARIABLE_FEATURE_COUNT = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Expression Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_VARIABLE_OPERATION_COUNT = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE_OPERATION_COUNT + 0;
 
 
 	/**
@@ -1551,28 +1726,6 @@ public interface MappingPackage extends EPackage {
 	EClass getSimpleAttributeMapping();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.mapping.SimpleAttributeMapping#getSource <em>Source</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Source</em>'.
-	 * @see pamtram.mapping.SimpleAttributeMapping#getSource()
-	 * @see #getSimpleAttributeMapping()
-	 * @generated
-	 */
-	EReference getSimpleAttributeMapping_Source();
-
-	/**
-	 * Returns the meta object for the reference list '{@link pamtram.mapping.SimpleAttributeMapping#getModifier <em>Modifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Modifier</em>'.
-	 * @see pamtram.mapping.SimpleAttributeMapping#getModifier()
-	 * @see #getSimpleAttributeMapping()
-	 * @generated
-	 */
-	EReference getSimpleAttributeMapping_Modifier();
-
-	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.ComplexAttributeMapping <em>Complex Attribute Mapping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1604,26 +1757,78 @@ public interface MappingPackage extends EPackage {
 	EClass getComplexAttribueMappingSourceElement();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.mapping.ComplexAttribueMappingSourceElement#getSource <em>Source</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.CalculatorMapping <em>Calculator Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Calculator Mapping</em>'.
+	 * @see pamtram.mapping.CalculatorMapping
+	 * @generated
+	 */
+	EClass getCalculatorMapping();
+
+	/**
+	 * Returns the meta object for the attribute '{@link pamtram.mapping.CalculatorMapping#getExpression <em>Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Expression</em>'.
+	 * @see pamtram.mapping.CalculatorMapping#getExpression()
+	 * @see #getCalculatorMapping()
+	 * @generated
+	 */
+	EAttribute getCalculatorMapping_Expression();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.CalculatorMapping#getVariables <em>Variables</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Variables</em>'.
+	 * @see pamtram.mapping.CalculatorMapping#getVariables()
+	 * @see #getCalculatorMapping()
+	 * @generated
+	 */
+	EReference getCalculatorMapping_Variables();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.ExpressionVariable <em>Expression Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Expression Variable</em>'.
+	 * @see pamtram.mapping.ExpressionVariable
+	 * @generated
+	 */
+	EClass getExpressionVariable();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.AttributeMappingSourceElementType <em>Attribute Mapping Source Element Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Attribute Mapping Source Element Type</em>'.
+	 * @see pamtram.mapping.AttributeMappingSourceElementType
+	 * @generated
+	 */
+	EClass getAttributeMappingSourceElementType();
+
+	/**
+	 * Returns the meta object for the reference '{@link pamtram.mapping.AttributeMappingSourceElementType#getSource <em>Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Source</em>'.
-	 * @see pamtram.mapping.ComplexAttribueMappingSourceElement#getSource()
-	 * @see #getComplexAttribueMappingSourceElement()
+	 * @see pamtram.mapping.AttributeMappingSourceElementType#getSource()
+	 * @see #getAttributeMappingSourceElementType()
 	 * @generated
 	 */
-	EReference getComplexAttribueMappingSourceElement_Source();
+	EReference getAttributeMappingSourceElementType_Source();
 
 	/**
-	 * Returns the meta object for the reference list '{@link pamtram.mapping.ComplexAttribueMappingSourceElement#getModifier <em>Modifier</em>}'.
+	 * Returns the meta object for the reference list '{@link pamtram.mapping.AttributeMappingSourceElementType#getModifier <em>Modifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Modifier</em>'.
-	 * @see pamtram.mapping.ComplexAttribueMappingSourceElement#getModifier()
-	 * @see #getComplexAttribueMappingSourceElement()
+	 * @see pamtram.mapping.AttributeMappingSourceElementType#getModifier()
+	 * @see #getAttributeMappingSourceElementType()
 	 * @generated
 	 */
-	EReference getComplexAttribueMappingSourceElement_Modifier();
+	EReference getAttributeMappingSourceElementType_Modifier();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -2031,22 +2236,6 @@ public interface MappingPackage extends EPackage {
 		EClass SIMPLE_ATTRIBUTE_MAPPING = eINSTANCE.getSimpleAttributeMapping();
 
 		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SIMPLE_ATTRIBUTE_MAPPING__SOURCE = eINSTANCE.getSimpleAttributeMapping_Source();
-
-		/**
-		 * The meta object literal for the '<em><b>Modifier</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SIMPLE_ATTRIBUTE_MAPPING__MODIFIER = eINSTANCE.getSimpleAttributeMapping_Modifier();
-
-		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.ComplexAttributeMappingImpl <em>Complex Attribute Mapping</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2075,12 +2264,58 @@ public interface MappingPackage extends EPackage {
 		EClass COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT = eINSTANCE.getComplexAttribueMappingSourceElement();
 
 		/**
+		 * The meta object literal for the '{@link pamtram.mapping.impl.CalculatorMappingImpl <em>Calculator Mapping</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.impl.CalculatorMappingImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getCalculatorMapping()
+		 * @generated
+		 */
+		EClass CALCULATOR_MAPPING = eINSTANCE.getCalculatorMapping();
+
+		/**
+		 * The meta object literal for the '<em><b>Expression</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CALCULATOR_MAPPING__EXPRESSION = eINSTANCE.getCalculatorMapping_Expression();
+
+		/**
+		 * The meta object literal for the '<em><b>Variables</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CALCULATOR_MAPPING__VARIABLES = eINSTANCE.getCalculatorMapping_Variables();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.impl.ExpressionVariableImpl <em>Expression Variable</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.impl.ExpressionVariableImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getExpressionVariable()
+		 * @generated
+		 */
+		EClass EXPRESSION_VARIABLE = eINSTANCE.getExpressionVariable();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.impl.AttributeMappingSourceElementTypeImpl <em>Attribute Mapping Source Element Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.impl.AttributeMappingSourceElementTypeImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMappingSourceElementType()
+		 * @generated
+		 */
+		EClass ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE = eINSTANCE.getAttributeMappingSourceElementType();
+
+		/**
 		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT__SOURCE = eINSTANCE.getComplexAttribueMappingSourceElement_Source();
+		EReference ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE = eINSTANCE.getAttributeMappingSourceElementType_Source();
 
 		/**
 		 * The meta object literal for the '<em><b>Modifier</b></em>' reference list feature.
@@ -2088,7 +2323,7 @@ public interface MappingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT__MODIFIER = eINSTANCE.getComplexAttribueMappingSourceElement_Modifier();
+		EReference ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER = eINSTANCE.getAttributeMappingSourceElementType_Modifier();
 
 	}
 

@@ -204,6 +204,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				SimpleAttributeMapping simpleAttributeMapping = (SimpleAttributeMapping)theEObject;
 				T result = caseSimpleAttributeMapping(simpleAttributeMapping);
 				if (result == null) result = caseAttributeMapping(simpleAttributeMapping);
+				if (result == null) result = caseAttributeMappingSourceElementType(simpleAttributeMapping);
 				if (result == null) result = caseMappingHint(simpleAttributeMapping);
 				if (result == null) result = caseNamedElement(simpleAttributeMapping);
 				if (result == null) result = defaultCase(theEObject);
@@ -221,7 +222,32 @@ public class MappingSwitch<T> extends Switch<T> {
 			case MappingPackage.COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT: {
 				ComplexAttribueMappingSourceElement complexAttribueMappingSourceElement = (ComplexAttribueMappingSourceElement)theEObject;
 				T result = caseComplexAttribueMappingSourceElement(complexAttribueMappingSourceElement);
+				if (result == null) result = caseAttributeMappingSourceElementType(complexAttribueMappingSourceElement);
 				if (result == null) result = caseNamedElement(complexAttribueMappingSourceElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.CALCULATOR_MAPPING: {
+				CalculatorMapping calculatorMapping = (CalculatorMapping)theEObject;
+				T result = caseCalculatorMapping(calculatorMapping);
+				if (result == null) result = caseAttributeMapping(calculatorMapping);
+				if (result == null) result = caseMappingHint(calculatorMapping);
+				if (result == null) result = caseNamedElement(calculatorMapping);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.EXPRESSION_VARIABLE: {
+				ExpressionVariable expressionVariable = (ExpressionVariable)theEObject;
+				T result = caseExpressionVariable(expressionVariable);
+				if (result == null) result = caseAttributeMappingSourceElementType(expressionVariable);
+				if (result == null) result = caseNamedElement(expressionVariable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE: {
+				AttributeMappingSourceElementType attributeMappingSourceElementType = (AttributeMappingSourceElementType)theEObject;
+				T result = caseAttributeMappingSourceElementType(attributeMappingSourceElementType);
+				if (result == null) result = caseNamedElement(attributeMappingSourceElementType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -541,6 +567,51 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseComplexAttribueMappingSourceElement(ComplexAttribueMappingSourceElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Calculator Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Calculator Mapping</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCalculatorMapping(CalculatorMapping object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Expression Variable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Expression Variable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExpressionVariable(ExpressionVariable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Attribute Mapping Source Element Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Attribute Mapping Source Element Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAttributeMappingSourceElementType(AttributeMappingSourceElementType object) {
 		return null;
 	}
 

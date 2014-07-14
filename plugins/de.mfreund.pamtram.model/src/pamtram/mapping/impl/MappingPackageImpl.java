@@ -13,14 +13,17 @@ import pamtram.condition.ConditionPackage;
 import pamtram.condition.impl.ConditionPackageImpl;
 import pamtram.impl.PamtramPackageImpl;
 import pamtram.mapping.AttributeMapping;
+import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.AttributeValueModifier;
 import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.CalculatorMapping;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ClassMatcher;
 import pamtram.mapping.ComplexAttribueMappingSourceElement;
 import pamtram.mapping.ComplexAttributeMapping;
 import pamtram.mapping.ConnectionHintTargetAttribute;
+import pamtram.mapping.ExpressionVariable;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHint;
@@ -194,6 +197,27 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * @generated
 	 */
 	private EClass complexAttribueMappingSourceElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass calculatorMappingEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass expressionVariableEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass attributeMappingSourceElementTypeEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -671,24 +695,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSimpleAttributeMapping_Source() {
-		return (EReference)simpleAttributeMappingEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getSimpleAttributeMapping_Modifier() {
-		return (EReference)simpleAttributeMappingEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getComplexAttributeMapping() {
 		return complexAttributeMappingEClass;
 	}
@@ -716,8 +722,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getComplexAttribueMappingSourceElement_Source() {
-		return (EReference)complexAttribueMappingSourceElementEClass.getEStructuralFeatures().get(0);
+	public EClass getCalculatorMapping() {
+		return calculatorMappingEClass;
 	}
 
 	/**
@@ -725,8 +731,53 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getComplexAttribueMappingSourceElement_Modifier() {
-		return (EReference)complexAttribueMappingSourceElementEClass.getEStructuralFeatures().get(1);
+	public EAttribute getCalculatorMapping_Expression() {
+		return (EAttribute)calculatorMappingEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCalculatorMapping_Variables() {
+		return (EReference)calculatorMappingEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getExpressionVariable() {
+		return expressionVariableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAttributeMappingSourceElementType() {
+		return attributeMappingSourceElementTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAttributeMappingSourceElementType_Source() {
+		return (EReference)attributeMappingSourceElementTypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAttributeMappingSourceElementType_Modifier() {
+		return (EReference)attributeMappingSourceElementTypeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -818,15 +869,21 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		createEReference(connectionHintTargetAttributeEClass, CONNECTION_HINT_TARGET_ATTRIBUTE__MODIFIER);
 
 		simpleAttributeMappingEClass = createEClass(SIMPLE_ATTRIBUTE_MAPPING);
-		createEReference(simpleAttributeMappingEClass, SIMPLE_ATTRIBUTE_MAPPING__SOURCE);
-		createEReference(simpleAttributeMappingEClass, SIMPLE_ATTRIBUTE_MAPPING__MODIFIER);
 
 		complexAttributeMappingEClass = createEClass(COMPLEX_ATTRIBUTE_MAPPING);
 		createEReference(complexAttributeMappingEClass, COMPLEX_ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS);
 
 		complexAttribueMappingSourceElementEClass = createEClass(COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT);
-		createEReference(complexAttribueMappingSourceElementEClass, COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT__SOURCE);
-		createEReference(complexAttribueMappingSourceElementEClass, COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT__MODIFIER);
+
+		calculatorMappingEClass = createEClass(CALCULATOR_MAPPING);
+		createEAttribute(calculatorMappingEClass, CALCULATOR_MAPPING__EXPRESSION);
+		createEReference(calculatorMappingEClass, CALCULATOR_MAPPING__VARIABLES);
+
+		expressionVariableEClass = createEClass(EXPRESSION_VARIABLE);
+
+		attributeMappingSourceElementTypeEClass = createEClass(ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE);
+		createEReference(attributeMappingSourceElementTypeEClass, ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE);
+		createEReference(attributeMappingSourceElementTypeEClass, ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER);
 	}
 
 	/**
@@ -879,8 +936,12 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		mappingHintGroupEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		modelConnectionHintEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		simpleAttributeMappingEClass.getESuperTypes().add(this.getAttributeMapping());
+		simpleAttributeMappingEClass.getESuperTypes().add(this.getAttributeMappingSourceElementType());
 		complexAttributeMappingEClass.getESuperTypes().add(this.getAttributeMapping());
-		complexAttribueMappingSourceElementEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
+		complexAttribueMappingSourceElementEClass.getESuperTypes().add(this.getAttributeMappingSourceElementType());
+		calculatorMappingEClass.getESuperTypes().add(this.getAttributeMapping());
+		expressionVariableEClass.getESuperTypes().add(this.getAttributeMappingSourceElementType());
+		attributeMappingSourceElementTypeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(mappingEClass, Mapping.class, "Mapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -944,15 +1005,21 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEReference(getConnectionHintTargetAttribute_Modifier(), this.getAttributeValueModifierSet(), null, "modifier", null, 0, -1, ConnectionHintTargetAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(simpleAttributeMappingEClass, SimpleAttributeMapping.class, "SimpleAttributeMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSimpleAttributeMapping_Source(), theMetamodelPackage.getAttribute(), null, "source", null, 1, 1, SimpleAttributeMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSimpleAttributeMapping_Modifier(), this.getAttributeValueModifierSet(), null, "modifier", null, 0, -1, SimpleAttributeMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(complexAttributeMappingEClass, ComplexAttributeMapping.class, "ComplexAttributeMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getComplexAttributeMapping_SourceAttributeMappings(), this.getComplexAttribueMappingSourceElement(), null, "sourceAttributeMappings", null, 1, -1, ComplexAttributeMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(complexAttribueMappingSourceElementEClass, ComplexAttribueMappingSourceElement.class, "ComplexAttribueMappingSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getComplexAttribueMappingSourceElement_Source(), theMetamodelPackage.getAttribute(), null, "source", null, 1, 1, ComplexAttribueMappingSourceElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getComplexAttribueMappingSourceElement_Modifier(), this.getAttributeValueModifierSet(), null, "modifier", null, 0, -1, ComplexAttribueMappingSourceElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(calculatorMappingEClass, CalculatorMapping.class, "CalculatorMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getCalculatorMapping_Expression(), ecorePackage.getEString(), "expression", null, 1, 1, CalculatorMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCalculatorMapping_Variables(), this.getExpressionVariable(), null, "variables", null, 0, -1, CalculatorMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(expressionVariableEClass, ExpressionVariable.class, "ExpressionVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(attributeMappingSourceElementTypeEClass, AttributeMappingSourceElementType.class, "AttributeMappingSourceElementType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAttributeMappingSourceElementType_Source(), theMetamodelPackage.getAttribute(), null, "source", null, 1, 1, AttributeMappingSourceElementType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAttributeMappingSourceElementType_Modifier(), this.getAttributeValueModifierSet(), null, "modifier", null, 0, -1, AttributeMappingSourceElementType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore

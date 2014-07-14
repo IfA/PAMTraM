@@ -72,6 +72,8 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.SIMPLE_ATTRIBUTE_MAPPING: return createSimpleAttributeMapping();
 			case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING: return createComplexAttributeMapping();
 			case MappingPackage.COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT: return createComplexAttribueMappingSourceElement();
+			case MappingPackage.CALCULATOR_MAPPING: return createCalculatorMapping();
+			case MappingPackage.EXPRESSION_VARIABLE: return createExpressionVariable();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -235,6 +237,26 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public ComplexAttribueMappingSourceElement createComplexAttribueMappingSourceElement() {
 		ComplexAttribueMappingSourceElementImpl complexAttribueMappingSourceElement = new ComplexAttribueMappingSourceElementImpl();
 		return complexAttribueMappingSourceElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CalculatorMapping createCalculatorMapping() {
+		CalculatorMappingImpl calculatorMapping = new CalculatorMappingImpl();
+		return calculatorMapping;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExpressionVariable createExpressionVariable() {
+		ExpressionVariableImpl expressionVariable = new ExpressionVariableImpl();
+		return expressionVariable;
 	}
 
 	/**

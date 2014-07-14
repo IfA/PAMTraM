@@ -166,6 +166,24 @@ public interface MappingFactory extends EFactory {
 	ComplexAttribueMappingSourceElement createComplexAttribueMappingSourceElement();
 
 	/**
+	 * Returns a new object of class '<em>Calculator Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Calculator Mapping</em>'.
+	 * @generated
+	 */
+	CalculatorMapping createCalculatorMapping();
+
+	/**
+	 * Returns a new object of class '<em>Expression Variable</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Expression Variable</em>'.
+	 * @generated
+	 */
+	ExpressionVariable createExpressionVariable();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

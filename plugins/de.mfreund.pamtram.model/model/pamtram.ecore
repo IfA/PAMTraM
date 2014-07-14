@@ -286,19 +286,23 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
           eType="#//mapping/AttributeValueModifierSet"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="SimpleAttributeMapping" eSuperTypes="#//mapping/AttributeMapping">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
-          eType="#//metamodel/Attribute"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
-          eType="#//mapping/AttributeValueModifierSet"/>
-    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SimpleAttributeMapping" eSuperTypes="#//mapping/AttributeMapping #//mapping/AttributeMappingSourceElementType"/>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexAttributeMapping" eSuperTypes="#//mapping/AttributeMapping">
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceAttributeMappings"
           lowerBound="1" upperBound="-1" eType="#//mapping/ComplexAttribueMappingSourceElement"
           containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexAttribueMappingSourceElement"
-        eSuperTypes="#//NamedElement">
+        eSuperTypes="#//mapping/AttributeMappingSourceElementType"/>
+    <eClassifiers xsi:type="ecore:EClass" name="CalculatorMapping" eSuperTypes="#//mapping/AttributeMapping">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
+          eType="#//mapping/ExpressionVariable" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ExpressionVariable" eSuperTypes="#//mapping/AttributeMappingSourceElementType"/>
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingSourceElementType"
+        abstract="true" eSuperTypes="#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
           eType="#//metamodel/Attribute"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"

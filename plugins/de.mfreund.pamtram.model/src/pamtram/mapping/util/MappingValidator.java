@@ -128,6 +128,12 @@ public class MappingValidator extends EObjectValidator {
 				return validateComplexAttributeMapping((ComplexAttributeMapping)value, diagnostics, context);
 			case MappingPackage.COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT:
 				return validateComplexAttribueMappingSourceElement((ComplexAttribueMappingSourceElement)value, diagnostics, context);
+			case MappingPackage.CALCULATOR_MAPPING:
+				return validateCalculatorMapping((CalculatorMapping)value, diagnostics, context);
+			case MappingPackage.EXPRESSION_VARIABLE:
+				return validateExpressionVariable((ExpressionVariable)value, diagnostics, context);
+			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE:
+				return validateAttributeMappingSourceElementType((AttributeMappingSourceElementType)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -537,6 +543,44 @@ public class MappingValidator extends EObjectValidator {
 	 */
 	public boolean validateComplexAttribueMappingSourceElement(ComplexAttribueMappingSourceElement complexAttribueMappingSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(complexAttribueMappingSourceElement, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCalculatorMapping(CalculatorMapping calculatorMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(calculatorMapping, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(calculatorMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(calculatorMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(calculatorMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(calculatorMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(calculatorMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(calculatorMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(calculatorMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(calculatorMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateAttributeMapping_sourceAttributeMatchesSection(calculatorMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateAttributeMapping_targetAttributeMatchesSection(calculatorMapping, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateExpressionVariable(ExpressionVariable expressionVariable, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(expressionVariable, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateAttributeMappingSourceElementType(AttributeMappingSourceElementType attributeMappingSourceElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(attributeMappingSourceElementType, diagnostics, context);
 	}
 
 	/**

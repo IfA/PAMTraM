@@ -154,6 +154,18 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createComplexAttribueMappingSourceElementAdapter();
 			}
 			@Override
+			public Adapter caseCalculatorMapping(CalculatorMapping object) {
+				return createCalculatorMappingAdapter();
+			}
+			@Override
+			public Adapter caseExpressionVariable(ExpressionVariable object) {
+				return createExpressionVariableAdapter();
+			}
+			@Override
+			public Adapter caseAttributeMappingSourceElementType(AttributeMappingSourceElementType object) {
+				return createAttributeMappingSourceElementTypeAdapter();
+			}
+			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -468,6 +480,48 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createComplexAttribueMappingSourceElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.CalculatorMapping <em>Calculator Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.CalculatorMapping
+	 * @generated
+	 */
+	public Adapter createCalculatorMappingAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ExpressionVariable <em>Expression Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.ExpressionVariable
+	 * @generated
+	 */
+	public Adapter createExpressionVariableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.AttributeMappingSourceElementType <em>Attribute Mapping Source Element Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.AttributeMappingSourceElementType
+	 * @generated
+	 */
+	public Adapter createAttributeMappingSourceElementTypeAdapter() {
 		return null;
 	}
 

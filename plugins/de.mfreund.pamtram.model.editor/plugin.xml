@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated pamtram -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="pamtram.presentation.PamtramModelWizardID"
+            name="%_UI_PamtramModelWizard_label"
+            class="pamtram.presentation.PamtramModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/PamtramModelFile.gif">
+         <description>%_UI_PamtramModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated pamtram -->
+      <editor
+            id="pamtram.mapping.presentation.MappingEditorID"
+            name="%_UI_MappingEditor_label"
+            icon="icons/full/obj16/MappingModelFile.gif"
+            extensions="mapping"
+            class="pamtram.mapping.presentation.MappingEditor"
+            contributorClass="pamtram.mapping.presentation.MappingActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated pamtram -->
+      <editor
+            id="pamtram.presentation.PamtramEditorID"
+            name="%_UI_PamtramEditor_label"
+            icon="icons/full/obj16/PamtramModelFile.gif"
+            extensions="pamtram"
+            class="pamtram.presentation.PamtramEditor"
+            contributorClass="pamtram.presentation.PamtramActionBarContributor">
+      </editor>
+   </extension>
+
+null
+null
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated pamtram -->
+      <editor
+            id="pamtram.metamodel.presentation.MetamodelEditorID"
+            name="%_UI_MetamodelEditor_label"
+            icon="icons/full/obj16/MetamodelModelFile.gif"
+            extensions="metamodel"
+            class="pamtram.metamodel.presentation.MetamodelEditor"
+            contributorClass="pamtram.metamodel.presentation.MetamodelActionBarContributor">
+      </editor>
+   </extension>
+
+null
+null
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated pamtram -->
+      <editor
+            id="pamtram.condition.presentation.ConditionEditorID"
+            name="%_UI_ConditionEditor_label"
+            icon="icons/full/obj16/ConditionModelFile.gif"
+            extensions="condition"
+            class="pamtram.condition.presentation.ConditionEditor"
+            contributorClass="pamtram.condition.presentation.ConditionActionBarContributor">
+      </editor>
+   </extension>
+
+null
+null
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated pamtram -->
+      <editor
+            id="pamtram.transformation.presentation.TransformationEditorID"
+            name="%_UI_TransformationEditor_label"
+            icon="icons/full/obj16/TransformationModelFile.gif"
+            extensions="transformation"
+            class="pamtram.transformation.presentation.TransformationEditor"
+            contributorClass="pamtram.transformation.presentation.TransformationActionBarContributor">
+      </editor>
+   </extension>
+
+null
+</plugin>

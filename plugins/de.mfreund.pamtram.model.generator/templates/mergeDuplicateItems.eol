@@ -1,0 +1,65 @@
+
+// get the model instance
+var pamtram = Pamtram!PAMTraM.all.first;
+
+// get all class objects in the model
+var classObjects = Pamtram!Class.all;
+
+if(isSource == true) {
+	// check for mergable source items
+	for (class in createdObjects.select(c | c.eContainer == pamtram.sourceSectionModel)) { 
+		class.compare();	
+	}
+} else {
+	// check for mergable target items
+		for (class in createdObjects.select(c | c.eContainer == pamtram.targetSectionModel)) { 
+		class.compare();	
+	}
+}
+
+// compare the createdObject to all class objects in the model
+operation Pamtram!Class compare() : Pamtram!Class {
+	var potentialMatches = 
+			classObjects.select(c | ((c <> self) 
+				and (c.eClass == self.eClass)
+				and (c.name == self.name)
+				and (c.container == self.container)));
+	var selfHash = self.hash();
+	var matchesToRemove = new Set;
+	for(match in potentialMatches) {	
+		var hash = match.hash();
+		if(hash <> selfHash) {
+			matchesToRemove.add(match);
+		}
+	}
+	potentialMatches.removeAll(matchesToRemove);
+	
+	// TODO: iterate further to calculate the match based on the references
+	// and not only on the attributes	
+	
+	// merge with the first match
+	var match = potentialMatches.first;
+	
+	if(match <> null) {
+		// replace the references to the created object
+		for(ref in Pamtram!NonContainmentReference.all) {
+			if(ref.value.includes(self)) {
+				ref.value.remove(self);
+				ref.value.add(match);
+			}
+		}
+		
+		// delete the created object
+		delete self;
+	}
+}
+
+// calculates a pseudo hash value for a class based on its attributes
+operation Pamtram!Class hash() : String {
+	
+	var hash = "";
+	for(att in self.attributes) {
+		hash = hash + att.attribute.name + att.value;
+	}
+	return hash;
+}

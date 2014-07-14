@@ -1,0 +1,49 @@
+/* check if an existing metamodel package matches the one passed to the transformation;
+ */
+
+var pamtram;
+
+// get the pamtram instance or create a new one if necessary
+if(Pamtram!PAMTraM.all.size == 0) {
+	pamtram = Pamtram!PAMTraM.createInstance;
+} else {
+	pamtram = Pamtram!PAMTraM.all.first;
+}
+
+// get the source section model or craete a new one if necessary
+var sourceSectionModel = pamtram.getSourceSectionModel;
+if(sourceSectionModel == null) {
+	sourceSectionModel = Pamtram!SourceSectionModel.createInstance;
+	pamtram.setSourceSectionModel(sourceSectionModel);
+}
+
+
+// get the target section model or craete a new one if necessary
+var targetSectionModel = pamtram.getTargetSectionModel;
+if(targetSectionModel == null) {
+	targetSectionModel = Pamtram!TargetSectionModel.createInstance;
+	pamtram.setTargetSectionModel(targetSectionModel);
+}
+
+// get the source package
+var source = pamtram.getSourceSectionModel.getMetaModelPackage;
+// get the target package
+var target = pamtram.getTargetSectionModel.getMetaModelPackage;
+
+if(source == null or ePackage.nsURI == source.nsURI) {
+	if(target == null or ePackage.nsURI == target.nsURI) {
+		// ePackage can be used as both source and target
+		return 0;
+	} else {
+		// ePackage can be used only as source
+		return 1;
+	}
+} else {
+	if(target == null or ePackage.nsURI == target.nsURI) {
+		// ePackage can be used only as target
+		return 2;
+	} else {
+		// ePacakge can be used neither as source nor as target
+		return -1;
+	}
+}

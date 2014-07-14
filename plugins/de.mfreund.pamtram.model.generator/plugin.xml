@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="de.mfreund.pamtram.model.generator.handler.ExportMetaModelSectionHandler"
+            id="de.mfreund.pamtram.model.generator.exportMetaModelSection"
+            name="exportMetaModelSection">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.emf.ecore.presentation.ReflectiveEditorID">
+         <command
+               commandId="de.mfreund.pamtram.model.generator.exportMetaModelSection"
+               label="PAMTraM: Export MetaModelSection"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activeMenuSelection">
+                  <iterate
+                        ifEmpty="false"
+                        operator="or">
+                     <adapt
+                           type="org.eclipse.emf.ecore.EObject">
+                     </adapt>
+                  </iterate>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.epsilon.dt.exeed.ExeedEditor">
+         <command
+               commandId="de.mfreund.pamtram.model.generator.exportMetaModelSection"
+               label="Movisa: Create Library Item"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activeMenuSelection">
+                  <iterate
+                        ifEmpty="false"
+                        operator="or">
+                     <adapt
+                           type="org.eclipse.emf.ecore.EObject">
+                     </adapt>
+                  </iterate>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+
+</plugin>

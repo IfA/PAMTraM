@@ -1,0 +1,159 @@
+
+// check if the target model already contains a PAMTraM instance, if not create one
+var pamtram = Pamtram!PAMTraM.all.first;
+
+// set the source/target metamodel package
+if(isSource == true) {
+	pamtram.sourceSectionModel.metaModelPackage = ePackage;
+} else {
+	pamtram.targetSectionModel.metaModelPackage = ePackage;
+}
+
+
+// map<eObjectString, Class> of metamodel section that have been created so far
+var created = new Map;
+// set of metamodel (sub) section that are not yet contained by the pamtram or by another class
+var dangling = new Set;
+
+var metaModelSection = sectionRoot.createMetaModelSection();
+if(isSource == true) {
+	pamtram.sourceSectionModel.metaModelSections.add(metaModelSection);
+	for(danglingSection in dangling) {
+		pamtram.sourceSectionModel.metaModelSections.add(danglingSection);
+	}
+} else {
+	pamtram.targetSectionModel.metaModelSections.add(metaModelSection);
+	for(danglingSection in dangling) {
+		pamtram.targetSectionModel.metaModelSections.add(danglingSection);
+	}
+}
+
+var ret = new OrderedSet;
+// select the direct children of pamtram (-> the created root objects)
+for (key in created.keySet) {
+	if((isSource == true and created.get(key).eContainer = pamtram.sourceSectionModel) or
+		(isSource == false and created.get(key).eContainer = pamtram.targetSectionModel)) {
+		ret.add(created.get(key));
+	}
+}
+return ret;
+
+/* create the metamodel section by using the 'sectionRoot' as root element and iterating through
+ * the references (containment and non containment)
+ */
+operation Any createMetaModelSection() : Pamtram!Class {
+	
+	var eClass = self.eClass;
+	
+	// the class as the root element of the section
+	var class = Pamtram!Class.createInstance;
+	class.eClass = eClass;
+	class.name = eClass.name;
+	
+	// add the corresponding eObject as temporary variable
+	class.~eObjectString = self.asString;
+	
+	// add the attributes to the class
+	class.createAttributes(self);
+	
+	// add the class to the map of created elements
+	created.put(self.asString, class);
+	
+	var eAllReferences = eClass.eAllReferences;
+	var eAllContainments = eClass.eAllContainments;
+	var eAllNonContainments = eAllReferences.excludingAll(eAllContainments);
+	
+	// plunge deeper by evaluating the containment references
+	for(eContainment in eAllContainments) {
+		// create a 'containment reference' object
+		var containmentReference = Pamtram!ContainmentReference.createInstance;
+		containmentReference.eReference = eContainment;
+		containmentReference.name = eContainment.name;
+		// 'variableCardinality' is set to 'false' by default
+		containmentReference.variableCardinality = false;
+		
+		// get the objects contained via the containment reference
+		for(eObject in self.eGet(eContainment)) {
+			if(eObject == null) { // no contained object
+				continue;
+			}
+			// check if an uncontained section representing the eObject already exists
+			// (this might be the case if it has been created by a non-containment reference)
+			var existing = created.get(eObject.asString);
+			if(existing <> null and dangling.includes(existing)) {
+				// link the existing class
+				containmentReference.value.add(existing);
+				dangling.remove(existing);
+			} else {
+				// create a new (part) metamodel section beginning at the object and link it to the current section
+				containmentReference.value.add(eObject.createMetaModelSection());
+			}
+		}
+		
+		// add the created reference to the list of references of the current class
+		// and thus complete the metamodel section
+		if(containmentReference.value.size > 0) {
+			class.references.add(containmentReference);
+		} else {
+			delete containmentReference;
+		}
+	}
+	
+	// handle the non-containment references
+	for(eNonContainment in eAllNonContainments) {
+		
+		// create a 'non containment reference' object
+		var nonContainmentReference = Pamtram!NonContainmentReference.createInstance;
+		nonContainmentReference.eReference = eNonContainment;
+		nonContainmentReference.name = eNonContainment.name;
+		// 'variableCardinality' is set to 'false' by default
+		nonContainmentReference.variableCardinality = false;
+		
+		// get the objects referenced by the non-containment reference
+		for(eObject in self.eGet(eNonContainment)) {
+			if(eObject == null) { // no referenced object
+				continue;
+			}
+			
+			// check if a section representing the eObject already exists
+			var existing = created.get(eObject.asString);
+			if(existing <> null) {
+				// link the existing class
+				nonContainmentReference.value.add(existing);
+			} else {
+				// create a new metamodel section beginning at the object and link it to the mapping model
+				var metaModelSection = eObject.createMetaModelSection();
+				dangling.add(metaModelSection);
+				nonContainmentReference.value.add(metaModelSection);
+			}
+		}
+		
+		// link the created metamodel section to the current section
+		if(nonContainmentReference.value.size > 0) {
+			class.references.add(nonContainmentReference);
+		} else {
+			delete nonContainmentReference;
+		}
+	}
+	
+	return class;
+}
+
+/* create the attributes belonging to a class
+ */
+operation Pamtram!Class createAttributes(eObject : Any) {
+	
+	var eClass = self.eClass;
+	
+	var eAttributes = eClass.eAllAttributes;
+	for(eAttribute in eAttributes) {
+		var attribute = Pamtram!Attribute.createInstance;
+		attribute.attribute = eAttribute;
+		attribute.name = eAttribute.name;
+		var attributeValue = eObject.eGet(eAttribute);
+		if(attributeValue <> null) {
+			attribute.value = attributeValue.asString;
+		}
+		self.attributes.add(attribute);
+	}
+}

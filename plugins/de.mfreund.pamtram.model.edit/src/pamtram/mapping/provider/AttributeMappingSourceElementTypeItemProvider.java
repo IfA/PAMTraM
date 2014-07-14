@@ -25,7 +25,6 @@ import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.SimpleAttributeMapping;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 
@@ -94,7 +93,16 @@ public class AttributeMappingSourceElementTypeItemProvider
 				public Collection<?> getChoiceOfValues(Object object) {
 
 					//the parent Mapping Hint Group
-					MappingHintGroup mappingHintGroup = (MappingHintGroup) ((SimpleAttributeMapping) object).eContainer();
+					EObject parent=((AttributeMappingSourceElementType) object).eContainer();
+					MappingHintGroup mappingHintGroup;
+					while(true){
+						if(parent instanceof MappingHintGroup){
+							mappingHintGroup=(MappingHintGroup) parent;
+							break;
+						} else {
+							parent=parent.eContainer();
+						}
+					}
 					// the parent mapping
 					Mapping mapping = (Mapping) mappingHintGroup.eContainer();
 					

@@ -121,10 +121,12 @@ import org.eclipse.ui.views.properties.PropertySheetPage;
 import pamtram.MappingModel;
 import pamtram.PAMTraM;
 import pamtram.condition.provider.ConditionItemProviderAdapterFactory;
+import pamtram.mapping.AttributeMapping;
+import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.AttributeMatcher;
+import pamtram.mapping.CalculatorMapping;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ClassMatcher;
-import pamtram.mapping.ComplexAttribueMappingSourceElement;
 import pamtram.mapping.ComplexAttributeMapping;
 import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.Mapping;
@@ -1244,34 +1246,18 @@ public class PamtramEditor
 						
 						// Update the currently selected mapping.
 						currentMapping = mapping;
-					} else if(((TreeItem) e.item).getData() instanceof SimpleAttributeMapping) {
-						
-						SimpleAttributeMapping mapping = (SimpleAttributeMapping) ((TreeItem) e.item).getData();
-						
-						Attribute source = mapping.getSource();
-						Attribute target = mapping.getTarget();
-						
-						// Select the source and target item associated with  the selected mapping.
-						if(source == null) {
-							sourceViewer.setSelection(
-									new StructuredSelection());
-						} else {
-							sourceViewer.setSelection(
-									new StructuredSelection(source));
+					}  else if(((TreeItem) e.item).getData() instanceof AttributeMappingSourceElementType) {
+						AttributeMappingSourceElementType mapping = (AttributeMappingSourceElementType) ((TreeItem) e.item).getData();
+
+						Attribute target = null;
+
+						if(mapping.eContainer() instanceof AttributeMapping){
+							 target= ((AttributeMapping)mapping.eContainer()).getTarget();
+						} else if (mapping instanceof SimpleAttributeMapping){
+							target=((SimpleAttributeMapping) mapping).getTarget();
 						}
-						if(target == null) {
-							targetViewer.setSelection(
-									new StructuredSelection());
-						} else {
-							targetViewer.setSelection(
-									new StructuredSelection(target));
-						}
-					} else if(((TreeItem) e.item).getData() instanceof ComplexAttribueMappingSourceElement) {
-						ComplexAttribueMappingSourceElement mapping = (ComplexAttribueMappingSourceElement) ((TreeItem) e.item).getData();
-						ComplexAttributeMapping complexMapping= (ComplexAttributeMapping) mapping.eContainer();
-						
+												
 						Attribute source = mapping.getSource();
-						Attribute target = complexMapping.getTarget();
 						
 						// Select the source and target item associated with  the selected mapping.
 						if(source == null) {
@@ -1289,11 +1275,20 @@ public class PamtramEditor
 									new StructuredSelection(target));
 						}
 						
-					} else if(((TreeItem) e.item).getData() instanceof ComplexAttributeMapping) {
-						ComplexAttributeMapping mapping = (ComplexAttributeMapping) ((TreeItem) e.item).getData();
+					} else if(((TreeItem) e.item).getData() instanceof ComplexAttributeMapping || ((TreeItem) e.item).getData() instanceof CalculatorMapping) {
+						AttributeMapping mapping = (ComplexAttributeMapping) ((TreeItem) e.item).getData();
 						Attribute target = mapping.getTarget();
+						
+						List<AttributeMappingSourceElementType> mappingSources=new LinkedList<AttributeMappingSourceElementType>();
+						
+						if(mapping instanceof ComplexAttributeMapping){
+							mappingSources.addAll(((ComplexAttributeMapping) mapping).getSourceAttributeMappings());
+						} else {
+							mappingSources.addAll(((CalculatorMapping) mapping).getVariables());
+						}
+						
 						List<Attribute> sources = new LinkedList<Attribute>();
-						for(ComplexAttribueMappingSourceElement c : mapping.getSourceAttributeMappings()){
+						for(AttributeMappingSourceElementType c : mappingSources){
 							if(c.getSource() != null){
 								sources.add(c.getSource());
 							}

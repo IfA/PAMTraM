@@ -62,7 +62,7 @@ public class MappingDropListener extends ViewerDropAdapter {
 		} else if(this.getCurrentTarget() instanceof SimpleAttributeMapping) {
 			itemProviderAdapter = new SimpleAttributeMappingItemProvider(mappingItemProviderFactory);
 			feature = (dragSource == DragSource.SourceSectionViewer) ?
-				 	MappingPackage.Literals.SIMPLE_ATTRIBUTE_MAPPING__SOURCE:
+				 	MappingPackage.Literals.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE:
 				 	MappingPackage.Literals.ATTRIBUTE_MAPPING__TARGET;
 		} else if(this.getCurrentTarget() instanceof CardinalityMapping) {//TODO add ComplexAttributeMapping
 			itemProviderAdapter = new CardinalityMappingItemProvider(mappingItemProviderFactory);

@@ -43,7 +43,7 @@ public class TargetSectionInstantiator {
 	Will only look until next vc-reference
 	Will always return Hint with largest number of values
 	*/
-	private static MappingHint searchAttributeMapping(Class metaModelSection, Collection<MappingHint> hints,  Map<MappingHint, LinkedList<String>> hintValues, MappingHint  oldSelectedHint){
+	private static MappingHint searchAttributeMapping(Class metaModelSection, Collection<MappingHint> hints,  Map<MappingHint, LinkedList<Object>> hintValues, MappingHint  oldSelectedHint){
 		MappingHint selectedHint=oldSelectedHint;
 		for(Attribute attr :  metaModelSection.getAttributes()){//check attributes		
 			for(MappingHint hint : hints){
@@ -87,7 +87,7 @@ public class TargetSectionInstantiator {
 	*/
 	public LinkedHashMap<Class,LinkedList<EObjectTransformationHelper>> instantiateTargetSectionFirstPass(Class metamodelSection,
 																					MappingHintGroup mappingGroup,
-																					Map<MappingHint, LinkedList<String>> hintValues,
+																					Map<MappingHint, LinkedList<Object>> hintValues,
 																					Map<ModelConnectionHint, LinkedList<String>> conHintValues,																					
 																					Mapping mapping){
 		LinkedHashMap<Class,LinkedList<EObjectTransformationHelper>> instBySection=new LinkedHashMap<Class,LinkedList<EObjectTransformationHelper>> ();
@@ -107,7 +107,7 @@ public class TargetSectionInstantiator {
 */
 private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPass(Class metamodelSection,
 																				MappingHintGroup mappingGroup,
-																				Map<MappingHint, LinkedList<String>> hintValues,
+																				Map<MappingHint, LinkedList<Object>> hintValues,
 																				Map<ModelConnectionHint, LinkedList<String>> conHintValues,
 																				Map<Class,LinkedList<EObjectTransformationHelper>> instBySection,
 																				Mapping mapping) {
@@ -163,12 +163,12 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 			LinkedList<EObjectTransformationHelper> markedForDelete = new LinkedList<EObjectTransformationHelper>();
 			for(Attribute attr : metamodelSection.getAttributes()){			
 					//look for an attribute mapping
-					LinkedList<String> attrHintValues=null;
+					LinkedList<Object> attrHintValues=null;
 					for(MappingHint hint : mappingGroup.getMappingHints()){
 						if(hint instanceof AttributeMapping){
 							if(((AttributeMapping) hint).getTarget().equals(attr)){
 								if(hintValues.get(hint).size() == 1) {
-									attrHintValues=new LinkedList<String>();
+									attrHintValues=new LinkedList<Object>();
 									for(int i=0 ; i< cardinality; i++){										
 										attrHintValues.add(hintValues.get(hint).getFirst());
 									}
@@ -189,7 +189,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 					for(EObjectTransformationHelper instance  : instances){
 						String attrValue=null;
 						if(attrHintValues != null) {
-							attrValue=attrHintValues.remove(0);
+							attrValue=(String)attrHintValues.remove(0);
 						}
 						//overwrite hint value with value of targetMMSection if present
 						if(attr.getValueSpecification().size() > 0){
@@ -283,7 +283,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 			Mapping mapping,
 			MappingHintGroup group,
 			List<MappingHint> hints,
-			LinkedHashMap<MappingHint, LinkedList<String>> hintValues,
+			LinkedHashMap<MappingHint, LinkedList<Object>> hintValues,
 			LinkedHashMap<pamtram.metamodel.Class, LinkedList<EObjectTransformationHelper>> instancesBySection) {
 
 		if (instancesBySection.get(targetMMSection) != null) {// only go on if
@@ -331,9 +331,9 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 									 * a cardinality mapping, the size of the
 									 * hintValues must be 1
 									 */
-									LinkedList<String> newHintValues = new LinkedList<String>();
+									LinkedList<Object> newHintValues = new LinkedList<Object>();
 									if (hintValues.get(h).size() == 1) {
-										String hintVal = hintValues.get(h)
+										String hintVal = (String) hintValues.get(h)
 												.getFirst();
 										for (int i = 0; i < instancesToConsider
 												.size(); i++) {
@@ -352,7 +352,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 												+ " "
 												+ hintValues.get(h).size());
 									}
-									for (String attrVal : newHintValues) {
+									for (Object attrVal : newHintValues) {
 										EObjectTransformationHelper srcInst = instancesToConsider
 												.remove(0);
 										LinkedHashMap<String, EObjectTransformationHelper> fittingVals = new LinkedHashMap<String, EObjectTransformationHelper>();// TODO
@@ -657,7 +657,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 			Mapping mapping,
 			MappingHintGroup group,
 			List<MappingHint> hints,
-			LinkedHashMap<MappingHint, LinkedList<String>> hintValues,
+			LinkedHashMap<MappingHint, LinkedList<Object>> hintValues,
 			LinkedHashMap<pamtram.metamodel.Class, LinkedList<EObjectTransformationHelper>> instancesBySection) {
 		for (Reference ref : targetMMSection.getReferences()) {
 			if (ref instanceof ContainmentReference) {

@@ -26,7 +26,7 @@ public class MappingInstanceStorage {// TODO rename this
 	private EObject associatedSourceModelElement;
 	private LinkedHashMap<MappingHintGroup, LinkedHashMap<pamtram.metamodel.Class, LinkedList<EObjectTransformationHelper>>> instancesBySection;
 
-	private LinkedHashMap<pamtram.mapping.MappingHint, LinkedList<String>> hintValues;
+	private LinkedHashMap<pamtram.mapping.MappingHint, LinkedList<Object>> hintValues;
 
 	private LinkedHashMap<ModelConnectionHint, LinkedList<String>> modelConnectionHintValues;
 
@@ -35,7 +35,7 @@ public class MappingInstanceStorage {// TODO rename this
 	 */
 	public MappingInstanceStorage() {
 		refs = new LinkedHashMap<pamtram.metamodel.Class, Set<EObject>>();
-		hintValues = new LinkedHashMap<pamtram.mapping.MappingHint, LinkedList<String>>();
+		hintValues = new LinkedHashMap<pamtram.mapping.MappingHint, LinkedList<Object>>();
 		mapping = null;
 		associatedSourceModelElement = null;
 		instancesBySection = new LinkedHashMap<MappingHintGroup, LinkedHashMap<pamtram.metamodel.Class, LinkedList<EObjectTransformationHelper>>>();
@@ -64,16 +64,16 @@ public class MappingInstanceStorage {// TODO rename this
 
 	public void addHintValue(MappingHint hint, String value) {
 		if (!hintValues.containsKey(hint)) {
-			hintValues.put(hint, new LinkedList<String>());
+			hintValues.put(hint, new LinkedList<Object>());
 		}
 		hintValues.get(hint).add(value);
 	}
 
 	public void addHintValues(
-			LinkedHashMap<pamtram.mapping.MappingHint, LinkedList<String>> newHintValues) {
+			LinkedHashMap<pamtram.mapping.MappingHint, LinkedList<Object>> newHintValues) {
 		for (MappingHint h : newHintValues.keySet()) {
 			if (!hintValues.containsKey(h)) {
-				hintValues.put(h, new LinkedList<String>());
+				hintValues.put(h, new LinkedList<Object>());
 			}
 			hintValues.get(h).addAll(newHintValues.get(h));
 		}
@@ -152,7 +152,7 @@ public class MappingInstanceStorage {// TODO rename this
 		return associatedSourceModelElement;
 	}
 
-	public LinkedHashMap<MappingHint, LinkedList<String>> getHintValues() {
+	public LinkedHashMap<MappingHint, LinkedList<Object>> getHintValues() {
 		return hintValues;
 	}
 
@@ -207,7 +207,7 @@ public class MappingInstanceStorage {// TODO rename this
 	}
 
 	public void setHintValueList(MappingHint hint,
-			LinkedList<String> newHintValues) {
+			LinkedList<Object> newHintValues) {
 		hintValues.put(hint, newHintValues);
 
 	}
@@ -219,7 +219,7 @@ public class MappingInstanceStorage {// TODO rename this
 	}
 
 	public void setHintValues(
-			LinkedHashMap<pamtram.mapping.MappingHint, LinkedList<String>> hintValues) {
+			LinkedHashMap<pamtram.mapping.MappingHint, LinkedList<Object>> hintValues) {
 		this.hintValues = hintValues;
 	}
 

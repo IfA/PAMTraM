@@ -215,13 +215,13 @@ public class SourceSectionMapper {
 		for (MappingHint hint : hints) {
 			
 			if( hint instanceof ComplexAttributeMapping){//ComplexAttributeMappings are handled differently because we want to make them work across vc-sections 
-				changedRefsAndHints.setHintValueList(hint, new LinkedList<String>());	
+				changedRefsAndHints.setHintValueList(hint, new LinkedList<Object>());	
 				if(newRefsAndHints.getHintValues().containsKey(hint)){
 					changedRefsAndHints.getHintValues().get(hint).addAll(newRefsAndHints.getHintValues().get(hint));//the cardinality of 
 																												    //the existing hintval is either 0 or 1 at this point
 				}
 			} else {
-				changedRefsAndHints.setHintValueList(hint, new LinkedList<String>());				
+				changedRefsAndHints.setHintValueList(hint, new LinkedList<Object>());				
 			}
 
 		}
@@ -344,7 +344,7 @@ public class SourceSectionMapper {
 					if(changedRefsAndHints.getHintValues().get(h).size() == 0){
 						oldVal="";
 					} else {
-						oldVal=changedRefsAndHints.getHintValues().get(h).remove();
+						oldVal=(String)changedRefsAndHints.getHintValues().get(h).remove();
 					}
 					changedRefsAndHints.getHintValues().get(h).add(oldVal+valueToAppend);
 				}

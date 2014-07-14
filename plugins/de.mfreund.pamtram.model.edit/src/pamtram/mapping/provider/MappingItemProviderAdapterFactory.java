@@ -440,6 +440,52 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.CalculatorMapping} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CalculatorMappingItemProvider calculatorMappingItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.CalculatorMapping}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCalculatorMappingAdapter() {
+		if (calculatorMappingItemProvider == null) {
+			calculatorMappingItemProvider = new CalculatorMappingItemProvider(this);
+		}
+
+		return calculatorMappingItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ExpressionVariable} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExpressionVariableItemProvider expressionVariableItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.ExpressionVariable}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createExpressionVariableAdapter() {
+		if (expressionVariableItemProvider == null) {
+			expressionVariableItemProvider = new ExpressionVariableItemProvider(this);
+		}
+
+		return expressionVariableItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -554,6 +600,8 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (simpleAttributeMappingItemProvider != null) simpleAttributeMappingItemProvider.dispose();
 		if (complexAttributeMappingItemProvider != null) complexAttributeMappingItemProvider.dispose();
 		if (complexAttribueMappingSourceElementItemProvider != null) complexAttribueMappingSourceElementItemProvider.dispose();
+		if (calculatorMappingItemProvider != null) calculatorMappingItemProvider.dispose();
+		if (expressionVariableItemProvider != null) expressionVariableItemProvider.dispose();
 	}
 
 }

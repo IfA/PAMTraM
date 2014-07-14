@@ -200,6 +200,11 @@ public class MappingHintGroupItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(MappingPackage.Literals.MAPPING_HINT_GROUP__MAPPING_HINTS,
+				 MappingFactory.eINSTANCE.createCalculatorMapping()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER,
 				 MappingFactory.eINSTANCE.createModelConnectionHint()));
 	}

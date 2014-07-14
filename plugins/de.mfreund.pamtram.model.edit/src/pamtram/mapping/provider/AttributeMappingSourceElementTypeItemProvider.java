@@ -3,10 +3,15 @@
 package pamtram.mapping.provider;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -14,17 +19,24 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+
+import pamtram.mapping.AttributeMappingSourceElementType;
+import pamtram.mapping.Mapping;
+import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.SimpleAttributeMapping;
+import pamtram.provider.NamedElementItemProvider;
+import pamtram.provider.PamtramEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.SimpleAttributeMapping} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.AttributeMappingSourceElementType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SimpleAttributeMappingItemProvider
-	extends AttributeMappingItemProvider
+public class AttributeMappingSourceElementTypeItemProvider
+	extends NamedElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -37,7 +49,7 @@ public class SimpleAttributeMappingItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SimpleAttributeMappingItemProvider(AdapterFactory adapterFactory) {
+	public AttributeMappingSourceElementTypeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -57,16 +69,15 @@ public class SimpleAttributeMappingItemProvider
 		}
 		return itemPropertyDescriptors;
 	}
-
+	
 	/**
 	 * This adds a property descriptor for the Source feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	protected void addSourcePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+			(new ItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_AttributeMappingSourceElementType_source_feature"),
@@ -77,7 +88,33 @@ public class SimpleAttributeMappingItemProvider
 				 true,
 				 null,
 				 null,
-				 null));
+				 null)
+			   {
+				@Override
+				public Collection<?> getChoiceOfValues(Object object) {
+
+					//the parent Mapping Hint Group
+					MappingHintGroup mappingHintGroup = (MappingHintGroup) ((SimpleAttributeMapping) object).eContainer();
+					// the parent mapping
+					Mapping mapping = (Mapping) mappingHintGroup.eContainer();
+					
+					// the source section
+					pamtram.metamodel.Class source = mapping.getSourceMMSection();
+
+					List<Object> choiceOfValues = new ArrayList<Object>();
+					
+					// iterate over all elements and return the attributes as possible options
+					Iterator<EObject> it = source.eAllContents(); 
+					while(it.hasNext()) {
+						EObject next = it.next();
+						if(next instanceof pamtram.metamodel.Attribute) {
+							choiceOfValues.add(next);
+						}
+					}
+					
+					return choiceOfValues;
+				}
+			   });
 	}
 
 	/**
@@ -103,27 +140,17 @@ public class SimpleAttributeMappingItemProvider
 	}
 
 	/**
-	 * This returns SimpleAttributeMapping.gif.
+	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/SimpleAttributeMapping"));
-	}
-
-	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 */
-	@Override
 	public String getText(Object object) {
-		String label = ((SimpleAttributeMapping)object).getName();
+		String label = ((AttributeMappingSourceElementType)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_AttributeMapping_type") :
-			getString("_UI_AttributeMapping_type") + " " + label;
+			getString("_UI_AttributeMappingSourceElementType_type") :
+			getString("_UI_AttributeMappingSourceElementType_type") + " " + label;
 	}
 
 	/**
@@ -149,6 +176,17 @@ public class SimpleAttributeMappingItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return PamtramEditPlugin.INSTANCE;
 	}
 
 }

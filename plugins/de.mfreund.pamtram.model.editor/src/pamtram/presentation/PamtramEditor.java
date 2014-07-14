@@ -1276,7 +1276,7 @@ public class PamtramEditor
 						}
 						
 					} else if(((TreeItem) e.item).getData() instanceof ComplexAttributeMapping || ((TreeItem) e.item).getData() instanceof CalculatorMapping) {
-						AttributeMapping mapping = (ComplexAttributeMapping) ((TreeItem) e.item).getData();
+						AttributeMapping mapping = (AttributeMapping) ((TreeItem) e.item).getData();
 						Attribute target = mapping.getTarget();
 						
 						List<AttributeMappingSourceElementType> mappingSources=new LinkedList<AttributeMappingSourceElementType>();

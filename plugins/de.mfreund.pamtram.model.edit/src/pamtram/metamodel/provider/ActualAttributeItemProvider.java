@@ -103,8 +103,8 @@ public class ActualAttributeItemProvider
 	public String getText(Object object) {
 		String label = ((ActualAttribute)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ActualAttribute_type") :
-			getString("_UI_ActualAttribute_type") + " " + label;
+			"" :
+			label;
 	}
 
 	/**

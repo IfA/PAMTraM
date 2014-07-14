@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.mfreund.pamtram.model/src" modelPluginID="de.mfreund.pamtram.model"
+    modelName="Pamtram" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>file:/E:/Projects/de.mfreund.gentrans/de.mfreund.gentrans.test/metamodel/pamtram.ecore</foreignModel>
+  <genPackages prefix="Pamtram" disposableProviderFactory="true" multipleEditorPages="false"
+      ecorePackage="pamtram.ecore#/">
+    <genClasses image="false" ecoreClass="pamtram.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//NamedElement/name"/>
+    </genClasses>
+    <genClasses ecoreClass="pamtram.ecore#//PAMTraM">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/contextMetaModelPackage"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/sourceSectionModel"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/targetSectionModel"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/mappingModel"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/transformationModel"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="pamtram.ecore#//SectionModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//SectionModel/metaModelSections"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//SectionModel/metaModelPackage"/>
+    </genClasses>
+    <genClasses ecoreClass="pamtram.ecore#//SourceSectionModel"/>
+    <genClasses ecoreClass="pamtram.ecore#//TargetSectionModel"/>
+    <genClasses ecoreClass="pamtram.ecore#//MappingModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//MappingModel/mapping"/>
+    </genClasses>
+    <genClasses ecoreClass="pamtram.ecore#//TransformationModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//TransformationModel/transformation"/>
+    </genClasses>
+    <nestedGenPackages prefix="Metamodel" disposableProviderFactory="true" multipleEditorPages="false"
+        generateModelWizard="false" ecorePackage="pamtram.ecore#//metamodel">
+      <genClasses image="false" ecoreClass="pamtram.ecore#//metamodel/MetaModelElement"/>
+      <genClasses ecoreClass="pamtram.ecore#//metamodel/Class">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/Class/eClass"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/Class/references"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/Class/attributes"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/Class/container"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="pamtram.ecore#//metamodel/Reference">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/Reference/eReference"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//metamodel/Reference/variableCardinality"/>
+      </genClasses>
+      <genClasses ecoreClass="pamtram.ecore#//metamodel/ContainmentReference">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/ContainmentReference/value"/>
+      </genClasses>
+      <genClasses ecoreClass="pamtram.ecore#//metamodel/NonContainmentReference">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/NonContainmentReference/value"/>
+      </genClasses>
+      <genClasses ecoreClass="pamtram.ecore#//metamodel/Attribute">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/Attribute/attribute"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//metamodel/Attribute/value"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Condition" disposableProviderFactory="true" multipleEditorPages="false"
+        generateModelWizard="false" ecorePackage="pamtram.ecore#//condition">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="pamtram.ecore#//condition/ComparatorEnum">
+        <genEnumLiterals ecoreEnumLiteral="pamtram.ecore#//condition/ComparatorEnum/EQ"/>
+        <genEnumLiterals ecoreEnumLiteral="pamtram.ecore#//condition/ComparatorEnum/GT"/>
+        <genEnumLiterals ecoreEnumLiteral="pamtram.ecore#//condition/ComparatorEnum/LT"/>
+        <genEnumLiterals ecoreEnumLiteral="pamtram.ecore#//condition/ComparatorEnum/GE"/>
+        <genEnumLiterals ecoreEnumLiteral="pamtram.ecore#//condition/ComparatorEnum/LE"/>
+      </genEnums>
+      <genClasses image="false" ecoreClass="pamtram.ecore#//condition/ComplexCondition"/>
+      <genClasses ecoreClass="pamtram.ecore#//condition/Condition">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference pamtram.ecore#//condition/Condition/attribute"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//condition/Condition/comparator"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//condition/Condition/value"/>
+      </genClasses>
+      <genClasses ecoreClass="pamtram.ecore#//condition/And">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//condition/And/condition"/>
+      </genClasses>
+      <genClasses ecoreClass="pamtram.ecore#//condition/Or">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//condition/Or/condition"/>
+      </genClasses>
+      <genClasses ecoreClass="pamtram.ecore#//condition/Not">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//condition/Not/condition"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Transformation" disposableProviderFactory="true" multipleEditorPages="false"
+        generateModelWizard="false" ecorePackage="pamtram.ecore#//transformation">
+      <genClasses ecoreClass="pamtram.ecore#//transformation/Transformation">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//transformation/Transformation/transformationMapping"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//transformation/Transformation/name"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//transformation/Transformation/id"/>
+      </genClasses>
+      <genClasses ecoreClass="pamtram.ecore#//transformation/TransformationMapping">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference pamtram.ecore#//transformation/TransformationMapping/sourceMElement"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference pamtram.ecore#//transformation/TransformationMapping/targetMElement"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Mapping" disposableProviderFactory="true" multipleEditorPages="false"
+        generateModelWizard="false" ecorePackage="pamtram.ecore#//mapping">
+      <genClasses ecoreClass="pamtram.ecore#//mapping/Mapping">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/Mapping/condition"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/Mapping/mappingHints"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/MappingType">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingType/sourceMMSection"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingType/targetMMSection"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/MappingHint"/>
+      <genClasses ecoreClass="pamtram.ecore#//mapping/AttributeMapping">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference pamtram.ecore#//mapping/AttributeMapping/source"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference pamtram.ecore#//mapping/AttributeMapping/target"/>
+      </genClasses>
+      <genClasses ecoreClass="pamtram.ecore#//mapping/CardinalityMapping">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference pamtram.ecore#//mapping/CardinalityMapping/source"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference pamtram.ecore#//mapping/CardinalityMapping/target"/>
+      </genClasses>
+      <genClasses ecoreClass="pamtram.ecore#//mapping/MappingInstanceSelector">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingInstanceSelector/affectedReference"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingInstanceSelector/matcher"/>
+      </genClasses>
+      <genClasses ecoreClass="pamtram.ecore#//mapping/Matcher"/>
+      <genClasses ecoreClass="pamtram.ecore#//mapping/AttributeMatcher">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference pamtram.ecore#//mapping/AttributeMatcher/sourceAttribute"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference pamtram.ecore#//mapping/AttributeMatcher/targetAttribute"/>
+      </genClasses>
+      <genClasses ecoreClass="pamtram.ecore#//mapping/ClassMatcher">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference pamtram.ecore#//mapping/ClassMatcher/sourceClass"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference pamtram.ecore#//mapping/ClassMatcher/targetClass"/>
+      </genClasses>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

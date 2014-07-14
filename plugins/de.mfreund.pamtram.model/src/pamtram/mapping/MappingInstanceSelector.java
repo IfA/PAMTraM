@@ -1,0 +1,77 @@
+/**
+ */
+package pamtram.mapping;
+
+import pamtram.metamodel.NonContainmentReference;
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Instance Selector</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link pamtram.mapping.MappingInstanceSelector#getAffectedReference <em>Affected Reference</em>}</li>
+ *   <li>{@link pamtram.mapping.MappingInstanceSelector#getMatcher <em>Matcher</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @see pamtram.mapping.MappingPackage#getMappingInstanceSelector()
+ * @model
+ * @generated
+ */
+public interface MappingInstanceSelector extends MappingHint {
+	/**
+	 * Returns the value of the '<em><b>Affected Reference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Affected Reference</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Affected Reference</em>' reference.
+	 * @see #setAffectedReference(NonContainmentReference)
+	 * @see pamtram.mapping.MappingPackage#getMappingInstanceSelector_AffectedReference()
+	 * @model required="true"
+	 * @generated
+	 */
+	NonContainmentReference getAffectedReference();
+
+	/**
+	 * Sets the value of the '{@link pamtram.mapping.MappingInstanceSelector#getAffectedReference <em>Affected Reference</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Affected Reference</em>' reference.
+	 * @see #getAffectedReference()
+	 * @generated
+	 */
+	void setAffectedReference(NonContainmentReference value);
+
+	/**
+	 * Returns the value of the '<em><b>Matcher</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Matcher</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Matcher</em>' containment reference.
+	 * @see #setMatcher(Matcher)
+	 * @see pamtram.mapping.MappingPackage#getMappingInstanceSelector_Matcher()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	Matcher getMatcher();
+
+	/**
+	 * Sets the value of the '{@link pamtram.mapping.MappingInstanceSelector#getMatcher <em>Matcher</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Matcher</em>' containment reference.
+	 * @see #getMatcher()
+	 * @generated
+	 */
+	void setMatcher(Matcher value);
+
+} // MappingInstanceSelector

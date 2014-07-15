@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMatcher;
+import pamtram.mapping.CalculatorMapping;
 import pamtram.mapping.ClassMatcher;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
@@ -25,6 +26,7 @@ import pamtram.metamodel.Class;
 import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.Reference;
+import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.selectors.ItemSelectorDialog;
 
 public class TargetSectionInstantiator {
@@ -105,6 +107,7 @@ public class TargetSectionInstantiator {
 	/*
 	instantiate targetModelSection
 */
+@SuppressWarnings("unchecked")
 private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPass(Class metamodelSection,
 																				MappingHintGroup mappingGroup,
 																				Map<MappingHint, LinkedList<Object>> hintValues,
@@ -161,12 +164,14 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 			
 			//create attributes
 			LinkedList<EObjectTransformationHelper> markedForDelete = new LinkedList<EObjectTransformationHelper>();
-			for(Attribute attr : metamodelSection.getAttributes()){			
+			for(Attribute attr : metamodelSection.getAttributes()){		
+					MappingHint hintFound=null;
 					//look for an attribute mapping
 					LinkedList<Object> attrHintValues=null;
 					for(MappingHint hint : mappingGroup.getMappingHints()){
 						if(hint instanceof AttributeMapping){
 							if(((AttributeMapping) hint).getTarget().equals(attr)){
+								hintFound=hint;
 								if(hintValues.get(hint).size() == 1) {
 									attrHintValues=new LinkedList<Object>();
 									for(int i=0 ; i< cardinality; i++){										
@@ -185,11 +190,22 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 						}
 					}
 					
+					
 					//set attribute values in instances
 					for(EObjectTransformationHelper instance  : instances){
 						String attrValue=null;
 						if(attrHintValues != null) {
-							attrValue=(String)attrHintValues.remove(0);
+							if(hintFound instanceof CalculatorMapping){
+								try{
+									attrValue = String.valueOf(new ExpressionBuilder(((CalculatorMapping) hintFound).getExpression())
+											.withVariables((Map<String,Double>)attrHintValues.remove(0)).build().calculate());									
+								} catch(Exception e){//TODO this will lead to a lot of error output if it fails
+									System.out.println("Error parsing the expression of CalculatorMapping" + hintFound.getName() + ". Message:\n"
+											+ e.getMessage());
+								}								
+							} else {
+								attrValue=(String)attrHintValues.remove(0);
+							}
 						}
 						//overwrite hint value with value of targetMMSection if present
 						if(attr.getValueSpecification().size() > 0){

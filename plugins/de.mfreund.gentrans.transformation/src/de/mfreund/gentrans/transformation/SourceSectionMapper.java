@@ -12,9 +12,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
+import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.AttributeMatcher;
+import pamtram.mapping.CalculatorMapping;
 import pamtram.mapping.ComplexAttribueMappingSourceElement;
 import pamtram.mapping.ComplexAttributeMapping;
+import pamtram.mapping.ExpressionVariable;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
@@ -28,6 +31,8 @@ import pamtram.metamodel.Class;
 import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.Reference;
+import de.congrace.exp4j.Calculable;
+import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.selectors.ItemSelectorDialog;
 
 /**
@@ -41,6 +46,7 @@ public class SourceSectionMapper {
 	private LinkedHashMap<Mapping, LinkedList<ModelConnectionHint>> modelConnectionHints;
 	private LinkedHashMap<Mapping,LinkedList<MappingHint>> mappingHints;
 	private LinkedHashMap<ComplexAttributeMapping,Class> deepestComplexAttrMappingSrcElementsByCmplxMapping;
+	private LinkedHashMap<CalculatorMapping,Class> deepestCalcAttrMappingSrcElementsByCalcMapping;
 	private List<Mapping> mappingsToChooseFrom;
 	
 	public SourceSectionMapper(List<Mapping> mappingsToChooseFrom) {
@@ -48,6 +54,7 @@ public class SourceSectionMapper {
 		mappingHints=new  LinkedHashMap<Mapping,LinkedList<MappingHint>>();
 		modelConnectionHints=new  LinkedHashMap<Mapping,LinkedList<ModelConnectionHint>>();
 		deepestComplexAttrMappingSrcElementsByCmplxMapping= new LinkedHashMap<ComplexAttributeMapping,Class>();
+		deepestCalcAttrMappingSrcElementsByCalcMapping = new LinkedHashMap<CalculatorMapping,Class>();
 		this.mappingsToChooseFrom=mappingsToChooseFrom;
 		
 		//this will fill some maps...
@@ -56,6 +63,8 @@ public class SourceSectionMapper {
 			for(MappingHint h : getHints(m)){
 				if(h instanceof ComplexAttributeMapping){
 					buildDeepestCmplxAttrMappingElementsMap((ComplexAttributeMapping) h, m.getSourceMMSection());
+				} else if(h instanceof CalculatorMapping){
+					buildCalcAttrMappingsMaps((CalculatorMapping) h, m.getSourceMMSection());
 				}
 			}
 		}
@@ -75,14 +84,19 @@ public class SourceSectionMapper {
 		
 	}
 	
-	private boolean isSectionReferencedByDeepestCmplxAttrMappping(ComplexAttributeMapping m, Class srcSection){
+	private boolean isSectionReferencedByDeepestCmplxAttrMappping(ComplexAttributeMapping m,Class srcSection){
 		return deepestComplexAttrMappingSrcElementsByCmplxMapping.get(m).equals(srcSection);
 		
 	}
 	
+	private boolean isSectionReferencedByDeepestCalcAttrMappping(CalculatorMapping m,Class srcSection){
+		return deepestCalcAttrMappingSrcElementsByCalcMapping.get(m).equals(srcSection);
+		
+	}	
+	
 	private void buildDeepestCmplxAttrMappingElementsMap(ComplexAttributeMapping m, Class srcSection){
 		if(!deepestComplexAttrMappingSrcElementsByCmplxMapping.containsKey(m)){
-			Set<ComplexAttribueMappingSourceElement> srcElements=new HashSet<ComplexAttribueMappingSourceElement>();
+			Set<AttributeMappingSourceElementType> srcElements=new HashSet<AttributeMappingSourceElementType>();
 			srcElements.addAll(m.getSourceAttributeMappings());
 			
 			sortOutElements(srcElements, srcSection);
@@ -93,11 +107,24 @@ public class SourceSectionMapper {
 		}
 	}
 	
-	private void sortOutElements(Set<ComplexAttribueMappingSourceElement> s, Class srcSection){
+	private void buildCalcAttrMappingsMaps(CalculatorMapping m, Class srcSection){
+		if(!deepestCalcAttrMappingSrcElementsByCalcMapping.containsKey(m)){
+			Set<AttributeMappingSourceElementType> srcElements=new HashSet<AttributeMappingSourceElementType>();
+			srcElements.addAll(m.getVariables());
+			
+			sortOutElements(srcElements, srcSection);
+			if(srcElements.size() == 1){
+				deepestCalcAttrMappingSrcElementsByCalcMapping.put(m,srcElements.iterator().next().getSource().getOwningClass());
+			}
+			
+		}
+	}
+	
+	private void sortOutElements(Set<AttributeMappingSourceElementType> s, Class srcSection){
 		if(s.size() <= 1) return;//found
 		//sort out elements
 		for(Attribute a : srcSection.getAttributes()){
-			for(ComplexAttribueMappingSourceElement e : new HashSet<ComplexAttribueMappingSourceElement>(s)){
+			for(AttributeMappingSourceElementType e : new HashSet<AttributeMappingSourceElementType>(s)){
 				if(e.getSource().equals(a)){
 					s.remove(e);
 					if(s.size() <= 1){
@@ -212,13 +239,18 @@ public class SourceSectionMapper {
 		// init hintValues --TODO this is absolutely neccessary as of now, maybe
 		// find out why?-> naccessary f.i. in targetSectionMApper for determination of cardinality
 		Map<ComplexAttribueMappingSourceElement,String> complexSourceElementHintValues=new LinkedHashMap<ComplexAttribueMappingSourceElement,String>();
+		Map<ExpressionVariable,String> calcVariableHintValues=new LinkedHashMap<ExpressionVariable,String>();		
 		for (MappingHint hint : hints) {
 			
-			if( hint instanceof ComplexAttributeMapping){//ComplexAttributeMappings are handled differently because we want to make them work across vc-sections 
+			if( hint instanceof ComplexAttributeMapping || hint instanceof CalculatorMapping){//ComplexAttributeMappings are handled differently because we want to make them work across vc-sections 
 				changedRefsAndHints.setHintValueList(hint, new LinkedList<Object>());	
 				if(newRefsAndHints.getHintValues().containsKey(hint)){
 					changedRefsAndHints.getHintValues().get(hint).addAll(newRefsAndHints.getHintValues().get(hint));//the cardinality of 
 																												    //the existing hintval is either 0 or 1 at this point
+				} else if(hint instanceof ComplexAttributeMapping){
+					changedRefsAndHints.getHintValues().get(hint).add("");
+				} else {
+					changedRefsAndHints.getHintValues().get(hint).add(new LinkedHashMap<String,Double>());
 				}
 			} else {
 				changedRefsAndHints.setHintValueList(hint, new LinkedList<Object>());				
@@ -283,9 +315,17 @@ public class SourceSectionMapper {
 							if (m.getSource().equals(a)) {
 								String valCopy = srcAttrAsString;
 								// handle attribute modifiers
-								valCopy = AttributeValueRegistry.applyAttributeValueModifiers(valCopy,
-										m.getModifier());
+								valCopy = AttributeValueRegistry.applyAttributeValueModifiers(valCopy,m.getModifier());
 								complexSourceElementHintValues.put(m,valCopy);
+							}
+						}
+					} else if(hint instanceof CalculatorMapping){
+						for(ExpressionVariable v : ((CalculatorMapping) hint).getVariables()){
+							if(v.getSource().equals(a)){
+								String valCopy = srcAttrAsString;
+								valCopy = AttributeValueRegistry.applyAttributeValueModifiers(valCopy, v.getModifier());
+								calcVariableHintValues.put(v, valCopy);
+								
 							}
 						}
 					} else if (hint instanceof MappingInstanceSelector) {// handle
@@ -324,8 +364,10 @@ public class SourceSectionMapper {
 		}
 		}
 		
-		//now work on ComplexAttributeMappings
+		//now work on ComplexAttributeMappings and CalcMappings
 		Set<ComplexAttributeMapping> complexAttributeMappingsFound=new HashSet<ComplexAttributeMapping>();
+		Set<CalculatorMapping> calculatorMappingsFound=new HashSet<CalculatorMapping>();		
+		
 		for(MappingHint h : hints){
 			if(h instanceof ComplexAttributeMapping){
 				String valueToAppend="";
@@ -348,6 +390,35 @@ public class SourceSectionMapper {
 					}
 					changedRefsAndHints.getHintValues().get(h).add(oldVal+valueToAppend);
 				}
+			} else if(h instanceof CalculatorMapping){
+				Map<String,Double> foundValues=new LinkedHashMap<String,Double>();//we need this as an extra, since found values might be empty strings
+				//append the complex hint value (cardinality either 0 or 1) with found values in right order
+				for(ExpressionVariable v : ((CalculatorMapping) h).getVariables()){
+					if(calcVariableHintValues.containsKey(v)){
+						try{
+							Calculable calc=new ExpressionBuilder(calcVariableHintValues.get(v)).build();
+							double variableVal= calc.calculate();//parseDouble doesn't support Scientific notation, like: 0.42e2 == 4200e-2 == 42, 
+							foundValues.put(v.getName(), new Double(variableVal));
+						} catch(Exception e){
+							System.out.println("Couldn't convert variable " 
+									+ v.getName() + " of CalculatorMapping " + h.getName()
+									+ " from String to double. The problematic source element's attribute value was: " 
+									+ calcVariableHintValues.get(v));
+						}
+					}
+				}
+				
+				if(foundValues.keySet().size() > 0){
+					calculatorMappingsFound.add((CalculatorMapping)h);
+					
+					Map<String,Double> calcValues=new LinkedHashMap<String,Double>();
+					if(changedRefsAndHints.getHintValues().get(h).size() > 0){
+						calcValues.putAll((Map<String,Double>) changedRefsAndHints.getHintValues().get(h).remove());
+					}
+					
+					calcValues.putAll(foundValues);
+					changedRefsAndHints.getHintValues().get(h).add(calcValues);//TODO
+				}				
 			}
 		}
 
@@ -598,11 +669,15 @@ public class SourceSectionMapper {
 		// TODO Rest ;-)
 		
 		for(MappingHint h : hints){
-			if(h instanceof ComplexAttributeMapping){
-				if(!(complexAttributeMappingsFound.contains(h) && isSectionReferencedByDeepestCmplxAttrMappping((ComplexAttributeMapping) h, srcSection))){
-					changedRefsAndHints.getHintValues().get(h).remove();					
-				}
-			}
+				if(h instanceof ComplexAttributeMapping){
+					if(!(complexAttributeMappingsFound.contains(h) && isSectionReferencedByDeepestCmplxAttrMappping((ComplexAttributeMapping) h, srcSection))){
+						changedRefsAndHints.getHintValues().get(h).remove();					
+					}
+				} else if (h instanceof CalculatorMapping){
+					if(!(calculatorMappingsFound.contains(h) && isSectionReferencedByDeepestCalcAttrMappping((CalculatorMapping)h, srcSection))){
+						changedRefsAndHints.getHintValues().get(h).remove();
+					}
+				}				
 		}
 		
 		return changedRefsAndHints;

@@ -3754,9 +3754,6 @@
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosXName @Bool:Out" target="//@targetSectionModel/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.20"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosYName @Bool:Out" target="//@targetSectionModel/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.21"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosZName @Bool:Out" target="//@targetSectionModel/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.22"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosYValue@Bool:Out" target="//@targetSectionModel/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.2"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepSizeWidthValue@Bool:Out" target="//@targetSectionModel/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.3"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepSizeHeightValue@Bool:Out" target="//@targetSectionModel/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.4"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepFormatName" target="//@targetSectionModel/@metaModelSections.12/@references.0/@value.0/@references.2/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.5" modifier="//@mappingModel/@modifierSets.23"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepAlignmentName" target="//@targetSectionModel/@metaModelSections.12/@references.0/@value.0/@references.3/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.5" modifier="//@mappingModel/@modifierSets.24"/>
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="textLabelName" target="//@targetSectionModel/@metaModelSections.12/@attributes.0">
@@ -3774,8 +3771,18 @@
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger repAn" affectedReference="//@targetSectionModel/@metaModelSections.12/@references.1/@value.0/@references.1/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" sourceAttribute="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.15"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="TODO TextLabelRepPosXValue @Bool:Out" target="//@targetSectionModel/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="x/2.0">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="TextLabelRepPosXValue" target="//@targetSectionModel/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x*0.1)">
           <variables name="x" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round((2000.0-0.1*y)-h*0.1)">
+          <variables name="y" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.2"/>
+          <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w*0.1)">
+          <variables name="w" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.3"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h*0.1)">
+          <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.4"/>
         </mappingHints>
         <modelConnectionMatcher name="TextLabel Bool:Out" sourceAttribute="//@sourceSectionModel/@metaModelSections.6/@attributes.0">
           <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.7/@attributes.0"/>
@@ -3788,10 +3795,6 @@
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosXName(Bool:Output Label)" target="//@targetSectionModel/@metaModelSections.13/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.20"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosYName(Bool:Output Label)" target="//@targetSectionModel/@metaModelSections.13/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.21"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosZName(Bool:Output Label)" target="//@targetSectionModel/@metaModelSections.13/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.22"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosXValue @Bool:Out Label" target="//@targetSectionModel/@metaModelSections.13/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.1"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosYValue@Bool:Out Label" target="//@targetSectionModel/@metaModelSections.13/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.2"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepSizeWidthValue@Bool:Out Label" target="//@targetSectionModel/@metaModelSections.13/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.3"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepSizeHeightValue@Bool:Out Label" target="//@targetSectionModel/@metaModelSections.13/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.4"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepFormatName@Bool:Out Label" target="//@targetSectionModel/@metaModelSections.13/@references.0/@value.0/@references.2/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.5" modifier="//@mappingModel/@modifierSets.23"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepAlignmentName@Bool:Out Label" target="//@targetSectionModel/@metaModelSections.13/@references.0/@value.0/@references.3/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.5" modifier="//@mappingModel/@modifierSets.24"/>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Text @ Label Output:Bool" affectedReference="//@targetSectionModel/@metaModelSections.13/@references.0/@value.0/@references.4">
@@ -3800,6 +3803,19 @@
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="textLabelName" target="//@targetSectionModel/@metaModelSections.13/@attributes.0">
           <sourceAttributeMappings name="LayerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings name="label" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.5" modifier="//@mappingModel/@modifierSets.26"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="TextLabelRepPosXValue" target="//@targetSectionModel/@metaModelSections.13/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x*0.1)">
+          <variables name="x" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.13/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round((2000.0-0.1*y)-h*0.1)">
+          <variables name="y" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.2"/>
+          <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.13/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w*0.1)">
+          <variables name="w" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.3"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.13/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h*0.1)">
+          <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.4"/>
         </mappingHints>
         <modelConnectionMatcher name="TextLabel Bool:Out" sourceAttribute="//@sourceSectionModel/@metaModelSections.6/@attributes.0">
           <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.7/@attributes.0"/>
@@ -3816,10 +3832,6 @@
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosXName @Double:Out" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.20"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosYName @Double:Out" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.21"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosZName @Double:Out" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.22"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosXValue @Double:Out" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.1"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosYValue@Double:Out" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.2"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepSizeWidthValue@Double:Out" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.3"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepSizeHeightValue@Double:Out" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.4"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepFormatName@Double:Out" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.2/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.5" modifier="//@mappingModel/@modifierSets.23"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepAlignmentName@Double:Out" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.3/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.5" modifier="//@mappingModel/@modifierSets.24"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepColorName@Double:Out" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.4/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.5" modifier="//@mappingModel/@modifierSets.27"/>
@@ -3830,6 +3842,19 @@
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="textLabelName" target="//@targetSectionModel/@metaModelSections.15/@attributes.0">
           <sourceAttributeMappings name="LayerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings name="label" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.5" modifier="//@mappingModel/@modifierSets.25"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x*0.1)">
+          <variables name="x" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round((2000.0-0.1*y)-h*0.1)">
+          <variables name="y" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.2"/>
+          <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w*0.1)">
+          <variables name="w" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.3"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h*0.1)">
+          <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.4"/>
         </mappingHints>
         <modelConnectionMatcher name="TextLabel Bool:Out" sourceAttribute="//@sourceSectionModel/@metaModelSections.6/@attributes.0">
           <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.7/@attributes.0"/>
@@ -3842,10 +3867,6 @@
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosXName(Double:Output Label)" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.20"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosYName(Double:Output Label)" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.21"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosZName(Double:Output Label)" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.22"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosXValue @Double:Out Label" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.1"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosYValue@Double:Out Label" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.2"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepSizeWidthValue@Double:Out Label" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.3"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepSizeHeightValue@Double:Out Label" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.4"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepFormatName@Double:Out Label" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.2/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.5" modifier="//@mappingModel/@modifierSets.23"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepAlignmentName@Double:Out Label" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.3/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.5" modifier="//@mappingModel/@modifierSets.24"/>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Text @ Label Output:Double" affectedReference="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.4">
@@ -3854,6 +3875,19 @@
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="textLabelName" target="//@targetSectionModel/@metaModelSections.16/@attributes.0">
           <sourceAttributeMappings name="LayerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings name="label" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.5" modifier="//@mappingModel/@modifierSets.26"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x*0.1)">
+          <variables name="x" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round((2000.0-0.1*y)-h*0.1)">
+          <variables name="y" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.2"/>
+          <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w*0.1)">
+          <variables name="w" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.3"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h*0.1)">
+          <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.4"/>
         </mappingHints>
         <modelConnectionMatcher name="TextLabel Bool:Out" sourceAttribute="//@sourceSectionModel/@metaModelSections.6/@attributes.0">
           <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.7/@attributes.0"/>
@@ -3869,10 +3903,6 @@
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="RepPosXName" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.2/@attributes.5" modifier="//@mappingModel/@modifierSets.20"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="RepPosYName" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.2/@attributes.5" modifier="//@mappingModel/@modifierSets.21"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="RepPosZName" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.2/@attributes.5" modifier="//@mappingModel/@modifierSets.22"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="RepPosXValue " target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.2/@attributes.1"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="YValue" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.2/@attributes.2"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="RepSizeWidthValue" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.2/@attributes.3"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="RepSizeHeightValue" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.2/@attributes.4"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="Repr. Value" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.2/@attributes.5"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepColorName" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.2/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.2/@attributes.5" modifier="//@mappingModel/@modifierSets.27"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepBorderName" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.3/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.2/@attributes.5" modifier="//@mappingModel/@modifierSets.28"/>
@@ -3890,6 +3920,19 @@
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="Name" target="//@targetSectionModel/@metaModelSections.17/@attributes.0">
           <sourceAttributeMappings name="LayerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings name="label" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.2/@attributes.5" modifier="//@mappingModel/@modifierSets.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x*0.1)">
+          <variables name="x" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.2/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round((2000.0-0.1*y)-h*0.1)">
+          <variables name="y" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.2/@attributes.2"/>
+          <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.2/@attributes.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w*0.1)">
+          <variables name="w" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.2/@attributes.3"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h*0.1)">
+          <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.2/@attributes.4"/>
         </mappingHints>
         <modelConnectionMatcher name="TextLabel Bool:In" sourceAttribute="//@sourceSectionModel/@metaModelSections.6/@attributes.0">
           <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.7/@attributes.0"/>
@@ -4038,10 +4081,6 @@
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosXName @Double:Out" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.20"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosYName @Double:Out" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.21"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosZName @Double:Out" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.22"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosXValue @Double:Out" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.1"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosYValue@Double:Out" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.2"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepSizeWidthValue@Double:Out" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.3"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepSizeHeightValue@Double:Out" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.4"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepFormatName@Double:Out" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.2/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.5" modifier="//@mappingModel/@modifierSets.23"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepAlignmentName@Double:Out" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.3/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.5" modifier="//@mappingModel/@modifierSets.24"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepColorName@Double:Out" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.4/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.5" modifier="//@mappingModel/@modifierSets.27"/>
@@ -4052,6 +4091,19 @@
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="Name" target="//@targetSectionModel/@metaModelSections.15/@attributes.0">
           <sourceAttributeMappings name="LayerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings name="label" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.5" modifier="//@mappingModel/@modifierSets.25"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x*0.1)">
+          <variables name="x" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round((2000.0-0.1*y)-h*0.1)">
+          <variables name="y" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.2"/>
+          <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w*0.1)">
+          <variables name="w" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.3"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h*0.1)">
+          <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.4"/>
         </mappingHints>
         <modelConnectionMatcher name="TextLabel Bool:Out" sourceAttribute="//@sourceSectionModel/@metaModelSections.6/@attributes.0">
           <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.7/@attributes.0"/>
@@ -4064,10 +4116,6 @@
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosXName(Double:Output Label)" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.20"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosYName(Double:Output Label)" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.21"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosZName(Double:Output Label)" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.22"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosXValue @Double:Out Label" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.1"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosYValue@Double:Out Label" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.2"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepSizeWidthValue@Double:Out Label" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.3"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepSizeHeightValue@Double:Out Label" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.4"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepFormatName@Double:Out Label" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.2/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.5" modifier="//@mappingModel/@modifierSets.23"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepAlignmentName@Double:Out Label" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.3/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.5" modifier="//@mappingModel/@modifierSets.24"/>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Text @ Label Output:Double" affectedReference="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.4">
@@ -4076,6 +4124,19 @@
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="textLabelName" target="//@targetSectionModel/@metaModelSections.16/@attributes.0">
           <sourceAttributeMappings name="LayerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings name="label" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.5" modifier="//@mappingModel/@modifierSets.26"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x*0.1)">
+          <variables name="x" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round((2000.0-0.1*y)-h*0.1)">
+          <variables name="y" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.2"/>
+          <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w*0.1)">
+          <variables name="w" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.3"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h*0.1)">
+          <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.4"/>
         </mappingHints>
         <modelConnectionMatcher name="TextLabel Bool:Out" sourceAttribute="//@sourceSectionModel/@metaModelSections.6/@attributes.0">
           <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.7/@attributes.0"/>
@@ -4092,10 +4153,6 @@
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosXName(Double:Output Label)" target="//@targetSectionModel/@metaModelSections.18/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.20"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosYName(Double:Output Label)" target="//@targetSectionModel/@metaModelSections.18/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.21"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosZName(Double:Output Label)" target="//@targetSectionModel/@metaModelSections.18/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.22"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosXValue @Double:Out Label" target="//@targetSectionModel/@metaModelSections.18/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.4/@attributes.1"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepPosYValue@Double:Out Label" target="//@targetSectionModel/@metaModelSections.18/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.4/@attributes.2"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepSizeWidthValue@Double:Out Label" target="//@targetSectionModel/@metaModelSections.18/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.4/@attributes.3"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepSizeHeightValue@Double:Out Label" target="//@targetSectionModel/@metaModelSections.18/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.4/@attributes.4"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepFormatName@Double:Out Label" target="//@targetSectionModel/@metaModelSections.18/@references.0/@value.0/@references.2/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.4/@attributes.5" modifier="//@mappingModel/@modifierSets.23"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepAlignmentName@Double:Out Label" target="//@targetSectionModel/@metaModelSections.18/@references.0/@value.0/@references.3/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.4/@attributes.5" modifier="//@mappingModel/@modifierSets.24"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="WriteFixedBoolName" target="//@targetSectionModel/@metaModelSections.18/@references.1/@value.0/@references.0/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.4/@attributes.5" modifier="//@mappingModel/@modifierSets.4"/>
@@ -4115,6 +4172,19 @@
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="textLabelName" target="//@targetSectionModel/@metaModelSections.18/@attributes.0">
           <sourceAttributeMappings name="LayerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings name="label" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.4/@attributes.5" modifier="//@mappingModel/@modifierSets.5"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.18/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x*0.1)">
+          <variables name="x" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.4/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.18/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round((2000.0-0.1*y)-h*0.1)">
+          <variables name="y" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.4/@attributes.2"/>
+          <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.4/@attributes.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.18/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w*0.1)">
+          <variables name="w" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.4/@attributes.3"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.18/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h*0.1)">
+          <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.4/@attributes.4"/>
         </mappingHints>
         <modelConnectionMatcher name="FunctionButton" sourceAttribute="//@sourceSectionModel/@metaModelSections.6/@attributes.0">
           <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.7/@attributes.0"/>

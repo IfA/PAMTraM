@@ -75,7 +75,7 @@ public class ComplexAttribueMappingSourceElementItemProvider
 		String label = ((ComplexAttribueMappingSourceElement)object).getName();
 		return label == null || label.length() == 0 ?
 			"Source Element" :
-			"Source Element" + label;
+			"Source Element " + label;
 	}
 
 	/**

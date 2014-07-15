@@ -4094,7 +4094,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="StockDoublePLC_pos_x" Unit="PIXEL" Value="26342.0"/>
+            <X Name="StockDoublePLC_pos_x" Unit="PIXEL" Value="13171.0"/>
             <Y Name="StockDoublePLC_pos_y" Unit="PIXEL" Value="8900.0"/>
             <Z Name="StockDoublePLC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -4201,7 +4201,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105MillCNC_pos_x" Unit="PIXEL" Value="27048.9"/>
+            <X Name="MillAndTurn105MillCNC_pos_x" Unit="PIXEL" Value="13524.45"/>
             <Y Name="MillAndTurn105MillCNC_pos_y" Unit="PIXEL" Value="7550.0"/>
             <Z Name="MillAndTurn105MillCNC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -4231,7 +4231,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105MillCNC_pos_x" Unit="PIXEL" Value="27048.9"/>
+            <X Name="MillAndTurn105MillCNC_pos_x" Unit="PIXEL" Value="13524.45"/>
             <Y Name="MillAndTurn105MillCNC_pos_y" Unit="PIXEL" Value="8850.0"/>
             <Z Name="MillAndTurn105MillCNC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -4261,7 +4261,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105MillCNC_pos_x" Unit="PIXEL" Value="27048.9"/>
+            <X Name="MillAndTurn105MillCNC_pos_x" Unit="PIXEL" Value="13524.45"/>
             <Y Name="MillAndTurn105MillCNC_pos_y" Unit="PIXEL" Value="10150.0"/>
             <Z Name="MillAndTurn105MillCNC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -4291,7 +4291,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105MillCNC_pos_x" Unit="PIXEL" Value="27048.9"/>
+            <X Name="MillAndTurn105MillCNC_pos_x" Unit="PIXEL" Value="13524.45"/>
             <Y Name="MillAndTurn105MillCNC_pos_y" Unit="PIXEL" Value="11450.0"/>
             <Z Name="MillAndTurn105MillCNC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -4449,7 +4449,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105TurnCNC_pos_x" Unit="PIXEL" Value="27048.9"/>
+            <X Name="MillAndTurn105TurnCNC_pos_x" Unit="PIXEL" Value="13524.45"/>
             <Y Name="MillAndTurn105TurnCNC_pos_y" Unit="PIXEL" Value="7550.0"/>
             <Z Name="MillAndTurn105TurnCNC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -4479,7 +4479,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105TurnCNC_pos_x" Unit="PIXEL" Value="27048.9"/>
+            <X Name="MillAndTurn105TurnCNC_pos_x" Unit="PIXEL" Value="13524.45"/>
             <Y Name="MillAndTurn105TurnCNC_pos_y" Unit="PIXEL" Value="8850.0"/>
             <Z Name="MillAndTurn105TurnCNC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -4509,7 +4509,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105TurnCNC_pos_x" Unit="PIXEL" Value="27048.9"/>
+            <X Name="MillAndTurn105TurnCNC_pos_x" Unit="PIXEL" Value="13524.45"/>
             <Y Name="MillAndTurn105TurnCNC_pos_y" Unit="PIXEL" Value="10150.0"/>
             <Z Name="MillAndTurn105TurnCNC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -4539,7 +4539,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105TurnCNC_pos_x" Unit="PIXEL" Value="27048.9"/>
+            <X Name="MillAndTurn105TurnCNC_pos_x" Unit="PIXEL" Value="13524.45"/>
             <Y Name="MillAndTurn105TurnCNC_pos_y" Unit="PIXEL" Value="11450.0"/>
             <Z Name="MillAndTurn105TurnCNC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -4697,7 +4697,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="26483.6"/>
+            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="13241.8"/>
             <Y Name="MillAndTurn105Robot_pos_y" Unit="PIXEL" Value="2574.19"/>
             <Z Name="MillAndTurn105Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -4727,7 +4727,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="26483.6"/>
+            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="13241.8"/>
             <Y Name="MillAndTurn105Robot_pos_y" Unit="PIXEL" Value="3167.74"/>
             <Z Name="MillAndTurn105Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -4757,7 +4757,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="26483.6"/>
+            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="13241.8"/>
             <Y Name="MillAndTurn105Robot_pos_y" Unit="PIXEL" Value="3761.29"/>
             <Z Name="MillAndTurn105Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -4787,7 +4787,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="26483.6"/>
+            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="13241.8"/>
             <Y Name="MillAndTurn105Robot_pos_y" Unit="PIXEL" Value="4354.84"/>
             <Z Name="MillAndTurn105Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -4817,7 +4817,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="26483.6"/>
+            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="13241.8"/>
             <Y Name="MillAndTurn105Robot_pos_y" Unit="PIXEL" Value="4948.39"/>
             <Z Name="MillAndTurn105Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -4847,7 +4847,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="26483.6"/>
+            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="13241.8"/>
             <Y Name="MillAndTurn105Robot_pos_y" Unit="PIXEL" Value="5541.94"/>
             <Z Name="MillAndTurn105Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -4877,7 +4877,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="26483.6"/>
+            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="13241.8"/>
             <Y Name="MillAndTurn105Robot_pos_y" Unit="PIXEL" Value="6135.48"/>
             <Z Name="MillAndTurn105Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -4907,7 +4907,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="26483.6"/>
+            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="13241.8"/>
             <Y Name="MillAndTurn105Robot_pos_y" Unit="PIXEL" Value="6729.03"/>
             <Z Name="MillAndTurn105Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -4937,7 +4937,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="26483.6"/>
+            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="13241.8"/>
             <Y Name="MillAndTurn105Robot_pos_y" Unit="PIXEL" Value="7322.58"/>
             <Z Name="MillAndTurn105Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -4967,7 +4967,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="26483.6"/>
+            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="13241.8"/>
             <Y Name="MillAndTurn105Robot_pos_y" Unit="PIXEL" Value="7916.13"/>
             <Z Name="MillAndTurn105Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -4997,7 +4997,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="26483.6"/>
+            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="13241.8"/>
             <Y Name="MillAndTurn105Robot_pos_y" Unit="PIXEL" Value="8509.68"/>
             <Z Name="MillAndTurn105Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -5027,7 +5027,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="26483.6"/>
+            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="13241.8"/>
             <Y Name="MillAndTurn105Robot_pos_y" Unit="PIXEL" Value="9103.23"/>
             <Z Name="MillAndTurn105Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -5057,7 +5057,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="26483.6"/>
+            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="13241.8"/>
             <Y Name="MillAndTurn105Robot_pos_y" Unit="PIXEL" Value="9696.77"/>
             <Z Name="MillAndTurn105Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -5087,7 +5087,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="26483.6"/>
+            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="13241.8"/>
             <Y Name="MillAndTurn105Robot_pos_y" Unit="PIXEL" Value="10290.3"/>
             <Z Name="MillAndTurn105Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -5117,7 +5117,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="26483.6"/>
+            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="13241.8"/>
             <Y Name="MillAndTurn105Robot_pos_y" Unit="PIXEL" Value="10883.9"/>
             <Z Name="MillAndTurn105Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -5147,7 +5147,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="26483.6"/>
+            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="13241.8"/>
             <Y Name="MillAndTurn105Robot_pos_y" Unit="PIXEL" Value="11477.4"/>
             <Z Name="MillAndTurn105Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -5177,7 +5177,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="26483.6"/>
+            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="13241.8"/>
             <Y Name="MillAndTurn105Robot_pos_y" Unit="PIXEL" Value="12071.0"/>
             <Z Name="MillAndTurn105Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -5207,7 +5207,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="26483.6"/>
+            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="13241.8"/>
             <Y Name="MillAndTurn105Robot_pos_y" Unit="PIXEL" Value="12664.5"/>
             <Z Name="MillAndTurn105Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -5237,7 +5237,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="26483.6"/>
+            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="13241.8"/>
             <Y Name="MillAndTurn105Robot_pos_y" Unit="PIXEL" Value="13258.1"/>
             <Z Name="MillAndTurn105Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -5267,7 +5267,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="26483.6"/>
+            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="13241.8"/>
             <Y Name="MillAndTurn105Robot_pos_y" Unit="PIXEL" Value="13851.6"/>
             <Z Name="MillAndTurn105Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -5297,7 +5297,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="26483.6"/>
+            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="13241.8"/>
             <Y Name="MillAndTurn105Robot_pos_y" Unit="PIXEL" Value="14445.2"/>
             <Z Name="MillAndTurn105Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -5327,7 +5327,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="26483.6"/>
+            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="13241.8"/>
             <Y Name="MillAndTurn105Robot_pos_y" Unit="PIXEL" Value="15038.7"/>
             <Z Name="MillAndTurn105Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -5357,7 +5357,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="26483.6"/>
+            <X Name="MillAndTurn105Robot_pos_x" Unit="PIXEL" Value="13241.8"/>
             <Y Name="MillAndTurn105Robot_pos_y" Unit="PIXEL" Value="15632.3"/>
             <Z Name="MillAndTurn105Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -6713,7 +6713,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="DiffuseSensor_pos_x" Unit="PIXEL" Value="24463.9"/>
+            <X Name="DiffuseSensor_pos_x" Unit="PIXEL" Value="12231.95"/>
             <Y Name="DiffuseSensor_pos_y" Unit="PIXEL" Value="8900.0"/>
             <Z Name="DiffuseSensor_pos_z" Unit="PIXEL"/>
           </Position>
@@ -6763,7 +6763,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="PalletSensor_4_pos_x" Unit="PIXEL" Value="27674.4"/>
+            <X Name="PalletSensor_4_pos_x" Unit="PIXEL" Value="13837.2"/>
             <Y Name="PalletSensor_4_pos_y" Unit="PIXEL" Value="8900.0"/>
             <Z Name="PalletSensor_4_pos_z" Unit="PIXEL"/>
           </Position>
@@ -6813,7 +6813,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="PalletSensor_1_pos_x" Unit="PIXEL" Value="27674.4"/>
+            <X Name="PalletSensor_1_pos_x" Unit="PIXEL" Value="13837.2"/>
             <Y Name="PalletSensor_1_pos_y" Unit="PIXEL" Value="8900.0"/>
             <Z Name="PalletSensor_1_pos_z" Unit="PIXEL"/>
           </Position>
@@ -6863,7 +6863,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="PalletSensor_3_pos_x" Unit="PIXEL" Value="27674.4"/>
+            <X Name="PalletSensor_3_pos_x" Unit="PIXEL" Value="13837.2"/>
             <Y Name="PalletSensor_3_pos_y" Unit="PIXEL" Value="8900.0"/>
             <Z Name="PalletSensor_3_pos_z" Unit="PIXEL"/>
           </Position>
@@ -6913,7 +6913,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="PalletSensor_2_pos_x" Unit="PIXEL" Value="27674.4"/>
+            <X Name="PalletSensor_2_pos_x" Unit="PIXEL" Value="13837.2"/>
             <Y Name="PalletSensor_2_pos_y" Unit="PIXEL" Value="8900.0"/>
             <Z Name="PalletSensor_2_pos_z" Unit="PIXEL"/>
           </Position>
@@ -6962,7 +6962,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="RobotGripper_pos_x" Unit="PIXEL" Value="27068.7"/>
+            <X Name="RobotGripper_pos_x" Unit="PIXEL" Value="13534.35"/>
             <Y Name="RobotGripper_pos_y" Unit="PIXEL" Value="7600.0"/>
             <Z Name="RobotGripper_pos_z" Unit="PIXEL"/>
           </Position>
@@ -6992,7 +6992,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="RobotGripper_pos_x" Unit="PIXEL" Value="27068.7"/>
+            <X Name="RobotGripper_pos_x" Unit="PIXEL" Value="13534.35"/>
             <Y Name="RobotGripper_pos_y" Unit="PIXEL" Value="8900.0"/>
             <Z Name="RobotGripper_pos_z" Unit="PIXEL"/>
           </Position>
@@ -7022,7 +7022,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="RobotGripper_pos_x" Unit="PIXEL" Value="27068.7"/>
+            <X Name="RobotGripper_pos_x" Unit="PIXEL" Value="13534.35"/>
             <Y Name="RobotGripper_pos_y" Unit="PIXEL" Value="10200.0"/>
             <Z Name="RobotGripper_pos_z" Unit="PIXEL"/>
           </Position>
@@ -7193,7 +7193,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55Robot_pos_x" Unit="PIXEL" Value="25756.5"/>
+            <X Name="Mill55Robot_pos_x" Unit="PIXEL" Value="12878.25"/>
             <Y Name="Mill55Robot_pos_y" Unit="PIXEL" Value="2052.94"/>
             <Z Name="Mill55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -7223,7 +7223,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55Robot_pos_x" Unit="PIXEL" Value="25756.5"/>
+            <X Name="Mill55Robot_pos_x" Unit="PIXEL" Value="12878.25"/>
             <Y Name="Mill55Robot_pos_y" Unit="PIXEL" Value="3194.12"/>
             <Z Name="Mill55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -7253,7 +7253,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55Robot_pos_x" Unit="PIXEL" Value="25756.5"/>
+            <X Name="Mill55Robot_pos_x" Unit="PIXEL" Value="12878.25"/>
             <Y Name="Mill55Robot_pos_y" Unit="PIXEL" Value="4335.29"/>
             <Z Name="Mill55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -7283,7 +7283,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55Robot_pos_x" Unit="PIXEL" Value="25756.5"/>
+            <X Name="Mill55Robot_pos_x" Unit="PIXEL" Value="12878.25"/>
             <Y Name="Mill55Robot_pos_y" Unit="PIXEL" Value="5476.47"/>
             <Z Name="Mill55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -7313,7 +7313,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55Robot_pos_x" Unit="PIXEL" Value="25756.5"/>
+            <X Name="Mill55Robot_pos_x" Unit="PIXEL" Value="12878.25"/>
             <Y Name="Mill55Robot_pos_y" Unit="PIXEL" Value="6617.65"/>
             <Z Name="Mill55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -7343,7 +7343,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55Robot_pos_x" Unit="PIXEL" Value="25756.5"/>
+            <X Name="Mill55Robot_pos_x" Unit="PIXEL" Value="12878.25"/>
             <Y Name="Mill55Robot_pos_y" Unit="PIXEL" Value="7758.82"/>
             <Z Name="Mill55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -7373,7 +7373,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55Robot_pos_x" Unit="PIXEL" Value="25756.5"/>
+            <X Name="Mill55Robot_pos_x" Unit="PIXEL" Value="12878.25"/>
             <Y Name="Mill55Robot_pos_y" Unit="PIXEL" Value="8900.0"/>
             <Z Name="Mill55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -7403,7 +7403,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55Robot_pos_x" Unit="PIXEL" Value="25756.5"/>
+            <X Name="Mill55Robot_pos_x" Unit="PIXEL" Value="12878.25"/>
             <Y Name="Mill55Robot_pos_y" Unit="PIXEL" Value="10041.2"/>
             <Z Name="Mill55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -7433,7 +7433,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55Robot_pos_x" Unit="PIXEL" Value="25756.5"/>
+            <X Name="Mill55Robot_pos_x" Unit="PIXEL" Value="12878.25"/>
             <Y Name="Mill55Robot_pos_y" Unit="PIXEL" Value="11182.4"/>
             <Z Name="Mill55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -7463,7 +7463,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55Robot_pos_x" Unit="PIXEL" Value="25756.5"/>
+            <X Name="Mill55Robot_pos_x" Unit="PIXEL" Value="12878.25"/>
             <Y Name="Mill55Robot_pos_y" Unit="PIXEL" Value="12323.5"/>
             <Z Name="Mill55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -7493,7 +7493,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55Robot_pos_x" Unit="PIXEL" Value="25756.5"/>
+            <X Name="Mill55Robot_pos_x" Unit="PIXEL" Value="12878.25"/>
             <Y Name="Mill55Robot_pos_y" Unit="PIXEL" Value="13464.7"/>
             <Z Name="Mill55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -7523,7 +7523,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55Robot_pos_x" Unit="PIXEL" Value="25756.5"/>
+            <X Name="Mill55Robot_pos_x" Unit="PIXEL" Value="12878.25"/>
             <Y Name="Mill55Robot_pos_y" Unit="PIXEL" Value="14605.9"/>
             <Z Name="Mill55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -7553,7 +7553,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55Robot_pos_x" Unit="PIXEL" Value="25756.5"/>
+            <X Name="Mill55Robot_pos_x" Unit="PIXEL" Value="12878.25"/>
             <Y Name="Mill55Robot_pos_y" Unit="PIXEL" Value="15747.1"/>
             <Z Name="Mill55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -8286,7 +8286,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="25877.1"/>
+            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="12938.55"/>
             <Y Name="Mill55CNC_pos_y" Unit="PIXEL" Value="221.053"/>
             <Z Name="Mill55CNC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -8316,7 +8316,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="25877.1"/>
+            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="12938.55"/>
             <Y Name="Mill55CNC_pos_y" Unit="PIXEL" Value="1242.11"/>
             <Z Name="Mill55CNC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -8346,7 +8346,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="25877.1"/>
+            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="12938.55"/>
             <Y Name="Mill55CNC_pos_y" Unit="PIXEL" Value="2263.16"/>
             <Z Name="Mill55CNC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -8376,7 +8376,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="25877.1"/>
+            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="12938.55"/>
             <Y Name="Mill55CNC_pos_y" Unit="PIXEL" Value="3284.21"/>
             <Z Name="Mill55CNC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -8406,7 +8406,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="25877.1"/>
+            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="12938.55"/>
             <Y Name="Mill55CNC_pos_y" Unit="PIXEL" Value="4305.26"/>
             <Z Name="Mill55CNC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -8436,7 +8436,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="25877.1"/>
+            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="12938.55"/>
             <Y Name="Mill55CNC_pos_y" Unit="PIXEL" Value="5326.32"/>
             <Z Name="Mill55CNC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -8466,7 +8466,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="25877.1"/>
+            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="12938.55"/>
             <Y Name="Mill55CNC_pos_y" Unit="PIXEL" Value="6347.37"/>
             <Z Name="Mill55CNC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -8496,7 +8496,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="25877.1"/>
+            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="12938.55"/>
             <Y Name="Mill55CNC_pos_y" Unit="PIXEL" Value="7368.42"/>
             <Z Name="Mill55CNC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -8526,7 +8526,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="25877.1"/>
+            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="12938.55"/>
             <Y Name="Mill55CNC_pos_y" Unit="PIXEL" Value="8389.47"/>
             <Z Name="Mill55CNC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -8556,7 +8556,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="25877.1"/>
+            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="12938.55"/>
             <Y Name="Mill55CNC_pos_y" Unit="PIXEL" Value="9410.53"/>
             <Z Name="Mill55CNC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -8586,7 +8586,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="25877.1"/>
+            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="12938.55"/>
             <Y Name="Mill55CNC_pos_y" Unit="PIXEL" Value="10431.6"/>
             <Z Name="Mill55CNC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -8616,7 +8616,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="25877.1"/>
+            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="12938.55"/>
             <Y Name="Mill55CNC_pos_y" Unit="PIXEL" Value="11452.6"/>
             <Z Name="Mill55CNC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -8646,7 +8646,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="25877.1"/>
+            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="12938.55"/>
             <Y Name="Mill55CNC_pos_y" Unit="PIXEL" Value="12473.7"/>
             <Z Name="Mill55CNC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -8676,7 +8676,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="25877.1"/>
+            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="12938.55"/>
             <Y Name="Mill55CNC_pos_y" Unit="PIXEL" Value="13494.7"/>
             <Z Name="Mill55CNC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -8706,7 +8706,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="25877.1"/>
+            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="12938.55"/>
             <Y Name="Mill55CNC_pos_y" Unit="PIXEL" Value="14515.8"/>
             <Z Name="Mill55CNC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -8736,7 +8736,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="25877.1"/>
+            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="12938.55"/>
             <Y Name="Mill55CNC_pos_y" Unit="PIXEL" Value="15536.8"/>
             <Z Name="Mill55CNC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -8766,7 +8766,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="25877.1"/>
+            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="12938.55"/>
             <Y Name="Mill55CNC_pos_y" Unit="PIXEL" Value="16557.9"/>
             <Z Name="Mill55CNC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -8796,7 +8796,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="25877.1"/>
+            <X Name="Mill55CNC_pos_x" Unit="PIXEL" Value="12938.55"/>
             <Y Name="Mill55CNC_pos_y" Unit="PIXEL" Value="17578.9"/>
             <Z Name="Mill55CNC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -9162,7 +9162,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="MillRobotGripper_pos_x" Unit="PIXEL" Value="27068.7"/>
+            <X Name="MillRobotGripper_pos_x" Unit="PIXEL" Value="13534.35"/>
             <Y Name="MillRobotGripper_pos_y" Unit="PIXEL" Value="8900.0"/>
             <Z Name="MillRobotGripper_pos_z" Unit="PIXEL"/>
           </Position>
@@ -9242,7 +9242,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="PalletSensor_5_pos_x" Unit="PIXEL" Value="27674.4"/>
+            <X Name="PalletSensor_5_pos_x" Unit="PIXEL" Value="13837.2"/>
             <Y Name="PalletSensor_5_pos_y" Unit="PIXEL" Value="8900.0"/>
             <Z Name="PalletSensor_5_pos_z" Unit="PIXEL"/>
           </Position>
@@ -9292,7 +9292,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="PalletSensor_6_pos_x" Unit="PIXEL" Value="27674.4"/>
+            <X Name="PalletSensor_6_pos_x" Unit="PIXEL" Value="13837.2"/>
             <Y Name="PalletSensor_6_pos_y" Unit="PIXEL" Value="8900.0"/>
             <Z Name="PalletSensor_6_pos_z" Unit="PIXEL"/>
           </Position>
@@ -9342,7 +9342,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="PalletSensor_7_pos_x" Unit="PIXEL" Value="27674.4"/>
+            <X Name="PalletSensor_7_pos_x" Unit="PIXEL" Value="13837.2"/>
             <Y Name="PalletSensor_7_pos_y" Unit="PIXEL" Value="8900.0"/>
             <Z Name="PalletSensor_7_pos_z" Unit="PIXEL"/>
           </Position>
@@ -9449,7 +9449,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Turn55Robot_pos_x" Unit="PIXEL" Value="25756.5"/>
+            <X Name="Turn55Robot_pos_x" Unit="PIXEL" Value="12878.25"/>
             <Y Name="Turn55Robot_pos_y" Unit="PIXEL" Value="2052.94"/>
             <Z Name="Turn55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -9479,7 +9479,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Turn55Robot_pos_x" Unit="PIXEL" Value="25756.5"/>
+            <X Name="Turn55Robot_pos_x" Unit="PIXEL" Value="12878.25"/>
             <Y Name="Turn55Robot_pos_y" Unit="PIXEL" Value="3194.12"/>
             <Z Name="Turn55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -9509,7 +9509,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Turn55Robot_pos_x" Unit="PIXEL" Value="25756.5"/>
+            <X Name="Turn55Robot_pos_x" Unit="PIXEL" Value="12878.25"/>
             <Y Name="Turn55Robot_pos_y" Unit="PIXEL" Value="4335.29"/>
             <Z Name="Turn55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -9539,7 +9539,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Turn55Robot_pos_x" Unit="PIXEL" Value="25756.5"/>
+            <X Name="Turn55Robot_pos_x" Unit="PIXEL" Value="12878.25"/>
             <Y Name="Turn55Robot_pos_y" Unit="PIXEL" Value="5476.47"/>
             <Z Name="Turn55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -9569,7 +9569,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Turn55Robot_pos_x" Unit="PIXEL" Value="25756.5"/>
+            <X Name="Turn55Robot_pos_x" Unit="PIXEL" Value="12878.25"/>
             <Y Name="Turn55Robot_pos_y" Unit="PIXEL" Value="6617.65"/>
             <Z Name="Turn55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -9599,7 +9599,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Turn55Robot_pos_x" Unit="PIXEL" Value="25756.5"/>
+            <X Name="Turn55Robot_pos_x" Unit="PIXEL" Value="12878.25"/>
             <Y Name="Turn55Robot_pos_y" Unit="PIXEL" Value="7758.82"/>
             <Z Name="Turn55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -9629,7 +9629,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Turn55Robot_pos_x" Unit="PIXEL" Value="25756.5"/>
+            <X Name="Turn55Robot_pos_x" Unit="PIXEL" Value="12878.25"/>
             <Y Name="Turn55Robot_pos_y" Unit="PIXEL" Value="8900.0"/>
             <Z Name="Turn55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -9659,7 +9659,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Turn55Robot_pos_x" Unit="PIXEL" Value="25756.5"/>
+            <X Name="Turn55Robot_pos_x" Unit="PIXEL" Value="12878.25"/>
             <Y Name="Turn55Robot_pos_y" Unit="PIXEL" Value="10041.2"/>
             <Z Name="Turn55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -9689,7 +9689,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Turn55Robot_pos_x" Unit="PIXEL" Value="25756.5"/>
+            <X Name="Turn55Robot_pos_x" Unit="PIXEL" Value="12878.25"/>
             <Y Name="Turn55Robot_pos_y" Unit="PIXEL" Value="11182.4"/>
             <Z Name="Turn55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -9719,7 +9719,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Turn55Robot_pos_x" Unit="PIXEL" Value="25756.5"/>
+            <X Name="Turn55Robot_pos_x" Unit="PIXEL" Value="12878.25"/>
             <Y Name="Turn55Robot_pos_y" Unit="PIXEL" Value="12323.5"/>
             <Z Name="Turn55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -9749,7 +9749,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Turn55Robot_pos_x" Unit="PIXEL" Value="25756.5"/>
+            <X Name="Turn55Robot_pos_x" Unit="PIXEL" Value="12878.25"/>
             <Y Name="Turn55Robot_pos_y" Unit="PIXEL" Value="13464.7"/>
             <Z Name="Turn55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -9779,7 +9779,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Turn55Robot_pos_x" Unit="PIXEL" Value="25756.5"/>
+            <X Name="Turn55Robot_pos_x" Unit="PIXEL" Value="12878.25"/>
             <Y Name="Turn55Robot_pos_y" Unit="PIXEL" Value="14605.9"/>
             <Z Name="Turn55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -9809,7 +9809,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="Turn55Robot_pos_x" Unit="PIXEL" Value="25756.5"/>
+            <X Name="Turn55Robot_pos_x" Unit="PIXEL" Value="12878.25"/>
             <Y Name="Turn55Robot_pos_y" Unit="PIXEL" Value="15747.1"/>
             <Z Name="Turn55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -10572,7 +10572,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="TurnRobotGripper_pos_x" Unit="PIXEL" Value="27068.7"/>
+            <X Name="TurnRobotGripper_pos_x" Unit="PIXEL" Value="13534.35"/>
             <Y Name="TurnRobotGripper_pos_y" Unit="PIXEL" Value="8900.0"/>
             <Z Name="TurnRobotGripper_pos_z" Unit="PIXEL"/>
           </Position>
@@ -10652,7 +10652,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="PalletSensor_8_pos_x" Unit="PIXEL" Value="27674.4"/>
+            <X Name="PalletSensor_8_pos_x" Unit="PIXEL" Value="13837.2"/>
             <Y Name="PalletSensor_8_pos_y" Unit="PIXEL" Value="8900.0"/>
             <Z Name="PalletSensor_8_pos_z" Unit="PIXEL"/>
           </Position>
@@ -10702,7 +10702,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="PalletSensor_9_pos_x" Unit="PIXEL" Value="27674.4"/>
+            <X Name="PalletSensor_9_pos_x" Unit="PIXEL" Value="13837.2"/>
             <Y Name="PalletSensor_9_pos_y" Unit="PIXEL" Value="8900.0"/>
             <Z Name="PalletSensor_9_pos_z" Unit="PIXEL"/>
           </Position>
@@ -10752,7 +10752,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="PalletSensor_10_pos_x" Unit="PIXEL" Value="27674.4"/>
+            <X Name="PalletSensor_10_pos_x" Unit="PIXEL" Value="13837.2"/>
             <Y Name="PalletSensor_10_pos_y" Unit="PIXEL" Value="8900.0"/>
             <Z Name="PalletSensor_10_pos_z" Unit="PIXEL"/>
           </Position>
@@ -10859,7 +10859,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="26745.9"/>
+            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="13372.95"/>
             <Y Name="AssemblyRH5A55Robot_pos_y" Unit="PIXEL" Value="3266.67"/>
             <Z Name="AssemblyRH5A55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -10889,7 +10889,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="26745.9"/>
+            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="13372.95"/>
             <Y Name="AssemblyRH5A55Robot_pos_y" Unit="PIXEL" Value="4033.33"/>
             <Z Name="AssemblyRH5A55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -10919,7 +10919,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="26745.9"/>
+            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="13372.95"/>
             <Y Name="AssemblyRH5A55Robot_pos_y" Unit="PIXEL" Value="4800.0"/>
             <Z Name="AssemblyRH5A55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -10949,7 +10949,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="26745.9"/>
+            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="13372.95"/>
             <Y Name="AssemblyRH5A55Robot_pos_y" Unit="PIXEL" Value="5566.67"/>
             <Z Name="AssemblyRH5A55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -10979,7 +10979,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="26745.9"/>
+            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="13372.95"/>
             <Y Name="AssemblyRH5A55Robot_pos_y" Unit="PIXEL" Value="6333.33"/>
             <Z Name="AssemblyRH5A55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -11009,7 +11009,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="26745.9"/>
+            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="13372.95"/>
             <Y Name="AssemblyRH5A55Robot_pos_y" Unit="PIXEL" Value="7100.0"/>
             <Z Name="AssemblyRH5A55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -11039,7 +11039,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="26745.9"/>
+            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="13372.95"/>
             <Y Name="AssemblyRH5A55Robot_pos_y" Unit="PIXEL" Value="7866.67"/>
             <Z Name="AssemblyRH5A55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -11069,7 +11069,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="26745.9"/>
+            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="13372.95"/>
             <Y Name="AssemblyRH5A55Robot_pos_y" Unit="PIXEL" Value="8633.33"/>
             <Z Name="AssemblyRH5A55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -11099,7 +11099,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="26745.9"/>
+            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="13372.95"/>
             <Y Name="AssemblyRH5A55Robot_pos_y" Unit="PIXEL" Value="9400.0"/>
             <Z Name="AssemblyRH5A55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -11129,7 +11129,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="26745.9"/>
+            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="13372.95"/>
             <Y Name="AssemblyRH5A55Robot_pos_y" Unit="PIXEL" Value="10166.7"/>
             <Z Name="AssemblyRH5A55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -11159,7 +11159,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="26745.9"/>
+            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="13372.95"/>
             <Y Name="AssemblyRH5A55Robot_pos_y" Unit="PIXEL" Value="10933.3"/>
             <Z Name="AssemblyRH5A55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -11189,7 +11189,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="26745.9"/>
+            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="13372.95"/>
             <Y Name="AssemblyRH5A55Robot_pos_y" Unit="PIXEL" Value="11700.0"/>
             <Z Name="AssemblyRH5A55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -11219,7 +11219,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="26745.9"/>
+            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="13372.95"/>
             <Y Name="AssemblyRH5A55Robot_pos_y" Unit="PIXEL" Value="12466.7"/>
             <Z Name="AssemblyRH5A55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -11249,7 +11249,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="26745.9"/>
+            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="13372.95"/>
             <Y Name="AssemblyRH5A55Robot_pos_y" Unit="PIXEL" Value="13233.3"/>
             <Z Name="AssemblyRH5A55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -11279,7 +11279,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="26745.9"/>
+            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="13372.95"/>
             <Y Name="AssemblyRH5A55Robot_pos_y" Unit="PIXEL" Value="14000.0"/>
             <Z Name="AssemblyRH5A55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -11309,7 +11309,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="26745.9"/>
+            <X Name="AssemblyRH5A55Robot_pos_x" Unit="PIXEL" Value="13372.95"/>
             <Y Name="AssemblyRH5A55Robot_pos_y" Unit="PIXEL" Value="14766.7"/>
             <Z Name="AssemblyRH5A55Robot_pos_z" Unit="PIXEL"/>
           </Position>
@@ -12333,7 +12333,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="AssemblyRH5A55VisionData_pos_x" Unit="PIXEL" Value="26563.5"/>
+            <X Name="AssemblyRH5A55VisionData_pos_x" Unit="PIXEL" Value="13281.75"/>
             <Y Name="AssemblyRH5A55VisionData_pos_y" Unit="PIXEL" Value="12800.0"/>
             <Z Name="AssemblyRH5A55VisionData_pos_z" Unit="PIXEL"/>
           </Position>
@@ -12634,7 +12634,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="RobotGripper_1_pos_x" Unit="PIXEL" Value="27068.7"/>
+            <X Name="RobotGripper_1_pos_x" Unit="PIXEL" Value="13534.35"/>
             <Y Name="RobotGripper_1_pos_y" Unit="PIXEL" Value="8900.0"/>
             <Z Name="RobotGripper_1_pos_z" Unit="PIXEL"/>
           </Position>
@@ -12720,7 +12720,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="PalletSensor_11_pos_x" Unit="PIXEL" Value="27674.4"/>
+            <X Name="PalletSensor_11_pos_x" Unit="PIXEL" Value="13837.2"/>
             <Y Name="PalletSensor_11_pos_y" Unit="PIXEL" Value="8900.0"/>
             <Z Name="PalletSensor_11_pos_z" Unit="PIXEL"/>
           </Position>
@@ -12769,7 +12769,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="PalletSensor_12_pos_x" Unit="PIXEL" Value="27674.4"/>
+            <X Name="PalletSensor_12_pos_x" Unit="PIXEL" Value="13837.2"/>
             <Y Name="PalletSensor_12_pos_y" Unit="PIXEL" Value="8900.0"/>
             <Z Name="PalletSensor_12_pos_z" Unit="PIXEL"/>
           </Position>
@@ -12818,7 +12818,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="PalletSensor_13_pos_x" Unit="PIXEL" Value="27674.4"/>
+            <X Name="PalletSensor_13_pos_x" Unit="PIXEL" Value="13837.2"/>
             <Y Name="PalletSensor_13_pos_y" Unit="PIXEL" Value="8900.0"/>
             <Z Name="PalletSensor_13_pos_z" Unit="PIXEL"/>
           </Position>
@@ -12867,7 +12867,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="PalletSensor_14_pos_x" Unit="PIXEL" Value="27674.4"/>
+            <X Name="PalletSensor_14_pos_x" Unit="PIXEL" Value="13837.2"/>
             <Y Name="PalletSensor_14_pos_y" Unit="PIXEL" Value="8900.0"/>
             <Z Name="PalletSensor_14_pos_z" Unit="PIXEL"/>
           </Position>
@@ -12918,7 +12918,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="21800.0"/>
+            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="10900.0"/>
             <Y Name="QualityPLC_pos_y" Unit="PIXEL" Value="4948.39"/>
             <Z Name="QualityPLC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -12948,7 +12948,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="21800.0"/>
+            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="10900.0"/>
             <Y Name="QualityPLC_pos_y" Unit="PIXEL" Value="5541.94"/>
             <Z Name="QualityPLC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -12978,7 +12978,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="21800.0"/>
+            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="10900.0"/>
             <Y Name="QualityPLC_pos_y" Unit="PIXEL" Value="6135.48"/>
             <Z Name="QualityPLC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -13008,7 +13008,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="21800.0"/>
+            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="10900.0"/>
             <Y Name="QualityPLC_pos_y" Unit="PIXEL" Value="6729.03"/>
             <Z Name="QualityPLC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -13038,7 +13038,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="21800.0"/>
+            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="10900.0"/>
             <Y Name="QualityPLC_pos_y" Unit="PIXEL" Value="7322.58"/>
             <Z Name="QualityPLC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -13068,7 +13068,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="21800.0"/>
+            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="10900.0"/>
             <Y Name="QualityPLC_pos_y" Unit="PIXEL" Value="7916.13"/>
             <Z Name="QualityPLC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -13098,7 +13098,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="21800.0"/>
+            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="10900.0"/>
             <Y Name="QualityPLC_pos_y" Unit="PIXEL" Value="8509.68"/>
             <Z Name="QualityPLC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -13128,7 +13128,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="21800.0"/>
+            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="10900.0"/>
             <Y Name="QualityPLC_pos_y" Unit="PIXEL" Value="9103.23"/>
             <Z Name="QualityPLC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -13158,7 +13158,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="21800.0"/>
+            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="10900.0"/>
             <Y Name="QualityPLC_pos_y" Unit="PIXEL" Value="9696.77"/>
             <Z Name="QualityPLC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -13188,7 +13188,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="21800.0"/>
+            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="10900.0"/>
             <Y Name="QualityPLC_pos_y" Unit="PIXEL" Value="10290.3"/>
             <Z Name="QualityPLC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -13218,7 +13218,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="21800.0"/>
+            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="10900.0"/>
             <Y Name="QualityPLC_pos_y" Unit="PIXEL" Value="10883.9"/>
             <Z Name="QualityPLC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -13248,7 +13248,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="21800.0"/>
+            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="10900.0"/>
             <Y Name="QualityPLC_pos_y" Unit="PIXEL" Value="11477.4"/>
             <Z Name="QualityPLC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -13278,7 +13278,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="21800.0"/>
+            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="10900.0"/>
             <Y Name="QualityPLC_pos_y" Unit="PIXEL" Value="12071.0"/>
             <Z Name="QualityPLC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -13308,7 +13308,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="21800.0"/>
+            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="10900.0"/>
             <Y Name="QualityPLC_pos_y" Unit="PIXEL" Value="12664.5"/>
             <Z Name="QualityPLC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -13338,7 +13338,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="21800.0"/>
+            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="10900.0"/>
             <Y Name="QualityPLC_pos_y" Unit="PIXEL" Value="13258.1"/>
             <Z Name="QualityPLC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -13368,7 +13368,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="21800.0"/>
+            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="10900.0"/>
             <Y Name="QualityPLC_pos_y" Unit="PIXEL" Value="13851.6"/>
             <Z Name="QualityPLC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -13398,7 +13398,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="21800.0"/>
+            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="10900.0"/>
             <Y Name="QualityPLC_pos_y" Unit="PIXEL" Value="14445.2"/>
             <Z Name="QualityPLC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -13428,7 +13428,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="21800.0"/>
+            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="10900.0"/>
             <Y Name="QualityPLC_pos_y" Unit="PIXEL" Value="15038.7"/>
             <Z Name="QualityPLC_pos_z" Unit="PIXEL"/>
           </Position>
@@ -13458,7 +13458,7 @@
             <FontSize Unit="POINT" Value="9.0"/>
           </Format>
           <Position>
-            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="21800.0"/>
+            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="10900.0"/>
             <Y Name="QualityPLC_pos_y" Unit="PIXEL" Value="15632.3"/>
             <Z Name="QualityPLC_pos_z" Unit="PIXEL"/>
           </Position>

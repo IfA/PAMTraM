@@ -1778,7 +1778,7 @@
               </references>
               <references xsi:type="metamodel:ContainmentReference" name="OwnedTextDefinition">
                 <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/MultiLingualTextDefinition/OwnedTextDefinition"/>
-                <value name="TextDefinition">
+                <value name="TextDefinition dummyDescription">
                   <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/TextDefinition"/>
                   <references xsi:type="metamodel:ContainmentReference" name="TranslatedTextItem">
                     <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/TextDefinition/TranslatedTextItem"/>
@@ -2011,6 +2011,9 @@
       </references>
       <references xsi:type="metamodel:NonContainmentReference" name="DataType" value="//@targetSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.0 //@targetSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.2 //@targetSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.3 //@targetSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.1">
         <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/DataItem/Type"/>
+      </references>
+      <references xsi:type="metamodel:NonContainmentReference" name="dummyDescription" value="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.2/@value.0/@references.1/@value.0">
+        <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/DataItem/Description"/>
       </references>
       <attributes xsi:type="metamodel:ActualAttribute" name="Logging">
         <valueSpecification name="false" value="false"/>

@@ -382,12 +382,7 @@ public class SourceSectionMapper {
 				
 				if(valuesFound){
 					complexAttributeMappingsFound.add((ComplexAttributeMapping) h);
-					String oldVal;
-					if(changedRefsAndHints.getHintValues().get(h).size() == 0){
-						oldVal="";
-					} else {
-						oldVal=(String)changedRefsAndHints.getHintValues().get(h).remove();
-					}
+					String oldVal=(String)changedRefsAndHints.getHintValues().get(h).remove();
 					changedRefsAndHints.getHintValues().get(h).add(oldVal+valueToAppend);
 				}
 			} else if(h instanceof CalculatorMapping){
@@ -412,12 +407,9 @@ public class SourceSectionMapper {
 					calculatorMappingsFound.add((CalculatorMapping)h);
 					
 					Map<String,Double> calcValues=new LinkedHashMap<String,Double>();
-					if(changedRefsAndHints.getHintValues().get(h).size() > 0){
-						calcValues.putAll((Map<String,Double>) changedRefsAndHints.getHintValues().get(h).remove());
-					}
-					
+					calcValues.putAll((Map<String,Double>) changedRefsAndHints.getHintValues().get(h).remove());					
 					calcValues.putAll(foundValues);
-					changedRefsAndHints.getHintValues().get(h).add(calcValues);//TODO
+					changedRefsAndHints.getHintValues().get(h).add(calcValues);
 				}				
 			}
 		}
@@ -666,7 +658,6 @@ public class SourceSectionMapper {
 				return null;
 			}
 		}
-		// TODO Rest ;-)
 		
 		for(MappingHint h : hints){
 				if(h instanceof ComplexAttributeMapping){

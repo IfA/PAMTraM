@@ -27,16 +27,23 @@ import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.Reference;
 import de.congrace.exp4j.ExpressionBuilder;
+import de.congrace.exp4j.InvalidCustomFunctionException;
 import de.mfreund.gentrans.transformation.selectors.ItemSelectorDialog;
 
 public class TargetSectionInstantiator {
-	
+	private RoundFunction round;
 	private TargetSectionRegistry targetSectionRegistry;
 	private AttributeValueRegistry attributeValueRegistry;
 
 	public TargetSectionInstantiator(TargetSectionRegistry targetSectionRegistry , AttributeValueRegistry attributeValueRegistry) {
 		this.targetSectionRegistry=targetSectionRegistry;
 		this.attributeValueRegistry=attributeValueRegistry;
+		
+		try{
+			round=new RoundFunction();
+		}catch(InvalidCustomFunctionException e){
+			System.out.println("This will never happen.");
+		}
 	}
 	
 	
@@ -197,7 +204,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 						if(attrHintValues != null) {
 							if(hintFound instanceof CalculatorMapping){
 								try{
-									attrValue = String.valueOf(new ExpressionBuilder(((CalculatorMapping) hintFound).getExpression())
+									attrValue = String.valueOf(new ExpressionBuilder(((CalculatorMapping) hintFound).getExpression()).withCustomFunction(round)
 											.withVariables((Map<String,Double>)attrHintValues.remove(0)).build().calculate());									
 								} catch(Exception e){//TODO this will lead to a lot of error output if it fails
 									System.out.println("Error parsing the expression of CalculatorMapping" + hintFound.getName() + ". Message:\n"

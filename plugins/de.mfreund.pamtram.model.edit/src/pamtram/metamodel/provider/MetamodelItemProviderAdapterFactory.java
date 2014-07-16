@@ -72,26 +72,49 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.Class} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.SourceSectionClass} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ClassItemProvider classItemProvider;
+	protected SourceSectionClassItemProvider sourceSectionClassItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.metamodel.Class}.
+	 * This creates an adapter for a {@link pamtram.metamodel.SourceSectionClass}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createClassAdapter() {
-		if (classItemProvider == null) {
-			classItemProvider = new ClassItemProvider(this);
+	public Adapter createSourceSectionClassAdapter() {
+		if (sourceSectionClassItemProvider == null) {
+			sourceSectionClassItemProvider = new SourceSectionClassItemProvider(this);
 		}
 
-		return classItemProvider;
+		return sourceSectionClassItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.TargetSectionClass} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TargetSectionClassItemProvider targetSectionClassItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.metamodel.TargetSectionClass}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTargetSectionClassAdapter() {
+		if (targetSectionClassItemProvider == null) {
+			targetSectionClassItemProvider = new TargetSectionClassItemProvider(this);
+		}
+
+		return targetSectionClassItemProvider;
 	}
 
 	/**
@@ -423,7 +446,8 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	 * @generated
 	 */
 	public void dispose() {
-		if (classItemProvider != null) classItemProvider.dispose();
+		if (sourceSectionClassItemProvider != null) sourceSectionClassItemProvider.dispose();
+		if (targetSectionClassItemProvider != null) targetSectionClassItemProvider.dispose();
 		if (containmentReferenceItemProvider != null) containmentReferenceItemProvider.dispose();
 		if (nonContainmentReferenceItemProvider != null) nonContainmentReferenceItemProvider.dispose();
 		if (actualAttributeItemProvider != null) actualAttributeItemProvider.dispose();

@@ -9,7 +9,6 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -17,17 +16,16 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
-import pamtram.metamodel.ActualAttribute;
-import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.SourceSectionClass;
 
 /**
- * This is the item provider adapter for a {@link pamtram.metamodel.ActualAttribute} object.
+ * This is the item provider adapter for a {@link pamtram.metamodel.SourceSectionClass} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ActualAttributeItemProvider
-	extends AttributeItemProvider
+public class SourceSectionClassItemProvider
+	extends ClassItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -40,7 +38,7 @@ public class ActualAttributeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActualAttributeItemProvider(AdapterFactory adapterFactory) {
+	public SourceSectionClassItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -55,42 +53,19 @@ public class ActualAttributeItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addAttributePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Attribute feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addAttributePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ActualAttribute_attribute_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ActualAttribute_attribute_feature", "_UI_ActualAttribute_type"),
-				 MetamodelPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns ActualAttribute.gif.
+	 * This returns SourceSectionClass.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ActualAttribute"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SourceSectionClass"));
 	}
 
 	/**
@@ -101,10 +76,10 @@ public class ActualAttributeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ActualAttribute)object).getName();
+		String label = ((SourceSectionClass)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ActualAttribute_type") :
-			getString("_UI_ActualAttribute_type") + " " + label;
+			getString("_UI_SourceSectionClass_type") :
+			getString("_UI_SourceSectionClass_type") + " " + label;
 	}
 
 	/**

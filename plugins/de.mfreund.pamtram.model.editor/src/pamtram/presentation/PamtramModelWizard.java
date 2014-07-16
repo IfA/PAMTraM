@@ -61,7 +61,11 @@ import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.TargetSectionClass;
 import pamtram.provider.PamtramEditPlugin;
+
+
 
 
 
@@ -266,7 +270,7 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 			.setMetaModelPackage(ePackageSpecificationPage.getSourceEPackage());
 		}
 		// add an  empty class to the source section model
-		pamtram.metamodel.Class sourceClass = metamodelFactory.createClass();
+		SourceSectionClass  sourceClass = metamodelFactory.createSourceSectionClass();
 		sourceClass.setName("source");
 		pamtram.getSourceSectionModel().getMetaModelSections().add(sourceClass);
 		
@@ -279,7 +283,7 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 		}
 		// add an empty class to the target section model
 		MappingHintGroup  mappingHintGroup = mappingFactory.createMappingHintGroup();
-		pamtram.metamodel.Class targetClass = metamodelFactory.createClass();
+		TargetSectionClass targetClass = metamodelFactory.createTargetSectionClass();
 		targetClass.setName("target");
 		pamtram.getTargetSectionModel().getMetaModelSections().add(targetClass);
 		

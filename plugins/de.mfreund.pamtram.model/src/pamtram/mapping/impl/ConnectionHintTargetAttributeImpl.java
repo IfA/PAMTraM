@@ -3,24 +3,17 @@
 package pamtram.mapping.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.MappingPackage;
-
-import pamtram.metamodel.Attribute;
+import pamtram.metamodel.TargetSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,7 +38,7 @@ public class ConnectionHintTargetAttributeImpl extends MinimalEObjectImpl.Contai
 	 * @generated
 	 * @ordered
 	 */
-	protected Attribute targetAttribute;
+	protected TargetSectionAttribute targetAttribute;
 
 	/**
 	 * The cached value of the '{@link #getModifier() <em>Modifier</em>}' reference list.
@@ -81,10 +74,10 @@ public class ConnectionHintTargetAttributeImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Attribute getTargetAttribute() {
+	public TargetSectionAttribute getTargetAttribute() {
 		if (targetAttribute != null && targetAttribute.eIsProxy()) {
 			InternalEObject oldTargetAttribute = (InternalEObject)targetAttribute;
-			targetAttribute = (Attribute)eResolveProxy(oldTargetAttribute);
+			targetAttribute = (TargetSectionAttribute)eResolveProxy(oldTargetAttribute);
 			if (targetAttribute != oldTargetAttribute) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.CONNECTION_HINT_TARGET_ATTRIBUTE__TARGET_ATTRIBUTE, oldTargetAttribute, targetAttribute));
@@ -98,7 +91,7 @@ public class ConnectionHintTargetAttributeImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Attribute basicGetTargetAttribute() {
+	public TargetSectionAttribute basicGetTargetAttribute() {
 		return targetAttribute;
 	}
 
@@ -107,8 +100,8 @@ public class ConnectionHintTargetAttributeImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTargetAttribute(Attribute newTargetAttribute) {
-		Attribute oldTargetAttribute = targetAttribute;
+	public void setTargetAttribute(TargetSectionAttribute newTargetAttribute) {
+		TargetSectionAttribute oldTargetAttribute = targetAttribute;
 		targetAttribute = newTargetAttribute;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.CONNECTION_HINT_TARGET_ATTRIBUTE__TARGET_ATTRIBUTE, oldTargetAttribute, targetAttribute));
@@ -153,7 +146,7 @@ public class ConnectionHintTargetAttributeImpl extends MinimalEObjectImpl.Contai
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MappingPackage.CONNECTION_HINT_TARGET_ATTRIBUTE__TARGET_ATTRIBUTE:
-				setTargetAttribute((Attribute)newValue);
+				setTargetAttribute((TargetSectionAttribute)newValue);
 				return;
 			case MappingPackage.CONNECTION_HINT_TARGET_ATTRIBUTE__MODIFIER:
 				getModifier().clear();
@@ -172,7 +165,7 @@ public class ConnectionHintTargetAttributeImpl extends MinimalEObjectImpl.Contai
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MappingPackage.CONNECTION_HINT_TARGET_ATTRIBUTE__TARGET_ATTRIBUTE:
-				setTargetAttribute((Attribute)null);
+				setTargetAttribute((TargetSectionAttribute)null);
 				return;
 			case MappingPackage.CONNECTION_HINT_TARGET_ATTRIBUTE__MODIFIER:
 				getModifier().clear();

@@ -26,7 +26,7 @@ import pamtram.metamodel.MetamodelPackage;
  *
  * @generated
  */
-public class ActualAttributeImpl extends AttributeImpl implements ActualAttribute {
+public class ActualAttributeImpl extends TargetSectionAttributeImpl implements ActualAttribute {
 	/**
 	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' reference.
 	 * <!-- begin-user-doc -->

@@ -14,7 +14,6 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link pamtram.metamodel.Attribute#getValueSpecification <em>Value Specification</em>}</li>
  *   <li>{@link pamtram.metamodel.Attribute#isUnique <em>Unique</em>}</li>
- *   <li>{@link pamtram.metamodel.Attribute#getOwningClass <em>Owning Class</em>}</li>
  * </ul>
  * </p>
  *
@@ -65,22 +64,5 @@ public interface Attribute extends MetaModelElement {
 	 * @generated
 	 */
 	void setUnique(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Owning Class</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link pamtram.metamodel.Class#getAttributes <em>Attributes</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owning Class</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Class</em>' container reference.
-	 * @see pamtram.metamodel.MetamodelPackage#getAttribute_OwningClass()
-	 * @see pamtram.metamodel.Class#getAttributes
-	 * @model opposite="attributes" required="true" transient="false" changeable="false"
-	 * @generated
-	 */
-	pamtram.metamodel.Class getOwningClass();
 
 } // Attribute

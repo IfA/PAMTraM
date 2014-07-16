@@ -24,11 +24,13 @@ import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.RegExMatcher;
+import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
 import pamtram.metamodel.SourceSectionNonContainmentReference;
 import pamtram.metamodel.SourceSectionReference;
 import pamtram.metamodel.SubstringMatcher;
+import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionContainmentReference;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
@@ -135,6 +137,10 @@ public class MetamodelValidator extends EObjectValidator {
 				return validateSourceSectionNonContainmentReference((SourceSectionNonContainmentReference)value, diagnostics, context);
 			case MetamodelPackage.ATTRIBUTE:
 				return validateAttribute((Attribute)value, diagnostics, context);
+			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE:
+				return validateSourceSectionAttribute((SourceSectionAttribute)value, diagnostics, context);
+			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE:
+				return validateTargetSectionAttribute((TargetSectionAttribute)value, diagnostics, context);
 			case MetamodelPackage.ACTUAL_ATTRIBUTE:
 				return validateActualAttribute((ActualAttribute)value, diagnostics, context);
 			case MetamodelPackage.VIRTUAL_ATTRIBUTE:
@@ -563,6 +569,24 @@ public class MetamodelValidator extends EObjectValidator {
 	 */
 	public boolean validateAttribute(Attribute attribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(attribute, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSourceSectionAttribute(SourceSectionAttribute sourceSectionAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(sourceSectionAttribute, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateTargetSectionAttribute(TargetSectionAttribute targetSectionAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(targetSectionAttribute, diagnostics, context);
 	}
 
 	/**

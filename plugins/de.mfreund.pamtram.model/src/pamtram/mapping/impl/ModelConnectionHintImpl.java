@@ -15,7 +15,7 @@ import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModelConnectionHint;
-import pamtram.metamodel.Attribute;
+import pamtram.metamodel.SourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,7 +40,7 @@ public class ModelConnectionHintImpl extends NamedElementImpl implements ModelCo
 	 * @generated
 	 * @ordered
 	 */
-	protected Attribute sourceAttribute;
+	protected SourceSectionAttribute sourceAttribute;
 	/**
 	 * The cached value of the '{@link #getTargetAttributes() <em>Target Attributes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -75,10 +75,10 @@ public class ModelConnectionHintImpl extends NamedElementImpl implements ModelCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Attribute getSourceAttribute() {
+	public SourceSectionAttribute getSourceAttribute() {
 		if (sourceAttribute != null && sourceAttribute.eIsProxy()) {
 			InternalEObject oldSourceAttribute = (InternalEObject)sourceAttribute;
-			sourceAttribute = (Attribute)eResolveProxy(oldSourceAttribute);
+			sourceAttribute = (SourceSectionAttribute)eResolveProxy(oldSourceAttribute);
 			if (sourceAttribute != oldSourceAttribute) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MODEL_CONNECTION_HINT__SOURCE_ATTRIBUTE, oldSourceAttribute, sourceAttribute));
@@ -92,7 +92,7 @@ public class ModelConnectionHintImpl extends NamedElementImpl implements ModelCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Attribute basicGetSourceAttribute() {
+	public SourceSectionAttribute basicGetSourceAttribute() {
 		return sourceAttribute;
 	}
 
@@ -101,8 +101,8 @@ public class ModelConnectionHintImpl extends NamedElementImpl implements ModelCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSourceAttribute(Attribute newSourceAttribute) {
-		Attribute oldSourceAttribute = sourceAttribute;
+	public void setSourceAttribute(SourceSectionAttribute newSourceAttribute) {
+		SourceSectionAttribute oldSourceAttribute = sourceAttribute;
 		sourceAttribute = newSourceAttribute;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MODEL_CONNECTION_HINT__SOURCE_ATTRIBUTE, oldSourceAttribute, sourceAttribute));
@@ -161,7 +161,7 @@ public class ModelConnectionHintImpl extends NamedElementImpl implements ModelCo
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MappingPackage.MODEL_CONNECTION_HINT__SOURCE_ATTRIBUTE:
-				setSourceAttribute((Attribute)newValue);
+				setSourceAttribute((SourceSectionAttribute)newValue);
 				return;
 			case MappingPackage.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES:
 				getTargetAttributes().clear();
@@ -180,7 +180,7 @@ public class ModelConnectionHintImpl extends NamedElementImpl implements ModelCo
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MappingPackage.MODEL_CONNECTION_HINT__SOURCE_ATTRIBUTE:
-				setSourceAttribute((Attribute)null);
+				setSourceAttribute((SourceSectionAttribute)null);
 				return;
 			case MappingPackage.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES:
 				getTargetAttributes().clear();

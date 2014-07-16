@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.MappingPackage;
-import pamtram.metamodel.Attribute;
+import pamtram.metamodel.TargetSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,7 +32,7 @@ public abstract class AttributeMappingImpl extends MappingHintImpl implements At
 	 * @generated
 	 * @ordered
 	 */
-	protected Attribute target;
+	protected TargetSectionAttribute target;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -58,10 +58,10 @@ public abstract class AttributeMappingImpl extends MappingHintImpl implements At
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Attribute getTarget() {
+	public TargetSectionAttribute getTarget() {
 		if (target != null && target.eIsProxy()) {
 			InternalEObject oldTarget = (InternalEObject)target;
-			target = (Attribute)eResolveProxy(oldTarget);
+			target = (TargetSectionAttribute)eResolveProxy(oldTarget);
 			if (target != oldTarget) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.ATTRIBUTE_MAPPING__TARGET, oldTarget, target));
@@ -75,7 +75,7 @@ public abstract class AttributeMappingImpl extends MappingHintImpl implements At
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Attribute basicGetTarget() {
+	public TargetSectionAttribute basicGetTarget() {
 		return target;
 	}
 
@@ -84,8 +84,8 @@ public abstract class AttributeMappingImpl extends MappingHintImpl implements At
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTarget(Attribute newTarget) {
-		Attribute oldTarget = target;
+	public void setTarget(TargetSectionAttribute newTarget) {
+		TargetSectionAttribute oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.ATTRIBUTE_MAPPING__TARGET, oldTarget, target));
@@ -116,7 +116,7 @@ public abstract class AttributeMappingImpl extends MappingHintImpl implements At
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MappingPackage.ATTRIBUTE_MAPPING__TARGET:
-				setTarget((Attribute)newValue);
+				setTarget((TargetSectionAttribute)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -131,7 +131,7 @@ public abstract class AttributeMappingImpl extends MappingHintImpl implements At
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MappingPackage.ATTRIBUTE_MAPPING__TARGET:
-				setTarget((Attribute)null);
+				setTarget((TargetSectionAttribute)null);
 				return;
 		}
 		super.eUnset(featureID);

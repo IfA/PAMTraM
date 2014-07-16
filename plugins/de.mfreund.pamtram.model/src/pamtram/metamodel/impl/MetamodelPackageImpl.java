@@ -33,11 +33,13 @@ import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.RegExMatcher;
+import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
 import pamtram.metamodel.SourceSectionNonContainmentReference;
 import pamtram.metamodel.SourceSectionReference;
 import pamtram.metamodel.SubstringMatcher;
+import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionContainmentReference;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
@@ -151,6 +153,20 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * @generated
 	 */
 	private EClass attributeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass sourceSectionAttributeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass targetSectionAttributeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -361,26 +377,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClass_Attributes() {
-		return (EReference)classEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getClass_Container() {
-		return (EReference)classEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getClass_Cardinality() {
-		return (EAttribute)classEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)classEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -390,6 +388,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 */
 	public EOperation getClass__GetReferencesGeneric() {
 		return classEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getClass__GetAttributesGeneric() {
+		return classEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -415,6 +422,24 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getSourceSectionClass_Attributes() {
+		return (EReference)sourceSectionClassEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSourceSectionClass_Container() {
+		return (EReference)sourceSectionClassEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTargetSectionClass() {
 		return targetSectionClassEClass;
 	}
@@ -426,6 +451,24 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 */
 	public EReference getTargetSectionClass_References() {
 		return (EReference)targetSectionClassEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTargetSectionClass_Attributes() {
+		return (EReference)targetSectionClassEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTargetSectionClass_Container() {
+		return (EReference)targetSectionClassEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -604,8 +647,44 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAttribute_OwningClass() {
-		return (EReference)attributeEClass.getEStructuralFeatures().get(2);
+	public EClass getSourceSectionAttribute() {
+		return sourceSectionAttributeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSourceSectionAttribute_OwningClass() {
+		return (EReference)sourceSectionAttributeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSourceSectionAttribute_Attribute() {
+		return (EReference)sourceSectionAttributeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTargetSectionAttribute() {
+		return targetSectionAttributeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTargetSectionAttribute_OwningClass() {
+		return (EReference)targetSectionAttributeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -785,16 +864,19 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		classEClass = createEClass(CLASS);
 		createEReference(classEClass, CLASS__ECLASS);
-		createEReference(classEClass, CLASS__ATTRIBUTES);
-		createEReference(classEClass, CLASS__CONTAINER);
 		createEAttribute(classEClass, CLASS__CARDINALITY);
 		createEOperation(classEClass, CLASS___GET_REFERENCES_GENERIC);
+		createEOperation(classEClass, CLASS___GET_ATTRIBUTES_GENERIC);
 
 		sourceSectionClassEClass = createEClass(SOURCE_SECTION_CLASS);
 		createEReference(sourceSectionClassEClass, SOURCE_SECTION_CLASS__REFERENCES);
+		createEReference(sourceSectionClassEClass, SOURCE_SECTION_CLASS__ATTRIBUTES);
+		createEReference(sourceSectionClassEClass, SOURCE_SECTION_CLASS__CONTAINER);
 
 		targetSectionClassEClass = createEClass(TARGET_SECTION_CLASS);
 		createEReference(targetSectionClassEClass, TARGET_SECTION_CLASS__REFERENCES);
+		createEReference(targetSectionClassEClass, TARGET_SECTION_CLASS__ATTRIBUTES);
+		createEReference(targetSectionClassEClass, TARGET_SECTION_CLASS__CONTAINER);
 
 		referenceEClass = createEClass(REFERENCE);
 		createEReference(referenceEClass, REFERENCE__EREFERENCE);
@@ -824,7 +906,13 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		attributeEClass = createEClass(ATTRIBUTE);
 		createEReference(attributeEClass, ATTRIBUTE__VALUE_SPECIFICATION);
 		createEAttribute(attributeEClass, ATTRIBUTE__UNIQUE);
-		createEReference(attributeEClass, ATTRIBUTE__OWNING_CLASS);
+
+		sourceSectionAttributeEClass = createEClass(SOURCE_SECTION_ATTRIBUTE);
+		createEReference(sourceSectionAttributeEClass, SOURCE_SECTION_ATTRIBUTE__OWNING_CLASS);
+		createEReference(sourceSectionAttributeEClass, SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE);
+
+		targetSectionAttributeEClass = createEClass(TARGET_SECTION_ATTRIBUTE);
+		createEReference(targetSectionAttributeEClass, TARGET_SECTION_ATTRIBUTE__OWNING_CLASS);
 
 		actualAttributeEClass = createEClass(ACTUAL_ATTRIBUTE);
 		createEReference(actualAttributeEClass, ACTUAL_ATTRIBUTE__ATTRIBUTE);
@@ -904,8 +992,10 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		sourceSectionNonContainmentReferenceEClass.getESuperTypes().add(this.getNonContainmentReference());
 		sourceSectionNonContainmentReferenceEClass.getESuperTypes().add(this.getSourceSectionReference());
 		attributeEClass.getESuperTypes().add(this.getMetaModelElement());
-		actualAttributeEClass.getESuperTypes().add(this.getAttribute());
-		virtualAttributeEClass.getESuperTypes().add(this.getAttribute());
+		sourceSectionAttributeEClass.getESuperTypes().add(this.getAttribute());
+		targetSectionAttributeEClass.getESuperTypes().add(this.getAttribute());
+		actualAttributeEClass.getESuperTypes().add(this.getTargetSectionAttribute());
+		virtualAttributeEClass.getESuperTypes().add(this.getTargetSectionAttribute());
 		attributeValueSpecificationEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		equalityMatcherEClass.getESuperTypes().add(this.getCaseSensitiveConstraint());
 		attributeValueConstraintEClass.getESuperTypes().add(this.getAttributeValueSpecification());
@@ -922,17 +1012,21 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		initEClass(classEClass, pamtram.metamodel.Class.class, "Class", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getClass_EClass(), ecorePackage.getEClass(), null, "eClass", null, 1, 1, pamtram.metamodel.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getClass_Attributes(), this.getAttribute(), this.getAttribute_OwningClass(), "attributes", null, 0, -1, pamtram.metamodel.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getClass_Container(), this.getClass_(), null, "container", null, 0, 1, pamtram.metamodel.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getClass_Cardinality(), this.getCardinalityType(), "cardinality", "ONE", 1, 1, pamtram.metamodel.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getClass__GetReferencesGeneric(), this.getReference(), "getReferencesGeneric", 0, -1, IS_UNIQUE, IS_ORDERED);
 
+		initEOperation(getClass__GetAttributesGeneric(), this.getAttribute(), "getAttributesGeneric", 0, -1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(sourceSectionClassEClass, SourceSectionClass.class, "SourceSectionClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSourceSectionClass_References(), this.getSourceSectionReference(), this.getSourceSectionReference_OwningClass(), "references", null, 0, -1, SourceSectionClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSourceSectionClass_Attributes(), this.getSourceSectionAttribute(), this.getSourceSectionAttribute_OwningClass(), "attributes", null, 0, -1, SourceSectionClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSourceSectionClass_Container(), this.getSourceSectionClass(), null, "container", null, 0, 1, SourceSectionClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(targetSectionClassEClass, TargetSectionClass.class, "TargetSectionClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTargetSectionClass_References(), this.getTargetSectionReference(), this.getTargetSectionReference_OwningClass(), "references", null, 0, -1, TargetSectionClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTargetSectionClass_Attributes(), this.getTargetSectionAttribute(), this.getTargetSectionAttribute_OwningClass(), "attributes", null, 0, -1, TargetSectionClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTargetSectionClass_Container(), this.getTargetSectionClass(), null, "container", null, 0, 1, TargetSectionClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(referenceEClass, Reference.class, "Reference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getReference_EReference(), ecorePackage.getEReference(), null, "eReference", null, 1, 1, Reference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -962,7 +1056,13 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEClass(attributeEClass, Attribute.class, "Attribute", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAttribute_ValueSpecification(), this.getAttributeValueSpecification(), null, "valueSpecification", null, 0, -1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttribute_Unique(), ecorePackage.getEBoolean(), "unique", "false", 1, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAttribute_OwningClass(), this.getClass_(), this.getClass_Attributes(), "owningClass", null, 1, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(sourceSectionAttributeEClass, SourceSectionAttribute.class, "SourceSectionAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSourceSectionAttribute_OwningClass(), this.getSourceSectionClass(), this.getSourceSectionClass_Attributes(), "owningClass", null, 1, 1, SourceSectionAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSourceSectionAttribute_Attribute(), ecorePackage.getEAttribute(), null, "attribute", null, 1, 1, SourceSectionAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(targetSectionAttributeEClass, TargetSectionAttribute.class, "TargetSectionAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTargetSectionAttribute_OwningClass(), this.getTargetSectionClass(), this.getTargetSectionClass_Attributes(), "owningClass", null, 1, 1, TargetSectionAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(actualAttributeEClass, ActualAttribute.class, "ActualAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getActualAttribute_Attribute(), ecorePackage.getEAttribute(), null, "attribute", null, 1, 1, ActualAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1026,7 +1126,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		   source, 
 		   new String[] {
 			 "constraints", "eClassMatchesParentEReference\r\nvariableCardinalityIsValid"
-		   });				
+		   });					
 		addAnnotation
 		  (referenceEClass, 
 		   source, 
@@ -1061,7 +1161,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		   new String[] {
 			 "eClassMatchesParentEReference", "if metamodel::Reference.oclAsType(ecore::EClass).isSuperTypeOf(self.oclAsType(ecore::EObject).eContainer().eClass()) then self.oclAsType(ecore::EObject).eContainer().oclAsType(metamodel::Reference).eReference.oclAsType(ecore::\r\nEReference).eReferenceType.isSuperTypeOf(self.eClass.oclAsType(ecore::EClass)) else true endif",
 			 "cardinalityIsValid", "if metamodel::Reference.oclAsType(ecore::EClass).isSuperTypeOf(self.oclAsType(ecore::EObject).eContainer().eClass()) then not ((self.cardinality <> 0) and (self.oclAsType(ecore::EObject).eContainer().oclAsType(metamodel::Reference).eReference.oclAsType(ecore::EReference).upperBound <= 1)) else true endif"
-		   });				
+		   });					
 		addAnnotation
 		  (referenceEClass, 
 		   source, 

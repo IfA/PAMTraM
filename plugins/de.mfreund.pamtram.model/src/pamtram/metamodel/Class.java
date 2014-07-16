@@ -14,8 +14,6 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are supported:
  * <ul>
  *   <li>{@link pamtram.metamodel.Class#getEClass <em>EClass</em>}</li>
- *   <li>{@link pamtram.metamodel.Class#getAttributes <em>Attributes</em>}</li>
- *   <li>{@link pamtram.metamodel.Class#getContainer <em>Container</em>}</li>
  *   <li>{@link pamtram.metamodel.Class#getCardinality <em>Cardinality</em>}</li>
  * </ul>
  * </p>
@@ -52,50 +50,6 @@ public interface Class extends MetaModelElement {
 	 * @generated
 	 */
 	void setEClass(EClass value);
-
-	/**
-	 * Returns the value of the '<em><b>Attributes</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.metamodel.Attribute}.
-	 * It is bidirectional and its opposite is '{@link pamtram.metamodel.Attribute#getOwningClass <em>Owning Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Attributes</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Attributes</em>' containment reference list.
-	 * @see pamtram.metamodel.MetamodelPackage#getClass_Attributes()
-	 * @see pamtram.metamodel.Attribute#getOwningClass
-	 * @model opposite="owningClass" containment="true"
-	 * @generated
-	 */
-	EList<Attribute> getAttributes();
-
-	/**
-	 * Returns the value of the '<em><b>Container</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Container</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Container</em>' reference.
-	 * @see #setContainer(Class)
-	 * @see pamtram.metamodel.MetamodelPackage#getClass_Container()
-	 * @model
-	 * @generated
-	 */
-	Class getContainer();
-
-	/**
-	 * Sets the value of the '{@link pamtram.metamodel.Class#getContainer <em>Container</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Container</em>' reference.
-	 * @see #getContainer()
-	 * @generated
-	 */
-	void setContainer(Class value);
 
 	/**
 	 * Returns the value of the '<em><b>Cardinality</b></em>' attribute.
@@ -135,5 +89,14 @@ public interface Class extends MetaModelElement {
 	 * @generated
 	 */
 	EList<Reference> getReferencesGeneric();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<Attribute> attrs= new org.eclipse.emf.common.util.BasicEList<Attribute>();\nif(this instanceof SourceSectionClass){\n attrs.addAll(((SourceSectionClass) this).getAttributes());\n\n} else if(this instanceof TargetSectionClass){\n attrs.addAll(((TargetSectionClass) this).getAttributes());\n}\nreturn attrs;'"
+	 * @generated
+	 */
+	EList<Attribute> getAttributesGeneric();
 
 } // Class

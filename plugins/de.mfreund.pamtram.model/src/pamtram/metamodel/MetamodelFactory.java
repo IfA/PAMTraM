@@ -76,6 +76,24 @@ public interface MetamodelFactory extends EFactory {
 	SourceSectionNonContainmentReference createSourceSectionNonContainmentReference();
 
 	/**
+	 * Returns a new object of class '<em>Source Section Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Source Section Attribute</em>'.
+	 * @generated
+	 */
+	SourceSectionAttribute createSourceSectionAttribute();
+
+	/**
+	 * Returns a new object of class '<em>Target Section Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Target Section Attribute</em>'.
+	 * @generated
+	 */
+	TargetSectionAttribute createTargetSectionAttribute();
+
+	/**
 	 * Returns a new object of class '<em>Actual Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -4,19 +4,16 @@ package pamtram.mapping.impl;
 
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.MappingPackage;
-
-import pamtram.metamodel.Attribute;
+import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.TargetSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,7 +39,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 * @generated
 	 * @ordered
 	 */
-	protected Attribute sourceAttribute;
+	protected SourceSectionAttribute sourceAttribute;
 
 	/**
 	 * The cached value of the '{@link #getTargetAttribute() <em>Target Attribute</em>}' reference.
@@ -52,7 +49,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 * @generated
 	 * @ordered
 	 */
-	protected Attribute targetAttribute;
+	protected TargetSectionAttribute targetAttribute;
 
 	/**
 	 * The cached value of the '{@link #getModifier() <em>Modifier</em>}' reference list.
@@ -88,10 +85,10 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Attribute getSourceAttribute() {
+	public SourceSectionAttribute getSourceAttribute() {
 		if (sourceAttribute != null && sourceAttribute.eIsProxy()) {
 			InternalEObject oldSourceAttribute = (InternalEObject)sourceAttribute;
-			sourceAttribute = (Attribute)eResolveProxy(oldSourceAttribute);
+			sourceAttribute = (SourceSectionAttribute)eResolveProxy(oldSourceAttribute);
 			if (sourceAttribute != oldSourceAttribute) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTE, oldSourceAttribute, sourceAttribute));
@@ -105,7 +102,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Attribute basicGetSourceAttribute() {
+	public SourceSectionAttribute basicGetSourceAttribute() {
 		return sourceAttribute;
 	}
 
@@ -114,8 +111,8 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSourceAttribute(Attribute newSourceAttribute) {
-		Attribute oldSourceAttribute = sourceAttribute;
+	public void setSourceAttribute(SourceSectionAttribute newSourceAttribute) {
+		SourceSectionAttribute oldSourceAttribute = sourceAttribute;
 		sourceAttribute = newSourceAttribute;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTE, oldSourceAttribute, sourceAttribute));
@@ -126,10 +123,10 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Attribute getTargetAttribute() {
+	public TargetSectionAttribute getTargetAttribute() {
 		if (targetAttribute != null && targetAttribute.eIsProxy()) {
 			InternalEObject oldTargetAttribute = (InternalEObject)targetAttribute;
-			targetAttribute = (Attribute)eResolveProxy(oldTargetAttribute);
+			targetAttribute = (TargetSectionAttribute)eResolveProxy(oldTargetAttribute);
 			if (targetAttribute != oldTargetAttribute) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE, oldTargetAttribute, targetAttribute));
@@ -143,7 +140,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Attribute basicGetTargetAttribute() {
+	public TargetSectionAttribute basicGetTargetAttribute() {
 		return targetAttribute;
 	}
 
@@ -152,8 +149,8 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTargetAttribute(Attribute newTargetAttribute) {
-		Attribute oldTargetAttribute = targetAttribute;
+	public void setTargetAttribute(TargetSectionAttribute newTargetAttribute) {
+		TargetSectionAttribute oldTargetAttribute = targetAttribute;
 		targetAttribute = newTargetAttribute;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE, oldTargetAttribute, targetAttribute));
@@ -201,10 +198,10 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTE:
-				setSourceAttribute((Attribute)newValue);
+				setSourceAttribute((SourceSectionAttribute)newValue);
 				return;
 			case MappingPackage.ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE:
-				setTargetAttribute((Attribute)newValue);
+				setTargetAttribute((TargetSectionAttribute)newValue);
 				return;
 			case MappingPackage.ATTRIBUTE_MATCHER__MODIFIER:
 				getModifier().clear();
@@ -223,10 +220,10 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTE:
-				setSourceAttribute((Attribute)null);
+				setSourceAttribute((SourceSectionAttribute)null);
 				return;
 			case MappingPackage.ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE:
-				setTargetAttribute((Attribute)null);
+				setTargetAttribute((TargetSectionAttribute)null);
 				return;
 			case MappingPackage.ATTRIBUTE_MATCHER__MODIFIER:
 				getModifier().clear();

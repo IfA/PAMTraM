@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EAttribute;
  * @model
  * @generated
  */
-public interface ActualAttribute extends Attribute {
+public interface ActualAttribute extends TargetSectionAttribute {
 	/**
 	 * Returns the value of the '<em><b>Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->

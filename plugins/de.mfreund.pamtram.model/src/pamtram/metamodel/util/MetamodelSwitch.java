@@ -20,11 +20,13 @@ import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.RegExMatcher;
+import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
 import pamtram.metamodel.SourceSectionNonContainmentReference;
 import pamtram.metamodel.SourceSectionReference;
 import pamtram.metamodel.SubstringMatcher;
+import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionContainmentReference;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
@@ -217,9 +219,28 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE: {
+				SourceSectionAttribute sourceSectionAttribute = (SourceSectionAttribute)theEObject;
+				T result = caseSourceSectionAttribute(sourceSectionAttribute);
+				if (result == null) result = caseAttribute(sourceSectionAttribute);
+				if (result == null) result = caseMetaModelElement(sourceSectionAttribute);
+				if (result == null) result = caseNamedElement(sourceSectionAttribute);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE: {
+				TargetSectionAttribute targetSectionAttribute = (TargetSectionAttribute)theEObject;
+				T result = caseTargetSectionAttribute(targetSectionAttribute);
+				if (result == null) result = caseAttribute(targetSectionAttribute);
+				if (result == null) result = caseMetaModelElement(targetSectionAttribute);
+				if (result == null) result = caseNamedElement(targetSectionAttribute);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MetamodelPackage.ACTUAL_ATTRIBUTE: {
 				ActualAttribute actualAttribute = (ActualAttribute)theEObject;
 				T result = caseActualAttribute(actualAttribute);
+				if (result == null) result = caseTargetSectionAttribute(actualAttribute);
 				if (result == null) result = caseAttribute(actualAttribute);
 				if (result == null) result = caseMetaModelElement(actualAttribute);
 				if (result == null) result = caseNamedElement(actualAttribute);
@@ -229,6 +250,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 			case MetamodelPackage.VIRTUAL_ATTRIBUTE: {
 				VirtualAttribute virtualAttribute = (VirtualAttribute)theEObject;
 				T result = caseVirtualAttribute(virtualAttribute);
+				if (result == null) result = caseTargetSectionAttribute(virtualAttribute);
 				if (result == null) result = caseAttribute(virtualAttribute);
 				if (result == null) result = caseMetaModelElement(virtualAttribute);
 				if (result == null) result = caseNamedElement(virtualAttribute);
@@ -519,6 +541,36 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAttribute(Attribute object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Source Section Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Source Section Attribute</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSourceSectionAttribute(SourceSectionAttribute object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Target Section Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Target Section Attribute</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTargetSectionAttribute(TargetSectionAttribute object) {
 		return null;
 	}
 

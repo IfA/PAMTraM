@@ -18,10 +18,12 @@ import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.RegExMatcher;
+import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
 import pamtram.metamodel.SourceSectionNonContainmentReference;
 import pamtram.metamodel.SubstringMatcher;
+import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionContainmentReference;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
@@ -77,6 +79,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			case MetamodelPackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE: return createTargetSectionNonContainmentReference();
 			case MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE: return createSourceSectionContainmentReference();
 			case MetamodelPackage.SOURCE_SECTION_NON_CONTAINMENT_REFERENCE: return createSourceSectionNonContainmentReference();
+			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE: return createSourceSectionAttribute();
+			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE: return createTargetSectionAttribute();
 			case MetamodelPackage.ACTUAL_ATTRIBUTE: return createActualAttribute();
 			case MetamodelPackage.VIRTUAL_ATTRIBUTE: return createVirtualAttribute();
 			case MetamodelPackage.ATTRIBUTE_VALUE_SPECIFICATION: return createAttributeValueSpecification();
@@ -182,6 +186,26 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	public SourceSectionNonContainmentReference createSourceSectionNonContainmentReference() {
 		SourceSectionNonContainmentReferenceImpl sourceSectionNonContainmentReference = new SourceSectionNonContainmentReferenceImpl();
 		return sourceSectionNonContainmentReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SourceSectionAttribute createSourceSectionAttribute() {
+		SourceSectionAttributeImpl sourceSectionAttribute = new SourceSectionAttributeImpl();
+		return sourceSectionAttribute;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TargetSectionAttribute createTargetSectionAttribute() {
+		TargetSectionAttributeImpl targetSectionAttribute = new TargetSectionAttributeImpl();
+		return targetSectionAttribute;
 	}
 
 	/**

@@ -3,16 +3,12 @@
 package pamtram.metamodel.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.CardinalityType;
@@ -29,8 +25,6 @@ import pamtram.metamodel.TargetSectionClass;
  * The following features are implemented:
  * <ul>
  *   <li>{@link pamtram.metamodel.impl.ClassImpl#getEClass <em>EClass</em>}</li>
- *   <li>{@link pamtram.metamodel.impl.ClassImpl#getAttributes <em>Attributes</em>}</li>
- *   <li>{@link pamtram.metamodel.impl.ClassImpl#getContainer <em>Container</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.ClassImpl#getCardinality <em>Cardinality</em>}</li>
  * </ul>
  * </p>
@@ -47,26 +41,6 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 	 * @ordered
 	 */
 	protected EClass eClass;
-
-	/**
-	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAttributes()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Attribute> attributes;
-
-	/**
-	 * The cached value of the '{@link #getContainer() <em>Container</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getContainer()
-	 * @generated
-	 * @ordered
-	 */
-	protected pamtram.metamodel.Class container;
 
 	/**
 	 * The default value of the '{@link #getCardinality() <em>Cardinality</em>}' attribute.
@@ -150,56 +124,6 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Attribute> getAttributes() {
-		if (attributes == null) {
-			attributes = new EObjectContainmentWithInverseEList<Attribute>(Attribute.class, this, MetamodelPackage.CLASS__ATTRIBUTES, MetamodelPackage.ATTRIBUTE__OWNING_CLASS);
-		}
-		return attributes;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public pamtram.metamodel.Class getContainer() {
-		if (container != null && container.eIsProxy()) {
-			InternalEObject oldContainer = (InternalEObject)container;
-			container = (pamtram.metamodel.Class)eResolveProxy(oldContainer);
-			if (container != oldContainer) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.CLASS__CONTAINER, oldContainer, container));
-			}
-		}
-		return container;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public pamtram.metamodel.Class basicGetContainer() {
-		return container;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setContainer(pamtram.metamodel.Class newContainer) {
-		pamtram.metamodel.Class oldContainer = container;
-		container = newContainer;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.CLASS__CONTAINER, oldContainer, container));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public CardinalityType getCardinality() {
 		return cardinality;
 	}
@@ -237,28 +161,15 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case MetamodelPackage.CLASS__ATTRIBUTES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAttributes()).basicAdd(otherEnd, msgs);
+	public EList<Attribute> getAttributesGeneric() {
+		EList<Attribute> attrs= new org.eclipse.emf.common.util.BasicEList<Attribute>();
+		if(this instanceof SourceSectionClass){
+		 attrs.addAll(((SourceSectionClass) this).getAttributes());
+		
+		} else if(this instanceof TargetSectionClass){
+		 attrs.addAll(((TargetSectionClass) this).getAttributes());
 		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case MetamodelPackage.CLASS__ATTRIBUTES:
-				return ((InternalEList<?>)getAttributes()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		return attrs;
 	}
 
 	/**
@@ -272,11 +183,6 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 			case MetamodelPackage.CLASS__ECLASS:
 				if (resolve) return getEClass();
 				return basicGetEClass();
-			case MetamodelPackage.CLASS__ATTRIBUTES:
-				return getAttributes();
-			case MetamodelPackage.CLASS__CONTAINER:
-				if (resolve) return getContainer();
-				return basicGetContainer();
 			case MetamodelPackage.CLASS__CARDINALITY:
 				return getCardinality();
 		}
@@ -288,19 +194,11 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MetamodelPackage.CLASS__ECLASS:
 				setEClass((EClass)newValue);
-				return;
-			case MetamodelPackage.CLASS__ATTRIBUTES:
-				getAttributes().clear();
-				getAttributes().addAll((Collection<? extends Attribute>)newValue);
-				return;
-			case MetamodelPackage.CLASS__CONTAINER:
-				setContainer((pamtram.metamodel.Class)newValue);
 				return;
 			case MetamodelPackage.CLASS__CARDINALITY:
 				setCardinality((CardinalityType)newValue);
@@ -320,12 +218,6 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 			case MetamodelPackage.CLASS__ECLASS:
 				setEClass((EClass)null);
 				return;
-			case MetamodelPackage.CLASS__ATTRIBUTES:
-				getAttributes().clear();
-				return;
-			case MetamodelPackage.CLASS__CONTAINER:
-				setContainer((pamtram.metamodel.Class)null);
-				return;
 			case MetamodelPackage.CLASS__CARDINALITY:
 				setCardinality(CARDINALITY_EDEFAULT);
 				return;
@@ -343,10 +235,6 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 		switch (featureID) {
 			case MetamodelPackage.CLASS__ECLASS:
 				return eClass != null;
-			case MetamodelPackage.CLASS__ATTRIBUTES:
-				return attributes != null && !attributes.isEmpty();
-			case MetamodelPackage.CLASS__CONTAINER:
-				return container != null;
 			case MetamodelPackage.CLASS__CARDINALITY:
 				return cardinality != CARDINALITY_EDEFAULT;
 		}
@@ -363,6 +251,8 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 		switch (operationID) {
 			case MetamodelPackage.CLASS___GET_REFERENCES_GENERIC:
 				return getReferencesGeneric();
+			case MetamodelPackage.CLASS___GET_ATTRIBUTES_GENERIC:
+				return getAttributesGeneric();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

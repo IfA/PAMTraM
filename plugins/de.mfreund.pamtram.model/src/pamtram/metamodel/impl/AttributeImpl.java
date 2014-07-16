@@ -24,7 +24,6 @@ import pamtram.metamodel.MetamodelPackage;
  * <ul>
  *   <li>{@link pamtram.metamodel.impl.AttributeImpl#getValueSpecification <em>Value Specification</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.AttributeImpl#isUnique <em>Unique</em>}</li>
- *   <li>{@link pamtram.metamodel.impl.AttributeImpl#getOwningClass <em>Owning Class</em>}</li>
  * </ul>
  * </p>
  *
@@ -118,55 +117,13 @@ public abstract class AttributeImpl extends MetaModelElementImpl implements Attr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public pamtram.metamodel.Class getOwningClass() {
-		if (eContainerFeatureID() != MetamodelPackage.ATTRIBUTE__OWNING_CLASS) return null;
-		return (pamtram.metamodel.Class)eInternalContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case MetamodelPackage.ATTRIBUTE__OWNING_CLASS:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return eBasicSetContainer(otherEnd, MetamodelPackage.ATTRIBUTE__OWNING_CLASS, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case MetamodelPackage.ATTRIBUTE__VALUE_SPECIFICATION:
 				return ((InternalEList<?>)getValueSpecification()).basicRemove(otherEnd, msgs);
-			case MetamodelPackage.ATTRIBUTE__OWNING_CLASS:
-				return eBasicSetContainer(null, MetamodelPackage.ATTRIBUTE__OWNING_CLASS, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case MetamodelPackage.ATTRIBUTE__OWNING_CLASS:
-				return eInternalContainer().eInverseRemove(this, MetamodelPackage.CLASS__ATTRIBUTES, pamtram.metamodel.Class.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -181,8 +138,6 @@ public abstract class AttributeImpl extends MetaModelElementImpl implements Attr
 				return getValueSpecification();
 			case MetamodelPackage.ATTRIBUTE__UNIQUE:
 				return isUnique();
-			case MetamodelPackage.ATTRIBUTE__OWNING_CLASS:
-				return getOwningClass();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -237,8 +192,6 @@ public abstract class AttributeImpl extends MetaModelElementImpl implements Attr
 				return valueSpecification != null && !valueSpecification.isEmpty();
 			case MetamodelPackage.ATTRIBUTE__UNIQUE:
 				return unique != UNIQUE_EDEFAULT;
-			case MetamodelPackage.ATTRIBUTE__OWNING_CLASS:
-				return getOwningClass() != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -3,10 +3,8 @@
 package pamtram.mapping;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
-
-import pamtram.metamodel.Attribute;
+import pamtram.metamodel.TargetSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,12 +33,12 @@ public interface ConnectionHintTargetAttribute extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target Attribute</em>' reference.
-	 * @see #setTargetAttribute(Attribute)
+	 * @see #setTargetAttribute(TargetSectionAttribute)
 	 * @see pamtram.mapping.MappingPackage#getConnectionHintTargetAttribute_TargetAttribute()
 	 * @model required="true"
 	 * @generated
 	 */
-	Attribute getTargetAttribute();
+	TargetSectionAttribute getTargetAttribute();
 
 	/**
 	 * Sets the value of the '{@link pamtram.mapping.ConnectionHintTargetAttribute#getTargetAttribute <em>Target Attribute</em>}' reference.
@@ -50,7 +48,7 @@ public interface ConnectionHintTargetAttribute extends EObject {
 	 * @see #getTargetAttribute()
 	 * @generated
 	 */
-	void setTargetAttribute(Attribute value);
+	void setTargetAttribute(TargetSectionAttribute value);
 
 	/**
 	 * Returns the value of the '<em><b>Modifier</b></em>' reference list.

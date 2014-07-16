@@ -4,7 +4,7 @@ package pamtram.mapping;
 
 import org.eclipse.emf.common.util.EList;
 import pamtram.NamedElement;
-import pamtram.metamodel.Attribute;
+import pamtram.metamodel.SourceSectionAttribute;
 
 
 /**
@@ -35,12 +35,12 @@ public interface ModelConnectionHint extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source Attribute</em>' reference.
-	 * @see #setSourceAttribute(Attribute)
+	 * @see #setSourceAttribute(SourceSectionAttribute)
 	 * @see pamtram.mapping.MappingPackage#getModelConnectionHint_SourceAttribute()
 	 * @model required="true"
 	 * @generated
 	 */
-	Attribute getSourceAttribute();
+	SourceSectionAttribute getSourceAttribute();
 
 	/**
 	 * Sets the value of the '{@link pamtram.mapping.ModelConnectionHint#getSourceAttribute <em>Source Attribute</em>}' reference.
@@ -50,7 +50,7 @@ public interface ModelConnectionHint extends NamedElement {
 	 * @see #getSourceAttribute()
 	 * @generated
 	 */
-	void setSourceAttribute(Attribute value);
+	void setSourceAttribute(SourceSectionAttribute value);
 
 	/**
 	 * Returns the value of the '<em><b>Target Attributes</b></em>' containment reference list.

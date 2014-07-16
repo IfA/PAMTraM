@@ -3,24 +3,17 @@
 package pamtram.mapping.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.SimpleAttributeMapping;
-
-import pamtram.metamodel.Attribute;
+import pamtram.metamodel.SourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,7 +38,7 @@ public class SimpleAttributeMappingImpl extends AttributeMappingImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected Attribute source;
+	protected SourceSectionAttribute source;
 
 	/**
 	 * The cached value of the '{@link #getModifier() <em>Modifier</em>}' reference list.
@@ -81,10 +74,10 @@ public class SimpleAttributeMappingImpl extends AttributeMappingImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Attribute getSource() {
+	public SourceSectionAttribute getSource() {
 		if (source != null && source.eIsProxy()) {
 			InternalEObject oldSource = (InternalEObject)source;
-			source = (Attribute)eResolveProxy(oldSource);
+			source = (SourceSectionAttribute)eResolveProxy(oldSource);
 			if (source != oldSource) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.SIMPLE_ATTRIBUTE_MAPPING__SOURCE, oldSource, source));
@@ -98,7 +91,7 @@ public class SimpleAttributeMappingImpl extends AttributeMappingImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Attribute basicGetSource() {
+	public SourceSectionAttribute basicGetSource() {
 		return source;
 	}
 
@@ -107,8 +100,8 @@ public class SimpleAttributeMappingImpl extends AttributeMappingImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSource(Attribute newSource) {
-		Attribute oldSource = source;
+	public void setSource(SourceSectionAttribute newSource) {
+		SourceSectionAttribute oldSource = source;
 		source = newSource;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.SIMPLE_ATTRIBUTE_MAPPING__SOURCE, oldSource, source));
@@ -153,7 +146,7 @@ public class SimpleAttributeMappingImpl extends AttributeMappingImpl implements 
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MappingPackage.SIMPLE_ATTRIBUTE_MAPPING__SOURCE:
-				setSource((Attribute)newValue);
+				setSource((SourceSectionAttribute)newValue);
 				return;
 			case MappingPackage.SIMPLE_ATTRIBUTE_MAPPING__MODIFIER:
 				getModifier().clear();
@@ -172,7 +165,7 @@ public class SimpleAttributeMappingImpl extends AttributeMappingImpl implements 
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MappingPackage.SIMPLE_ATTRIBUTE_MAPPING__SOURCE:
-				setSource((Attribute)null);
+				setSource((SourceSectionAttribute)null);
 				return;
 			case MappingPackage.SIMPLE_ATTRIBUTE_MAPPING__MODIFIER:
 				getModifier().clear();

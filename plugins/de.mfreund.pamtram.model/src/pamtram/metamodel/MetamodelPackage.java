@@ -136,31 +136,13 @@ public interface MetamodelPackage extends EPackage {
 	int CLASS__ECLASS = META_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS__ATTRIBUTES = META_MODEL_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Container</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS__CONTAINER = META_MODEL_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Cardinality</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__CARDINALITY = META_MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int CLASS__CARDINALITY = META_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Class</em>' class.
@@ -169,7 +151,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_FEATURE_COUNT = META_MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int CLASS_FEATURE_COUNT = META_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -190,13 +172,22 @@ public interface MetamodelPackage extends EPackage {
 	int CLASS___GET_REFERENCES_GENERIC = META_MODEL_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Get Attributes Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS___GET_ATTRIBUTES_GENERIC = META_MODEL_ELEMENT_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_OPERATION_COUNT = META_MODEL_ELEMENT_OPERATION_COUNT + 1;
+	int CLASS_OPERATION_COUNT = META_MODEL_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link pamtram.metamodel.impl.SourceSectionClassImpl <em>Source Section Class</em>}' class.
@@ -227,24 +218,6 @@ public interface MetamodelPackage extends EPackage {
 	int SOURCE_SECTION_CLASS__ECLASS = CLASS__ECLASS;
 
 	/**
-	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOURCE_SECTION_CLASS__ATTRIBUTES = CLASS__ATTRIBUTES;
-
-	/**
-	 * The feature id for the '<em><b>Container</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOURCE_SECTION_CLASS__CONTAINER = CLASS__CONTAINER;
-
-	/**
 	 * The feature id for the '<em><b>Cardinality</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -263,13 +236,31 @@ public interface MetamodelPackage extends EPackage {
 	int SOURCE_SECTION_CLASS__REFERENCES = CLASS_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_CLASS__ATTRIBUTES = CLASS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Container</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_CLASS__CONTAINER = CLASS_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Source Section Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 1;
+	int SOURCE_SECTION_CLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -288,6 +279,15 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int SOURCE_SECTION_CLASS___GET_REFERENCES_GENERIC = CLASS___GET_REFERENCES_GENERIC;
+
+	/**
+	 * The operation id for the '<em>Get Attributes Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_CLASS___GET_ATTRIBUTES_GENERIC = CLASS___GET_ATTRIBUTES_GENERIC;
 
 	/**
 	 * The number of operations of the '<em>Source Section Class</em>' class.
@@ -327,24 +327,6 @@ public interface MetamodelPackage extends EPackage {
 	int TARGET_SECTION_CLASS__ECLASS = CLASS__ECLASS;
 
 	/**
-	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TARGET_SECTION_CLASS__ATTRIBUTES = CLASS__ATTRIBUTES;
-
-	/**
-	 * The feature id for the '<em><b>Container</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TARGET_SECTION_CLASS__CONTAINER = CLASS__CONTAINER;
-
-	/**
 	 * The feature id for the '<em><b>Cardinality</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -363,13 +345,31 @@ public interface MetamodelPackage extends EPackage {
 	int TARGET_SECTION_CLASS__REFERENCES = CLASS_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CLASS__ATTRIBUTES = CLASS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Container</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CLASS__CONTAINER = CLASS_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Target Section Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 1;
+	int TARGET_SECTION_CLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -388,6 +388,15 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int TARGET_SECTION_CLASS___GET_REFERENCES_GENERIC = CLASS___GET_REFERENCES_GENERIC;
+
+	/**
+	 * The operation id for the '<em>Get Attributes Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CLASS___GET_ATTRIBUTES_GENERIC = CLASS___GET_ATTRIBUTES_GENERIC;
 
 	/**
 	 * The number of operations of the '<em>Target Section Class</em>' class.
@@ -1021,22 +1030,13 @@ public interface MetamodelPackage extends EPackage {
 	int ATTRIBUTE__UNIQUE = META_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE__OWNING_CLASS = META_MODEL_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
 	 * The number of structural features of the '<em>Attribute</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_FEATURE_COUNT = META_MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int ATTRIBUTE_FEATURE_COUNT = META_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -1058,14 +1058,14 @@ public interface MetamodelPackage extends EPackage {
 
 
 	/**
-	 * The meta object id for the '{@link pamtram.metamodel.impl.ActualAttributeImpl <em>Actual Attribute</em>}' class.
+	 * The meta object id for the '{@link pamtram.metamodel.impl.SourceSectionAttributeImpl <em>Source Section Attribute</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.metamodel.impl.ActualAttributeImpl
-	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getActualAttribute()
+	 * @see pamtram.metamodel.impl.SourceSectionAttributeImpl
+	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getSourceSectionAttribute()
 	 * @generated
 	 */
-	int ACTUAL_ATTRIBUTE = 14;
+	int SOURCE_SECTION_ATTRIBUTE = 14;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1074,7 +1074,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTUAL_ATTRIBUTE__NAME = ATTRIBUTE__NAME;
+	int SOURCE_SECTION_ATTRIBUTE__NAME = ATTRIBUTE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Value Specification</b></em>' containment reference list.
@@ -1083,7 +1083,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTUAL_ATTRIBUTE__VALUE_SPECIFICATION = ATTRIBUTE__VALUE_SPECIFICATION;
+	int SOURCE_SECTION_ATTRIBUTE__VALUE_SPECIFICATION = ATTRIBUTE__VALUE_SPECIFICATION;
 
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
@@ -1092,7 +1092,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTUAL_ATTRIBUTE__UNIQUE = ATTRIBUTE__UNIQUE;
+	int SOURCE_SECTION_ATTRIBUTE__UNIQUE = ATTRIBUTE__UNIQUE;
 
 	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
@@ -1101,7 +1101,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTUAL_ATTRIBUTE__OWNING_CLASS = ATTRIBUTE__OWNING_CLASS;
+	int SOURCE_SECTION_ATTRIBUTE__OWNING_CLASS = ATTRIBUTE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Attribute</b></em>' reference.
@@ -1110,16 +1110,16 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTUAL_ATTRIBUTE__ATTRIBUTE = ATTRIBUTE_FEATURE_COUNT + 0;
+	int SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE = ATTRIBUTE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Actual Attribute</em>' class.
+	 * The number of structural features of the '<em>Source Section Attribute</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTUAL_ATTRIBUTE_FEATURE_COUNT = ATTRIBUTE_FEATURE_COUNT + 1;
+	int SOURCE_SECTION_ATTRIBUTE_FEATURE_COUNT = ATTRIBUTE_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -1128,7 +1128,162 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTUAL_ATTRIBUTE___GET_CONTAINING_SECTION = ATTRIBUTE___GET_CONTAINING_SECTION;
+	int SOURCE_SECTION_ATTRIBUTE___GET_CONTAINING_SECTION = ATTRIBUTE___GET_CONTAINING_SECTION;
+
+	/**
+	 * The number of operations of the '<em>Source Section Attribute</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_ATTRIBUTE_OPERATION_COUNT = ATTRIBUTE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.metamodel.impl.TargetSectionAttributeImpl <em>Target Section Attribute</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.metamodel.impl.TargetSectionAttributeImpl
+	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getTargetSectionAttribute()
+	 * @generated
+	 */
+	int TARGET_SECTION_ATTRIBUTE = 15;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ATTRIBUTE__NAME = ATTRIBUTE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Value Specification</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ATTRIBUTE__VALUE_SPECIFICATION = ATTRIBUTE__VALUE_SPECIFICATION;
+
+	/**
+	 * The feature id for the '<em><b>Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ATTRIBUTE__UNIQUE = ATTRIBUTE__UNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ATTRIBUTE__OWNING_CLASS = ATTRIBUTE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Target Section Attribute</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ATTRIBUTE_FEATURE_COUNT = ATTRIBUTE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Containing Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ATTRIBUTE___GET_CONTAINING_SECTION = ATTRIBUTE___GET_CONTAINING_SECTION;
+
+	/**
+	 * The number of operations of the '<em>Target Section Attribute</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ATTRIBUTE_OPERATION_COUNT = ATTRIBUTE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.metamodel.impl.ActualAttributeImpl <em>Actual Attribute</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.metamodel.impl.ActualAttributeImpl
+	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getActualAttribute()
+	 * @generated
+	 */
+	int ACTUAL_ATTRIBUTE = 16;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUAL_ATTRIBUTE__NAME = TARGET_SECTION_ATTRIBUTE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Value Specification</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUAL_ATTRIBUTE__VALUE_SPECIFICATION = TARGET_SECTION_ATTRIBUTE__VALUE_SPECIFICATION;
+
+	/**
+	 * The feature id for the '<em><b>Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUAL_ATTRIBUTE__UNIQUE = TARGET_SECTION_ATTRIBUTE__UNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUAL_ATTRIBUTE__OWNING_CLASS = TARGET_SECTION_ATTRIBUTE__OWNING_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUAL_ATTRIBUTE__ATTRIBUTE = TARGET_SECTION_ATTRIBUTE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Actual Attribute</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUAL_ATTRIBUTE_FEATURE_COUNT = TARGET_SECTION_ATTRIBUTE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Containing Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUAL_ATTRIBUTE___GET_CONTAINING_SECTION = TARGET_SECTION_ATTRIBUTE___GET_CONTAINING_SECTION;
 
 	/**
 	 * The number of operations of the '<em>Actual Attribute</em>' class.
@@ -1137,7 +1292,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTUAL_ATTRIBUTE_OPERATION_COUNT = ATTRIBUTE_OPERATION_COUNT + 0;
+	int ACTUAL_ATTRIBUTE_OPERATION_COUNT = TARGET_SECTION_ATTRIBUTE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.metamodel.impl.VirtualAttributeImpl <em>Virtual Attribute</em>}' class.
@@ -1147,7 +1302,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getVirtualAttribute()
 	 * @generated
 	 */
-	int VIRTUAL_ATTRIBUTE = 15;
+	int VIRTUAL_ATTRIBUTE = 17;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1156,7 +1311,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VIRTUAL_ATTRIBUTE__NAME = ATTRIBUTE__NAME;
+	int VIRTUAL_ATTRIBUTE__NAME = TARGET_SECTION_ATTRIBUTE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Value Specification</b></em>' containment reference list.
@@ -1165,7 +1320,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VIRTUAL_ATTRIBUTE__VALUE_SPECIFICATION = ATTRIBUTE__VALUE_SPECIFICATION;
+	int VIRTUAL_ATTRIBUTE__VALUE_SPECIFICATION = TARGET_SECTION_ATTRIBUTE__VALUE_SPECIFICATION;
 
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
@@ -1174,7 +1329,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VIRTUAL_ATTRIBUTE__UNIQUE = ATTRIBUTE__UNIQUE;
+	int VIRTUAL_ATTRIBUTE__UNIQUE = TARGET_SECTION_ATTRIBUTE__UNIQUE;
 
 	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
@@ -1183,7 +1338,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VIRTUAL_ATTRIBUTE__OWNING_CLASS = ATTRIBUTE__OWNING_CLASS;
+	int VIRTUAL_ATTRIBUTE__OWNING_CLASS = TARGET_SECTION_ATTRIBUTE__OWNING_CLASS;
 
 	/**
 	 * The number of structural features of the '<em>Virtual Attribute</em>' class.
@@ -1192,7 +1347,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VIRTUAL_ATTRIBUTE_FEATURE_COUNT = ATTRIBUTE_FEATURE_COUNT + 0;
+	int VIRTUAL_ATTRIBUTE_FEATURE_COUNT = TARGET_SECTION_ATTRIBUTE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -1201,7 +1356,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VIRTUAL_ATTRIBUTE___GET_CONTAINING_SECTION = ATTRIBUTE___GET_CONTAINING_SECTION;
+	int VIRTUAL_ATTRIBUTE___GET_CONTAINING_SECTION = TARGET_SECTION_ATTRIBUTE___GET_CONTAINING_SECTION;
 
 	/**
 	 * The number of operations of the '<em>Virtual Attribute</em>' class.
@@ -1210,7 +1365,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VIRTUAL_ATTRIBUTE_OPERATION_COUNT = ATTRIBUTE_OPERATION_COUNT + 0;
+	int VIRTUAL_ATTRIBUTE_OPERATION_COUNT = TARGET_SECTION_ATTRIBUTE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.metamodel.impl.AttributeValueSpecificationImpl <em>Attribute Value Specification</em>}' class.
@@ -1220,7 +1375,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getAttributeValueSpecification()
 	 * @generated
 	 */
-	int ATTRIBUTE_VALUE_SPECIFICATION = 16;
+	int ATTRIBUTE_VALUE_SPECIFICATION = 18;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1266,7 +1421,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getAttributeValueConstraint()
 	 * @generated
 	 */
-	int ATTRIBUTE_VALUE_CONSTRAINT = 18;
+	int ATTRIBUTE_VALUE_CONSTRAINT = 20;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1321,7 +1476,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getCaseSensitiveConstraint()
 	 * @generated
 	 */
-	int CASE_SENSITIVE_CONSTRAINT = 23;
+	int CASE_SENSITIVE_CONSTRAINT = 25;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1385,7 +1540,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getEqualityMatcher()
 	 * @generated
 	 */
-	int EQUALITY_MATCHER = 17;
+	int EQUALITY_MATCHER = 19;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1449,7 +1604,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getSubstringMatcher()
 	 * @generated
 	 */
-	int SUBSTRING_MATCHER = 19;
+	int SUBSTRING_MATCHER = 21;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1513,7 +1668,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getBeginningMatcher()
 	 * @generated
 	 */
-	int BEGINNING_MATCHER = 20;
+	int BEGINNING_MATCHER = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1577,7 +1732,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getEndingMatcher()
 	 * @generated
 	 */
-	int ENDING_MATCHER = 21;
+	int ENDING_MATCHER = 23;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1641,7 +1796,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getRegExMatcher()
 	 * @generated
 	 */
-	int REG_EX_MATCHER = 22;
+	int REG_EX_MATCHER = 24;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1696,7 +1851,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getAttributeValueConstraintType()
 	 * @generated
 	 */
-	int ATTRIBUTE_VALUE_CONSTRAINT_TYPE = 24;
+	int ATTRIBUTE_VALUE_CONSTRAINT_TYPE = 26;
 
 	/**
 	 * The meta object id for the '{@link pamtram.metamodel.CardinalityType <em>Cardinality Type</em>}' enum.
@@ -1706,7 +1861,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getCardinalityType()
 	 * @generated
 	 */
-	int CARDINALITY_TYPE = 25;
+	int CARDINALITY_TYPE = 27;
 
 
 	/**
@@ -1751,28 +1906,6 @@ public interface MetamodelPackage extends EPackage {
 	EReference getClass_EClass();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.Class#getAttributes <em>Attributes</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Attributes</em>'.
-	 * @see pamtram.metamodel.Class#getAttributes()
-	 * @see #getClass_()
-	 * @generated
-	 */
-	EReference getClass_Attributes();
-
-	/**
-	 * Returns the meta object for the reference '{@link pamtram.metamodel.Class#getContainer <em>Container</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Container</em>'.
-	 * @see pamtram.metamodel.Class#getContainer()
-	 * @see #getClass_()
-	 * @generated
-	 */
-	EReference getClass_Container();
-
-	/**
 	 * Returns the meta object for the attribute '{@link pamtram.metamodel.Class#getCardinality <em>Cardinality</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1792,6 +1925,16 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getClass__GetReferencesGeneric();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.metamodel.Class#getAttributesGeneric() <em>Get Attributes Generic</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Attributes Generic</em>' operation.
+	 * @see pamtram.metamodel.Class#getAttributesGeneric()
+	 * @generated
+	 */
+	EOperation getClass__GetAttributesGeneric();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.SourceSectionClass <em>Source Section Class</em>}'.
@@ -1815,6 +1958,28 @@ public interface MetamodelPackage extends EPackage {
 	EReference getSourceSectionClass_References();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.SourceSectionClass#getAttributes <em>Attributes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Attributes</em>'.
+	 * @see pamtram.metamodel.SourceSectionClass#getAttributes()
+	 * @see #getSourceSectionClass()
+	 * @generated
+	 */
+	EReference getSourceSectionClass_Attributes();
+
+	/**
+	 * Returns the meta object for the reference '{@link pamtram.metamodel.SourceSectionClass#getContainer <em>Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Container</em>'.
+	 * @see pamtram.metamodel.SourceSectionClass#getContainer()
+	 * @see #getSourceSectionClass()
+	 * @generated
+	 */
+	EReference getSourceSectionClass_Container();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.TargetSectionClass <em>Target Section Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1834,6 +1999,28 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTargetSectionClass_References();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.TargetSectionClass#getAttributes <em>Attributes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Attributes</em>'.
+	 * @see pamtram.metamodel.TargetSectionClass#getAttributes()
+	 * @see #getTargetSectionClass()
+	 * @generated
+	 */
+	EReference getTargetSectionClass_Attributes();
+
+	/**
+	 * Returns the meta object for the reference '{@link pamtram.metamodel.TargetSectionClass#getContainer <em>Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Container</em>'.
+	 * @see pamtram.metamodel.TargetSectionClass#getContainer()
+	 * @see #getTargetSectionClass()
+	 * @generated
+	 */
+	EReference getTargetSectionClass_Container();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.Reference <em>Reference</em>}'.
@@ -2035,15 +2222,57 @@ public interface MetamodelPackage extends EPackage {
 	EAttribute getAttribute_Unique();
 
 	/**
-	 * Returns the meta object for the container reference '{@link pamtram.metamodel.Attribute#getOwningClass <em>Owning Class</em>}'.
+	 * Returns the meta object for class '{@link pamtram.metamodel.SourceSectionAttribute <em>Source Section Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Source Section Attribute</em>'.
+	 * @see pamtram.metamodel.SourceSectionAttribute
+	 * @generated
+	 */
+	EClass getSourceSectionAttribute();
+
+	/**
+	 * Returns the meta object for the container reference '{@link pamtram.metamodel.SourceSectionAttribute#getOwningClass <em>Owning Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>Owning Class</em>'.
-	 * @see pamtram.metamodel.Attribute#getOwningClass()
-	 * @see #getAttribute()
+	 * @see pamtram.metamodel.SourceSectionAttribute#getOwningClass()
+	 * @see #getSourceSectionAttribute()
 	 * @generated
 	 */
-	EReference getAttribute_OwningClass();
+	EReference getSourceSectionAttribute_OwningClass();
+
+	/**
+	 * Returns the meta object for the reference '{@link pamtram.metamodel.SourceSectionAttribute#getAttribute <em>Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Attribute</em>'.
+	 * @see pamtram.metamodel.SourceSectionAttribute#getAttribute()
+	 * @see #getSourceSectionAttribute()
+	 * @generated
+	 */
+	EReference getSourceSectionAttribute_Attribute();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.metamodel.TargetSectionAttribute <em>Target Section Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Target Section Attribute</em>'.
+	 * @see pamtram.metamodel.TargetSectionAttribute
+	 * @generated
+	 */
+	EClass getTargetSectionAttribute();
+
+	/**
+	 * Returns the meta object for the container reference '{@link pamtram.metamodel.TargetSectionAttribute#getOwningClass <em>Owning Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owning Class</em>'.
+	 * @see pamtram.metamodel.TargetSectionAttribute#getOwningClass()
+	 * @see #getTargetSectionAttribute()
+	 * @generated
+	 */
+	EReference getTargetSectionAttribute_OwningClass();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.ActualAttribute <em>Actual Attribute</em>}'.
@@ -2269,22 +2498,6 @@ public interface MetamodelPackage extends EPackage {
 		EReference CLASS__ECLASS = eINSTANCE.getClass_EClass();
 
 		/**
-		 * The meta object literal for the '<em><b>Attributes</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CLASS__ATTRIBUTES = eINSTANCE.getClass_Attributes();
-
-		/**
-		 * The meta object literal for the '<em><b>Container</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CLASS__CONTAINER = eINSTANCE.getClass_Container();
-
-		/**
 		 * The meta object literal for the '<em><b>Cardinality</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2299,6 +2512,14 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation CLASS___GET_REFERENCES_GENERIC = eINSTANCE.getClass__GetReferencesGeneric();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Attributes Generic</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CLASS___GET_ATTRIBUTES_GENERIC = eINSTANCE.getClass__GetAttributesGeneric();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.SourceSectionClassImpl <em>Source Section Class</em>}' class.
@@ -2319,6 +2540,22 @@ public interface MetamodelPackage extends EPackage {
 		EReference SOURCE_SECTION_CLASS__REFERENCES = eINSTANCE.getSourceSectionClass_References();
 
 		/**
+		 * The meta object literal for the '<em><b>Attributes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SOURCE_SECTION_CLASS__ATTRIBUTES = eINSTANCE.getSourceSectionClass_Attributes();
+
+		/**
+		 * The meta object literal for the '<em><b>Container</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SOURCE_SECTION_CLASS__CONTAINER = eINSTANCE.getSourceSectionClass_Container();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.TargetSectionClassImpl <em>Target Section Class</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2335,6 +2572,22 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TARGET_SECTION_CLASS__REFERENCES = eINSTANCE.getTargetSectionClass_References();
+
+		/**
+		 * The meta object literal for the '<em><b>Attributes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TARGET_SECTION_CLASS__ATTRIBUTES = eINSTANCE.getTargetSectionClass_Attributes();
+
+		/**
+		 * The meta object literal for the '<em><b>Container</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TARGET_SECTION_CLASS__CONTAINER = eINSTANCE.getTargetSectionClass_Container();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.ReferenceImpl <em>Reference</em>}' class.
@@ -2509,12 +2762,48 @@ public interface MetamodelPackage extends EPackage {
 		EAttribute ATTRIBUTE__UNIQUE = eINSTANCE.getAttribute_Unique();
 
 		/**
+		 * The meta object literal for the '{@link pamtram.metamodel.impl.SourceSectionAttributeImpl <em>Source Section Attribute</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.metamodel.impl.SourceSectionAttributeImpl
+		 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getSourceSectionAttribute()
+		 * @generated
+		 */
+		EClass SOURCE_SECTION_ATTRIBUTE = eINSTANCE.getSourceSectionAttribute();
+
+		/**
 		 * The meta object literal for the '<em><b>Owning Class</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ATTRIBUTE__OWNING_CLASS = eINSTANCE.getAttribute_OwningClass();
+		EReference SOURCE_SECTION_ATTRIBUTE__OWNING_CLASS = eINSTANCE.getSourceSectionAttribute_OwningClass();
+
+		/**
+		 * The meta object literal for the '<em><b>Attribute</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE = eINSTANCE.getSourceSectionAttribute_Attribute();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.metamodel.impl.TargetSectionAttributeImpl <em>Target Section Attribute</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.metamodel.impl.TargetSectionAttributeImpl
+		 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getTargetSectionAttribute()
+		 * @generated
+		 */
+		EClass TARGET_SECTION_ATTRIBUTE = eINSTANCE.getTargetSectionAttribute();
+
+		/**
+		 * The meta object literal for the '<em><b>Owning Class</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TARGET_SECTION_ATTRIBUTE__OWNING_CLASS = eINSTANCE.getTargetSectionAttribute_OwningClass();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.ActualAttributeImpl <em>Actual Attribute</em>}' class.

@@ -3,7 +3,8 @@
 package pamtram.mapping;
 
 import org.eclipse.emf.common.util.EList;
-import pamtram.metamodel.Attribute;
+import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.TargetSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,12 +34,12 @@ public interface AttributeMatcher extends Matcher {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source Attribute</em>' reference.
-	 * @see #setSourceAttribute(Attribute)
+	 * @see #setSourceAttribute(SourceSectionAttribute)
 	 * @see pamtram.mapping.MappingPackage#getAttributeMatcher_SourceAttribute()
 	 * @model required="true"
 	 * @generated
 	 */
-	Attribute getSourceAttribute();
+	SourceSectionAttribute getSourceAttribute();
 
 	/**
 	 * Sets the value of the '{@link pamtram.mapping.AttributeMatcher#getSourceAttribute <em>Source Attribute</em>}' reference.
@@ -48,7 +49,7 @@ public interface AttributeMatcher extends Matcher {
 	 * @see #getSourceAttribute()
 	 * @generated
 	 */
-	void setSourceAttribute(Attribute value);
+	void setSourceAttribute(SourceSectionAttribute value);
 
 	/**
 	 * Returns the value of the '<em><b>Target Attribute</b></em>' reference.
@@ -59,12 +60,12 @@ public interface AttributeMatcher extends Matcher {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target Attribute</em>' reference.
-	 * @see #setTargetAttribute(Attribute)
+	 * @see #setTargetAttribute(TargetSectionAttribute)
 	 * @see pamtram.mapping.MappingPackage#getAttributeMatcher_TargetAttribute()
 	 * @model required="true"
 	 * @generated
 	 */
-	Attribute getTargetAttribute();
+	TargetSectionAttribute getTargetAttribute();
 
 	/**
 	 * Sets the value of the '{@link pamtram.mapping.AttributeMatcher#getTargetAttribute <em>Target Attribute</em>}' reference.
@@ -74,7 +75,7 @@ public interface AttributeMatcher extends Matcher {
 	 * @see #getTargetAttribute()
 	 * @generated
 	 */
-	void setTargetAttribute(Attribute value);
+	void setTargetAttribute(TargetSectionAttribute value);
 
 	/**
 	 * Returns the value of the '<em><b>Modifier</b></em>' reference list.

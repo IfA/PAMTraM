@@ -21,11 +21,13 @@ import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.RegExMatcher;
+import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
 import pamtram.metamodel.SourceSectionNonContainmentReference;
 import pamtram.metamodel.SourceSectionReference;
 import pamtram.metamodel.SubstringMatcher;
+import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionContainmentReference;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
@@ -143,6 +145,14 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseAttribute(Attribute object) {
 				return createAttributeAdapter();
+			}
+			@Override
+			public Adapter caseSourceSectionAttribute(SourceSectionAttribute object) {
+				return createSourceSectionAttributeAdapter();
+			}
+			@Override
+			public Adapter caseTargetSectionAttribute(TargetSectionAttribute object) {
+				return createTargetSectionAttributeAdapter();
 			}
 			@Override
 			public Adapter caseActualAttribute(ActualAttribute object) {
@@ -401,6 +411,34 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAttributeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.SourceSectionAttribute <em>Source Section Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.metamodel.SourceSectionAttribute
+	 * @generated
+	 */
+	public Adapter createSourceSectionAttributeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.TargetSectionAttribute <em>Target Section Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.metamodel.TargetSectionAttribute
+	 * @generated
+	 */
+	public Adapter createTargetSectionAttributeAdapter() {
 		return null;
 	}
 

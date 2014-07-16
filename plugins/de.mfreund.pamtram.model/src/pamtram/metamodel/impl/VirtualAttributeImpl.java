@@ -16,7 +16,7 @@ import pamtram.metamodel.VirtualAttribute;
  *
  * @generated
  */
-public class VirtualAttributeImpl extends AttributeImpl implements VirtualAttribute {
+public class VirtualAttributeImpl extends TargetSectionAttributeImpl implements VirtualAttribute {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

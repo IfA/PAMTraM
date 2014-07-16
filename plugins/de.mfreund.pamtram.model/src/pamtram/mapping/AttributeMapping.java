@@ -2,7 +2,7 @@
  */
 package pamtram.mapping;
 
-import pamtram.metamodel.Attribute;
+import pamtram.metamodel.TargetSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,12 +32,12 @@ public interface AttributeMapping extends MappingHint {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target</em>' reference.
-	 * @see #setTarget(Attribute)
+	 * @see #setTarget(TargetSectionAttribute)
 	 * @see pamtram.mapping.MappingPackage#getAttributeMapping_Target()
 	 * @model required="true"
 	 * @generated
 	 */
-	Attribute getTarget();
+	TargetSectionAttribute getTarget();
 
 	/**
 	 * Sets the value of the '{@link pamtram.mapping.AttributeMapping#getTarget <em>Target</em>}' reference.
@@ -47,6 +47,6 @@ public interface AttributeMapping extends MappingHint {
 	 * @see #getTarget()
 	 * @generated
 	 */
-	void setTarget(Attribute value);
+	void setTarget(TargetSectionAttribute value);
 
 } // AttributeMapping

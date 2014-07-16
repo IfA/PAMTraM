@@ -65,21 +65,29 @@
           <details key="body" value="EList&lt;Reference> refs= new org.eclipse.emf.common.util.BasicEList&lt;Reference>();&#xA;if(this instanceof SourceSectionClass){&#xA; refs.addAll(((SourceSectionClass) this).getReferences());&#xA;&#xA;} else if(this instanceof TargetSectionClass){&#xA; refs.addAll(((TargetSectionClass) this).getReferences());&#xA;}&#xA;return refs;"/>
         </eAnnotations>
       </eOperations>
+      <eOperations name="getAttributesGeneric" upperBound="-1" eType="#//metamodel/Attribute">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="EList&lt;Attribute> attrs= new org.eclipse.emf.common.util.BasicEList&lt;Attribute>();&#xA;if(this instanceof SourceSectionClass){&#xA; attrs.addAll(((SourceSectionClass) this).getAttributes());&#xA;&#xA;} else if(this instanceof TargetSectionClass){&#xA; attrs.addAll(((TargetSectionClass) this).getAttributes());&#xA;}&#xA;return attrs;"/>
+        </eAnnotations>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="eClass" lowerBound="1"
           eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
-          eType="#//metamodel/Attribute" containment="true" eOpposite="#//metamodel/Attribute/owningClass"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//metamodel/Class"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="cardinality" lowerBound="1"
           eType="#//metamodel/CardinalityType" defaultValueLiteral="ONE"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SourceSectionClass" eSuperTypes="#//metamodel/Class">
       <eStructuralFeatures xsi:type="ecore:EReference" name="references" upperBound="-1"
           eType="#//metamodel/SourceSectionReference" containment="true" eOpposite="#//metamodel/SourceSectionReference/owningClass"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
+          eType="#//metamodel/SourceSectionAttribute" containment="true" eOpposite="#//metamodel/SourceSectionAttribute/owningClass"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//metamodel/SourceSectionClass"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TargetSectionClass" eSuperTypes="#//metamodel/Class">
       <eStructuralFeatures xsi:type="ecore:EReference" name="references" upperBound="-1"
           eType="#//metamodel/TargetSectionReference" containment="true" eOpposite="#//metamodel/TargetSectionReference/owningClass"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
+          eType="#//metamodel/TargetSectionAttribute" containment="true" eOpposite="#//metamodel/TargetSectionAttribute/owningClass"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//metamodel/TargetSectionClass"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Reference" abstract="true" eSuperTypes="#//metamodel/MetaModelElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -145,14 +153,22 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="unique" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           defaultValueLiteral="false"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="owningClass" lowerBound="1"
-          eType="#//metamodel/Class" changeable="false" eOpposite="#//metamodel/Class/attributes"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ActualAttribute" eSuperTypes="#//metamodel/Attribute">
+    <eClassifiers xsi:type="ecore:EClass" name="SourceSectionAttribute" eSuperTypes="#//metamodel/Attribute">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="owningClass" lowerBound="1"
+          eType="#//metamodel/SourceSectionClass" changeable="false" eOpposite="#//metamodel/SourceSectionClass/attributes"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
           eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="VirtualAttribute" eSuperTypes="#//metamodel/Attribute"/>
+    <eClassifiers xsi:type="ecore:EClass" name="TargetSectionAttribute" eSuperTypes="#//metamodel/Attribute">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="owningClass" lowerBound="1"
+          eType="#//metamodel/TargetSectionClass" changeable="false" eOpposite="#//metamodel/TargetSectionClass/attributes"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ActualAttribute" eSuperTypes="#//metamodel/TargetSectionAttribute">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
+          eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="VirtualAttribute" eSuperTypes="#//metamodel/TargetSectionAttribute"/>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeValueSpecification" eSuperTypes="#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -254,7 +270,7 @@
         <details key="targetAttributeMatchesSection" value="&#xA;"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-          eType="#//metamodel/Attribute"/>
+          eType="#//metamodel/TargetSectionAttribute"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CardinalityMapping" eSuperTypes="#//mapping/MappingHint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -275,9 +291,9 @@
     <eClassifiers xsi:type="ecore:EClass" name="Matcher" abstract="true"/>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeMatcher" eSuperTypes="#//mapping/Matcher">
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceAttribute" lowerBound="1"
-          eType="#//metamodel/Attribute"/>
+          eType="#//metamodel/SourceSectionAttribute"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="targetAttribute" lowerBound="1"
-          eType="#//metamodel/Attribute"/>
+          eType="#//metamodel/TargetSectionAttribute"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
           eType="#//mapping/AttributeValueModifierSet"/>
     </eClassifiers>
@@ -317,13 +333,13 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ModelConnectionHint" eSuperTypes="#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceAttribute" lowerBound="1"
-          eType="#//metamodel/Attribute"/>
+          eType="#//metamodel/SourceSectionAttribute"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="targetAttributes" lowerBound="1"
           upperBound="-1" eType="#//mapping/ConnectionHintTargetAttribute" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ConnectionHintTargetAttribute">
       <eStructuralFeatures xsi:type="ecore:EReference" name="targetAttribute" lowerBound="1"
-          eType="#//metamodel/Attribute"/>
+          eType="#//metamodel/TargetSectionAttribute"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
           eType="#//mapping/AttributeValueModifierSet"/>
     </eClassifiers>
@@ -345,7 +361,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingSourceElementType"
         abstract="true" eSuperTypes="#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
-          eType="#//metamodel/Attribute"/>
+          eType="#//metamodel/SourceSectionAttribute"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
           eType="#//mapping/AttributeValueModifierSet"/>
     </eClassifiers>

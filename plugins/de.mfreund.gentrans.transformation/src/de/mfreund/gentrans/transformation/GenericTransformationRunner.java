@@ -98,6 +98,7 @@ public class GenericTransformationRunner {
 			URI targetFileUri = URI.createFileURI(new java.io.File(targetFilePath).toString());
 			targetModel = (XMIResource) resFactory
 					.createResource(targetFileUri);
+			targetModel.setEncoding("UTF-8");
 
 
 		} catch (Exception e) {

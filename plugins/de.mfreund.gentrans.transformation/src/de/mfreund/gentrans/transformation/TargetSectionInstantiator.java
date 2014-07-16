@@ -376,7 +376,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 												+ h.getName()
 												+ instancesToConsider.size()
 												+ " "
-												+ hintValues.get(h).size());
+												+ hintValues.get(h).size() +"\n"+ hintValues.get(h)+ "\n" + instancesToConsider);
 									}
 									for (Object attrVal : newHintValues) {
 										EObjectTransformationHelper srcInst = instancesToConsider

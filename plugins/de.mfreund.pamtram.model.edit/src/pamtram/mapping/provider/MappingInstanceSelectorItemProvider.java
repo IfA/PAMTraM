@@ -174,12 +174,17 @@ public class MappingInstanceSelectorItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.MAPPING_INSTANCE_SELECTOR__MATCHER,
-				 MappingFactory.eINSTANCE.createAttributeMatcher()));
+				 MappingFactory.eINSTANCE.createClassMatcher()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.MAPPING_INSTANCE_SELECTOR__MATCHER,
-				 MappingFactory.eINSTANCE.createClassMatcher()));
+				 MappingFactory.eINSTANCE.createComplexAttributeMatcher()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.MAPPING_INSTANCE_SELECTOR__MATCHER,
+				 MappingFactory.eINSTANCE.createSimpleAttributeMatcher()));
 	}
 
 }

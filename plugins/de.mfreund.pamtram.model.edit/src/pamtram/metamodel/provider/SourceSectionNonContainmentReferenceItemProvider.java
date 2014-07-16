@@ -115,6 +115,26 @@ public class SourceSectionNonContainmentReferenceItemProvider
 	}
 
 	/**
+	 * This returns SourceSectionNonContainmentReference.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 */
+	@Override
+	public Object getImage(Object object) {
+		return super.getImage(object);
+	}
+
+	/**
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 */
+	@Override
+	public String getText(Object object) {
+		return super.getText(object);
+	}
+
+	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->

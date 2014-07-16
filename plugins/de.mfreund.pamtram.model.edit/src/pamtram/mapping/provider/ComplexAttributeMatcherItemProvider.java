@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.metamodel.provider;
+package pamtram.mapping.provider;
 
 
 import java.util.Collection;
@@ -10,27 +10,27 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import pamtram.metamodel.MetamodelFactory;
-import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.SourceSectionClass;
+
+import pamtram.mapping.ComplexAttributeMatcher;
+import pamtram.mapping.MappingFactory;
+import pamtram.mapping.MappingPackage;
 
 /**
- * This is the item provider adapter for a {@link pamtram.metamodel.SourceSectionClass} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.ComplexAttributeMatcher} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SourceSectionClassItemProvider
-	extends ClassItemProvider
+public class ComplexAttributeMatcherItemProvider
+	extends AttributeMatcherItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -43,7 +43,7 @@ public class SourceSectionClassItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionClassItemProvider(AdapterFactory adapterFactory) {
+	public ComplexAttributeMatcherItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -58,31 +58,8 @@ public class SourceSectionClassItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addContainerPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Container feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addContainerPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SourceSectionClass_container_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SourceSectionClass_container_feature", "_UI_SourceSectionClass_type"),
-				 MetamodelPackage.Literals.SOURCE_SECTION_CLASS__CONTAINER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**
@@ -97,8 +74,7 @@ public class SourceSectionClassItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MetamodelPackage.Literals.SOURCE_SECTION_CLASS__REFERENCES);
-			childrenFeatures.add(MetamodelPackage.Literals.SOURCE_SECTION_CLASS__ATTRIBUTES);
+			childrenFeatures.add(MappingPackage.Literals.COMPLEX_ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES);
 		}
 		return childrenFeatures;
 	}
@@ -116,26 +92,26 @@ public class SourceSectionClassItemProvider
 		return super.getChildFeature(object, child);
 	}
 
-
-
 	/**
-	 * This returns SourceSectionClass.gif.
+	 * This returns ComplexAttributeMatcher.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return super.getImage(object);
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ComplexAttributeMatcher"));
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return super.getText(object);
+		return getString("_UI_ComplexAttributeMatcher_type");
 	}
 
 	/**
@@ -149,9 +125,8 @@ public class SourceSectionClassItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(SourceSectionClass.class)) {
-			case MetamodelPackage.SOURCE_SECTION_CLASS__REFERENCES:
-			case MetamodelPackage.SOURCE_SECTION_CLASS__ATTRIBUTES:
+		switch (notification.getFeatureID(ComplexAttributeMatcher.class)) {
+			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -171,18 +146,13 @@ public class SourceSectionClassItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MetamodelPackage.Literals.SOURCE_SECTION_CLASS__REFERENCES,
-				 MetamodelFactory.eINSTANCE.createSourceSectionContainmentReference()));
+				(MappingPackage.Literals.COMPLEX_ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES,
+				 MappingFactory.eINSTANCE.createSimpleAttributeMatcher()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MetamodelPackage.Literals.SOURCE_SECTION_CLASS__REFERENCES,
-				 MetamodelFactory.eINSTANCE.createSourceSectionNonContainmentReference()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MetamodelPackage.Literals.SOURCE_SECTION_CLASS__ATTRIBUTES,
-				 MetamodelFactory.eINSTANCE.createSourceSectionAttribute()));
+				(MappingPackage.Literals.COMPLEX_ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES,
+				 MappingFactory.eINSTANCE.createComplexAttributeMatcherSourceElement()));
 	}
 
 }

@@ -51,33 +51,10 @@ public class AttributeMatcherItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addSourceAttributePropertyDescriptor(object);
 			addTargetAttributePropertyDescriptor(object);
 			addModifierPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Source Attribute feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSourceAttributePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AttributeMatcher_sourceAttribute_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeMatcher_sourceAttribute_feature", "_UI_AttributeMatcher_type"),
-				 MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**

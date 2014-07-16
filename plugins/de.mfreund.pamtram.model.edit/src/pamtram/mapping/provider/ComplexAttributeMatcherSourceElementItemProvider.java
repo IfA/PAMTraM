@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.metamodel.provider;
+package pamtram.mapping.provider;
 
 
 import java.util.Collection;
@@ -8,6 +8,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -16,16 +19,20 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
-import pamtram.metamodel.MetamodelPackage;
+import pamtram.mapping.ComplexAttributeMatcherSourceElement;
+import pamtram.mapping.MappingPackage;
+
+import pamtram.provider.NamedElementItemProvider;
+import pamtram.provider.PamtramEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link pamtram.metamodel.ActualAttribute} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.ComplexAttributeMatcherSourceElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ActualAttributeItemProvider
-	extends TargetSectionAttributeItemProvider
+public class ComplexAttributeMatcherSourceElementItemProvider
+	extends NamedElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -38,7 +45,7 @@ public class ActualAttributeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActualAttributeItemProvider(AdapterFactory adapterFactory) {
+	public ComplexAttributeMatcherSourceElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -53,25 +60,26 @@ public class ActualAttributeItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addAttributePropertyDescriptor(object);
+			addSourceAttributePropertyDescriptor(object);
+			addModifiersPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Attribute feature.
+	 * This adds a property descriptor for the Source Attribute feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAttributePropertyDescriptor(Object object) {
+	protected void addSourceAttributePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ActualAttribute_attribute_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ActualAttribute_attribute_feature", "_UI_ActualAttribute_type"),
-				 MetamodelPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE,
+				 getString("_UI_ComplexAttributeMatcherSourceElement_sourceAttribute_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ComplexAttributeMatcherSourceElement_sourceAttribute_feature", "_UI_ComplexAttributeMatcherSourceElement_type"),
+				 MappingPackage.Literals.COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT__SOURCE_ATTRIBUTE,
 				 true,
 				 false,
 				 true,
@@ -81,23 +89,50 @@ public class ActualAttributeItemProvider
 	}
 
 	/**
-	 * This returns ActualAttribute.gif.
+	 * This adds a property descriptor for the Modifiers feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addModifiersPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ComplexAttributeMatcherSourceElement_modifiers_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ComplexAttributeMatcherSourceElement_modifiers_feature", "_UI_ComplexAttributeMatcherSourceElement_type"),
+				 MappingPackage.Literals.COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT__MODIFIERS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This returns ComplexAttributeMatcherSourceElement.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return super.getImage(object);
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ComplexAttributeMatcherSourceElement"));
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return super.getText(object);
+		String label = ((ComplexAttributeMatcherSourceElement)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ComplexAttributeMatcherSourceElement_type") :
+			getString("_UI_ComplexAttributeMatcherSourceElement_type") + " " + label;
 	}
 
 	/**
@@ -123,6 +158,17 @@ public class ActualAttributeItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return PamtramEditPlugin.INSTANCE;
 	}
 
 }

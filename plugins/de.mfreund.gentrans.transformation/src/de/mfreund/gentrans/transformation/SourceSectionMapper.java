@@ -24,13 +24,12 @@ import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.SimpleAttributeMapping;
-import pamtram.metamodel.ActualAttribute;
-import pamtram.metamodel.Attribute;
 import pamtram.metamodel.CardinalityType;
-import pamtram.metamodel.Class;
 import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.NonContainmentReference;
-import pamtram.metamodel.Reference;
+import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.SourceSectionReference;
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.selectors.ItemSelectorDialog;
@@ -42,19 +41,19 @@ import de.mfreund.gentrans.transformation.selectors.ItemSelectorDialog;
  */
 public class SourceSectionMapper {
 	
-	private LinkedHashMap<Class,Set<EObject>> mappedSections;
+	private LinkedHashMap<SourceSectionClass,Set<EObject>> mappedSections;
 	private LinkedHashMap<Mapping, LinkedList<ModelConnectionHint>> modelConnectionHints;
 	private LinkedHashMap<Mapping,LinkedList<MappingHint>> mappingHints;
-	private LinkedHashMap<ComplexAttributeMapping,Class> deepestComplexAttrMappingSrcElementsByCmplxMapping;
-	private LinkedHashMap<CalculatorMapping,Class> deepestCalcAttrMappingSrcElementsByCalcMapping;
+	private LinkedHashMap<ComplexAttributeMapping,SourceSectionClass> deepestComplexAttrMappingSrcElementsByCmplxMapping;
+	private LinkedHashMap<CalculatorMapping,SourceSectionClass> deepestCalcAttrMappingSrcElementsByCalcMapping;
 	private List<Mapping> mappingsToChooseFrom;
 	
 	public SourceSectionMapper(List<Mapping> mappingsToChooseFrom) {
-		mappedSections=new LinkedHashMap<Class,Set<EObject>> ();
+		mappedSections=new LinkedHashMap<SourceSectionClass,Set<EObject>> ();
 		mappingHints=new  LinkedHashMap<Mapping,LinkedList<MappingHint>>();
 		modelConnectionHints=new  LinkedHashMap<Mapping,LinkedList<ModelConnectionHint>>();
-		deepestComplexAttrMappingSrcElementsByCmplxMapping= new LinkedHashMap<ComplexAttributeMapping,Class>();
-		deepestCalcAttrMappingSrcElementsByCalcMapping = new LinkedHashMap<CalculatorMapping,Class>();
+		deepestComplexAttrMappingSrcElementsByCmplxMapping= new LinkedHashMap<ComplexAttributeMapping,SourceSectionClass>();
+		deepestCalcAttrMappingSrcElementsByCalcMapping = new LinkedHashMap<CalculatorMapping,SourceSectionClass>();
 		this.mappingsToChooseFrom=mappingsToChooseFrom;
 		
 		//this will fill some maps...
@@ -84,17 +83,17 @@ public class SourceSectionMapper {
 		
 	}
 	
-	private boolean isSectionReferencedByDeepestCmplxAttrMappping(ComplexAttributeMapping m,Class srcSection){
+	private boolean isSectionReferencedByDeepestCmplxAttrMappping(ComplexAttributeMapping m,SourceSectionClass srcSection){
 		return deepestComplexAttrMappingSrcElementsByCmplxMapping.get(m).equals(srcSection);
 		
 	}
 	
-	private boolean isSectionReferencedByDeepestCalcAttrMappping(CalculatorMapping m,Class srcSection){
+	private boolean isSectionReferencedByDeepestCalcAttrMappping(CalculatorMapping m,SourceSectionClass srcSection){
 		return deepestCalcAttrMappingSrcElementsByCalcMapping.get(m).equals(srcSection);
 		
 	}	
 	
-	private void buildDeepestCmplxAttrMappingElementsMap(ComplexAttributeMapping m, Class srcSection){
+	private void buildDeepestCmplxAttrMappingElementsMap(ComplexAttributeMapping m, SourceSectionClass srcSection){
 		if(!deepestComplexAttrMappingSrcElementsByCmplxMapping.containsKey(m)){
 			Set<AttributeMappingSourceElementType> srcElements=new HashSet<AttributeMappingSourceElementType>();
 			srcElements.addAll(m.getSourceAttributeMappings());
@@ -107,7 +106,7 @@ public class SourceSectionMapper {
 		}
 	}
 	
-	private void buildCalcAttrMappingsMaps(CalculatorMapping m, Class srcSection){
+	private void buildCalcAttrMappingsMaps(CalculatorMapping m, SourceSectionClass srcSection){
 		if(!deepestCalcAttrMappingSrcElementsByCalcMapping.containsKey(m)){
 			Set<AttributeMappingSourceElementType> srcElements=new HashSet<AttributeMappingSourceElementType>();
 			srcElements.addAll(m.getVariables());
@@ -120,10 +119,10 @@ public class SourceSectionMapper {
 		}
 	}
 	
-	private void sortOutElements(Set<AttributeMappingSourceElementType> s, Class srcSection){
+	private void sortOutElements(Set<AttributeMappingSourceElementType> s, SourceSectionClass srcSection){
 		if(s.size() <= 1) return;//found
 		//sort out elements
-		for(Attribute a : srcSection.getAttributes()){
+		for(SourceSectionAttribute a : srcSection.getAttributes()){
 			for(AttributeMappingSourceElementType e : new HashSet<AttributeMappingSourceElementType>(s)){
 				if(e.getSource().equals(a)){
 					s.remove(e);
@@ -135,8 +134,8 @@ public class SourceSectionMapper {
 		}
 		
 		//go deeper
-		for(Reference r : srcSection.getReferences()){
-			for(Class c : r.getValue()){
+		for(SourceSectionReference r : srcSection.getReferences()){
+			for(SourceSectionClass c : r.getValuesGeneric()){
 				sortOutElements(s, c);
 				if(s.size() <= 1){
 					return;
@@ -221,9 +220,9 @@ public class SourceSectionMapper {
 			EObject srcModelObject, boolean usedOkay,
 			Iterable<MappingHint> hints,
 			Iterable<ModelConnectionHint> connectionHints,
-			Class srcSection,
+			SourceSectionClass srcSection,
 			MappingInstanceStorage newRefsAndHints,
-			LinkedHashMap<pamtram.metamodel.Class, EObject> srcInstanceMap) {
+			LinkedHashMap<SourceSectionClass, EObject> srcInstanceMap) {
 
 		// first of all: check if usedRefs contains this item and if type fits
 		// (we do not check any of the used elements of other mappings, since
@@ -273,28 +272,26 @@ public class SourceSectionMapper {
 		srcInstanceMap.put(srcSection, srcModelObject);
 
 		// check attributes
-		for (pamtram.metamodel.Attribute at : srcSection.getAttributes()) {// look
+		for (SourceSectionAttribute at : srcSection.getAttributes()) {// look
 																			// for
 																			// attributes
 																			// in
 																			// srcSection
 			
-			if(at instanceof ActualAttribute){
-				ActualAttribute a = (ActualAttribute) at;
 			// does it exist in src model?
 
-			Object srcAttr = srcModelObject.eGet(a.getAttribute());
+			Object srcAttr = srcModelObject.eGet(at.getAttribute());
 			if (srcAttr != null) {
 				// convert Attribute value to String
-				String srcAttrAsString = a
+				String srcAttrAsString = at
 						.getAttribute()
 						.getEType()
 						.getEPackage()
 						.getEFactoryInstance()
-						.convertToString(a.getAttribute().getEAttributeType(),
+						.convertToString(at.getAttribute().getEAttributeType(),
 								srcAttr);
 				// check AttributeValueSpecifications
-				for (pamtram.metamodel.AttributeValueSpecification constraint : a
+				for (pamtram.metamodel.AttributeValueSpecification constraint : at
 						.getValueSpecification()) {
 					if (!constraint.check(srcAttrAsString)) {
 						return null;
@@ -303,7 +300,7 @@ public class SourceSectionMapper {
 				// handle possible attribute mappings
 				for (MappingHint hint : hints) {
 					if (hint instanceof SimpleAttributeMapping) {
-						if (((SimpleAttributeMapping) hint).getSource().equals(a)) {
+						if (((SimpleAttributeMapping) hint).getSource().equals(at)) {
 							String valCopy = srcAttrAsString;
 							// handle attribute modifiers
 							valCopy = AttributeValueRegistry.applyAttributeValueModifiers(valCopy,
@@ -312,7 +309,7 @@ public class SourceSectionMapper {
 						}
 					} else if(hint instanceof ComplexAttributeMapping){
 						for(ComplexAttribueMappingSourceElement m : ((ComplexAttributeMapping) hint).getSourceAttributeMappings()){
-							if (m.getSource().equals(a)) {
+							if (m.getSource().equals(at)) {
 								String valCopy = srcAttrAsString;
 								// handle attribute modifiers
 								valCopy = AttributeValueRegistry.applyAttributeValueModifiers(valCopy,m.getModifier());
@@ -321,7 +318,7 @@ public class SourceSectionMapper {
 						}
 					} else if(hint instanceof CalculatorMapping){
 						for(ExpressionVariable v : ((CalculatorMapping) hint).getVariables()){
-							if(v.getSource().equals(a)){
+							if(v.getSource().equals(at)){
 								String valCopy = srcAttrAsString;
 								valCopy = AttributeValueRegistry.applyAttributeValueModifiers(valCopy, v.getModifier());
 								calcVariableHintValues.put(v, valCopy);
@@ -336,7 +333,7 @@ public class SourceSectionMapper {
 							// handle attribute modifiers
 							AttributeMatcher matcher = (AttributeMatcher) ((MappingInstanceSelector) hint)
 									.getMatcher();
-							if (matcher.getSourceAttribute().equals(a)) {
+							if (matcher.getSourceAttribute().equals(at)) {
 								String valCopy = srcAttrAsString;
 								valCopy = AttributeValueRegistry.applyAttributeValueModifiers(valCopy,
 										matcher.getModifier());
@@ -349,7 +346,7 @@ public class SourceSectionMapper {
 				// ModelConnectionHint (is being handled in the same way as
 				// MI-Selector with AttrMatcher)
 				for (ModelConnectionHint hint : connectionHints) {
-					if (hint.getSourceAttribute().equals(a)) {
+					if (hint.getSourceAttribute().equals(at)) {
 						changedRefsAndHints.addModelConnectionHintValue(hint,
 								srcAttrAsString);
 
@@ -361,7 +358,6 @@ public class SourceSectionMapper {
 				System.out.println("Unset attribute");//TODO we probably don't want any output here
 				return null;
 			}
-		}
 		}
 		
 		//now work on ComplexAttributeMappings and CalcMappings
@@ -415,11 +411,11 @@ public class SourceSectionMapper {
 		}
 
 		// now go through all the srcMmSection refs
-		for (pamtram.metamodel.Reference reference : srcSection.getReferences()) {
+		for (SourceSectionReference reference : srcSection.getReferences()) {
 			// reference.name.println;
 			// check if reference is allowed by src metamodel
 			// check if reference in srcMMSection points anywhere
-			if (reference.getValue().size() < 1)
+			if (reference.getValuesGeneric().size() < 1)
 				break;
 			Object refTarget = srcModelObject.eGet(reference.getEReference());// get
 																				// refTarget(s)
@@ -427,7 +423,7 @@ public class SourceSectionMapper {
 																				// srcModel
 			// behave, depending on cardinality
 			if (reference.getEReference().getUpperBound() == 1
-					&& reference.getValue().size() == 1) {
+					&& reference.getValuesGeneric().size() == 1) {
 				EObject refTargetObj = (EObject) refTarget;
 				if (refTargetObj == null)
 					return null;
@@ -435,7 +431,7 @@ public class SourceSectionMapper {
 						refTargetObj,
 						reference instanceof NonContainmentReference
 						, hints,
-						connectionHints, reference.getValue().get(0),
+						connectionHints, reference.getValuesGeneric().get(0),
 						changedRefsAndHints, srcInstanceMap);
 				if (res != null) {
 					// success: combine refs and hints
@@ -452,7 +448,7 @@ public class SourceSectionMapper {
 					return null;
 				}
 
-			} else if (reference.getValue().size() <= reference.getEReference()
+			} else if (reference.getValuesGeneric().size() <= reference.getEReference()
 					.getUpperBound()
 					|| reference.getEReference().getUpperBound() == -1 // unbounded
 					|| reference.getEReference().getUpperBound() == -2)// unspecified
@@ -475,7 +471,7 @@ public class SourceSectionMapper {
 				// Map to store possible srcModelSections to MMSections
 				// (non-vc))
 				SrcSectionMappingResultsMap possibleSrcModelElementsNoVC = new SrcSectionMappingResultsMap();
-				for (pamtram.metamodel.Class val : reference.getValue()) {
+				for (SourceSectionClass val : reference.getValuesGeneric()) {
 					if (val.getCardinality().equals(CardinalityType.ONE)) {
 						possibleSrcModelElementsNoVC
 								.put(val,
@@ -485,7 +481,7 @@ public class SourceSectionMapper {
 
 				// Map to store possible srcModelSections to MMSections (vc))
 				SrcSectionMappingResultsMap possibleSrcModelElementsVC = new SrcSectionMappingResultsMap();
-				for (pamtram.metamodel.Class val : reference.getValue()) {
+				for (SourceSectionClass val : reference.getValuesGeneric()) {
 					if (!val.getCardinality().equals(CardinalityType.ONE)) {
 						possibleSrcModelElementsVC
 								.put(val,
@@ -497,7 +493,7 @@ public class SourceSectionMapper {
 				// find possible srcElements for mmsections
 				for (EObject rt : refTargetL) {
 					boolean foundMapping = false;
-					for (pamtram.metamodel.Class val : reference.getValue()) {
+					for (SourceSectionClass val : reference.getValuesGeneric()) {
 						MappingInstanceStorage res = findMappingIterate(
 								rt,
 								reference instanceof NonContainmentReference,
@@ -745,14 +741,14 @@ public class SourceSectionMapper {
 					res= findMappingIterate(element, false, getHints(m), getModelConnectionHints(m),
 							m.getSourceMMSection(),
 							new MappingInstanceStorage(),
-							new LinkedHashMap<pamtram.metamodel.Class, EObject>());
+							new LinkedHashMap<SourceSectionClass, EObject>());
 					
 					if(res != null){//if mapping possible add to list
 						res.setMapping(m);
 						mappingData.put(m.getName()+  (m.hashCode()), res);
 						
 						int used=0;
-						for(Class c : res.getRefs().keySet()){
+						for(SourceSectionClass c : res.getRefs().keySet()){
 							if(!mappedSections.containsKey(c)){
 								mappedSections.put(c,new LinkedHashSet<EObject>());
 							}
@@ -793,14 +789,14 @@ public class SourceSectionMapper {
 
 	
 	@SuppressWarnings("unchecked")
-	private boolean doContainerCheck(EObject element, Class sourceMMSectionRoot){
-		if(sourceMMSectionRoot.getContainer() != null){
-			if(mappedSections.containsKey(sourceMMSectionRoot.getContainer())){//was the container section instantiated
-				for(EReference ref : sourceMMSectionRoot.getContainer().getEClass().getEAllContainments()){
+	private boolean doContainerCheck(EObject element, SourceSectionClass sourceSectionClass){
+		if(sourceSectionClass.getContainer() != null){
+			if(mappedSections.containsKey(sourceSectionClass.getContainer())){//was the container section instantiated
+				for(EReference ref : sourceSectionClass.getContainer().getEClass().getEAllContainments()){
 					
 					//exclude references that are modeled in the srcSection, since they cannot, by definition, reference the element
 					boolean refExistsInContainerSection=false;
-					for(Reference containerRef : sourceMMSectionRoot.getContainer().getReferences()){
+					for(SourceSectionReference containerRef : sourceSectionClass.getContainer().getReferences()){
 						if(ref.equals(containerRef.getEReference())){
 							refExistsInContainerSection=true;
 							break;
@@ -808,7 +804,7 @@ public class SourceSectionMapper {
 					}
 					
 					if(!refExistsInContainerSection){
-						for(EObject instance : mappedSections.get(sourceMMSectionRoot.getContainer())){//check for each instance
+						for(EObject instance : mappedSections.get(sourceSectionClass.getContainer())){//check for each instance
 							Object refTargets=instance.eGet(ref);
 							if(ref != null){
 								if(ref.getUpperBound() == 1){

@@ -15,16 +15,18 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.ModelConnectionHint;
+import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.TargetSectionClass;
 
 /**
  * @author Sascha Steffen
  * 
  */
 public class MappingInstanceStorage {// TODO rename this
-	private LinkedHashMap<pamtram.metamodel.Class, Set<EObject>> refs;
+	private LinkedHashMap<SourceSectionClass, Set<EObject>> refs;
 	private Mapping mapping;
 	private EObject associatedSourceModelElement;
-	private LinkedHashMap<MappingHintGroup, LinkedHashMap<pamtram.metamodel.Class, LinkedList<EObjectTransformationHelper>>> instancesBySection;
+	private LinkedHashMap<MappingHintGroup, LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>> instancesBySection;
 
 	private LinkedHashMap<pamtram.mapping.MappingHint, LinkedList<Object>> hintValues;
 
@@ -34,11 +36,11 @@ public class MappingInstanceStorage {// TODO rename this
 	 * 
 	 */
 	public MappingInstanceStorage() {
-		refs = new LinkedHashMap<pamtram.metamodel.Class, Set<EObject>>();
+		refs = new LinkedHashMap<SourceSectionClass, Set<EObject>>();
 		hintValues = new LinkedHashMap<pamtram.mapping.MappingHint, LinkedList<Object>>();
 		mapping = null;
 		associatedSourceModelElement = null;
-		instancesBySection = new LinkedHashMap<MappingHintGroup, LinkedHashMap<pamtram.metamodel.Class, LinkedList<EObjectTransformationHelper>>>();
+		instancesBySection = new LinkedHashMap<MappingHintGroup, LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>>();
 		modelConnectionHintValues = new LinkedHashMap<ModelConnectionHint, LinkedList<String>>();
 
 	}
@@ -80,13 +82,13 @@ public class MappingInstanceStorage {// TODO rename this
 	}
 
 	public void addInstance(MappingHintGroup grp,
-			pamtram.metamodel.Class section, EObjectTransformationHelper inst) {
+			TargetSectionClass section, EObjectTransformationHelper inst) {
 		generateInstancesCollectionsIfNeeded(grp, section);
 		instancesBySection.get(grp).get(section).add(inst);
 	}
 
 	public void addInstances(MappingHintGroup grp,
-			pamtram.metamodel.Class section, Collection<EObjectTransformationHelper> insts) {
+			TargetSectionClass section, Collection<EObjectTransformationHelper> insts) {
 		generateInstancesCollectionsIfNeeded(grp, section);
 		instancesBySection.get(grp).get(section).addAll(insts);
 	}
@@ -109,8 +111,8 @@ public class MappingInstanceStorage {// TODO rename this
 		}
 	}
 
-	public void addRefs(LinkedHashMap<pamtram.metamodel.Class, Set<EObject>> refs) {
-		for (pamtram.metamodel.Class key : refs.keySet()) {
+	public void addRefs(LinkedHashMap<SourceSectionClass, Set<EObject>> refs) {
+		for (SourceSectionClass key : refs.keySet()) {
 			if (!this.refs.containsKey(key)) {
 				this.refs.put(key, new LinkedHashSet<EObject>());
 			}
@@ -119,7 +121,7 @@ public class MappingInstanceStorage {// TODO rename this
 	}
 
 	public void addRefValue(EObject srcModelElement,
-			pamtram.metamodel.Class srcSectionClass) {
+			SourceSectionClass srcSectionClass) {
 		if (!refs.containsKey(srcModelElement)) {
 			refs.put(srcSectionClass, new LinkedHashSet<EObject>());
 		}
@@ -136,11 +138,11 @@ public class MappingInstanceStorage {// TODO rename this
 	 * @param section
 	 */
 	private void generateInstancesCollectionsIfNeeded(MappingHintGroup grp,
-			pamtram.metamodel.Class section) {
+			TargetSectionClass section) {
 		if (!instancesBySection.containsKey(grp)) {
 			instancesBySection
 					.put(grp,
-							new LinkedHashMap<pamtram.metamodel.Class, LinkedList<EObjectTransformationHelper>>());
+							new LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>());
 		}
 
 		if (!instancesBySection.get(grp).containsKey(section)) {
@@ -157,11 +159,11 @@ public class MappingInstanceStorage {// TODO rename this
 	}
 
 	
-	public LinkedHashMap<pamtram.metamodel.Class, LinkedList<EObjectTransformationHelper>> getInstancesBySection(MappingHintGroup group) {
+	public LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> getInstancesBySection(MappingHintGroup group) {
 			return instancesBySection.get(group);
 	}
 	
-	public LinkedList<EObjectTransformationHelper> getInstances(MappingHintGroup group, pamtram.metamodel.Class section) {
+	public LinkedList<EObjectTransformationHelper> getInstances(MappingHintGroup group, TargetSectionClass section) {
 		if(instancesBySection.containsKey(group)){
 				return instancesBySection.get(group).get(section);
 
@@ -171,17 +173,6 @@ public class MappingInstanceStorage {// TODO rename this
 	public Mapping getMapping() {
 		return mapping;
 	}
-
-	// public LinkedHashMap<MappingHint, LinkedList<Object>> getClonedHintValues() {
-	// LinkedHashMap<MappingHint, LinkedList<Object>> clone=new LinkedHashMap<MappingHint,
-	// LinkedList<Object>>();
-	// for(MappingHint h : hintValues.keySet()){
-	// clone.put(h, new LinkedList<Object>());
-	// clone.get(h).addAll(hintValues.get(h));
-	// }
-	//
-	// return clone;
-	// }
 
 	public final LinkedHashMap<ModelConnectionHint, LinkedList<String>> getModelConnectionHintValues() {
 		return modelConnectionHintValues;
@@ -197,7 +188,7 @@ public class MappingInstanceStorage {// TODO rename this
 		}
 	}
 
-	public final LinkedHashMap<pamtram.metamodel.Class, Set<EObject>> getRefs() {
+	public final LinkedHashMap<SourceSectionClass, Set<EObject>> getRefs() {
 		return refs;
 	}
 
@@ -227,7 +218,7 @@ public class MappingInstanceStorage {// TODO rename this
 		this.mapping = mapping;
 	}
 
-	public void setRefs(LinkedHashMap<pamtram.metamodel.Class, Set<EObject>> refs) {
+	public void setRefs(LinkedHashMap<SourceSectionClass, Set<EObject>> refs) {
 		this.refs = refs;
 	}
 

@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 
 import pamtram.metamodel.ActualAttribute;
-import pamtram.metamodel.Attribute;
+import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.VirtualAttribute;
 
 /**
@@ -44,11 +44,11 @@ public class EObjectTransformationHelper {
 		}		
 	}
 
-	public boolean attributeValueExists(Attribute attr, String value){
+	public boolean attributeValueExists(TargetSectionAttribute attr, String value){
 		return attrValRegistry.attributeValueExists(attr, value, eObject);
 	}
 	
-	public void setAttributeValue(Attribute attr, String value){
+	public void setAttributeValue(TargetSectionAttribute attr, String value){
 		if(attr instanceof VirtualAttribute){
 			virtualAttributes.put((VirtualAttribute) attr, value);
 			
@@ -81,7 +81,7 @@ public class EObjectTransformationHelper {
 	
 
 	
-	public String getAttributeValue(Attribute attr){
+	public String getAttributeValue(TargetSectionAttribute attr){
 		if(attr instanceof VirtualAttribute){
 			return virtualAttributes.get(attr);
 		} else if(attr instanceof ActualAttribute){

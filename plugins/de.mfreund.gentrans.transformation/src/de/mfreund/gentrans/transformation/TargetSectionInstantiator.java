@@ -20,12 +20,12 @@ import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
-import pamtram.metamodel.Attribute;
 import pamtram.metamodel.CardinalityType;
-import pamtram.metamodel.Class;
-import pamtram.metamodel.ContainmentReference;
-import pamtram.metamodel.NonContainmentReference;
-import pamtram.metamodel.Reference;
+import pamtram.metamodel.TargetSectionAttribute;
+import pamtram.metamodel.TargetSectionClass;
+import pamtram.metamodel.TargetSectionContainmentReference;
+import pamtram.metamodel.TargetSectionNonContainmentReference;
+import pamtram.metamodel.TargetSectionReference;
 import de.congrace.exp4j.ExpressionBuilder;
 import de.congrace.exp4j.InvalidCustomFunctionException;
 import de.mfreund.gentrans.transformation.selectors.ItemSelectorDialog;
@@ -52,9 +52,9 @@ public class TargetSectionInstantiator {
 	Will only look until next vc-reference
 	Will always return Hint with largest number of values
 	*/
-	private static MappingHint searchAttributeMapping(Class metaModelSection, Collection<MappingHint> hints,  Map<MappingHint, LinkedList<Object>> hintValues, MappingHint  oldSelectedHint){
+	private static MappingHint searchAttributeMapping(TargetSectionClass metaModelSection, Collection<MappingHint> hints,  Map<MappingHint, LinkedList<Object>> hintValues, MappingHint  oldSelectedHint){
 		MappingHint selectedHint=oldSelectedHint;
-		for(Attribute attr :  metaModelSection.getAttributes()){//check attributes		
+		for(TargetSectionAttribute attr :  metaModelSection.getAttributes()){//check attributes		
 			for(MappingHint hint : hints){
 				if(hint instanceof AttributeMapping){
 					if(((AttributeMapping) hint).getTarget().equals(attr)){
@@ -74,8 +74,8 @@ public class TargetSectionInstantiator {
 		}
 		
 			
-		for(Reference ref : metaModelSection.getReferences()){//check references
-			for(Class val : ref.getValue()){
+		for(TargetSectionReference ref : metaModelSection.getReferences()){//check references
+			for(TargetSectionClass val : ref.getValuesGeneric()){
 				if(val.getCardinality().equals(CardinalityType.ONE)){
 					MappingHint hint=searchAttributeMapping(val,hints, hintValues,selectedHint);
 					if(hint == null && selectedHint != null){
@@ -94,12 +94,12 @@ public class TargetSectionInstantiator {
 	/*
 		instantiate targetModelSection
 	*/
-	public LinkedHashMap<Class,LinkedList<EObjectTransformationHelper>> instantiateTargetSectionFirstPass(Class metamodelSection,
+	public LinkedHashMap<TargetSectionClass,LinkedList<EObjectTransformationHelper>> instantiateTargetSectionFirstPass(TargetSectionClass metamodelSection,
 																					MappingHintGroup mappingGroup,
 																					Map<MappingHint, LinkedList<Object>> hintValues,
 																					Map<ModelConnectionHint, LinkedList<String>> conHintValues,																					
 																					Mapping mapping){
-		LinkedHashMap<Class,LinkedList<EObjectTransformationHelper>> instBySection=new LinkedHashMap<Class,LinkedList<EObjectTransformationHelper>> ();
+		LinkedHashMap<TargetSectionClass,LinkedList<EObjectTransformationHelper>> instBySection=new LinkedHashMap<TargetSectionClass,LinkedList<EObjectTransformationHelper>> ();
 		
 		if( instantiateTargetSectionFirstPass(metamodelSection, mappingGroup, hintValues, conHintValues,
 				instBySection,mapping) != null){
@@ -115,11 +115,11 @@ public class TargetSectionInstantiator {
 	instantiate targetModelSection
 */
 @SuppressWarnings("unchecked")
-private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPass(Class metamodelSection,
+private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPass(TargetSectionClass metamodelSection,
 																				MappingHintGroup mappingGroup,
 																				Map<MappingHint, LinkedList<Object>> hintValues,
 																				Map<ModelConnectionHint, LinkedList<String>> conHintValues,
-																				Map<Class,LinkedList<EObjectTransformationHelper>> instBySection,
+																				Map<TargetSectionClass,LinkedList<EObjectTransformationHelper>> instBySection,
 																				Mapping mapping) {
 	
 		
@@ -171,7 +171,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 			
 			//create attributes
 			LinkedList<EObjectTransformationHelper> markedForDelete = new LinkedList<EObjectTransformationHelper>();
-			for(Attribute attr : metamodelSection.getAttributes()){		
+			for(TargetSectionAttribute attr : metamodelSection.getAttributes()){		
 					MappingHint hintFound=null;
 					//look for an attribute mapping
 					LinkedList<Object> attrHintValues=null;
@@ -233,12 +233,12 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 			
 
 			//recursively create containment references
-			for(Reference ref : metamodelSection.getReferences()){
-				if(ref instanceof ContainmentReference){
+			for(TargetSectionReference ref : metamodelSection.getReferences()){
+				if(ref instanceof TargetSectionContainmentReference){
 					//now instantiate section
 					for(EObjectTransformationHelper instance : instances){
 						 LinkedList<EObjectTransformationHelper> childInstances = new LinkedList<EObjectTransformationHelper>();
-						 for(Class val : ref.getValue()){//instantiate targets
+						 for(TargetSectionClass val : ((TargetSectionContainmentReference) ref).getValue()){//instantiate targets
 							 LinkedList<EObjectTransformationHelper> children = instantiateTargetSectionFirstPass(val,
 									 											mappingGroup,
 									 											hintValues,
@@ -302,22 +302,22 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 	
 	// add missing non-containment references to targetModelSections
 	public  void instantiateTargetSectionSecondPass(
-			Class targetMMSection,
+			TargetSectionClass targetMMSection,
 			Mapping mapping,
 			MappingHintGroup group,
 			List<MappingHint> hints,
 			LinkedHashMap<MappingHint, LinkedList<Object>> hintValues,
-			LinkedHashMap<pamtram.metamodel.Class, LinkedList<EObjectTransformationHelper>> instancesBySection) {
+			LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection) {
 
 		if (instancesBySection.get(targetMMSection) != null) {// only go on if
 																// any instances
 																// of this
 																// section were
 																// created
-			for (Reference ref : targetMMSection.getReferences()) {
-				if (ref instanceof NonContainmentReference) {
-					LinkedList<Class> refValueClone = new LinkedList<Class>();
-					refValueClone.addAll(ref.getValue());
+			for (TargetSectionReference ref : targetMMSection.getReferences()) {
+				if (ref instanceof TargetSectionNonContainmentReference) {
+					LinkedList<TargetSectionClass> refValueClone = new LinkedList<TargetSectionClass>();
+					refValueClone.addAll(((TargetSectionNonContainmentReference) ref).getValue());
 					boolean hintFound = false;
 					// search for mapping instance selector
 					for (MappingHint h : hints) {
@@ -452,12 +452,12 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 																			// all instances of this
 																			// mapping TODO
 				
-											LinkedHashMap<String, Class> targetSectionsToConsider = new LinkedHashMap<String, Class>();
+											LinkedHashMap<String, TargetSectionClass> targetSectionsToConsider = new LinkedHashMap<String, TargetSectionClass>();
 											LinkedHashMap<String, EObjectTransformationHelper> targetInstancesToConsider = new LinkedHashMap<String, EObjectTransformationHelper>();
 											LinkedList<String> targetSectionChoices = new LinkedList<String>();
 											LinkedList<LinkedList<String>> instanceChoices = new LinkedList<LinkedList<String>>();
 				
-											Class v =((ClassMatcher) hSel.getMatcher()).getTargetClass();
+											TargetSectionClass v =((ClassMatcher) hSel.getMatcher()).getTargetClass();
 				
 												LinkedList<EObjectTransformationHelper> insts = targetSectionRegistry.getFlattenedPamtramClassInstances(v);//select potential instances globally
 				
@@ -520,9 +520,9 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 					 * 2. consider all available instances of the ref target 
 					 */
 					if (!hintFound) { // last chance
-						LinkedHashSet<Class> foundSections=new LinkedHashSet<Class>();
-						LinkedList<Class> refValue=new LinkedList<Class>();
-						refValue.addAll(ref.getValue());
+						LinkedHashSet<TargetSectionClass> foundSections=new LinkedHashSet<TargetSectionClass>();
+						LinkedList<TargetSectionClass> refValue=new LinkedList<TargetSectionClass>();
+						refValue.addAll(((TargetSectionNonContainmentReference) ref).getValue());
 												
 						//first check root targetMMSection itself
 						if(refValue.contains(group.getTargetMMSection())){
@@ -536,7 +536,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 							EObject next=it.next();
 							if(refValue.contains(next)){//at least one of the values the pamtram-reference points to,
 															  //is part of the same MappingHintGroup's targetMMSection
-								foundSections.add((Class)next);
+								foundSections.add((TargetSectionClass)next);
 								refValue.remove(next);
 							}
 
@@ -552,7 +552,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 							
 							//get target instances for the reference
 							LinkedList<EObjectTransformationHelper> targetInstances=new LinkedList<EObjectTransformationHelper>();
-							for(Class section: foundSections){
+							for(TargetSectionClass section: foundSections){
 								targetInstances.addAll(instancesBySection.get(section));
 							}
 							
@@ -615,12 +615,12 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 								
 							}
 						} else {
-							LinkedHashMap<String, Class> targetSectionsToConsider = new LinkedHashMap<String, Class>();
+							LinkedHashMap<String, TargetSectionClass> targetSectionsToConsider = new LinkedHashMap<String, TargetSectionClass>();
 							LinkedHashMap<String, EObjectTransformationHelper> targetInstancesToConsider = new LinkedHashMap<String, EObjectTransformationHelper>();
 							LinkedList<String> targetSectionChoices = new LinkedList<String>();//TODO there seems to be some EOL legacy in here
 							LinkedList<LinkedList<String>> instanceChoices = new LinkedList<LinkedList<String>>();
 
-							for (Class v : refValueClone) {
+							for (TargetSectionClass v : refValueClone) {
 								String classString=v.getName() + " (" + v.hashCode() + ")";
 								LinkedList<EObjectTransformationHelper> insts = targetSectionRegistry.getFlattenedPamtramClassInstances(v);
 
@@ -676,15 +676,15 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 	 * @param instancesBySection
 	 */
 	private void instantiateTargetSectionSecondPassGoDeeper(
-			Class targetMMSection,
+			TargetSectionClass targetMMSection,
 			Mapping mapping,
 			MappingHintGroup group,
 			List<MappingHint> hints,
 			LinkedHashMap<MappingHint, LinkedList<Object>> hintValues,
-			LinkedHashMap<pamtram.metamodel.Class, LinkedList<EObjectTransformationHelper>> instancesBySection) {
-		for (Reference ref : targetMMSection.getReferences()) {
-			if (ref instanceof ContainmentReference) {
-				for (Class val : ref.getValue()) {// instantiate targets
+			LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection) {
+		for (TargetSectionReference ref : targetMMSection.getReferences()) {
+			if (ref instanceof TargetSectionContainmentReference) {
+				for (TargetSectionClass val : ((TargetSectionContainmentReference) ref).getValue()) {// instantiate targets
 					instantiateTargetSectionSecondPass(val, mapping, group,hints,
 							hintValues, instancesBySection);
 				}
@@ -693,7 +693,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 		}
 	}
 
-	private static void setReference(Reference ref, EObject target,
+	private static void setReference(TargetSectionReference ref, EObject target,
 			EObject source) {
 		if (ref.getEReference().getUpperBound() == 1) {
 			// self.~description.println;//TODO

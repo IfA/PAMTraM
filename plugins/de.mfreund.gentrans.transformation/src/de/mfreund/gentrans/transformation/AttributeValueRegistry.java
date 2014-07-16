@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import pamtram.mapping.AttributeValueModifier;
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.metamodel.ActualAttribute;
-import pamtram.metamodel.Attribute;
+import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.VirtualAttribute;
 
 public class AttributeValueRegistry {
@@ -41,7 +41,7 @@ public class AttributeValueRegistry {
 	}
 	
 	
-	public boolean attributeValueExists(Attribute attr, String value, EObject eObject){
+	public boolean attributeValueExists(TargetSectionAttribute attr, String value, EObject eObject){
 		if(attr instanceof ActualAttribute){
 			if(actualAttributes.get(eObject.eClass()).containsKey(((ActualAttribute) attr).getAttribute())){
 				return actualAttributes.get(eObject.eClass()).get(((ActualAttribute) attr).getAttribute()).contains(value);

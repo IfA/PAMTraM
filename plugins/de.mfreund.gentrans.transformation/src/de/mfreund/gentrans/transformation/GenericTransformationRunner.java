@@ -20,7 +20,7 @@ import pamtram.PAMTraM;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.metamodel.CardinalityType;
-import pamtram.metamodel.Class;
+import pamtram.metamodel.TargetSectionClass;
 
 /**
  * @author Sascha Steffen
@@ -158,7 +158,7 @@ public class GenericTransformationRunner {
 			for (MappingHintGroup g : hintGroups) {
 				if (g.getTargetMMSection() != null) {
 
-					LinkedHashMap<Class, LinkedList<EObjectTransformationHelper>> instancesBySection = targetSectionInstantiator
+					LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection = targetSectionInstantiator
 							.instantiateTargetSectionFirstPass(
 									g.getTargetMMSection(), g,
 									selMap.getHintValues(),
@@ -174,7 +174,7 @@ public class GenericTransformationRunner {
 											+ "'");
 						}
 					} else {
-						for (Class section : instancesBySection.keySet()) {
+						for (TargetSectionClass section : instancesBySection.keySet()) {
 							selMap.addInstances(g, section,
 									instancesBySection.get(section));
 						}
@@ -190,7 +190,7 @@ public class GenericTransformationRunner {
 		for (Mapping m : suitableMappings) {
 			for (MappingHintGroup g : m.getMappingHintGroups()) {
 				if (g.getTargetMMSection() != null) {// targetSection exists?
-					Class section = g.getTargetMMSection();
+					TargetSectionClass section = g.getTargetMMSection();
 					if (targetSectionRegistry.getPamtramClassInstances(section)
 							.keySet().size() > 0) {// instances of section
 													// exist?

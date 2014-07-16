@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import pamtram.mapping.MappingHintGroup;
-import pamtram.metamodel.Class;
+import pamtram.metamodel.TargetSectionClass;
 
 public class TargetSectionRegistry {
 
@@ -18,7 +18,7 @@ public class TargetSectionRegistry {
 		return targetClassInstanceRegistry;
 	}
 
-	public LinkedHashMap<Class, LinkedHashMap<MappingHintGroup, LinkedList<EObjectTransformationHelper>>> getTargetClassInstanceByHintGroupRegistry() {
+	public LinkedHashMap<TargetSectionClass, LinkedHashMap<MappingHintGroup, LinkedList<EObjectTransformationHelper>>> getTargetClassInstanceByHintGroupRegistry() {
 		return targetClassInstanceByHintGroupRegistry;
 	}
 
@@ -39,7 +39,7 @@ public class TargetSectionRegistry {
 	}
 
 	private  LinkedHashMap<EClass, LinkedList<EObjectTransformationHelper>> targetClassInstanceRegistry;
-	private  LinkedHashMap<Class, LinkedHashMap<MappingHintGroup, LinkedList<EObjectTransformationHelper>>> targetClassInstanceByHintGroupRegistry;
+	private  LinkedHashMap<TargetSectionClass, LinkedHashMap<MappingHintGroup, LinkedList<EObjectTransformationHelper>>> targetClassInstanceByHintGroupRegistry;
 	private  LinkedHashMap<EClass, LinkedHashSet<EClass>> childClassesRegistry;
 	private  LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>> possiblePathsRegistry;
 	private  LinkedHashMap<EClass, LinkedHashSet<EReference>> targetClassReferencesRegistry; // ==refsToThis
@@ -47,7 +47,7 @@ public class TargetSectionRegistry {
 
 	public TargetSectionRegistry() {
 		targetClassInstanceRegistry= new LinkedHashMap<EClass, LinkedList<EObjectTransformationHelper>>();
-		targetClassInstanceByHintGroupRegistry = new LinkedHashMap<Class, LinkedHashMap<MappingHintGroup, LinkedList<EObjectTransformationHelper>>>();
+		targetClassInstanceByHintGroupRegistry = new LinkedHashMap<TargetSectionClass, LinkedHashMap<MappingHintGroup, LinkedList<EObjectTransformationHelper>>>();
 		childClassesRegistry= new LinkedHashMap<EClass, LinkedHashSet<EClass>>();
 		possiblePathsRegistry= new LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>>();
 		targetClassReferencesRegistry= new LinkedHashMap<EClass, LinkedHashSet<EReference>>(); // ==refsToThis
@@ -56,7 +56,7 @@ public class TargetSectionRegistry {
 	
 	
 	public void addClassInstance(EObjectTransformationHelper instance, MappingHintGroup group,
-			Class targetSection) {
+			TargetSectionClass targetSection) {
 		EClass eClass = instance.getEObject().eClass();
 
 		if (!targetClassInstanceRegistry.containsKey(eClass)) {
@@ -97,7 +97,7 @@ public class TargetSectionRegistry {
 	}
 
 	public  LinkedHashMap<MappingHintGroup, LinkedList<EObjectTransformationHelper>> getPamtramClassInstances(
-			Class c) {
+			TargetSectionClass c) {
 		if (!targetClassInstanceByHintGroupRegistry.containsKey(c)) {
 			return new LinkedHashMap<MappingHintGroup, LinkedList<EObjectTransformationHelper>>();
 		}
@@ -106,7 +106,7 @@ public class TargetSectionRegistry {
 
 	}
 	
-	public  LinkedList<EObjectTransformationHelper> getFlattenedPamtramClassInstances(Class c) {
+	public  LinkedList<EObjectTransformationHelper> getFlattenedPamtramClassInstances(TargetSectionClass c) {
 		LinkedList<EObjectTransformationHelper> flat = new LinkedList<EObjectTransformationHelper>();
 		if (!targetClassInstanceByHintGroupRegistry.containsKey(c)) {
 			return flat;

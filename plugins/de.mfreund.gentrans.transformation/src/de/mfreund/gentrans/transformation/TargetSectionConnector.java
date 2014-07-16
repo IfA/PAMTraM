@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.metamodel.ActualAttribute;
-import pamtram.metamodel.Class;
+import pamtram.metamodel.TargetSectionClass;
 import de.mfreund.gentrans.transformation.selectors.ItemSelectorDialog;
 import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunner;
 
@@ -57,7 +57,7 @@ public class TargetSectionConnector {
 	}
 
 	public void linkToTargetModelUsingModelConnectionHint(
-			EClass classToConnect, List<EObjectTransformationHelper> rootInstances, Class section,
+			EClass classToConnect, List<EObjectTransformationHelper> rootInstances, TargetSectionClass section,
 			String mappingName, String mappingGroupName,
 			ModelConnectionHint connectionHint,
 			LinkedList<String> connectionHintValues) {// connectionHint.targetAttribute.~owningClass
@@ -298,7 +298,7 @@ public class TargetSectionConnector {
 
 	@SuppressWarnings("unchecked")
 	public void linkToTargetModelNoConnectionHint(EClass classToConnect,
-			List<EObjectTransformationHelper> rootInstances, Class section, String mappingName,
+			List<EObjectTransformationHelper> rootInstances, TargetSectionClass section, String mappingName,
 			String mappingGroupName){
 		ModelConnectionPath modelConnectionPath;// will use this for several purposes
 

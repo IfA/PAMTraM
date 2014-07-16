@@ -179,7 +179,7 @@ public class ModelConnectionPath {
 		if (pathElements.size() > 0) {
 			if (pathElements.getLast() instanceof EClass) {
 
-				return ((EClass) pathElements.getLast()).equals(root);//TODO chekc if this works
+				return ((EClass) pathElements.getLast()).equals(root);
 
 			} else
 				return false;

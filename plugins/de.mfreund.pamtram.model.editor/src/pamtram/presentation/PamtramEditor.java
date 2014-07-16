@@ -137,6 +137,8 @@ import pamtram.mapping.SimpleAttributeMapping;
 import pamtram.mapping.provider.MappingItemProviderAdapterFactory;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.NonContainmentReference;
+import pamtram.metamodel.SourceSectionNonContainmentReference;
+import pamtram.metamodel.TargetSectionNonContainmentReference;
 import pamtram.metamodel.provider.MetamodelItemProviderAdapterFactory;
 import pamtram.presentation.listeners.MMElementDragListener;
 import pamtram.presentation.listeners.MappingDropListener;
@@ -1093,11 +1095,23 @@ public class PamtramEditor
 				public void widgetSelected(SelectionEvent e) {
 					setCurrentViewer(sourceViewer);
 					
-					if(((TreeItem) e.item).getData() instanceof NonContainmentReference) {
+					if(((TreeItem) e.item).getData() instanceof SourceSectionNonContainmentReference) {
 						
-						NonContainmentReference reference = (NonContainmentReference) ((TreeItem) e.item).getData();
+						SourceSectionNonContainmentReference reference = (SourceSectionNonContainmentReference) ((TreeItem) e.item).getData();
 						
-						EList<pamtram.metamodel.Class> referencedElements = reference.getValue();
+						EList<pamtram.metamodel.SourceSectionClass> referencedElements = reference.getValue();
+						
+						// if a non containment reference has been selected while holding down the
+						// control key, jump to the referenced class 
+						if(reference != null && e.stateMask == SWT.CTRL) {
+							sourceViewer.setSelection(
+									new StructuredSelection(referencedElements.toArray()));
+						}
+					} else 	if(((TreeItem) e.item).getData() instanceof TargetSectionNonContainmentReference) {
+						
+						TargetSectionNonContainmentReference reference = (TargetSectionNonContainmentReference) ((TreeItem) e.item).getData();
+						
+						EList<pamtram.metamodel.TargetSectionClass> referencedElements = reference.getValue();
 						
 						// if a non containment reference has been selected while holding down the
 						// control key, jump to the referenced class 
@@ -1500,11 +1514,21 @@ public class PamtramEditor
 					
 					// if a non containment reference has been selected while holding down the
 					// control key, jump to the referenced class 
-					if(((TreeItem) e.item).getData() instanceof NonContainmentReference) {
+					if(((TreeItem) e.item).getData() instanceof SourceSectionNonContainmentReference) {
 						
-						NonContainmentReference reference = (NonContainmentReference) ((TreeItem) e.item).getData();
+						SourceSectionNonContainmentReference reference = (SourceSectionNonContainmentReference) ((TreeItem) e.item).getData();
 						
-						EList<pamtram.metamodel.Class> referencedElements = reference.getValue();
+						EList<pamtram.metamodel.SourceSectionClass> referencedElements = reference.getValue();
+						
+						if(reference != null && e.stateMask == SWT.CTRL) {
+							targetViewer.setSelection(
+									new StructuredSelection(referencedElements.toArray()));
+						}
+					} else 	if(((TreeItem) e.item).getData() instanceof TargetSectionNonContainmentReference) {
+						
+						TargetSectionNonContainmentReference reference = (TargetSectionNonContainmentReference) ((TreeItem) e.item).getData();
+						
+						EList<pamtram.metamodel.TargetSectionClass> referencedElements = reference.getValue();
 						
 						if(reference != null && e.stateMask == SWT.CTRL) {
 							targetViewer.setSelection(

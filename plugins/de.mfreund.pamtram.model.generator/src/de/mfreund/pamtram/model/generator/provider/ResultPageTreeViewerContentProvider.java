@@ -5,11 +5,15 @@ import java.util.ArrayList;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
-import de.mfreund.pamtram.model.generator.ClassTreeItem;
-import pamtram.metamodel.Class;
-import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.Reference;
+import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.SourceSectionContainmentReference;
+import pamtram.metamodel.SourceSectionNonContainmentReference;
+import pamtram.metamodel.TargetSectionClass;
+import pamtram.metamodel.TargetSectionContainmentReference;
+import pamtram.metamodel.TargetSectionNonContainmentReference;
+import de.mfreund.pamtram.model.generator.ClassTreeItem;
 
 public class ResultPageTreeViewerContentProvider implements ITreeContentProvider {
 	
@@ -37,12 +41,20 @@ public class ResultPageTreeViewerContentProvider implements ITreeContentProvider
     	}
     	
     	for(Reference ref : classTreeItem.getReferences()) {
-    		if(ref instanceof pamtram.metamodel.ContainmentReference) {
-    			for(Class c : ((pamtram.metamodel.ContainmentReference) ref).getValue()) {
+    		if(ref instanceof pamtram.metamodel.SourceSectionContainmentReference) {
+    			for(SourceSectionClass c : ((pamtram.metamodel.SourceSectionContainmentReference) ref).getValue()) {
     				ret.add(ClassTreeItem.createClassTreeItem(c, ref));
     			}
-    		} else if(ref instanceof pamtram.metamodel.NonContainmentReference) {
-    			for(Class c : ((pamtram.metamodel.NonContainmentReference) ref).getValue()) {
+    		} else if(ref instanceof pamtram.metamodel.SourceSectionNonContainmentReference) {
+    			for(SourceSectionClass c : ((pamtram.metamodel.SourceSectionNonContainmentReference) ref).getValue()) {
+    				ret.add(ClassTreeItem.createClassTreeItem(c, ref));
+    			}
+    		}else if(ref instanceof pamtram.metamodel.TargetSectionContainmentReference) {
+    			for(TargetSectionClass c : ((pamtram.metamodel.TargetSectionContainmentReference) ref).getValue()) {
+    				ret.add(ClassTreeItem.createClassTreeItem(c, ref));
+    			}
+    		} else if(ref instanceof pamtram.metamodel.TargetSectionNonContainmentReference) {
+    			for(TargetSectionClass c : ((pamtram.metamodel.TargetSectionNonContainmentReference) ref).getValue()) {
     				ret.add(ClassTreeItem.createClassTreeItem(c, ref));
     			}
     		}
@@ -67,12 +79,20 @@ public class ResultPageTreeViewerContentProvider implements ITreeContentProvider
     	}
     	if(classTreeItem.getReferences() != null) {
     		for(Reference ref : classTreeItem.getReferences()) {
-    			if(ref instanceof pamtram.metamodel.ContainmentReference) {
-    				if(!(((ContainmentReference) ref).getValue().isEmpty())) {
+    			if(ref instanceof pamtram.metamodel.SourceSectionContainmentReference) {
+    				if(!(((SourceSectionContainmentReference) ref).getValue().isEmpty())) {
     					return true;
     				}
-    			} else if(ref instanceof pamtram.metamodel.NonContainmentReference) {
-    				if(!(((NonContainmentReference) ref).getValue().isEmpty())) {
+    			} else if(ref instanceof pamtram.metamodel.SourceSectionNonContainmentReference) {
+    				if(!(((SourceSectionNonContainmentReference) ref).getValue().isEmpty())) {
+    					return true;
+    				}
+    			} else  if(ref instanceof pamtram.metamodel.TargetSectionContainmentReference) {
+    				if(!(((TargetSectionContainmentReference) ref).getValue().isEmpty())) {
+    					return true;
+    				}
+    			} else if(ref instanceof pamtram.metamodel.TargetSectionNonContainmentReference) {
+    				if(!(((TargetSectionNonContainmentReference) ref).getValue().isEmpty())) {
     					return true;
     				}
     			}

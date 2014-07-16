@@ -134,6 +134,12 @@ public class MappingValidator extends EObjectValidator {
 				return validateExpressionVariable((ExpressionVariable)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE:
 				return validateAttributeMappingSourceElementType((AttributeMappingSourceElementType)value, diagnostics, context);
+			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER:
+				return validateComplexAttributeMatcher((ComplexAttributeMatcher)value, diagnostics, context);
+			case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER:
+				return validateSimpleAttributeMatcher((SimpleAttributeMatcher)value, diagnostics, context);
+			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT:
+				return validateComplexAttributeMatcherSourceElement((ComplexAttributeMatcherSourceElement)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -581,6 +587,33 @@ public class MappingValidator extends EObjectValidator {
 	 */
 	public boolean validateAttributeMappingSourceElementType(AttributeMappingSourceElementType attributeMappingSourceElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(attributeMappingSourceElementType, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateComplexAttributeMatcher(ComplexAttributeMatcher complexAttributeMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(complexAttributeMatcher, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSimpleAttributeMatcher(SimpleAttributeMatcher simpleAttributeMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(simpleAttributeMatcher, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateComplexAttributeMatcherSourceElement(ComplexAttributeMatcherSourceElement complexAttributeMatcherSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(complexAttributeMatcherSourceElement, diagnostics, context);
 	}
 
 	/**

@@ -3,7 +3,6 @@
 package pamtram.mapping;
 
 import org.eclipse.emf.common.util.EList;
-import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.TargetSectionAttribute;
 
 /**
@@ -14,43 +13,16 @@ import pamtram.metamodel.TargetSectionAttribute;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link pamtram.mapping.AttributeMatcher#getSourceAttribute <em>Source Attribute</em>}</li>
  *   <li>{@link pamtram.mapping.AttributeMatcher#getTargetAttribute <em>Target Attribute</em>}</li>
  *   <li>{@link pamtram.mapping.AttributeMatcher#getModifier <em>Modifier</em>}</li>
  * </ul>
  * </p>
  *
  * @see pamtram.mapping.MappingPackage#getAttributeMatcher()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface AttributeMatcher extends Matcher {
-	/**
-	 * Returns the value of the '<em><b>Source Attribute</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Source Attribute</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source Attribute</em>' reference.
-	 * @see #setSourceAttribute(SourceSectionAttribute)
-	 * @see pamtram.mapping.MappingPackage#getAttributeMatcher_SourceAttribute()
-	 * @model required="true"
-	 * @generated
-	 */
-	SourceSectionAttribute getSourceAttribute();
-
-	/**
-	 * Sets the value of the '{@link pamtram.mapping.AttributeMatcher#getSourceAttribute <em>Source Attribute</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Source Attribute</em>' reference.
-	 * @see #getSourceAttribute()
-	 * @generated
-	 */
-	void setSourceAttribute(SourceSectionAttribute value);
-
 	/**
 	 * Returns the value of the '<em><b>Target Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->

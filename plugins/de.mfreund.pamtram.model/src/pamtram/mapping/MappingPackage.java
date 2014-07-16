@@ -401,22 +401,13 @@ public interface MappingPackage extends EPackage {
 	int ATTRIBUTE_MATCHER = 7;
 
 	/**
-	 * The feature id for the '<em><b>Source Attribute</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTE = MATCHER_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Target Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE = MATCHER_FEATURE_COUNT + 1;
+	int ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE = MATCHER_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
@@ -425,7 +416,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MATCHER__MODIFIER = MATCHER_FEATURE_COUNT + 2;
+	int ATTRIBUTE_MATCHER__MODIFIER = MATCHER_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Attribute Matcher</em>' class.
@@ -434,7 +425,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MATCHER_FEATURE_COUNT = MATCHER_FEATURE_COUNT + 3;
+	int ATTRIBUTE_MATCHER_FEATURE_COUNT = MATCHER_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Attribute Matcher</em>' class.
@@ -1272,6 +1263,190 @@ public interface MappingPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.ComplexAttributeMatcherImpl <em>Complex Attribute Matcher</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.ComplexAttributeMatcherImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexAttributeMatcher()
+	 * @generated
+	 */
+	int COMPLEX_ATTRIBUTE_MATCHER = 24;
+
+	/**
+	 * The feature id for the '<em><b>Target Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE = ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_ATTRIBUTE_MATCHER__MODIFIER = ATTRIBUTE_MATCHER__MODIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Source Attributes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES = ATTRIBUTE_MATCHER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Complex Attribute Matcher</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_ATTRIBUTE_MATCHER_FEATURE_COUNT = ATTRIBUTE_MATCHER_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Complex Attribute Matcher</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_ATTRIBUTE_MATCHER_OPERATION_COUNT = ATTRIBUTE_MATCHER_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.SimpleAttributeMatcherImpl <em>Simple Attribute Matcher</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.SimpleAttributeMatcherImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getSimpleAttributeMatcher()
+	 * @generated
+	 */
+	int SIMPLE_ATTRIBUTE_MATCHER = 25;
+
+	/**
+	 * The feature id for the '<em><b>Target Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE = ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_ATTRIBUTE_MATCHER__MODIFIER = ATTRIBUTE_MATCHER__MODIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_ATTRIBUTE_MATCHER__NAME = ATTRIBUTE_MATCHER_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Source Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTE = ATTRIBUTE_MATCHER_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_ATTRIBUTE_MATCHER__MODIFIERS = ATTRIBUTE_MATCHER_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Simple Attribute Matcher</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_ATTRIBUTE_MATCHER_FEATURE_COUNT = ATTRIBUTE_MATCHER_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Simple Attribute Matcher</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_ATTRIBUTE_MATCHER_OPERATION_COUNT = ATTRIBUTE_MATCHER_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.ComplexAttributeMatcherSourceElementImpl <em>Complex Attribute Matcher Source Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.ComplexAttributeMatcherSourceElementImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexAttributeMatcherSourceElement()
+	 * @generated
+	 */
+	int COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT = 26;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Source Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT__SOURCE_ATTRIBUTE = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT__MODIFIERS = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Complex Attribute Matcher Source Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Complex Attribute Matcher Source Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.Mapping <em>Mapping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1438,17 +1613,6 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getAttributeMatcher();
-
-	/**
-	 * Returns the meta object for the reference '{@link pamtram.mapping.AttributeMatcher#getSourceAttribute <em>Source Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Source Attribute</em>'.
-	 * @see pamtram.mapping.AttributeMatcher#getSourceAttribute()
-	 * @see #getAttributeMatcher()
-	 * @generated
-	 */
-	EReference getAttributeMatcher_SourceAttribute();
 
 	/**
 	 * Returns the meta object for the reference '{@link pamtram.mapping.AttributeMatcher#getTargetAttribute <em>Target Attribute</em>}'.
@@ -1831,6 +1995,69 @@ public interface MappingPackage extends EPackage {
 	EReference getAttributeMappingSourceElementType_Modifier();
 
 	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.ComplexAttributeMatcher <em>Complex Attribute Matcher</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Complex Attribute Matcher</em>'.
+	 * @see pamtram.mapping.ComplexAttributeMatcher
+	 * @generated
+	 */
+	EClass getComplexAttributeMatcher();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.ComplexAttributeMatcher#getSourceAttributes <em>Source Attributes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Source Attributes</em>'.
+	 * @see pamtram.mapping.ComplexAttributeMatcher#getSourceAttributes()
+	 * @see #getComplexAttributeMatcher()
+	 * @generated
+	 */
+	EReference getComplexAttributeMatcher_SourceAttributes();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.SimpleAttributeMatcher <em>Simple Attribute Matcher</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Simple Attribute Matcher</em>'.
+	 * @see pamtram.mapping.SimpleAttributeMatcher
+	 * @generated
+	 */
+	EClass getSimpleAttributeMatcher();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.ComplexAttributeMatcherSourceElement <em>Complex Attribute Matcher Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Complex Attribute Matcher Source Element</em>'.
+	 * @see pamtram.mapping.ComplexAttributeMatcherSourceElement
+	 * @generated
+	 */
+	EClass getComplexAttributeMatcherSourceElement();
+
+	/**
+	 * Returns the meta object for the reference '{@link pamtram.mapping.ComplexAttributeMatcherSourceElement#getSourceAttribute <em>Source Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Source Attribute</em>'.
+	 * @see pamtram.mapping.ComplexAttributeMatcherSourceElement#getSourceAttribute()
+	 * @see #getComplexAttributeMatcherSourceElement()
+	 * @generated
+	 */
+	EReference getComplexAttributeMatcherSourceElement_SourceAttribute();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.mapping.ComplexAttributeMatcherSourceElement#getModifiers <em>Modifiers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Modifiers</em>'.
+	 * @see pamtram.mapping.ComplexAttributeMatcherSourceElement#getModifiers()
+	 * @see #getComplexAttributeMatcherSourceElement()
+	 * @generated
+	 */
+	EReference getComplexAttributeMatcherSourceElement_Modifiers();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1996,14 +2223,6 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EClass ATTRIBUTE_MATCHER = eINSTANCE.getAttributeMatcher();
-
-		/**
-		 * The meta object literal for the '<em><b>Source Attribute</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTE = eINSTANCE.getAttributeMatcher_SourceAttribute();
 
 		/**
 		 * The meta object literal for the '<em><b>Target Attribute</b></em>' reference feature.
@@ -2324,6 +2543,60 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER = eINSTANCE.getAttributeMappingSourceElementType_Modifier();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.impl.ComplexAttributeMatcherImpl <em>Complex Attribute Matcher</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.impl.ComplexAttributeMatcherImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexAttributeMatcher()
+		 * @generated
+		 */
+		EClass COMPLEX_ATTRIBUTE_MATCHER = eINSTANCE.getComplexAttributeMatcher();
+
+		/**
+		 * The meta object literal for the '<em><b>Source Attributes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPLEX_ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES = eINSTANCE.getComplexAttributeMatcher_SourceAttributes();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.impl.SimpleAttributeMatcherImpl <em>Simple Attribute Matcher</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.impl.SimpleAttributeMatcherImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getSimpleAttributeMatcher()
+		 * @generated
+		 */
+		EClass SIMPLE_ATTRIBUTE_MATCHER = eINSTANCE.getSimpleAttributeMatcher();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.impl.ComplexAttributeMatcherSourceElementImpl <em>Complex Attribute Matcher Source Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.impl.ComplexAttributeMatcherSourceElementImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexAttributeMatcherSourceElement()
+		 * @generated
+		 */
+		EClass COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT = eINSTANCE.getComplexAttributeMatcherSourceElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Source Attribute</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT__SOURCE_ATTRIBUTE = eINSTANCE.getComplexAttributeMatcherSourceElement_SourceAttribute();
+
+		/**
+		 * The meta object literal for the '<em><b>Modifiers</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT__MODIFIERS = eINSTANCE.getComplexAttributeMatcherSourceElement_Modifiers();
 
 	}
 

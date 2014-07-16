@@ -166,6 +166,18 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createAttributeMappingSourceElementTypeAdapter();
 			}
 			@Override
+			public Adapter caseComplexAttributeMatcher(ComplexAttributeMatcher object) {
+				return createComplexAttributeMatcherAdapter();
+			}
+			@Override
+			public Adapter caseSimpleAttributeMatcher(SimpleAttributeMatcher object) {
+				return createSimpleAttributeMatcherAdapter();
+			}
+			@Override
+			public Adapter caseComplexAttributeMatcherSourceElement(ComplexAttributeMatcherSourceElement object) {
+				return createComplexAttributeMatcherSourceElementAdapter();
+			}
+			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -522,6 +534,48 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAttributeMappingSourceElementTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ComplexAttributeMatcher <em>Complex Attribute Matcher</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.ComplexAttributeMatcher
+	 * @generated
+	 */
+	public Adapter createComplexAttributeMatcherAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.SimpleAttributeMatcher <em>Simple Attribute Matcher</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.SimpleAttributeMatcher
+	 * @generated
+	 */
+	public Adapter createSimpleAttributeMatcherAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ComplexAttributeMatcherSourceElement <em>Complex Attribute Matcher Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.ComplexAttributeMatcherSourceElement
+	 * @generated
+	 */
+	public Adapter createComplexAttributeMatcherSourceElementAdapter() {
 		return null;
 	}
 

@@ -49,15 +49,6 @@ public interface MappingFactory extends EFactory {
 	MappingInstanceSelector createMappingInstanceSelector();
 
 	/**
-	 * Returns a new object of class '<em>Attribute Matcher</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Attribute Matcher</em>'.
-	 * @generated
-	 */
-	AttributeMatcher createAttributeMatcher();
-
-	/**
 	 * Returns a new object of class '<em>Class Matcher</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -182,6 +173,33 @@ public interface MappingFactory extends EFactory {
 	 * @generated
 	 */
 	ExpressionVariable createExpressionVariable();
+
+	/**
+	 * Returns a new object of class '<em>Complex Attribute Matcher</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Complex Attribute Matcher</em>'.
+	 * @generated
+	 */
+	ComplexAttributeMatcher createComplexAttributeMatcher();
+
+	/**
+	 * Returns a new object of class '<em>Simple Attribute Matcher</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Simple Attribute Matcher</em>'.
+	 * @generated
+	 */
+	SimpleAttributeMatcher createSimpleAttributeMatcher();
+
+	/**
+	 * Returns a new object of class '<em>Complex Attribute Matcher Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Complex Attribute Matcher Source Element</em>'.
+	 * @generated
+	 */
+	ComplexAttributeMatcherSourceElement createComplexAttributeMatcherSourceElement();
 
 	/**
 	 * Returns the package supported by this factory.

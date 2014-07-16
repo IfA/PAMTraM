@@ -251,6 +251,31 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER: {
+				ComplexAttributeMatcher complexAttributeMatcher = (ComplexAttributeMatcher)theEObject;
+				T result = caseComplexAttributeMatcher(complexAttributeMatcher);
+				if (result == null) result = caseAttributeMatcher(complexAttributeMatcher);
+				if (result == null) result = caseMatcher(complexAttributeMatcher);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER: {
+				SimpleAttributeMatcher simpleAttributeMatcher = (SimpleAttributeMatcher)theEObject;
+				T result = caseSimpleAttributeMatcher(simpleAttributeMatcher);
+				if (result == null) result = caseAttributeMatcher(simpleAttributeMatcher);
+				if (result == null) result = caseComplexAttributeMatcherSourceElement(simpleAttributeMatcher);
+				if (result == null) result = caseMatcher(simpleAttributeMatcher);
+				if (result == null) result = caseNamedElement(simpleAttributeMatcher);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT: {
+				ComplexAttributeMatcherSourceElement complexAttributeMatcherSourceElement = (ComplexAttributeMatcherSourceElement)theEObject;
+				T result = caseComplexAttributeMatcherSourceElement(complexAttributeMatcherSourceElement);
+				if (result == null) result = caseNamedElement(complexAttributeMatcherSourceElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -612,6 +637,51 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAttributeMappingSourceElementType(AttributeMappingSourceElementType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Complex Attribute Matcher</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Complex Attribute Matcher</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseComplexAttributeMatcher(ComplexAttributeMatcher object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Simple Attribute Matcher</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Simple Attribute Matcher</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSimpleAttributeMatcher(SimpleAttributeMatcher object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Complex Attribute Matcher Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Complex Attribute Matcher Source Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseComplexAttributeMatcherSourceElement(ComplexAttributeMatcherSourceElement object) {
 		return null;
 	}
 

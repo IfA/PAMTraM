@@ -59,7 +59,6 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.MAPPING: return createMapping();
 			case MappingPackage.CARDINALITY_MAPPING: return createCardinalityMapping();
 			case MappingPackage.MAPPING_INSTANCE_SELECTOR: return createMappingInstanceSelector();
-			case MappingPackage.ATTRIBUTE_MATCHER: return createAttributeMatcher();
 			case MappingPackage.CLASS_MATCHER: return createClassMatcher();
 			case MappingPackage.SUBSTRING_REPLACER: return createSubstringReplacer();
 			case MappingPackage.STRING_APPENDER: return createStringAppender();
@@ -74,6 +73,9 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT: return createComplexAttribueMappingSourceElement();
 			case MappingPackage.CALCULATOR_MAPPING: return createCalculatorMapping();
 			case MappingPackage.EXPRESSION_VARIABLE: return createExpressionVariable();
+			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER: return createComplexAttributeMatcher();
+			case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER: return createSimpleAttributeMatcher();
+			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT: return createComplexAttributeMatcherSourceElement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -107,16 +109,6 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public MappingInstanceSelector createMappingInstanceSelector() {
 		MappingInstanceSelectorImpl mappingInstanceSelector = new MappingInstanceSelectorImpl();
 		return mappingInstanceSelector;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public AttributeMatcher createAttributeMatcher() {
-		AttributeMatcherImpl attributeMatcher = new AttributeMatcherImpl();
-		return attributeMatcher;
 	}
 
 	/**
@@ -257,6 +249,36 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public ExpressionVariable createExpressionVariable() {
 		ExpressionVariableImpl expressionVariable = new ExpressionVariableImpl();
 		return expressionVariable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ComplexAttributeMatcher createComplexAttributeMatcher() {
+		ComplexAttributeMatcherImpl complexAttributeMatcher = new ComplexAttributeMatcherImpl();
+		return complexAttributeMatcher;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SimpleAttributeMatcher createSimpleAttributeMatcher() {
+		SimpleAttributeMatcherImpl simpleAttributeMatcher = new SimpleAttributeMatcherImpl();
+		return simpleAttributeMatcher;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ComplexAttributeMatcherSourceElement createComplexAttributeMatcherSourceElement() {
+		ComplexAttributeMatcherSourceElementImpl complexAttributeMatcherSourceElement = new ComplexAttributeMatcherSourceElementImpl();
+		return complexAttributeMatcherSourceElement;
 	}
 
 	/**

@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.MappingPackage;
-import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.TargetSectionAttribute;
 
 /**
@@ -22,7 +21,6 @@ import pamtram.metamodel.TargetSectionAttribute;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getSourceAttribute <em>Source Attribute</em>}</li>
  *   <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getTargetAttribute <em>Target Attribute</em>}</li>
  *   <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getModifier <em>Modifier</em>}</li>
  * </ul>
@@ -30,17 +28,7 @@ import pamtram.metamodel.TargetSectionAttribute;
  *
  * @generated
  */
-public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatcher {
-	/**
-	 * The cached value of the '{@link #getSourceAttribute() <em>Source Attribute</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSourceAttribute()
-	 * @generated
-	 * @ordered
-	 */
-	protected SourceSectionAttribute sourceAttribute;
-
+public abstract class AttributeMatcherImpl extends MatcherImpl implements AttributeMatcher {
 	/**
 	 * The cached value of the '{@link #getTargetAttribute() <em>Target Attribute</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -78,44 +66,6 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	@Override
 	protected EClass eStaticClass() {
 		return MappingPackage.Literals.ATTRIBUTE_MATCHER;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SourceSectionAttribute getSourceAttribute() {
-		if (sourceAttribute != null && sourceAttribute.eIsProxy()) {
-			InternalEObject oldSourceAttribute = (InternalEObject)sourceAttribute;
-			sourceAttribute = (SourceSectionAttribute)eResolveProxy(oldSourceAttribute);
-			if (sourceAttribute != oldSourceAttribute) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTE, oldSourceAttribute, sourceAttribute));
-			}
-		}
-		return sourceAttribute;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SourceSectionAttribute basicGetSourceAttribute() {
-		return sourceAttribute;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSourceAttribute(SourceSectionAttribute newSourceAttribute) {
-		SourceSectionAttribute oldSourceAttribute = sourceAttribute;
-		sourceAttribute = newSourceAttribute;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTE, oldSourceAttribute, sourceAttribute));
 	}
 
 	/**
@@ -176,9 +126,6 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTE:
-				if (resolve) return getSourceAttribute();
-				return basicGetSourceAttribute();
 			case MappingPackage.ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE:
 				if (resolve) return getTargetAttribute();
 				return basicGetTargetAttribute();
@@ -197,9 +144,6 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTE:
-				setSourceAttribute((SourceSectionAttribute)newValue);
-				return;
 			case MappingPackage.ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE:
 				setTargetAttribute((TargetSectionAttribute)newValue);
 				return;
@@ -219,9 +163,6 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTE:
-				setSourceAttribute((SourceSectionAttribute)null);
-				return;
 			case MappingPackage.ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE:
 				setTargetAttribute((TargetSectionAttribute)null);
 				return;
@@ -240,8 +181,6 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTE:
-				return sourceAttribute != null;
 			case MappingPackage.ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE:
 				return targetAttribute != null;
 			case MappingPackage.ATTRIBUTE_MATCHER__MODIFIER:

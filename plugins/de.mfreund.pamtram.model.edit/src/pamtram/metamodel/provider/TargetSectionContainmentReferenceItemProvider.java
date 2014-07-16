@@ -92,31 +92,6 @@ public class TargetSectionContainmentReferenceItemProvider
 	}
 
 	/**
-	 * This returns TargetSectionContainmentReference.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/TargetSectionContainmentReference"));
-	}
-
-	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getText(Object object) {
-		String label = ((TargetSectionContainmentReference)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_TargetSectionContainmentReference_type") :
-			getString("_UI_TargetSectionContainmentReference_type") + " " + label;
-	}
-
-	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->

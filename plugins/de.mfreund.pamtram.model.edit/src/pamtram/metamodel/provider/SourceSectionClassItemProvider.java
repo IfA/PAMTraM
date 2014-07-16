@@ -116,30 +116,7 @@ public class SourceSectionClassItemProvider
 		return super.getChildFeature(object, child);
 	}
 
-	/**
-	 * This returns SourceSectionClass.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/SourceSectionClass"));
-	}
 
-	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getText(Object object) {
-		String label = ((SourceSectionClass)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_SourceSectionClass_type") :
-			getString("_UI_SourceSectionClass_type") + " " + label;
-	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

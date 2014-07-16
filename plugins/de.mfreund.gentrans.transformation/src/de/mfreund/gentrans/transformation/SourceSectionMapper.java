@@ -11,6 +11,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.AttributeMatcher;
@@ -47,14 +48,16 @@ public class SourceSectionMapper {
 	private LinkedHashMap<ComplexAttributeMapping,SourceSectionClass> deepestComplexAttrMappingSrcElementsByCmplxMapping;
 	private LinkedHashMap<CalculatorMapping,SourceSectionClass> deepestCalcAttrMappingSrcElementsByCalcMapping;
 	private List<Mapping> mappingsToChooseFrom;
+	private MessageConsoleStream consoleStream;
 	
-	public SourceSectionMapper(List<Mapping> mappingsToChooseFrom) {
+	public SourceSectionMapper(List<Mapping> mappingsToChooseFrom, MessageConsoleStream consoleStream) {
 		mappedSections=new LinkedHashMap<SourceSectionClass,Set<EObject>> ();
 		mappingHints=new  LinkedHashMap<Mapping,LinkedList<MappingHint>>();
 		modelConnectionHints=new  LinkedHashMap<Mapping,LinkedList<ModelConnectionHint>>();
 		deepestComplexAttrMappingSrcElementsByCmplxMapping= new LinkedHashMap<ComplexAttributeMapping,SourceSectionClass>();
 		deepestCalcAttrMappingSrcElementsByCalcMapping = new LinkedHashMap<CalculatorMapping,SourceSectionClass>();
 		this.mappingsToChooseFrom=mappingsToChooseFrom;
+		this.consoleStream=consoleStream;
 		
 		//this will fill some maps...
 		for(Mapping m : mappingsToChooseFrom){
@@ -355,7 +358,7 @@ public class SourceSectionMapper {
 				}
 
 			} else {// attribute not set / null
-				System.out.println("Unset attribute");//TODO we probably don't want any output here
+				consoleStream.println("Unset attribute");//TODO we probably don't want any output here
 				return null;
 			}
 		}
@@ -391,7 +394,7 @@ public class SourceSectionMapper {
 							double variableVal= calc.calculate();//parseDouble doesn't support Scientific notation, like: 0.42e2 == 4200e-2 == 42, 
 							foundValues.put(v.getName(), new Double(variableVal));
 						} catch(Exception e){
-							System.out.println("Couldn't convert variable " 
+							consoleStream.println("Couldn't convert variable " 
 									+ v.getName() + " of CalculatorMapping " + h.getName()
 									+ " from String to double. The problematic source element's attribute value was: " 
 									+ calcVariableHintValues.get(v));
@@ -513,7 +516,7 @@ public class SourceSectionMapper {
 						}
 					}
 					if (!foundMapping) {
-						System.out
+						consoleStream
 								.println("we need to find a mapping for every srcModelElement "
 										+ rt);
 						return null; // we need to find a mapping for every
@@ -580,7 +583,7 @@ public class SourceSectionMapper {
 																			// from
 																			// list
 					} else {
-						// System.out.println("no-vc mapping failed");
+						// consoleStream.println("no-vc mapping failed");
 						return null;// all non-vc-elements need to be mapped
 									// exactly once
 					}
@@ -634,7 +637,7 @@ public class SourceSectionMapper {
 																		// from
 																		// list
 					} else {
-						// System.out.println("vc mapping failed");
+						// consoleStream.println("vc mapping failed");
 						return null; // the fact that samllestKey is not in the
 										// collection means that no mapping was
 										// found at all
@@ -644,7 +647,7 @@ public class SourceSectionMapper {
 				// check if all refTargets where mapped
 				refTargetL.removeAll(allElementsMapped);
 				if (refTargetL.size() > 0) {
-					System.out.println("Not everything could be mapped");
+					consoleStream.println("Not everything could be mapped");
 					return null;
 				}
 
@@ -767,7 +770,7 @@ public class SourceSectionMapper {
 			MappingInstanceStorage returnVal=null;
 			switch(mappingData.keySet().size()){
 				case 0:
-					//System.out.println("No suitable mappping found for element\n'" + element.eClass().getName() + "'.");
+					//consoleStream.println("No suitable mappping found for element\n'" + element.eClass().getName() + "'.");
 					break;
 				case 1:
 					returnVal= mappingData.values().iterator().next();
@@ -780,7 +783,7 @@ public class SourceSectionMapper {
 			}	
 			
 			if(returnVal != null){
-				System.out.println(','  + returnVal.getMapping().getName() + ", " + usedInMapping.get(returnVal) + " ,  "+ time );
+				consoleStream.println(','  + returnVal.getMapping().getName() + ", " + usedInMapping.get(returnVal) + " ,  "+ time );
 
 			}
 			

@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.ModelConnectionHint;
@@ -24,14 +25,16 @@ public class TargetSectionConnector {
 	private AttributeValueRegistry attrValRegistry;
 	private TargetSectionRegistry targetSectionRegistry;
 	private XMIResource targetModel;
+	private MessageConsoleStream consoleStream;
 	
 	
 	public TargetSectionConnector(AttributeValueRegistry attrValRegistry, TargetSectionRegistry targetSectionRegistry,
-			XMIResource targetModel){
+			XMIResource targetModel, MessageConsoleStream consoleStream){
 		standardPaths = new LinkedHashMap<ModelConnectionHint, ModelConnectionPath>();
 		this.attrValRegistry=attrValRegistry;
 		this.targetSectionRegistry=targetSectionRegistry;
 		this.targetModel=targetModel;
+		this.consoleStream=consoleStream;
 	}
 
 	public  LinkedList<ModelConnectionPath> findPathsWithMinimumCapacity(
@@ -130,7 +133,7 @@ public class TargetSectionConnector {
 									contInstsByHintVal.get(hintVal).add(contInst);
 								}
 							} else {
-								System.out.println("Problemo?");
+								consoleStream.println("Problemo?");
 							}						
 	
 	
@@ -174,7 +177,7 @@ public class TargetSectionConnector {
 					// for Debug
 
 				} else {
-					System.out.println("The ModelConnectionHint '"
+					consoleStream.println("The ModelConnectionHint '"
 							+ connectionHint.getName() + " of MappingHintGroup " + mappingGroupName 
 							+ "(Mapping: " + mappingName + ") could not find an instance to connect the targetSections.\n" + contInstsByHintVal.keySet());
 					addToTargetModelRoot(rootInstancesByHintVal.get(hintVal));
@@ -263,7 +266,7 @@ public class TargetSectionConnector {
 
 						modelConnectionPath = pathNames.get(selection);
 					} else {
-						System.out.println("no  paths????????");// TODO should
+						consoleStream.println("no  paths????????");// TODO should
 																// be more
 																// helpful
 						addToTargetModelRoot(rootInstancesByContainer.get(container));
@@ -272,7 +275,7 @@ public class TargetSectionConnector {
 
 					if (!standardPaths.containsKey(connectionHint)) {
 						standardPaths.put(connectionHint, modelConnectionPath);
-						System.out.println(section.getName() + "("
+						consoleStream.println(section.getName() + "("
 								+ mappingName + "): " + modelConnectionPath.toString());
 					}
 
@@ -283,7 +286,7 @@ public class TargetSectionConnector {
 				}
 			}
 		} else {
-			System.out
+			consoleStream
 					.println("Could not find a path that leads to the modelConnectionTarget Class specified for '"
 							+ mappingName + "' (" + mappingGroupName + ")");
 			addToTargetModelRoot(rootInstances);
@@ -316,7 +319,7 @@ public class TargetSectionConnector {
 				if (hasContainer) {
 
 					if (containerInstances.size() == 0) {
-						System.out
+						consoleStream
 								.println("No instances of the targetSection '"
 										+ section.getContainer().getName()
 										+ "' were created. Instances of the targetSection '"
@@ -353,7 +356,7 @@ public class TargetSectionConnector {
 								modelConnectionPath.getRootType()).getFirst();
 					}
 
-					System.out.println(section.getName() + "(" + mappingName
+					consoleStream.println(section.getName() + "(" + mappingName
 							+ "): " + modelConnectionPath.toString());
 					instantiateMissingPath(modelConnectionPath.getInvertedPath(), inst.getEObject(),
 							rootInstances);
@@ -414,13 +417,13 @@ public class TargetSectionConnector {
 					EObjectTransformationHelper inst = instancesByPath.get(
 							PathAndInstanceSelectorRunner.getPath()).get(
 							PathAndInstanceSelectorRunner.getInstance());
-					System.out.println(section.getName() + "(" + mappingName
+					consoleStream.println(section.getName() + "(" + mappingName
 							+ "): " + modelConnectionPath.toString());
 					instantiateMissingPath(modelConnectionPath.getInvertedPath(), inst.getEObject(),
 							rootInstances);
 
 				} else {// no suitable container found
-					System.out
+					consoleStream
 							.println("Could not find a path that leads to the container specified for targetSection '"
 									+ section.getName() + "'");
 					addToTargetModelRoot(rootInstances);
@@ -431,7 +434,7 @@ public class TargetSectionConnector {
 			}
 
 		} else {
-			System.out.println("No suitable path found for element:\n"
+			consoleStream.println("No suitable path found for element:\n"
 					+ classToConnect);
 			addToTargetModelRoot(rootInstances);
 		}
@@ -499,13 +502,13 @@ public class TargetSectionConnector {
 
 			} else {// cardinality less than infinity
 				// TODO
-				System.out.println("Owei, owei");
+				consoleStream.println("Owei, owei");
 			}
 
 		} else {// at End
 			if (ref.getUpperBound() == 1) {
 				if (targetInst != null)
-					System.out.println("Big mistake"); // this shouldn't happen
+					consoleStream.println("Big mistake"); // this shouldn't happen
 				else {
 					refStartInstance.eSet(ref, instancesAtEnd.get(0).getEObject());
 				}
@@ -540,7 +543,7 @@ public class TargetSectionConnector {
 
 			} else {// cardinality less than infinity
 					// TODO
-				System.out.println("owei, owei");
+				consoleStream.println("owei, owei");
 			}
 		}
 

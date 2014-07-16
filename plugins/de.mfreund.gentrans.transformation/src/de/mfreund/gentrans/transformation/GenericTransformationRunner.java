@@ -15,6 +15,11 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.console.ConsolePlugin;
+import org.eclipse.ui.console.IConsole;
+import org.eclipse.ui.console.IConsoleManager;
+import org.eclipse.ui.console.MessageConsole;
+import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.PAMTraM;
 import pamtram.mapping.Mapping;
@@ -34,12 +39,28 @@ public class GenericTransformationRunner {
 		this.sourceModel = sourceModel;
 		this.pamtramPath = pamtramPath;
 		this.targetFilePath=targetFilePath;
+		consoleStream=findConsole("de.mfreund.gentrans.transformation_" + this.hashCode()).newMessageStream();
 
 	}
 
 	private EObject sourceModel;
 	private String pamtramPath;
 	private String targetFilePath;
+	private MessageConsoleStream consoleStream;
+	
+	
+	private MessageConsole findConsole(String consoleName) {
+		ConsolePlugin plugin = ConsolePlugin.getDefault();
+		IConsoleManager conMan = plugin.getConsoleManager();
+		IConsole[] existing = conMan.getConsoles();
+		for (int i = 0; i < existing.length; i++)
+			if (consoleName.equals(existing[i].getName()))
+				return (MessageConsole) existing[i];
+		// no console found, so create a new one
+		MessageConsole myConsole = new MessageConsole(consoleName, null);
+		conMan.addConsoles(new IConsole[] { myConsole });
+		return myConsole;
+	}
 
 	/**
 	 * 
@@ -94,18 +115,18 @@ public class GenericTransformationRunner {
 				.getMapping();// TODO apply contextModel
 
 		// generate storage objects and generators
-		SourceSectionMapper sourceSectionMapper = new SourceSectionMapper(suitableMappings);
+		SourceSectionMapper sourceSectionMapper = new SourceSectionMapper(suitableMappings, consoleStream);
 		TargetSectionRegistry targetSectionRegistry = new TargetSectionRegistry();
 		AttributeValueRegistry attrValueRegistry = new AttributeValueRegistry();
 		TargetSectionConnector connectionHelpers = new TargetSectionConnector(
-				attrValueRegistry, targetSectionRegistry, targetModel);
+				attrValueRegistry, targetSectionRegistry, targetModel, consoleStream);
 		TargetSectionInstantiator targetSectionInstantiator = new TargetSectionInstantiator(
-				targetSectionRegistry, attrValueRegistry);
+				targetSectionRegistry, attrValueRegistry, consoleStream);
 
 		/*
 		 * create a list of all the containment references in the source model
 		 */
-		System.out.println("Analysing srcModel containment references...");
+		consoleStream.println("Analysing srcModel containment references...");
 
 		// list of all unmapped nodes. obtained by iterating over all of the
 		// srcModels containment refs
@@ -118,7 +139,7 @@ public class GenericTransformationRunner {
 		 */
 		LinkedList<MappingInstanceStorage> selectedMappings = new LinkedList<MappingInstanceStorage>();
 		LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping = new LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>>();
-		System.out.println("Selecting Mappings for source model elements...");
+		consoleStream.println("Selecting Mappings for source model elements...");
 
 		int numSrcModelElements = contRefsToMap.size();
 		int unmapped=0;
@@ -144,12 +165,12 @@ public class GenericTransformationRunner {
 			}
 
 		}
-		System.out.println("Used srcModel elements: "
+		consoleStream.println("Used srcModel elements: "
 				+ (numSrcModelElements - unmapped));
 		targetSectionRegistry.analyseTargetMetaModel(pamtramModel.getTargetSectionModel().getMetaModelPackage());
 
 		// creating target Model first pass (containment references)
-		System.out
+		consoleStream
 				.println("Instantiating targetModelSections for selected mappings. First pass...");
 		for (MappingInstanceStorage selMap : selectedMappings) {
 			// selMap.get("mapping").name.println;
@@ -166,7 +187,7 @@ public class GenericTransformationRunner {
 									selMap.getMapping());
 					if (instancesBySection == null) {
 						if (g.getTargetMMSection().getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
-							System.out
+							consoleStream
 									.println("Error instantiating target section '"
 											+ g.getTargetMMSection().getName()
 											+ "' using mapping rule '"
@@ -185,7 +206,7 @@ public class GenericTransformationRunner {
 		}
 
 		// creating missing links/containers for target model
-		System.out.println("Linking targetModelSections...");
+		consoleStream.println("Linking targetModelSections...");
 
 		for (Mapping m : suitableMappings) {
 			for (MappingHintGroup g : m.getMappingHintGroups()) {
@@ -234,7 +255,7 @@ public class GenericTransformationRunner {
 		}
 
 		// creating target Model second pass (non-containment references)
-		System.out
+		consoleStream
 				.println("Instantiating targetModelSections for selected mappings. Second pass...");
 		for (MappingInstanceStorage selMap : selectedMappings) {
 			for (MappingHintGroup g : selMap.getMapping()

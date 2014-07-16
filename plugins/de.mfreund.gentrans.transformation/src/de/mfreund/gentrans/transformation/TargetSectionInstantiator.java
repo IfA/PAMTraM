@@ -10,6 +10,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMatcher;
@@ -34,15 +35,17 @@ public class TargetSectionInstantiator {
 	private RoundFunction round;
 	private TargetSectionRegistry targetSectionRegistry;
 	private AttributeValueRegistry attributeValueRegistry;
+	private MessageConsoleStream consoleStream;
 
-	public TargetSectionInstantiator(TargetSectionRegistry targetSectionRegistry , AttributeValueRegistry attributeValueRegistry) {
+	public TargetSectionInstantiator(TargetSectionRegistry targetSectionRegistry , AttributeValueRegistry attributeValueRegistry, MessageConsoleStream consoleStream) {
 		this.targetSectionRegistry=targetSectionRegistry;
 		this.attributeValueRegistry=attributeValueRegistry;
+		this.consoleStream=consoleStream;
 		
 		try{
 			round=new RoundFunction();
 		}catch(InvalidCustomFunctionException e){
-			System.out.println("This will never happen.");
+			consoleStream.println("This will never happen.");
 		}
 	}
 	
@@ -189,7 +192,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 									attrHintValues=hintValues.get(hint);
 									break;
 								} else{
-									System.out.println("Cardinality mismatch (expected: "+ cardinality + ", got :" +  hintValues.get(hint).size() +"): " + hint.getName() + " for Mapping "+ mapping.getName() 
+									consoleStream.println("Cardinality mismatch (expected: "+ cardinality + ", got :" +  hintValues.get(hint).size() +"): " + hint.getName() + " for Mapping "+ mapping.getName() 
 										+ " (Group: " + mappingGroup.getName() +") Maybe check Cardinality of Metamodel section?");
 									return null;
 								}
@@ -207,7 +210,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 									attrValue = String.valueOf(new ExpressionBuilder(((CalculatorMapping) hintFound).getExpression()).withCustomFunction(round)
 											.withVariables((Map<String,Double>)attrHintValues.remove(0)).build().calculate());									
 								} catch(Exception e){//TODO this will lead to a lot of error output if it fails
-									System.out.println("Error parsing the expression of CalculatorMapping" + hintFound.getName() + ". Message:\n"
+									consoleStream.println("Error parsing the expression of CalculatorMapping" + hintFound.getName() + ". Message:\n"
 											+ e.getMessage());
 								}								
 							} else {
@@ -248,7 +251,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 						 	if(children != null) { //error? //TODO also delete here?
 						 		childInstances.addAll(children);
 						 	} else{ 
-								System.out.println("NoChildren");
+								consoleStream.println("NoChildren");
 						 		return null;
 						 	}
 						 }
@@ -291,7 +294,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 			}
 			return instances;
 		} else if(!metamodelSection.getCardinality().equals(CardinalityType.ZERO_INFINITY)){// <> pamtram!CardinalityType#ZERO__INFINITY){
-			System.out.println("TargetMMSection class '" + metamodelSection.getName() + 
+			consoleStream.println("TargetMMSection class '" + metamodelSection.getName() + 
 			"' has a cardinality of at least 1 specified, but no suitable mappingHint was found.");		
 			return null;		
 		} else {
@@ -369,7 +372,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 									} else {
 										// TODO find a sensible way to throw
 										// this error
-										System.out.println("Tschaka "
+										consoleStream.println("Tschaka "
 												+ h.getName()
 												+ instancesToConsider.size()
 												+ " "
@@ -391,14 +394,14 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 												if (targetValStr != null) {
 													if (targetValStr
 															.equals(attrVal)) {
-														// System.out.println("found "
+														// consoleStream.println("found "
 														// + targetVal + " "
 														// + attrVal);
 														fittingVals.put(targetInst.toString(),targetInst);
 	
 													}
 												} else {
-													System.out.println("Problemo?");
+													consoleStream.println("Problemo?");
 												}
 										}
 										// select targetInst
@@ -431,7 +434,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 											//setReference(ref,fittingVals.values().iterator().next(),srcInst);
 										} else {
 
-											System.out
+											consoleStream
 													.println("Nich gefunden: "
 															+  attrVal);
 										}
@@ -480,9 +483,9 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 														.iterator().next();
 											} else if (targetInstancesToConsider.values().size() > 1) {
 												// Dialog
-												System.out.println("Dialog? " + ref.getName());
+												consoleStream.println("Dialog? " + ref.getName());
 											} else {
-												System.out
+												consoleStream
 														.println("Schade schade " + ref.getName()); // TODO sinnvoller Fehlertext  wäre hierangebracht
 											}
 				
@@ -495,7 +498,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 										}
 									}
 								} else {
-									System.out.println("Matcher of type "
+									consoleStream.println("Matcher of type "
 											+ hSel.getMatcher().eClass()
 													.getName()
 											+ " in MappingHint "
@@ -607,9 +610,9 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 									setReference(ref, targetInstancesByRoot.get(rootBySourceInstance.get(source)).getFirst().getEObject(), source.getEObject());
 								} else if(numRefTargets > 1){
 									//TODO let user decide
-									System.out.println("Userdecision " + ref.getName());
+									consoleStream.println("Userdecision " + ref.getName());
 								} else {
-									System.out.println("No suitable refernce target found for non-cont. reference '" + ref.getName()
+									consoleStream.println("No suitable refernce target found for non-cont. reference '" + ref.getName()
 											+ "' of the following instance of targetMMSection '" + targetMMSection.getName() + "'\n" + source.toString());//TODO description
 								}
 								
@@ -643,9 +646,9 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 								targetInstance = targetInstancesToConsider.values().iterator().next();
 							} else if (targetInstancesToConsider.values().size() > 1) {
 								//TODO Dialog
-								System.out.println("Dialog? " + ref.getName());
+								consoleStream.println("Dialog? " + ref.getName());
 							} else {
-								System.out.println("No suitable hint targets found for non-cont reference '"
+								consoleStream.println("No suitable hint targets found for non-cont reference '"
 										+ ref.getName() + "' of TargetMMSection "
 										+ group.getTargetMMSection().getName() + "(Section: "	+ targetMMSection.getName() 
 										+ ") in Mapping " + mapping.getName() + "(Group: " + group.getName() +").");
@@ -693,13 +696,13 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 		}
 	}
 
-	private static void setReference(TargetSectionReference ref, EObject target,
+	private void setReference(TargetSectionReference ref, EObject target,
 			EObject source) {
 		if (ref.getEReference().getUpperBound() == 1) {
 			// self.~description.println;//TODO
 
 			if (source.eIsSet(ref.getEReference())) {
-				System.out.println("Non-Cont Ref. " + ref.getName()
+				consoleStream.println("Non-Cont Ref. " + ref.getName()
 						+ " already set:\n" + source.toString()); // TODO
 																	// description
 																	// for

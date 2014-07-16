@@ -13,16 +13,18 @@ import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.AttributeValueSpecification;
 import pamtram.metamodel.BeginningMatcher;
 import pamtram.metamodel.CardinalityType;
-import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.EndingMatcher;
 import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.RegExMatcher;
 import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.SourceSectionContainmentReference;
+import pamtram.metamodel.SourceSectionNonContainmentReference;
 import pamtram.metamodel.SubstringMatcher;
 import pamtram.metamodel.TargetSectionClass;
+import pamtram.metamodel.TargetSectionContainmentReference;
+import pamtram.metamodel.TargetSectionNonContainmentReference;
 import pamtram.metamodel.VirtualAttribute;
 
 /**
@@ -71,8 +73,10 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 		switch (eClass.getClassifierID()) {
 			case MetamodelPackage.SOURCE_SECTION_CLASS: return createSourceSectionClass();
 			case MetamodelPackage.TARGET_SECTION_CLASS: return createTargetSectionClass();
-			case MetamodelPackage.CONTAINMENT_REFERENCE: return createContainmentReference();
-			case MetamodelPackage.NON_CONTAINMENT_REFERENCE: return createNonContainmentReference();
+			case MetamodelPackage.TARGET_SECTION_CONTAINMENT_REFERENCE: return createTargetSectionContainmentReference();
+			case MetamodelPackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE: return createTargetSectionNonContainmentReference();
+			case MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE: return createSourceSectionContainmentReference();
+			case MetamodelPackage.SOURCE_SECTION_NON_CONTAINMENT_REFERENCE: return createSourceSectionNonContainmentReference();
 			case MetamodelPackage.ACTUAL_ATTRIBUTE: return createActualAttribute();
 			case MetamodelPackage.VIRTUAL_ATTRIBUTE: return createVirtualAttribute();
 			case MetamodelPackage.ATTRIBUTE_VALUE_SPECIFICATION: return createAttributeValueSpecification();
@@ -145,9 +149,9 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ContainmentReference createContainmentReference() {
-		ContainmentReferenceImpl containmentReference = new ContainmentReferenceImpl();
-		return containmentReference;
+	public TargetSectionContainmentReference createTargetSectionContainmentReference() {
+		TargetSectionContainmentReferenceImpl targetSectionContainmentReference = new TargetSectionContainmentReferenceImpl();
+		return targetSectionContainmentReference;
 	}
 
 	/**
@@ -155,9 +159,29 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NonContainmentReference createNonContainmentReference() {
-		NonContainmentReferenceImpl nonContainmentReference = new NonContainmentReferenceImpl();
-		return nonContainmentReference;
+	public TargetSectionNonContainmentReference createTargetSectionNonContainmentReference() {
+		TargetSectionNonContainmentReferenceImpl targetSectionNonContainmentReference = new TargetSectionNonContainmentReferenceImpl();
+		return targetSectionNonContainmentReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SourceSectionContainmentReference createSourceSectionContainmentReference() {
+		SourceSectionContainmentReferenceImpl sourceSectionContainmentReference = new SourceSectionContainmentReferenceImpl();
+		return sourceSectionContainmentReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SourceSectionNonContainmentReference createSourceSectionNonContainmentReference() {
+		SourceSectionNonContainmentReferenceImpl sourceSectionNonContainmentReference = new SourceSectionNonContainmentReferenceImpl();
+		return sourceSectionNonContainmentReference;
 	}
 
 	/**

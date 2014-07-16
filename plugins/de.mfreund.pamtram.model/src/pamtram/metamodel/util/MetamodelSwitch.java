@@ -21,8 +21,14 @@ import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.RegExMatcher;
 import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.SourceSectionContainmentReference;
+import pamtram.metamodel.SourceSectionNonContainmentReference;
+import pamtram.metamodel.SourceSectionReference;
 import pamtram.metamodel.SubstringMatcher;
 import pamtram.metamodel.TargetSectionClass;
+import pamtram.metamodel.TargetSectionContainmentReference;
+import pamtram.metamodel.TargetSectionNonContainmentReference;
+import pamtram.metamodel.TargetSectionReference;
 import pamtram.metamodel.VirtualAttribute;
 
 /**
@@ -138,6 +144,68 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				if (result == null) result = caseReference(nonContainmentReference);
 				if (result == null) result = caseMetaModelElement(nonContainmentReference);
 				if (result == null) result = caseNamedElement(nonContainmentReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MetamodelPackage.SOURCE_SECTION_REFERENCE: {
+				SourceSectionReference sourceSectionReference = (SourceSectionReference)theEObject;
+				T result = caseSourceSectionReference(sourceSectionReference);
+				if (result == null) result = caseReference(sourceSectionReference);
+				if (result == null) result = caseMetaModelElement(sourceSectionReference);
+				if (result == null) result = caseNamedElement(sourceSectionReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MetamodelPackage.TARGET_SECTION_REFERENCE: {
+				TargetSectionReference targetSectionReference = (TargetSectionReference)theEObject;
+				T result = caseTargetSectionReference(targetSectionReference);
+				if (result == null) result = caseReference(targetSectionReference);
+				if (result == null) result = caseMetaModelElement(targetSectionReference);
+				if (result == null) result = caseNamedElement(targetSectionReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MetamodelPackage.TARGET_SECTION_CONTAINMENT_REFERENCE: {
+				TargetSectionContainmentReference targetSectionContainmentReference = (TargetSectionContainmentReference)theEObject;
+				T result = caseTargetSectionContainmentReference(targetSectionContainmentReference);
+				if (result == null) result = caseContainmentReference(targetSectionContainmentReference);
+				if (result == null) result = caseTargetSectionReference(targetSectionContainmentReference);
+				if (result == null) result = caseReference(targetSectionContainmentReference);
+				if (result == null) result = caseMetaModelElement(targetSectionContainmentReference);
+				if (result == null) result = caseNamedElement(targetSectionContainmentReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MetamodelPackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE: {
+				TargetSectionNonContainmentReference targetSectionNonContainmentReference = (TargetSectionNonContainmentReference)theEObject;
+				T result = caseTargetSectionNonContainmentReference(targetSectionNonContainmentReference);
+				if (result == null) result = caseNonContainmentReference(targetSectionNonContainmentReference);
+				if (result == null) result = caseTargetSectionReference(targetSectionNonContainmentReference);
+				if (result == null) result = caseReference(targetSectionNonContainmentReference);
+				if (result == null) result = caseMetaModelElement(targetSectionNonContainmentReference);
+				if (result == null) result = caseNamedElement(targetSectionNonContainmentReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE: {
+				SourceSectionContainmentReference sourceSectionContainmentReference = (SourceSectionContainmentReference)theEObject;
+				T result = caseSourceSectionContainmentReference(sourceSectionContainmentReference);
+				if (result == null) result = caseContainmentReference(sourceSectionContainmentReference);
+				if (result == null) result = caseSourceSectionReference(sourceSectionContainmentReference);
+				if (result == null) result = caseReference(sourceSectionContainmentReference);
+				if (result == null) result = caseMetaModelElement(sourceSectionContainmentReference);
+				if (result == null) result = caseNamedElement(sourceSectionContainmentReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MetamodelPackage.SOURCE_SECTION_NON_CONTAINMENT_REFERENCE: {
+				SourceSectionNonContainmentReference sourceSectionNonContainmentReference = (SourceSectionNonContainmentReference)theEObject;
+				T result = caseSourceSectionNonContainmentReference(sourceSectionNonContainmentReference);
+				if (result == null) result = caseNonContainmentReference(sourceSectionNonContainmentReference);
+				if (result == null) result = caseSourceSectionReference(sourceSectionNonContainmentReference);
+				if (result == null) result = caseReference(sourceSectionNonContainmentReference);
+				if (result == null) result = caseMetaModelElement(sourceSectionNonContainmentReference);
+				if (result == null) result = caseNamedElement(sourceSectionNonContainmentReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -346,6 +414,96 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNonContainmentReference(NonContainmentReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Source Section Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Source Section Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSourceSectionReference(SourceSectionReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Target Section Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Target Section Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTargetSectionReference(TargetSectionReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Target Section Containment Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Target Section Containment Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTargetSectionContainmentReference(TargetSectionContainmentReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Target Section Non Containment Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Target Section Non Containment Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTargetSectionNonContainmentReference(TargetSectionNonContainmentReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Source Section Containment Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Source Section Containment Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSourceSectionContainmentReference(SourceSectionContainmentReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Source Section Non Containment Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Source Section Non Containment Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSourceSectionNonContainmentReference(SourceSectionNonContainmentReference object) {
 		return null;
 	}
 

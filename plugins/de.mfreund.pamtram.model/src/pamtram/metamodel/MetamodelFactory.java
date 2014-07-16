@@ -40,22 +40,40 @@ public interface MetamodelFactory extends EFactory {
 	TargetSectionClass createTargetSectionClass();
 
 	/**
-	 * Returns a new object of class '<em>Containment Reference</em>'.
+	 * Returns a new object of class '<em>Target Section Containment Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Containment Reference</em>'.
+	 * @return a new object of class '<em>Target Section Containment Reference</em>'.
 	 * @generated
 	 */
-	ContainmentReference createContainmentReference();
+	TargetSectionContainmentReference createTargetSectionContainmentReference();
 
 	/**
-	 * Returns a new object of class '<em>Non Containment Reference</em>'.
+	 * Returns a new object of class '<em>Target Section Non Containment Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Non Containment Reference</em>'.
+	 * @return a new object of class '<em>Target Section Non Containment Reference</em>'.
 	 * @generated
 	 */
-	NonContainmentReference createNonContainmentReference();
+	TargetSectionNonContainmentReference createTargetSectionNonContainmentReference();
+
+	/**
+	 * Returns a new object of class '<em>Source Section Containment Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Source Section Containment Reference</em>'.
+	 * @generated
+	 */
+	SourceSectionContainmentReference createSourceSectionContainmentReference();
+
+	/**
+	 * Returns a new object of class '<em>Source Section Non Containment Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Source Section Non Containment Reference</em>'.
+	 * @generated
+	 */
+	SourceSectionNonContainmentReference createSourceSectionNonContainmentReference();
 
 	/**
 	 * Returns a new object of class '<em>Actual Attribute</em>'.

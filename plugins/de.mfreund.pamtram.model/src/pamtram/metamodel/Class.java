@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are supported:
  * <ul>
  *   <li>{@link pamtram.metamodel.Class#getEClass <em>EClass</em>}</li>
- *   <li>{@link pamtram.metamodel.Class#getReferences <em>References</em>}</li>
  *   <li>{@link pamtram.metamodel.Class#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link pamtram.metamodel.Class#getContainer <em>Container</em>}</li>
  *   <li>{@link pamtram.metamodel.Class#getCardinality <em>Cardinality</em>}</li>
@@ -53,24 +52,6 @@ public interface Class extends MetaModelElement {
 	 * @generated
 	 */
 	void setEClass(EClass value);
-
-	/**
-	 * Returns the value of the '<em><b>References</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.metamodel.Reference}.
-	 * It is bidirectional and its opposite is '{@link pamtram.metamodel.Reference#getOwningClass <em>Owning Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>References</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>References</em>' containment reference list.
-	 * @see pamtram.metamodel.MetamodelPackage#getClass_References()
-	 * @see pamtram.metamodel.Reference#getOwningClass
-	 * @model opposite="owningClass" containment="true"
-	 * @generated
-	 */
-	EList<Reference> getReferences();
 
 	/**
 	 * Returns the value of the '<em><b>Attributes</b></em>' containment reference list.
@@ -145,5 +126,14 @@ public interface Class extends MetaModelElement {
 	 * @generated
 	 */
 	void setCardinality(CardinalityType value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<Reference> refs= new org.eclipse.emf.common.util.BasicEList<Reference>();\nif(this instanceof SourceSectionClass){\n refs.addAll(((SourceSectionClass) this).getReferences());\n\n} else if(this instanceof TargetSectionClass){\n refs.addAll(((TargetSectionClass) this).getReferences());\n}\nreturn refs;'"
+	 * @generated
+	 */
+	EList<Reference> getReferencesGeneric();
 
 } // Class

@@ -4,17 +4,13 @@ package pamtram.mapping.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.Matcher;
-
-import pamtram.metamodel.NonContainmentReference;
+import pamtram.metamodel.TargetSectionNonContainmentReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,7 +35,7 @@ public class MappingInstanceSelectorImpl extends MappingHintImpl implements Mapp
 	 * @generated
 	 * @ordered
 	 */
-	protected NonContainmentReference affectedReference;
+	protected TargetSectionNonContainmentReference affectedReference;
 
 	/**
 	 * The cached value of the '{@link #getMatcher() <em>Matcher</em>}' containment reference.
@@ -75,10 +71,10 @@ public class MappingInstanceSelectorImpl extends MappingHintImpl implements Mapp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NonContainmentReference getAffectedReference() {
+	public TargetSectionNonContainmentReference getAffectedReference() {
 		if (affectedReference != null && affectedReference.eIsProxy()) {
 			InternalEObject oldAffectedReference = (InternalEObject)affectedReference;
-			affectedReference = (NonContainmentReference)eResolveProxy(oldAffectedReference);
+			affectedReference = (TargetSectionNonContainmentReference)eResolveProxy(oldAffectedReference);
 			if (affectedReference != oldAffectedReference) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE, oldAffectedReference, affectedReference));
@@ -92,7 +88,7 @@ public class MappingInstanceSelectorImpl extends MappingHintImpl implements Mapp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NonContainmentReference basicGetAffectedReference() {
+	public TargetSectionNonContainmentReference basicGetAffectedReference() {
 		return affectedReference;
 	}
 
@@ -101,8 +97,8 @@ public class MappingInstanceSelectorImpl extends MappingHintImpl implements Mapp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAffectedReference(NonContainmentReference newAffectedReference) {
-		NonContainmentReference oldAffectedReference = affectedReference;
+	public void setAffectedReference(TargetSectionNonContainmentReference newAffectedReference) {
+		TargetSectionNonContainmentReference oldAffectedReference = affectedReference;
 		affectedReference = newAffectedReference;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE, oldAffectedReference, affectedReference));
@@ -191,7 +187,7 @@ public class MappingInstanceSelectorImpl extends MappingHintImpl implements Mapp
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MappingPackage.MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE:
-				setAffectedReference((NonContainmentReference)newValue);
+				setAffectedReference((TargetSectionNonContainmentReference)newValue);
 				return;
 			case MappingPackage.MAPPING_INSTANCE_SELECTOR__MATCHER:
 				setMatcher((Matcher)newValue);
@@ -209,7 +205,7 @@ public class MappingInstanceSelectorImpl extends MappingHintImpl implements Mapp
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MappingPackage.MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE:
-				setAffectedReference((NonContainmentReference)null);
+				setAffectedReference((TargetSectionNonContainmentReference)null);
 				return;
 			case MappingPackage.MAPPING_INSTANCE_SELECTOR__MATCHER:
 				setMatcher((Matcher)null);

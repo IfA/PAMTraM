@@ -2,7 +2,9 @@
  */
 package pamtram.metamodel.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -11,10 +13,13 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.Reference;
+import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.TargetSectionClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,7 +29,6 @@ import pamtram.metamodel.Reference;
  * The following features are implemented:
  * <ul>
  *   <li>{@link pamtram.metamodel.impl.ClassImpl#getEClass <em>EClass</em>}</li>
- *   <li>{@link pamtram.metamodel.impl.ClassImpl#getReferences <em>References</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.ClassImpl#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.ClassImpl#getContainer <em>Container</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.ClassImpl#getCardinality <em>Cardinality</em>}</li>
@@ -43,16 +47,6 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 	 * @ordered
 	 */
 	protected EClass eClass;
-
-	/**
-	 * The cached value of the '{@link #getReferences() <em>References</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getReferences()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Reference> references;
 
 	/**
 	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list.
@@ -156,18 +150,6 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Reference> getReferences() {
-		if (references == null) {
-			references = new EObjectContainmentWithInverseEList<Reference>(Reference.class, this, MetamodelPackage.CLASS__REFERENCES, MetamodelPackage.REFERENCE__OWNING_CLASS);
-		}
-		return references;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<Attribute> getAttributes() {
 		if (attributes == null) {
 			attributes = new EObjectContainmentWithInverseEList<Attribute>(Attribute.class, this, MetamodelPackage.CLASS__ATTRIBUTES, MetamodelPackage.ATTRIBUTE__OWNING_CLASS);
@@ -239,12 +221,26 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Reference> getReferencesGeneric() {
+		EList<Reference> refs= new org.eclipse.emf.common.util.BasicEList<Reference>();
+		if(this instanceof SourceSectionClass){
+		 refs.addAll(((SourceSectionClass) this).getReferences());
+		
+		} else if(this instanceof TargetSectionClass){
+		 refs.addAll(((TargetSectionClass) this).getReferences());
+		}
+		return refs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MetamodelPackage.CLASS__REFERENCES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getReferences()).basicAdd(otherEnd, msgs);
 			case MetamodelPackage.CLASS__ATTRIBUTES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAttributes()).basicAdd(otherEnd, msgs);
 		}
@@ -259,8 +255,6 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MetamodelPackage.CLASS__REFERENCES:
-				return ((InternalEList<?>)getReferences()).basicRemove(otherEnd, msgs);
 			case MetamodelPackage.CLASS__ATTRIBUTES:
 				return ((InternalEList<?>)getAttributes()).basicRemove(otherEnd, msgs);
 		}
@@ -278,8 +272,6 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 			case MetamodelPackage.CLASS__ECLASS:
 				if (resolve) return getEClass();
 				return basicGetEClass();
-			case MetamodelPackage.CLASS__REFERENCES:
-				return getReferences();
 			case MetamodelPackage.CLASS__ATTRIBUTES:
 				return getAttributes();
 			case MetamodelPackage.CLASS__CONTAINER:
@@ -302,10 +294,6 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 		switch (featureID) {
 			case MetamodelPackage.CLASS__ECLASS:
 				setEClass((EClass)newValue);
-				return;
-			case MetamodelPackage.CLASS__REFERENCES:
-				getReferences().clear();
-				getReferences().addAll((Collection<? extends Reference>)newValue);
 				return;
 			case MetamodelPackage.CLASS__ATTRIBUTES:
 				getAttributes().clear();
@@ -332,9 +320,6 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 			case MetamodelPackage.CLASS__ECLASS:
 				setEClass((EClass)null);
 				return;
-			case MetamodelPackage.CLASS__REFERENCES:
-				getReferences().clear();
-				return;
 			case MetamodelPackage.CLASS__ATTRIBUTES:
 				getAttributes().clear();
 				return;
@@ -358,8 +343,6 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 		switch (featureID) {
 			case MetamodelPackage.CLASS__ECLASS:
 				return eClass != null;
-			case MetamodelPackage.CLASS__REFERENCES:
-				return references != null && !references.isEmpty();
 			case MetamodelPackage.CLASS__ATTRIBUTES:
 				return attributes != null && !attributes.isEmpty();
 			case MetamodelPackage.CLASS__CONTAINER:
@@ -368,6 +351,20 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 				return cardinality != CARDINALITY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case MetamodelPackage.CLASS___GET_REFERENCES_GENERIC:
+				return getReferencesGeneric();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

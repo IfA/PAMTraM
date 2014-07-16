@@ -22,8 +22,14 @@ import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.RegExMatcher;
 import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.SourceSectionContainmentReference;
+import pamtram.metamodel.SourceSectionNonContainmentReference;
+import pamtram.metamodel.SourceSectionReference;
 import pamtram.metamodel.SubstringMatcher;
 import pamtram.metamodel.TargetSectionClass;
+import pamtram.metamodel.TargetSectionContainmentReference;
+import pamtram.metamodel.TargetSectionNonContainmentReference;
+import pamtram.metamodel.TargetSectionReference;
 import pamtram.metamodel.VirtualAttribute;
 
 /**
@@ -109,6 +115,30 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseNonContainmentReference(NonContainmentReference object) {
 				return createNonContainmentReferenceAdapter();
+			}
+			@Override
+			public Adapter caseSourceSectionReference(SourceSectionReference object) {
+				return createSourceSectionReferenceAdapter();
+			}
+			@Override
+			public Adapter caseTargetSectionReference(TargetSectionReference object) {
+				return createTargetSectionReferenceAdapter();
+			}
+			@Override
+			public Adapter caseTargetSectionContainmentReference(TargetSectionContainmentReference object) {
+				return createTargetSectionContainmentReferenceAdapter();
+			}
+			@Override
+			public Adapter caseTargetSectionNonContainmentReference(TargetSectionNonContainmentReference object) {
+				return createTargetSectionNonContainmentReferenceAdapter();
+			}
+			@Override
+			public Adapter caseSourceSectionContainmentReference(SourceSectionContainmentReference object) {
+				return createSourceSectionContainmentReferenceAdapter();
+			}
+			@Override
+			public Adapter caseSourceSectionNonContainmentReference(SourceSectionNonContainmentReference object) {
+				return createSourceSectionNonContainmentReferenceAdapter();
 			}
 			@Override
 			public Adapter caseAttribute(Attribute object) {
@@ -273,6 +303,90 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNonContainmentReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.SourceSectionReference <em>Source Section Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.metamodel.SourceSectionReference
+	 * @generated
+	 */
+	public Adapter createSourceSectionReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.TargetSectionReference <em>Target Section Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.metamodel.TargetSectionReference
+	 * @generated
+	 */
+	public Adapter createTargetSectionReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.TargetSectionContainmentReference <em>Target Section Containment Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.metamodel.TargetSectionContainmentReference
+	 * @generated
+	 */
+	public Adapter createTargetSectionContainmentReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.TargetSectionNonContainmentReference <em>Target Section Non Containment Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.metamodel.TargetSectionNonContainmentReference
+	 * @generated
+	 */
+	public Adapter createTargetSectionNonContainmentReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.SourceSectionContainmentReference <em>Source Section Containment Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.metamodel.SourceSectionContainmentReference
+	 * @generated
+	 */
+	public Adapter createSourceSectionContainmentReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.SourceSectionNonContainmentReference <em>Source Section Non Containment Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.metamodel.SourceSectionNonContainmentReference
+	 * @generated
+	 */
+	public Adapter createSourceSectionNonContainmentReferenceAdapter() {
 		return null;
 	}
 

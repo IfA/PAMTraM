@@ -2,7 +2,7 @@
  */
 package pamtram.mapping;
 
-import pamtram.metamodel.NonContainmentReference;
+import pamtram.metamodel.TargetSectionNonContainmentReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,12 +31,12 @@ public interface MappingInstanceSelector extends MappingHint {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Affected Reference</em>' reference.
-	 * @see #setAffectedReference(NonContainmentReference)
+	 * @see #setAffectedReference(TargetSectionNonContainmentReference)
 	 * @see pamtram.mapping.MappingPackage#getMappingInstanceSelector_AffectedReference()
 	 * @model required="true"
 	 * @generated
 	 */
-	NonContainmentReference getAffectedReference();
+	TargetSectionNonContainmentReference getAffectedReference();
 
 	/**
 	 * Sets the value of the '{@link pamtram.mapping.MappingInstanceSelector#getAffectedReference <em>Affected Reference</em>}' reference.
@@ -46,7 +46,7 @@ public interface MappingInstanceSelector extends MappingHint {
 	 * @see #getAffectedReference()
 	 * @generated
 	 */
-	void setAffectedReference(NonContainmentReference value);
+	void setAffectedReference(TargetSectionNonContainmentReference value);
 
 	/**
 	 * Returns the value of the '<em><b>Matcher</b></em>' containment reference.

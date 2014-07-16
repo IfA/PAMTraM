@@ -60,18 +60,27 @@
         <details key="eClassMatchesParentEReference" value="if metamodel::Reference.oclAsType(ecore::EClass).isSuperTypeOf(self.oclAsType(ecore::EObject).eContainer().eClass()) then self.oclAsType(ecore::EObject).eContainer().oclAsType(metamodel::Reference).eReference.oclAsType(ecore::&#xD;&#xA;EReference).eReferenceType.isSuperTypeOf(self.eClass.oclAsType(ecore::EClass)) else true endif"/>
         <details key="cardinalityIsValid" value="if metamodel::Reference.oclAsType(ecore::EClass).isSuperTypeOf(self.oclAsType(ecore::EObject).eContainer().eClass()) then not ((self.cardinality &lt;> 0) and (self.oclAsType(ecore::EObject).eContainer().oclAsType(metamodel::Reference).eReference.oclAsType(ecore::EReference).upperBound &lt;= 1)) else true endif"/>
       </eAnnotations>
+      <eOperations name="getReferencesGeneric" upperBound="-1" eType="#//metamodel/Reference">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="EList&lt;Reference> refs= new org.eclipse.emf.common.util.BasicEList&lt;Reference>();&#xA;if(this instanceof SourceSectionClass){&#xA; refs.addAll(((SourceSectionClass) this).getReferences());&#xA;&#xA;} else if(this instanceof TargetSectionClass){&#xA; refs.addAll(((TargetSectionClass) this).getReferences());&#xA;}&#xA;return refs;"/>
+        </eAnnotations>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="eClass" lowerBound="1"
           eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="references" upperBound="-1"
-          eType="#//metamodel/Reference" containment="true" eOpposite="#//metamodel/Reference/owningClass"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
           eType="#//metamodel/Attribute" containment="true" eOpposite="#//metamodel/Attribute/owningClass"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//metamodel/Class"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="cardinality" lowerBound="1"
           eType="#//metamodel/CardinalityType" defaultValueLiteral="ONE"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="SourceSectionClass" eSuperTypes="#//metamodel/Class"/>
-    <eClassifiers xsi:type="ecore:EClass" name="TargetSectionClass" eSuperTypes="#//metamodel/Class"/>
+    <eClassifiers xsi:type="ecore:EClass" name="SourceSectionClass" eSuperTypes="#//metamodel/Class">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="references" upperBound="-1"
+          eType="#//metamodel/SourceSectionReference" containment="true" eOpposite="#//metamodel/SourceSectionReference/owningClass"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TargetSectionClass" eSuperTypes="#//metamodel/Class">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="references" upperBound="-1"
+          eType="#//metamodel/TargetSectionReference" containment="true" eOpposite="#//metamodel/TargetSectionReference/owningClass"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Reference" abstract="true" eSuperTypes="#//metamodel/MetaModelElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="eReferenceMatchesParentEClass"/>
@@ -81,28 +90,54 @@
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="eReference" lowerBound="1"
           eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="owningClass" lowerBound="1"
-          eType="#//metamodel/Class" changeable="false" eOpposite="#//metamodel/Class/references"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ContainmentReference" eSuperTypes="#//metamodel/Reference">
+    <eClassifiers xsi:type="ecore:EClass" name="ContainmentReference" abstract="true"
+        eSuperTypes="#//metamodel/Reference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="eReferenceIsContainment"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="eReferenceIsContainment" value="self.eReference.containment=true"/>
       </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="value" upperBound="-1"
-          eType="#//metamodel/Class" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="NonContainmentReference" eSuperTypes="#//metamodel/Reference">
+    <eClassifiers xsi:type="ecore:EClass" name="NonContainmentReference" abstract="true"
+        eSuperTypes="#//metamodel/Reference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="eReferenceIsNonContainment"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="eReferenceIsNonContainment" value="self.eReference.containment=false"/>
       </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SourceSectionReference" abstract="true"
+        eSuperTypes="#//metamodel/Reference">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="owningClass" lowerBound="1"
+          eType="#//metamodel/SourceSectionClass" changeable="false" eOpposite="#//metamodel/SourceSectionClass/references"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TargetSectionReference" abstract="true"
+        eSuperTypes="#//metamodel/Reference">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="owningClass" lowerBound="1"
+          eType="#//metamodel/TargetSectionClass" changeable="false" eOpposite="#//metamodel/TargetSectionClass/references"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TargetSectionContainmentReference"
+        eSuperTypes="#//metamodel/ContainmentReference #//metamodel/TargetSectionReference">
       <eStructuralFeatures xsi:type="ecore:EReference" name="value" upperBound="-1"
-          eType="#//metamodel/Class"/>
+          eType="#//metamodel/TargetSectionClass" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TargetSectionNonContainmentReference"
+        eSuperTypes="#//metamodel/NonContainmentReference #//metamodel/TargetSectionReference">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="value" upperBound="-1"
+          eType="#//metamodel/TargetSectionClass"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SourceSectionContainmentReference"
+        eSuperTypes="#//metamodel/ContainmentReference #//metamodel/SourceSectionReference">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="value" upperBound="-1"
+          eType="#//metamodel/SourceSectionClass" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SourceSectionNonContainmentReference"
+        eSuperTypes="#//metamodel/NonContainmentReference #//metamodel/SourceSectionReference">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="value" upperBound="-1"
+          eType="#//metamodel/SourceSectionClass"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Attribute" abstract="true" eSuperTypes="#//metamodel/MetaModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="valueSpecification" upperBound="-1"
@@ -233,7 +268,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MappingInstanceSelector" eSuperTypes="#//mapping/MappingHint">
       <eStructuralFeatures xsi:type="ecore:EReference" name="affectedReference" lowerBound="1"
-          eType="#//metamodel/NonContainmentReference"/>
+          eType="#//metamodel/TargetSectionNonContainmentReference"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="matcher" lowerBound="1"
           eType="#//mapping/Matcher" containment="true"/>
     </eClassifiers>

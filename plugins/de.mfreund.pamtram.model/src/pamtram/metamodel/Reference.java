@@ -2,7 +2,6 @@
  */
 package pamtram.metamodel;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EReference;
 
 /**
@@ -14,7 +13,6 @@ import org.eclipse.emf.ecore.EReference;
  * The following features are supported:
  * <ul>
  *   <li>{@link pamtram.metamodel.Reference#getEReference <em>EReference</em>}</li>
- *   <li>{@link pamtram.metamodel.Reference#getOwningClass <em>Owning Class</em>}</li>
  * </ul>
  * </p>
  *
@@ -50,30 +48,5 @@ public interface Reference extends MetaModelElement {
 	 * @generated
 	 */
 	void setEReference(EReference value);
-	
-	/**
-	 * Returns the value of the '<em><b>Owning Class</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link pamtram.metamodel.Class#getReferences <em>References</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owning Class</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Class</em>' container reference.
-	 * @see pamtram.metamodel.MetamodelPackage#getReference_OwningClass()
-	 * @see pamtram.metamodel.Class#getReferences
-	 * @model opposite="references" required="true" transient="false" changeable="false"
-	 * @generated
-	 */
-	pamtram.metamodel.Class getOwningClass();
-
-	/**
-	 *Returns the value of the '<em><b>Value</b></em>' reference list.
-	 * The list contents are of type {@link pamtram.metamodel.Class}.
-	 * The reference values might either be containment or non-containment.
-	 * @return the value of the '<em>Value</em>' reference list.
-	 */
-	EList<pamtram.metamodel.Class> getValue();
 
 } // Reference

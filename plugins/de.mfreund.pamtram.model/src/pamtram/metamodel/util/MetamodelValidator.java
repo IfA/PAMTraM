@@ -25,8 +25,14 @@ import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.RegExMatcher;
 import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.SourceSectionContainmentReference;
+import pamtram.metamodel.SourceSectionNonContainmentReference;
+import pamtram.metamodel.SourceSectionReference;
 import pamtram.metamodel.SubstringMatcher;
 import pamtram.metamodel.TargetSectionClass;
+import pamtram.metamodel.TargetSectionContainmentReference;
+import pamtram.metamodel.TargetSectionNonContainmentReference;
+import pamtram.metamodel.TargetSectionReference;
 import pamtram.metamodel.VirtualAttribute;
 
 /**
@@ -115,6 +121,18 @@ public class MetamodelValidator extends EObjectValidator {
 				return validateContainmentReference((ContainmentReference)value, diagnostics, context);
 			case MetamodelPackage.NON_CONTAINMENT_REFERENCE:
 				return validateNonContainmentReference((NonContainmentReference)value, diagnostics, context);
+			case MetamodelPackage.SOURCE_SECTION_REFERENCE:
+				return validateSourceSectionReference((SourceSectionReference)value, diagnostics, context);
+			case MetamodelPackage.TARGET_SECTION_REFERENCE:
+				return validateTargetSectionReference((TargetSectionReference)value, diagnostics, context);
+			case MetamodelPackage.TARGET_SECTION_CONTAINMENT_REFERENCE:
+				return validateTargetSectionContainmentReference((TargetSectionContainmentReference)value, diagnostics, context);
+			case MetamodelPackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE:
+				return validateTargetSectionNonContainmentReference((TargetSectionNonContainmentReference)value, diagnostics, context);
+			case MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE:
+				return validateSourceSectionContainmentReference((SourceSectionContainmentReference)value, diagnostics, context);
+			case MetamodelPackage.SOURCE_SECTION_NON_CONTAINMENT_REFERENCE:
+				return validateSourceSectionNonContainmentReference((SourceSectionNonContainmentReference)value, diagnostics, context);
 			case MetamodelPackage.ATTRIBUTE:
 				return validateAttribute((Attribute)value, diagnostics, context);
 			case MetamodelPackage.ACTUAL_ATTRIBUTE:
@@ -418,6 +436,124 @@ public class MetamodelValidator extends EObjectValidator {
 				 Diagnostic.ERROR,
 				 DIAGNOSTIC_SOURCE,
 				 0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSourceSectionReference(SourceSectionReference sourceSectionReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(sourceSectionReference, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(sourceSectionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(sourceSectionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(sourceSectionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(sourceSectionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(sourceSectionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(sourceSectionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(sourceSectionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(sourceSectionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateReference_eReferenceMatchesParentEClass(sourceSectionReference, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateTargetSectionReference(TargetSectionReference targetSectionReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(targetSectionReference, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(targetSectionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(targetSectionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(targetSectionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(targetSectionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(targetSectionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(targetSectionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(targetSectionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(targetSectionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateReference_eReferenceMatchesParentEClass(targetSectionReference, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateTargetSectionContainmentReference(TargetSectionContainmentReference targetSectionContainmentReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(targetSectionContainmentReference, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(targetSectionContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(targetSectionContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(targetSectionContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(targetSectionContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(targetSectionContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(targetSectionContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(targetSectionContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(targetSectionContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateReference_eReferenceMatchesParentEClass(targetSectionContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateContainmentReference_eReferenceIsContainment(targetSectionContainmentReference, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateTargetSectionNonContainmentReference(TargetSectionNonContainmentReference targetSectionNonContainmentReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(targetSectionNonContainmentReference, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(targetSectionNonContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(targetSectionNonContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(targetSectionNonContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(targetSectionNonContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(targetSectionNonContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(targetSectionNonContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(targetSectionNonContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(targetSectionNonContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateReference_eReferenceMatchesParentEClass(targetSectionNonContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNonContainmentReference_eReferenceIsNonContainment(targetSectionNonContainmentReference, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSourceSectionContainmentReference(SourceSectionContainmentReference sourceSectionContainmentReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(sourceSectionContainmentReference, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(sourceSectionContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(sourceSectionContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(sourceSectionContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(sourceSectionContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(sourceSectionContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(sourceSectionContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(sourceSectionContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(sourceSectionContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateReference_eReferenceMatchesParentEClass(sourceSectionContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateContainmentReference_eReferenceIsContainment(sourceSectionContainmentReference, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSourceSectionNonContainmentReference(SourceSectionNonContainmentReference sourceSectionNonContainmentReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(sourceSectionNonContainmentReference, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(sourceSectionNonContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(sourceSectionNonContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(sourceSectionNonContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(sourceSectionNonContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(sourceSectionNonContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(sourceSectionNonContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(sourceSectionNonContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(sourceSectionNonContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateReference_eReferenceMatchesParentEClass(sourceSectionNonContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNonContainmentReference_eReferenceIsNonContainment(sourceSectionNonContainmentReference, diagnostics, context);
+		return result;
 	}
 
 	/**

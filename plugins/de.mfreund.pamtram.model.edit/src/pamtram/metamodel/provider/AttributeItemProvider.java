@@ -139,8 +139,8 @@ public class AttributeItemProvider
 	public String getText(Object object) {
 		String label = ((Attribute)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Attribute_type") :
-			getString("_UI_Attribute_type") + " " + label;
+			"" :
+			label;
 	}
 
 	/**

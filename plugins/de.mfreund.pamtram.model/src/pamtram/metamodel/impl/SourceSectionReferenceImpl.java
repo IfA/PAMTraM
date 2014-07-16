@@ -2,13 +2,17 @@
  */
 package pamtram.metamodel.impl;
 
-import org.eclipse.emf.common.notify.NotificationChain;
+import java.lang.reflect.InvocationTargetException;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.SourceSectionContainmentReference;
+import pamtram.metamodel.SourceSectionNonContainmentReference;
 import pamtram.metamodel.SourceSectionReference;
 
 /**
@@ -52,6 +56,22 @@ public abstract class SourceSectionReferenceImpl extends ReferenceImpl implement
 	public SourceSectionClass getOwningClass() {
 		if (eContainerFeatureID() != MetamodelPackage.SOURCE_SECTION_REFERENCE__OWNING_CLASS) return null;
 		return (SourceSectionClass)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<SourceSectionClass> getValuesGeneric() {
+		EList<SourceSectionClass> secs= new org.eclipse.emf.common.util.BasicEList<SourceSectionClass>();
+		if(this instanceof SourceSectionContainmentReference){
+		 secs.addAll(((SourceSectionContainmentReference) this).getValue());
+		
+		} else if(this instanceof SourceSectionNonContainmentReference){
+		 secs.addAll(((SourceSectionNonContainmentReference) this).getValue());
+		}
+		return secs;
 	}
 
 	/**
@@ -124,6 +144,20 @@ public abstract class SourceSectionReferenceImpl extends ReferenceImpl implement
 				return getOwningClass() != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case MetamodelPackage.SOURCE_SECTION_REFERENCE___GET_VALUES_GENERIC:
+				return getValuesGeneric();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //SourceSectionReferenceImpl

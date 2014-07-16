@@ -2,13 +2,17 @@
  */
 package pamtram.metamodel.impl;
 
-import org.eclipse.emf.common.notify.NotificationChain;
+import java.lang.reflect.InvocationTargetException;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.TargetSectionClass;
+import pamtram.metamodel.TargetSectionContainmentReference;
+import pamtram.metamodel.TargetSectionNonContainmentReference;
 import pamtram.metamodel.TargetSectionReference;
 
 /**
@@ -52,6 +56,22 @@ public abstract class TargetSectionReferenceImpl extends ReferenceImpl implement
 	public TargetSectionClass getOwningClass() {
 		if (eContainerFeatureID() != MetamodelPackage.TARGET_SECTION_REFERENCE__OWNING_CLASS) return null;
 		return (TargetSectionClass)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<TargetSectionClass> getValuesGeneric() {
+		EList<TargetSectionClass> secs= new org.eclipse.emf.common.util.BasicEList<TargetSectionClass>();
+		if(this instanceof TargetSectionContainmentReference){
+		 secs.addAll(((TargetSectionContainmentReference) this).getValue());
+		
+		} else if(this instanceof TargetSectionNonContainmentReference){
+		 secs.addAll(((TargetSectionNonContainmentReference) this).getValue());
+		}
+		return secs;
 	}
 
 	/**
@@ -124,6 +144,20 @@ public abstract class TargetSectionReferenceImpl extends ReferenceImpl implement
 				return getOwningClass() != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case MetamodelPackage.TARGET_SECTION_REFERENCE___GET_VALUES_GENERIC:
+				return getValuesGeneric();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //TargetSectionReferenceImpl

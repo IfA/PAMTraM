@@ -530,6 +530,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getSourceSectionReference__GetValuesGeneric() {
+		return sourceSectionReferenceEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTargetSectionReference() {
 		return targetSectionReferenceEClass;
 	}
@@ -541,6 +550,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 */
 	public EReference getTargetSectionReference_OwningClass() {
 		return (EReference)targetSectionReferenceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getTargetSectionReference__GetValuesGeneric() {
+		return targetSectionReferenceEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -887,9 +905,11 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		sourceSectionReferenceEClass = createEClass(SOURCE_SECTION_REFERENCE);
 		createEReference(sourceSectionReferenceEClass, SOURCE_SECTION_REFERENCE__OWNING_CLASS);
+		createEOperation(sourceSectionReferenceEClass, SOURCE_SECTION_REFERENCE___GET_VALUES_GENERIC);
 
 		targetSectionReferenceEClass = createEClass(TARGET_SECTION_REFERENCE);
 		createEReference(targetSectionReferenceEClass, TARGET_SECTION_REFERENCE__OWNING_CLASS);
+		createEOperation(targetSectionReferenceEClass, TARGET_SECTION_REFERENCE___GET_VALUES_GENERIC);
 
 		targetSectionContainmentReferenceEClass = createEClass(TARGET_SECTION_CONTAINMENT_REFERENCE);
 		createEReference(targetSectionContainmentReferenceEClass, TARGET_SECTION_CONTAINMENT_REFERENCE__VALUE);
@@ -1038,8 +1058,12 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEClass(sourceSectionReferenceEClass, SourceSectionReference.class, "SourceSectionReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSourceSectionReference_OwningClass(), this.getSourceSectionClass(), this.getSourceSectionClass_References(), "owningClass", null, 1, 1, SourceSectionReference.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEOperation(getSourceSectionReference__GetValuesGeneric(), this.getSourceSectionClass(), "getValuesGeneric", 0, -1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(targetSectionReferenceEClass, TargetSectionReference.class, "TargetSectionReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTargetSectionReference_OwningClass(), this.getTargetSectionClass(), this.getTargetSectionClass_References(), "owningClass", null, 1, 1, TargetSectionReference.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getTargetSectionReference__GetValuesGeneric(), this.getTargetSectionClass(), "getValuesGeneric", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(targetSectionContainmentReferenceEClass, TargetSectionContainmentReference.class, "TargetSectionContainmentReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTargetSectionContainmentReference_Value(), this.getTargetSectionClass(), null, "value", null, 0, -1, TargetSectionContainmentReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1144,7 +1168,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		   source, 
 		   new String[] {
 			 "constraints", "eReferenceIsNonContainment"
-		   });	
+		   });			
 	}
 
 	/**
@@ -1179,7 +1203,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		   source, 
 		   new String[] {
 			 "eReferenceIsNonContainment", "self.eReference.containment=false"
-		   });
+		   });		
 	}
 
 } //MetamodelPackageImpl

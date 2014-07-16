@@ -2,6 +2,8 @@
  */
 package pamtram.metamodel;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -36,5 +38,14 @@ public interface SourceSectionReference extends Reference {
 	 * @generated
 	 */
 	SourceSectionClass getOwningClass();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<SourceSectionClass> secs= new org.eclipse.emf.common.util.BasicEList<SourceSectionClass>();\nif(this instanceof SourceSectionContainmentReference){\n secs.addAll(((SourceSectionContainmentReference) this).getValue());\n\n} else if(this instanceof SourceSectionNonContainmentReference){\n secs.addAll(((SourceSectionNonContainmentReference) this).getValue());\n}\nreturn secs;'"
+	 * @generated
+	 */
+	EList<SourceSectionClass> getValuesGeneric();
 
 } // SourceSectionReference

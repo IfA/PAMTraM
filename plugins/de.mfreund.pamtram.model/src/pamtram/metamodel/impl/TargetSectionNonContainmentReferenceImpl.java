@@ -2,16 +2,18 @@
  */
 package pamtram.metamodel.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.TargetSectionClass;
+import pamtram.metamodel.TargetSectionContainmentReference;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 import pamtram.metamodel.TargetSectionReference;
 
@@ -79,6 +81,22 @@ public class TargetSectionNonContainmentReferenceImpl extends NonContainmentRefe
 			value = new EObjectResolvingEList<TargetSectionClass>(TargetSectionClass.class, this, MetamodelPackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE__VALUE);
 		}
 		return value;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<TargetSectionClass> getValuesGeneric() {
+		EList<TargetSectionClass> secs= new org.eclipse.emf.common.util.BasicEList<TargetSectionClass>();
+		if(this instanceof TargetSectionContainmentReference){
+		 secs.addAll(((TargetSectionContainmentReference) this).getValue());
+		
+		} else if(this instanceof TargetSectionNonContainmentReference){
+		 secs.addAll(((TargetSectionNonContainmentReference) this).getValue());
+		}
+		return secs;
 	}
 
 	/**
@@ -219,6 +237,36 @@ public class TargetSectionNonContainmentReferenceImpl extends NonContainmentRefe
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == TargetSectionReference.class) {
+			switch (baseOperationID) {
+				case MetamodelPackage.TARGET_SECTION_REFERENCE___GET_VALUES_GENERIC: return MetamodelPackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE___GET_VALUES_GENERIC;
+				default: return -1;
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case MetamodelPackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE___GET_VALUES_GENERIC:
+				return getValuesGeneric();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //TargetSectionNonContainmentReferenceImpl

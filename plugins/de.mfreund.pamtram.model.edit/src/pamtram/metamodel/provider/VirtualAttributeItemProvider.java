@@ -25,7 +25,7 @@ import pamtram.metamodel.VirtualAttribute;
  * @generated
  */
 public class VirtualAttributeItemProvider
-	extends AttributeItemProvider
+	extends TargetSectionAttributeItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,

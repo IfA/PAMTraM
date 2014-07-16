@@ -10,6 +10,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -57,8 +58,31 @@ public class TargetSectionClassItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addContainerPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Container feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addContainerPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TargetSectionClass_container_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TargetSectionClass_container_feature", "_UI_TargetSectionClass_type"),
+				 MetamodelPackage.Literals.TARGET_SECTION_CLASS__CONTAINER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -74,6 +98,7 @@ public class TargetSectionClassItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(MetamodelPackage.Literals.TARGET_SECTION_CLASS__REFERENCES);
+			childrenFeatures.add(MetamodelPackage.Literals.TARGET_SECTION_CLASS__ATTRIBUTES);
 		}
 		return childrenFeatures;
 	}
@@ -129,6 +154,7 @@ public class TargetSectionClassItemProvider
 
 		switch (notification.getFeatureID(TargetSectionClass.class)) {
 			case MetamodelPackage.TARGET_SECTION_CLASS__REFERENCES:
+			case MetamodelPackage.TARGET_SECTION_CLASS__ATTRIBUTES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -155,6 +181,21 @@ public class TargetSectionClassItemProvider
 			(createChildParameter
 				(MetamodelPackage.Literals.TARGET_SECTION_CLASS__REFERENCES,
 				 MetamodelFactory.eINSTANCE.createTargetSectionNonContainmentReference()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MetamodelPackage.Literals.TARGET_SECTION_CLASS__ATTRIBUTES,
+				 MetamodelFactory.eINSTANCE.createTargetSectionAttribute()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MetamodelPackage.Literals.TARGET_SECTION_CLASS__ATTRIBUTES,
+				 MetamodelFactory.eINSTANCE.createActualAttribute()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MetamodelPackage.Literals.TARGET_SECTION_CLASS__ATTRIBUTES,
+				 MetamodelFactory.eINSTANCE.createVirtualAttribute()));
 	}
 
 }

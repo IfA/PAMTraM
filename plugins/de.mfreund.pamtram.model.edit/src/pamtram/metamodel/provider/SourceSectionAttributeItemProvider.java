@@ -17,17 +17,17 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
-import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.SourceSectionAttribute;
 
 /**
- * This is the item provider adapter for a {@link pamtram.metamodel.ActualAttribute} object.
+ * This is the item provider adapter for a {@link pamtram.metamodel.SourceSectionAttribute} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ActualAttributeItemProvider
-	extends TargetSectionAttributeItemProvider
+public class SourceSectionAttributeItemProvider
+	extends AttributeItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -40,7 +40,7 @@ public class ActualAttributeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActualAttributeItemProvider(AdapterFactory adapterFactory) {
+	public SourceSectionAttributeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -71,9 +71,9 @@ public class ActualAttributeItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ActualAttribute_attribute_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ActualAttribute_attribute_feature", "_UI_ActualAttribute_type"),
-				 MetamodelPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE,
+				 getString("_UI_SourceSectionAttribute_attribute_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SourceSectionAttribute_attribute_feature", "_UI_SourceSectionAttribute_type"),
+				 MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE,
 				 true,
 				 false,
 				 true,
@@ -83,14 +83,14 @@ public class ActualAttributeItemProvider
 	}
 
 	/**
-	 * This returns ActualAttribute.gif.
+	 * This returns SourceSectionAttribute.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ActualAttribute"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SourceSectionAttribute"));
 	}
 
 	/**
@@ -101,10 +101,10 @@ public class ActualAttributeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ActualAttribute)object).getName();
+		String label = ((SourceSectionAttribute)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ActualAttribute_type") :
-			getString("_UI_ActualAttribute_type") + " " + label;
+			getString("_UI_SourceSectionAttribute_type") :
+			getString("_UI_SourceSectionAttribute_type") + " " + label;
 	}
 
 	/**

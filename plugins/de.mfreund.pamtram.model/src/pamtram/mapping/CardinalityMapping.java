@@ -2,6 +2,9 @@
  */
 package pamtram.mapping;
 
+import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.TargetSectionClass;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -30,12 +33,12 @@ public interface CardinalityMapping extends MappingHint {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' reference.
-	 * @see #setSource(pamtram.metamodel.Class)
+	 * @see #setSource(SourceSectionClass)
 	 * @see pamtram.mapping.MappingPackage#getCardinalityMapping_Source()
 	 * @model required="true"
 	 * @generated
 	 */
-	pamtram.metamodel.Class getSource();
+	SourceSectionClass getSource();
 
 	/**
 	 * Sets the value of the '{@link pamtram.mapping.CardinalityMapping#getSource <em>Source</em>}' reference.
@@ -45,7 +48,7 @@ public interface CardinalityMapping extends MappingHint {
 	 * @see #getSource()
 	 * @generated
 	 */
-	void setSource(pamtram.metamodel.Class value);
+	void setSource(SourceSectionClass value);
 
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
@@ -56,12 +59,12 @@ public interface CardinalityMapping extends MappingHint {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target</em>' reference.
-	 * @see #setTarget(pamtram.metamodel.Class)
+	 * @see #setTarget(TargetSectionClass)
 	 * @see pamtram.mapping.MappingPackage#getCardinalityMapping_Target()
 	 * @model required="true"
 	 * @generated
 	 */
-	pamtram.metamodel.Class getTarget();
+	TargetSectionClass getTarget();
 
 	/**
 	 * Sets the value of the '{@link pamtram.mapping.CardinalityMapping#getTarget <em>Target</em>}' reference.
@@ -71,6 +74,6 @@ public interface CardinalityMapping extends MappingHint {
 	 * @see #getTarget()
 	 * @generated
 	 */
-	void setTarget(pamtram.metamodel.Class value);
+	void setTarget(TargetSectionClass value);
 
 } // CardinalityMapping

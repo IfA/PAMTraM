@@ -252,17 +252,8 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSectionModel_MetaModelSections() {
-		return (EReference)sectionModelEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getSectionModel_MetaModelPackage() {
-		return (EReference)sectionModelEClass.getEStructuralFeatures().get(1);
+		return (EReference)sectionModelEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -279,8 +270,26 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getSourceSectionModel_MetaModelSections() {
+		return (EReference)sourceSectionModelEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTargetSectionModel() {
 		return targetSectionModelEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTargetSectionModel_MetaModelSections() {
+		return (EReference)targetSectionModelEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -367,12 +376,13 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		createEReference(pamTraMEClass, PAM_TRA_M__TRANSFORMATION_MODEL);
 
 		sectionModelEClass = createEClass(SECTION_MODEL);
-		createEReference(sectionModelEClass, SECTION_MODEL__META_MODEL_SECTIONS);
 		createEReference(sectionModelEClass, SECTION_MODEL__META_MODEL_PACKAGE);
 
 		sourceSectionModelEClass = createEClass(SOURCE_SECTION_MODEL);
+		createEReference(sourceSectionModelEClass, SOURCE_SECTION_MODEL__META_MODEL_SECTIONS);
 
 		targetSectionModelEClass = createEClass(TARGET_SECTION_MODEL);
+		createEReference(targetSectionModelEClass, TARGET_SECTION_MODEL__META_MODEL_SECTIONS);
 
 		mappingModelEClass = createEClass(MAPPING_MODEL);
 		createEReference(mappingModelEClass, MAPPING_MODEL__MAPPING);
@@ -437,12 +447,13 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		initEReference(getPAMTraM_TransformationModel(), this.getTransformationModel(), null, "transformationModel", null, 0, 1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sectionModelEClass, SectionModel.class, "SectionModel", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSectionModel_MetaModelSections(), theMetamodelPackage.getClass_(), null, "metaModelSections", null, 0, -1, SectionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSectionModel_MetaModelPackage(), ecorePackage.getEPackage(), null, "metaModelPackage", null, 1, 1, SectionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sourceSectionModelEClass, SourceSectionModel.class, "SourceSectionModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSourceSectionModel_MetaModelSections(), theMetamodelPackage.getSourceSectionClass(), null, "metaModelSections", null, 0, -1, SourceSectionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(targetSectionModelEClass, TargetSectionModel.class, "TargetSectionModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTargetSectionModel_MetaModelSections(), theMetamodelPackage.getTargetSectionClass(), null, "metaModelSections", null, 0, -1, TargetSectionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(mappingModelEClass, MappingModel.class, "MappingModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMappingModel_Mapping(), theMappingPackage.getMapping(), null, "mapping", null, 1, -1, MappingModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

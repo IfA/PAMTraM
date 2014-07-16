@@ -8,6 +8,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.MappingPackage;
+import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.TargetSectionClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,7 +34,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 * @generated
 	 * @ordered
 	 */
-	protected pamtram.metamodel.Class source;
+	protected SourceSectionClass source;
 
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
@@ -42,7 +44,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 * @generated
 	 * @ordered
 	 */
-	protected pamtram.metamodel.Class target;
+	protected TargetSectionClass target;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -68,10 +70,10 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public pamtram.metamodel.Class getSource() {
+	public SourceSectionClass getSource() {
 		if (source != null && source.eIsProxy()) {
 			InternalEObject oldSource = (InternalEObject)source;
-			source = (pamtram.metamodel.Class)eResolveProxy(oldSource);
+			source = (SourceSectionClass)eResolveProxy(oldSource);
 			if (source != oldSource) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.CARDINALITY_MAPPING__SOURCE, oldSource, source));
@@ -85,7 +87,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public pamtram.metamodel.Class basicGetSource() {
+	public SourceSectionClass basicGetSource() {
 		return source;
 	}
 
@@ -94,8 +96,8 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSource(pamtram.metamodel.Class newSource) {
-		pamtram.metamodel.Class oldSource = source;
+	public void setSource(SourceSectionClass newSource) {
+		SourceSectionClass oldSource = source;
 		source = newSource;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.CARDINALITY_MAPPING__SOURCE, oldSource, source));
@@ -106,10 +108,10 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public pamtram.metamodel.Class getTarget() {
+	public TargetSectionClass getTarget() {
 		if (target != null && target.eIsProxy()) {
 			InternalEObject oldTarget = (InternalEObject)target;
-			target = (pamtram.metamodel.Class)eResolveProxy(oldTarget);
+			target = (TargetSectionClass)eResolveProxy(oldTarget);
 			if (target != oldTarget) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.CARDINALITY_MAPPING__TARGET, oldTarget, target));
@@ -123,7 +125,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public pamtram.metamodel.Class basicGetTarget() {
+	public TargetSectionClass basicGetTarget() {
 		return target;
 	}
 
@@ -132,8 +134,8 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTarget(pamtram.metamodel.Class newTarget) {
-		pamtram.metamodel.Class oldTarget = target;
+	public void setTarget(TargetSectionClass newTarget) {
+		TargetSectionClass oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.CARDINALITY_MAPPING__TARGET, oldTarget, target));
@@ -166,10 +168,10 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MappingPackage.CARDINALITY_MAPPING__SOURCE:
-				setSource((pamtram.metamodel.Class)newValue);
+				setSource((SourceSectionClass)newValue);
 				return;
 			case MappingPackage.CARDINALITY_MAPPING__TARGET:
-				setTarget((pamtram.metamodel.Class)newValue);
+				setTarget((TargetSectionClass)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -184,10 +186,10 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MappingPackage.CARDINALITY_MAPPING__SOURCE:
-				setSource((pamtram.metamodel.Class)null);
+				setSource((SourceSectionClass)null);
 				return;
 			case MappingPackage.CARDINALITY_MAPPING__TARGET:
-				setTarget((pamtram.metamodel.Class)null);
+				setTarget((TargetSectionClass)null);
 				return;
 		}
 		super.eUnset(featureID);

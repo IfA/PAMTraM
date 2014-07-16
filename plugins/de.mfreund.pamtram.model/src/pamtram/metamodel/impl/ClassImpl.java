@@ -33,7 +33,7 @@ import pamtram.metamodel.Reference;
  *
  * @generated
  */
-public class ClassImpl extends MetaModelElementImpl implements pamtram.metamodel.Class {
+public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.metamodel.Class {
 	/**
 	 * The cached value of the '{@link #getEClass() <em>EClass</em>}' reference.
 	 * <!-- begin-user-doc -->

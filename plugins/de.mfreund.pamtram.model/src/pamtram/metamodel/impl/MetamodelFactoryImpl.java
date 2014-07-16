@@ -20,7 +20,9 @@ import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.RegExMatcher;
+import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SubstringMatcher;
+import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.VirtualAttribute;
 
 /**
@@ -67,7 +69,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case MetamodelPackage.CLASS: return createClass();
+			case MetamodelPackage.SOURCE_SECTION_CLASS: return createSourceSectionClass();
+			case MetamodelPackage.TARGET_SECTION_CLASS: return createTargetSectionClass();
 			case MetamodelPackage.CONTAINMENT_REFERENCE: return createContainmentReference();
 			case MetamodelPackage.NON_CONTAINMENT_REFERENCE: return createNonContainmentReference();
 			case MetamodelPackage.ACTUAL_ATTRIBUTE: return createActualAttribute();
@@ -122,9 +125,19 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public pamtram.metamodel.Class createClass() {
-		ClassImpl class_ = new ClassImpl();
-		return class_;
+	public SourceSectionClass createSourceSectionClass() {
+		SourceSectionClassImpl sourceSectionClass = new SourceSectionClassImpl();
+		return sourceSectionClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TargetSectionClass createTargetSectionClass() {
+		TargetSectionClassImpl targetSectionClass = new TargetSectionClassImpl();
+		return targetSectionClass;
 	}
 
 	/**

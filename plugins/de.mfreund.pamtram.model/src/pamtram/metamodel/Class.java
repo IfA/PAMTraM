@@ -22,7 +22,8 @@ import org.eclipse.emf.ecore.EClass;
  * </p>
  *
  * @see pamtram.metamodel.MetamodelPackage#getClass_()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='eClassMatchesParentEReference\r\nvariableCardinalityIsValid'"
+ * @model abstract="true"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='eClassMatchesParentEReference\r\nvariableCardinalityIsValid'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL eClassMatchesParentEReference='if metamodel::Reference.oclAsType(ecore::EClass).isSuperTypeOf(self.oclAsType(ecore::EObject).eContainer().eClass()) then self.oclAsType(ecore::EObject).eContainer().oclAsType(metamodel::Reference).eReference.oclAsType(ecore::\r\nEReference).eReferenceType.isSuperTypeOf(self.eClass.oclAsType(ecore::EClass)) else true endif' cardinalityIsValid='if metamodel::Reference.oclAsType(ecore::EClass).isSuperTypeOf(self.oclAsType(ecore::EObject).eContainer().eClass()) then not ((self.cardinality <> 0) and (self.oclAsType(ecore::EObject).eContainer().oclAsType(metamodel::Reference).eReference.oclAsType(ecore::EReference).upperBound <= 1)) else true endif'"
  * @generated
  */

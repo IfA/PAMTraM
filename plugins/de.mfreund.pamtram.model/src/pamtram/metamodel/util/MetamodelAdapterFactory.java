@@ -21,7 +21,9 @@ import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.RegExMatcher;
+import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SubstringMatcher;
+import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.VirtualAttribute;
 
 /**
@@ -87,6 +89,14 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseClass(pamtram.metamodel.Class object) {
 				return createClassAdapter();
+			}
+			@Override
+			public Adapter caseSourceSectionClass(SourceSectionClass object) {
+				return createSourceSectionClassAdapter();
+			}
+			@Override
+			public Adapter caseTargetSectionClass(TargetSectionClass object) {
+				return createTargetSectionClassAdapter();
 			}
 			@Override
 			public Adapter caseReference(Reference object) {
@@ -193,6 +203,34 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createClassAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.SourceSectionClass <em>Source Section Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.metamodel.SourceSectionClass
+	 * @generated
+	 */
+	public Adapter createSourceSectionClassAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.TargetSectionClass <em>Target Section Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.metamodel.TargetSectionClass
+	 * @generated
+	 */
+	public Adapter createTargetSectionClassAdapter() {
 		return null;
 	}
 

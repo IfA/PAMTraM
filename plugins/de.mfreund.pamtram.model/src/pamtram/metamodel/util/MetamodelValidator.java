@@ -24,7 +24,9 @@ import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.RegExMatcher;
+import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SubstringMatcher;
+import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.VirtualAttribute;
 
 /**
@@ -103,6 +105,10 @@ public class MetamodelValidator extends EObjectValidator {
 				return validateMetaModelElement((MetaModelElement)value, diagnostics, context);
 			case MetamodelPackage.CLASS:
 				return validateClass((pamtram.metamodel.Class)value, diagnostics, context);
+			case MetamodelPackage.SOURCE_SECTION_CLASS:
+				return validateSourceSectionClass((SourceSectionClass)value, diagnostics, context);
+			case MetamodelPackage.TARGET_SECTION_CLASS:
+				return validateTargetSectionClass((TargetSectionClass)value, diagnostics, context);
 			case MetamodelPackage.REFERENCE:
 				return validateReference((Reference)value, diagnostics, context);
 			case MetamodelPackage.CONTAINMENT_REFERENCE:
@@ -225,6 +231,46 @@ public class MetamodelValidator extends EObjectValidator {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSourceSectionClass(SourceSectionClass sourceSectionClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(sourceSectionClass, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(sourceSectionClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(sourceSectionClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(sourceSectionClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(sourceSectionClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(sourceSectionClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(sourceSectionClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(sourceSectionClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(sourceSectionClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validateClass_eClassMatchesParentEReference(sourceSectionClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validateClass_variableCardinalityIsValid(sourceSectionClass, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateTargetSectionClass(TargetSectionClass targetSectionClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(targetSectionClass, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(targetSectionClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(targetSectionClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(targetSectionClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(targetSectionClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(targetSectionClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(targetSectionClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(targetSectionClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(targetSectionClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validateClass_eClassMatchesParentEReference(targetSectionClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validateClass_variableCardinalityIsValid(targetSectionClass, diagnostics, context);
+		return result;
 	}
 
 	/**

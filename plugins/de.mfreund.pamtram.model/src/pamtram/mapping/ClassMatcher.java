@@ -2,6 +2,8 @@
  */
 package pamtram.mapping;
 
+import pamtram.metamodel.TargetSectionClass;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -29,12 +31,12 @@ public interface ClassMatcher extends Matcher {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target Class</em>' reference.
-	 * @see #setTargetClass(pamtram.metamodel.Class)
+	 * @see #setTargetClass(TargetSectionClass)
 	 * @see pamtram.mapping.MappingPackage#getClassMatcher_TargetClass()
 	 * @model required="true"
 	 * @generated
 	 */
-	pamtram.metamodel.Class getTargetClass();
+	TargetSectionClass getTargetClass();
 
 	/**
 	 * Sets the value of the '{@link pamtram.mapping.ClassMatcher#getTargetClass <em>Target Class</em>}' reference.
@@ -44,6 +46,6 @@ public interface ClassMatcher extends Matcher {
 	 * @see #getTargetClass()
 	 * @generated
 	 */
-	void setTargetClass(pamtram.metamodel.Class value);
+	void setTargetClass(TargetSectionClass value);
 
 } // ClassMatcher

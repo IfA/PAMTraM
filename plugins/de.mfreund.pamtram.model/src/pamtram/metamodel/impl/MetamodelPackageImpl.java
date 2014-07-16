@@ -33,7 +33,9 @@ import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.RegExMatcher;
+import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SubstringMatcher;
+import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.VirtualAttribute;
 import pamtram.metamodel.util.MetamodelValidator;
 import pamtram.transformation.TransformationPackage;
@@ -59,6 +61,20 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * @generated
 	 */
 	private EClass classEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass sourceSectionClassEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass targetSectionClassEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -326,6 +342,24 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 */
 	public EAttribute getClass_Cardinality() {
 		return (EAttribute)classEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSourceSectionClass() {
+		return sourceSectionClassEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTargetSectionClass() {
+		return targetSectionClassEClass;
 	}
 
 	/**
@@ -609,6 +643,10 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEReference(classEClass, CLASS__CONTAINER);
 		createEAttribute(classEClass, CLASS__CARDINALITY);
 
+		sourceSectionClassEClass = createEClass(SOURCE_SECTION_CLASS);
+
+		targetSectionClassEClass = createEClass(TARGET_SECTION_CLASS);
+
 		referenceEClass = createEClass(REFERENCE);
 		createEReference(referenceEClass, REFERENCE__EREFERENCE);
 		createEReference(referenceEClass, REFERENCE__OWNING_CLASS);
@@ -686,6 +724,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		// Add supertypes to classes
 		metaModelElementEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		classEClass.getESuperTypes().add(this.getMetaModelElement());
+		sourceSectionClassEClass.getESuperTypes().add(this.getClass_());
+		targetSectionClassEClass.getESuperTypes().add(this.getClass_());
 		referenceEClass.getESuperTypes().add(this.getMetaModelElement());
 		containmentReferenceEClass.getESuperTypes().add(this.getReference());
 		nonContainmentReferenceEClass.getESuperTypes().add(this.getReference());
@@ -706,12 +746,16 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		initEOperation(getMetaModelElement__GetContainingSection(), this.getClass_(), "getContainingSection", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(classEClass, pamtram.metamodel.Class.class, "Class", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(classEClass, pamtram.metamodel.Class.class, "Class", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getClass_EClass(), ecorePackage.getEClass(), null, "eClass", null, 1, 1, pamtram.metamodel.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getClass_References(), this.getReference(), this.getReference_OwningClass(), "references", null, 0, -1, pamtram.metamodel.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getClass_Attributes(), this.getAttribute(), this.getAttribute_OwningClass(), "attributes", null, 0, -1, pamtram.metamodel.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getClass_Container(), this.getClass_(), null, "container", null, 0, 1, pamtram.metamodel.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getClass_Cardinality(), this.getCardinalityType(), "cardinality", "ONE", 1, 1, pamtram.metamodel.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(sourceSectionClassEClass, SourceSectionClass.class, "SourceSectionClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(targetSectionClassEClass, TargetSectionClass.class, "TargetSectionClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(referenceEClass, Reference.class, "Reference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getReference_EReference(), ecorePackage.getEReference(), null, "eReference", null, 1, 1, Reference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

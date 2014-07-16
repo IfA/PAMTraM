@@ -16,6 +16,7 @@ import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModelConnectionHint;
+import pamtram.metamodel.TargetSectionClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -51,7 +52,7 @@ public class MappingHintGroupImpl extends NamedElementImpl implements MappingHin
 	 * @generated
 	 * @ordered
 	 */
-	protected pamtram.metamodel.Class targetMMSection;
+	protected TargetSectionClass targetMMSection;
 
 	/**
 	 * The cached value of the '{@link #getModelConnectionMatcher() <em>Model Connection Matcher</em>}' containment reference.
@@ -99,10 +100,10 @@ public class MappingHintGroupImpl extends NamedElementImpl implements MappingHin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public pamtram.metamodel.Class getTargetMMSection() {
+	public TargetSectionClass getTargetMMSection() {
 		if (targetMMSection != null && targetMMSection.eIsProxy()) {
 			InternalEObject oldTargetMMSection = (InternalEObject)targetMMSection;
-			targetMMSection = (pamtram.metamodel.Class)eResolveProxy(oldTargetMMSection);
+			targetMMSection = (TargetSectionClass)eResolveProxy(oldTargetMMSection);
 			if (targetMMSection != oldTargetMMSection) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MAPPING_HINT_GROUP__TARGET_MM_SECTION, oldTargetMMSection, targetMMSection));
@@ -116,7 +117,7 @@ public class MappingHintGroupImpl extends NamedElementImpl implements MappingHin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public pamtram.metamodel.Class basicGetTargetMMSection() {
+	public TargetSectionClass basicGetTargetMMSection() {
 		return targetMMSection;
 	}
 
@@ -125,8 +126,8 @@ public class MappingHintGroupImpl extends NamedElementImpl implements MappingHin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTargetMMSection(pamtram.metamodel.Class newTargetMMSection) {
-		pamtram.metamodel.Class oldTargetMMSection = targetMMSection;
+	public void setTargetMMSection(TargetSectionClass newTargetMMSection) {
+		TargetSectionClass oldTargetMMSection = targetMMSection;
 		targetMMSection = newTargetMMSection;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP__TARGET_MM_SECTION, oldTargetMMSection, targetMMSection));
@@ -224,7 +225,7 @@ public class MappingHintGroupImpl extends NamedElementImpl implements MappingHin
 				getMappingHints().addAll((Collection<? extends MappingHint>)newValue);
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP__TARGET_MM_SECTION:
-				setTargetMMSection((pamtram.metamodel.Class)newValue);
+				setTargetMMSection((TargetSectionClass)newValue);
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER:
 				setModelConnectionMatcher((ModelConnectionHint)newValue);
@@ -245,7 +246,7 @@ public class MappingHintGroupImpl extends NamedElementImpl implements MappingHin
 				getMappingHints().clear();
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP__TARGET_MM_SECTION:
-				setTargetMMSection((pamtram.metamodel.Class)null);
+				setTargetMMSection((TargetSectionClass)null);
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER:
 				setModelConnectionMatcher((ModelConnectionHint)null);

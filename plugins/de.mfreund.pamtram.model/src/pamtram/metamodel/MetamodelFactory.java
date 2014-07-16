@@ -22,13 +22,22 @@ public interface MetamodelFactory extends EFactory {
 	MetamodelFactory eINSTANCE = pamtram.metamodel.impl.MetamodelFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Class</em>'.
+	 * Returns a new object of class '<em>Source Section Class</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Class</em>'.
+	 * @return a new object of class '<em>Source Section Class</em>'.
 	 * @generated
 	 */
-	Class createClass();
+	SourceSectionClass createSourceSectionClass();
+
+	/**
+	 * Returns a new object of class '<em>Target Section Class</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Target Section Class</em>'.
+	 * @generated
+	 */
+	TargetSectionClass createTargetSectionClass();
 
 	/**
 	 * Returns a new object of class '<em>Containment Reference</em>'.

@@ -3,6 +3,7 @@
 package pamtram.mapping;
 
 import pamtram.NamedElement;
+import pamtram.metamodel.SourceSectionClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,12 +31,12 @@ public interface MappingType extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source MM Section</em>' reference.
-	 * @see #setSourceMMSection(pamtram.metamodel.Class)
+	 * @see #setSourceMMSection(SourceSectionClass)
 	 * @see pamtram.mapping.MappingPackage#getMappingType_SourceMMSection()
 	 * @model required="true"
 	 * @generated
 	 */
-	pamtram.metamodel.Class getSourceMMSection();
+	SourceSectionClass getSourceMMSection();
 
 	/**
 	 * Sets the value of the '{@link pamtram.mapping.MappingType#getSourceMMSection <em>Source MM Section</em>}' reference.
@@ -45,6 +46,6 @@ public interface MappingType extends NamedElement {
 	 * @see #getSourceMMSection()
 	 * @generated
 	 */
-	void setSourceMMSection(pamtram.metamodel.Class value);
+	void setSourceMMSection(SourceSectionClass value);
 
 } // MappingType

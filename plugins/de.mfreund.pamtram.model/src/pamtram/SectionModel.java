@@ -2,8 +2,6 @@
  */
 package pamtram;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -15,7 +13,6 @@ import org.eclipse.emf.ecore.EPackage;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link pamtram.SectionModel#getMetaModelSections <em>Meta Model Sections</em>}</li>
  *   <li>{@link pamtram.SectionModel#getMetaModelPackage <em>Meta Model Package</em>}</li>
  * </ul>
  * </p>
@@ -25,22 +22,6 @@ import org.eclipse.emf.ecore.EPackage;
  * @generated
  */
 public interface SectionModel extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Meta Model Sections</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.metamodel.Class}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Meta Model Sections</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Meta Model Sections</em>' containment reference list.
-	 * @see pamtram.PamtramPackage#getSectionModel_MetaModelSections()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<pamtram.metamodel.Class> getMetaModelSections();
-
 	/**
 	 * Returns the value of the '<em><b>Meta Model Package</b></em>' reference.
 	 * <!-- begin-user-doc -->

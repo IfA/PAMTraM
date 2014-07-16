@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import pamtram.mapping.ClassMatcher;
 import pamtram.mapping.MappingPackage;
+import pamtram.metamodel.TargetSectionClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,7 +35,7 @@ public class ClassMatcherImpl extends MatcherImpl implements ClassMatcher {
 	 * @generated
 	 * @ordered
 	 */
-	protected pamtram.metamodel.Class targetClass;
+	protected TargetSectionClass targetClass;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -60,10 +61,10 @@ public class ClassMatcherImpl extends MatcherImpl implements ClassMatcher {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public pamtram.metamodel.Class getTargetClass() {
+	public TargetSectionClass getTargetClass() {
 		if (targetClass != null && targetClass.eIsProxy()) {
 			InternalEObject oldTargetClass = (InternalEObject)targetClass;
-			targetClass = (pamtram.metamodel.Class)eResolveProxy(oldTargetClass);
+			targetClass = (TargetSectionClass)eResolveProxy(oldTargetClass);
 			if (targetClass != oldTargetClass) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.CLASS_MATCHER__TARGET_CLASS, oldTargetClass, targetClass));
@@ -77,7 +78,7 @@ public class ClassMatcherImpl extends MatcherImpl implements ClassMatcher {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public pamtram.metamodel.Class basicGetTargetClass() {
+	public TargetSectionClass basicGetTargetClass() {
 		return targetClass;
 	}
 
@@ -86,8 +87,8 @@ public class ClassMatcherImpl extends MatcherImpl implements ClassMatcher {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTargetClass(pamtram.metamodel.Class newTargetClass) {
-		pamtram.metamodel.Class oldTargetClass = targetClass;
+	public void setTargetClass(TargetSectionClass newTargetClass) {
+		TargetSectionClass oldTargetClass = targetClass;
 		targetClass = newTargetClass;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.CLASS_MATCHER__TARGET_CLASS, oldTargetClass, targetClass));
@@ -117,7 +118,7 @@ public class ClassMatcherImpl extends MatcherImpl implements ClassMatcher {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MappingPackage.CLASS_MATCHER__TARGET_CLASS:
-				setTargetClass((pamtram.metamodel.Class)newValue);
+				setTargetClass((TargetSectionClass)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -132,7 +133,7 @@ public class ClassMatcherImpl extends MatcherImpl implements ClassMatcher {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MappingPackage.CLASS_MATCHER__TARGET_CLASS:
-				setTargetClass((pamtram.metamodel.Class)null);
+				setTargetClass((TargetSectionClass)null);
 				return;
 		}
 		super.eUnset(featureID);

@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.MappingType;
+import pamtram.metamodel.SourceSectionClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,7 +33,7 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 	 * @generated
 	 * @ordered
 	 */
-	protected pamtram.metamodel.Class sourceMMSection;
+	protected SourceSectionClass sourceMMSection;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -58,10 +59,10 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public pamtram.metamodel.Class getSourceMMSection() {
+	public SourceSectionClass getSourceMMSection() {
 		if (sourceMMSection != null && sourceMMSection.eIsProxy()) {
 			InternalEObject oldSourceMMSection = (InternalEObject)sourceMMSection;
-			sourceMMSection = (pamtram.metamodel.Class)eResolveProxy(oldSourceMMSection);
+			sourceMMSection = (SourceSectionClass)eResolveProxy(oldSourceMMSection);
 			if (sourceMMSection != oldSourceMMSection) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MAPPING_TYPE__SOURCE_MM_SECTION, oldSourceMMSection, sourceMMSection));
@@ -75,7 +76,7 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public pamtram.metamodel.Class basicGetSourceMMSection() {
+	public SourceSectionClass basicGetSourceMMSection() {
 		return sourceMMSection;
 	}
 
@@ -84,8 +85,8 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSourceMMSection(pamtram.metamodel.Class newSourceMMSection) {
-		pamtram.metamodel.Class oldSourceMMSection = sourceMMSection;
+	public void setSourceMMSection(SourceSectionClass newSourceMMSection) {
+		SourceSectionClass oldSourceMMSection = sourceMMSection;
 		sourceMMSection = newSourceMMSection;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_TYPE__SOURCE_MM_SECTION, oldSourceMMSection, sourceMMSection));
@@ -115,7 +116,7 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MappingPackage.MAPPING_TYPE__SOURCE_MM_SECTION:
-				setSourceMMSection((pamtram.metamodel.Class)newValue);
+				setSourceMMSection((SourceSectionClass)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -130,7 +131,7 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MappingPackage.MAPPING_TYPE__SOURCE_MM_SECTION:
-				setSourceMMSection((pamtram.metamodel.Class)null);
+				setSourceMMSection((SourceSectionClass)null);
 				return;
 		}
 		super.eUnset(featureID);

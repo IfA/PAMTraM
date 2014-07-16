@@ -177,22 +177,13 @@ public interface PamtramPackage extends EPackage {
 	int SECTION_MODEL = 2;
 
 	/**
-	 * The feature id for the '<em><b>Meta Model Sections</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION_MODEL__META_MODEL_SECTIONS = 0;
-
-	/**
 	 * The feature id for the '<em><b>Meta Model Package</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION_MODEL__META_MODEL_PACKAGE = 1;
+	int SECTION_MODEL__META_MODEL_PACKAGE = 0;
 
 	/**
 	 * The number of structural features of the '<em>Section Model</em>' class.
@@ -201,7 +192,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION_MODEL_FEATURE_COUNT = 2;
+	int SECTION_MODEL_FEATURE_COUNT = 1;
 
 	/**
 	 * The number of operations of the '<em>Section Model</em>' class.
@@ -223,15 +214,6 @@ public interface PamtramPackage extends EPackage {
 	int SOURCE_SECTION_MODEL = 3;
 
 	/**
-	 * The feature id for the '<em><b>Meta Model Sections</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOURCE_SECTION_MODEL__META_MODEL_SECTIONS = SECTION_MODEL__META_MODEL_SECTIONS;
-
-	/**
 	 * The feature id for the '<em><b>Meta Model Package</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -241,13 +223,22 @@ public interface PamtramPackage extends EPackage {
 	int SOURCE_SECTION_MODEL__META_MODEL_PACKAGE = SECTION_MODEL__META_MODEL_PACKAGE;
 
 	/**
+	 * The feature id for the '<em><b>Meta Model Sections</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_MODEL__META_MODEL_SECTIONS = SECTION_MODEL_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Source Section Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_MODEL_FEATURE_COUNT = SECTION_MODEL_FEATURE_COUNT + 0;
+	int SOURCE_SECTION_MODEL_FEATURE_COUNT = SECTION_MODEL_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Source Section Model</em>' class.
@@ -269,15 +260,6 @@ public interface PamtramPackage extends EPackage {
 	int TARGET_SECTION_MODEL = 4;
 
 	/**
-	 * The feature id for the '<em><b>Meta Model Sections</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TARGET_SECTION_MODEL__META_MODEL_SECTIONS = SECTION_MODEL__META_MODEL_SECTIONS;
-
-	/**
 	 * The feature id for the '<em><b>Meta Model Package</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -287,13 +269,22 @@ public interface PamtramPackage extends EPackage {
 	int TARGET_SECTION_MODEL__META_MODEL_PACKAGE = SECTION_MODEL__META_MODEL_PACKAGE;
 
 	/**
+	 * The feature id for the '<em><b>Meta Model Sections</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_MODEL__META_MODEL_SECTIONS = SECTION_MODEL_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Target Section Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_MODEL_FEATURE_COUNT = SECTION_MODEL_FEATURE_COUNT + 0;
+	int TARGET_SECTION_MODEL_FEATURE_COUNT = SECTION_MODEL_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Target Section Model</em>' class.
@@ -485,17 +476,6 @@ public interface PamtramPackage extends EPackage {
 	EClass getSectionModel();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.SectionModel#getMetaModelSections <em>Meta Model Sections</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Meta Model Sections</em>'.
-	 * @see pamtram.SectionModel#getMetaModelSections()
-	 * @see #getSectionModel()
-	 * @generated
-	 */
-	EReference getSectionModel_MetaModelSections();
-
-	/**
 	 * Returns the meta object for the reference '{@link pamtram.SectionModel#getMetaModelPackage <em>Meta Model Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -517,6 +497,17 @@ public interface PamtramPackage extends EPackage {
 	EClass getSourceSectionModel();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.SourceSectionModel#getMetaModelSections <em>Meta Model Sections</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Meta Model Sections</em>'.
+	 * @see pamtram.SourceSectionModel#getMetaModelSections()
+	 * @see #getSourceSectionModel()
+	 * @generated
+	 */
+	EReference getSourceSectionModel_MetaModelSections();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.TargetSectionModel <em>Target Section Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -525,6 +516,17 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getTargetSectionModel();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.TargetSectionModel#getMetaModelSections <em>Meta Model Sections</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Meta Model Sections</em>'.
+	 * @see pamtram.TargetSectionModel#getMetaModelSections()
+	 * @see #getTargetSectionModel()
+	 * @generated
+	 */
+	EReference getTargetSectionModel_MetaModelSections();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.MappingModel <em>Mapping Model</em>}'.
@@ -681,14 +683,6 @@ public interface PamtramPackage extends EPackage {
 		EClass SECTION_MODEL = eINSTANCE.getSectionModel();
 
 		/**
-		 * The meta object literal for the '<em><b>Meta Model Sections</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SECTION_MODEL__META_MODEL_SECTIONS = eINSTANCE.getSectionModel_MetaModelSections();
-
-		/**
 		 * The meta object literal for the '<em><b>Meta Model Package</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -707,6 +701,14 @@ public interface PamtramPackage extends EPackage {
 		EClass SOURCE_SECTION_MODEL = eINSTANCE.getSourceSectionModel();
 
 		/**
+		 * The meta object literal for the '<em><b>Meta Model Sections</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SOURCE_SECTION_MODEL__META_MODEL_SECTIONS = eINSTANCE.getSourceSectionModel_MetaModelSections();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.impl.TargetSectionModelImpl <em>Target Section Model</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -715,6 +717,14 @@ public interface PamtramPackage extends EPackage {
 		 * @generated
 		 */
 		EClass TARGET_SECTION_MODEL = eINSTANCE.getTargetSectionModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Meta Model Sections</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TARGET_SECTION_MODEL__META_MODEL_SECTIONS = eINSTANCE.getTargetSectionModel_MetaModelSections();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.impl.MappingModelImpl <em>Mapping Model</em>}' class.

@@ -5,6 +5,7 @@ package pamtram.mapping;
 import org.eclipse.emf.common.util.EList;
 
 import pamtram.NamedElement;
+import pamtram.metamodel.TargetSectionClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -50,12 +51,12 @@ public interface MappingHintGroup extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target MM Section</em>' reference.
-	 * @see #setTargetMMSection(pamtram.metamodel.Class)
+	 * @see #setTargetMMSection(TargetSectionClass)
 	 * @see pamtram.mapping.MappingPackage#getMappingHintGroup_TargetMMSection()
 	 * @model
 	 * @generated
 	 */
-	pamtram.metamodel.Class getTargetMMSection();
+	TargetSectionClass getTargetMMSection();
 
 	/**
 	 * Sets the value of the '{@link pamtram.mapping.MappingHintGroup#getTargetMMSection <em>Target MM Section</em>}' reference.
@@ -65,7 +66,7 @@ public interface MappingHintGroup extends NamedElement {
 	 * @see #getTargetMMSection()
 	 * @generated
 	 */
-	void setTargetMMSection(pamtram.metamodel.Class value);
+	void setTargetMMSection(TargetSectionClass value);
 
 	/**
 	 * Returns the value of the '<em><b>Model Connection Matcher</b></em>' containment reference.

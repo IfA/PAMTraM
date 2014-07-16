@@ -70,6 +70,6 @@ public class ClassTreeItem {
 		return classObject.getReferencesGeneric();
 	}
 	public EList<Attribute> getAttributes() {
-		return classObject.getAttributes();
+		return classObject.getAttributesGeneric();
 	}
 }

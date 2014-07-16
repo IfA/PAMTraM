@@ -118,49 +118,95 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.ContainmentReference} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.TargetSectionContainmentReference} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ContainmentReferenceItemProvider containmentReferenceItemProvider;
+	protected TargetSectionContainmentReferenceItemProvider targetSectionContainmentReferenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.metamodel.ContainmentReference}.
+	 * This creates an adapter for a {@link pamtram.metamodel.TargetSectionContainmentReference}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createContainmentReferenceAdapter() {
-		if (containmentReferenceItemProvider == null) {
-			containmentReferenceItemProvider = new ContainmentReferenceItemProvider(this);
+	public Adapter createTargetSectionContainmentReferenceAdapter() {
+		if (targetSectionContainmentReferenceItemProvider == null) {
+			targetSectionContainmentReferenceItemProvider = new TargetSectionContainmentReferenceItemProvider(this);
 		}
 
-		return containmentReferenceItemProvider;
+		return targetSectionContainmentReferenceItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.NonContainmentReference} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.TargetSectionNonContainmentReference} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected NonContainmentReferenceItemProvider nonContainmentReferenceItemProvider;
+	protected TargetSectionNonContainmentReferenceItemProvider targetSectionNonContainmentReferenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.metamodel.NonContainmentReference}.
+	 * This creates an adapter for a {@link pamtram.metamodel.TargetSectionNonContainmentReference}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createNonContainmentReferenceAdapter() {
-		if (nonContainmentReferenceItemProvider == null) {
-			nonContainmentReferenceItemProvider = new NonContainmentReferenceItemProvider(this);
+	public Adapter createTargetSectionNonContainmentReferenceAdapter() {
+		if (targetSectionNonContainmentReferenceItemProvider == null) {
+			targetSectionNonContainmentReferenceItemProvider = new TargetSectionNonContainmentReferenceItemProvider(this);
 		}
 
-		return nonContainmentReferenceItemProvider;
+		return targetSectionNonContainmentReferenceItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.SourceSectionContainmentReference} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SourceSectionContainmentReferenceItemProvider sourceSectionContainmentReferenceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.metamodel.SourceSectionContainmentReference}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSourceSectionContainmentReferenceAdapter() {
+		if (sourceSectionContainmentReferenceItemProvider == null) {
+			sourceSectionContainmentReferenceItemProvider = new SourceSectionContainmentReferenceItemProvider(this);
+		}
+
+		return sourceSectionContainmentReferenceItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.SourceSectionNonContainmentReference} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SourceSectionNonContainmentReferenceItemProvider sourceSectionNonContainmentReferenceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.metamodel.SourceSectionNonContainmentReference}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSourceSectionNonContainmentReferenceAdapter() {
+		if (sourceSectionNonContainmentReferenceItemProvider == null) {
+			sourceSectionNonContainmentReferenceItemProvider = new SourceSectionNonContainmentReferenceItemProvider(this);
+		}
+
+		return sourceSectionNonContainmentReferenceItemProvider;
 	}
 
 	/**
@@ -448,8 +494,10 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	public void dispose() {
 		if (sourceSectionClassItemProvider != null) sourceSectionClassItemProvider.dispose();
 		if (targetSectionClassItemProvider != null) targetSectionClassItemProvider.dispose();
-		if (containmentReferenceItemProvider != null) containmentReferenceItemProvider.dispose();
-		if (nonContainmentReferenceItemProvider != null) nonContainmentReferenceItemProvider.dispose();
+		if (targetSectionContainmentReferenceItemProvider != null) targetSectionContainmentReferenceItemProvider.dispose();
+		if (targetSectionNonContainmentReferenceItemProvider != null) targetSectionNonContainmentReferenceItemProvider.dispose();
+		if (sourceSectionContainmentReferenceItemProvider != null) sourceSectionContainmentReferenceItemProvider.dispose();
+		if (sourceSectionNonContainmentReferenceItemProvider != null) sourceSectionNonContainmentReferenceItemProvider.dispose();
 		if (actualAttributeItemProvider != null) actualAttributeItemProvider.dispose();
 		if (virtualAttributeItemProvider != null) virtualAttributeItemProvider.dispose();
 		if (attributeValueSpecificationItemProvider != null) attributeValueSpecificationItemProvider.dispose();

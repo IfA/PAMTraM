@@ -208,7 +208,6 @@ public class ClassItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MetamodelPackage.Literals.CLASS__REFERENCES);
 			childrenFeatures.add(MetamodelPackage.Literals.CLASS__ATTRIBUTES);
 		}
 		return childrenFeatures;
@@ -279,7 +278,6 @@ public class ClassItemProvider
 			case MetamodelPackage.CLASS__CARDINALITY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case MetamodelPackage.CLASS__REFERENCES:
 			case MetamodelPackage.CLASS__ATTRIBUTES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -297,16 +295,6 @@ public class ClassItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MetamodelPackage.Literals.CLASS__REFERENCES,
-				 MetamodelFactory.eINSTANCE.createContainmentReference()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MetamodelPackage.Literals.CLASS__REFERENCES,
-				 MetamodelFactory.eINSTANCE.createNonContainmentReference()));
 
 		newChildDescriptors.add
 			(createChildParameter

@@ -20,16 +20,16 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.TargetSectionClass;
+import pamtram.metamodel.TargetSectionContainmentReference;
 
 /**
- * This is the item provider adapter for a {@link pamtram.metamodel.TargetSectionClass} object.
+ * This is the item provider adapter for a {@link pamtram.metamodel.TargetSectionContainmentReference} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class TargetSectionClassItemProvider
-	extends ClassItemProvider
+public class TargetSectionContainmentReferenceItemProvider
+	extends ContainmentReferenceItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -42,7 +42,7 @@ public class TargetSectionClassItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TargetSectionClassItemProvider(AdapterFactory adapterFactory) {
+	public TargetSectionContainmentReferenceItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -73,7 +73,7 @@ public class TargetSectionClassItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MetamodelPackage.Literals.TARGET_SECTION_CLASS__REFERENCES);
+			childrenFeatures.add(MetamodelPackage.Literals.TARGET_SECTION_CONTAINMENT_REFERENCE__VALUE);
 		}
 		return childrenFeatures;
 	}
@@ -92,14 +92,14 @@ public class TargetSectionClassItemProvider
 	}
 
 	/**
-	 * This returns TargetSectionClass.gif.
+	 * This returns TargetSectionContainmentReference.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/TargetSectionClass"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/TargetSectionContainmentReference"));
 	}
 
 	/**
@@ -110,10 +110,10 @@ public class TargetSectionClassItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((TargetSectionClass)object).getName();
+		String label = ((TargetSectionContainmentReference)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_TargetSectionClass_type") :
-			getString("_UI_TargetSectionClass_type") + " " + label;
+			getString("_UI_TargetSectionContainmentReference_type") :
+			getString("_UI_TargetSectionContainmentReference_type") + " " + label;
 	}
 
 	/**
@@ -127,8 +127,8 @@ public class TargetSectionClassItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(TargetSectionClass.class)) {
-			case MetamodelPackage.TARGET_SECTION_CLASS__REFERENCES:
+		switch (notification.getFeatureID(TargetSectionContainmentReference.class)) {
+			case MetamodelPackage.TARGET_SECTION_CONTAINMENT_REFERENCE__VALUE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -148,13 +148,8 @@ public class TargetSectionClassItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MetamodelPackage.Literals.TARGET_SECTION_CLASS__REFERENCES,
-				 MetamodelFactory.eINSTANCE.createTargetSectionContainmentReference()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MetamodelPackage.Literals.TARGET_SECTION_CLASS__REFERENCES,
-				 MetamodelFactory.eINSTANCE.createTargetSectionNonContainmentReference()));
+				(MetamodelPackage.Literals.TARGET_SECTION_CONTAINMENT_REFERENCE__VALUE,
+				 MetamodelFactory.eINSTANCE.createTargetSectionClass()));
 	}
 
 }

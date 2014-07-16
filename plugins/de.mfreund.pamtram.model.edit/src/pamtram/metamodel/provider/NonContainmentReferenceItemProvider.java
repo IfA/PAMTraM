@@ -9,7 +9,6 @@ import java.util.Iterator;
 import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -58,81 +57,11 @@ public class NonContainmentReferenceItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addValuePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
-	/**
-	 * This adds a property descriptor for the Value feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addValuePropertyDescriptorGen(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_NonContainmentReference_value_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NonContainmentReference_value_feature", "_UI_NonContainmentReference_type"),
-				 MetamodelPackage.Literals.NON_CONTAINMENT_REFERENCE__VALUE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-	
-	/**
-	 * This adds a property descriptor for the Value feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 */
-	protected void addValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_NonContainmentReference_value_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NonContainmentReference_value_feature", "_UI_NonContainmentReference_type"),
-				 MetamodelPackage.Literals.NON_CONTAINMENT_REFERENCE__VALUE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null)
-			   {
-				@SuppressWarnings("unchecked")
-				@Override
-				public Collection<?> getChoiceOfValues(Object object) {
-					
-					// all possible choices (all instances of "Class")
-					Iterator<pamtram.metamodel.Class> it = 
-							(Iterator<pamtram.metamodel.Class>) super.getChoiceOfValues(object).iterator();
-					
-					if(!(((ReferenceImpl) object).getEReference().getEType() instanceof EClass)) {
-						throw new RuntimeException("Type checks can only be performed for instances of type 'EClass'");
-					}
-					
-					// the type of the non-containment reference
-					EClass refClass = (EClass) ((ReferenceImpl) object).getEReference().getEType();
-					
-					List<Object> choiceOfValues = new ArrayList<Object>();
-					// make sure that only those classes can be selected that correspond to the type of the chosen reference
-					while(it.hasNext()) {
-						pamtram.metamodel.Class c = it.next();
-						if(refClass.isSuperTypeOf(c.getEClass())) {
-							choiceOfValues.add(c);
-						}
-					}
-					
-					return choiceOfValues;
-				}
-			   });
-	}
+
 	
 	/**
 	 * This adds a property descriptor for the EReference feature.

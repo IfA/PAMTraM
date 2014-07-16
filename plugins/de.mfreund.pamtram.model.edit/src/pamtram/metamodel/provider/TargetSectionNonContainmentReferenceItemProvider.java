@@ -9,7 +9,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -17,19 +17,17 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
-import org.eclipse.emf.edit.provider.ViewerNotification;
-import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.TargetSectionClass;
+import pamtram.metamodel.TargetSectionNonContainmentReference;
 
 /**
- * This is the item provider adapter for a {@link pamtram.metamodel.TargetSectionClass} object.
+ * This is the item provider adapter for a {@link pamtram.metamodel.TargetSectionNonContainmentReference} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class TargetSectionClassItemProvider
-	extends ClassItemProvider
+public class TargetSectionNonContainmentReferenceItemProvider
+	extends NonContainmentReferenceItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -42,7 +40,7 @@ public class TargetSectionClassItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TargetSectionClassItemProvider(AdapterFactory adapterFactory) {
+	public TargetSectionNonContainmentReferenceItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -57,49 +55,42 @@ public class TargetSectionClassItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addValuePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Value feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(MetamodelPackage.Literals.TARGET_SECTION_CLASS__REFERENCES);
-		}
-		return childrenFeatures;
+	protected void addValuePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TargetSectionNonContainmentReference_value_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TargetSectionNonContainmentReference_value_feature", "_UI_TargetSectionNonContainmentReference_type"),
+				 MetamodelPackage.Literals.TARGET_SECTION_NON_CONTAINMENT_REFERENCE__VALUE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	/**
-	 * This returns TargetSectionClass.gif.
+	 * This returns TargetSectionNonContainmentReference.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/TargetSectionClass"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/TargetSectionNonContainmentReference"));
 	}
 
 	/**
@@ -110,10 +101,10 @@ public class TargetSectionClassItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((TargetSectionClass)object).getName();
+		String label = ((TargetSectionNonContainmentReference)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_TargetSectionClass_type") :
-			getString("_UI_TargetSectionClass_type") + " " + label;
+			getString("_UI_TargetSectionNonContainmentReference_type") :
+			getString("_UI_TargetSectionNonContainmentReference_type") + " " + label;
 	}
 
 	/**
@@ -126,12 +117,6 @@ public class TargetSectionClassItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(TargetSectionClass.class)) {
-			case MetamodelPackage.TARGET_SECTION_CLASS__REFERENCES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 
@@ -145,16 +130,6 @@ public class TargetSectionClassItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MetamodelPackage.Literals.TARGET_SECTION_CLASS__REFERENCES,
-				 MetamodelFactory.eINSTANCE.createTargetSectionContainmentReference()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MetamodelPackage.Literals.TARGET_SECTION_CLASS__REFERENCES,
-				 MetamodelFactory.eINSTANCE.createTargetSectionNonContainmentReference()));
 	}
 
 }

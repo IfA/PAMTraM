@@ -60,8 +60,8 @@ public class SimpleAttributeMatcherItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addSourceAttributePropertyDescriptor(object);
-			addModifiersPropertyDescriptor(object);
+			addSourcePropertyDescriptor(object);
+			addModifierPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -89,19 +89,19 @@ public class SimpleAttributeMatcherItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Source Attribute feature.
+	 * This adds a property descriptor for the Source feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSourceAttributePropertyDescriptor(Object object) {
+	protected void addSourcePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ComplexAttributeMatcherSourceElement_sourceAttribute_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ComplexAttributeMatcherSourceElement_sourceAttribute_feature", "_UI_ComplexAttributeMatcherSourceElement_type"),
-				 MappingPackage.Literals.COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT__SOURCE_ATTRIBUTE,
+				 getString("_UI_AttributeMappingSourceElementType_source_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeMappingSourceElementType_source_feature", "_UI_AttributeMappingSourceElementType_type"),
+				 MappingPackage.Literals.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE,
 				 true,
 				 false,
 				 true,
@@ -111,19 +111,19 @@ public class SimpleAttributeMatcherItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Modifiers feature.
+	 * This adds a property descriptor for the Modifier feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addModifiersPropertyDescriptor(Object object) {
+	protected void addModifierPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ComplexAttributeMatcherSourceElement_modifiers_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ComplexAttributeMatcherSourceElement_modifiers_feature", "_UI_ComplexAttributeMatcherSourceElement_type"),
-				 MappingPackage.Literals.COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT__MODIFIERS,
+				 getString("_UI_AttributeMappingSourceElementType_modifier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeMappingSourceElementType_modifier_feature", "_UI_AttributeMappingSourceElementType_type"),
+				 MappingPackage.Literals.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER,
 				 true,
 				 false,
 				 true,

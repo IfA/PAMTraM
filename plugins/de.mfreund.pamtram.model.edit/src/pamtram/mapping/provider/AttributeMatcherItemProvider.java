@@ -52,7 +52,6 @@ public class AttributeMatcherItemProvider
 			super.getPropertyDescriptors(object);
 
 			addTargetAttributePropertyDescriptor(object);
-			addModifierPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -71,28 +70,6 @@ public class AttributeMatcherItemProvider
 				 getString("_UI_AttributeMatcher_targetAttribute_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeMatcher_targetAttribute_feature", "_UI_AttributeMatcher_type"),
 				 MappingPackage.Literals.ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Modifier feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addModifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AttributeMatcher_modifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeMatcher_modifier_feature", "_UI_AttributeMatcher_type"),
-				 MappingPackage.Literals.ATTRIBUTE_MATCHER__MODIFIER,
 				 true,
 				 false,
 				 true,

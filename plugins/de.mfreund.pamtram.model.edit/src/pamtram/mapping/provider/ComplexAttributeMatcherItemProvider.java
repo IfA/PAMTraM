@@ -147,11 +147,6 @@ public class ComplexAttributeMatcherItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.COMPLEX_ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES,
-				 MappingFactory.eINSTANCE.createSimpleAttributeMatcher()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.COMPLEX_ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES,
 				 MappingFactory.eINSTANCE.createComplexAttributeMatcherSourceElement()));
 	}
 

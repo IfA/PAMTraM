@@ -1369,7 +1369,7 @@ public class PamtramEditor
 						SourceSectionAttribute source=null;
 						
 						if(matcher instanceof SimpleAttributeMatcher){
-							source=((SimpleAttributeMatcher) matcher).getSourceAttribute();
+							source=((SimpleAttributeMatcher) matcher).getSource();
 						} else if(matcher instanceof AttributeMappingSourceElementType){
 							source=((AttributeMappingSourceElementType) matcher).getSource();
 						}
@@ -1405,8 +1405,8 @@ public class PamtramEditor
 						List<SourceSectionAttribute> sources= new LinkedList<SourceSectionAttribute> ();
 						
 						for(ComplexAttributeMatcherSourceElement srcElement : matcher.getSourceAttributes()){
-							if(srcElement.getSourceAttribute() != null){
-								sources.add(srcElement.getSourceAttribute());
+							if(srcElement.getSource() != null){
+								sources.add(srcElement.getSource());
 							}
 						}
 						

@@ -485,15 +485,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAttributeMatcher_Modifier() {
-		return (EReference)attributeMatcherEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getClassMatcher() {
 		return classMatcherEClass;
 	}
@@ -836,24 +827,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getComplexAttributeMatcherSourceElement_SourceAttribute() {
-		return (EReference)complexAttributeMatcherSourceElementEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getComplexAttributeMatcherSourceElement_Modifiers() {
-		return (EReference)complexAttributeMatcherSourceElementEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public MappingFactory getMappingFactory() {
 		return (MappingFactory)getEFactoryInstance();
 	}
@@ -901,7 +874,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		attributeMatcherEClass = createEClass(ATTRIBUTE_MATCHER);
 		createEReference(attributeMatcherEClass, ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE);
-		createEReference(attributeMatcherEClass, ATTRIBUTE_MATCHER__MODIFIER);
 
 		classMatcherEClass = createEClass(CLASS_MATCHER);
 		createEReference(classMatcherEClass, CLASS_MATCHER__TARGET_CLASS);
@@ -959,8 +931,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		simpleAttributeMatcherEClass = createEClass(SIMPLE_ATTRIBUTE_MATCHER);
 
 		complexAttributeMatcherSourceElementEClass = createEClass(COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT);
-		createEReference(complexAttributeMatcherSourceElementEClass, COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT__SOURCE_ATTRIBUTE);
-		createEReference(complexAttributeMatcherSourceElementEClass, COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT__MODIFIERS);
 	}
 
 	/**
@@ -1022,7 +992,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		complexAttributeMatcherEClass.getESuperTypes().add(this.getAttributeMatcher());
 		simpleAttributeMatcherEClass.getESuperTypes().add(this.getAttributeMatcher());
 		simpleAttributeMatcherEClass.getESuperTypes().add(this.getComplexAttributeMatcherSourceElement());
-		complexAttributeMatcherSourceElementEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
+		complexAttributeMatcherSourceElementEClass.getESuperTypes().add(this.getAttributeMappingSourceElementType());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(mappingEClass, Mapping.class, "Mapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1049,7 +1019,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		initEClass(attributeMatcherEClass, AttributeMatcher.class, "AttributeMatcher", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAttributeMatcher_TargetAttribute(), theMetamodelPackage.getTargetSectionAttribute(), null, "targetAttribute", null, 1, 1, AttributeMatcher.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAttributeMatcher_Modifier(), this.getAttributeValueModifierSet(), null, "modifier", null, 0, -1, AttributeMatcher.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(classMatcherEClass, ClassMatcher.class, "ClassMatcher", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getClassMatcher_TargetClass(), theMetamodelPackage.getTargetSectionClass(), null, "targetClass", null, 1, 1, ClassMatcher.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1107,8 +1076,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEClass(simpleAttributeMatcherEClass, SimpleAttributeMatcher.class, "SimpleAttributeMatcher", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(complexAttributeMatcherSourceElementEClass, ComplexAttributeMatcherSourceElement.class, "ComplexAttributeMatcherSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getComplexAttributeMatcherSourceElement_SourceAttribute(), theMetamodelPackage.getSourceSectionAttribute(), null, "sourceAttribute", null, 1, 1, ComplexAttributeMatcherSourceElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getComplexAttributeMatcherSourceElement_Modifiers(), this.getAttributeValueModifierSet(), null, "modifiers", null, 0, -1, ComplexAttributeMatcherSourceElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore

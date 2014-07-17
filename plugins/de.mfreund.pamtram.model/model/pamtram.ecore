@@ -303,8 +303,6 @@
         eSuperTypes="#//mapping/Matcher">
       <eStructuralFeatures xsi:type="ecore:EReference" name="targetAttribute" lowerBound="1"
           eType="#//metamodel/TargetSectionAttribute"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
-          eType="#//mapping/AttributeValueModifierSet"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ClassMatcher" eSuperTypes="#//mapping/Matcher">
       <eStructuralFeatures xsi:type="ecore:EReference" name="targetClass" lowerBound="1"
@@ -381,11 +379,6 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SimpleAttributeMatcher" eSuperTypes="#//mapping/AttributeMatcher #//mapping/ComplexAttributeMatcherSourceElement"/>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexAttributeMatcherSourceElement"
-        eSuperTypes="#//NamedElement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceAttribute" lowerBound="1"
-          eType="#//metamodel/SourceSectionAttribute"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="modifiers" upperBound="-1"
-          eType="#//mapping/AttributeValueModifierSet"/>
-    </eClassifiers>
+        eSuperTypes="#//mapping/AttributeMappingSourceElementType"/>
   </eSubpackages>
 </ecore:EPackage>

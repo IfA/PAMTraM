@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import pamtram.NamedElement;
 import pamtram.PamtramPackage;
 
+import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.ComplexAttributeMatcherSourceElement;
 import pamtram.mapping.MappingPackage;
@@ -33,8 +34,8 @@ import pamtram.metamodel.SourceSectionAttribute;
  * The following features are implemented:
  * <ul>
  *   <li>{@link pamtram.mapping.impl.SimpleAttributeMatcherImpl#getName <em>Name</em>}</li>
- *   <li>{@link pamtram.mapping.impl.SimpleAttributeMatcherImpl#getSourceAttribute <em>Source Attribute</em>}</li>
- *   <li>{@link pamtram.mapping.impl.SimpleAttributeMatcherImpl#getModifiers <em>Modifiers</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.SimpleAttributeMatcherImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.SimpleAttributeMatcherImpl#getModifier <em>Modifier</em>}</li>
  * </ul>
  * </p>
  *
@@ -62,24 +63,24 @@ public class SimpleAttributeMatcherImpl extends AttributeMatcherImpl implements 
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSourceAttribute() <em>Source Attribute</em>}' reference.
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSourceAttribute()
+	 * @see #getSource()
 	 * @generated
 	 * @ordered
 	 */
-	protected SourceSectionAttribute sourceAttribute;
+	protected SourceSectionAttribute source;
 
 	/**
-	 * The cached value of the '{@link #getModifiers() <em>Modifiers</em>}' reference list.
+	 * The cached value of the '{@link #getModifier() <em>Modifier</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getModifiers()
+	 * @see #getModifier()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AttributeValueModifierSet> modifiers;
+	protected EList<AttributeValueModifierSet> modifier;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -126,16 +127,16 @@ public class SimpleAttributeMatcherImpl extends AttributeMatcherImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionAttribute getSourceAttribute() {
-		if (sourceAttribute != null && sourceAttribute.eIsProxy()) {
-			InternalEObject oldSourceAttribute = (InternalEObject)sourceAttribute;
-			sourceAttribute = (SourceSectionAttribute)eResolveProxy(oldSourceAttribute);
-			if (sourceAttribute != oldSourceAttribute) {
+	public SourceSectionAttribute getSource() {
+		if (source != null && source.eIsProxy()) {
+			InternalEObject oldSource = (InternalEObject)source;
+			source = (SourceSectionAttribute)eResolveProxy(oldSource);
+			if (source != oldSource) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTE, oldSourceAttribute, sourceAttribute));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__SOURCE, oldSource, source));
 			}
 		}
-		return sourceAttribute;
+		return source;
 	}
 
 	/**
@@ -143,8 +144,8 @@ public class SimpleAttributeMatcherImpl extends AttributeMatcherImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionAttribute basicGetSourceAttribute() {
-		return sourceAttribute;
+	public SourceSectionAttribute basicGetSource() {
+		return source;
 	}
 
 	/**
@@ -152,11 +153,11 @@ public class SimpleAttributeMatcherImpl extends AttributeMatcherImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSourceAttribute(SourceSectionAttribute newSourceAttribute) {
-		SourceSectionAttribute oldSourceAttribute = sourceAttribute;
-		sourceAttribute = newSourceAttribute;
+	public void setSource(SourceSectionAttribute newSource) {
+		SourceSectionAttribute oldSource = source;
+		source = newSource;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTE, oldSourceAttribute, sourceAttribute));
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__SOURCE, oldSource, source));
 	}
 
 	/**
@@ -164,11 +165,11 @@ public class SimpleAttributeMatcherImpl extends AttributeMatcherImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<AttributeValueModifierSet> getModifiers() {
-		if (modifiers == null) {
-			modifiers = new EObjectResolvingEList<AttributeValueModifierSet>(AttributeValueModifierSet.class, this, MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__MODIFIERS);
+	public EList<AttributeValueModifierSet> getModifier() {
+		if (modifier == null) {
+			modifier = new EObjectResolvingEList<AttributeValueModifierSet>(AttributeValueModifierSet.class, this, MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__MODIFIER);
 		}
-		return modifiers;
+		return modifier;
 	}
 
 	/**
@@ -181,11 +182,11 @@ public class SimpleAttributeMatcherImpl extends AttributeMatcherImpl implements 
 		switch (featureID) {
 			case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__NAME:
 				return getName();
-			case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTE:
-				if (resolve) return getSourceAttribute();
-				return basicGetSourceAttribute();
-			case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__MODIFIERS:
-				return getModifiers();
+			case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__SOURCE:
+				if (resolve) return getSource();
+				return basicGetSource();
+			case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__MODIFIER:
+				return getModifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -202,12 +203,12 @@ public class SimpleAttributeMatcherImpl extends AttributeMatcherImpl implements 
 			case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__NAME:
 				setName((String)newValue);
 				return;
-			case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTE:
-				setSourceAttribute((SourceSectionAttribute)newValue);
+			case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__SOURCE:
+				setSource((SourceSectionAttribute)newValue);
 				return;
-			case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__MODIFIERS:
-				getModifiers().clear();
-				getModifiers().addAll((Collection<? extends AttributeValueModifierSet>)newValue);
+			case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__MODIFIER:
+				getModifier().clear();
+				getModifier().addAll((Collection<? extends AttributeValueModifierSet>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -224,11 +225,11 @@ public class SimpleAttributeMatcherImpl extends AttributeMatcherImpl implements 
 			case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTE:
-				setSourceAttribute((SourceSectionAttribute)null);
+			case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__SOURCE:
+				setSource((SourceSectionAttribute)null);
 				return;
-			case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__MODIFIERS:
-				getModifiers().clear();
+			case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__MODIFIER:
+				getModifier().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -244,10 +245,10 @@ public class SimpleAttributeMatcherImpl extends AttributeMatcherImpl implements 
 		switch (featureID) {
 			case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTE:
-				return sourceAttribute != null;
-			case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__MODIFIERS:
-				return modifiers != null && !modifiers.isEmpty();
+			case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__SOURCE:
+				return source != null;
+			case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__MODIFIER:
+				return modifier != null && !modifier.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -265,10 +266,15 @@ public class SimpleAttributeMatcherImpl extends AttributeMatcherImpl implements 
 				default: return -1;
 			}
 		}
+		if (baseClass == AttributeMappingSourceElementType.class) {
+			switch (derivedFeatureID) {
+				case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__SOURCE: return MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE;
+				case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__MODIFIER: return MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER;
+				default: return -1;
+			}
+		}
 		if (baseClass == ComplexAttributeMatcherSourceElement.class) {
 			switch (derivedFeatureID) {
-				case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTE: return MappingPackage.COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT__SOURCE_ATTRIBUTE;
-				case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__MODIFIERS: return MappingPackage.COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT__MODIFIERS;
 				default: return -1;
 			}
 		}
@@ -288,10 +294,15 @@ public class SimpleAttributeMatcherImpl extends AttributeMatcherImpl implements 
 				default: return -1;
 			}
 		}
+		if (baseClass == AttributeMappingSourceElementType.class) {
+			switch (baseFeatureID) {
+				case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE: return MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__SOURCE;
+				case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER: return MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__MODIFIER;
+				default: return -1;
+			}
+		}
 		if (baseClass == ComplexAttributeMatcherSourceElement.class) {
 			switch (baseFeatureID) {
-				case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT__SOURCE_ATTRIBUTE: return MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTE;
-				case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT__MODIFIERS: return MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__MODIFIERS;
 				default: return -1;
 			}
 		}

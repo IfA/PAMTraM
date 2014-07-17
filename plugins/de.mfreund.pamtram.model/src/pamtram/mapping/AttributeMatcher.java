@@ -2,7 +2,6 @@
  */
 package pamtram.mapping;
 
-import org.eclipse.emf.common.util.EList;
 import pamtram.metamodel.TargetSectionAttribute;
 
 /**
@@ -14,7 +13,6 @@ import pamtram.metamodel.TargetSectionAttribute;
  * The following features are supported:
  * <ul>
  *   <li>{@link pamtram.mapping.AttributeMatcher#getTargetAttribute <em>Target Attribute</em>}</li>
- *   <li>{@link pamtram.mapping.AttributeMatcher#getModifier <em>Modifier</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,21 +46,5 @@ public interface AttributeMatcher extends Matcher {
 	 * @generated
 	 */
 	void setTargetAttribute(TargetSectionAttribute value);
-
-	/**
-	 * Returns the value of the '<em><b>Modifier</b></em>' reference list.
-	 * The list contents are of type {@link pamtram.mapping.AttributeValueModifierSet}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Modifier</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Modifier</em>' reference list.
-	 * @see pamtram.mapping.MappingPackage#getAttributeMatcher_Modifier()
-	 * @model
-	 * @generated
-	 */
-	EList<AttributeValueModifierSet> getModifier();
 
 } // AttributeMatcher

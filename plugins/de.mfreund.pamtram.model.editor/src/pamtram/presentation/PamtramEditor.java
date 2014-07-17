@@ -1265,7 +1265,7 @@ public class PamtramEditor
 						
 						// Update the currently selected mapping.
 						currentMapping = mapping;
-					}  else if(((TreeItem) e.item).getData() instanceof AttributeMappingSourceElementType) {
+					}  else if(((TreeItem) e.item).getData() instanceof AttributeMappingSourceElementType && ! (((TreeItem) e.item).getData()instanceof SimpleAttributeMatcher)) {
 						AttributeMappingSourceElementType mapping = (AttributeMappingSourceElementType) ((TreeItem) e.item).getData();
 
 						Attribute target = null;
@@ -1360,7 +1360,7 @@ public class PamtramEditor
 						}
 						sourceViewer.setSelection(new StructuredSelection());
 						
-					} else if(((TreeItem) e.item).getData() instanceof SimpleAttributeMatcher || ((TreeItem) e.item).getData() instanceof AttributeMappingSourceElementType) {
+					} else if(((TreeItem) e.item).getData() instanceof SimpleAttributeMatcher) {
 						
 						AttributeMatcher matcher = (AttributeMatcher) ((TreeItem) e.item).getData();
 						

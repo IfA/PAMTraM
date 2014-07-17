@@ -18,6 +18,8 @@ import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.CalculatorMapping;
 import pamtram.mapping.ComplexAttribueMappingSourceElement;
 import pamtram.mapping.ComplexAttributeMapping;
+import pamtram.mapping.ComplexAttributeMatcher;
+import pamtram.mapping.ComplexAttributeMatcherSourceElement;
 import pamtram.mapping.ExpressionVariable;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
@@ -48,6 +50,7 @@ public class SourceSectionMapper {
 	private LinkedHashMap<Mapping,LinkedList<MappingHint>> mappingHints;
 	private LinkedHashMap<ComplexAttributeMapping,SourceSectionClass> deepestComplexAttrMappingSrcElementsByCmplxMapping;
 	private LinkedHashMap<CalculatorMapping,SourceSectionClass> deepestCalcAttrMappingSrcElementsByCalcMapping;
+	private LinkedHashMap<ComplexAttributeMatcher, SourceSectionClass> deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher;
 	private List<Mapping> mappingsToChooseFrom;
 	private MessageConsoleStream consoleStream;
 	private boolean transformationAborted;
@@ -62,6 +65,7 @@ public class SourceSectionMapper {
 		modelConnectionHints=new  LinkedHashMap<Mapping,LinkedList<ModelConnectionHint>>();
 		deepestComplexAttrMappingSrcElementsByCmplxMapping= new LinkedHashMap<ComplexAttributeMapping,SourceSectionClass>();
 		deepestCalcAttrMappingSrcElementsByCalcMapping = new LinkedHashMap<CalculatorMapping,SourceSectionClass>();
+		deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher= new LinkedHashMap<ComplexAttributeMatcher, SourceSectionClass>();
 		this.mappingsToChooseFrom=mappingsToChooseFrom;
 		this.consoleStream=consoleStream;
 		this.transformationAborted=false;
@@ -74,6 +78,8 @@ public class SourceSectionMapper {
 					buildDeepestCmplxAttrMappingElementsMap((ComplexAttributeMapping) h, m.getSourceMMSection());
 				} else if(h instanceof CalculatorMapping){
 					buildCalcAttrMappingsMaps((CalculatorMapping) h, m.getSourceMMSection());
+				} else if (h instanceof ComplexAttributeMatcher){
+					buildDeepestComplexAttrMatcherSrcElements((ComplexAttributeMatcher)m, m.getSourceMMSection());
 				}
 			}
 		}
@@ -100,8 +106,12 @@ public class SourceSectionMapper {
 	
 	private boolean isSectionReferencedByDeepestCalcAttrMappping(CalculatorMapping m,SourceSectionClass srcSection){
 		return deepestCalcAttrMappingSrcElementsByCalcMapping.get(m).equals(srcSection);
-		
-	}	
+	
+	}
+	
+	private boolean isSectionReferencedByDeepestCmplxAttrMatcher(ComplexAttributeMatcher m, SourceSectionClass srcSection){
+		return deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher.get(m).equals(srcSection);
+	}
 	
 	private void buildDeepestCmplxAttrMappingElementsMap(ComplexAttributeMapping m, SourceSectionClass srcSection){
 		if(!deepestComplexAttrMappingSrcElementsByCmplxMapping.containsKey(m)){
@@ -114,6 +124,20 @@ public class SourceSectionMapper {
 			}
 			
 		}
+	}
+	
+	private void buildDeepestComplexAttrMatcherSrcElements(ComplexAttributeMatcher m, SourceSectionClass srcSection){
+		if(!deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher.containsKey(m)){
+			Set<AttributeMappingSourceElementType> srcElements=new HashSet<AttributeMappingSourceElementType>();
+			srcElements.addAll(m.getSourceAttributes());
+			
+			sortOutElements(srcElements, srcSection);
+			if(srcElements.size() == 1){
+				deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher.put(m,srcElements.iterator().next().getSource().getOwningClass());//TODO
+				
+			}
+			
+		}		
 	}
 	
 	private void buildCalcAttrMappingsMaps(CalculatorMapping m, SourceSectionClass srcSection){
@@ -248,15 +272,18 @@ public class SourceSectionMapper {
 		// init hintValues --TODO this is absolutely neccessary as of now, maybe
 		// find out why?-> naccessary f.i. in targetSectionMApper for determination of cardinality
 		Map<ComplexAttribueMappingSourceElement,String> complexSourceElementHintValues=new LinkedHashMap<ComplexAttribueMappingSourceElement,String>();
-		Map<ExpressionVariable,String> calcVariableHintValues=new LinkedHashMap<ExpressionVariable,String>();		
+		Map<ExpressionVariable,String> calcVariableHintValues=new LinkedHashMap<ExpressionVariable,String>();	
+		Map<ComplexAttributeMatcherSourceElement,String> complexAttrMatcherSourceElementHintValues=new LinkedHashMap<ComplexAttributeMatcherSourceElement,String>();
 		for (MappingHint hint : hints) {
 			
-			if( hint instanceof ComplexAttributeMapping || hint instanceof CalculatorMapping){//ComplexAttributeMappings are handled differently because we want to make them work across vc-sections 
+			if( hint instanceof ComplexAttributeMapping 
+					|| hint instanceof CalculatorMapping
+					|| hint instanceof ComplexAttributeMatcher){//ComplexAttributeMappings are handled differently because we want to make them work across vc-sections 
 				changedRefsAndHints.setHintValueList(hint, new LinkedList<Object>());	
 				if(newRefsAndHints.getHintValues().containsKey(hint)){
 					changedRefsAndHints.getHintValues().get(hint).addAll(newRefsAndHints.getHintValues().get(hint));//the cardinality of 
 																												    //the existing hintval is either 0 or 1 at this point
-				} else if(hint instanceof ComplexAttributeMapping){
+				} else if(hint instanceof ComplexAttributeMapping || hint instanceof ComplexAttributeMatcher){
 					changedRefsAndHints.getHintValues().get(hint).add("");
 				} else {
 					changedRefsAndHints.getHintValues().get(hint).add(new LinkedHashMap<String,Double>());
@@ -343,11 +370,21 @@ public class SourceSectionMapper {
 							// handle attribute modifiers
 							SimpleAttributeMatcher matcher = (SimpleAttributeMatcher) ((MappingInstanceSelector) hint)
 									.getMatcher();
-							if (matcher.getSourceAttribute().equals(at)) {
+							if (matcher.getSource().equals(at)) {
 								String valCopy = srcAttrAsString;
 								valCopy = AttributeValueRegistry.applyAttributeValueModifiers(valCopy,
 										matcher.getModifier());
 								changedRefsAndHints.addHintValue(hint, valCopy);
+							} 
+						} else if(((MappingInstanceSelector) hint).getMatcher() instanceof ComplexAttributeMatcher){
+							
+							ComplexAttributeMatcher matcher= (ComplexAttributeMatcher) ((MappingInstanceSelector) hint).getMatcher();
+							for(ComplexAttributeMatcherSourceElement e : matcher.getSourceAttributes()){
+								if(e.getSource().equals(at)){
+									String valCopy = srcAttrAsString;
+									valCopy = AttributeValueRegistry.applyAttributeValueModifiers(valCopy, e.getModifier());
+									complexAttrMatcherSourceElementHintValues.put(e, valCopy);								
+								}
 							}
 						}
 					}
@@ -372,6 +409,7 @@ public class SourceSectionMapper {
 		
 		//now work on ComplexAttributeMappings and CalcMappings
 		Set<ComplexAttributeMapping> complexAttributeMappingsFound=new HashSet<ComplexAttributeMapping>();
+		Set<ComplexAttributeMatcher> complexAttributeMatchersFound=new HashSet<ComplexAttributeMatcher>();
 		Set<CalculatorMapping> calculatorMappingsFound=new HashSet<CalculatorMapping>();		
 		
 		for(MappingHint h : hints){
@@ -388,6 +426,23 @@ public class SourceSectionMapper {
 				
 				if(valuesFound){
 					complexAttributeMappingsFound.add((ComplexAttributeMapping) h);
+					String oldVal=(String)changedRefsAndHints.getHintValues().get(h).remove();
+					changedRefsAndHints.getHintValues().get(h).add(oldVal+valueToAppend);
+				}
+			} else if(h instanceof ComplexAttributeMatcher){
+				String valueToAppend="";
+				boolean valuesFound=false;//we need this as an extra, since found values might be empty strings
+				//append the complex hint value (cardinality either 0 or 1) with found values in right order
+				for(ComplexAttributeMatcherSourceElement s : ((ComplexAttributeMatcher) h).getSourceAttributes()){
+					if(complexAttrMatcherSourceElementHintValues.containsKey(s)){                      
+						
+						valuesFound=true;
+						valueToAppend+=complexAttrMatcherSourceElementHintValues.get(s);
+					}
+				}
+				
+				if(valuesFound){
+					complexAttributeMatchersFound.add((ComplexAttributeMatcher) h);
 					String oldVal=(String)changedRefsAndHints.getHintValues().get(h).remove();
 					changedRefsAndHints.getHintValues().get(h).add(oldVal+valueToAppend);
 				}
@@ -675,6 +730,10 @@ public class SourceSectionMapper {
 				if(h instanceof ComplexAttributeMapping){
 					if(!(complexAttributeMappingsFound.contains(h) && isSectionReferencedByDeepestCmplxAttrMappping((ComplexAttributeMapping) h, srcSection))){
 						changedRefsAndHints.getHintValues().get(h).remove();					
+					}
+				} else if(h instanceof ComplexAttributeMatcher){
+					if(!(complexAttributeMatchersFound.contains(h) && isSectionReferencedByDeepestCmplxAttrMatcher((ComplexAttributeMatcher) h, srcSection))){
+						changedRefsAndHints.getHintValues().get(h).remove();
 					}
 				} else if (h instanceof CalculatorMapping){
 					if(!(calculatorMappingsFound.contains(h) && isSectionReferencedByDeepestCalcAttrMappping((CalculatorMapping)h, srcSection))){

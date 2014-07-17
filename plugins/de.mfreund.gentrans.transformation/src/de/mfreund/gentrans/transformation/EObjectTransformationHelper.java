@@ -109,7 +109,7 @@ public class EObjectTransformationHelper {
 				returnString+="\n   " + a.getName() + ": " + val;
 			}
 		}
-		
+		returnString+="\n";
 
 		return returnString;
 	}

@@ -14,6 +14,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.mapping.AttributeMapping;
+import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.CalculatorMapping;
 import pamtram.mapping.ClassMatcher;
 import pamtram.mapping.Mapping;
@@ -21,7 +22,6 @@ import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
-import pamtram.mapping.SimpleAttributeMatcher;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
@@ -338,12 +338,12 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 																			// current
 																			// ref
 																			// found
-								if (hSel.getMatcher() instanceof SimpleAttributeMatcher) {// handle
+								if (hSel.getMatcher() instanceof AttributeMatcher) {// handle
 																					// hint
 																					// according
 																					// to
 																					// matcher
-									SimpleAttributeMatcher matcher = (SimpleAttributeMatcher) hSel
+									AttributeMatcher matcher = (AttributeMatcher) hSel
 											.getMatcher();
 									hintFound = true;
 									// now search for target attributes

@@ -11,13 +11,14 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.TargetSectionClass;
-import de.mfreund.gentrans.transformation.selectors.ItemSelectorDialog;
+import de.mfreund.gentrans.transformation.selectors.ItemSelectorDialogRunner;
 import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunner;
 
 public class TargetSectionConnector {
@@ -26,7 +27,11 @@ public class TargetSectionConnector {
 	private TargetSectionRegistry targetSectionRegistry;
 	private XMIResource targetModel;
 	private MessageConsoleStream consoleStream;
+	private boolean transformationAborted;
 	
+	public boolean isTransformationAborted() {
+		return transformationAborted;
+	}
 	
 	public TargetSectionConnector(AttributeValueRegistry attrValRegistry, TargetSectionRegistry targetSectionRegistry,
 			XMIResource targetModel, MessageConsoleStream consoleStream){
@@ -35,6 +40,7 @@ public class TargetSectionConnector {
 		this.targetSectionRegistry=targetSectionRegistry;
 		this.targetModel=targetModel;
 		this.consoleStream=consoleStream;
+		this.transformationAborted=false;
 	}
 
 	public  LinkedList<ModelConnectionPath> findPathsWithMinimumCapacity(
@@ -158,8 +164,7 @@ public class TargetSectionConnector {
 								.put(contInst.toString(), contInst);
 					}
 
-					String selection = ItemSelectorDialog
-							.run("The ModelConnectionHint '"
+					ItemSelectorDialogRunner dialog=new ItemSelectorDialogRunner("The ModelConnectionHint '"
 									+ connectionHint.getName()
 									+ "' points to a non-unique Attribute."
 									+ "Please choose under which elements theese "
@@ -168,8 +173,13 @@ public class TargetSectionConnector {
 									+ " elements  should be inserted.\n\n"
 									+ "Attribute value: " + hintVal,
 									containerDescriptions.keySet(), "");
+					Display.getDefault().syncExec(dialog);
+					if(dialog.wasTransformationStopRequested()){
+						transformationAborted=true;
+						return;
+					}
 					rootInstancesByContainer.put(
-							containerDescriptions.get(selection),
+							containerDescriptions.get(dialog.getSelection()),
 							rootInstancesByHintVal.get(hintVal));
 
 					// TODO
@@ -246,8 +256,7 @@ public class TargetSectionConnector {
 							if (p.size() < standardPath.size())
 								standardPath = p;// save shortest path
 						}
-						String selection = ItemSelectorDialog
-								.run(rootInstancesByContainer.get(container)
+						ItemSelectorDialogRunner dialog=new ItemSelectorDialogRunner(rootInstancesByContainer.get(container)
 										.size()
 										+ " Instances of the TargetSection '"
 										+ section.getName()
@@ -263,8 +272,12 @@ public class TargetSectionConnector {
 										+ " below. Your selection will be remembered for the ConnectionHint '"
 										+ connectionHint.getName() + "'.",
 										pathNames.keySet(), standardPath.toString());
-
-						modelConnectionPath = pathNames.get(selection);
+						Display.getDefault().syncExec(dialog);
+						if(dialog.wasTransformationStopRequested()){
+							transformationAborted=true;
+							return;
+						}
+						modelConnectionPath = pathNames.get(dialog.getSelection());
 					} else {
 						consoleStream.println("no  paths????????");// TODO should
 																// be more

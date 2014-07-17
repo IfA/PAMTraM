@@ -10,10 +10,10 @@ import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.mapping.AttributeMapping;
-import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.CalculatorMapping;
 import pamtram.mapping.ClassMatcher;
 import pamtram.mapping.Mapping;
@@ -21,6 +21,7 @@ import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
+import pamtram.mapping.SimpleAttributeMatcher;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
@@ -29,18 +30,24 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
 import pamtram.metamodel.TargetSectionReference;
 import de.congrace.exp4j.ExpressionBuilder;
 import de.congrace.exp4j.InvalidCustomFunctionException;
-import de.mfreund.gentrans.transformation.selectors.ItemSelectorDialog;
+import de.mfreund.gentrans.transformation.selectors.ItemSelectorDialogRunner;
 
 public class TargetSectionInstantiator {
 	private RoundFunction round;
 	private TargetSectionRegistry targetSectionRegistry;
 	private AttributeValueRegistry attributeValueRegistry;
 	private MessageConsoleStream consoleStream;
+	private boolean transformationAborted;
+	
+	public boolean isTransformationAborted() {
+		return transformationAborted;
+	}	
 
 	public TargetSectionInstantiator(TargetSectionRegistry targetSectionRegistry , AttributeValueRegistry attributeValueRegistry, MessageConsoleStream consoleStream) {
 		this.targetSectionRegistry=targetSectionRegistry;
 		this.attributeValueRegistry=attributeValueRegistry;
 		this.consoleStream=consoleStream;
+		this.transformationAborted=false;
 		
 		try{
 			round=new RoundFunction();
@@ -331,12 +338,12 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 																			// current
 																			// ref
 																			// found
-								if (hSel.getMatcher() instanceof AttributeMatcher) {// handle
+								if (hSel.getMatcher() instanceof SimpleAttributeMatcher) {// handle
 																					// hint
 																					// according
 																					// to
 																					// matcher
-									AttributeMatcher matcher = (AttributeMatcher) hSel
+									SimpleAttributeMatcher matcher = (SimpleAttributeMatcher) hSel
 											.getMatcher();
 									hintFound = true;
 									// now search for target attributes
@@ -415,8 +422,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 																						// decide
 											// TODO
 											
-											  String selection=
-											  ItemSelectorDialog.run(
+											  ItemSelectorDialogRunner dialog=new  ItemSelectorDialogRunner(
 											  "The MappingInstanceSelector '" +
 											  h.getName() +
 											  "' has an AttributeMatcher that points to a non-unique Attribute. "
@@ -428,7 +434,12 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 											 + srcInst.toString(),
 											  fittingVals.keySet(),
 											 fittingVals.keySet().iterator().next());
-											  setReference(ref,fittingVals.get(selection).getEObject(),srcInst.getEObject());
+												Display.getDefault().syncExec(dialog);
+											  if(dialog.wasTransformationStopRequested()){
+												  this.transformationAborted=true;
+												  return;
+											  }
+											  setReference(ref,fittingVals.get(dialog.getSelection()).getEObject(),srcInst.getEObject());
 											 
 											// throw "";--TODO
 											//setReference(ref,fittingVals.values().iterator().next(),srcInst);
@@ -690,6 +701,9 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 				for (TargetSectionClass val : ((TargetSectionContainmentReference) ref).getValue()) {// instantiate targets
 					instantiateTargetSectionSecondPass(val, mapping, group,hints,
 							hintValues, instancesBySection);
+					if(transformationAborted){
+						return;
+					}
 				}
 			}
 

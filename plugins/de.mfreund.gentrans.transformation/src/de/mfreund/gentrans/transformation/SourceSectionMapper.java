@@ -11,10 +11,10 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.mapping.AttributeMappingSourceElementType;
-import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.CalculatorMapping;
 import pamtram.mapping.ComplexAttribueMappingSourceElement;
 import pamtram.mapping.ComplexAttributeMapping;
@@ -25,6 +25,7 @@ import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.SimpleAttributeMapping;
+import pamtram.mapping.SimpleAttributeMatcher;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.NonContainmentReference;
@@ -33,7 +34,7 @@ import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionReference;
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
-import de.mfreund.gentrans.transformation.selectors.ItemSelectorDialog;
+import de.mfreund.gentrans.transformation.selectors.ItemSelectorDialogRunner;
 
 /**
  * @author Sascha Steffen
@@ -49,7 +50,12 @@ public class SourceSectionMapper {
 	private LinkedHashMap<CalculatorMapping,SourceSectionClass> deepestCalcAttrMappingSrcElementsByCalcMapping;
 	private List<Mapping> mappingsToChooseFrom;
 	private MessageConsoleStream consoleStream;
+	private boolean transformationAborted;
 	
+	public boolean isTransformationAborted() {
+		return transformationAborted;
+	}
+
 	public SourceSectionMapper(List<Mapping> mappingsToChooseFrom, MessageConsoleStream consoleStream) {
 		mappedSections=new LinkedHashMap<SourceSectionClass,Set<EObject>> ();
 		mappingHints=new  LinkedHashMap<Mapping,LinkedList<MappingHint>>();
@@ -58,6 +64,7 @@ public class SourceSectionMapper {
 		deepestCalcAttrMappingSrcElementsByCalcMapping = new LinkedHashMap<CalculatorMapping,SourceSectionClass>();
 		this.mappingsToChooseFrom=mappingsToChooseFrom;
 		this.consoleStream=consoleStream;
+		this.transformationAborted=false;
 		
 		//this will fill some maps...
 		for(Mapping m : mappingsToChooseFrom){
@@ -332,9 +339,9 @@ public class SourceSectionMapper {
 																			// MappingInstanceSelector
 																			// with
 																			// AttributeMatcher
-						if (((MappingInstanceSelector) hint).getMatcher() instanceof AttributeMatcher) {
+						if (((MappingInstanceSelector) hint).getMatcher() instanceof SimpleAttributeMatcher) {
 							// handle attribute modifiers
-							AttributeMatcher matcher = (AttributeMatcher) ((MappingInstanceSelector) hint)
+							SimpleAttributeMatcher matcher = (SimpleAttributeMatcher) ((MappingInstanceSelector) hint)
 									.getMatcher();
 							if (matcher.getSourceAttribute().equals(at)) {
 								String valCopy = srcAttrAsString;
@@ -436,6 +443,9 @@ public class SourceSectionMapper {
 						, hints,
 						connectionHints, reference.getValuesGeneric().get(0),
 						changedRefsAndHints, srcInstanceMap);
+				if(transformationAborted){
+					return null;
+				}
 				if (res != null) {
 					// success: combine refs and hints
 					if (reference instanceof ContainmentReference) {
@@ -502,6 +512,9 @@ public class SourceSectionMapper {
 								reference instanceof NonContainmentReference,
 								hints, connectionHints, val,
 								changedRefsAndHints, srcInstanceMap);
+						if(transformationAborted){
+							return null;
+						}
 						if (res != null) {// mapping possible
 							foundMapping = true;
 							res.setAssociatedSourceModelElement(rt);
@@ -746,6 +759,10 @@ public class SourceSectionMapper {
 							new MappingInstanceStorage(),
 							new LinkedHashMap<SourceSectionClass, EObject>());
 					
+					if(transformationAborted)
+					{
+						return null;
+					}
 					if(res != null){//if mapping possible add to list
 						res.setMapping(m);
 						mappingData.put(m.getName()+  (m.hashCode()), res);
@@ -776,10 +793,15 @@ public class SourceSectionMapper {
 					returnVal= mappingData.values().iterator().next();
 					break;
 				default:
-					String selection= ItemSelectorDialog.run("Please select a Mapping for the source element\n'" 
+					ItemSelectorDialogRunner dialog= new ItemSelectorDialogRunner("Please select a Mapping for the source element\n'" 
 					+  EObjectTransformationHelper.asString(element) + "'" , 
 								mappingData.keySet(), mappingData.keySet().iterator().next());
-					returnVal= mappingData.get(selection);
+					Display.getDefault().syncExec(dialog);
+					if(dialog.wasTransformationStopRequested()){
+						transformationAborted=true;
+						return null;
+					}
+					returnVal= mappingData.get(dialog.getSelection());
 			}	
 			
 			if(returnVal != null){

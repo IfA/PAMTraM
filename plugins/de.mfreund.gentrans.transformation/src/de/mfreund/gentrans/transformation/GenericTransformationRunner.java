@@ -151,6 +151,10 @@ public class GenericTransformationRunner {
 
 			MappingInstanceStorage selectedMapping = sourceSectionMapper
 					.findMapping(contRefsToMap);
+			if(sourceSectionMapper.isTransformationAborted()){
+				consoleStream.println("Transformation aborted.");
+				return;
+			}
 			if (selectedMapping != null) {
 				selectedMappings.add(selectedMapping);
 				if (!selectedMappingsByMapping.containsKey(selectedMapping
@@ -239,6 +243,10 @@ public class GenericTransformationRunner {
 														g.getModelConnectionMatcher(),
 														selMap.getModelConnectionHintValues(g
 																.getModelConnectionMatcher()));
+										if(connectionHelpers.isTransformationAborted()){
+											consoleStream.println("Transformation aborted.");
+											return;
+										}
 									}
 								}
 							} else {// link using container attribute or nothing
@@ -248,6 +256,10 @@ public class GenericTransformationRunner {
 												.getPamtramClassInstances(
 														section).get(g),
 										section, m.getName(), g.getName());
+								if(connectionHelpers.isTransformationAborted()){
+									consoleStream.println("Transformation aborted.");
+									return;
+								}
 							}
 						}
 					}
@@ -270,6 +282,10 @@ public class GenericTransformationRunner {
 										g.getMappingHints(),
 										selMap.getHintValues(),
 										selMap.getInstancesBySection(g));
+						if(targetSectionInstantiator.isTransformationAborted()){
+							consoleStream.println("Transformation aborted.");
+							return;
+						}
 					}
 				}
 			}

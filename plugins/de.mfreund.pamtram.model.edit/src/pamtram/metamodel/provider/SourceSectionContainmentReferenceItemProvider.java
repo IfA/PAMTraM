@@ -98,7 +98,7 @@ public class SourceSectionContainmentReferenceItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return getImage(object);
+		return super.getImage(object);
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class SourceSectionContainmentReferenceItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getText(object);
+		return super.getText(object);
 	}
 
 	/**

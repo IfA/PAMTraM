@@ -28,7 +28,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.layout.RowData;
 
-public class ItemSelectorDialog extends Dialog {
+public class ItemSelectorDialog extends Dialog{
 
 	protected Object result;
 	protected String selectedItem;
@@ -40,17 +40,23 @@ public class ItemSelectorDialog extends Dialog {
 	private GridLayout gridLayout;
 	private org.eclipse.swt.widgets.List listWidget;
 	private int standardSelectionIndex;
+	private boolean transformationStopRequested;
 	
+	public boolean isTransformationStopRequested() {
+		return transformationStopRequested;
+	}
+
 	/**
 	 * Create the dialog.
 	 * @param parent
 	 * @param style
 	 */
-	private ItemSelectorDialog(Shell parent, int style, String message, Collection<String> listItems, String standardSelection) {
+	ItemSelectorDialog(Shell parent, int style, String message, Collection<String> listItems, String standardSelection) {
 		super(parent, SWT.DIALOG_TRIM | SWT.RESIZE | SWT.APPLICATION_MODAL);
 		setText("SWT Dialog");
 		this.listItems=listItems;
 		this.message=message;
+		this.transformationStopRequested=false;
 		
 		//we need to check if the value standardSelection is part of the selections list 
 		selectedItem=listItems.iterator().next();
@@ -70,7 +76,7 @@ public class ItemSelectorDialog extends Dialog {
 	 * Open the dialog.
 	 * @return the result
 	 */
-	private Object open() {
+	public Object open() {
 		createContents();
 		shlPleaseSelectA.open();
 		shlPleaseSelectA.layout();
@@ -87,7 +93,7 @@ public class ItemSelectorDialog extends Dialog {
 	 * Get Selection after dialog has finished, returns standardSelection if dialog not run
 	 * @return the selection
 	 */
-	private String getSelection(){
+	public String getSelection(){
 		
 		return selectedItem;
 	}
@@ -113,6 +119,7 @@ public class ItemSelectorDialog extends Dialog {
 		gd_dialogMessage.widthHint = shlPleaseSelectA.getSize().x-10;
 		dialogMessage.setLayoutData(gd_dialogMessage);
 		dialogMessage.setText(message);
+		shlPleaseSelectA.redraw();
 		
 		shlPleaseSelectA.addControlListener(new ControlAdapter(){
 			public void controlResized(ControlEvent e){
@@ -151,24 +158,55 @@ public class ItemSelectorDialog extends Dialog {
 
 		
 		composite = new Composite(shlPleaseSelectA, SWT.NONE);
-		RowLayout rl_composite = new RowLayout(SWT.HORIZONTAL);
-		rl_composite.marginTop = 0;
-		rl_composite.fill = true;
-		composite.setLayout(rl_composite);
-		composite.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, true, false, 1, 1));
+		GridLayout gl_composite = new GridLayout(2, true);
+		gl_composite.verticalSpacing = 0;
+		gl_composite.marginWidth = 0;
+		gl_composite.marginHeight = 0;
+		composite.setLayout(gl_composite);
+		GridData gd_composite = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
+		gd_composite.widthHint = 564;
+		composite.setLayoutData(gd_composite);
 		
-		button = new Button(composite, SWT.NONE);
+		abortTransFormationButton = new Button(composite, SWT.NONE);
+		abortTransFormationButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				selectedItem=listWidget.getItem(standardSelectionIndex);
+				transformationStopRequested=true;
+				shlPleaseSelectA.dispose();
+			}
+		});
+		GridData gd_abortTransFormationButton = new GridData(SWT.LEFT, SWT.FILL, false, false, 1, 1);
+		gd_abortTransFormationButton.minimumWidth = 80;
+		gd_abortTransFormationButton.minimumHeight = 35;
+		abortTransFormationButton.setLayoutData(gd_abortTransFormationButton);
+		abortTransFormationButton.setAlignment(SWT.LEFT);
+		abortTransFormationButton.setText("Abort transformation");
+		
+		composite_1 = new Composite(composite, SWT.NONE);
+		composite_1.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, true, false, 1, 1));
+		RowLayout rl_composite_1 = new RowLayout(SWT.HORIZONTAL);
+		rl_composite_1.marginBottom = 0;
+		rl_composite_1.marginLeft = 0;
+		rl_composite_1.marginRight = 0;
+		rl_composite_1.marginTop = 0;
+		rl_composite_1.spacing = 0;
+		rl_composite_1.fill = true;
+		composite_1.setLayout(rl_composite_1);
+		
+		button = new Button(composite_1, SWT.NONE);
+		button.setLayoutData(new RowData(80, 35));
 		button.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				shlPleaseSelectA.dispose();
 			}
 		});
-		button.setLayoutData(new RowData(75, 30));
 		button.setText("OK");
 		button.setSelection(true);
 		
-		btnAbort = new Button(composite, SWT.NONE);
+		btnAbort = new Button(composite_1, SWT.NONE);
+		btnAbort.setLayoutData(new RowData(80, 35));
 		btnAbort.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -176,27 +214,14 @@ public class ItemSelectorDialog extends Dialog {
 				shlPleaseSelectA.dispose();
 			}
 		});
-		btnAbort.setLayoutData(new RowData(75, 30));
 		btnAbort.setText("Abort");
 
 	}
 	
-	private static String selection;	
 	private Composite composite;
 	private Button button;
 	private Button btnAbort;
-	public static String run(final String message, final Collection<String> listItems, final String standardItem){
-		Display.getDefault().syncExec(new Runnable(){
-			public void run(){
-				Display display= Display.getDefault();
-				Shell shell=new Shell(display);
-				ItemSelectorDialog d=new ItemSelectorDialog(shell, SWT.APPLICATION_MODAL,message, listItems,standardItem);
+	private Button abortTransFormationButton;
+	private Composite composite_1;
 
-				d.open();
-				selection=d.getSelection();
-			};
-		});
-		
-		return selection;
-	};	
 }

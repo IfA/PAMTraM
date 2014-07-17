@@ -1412,7 +1412,7 @@ public class PamtramEditor
 						
 						sourceViewer.setSelection(new StructuredSelection(sources));
 						
-						if(target != null){
+						if(target == null){
 							targetViewer.setSelection(new StructuredSelection());
 						} else {
 							targetViewer.setSelection(new StructuredSelection(target));

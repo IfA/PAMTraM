@@ -78,8 +78,10 @@ public class SourceSectionMapper {
 					buildDeepestCmplxAttrMappingElementsMap((ComplexAttributeMapping) h, m.getSourceMMSection());
 				} else if(h instanceof CalculatorMapping){
 					buildCalcAttrMappingsMaps((CalculatorMapping) h, m.getSourceMMSection());
-				} else if (h instanceof ComplexAttributeMatcher){
-					buildDeepestComplexAttrMatcherSrcElements((ComplexAttributeMatcher)m, m.getSourceMMSection());
+				} else if (h instanceof MappingInstanceSelector){
+					if(((MappingInstanceSelector) h).getMatcher() instanceof ComplexAttributeMatcher){
+						buildDeepestComplexAttrMatcherSrcElements((ComplexAttributeMatcher)((MappingInstanceSelector)h).getMatcher(), m.getSourceMMSection());
+					}
 				}
 			}
 		}
@@ -133,7 +135,7 @@ public class SourceSectionMapper {
 			
 			sortOutElements(srcElements, srcSection);
 			if(srcElements.size() == 1){
-				deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher.put(m,srcElements.iterator().next().getSource().getOwningClass());//TODO
+				deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher.put(m,srcElements.iterator().next().getSource().getOwningClass());
 				
 			}
 			
@@ -277,18 +279,27 @@ public class SourceSectionMapper {
 		for (MappingHint hint : hints) {
 			
 			if( hint instanceof ComplexAttributeMapping 
-					|| hint instanceof CalculatorMapping
-					|| hint instanceof ComplexAttributeMatcher){//ComplexAttributeMappings are handled differently because we want to make them work across vc-sections 
+					|| hint instanceof CalculatorMapping){//ComplexAttributeMappings are handled differently because we want to make them work across vc-sections 
 				changedRefsAndHints.setHintValueList(hint, new LinkedList<Object>());	
 				if(newRefsAndHints.getHintValues().containsKey(hint)){
 					changedRefsAndHints.getHintValues().get(hint).addAll(newRefsAndHints.getHintValues().get(hint));//the cardinality of 
 																												    //the existing hintval is either 0 or 1 at this point
-				} else if(hint instanceof ComplexAttributeMapping || hint instanceof ComplexAttributeMatcher){
+				} else if(hint instanceof ComplexAttributeMapping){
 					changedRefsAndHints.getHintValues().get(hint).add("");
 				} else {
 					changedRefsAndHints.getHintValues().get(hint).add(new LinkedHashMap<String,Double>());
 				}
-			} else {
+			} else if (hint instanceof MappingInstanceSelector) {
+				if(((MappingInstanceSelector) hint).getMatcher() instanceof ComplexAttributeMatcher){
+					changedRefsAndHints.setHintValueList(hint, new LinkedList<Object>());	
+					if(newRefsAndHints.getHintValues().containsKey(hint)){
+						changedRefsAndHints.getHintValues().get(hint).addAll(newRefsAndHints.getHintValues().get(hint));//the cardinality of 
+																													    //the existing hintval is either 0 or 1 at this point
+					} else {
+						changedRefsAndHints.getHintValues().get(hint).add("");
+					}					
+				}
+			}else {
 				changedRefsAndHints.setHintValueList(hint, new LinkedList<Object>());				
 			}
 
@@ -429,22 +440,24 @@ public class SourceSectionMapper {
 					String oldVal=(String)changedRefsAndHints.getHintValues().get(h).remove();
 					changedRefsAndHints.getHintValues().get(h).add(oldVal+valueToAppend);
 				}
-			} else if(h instanceof ComplexAttributeMatcher){
-				String valueToAppend="";
-				boolean valuesFound=false;//we need this as an extra, since found values might be empty strings
-				//append the complex hint value (cardinality either 0 or 1) with found values in right order
-				for(ComplexAttributeMatcherSourceElement s : ((ComplexAttributeMatcher) h).getSourceAttributes()){
-					if(complexAttrMatcherSourceElementHintValues.containsKey(s)){                      
-						
-						valuesFound=true;
-						valueToAppend+=complexAttrMatcherSourceElementHintValues.get(s);
+			} else if(h instanceof MappingInstanceSelector){
+				if (((MappingInstanceSelector) h).getMatcher() instanceof ComplexAttributeMatcher) {
+					ComplexAttributeMatcher m=(ComplexAttributeMatcher) ((MappingInstanceSelector) h).getMatcher();
+					String valueToAppend = "";
+					boolean valuesFound = false;// we need this as an extra, since found values might be empty strings
+					// append the complex hint value (cardinality either 0 or 1)with found values in right order
+					for (ComplexAttributeMatcherSourceElement s : m.getSourceAttributes()){
+						if (complexAttrMatcherSourceElementHintValues.containsKey(s)) {
+							valuesFound = true;
+							valueToAppend += complexAttrMatcherSourceElementHintValues.get(s);
+						}
 					}
-				}
-				
-				if(valuesFound){
-					complexAttributeMatchersFound.add((ComplexAttributeMatcher) h);
-					String oldVal=(String)changedRefsAndHints.getHintValues().get(h).remove();
-					changedRefsAndHints.getHintValues().get(h).add(oldVal+valueToAppend);
+
+					if (valuesFound) {
+						complexAttributeMatchersFound.add((ComplexAttributeMatcher) m);
+						String oldVal = (String) changedRefsAndHints.getHintValues().get(h).remove();
+						changedRefsAndHints.getHintValues().get(h).add(oldVal + valueToAppend);
+					}
 				}
 			} else if(h instanceof CalculatorMapping){
 				Map<String,Double> foundValues=new LinkedHashMap<String,Double>();//we need this as an extra, since found values might be empty strings
@@ -731,9 +744,12 @@ public class SourceSectionMapper {
 					if(!(complexAttributeMappingsFound.contains(h) && isSectionReferencedByDeepestCmplxAttrMappping((ComplexAttributeMapping) h, srcSection))){
 						changedRefsAndHints.getHintValues().get(h).remove();					
 					}
-				} else if(h instanceof ComplexAttributeMatcher){
-					if(!(complexAttributeMatchersFound.contains(h) && isSectionReferencedByDeepestCmplxAttrMatcher((ComplexAttributeMatcher) h, srcSection))){
-						changedRefsAndHints.getHintValues().get(h).remove();
+				} else if(h instanceof MappingInstanceSelector){
+					if(((MappingInstanceSelector) h).getMatcher()  instanceof ComplexAttributeMatcher){
+						if(!(complexAttributeMatchersFound.contains(((MappingInstanceSelector) h).getMatcher()) 
+								&& isSectionReferencedByDeepestCmplxAttrMatcher((ComplexAttributeMatcher) ((MappingInstanceSelector) h).getMatcher(), srcSection))){
+							changedRefsAndHints.getHintValues().get(h).remove();
+						}
 					}
 				} else if (h instanceof CalculatorMapping){
 					if(!(calculatorMappingsFound.contains(h) && isSectionReferencedByDeepestCalcAttrMappping((CalculatorMapping)h, srcSection))){

@@ -991,7 +991,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		attributeMappingSourceElementTypeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		complexAttributeMatcherEClass.getESuperTypes().add(this.getAttributeMatcher());
 		simpleAttributeMatcherEClass.getESuperTypes().add(this.getAttributeMatcher());
-		simpleAttributeMatcherEClass.getESuperTypes().add(this.getComplexAttributeMatcherSourceElement());
+		simpleAttributeMatcherEClass.getESuperTypes().add(this.getAttributeMappingSourceElementType());
 		complexAttributeMatcherSourceElementEClass.getESuperTypes().add(this.getAttributeMappingSourceElementType());
 
 		// Initialize classes, features, and operations; add parameters

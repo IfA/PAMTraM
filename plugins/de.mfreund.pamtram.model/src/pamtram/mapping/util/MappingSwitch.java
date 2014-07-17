@@ -263,9 +263,8 @@ public class MappingSwitch<T> extends Switch<T> {
 				SimpleAttributeMatcher simpleAttributeMatcher = (SimpleAttributeMatcher)theEObject;
 				T result = caseSimpleAttributeMatcher(simpleAttributeMatcher);
 				if (result == null) result = caseAttributeMatcher(simpleAttributeMatcher);
-				if (result == null) result = caseComplexAttributeMatcherSourceElement(simpleAttributeMatcher);
-				if (result == null) result = caseMatcher(simpleAttributeMatcher);
 				if (result == null) result = caseAttributeMappingSourceElementType(simpleAttributeMatcher);
+				if (result == null) result = caseMatcher(simpleAttributeMatcher);
 				if (result == null) result = caseNamedElement(simpleAttributeMatcher);
 				if (result == null) result = defaultCase(theEObject);
 				return result;

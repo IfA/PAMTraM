@@ -3,27 +3,18 @@
 package pamtram.mapping.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import pamtram.NamedElement;
 import pamtram.PamtramPackage;
-
 import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.AttributeValueModifierSet;
-import pamtram.mapping.ComplexAttributeMatcherSourceElement;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.SimpleAttributeMatcher;
-
 import pamtram.metamodel.SourceSectionAttribute;
 
 /**
@@ -273,11 +264,6 @@ public class SimpleAttributeMatcherImpl extends AttributeMatcherImpl implements 
 				default: return -1;
 			}
 		}
-		if (baseClass == ComplexAttributeMatcherSourceElement.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -298,11 +284,6 @@ public class SimpleAttributeMatcherImpl extends AttributeMatcherImpl implements 
 			switch (baseFeatureID) {
 				case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE: return MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__SOURCE;
 				case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER: return MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__MODIFIER;
-				default: return -1;
-			}
-		}
-		if (baseClass == ComplexAttributeMatcherSourceElement.class) {
-			switch (baseFeatureID) {
 				default: return -1;
 			}
 		}

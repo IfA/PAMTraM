@@ -377,7 +377,7 @@
           upperBound="-1" eType="#//mapping/ComplexAttributeMatcherSourceElement"
           containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="SimpleAttributeMatcher" eSuperTypes="#//mapping/AttributeMatcher #//mapping/ComplexAttributeMatcherSourceElement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="SimpleAttributeMatcher" eSuperTypes="#//mapping/AttributeMatcher #//mapping/AttributeMappingSourceElementType"/>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexAttributeMatcherSourceElement"
         eSuperTypes="#//mapping/AttributeMappingSourceElementType"/>
   </eSubpackages>

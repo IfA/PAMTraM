@@ -285,7 +285,7 @@ public class SourceSectionMapper {
 					changedRefsAndHints.getHintValues().get(hint).addAll(newRefsAndHints.getHintValues().get(hint));//the cardinality of 
 																												    //the existing hintval is either 0 or 1 at this point
 				} else if(hint instanceof ComplexAttributeMapping){
-					changedRefsAndHints.getHintValues().get(hint).add("");
+					changedRefsAndHints.getHintValues().get(hint).add(new LinkedHashMap<ComplexAttributeMatcherSourceElement,String>());
 				} else {
 					changedRefsAndHints.getHintValues().get(hint).add(new LinkedHashMap<String,Double>());
 				}
@@ -296,7 +296,7 @@ public class SourceSectionMapper {
 						changedRefsAndHints.getHintValues().get(hint).addAll(newRefsAndHints.getHintValues().get(hint));//the cardinality of 
 																													    //the existing hintval is either 0 or 1 at this point
 					} else {
-						changedRefsAndHints.getHintValues().get(hint).add("");
+						changedRefsAndHints.getHintValues().get(hint).add(new LinkedHashMap<ComplexAttributeMatcherSourceElement,String>());
 					}					
 				}
 			}else {
@@ -425,39 +425,37 @@ public class SourceSectionMapper {
 		
 		for(MappingHint h : hints){
 			if(h instanceof ComplexAttributeMapping){
-				String valueToAppend="";
-				boolean valuesFound=false;//we need this as an extra, since found values might be empty strings
+				Map<ComplexAttribueMappingSourceElement,String> foundValues=new LinkedHashMap<ComplexAttribueMappingSourceElement,String>();
 				//append the complex hint value (cardinality either 0 or 1) with found values in right order
 				for(ComplexAttribueMappingSourceElement s : ((ComplexAttributeMapping) h).getSourceAttributeMappings()){
 					if(complexSourceElementHintValues.containsKey(s)){
-						valuesFound=true;
-						valueToAppend+=complexSourceElementHintValues.get(s);
+						foundValues.put(s,complexSourceElementHintValues.get(s));
 					}
 				}
 				
-				if(valuesFound){
-					complexAttributeMappingsFound.add((ComplexAttributeMapping) h);
-					String oldVal=(String)changedRefsAndHints.getHintValues().get(h).remove();
-					changedRefsAndHints.getHintValues().get(h).add(oldVal+valueToAppend);
-				}
+				if(foundValues.keySet().size() > 0){
+					complexAttributeMappingsFound.add((ComplexAttributeMapping)h);
+					
+					foundValues.putAll((Map<ComplexAttribueMappingSourceElement,String>) changedRefsAndHints.getHintValues().get(h).remove());					
+					changedRefsAndHints.getHintValues().get(h).add(foundValues);
+				}				
 			} else if(h instanceof MappingInstanceSelector){
 				if (((MappingInstanceSelector) h).getMatcher() instanceof ComplexAttributeMatcher) {
-					ComplexAttributeMatcher m=(ComplexAttributeMatcher) ((MappingInstanceSelector) h).getMatcher();
-					String valueToAppend = "";
-					boolean valuesFound = false;// we need this as an extra, since found values might be empty strings
-					// append the complex hint value (cardinality either 0 or 1)with found values in right order
-					for (ComplexAttributeMatcherSourceElement s : m.getSourceAttributes()){
-						if (complexAttrMatcherSourceElementHintValues.containsKey(s)) {
-							valuesFound = true;
-							valueToAppend += complexAttrMatcherSourceElementHintValues.get(s);
+					ComplexAttributeMatcher m =(ComplexAttributeMatcher)((MappingInstanceSelector) h).getMatcher();
+					Map<ComplexAttributeMatcherSourceElement,String> foundValues=new LinkedHashMap<ComplexAttributeMatcherSourceElement,String>();
+					//append the complex hint value (cardinality either 0 or 1) with found values in right order
+					for(ComplexAttributeMatcherSourceElement s : m.getSourceAttributes()){
+						if(complexAttrMatcherSourceElementHintValues.containsKey(s)){
+							foundValues.put(s,complexAttrMatcherSourceElementHintValues.get(s));
 						}
 					}
-
-					if (valuesFound) {
-						complexAttributeMatchersFound.add((ComplexAttributeMatcher) m);
-						String oldVal = (String) changedRefsAndHints.getHintValues().get(h).remove();
-						changedRefsAndHints.getHintValues().get(h).add(oldVal + valueToAppend);
-					}
+					
+					if(foundValues.keySet().size() > 0){
+						complexAttributeMatchersFound.add(m);
+						
+						foundValues.putAll((Map<ComplexAttributeMatcherSourceElement,String>) changedRefsAndHints.getHintValues().get(h).remove());					
+						changedRefsAndHints.getHintValues().get(h).add(foundValues);
+					}	
 				}
 			} else if(h instanceof CalculatorMapping){
 				Map<String,Double> foundValues=new LinkedHashMap<String,Double>();//we need this as an extra, since found values might be empty strings

@@ -14,14 +14,18 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.mapping.AttributeMapping;
+import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.CalculatorMapping;
 import pamtram.mapping.ClassMatcher;
+import pamtram.mapping.ComplexAttributeMapping;
+import pamtram.mapping.ComplexAttributeMatcher;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
+import pamtram.mapping.SimpleAttributeMatcher;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
@@ -220,6 +224,17 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 									consoleStream.println("Error parsing the expression of CalculatorMapping" + hintFound.getName() + ". Message:\n"
 											+ e.getMessage());
 								}								
+							} else if (hintFound instanceof ComplexAttributeMapping){
+								attrValue="";
+								Map<AttributeMappingSourceElementType,String> hVal=(Map<AttributeMappingSourceElementType,String>) attrHintValues.remove(0);
+								for(AttributeMappingSourceElementType srcElement : ((ComplexAttributeMapping) hintFound).getSourceAttributeMappings()){
+									if(hVal.containsKey(srcElement)){
+											attrValue+=hVal.get(srcElement);
+									} else {
+										consoleStream.println("HintSourceValue not found " + srcElement.getName() + " in hint " 
+												+ hintFound.getName() + "." );
+									}
+								}
 							} else {
 								attrValue=(String)attrHintValues.remove(0);
 							}
@@ -366,7 +381,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 									 */
 									LinkedList<Object> newHintValues = new LinkedList<Object>();
 									if (hintValues.get(h).size() == 1) {
-										String hintVal = (String) hintValues.get(h)
+										Object hintVal = (Object) hintValues.get(h)
 												.getFirst();
 										for (int i = 0; i < instancesToConsider
 												.size(); i++) {
@@ -385,7 +400,25 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 												+ " "
 												+ hintValues.get(h).size() +"\n"+ hintValues.get(h)+ "\n" + instancesToConsider);
 									}
+									
 									for (Object attrVal : newHintValues) {
+										String attrValStr = null;
+										
+										if(hSel.getMatcher() instanceof SimpleAttributeMatcher){
+											attrValStr=(String) attrVal;
+										} else if( hSel.getMatcher() instanceof ComplexAttributeMatcher){
+											attrValStr="";
+											@SuppressWarnings("unchecked")
+											Map<AttributeMappingSourceElementType,String> hVal=(Map<AttributeMappingSourceElementType,String>) attrVal;
+											for(AttributeMappingSourceElementType srcElement :  ((ComplexAttributeMatcher)hSel.getMatcher()).getSourceAttributes()){
+												if(hVal.containsKey(srcElement)){
+														attrValStr+=hVal.get(srcElement);
+												} else {
+													consoleStream.println("HintSourceValue not found " + srcElement.getName() + " in hint " 
+															+ h.getName() + "." );
+												}
+											}
+										}
 										EObjectTransformationHelper srcInst = instancesToConsider
 												.remove(0);
 										LinkedHashMap<String, EObjectTransformationHelper> fittingVals = new LinkedHashMap<String, EObjectTransformationHelper>();// TODO
@@ -400,7 +433,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 												String targetValStr=targetInst.getAttributeValue(matcher.getTargetAttribute());
 												if (targetValStr != null) {
 													if (targetValStr
-															.equals(attrVal)) {
+															.equals(attrValStr)) {
 														// consoleStream.println("found "
 														// + targetVal + " "
 														// + attrVal);

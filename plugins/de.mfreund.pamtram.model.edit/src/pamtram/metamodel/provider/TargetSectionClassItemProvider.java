@@ -180,11 +180,6 @@ public class TargetSectionClassItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(MetamodelPackage.Literals.TARGET_SECTION_CLASS__ATTRIBUTES,
-				 MetamodelFactory.eINSTANCE.createTargetSectionAttribute()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MetamodelPackage.Literals.TARGET_SECTION_CLASS__ATTRIBUTES,
 				 MetamodelFactory.eINSTANCE.createActualAttribute()));
 
 		newChildDescriptors.add

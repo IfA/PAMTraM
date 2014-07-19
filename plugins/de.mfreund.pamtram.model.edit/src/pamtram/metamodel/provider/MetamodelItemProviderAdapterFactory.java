@@ -233,29 +233,6 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.TargetSectionAttribute} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected TargetSectionAttributeItemProvider targetSectionAttributeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.metamodel.TargetSectionAttribute}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createTargetSectionAttributeAdapter() {
-		if (targetSectionAttributeItemProvider == null) {
-			targetSectionAttributeItemProvider = new TargetSectionAttributeItemProvider(this);
-		}
-
-		return targetSectionAttributeItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.ActualAttribute} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -545,7 +522,6 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 		if (sourceSectionContainmentReferenceItemProvider != null) sourceSectionContainmentReferenceItemProvider.dispose();
 		if (sourceSectionNonContainmentReferenceItemProvider != null) sourceSectionNonContainmentReferenceItemProvider.dispose();
 		if (sourceSectionAttributeItemProvider != null) sourceSectionAttributeItemProvider.dispose();
-		if (targetSectionAttributeItemProvider != null) targetSectionAttributeItemProvider.dispose();
 		if (actualAttributeItemProvider != null) actualAttributeItemProvider.dispose();
 		if (virtualAttributeItemProvider != null) virtualAttributeItemProvider.dispose();
 		if (attributeValueSpecificationItemProvider != null) attributeValueSpecificationItemProvider.dispose();

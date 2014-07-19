@@ -117,7 +117,7 @@ public class GenericTransformationRunner {
 
 		// generate storage objects and generators
 		SourceSectionMapper sourceSectionMapper = new SourceSectionMapper(suitableMappings, consoleStream);
-		TargetSectionRegistry targetSectionRegistry = new TargetSectionRegistry();
+		TargetSectionRegistry targetSectionRegistry = new TargetSectionRegistry(consoleStream);
 		AttributeValueRegistry attrValueRegistry = new AttributeValueRegistry();
 		TargetSectionConnector connectionHelpers = new TargetSectionConnector(
 				attrValueRegistry, targetSectionRegistry, targetModel, consoleStream);

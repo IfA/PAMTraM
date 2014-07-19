@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.mapping.MappingHintGroup;
 import pamtram.metamodel.TargetSectionClass;
@@ -44,8 +45,10 @@ public class TargetSectionRegistry {
 	private  LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>> possiblePathsRegistry;
 	private  LinkedHashMap<EClass, LinkedHashSet<EReference>> targetClassReferencesRegistry; // ==refsToThis
 	private  LinkedHashMap<EReference, LinkedHashSet<EClass>> referenceSourcesRegistry; // ==sources
+	private MessageConsoleStream consoleStream;
 
-	public TargetSectionRegistry() {
+	public TargetSectionRegistry(MessageConsoleStream consoleStream) {
+		this.consoleStream=consoleStream;
 		targetClassInstanceRegistry= new LinkedHashMap<EClass, LinkedList<EObjectTransformationHelper>>();
 		targetClassInstanceByHintGroupRegistry = new LinkedHashMap<TargetSectionClass, LinkedHashMap<MappingHintGroup, LinkedList<EObjectTransformationHelper>>>();
 		childClassesRegistry= new LinkedHashMap<EClass, LinkedHashSet<EClass>>();
@@ -174,11 +177,11 @@ public class TargetSectionRegistry {
 	public  void analyseTargetMetaModel(EPackage targetMetaModel) {
 		// Map targetMetaModel classes
 		
-		System.out.println("Mapping targetMetaModel classes");
+		consoleStream.println("Mapping targetMetaModel classes");
 		LinkedList<EClass> classesToAnalyse=getClasses(targetMetaModel);
 		
 		// map supertypes
-		System.out
+		consoleStream
 				.println("Mapping targetMetaModel inheritance and containment relationships");
 		for (EClass e : classesToAnalyse) {
 			for (EClass s : e.getEAllSuperTypes()) {
@@ -187,7 +190,7 @@ public class TargetSectionRegistry {
 		}
 
 		// register references that lead to a certain class for each class
-		System.out.println("Mapping targetMetaModel containment relationships");
+		consoleStream.println("Mapping targetMetaModel containment relationships");
 		for (EClass e : classesToAnalyse) {
 			for (EReference c : e.getEAllContainments()) {
 				if (targetClassReferencesRegistry.containsKey(c
@@ -199,7 +202,7 @@ public class TargetSectionRegistry {
 					targetClassReferencesRegistry.get(c.getEReferenceType())
 							.add(c);
 				} else {
-					System.out.println("Ignoring targetMetaModel reference "
+					consoleStream.println("Ignoring targetMetaModel reference "
 							+ c.getName() + " of element " + e.getName() + " "
 							+ c.getEReferenceType().getName() + " "
 							+ c.getEType().getName());

@@ -24,7 +24,7 @@ import pamtram.metamodel.TargetSectionClass;
  *
  * @generated
  */
-public class TargetSectionAttributeImpl extends AttributeImpl implements TargetSectionAttribute {
+public abstract class TargetSectionAttributeImpl extends AttributeImpl implements TargetSectionAttribute {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

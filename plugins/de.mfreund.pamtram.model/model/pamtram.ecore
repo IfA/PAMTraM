@@ -170,7 +170,8 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
           eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="TargetSectionAttribute" eSuperTypes="#//metamodel/Attribute">
+    <eClassifiers xsi:type="ecore:EClass" name="TargetSectionAttribute" abstract="true"
+        eSuperTypes="#//metamodel/Attribute">
       <eStructuralFeatures xsi:type="ecore:EReference" name="owningClass" lowerBound="1"
           eType="#//metamodel/TargetSectionClass" changeable="false" eOpposite="#//metamodel/TargetSectionClass/attributes"/>
     </eClassifiers>

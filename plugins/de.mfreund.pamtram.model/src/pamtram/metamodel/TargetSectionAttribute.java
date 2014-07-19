@@ -16,7 +16,7 @@ package pamtram.metamodel;
  * </p>
  *
  * @see pamtram.metamodel.MetamodelPackage#getTargetSectionAttribute()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface TargetSectionAttribute extends Attribute {

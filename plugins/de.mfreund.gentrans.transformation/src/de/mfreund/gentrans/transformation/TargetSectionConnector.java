@@ -64,7 +64,7 @@ public class TargetSectionConnector {
 		}
 		return pathsToConsider;
 	}
-
+//TODO rule out root instances from target instances to consider
 	public void linkToTargetModelUsingModelConnectionHint(
 			EClass classToConnect, List<EObjectTransformationHelper> rootInstances, TargetSectionClass section,
 			String mappingName, String mappingGroupName,
@@ -256,16 +256,16 @@ public class TargetSectionConnector {
 							if (p.size() < standardPath.size())
 								standardPath = p;// save shortest path
 						}
-						ItemSelectorDialogRunner dialog=new ItemSelectorDialogRunner(rootInstancesByContainer.get(container)
-										.size()
-										+ " Instances of the TargetSection '"
+						int instSize=rootInstancesByContainer.get(container).size();
+						ItemSelectorDialogRunner dialog=new ItemSelectorDialogRunner(instSize 
+										+ " Instance" + (instSize > 1 ? "s" : "")  +"of the TargetSection '"
 										+ section.getName()
 										+ "', created by the mapping '"
 										+ mappingName
 										+ " (Group: "
 										+ mappingGroupName
 										+ ")"
-										+ "', have root elements of the type '"
+										+ "', "+ (instSize > 1 ? "have" : "has")  +" root elements of the type '"
 										+ classToConnect.getName()
 										+ "'. These need to be put at a sensible position in the target model. "
 										+ "Please choose one of the possible connections to other existing target model elements"
@@ -327,6 +327,7 @@ public class TargetSectionConnector {
 				LinkedList<EObjectTransformationHelper> containerInstances = targetSectionRegistry
 						.getFlattenedPamtramClassInstances(section
 								.getContainer());
+				containerInstances.removeAll(rootInstances);//we do not went the rootinstances to contain themselves TODO
 				boolean hasContainer = section.getContainer() != null;
 				boolean onlyOnePath;
 				if (hasContainer) {
@@ -364,9 +365,16 @@ public class TargetSectionConnector {
 					EObjectTransformationHelper inst;
 					if (hasContainer) {
 						inst = containerInstances.getFirst();
-					} else {
+					} else if(!rootInstances.contains(targetSectionRegistry.getTargetClassInstances(
+								modelConnectionPath.getRootType()).getFirst())){
 						inst = targetSectionRegistry.getTargetClassInstances(
 								modelConnectionPath.getRootType()).getFirst();
+					} else {
+						consoleStream
+						.println("Could not find a path that leads to the container specified for targetSection '"
+								+ section.getName() + "'");
+						addToTargetModelRoot(rootInstances);
+						return;
 					}
 
 					consoleStream.println(section.getName() + "(" + mappingName
@@ -385,12 +393,20 @@ public class TargetSectionConnector {
 						LinkedHashMap<String, EObjectTransformationHelper> instances = new LinkedHashMap<String, EObjectTransformationHelper>();
 						for (EObjectTransformationHelper inst : targetSectionRegistry.getTargetClassInstances(p
 								.getRootType())) {
-							if (!hasContainer
-									|| containerInstances.contains(inst)) {
+							if (!rootInstances.contains(inst) && (!hasContainer
+									|| containerInstances.contains(inst))) {
 
 								instances.put(inst.toString(), inst);
 							}
 
+						}
+						
+						if( instances.size() == 0) {
+							consoleStream
+							.println("Could not find a path that leads to the container specified for targetSection '"
+									+ section.getName() + "'");
+							addToTargetModelRoot(rootInstances);
+							return;
 						}
 						instancesByPath.put(p.toString(), instances);
 						if (p.size() < standardPath.size()) {

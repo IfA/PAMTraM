@@ -507,7 +507,7 @@ public class SourceSectionMapper {
 					return null;
 				MappingInstanceStorage res = findMappingIterate(
 						refTargetObj,
-						reference instanceof NonContainmentReference
+						(reference instanceof NonContainmentReference) || usedOkay
 						, hints,
 						connectionHints, reference.getValuesGeneric().get(0),
 						changedRefsAndHints, srcInstanceMap);
@@ -577,7 +577,7 @@ public class SourceSectionMapper {
 					for (SourceSectionClass val : reference.getValuesGeneric()) {
 						MappingInstanceStorage res = findMappingIterate(
 								rt,
-								reference instanceof NonContainmentReference,
+								(reference instanceof NonContainmentReference) || usedOkay,
 								hints, connectionHints, val,
 								changedRefsAndHints, srcInstanceMap);
 						if(transformationAborted){

@@ -178,7 +178,12 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 			//instantiate self(s)
 			LinkedList<EObjectTransformationHelper> instances= new LinkedList<EObjectTransformationHelper>();
 			for(int i=0 ; i< cardinality; i++){
-				EObject inst =  metamodelSection.getEClass().getEPackage().getEFactoryInstance().create(metamodelSection.getEClass());
+				EObject inst =  metamodelSection
+						.getEClass()
+						.getEPackage()
+						.getEFactoryInstance()
+						.create(metamodelSection
+								.getEClass());
 				instances.add(new EObjectTransformationHelper(inst, attributeValueRegistry));
 
 			}

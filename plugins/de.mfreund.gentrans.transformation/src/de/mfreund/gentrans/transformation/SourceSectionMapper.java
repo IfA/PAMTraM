@@ -260,11 +260,13 @@ public class SourceSectionMapper {
 			MappingInstanceStorage newRefsAndHints,
 			LinkedHashMap<SourceSectionClass, EObject> srcInstanceMap) {
 
+		boolean classFits= srcModelObject.eClass().equals(srcSection.getClass()) || srcSection.getEClass().isSuperTypeOf(srcModelObject.eClass());
+		
 		// first of all: check if usedRefs contains this item and if type fits
 		// (we do not check any of the used elements of other mappings, since
 		// WILL be in a different section of the containment tree )
 		if ((!usedOkay && newRefsAndHints.containsRefValue(srcModelObject))
-				|| !srcModelObject.eClass().equals( srcSection.getEClass())) {
+				||  !classFits) {
 			return null;
 		}
 		// we will return this in Case we find the mapping to be applicable

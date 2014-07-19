@@ -5,8 +5,10 @@ package pamtram.mapping.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -25,6 +27,8 @@ import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
+import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.SourceSectionNonContainmentReference;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 
@@ -107,16 +111,30 @@ public class AttributeMappingSourceElementTypeItemProvider
 					Mapping mapping = (Mapping) mappingHintGroup.eContainer();
 					
 					// the source section
-					pamtram.metamodel.Class source = mapping.getSourceMMSection();
+					SourceSectionClass source = mapping.getSourceMMSection();
 
 					List<Object> choiceOfValues = new ArrayList<Object>();
 					
 					// iterate over all elements and return the attributes as possible options
-					Iterator<EObject> it = source.eAllContents(); 
-					while(it.hasNext()) {
-						EObject next = it.next();
-						if(next instanceof pamtram.metamodel.Attribute) {
-							choiceOfValues.add(next);
+					Set<SourceSectionClass> scanned=new HashSet<SourceSectionClass>();
+					List<SourceSectionClass> sectionsToScan=new ArrayList<SourceSectionClass>();
+					sectionsToScan.add(source);
+					
+					while(sectionsToScan.size() > 0){
+						SourceSectionClass classToScan=sectionsToScan.remove(0);
+						scanned.add(classToScan);
+						
+						Iterator<EObject> it = classToScan.eAllContents();
+						while(it.hasNext()) {
+							EObject next = it.next();
+							if(next instanceof pamtram.metamodel.Attribute) {
+								choiceOfValues.add(next);
+							} else if(next instanceof SourceSectionNonContainmentReference){
+								List<SourceSectionClass> vals=new ArrayList<SourceSectionClass>();
+								vals.addAll(((SourceSectionNonContainmentReference) next).getValue());
+								vals.removeAll(scanned);
+								sectionsToScan.addAll(vals);
+							}
 						}
 					}
 					

@@ -3,12 +3,10 @@
 package pamtram.metamodel.impl;
 
 import java.util.Collection;
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.metamodel.Attribute;
@@ -23,7 +21,6 @@ import pamtram.metamodel.MetamodelPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link pamtram.metamodel.impl.AttributeImpl#getValueSpecification <em>Value Specification</em>}</li>
- *   <li>{@link pamtram.metamodel.impl.AttributeImpl#isUnique <em>Unique</em>}</li>
  * </ul>
  * </p>
  *
@@ -39,26 +36,6 @@ public abstract class AttributeImpl extends MetaModelElementImpl implements Attr
 	 * @ordered
 	 */
 	protected EList<AttributeValueSpecification> valueSpecification;
-
-	/**
-	 * The default value of the '{@link #isUnique() <em>Unique</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isUnique()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean UNIQUE_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isUnique() <em>Unique</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isUnique()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean unique = UNIQUE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -96,27 +73,6 @@ public abstract class AttributeImpl extends MetaModelElementImpl implements Attr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isUnique() {
-		return unique;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setUnique(boolean newUnique) {
-		boolean oldUnique = unique;
-		unique = newUnique;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.ATTRIBUTE__UNIQUE, oldUnique, unique));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -136,8 +92,6 @@ public abstract class AttributeImpl extends MetaModelElementImpl implements Attr
 		switch (featureID) {
 			case MetamodelPackage.ATTRIBUTE__VALUE_SPECIFICATION:
 				return getValueSpecification();
-			case MetamodelPackage.ATTRIBUTE__UNIQUE:
-				return isUnique();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -155,9 +109,6 @@ public abstract class AttributeImpl extends MetaModelElementImpl implements Attr
 				getValueSpecification().clear();
 				getValueSpecification().addAll((Collection<? extends AttributeValueSpecification>)newValue);
 				return;
-			case MetamodelPackage.ATTRIBUTE__UNIQUE:
-				setUnique((Boolean)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -173,9 +124,6 @@ public abstract class AttributeImpl extends MetaModelElementImpl implements Attr
 			case MetamodelPackage.ATTRIBUTE__VALUE_SPECIFICATION:
 				getValueSpecification().clear();
 				return;
-			case MetamodelPackage.ATTRIBUTE__UNIQUE:
-				setUnique(UNIQUE_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -190,26 +138,8 @@ public abstract class AttributeImpl extends MetaModelElementImpl implements Attr
 		switch (featureID) {
 			case MetamodelPackage.ATTRIBUTE__VALUE_SPECIFICATION:
 				return valueSpecification != null && !valueSpecification.isEmpty();
-			case MetamodelPackage.ATTRIBUTE__UNIQUE:
-				return unique != UNIQUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (unique: ");
-		result.append(unique);
-		result.append(')');
-		return result.toString();
 	}
 
 } //AttributeImpl

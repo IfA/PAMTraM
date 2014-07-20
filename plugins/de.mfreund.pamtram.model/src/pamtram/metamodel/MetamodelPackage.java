@@ -1075,22 +1075,13 @@ public interface MetamodelPackage extends EPackage {
 	int ATTRIBUTE__VALUE_SPECIFICATION = META_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Unique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE__UNIQUE = META_MODEL_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Attribute</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_FEATURE_COUNT = META_MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int ATTRIBUTE_FEATURE_COUNT = META_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -1138,15 +1129,6 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int SOURCE_SECTION_ATTRIBUTE__VALUE_SPECIFICATION = ATTRIBUTE__VALUE_SPECIFICATION;
-
-	/**
-	 * The feature id for the '<em><b>Unique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOURCE_SECTION_ATTRIBUTE__UNIQUE = ATTRIBUTE__UNIQUE;
 
 	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
@@ -1222,15 +1204,6 @@ public interface MetamodelPackage extends EPackage {
 	int TARGET_SECTION_ATTRIBUTE__VALUE_SPECIFICATION = ATTRIBUTE__VALUE_SPECIFICATION;
 
 	/**
-	 * The feature id for the '<em><b>Unique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TARGET_SECTION_ATTRIBUTE__UNIQUE = ATTRIBUTE__UNIQUE;
-
-	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1240,13 +1213,22 @@ public interface MetamodelPackage extends EPackage {
 	int TARGET_SECTION_ATTRIBUTE__OWNING_CLASS = ATTRIBUTE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ATTRIBUTE__UNIQUE = ATTRIBUTE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Target Section Attribute</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_ATTRIBUTE_FEATURE_COUNT = ATTRIBUTE_FEATURE_COUNT + 1;
+	int TARGET_SECTION_ATTRIBUTE_FEATURE_COUNT = ATTRIBUTE_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -1295,15 +1277,6 @@ public interface MetamodelPackage extends EPackage {
 	int ACTUAL_ATTRIBUTE__VALUE_SPECIFICATION = TARGET_SECTION_ATTRIBUTE__VALUE_SPECIFICATION;
 
 	/**
-	 * The feature id for the '<em><b>Unique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTUAL_ATTRIBUTE__UNIQUE = TARGET_SECTION_ATTRIBUTE__UNIQUE;
-
-	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1311,6 +1284,15 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int ACTUAL_ATTRIBUTE__OWNING_CLASS = TARGET_SECTION_ATTRIBUTE__OWNING_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUAL_ATTRIBUTE__UNIQUE = TARGET_SECTION_ATTRIBUTE__UNIQUE;
 
 	/**
 	 * The feature id for the '<em><b>Attribute</b></em>' reference.
@@ -1377,15 +1359,6 @@ public interface MetamodelPackage extends EPackage {
 	int VIRTUAL_ATTRIBUTE__VALUE_SPECIFICATION = TARGET_SECTION_ATTRIBUTE__VALUE_SPECIFICATION;
 
 	/**
-	 * The feature id for the '<em><b>Unique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIRTUAL_ATTRIBUTE__UNIQUE = TARGET_SECTION_ATTRIBUTE__UNIQUE;
-
-	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1393,6 +1366,15 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int VIRTUAL_ATTRIBUTE__OWNING_CLASS = TARGET_SECTION_ATTRIBUTE__OWNING_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_ATTRIBUTE__UNIQUE = TARGET_SECTION_ATTRIBUTE__UNIQUE;
 
 	/**
 	 * The number of structural features of the '<em>Virtual Attribute</em>' class.
@@ -2285,17 +2267,6 @@ public interface MetamodelPackage extends EPackage {
 	EReference getAttribute_ValueSpecification();
 
 	/**
-	 * Returns the meta object for the attribute '{@link pamtram.metamodel.Attribute#isUnique <em>Unique</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Unique</em>'.
-	 * @see pamtram.metamodel.Attribute#isUnique()
-	 * @see #getAttribute()
-	 * @generated
-	 */
-	EAttribute getAttribute_Unique();
-
-	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.SourceSectionAttribute <em>Source Section Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2347,6 +2318,17 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTargetSectionAttribute_OwningClass();
+
+	/**
+	 * Returns the meta object for the attribute '{@link pamtram.metamodel.TargetSectionAttribute#isUnique <em>Unique</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Unique</em>'.
+	 * @see pamtram.metamodel.TargetSectionAttribute#isUnique()
+	 * @see #getTargetSectionAttribute()
+	 * @generated
+	 */
+	EAttribute getTargetSectionAttribute_Unique();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.ActualAttribute <em>Actual Attribute</em>}'.
@@ -2844,14 +2826,6 @@ public interface MetamodelPackage extends EPackage {
 		EReference ATTRIBUTE__VALUE_SPECIFICATION = eINSTANCE.getAttribute_ValueSpecification();
 
 		/**
-		 * The meta object literal for the '<em><b>Unique</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ATTRIBUTE__UNIQUE = eINSTANCE.getAttribute_Unique();
-
-		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.SourceSectionAttributeImpl <em>Source Section Attribute</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2894,6 +2868,14 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TARGET_SECTION_ATTRIBUTE__OWNING_CLASS = eINSTANCE.getTargetSectionAttribute_OwningClass();
+
+		/**
+		 * The meta object literal for the '<em><b>Unique</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TARGET_SECTION_ATTRIBUTE__UNIQUE = eINSTANCE.getTargetSectionAttribute_Unique();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.ActualAttributeImpl <em>Actual Attribute</em>}' class.

@@ -12,6 +12,7 @@ package pamtram.metamodel;
  * The following features are supported:
  * <ul>
  *   <li>{@link pamtram.metamodel.TargetSectionAttribute#getOwningClass <em>Owning Class</em>}</li>
+ *   <li>{@link pamtram.metamodel.TargetSectionAttribute#isUnique <em>Unique</em>}</li>
  * </ul>
  * </p>
  *
@@ -36,5 +37,32 @@ public interface TargetSectionAttribute extends Attribute {
 	 * @generated
 	 */
 	TargetSectionClass getOwningClass();
+
+	/**
+	 * Returns the value of the '<em><b>Unique</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Unique</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Unique</em>' attribute.
+	 * @see #setUnique(boolean)
+	 * @see pamtram.metamodel.MetamodelPackage#getTargetSectionAttribute_Unique()
+	 * @model default="false" required="true"
+	 * @generated
+	 */
+	boolean isUnique();
+
+	/**
+	 * Sets the value of the '{@link pamtram.metamodel.TargetSectionAttribute#isUnique <em>Unique</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Unique</em>' attribute.
+	 * @see #isUnique()
+	 * @generated
+	 */
+	void setUnique(boolean value);
 
 } // TargetSectionAttribute

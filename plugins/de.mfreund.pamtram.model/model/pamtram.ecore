@@ -160,9 +160,6 @@
     <eClassifiers xsi:type="ecore:EClass" name="Attribute" abstract="true" eSuperTypes="#//metamodel/MetaModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="valueSpecification" upperBound="-1"
           eType="#//metamodel/AttributeValueSpecification" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="unique" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-          defaultValueLiteral="false"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SourceSectionAttribute" eSuperTypes="#//metamodel/Attribute">
       <eStructuralFeatures xsi:type="ecore:EReference" name="owningClass" lowerBound="1"
@@ -174,6 +171,9 @@
         eSuperTypes="#//metamodel/Attribute">
       <eStructuralFeatures xsi:type="ecore:EReference" name="owningClass" lowerBound="1"
           eType="#//metamodel/TargetSectionClass" changeable="false" eOpposite="#//metamodel/TargetSectionClass/attributes"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="unique" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          defaultValueLiteral="false"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ActualAttribute" eSuperTypes="#//metamodel/TargetSectionAttribute">
       <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"

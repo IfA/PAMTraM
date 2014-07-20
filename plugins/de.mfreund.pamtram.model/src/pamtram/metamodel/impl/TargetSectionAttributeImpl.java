@@ -2,11 +2,13 @@
  */
 package pamtram.metamodel.impl;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
@@ -19,12 +21,32 @@ import pamtram.metamodel.TargetSectionClass;
  * The following features are implemented:
  * <ul>
  *   <li>{@link pamtram.metamodel.impl.TargetSectionAttributeImpl#getOwningClass <em>Owning Class</em>}</li>
+ *   <li>{@link pamtram.metamodel.impl.TargetSectionAttributeImpl#isUnique <em>Unique</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public abstract class TargetSectionAttributeImpl extends AttributeImpl implements TargetSectionAttribute {
+	/**
+	 * The default value of the '{@link #isUnique() <em>Unique</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUnique()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean UNIQUE_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isUnique() <em>Unique</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUnique()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean unique = UNIQUE_EDEFAULT;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -52,6 +74,27 @@ public abstract class TargetSectionAttributeImpl extends AttributeImpl implement
 	public TargetSectionClass getOwningClass() {
 		if (eContainerFeatureID() != MetamodelPackage.TARGET_SECTION_ATTRIBUTE__OWNING_CLASS) return null;
 		return (TargetSectionClass)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isUnique() {
+		return unique;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUnique(boolean newUnique) {
+		boolean oldUnique = unique;
+		unique = newUnique;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.TARGET_SECTION_ATTRIBUTE__UNIQUE, oldUnique, unique));
 	}
 
 	/**
@@ -108,8 +151,40 @@ public abstract class TargetSectionAttributeImpl extends AttributeImpl implement
 		switch (featureID) {
 			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE__OWNING_CLASS:
 				return getOwningClass();
+			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE__UNIQUE:
+				return isUnique();
 		}
 		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE__UNIQUE:
+				setUnique((Boolean)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE__UNIQUE:
+				setUnique(UNIQUE_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -122,8 +197,26 @@ public abstract class TargetSectionAttributeImpl extends AttributeImpl implement
 		switch (featureID) {
 			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE__OWNING_CLASS:
 				return getOwningClass() != null;
+			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE__UNIQUE:
+				return unique != UNIQUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (unique: ");
+		result.append(unique);
+		result.append(')');
+		return result.toString();
 	}
 
 } //TargetSectionAttributeImpl

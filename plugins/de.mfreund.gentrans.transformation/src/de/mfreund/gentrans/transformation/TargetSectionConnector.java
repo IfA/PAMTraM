@@ -64,7 +64,7 @@ public class TargetSectionConnector {
 		}
 		return pathsToConsider;
 	}
-//TODO rule out root instances from target instances to consider
+
 	public void linkToTargetModelUsingModelConnectionHint(
 			EClass classToConnect, List<EObjectTransformationHelper> rootInstances, TargetSectionClass section,
 			String mappingName, String mappingGroupName,
@@ -182,10 +182,6 @@ public class TargetSectionConnector {
 							containerDescriptions.get(dialog.getSelection()),
 							rootInstancesByHintVal.get(hintVal));
 
-					// TODO
-					// rootInstancesByContainer.put(contInstsByHintVal.get(hintVal).first(),rootInstancesByHintVal.put(hintVal));//only
-					// for Debug
-
 				} else {
 					consoleStream.println("The ModelConnectionHint '"
 							+ connectionHint.getName() + " of MappingHintGroup " + mappingGroupName 
@@ -293,6 +289,10 @@ public class TargetSectionConnector {
 					}
 
 					// now instantiate path(s))
+					if(rootInstancesByContainer.get(container).contains(container)){//we will allow objects that reference themselves as container 
+						addToTargetModelRoot(container);							//because this was explicitly specified by tho ModelConnectionHint
+					}
+					
 					instantiateMissingPath(modelConnectionPath.getInvertedPath(), container.getEObject(),
 							new LinkedList<EObjectTransformationHelper>(rootInstancesByContainer.get(container)));
 
@@ -308,8 +308,12 @@ public class TargetSectionConnector {
 	
 	private void addToTargetModelRoot(Collection<EObjectTransformationHelper> i){
 		for(EObjectTransformationHelper h : i){
-			targetModel.getContents().add(h.getEObject());
+			addToTargetModelRoot(h);
 		}
+	}
+	
+	private void addToTargetModelRoot(EObjectTransformationHelper helper){
+		targetModel.getContents().add(helper.getEObject());
 	}
 
 	@SuppressWarnings("unchecked")

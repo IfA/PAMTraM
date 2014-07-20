@@ -3,8 +3,10 @@
 package pamtram.metamodel.provider;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
@@ -14,6 +16,9 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+
+import pamtram.metamodel.Attribute;
 import pamtram.metamodel.MetamodelPackage;
 
 /**
@@ -60,11 +65,10 @@ public class SourceSectionAttributeItemProvider
 	 * This adds a property descriptor for the Attribute feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	protected void addAttributePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+			(new ItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_SourceSectionAttribute_attribute_feature"),
@@ -75,7 +79,19 @@ public class SourceSectionAttributeItemProvider
 				 true,
 				 null,
 				 null,
-				 null));
+				 null){
+
+				@Override
+				public Collection<?> getChoiceOfValues(Object object) {
+
+					pamtram.metamodel.Class owner=((pamtram.metamodel.Class)((Attribute) object).eContainer());
+					if(owner.getEClass() != null){
+						return owner.getEClass().getEAllAttributes();
+					} else {
+						return new ArrayList<Object>();
+					}					
+				}
+		});
 	}
 
 	/**

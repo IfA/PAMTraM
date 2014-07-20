@@ -3,14 +3,15 @@
 package pamtram.mapping.provider;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -18,11 +19,14 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.mapping.MappingFactory;
+import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.MappingPackage;
+import pamtram.metamodel.TargetSectionNonContainmentReference;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.MappingInstanceSelector} object.
@@ -68,11 +72,10 @@ public class MappingInstanceSelectorItemProvider
 	 * This adds a property descriptor for the Affected Reference feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	protected void addAffectedReferencePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+			(new ItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_MappingInstanceSelector_affectedReference_feature"),
@@ -83,7 +86,26 @@ public class MappingInstanceSelectorItemProvider
 				 true,
 				 null,
 				 null,
-				 null));
+				 null){
+
+					@Override
+					public Collection<?> getChoiceOfValues(Object object) {
+						TreeIterator<EObject> it =((MappingHintGroup) ((MappingInstanceSelector)object).eContainer()).getTargetMMSection().eAllContents();
+						List<EObject> vals= new ArrayList<EObject>();
+						
+						while(it.hasNext()){
+							EObject next=it.next();
+							if(next instanceof TargetSectionNonContainmentReference){
+								vals.add(next);
+							}
+						}
+						
+						return vals;
+					}
+				
+				
+				
+			});
 	}
 
 	/**

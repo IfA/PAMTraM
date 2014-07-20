@@ -265,9 +265,9 @@ public class TargetSectionConnector {
 										+ " (Group: "
 										+ mappingGroupName
 										+ ")"
-										+ "', "+ (instSize > 1 ? "have" : "has")  +" root elements of the type '"
+										+ "', "+(instSize>1 ? "have" : "has a" )+" root element"+ (instSize>1 ? "s" : "")+ " of the type '"
 										+ classToConnect.getName()
-										+ "'. These need to be put at a sensible position in the target model. "
+										+ "'. " + (instSize > 1 ? "Theese need" : "It needs") + " to be put at a sensible position in the target model. "										
 										+ "Please choose one of the possible connections to other existing target model elements"
 										+ " below. Your selection will be remembered for the ConnectionHint '"
 										+ connectionHint.getName() + "'.",
@@ -316,7 +316,7 @@ public class TargetSectionConnector {
 	public void linkToTargetModelNoConnectionHint(EClass classToConnect,
 			List<EObjectTransformationHelper> rootInstances, TargetSectionClass section, String mappingName,
 			String mappingGroupName){
-		ModelConnectionPath modelConnectionPath;// will use this for several purposes
+		ModelConnectionPath modelConnectionPath;
 
 		if (targetSectionRegistry.getPaths(classToConnect).size() > 0) {
 			LinkedList<ModelConnectionPath> pathsToConsider = findPathsWithMinimumCapacity(
@@ -327,7 +327,7 @@ public class TargetSectionConnector {
 				LinkedList<EObjectTransformationHelper> containerInstances = targetSectionRegistry
 						.getFlattenedPamtramClassInstances(section
 								.getContainer());
-				containerInstances.removeAll(rootInstances);//we do not went the rootinstances to contain themselves TODO
+				containerInstances.removeAll(rootInstances);//we do not want the rootinstances to contain themselves
 				boolean hasContainer = section.getContainer() != null;
 				boolean onlyOnePath;
 				if (hasContainer) {
@@ -425,16 +425,16 @@ public class TargetSectionConnector {
 					}
 					PathAndInstanceSelectorRunner
 							.run(rootInstances.size()
-									+ " Instances of the TargetSection '"
+									+ " Instance" + (rootInstances.size()>1 ? "s" : "")+ " of the TargetSection '"
 									+ section.getName()
 									+ "', created by the mapping '"
 									+ mappingName
 									+ " (Group: "
 									+ mappingGroupName
 									+ ")"
-									+ "', have root elements of the type '"
+									+ "', "+(rootInstances.size()>1 ? "have" : "has a" )+" root element"+ (rootInstances.size()>1 ? "s" : "")+ " of the type '"
 									+ classToConnect.getName()
-									+ "'. These need to be put at a sensible position in the target model. "
+									+ "'. " + (rootInstances.size() > 1 ? "Theese need" : "It needs") + " to be put at a sensible position in the target model. "
 									+ "Please choose one of the possible connections to other existing target model elements"
 									+ " below.", namesAsList, instanceNames);
 

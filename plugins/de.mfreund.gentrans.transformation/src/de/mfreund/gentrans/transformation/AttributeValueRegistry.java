@@ -37,7 +37,7 @@ public class AttributeValueRegistry {
 	/**
 	 * @return  virtualAttributes Map
 	 */
-	public LinkedHashMap<EClass, LinkedHashMap<String, LinkedHashSet<String>>> getAttrValueRegistryVirtualAttributes() {
+	public LinkedHashMap<EClass, LinkedHashMap<VirtualAttribute, LinkedHashSet<String>>> getAttrValueRegistryVirtualAttributes() {
 		return virtualAttributes;
 	}
 
@@ -47,7 +47,7 @@ public class AttributeValueRegistry {
 	/**
 	Storage of all generated Virtual Attribute Values
 	*/
-	private  LinkedHashMap<EClass,LinkedHashMap<String, LinkedHashSet<String>>> virtualAttributes;
+	private  LinkedHashMap<EClass,LinkedHashMap<VirtualAttribute, LinkedHashSet<String>>> virtualAttributes;
 	
 	
 	
@@ -56,7 +56,7 @@ public class AttributeValueRegistry {
 	 */
 	public AttributeValueRegistry() {
 		actualAttributes=new LinkedHashMap<EClass,LinkedHashMap<EAttribute,LinkedHashSet<String>>>();
-		virtualAttributes=new LinkedHashMap<EClass,LinkedHashMap<String, LinkedHashSet<String>>>();
+		virtualAttributes=new LinkedHashMap<EClass,LinkedHashMap<VirtualAttribute, LinkedHashSet<String>>>();
 	}
 	
 	
@@ -78,8 +78,8 @@ public class AttributeValueRegistry {
 				return actualAttributes.get(eObject.eClass()).get(((ActualAttribute) attr).getAttribute()).contains(value);
 			}
 		} else if(attr instanceof VirtualAttribute){
-			if(virtualAttributes.get(eObject.eClass()).containsKey(attr.getName())){
-				return virtualAttributes.get(eObject.eClass()).get(attr.getName()).contains(value);
+			if(virtualAttributes.get(eObject.eClass()).containsKey(attr)){
+				return virtualAttributes.get(eObject.eClass()).get(attr).contains(value);
 			}
 		}
 		

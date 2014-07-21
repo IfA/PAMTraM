@@ -41,7 +41,7 @@ public class EObjectTransformationHelper {
 		if(!attrValRegistry.getAttrValueRegistryActualAttributes().containsKey(eObject.eClass())){
 			
 			attrValRegistry.getAttrValueRegistryActualAttributes().put(eObject.eClass(), new LinkedHashMap<EAttribute,LinkedHashSet<String>>());
-			attrValRegistry.getAttrValueRegistryVirtualAttributes().put(eObject.eClass(), new LinkedHashMap<String,LinkedHashSet<String>>());
+			attrValRegistry.getAttrValueRegistryVirtualAttributes().put(eObject.eClass(), new LinkedHashMap<VirtualAttribute,LinkedHashSet<String>>());
 		}		
 	}
 
@@ -54,10 +54,10 @@ public class EObjectTransformationHelper {
 			virtualAttributes.put((VirtualAttribute) attr, value);
 			
 			//add value to registry
-			if(!attrValRegistry.getAttrValueRegistryVirtualAttributes().get(eObject.eClass()).containsKey(attr.getName())){
-				attrValRegistry.getAttrValueRegistryVirtualAttributes().get(eObject.eClass()).put(attr.getName(), new LinkedHashSet<String>());
+			if(!attrValRegistry.getAttrValueRegistryVirtualAttributes().get(eObject.eClass()).containsKey(attr)){
+				attrValRegistry.getAttrValueRegistryVirtualAttributes().get(eObject.eClass()).put((VirtualAttribute) attr, new LinkedHashSet<String>());
 			}
-			attrValRegistry.getAttrValueRegistryVirtualAttributes().get(eObject.eClass()).get(attr.getName()).add(value);
+			attrValRegistry.getAttrValueRegistryVirtualAttributes().get(eObject.eClass()).get(attr).add(value);
 		} else if(attr instanceof ActualAttribute){
 			eObject.eSet(((ActualAttribute) attr).getAttribute(),
 					((ActualAttribute) attr).getAttribute().getEType()

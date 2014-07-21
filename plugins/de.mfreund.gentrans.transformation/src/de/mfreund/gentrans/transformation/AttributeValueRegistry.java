@@ -68,9 +68,9 @@ public class AttributeValueRegistry {
 	 * modeled in the PAMTraM Model.
 	 * 
 	 * @param attr Attribute of the PAMTraM Model, 
-	 * @param value
-	 * @param eObject
-	 * @return
+	 * @param value Val to be set
+	 * @param eObject Object whose Attribute val is to be checked
+	 * @return true if Value was registered before
 	 */
 	public boolean attributeValueExists(TargetSectionAttribute attr, String value, EObject eObject){
 		if(attr instanceof ActualAttribute){
@@ -87,9 +87,10 @@ public class AttributeValueRegistry {
 	}
 	
 	/**
-	 * @param value
+	 * Static method for applying attribute value modifiers to 
+	 * @param value 
 	 * @param modifierSets
-	 * @return
+	 * @return modified String
 	 */
 	public static String applyAttributeValueModifiers(final String value,
 			EList<AttributeValueModifierSet> modifierSets) {

@@ -120,9 +120,7 @@ public class TargetSectionConnector {
 
 				for(ConnectionHintTargetAttribute conAttr : containerInstancesByTargetAttribute.keySet()){
 					
-					String modifiedHintVal = hintVal;
-					modifiedHintVal = AttributeValueRegistry.applyAttributeValueModifiers(modifiedHintVal,
-							conAttr.getModifier());
+					String modifiedHintVal =  AttributeValueRegistry.applyAttributeValueModifiers(hintVal,conAttr.getModifier());
 
 					
 					for (EObjectTransformationHelper contInst : containerInstancesByTargetAttribute.get(conAttr)) {// now find a

@@ -244,10 +244,8 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 							}
 						}
 						//overwrite hint value with value of targetMMSection if present
-						if(attr.getValueSpecification().size() > 0){
-							if(attr.getValueSpecification().get(0).getValue() != null){//we assume that proper OCL constraints are i place (only one Specification, not a Subclass) 
-								attrValue=attr.getValueSpecification().get(0).getValue();
-							}
+						if(attr.getValue() != null){
+								attrValue=attr.getValue();
 						}
 						//Check if value is unique and was already used, delete instance if neccessary
 						if(attr.isUnique() && instance.attributeValueExists(attr,attrValue)){					

@@ -8,6 +8,7 @@ import java.util.LinkedHashSet;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ui.console.ConsolePlugin;
 
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.TargetSectionAttribute;
@@ -59,6 +60,7 @@ public class EObjectTransformationHelper {
 			}
 			attrValRegistry.getAttrValueRegistryVirtualAttributes().get(eObject.eClass()).get(attr).add(value);
 		} else if(attr instanceof ActualAttribute){
+		//	System.out.println(attr.getName());//TODO
 			eObject.eSet(((ActualAttribute) attr).getAttribute(),
 					((ActualAttribute) attr).getAttribute().getEType()
 					.getEPackage().getEFactoryInstance()
@@ -78,6 +80,7 @@ public class EObjectTransformationHelper {
 				return attr.getEType().getEPackage().getEFactoryInstance()
 					.convertToString(attr.getEAttributeType(),srcAttr);
 			} catch(IllegalArgumentException e){//TODO
+				e.printStackTrace(System.out);
 				return null;
 			}
 		} else return null;	

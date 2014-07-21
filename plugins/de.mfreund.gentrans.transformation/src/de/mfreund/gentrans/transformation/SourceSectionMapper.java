@@ -28,6 +28,8 @@ import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.SimpleAttributeMapping;
 import pamtram.mapping.SimpleAttributeMatcher;
+import pamtram.metamodel.AttributeValueConstraint;
+import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.NonContainmentReference;
@@ -340,37 +342,48 @@ public class SourceSectionMapper {
 						.getEFactoryInstance()
 						.convertToString(at.getAttribute().getEAttributeType(),
 								srcAttr);
-				// check AttributeValueSpecifications
-				for (pamtram.metamodel.AttributeValueSpecification constraint : at
-						.getValueSpecification()) {
-					if (!constraint.check(srcAttrAsString)) {
+				/* check AttributeValueSpecifications
+				 * 
+				 * Inclusions are OR connected
+				 * 
+				 * Eclusions are AND connected
+				 */
+				boolean inclusionMatched=false;
+				boolean containsInclusions=false;
+				for (AttributeValueConstraint constraint : at.getValueConstraint()) {
+					boolean constraintVal=constraint.checkConstraint(srcAttrAsString);
+					if (!constraintVal && constraint.getType().equals(AttributeValueConstraintType.EXCLUSION)) {//TODO
 						return null;
+					} else if(constraint.getType().equals(AttributeValueConstraintType.INCLUSION)){
+						containsInclusions=true;
+						if(constraintVal){
+							inclusionMatched=true;
+						}
 					}
 				}
+				
+				if(!inclusionMatched && containsInclusions){
+					return null;
+				}
+				
 				// handle possible attribute mappings
 				for (MappingHint hint : hints) {
 					if (hint instanceof SimpleAttributeMapping) {
 						if (((SimpleAttributeMapping) hint).getSource().equals(at)) {
-							String valCopy = srcAttrAsString;
-							// handle attribute modifiers
-							valCopy = AttributeValueRegistry.applyAttributeValueModifiers(valCopy,
-									((SimpleAttributeMapping) hint).getModifier());
+							String valCopy = AttributeValueRegistry.applyAttributeValueModifiers(srcAttrAsString,((SimpleAttributeMapping) hint).getModifier());
 							changedRefsAndHints.addHintValue(hint, valCopy);
 						}
 					} else if(hint instanceof ComplexAttributeMapping){
 						for(ComplexAttribueMappingSourceElement m : ((ComplexAttributeMapping) hint).getSourceAttributeMappings()){
 							if (m.getSource().equals(at)) {
-								String valCopy = srcAttrAsString;
-								// handle attribute modifiers
-								valCopy = AttributeValueRegistry.applyAttributeValueModifiers(valCopy,m.getModifier());
+								String valCopy = AttributeValueRegistry.applyAttributeValueModifiers(srcAttrAsString,m.getModifier());
 								complexSourceElementHintValues.put(m,valCopy);
 							}
 						}
 					} else if(hint instanceof CalculatorMapping){
 						for(ExpressionVariable v : ((CalculatorMapping) hint).getVariables()){
 							if(v.getSource().equals(at)){
-								String valCopy = srcAttrAsString;
-								valCopy = AttributeValueRegistry.applyAttributeValueModifiers(valCopy, v.getModifier());
+								String valCopy = AttributeValueRegistry.applyAttributeValueModifiers(srcAttrAsString, v.getModifier());
 								calcVariableHintValues.put(v, valCopy);
 								
 							}

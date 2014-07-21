@@ -1,6 +1,7 @@
 package de.mfreund.gentrans.transformation;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -187,8 +188,11 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 			}
 			
 			//create attributes
+			Map<TargetSectionAttribute,List<String>> attributeValues=new HashMap<TargetSectionAttribute, List<String>>();//we don't need to reference the EObjects,
+																																   //since their order doesn't change while we are using this
 			LinkedList<EObjectTransformationHelper> markedForDelete = new LinkedList<EObjectTransformationHelper>();
-			for(TargetSectionAttribute attr : metamodelSection.getAttributes()){		
+			for(TargetSectionAttribute attr : metamodelSection.getAttributes()){	
+					attributeValues.put(attr, new LinkedList<String>());
 					MappingHint hintFound=null;
 					//look for an attribute mapping
 					LinkedList<Object> attrHintValues=null;
@@ -213,12 +217,9 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 							}
 						}
 					}
-					
-					
-					//set attribute values in instances
+					//create attribute values
 					for(EObjectTransformationHelper instance  : instances){
 						String attrValue=null;
-						boolean noDelete=true;
 						if(attrHintValues != null) {
 							if(hintFound instanceof CalculatorMapping){
 								try{
@@ -247,19 +248,37 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 						if(attr.getValue() != null){
 								attrValue=attr.getValue();
 						}
-						//Check if value is unique and was already used, delete instance if neccessary
-						if(attr.isUnique() && instance.attributeValueExists(attr,attrValue)){					
-							markedForDelete.add(instance);//we can only delete this at the end, or else the attributeHint values won't fit anymore
-							noDelete=false;
-						}
-						//Set value
-						if(noDelete){
-							instance.setAttributeValue(attr,attrValue);//setting an Attribute causes the value to be saved in the attribute value registry							
-						}
+						
 
+						
+						//Check if value is unique and was already used, mark instance for deletion if necessary
+						if(attr.isUnique() && (instance.attributeValueExists(attr,attrValue) || attributeValues.get(attr).contains(attrValue))){					
+							markedForDelete.add(instance);//we can only delete this at the end, or else the attributeHint values won't fit anymore
+						}
+						//save attr value in Map
+						attributeValues.get(attr).add(attrValue);
 					}
 			}
 			
+			
+			/*
+			 * Now that we know which instances will be deleted we set (and register) the actual attribute values of the
+			 * instances that will not get deleted
+			 */
+			for(EObjectTransformationHelper instance : instances){
+				boolean noDelete=!markedForDelete.contains(instance);
+				for(TargetSectionAttribute attr : attributeValues.keySet()){
+					if(noDelete){
+						instance.setAttributeValue(attr,attributeValues.get(attr).remove(0));//setting an Attribute causes the value to be saved in the attribute value registry							
+					} else {
+						attributeValues.get(attr).remove(0);
+					}
+				}
+				
+			}
+						
+			
+
 
 			//recursively create containment references
 			for(TargetSectionReference ref : metamodelSection.getReferences()){

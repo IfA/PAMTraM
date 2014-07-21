@@ -41,27 +41,64 @@ import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.selectors.ItemSelectorDialogRunner;
 
 /**
+ * Class to map source model Objects to source sections and find values for mapping hints.
  * @author Sascha Steffen
- * 
- * 
+ * @version 0.8
  */
-public class SourceSectionMapper {
+class SourceSectionMapper {
 	
+	/**
+	 * Registry for source model objects already mapped
+	 */
 	private LinkedHashMap<SourceSectionClass,Set<EObject>> mappedSections;
+	/**
+	 * Registry for ModelConnectionHints. Used When linking target model sections.
+	 */
 	private LinkedHashMap<Mapping, LinkedList<ModelConnectionHint>> modelConnectionHints;
+	/**
+	 * Registry for MappingHints. Used When instantiating target model sections.
+	 */
 	private LinkedHashMap<Mapping,LinkedList<MappingHint>> mappingHints;
+	/**
+	 * Map Referencing the Class referenced by the ComplexAttributeMappingSourceElement that is buried deepest in the target Section,
+	 * sorted by ComplexAttributeMapping.
+	 */
 	private LinkedHashMap<ComplexAttributeMapping,SourceSectionClass> deepestComplexAttrMappingSrcElementsByCmplxMapping;
+	/**
+	 * Map Referencing the Class referenced by the ExpressionVariable that is buried deepest in the target Section,
+	 * sorted by CalculatorMapping.
+	 */
 	private LinkedHashMap<CalculatorMapping,SourceSectionClass> deepestCalcAttrMappingSrcElementsByCalcMapping;
+	/**
+	 * Map Referencing the Class referenced by the ComplexAttributeMatcherSourceElement that is buried deepest in the target Section,
+	 * sorted by ComplexAttributeMatcher.
+	 */
 	private LinkedHashMap<ComplexAttributeMatcher, SourceSectionClass> deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher;
+	/**
+	 * Mappings from the PAMTram model
+	 */
 	private List<Mapping> mappingsToChooseFrom;
+	/**
+	 * Output stream for messages
+	 */
 	private MessageConsoleStream consoleStream;
+	/**
+	 * true when user action was triggered to abort the transformation
+	 */
 	private boolean transformationAborted;
 	
+	/**
+	 * @return true when user action was triggered to abort the transformation
+	 */
 	public boolean isTransformationAborted() {
 		return transformationAborted;
 	}
 
-	public SourceSectionMapper(List<Mapping> mappingsToChooseFrom, MessageConsoleStream consoleStream) {
+	/**
+	 * @param mappingsToChooseFrom Mappings from the PAMTram model
+	 * @param consoleStream Output stream for messages
+	 */
+	SourceSectionMapper(List<Mapping> mappingsToChooseFrom, MessageConsoleStream consoleStream) {
 		mappedSections=new LinkedHashMap<SourceSectionClass,Set<EObject>> ();
 		mappingHints=new  LinkedHashMap<Mapping,LinkedList<MappingHint>>();
 		modelConnectionHints=new  LinkedHashMap<Mapping,LinkedList<ModelConnectionHint>>();
@@ -89,6 +126,10 @@ public class SourceSectionMapper {
 		}
 	}
 	
+	/**
+	 * @param m Mapping
+	 * @return MappingHints of all the Mappings MappingHintGroups.
+	 */
 	private List<MappingHint> getHints(Mapping m){
 		if(!mappingHints.containsKey(m)){
 			mappingHints.put(m, new LinkedList<MappingHint>());
@@ -103,20 +144,11 @@ public class SourceSectionMapper {
 		
 	}
 	
-	private boolean isSectionReferencedByDeepestCmplxAttrMappping(ComplexAttributeMapping m,SourceSectionClass srcSection){
-		return deepestComplexAttrMappingSrcElementsByCmplxMapping.get(m).equals(srcSection);
-		
-	}
-	
-	private boolean isSectionReferencedByDeepestCalcAttrMappping(CalculatorMapping m,SourceSectionClass srcSection){
-		return deepestCalcAttrMappingSrcElementsByCalcMapping.get(m).equals(srcSection);
-	
-	}
-	
-	private boolean isSectionReferencedByDeepestCmplxAttrMatcher(ComplexAttributeMatcher m, SourceSectionClass srcSection){
-		return deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher.get(m).equals(srcSection);
-	}
-	
+	/**
+	 * Extend the deepestComplexAttrMappingSrcElementsByCmplxMapping Map for the MappingHint
+	 * @param m MApping
+	 * @param srcSection
+	 */
 	private void buildDeepestCmplxAttrMappingElementsMap(ComplexAttributeMapping m, SourceSectionClass srcSection){
 		if(!deepestComplexAttrMappingSrcElementsByCmplxMapping.containsKey(m)){
 			Set<AttributeMappingSourceElementType> srcElements=new HashSet<AttributeMappingSourceElementType>();
@@ -130,6 +162,11 @@ public class SourceSectionMapper {
 		}
 	}
 	
+	/**
+	 * Extend the deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher MappingHint
+	 * @param m 
+	 * @param srcSection
+	 */
 	private void buildDeepestComplexAttrMatcherSrcElements(ComplexAttributeMatcher m, SourceSectionClass srcSection){
 		if(!deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher.containsKey(m)){
 			Set<AttributeMappingSourceElementType> srcElements=new HashSet<AttributeMappingSourceElementType>();
@@ -144,6 +181,11 @@ public class SourceSectionMapper {
 		}		
 	}
 	
+	/**
+	 * Extend the deepestCalcAttrMappingSrcElementsByCalcMapping Map for the MappingHint
+	 * @param m 
+	 * @param srcSection
+	 */
 	private void buildCalcAttrMappingsMaps(CalculatorMapping m, SourceSectionClass srcSection){
 		if(!deepestCalcAttrMappingSrcElementsByCalcMapping.containsKey(m)){
 			Set<AttributeMappingSourceElementType> srcElements=new HashSet<AttributeMappingSourceElementType>();
@@ -157,6 +199,11 @@ public class SourceSectionMapper {
 		}
 	}
 	
+	/**
+	 * Helper Method used when building  the deepestElements Maps
+	 * @param s
+	 * @param srcSection
+	 */
 	private void sortOutElements(Set<AttributeMappingSourceElementType> s, SourceSectionClass srcSection){
 		if(s.size() <= 1) return;//found
 		//sort out elements
@@ -184,6 +231,10 @@ public class SourceSectionMapper {
 	
 	
 	
+	/**
+	 * @param m
+	 * @return ModelConnectionHints of all the Mappings MappingHintGroups.
+	 */
 	private List<ModelConnectionHint> getModelConnectionHints(Mapping m){
 		if(!modelConnectionHints.containsKey(m)){
 			modelConnectionHints.put(m, new LinkedList<ModelConnectionHint>());
@@ -203,7 +254,7 @@ public class SourceSectionMapper {
 	 *            from srcModel
 	 * @return list of the srcModels elements in hierarchical order
 	 */
-	public static List<EObject> buildContainmentTree(EObject object) {
+	static List<EObject> buildContainmentTree(EObject object) {
 
 		List<EObject> list = new LinkedList<EObject>();
 		return buildContainmentTree(object, list);
@@ -240,8 +291,7 @@ public class SourceSectionMapper {
 	}
 
 	/**
-	 * Method for finding a suitable Mapping for a srcModelObject (internal,
-	 * recursive version)
+	 * Method for finding a suitable Mapping for a srcModelObject
 	 * 
 	 * @param srcModelObject
 	 *            Element of the srcModel to be transformed
@@ -267,7 +317,7 @@ public class SourceSectionMapper {
 		// first of all: check if usedRefs contains this item and if type fits
 		// (we do not check any of the used elements of other mappings, since
 		// WILL be in a different section of the containment tree )
-		if ((!usedOkay && newRefsAndHints.containsRefValue(srcModelObject))
+		if ((!usedOkay && newRefsAndHints.containsSourceModelObjectMapped(srcModelObject))
 				||  !classFits) {
 			return null;
 		}
@@ -315,10 +365,10 @@ public class SourceSectionMapper {
 		}
 
 		// set refs
-		changedRefsAndHints.addRefs(newRefsAndHints.getRefs());
+		changedRefsAndHints.addSourceModelObjectsMapped(newRefsAndHints.getSourceModelObjectsMapped());
 
 		// add self to new Refs
-		changedRefsAndHints.addRefValue(srcModelObject, srcSection);
+		changedRefsAndHints.addSourceModelObjectMapped(srcModelObject, srcSection);
 
 		// set self in sourceInstanceMAp
 		srcInstanceMap.put(srcSection, srcModelObject);
@@ -754,18 +804,22 @@ public class SourceSectionMapper {
 		
 		for(MappingHint h : hints){
 				if(h instanceof ComplexAttributeMapping){
-					if(!(complexAttributeMappingsFound.contains(h) && isSectionReferencedByDeepestCmplxAttrMappping((ComplexAttributeMapping) h, srcSection))){
+					if(!(complexAttributeMappingsFound.contains(h) && 
+							deepestComplexAttrMappingSrcElementsByCmplxMapping.get(h).equals(srcSection))){
 						changedRefsAndHints.getHintValues().get(h).remove();					
 					}
 				} else if(h instanceof MappingInstanceSelector){
 					if(((MappingInstanceSelector) h).getMatcher()  instanceof ComplexAttributeMatcher){
 						if(!(complexAttributeMatchersFound.contains(((MappingInstanceSelector) h).getMatcher()) 
-								&& isSectionReferencedByDeepestCmplxAttrMatcher((ComplexAttributeMatcher) ((MappingInstanceSelector) h).getMatcher(), srcSection))){
+								&& deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher
+									.get(((MappingInstanceSelector) h).getMatcher()).equals(srcSection)
+						)){
+								
 							changedRefsAndHints.getHintValues().get(h).remove();
 						}
 					}
 				} else if (h instanceof CalculatorMapping){
-					if(!(calculatorMappingsFound.contains(h) && isSectionReferencedByDeepestCalcAttrMappping((CalculatorMapping)h, srcSection))){
+					if(!(calculatorMappingsFound.contains(h) &&  deepestCalcAttrMappingSrcElementsByCalcMapping.get(h).equals(srcSection))){
 						changedRefsAndHints.getHintValues().get(h).remove();
 					}
 				}				
@@ -776,8 +830,10 @@ public class SourceSectionMapper {
 	}
 
 	/**
+	 * Counts how often each associated source model element is referenced by each MappingInstdanceStorage
+	 * as associated source model object and returns  one mapping result for the Object with the lowest count.
 	 * @param possibleElements
-	 * @return
+	 * @return Mapping results 
 	 */
 	private static MappingInstanceStorage getResultForLeastUsedSrcModelElement(
 			final LinkedList<MappingInstanceStorage> possibleElements) {
@@ -817,19 +873,18 @@ public class SourceSectionMapper {
 		return srcSectionResult;
 	}
 	
-	 
-	
-	
-//	-* find a mapping for a source meta-model element 
-//	 *or a source meta-model section that starts with this element
-//	 * @param EObject				the source meta-model element
-//	 * @return Mapping				the mapping
-//	 *-
-	public MappingInstanceStorage findMapping(List<EObject> contRefsToMap){		
+	/**
+	 * Try to apply a mapping that has the first Element of the supplied List as its root object.
+	 * <p>
+	 * It is assumed that the List was created by the buildContainmentTree method
+	 * @param contRefObjectsToMap
+	 * @return Hints and used source model elements for the , null if no mapping could be found
+	 */
+	MappingInstanceStorage findMapping(List<EObject> contRefObjectsToMap){		
 		long start;//for statistics
 		long time;
 		
-		EObject element=contRefsToMap.remove(0);//source model element which we will now try to map
+		EObject element=contRefObjectsToMap.remove(0);//source model element which we will now try to map
 		
 		start = System.nanoTime();
 		LinkedHashMap<MappingInstanceStorage,String> usedInMapping=new LinkedHashMap<MappingInstanceStorage,String>();
@@ -856,14 +911,14 @@ public class SourceSectionMapper {
 						mappingData.put(m.getName()+  (m.hashCode()), res);
 						
 						int used=0;
-						for(SourceSectionClass c : res.getRefs().keySet()){
+						for(SourceSectionClass c : res.getSourceModelObjectsMapped().keySet()){
 							if(!mappedSections.containsKey(c)){
 								mappedSections.put(c,new LinkedHashSet<EObject>());
 							}
-							used+=res.getRefs().get(c).size();
-							mappedSections.get(c).addAll(res.getRefs().get(c));
+							used+=res.getSourceModelObjectsMapped().get(c).size();
+							mappedSections.get(c).addAll(res.getSourceModelObjectsMapped().get(c));
 							
-							contRefsToMap.removeAll(res.getRefs().get(c));//remove mapped elements from list of elements to be mapped
+							contRefObjectsToMap.removeAll(res.getSourceModelObjectsMapped().get(c));//remove mapped elements from list of elements to be mapped
 						}
 						usedInMapping.put(res, String.valueOf(used));
 					}		
@@ -901,6 +956,12 @@ public class SourceSectionMapper {
 	}
 
 	
+	/**
+	 * Check if the container section referenced by the sourceSection Classe's container ref. was mapped.
+	 * @param element
+	 * @param sourceSectionClass
+	 * @return true if the container attribute of the sourceSection Class doesn't exist or a fitting container instance exists
+	 */
 	@SuppressWarnings("unchecked")
 	private boolean doContainerCheck(EObject element, SourceSectionClass sourceSectionClass){
 		if(sourceSectionClass.getContainer() != null){

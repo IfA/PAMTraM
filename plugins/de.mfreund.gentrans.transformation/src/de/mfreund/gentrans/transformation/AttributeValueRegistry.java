@@ -16,10 +16,11 @@ import pamtram.metamodel.VirtualAttribute;
 
 /**
  * Storage class for values of targetSection attributes used in the transformation
+ * 
  * @author Sascha Steffen
  * @version 0.8
  */
-public class AttributeValueRegistry {
+class AttributeValueRegistry {
 	/**
 	Storage of all generated Actual Attribute Values, to be used when handling the unique Attribute of pamtram.metamodel.TargetSectionClass
 	*/
@@ -72,7 +73,7 @@ public class AttributeValueRegistry {
 	 * @param eObject Object whose Attribute val is to be checked
 	 * @return true if Value was registered before
 	 */
-	public boolean attributeValueExists(TargetSectionAttribute attr, String value, EObject eObject){
+	boolean attributeValueExists(TargetSectionAttribute attr, String value, EObject eObject){
 		if(attr instanceof ActualAttribute){
 			if(actualAttributes.get(eObject.eClass()).containsKey(((ActualAttribute) attr).getAttribute())){
 				return actualAttributes.get(eObject.eClass()).get(((ActualAttribute) attr).getAttribute()).contains(value);
@@ -92,7 +93,7 @@ public class AttributeValueRegistry {
 	 * @param modifierSets
 	 * @return modified String
 	 */
-	public static String applyAttributeValueModifiers(final String value,
+	static String applyAttributeValueModifiers(final String value,
 			EList<AttributeValueModifierSet> modifierSets) {
 		String retVal = value;
 		for (AttributeValueModifierSet set : modifierSets) {

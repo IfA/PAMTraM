@@ -37,18 +37,47 @@ import de.congrace.exp4j.ExpressionBuilder;
 import de.congrace.exp4j.InvalidCustomFunctionException;
 import de.mfreund.gentrans.transformation.selectors.ItemSelectorDialogRunner;
 
-public class TargetSectionInstantiator {
+/**
+ * Class for instantiating target model sections using the hints supplied by MappingInstancestorages.
+ * @author Sascha Steffen
+ * @version 0.8
+ *
+ */
+class TargetSectionInstantiator {
+	/**
+	 * RoundFunction instance, needed when evaluating ClaculatorMappingHints
+	 */
 	private RoundFunction round;
+	/**
+	 * target section registry used when instantiating classes
+	 */
 	private TargetSectionRegistry targetSectionRegistry;
+	/**
+	 * used when setting attribute values
+	 */
 	private AttributeValueRegistry attributeValueRegistry;
+	/**
+	 * used to write console output
+	 */
 	private MessageConsoleStream consoleStream;
+	/**
+	 * abort transformation if true
+	 */
 	private boolean transformationAborted;
 	
+	/**
+	 * @return true if transformation was aborted
+	 */
 	public boolean isTransformationAborted() {
 		return transformationAborted;
 	}	
 
-	public TargetSectionInstantiator(TargetSectionRegistry targetSectionRegistry , AttributeValueRegistry attributeValueRegistry, MessageConsoleStream consoleStream) {
+	/**
+	 * @param targetSectionRegistry target section registry used when instantiating classes
+	 * @param attributeValueRegistry used when setting attribute values
+	 * @param consoleStream used to write console output
+	 */
+	TargetSectionInstantiator(TargetSectionRegistry targetSectionRegistry , AttributeValueRegistry attributeValueRegistry, MessageConsoleStream consoleStream) {
 		this.targetSectionRegistry=targetSectionRegistry;
 		this.attributeValueRegistry=attributeValueRegistry;
 		this.consoleStream=consoleStream;
@@ -62,11 +91,14 @@ public class TargetSectionInstantiator {
 	}
 	
 	
-	/*
-	Iterates over targetMMSection to find AttributeMApping
-	Will only look until next vc-reference
-	Will always return Hint with largest number of values
-	*/
+	/**
+	 *find Attribute mapping to determine cardinality
+	 * @param metaModelSection
+	 * @param hints
+	 * @param hintValues
+	 * @param oldSelectedHint
+	 * @return
+	 */
 	private static MappingHint searchAttributeMapping(TargetSectionClass metaModelSection, Collection<MappingHint> hints,  Map<MappingHint, LinkedList<Object>> hintValues, MappingHint  oldSelectedHint){
 		MappingHint selectedHint=oldSelectedHint;
 		for(TargetSectionAttribute attr :  metaModelSection.getAttributes()){//check attributes		
@@ -106,10 +138,16 @@ public class TargetSectionInstantiator {
 	}
 
 
-	/*
-		instantiate targetModelSection
-	*/
-	public LinkedHashMap<TargetSectionClass,LinkedList<EObjectTransformationHelper>> instantiateTargetSectionFirstPass(TargetSectionClass metamodelSection,
+	/**
+	 *instantiate targetModelSection (first pass: attributes and containment references)
+	 * @param metamodelSection
+	 * @param mappingGroup
+	 * @param hintValues
+	 * @param conHintValues
+	 * @param mapping
+	 * @return Map of target section instances
+	 */
+	LinkedHashMap<TargetSectionClass,LinkedList<EObjectTransformationHelper>> instantiateTargetSectionFirstPass(TargetSectionClass metamodelSection,
 																					MappingHintGroup mappingGroup,
 																					Map<MappingHint, LinkedList<Object>> hintValues,
 																					Map<ModelConnectionHint, LinkedList<String>> conHintValues,																					
@@ -126,9 +164,19 @@ public class TargetSectionInstantiator {
 	}
 	
 	
-	/*
-	instantiate targetModelSection
-*/
+
+/**
+ *instantiate targetModelSection (first pass: attributes and containment references)
+ *<p>
+ *private recursive version
+ * @param metamodelSection
+ * @param mappingGroup
+ * @param hintValues
+ * @param conHintValues
+ * @param instBySection
+ * @param mapping
+ * @return
+ */
 @SuppressWarnings("unchecked")
 private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPass(TargetSectionClass metamodelSection,
 																				MappingHintGroup mappingGroup,
@@ -356,8 +404,16 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 		}
 }
 	
-	// add missing non-containment references to targetModelSections
-	public  void instantiateTargetSectionSecondPass(
+	/**
+	 *  *instantiate targetModelSection (second pass: non-containment references)
+	 * @param targetMMSection
+	 * @param mapping
+	 * @param group
+	 * @param hints
+	 * @param hintValues
+	 * @param instancesBySection
+	 */
+	void instantiateTargetSectionSecondPass(
 			TargetSectionClass targetMMSection,
 			Mapping mapping,
 			MappingHintGroup group,
@@ -770,17 +826,18 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 		}
 	}
 
+	/**
+	 * Set reference value
+	 * @param ref
+	 * @param target
+	 * @param source
+	 */
 	private void setReference(TargetSectionReference ref, EObject target,
 			EObject source) {
 		if (ref.getEReference().getUpperBound() == 1) {
-			// self.~description.println;//TODO
-
 			if (source.eIsSet(ref.getEReference())) {
 				consoleStream.println("Non-Cont Ref. " + ref.getName()
-						+ " already set:\n" + source.toString()); // TODO
-																	// description
-																	// for
-																	// source
+						+ " already set:\n" + source.toString()); 
 			} else {
 				source.eSet(ref.getEReference(), target);
 			}

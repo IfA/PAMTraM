@@ -3,18 +3,26 @@ package de.mfreund.gentrans.transformation;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 
-import org.eclipse.emf.ecore.EObject;
+/**
+ * Extended MAp with some helper functions used when mapping the source model.
+ * @author Sascha Steffen
+ * @version 0.8
+ */
+class SrcSectionMappingResultsMap extends LinkedHashMap<pamtram.metamodel.Class, LinkedList<MappingInstanceStorage>>{
 
-public class SrcSectionMappingResultsMap extends LinkedHashMap<pamtram.metamodel.Class, LinkedList<MappingInstanceStorage>>{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 7525832913063032464L;
 
+	/**
+	 * Consttructor
+	 */
 	public SrcSectionMappingResultsMap(){
 		super();
 	}
 	
+	/**
+	 * Finds the Smallest of the stored lists
+	 * @return key for List value with smallest size
+	 */
 	public  pamtram.metamodel.Class getKeyForValueWithSmallestCollectionSize(){
 		pamtram.metamodel.Class keyForSmallest=null;
 		int smallestSize=-1;
@@ -27,7 +35,11 @@ public class SrcSectionMappingResultsMap extends LinkedHashMap<pamtram.metamodel
 		return keyForSmallest;
 	}
 
-	public void removeResultsForElement(
+	/**
+	 * Remove the specified MAppingInstancestorage from the lists
+	 * @param srcSectionResult
+	 */
+	void removeResultsForElement(
 			MappingInstanceStorage srcSectionResult) {
 		for(pamtram.metamodel.Class key : this.keySet()) //remove srcModel element from possibility lists of MMSections
 		{
@@ -39,18 +51,6 @@ public class SrcSectionMappingResultsMap extends LinkedHashMap<pamtram.metamodel
 			}	
 		}
 		
-	}
-	
-	 public int getNumberOfPossibleUses(EObject possibleSrcModelElement ) {
-			int uses = 0;
-			for(LinkedList<MappingInstanceStorage> storeList : this.values()){
-				for(MappingInstanceStorage store : storeList){
-					if(store.getAssociatedSourceModelElement().equals(possibleSrcModelElement)){
-						uses++;
-					}
-				}
-			}
-			return uses;
 	}
 
 }

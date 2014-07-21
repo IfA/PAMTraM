@@ -14,27 +14,50 @@ import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.VirtualAttribute;
 
 /**
+ * This Class isused for setting Attribute values of an EObject. VirtualAttribute values are stored here.
+ * 
  * @author Sascha Steffen
  * @version 0.8 
  */
-public class EObjectTransformationHelper {
+/**
+ * @author sascha
+ *
+ */
+class EObjectTransformationHelper {
 	
 	/**
-	 * The EObject of targetModel whose functionality this 
+	 * The EObject of targetModel whose functionality this Class extends
 	 */
 	private EObject eObject;
 	
+	/**
+	 * The Registry used for saving Attribute values
+	 */
 	private AttributeValueRegistry attrValRegistry;
 	
 
 	
+	/**
+	 * Get the associated EObject
+	 * 
+	 * @return The targetSection EObject
+	 */
 	public EObject getEObject() {
 		return eObject;
 	}
 
+	/**
+	 * Value storage for the virtual Attributes of this Object
+	 */
 	private LinkedHashMap<VirtualAttribute,String> virtualAttributes;
 	
-	public EObjectTransformationHelper(EObject eObject, AttributeValueRegistry attrValRegistry) {
+	/**
+	 * Constructor
+	 *  
+	 * @param eObject associated EObject
+	 * @param attrValRegistry AttributeValueRegistry
+	 */
+	EObjectTransformationHelper(EObject eObject, AttributeValueRegistry attrValRegistry) {
 		this.eObject=eObject;
 		this.attrValRegistry=attrValRegistry;
 		virtualAttributes=new LinkedHashMap<VirtualAttribute,String>();
@@ -45,11 +68,25 @@ public class EObjectTransformationHelper {
 		}		
 	}
 
-	public boolean attributeValueExists(TargetSectionAttribute attr, String value){
+	
+	/**
+	 * Checks if attribute value exists in AttributeValueRegistry
+	 * 
+	 * @param attr TargetSectionAttribute to be set
+	 * @param value value to be checked
+	 * @return true if Value exists in AttributeValueRegistry
+	 */
+	boolean attributeValueExists(TargetSectionAttribute attr, String value){
 		return attrValRegistry.attributeValueExists(attr, value, eObject);
 	}
 	
-	public void setAttributeValue(TargetSectionAttribute attr, String value) throws IllegalArgumentException{
+	/**
+	 * Sets virtual or actual values of e TargetSectionAttribute
+	 * @param attr Attribute to be set
+	 * @param value Value to be set
+	 * @throws IllegalArgumentException
+	 */
+	void setAttributeValue(TargetSectionAttribute attr, String value) throws IllegalArgumentException{
 		if(attr instanceof VirtualAttribute){
 			virtualAttributes.put((VirtualAttribute) attr, value);
 			
@@ -72,6 +109,12 @@ public class EObjectTransformationHelper {
 		}
 	}
 	
+	/**
+	 * Static helper method for  converting an Attribute value to a String
+	 * @param eObject Target section object
+	 * @param attr Attribute
+	 * @return Attribute value converted String
+	 */
 	private static String convertAttributeValue(EObject eObject, EAttribute attr){
 		Object srcAttr=eObject.eGet(attr);
 		if(attr != null){
@@ -88,7 +131,12 @@ public class EObjectTransformationHelper {
 	
 
 	
-	public String getAttributeValue(TargetSectionAttribute attr){
+	/**
+	 * Get Value of an Attribute of the Object
+	 * @param attr
+	 * @return Attribute value as String
+	 */
+	String getAttributeValue(TargetSectionAttribute attr){
 		if(attr instanceof VirtualAttribute){
 			return virtualAttributes.get(attr);
 		} else if(attr instanceof ActualAttribute){
@@ -97,6 +145,9 @@ public class EObjectTransformationHelper {
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString(){
 		String returnString= asString(eObject);
@@ -108,7 +159,12 @@ public class EObjectTransformationHelper {
 		return returnString;
 	}
 	
-	public static String asString(EObject eObject) {
+	/**
+	 * Same as toString but without virtual Attributes of course
+	 * @param eObject
+	 * @return EObjet as String
+	 */
+	 static String asString(EObject eObject) {
 		String returnString=eObject.eClass().getName()  + " (HashCode: " +  eObject.hashCode()+")" ;
 		for(EAttribute a : eObject.eClass().getEAllAttributes()){
 			String val=convertAttributeValue(eObject,a);

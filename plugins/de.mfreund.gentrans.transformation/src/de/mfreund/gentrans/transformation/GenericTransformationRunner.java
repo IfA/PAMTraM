@@ -28,11 +28,18 @@ import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.TargetSectionClass;
 
 /**
+ * Main Class for running the generic transformation for a PAMTraM model.
  * @author Sascha Steffen
- *
+ * @version 0.8
  */
 public class GenericTransformationRunner {
 
+	/**
+	 * Constructor
+	 * @param sourceModel Root EObject of the source Model
+	 * @param pamtramPath Path to the transformation model
+	 * @param targetFilePath File path to the transformation target
+	 */
 	public GenericTransformationRunner(EObject sourceModel,
 			String pamtramPath, String targetFilePath) {
 		super();
@@ -43,12 +50,30 @@ public class GenericTransformationRunner {
 
 	}
 
+	/**
+	 * Root EObject of the source Model
+	 */
 	private EObject sourceModel;
+	
+	/**
+	 * Path to the transformation model
+	 */
 	private String pamtramPath;
+	/**
+	 * File path to the transformation target
+	 */
 	private String targetFilePath;
+	/**
+	 * Message output stream (Console view)
+	 */
 	private MessageConsoleStream consoleStream;
 	
 	
+	/**
+	 * Get the output Console. Copied from: @see <a href="http://wiki.eclipse.org/FAQ_How_do_I_write_to_the_console_from_a_plug-in%3F">Eclipse FAQ</a>
+	 * @param consoleName
+	 * @return MessageConsole object
+	 */
 	private MessageConsole findConsole(String consoleName) {
 		ConsolePlugin plugin = ConsolePlugin.getDefault();
 		IConsoleManager conMan = plugin.getConsoleManager();
@@ -62,8 +87,9 @@ public class GenericTransformationRunner {
 		return myConsole;
 	}
 
+
 	/**
-	 * 
+	 * Starts the transformation.
 	 */
 	@SuppressWarnings("unchecked")
 	public void runTransformation() {

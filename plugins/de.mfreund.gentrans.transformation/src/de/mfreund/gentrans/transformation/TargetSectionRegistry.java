@@ -13,41 +13,91 @@ import org.eclipse.ui.console.MessageConsoleStream;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.metamodel.TargetSectionClass;
 
-public class TargetSectionRegistry {
+/**
+ * Registry for instances of targetMetamodelSections and certain structural features of the target MetaModel
+ * @author Sascha Steffen
+ * @version 0.8
+ *
+ */
+class TargetSectionRegistry {
 
+	/**
+	 * @return targetClassInstanceRegistry
+	 */
 	public LinkedHashMap<EClass, LinkedList<EObjectTransformationHelper>> getTargetClassInstanceRegistry() {
 		return targetClassInstanceRegistry;
 	}
 
+	/**
+	 * @return targetClassInstanceByHintGroupRegistry
+	 */
 	public LinkedHashMap<TargetSectionClass, LinkedHashMap<MappingHintGroup, LinkedList<EObjectTransformationHelper>>> getTargetClassInstanceByHintGroupRegistry() {
 		return targetClassInstanceByHintGroupRegistry;
 	}
 
+	/**
+	 * @return childClassesRegistry
+	 */
 	public LinkedHashMap<EClass, LinkedHashSet<EClass>> getChildClassesRegistry() {
 		return childClassesRegistry;
 	}
 
+	/**
+	 * @return possiblePathsRegistry
+	 */
 	public LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>> getPossiblePathsRegistry() {
 		return possiblePathsRegistry;
 	}
 
+	/**
+	 * @return targetClassReferencesRegistry
+	 */
 	public LinkedHashMap<EClass, LinkedHashSet<EReference>> getTargetClassReferencesRegistry() {
 		return targetClassReferencesRegistry;
 	}
 
+	/**
+	 * @return referenceSourcesRegistry
+	 */
 	public LinkedHashMap<EReference, LinkedHashSet<EClass>> getReferenceSourcesRegistry() {
 		return referenceSourcesRegistry;
 	}
 
+	/**
+	 * Map of instantiated EObjects, sorted by TargetSectionClass
+	 */
 	private  LinkedHashMap<EClass, LinkedList<EObjectTransformationHelper>> targetClassInstanceRegistry;
+	/**
+	 * Map of instantiated EObjects, sorted by TargetSectionClass and MappingHintGroup
+	 */
 	private  LinkedHashMap<TargetSectionClass, LinkedHashMap<MappingHintGroup, LinkedList<EObjectTransformationHelper>>> targetClassInstanceByHintGroupRegistry;
+	/**
+	 * Child classes for each class (if there are any)
+	 */
 	private  LinkedHashMap<EClass, LinkedHashSet<EClass>> childClassesRegistry;
+	/**
+	 * Possible Paths, sorted by target MetaModel class
+	 */
 	private  LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>> possiblePathsRegistry;
-	private  LinkedHashMap<EClass, LinkedHashSet<EReference>> targetClassReferencesRegistry; // ==refsToThis
-	private  LinkedHashMap<EReference, LinkedHashSet<EClass>> referenceSourcesRegistry; // ==sources
+	
+	/**
+	 * List of classes that contain references to a Class
+	 */
+	private  LinkedHashMap<EClass, LinkedHashSet<EReference>> targetClassReferencesRegistry;
+	/**
+	 * Source classes that are the starting point of a specific reference
+	 */
+	private  LinkedHashMap<EReference, LinkedHashSet<EClass>> referenceSourcesRegistry;
+	/**
+	 * Message output stream
+	 */
 	private MessageConsoleStream consoleStream;
 
-	public TargetSectionRegistry(MessageConsoleStream consoleStream) {
+	/**
+	 * Constructor
+	 * @param consoleStream
+	 */
+	TargetSectionRegistry(MessageConsoleStream consoleStream) {
 		this.consoleStream=consoleStream;
 		targetClassInstanceRegistry= new LinkedHashMap<EClass, LinkedList<EObjectTransformationHelper>>();
 		targetClassInstanceByHintGroupRegistry = new LinkedHashMap<TargetSectionClass, LinkedHashMap<MappingHintGroup, LinkedList<EObjectTransformationHelper>>>();
@@ -58,7 +108,13 @@ public class TargetSectionRegistry {
 	}
 	
 	
-	public void addClassInstance(EObjectTransformationHelper instance, MappingHintGroup group,
+	/**
+	 * Register the instance of a Class
+	 * @param instance
+	 * @param group
+	 * @param targetSection
+	 */
+	void addClassInstance(EObjectTransformationHelper instance, MappingHintGroup group,
 			TargetSectionClass targetSection) {
 		EClass eClass = instance.getEObject().eClass();
 
@@ -83,7 +139,13 @@ public class TargetSectionRegistry {
 
 	}
 
-	public void addClassInstance(EObjectTransformationHelper instance) {
+	/**
+	 * Register the instance of a Class
+	 * <p>
+	 * Used when linking target model sections
+	 * @param instance
+	 */
+	void addClassInstance(EObjectTransformationHelper instance) {
 		EClass eClass = instance.getEObject().eClass();
 
 		if (!targetClassInstanceRegistry.containsKey(eClass)) {
@@ -93,13 +155,21 @@ public class TargetSectionRegistry {
 
 	}
 	
-	public  LinkedList<EObjectTransformationHelper> getTargetClassInstances(EClass eClass) {
+	/**
+	 * @param eClass
+	 * @return All instances of the specified metamodel Class
+	 */
+	LinkedList<EObjectTransformationHelper> getTargetClassInstances(EClass eClass) {
 
 		return targetClassInstanceRegistry.containsKey(eClass) ? targetClassInstanceRegistry
 				.get(eClass) : new LinkedList<EObjectTransformationHelper>();
 	}
 
-	public  LinkedHashMap<MappingHintGroup, LinkedList<EObjectTransformationHelper>> getPamtramClassInstances(
+	/**
+	 * @param c
+	 * @return instance map of all MappingHintGroups
+	 */
+	LinkedHashMap<MappingHintGroup, LinkedList<EObjectTransformationHelper>> getPamtramClassInstances(
 			TargetSectionClass c) {
 		if (!targetClassInstanceByHintGroupRegistry.containsKey(c)) {
 			return new LinkedHashMap<MappingHintGroup, LinkedList<EObjectTransformationHelper>>();
@@ -109,7 +179,11 @@ public class TargetSectionRegistry {
 
 	}
 	
-	public  LinkedList<EObjectTransformationHelper> getFlattenedPamtramClassInstances(TargetSectionClass c) {
+	/**
+	 * @param c
+	 * @return instances of a specific MappingHintgroup
+	 */
+	LinkedList<EObjectTransformationHelper> getFlattenedPamtramClassInstances(TargetSectionClass c) {
 		LinkedList<EObjectTransformationHelper> flat = new LinkedList<EObjectTransformationHelper>();
 		if (!targetClassInstanceByHintGroupRegistry.containsKey(c)) {
 			return flat;
@@ -124,7 +198,12 @@ public class TargetSectionRegistry {
 
 	}
 	
-	public  void addPath(ModelConnectionPath modelConnectionPath, EClass eClass) {
+	/**
+	 * Add new Path to registry
+	 * @param modelConnectionPath
+	 * @param eClass
+	 */
+	void addPath(ModelConnectionPath modelConnectionPath, EClass eClass) {
 
 		if (!possiblePathsRegistry.containsKey(eClass)) {
 			possiblePathsRegistry.put(eClass, new LinkedHashSet<ModelConnectionPath>());
@@ -133,26 +212,42 @@ public class TargetSectionRegistry {
 
 	}
 
-	public  LinkedHashSet<EClass> getChildClasses(EClass eClass) {
+	/**
+	 * @param eClass
+	 * @return CHilClasses of a SuperClass
+	 */
+	LinkedHashSet<EClass> getChildClasses(EClass eClass) {
 
 		return childClassesRegistry.containsKey(eClass) ? childClassesRegistry
 				.get(eClass) : new LinkedHashSet<EClass>();
 
 	}
 
-	public  LinkedHashSet<EReference> getClassReferences(EClass eClass) {
+	/**
+	 * @param eClass
+	 * @return Set of classes that contain references to a Class
+	 */
+	LinkedHashSet<EReference> getClassReferences(EClass eClass) {
 
 		return targetClassReferencesRegistry.containsKey(eClass) ? targetClassReferencesRegistry
 				.get(eClass) : new LinkedHashSet<EReference>();
 
 	}
 
-	public  LinkedHashSet<EClass> getReferenceSources(EReference ref) {
+	/**
+	 * @param ref
+	 * @return Set of classes that are the starting point of a specific reference
+	 */
+	LinkedHashSet<EClass> getReferenceSources(EReference ref) {
 		return referenceSourcesRegistry.containsKey(ref) ? referenceSourcesRegistry
 				.get(ref) : new LinkedHashSet<EClass>();
 
 	}
 	
+	/**
+	 * @param pkg
+	 * @return Classes, contained in a MetaModel Package
+	 */
 	private LinkedList<EClass> getClasses(EPackage pkg){
 		LinkedList<EClass> classes=new LinkedList<EClass>();
 		
@@ -174,7 +269,11 @@ public class TargetSectionRegistry {
 		return classes;
 	}
 
-	public  void analyseTargetMetaModel(EPackage targetMetaModel) {
+	/**
+	 * Build various lists that describe structural features of the  target MetaModel
+	 * @param targetMetaModel
+	 */
+	void analyseTargetMetaModel(EPackage targetMetaModel) {
 		// Map targetMetaModel classes
 		
 		consoleStream.println("Mapping targetMetaModel classes");
@@ -220,7 +319,11 @@ public class TargetSectionRegistry {
 
 	}
 
-	public  LinkedHashSet<ModelConnectionPath> getPaths(EClass eClass) {
+	/**
+	 * @param eClass
+	 * @return Possible paths to connect target Model sections, for a specific Class of the target model
+	 */
+	LinkedHashSet<ModelConnectionPath> getPaths(EClass eClass) {
 		if (!possiblePathsRegistry.containsKey(eClass)) {
 			possiblePathsRegistry.put(eClass, new LinkedHashSet<ModelConnectionPath>());
 

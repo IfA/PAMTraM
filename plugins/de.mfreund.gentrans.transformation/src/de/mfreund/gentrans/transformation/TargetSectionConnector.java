@@ -21,19 +21,51 @@ import pamtram.metamodel.TargetSectionClass;
 import de.mfreund.gentrans.transformation.selectors.ItemSelectorDialogRunner;
 import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunner;
 
-public class TargetSectionConnector {
+/**
+ * Class for linking the sections of the target model. 
+ * @author Sascha Steffen
+ * @version 0.8
+ */
+class TargetSectionConnector {
+	/**
+	 * Paths previously selected by the user.
+	 */
 	private  LinkedHashMap<ModelConnectionHint, ModelConnectionPath> standardPaths;
+	/**
+	 * Attribute value registry, needed when applying model connection hints
+	 */
 	private AttributeValueRegistry attrValRegistry;
+	/**
+	 * target section registry, used when finding instances to which sections can be connected 
+	 */
 	private TargetSectionRegistry targetSectionRegistry;
+	/**
+	 * target model
+	 */
 	private XMIResource targetModel;
+	/**
+	 * Output stream for messages
+	 */
 	private MessageConsoleStream consoleStream;
+	/**
+	 * true when the transformation was aborted by the user
+	 */
 	private boolean transformationAborted;
 	
+	/**
+	 * @return true when the transformation was aborted by the user
+	 */
 	public boolean isTransformationAborted() {
 		return transformationAborted;
 	}
 	
-	public TargetSectionConnector(AttributeValueRegistry attrValRegistry, TargetSectionRegistry targetSectionRegistry,
+	/**
+	 * @param attrValRegistry Attribute value registry, needed when applying model connection hints
+	 * @param targetSectionRegistry target section registry, used when finding instances to which sections can be connected 
+	 * @param targetModel
+	 * @param consoleStream Output stream for messages
+	 */
+	TargetSectionConnector(AttributeValueRegistry attrValRegistry, TargetSectionRegistry targetSectionRegistry,
 			XMIResource targetModel, MessageConsoleStream consoleStream){
 		standardPaths = new LinkedHashMap<ModelConnectionHint, ModelConnectionPath>();
 		this.attrValRegistry=attrValRegistry;
@@ -43,7 +75,14 @@ public class TargetSectionConnector {
 		this.transformationAborted=false;
 	}
 
-	public  LinkedList<ModelConnectionPath> findPathsWithMinimumCapacity(
+	/**
+	 * Return possible paths that can connect a minimum number of elements
+	 * @param classToConnect
+	 * @param startInstance may be null
+	 * @param minimumCapacity
+	 * @return possible paths
+	 */
+	private  LinkedList<ModelConnectionPath> findPathsWithMinimumCapacity(
 			EClass classToConnect, EObject startInstance, int minimumCapacity) {
 		LinkedList<ModelConnectionPath> pathsToConsider = new LinkedList<ModelConnectionPath>();
 		for (ModelConnectionPath p : targetSectionRegistry.getPaths(classToConnect)) {
@@ -65,7 +104,20 @@ public class TargetSectionConnector {
 		return pathsToConsider;
 	}
 
-	public void linkToTargetModelUsingModelConnectionHint(
+	/**
+	 * Try to link a List of instances ( and therefore entire sections of the target model)
+	 * to other objects of the target model.
+	 * <p>
+	 * This method is used for connecting sections using model connection hints.
+	 * @param classToConnect
+	 * @param rootInstances
+	 * @param section
+	 * @param mappingName
+	 * @param mappingGroupName
+	 * @param connectionHint
+	 * @param connectionHintValues
+	 */
+	void linkToTargetModelUsingModelConnectionHint(
 			EClass classToConnect, List<EObjectTransformationHelper> rootInstances, TargetSectionClass section,
 			String mappingName, String mappingGroupName,
 			ModelConnectionHint connectionHint,
@@ -291,7 +343,7 @@ public class TargetSectionConnector {
 						addToTargetModelRoot(container);							//because this was explicitly specified by tho ModelConnectionHint
 					}
 					
-					instantiateMissingPath(modelConnectionPath.getInvertedPath(), container.getEObject(),
+					instantiateMissingPath(modelConnectionPath.getInvertedPathElementList(), container.getEObject(),
 							new LinkedList<EObjectTransformationHelper>(rootInstancesByContainer.get(container)));
 
 				}
@@ -304,18 +356,38 @@ public class TargetSectionConnector {
 		}
 	}
 	
+	
+	/**
+	 * List of instances to put at the root of the target model.
+	 * @param i
+	 */
 	private void addToTargetModelRoot(Collection<EObjectTransformationHelper> i){
 		for(EObjectTransformationHelper h : i){
 			addToTargetModelRoot(h);
 		}
 	}
 	
+	/**
+	 * If no model connection could be found, an object needs to be added to the root of the target model.
+	 * @param helper
+	 */
 	private void addToTargetModelRoot(EObjectTransformationHelper helper){
 		targetModel.getContents().add(helper.getEObject());
 	}
 
+	/**
+	 * Try to link a List of instances ( and therefore entire sections of the target model)
+	 * to other objects of the target model.
+	 * <p>
+	 * This method is used for connecting sections without model connection hints.
+	 * @param classToConnect
+	 * @param rootInstances
+	 * @param section
+	 * @param mappingName
+	 * @param mappingGroupName
+	 */
 	@SuppressWarnings("unchecked")
-	public void linkToTargetModelNoConnectionHint(EClass classToConnect,
+	void linkToTargetModelNoConnectionHint(EClass classToConnect,
 			List<EObjectTransformationHelper> rootInstances, TargetSectionClass section, String mappingName,
 			String mappingGroupName){
 		ModelConnectionPath modelConnectionPath;
@@ -381,7 +453,7 @@ public class TargetSectionConnector {
 
 					consoleStream.println(section.getName() + "(" + mappingName
 							+ "): " + modelConnectionPath.toString());
-					instantiateMissingPath(modelConnectionPath.getInvertedPath(), inst.getEObject(),
+					instantiateMissingPath(modelConnectionPath.getInvertedPathElementList(), inst.getEObject(),
 							rootInstances);
 
 				} else if (pathsToConsider.size() > 0) {// user decides
@@ -450,7 +522,7 @@ public class TargetSectionConnector {
 							PathAndInstanceSelectorRunner.getInstance());
 					consoleStream.println(section.getName() + "(" + mappingName
 							+ "): " + modelConnectionPath.toString());
-					instantiateMissingPath(modelConnectionPath.getInvertedPath(), inst.getEObject(),
+					instantiateMissingPath(modelConnectionPath.getInvertedPathElementList(), inst.getEObject(),
 							rootInstances);
 
 				} else {// no suitable container found
@@ -473,6 +545,14 @@ public class TargetSectionConnector {
 
 	// --TODO clean this up so we don't need to differentiate between middle and
 	// end
+	/**
+	 * The actual method for linking Objects to another object.
+	 * <p>
+	 * Missing instances of objects along the path will be created.
+	 * @param invertedPath
+	 * @param refStartInstance
+	 * @param instancesAtEnd
+	 */
 	@SuppressWarnings("unchecked")
 	private void instantiateMissingPath(
 			LinkedList<EObject> invertedPath, EObject refStartInstance,

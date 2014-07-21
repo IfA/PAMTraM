@@ -8,19 +8,43 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
-public class ModelConnectionPath {
+/**
+ * @author Sascha Steffen
+ * @version 0.8
+ *
+ */
+class ModelConnectionPath {
 
+	/**
+	 * Registry of created target section instances
+	 */
 	private TargetSectionRegistry targetSectionRegistry;
 
+	/**
+	 * List of path elements
+	 * 
+	 * A path starts and ends with an Instance of an EClass.
+	 * These are connected either by one EReference (containment) or pairs of
+	 * EReferences and EClasses.
+	 */
 	private LinkedList<EObject> pathElements;
 
-	public ModelConnectionPath(TargetSectionRegistry targetSectionRegistry) {
+	/**
+	 * Constructor
+	 * @param targetSectionRegistry
+	 */
+	ModelConnectionPath(TargetSectionRegistry targetSectionRegistry) {
 		this.pathElements = new LinkedList<EObject>();
 		this.targetSectionRegistry=targetSectionRegistry;
 
 
 	}
 
+	/**
+	 * Private Constructor to be used when spawning new Paths during path search.Clones the path.
+	 * @param pathElements
+	 * @param targetSectionRegistry
+	 */
 	private ModelConnectionPath(LinkedList<EObject> pathElements,TargetSectionRegistry targetSectionRegistry) {
 
 		this.pathElements = new LinkedList<EObject>();
@@ -30,17 +54,25 @@ public class ModelConnectionPath {
 
 	}
 
+	/**
+	 * Private Constructor to be used when spawning new Paths during path search. Clones the path and appends new element. 
+	 * @param pathElements
+	 * @param newElement
+	 * @param targetSectionRegistry
+	 */
 	private ModelConnectionPath(LinkedList<EObject> pathElements, EObject newElement,TargetSectionRegistry targetSectionRegistry) {
 
 		this.pathElements = new LinkedList<EObject>();
 		this.pathElements.addAll(pathElements);
 		this.pathElements.add(newElement);
 		this.targetSectionRegistry=targetSectionRegistry;
-
-
 	}
 
-	public void findPathsToInstances(EClass targetSectionClass) {
+	/**
+	 * Finds paths to instances of the provided class.
+	 * @param targetSectionClass
+	 */
+	void findPathsToInstances(EClass targetSectionClass) {
 
 		// check if path to this MM-Class found
 		if (targetSectionRegistry.getTargetClassInstances(targetSectionClass).size() > 0
@@ -84,8 +116,15 @@ public class ModelConnectionPath {
 
 	}
 
-	@SuppressWarnings("unchecked")
-	public int getCapacity(EObject targetInstance) {
+	/**
+	 * Calculate the paths capacity starting from the targetInstance.
+	 * <p>
+	 * If targetInstance is null the theoretical capacity of this path is calculated.
+	 * @param targetInstance
+	 * @return path capacity
+	 */
+	@SuppressWarnings("unchecked") 
+	int getCapacity(EObject targetInstance) {
 		boolean use = false; // gets toggled every loop, to help us separate
 								// refs from types
 		EObject instance = targetInstance;
@@ -133,6 +172,9 @@ public class ModelConnectionPath {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		String path = "";
@@ -157,7 +199,11 @@ public class ModelConnectionPath {
 		return path;
 	}
 
-	public LinkedList<EObject> getInvertedPath() {
+	/**
+	 * Used when instantiating a path.
+	 * @return inverted List of path elements
+	 */
+	public LinkedList<EObject> getInvertedPathElementList() {
 		LinkedList<EObject> inverted = new LinkedList<EObject>();
 		ListIterator<EObject> it = pathElements.listIterator(pathElements
 				.size());
@@ -170,12 +216,19 @@ public class ModelConnectionPath {
 		return inverted;
 	}
 
+	/**
+	 * @return EClass of the end of the path.
+	 */
 	public EClass getRootType() {
 		return (EClass) pathElements.getLast();
 
 	}
 
-	public boolean leadsToRootType(EClass root) {
+	/**
+	 * @param root
+	 * @return true if path leads to the specified class
+	 */
+	boolean leadsToRootType(EClass root) {
 		if (pathElements.size() > 0) {
 			if (pathElements.getLast() instanceof EClass) {
 
@@ -188,11 +241,10 @@ public class ModelConnectionPath {
 			return false;
 	}
 
-	public int size() {
+	/**
+	 * @return count of Elements in the path
+	 */
+	int size() {
 		return pathElements.size();
 	}
-	
-	
-
-
 }

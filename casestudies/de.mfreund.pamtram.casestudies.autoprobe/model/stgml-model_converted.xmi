@@ -2768,7 +2768,7 @@
             <Z Name="NAVTOP_StockDouble_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="NAVTOP_StockDouble_size">
-            <Height Name="NAVTOP_StockDouble_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="NAVTOP_StockDouble_height" Value="100.0"/>
             <Width Name="NAVTOP_StockDouble_width" Unit="PIXEL" Value="371.0"/>
           </Size>
         </Representation>
@@ -2789,7 +2789,7 @@
             <Z Name="NAVTOP_MillAndTurn105_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="NAVTOP_MillAndTurn105_size">
-            <Height Name="NAVTOP_MillAndTurn105_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="NAVTOP_MillAndTurn105_height" Value="100.0"/>
             <Width Name="NAVTOP_MillAndTurn105_width" Unit="PIXEL" Value="371.0"/>
           </Size>
         </Representation>
@@ -2810,7 +2810,7 @@
             <Z Name="NAVTOP_Mill55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="NAVTOP_Mill55_size">
-            <Height Name="NAVTOP_Mill55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="NAVTOP_Mill55_height" Value="100.0"/>
             <Width Name="NAVTOP_Mill55_width" Unit="PIXEL" Value="371.0"/>
           </Size>
         </Representation>
@@ -2831,7 +2831,7 @@
             <Z Name="NAVTOP_Turn55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="NAVTOP_Turn55_size">
-            <Height Name="NAVTOP_Turn55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="NAVTOP_Turn55_height" Value="100.0"/>
             <Width Name="NAVTOP_Turn55_width" Unit="PIXEL" Value="371.0"/>
           </Size>
         </Representation>
@@ -2852,7 +2852,7 @@
             <Z Name="NAVTOP_AssemblyRH5A55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="NAVTOP_AssemblyRH5A55_size">
-            <Height Name="NAVTOP_AssemblyRH5A55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="NAVTOP_AssemblyRH5A55_height" Value="100.0"/>
             <Width Name="NAVTOP_AssemblyRH5A55_width" Unit="PIXEL" Value="371.0"/>
           </Size>
         </Representation>
@@ -2873,7 +2873,7 @@
             <Z Name="NAVTOP_Quality_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="NAVTOP_Quality_size">
-            <Height Name="NAVTOP_Quality_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="NAVTOP_Quality_height" Value="100.0"/>
             <Width Name="NAVTOP_Quality_width" Unit="PIXEL" Value="371.0"/>
           </Size>
         </Representation>
@@ -4358,7 +4358,7 @@
             <Z Name="StockDouble_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="StockDouble_NAVTOP_size">
-            <Height Name="StockDouble_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="StockDouble_NAVTOP_height" Value="100.0"/>
             <Width Name="StockDouble_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -4379,7 +4379,7 @@
             <Z Name="StockDouble_StockDoublePLC_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="StockDouble_StockDoublePLC_size">
-            <Height Name="StockDouble_StockDoublePLC_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="StockDouble_StockDoublePLC_height" Value="100.0"/>
             <Width Name="StockDouble_StockDoublePLC_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -4449,7 +4449,7 @@
             <Z Name="StockDoublePLC_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="StockDoublePLC_NAVTOP_size">
-            <Height Name="StockDoublePLC_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="StockDoublePLC_NAVTOP_height" Value="100.0"/>
             <Width Name="StockDoublePLC_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -4470,7 +4470,7 @@
             <Z Name="StockDoublePLC_StockDouble_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="StockDoublePLC_StockDouble_size">
-            <Height Name="StockDoublePLC_StockDouble_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="StockDoublePLC_StockDouble_height" Value="100.0"/>
             <Width Name="StockDoublePLC_StockDouble_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -4549,7 +4549,7 @@
             <Z Name="MillAndTurn105_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="MillAndTurn105_NAVTOP_size">
-            <Height Name="MillAndTurn105_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="MillAndTurn105_NAVTOP_height" Value="100.0"/>
             <Width Name="MillAndTurn105_NAVTOP_width" Unit="PIXEL" Value="251.0"/>
           </Size>
         </Representation>
@@ -4570,7 +4570,7 @@
             <Z Name="MillAndTurn105_BaseplateMagazine_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="MillAndTurn105_BaseplateMagazine_size">
-            <Height Name="MillAndTurn105_BaseplateMagazine_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="MillAndTurn105_BaseplateMagazine_height" Value="100.0"/>
             <Width Name="MillAndTurn105_BaseplateMagazine_width" Unit="PIXEL" Value="251.0"/>
           </Size>
         </Representation>
@@ -4591,7 +4591,7 @@
             <Z Name="MillAndTurn105_Palletholder_20_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="MillAndTurn105_Palletholder_20_size">
-            <Height Name="MillAndTurn105_Palletholder_20_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="MillAndTurn105_Palletholder_20_height" Value="100.0"/>
             <Width Name="MillAndTurn105_Palletholder_20_width" Unit="PIXEL" Value="251.0"/>
           </Size>
         </Representation>
@@ -4612,7 +4612,7 @@
             <Z Name="MillAndTurn105_Palletholder_21_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="MillAndTurn105_Palletholder_21_size">
-            <Height Name="MillAndTurn105_Palletholder_21_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="MillAndTurn105_Palletholder_21_height" Value="100.0"/>
             <Width Name="MillAndTurn105_Palletholder_21_width" Unit="PIXEL" Value="251.0"/>
           </Size>
         </Representation>
@@ -4633,7 +4633,7 @@
             <Z Name="MillAndTurn105_MillAndTurn105TurnCNC_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="MillAndTurn105_MillAndTurn105TurnCNC_size">
-            <Height Name="MillAndTurn105_MillAndTurn105TurnCNC_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="MillAndTurn105_MillAndTurn105TurnCNC_height" Value="100.0"/>
             <Width Name="MillAndTurn105_MillAndTurn105TurnCNC_width" Unit="PIXEL" Value="251.0"/>
           </Size>
         </Representation>
@@ -4654,7 +4654,7 @@
             <Z Name="MillAndTurn105_Palletholder_23_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="MillAndTurn105_Palletholder_23_size">
-            <Height Name="MillAndTurn105_Palletholder_23_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="MillAndTurn105_Palletholder_23_height" Value="100.0"/>
             <Width Name="MillAndTurn105_Palletholder_23_width" Unit="PIXEL" Value="251.0"/>
           </Size>
         </Representation>
@@ -4675,7 +4675,7 @@
             <Z Name="MillAndTurn105_MillAndTurn105Robot_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="MillAndTurn105_MillAndTurn105Robot_size">
-            <Height Name="MillAndTurn105_MillAndTurn105Robot_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="MillAndTurn105_MillAndTurn105Robot_height" Value="100.0"/>
             <Width Name="MillAndTurn105_MillAndTurn105Robot_width" Unit="PIXEL" Value="251.0"/>
           </Size>
         </Representation>
@@ -4696,7 +4696,7 @@
             <Z Name="MillAndTurn105_Palletholder_22_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="MillAndTurn105_Palletholder_22_size">
-            <Height Name="MillAndTurn105_Palletholder_22_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="MillAndTurn105_Palletholder_22_height" Value="100.0"/>
             <Width Name="MillAndTurn105_Palletholder_22_width" Unit="PIXEL" Value="251.0"/>
           </Size>
         </Representation>
@@ -4717,7 +4717,7 @@
             <Z Name="MillAndTurn105_Magazine1_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="MillAndTurn105_Magazine1_size">
-            <Height Name="MillAndTurn105_Magazine1_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="MillAndTurn105_Magazine1_height" Value="100.0"/>
             <Width Name="MillAndTurn105_Magazine1_width" Unit="PIXEL" Value="251.0"/>
           </Size>
         </Representation>
@@ -4738,7 +4738,7 @@
             <Z Name="MillAndTurn105_MillAndTurn105MillCNC_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="MillAndTurn105_MillAndTurn105MillCNC_size">
-            <Height Name="MillAndTurn105_MillAndTurn105MillCNC_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="MillAndTurn105_MillAndTurn105MillCNC_height" Value="100.0"/>
             <Width Name="MillAndTurn105_MillAndTurn105MillCNC_width" Unit="PIXEL" Value="251.0"/>
           </Size>
         </Representation>
@@ -4759,7 +4759,7 @@
             <Z Name="MillAndTurn105_RobotGripper_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="MillAndTurn105_RobotGripper_size">
-            <Height Name="MillAndTurn105_RobotGripper_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="MillAndTurn105_RobotGripper_height" Value="100.0"/>
             <Width Name="MillAndTurn105_RobotGripper_width" Unit="PIXEL" Value="251.0"/>
           </Size>
         </Representation>
@@ -4780,7 +4780,7 @@
             <Z Name="MillAndTurn105_Magazine2_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="MillAndTurn105_Magazine2_size">
-            <Height Name="MillAndTurn105_Magazine2_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="MillAndTurn105_Magazine2_height" Value="100.0"/>
             <Width Name="MillAndTurn105_Magazine2_width" Unit="PIXEL" Value="251.0"/>
           </Size>
         </Representation>
@@ -5049,7 +5049,7 @@
             <Z Name="MillAndTurn105MillCNC_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="MillAndTurn105MillCNC_NAVTOP_size">
-            <Height Name="MillAndTurn105MillCNC_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="MillAndTurn105MillCNC_NAVTOP_height" Value="100.0"/>
             <Width Name="MillAndTurn105MillCNC_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -5070,7 +5070,7 @@
             <Z Name="MillAndTurn105MillCNC_MillAndTurn105_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="MillAndTurn105MillCNC_MillAndTurn105_size">
-            <Height Name="MillAndTurn105MillCNC_MillAndTurn105_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="MillAndTurn105MillCNC_MillAndTurn105_height" Value="100.0"/>
             <Width Name="MillAndTurn105MillCNC_MillAndTurn105_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -5339,7 +5339,7 @@
             <Z Name="MillAndTurn105TurnCNC_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="MillAndTurn105TurnCNC_NAVTOP_size">
-            <Height Name="MillAndTurn105TurnCNC_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="MillAndTurn105TurnCNC_NAVTOP_height" Value="100.0"/>
             <Width Name="MillAndTurn105TurnCNC_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -5360,7 +5360,7 @@
             <Z Name="MillAndTurn105TurnCNC_MillAndTurn105_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="MillAndTurn105TurnCNC_MillAndTurn105_size">
-            <Height Name="MillAndTurn105TurnCNC_MillAndTurn105_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="MillAndTurn105TurnCNC_MillAndTurn105_height" Value="100.0"/>
             <Width Name="MillAndTurn105TurnCNC_MillAndTurn105_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -7394,7 +7394,7 @@
             <Z Name="MillAndTurn105Robot_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="MillAndTurn105Robot_NAVTOP_size">
-            <Height Name="MillAndTurn105Robot_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="MillAndTurn105Robot_NAVTOP_height" Value="100.0"/>
             <Width Name="MillAndTurn105Robot_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -7415,7 +7415,7 @@
             <Z Name="MillAndTurn105Robot_MillAndTurn105_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="MillAndTurn105Robot_MillAndTurn105_size">
-            <Height Name="MillAndTurn105Robot_MillAndTurn105_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="MillAndTurn105Robot_MillAndTurn105_height" Value="100.0"/>
             <Width Name="MillAndTurn105Robot_MillAndTurn105_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -7438,7 +7438,7 @@
             <Z Name="Magazine1_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Magazine1_NAVTOP_size">
-            <Height Name="Magazine1_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Magazine1_NAVTOP_height" Value="100.0"/>
             <Width Name="Magazine1_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -7459,7 +7459,7 @@
             <Z Name="Magazine1_MillAndTurn105_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Magazine1_MillAndTurn105_size">
-            <Height Name="Magazine1_MillAndTurn105_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Magazine1_MillAndTurn105_height" Value="100.0"/>
             <Width Name="Magazine1_MillAndTurn105_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -7482,7 +7482,7 @@
             <Z Name="Magazine2_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Magazine2_NAVTOP_size">
-            <Height Name="Magazine2_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Magazine2_NAVTOP_height" Value="100.0"/>
             <Width Name="Magazine2_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -7503,7 +7503,7 @@
             <Z Name="Magazine2_MillAndTurn105_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Magazine2_MillAndTurn105_size">
-            <Height Name="Magazine2_MillAndTurn105_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Magazine2_MillAndTurn105_height" Value="100.0"/>
             <Width Name="Magazine2_MillAndTurn105_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -7526,7 +7526,7 @@
             <Z Name="BaseplateMagazine_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="BaseplateMagazine_NAVTOP_size">
-            <Height Name="BaseplateMagazine_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="BaseplateMagazine_NAVTOP_height" Value="100.0"/>
             <Width Name="BaseplateMagazine_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -7547,7 +7547,7 @@
             <Z Name="BaseplateMagazine_MillAndTurn105_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="BaseplateMagazine_MillAndTurn105_size">
-            <Height Name="BaseplateMagazine_MillAndTurn105_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="BaseplateMagazine_MillAndTurn105_height" Value="100.0"/>
             <Width Name="BaseplateMagazine_MillAndTurn105_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -7568,7 +7568,7 @@
             <Z Name="BaseplateMagazine_DiffuseSensor_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="BaseplateMagazine_DiffuseSensor_size">
-            <Height Name="BaseplateMagazine_DiffuseSensor_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="BaseplateMagazine_DiffuseSensor_height" Value="100.0"/>
             <Width Name="BaseplateMagazine_DiffuseSensor_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -7638,7 +7638,7 @@
             <Z Name="DiffuseSensor_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="DiffuseSensor_NAVTOP_size">
-            <Height Name="DiffuseSensor_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="DiffuseSensor_NAVTOP_height" Value="100.0"/>
             <Width Name="DiffuseSensor_NAVTOP_width" Unit="PIXEL" Value="341.0"/>
           </Size>
         </Representation>
@@ -7659,7 +7659,7 @@
             <Z Name="DiffuseSensor_BaseplateMagazine_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="DiffuseSensor_BaseplateMagazine_size">
-            <Height Name="DiffuseSensor_BaseplateMagazine_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="DiffuseSensor_BaseplateMagazine_height" Value="100.0"/>
             <Width Name="DiffuseSensor_BaseplateMagazine_width" Unit="PIXEL" Value="341.0"/>
           </Size>
         </Representation>
@@ -7682,7 +7682,7 @@
             <Z Name="Palletholder_23_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Palletholder_23_NAVTOP_size">
-            <Height Name="Palletholder_23_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Palletholder_23_NAVTOP_height" Value="100.0"/>
             <Width Name="Palletholder_23_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -7703,7 +7703,7 @@
             <Z Name="Palletholder_23_MillAndTurn105_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Palletholder_23_MillAndTurn105_size">
-            <Height Name="Palletholder_23_MillAndTurn105_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Palletholder_23_MillAndTurn105_height" Value="100.0"/>
             <Width Name="Palletholder_23_MillAndTurn105_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -7724,7 +7724,7 @@
             <Z Name="Palletholder_23_PalletSensor_4_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Palletholder_23_PalletSensor_4_size">
-            <Height Name="Palletholder_23_PalletSensor_4_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Palletholder_23_PalletSensor_4_height" Value="100.0"/>
             <Width Name="Palletholder_23_PalletSensor_4_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -7794,7 +7794,7 @@
             <Z Name="PalletSensor_4_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletSensor_4_NAVTOP_size">
-            <Height Name="PalletSensor_4_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletSensor_4_NAVTOP_height" Value="100.0"/>
             <Width Name="PalletSensor_4_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -7815,7 +7815,7 @@
             <Z Name="PalletSensor_4_Palletholder_23_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletSensor_4_Palletholder_23_size">
-            <Height Name="PalletSensor_4_Palletholder_23_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletSensor_4_Palletholder_23_height" Value="100.0"/>
             <Width Name="PalletSensor_4_Palletholder_23_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -7838,7 +7838,7 @@
             <Z Name="Palletholder_20_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Palletholder_20_NAVTOP_size">
-            <Height Name="Palletholder_20_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Palletholder_20_NAVTOP_height" Value="100.0"/>
             <Width Name="Palletholder_20_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -7859,7 +7859,7 @@
             <Z Name="Palletholder_20_MillAndTurn105_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Palletholder_20_MillAndTurn105_size">
-            <Height Name="Palletholder_20_MillAndTurn105_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Palletholder_20_MillAndTurn105_height" Value="100.0"/>
             <Width Name="Palletholder_20_MillAndTurn105_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -7880,7 +7880,7 @@
             <Z Name="Palletholder_20_PalletSensor_1_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Palletholder_20_PalletSensor_1_size">
-            <Height Name="Palletholder_20_PalletSensor_1_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Palletholder_20_PalletSensor_1_height" Value="100.0"/>
             <Width Name="Palletholder_20_PalletSensor_1_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -7950,7 +7950,7 @@
             <Z Name="PalletSensor_1_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletSensor_1_NAVTOP_size">
-            <Height Name="PalletSensor_1_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletSensor_1_NAVTOP_height" Value="100.0"/>
             <Width Name="PalletSensor_1_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -7971,7 +7971,7 @@
             <Z Name="PalletSensor_1_Palletholder_20_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletSensor_1_Palletholder_20_size">
-            <Height Name="PalletSensor_1_Palletholder_20_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletSensor_1_Palletholder_20_height" Value="100.0"/>
             <Width Name="PalletSensor_1_Palletholder_20_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -7994,7 +7994,7 @@
             <Z Name="Palletholder_22_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Palletholder_22_NAVTOP_size">
-            <Height Name="Palletholder_22_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Palletholder_22_NAVTOP_height" Value="100.0"/>
             <Width Name="Palletholder_22_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -8015,7 +8015,7 @@
             <Z Name="Palletholder_22_MillAndTurn105_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Palletholder_22_MillAndTurn105_size">
-            <Height Name="Palletholder_22_MillAndTurn105_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Palletholder_22_MillAndTurn105_height" Value="100.0"/>
             <Width Name="Palletholder_22_MillAndTurn105_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -8036,7 +8036,7 @@
             <Z Name="Palletholder_22_PalletSensor_3_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Palletholder_22_PalletSensor_3_size">
-            <Height Name="Palletholder_22_PalletSensor_3_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Palletholder_22_PalletSensor_3_height" Value="100.0"/>
             <Width Name="Palletholder_22_PalletSensor_3_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -8106,7 +8106,7 @@
             <Z Name="PalletSensor_3_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletSensor_3_NAVTOP_size">
-            <Height Name="PalletSensor_3_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletSensor_3_NAVTOP_height" Value="100.0"/>
             <Width Name="PalletSensor_3_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -8127,7 +8127,7 @@
             <Z Name="PalletSensor_3_Palletholder_22_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletSensor_3_Palletholder_22_size">
-            <Height Name="PalletSensor_3_Palletholder_22_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletSensor_3_Palletholder_22_height" Value="100.0"/>
             <Width Name="PalletSensor_3_Palletholder_22_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -8150,7 +8150,7 @@
             <Z Name="Palletholder_21_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Palletholder_21_NAVTOP_size">
-            <Height Name="Palletholder_21_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Palletholder_21_NAVTOP_height" Value="100.0"/>
             <Width Name="Palletholder_21_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -8171,7 +8171,7 @@
             <Z Name="Palletholder_21_MillAndTurn105_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Palletholder_21_MillAndTurn105_size">
-            <Height Name="Palletholder_21_MillAndTurn105_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Palletholder_21_MillAndTurn105_height" Value="100.0"/>
             <Width Name="Palletholder_21_MillAndTurn105_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -8192,7 +8192,7 @@
             <Z Name="Palletholder_21_PalletSensor_2_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Palletholder_21_PalletSensor_2_size">
-            <Height Name="Palletholder_21_PalletSensor_2_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Palletholder_21_PalletSensor_2_height" Value="100.0"/>
             <Width Name="Palletholder_21_PalletSensor_2_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -8262,7 +8262,7 @@
             <Z Name="PalletSensor_2_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletSensor_2_NAVTOP_size">
-            <Height Name="PalletSensor_2_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletSensor_2_NAVTOP_height" Value="100.0"/>
             <Width Name="PalletSensor_2_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -8283,7 +8283,7 @@
             <Z Name="PalletSensor_2_Palletholder_21_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletSensor_2_Palletholder_21_size">
-            <Height Name="PalletSensor_2_Palletholder_21_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletSensor_2_Palletholder_21_height" Value="100.0"/>
             <Width Name="PalletSensor_2_Palletholder_21_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -8477,7 +8477,7 @@
             <Z Name="RobotGripper_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="RobotGripper_NAVTOP_size">
-            <Height Name="RobotGripper_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="RobotGripper_NAVTOP_height" Value="100.0"/>
             <Width Name="RobotGripper_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -8498,7 +8498,7 @@
             <Z Name="RobotGripper_MillAndTurn105_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="RobotGripper_MillAndTurn105_size">
-            <Height Name="RobotGripper_MillAndTurn105_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="RobotGripper_MillAndTurn105_height" Value="100.0"/>
             <Width Name="RobotGripper_MillAndTurn105_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -8577,7 +8577,7 @@
             <Z Name="Mill55_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Mill55_NAVTOP_size">
-            <Height Name="Mill55_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Mill55_NAVTOP_height" Value="100.0"/>
             <Width Name="Mill55_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -8598,7 +8598,7 @@
             <Z Name="Mill55_Mill55Robot_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Mill55_Mill55Robot_size">
-            <Height Name="Mill55_Mill55Robot_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Mill55_Mill55Robot_height" Value="100.0"/>
             <Width Name="Mill55_Mill55Robot_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -8619,7 +8619,7 @@
             <Z Name="Mill55_Mill55CNC_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Mill55_Mill55CNC_size">
-            <Height Name="Mill55_Mill55CNC_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Mill55_Mill55CNC_height" Value="100.0"/>
             <Width Name="Mill55_Mill55CNC_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -8640,7 +8640,7 @@
             <Z Name="Mill55_MillRobotGripper_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Mill55_MillRobotGripper_size">
-            <Height Name="Mill55_MillRobotGripper_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Mill55_MillRobotGripper_height" Value="100.0"/>
             <Width Name="Mill55_MillRobotGripper_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -8661,7 +8661,7 @@
             <Z Name="Mill55_PalletHolder_1_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Mill55_PalletHolder_1_size">
-            <Height Name="Mill55_PalletHolder_1_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Mill55_PalletHolder_1_height" Value="100.0"/>
             <Width Name="Mill55_PalletHolder_1_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -8682,7 +8682,7 @@
             <Z Name="Mill55_PalletHolder_2_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Mill55_PalletHolder_2_size">
-            <Height Name="Mill55_PalletHolder_2_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Mill55_PalletHolder_2_height" Value="100.0"/>
             <Width Name="Mill55_PalletHolder_2_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -8703,7 +8703,7 @@
             <Z Name="Mill55_PalletHolder_3_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Mill55_PalletHolder_3_size">
-            <Height Name="Mill55_PalletHolder_3_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Mill55_PalletHolder_3_height" Value="100.0"/>
             <Width Name="Mill55_PalletHolder_3_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -9817,7 +9817,7 @@
             <Z Name="Mill55Robot_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Mill55Robot_NAVTOP_size">
-            <Height Name="Mill55Robot_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Mill55Robot_NAVTOP_height" Value="100.0"/>
             <Width Name="Mill55Robot_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -9838,7 +9838,7 @@
             <Z Name="Mill55Robot_Mill55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Mill55Robot_Mill55_size">
-            <Height Name="Mill55Robot_Mill55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Mill55Robot_Mill55_height" Value="100.0"/>
             <Width Name="Mill55Robot_Mill55_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -10735,7 +10735,7 @@
             <Z Name="Mill55CNC_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Mill55CNC_NAVTOP_size">
-            <Height Name="Mill55CNC_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Mill55CNC_NAVTOP_height" Value="100.0"/>
             <Width Name="Mill55CNC_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -10756,7 +10756,7 @@
             <Z Name="Mill55CNC_Mill55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Mill55CNC_Mill55_size">
-            <Height Name="Mill55CNC_Mill55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Mill55CNC_Mill55_height" Value="100.0"/>
             <Width Name="Mill55CNC_Mill55_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -10856,7 +10856,7 @@
             <Z Name="MillRobotGripper_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="MillRobotGripper_NAVTOP_size">
-            <Height Name="MillRobotGripper_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="MillRobotGripper_NAVTOP_height" Value="100.0"/>
             <Width Name="MillRobotGripper_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -10877,7 +10877,7 @@
             <Z Name="MillRobotGripper_Mill55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="MillRobotGripper_Mill55_size">
-            <Height Name="MillRobotGripper_Mill55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="MillRobotGripper_Mill55_height" Value="100.0"/>
             <Width Name="MillRobotGripper_Mill55_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -10900,7 +10900,7 @@
             <Z Name="PalletHolder_1_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletHolder_1_NAVTOP_size">
-            <Height Name="PalletHolder_1_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletHolder_1_NAVTOP_height" Value="100.0"/>
             <Width Name="PalletHolder_1_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -10921,7 +10921,7 @@
             <Z Name="PalletHolder_1_Mill55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletHolder_1_Mill55_size">
-            <Height Name="PalletHolder_1_Mill55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletHolder_1_Mill55_height" Value="100.0"/>
             <Width Name="PalletHolder_1_Mill55_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -10942,7 +10942,7 @@
             <Z Name="PalletHolder_1_PalletSensor_5_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletHolder_1_PalletSensor_5_size">
-            <Height Name="PalletHolder_1_PalletSensor_5_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletHolder_1_PalletSensor_5_height" Value="100.0"/>
             <Width Name="PalletHolder_1_PalletSensor_5_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -11012,7 +11012,7 @@
             <Z Name="PalletSensor_5_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletSensor_5_NAVTOP_size">
-            <Height Name="PalletSensor_5_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletSensor_5_NAVTOP_height" Value="100.0"/>
             <Width Name="PalletSensor_5_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -11033,7 +11033,7 @@
             <Z Name="PalletSensor_5_PalletHolder_1_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletSensor_5_PalletHolder_1_size">
-            <Height Name="PalletSensor_5_PalletHolder_1_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletSensor_5_PalletHolder_1_height" Value="100.0"/>
             <Width Name="PalletSensor_5_PalletHolder_1_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -11056,7 +11056,7 @@
             <Z Name="PalletHolder_2_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletHolder_2_NAVTOP_size">
-            <Height Name="PalletHolder_2_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletHolder_2_NAVTOP_height" Value="100.0"/>
             <Width Name="PalletHolder_2_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -11077,7 +11077,7 @@
             <Z Name="PalletHolder_2_Mill55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletHolder_2_Mill55_size">
-            <Height Name="PalletHolder_2_Mill55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletHolder_2_Mill55_height" Value="100.0"/>
             <Width Name="PalletHolder_2_Mill55_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -11098,7 +11098,7 @@
             <Z Name="PalletHolder_2_PalletSensor_6_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletHolder_2_PalletSensor_6_size">
-            <Height Name="PalletHolder_2_PalletSensor_6_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletHolder_2_PalletSensor_6_height" Value="100.0"/>
             <Width Name="PalletHolder_2_PalletSensor_6_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -11168,7 +11168,7 @@
             <Z Name="PalletSensor_6_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletSensor_6_NAVTOP_size">
-            <Height Name="PalletSensor_6_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletSensor_6_NAVTOP_height" Value="100.0"/>
             <Width Name="PalletSensor_6_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -11189,7 +11189,7 @@
             <Z Name="PalletSensor_6_PalletHolder_2_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletSensor_6_PalletHolder_2_size">
-            <Height Name="PalletSensor_6_PalletHolder_2_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletSensor_6_PalletHolder_2_height" Value="100.0"/>
             <Width Name="PalletSensor_6_PalletHolder_2_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -11212,7 +11212,7 @@
             <Z Name="PalletHolder_3_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletHolder_3_NAVTOP_size">
-            <Height Name="PalletHolder_3_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletHolder_3_NAVTOP_height" Value="100.0"/>
             <Width Name="PalletHolder_3_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -11233,7 +11233,7 @@
             <Z Name="PalletHolder_3_Mill55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletHolder_3_Mill55_size">
-            <Height Name="PalletHolder_3_Mill55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletHolder_3_Mill55_height" Value="100.0"/>
             <Width Name="PalletHolder_3_Mill55_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -11254,7 +11254,7 @@
             <Z Name="PalletHolder_3_PalletSensor_7_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletHolder_3_PalletSensor_7_size">
-            <Height Name="PalletHolder_3_PalletSensor_7_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletHolder_3_PalletSensor_7_height" Value="100.0"/>
             <Width Name="PalletHolder_3_PalletSensor_7_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -11324,7 +11324,7 @@
             <Z Name="PalletSensor_7_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletSensor_7_NAVTOP_size">
-            <Height Name="PalletSensor_7_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletSensor_7_NAVTOP_height" Value="100.0"/>
             <Width Name="PalletSensor_7_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -11345,7 +11345,7 @@
             <Z Name="PalletSensor_7_PalletHolder_3_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletSensor_7_PalletHolder_3_size">
-            <Height Name="PalletSensor_7_PalletHolder_3_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletSensor_7_PalletHolder_3_height" Value="100.0"/>
             <Width Name="PalletSensor_7_PalletHolder_3_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -11424,7 +11424,7 @@
             <Z Name="Turn55_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Turn55_NAVTOP_size">
-            <Height Name="Turn55_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Turn55_NAVTOP_height" Value="100.0"/>
             <Width Name="Turn55_NAVTOP_width" Unit="PIXEL" Value="315.0"/>
           </Size>
         </Representation>
@@ -11445,7 +11445,7 @@
             <Z Name="Turn55_Turn55Robot_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Turn55_Turn55Robot_size">
-            <Height Name="Turn55_Turn55Robot_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Turn55_Turn55Robot_height" Value="100.0"/>
             <Width Name="Turn55_Turn55Robot_width" Unit="PIXEL" Value="315.0"/>
           </Size>
         </Representation>
@@ -11466,7 +11466,7 @@
             <Z Name="Turn55_Turn55CNC_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Turn55_Turn55CNC_size">
-            <Height Name="Turn55_Turn55CNC_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Turn55_Turn55CNC_height" Value="100.0"/>
             <Width Name="Turn55_Turn55CNC_width" Unit="PIXEL" Value="315.0"/>
           </Size>
         </Representation>
@@ -11487,7 +11487,7 @@
             <Z Name="Turn55_TurnRobotGripper_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Turn55_TurnRobotGripper_size">
-            <Height Name="Turn55_TurnRobotGripper_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Turn55_TurnRobotGripper_height" Value="100.0"/>
             <Width Name="Turn55_TurnRobotGripper_width" Unit="PIXEL" Value="315.0"/>
           </Size>
         </Representation>
@@ -11508,7 +11508,7 @@
             <Z Name="Turn55_PalletHolder_4_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Turn55_PalletHolder_4_size">
-            <Height Name="Turn55_PalletHolder_4_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Turn55_PalletHolder_4_height" Value="100.0"/>
             <Width Name="Turn55_PalletHolder_4_width" Unit="PIXEL" Value="315.0"/>
           </Size>
         </Representation>
@@ -11529,7 +11529,7 @@
             <Z Name="Turn55_PalletHolder_5_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Turn55_PalletHolder_5_size">
-            <Height Name="Turn55_PalletHolder_5_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Turn55_PalletHolder_5_height" Value="100.0"/>
             <Width Name="Turn55_PalletHolder_5_width" Unit="PIXEL" Value="315.0"/>
           </Size>
         </Representation>
@@ -11550,7 +11550,7 @@
             <Z Name="Turn55_PalletHolder_6_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Turn55_PalletHolder_6_size">
-            <Height Name="Turn55_PalletHolder_6_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Turn55_PalletHolder_6_height" Value="100.0"/>
             <Width Name="Turn55_PalletHolder_6_width" Unit="PIXEL" Value="315.0"/>
           </Size>
         </Representation>
@@ -12664,7 +12664,7 @@
             <Z Name="Turn55Robot_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Turn55Robot_NAVTOP_size">
-            <Height Name="Turn55Robot_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Turn55Robot_NAVTOP_height" Value="100.0"/>
             <Width Name="Turn55Robot_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -12685,7 +12685,7 @@
             <Z Name="Turn55Robot_Turn55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Turn55Robot_Turn55_size">
-            <Height Name="Turn55Robot_Turn55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Turn55Robot_Turn55_height" Value="100.0"/>
             <Width Name="Turn55Robot_Turn55_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -12736,7 +12736,7 @@
             <Z Name="Turn55CNC_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Turn55CNC_NAVTOP_size">
-            <Height Name="Turn55CNC_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Turn55CNC_NAVTOP_height" Value="100.0"/>
             <Width Name="Turn55CNC_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -12757,7 +12757,7 @@
             <Z Name="Turn55CNC_Turn55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Turn55CNC_Turn55_size">
-            <Height Name="Turn55CNC_Turn55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Turn55CNC_Turn55_height" Value="100.0"/>
             <Width Name="Turn55CNC_Turn55_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -12857,7 +12857,7 @@
             <Z Name="TurnRobotGripper_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="TurnRobotGripper_NAVTOP_size">
-            <Height Name="TurnRobotGripper_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="TurnRobotGripper_NAVTOP_height" Value="100.0"/>
             <Width Name="TurnRobotGripper_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -12878,7 +12878,7 @@
             <Z Name="TurnRobotGripper_Turn55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="TurnRobotGripper_Turn55_size">
-            <Height Name="TurnRobotGripper_Turn55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="TurnRobotGripper_Turn55_height" Value="100.0"/>
             <Width Name="TurnRobotGripper_Turn55_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -12901,7 +12901,7 @@
             <Z Name="PalletHolder_4_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletHolder_4_NAVTOP_size">
-            <Height Name="PalletHolder_4_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletHolder_4_NAVTOP_height" Value="100.0"/>
             <Width Name="PalletHolder_4_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -12922,7 +12922,7 @@
             <Z Name="PalletHolder_4_Turn55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletHolder_4_Turn55_size">
-            <Height Name="PalletHolder_4_Turn55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletHolder_4_Turn55_height" Value="100.0"/>
             <Width Name="PalletHolder_4_Turn55_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -12943,7 +12943,7 @@
             <Z Name="PalletHolder_4_PalletSensor_8_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletHolder_4_PalletSensor_8_size">
-            <Height Name="PalletHolder_4_PalletSensor_8_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletHolder_4_PalletSensor_8_height" Value="100.0"/>
             <Width Name="PalletHolder_4_PalletSensor_8_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -13013,7 +13013,7 @@
             <Z Name="PalletSensor_8_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletSensor_8_NAVTOP_size">
-            <Height Name="PalletSensor_8_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletSensor_8_NAVTOP_height" Value="100.0"/>
             <Width Name="PalletSensor_8_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -13034,7 +13034,7 @@
             <Z Name="PalletSensor_8_PalletHolder_4_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletSensor_8_PalletHolder_4_size">
-            <Height Name="PalletSensor_8_PalletHolder_4_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletSensor_8_PalletHolder_4_height" Value="100.0"/>
             <Width Name="PalletSensor_8_PalletHolder_4_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -13057,7 +13057,7 @@
             <Z Name="PalletHolder_5_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletHolder_5_NAVTOP_size">
-            <Height Name="PalletHolder_5_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletHolder_5_NAVTOP_height" Value="100.0"/>
             <Width Name="PalletHolder_5_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -13078,7 +13078,7 @@
             <Z Name="PalletHolder_5_Turn55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletHolder_5_Turn55_size">
-            <Height Name="PalletHolder_5_Turn55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletHolder_5_Turn55_height" Value="100.0"/>
             <Width Name="PalletHolder_5_Turn55_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -13099,7 +13099,7 @@
             <Z Name="PalletHolder_5_PalletSensor_9_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletHolder_5_PalletSensor_9_size">
-            <Height Name="PalletHolder_5_PalletSensor_9_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletHolder_5_PalletSensor_9_height" Value="100.0"/>
             <Width Name="PalletHolder_5_PalletSensor_9_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -13169,7 +13169,7 @@
             <Z Name="PalletSensor_9_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletSensor_9_NAVTOP_size">
-            <Height Name="PalletSensor_9_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletSensor_9_NAVTOP_height" Value="100.0"/>
             <Width Name="PalletSensor_9_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -13190,7 +13190,7 @@
             <Z Name="PalletSensor_9_PalletHolder_5_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletSensor_9_PalletHolder_5_size">
-            <Height Name="PalletSensor_9_PalletHolder_5_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletSensor_9_PalletHolder_5_height" Value="100.0"/>
             <Width Name="PalletSensor_9_PalletHolder_5_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -13213,7 +13213,7 @@
             <Z Name="PalletHolder_6_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletHolder_6_NAVTOP_size">
-            <Height Name="PalletHolder_6_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletHolder_6_NAVTOP_height" Value="100.0"/>
             <Width Name="PalletHolder_6_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -13234,7 +13234,7 @@
             <Z Name="PalletHolder_6_Turn55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletHolder_6_Turn55_size">
-            <Height Name="PalletHolder_6_Turn55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletHolder_6_Turn55_height" Value="100.0"/>
             <Width Name="PalletHolder_6_Turn55_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -13255,7 +13255,7 @@
             <Z Name="PalletHolder_6_PalletSensor_10_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletHolder_6_PalletSensor_10_size">
-            <Height Name="PalletHolder_6_PalletSensor_10_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletHolder_6_PalletSensor_10_height" Value="100.0"/>
             <Width Name="PalletHolder_6_PalletSensor_10_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -13325,7 +13325,7 @@
             <Z Name="PalletSensor_10_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletSensor_10_NAVTOP_size">
-            <Height Name="PalletSensor_10_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletSensor_10_NAVTOP_height" Value="100.0"/>
             <Width Name="PalletSensor_10_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -13346,7 +13346,7 @@
             <Z Name="PalletSensor_10_PalletHolder_6_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletSensor_10_PalletHolder_6_size">
-            <Height Name="PalletSensor_10_PalletHolder_6_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletSensor_10_PalletHolder_6_height" Value="100.0"/>
             <Width Name="PalletSensor_10_PalletHolder_6_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -13425,7 +13425,7 @@
             <Z Name="AssemblyRH5A55_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="AssemblyRH5A55_NAVTOP_size">
-            <Height Name="AssemblyRH5A55_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="AssemblyRH5A55_NAVTOP_height" Value="100.0"/>
             <Width Name="AssemblyRH5A55_NAVTOP_width" Unit="PIXEL" Value="179.0"/>
           </Size>
         </Representation>
@@ -13446,7 +13446,7 @@
             <Z Name="AssemblyRH5A55_PalletSensor_12_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="AssemblyRH5A55_PalletSensor_12_size">
-            <Height Name="AssemblyRH5A55_PalletSensor_12_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="AssemblyRH5A55_PalletSensor_12_height" Value="100.0"/>
             <Width Name="AssemblyRH5A55_PalletSensor_12_width" Unit="PIXEL" Value="179.0"/>
           </Size>
         </Representation>
@@ -13467,7 +13467,7 @@
             <Z Name="AssemblyRH5A55_MagazinInstrument_1_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="AssemblyRH5A55_MagazinInstrument_1_size">
-            <Height Name="AssemblyRH5A55_MagazinInstrument_1_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="AssemblyRH5A55_MagazinInstrument_1_height" Value="100.0"/>
             <Width Name="AssemblyRH5A55_MagazinInstrument_1_width" Unit="PIXEL" Value="179.0"/>
           </Size>
         </Representation>
@@ -13488,7 +13488,7 @@
             <Z Name="AssemblyRH5A55_MagazinInstrument_2_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="AssemblyRH5A55_MagazinInstrument_2_size">
-            <Height Name="AssemblyRH5A55_MagazinInstrument_2_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="AssemblyRH5A55_MagazinInstrument_2_height" Value="100.0"/>
             <Width Name="AssemblyRH5A55_MagazinInstrument_2_width" Unit="PIXEL" Value="179.0"/>
           </Size>
         </Representation>
@@ -13509,7 +13509,7 @@
             <Z Name="AssemblyRH5A55_AssemblyRH5A55VisionData_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="AssemblyRH5A55_AssemblyRH5A55VisionData_size">
-            <Height Name="AssemblyRH5A55_AssemblyRH5A55VisionData_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="AssemblyRH5A55_AssemblyRH5A55VisionData_height" Value="100.0"/>
             <Width Name="AssemblyRH5A55_AssemblyRH5A55VisionData_width" Unit="PIXEL" Value="179.0"/>
           </Size>
         </Representation>
@@ -13530,7 +13530,7 @@
             <Z Name="AssemblyRH5A55_PalletSensor_14_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="AssemblyRH5A55_PalletSensor_14_size">
-            <Height Name="AssemblyRH5A55_PalletSensor_14_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="AssemblyRH5A55_PalletSensor_14_height" Value="100.0"/>
             <Width Name="AssemblyRH5A55_PalletSensor_14_width" Unit="PIXEL" Value="179.0"/>
           </Size>
         </Representation>
@@ -13551,7 +13551,7 @@
             <Z Name="AssemblyRH5A55_RobotGripper_1_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="AssemblyRH5A55_RobotGripper_1_size">
-            <Height Name="AssemblyRH5A55_RobotGripper_1_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="AssemblyRH5A55_RobotGripper_1_height" Value="100.0"/>
             <Width Name="AssemblyRH5A55_RobotGripper_1_width" Unit="PIXEL" Value="179.0"/>
           </Size>
         </Representation>
@@ -13572,7 +13572,7 @@
             <Z Name="AssemblyRH5A55_PenMagazin_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="AssemblyRH5A55_PenMagazin_size">
-            <Height Name="AssemblyRH5A55_PenMagazin_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="AssemblyRH5A55_PenMagazin_height" Value="100.0"/>
             <Width Name="AssemblyRH5A55_PenMagazin_width" Unit="PIXEL" Value="179.0"/>
           </Size>
         </Representation>
@@ -13593,7 +13593,7 @@
             <Z Name="AssemblyRH5A55_PalletHolder_7_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="AssemblyRH5A55_PalletHolder_7_size">
-            <Height Name="AssemblyRH5A55_PalletHolder_7_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="AssemblyRH5A55_PalletHolder_7_height" Value="100.0"/>
             <Width Name="AssemblyRH5A55_PalletHolder_7_width" Unit="PIXEL" Value="179.0"/>
           </Size>
         </Representation>
@@ -13614,7 +13614,7 @@
             <Z Name="AssemblyRH5A55_PalletSensor_11_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="AssemblyRH5A55_PalletSensor_11_size">
-            <Height Name="AssemblyRH5A55_PalletSensor_11_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="AssemblyRH5A55_PalletSensor_11_height" Value="100.0"/>
             <Width Name="AssemblyRH5A55_PalletSensor_11_width" Unit="PIXEL" Value="179.0"/>
           </Size>
         </Representation>
@@ -13635,7 +13635,7 @@
             <Z Name="AssemblyRH5A55_PalletHolder_8_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="AssemblyRH5A55_PalletHolder_8_size">
-            <Height Name="AssemblyRH5A55_PalletHolder_8_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="AssemblyRH5A55_PalletHolder_8_height" Value="100.0"/>
             <Width Name="AssemblyRH5A55_PalletHolder_8_width" Unit="PIXEL" Value="179.0"/>
           </Size>
         </Representation>
@@ -13656,7 +13656,7 @@
             <Z Name="AssemblyRH5A55_PalletSensor_13_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="AssemblyRH5A55_PalletSensor_13_size">
-            <Height Name="AssemblyRH5A55_PalletSensor_13_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="AssemblyRH5A55_PalletSensor_13_height" Value="100.0"/>
             <Width Name="AssemblyRH5A55_PalletSensor_13_width" Unit="PIXEL" Value="179.0"/>
           </Size>
         </Representation>
@@ -13677,7 +13677,7 @@
             <Z Name="AssemblyRH5A55_PalletHolder_9_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="AssemblyRH5A55_PalletHolder_9_size">
-            <Height Name="AssemblyRH5A55_PalletHolder_9_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="AssemblyRH5A55_PalletHolder_9_height" Value="100.0"/>
             <Width Name="AssemblyRH5A55_PalletHolder_9_width" Unit="PIXEL" Value="179.0"/>
           </Size>
         </Representation>
@@ -13698,7 +13698,7 @@
             <Z Name="AssemblyRH5A55_AssemblyRH5A55Robot_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="AssemblyRH5A55_AssemblyRH5A55Robot_size">
-            <Height Name="AssemblyRH5A55_AssemblyRH5A55Robot_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="AssemblyRH5A55_AssemblyRH5A55Robot_height" Value="100.0"/>
             <Width Name="AssemblyRH5A55_AssemblyRH5A55Robot_width" Unit="PIXEL" Value="179.0"/>
           </Size>
         </Representation>
@@ -13719,7 +13719,7 @@
             <Z Name="AssemblyRH5A55_AssemblyRH5A55VisionControl_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="AssemblyRH5A55_AssemblyRH5A55VisionControl_size">
-            <Height Name="AssemblyRH5A55_AssemblyRH5A55VisionControl_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="AssemblyRH5A55_AssemblyRH5A55VisionControl_height" Value="100.0"/>
             <Width Name="AssemblyRH5A55_AssemblyRH5A55VisionControl_width" Unit="PIXEL" Value="179.0"/>
           </Size>
         </Representation>
@@ -13740,7 +13740,7 @@
             <Z Name="AssemblyRH5A55_PalletHolder_10_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="AssemblyRH5A55_PalletHolder_10_size">
-            <Height Name="AssemblyRH5A55_PalletHolder_10_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="AssemblyRH5A55_PalletHolder_10_height" Value="100.0"/>
             <Width Name="AssemblyRH5A55_PalletHolder_10_width" Unit="PIXEL" Value="179.0"/>
           </Size>
         </Representation>
@@ -15235,7 +15235,7 @@
             <Z Name="AssemblyRH5A55Robot_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="AssemblyRH5A55Robot_NAVTOP_size">
-            <Height Name="AssemblyRH5A55Robot_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="AssemblyRH5A55Robot_NAVTOP_height" Value="100.0"/>
             <Width Name="AssemblyRH5A55Robot_NAVTOP_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -15256,7 +15256,7 @@
             <Z Name="AssemblyRH5A55Robot_AssemblyRH5A55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="AssemblyRH5A55Robot_AssemblyRH5A55_size">
-            <Height Name="AssemblyRH5A55Robot_AssemblyRH5A55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="AssemblyRH5A55Robot_AssemblyRH5A55_height" Value="100.0"/>
             <Width Name="AssemblyRH5A55Robot_AssemblyRH5A55_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -15578,7 +15578,7 @@
             <Z Name="AssemblyRH5A55VisionData_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="AssemblyRH5A55VisionData_NAVTOP_size">
-            <Height Name="AssemblyRH5A55VisionData_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="AssemblyRH5A55VisionData_NAVTOP_height" Value="100.0"/>
             <Width Name="AssemblyRH5A55VisionData_NAVTOP_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -15599,7 +15599,7 @@
             <Z Name="AssemblyRH5A55VisionData_AssemblyRH5A55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="AssemblyRH5A55VisionData_AssemblyRH5A55_size">
-            <Height Name="AssemblyRH5A55VisionData_AssemblyRH5A55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="AssemblyRH5A55VisionData_AssemblyRH5A55_height" Value="100.0"/>
             <Width Name="AssemblyRH5A55VisionData_AssemblyRH5A55_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -15699,7 +15699,7 @@
             <Z Name="RobotGripper_1_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="RobotGripper_1_NAVTOP_size">
-            <Height Name="RobotGripper_1_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="RobotGripper_1_NAVTOP_height" Value="100.0"/>
             <Width Name="RobotGripper_1_NAVTOP_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -15720,7 +15720,7 @@
             <Z Name="RobotGripper_1_AssemblyRH5A55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="RobotGripper_1_AssemblyRH5A55_size">
-            <Height Name="RobotGripper_1_AssemblyRH5A55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="RobotGripper_1_AssemblyRH5A55_height" Value="100.0"/>
             <Width Name="RobotGripper_1_AssemblyRH5A55_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -15743,7 +15743,7 @@
             <Z Name="PalletHolder_7_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletHolder_7_NAVTOP_size">
-            <Height Name="PalletHolder_7_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletHolder_7_NAVTOP_height" Value="100.0"/>
             <Width Name="PalletHolder_7_NAVTOP_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -15764,7 +15764,7 @@
             <Z Name="PalletHolder_7_AssemblyRH5A55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletHolder_7_AssemblyRH5A55_size">
-            <Height Name="PalletHolder_7_AssemblyRH5A55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletHolder_7_AssemblyRH5A55_height" Value="100.0"/>
             <Width Name="PalletHolder_7_AssemblyRH5A55_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -15787,7 +15787,7 @@
             <Z Name="PalletHolder_8_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletHolder_8_NAVTOP_size">
-            <Height Name="PalletHolder_8_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletHolder_8_NAVTOP_height" Value="100.0"/>
             <Width Name="PalletHolder_8_NAVTOP_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -15808,7 +15808,7 @@
             <Z Name="PalletHolder_8_AssemblyRH5A55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletHolder_8_AssemblyRH5A55_size">
-            <Height Name="PalletHolder_8_AssemblyRH5A55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletHolder_8_AssemblyRH5A55_height" Value="100.0"/>
             <Width Name="PalletHolder_8_AssemblyRH5A55_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -15831,7 +15831,7 @@
             <Z Name="PalletHolder_9_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletHolder_9_NAVTOP_size">
-            <Height Name="PalletHolder_9_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletHolder_9_NAVTOP_height" Value="100.0"/>
             <Width Name="PalletHolder_9_NAVTOP_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -15852,7 +15852,7 @@
             <Z Name="PalletHolder_9_AssemblyRH5A55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletHolder_9_AssemblyRH5A55_size">
-            <Height Name="PalletHolder_9_AssemblyRH5A55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletHolder_9_AssemblyRH5A55_height" Value="100.0"/>
             <Width Name="PalletHolder_9_AssemblyRH5A55_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -15875,7 +15875,7 @@
             <Z Name="PalletHolder_10_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletHolder_10_NAVTOP_size">
-            <Height Name="PalletHolder_10_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletHolder_10_NAVTOP_height" Value="100.0"/>
             <Width Name="PalletHolder_10_NAVTOP_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -15896,7 +15896,7 @@
             <Z Name="PalletHolder_10_AssemblyRH5A55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletHolder_10_AssemblyRH5A55_size">
-            <Height Name="PalletHolder_10_AssemblyRH5A55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletHolder_10_AssemblyRH5A55_height" Value="100.0"/>
             <Width Name="PalletHolder_10_AssemblyRH5A55_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -15919,7 +15919,7 @@
             <Z Name="MagazinInstrument_1_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="MagazinInstrument_1_NAVTOP_size">
-            <Height Name="MagazinInstrument_1_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="MagazinInstrument_1_NAVTOP_height" Value="100.0"/>
             <Width Name="MagazinInstrument_1_NAVTOP_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -15940,7 +15940,7 @@
             <Z Name="MagazinInstrument_1_AssemblyRH5A55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="MagazinInstrument_1_AssemblyRH5A55_size">
-            <Height Name="MagazinInstrument_1_AssemblyRH5A55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="MagazinInstrument_1_AssemblyRH5A55_height" Value="100.0"/>
             <Width Name="MagazinInstrument_1_AssemblyRH5A55_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -15963,7 +15963,7 @@
             <Z Name="PenMagazin_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PenMagazin_NAVTOP_size">
-            <Height Name="PenMagazin_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PenMagazin_NAVTOP_height" Value="100.0"/>
             <Width Name="PenMagazin_NAVTOP_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -15984,7 +15984,7 @@
             <Z Name="PenMagazin_AssemblyRH5A55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PenMagazin_AssemblyRH5A55_size">
-            <Height Name="PenMagazin_AssemblyRH5A55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PenMagazin_AssemblyRH5A55_height" Value="100.0"/>
             <Width Name="PenMagazin_AssemblyRH5A55_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -16007,7 +16007,7 @@
             <Z Name="MagazinInstrument_2_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="MagazinInstrument_2_NAVTOP_size">
-            <Height Name="MagazinInstrument_2_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="MagazinInstrument_2_NAVTOP_height" Value="100.0"/>
             <Width Name="MagazinInstrument_2_NAVTOP_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -16028,7 +16028,7 @@
             <Z Name="MagazinInstrument_2_AssemblyRH5A55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="MagazinInstrument_2_AssemblyRH5A55_size">
-            <Height Name="MagazinInstrument_2_AssemblyRH5A55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="MagazinInstrument_2_AssemblyRH5A55_height" Value="100.0"/>
             <Width Name="MagazinInstrument_2_AssemblyRH5A55_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -16098,7 +16098,7 @@
             <Z Name="PalletSensor_11_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletSensor_11_NAVTOP_size">
-            <Height Name="PalletSensor_11_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletSensor_11_NAVTOP_height" Value="100.0"/>
             <Width Name="PalletSensor_11_NAVTOP_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -16119,7 +16119,7 @@
             <Z Name="PalletSensor_11_AssemblyRH5A55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletSensor_11_AssemblyRH5A55_size">
-            <Height Name="PalletSensor_11_AssemblyRH5A55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletSensor_11_AssemblyRH5A55_height" Value="100.0"/>
             <Width Name="PalletSensor_11_AssemblyRH5A55_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -16189,7 +16189,7 @@
             <Z Name="PalletSensor_12_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletSensor_12_NAVTOP_size">
-            <Height Name="PalletSensor_12_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletSensor_12_NAVTOP_height" Value="100.0"/>
             <Width Name="PalletSensor_12_NAVTOP_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -16210,7 +16210,7 @@
             <Z Name="PalletSensor_12_AssemblyRH5A55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletSensor_12_AssemblyRH5A55_size">
-            <Height Name="PalletSensor_12_AssemblyRH5A55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletSensor_12_AssemblyRH5A55_height" Value="100.0"/>
             <Width Name="PalletSensor_12_AssemblyRH5A55_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -16280,7 +16280,7 @@
             <Z Name="PalletSensor_13_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletSensor_13_NAVTOP_size">
-            <Height Name="PalletSensor_13_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletSensor_13_NAVTOP_height" Value="100.0"/>
             <Width Name="PalletSensor_13_NAVTOP_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -16301,7 +16301,7 @@
             <Z Name="PalletSensor_13_AssemblyRH5A55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletSensor_13_AssemblyRH5A55_size">
-            <Height Name="PalletSensor_13_AssemblyRH5A55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletSensor_13_AssemblyRH5A55_height" Value="100.0"/>
             <Width Name="PalletSensor_13_AssemblyRH5A55_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -16371,7 +16371,7 @@
             <Z Name="PalletSensor_14_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletSensor_14_NAVTOP_size">
-            <Height Name="PalletSensor_14_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletSensor_14_NAVTOP_height" Value="100.0"/>
             <Width Name="PalletSensor_14_NAVTOP_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -16392,7 +16392,7 @@
             <Z Name="PalletSensor_14_AssemblyRH5A55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="PalletSensor_14_AssemblyRH5A55_size">
-            <Height Name="PalletSensor_14_AssemblyRH5A55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="PalletSensor_14_AssemblyRH5A55_height" Value="100.0"/>
             <Width Name="PalletSensor_14_AssemblyRH5A55_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -16415,7 +16415,7 @@
             <Z Name="AssemblyRH5A55VisionControl_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="AssemblyRH5A55VisionControl_NAVTOP_size">
-            <Height Name="AssemblyRH5A55VisionControl_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="AssemblyRH5A55VisionControl_NAVTOP_height" Value="100.0"/>
             <Width Name="AssemblyRH5A55VisionControl_NAVTOP_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -16436,7 +16436,7 @@
             <Z Name="AssemblyRH5A55VisionControl_AssemblyRH5A55_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="AssemblyRH5A55VisionControl_AssemblyRH5A55_size">
-            <Height Name="AssemblyRH5A55VisionControl_AssemblyRH5A55_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="AssemblyRH5A55VisionControl_AssemblyRH5A55_height" Value="100.0"/>
             <Width Name="AssemblyRH5A55VisionControl_AssemblyRH5A55_width" Unit="PIXEL" Value="317.0"/>
           </Size>
         </Representation>
@@ -16459,7 +16459,7 @@
             <Z Name="Quality_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Quality_NAVTOP_size">
-            <Height Name="Quality_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Quality_NAVTOP_height" Value="100.0"/>
             <Width Name="Quality_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -16480,7 +16480,7 @@
             <Z Name="Quality_QualityPLC_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="Quality_QualityPLC_size">
-            <Height Name="Quality_QualityPLC_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="Quality_QualityPLC_height" Value="100.0"/>
             <Width Name="Quality_QualityPLC_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -18590,7 +18590,7 @@
             <Z Name="QualityPLC_NAVTOP_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="QualityPLC_NAVTOP_size">
-            <Height Name="QualityPLC_NAVTOP_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="QualityPLC_NAVTOP_height" Value="100.0"/>
             <Width Name="QualityPLC_NAVTOP_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>
@@ -18611,7 +18611,7 @@
             <Z Name="QualityPLC_Quality_pos_z" Unit="PIXEL"/>
           </Position>
           <Size Name="QualityPLC_Quality_size">
-            <Height Name="QualityPLC_Quality_height" Unit="PIXEL" Value="100.0"/>
+            <Height Name="QualityPLC_Quality_height" Value="100.0"/>
             <Width Name="QualityPLC_Quality_width" Unit="PIXEL" Value="300.0"/>
           </Size>
         </Representation>

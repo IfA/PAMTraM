@@ -9,7 +9,6 @@ import pamtram.NamedElement;
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.AttributeValueConstraint;
-import pamtram.metamodel.AttributeValueSpecification;
 import pamtram.metamodel.BeginningMatcher;
 import pamtram.metamodel.CaseSensitiveConstraint;
 import pamtram.metamodel.ContainmentReference;
@@ -257,19 +256,11 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.ATTRIBUTE_VALUE_SPECIFICATION: {
-				AttributeValueSpecification attributeValueSpecification = (AttributeValueSpecification)theEObject;
-				T result = caseAttributeValueSpecification(attributeValueSpecification);
-				if (result == null) result = caseNamedElement(attributeValueSpecification);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case MetamodelPackage.EQUALITY_MATCHER: {
 				EqualityMatcher equalityMatcher = (EqualityMatcher)theEObject;
 				T result = caseEqualityMatcher(equalityMatcher);
 				if (result == null) result = caseCaseSensitiveConstraint(equalityMatcher);
 				if (result == null) result = caseAttributeValueConstraint(equalityMatcher);
-				if (result == null) result = caseAttributeValueSpecification(equalityMatcher);
 				if (result == null) result = caseNamedElement(equalityMatcher);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -277,7 +268,6 @@ public class MetamodelSwitch<T> extends Switch<T> {
 			case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT: {
 				AttributeValueConstraint attributeValueConstraint = (AttributeValueConstraint)theEObject;
 				T result = caseAttributeValueConstraint(attributeValueConstraint);
-				if (result == null) result = caseAttributeValueSpecification(attributeValueConstraint);
 				if (result == null) result = caseNamedElement(attributeValueConstraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -287,7 +277,6 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				T result = caseSubstringMatcher(substringMatcher);
 				if (result == null) result = caseCaseSensitiveConstraint(substringMatcher);
 				if (result == null) result = caseAttributeValueConstraint(substringMatcher);
-				if (result == null) result = caseAttributeValueSpecification(substringMatcher);
 				if (result == null) result = caseNamedElement(substringMatcher);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -297,7 +286,6 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				T result = caseBeginningMatcher(beginningMatcher);
 				if (result == null) result = caseCaseSensitiveConstraint(beginningMatcher);
 				if (result == null) result = caseAttributeValueConstraint(beginningMatcher);
-				if (result == null) result = caseAttributeValueSpecification(beginningMatcher);
 				if (result == null) result = caseNamedElement(beginningMatcher);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -307,7 +295,6 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				T result = caseEndingMatcher(endingMatcher);
 				if (result == null) result = caseCaseSensitiveConstraint(endingMatcher);
 				if (result == null) result = caseAttributeValueConstraint(endingMatcher);
-				if (result == null) result = caseAttributeValueSpecification(endingMatcher);
 				if (result == null) result = caseNamedElement(endingMatcher);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -316,7 +303,6 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				RegExMatcher regExMatcher = (RegExMatcher)theEObject;
 				T result = caseRegExMatcher(regExMatcher);
 				if (result == null) result = caseAttributeValueConstraint(regExMatcher);
-				if (result == null) result = caseAttributeValueSpecification(regExMatcher);
 				if (result == null) result = caseNamedElement(regExMatcher);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -325,7 +311,6 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				CaseSensitiveConstraint caseSensitiveConstraint = (CaseSensitiveConstraint)theEObject;
 				T result = caseCaseSensitiveConstraint(caseSensitiveConstraint);
 				if (result == null) result = caseAttributeValueConstraint(caseSensitiveConstraint);
-				if (result == null) result = caseAttributeValueSpecification(caseSensitiveConstraint);
 				if (result == null) result = caseNamedElement(caseSensitiveConstraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -601,21 +586,6 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseVirtualAttribute(VirtualAttribute object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Attribute Value Specification</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Attribute Value Specification</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAttributeValueSpecification(AttributeValueSpecification object) {
 		return null;
 	}
 

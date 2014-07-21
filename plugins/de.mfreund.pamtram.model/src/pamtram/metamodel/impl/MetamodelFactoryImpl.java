@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.AttributeValueConstraintType;
-import pamtram.metamodel.AttributeValueSpecification;
 import pamtram.metamodel.BeginningMatcher;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.EndingMatcher;
@@ -81,7 +80,6 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE: return createSourceSectionAttribute();
 			case MetamodelPackage.ACTUAL_ATTRIBUTE: return createActualAttribute();
 			case MetamodelPackage.VIRTUAL_ATTRIBUTE: return createVirtualAttribute();
-			case MetamodelPackage.ATTRIBUTE_VALUE_SPECIFICATION: return createAttributeValueSpecification();
 			case MetamodelPackage.EQUALITY_MATCHER: return createEqualityMatcher();
 			case MetamodelPackage.SUBSTRING_MATCHER: return createSubstringMatcher();
 			case MetamodelPackage.BEGINNING_MATCHER: return createBeginningMatcher();
@@ -214,16 +212,6 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	public VirtualAttribute createVirtualAttribute() {
 		VirtualAttributeImpl virtualAttribute = new VirtualAttributeImpl();
 		return virtualAttribute;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public AttributeValueSpecification createAttributeValueSpecification() {
-		AttributeValueSpecificationImpl attributeValueSpecification = new AttributeValueSpecificationImpl();
-		return attributeValueSpecification;
 	}
 
 	/**

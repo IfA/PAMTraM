@@ -35,23 +35,23 @@ public class EqualityMatcherImpl extends CaseSensitiveConstraintImpl implements
 		return MetamodelPackage.Literals.EQUALITY_MATCHER;
 	}
 
-	/* (non-Javadoc)
-	 * @see pamtram.metamodel.impl.AttributeValueSpecificationImpl#check(java.lang.String)
-	 */
+
 	@Override
-	public boolean check(final String attr) {
+	public boolean checkConstraint(String attrValue) {
 		String specValue;
-		String attrValue;
+		String newAttrValue;
 		if (this.caseSensitive) {
 			specValue = value;
-			attrValue = attr;
+			newAttrValue = attrValue;
 		} else {
 			specValue = this.value.toLowerCase();
-			attrValue = attr.toLowerCase();
+			newAttrValue = attrValue.toLowerCase();
 		}
 
-		return (specValue.equals(attrValue) && this.type.equals(AttributeValueConstraintType.INCLUSION))
-				|| (!specValue.equals(attrValue) && this.type.equals(AttributeValueConstraintType.EXCLUSION));
+		return (specValue.equals(newAttrValue) && this.type.equals(AttributeValueConstraintType.INCLUSION))
+				|| (!specValue.equals(newAttrValue) && this.type.equals(AttributeValueConstraintType.EXCLUSION));
 	}
+	
+	
 
 } // EqualityMatcherImpl

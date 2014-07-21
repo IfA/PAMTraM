@@ -35,21 +35,17 @@ public class BeginningMatcherImpl extends CaseSensitiveConstraintImpl implements
 		return MetamodelPackage.Literals.BEGINNING_MATCHER;
 	}
 
-
-	/* (non-Javadoc)
-	 * @see pamtram.metamodel.impl.AttributeValueSpecificationImpl#check(java.lang.String)
-	 */
 	@Override
-	public boolean check(final String attr) {
+	public boolean checkConstraint(String attrValue) {
 		boolean condition;
 		if (caseSensitive) {
-			condition = attr.startsWith(value);
+			condition = attrValue.startsWith(value);
 		} else {
-			condition = attr.toLowerCase().startsWith(value.toLowerCase());
+			condition = attrValue.toLowerCase().startsWith(value.toLowerCase());
 		}
 
 		return (condition && type.equals(AttributeValueConstraintType.INCLUSION))
 				|| (!condition && type.equals(AttributeValueConstraintType.EXCLUSION));
 	}
-
+	
 } // BeginningMatcherImpl

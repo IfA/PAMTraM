@@ -35,20 +35,17 @@ public class EndingMatcherImpl extends CaseSensitiveConstraintImpl implements
 		return MetamodelPackage.Literals.ENDING_MATCHER;
 	}
 
-	/* (non-Javadoc)
-	 * @see pamtram.metamodel.impl.AttributeValueSpecificationImpl#check(java.lang.String)
-	 */
 	@Override
-	public boolean check(final String attr) {
+	public boolean checkConstraint(String attrValue) {
 		boolean condition;
 		if (this.caseSensitive) {
-			condition = attr.endsWith(value);
+			condition = attrValue.endsWith(value);
 		} else {
-			condition = attr.toLowerCase().endsWith(value.toLowerCase());
+			condition = attrValue.toLowerCase().endsWith(value.toLowerCase());
 		}
 		return (condition && type.equals(AttributeValueConstraintType.INCLUSION))
 				|| (!condition && type.equals(AttributeValueConstraintType.EXCLUSION));
-
 	}
+	
 
 } // EndingMatcherImpl

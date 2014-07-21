@@ -10,7 +10,6 @@ import pamtram.NamedElement;
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.AttributeValueConstraint;
-import pamtram.metamodel.AttributeValueSpecification;
 import pamtram.metamodel.BeginningMatcher;
 import pamtram.metamodel.CaseSensitiveConstraint;
 import pamtram.metamodel.ContainmentReference;
@@ -161,10 +160,6 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseVirtualAttribute(VirtualAttribute object) {
 				return createVirtualAttributeAdapter();
-			}
-			@Override
-			public Adapter caseAttributeValueSpecification(AttributeValueSpecification object) {
-				return createAttributeValueSpecificationAdapter();
 			}
 			@Override
 			public Adapter caseEqualityMatcher(EqualityMatcher object) {
@@ -467,20 +462,6 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createVirtualAttributeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.AttributeValueSpecification <em>Attribute Value Specification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.metamodel.AttributeValueSpecification
-	 * @generated
-	 */
-	public Adapter createAttributeValueSpecificationAdapter() {
 		return null;
 	}
 

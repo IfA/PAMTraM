@@ -35,19 +35,13 @@ public class RegExMatcherImpl extends AttributeValueConstraintImpl implements
 		return MetamodelPackage.Literals.REG_EX_MATCHER;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * pamtram.metamodel.impl.AttributeValueSpecificationImpl#check(java.lang
-	 * .String)
-	 */
 	@Override
-	public boolean check(final String attr) {
-		boolean condition = attr.matches(this.value);
+	public boolean checkConstraint(String attrValue) {
+		boolean condition = attrValue.matches(this.value);
 		return (condition && this.type.equals(AttributeValueConstraintType.INCLUSION))
 				|| (!condition && this.type.equals(AttributeValueConstraintType.EXCLUSION));
-
 	}
+	
+	
 
 } // RegExMatcherImpl

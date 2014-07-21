@@ -103,15 +103,6 @@ public interface MetamodelFactory extends EFactory {
 	VirtualAttribute createVirtualAttribute();
 
 	/**
-	 * Returns a new object of class '<em>Attribute Value Specification</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Attribute Value Specification</em>'.
-	 * @generated
-	 */
-	AttributeValueSpecification createAttributeValueSpecification();
-
-	/**
 	 * Returns a new object of class '<em>Equality Matcher</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -111,7 +111,6 @@ public abstract class AttributeMappingImpl extends MappingHintImpl implements At
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {

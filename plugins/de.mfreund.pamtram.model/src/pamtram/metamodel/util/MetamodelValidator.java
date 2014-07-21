@@ -12,7 +12,6 @@ import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.AttributeValueConstraintType;
-import pamtram.metamodel.AttributeValueSpecification;
 import pamtram.metamodel.BeginningMatcher;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.CaseSensitiveConstraint;
@@ -145,8 +144,6 @@ public class MetamodelValidator extends EObjectValidator {
 				return validateActualAttribute((ActualAttribute)value, diagnostics, context);
 			case MetamodelPackage.VIRTUAL_ATTRIBUTE:
 				return validateVirtualAttribute((VirtualAttribute)value, diagnostics, context);
-			case MetamodelPackage.ATTRIBUTE_VALUE_SPECIFICATION:
-				return validateAttributeValueSpecification((AttributeValueSpecification)value, diagnostics, context);
 			case MetamodelPackage.EQUALITY_MATCHER:
 				return validateEqualityMatcher((EqualityMatcher)value, diagnostics, context);
 			case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT:
@@ -605,15 +602,6 @@ public class MetamodelValidator extends EObjectValidator {
 	 */
 	public boolean validateVirtualAttribute(VirtualAttribute virtualAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(virtualAttribute, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateAttributeValueSpecification(AttributeValueSpecification attributeValueSpecification, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(attributeValueSpecification, diagnostics, context);
 	}
 
 	/**

@@ -2,14 +2,19 @@
  */
 package pamtram.metamodel.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
@@ -23,6 +28,7 @@ import pamtram.metamodel.SourceSectionClass;
  * <ul>
  *   <li>{@link pamtram.metamodel.impl.SourceSectionAttributeImpl#getOwningClass <em>Owning Class</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.SourceSectionAttributeImpl#getAttribute <em>Attribute</em>}</li>
+ *   <li>{@link pamtram.metamodel.impl.SourceSectionAttributeImpl#getValueConstraint <em>Value Constraint</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,6 +44,16 @@ public class SourceSectionAttributeImpl extends AttributeImpl implements SourceS
 	 * @ordered
 	 */
 	protected EAttribute attribute;
+
+	/**
+	 * The cached value of the '{@link #getValueConstraint() <em>Value Constraint</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValueConstraint()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<AttributeValueConstraint> valueConstraint;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -111,6 +127,18 @@ public class SourceSectionAttributeImpl extends AttributeImpl implements SourceS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<AttributeValueConstraint> getValueConstraint() {
+		if (valueConstraint == null) {
+			valueConstraint = new EObjectContainmentEList<AttributeValueConstraint>(AttributeValueConstraint.class, this, MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT);
+		}
+		return valueConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -132,6 +160,8 @@ public class SourceSectionAttributeImpl extends AttributeImpl implements SourceS
 		switch (featureID) {
 			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__OWNING_CLASS:
 				return eBasicSetContainer(null, MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__OWNING_CLASS, msgs);
+			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
+				return ((InternalEList<?>)getValueConstraint()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -163,6 +193,8 @@ public class SourceSectionAttributeImpl extends AttributeImpl implements SourceS
 			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE:
 				if (resolve) return getAttribute();
 				return basicGetAttribute();
+			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
+				return getValueConstraint();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -172,11 +204,16 @@ public class SourceSectionAttributeImpl extends AttributeImpl implements SourceS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE:
 				setAttribute((EAttribute)newValue);
+				return;
+			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
+				getValueConstraint().clear();
+				getValueConstraint().addAll((Collection<? extends AttributeValueConstraint>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -192,6 +229,9 @@ public class SourceSectionAttributeImpl extends AttributeImpl implements SourceS
 		switch (featureID) {
 			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE:
 				setAttribute((EAttribute)null);
+				return;
+			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
+				getValueConstraint().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -209,6 +249,8 @@ public class SourceSectionAttributeImpl extends AttributeImpl implements SourceS
 				return getOwningClass() != null;
 			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE:
 				return attribute != null;
+			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
+				return valueConstraint != null && !valueConstraint.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

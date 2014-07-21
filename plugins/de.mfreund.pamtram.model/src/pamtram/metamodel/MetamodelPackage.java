@@ -1066,22 +1066,13 @@ public interface MetamodelPackage extends EPackage {
 	int ATTRIBUTE__NAME = META_MODEL_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Value Specification</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE__VALUE_SPECIFICATION = META_MODEL_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Attribute</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_FEATURE_COUNT = META_MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int ATTRIBUTE_FEATURE_COUNT = META_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -1122,15 +1113,6 @@ public interface MetamodelPackage extends EPackage {
 	int SOURCE_SECTION_ATTRIBUTE__NAME = ATTRIBUTE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Value Specification</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOURCE_SECTION_ATTRIBUTE__VALUE_SPECIFICATION = ATTRIBUTE__VALUE_SPECIFICATION;
-
-	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1149,13 +1131,22 @@ public interface MetamodelPackage extends EPackage {
 	int SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE = ATTRIBUTE_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Value Constraint</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT = ATTRIBUTE_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Source Section Attribute</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_ATTRIBUTE_FEATURE_COUNT = ATTRIBUTE_FEATURE_COUNT + 2;
+	int SOURCE_SECTION_ATTRIBUTE_FEATURE_COUNT = ATTRIBUTE_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -1195,15 +1186,6 @@ public interface MetamodelPackage extends EPackage {
 	int TARGET_SECTION_ATTRIBUTE__NAME = ATTRIBUTE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Value Specification</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TARGET_SECTION_ATTRIBUTE__VALUE_SPECIFICATION = ATTRIBUTE__VALUE_SPECIFICATION;
-
-	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1222,13 +1204,22 @@ public interface MetamodelPackage extends EPackage {
 	int TARGET_SECTION_ATTRIBUTE__UNIQUE = ATTRIBUTE_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ATTRIBUTE__VALUE = ATTRIBUTE_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Target Section Attribute</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_ATTRIBUTE_FEATURE_COUNT = ATTRIBUTE_FEATURE_COUNT + 2;
+	int TARGET_SECTION_ATTRIBUTE_FEATURE_COUNT = ATTRIBUTE_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -1268,15 +1259,6 @@ public interface MetamodelPackage extends EPackage {
 	int ACTUAL_ATTRIBUTE__NAME = TARGET_SECTION_ATTRIBUTE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Value Specification</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTUAL_ATTRIBUTE__VALUE_SPECIFICATION = TARGET_SECTION_ATTRIBUTE__VALUE_SPECIFICATION;
-
-	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1293,6 +1275,15 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int ACTUAL_ATTRIBUTE__UNIQUE = TARGET_SECTION_ATTRIBUTE__UNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUAL_ATTRIBUTE__VALUE = TARGET_SECTION_ATTRIBUTE__VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Attribute</b></em>' reference.
@@ -1350,15 +1341,6 @@ public interface MetamodelPackage extends EPackage {
 	int VIRTUAL_ATTRIBUTE__NAME = TARGET_SECTION_ATTRIBUTE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Value Specification</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIRTUAL_ATTRIBUTE__VALUE_SPECIFICATION = TARGET_SECTION_ATTRIBUTE__VALUE_SPECIFICATION;
-
-	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1375,6 +1357,15 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int VIRTUAL_ATTRIBUTE__UNIQUE = TARGET_SECTION_ATTRIBUTE__UNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_ATTRIBUTE__VALUE = TARGET_SECTION_ATTRIBUTE__VALUE;
 
 	/**
 	 * The number of structural features of the '<em>Virtual Attribute</em>' class.
@@ -1404,52 +1395,6 @@ public interface MetamodelPackage extends EPackage {
 	int VIRTUAL_ATTRIBUTE_OPERATION_COUNT = TARGET_SECTION_ATTRIBUTE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.metamodel.impl.AttributeValueSpecificationImpl <em>Attribute Value Specification</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.metamodel.impl.AttributeValueSpecificationImpl
-	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getAttributeValueSpecification()
-	 * @generated
-	 */
-	int ATTRIBUTE_VALUE_SPECIFICATION = 18;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_VALUE_SPECIFICATION__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_VALUE_SPECIFICATION__VALUE = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Attribute Value Specification</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_VALUE_SPECIFICATION_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Attribute Value Specification</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_VALUE_SPECIFICATION_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link pamtram.metamodel.impl.AttributeValueConstraintImpl <em>Attribute Value Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1457,7 +1402,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getAttributeValueConstraint()
 	 * @generated
 	 */
-	int ATTRIBUTE_VALUE_CONSTRAINT = 20;
+	int ATTRIBUTE_VALUE_CONSTRAINT = 19;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1466,16 +1411,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_VALUE_CONSTRAINT__NAME = ATTRIBUTE_VALUE_SPECIFICATION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_VALUE_CONSTRAINT__VALUE = ATTRIBUTE_VALUE_SPECIFICATION__VALUE;
+	int ATTRIBUTE_VALUE_CONSTRAINT__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -1484,7 +1420,16 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_VALUE_CONSTRAINT__TYPE = ATTRIBUTE_VALUE_SPECIFICATION_FEATURE_COUNT + 0;
+	int ATTRIBUTE_VALUE_CONSTRAINT__TYPE = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_VALUE_CONSTRAINT__VALUE = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Attribute Value Constraint</em>' class.
@@ -1493,7 +1438,16 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_VALUE_CONSTRAINT_FEATURE_COUNT = ATTRIBUTE_VALUE_SPECIFICATION_FEATURE_COUNT + 1;
+	int ATTRIBUTE_VALUE_CONSTRAINT_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Check Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Attribute Value Constraint</em>' class.
@@ -1502,7 +1456,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_VALUE_CONSTRAINT_OPERATION_COUNT = ATTRIBUTE_VALUE_SPECIFICATION_OPERATION_COUNT + 0;
+	int ATTRIBUTE_VALUE_CONSTRAINT_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.metamodel.impl.CaseSensitiveConstraintImpl <em>Case Sensitive Constraint</em>}' class.
@@ -1512,7 +1466,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getCaseSensitiveConstraint()
 	 * @generated
 	 */
-	int CASE_SENSITIVE_CONSTRAINT = 25;
+	int CASE_SENSITIVE_CONSTRAINT = 24;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1524,15 +1478,6 @@ public interface MetamodelPackage extends EPackage {
 	int CASE_SENSITIVE_CONSTRAINT__NAME = ATTRIBUTE_VALUE_CONSTRAINT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CASE_SENSITIVE_CONSTRAINT__VALUE = ATTRIBUTE_VALUE_CONSTRAINT__VALUE;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1540,6 +1485,15 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int CASE_SENSITIVE_CONSTRAINT__TYPE = ATTRIBUTE_VALUE_CONSTRAINT__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CASE_SENSITIVE_CONSTRAINT__VALUE = ATTRIBUTE_VALUE_CONSTRAINT__VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Case Sensitive</b></em>' attribute.
@@ -1560,6 +1514,15 @@ public interface MetamodelPackage extends EPackage {
 	int CASE_SENSITIVE_CONSTRAINT_FEATURE_COUNT = ATTRIBUTE_VALUE_CONSTRAINT_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Check Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CASE_SENSITIVE_CONSTRAINT___CHECK_CONSTRAINT__STRING = ATTRIBUTE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING;
+
+	/**
 	 * The number of operations of the '<em>Case Sensitive Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1576,7 +1539,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getEqualityMatcher()
 	 * @generated
 	 */
-	int EQUALITY_MATCHER = 19;
+	int EQUALITY_MATCHER = 18;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1588,15 +1551,6 @@ public interface MetamodelPackage extends EPackage {
 	int EQUALITY_MATCHER__NAME = CASE_SENSITIVE_CONSTRAINT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EQUALITY_MATCHER__VALUE = CASE_SENSITIVE_CONSTRAINT__VALUE;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1604,6 +1558,15 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int EQUALITY_MATCHER__TYPE = CASE_SENSITIVE_CONSTRAINT__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EQUALITY_MATCHER__VALUE = CASE_SENSITIVE_CONSTRAINT__VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Case Sensitive</b></em>' attribute.
@@ -1624,6 +1587,15 @@ public interface MetamodelPackage extends EPackage {
 	int EQUALITY_MATCHER_FEATURE_COUNT = CASE_SENSITIVE_CONSTRAINT_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Check Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EQUALITY_MATCHER___CHECK_CONSTRAINT__STRING = CASE_SENSITIVE_CONSTRAINT___CHECK_CONSTRAINT__STRING;
+
+	/**
 	 * The number of operations of the '<em>Equality Matcher</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1640,7 +1612,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getSubstringMatcher()
 	 * @generated
 	 */
-	int SUBSTRING_MATCHER = 21;
+	int SUBSTRING_MATCHER = 20;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1652,15 +1624,6 @@ public interface MetamodelPackage extends EPackage {
 	int SUBSTRING_MATCHER__NAME = CASE_SENSITIVE_CONSTRAINT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBSTRING_MATCHER__VALUE = CASE_SENSITIVE_CONSTRAINT__VALUE;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1668,6 +1631,15 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int SUBSTRING_MATCHER__TYPE = CASE_SENSITIVE_CONSTRAINT__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBSTRING_MATCHER__VALUE = CASE_SENSITIVE_CONSTRAINT__VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Case Sensitive</b></em>' attribute.
@@ -1688,6 +1660,15 @@ public interface MetamodelPackage extends EPackage {
 	int SUBSTRING_MATCHER_FEATURE_COUNT = CASE_SENSITIVE_CONSTRAINT_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Check Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBSTRING_MATCHER___CHECK_CONSTRAINT__STRING = CASE_SENSITIVE_CONSTRAINT___CHECK_CONSTRAINT__STRING;
+
+	/**
 	 * The number of operations of the '<em>Substring Matcher</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1704,7 +1685,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getBeginningMatcher()
 	 * @generated
 	 */
-	int BEGINNING_MATCHER = 22;
+	int BEGINNING_MATCHER = 21;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1716,15 +1697,6 @@ public interface MetamodelPackage extends EPackage {
 	int BEGINNING_MATCHER__NAME = CASE_SENSITIVE_CONSTRAINT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEGINNING_MATCHER__VALUE = CASE_SENSITIVE_CONSTRAINT__VALUE;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1732,6 +1704,15 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int BEGINNING_MATCHER__TYPE = CASE_SENSITIVE_CONSTRAINT__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEGINNING_MATCHER__VALUE = CASE_SENSITIVE_CONSTRAINT__VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Case Sensitive</b></em>' attribute.
@@ -1752,6 +1733,15 @@ public interface MetamodelPackage extends EPackage {
 	int BEGINNING_MATCHER_FEATURE_COUNT = CASE_SENSITIVE_CONSTRAINT_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Check Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEGINNING_MATCHER___CHECK_CONSTRAINT__STRING = CASE_SENSITIVE_CONSTRAINT___CHECK_CONSTRAINT__STRING;
+
+	/**
 	 * The number of operations of the '<em>Beginning Matcher</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1768,7 +1758,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getEndingMatcher()
 	 * @generated
 	 */
-	int ENDING_MATCHER = 23;
+	int ENDING_MATCHER = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1780,15 +1770,6 @@ public interface MetamodelPackage extends EPackage {
 	int ENDING_MATCHER__NAME = CASE_SENSITIVE_CONSTRAINT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENDING_MATCHER__VALUE = CASE_SENSITIVE_CONSTRAINT__VALUE;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1796,6 +1777,15 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int ENDING_MATCHER__TYPE = CASE_SENSITIVE_CONSTRAINT__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENDING_MATCHER__VALUE = CASE_SENSITIVE_CONSTRAINT__VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Case Sensitive</b></em>' attribute.
@@ -1816,6 +1806,15 @@ public interface MetamodelPackage extends EPackage {
 	int ENDING_MATCHER_FEATURE_COUNT = CASE_SENSITIVE_CONSTRAINT_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Check Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENDING_MATCHER___CHECK_CONSTRAINT__STRING = CASE_SENSITIVE_CONSTRAINT___CHECK_CONSTRAINT__STRING;
+
+	/**
 	 * The number of operations of the '<em>Ending Matcher</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1832,7 +1831,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getRegExMatcher()
 	 * @generated
 	 */
-	int REG_EX_MATCHER = 24;
+	int REG_EX_MATCHER = 23;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1844,15 +1843,6 @@ public interface MetamodelPackage extends EPackage {
 	int REG_EX_MATCHER__NAME = ATTRIBUTE_VALUE_CONSTRAINT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REG_EX_MATCHER__VALUE = ATTRIBUTE_VALUE_CONSTRAINT__VALUE;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1862,6 +1852,15 @@ public interface MetamodelPackage extends EPackage {
 	int REG_EX_MATCHER__TYPE = ATTRIBUTE_VALUE_CONSTRAINT__TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REG_EX_MATCHER__VALUE = ATTRIBUTE_VALUE_CONSTRAINT__VALUE;
+
+	/**
 	 * The number of structural features of the '<em>Reg Ex Matcher</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1869,6 +1868,15 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int REG_EX_MATCHER_FEATURE_COUNT = ATTRIBUTE_VALUE_CONSTRAINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Check Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REG_EX_MATCHER___CHECK_CONSTRAINT__STRING = ATTRIBUTE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING;
 
 	/**
 	 * The number of operations of the '<em>Reg Ex Matcher</em>' class.
@@ -1887,7 +1895,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getAttributeValueConstraintType()
 	 * @generated
 	 */
-	int ATTRIBUTE_VALUE_CONSTRAINT_TYPE = 26;
+	int ATTRIBUTE_VALUE_CONSTRAINT_TYPE = 25;
 
 	/**
 	 * The meta object id for the '{@link pamtram.metamodel.CardinalityType <em>Cardinality Type</em>}' enum.
@@ -1897,7 +1905,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getCardinalityType()
 	 * @generated
 	 */
-	int CARDINALITY_TYPE = 27;
+	int CARDINALITY_TYPE = 26;
 
 
 	/**
@@ -2256,17 +2264,6 @@ public interface MetamodelPackage extends EPackage {
 	EClass getAttribute();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.Attribute#getValueSpecification <em>Value Specification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Value Specification</em>'.
-	 * @see pamtram.metamodel.Attribute#getValueSpecification()
-	 * @see #getAttribute()
-	 * @generated
-	 */
-	EReference getAttribute_ValueSpecification();
-
-	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.SourceSectionAttribute <em>Source Section Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2297,6 +2294,17 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSourceSectionAttribute_Attribute();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.SourceSectionAttribute#getValueConstraint <em>Value Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Value Constraint</em>'.
+	 * @see pamtram.metamodel.SourceSectionAttribute#getValueConstraint()
+	 * @see #getSourceSectionAttribute()
+	 * @generated
+	 */
+	EReference getSourceSectionAttribute_ValueConstraint();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.TargetSectionAttribute <em>Target Section Attribute</em>}'.
@@ -2331,6 +2339,17 @@ public interface MetamodelPackage extends EPackage {
 	EAttribute getTargetSectionAttribute_Unique();
 
 	/**
+	 * Returns the meta object for the attribute '{@link pamtram.metamodel.TargetSectionAttribute#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see pamtram.metamodel.TargetSectionAttribute#getValue()
+	 * @see #getTargetSectionAttribute()
+	 * @generated
+	 */
+	EAttribute getTargetSectionAttribute_Value();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.ActualAttribute <em>Actual Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2362,27 +2381,6 @@ public interface MetamodelPackage extends EPackage {
 	EClass getVirtualAttribute();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.metamodel.AttributeValueSpecification <em>Attribute Value Specification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Attribute Value Specification</em>'.
-	 * @see pamtram.metamodel.AttributeValueSpecification
-	 * @generated
-	 */
-	EClass getAttributeValueSpecification();
-
-	/**
-	 * Returns the meta object for the attribute '{@link pamtram.metamodel.AttributeValueSpecification#getValue <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see pamtram.metamodel.AttributeValueSpecification#getValue()
-	 * @see #getAttributeValueSpecification()
-	 * @generated
-	 */
-	EAttribute getAttributeValueSpecification_Value();
-
-	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.EqualityMatcher <em>Equality Matcher</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2412,6 +2410,27 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getAttributeValueConstraint_Type();
+
+	/**
+	 * Returns the meta object for the attribute '{@link pamtram.metamodel.AttributeValueConstraint#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see pamtram.metamodel.AttributeValueConstraint#getValue()
+	 * @see #getAttributeValueConstraint()
+	 * @generated
+	 */
+	EAttribute getAttributeValueConstraint_Value();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.metamodel.AttributeValueConstraint#checkConstraint(java.lang.String) <em>Check Constraint</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Check Constraint</em>' operation.
+	 * @see pamtram.metamodel.AttributeValueConstraint#checkConstraint(java.lang.String)
+	 * @generated
+	 */
+	EOperation getAttributeValueConstraint__CheckConstraint__String();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.SubstringMatcher <em>Substring Matcher</em>}'.
@@ -2818,14 +2837,6 @@ public interface MetamodelPackage extends EPackage {
 		EClass ATTRIBUTE = eINSTANCE.getAttribute();
 
 		/**
-		 * The meta object literal for the '<em><b>Value Specification</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ATTRIBUTE__VALUE_SPECIFICATION = eINSTANCE.getAttribute_ValueSpecification();
-
-		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.SourceSectionAttributeImpl <em>Source Section Attribute</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2852,6 +2863,14 @@ public interface MetamodelPackage extends EPackage {
 		EReference SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE = eINSTANCE.getSourceSectionAttribute_Attribute();
 
 		/**
+		 * The meta object literal for the '<em><b>Value Constraint</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT = eINSTANCE.getSourceSectionAttribute_ValueConstraint();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.TargetSectionAttributeImpl <em>Target Section Attribute</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2876,6 +2895,14 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TARGET_SECTION_ATTRIBUTE__UNIQUE = eINSTANCE.getTargetSectionAttribute_Unique();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TARGET_SECTION_ATTRIBUTE__VALUE = eINSTANCE.getTargetSectionAttribute_Value();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.ActualAttributeImpl <em>Actual Attribute</em>}' class.
@@ -2906,24 +2933,6 @@ public interface MetamodelPackage extends EPackage {
 		EClass VIRTUAL_ATTRIBUTE = eINSTANCE.getVirtualAttribute();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.metamodel.impl.AttributeValueSpecificationImpl <em>Attribute Value Specification</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.metamodel.impl.AttributeValueSpecificationImpl
-		 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getAttributeValueSpecification()
-		 * @generated
-		 */
-		EClass ATTRIBUTE_VALUE_SPECIFICATION = eINSTANCE.getAttributeValueSpecification();
-
-		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ATTRIBUTE_VALUE_SPECIFICATION__VALUE = eINSTANCE.getAttributeValueSpecification_Value();
-
-		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.EqualityMatcherImpl <em>Equality Matcher</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2950,6 +2959,22 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ATTRIBUTE_VALUE_CONSTRAINT__TYPE = eINSTANCE.getAttributeValueConstraint_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE_VALUE_CONSTRAINT__VALUE = eINSTANCE.getAttributeValueConstraint_Value();
+
+		/**
+		 * The meta object literal for the '<em><b>Check Constraint</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ATTRIBUTE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING = eINSTANCE.getAttributeValueConstraint__CheckConstraint__String();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.SubstringMatcherImpl <em>Substring Matcher</em>}' class.

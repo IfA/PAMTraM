@@ -111,7 +111,6 @@ public abstract class AttributeMatcherImpl extends MatcherImpl implements Attrib
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {

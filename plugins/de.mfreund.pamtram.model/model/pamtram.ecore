@@ -157,15 +157,14 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="value" upperBound="-1"
           eType="#//metamodel/SourceSectionClass"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Attribute" abstract="true" eSuperTypes="#//metamodel/MetaModelElement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="valueSpecification" upperBound="-1"
-          eType="#//metamodel/AttributeValueSpecification" containment="true"/>
-    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Attribute" abstract="true" eSuperTypes="#//metamodel/MetaModelElement"/>
     <eClassifiers xsi:type="ecore:EClass" name="SourceSectionAttribute" eSuperTypes="#//metamodel/Attribute">
       <eStructuralFeatures xsi:type="ecore:EReference" name="owningClass" lowerBound="1"
           eType="#//metamodel/SourceSectionClass" changeable="false" eOpposite="#//metamodel/SourceSectionClass/attributes"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
           eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="valueConstraint" upperBound="-1"
+          eType="#//metamodel/AttributeValueConstraint" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TargetSectionAttribute" abstract="true"
         eSuperTypes="#//metamodel/Attribute">
@@ -174,25 +173,27 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="unique" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           defaultValueLiteral="false"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ActualAttribute" eSuperTypes="#//metamodel/TargetSectionAttribute">
       <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
           eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="VirtualAttribute" eSuperTypes="#//metamodel/TargetSectionAttribute"/>
-    <eClassifiers xsi:type="ecore:EClass" name="AttributeValueSpecification" eSuperTypes="#//NamedElement">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="AttributeValueConstraintType">
       <eLiterals name="INCLUSION"/>
       <eLiterals name="EXCLUSION" value="1"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="EqualityMatcher" eSuperTypes="#//metamodel/CaseSensitiveConstraint"/>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeValueConstraint" abstract="true"
-        eSuperTypes="#//metamodel/AttributeValueSpecification">
+        eSuperTypes="#//NamedElement">
+      <eOperations name="checkConstraint" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eParameters name="attrValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1"
           eType="#//metamodel/AttributeValueConstraintType" defaultValueLiteral="INCLUSION"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SubstringMatcher" eSuperTypes="#//metamodel/CaseSensitiveConstraint"/>
     <eClassifiers xsi:type="ecore:EClass" name="BeginningMatcher" eSuperTypes="#//metamodel/CaseSensitiveConstraint"/>

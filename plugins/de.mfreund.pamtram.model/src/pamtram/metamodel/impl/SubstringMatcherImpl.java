@@ -35,21 +35,19 @@ public class SubstringMatcherImpl extends CaseSensitiveConstraintImpl implements
 		return MetamodelPackage.Literals.SUBSTRING_MATCHER;
 	}
 
-	/* (non-Javadoc)
-	 * @see pamtram.metamodel.impl.AttributeValueSpecificationImpl#check(java.lang.String)
-	 */
 	@Override
-	public boolean check(String attr) {
+	public boolean checkConstraint(String attrValue) {
 		boolean condition;
 		if (caseSensitive) {
-			condition = value.contains(attr);
+			condition = value.contains(attrValue);
 		} else {
-			condition = value.toLowerCase().contains(attr.toLowerCase());
+			condition = value.toLowerCase().contains(attrValue.toLowerCase());
 		}
 
 		return (condition && type.equals(AttributeValueConstraintType.INCLUSION))
 				|| (!condition && type.equals(AttributeValueConstraintType.EXCLUSION));
-
 	}
+	
+	
 
 } // SubstringMatcherImpl

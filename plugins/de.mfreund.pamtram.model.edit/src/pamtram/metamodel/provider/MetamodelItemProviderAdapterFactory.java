@@ -279,29 +279,6 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.AttributeValueSpecification} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected AttributeValueSpecificationItemProvider attributeValueSpecificationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.metamodel.AttributeValueSpecification}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createAttributeValueSpecificationAdapter() {
-		if (attributeValueSpecificationItemProvider == null) {
-			attributeValueSpecificationItemProvider = new AttributeValueSpecificationItemProvider(this);
-		}
-
-		return attributeValueSpecificationItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.EqualityMatcher} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -524,7 +501,6 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 		if (sourceSectionAttributeItemProvider != null) sourceSectionAttributeItemProvider.dispose();
 		if (actualAttributeItemProvider != null) actualAttributeItemProvider.dispose();
 		if (virtualAttributeItemProvider != null) virtualAttributeItemProvider.dispose();
-		if (attributeValueSpecificationItemProvider != null) attributeValueSpecificationItemProvider.dispose();
 		if (equalityMatcherItemProvider != null) equalityMatcherItemProvider.dispose();
 		if (substringMatcherItemProvider != null) substringMatcherItemProvider.dispose();
 		if (beginningMatcherItemProvider != null) beginningMatcherItemProvider.dispose();

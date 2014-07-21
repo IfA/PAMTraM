@@ -42,6 +42,7 @@ public class TargetSectionAttributeItemProvider extends AttributeItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addUniquePropertyDescriptor(object);
+			addValuePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -64,6 +65,28 @@ public class TargetSectionAttributeItemProvider extends AttributeItemProvider {
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Value feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addValuePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TargetSectionAttribute_value_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TargetSectionAttribute_value_feature", "_UI_TargetSectionAttribute_type"),
+				 MetamodelPackage.Literals.TARGET_SECTION_ATTRIBUTE__VALUE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -101,6 +124,7 @@ public class TargetSectionAttributeItemProvider extends AttributeItemProvider {
 
 		switch (notification.getFeatureID(TargetSectionAttribute.class)) {
 			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE__UNIQUE:
+			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE__VALUE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -8,7 +8,6 @@ import java.util.LinkedHashSet;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ui.console.ConsolePlugin;
 
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.TargetSectionAttribute;
@@ -50,7 +49,7 @@ public class EObjectTransformationHelper {
 		return attrValRegistry.attributeValueExists(attr, value, eObject);
 	}
 	
-	public void setAttributeValue(TargetSectionAttribute attr, String value){
+	public void setAttributeValue(TargetSectionAttribute attr, String value) throws IllegalArgumentException{
 		if(attr instanceof VirtualAttribute){
 			virtualAttributes.put((VirtualAttribute) attr, value);
 			
@@ -60,11 +59,11 @@ public class EObjectTransformationHelper {
 			}
 			attrValRegistry.getAttrValueRegistryVirtualAttributes().get(eObject.eClass()).get(attr).add(value);
 		} else if(attr instanceof ActualAttribute){
-		//	System.out.println(attr.getName());//TODO
-			eObject.eSet(((ActualAttribute) attr).getAttribute(),
-					((ActualAttribute) attr).getAttribute().getEType()
-					.getEPackage().getEFactoryInstance()
-					.createFromString(((ActualAttribute) attr).getAttribute().getEAttributeType(), value));
+				eObject.eSet(((ActualAttribute) attr).getAttribute(),
+						((ActualAttribute) attr).getAttribute().getEType()
+						.getEPackage().getEFactoryInstance()
+						.createFromString(((ActualAttribute) attr).getAttribute().getEAttributeType(), value));
+
 			
 			if(!attrValRegistry.getAttrValueRegistryActualAttributes().get(eObject.eClass()).containsKey(((ActualAttribute) attr).getAttribute())){
 				attrValRegistry.getAttrValueRegistryActualAttributes().get(eObject.eClass()).put(((ActualAttribute) attr).getAttribute(), new LinkedHashSet<String>());

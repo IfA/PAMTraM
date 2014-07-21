@@ -269,7 +269,15 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 				boolean noDelete=!markedForDelete.contains(instance);
 				for(TargetSectionAttribute attr : attributeValues.keySet()){
 					if(noDelete){
-						instance.setAttributeValue(attr,attributeValues.get(attr).remove(0));//setting an Attribute causes the value to be saved in the attribute value registry							
+						String setValue=attributeValues.get(attr).remove(0);
+						try{
+							instance.setAttributeValue(attr,setValue);//setting an Attribute causes the value to be saved in the attribute value registry
+						} catch(IllegalArgumentException e){
+							consoleStream.println("Could not set Attribute " + attr.getName() 
+									+ " of target section Class " + metamodelSection.getName() 
+									+ " in target section " + metamodelSection.getContainingSection().getName()
+									+ ".\n" + "The problematic value was: '" +  setValue +"'.");
+						}
 					} else {
 						attributeValues.get(attr).remove(0);
 					}

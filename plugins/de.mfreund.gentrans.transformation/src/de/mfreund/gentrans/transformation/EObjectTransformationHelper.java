@@ -15,14 +15,15 @@ import pamtram.metamodel.VirtualAttribute;
 
 /**
  * @author Sascha Steffen
- *
+ * @version 0.8 
  */
 public class EObjectTransformationHelper {
 	
 	/**
-	 * 
+	 * The EObject of targetModel whose functionality this 
 	 */
 	private EObject eObject;
+	
 	private AttributeValueRegistry attrValRegistry;
 	
 
@@ -73,8 +74,12 @@ public class EObjectTransformationHelper {
 	private static String convertAttributeValue(EObject eObject, EAttribute attr){
 		Object srcAttr=eObject.eGet(attr);
 		if(attr != null){
-			return attr.getEType().getEPackage().getEFactoryInstance()
-			.convertToString(attr.getEAttributeType(),srcAttr);
+			try{
+				return attr.getEType().getEPackage().getEFactoryInstance()
+					.convertToString(attr.getEAttributeType(),srcAttr);
+			} catch(IllegalArgumentException e){//TODO
+				return null;
+			}
 		} else return null;	
 		
 	}

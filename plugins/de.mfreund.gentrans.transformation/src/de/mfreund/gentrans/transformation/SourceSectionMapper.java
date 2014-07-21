@@ -598,8 +598,8 @@ public class SourceSectionMapper {
 					}
 					if (!foundMapping) {
 						consoleStream
-								.println("we need to find a mapping for every srcModelElement "
-										+ rt);
+								.println("we need to find a mapping for every srcModelElement (at: " + srcSection.getName() + " )" 
+										+ EObjectTransformationHelper.asString(rt));
 						return null; // we need to find a mapping for every
 										// srcModelElement if the reference Type
 										// was modeled in the srcMMSection

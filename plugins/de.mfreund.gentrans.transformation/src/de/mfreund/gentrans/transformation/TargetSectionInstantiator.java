@@ -138,8 +138,6 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 	
 		
 		int cardinality= 1;
-//		heck for variable cardinality
-//		search for first matching mapping hint (since there should only be one
 			
 
 		if(!metamodelSection.getCardinality().equals(CardinalityType.ONE)){//ignore attribute hint and cardinality hint, if variableCardinality == false
@@ -468,7 +466,6 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 											  "Please choose to which element the Reference '"
 											  + ref.getName() +
 											  "' of the following element should point to:\n\n"
-											 //TODO  + srcInst.~description ,
 											 + srcInst.toString(),
 											  fittingVals.keySet(),
 											 fittingVals.keySet().iterator().next());
@@ -478,9 +475,6 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 												  return;
 											  }
 											  setReference(ref,fittingVals.get(dialog.getSelection()).getEObject(),srcInst.getEObject());
-											 
-											// throw "";--TODO
-											//setReference(ref,fittingVals.values().iterator().next(),srcInst);
 										} else {
 
 											consoleStream

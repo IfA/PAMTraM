@@ -218,6 +218,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 					//set attribute values in instances
 					for(EObjectTransformationHelper instance  : instances){
 						String attrValue=null;
+						boolean noDelete=true;
 						if(attrHintValues != null) {
 							if(hintFound instanceof CalculatorMapping){
 								try{
@@ -251,10 +252,12 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 						//Check if value is unique and was already used, delete instance if neccessary
 						if(attr.isUnique() && instance.attributeValueExists(attr,attrValue)){					
 							markedForDelete.add(instance);//we can only delete this at the end, or else the attributeHint values won't fit anymore
-
+							noDelete=false;
 						}
 						//Set value
-						instance.setAttributeValue(attr,attrValue);
+						if(noDelete){
+							instance.setAttributeValue(attr,attrValue);//setting an Attribute causes the value to be saved in the attribute value registry							
+						}
 
 					}
 			}

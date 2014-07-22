@@ -9,7 +9,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.mapping.MappingFactory;
@@ -47,31 +46,8 @@ public class ModelConnectionHintItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addSourceAttributePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Source Attribute feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSourceAttributePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ModelConnectionHint_sourceAttribute_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModelConnectionHint_sourceAttribute_feature", "_UI_ModelConnectionHint_type"),
-				 MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ATTRIBUTE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**
@@ -102,17 +78,6 @@ public class ModelConnectionHintItemProvider
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
-	}
-
-	/**
-	 * This returns ModelConnectionHint.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelConnectionHint"));
 	}
 
 	/**

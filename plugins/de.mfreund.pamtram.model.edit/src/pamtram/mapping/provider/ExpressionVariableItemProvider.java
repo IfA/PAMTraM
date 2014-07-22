@@ -17,7 +17,7 @@ import pamtram.mapping.ExpressionVariable;
  * @generated
  */
 public class ExpressionVariableItemProvider
-	extends AttributeMappingSourceElementTypeItemProvider {
+	extends AttributeMappingSourceElementWithModifiersItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

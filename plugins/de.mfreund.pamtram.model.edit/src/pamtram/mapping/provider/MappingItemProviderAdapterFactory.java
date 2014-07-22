@@ -302,29 +302,6 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ModelConnectionHint} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ModelConnectionHintItemProvider modelConnectionHintItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ModelConnectionHint}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createModelConnectionHintAdapter() {
-		if (modelConnectionHintItemProvider == null) {
-			modelConnectionHintItemProvider = new ModelConnectionHintItemProvider(this);
-		}
-
-		return modelConnectionHintItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ConnectionHintTargetAttribute} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -532,6 +509,75 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.SimpleModelConnectionHint} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SimpleModelConnectionHintItemProvider simpleModelConnectionHintItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.SimpleModelConnectionHint}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSimpleModelConnectionHintAdapter() {
+		if (simpleModelConnectionHintItemProvider == null) {
+			simpleModelConnectionHintItemProvider = new SimpleModelConnectionHintItemProvider(this);
+		}
+
+		return simpleModelConnectionHintItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ComplexModelConnectionHint} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ComplexModelConnectionHintItemProvider complexModelConnectionHintItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.ComplexModelConnectionHint}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createComplexModelConnectionHintAdapter() {
+		if (complexModelConnectionHintItemProvider == null) {
+			complexModelConnectionHintItemProvider = new ComplexModelConnectionHintItemProvider(this);
+		}
+
+		return complexModelConnectionHintItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ComplexModelConnectionHintSourceElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ComplexModelConnectionHintSourceElementItemProvider complexModelConnectionHintSourceElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.ComplexModelConnectionHintSourceElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createComplexModelConnectionHintSourceElementAdapter() {
+		if (complexModelConnectionHintSourceElementItemProvider == null) {
+			complexModelConnectionHintSourceElementItemProvider = new ComplexModelConnectionHintSourceElementItemProvider(this);
+		}
+
+		return complexModelConnectionHintSourceElementItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -640,7 +686,6 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (stringPrependerItemProvider != null) stringPrependerItemProvider.dispose();
 		if (attributeValueModifierSetItemProvider != null) attributeValueModifierSetItemProvider.dispose();
 		if (mappingHintGroupItemProvider != null) mappingHintGroupItemProvider.dispose();
-		if (modelConnectionHintItemProvider != null) modelConnectionHintItemProvider.dispose();
 		if (connectionHintTargetAttributeItemProvider != null) connectionHintTargetAttributeItemProvider.dispose();
 		if (simpleAttributeMappingItemProvider != null) simpleAttributeMappingItemProvider.dispose();
 		if (complexAttributeMappingItemProvider != null) complexAttributeMappingItemProvider.dispose();
@@ -650,6 +695,9 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (complexAttributeMatcherItemProvider != null) complexAttributeMatcherItemProvider.dispose();
 		if (simpleAttributeMatcherItemProvider != null) simpleAttributeMatcherItemProvider.dispose();
 		if (complexAttributeMatcherSourceElementItemProvider != null) complexAttributeMatcherSourceElementItemProvider.dispose();
+		if (simpleModelConnectionHintItemProvider != null) simpleModelConnectionHintItemProvider.dispose();
+		if (complexModelConnectionHintItemProvider != null) complexModelConnectionHintItemProvider.dispose();
+		if (complexModelConnectionHintSourceElementItemProvider != null) complexModelConnectionHintSourceElementItemProvider.dispose();
 	}
 
 }

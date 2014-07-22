@@ -5,28 +5,30 @@ package pamtram.mapping.provider;
 
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.SimpleAttributeMapping;
+import pamtram.mapping.SimpleModelConnectionHint;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.SimpleAttributeMapping} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.SimpleModelConnectionHint} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SimpleAttributeMappingItemProvider
-	extends AttributeMappingItemProvider {
+public class SimpleModelConnectionHintItemProvider extends ModelConnectionHintItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SimpleAttributeMappingItemProvider(AdapterFactory adapterFactory) {
+	public SimpleModelConnectionHintItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -92,28 +94,30 @@ public class SimpleAttributeMappingItemProvider
 	}
 
 	/**
-	 * This returns SimpleAttributeMapping.gif.
+	 * This returns SimpleModelConnectionHint.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/SimpleAttributeMapping"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SimpleModelConnectionHint"));
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((SimpleAttributeMapping)object).getName();
+		String label = ((SimpleModelConnectionHint)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_AttributeMapping_type") :
-			getString("_UI_AttributeMapping_type") + " " + label;
+			getString("_UI_SimpleModelConnectionHint_type") :
+			getString("_UI_SimpleModelConnectionHint_type") + " " + label;
 	}
+	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

@@ -1579,6 +1579,7 @@ public class PamtramEditor
 			
 			createContextMenuFor(sourceViewer);
 			createContextMenuFor(selectionViewer);
+			createContextMenuFor(attValModViewer);
 			createContextMenuFor(targetViewer);
 			
 			int pageIndex = addPage(composite);

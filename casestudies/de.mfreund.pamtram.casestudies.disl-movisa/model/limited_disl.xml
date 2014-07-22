@@ -1,0 +1,1060 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<disl xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="disl.xsd">
+  <head>
+    <meta content="Neues Benutzungsmodell_1" name="modell-ID"/>
+    <meta content="2.0" name="useML_schema_version"/>
+    <meta content="hierarchie" name="struktur"/>
+    <meta content="Neues Benutzungsmodell" name="bezeichnung"/>
+    <meta content="" name="autoren"/>
+    <meta content="2010-11-22" name="erstellungsdatum"/>
+  </head>
+  <interface id="Dialog_1" state="start">
+    <structure>
+      <widget generic-widget="textfield" id="eBO_1"/>
+      <widget generic-widget="command" id="eBO_1_OK"/>
+      <widget generic-widget="textbox" id="eBO_2"/>
+      <widget generic-widget="textfield" id="eBO_3"/>
+      <widget generic-widget="command" id="eBO_3_OK"/>
+      <widget generic-widget="command" id="eBO_4"/>
+    </structure>
+    <style>
+      <part generic-widget="eBO_1">
+        <property generic-widget="textfield" id="title">inform</property>
+        <property generic-widget="textfield" id="description"></property>
+        <property generic-widget="textfield" id="help"></property>
+        <property generic-widget="textfield" id="visible">yes</property>
+        <property generic-widget="textfield" id="activated">yes</property>
+        <property generic-widget="textfield" id="value"></property>
+      </part>
+      <part generic-widget="eBO_1_OK">
+        <property generic-widget="command" id="title">OK</property>
+        <property generic-widget="command" id="description">Bestaetigung dass die Information wahrgenommen wurde</property>
+        <property generic-widget="command" id="help">Betaetigen Sie dieses Kommando wenn Sie die Information wahrgenommen haben</property>
+        <property generic-widget="command" id="selected">no</property>
+      </part>
+      <part generic-widget="eBO_2">
+        <property generic-widget="textbox" id="title">do</property>
+        <property generic-widget="textbox" id="description"></property>
+        <property generic-widget="textbox" id="help"></property>
+        <property generic-widget="textbox" id="visible">yes</property>
+        <property generic-widget="textbox" id="activated">yes</property>
+        <property generic-widget="textbox" id="modified">no</property>
+      </part>
+      <part generic-widget="eBO_3">
+        <property generic-widget="textfield" id="title">inform2</property>
+        <property generic-widget="textfield" id="description"></property>
+        <property generic-widget="textfield" id="help"></property>
+        <property generic-widget="textfield" id="visible">yes</property>
+        <property generic-widget="textfield" id="activated">yes</property>
+        <property generic-widget="textfield" id="value"></property>
+      </part>
+      <part generic-widget="eBO_3_OK">
+        <property generic-widget="command" id="title">OK</property>
+        <property generic-widget="command" id="description">Bestaetigung dass die Information wahrgenommen wurde</property>
+        <property generic-widget="command" id="help">Betaetigen Sie dieses Kommando wenn Sie die Information wahrgenommen haben</property>
+        <property generic-widget="command" id="selected">no</property>
+      </part>
+      <part generic-widget="eBO_4">
+        <property generic-widget="command" id="title">do2</property>
+        <property generic-widget="command" id="description"></property>
+        <property generic-widget="command" id="help"></property>
+        <property generic-widget="command" id="visible">yes</property>
+        <property generic-widget="command" id="activated">yes</property>
+        <property generic-widget="command" id="selected">no</property>
+      </part>
+    </style>
+    <behavior>
+      <rule id="eBO_1_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="eBO_1_OK"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <rule id="eBO_2_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="modified" widget-id="eBO_2"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <rule id="eBO_3_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="eBO_3_OK"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <rule id="eBO_4_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="eBO_4"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <transition>
+        <if-true rule-id="eBO_1_Changed"/>
+        <action>
+          <interface-change interface-id="Dialog_2"/>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_2_Changed"/>
+        <action>
+          <interface-change interface-id="Dialog_14"/>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_2_ValueToSmall"/>
+        <action>
+          <statement assignment="set">
+            <property-content property-id="value" widget-id="eBO_2"/>
+            <variable-content variable-id="eBO_2_MinValue"/>
+          </statement>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_2_ValueToLarge"/>
+        <action>
+          <statement assignment="set">
+            <property-content property-id="value" widget-id="eBO_2"/>
+            <variable-content variable-id="eBO_2_MaxValue"/>
+          </statement>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_3_Changed"/>
+        <action>
+          <interface-change interface-id="Dialog_15"/>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_4_Changed"/>
+        <action>
+          <call id="FunctionName" source="Specify URL here" synchronized="yes" timeout="3s"/>
+          <interface-change interface-id="Dialog_19"/>
+        </action>
+      </transition>
+    </behavior>
+  </interface>
+  <interface id="Dialog_2" state="other">
+    <structure>
+      <widget generic-widget="textbox" id="eBO_2"/>
+    </structure>
+    <style>
+      <part generic-widget="eBO_2">
+        <property generic-widget="textbox" id="title">do</property>
+        <property generic-widget="textbox" id="description"></property>
+        <property generic-widget="textbox" id="help"></property>
+        <property generic-widget="textbox" id="visible">yes</property>
+        <property generic-widget="textbox" id="activated">yes</property>
+        <property generic-widget="textbox" id="modified">no</property>
+      </part>
+    </style>
+    <behavior>
+      <rule id="eBO_2_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="modified" widget-id="eBO_2"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <transition>
+        <if-true rule-id="eBO_2_Changed"/>
+        <action>
+          <interface-change interface-id="Dialog_3"/>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_2_ValueToSmall"/>
+        <action>
+          <statement assignment="set">
+            <property-content property-id="value" widget-id="eBO_2"/>
+            <variable-content variable-id="eBO_2_MinValue"/>
+          </statement>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_2_ValueToLarge"/>
+        <action>
+          <statement assignment="set">
+            <property-content property-id="value" widget-id="eBO_2"/>
+            <variable-content variable-id="eBO_2_MaxValue"/>
+          </statement>
+        </action>
+      </transition>
+    </behavior>
+  </interface>
+  <interface id="Dialog_3" state="other">
+    <structure>
+      <widget generic-widget="textfield" id="eBO_1"/>
+      <widget generic-widget="command" id="eBO_1_OK"/>
+      <widget generic-widget="textbox" id="eBO_2"/>
+      <widget generic-widget="textfield" id="eBO_3"/>
+      <widget generic-widget="command" id="eBO_3_OK"/>
+      <widget generic-widget="command" id="eBO_4"/>
+    </structure>
+    <style>
+      <part generic-widget="eBO_1">
+        <property generic-widget="textfield" id="title">inform</property>
+        <property generic-widget="textfield" id="description"></property>
+        <property generic-widget="textfield" id="help"></property>
+        <property generic-widget="textfield" id="visible">yes</property>
+        <property generic-widget="textfield" id="activated">yes</property>
+        <property generic-widget="textfield" id="value"></property>
+      </part>
+      <part generic-widget="eBO_1_OK">
+        <property generic-widget="command" id="title">OK</property>
+        <property generic-widget="command" id="description">Bestaetigung dass die Information wahrgenommen wurde</property>
+        <property generic-widget="command" id="help">Betaetigen Sie dieses Kommando wenn Sie die Information wahrgenommen haben</property>
+        <property generic-widget="command" id="selected">no</property>
+      </part>
+      <part generic-widget="eBO_2">
+        <property generic-widget="textbox" id="title">do</property>
+        <property generic-widget="textbox" id="description"></property>
+        <property generic-widget="textbox" id="help"></property>
+        <property generic-widget="textbox" id="visible">yes</property>
+        <property generic-widget="textbox" id="activated">yes</property>
+        <property generic-widget="textbox" id="modified">no</property>
+      </part>
+      <part generic-widget="eBO_3">
+        <property generic-widget="textfield" id="title">inform2</property>
+        <property generic-widget="textfield" id="description"></property>
+        <property generic-widget="textfield" id="help"></property>
+        <property generic-widget="textfield" id="visible">yes</property>
+        <property generic-widget="textfield" id="activated">yes</property>
+        <property generic-widget="textfield" id="value"></property>
+      </part>
+      <part generic-widget="eBO_3_OK">
+        <property generic-widget="command" id="title">OK</property>
+        <property generic-widget="command" id="description">Bestaetigung dass die Information wahrgenommen wurde</property>
+        <property generic-widget="command" id="help">Betaetigen Sie dieses Kommando wenn Sie die Information wahrgenommen haben</property>
+        <property generic-widget="command" id="selected">no</property>
+      </part>
+      <part generic-widget="eBO_4">
+        <property generic-widget="command" id="title">do2</property>
+        <property generic-widget="command" id="description"></property>
+        <property generic-widget="command" id="help"></property>
+        <property generic-widget="command" id="visible">yes</property>
+        <property generic-widget="command" id="activated">yes</property>
+        <property generic-widget="command" id="selected">no</property>
+      </part>
+    </style>
+    <behavior>
+      <rule id="eBO_1_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="eBO_1_OK"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <rule id="eBO_2_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="modified" widget-id="eBO_2"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <rule id="eBO_3_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="eBO_3_OK"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <rule id="eBO_4_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="eBO_4"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <transition>
+        <if-true rule-id="eBO_1_Changed"/>
+        <action>
+          <interface-change interface-id="Dialog_4"/>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_2_Changed"/>
+        <action>
+          <interface-change interface-id="Dialog_8"/>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_2_ValueToSmall"/>
+        <action>
+          <statement assignment="set">
+            <property-content property-id="value" widget-id="eBO_2"/>
+            <variable-content variable-id="eBO_2_MinValue"/>
+          </statement>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_2_ValueToLarge"/>
+        <action>
+          <statement assignment="set">
+            <property-content property-id="value" widget-id="eBO_2"/>
+            <variable-content variable-id="eBO_2_MaxValue"/>
+          </statement>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_3_Changed"/>
+        <action>
+          <interface-change interface-id="Dialog_9"/>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_4_Changed"/>
+        <action>
+          <call id="FunctionName" source="Specify URL here" synchronized="yes" timeout="3s"/>
+          <interface-change interface-id="Dialog_13"/>
+        </action>
+      </transition>
+    </behavior>
+  </interface>
+  <interface id="Dialog_4" state="other">
+    <structure>
+      <widget generic-widget="textbox" id="eBO_2"/>
+    </structure>
+    <style>
+      <part generic-widget="eBO_2">
+        <property generic-widget="textbox" id="title">do</property>
+        <property generic-widget="textbox" id="description"></property>
+        <property generic-widget="textbox" id="help"></property>
+        <property generic-widget="textbox" id="visible">yes</property>
+        <property generic-widget="textbox" id="activated">yes</property>
+        <property generic-widget="textbox" id="modified">no</property>
+      </part>
+    </style>
+    <behavior>
+      <rule id="eBO_2_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="modified" widget-id="eBO_2"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <transition>
+        <if-true rule-id="eBO_2_Changed"/>
+        <action>
+          <interface-change interface-id="Dialog_5"/>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_2_ValueToSmall"/>
+        <action>
+          <statement assignment="set">
+            <property-content property-id="value" widget-id="eBO_2"/>
+            <variable-content variable-id="eBO_2_MinValue"/>
+          </statement>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_2_ValueToLarge"/>
+        <action>
+          <statement assignment="set">
+            <property-content property-id="value" widget-id="eBO_2"/>
+            <variable-content variable-id="eBO_2_MaxValue"/>
+          </statement>
+        </action>
+      </transition>
+    </behavior>
+  </interface>
+  <interface id="Dialog_5" state="other">
+    <structure>
+      <widget generic-widget="textfield" id="eBO_3"/>
+      <widget generic-widget="command" id="eBO_3_OK"/>
+      <widget generic-widget="command" id="eBO_4"/>
+    </structure>
+    <style>
+      <part generic-widget="eBO_3">
+        <property generic-widget="textfield" id="title">inform2</property>
+        <property generic-widget="textfield" id="description"></property>
+        <property generic-widget="textfield" id="help"></property>
+        <property generic-widget="textfield" id="visible">yes</property>
+        <property generic-widget="textfield" id="activated">yes</property>
+        <property generic-widget="textfield" id="value"></property>
+      </part>
+      <part generic-widget="eBO_3_OK">
+        <property generic-widget="command" id="title">OK</property>
+        <property generic-widget="command" id="description">Bestaetigung dass die Information wahrgenommen wurde</property>
+        <property generic-widget="command" id="help">Betaetigen Sie dieses Kommando wenn Sie die Information wahrgenommen haben</property>
+        <property generic-widget="command" id="selected">no</property>
+      </part>
+      <part generic-widget="eBO_4">
+        <property generic-widget="command" id="title">do2</property>
+        <property generic-widget="command" id="description"></property>
+        <property generic-widget="command" id="help"></property>
+        <property generic-widget="command" id="visible">yes</property>
+        <property generic-widget="command" id="activated">yes</property>
+        <property generic-widget="command" id="selected">no</property>
+      </part>
+    </style>
+    <behavior>
+      <rule id="eBO_3_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="eBO_3_OK"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <rule id="eBO_4_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="eBO_4"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <transition>
+        <if-true rule-id="eBO_3_Changed"/>
+        <action>
+          <interface-change interface-id="Dialog_6"/>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_4_Changed"/>
+        <action>
+          <call id="FunctionName" source="Specify URL here" synchronized="yes" timeout="3s"/>
+          <interface-change interface-id="Dialog_7"/>
+        </action>
+      </transition>
+    </behavior>
+  </interface>
+  <interface id="Dialog_6" state="other">
+    <structure>
+      <widget generic-widget="command" id="eBO_4"/>
+    </structure>
+    <style>
+      <part generic-widget="eBO_4">
+        <property generic-widget="command" id="title">do2</property>
+        <property generic-widget="command" id="description"></property>
+        <property generic-widget="command" id="help"></property>
+        <property generic-widget="command" id="visible">yes</property>
+        <property generic-widget="command" id="activated">yes</property>
+        <property generic-widget="command" id="selected">no</property>
+      </part>
+    </style>
+    <behavior>
+      <rule id="eBO_4_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="eBO_4"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <transition>
+        <if-true rule-id="eBO_4_Changed"/>
+        <action>
+          <call id="FunctionName" source="Specify URL here" synchronized="yes" timeout="3s"/>
+          <interface-change interface-id="Ende"/>
+        </action>
+      </transition>
+    </behavior>
+  </interface>
+  <interface id="Dialog_7" state="other">
+    <structure>
+      <widget generic-widget="textfield" id="eBO_3"/>
+      <widget generic-widget="command" id="eBO_3_OK"/>
+    </structure>
+    <style>
+      <part generic-widget="eBO_3">
+        <property generic-widget="textfield" id="title">inform2</property>
+        <property generic-widget="textfield" id="description"></property>
+        <property generic-widget="textfield" id="help"></property>
+        <property generic-widget="textfield" id="visible">yes</property>
+        <property generic-widget="textfield" id="activated">yes</property>
+        <property generic-widget="textfield" id="value"></property>
+      </part>
+      <part generic-widget="eBO_3_OK">
+        <property generic-widget="command" id="title">OK</property>
+        <property generic-widget="command" id="description">Bestaetigung dass die Information wahrgenommen wurde</property>
+        <property generic-widget="command" id="help">Betaetigen Sie dieses Kommando wenn Sie die Information wahrgenommen haben</property>
+        <property generic-widget="command" id="selected">no</property>
+      </part>
+    </style>
+    <behavior>
+      <rule id="eBO_3_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="eBO_3_OK"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <transition>
+        <if-true rule-id="eBO_3_Changed"/>
+        <action>
+          <interface-change interface-id="Ende"/>
+        </action>
+      </transition>
+    </behavior>
+  </interface>
+  <interface id="Dialog_8" state="other">
+    <structure>
+      <widget generic-widget="textfield" id="eBO_1"/>
+      <widget generic-widget="command" id="eBO_1_OK"/>
+    </structure>
+    <style>
+      <part generic-widget="eBO_1">
+        <property generic-widget="textfield" id="title">inform</property>
+        <property generic-widget="textfield" id="description"></property>
+        <property generic-widget="textfield" id="help"></property>
+        <property generic-widget="textfield" id="visible">yes</property>
+        <property generic-widget="textfield" id="activated">yes</property>
+        <property generic-widget="textfield" id="value"></property>
+      </part>
+      <part generic-widget="eBO_1_OK">
+        <property generic-widget="command" id="title">OK</property>
+        <property generic-widget="command" id="description">Bestaetigung dass die Information wahrgenommen wurde</property>
+        <property generic-widget="command" id="help">Betaetigen Sie dieses Kommando wenn Sie die Information wahrgenommen haben</property>
+        <property generic-widget="command" id="selected">no</property>
+      </part>
+    </style>
+    <behavior>
+      <rule id="eBO_1_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="eBO_1_OK"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <transition>
+        <if-true rule-id="eBO_1_Changed"/>
+        <action>
+          <interface-change interface-id="Dialog_5"/>
+        </action>
+      </transition>
+    </behavior>
+  </interface>
+  <interface id="Dialog_9" state="other">
+    <structure>
+      <widget generic-widget="command" id="eBO_4"/>
+    </structure>
+    <style>
+      <part generic-widget="eBO_4">
+        <property generic-widget="command" id="title">do2</property>
+        <property generic-widget="command" id="description"></property>
+        <property generic-widget="command" id="help"></property>
+        <property generic-widget="command" id="visible">yes</property>
+        <property generic-widget="command" id="activated">yes</property>
+        <property generic-widget="command" id="selected">no</property>
+      </part>
+    </style>
+    <behavior>
+      <rule id="eBO_4_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="eBO_4"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <transition>
+        <if-true rule-id="eBO_4_Changed"/>
+        <action>
+          <call id="FunctionName" source="Specify URL here" synchronized="yes" timeout="3s"/>
+          <interface-change interface-id="Dialog_10"/>
+        </action>
+      </transition>
+    </behavior>
+  </interface>
+  <interface id="Dialog_10" state="other">
+    <structure>
+      <widget generic-widget="textfield" id="eBO_1"/>
+      <widget generic-widget="command" id="eBO_1_OK"/>
+      <widget generic-widget="textbox" id="eBO_2"/>
+    </structure>
+    <style>
+      <part generic-widget="eBO_1">
+        <property generic-widget="textfield" id="title">inform</property>
+        <property generic-widget="textfield" id="description"></property>
+        <property generic-widget="textfield" id="help"></property>
+        <property generic-widget="textfield" id="visible">yes</property>
+        <property generic-widget="textfield" id="activated">yes</property>
+        <property generic-widget="textfield" id="value"></property>
+      </part>
+      <part generic-widget="eBO_1_OK">
+        <property generic-widget="command" id="title">OK</property>
+        <property generic-widget="command" id="description">Bestaetigung dass die Information wahrgenommen wurde</property>
+        <property generic-widget="command" id="help">Betaetigen Sie dieses Kommando wenn Sie die Information wahrgenommen haben</property>
+        <property generic-widget="command" id="selected">no</property>
+      </part>
+      <part generic-widget="eBO_2">
+        <property generic-widget="textbox" id="title">do</property>
+        <property generic-widget="textbox" id="description"></property>
+        <property generic-widget="textbox" id="help"></property>
+        <property generic-widget="textbox" id="visible">yes</property>
+        <property generic-widget="textbox" id="activated">yes</property>
+        <property generic-widget="textbox" id="modified">no</property>
+      </part>
+    </style>
+    <behavior>
+      <rule id="eBO_1_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="eBO_1_OK"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <rule id="eBO_2_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="modified" widget-id="eBO_2"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <transition>
+        <if-true rule-id="eBO_1_Changed"/>
+        <action>
+          <interface-change interface-id="Dialog_11"/>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_2_Changed"/>
+        <action>
+          <interface-change interface-id="Dialog_12"/>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_2_ValueToSmall"/>
+        <action>
+          <statement assignment="set">
+            <property-content property-id="value" widget-id="eBO_2"/>
+            <variable-content variable-id="eBO_2_MinValue"/>
+          </statement>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_2_ValueToLarge"/>
+        <action>
+          <statement assignment="set">
+            <property-content property-id="value" widget-id="eBO_2"/>
+            <variable-content variable-id="eBO_2_MaxValue"/>
+          </statement>
+        </action>
+      </transition>
+    </behavior>
+  </interface>
+  <interface id="Dialog_11" state="other">
+    <structure>
+      <widget generic-widget="textbox" id="eBO_2"/>
+    </structure>
+    <style>
+      <part generic-widget="eBO_2">
+        <property generic-widget="textbox" id="title">do</property>
+        <property generic-widget="textbox" id="description"></property>
+        <property generic-widget="textbox" id="help"></property>
+        <property generic-widget="textbox" id="visible">yes</property>
+        <property generic-widget="textbox" id="activated">yes</property>
+        <property generic-widget="textbox" id="modified">no</property>
+      </part>
+    </style>
+    <behavior>
+      <rule id="eBO_2_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="modified" widget-id="eBO_2"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <transition>
+        <if-true rule-id="eBO_2_Changed"/>
+        <action>
+          <interface-change interface-id="Ende"/>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_2_ValueToSmall"/>
+        <action>
+          <statement assignment="set">
+            <property-content property-id="value" widget-id="eBO_2"/>
+            <variable-content variable-id="eBO_2_MinValue"/>
+          </statement>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_2_ValueToLarge"/>
+        <action>
+          <statement assignment="set">
+            <property-content property-id="value" widget-id="eBO_2"/>
+            <variable-content variable-id="eBO_2_MaxValue"/>
+          </statement>
+        </action>
+      </transition>
+    </behavior>
+  </interface>
+  <interface id="Dialog_12" state="other">
+    <structure>
+      <widget generic-widget="textfield" id="eBO_1"/>
+      <widget generic-widget="command" id="eBO_1_OK"/>
+    </structure>
+    <style>
+      <part generic-widget="eBO_1">
+        <property generic-widget="textfield" id="title">inform</property>
+        <property generic-widget="textfield" id="description"></property>
+        <property generic-widget="textfield" id="help"></property>
+        <property generic-widget="textfield" id="visible">yes</property>
+        <property generic-widget="textfield" id="activated">yes</property>
+        <property generic-widget="textfield" id="value"></property>
+      </part>
+      <part generic-widget="eBO_1_OK">
+        <property generic-widget="command" id="title">OK</property>
+        <property generic-widget="command" id="description">Bestaetigung dass die Information wahrgenommen wurde</property>
+        <property generic-widget="command" id="help">Betaetigen Sie dieses Kommando wenn Sie die Information wahrgenommen haben</property>
+        <property generic-widget="command" id="selected">no</property>
+      </part>
+    </style>
+    <behavior>
+      <rule id="eBO_1_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="eBO_1_OK"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <transition>
+        <if-true rule-id="eBO_1_Changed"/>
+        <action>
+          <interface-change interface-id="Ende"/>
+        </action>
+      </transition>
+    </behavior>
+  </interface>
+  <interface id="Dialog_13" state="other">
+    <structure>
+      <widget generic-widget="textfield" id="eBO_3"/>
+      <widget generic-widget="command" id="eBO_3_OK"/>
+    </structure>
+    <style>
+      <part generic-widget="eBO_3">
+        <property generic-widget="textfield" id="title">inform2</property>
+        <property generic-widget="textfield" id="description"></property>
+        <property generic-widget="textfield" id="help"></property>
+        <property generic-widget="textfield" id="visible">yes</property>
+        <property generic-widget="textfield" id="activated">yes</property>
+        <property generic-widget="textfield" id="value"></property>
+      </part>
+      <part generic-widget="eBO_3_OK">
+        <property generic-widget="command" id="title">OK</property>
+        <property generic-widget="command" id="description">Bestaetigung dass die Information wahrgenommen wurde</property>
+        <property generic-widget="command" id="help">Betaetigen Sie dieses Kommando wenn Sie die Information wahrgenommen haben</property>
+        <property generic-widget="command" id="selected">no</property>
+      </part>
+    </style>
+    <behavior>
+      <rule id="eBO_3_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="eBO_3_OK"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <transition>
+        <if-true rule-id="eBO_3_Changed"/>
+        <action>
+          <interface-change interface-id="Dialog_10"/>
+        </action>
+      </transition>
+    </behavior>
+  </interface>
+  <interface id="Dialog_14" state="other">
+    <structure>
+      <widget generic-widget="textfield" id="eBO_1"/>
+      <widget generic-widget="command" id="eBO_1_OK"/>
+    </structure>
+    <style>
+      <part generic-widget="eBO_1">
+        <property generic-widget="textfield" id="title">inform</property>
+        <property generic-widget="textfield" id="description"></property>
+        <property generic-widget="textfield" id="help"></property>
+        <property generic-widget="textfield" id="visible">yes</property>
+        <property generic-widget="textfield" id="activated">yes</property>
+        <property generic-widget="textfield" id="value"></property>
+      </part>
+      <part generic-widget="eBO_1_OK">
+        <property generic-widget="command" id="title">OK</property>
+        <property generic-widget="command" id="description">Bestaetigung dass die Information wahrgenommen wurde</property>
+        <property generic-widget="command" id="help">Betaetigen Sie dieses Kommando wenn Sie die Information wahrgenommen haben</property>
+        <property generic-widget="command" id="selected">no</property>
+      </part>
+    </style>
+    <behavior>
+      <rule id="eBO_1_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="eBO_1_OK"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <transition>
+        <if-true rule-id="eBO_1_Changed"/>
+        <action>
+          <interface-change interface-id="Dialog_3"/>
+        </action>
+      </transition>
+    </behavior>
+  </interface>
+  <interface id="Dialog_15" state="other">
+    <structure>
+      <widget generic-widget="command" id="eBO_4"/>
+    </structure>
+    <style>
+      <part generic-widget="eBO_4">
+        <property generic-widget="command" id="title">do2</property>
+        <property generic-widget="command" id="description"></property>
+        <property generic-widget="command" id="help"></property>
+        <property generic-widget="command" id="visible">yes</property>
+        <property generic-widget="command" id="activated">yes</property>
+        <property generic-widget="command" id="selected">no</property>
+      </part>
+    </style>
+    <behavior>
+      <rule id="eBO_4_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="eBO_4"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <transition>
+        <if-true rule-id="eBO_4_Changed"/>
+        <action>
+          <call id="FunctionName" source="Specify URL here" synchronized="yes" timeout="3s"/>
+          <interface-change interface-id="Dialog_16"/>
+        </action>
+      </transition>
+    </behavior>
+  </interface>
+  <interface id="Dialog_16" state="other">
+    <structure>
+      <widget generic-widget="textfield" id="eBO_1"/>
+      <widget generic-widget="command" id="eBO_1_OK"/>
+      <widget generic-widget="textbox" id="eBO_2"/>
+    </structure>
+    <style>
+      <part generic-widget="eBO_1">
+        <property generic-widget="textfield" id="title">inform</property>
+        <property generic-widget="textfield" id="description"></property>
+        <property generic-widget="textfield" id="help"></property>
+        <property generic-widget="textfield" id="visible">yes</property>
+        <property generic-widget="textfield" id="activated">yes</property>
+        <property generic-widget="textfield" id="value"></property>
+      </part>
+      <part generic-widget="eBO_1_OK">
+        <property generic-widget="command" id="title">OK</property>
+        <property generic-widget="command" id="description">Bestaetigung dass die Information wahrgenommen wurde</property>
+        <property generic-widget="command" id="help">Betaetigen Sie dieses Kommando wenn Sie die Information wahrgenommen haben</property>
+        <property generic-widget="command" id="selected">no</property>
+      </part>
+      <part generic-widget="eBO_2">
+        <property generic-widget="textbox" id="title">do</property>
+        <property generic-widget="textbox" id="description"></property>
+        <property generic-widget="textbox" id="help"></property>
+        <property generic-widget="textbox" id="visible">yes</property>
+        <property generic-widget="textbox" id="activated">yes</property>
+        <property generic-widget="textbox" id="modified">no</property>
+      </part>
+    </style>
+    <behavior>
+      <rule id="eBO_1_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="eBO_1_OK"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <rule id="eBO_2_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="modified" widget-id="eBO_2"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <transition>
+        <if-true rule-id="eBO_1_Changed"/>
+        <action>
+          <interface-change interface-id="Dialog_17"/>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_2_Changed"/>
+        <action>
+          <interface-change interface-id="Dialog_18"/>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_2_ValueToSmall"/>
+        <action>
+          <statement assignment="set">
+            <property-content property-id="value" widget-id="eBO_2"/>
+            <variable-content variable-id="eBO_2_MinValue"/>
+          </statement>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_2_ValueToLarge"/>
+        <action>
+          <statement assignment="set">
+            <property-content property-id="value" widget-id="eBO_2"/>
+            <variable-content variable-id="eBO_2_MaxValue"/>
+          </statement>
+        </action>
+      </transition>
+    </behavior>
+  </interface>
+  <interface id="Dialog_17" state="other">
+    <structure>
+      <widget generic-widget="textbox" id="eBO_2"/>
+    </structure>
+    <style>
+      <part generic-widget="eBO_2">
+        <property generic-widget="textbox" id="title">do</property>
+        <property generic-widget="textbox" id="description"></property>
+        <property generic-widget="textbox" id="help"></property>
+        <property generic-widget="textbox" id="visible">yes</property>
+        <property generic-widget="textbox" id="activated">yes</property>
+        <property generic-widget="textbox" id="modified">no</property>
+      </part>
+    </style>
+    <behavior>
+      <rule id="eBO_2_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="modified" widget-id="eBO_2"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <transition>
+        <if-true rule-id="eBO_2_Changed"/>
+        <action>
+          <interface-change interface-id="Dialog_10"/>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_2_ValueToSmall"/>
+        <action>
+          <statement assignment="set">
+            <property-content property-id="value" widget-id="eBO_2"/>
+            <variable-content variable-id="eBO_2_MinValue"/>
+          </statement>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_2_ValueToLarge"/>
+        <action>
+          <statement assignment="set">
+            <property-content property-id="value" widget-id="eBO_2"/>
+            <variable-content variable-id="eBO_2_MaxValue"/>
+          </statement>
+        </action>
+      </transition>
+    </behavior>
+  </interface>
+  <interface id="Dialog_18" state="other">
+    <structure>
+      <widget generic-widget="textfield" id="eBO_1"/>
+      <widget generic-widget="command" id="eBO_1_OK"/>
+    </structure>
+    <style>
+      <part generic-widget="eBO_1">
+        <property generic-widget="textfield" id="title">inform</property>
+        <property generic-widget="textfield" id="description"></property>
+        <property generic-widget="textfield" id="help"></property>
+        <property generic-widget="textfield" id="visible">yes</property>
+        <property generic-widget="textfield" id="activated">yes</property>
+        <property generic-widget="textfield" id="value"></property>
+      </part>
+      <part generic-widget="eBO_1_OK">
+        <property generic-widget="command" id="title">OK</property>
+        <property generic-widget="command" id="description">Bestaetigung dass die Information wahrgenommen wurde</property>
+        <property generic-widget="command" id="help">Betaetigen Sie dieses Kommando wenn Sie die Information wahrgenommen haben</property>
+        <property generic-widget="command" id="selected">no</property>
+      </part>
+    </style>
+    <behavior>
+      <rule id="eBO_1_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="eBO_1_OK"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <transition>
+        <if-true rule-id="eBO_1_Changed"/>
+        <action>
+          <interface-change interface-id="Dialog_10"/>
+        </action>
+      </transition>
+    </behavior>
+  </interface>
+  <interface id="Dialog_19" state="other">
+    <structure>
+      <widget generic-widget="textfield" id="eBO_3"/>
+      <widget generic-widget="command" id="eBO_3_OK"/>
+    </structure>
+    <style>
+      <part generic-widget="eBO_3">
+        <property generic-widget="textfield" id="title">inform2</property>
+        <property generic-widget="textfield" id="description"></property>
+        <property generic-widget="textfield" id="help"></property>
+        <property generic-widget="textfield" id="visible">yes</property>
+        <property generic-widget="textfield" id="activated">yes</property>
+        <property generic-widget="textfield" id="value"></property>
+      </part>
+      <part generic-widget="eBO_3_OK">
+        <property generic-widget="command" id="title">OK</property>
+        <property generic-widget="command" id="description">Bestaetigung dass die Information wahrgenommen wurde</property>
+        <property generic-widget="command" id="help">Betaetigen Sie dieses Kommando wenn Sie die Information wahrgenommen haben</property>
+        <property generic-widget="command" id="selected">no</property>
+      </part>
+    </style>
+    <behavior>
+      <rule id="eBO_3_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="eBO_3_OK"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <transition>
+        <if-true rule-id="eBO_3_Changed"/>
+        <action>
+          <interface-change interface-id="Dialog_16"/>
+        </action>
+      </transition>
+    </behavior>
+  </interface>
+  <interface id="Ende" state="end">
+    <structure/>
+    <style/>
+    <behavior/>
+  </interface>
+</disl>

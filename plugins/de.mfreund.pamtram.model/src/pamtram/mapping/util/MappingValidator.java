@@ -140,6 +140,14 @@ public class MappingValidator extends EObjectValidator {
 				return validateSimpleAttributeMatcher((SimpleAttributeMatcher)value, diagnostics, context);
 			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT:
 				return validateComplexAttributeMatcherSourceElement((ComplexAttributeMatcherSourceElement)value, diagnostics, context);
+			case MappingPackage.SIMPLE_MODEL_CONNECTION_HINT:
+				return validateSimpleModelConnectionHint((SimpleModelConnectionHint)value, diagnostics, context);
+			case MappingPackage.COMPLEX_MODEL_CONNECTION_HINT:
+				return validateComplexModelConnectionHint((ComplexModelConnectionHint)value, diagnostics, context);
+			case MappingPackage.COMPLEX_MODEL_CONNECTION_HINT_SOURCE_ELEMENT:
+				return validateComplexModelConnectionHintSourceElement((ComplexModelConnectionHintSourceElement)value, diagnostics, context);
+			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS:
+				return validateAttributeMappingSourceElementWithModifiers((AttributeMappingSourceElementWithModifiers)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -614,6 +622,42 @@ public class MappingValidator extends EObjectValidator {
 	 */
 	public boolean validateComplexAttributeMatcherSourceElement(ComplexAttributeMatcherSourceElement complexAttributeMatcherSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(complexAttributeMatcherSourceElement, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSimpleModelConnectionHint(SimpleModelConnectionHint simpleModelConnectionHint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(simpleModelConnectionHint, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateComplexModelConnectionHint(ComplexModelConnectionHint complexModelConnectionHint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(complexModelConnectionHint, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateComplexModelConnectionHintSourceElement(ComplexModelConnectionHintSourceElement complexModelConnectionHintSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(complexModelConnectionHintSourceElement, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateAttributeMappingSourceElementWithModifiers(AttributeMappingSourceElementWithModifiers attributeMappingSourceElementWithModifiers, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(attributeMappingSourceElementWithModifiers, diagnostics, context);
 	}
 
 	/**

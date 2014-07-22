@@ -66,7 +66,6 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.STRING_PREPENDER: return createStringPrepender();
 			case MappingPackage.ATTRIBUTE_VALUE_MODIFIER_SET: return createAttributeValueModifierSet();
 			case MappingPackage.MAPPING_HINT_GROUP: return createMappingHintGroup();
-			case MappingPackage.MODEL_CONNECTION_HINT: return createModelConnectionHint();
 			case MappingPackage.CONNECTION_HINT_TARGET_ATTRIBUTE: return createConnectionHintTargetAttribute();
 			case MappingPackage.SIMPLE_ATTRIBUTE_MAPPING: return createSimpleAttributeMapping();
 			case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING: return createComplexAttributeMapping();
@@ -76,6 +75,9 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER: return createComplexAttributeMatcher();
 			case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER: return createSimpleAttributeMatcher();
 			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT: return createComplexAttributeMatcherSourceElement();
+			case MappingPackage.SIMPLE_MODEL_CONNECTION_HINT: return createSimpleModelConnectionHint();
+			case MappingPackage.COMPLEX_MODEL_CONNECTION_HINT: return createComplexModelConnectionHint();
+			case MappingPackage.COMPLEX_MODEL_CONNECTION_HINT_SOURCE_ELEMENT: return createComplexModelConnectionHintSourceElement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -186,16 +188,6 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelConnectionHint createModelConnectionHint() {
-		ModelConnectionHintImpl modelConnectionHint = new ModelConnectionHintImpl();
-		return modelConnectionHint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ConnectionHintTargetAttribute createConnectionHintTargetAttribute() {
 		ConnectionHintTargetAttributeImpl connectionHintTargetAttribute = new ConnectionHintTargetAttributeImpl();
 		return connectionHintTargetAttribute;
@@ -279,6 +271,36 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public ComplexAttributeMatcherSourceElement createComplexAttributeMatcherSourceElement() {
 		ComplexAttributeMatcherSourceElementImpl complexAttributeMatcherSourceElement = new ComplexAttributeMatcherSourceElementImpl();
 		return complexAttributeMatcherSourceElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SimpleModelConnectionHint createSimpleModelConnectionHint() {
+		SimpleModelConnectionHintImpl simpleModelConnectionHint = new SimpleModelConnectionHintImpl();
+		return simpleModelConnectionHint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ComplexModelConnectionHint createComplexModelConnectionHint() {
+		ComplexModelConnectionHintImpl complexModelConnectionHint = new ComplexModelConnectionHintImpl();
+		return complexModelConnectionHint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ComplexModelConnectionHintSourceElement createComplexModelConnectionHintSourceElement() {
+		ComplexModelConnectionHintSourceElementImpl complexModelConnectionHintSourceElement = new ComplexModelConnectionHintSourceElementImpl();
+		return complexModelConnectionHintSourceElement;
 	}
 
 	/**

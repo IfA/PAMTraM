@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import pamtram.mapping.AttributeMappingSourceElementType;
+import pamtram.mapping.AttributeMappingSourceElementWithModifiers;
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.SimpleAttributeMapping;
@@ -200,7 +201,12 @@ public class SimpleAttributeMappingImpl extends AttributeMappingImpl implements 
 		if (baseClass == AttributeMappingSourceElementType.class) {
 			switch (derivedFeatureID) {
 				case MappingPackage.SIMPLE_ATTRIBUTE_MAPPING__SOURCE: return MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE;
-				case MappingPackage.SIMPLE_ATTRIBUTE_MAPPING__MODIFIER: return MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER;
+				default: return -1;
+			}
+		}
+		if (baseClass == AttributeMappingSourceElementWithModifiers.class) {
+			switch (derivedFeatureID) {
+				case MappingPackage.SIMPLE_ATTRIBUTE_MAPPING__MODIFIER: return MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS__MODIFIER;
 				default: return -1;
 			}
 		}
@@ -217,7 +223,12 @@ public class SimpleAttributeMappingImpl extends AttributeMappingImpl implements 
 		if (baseClass == AttributeMappingSourceElementType.class) {
 			switch (baseFeatureID) {
 				case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE: return MappingPackage.SIMPLE_ATTRIBUTE_MAPPING__SOURCE;
-				case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER: return MappingPackage.SIMPLE_ATTRIBUTE_MAPPING__MODIFIER;
+				default: return -1;
+			}
+		}
+		if (baseClass == AttributeMappingSourceElementWithModifiers.class) {
+			switch (baseFeatureID) {
+				case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS__MODIFIER: return MappingPackage.SIMPLE_ATTRIBUTE_MAPPING__MODIFIER;
 				default: return -1;
 			}
 		}

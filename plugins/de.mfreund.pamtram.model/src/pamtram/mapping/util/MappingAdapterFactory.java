@@ -178,6 +178,22 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createComplexAttributeMatcherSourceElementAdapter();
 			}
 			@Override
+			public Adapter caseSimpleModelConnectionHint(SimpleModelConnectionHint object) {
+				return createSimpleModelConnectionHintAdapter();
+			}
+			@Override
+			public Adapter caseComplexModelConnectionHint(ComplexModelConnectionHint object) {
+				return createComplexModelConnectionHintAdapter();
+			}
+			@Override
+			public Adapter caseComplexModelConnectionHintSourceElement(ComplexModelConnectionHintSourceElement object) {
+				return createComplexModelConnectionHintSourceElementAdapter();
+			}
+			@Override
+			public Adapter caseAttributeMappingSourceElementWithModifiers(AttributeMappingSourceElementWithModifiers object) {
+				return createAttributeMappingSourceElementWithModifiersAdapter();
+			}
+			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -576,6 +592,62 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createComplexAttributeMatcherSourceElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.SimpleModelConnectionHint <em>Simple Model Connection Hint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.SimpleModelConnectionHint
+	 * @generated
+	 */
+	public Adapter createSimpleModelConnectionHintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ComplexModelConnectionHint <em>Complex Model Connection Hint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.ComplexModelConnectionHint
+	 * @generated
+	 */
+	public Adapter createComplexModelConnectionHintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ComplexModelConnectionHintSourceElement <em>Complex Model Connection Hint Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.ComplexModelConnectionHintSourceElement
+	 * @generated
+	 */
+	public Adapter createComplexModelConnectionHintSourceElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.AttributeMappingSourceElementWithModifiers <em>Attribute Mapping Source Element With Modifiers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.AttributeMappingSourceElementWithModifiers
+	 * @generated
+	 */
+	public Adapter createAttributeMappingSourceElementWithModifiersAdapter() {
 		return null;
 	}
 

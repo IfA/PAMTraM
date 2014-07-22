@@ -204,8 +204,9 @@ public class MappingSwitch<T> extends Switch<T> {
 				SimpleAttributeMapping simpleAttributeMapping = (SimpleAttributeMapping)theEObject;
 				T result = caseSimpleAttributeMapping(simpleAttributeMapping);
 				if (result == null) result = caseAttributeMapping(simpleAttributeMapping);
-				if (result == null) result = caseAttributeMappingSourceElementType(simpleAttributeMapping);
+				if (result == null) result = caseAttributeMappingSourceElementWithModifiers(simpleAttributeMapping);
 				if (result == null) result = caseMappingHint(simpleAttributeMapping);
+				if (result == null) result = caseAttributeMappingSourceElementType(simpleAttributeMapping);
 				if (result == null) result = caseNamedElement(simpleAttributeMapping);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -222,6 +223,7 @@ public class MappingSwitch<T> extends Switch<T> {
 			case MappingPackage.COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT: {
 				ComplexAttribueMappingSourceElement complexAttribueMappingSourceElement = (ComplexAttribueMappingSourceElement)theEObject;
 				T result = caseComplexAttribueMappingSourceElement(complexAttribueMappingSourceElement);
+				if (result == null) result = caseAttributeMappingSourceElementWithModifiers(complexAttribueMappingSourceElement);
 				if (result == null) result = caseAttributeMappingSourceElementType(complexAttribueMappingSourceElement);
 				if (result == null) result = caseNamedElement(complexAttribueMappingSourceElement);
 				if (result == null) result = defaultCase(theEObject);
@@ -239,6 +241,7 @@ public class MappingSwitch<T> extends Switch<T> {
 			case MappingPackage.EXPRESSION_VARIABLE: {
 				ExpressionVariable expressionVariable = (ExpressionVariable)theEObject;
 				T result = caseExpressionVariable(expressionVariable);
+				if (result == null) result = caseAttributeMappingSourceElementWithModifiers(expressionVariable);
 				if (result == null) result = caseAttributeMappingSourceElementType(expressionVariable);
 				if (result == null) result = caseNamedElement(expressionVariable);
 				if (result == null) result = defaultCase(theEObject);
@@ -263,8 +266,9 @@ public class MappingSwitch<T> extends Switch<T> {
 				SimpleAttributeMatcher simpleAttributeMatcher = (SimpleAttributeMatcher)theEObject;
 				T result = caseSimpleAttributeMatcher(simpleAttributeMatcher);
 				if (result == null) result = caseAttributeMatcher(simpleAttributeMatcher);
-				if (result == null) result = caseAttributeMappingSourceElementType(simpleAttributeMatcher);
+				if (result == null) result = caseAttributeMappingSourceElementWithModifiers(simpleAttributeMatcher);
 				if (result == null) result = caseMatcher(simpleAttributeMatcher);
+				if (result == null) result = caseAttributeMappingSourceElementType(simpleAttributeMatcher);
 				if (result == null) result = caseNamedElement(simpleAttributeMatcher);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -272,8 +276,44 @@ public class MappingSwitch<T> extends Switch<T> {
 			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT: {
 				ComplexAttributeMatcherSourceElement complexAttributeMatcherSourceElement = (ComplexAttributeMatcherSourceElement)theEObject;
 				T result = caseComplexAttributeMatcherSourceElement(complexAttributeMatcherSourceElement);
+				if (result == null) result = caseAttributeMappingSourceElementWithModifiers(complexAttributeMatcherSourceElement);
 				if (result == null) result = caseAttributeMappingSourceElementType(complexAttributeMatcherSourceElement);
 				if (result == null) result = caseNamedElement(complexAttributeMatcherSourceElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.SIMPLE_MODEL_CONNECTION_HINT: {
+				SimpleModelConnectionHint simpleModelConnectionHint = (SimpleModelConnectionHint)theEObject;
+				T result = caseSimpleModelConnectionHint(simpleModelConnectionHint);
+				if (result == null) result = caseModelConnectionHint(simpleModelConnectionHint);
+				if (result == null) result = caseAttributeMappingSourceElementWithModifiers(simpleModelConnectionHint);
+				if (result == null) result = caseAttributeMappingSourceElementType(simpleModelConnectionHint);
+				if (result == null) result = caseNamedElement(simpleModelConnectionHint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.COMPLEX_MODEL_CONNECTION_HINT: {
+				ComplexModelConnectionHint complexModelConnectionHint = (ComplexModelConnectionHint)theEObject;
+				T result = caseComplexModelConnectionHint(complexModelConnectionHint);
+				if (result == null) result = caseModelConnectionHint(complexModelConnectionHint);
+				if (result == null) result = caseNamedElement(complexModelConnectionHint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.COMPLEX_MODEL_CONNECTION_HINT_SOURCE_ELEMENT: {
+				ComplexModelConnectionHintSourceElement complexModelConnectionHintSourceElement = (ComplexModelConnectionHintSourceElement)theEObject;
+				T result = caseComplexModelConnectionHintSourceElement(complexModelConnectionHintSourceElement);
+				if (result == null) result = caseAttributeMappingSourceElementWithModifiers(complexModelConnectionHintSourceElement);
+				if (result == null) result = caseAttributeMappingSourceElementType(complexModelConnectionHintSourceElement);
+				if (result == null) result = caseNamedElement(complexModelConnectionHintSourceElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS: {
+				AttributeMappingSourceElementWithModifiers attributeMappingSourceElementWithModifiers = (AttributeMappingSourceElementWithModifiers)theEObject;
+				T result = caseAttributeMappingSourceElementWithModifiers(attributeMappingSourceElementWithModifiers);
+				if (result == null) result = caseAttributeMappingSourceElementType(attributeMappingSourceElementWithModifiers);
+				if (result == null) result = caseNamedElement(attributeMappingSourceElementWithModifiers);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -683,6 +723,66 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseComplexAttributeMatcherSourceElement(ComplexAttributeMatcherSourceElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Simple Model Connection Hint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Simple Model Connection Hint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSimpleModelConnectionHint(SimpleModelConnectionHint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Complex Model Connection Hint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Complex Model Connection Hint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseComplexModelConnectionHint(ComplexModelConnectionHint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Complex Model Connection Hint Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Complex Model Connection Hint Source Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseComplexModelConnectionHintSourceElement(ComplexModelConnectionHintSourceElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Attribute Mapping Source Element With Modifiers</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Attribute Mapping Source Element With Modifiers</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAttributeMappingSourceElementWithModifiers(AttributeMappingSourceElementWithModifiers object) {
 		return null;
 	}
 

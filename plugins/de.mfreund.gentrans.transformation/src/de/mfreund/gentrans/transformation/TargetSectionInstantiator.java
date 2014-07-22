@@ -150,7 +150,7 @@ class TargetSectionInstantiator {
 	LinkedHashMap<TargetSectionClass,LinkedList<EObjectTransformationHelper>> instantiateTargetSectionFirstPass(TargetSectionClass metamodelSection,
 																					MappingHintGroup mappingGroup,
 																					Map<MappingHint, LinkedList<Object>> hintValues,
-																					Map<ModelConnectionHint, LinkedList<String>> conHintValues,																					
+																					Map<ModelConnectionHint, LinkedList<Object>> conHintValues,																					
 																					Mapping mapping){
 		LinkedHashMap<TargetSectionClass,LinkedList<EObjectTransformationHelper>> instBySection=new LinkedHashMap<TargetSectionClass,LinkedList<EObjectTransformationHelper>> ();
 		
@@ -177,11 +177,11 @@ class TargetSectionInstantiator {
  * @param mapping
  * @return
  */
-@SuppressWarnings("unchecked")
+@SuppressWarnings("unchecked")//TODO ModelConnectionHint
 private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPass(TargetSectionClass metamodelSection,
 																				MappingHintGroup mappingGroup,
 																				Map<MappingHint, LinkedList<Object>> hintValues,
-																				Map<ModelConnectionHint, LinkedList<String>> conHintValues,
+																				Map<ModelConnectionHint, LinkedList<Object>> conHintValues,
 																				Map<TargetSectionClass,LinkedList<EObjectTransformationHelper>> instBySection,
 																				Mapping mapping) {
 	
@@ -293,7 +293,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 							}
 						}
 						//overwrite hint value with value of targetMMSection if present
-						if(attr.getValue() != null){
+						if(attr.getValue() != null && !attr.getValue().equals("")){
 								attrValue=attr.getValue();
 						}
 						

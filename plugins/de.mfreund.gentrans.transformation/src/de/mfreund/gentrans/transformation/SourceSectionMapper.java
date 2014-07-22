@@ -20,6 +20,8 @@ import pamtram.mapping.ComplexAttribueMappingSourceElement;
 import pamtram.mapping.ComplexAttributeMapping;
 import pamtram.mapping.ComplexAttributeMatcher;
 import pamtram.mapping.ComplexAttributeMatcherSourceElement;
+import pamtram.mapping.ComplexModelConnectionHint;
+import pamtram.mapping.ComplexModelConnectionHintSourceElement;
 import pamtram.mapping.ExpressionVariable;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
@@ -28,6 +30,7 @@ import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.SimpleAttributeMapping;
 import pamtram.mapping.SimpleAttributeMatcher;
+import pamtram.mapping.SimpleModelConnectionHint;
 import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.CardinalityType;
@@ -60,20 +63,26 @@ class SourceSectionMapper {
 	 */
 	private LinkedHashMap<Mapping,LinkedList<MappingHint>> mappingHints;
 	/**
-	 * Map Referencing the Class referenced by the ComplexAttributeMappingSourceElement that is buried deepest in the target Section,
+	 * Map Referencing the Class referenced by the ComplexAttributeMappingSourceElement that is buried deepest in the source Section,
 	 * sorted by ComplexAttributeMapping.
 	 */
 	private LinkedHashMap<ComplexAttributeMapping,SourceSectionClass> deepestComplexAttrMappingSrcElementsByCmplxMapping;
 	/**
-	 * Map Referencing the Class referenced by the ExpressionVariable that is buried deepest in the target Section,
+	 * Map Referencing the Class referenced by the ExpressionVariable that is buried deepest in the source Section,
 	 * sorted by CalculatorMapping.
 	 */
 	private LinkedHashMap<CalculatorMapping,SourceSectionClass> deepestCalcAttrMappingSrcElementsByCalcMapping;
 	/**
-	 * Map Referencing the Class referenced by the ComplexAttributeMatcherSourceElement that is buried deepest in the target Section,
+	 * Map Referencing the Class referenced by the ComplexAttributeMatcherSourceElement that is buried deepest in the source Section,
 	 * sorted by ComplexAttributeMatcher.
 	 */
 	private LinkedHashMap<ComplexAttributeMatcher, SourceSectionClass> deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher;
+	
+	/**
+	 * Map Referencing the Class referenced by the ComplexModelConnectionHintSourceElement that is buried deepest in the source Section,
+	 * sorted by ComplexAttributeMatcher.
+	 */
+	private LinkedHashMap<ComplexModelConnectionHint, SourceSectionClass> deepestComplexConnectionHintSrcElementsByComplexConnectionHint;
 	/**
 	 * Mappings from the PAMTram model
 	 */
@@ -105,6 +114,7 @@ class SourceSectionMapper {
 		deepestComplexAttrMappingSrcElementsByCmplxMapping= new LinkedHashMap<ComplexAttributeMapping,SourceSectionClass>();
 		deepestCalcAttrMappingSrcElementsByCalcMapping = new LinkedHashMap<CalculatorMapping,SourceSectionClass>();
 		deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher= new LinkedHashMap<ComplexAttributeMatcher, SourceSectionClass>();
+		deepestComplexConnectionHintSrcElementsByComplexConnectionHint= new LinkedHashMap<ComplexModelConnectionHint, SourceSectionClass>();
 		this.mappingsToChooseFrom=mappingsToChooseFrom;
 		this.consoleStream=consoleStream;
 		this.transformationAborted=false;
@@ -121,6 +131,12 @@ class SourceSectionMapper {
 					if(((MappingInstanceSelector) h).getMatcher() instanceof ComplexAttributeMatcher){
 						buildDeepestComplexAttrMatcherSrcElements((ComplexAttributeMatcher)((MappingInstanceSelector)h).getMatcher(), m.getSourceMMSection());
 					}
+				} 
+			}
+			
+			for(ModelConnectionHint h : getModelConnectionHints(m)){
+				if(h instanceof ComplexModelConnectionHint){
+					buildDeepestCmplxConnectionHintElementsMap((ComplexModelConnectionHint) h, m.getSourceMMSection());
 				}
 			}
 		}
@@ -180,6 +196,25 @@ class SourceSectionMapper {
 			
 		}		
 	}
+	
+	/**
+	 * Extend the deepestComplexConnectionHintSrcElementsByComplexConnectionHint ModelConnectionHint
+	 * @param m 
+	 * @param srcSection
+	 */
+	private void buildDeepestCmplxConnectionHintElementsMap(ComplexModelConnectionHint m, SourceSectionClass srcSection){
+		if(!deepestComplexConnectionHintSrcElementsByComplexConnectionHint.containsKey(m)){
+			Set<AttributeMappingSourceElementType> srcElements=new HashSet<AttributeMappingSourceElementType>();
+			srcElements.addAll(m.getSourceElements());
+			
+			sortOutElements(srcElements, srcSection);
+			if(srcElements.size() == 1){
+				deepestComplexConnectionHintSrcElementsByComplexConnectionHint.put(m,srcElements.iterator().next().getSource().getOwningClass());
+				
+			}
+			
+		}		
+	}	
 	
 	/**
 	 * Extend the deepestCalcAttrMappingSrcElementsByCalcMapping Map for the MappingHint
@@ -330,6 +365,8 @@ class SourceSectionMapper {
 		Map<ComplexAttribueMappingSourceElement,String> complexSourceElementHintValues=new LinkedHashMap<ComplexAttribueMappingSourceElement,String>();
 		Map<ExpressionVariable,String> calcVariableHintValues=new LinkedHashMap<ExpressionVariable,String>();	
 		Map<ComplexAttributeMatcherSourceElement,String> complexAttrMatcherSourceElementHintValues=new LinkedHashMap<ComplexAttributeMatcherSourceElement,String>();
+		Map<ComplexModelConnectionHintSourceElement,String> complexConnectionHintSourceElementHintValues=new LinkedHashMap<ComplexModelConnectionHintSourceElement,String>();
+		
 		for (MappingHint hint : hints) {
 			
 			if( hint instanceof ComplexAttributeMapping 
@@ -360,8 +397,14 @@ class SourceSectionMapper {
 		}
 		
 		for (ModelConnectionHint hint : connectionHints) {
-
-			changedRefsAndHints.setConnectionHintValueList(hint, new LinkedList<String>());
+			changedRefsAndHints.setConnectionHintValueList(hint, new LinkedList<Object>());				
+			if(hint instanceof ComplexModelConnectionHint){
+				if(newRefsAndHints.getModelConnectionHintValues().containsKey(hint)){
+					changedRefsAndHints.getModelConnectionHintValues().get(hint).addAll(newRefsAndHints.getModelConnectionHintValues().get(hint));
+				} else {
+					changedRefsAndHints.getModelConnectionHintValues().get(hint).add(new LinkedHashMap<ComplexModelConnectionHintSourceElement,String>());
+				}
+			}
 		}
 
 		// set refs
@@ -469,12 +512,20 @@ class SourceSectionMapper {
 				// ModelConnectionHint (is being handled in the same way as
 				// MI-Selector with AttrMatcher)
 				for (ModelConnectionHint hint : connectionHints) {
-					if (hint.getSourceAttribute().equals(at)) {
-						changedRefsAndHints.addModelConnectionHintValue(hint,
-								srcAttrAsString);
+					if(hint instanceof SimpleModelConnectionHint){
+						if (((SimpleModelConnectionHint) hint).getSource().equals(at)) {
+							String modifiedVal=AttributeValueRegistry.applyAttributeValueModifiers(srcAttrAsString, ((SimpleModelConnectionHint) hint).getModifier());
+							changedRefsAndHints.addModelConnectionHintValue(hint,modifiedVal);
 
+						}						
+					} else if(hint instanceof ComplexModelConnectionHint){
+						for(ComplexModelConnectionHintSourceElement m : ((ComplexModelConnectionHint) hint).getSourceElements()){
+							if (m.getSource().equals(at)) {
+								String modifiedVal=AttributeValueRegistry.applyAttributeValueModifiers(srcAttrAsString, m.getModifier());
+								complexConnectionHintSourceElementHintValues.put(m,modifiedVal);
+							}
+						}
 					}
-
 				}
 
 			} else {// attribute not set / null
@@ -487,6 +538,7 @@ class SourceSectionMapper {
 		Set<ComplexAttributeMapping> complexAttributeMappingsFound=new HashSet<ComplexAttributeMapping>();
 		Set<ComplexAttributeMatcher> complexAttributeMatchersFound=new HashSet<ComplexAttributeMatcher>();
 		Set<CalculatorMapping> calculatorMappingsFound=new HashSet<CalculatorMapping>();		
+		Set<ComplexModelConnectionHint> complexConnectionHintsFound=new HashSet<ComplexModelConnectionHint>();
 		
 		for(MappingHint h : hints){
 			if(h instanceof ComplexAttributeMapping){
@@ -548,6 +600,26 @@ class SourceSectionMapper {
 					calcValues.putAll(foundValues);
 					changedRefsAndHints.getHintValues().get(h).add(calcValues);
 				}				
+			}
+		}
+		
+		//handle ComplexModelConnectionHints in the same way as ComplexAttributeMappings
+		for(ModelConnectionHint hint : connectionHints){
+			if(hint instanceof ComplexModelConnectionHint){
+				Map<ComplexModelConnectionHintSourceElement,String> foundValues=new LinkedHashMap<ComplexModelConnectionHintSourceElement,String>();
+				//append the complex hint value (cardinality either 0 or 1) with found values in right order
+				for(ComplexModelConnectionHintSourceElement s : ((ComplexModelConnectionHint) hint).getSourceElements()){
+					if(complexConnectionHintSourceElementHintValues.containsKey(s)){
+						foundValues.put(s,complexConnectionHintSourceElementHintValues.get(s));
+					}
+				}
+				
+				if(foundValues.keySet().size() > 0){
+					complexConnectionHintsFound.add((ComplexModelConnectionHint)hint);
+					
+					foundValues.putAll((Map<ComplexModelConnectionHintSourceElement,String>) changedRefsAndHints.getModelConnectionHintValues().get(hint).remove());					
+					changedRefsAndHints.getModelConnectionHintValues().get(hint).add(foundValues);
+				}					
 			}
 		}
 
@@ -823,6 +895,15 @@ class SourceSectionMapper {
 						changedRefsAndHints.getHintValues().get(h).remove();
 					}
 				}				
+		}
+		
+		for(ModelConnectionHint h :  connectionHints){
+			if(h instanceof ComplexModelConnectionHint){
+				if(!(complexConnectionHintsFound.contains(h) &&
+						deepestComplexConnectionHintSrcElementsByComplexConnectionHint.get(h).equals(srcSection))){
+					changedRefsAndHints.getModelConnectionHintValues().get(h).remove();
+				}
+			}
 		}
 		
 		return changedRefsAndHints;

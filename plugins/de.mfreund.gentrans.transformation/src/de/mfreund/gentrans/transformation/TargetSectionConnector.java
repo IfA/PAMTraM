@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -14,8 +15,11 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.console.MessageConsoleStream;
 
+import pamtram.mapping.ComplexModelConnectionHint;
+import pamtram.mapping.ComplexModelConnectionHintSourceElement;
 import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.ModelConnectionHint;
+import pamtram.mapping.SimpleModelConnectionHint;
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import de.mfreund.gentrans.transformation.selectors.ItemSelectorDialogRunner;
@@ -121,10 +125,10 @@ class TargetSectionConnector {
 			EClass classToConnect, List<EObjectTransformationHelper> rootInstances, TargetSectionClass section,
 			String mappingName, String mappingGroupName,
 			ModelConnectionHint connectionHint,
-			LinkedList<String> connectionHintValues) {// connectionHint.targetAttribute.~owningClass
+			LinkedList<Object> connectionHintValues) {// connectionHint.targetAttribute.~owningClass
 		if (rootInstances.size() < 1)
 			return;// if we don't do this here an ArrayOutOfBoundsException
-					// might occur later'
+					// might occur later' TODO
 
 		if (targetSectionRegistry.getPaths(classToConnect).size() > 0) {
 			// now search for target attributes
@@ -142,12 +146,12 @@ class TargetSectionConnector {
 
 			LinkedHashMap<String, LinkedHashSet<EObjectTransformationHelper>> contInstsByHintVal = new LinkedHashMap<String, LinkedHashSet<EObjectTransformationHelper>>();
 			LinkedHashMap<String, LinkedHashSet<EObjectTransformationHelper>> rootInstancesByHintVal = new LinkedHashMap<String, LinkedHashSet<EObjectTransformationHelper>>();
-			LinkedList<String> connectionHintValuesCopy;
+			LinkedList<Object> connectionHintValuesCopy;
 
 			// again, we need to handle the special case, when there is only one
 			// hintValue
 			if (connectionHintValues.size() == 1) {
-				connectionHintValuesCopy = new LinkedList<String>();
+				connectionHintValuesCopy = new LinkedList<Object>();
 				for (int i = 0; i < rootInstances.size(); i++) {
 					connectionHintValuesCopy.add(connectionHintValues
 							.getFirst());
@@ -156,23 +160,40 @@ class TargetSectionConnector {
 				connectionHintValuesCopy = connectionHintValues;
 			}
 
-			for (String hintVal : connectionHintValuesCopy) {
-				if (!contInstsByHintVal.containsKey(hintVal)) {
-					contInstsByHintVal.put(hintVal, new LinkedHashSet<EObjectTransformationHelper>());
+			for (Object hintVal : connectionHintValuesCopy) {
+				String hintValAsString=null;
+				if(connectionHint instanceof SimpleModelConnectionHint){
+					hintValAsString=(String) hintVal;
+				} else if(connectionHint instanceof ComplexModelConnectionHint) {
+					hintValAsString="";
+					@SuppressWarnings("unchecked")
+					Map<ComplexModelConnectionHintSourceElement,String> hVal=(Map<ComplexModelConnectionHintSourceElement,String>) hintVal;
+					for(ComplexModelConnectionHintSourceElement srcElement : ((ComplexModelConnectionHint) connectionHint).getSourceElements()){
+						if(hVal.containsKey(srcElement)){
+								hintValAsString+=hVal.get(srcElement);
+						} else {
+							consoleStream.println("HintSourceValue not found " + srcElement.getName() + " in ComplexModelConnectionHint " 
+									+ connectionHint.getName() + "." );
+						}
+					}
+				}
+				
+				if (!contInstsByHintVal.containsKey(hintValAsString)) {
+					contInstsByHintVal.put(hintValAsString, new LinkedHashSet<EObjectTransformationHelper>());
 				}
 
-				if (!rootInstancesByHintVal.containsKey(hintVal)) {
-					rootInstancesByHintVal.put(hintVal,
+				if (!rootInstancesByHintVal.containsKey(hintValAsString)) {
+					rootInstancesByHintVal.put(hintValAsString,
 							new LinkedHashSet<EObjectTransformationHelper>());
 				}
 
-				rootInstancesByHintVal.get(hintVal)
+				rootInstancesByHintVal.get(hintValAsString)
 						.add(rootInstances.remove(0));// instances have same
 														// order as hintValues
 
 				for(ConnectionHintTargetAttribute conAttr : containerInstancesByTargetAttribute.keySet()){
 					
-					String modifiedHintVal =  AttributeValueRegistry.applyAttributeValueModifiers(hintVal,conAttr.getModifier());
+					String modifiedHintVal =  AttributeValueRegistry.applyAttributeValueModifiers(hintValAsString,conAttr.getModifier());
 
 					
 					for (EObjectTransformationHelper contInst : containerInstancesByTargetAttribute.get(conAttr)) {// now find a
@@ -186,7 +207,7 @@ class TargetSectionConnector {
 						
 							if (targetValStr != null) {
 								if (modifiedHintVal.equals(targetValStr)) {
-									contInstsByHintVal.get(hintVal).add(contInst);
+									contInstsByHintVal.get(hintValAsString).add(contInst);
 								}
 							} else {
 								consoleStream.println("Problemo?");

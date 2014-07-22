@@ -56,7 +56,7 @@ class MappingInstanceStorage {
 	/**
 	 * Hint value's to be used when linking the generated sections to the rest of the generated target model
 	 */
-	private LinkedHashMap<ModelConnectionHint, LinkedList<String>> modelConnectionHintValues;
+	private LinkedHashMap<ModelConnectionHint, LinkedList<Object>> modelConnectionHintValues;
 
 	/**
 	 *Constructor 
@@ -67,7 +67,7 @@ class MappingInstanceStorage {
 		mapping = null;
 		associatedSourceModelElement = null;
 		instancesBySection = new LinkedHashMap<MappingHintGroup, LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>>();
-		modelConnectionHintValues = new LinkedHashMap<ModelConnectionHint, LinkedList<String>>();
+		modelConnectionHintValues = new LinkedHashMap<ModelConnectionHint, LinkedList<Object>>();
 
 	}
 
@@ -133,9 +133,9 @@ class MappingInstanceStorage {
 	 * @param value
 	 */
 	void addModelConnectionHintValue(ModelConnectionHint hint,
-			String value) {
+			Object value) {
 		if (!modelConnectionHintValues.containsKey(hint)) {
-			modelConnectionHintValues.put(hint, new LinkedList<String>());
+			modelConnectionHintValues.put(hint, new LinkedList<Object>());
 		}
 		modelConnectionHintValues.get(hint).add(value);
 	}
@@ -145,10 +145,10 @@ class MappingInstanceStorage {
 	 * @param newHintValues
 	 */
 	void addModelConnectionHintValues(
-			LinkedHashMap<ModelConnectionHint, LinkedList<String>> newHintValues) {
+			LinkedHashMap<ModelConnectionHint, LinkedList<Object>> newHintValues) {
 		for (ModelConnectionHint h : newHintValues.keySet()) {
 			if (!modelConnectionHintValues.containsKey(h)) {
-				modelConnectionHintValues.put(h, new LinkedList<String>());
+				modelConnectionHintValues.put(h, new LinkedList<Object>());
 			}
 			modelConnectionHintValues.get(h).addAll(newHintValues.get(h));
 		}
@@ -256,7 +256,7 @@ class MappingInstanceStorage {
 	/**
 	 * @return hint values for the ModelConnectionHints, created during the mapping of the source section
 	 */
-	public final LinkedHashMap<ModelConnectionHint, LinkedList<String>> getModelConnectionHintValues() {
+	public final LinkedHashMap<ModelConnectionHint, LinkedList<Object>> getModelConnectionHintValues() {
 		return modelConnectionHintValues;
 	}
 
@@ -265,13 +265,13 @@ class MappingInstanceStorage {
 	 * @param hint
 	 * @return ModelConnectionHint values for the specified target section
 	 */
-	LinkedList<String> getModelConnectionHintValues(
+	LinkedList<Object> getModelConnectionHintValues(
 			ModelConnectionHint hint) {
 
 		if (modelConnectionHintValues.containsKey(hint)) {
 			return modelConnectionHintValues.get(hint);
 		} else {
-			return new LinkedList<String>();
+			return new LinkedList<Object>();
 		}
 	}
 
@@ -307,7 +307,7 @@ class MappingInstanceStorage {
 	 * @param newHintValues
 	 */
 	void setConnectionHintValueList(ModelConnectionHint hint,
-			LinkedList<String> newHintValues) {
+			LinkedList<Object> newHintValues) {
 		modelConnectionHintValues.put(hint, newHintValues);
 
 	}

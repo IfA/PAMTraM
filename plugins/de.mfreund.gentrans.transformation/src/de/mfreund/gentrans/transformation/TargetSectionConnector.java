@@ -518,8 +518,7 @@ class TargetSectionConnector {
 
 						instanceNames.add(instNamesAsList);
 					}
-					PathAndInstanceSelectorRunner
-							.run(rootInstances.size()
+					PathAndInstanceSelectorRunner dialog=new PathAndInstanceSelectorRunner(rootInstances.size()
 									+ " Instance" + (rootInstances.size()>1 ? "s" : "")+ " of the TargetSection '"
 									+ section.getName()
 									+ "', created by the mapping '"
@@ -533,14 +532,17 @@ class TargetSectionConnector {
 									+ "Please choose one of the possible connections to other existing target model elements"
 									+ " below.", namesAsList, instanceNames);
 
-					// TODO Maybe add option to not do anything
+					Display.getDefault().syncExec(dialog);					// TODO Maybe add option to not do anything
+					if(dialog.wasTransformationStopRequested()){
+						transformationAborted=true;
+						return;
+					}
 					// now ask user
-					modelConnectionPath = pathNames.get(PathAndInstanceSelectorRunner
-							.getPath());
+					modelConnectionPath = pathNames.get(dialog.getPath());
 					// select instance of path end to associate elements to
 					EObjectTransformationHelper inst = instancesByPath.get(
-							PathAndInstanceSelectorRunner.getPath()).get(
-							PathAndInstanceSelectorRunner.getInstance());
+							dialog.getPath()).get(
+							dialog.getInstance());
 					consoleStream.println(section.getName() + "(" + mappingName
 							+ "): " + modelConnectionPath.toString());
 					instantiateMissingPath(modelConnectionPath.getInvertedPathElementList(), inst.getEObject(),

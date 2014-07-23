@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:pamtram="http://mfreund.de/pamtram">
+  <sourceSectionModel>
+    <metaModelPackage href="http://disl#/"/>
+    <metaModelSections name="DislRoot">
+      <eClass href="http://disl#//Disl"/>
+    </metaModelSections>
+  </sourceSectionModel>
+  <targetSectionModel>
+    <metaModelPackage href="http://stefan-hennig.de/movisa/platform#/"/>
+    <metaModelSections name="VisAppModel">
+      <eClass href="http://stefan-hennig.de/movisa/platform#//VisualizationApplicationModel"/>
+    </metaModelSections>
+  </targetSectionModel>
+  <mappingModel>
+    <mapping name="RootMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.0">
+      <mappingHintGroups name="VisAppModelHintGroup" targetMMSection="//@targetSectionModel/@metaModelSections.0"/>
+    </mapping>
+  </mappingModel>
+</pamtram:PAMTraM>

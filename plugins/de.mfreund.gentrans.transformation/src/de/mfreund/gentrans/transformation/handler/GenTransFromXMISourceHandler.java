@@ -7,6 +7,9 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -59,12 +62,25 @@ public class GenTransFromXMISourceHandler extends AbstractHandler {
 		
 		// get the root object of the xml resource
 		EObject root = xmiResource.getContents().get(0);
-		GenericTransformationRunner tr=new GenericTransformationRunner(root,pamtramFilePath,PamtramFileSelectorDialog.getTargetFile());
-		try{
-		tr.runTransformation();
-		} catch (Exception e){
-			 e.printStackTrace(System.out);
-		}
+		final GenericTransformationRunner tr=new GenericTransformationRunner(root,pamtramFilePath,PamtramFileSelectorDialog.getTargetFile());
+
+		Job job=new Job("Gentrans"){
+
+			@Override
+			protected IStatus run(IProgressMonitor monitor) {
+				try{
+					tr.runTransformation();
+					return org.eclipse.core.runtime.Status.OK_STATUS;
+				} catch (Exception e){
+					 e.printStackTrace(System.out);
+						return org.eclipse.core.runtime.Status.CANCEL_STATUS;//TODO
+				}
+
+			}
+			
+		};
+		job.schedule();
+		
 	    return null;
 	}
 

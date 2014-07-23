@@ -12,6 +12,7 @@ Export-Package: pamtram.condition.presentation,
  pamtram.mapping.presentation,
  pamtram.metamodel.presentation,
  pamtram.presentation,
+ pamtram.presentation.pages,
  pamtram.transformation.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,

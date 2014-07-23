@@ -130,6 +130,8 @@ import pamtram.mapping.ClassMatcher;
 import pamtram.mapping.ComplexAttributeMapping;
 import pamtram.mapping.ComplexAttributeMatcher;
 import pamtram.mapping.ComplexAttributeMatcherSourceElement;
+import pamtram.mapping.ComplexModelConnectionHint;
+import pamtram.mapping.ComplexModelConnectionHintSourceElement;
 import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
@@ -137,6 +139,7 @@ import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.SimpleAttributeMapping;
 import pamtram.mapping.SimpleAttributeMatcher;
+import pamtram.mapping.SimpleModelConnectionHint;
 import pamtram.mapping.provider.MappingItemProviderAdapterFactory;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.NonContainmentReference;
@@ -1265,7 +1268,10 @@ public class PamtramEditor
 						
 						// Update the currently selected mapping.
 						currentMapping = mapping;
-					}  else if(((TreeItem) e.item).getData() instanceof AttributeMappingSourceElementType && ! (((TreeItem) e.item).getData()instanceof SimpleAttributeMatcher)) {
+					}  else if(((TreeItem) e.item).getData() instanceof AttributeMappingSourceElementType 
+							&& ! (((TreeItem) e.item).getData()instanceof SimpleAttributeMatcher)
+							&& ! (((TreeItem) e.item).getData()instanceof SimpleModelConnectionHint)
+							) {
 						AttributeMappingSourceElementType mapping = (AttributeMappingSourceElementType) ((TreeItem) e.item).getData();
 
 						Attribute target = null;
@@ -1438,35 +1444,27 @@ public class PamtramEditor
 						
 						ModelConnectionHint hint = (ModelConnectionHint) ((TreeItem) e.item).getData();
 						
-						Attribute source = hint.getSourceAttribute();
-						LinkedList<Attribute> target = new LinkedList<Attribute>();
+						LinkedList<Attribute> sources = new LinkedList<Attribute>();
+						
+						if(hint instanceof SimpleModelConnectionHint){
+							sources.add(((SimpleModelConnectionHint) hint).getSource());
+						} else if(hint instanceof ComplexModelConnectionHint){
+							for(ComplexModelConnectionHintSourceElement sourceElement : ((ComplexModelConnectionHint) hint).getSourceElements() ){
+								sources.add(sourceElement.getSource());
+							}
+						}
+						
+						LinkedList<Attribute> targets = new LinkedList<Attribute>();
+						
+						
 								
 						for(ConnectionHintTargetAttribute a : hint.getTargetAttributes()){
-							target.add(a.getTargetAttribute());
+							targets.add(a.getTargetAttribute());
 						}
 						
 						// Select the source and target item associated with the selected matcher.
-						if(source == null && target.size() == 0) {
-							sourceViewer.setSelection(
-									new StructuredSelection());
-							targetViewer.setSelection(
-									new StructuredSelection());
-						} else if(source != null && target.size() == 0){
-							sourceViewer.setSelection(
-									new StructuredSelection(source));
-							targetViewer.setSelection(
-									new StructuredSelection());
-						} else if(source == null && target != null){
-							sourceViewer.setSelection(
-									new StructuredSelection());
-							targetViewer.setSelection(
-									new StructuredSelection(target));
-						} else {
-							sourceViewer.setSelection(
-									new StructuredSelection(source));
-							targetViewer.setSelection(
-									new StructuredSelection(target));
-						}
+						targetViewer.setSelection(new StructuredSelection(targets));
+						sourceViewer.setSelection(new StructuredSelection(sources));
 						
 					}
 				}

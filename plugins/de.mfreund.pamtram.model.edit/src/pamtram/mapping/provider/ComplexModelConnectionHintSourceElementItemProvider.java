@@ -5,26 +5,28 @@ package pamtram.mapping.provider;
 
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import pamtram.mapping.ComplexAttributeMatcherSourceElement;
+
+import pamtram.mapping.ComplexModelConnectionHintSourceElement;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.ComplexAttributeMatcherSourceElement} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.ComplexModelConnectionHintSourceElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ComplexAttributeMatcherSourceElementItemProvider
-	extends AttributeMappingSourceElementWithModifiersItemProvider {
+public class ComplexModelConnectionHintSourceElementItemProvider extends AttributeMappingSourceElementWithModifiersItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComplexAttributeMatcherSourceElementItemProvider(AdapterFactory adapterFactory) {
+	public ComplexModelConnectionHintSourceElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -44,14 +46,14 @@ public class ComplexAttributeMatcherSourceElementItemProvider
 	}
 
 	/**
-	 * This returns ComplexAttributeMatcherSourceElement.gif.
+	 * This returns ComplexModelConnectionHintSourceElement.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ComplexAttributeMatcherSourceElement"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ComplexModelConnectionHintSourceElement"));
 	}
 
 	/**
@@ -62,11 +64,12 @@ public class ComplexAttributeMatcherSourceElementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ComplexAttributeMatcherSourceElement)object).getName();
+		String label = ((ComplexModelConnectionHintSourceElement)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ComplexAttributeMatcherSourceElement_type") :
-			getString("_UI_ComplexAttributeMatcherSourceElement_type") + " " + label;
+			getString("_UI_ComplexModelConnectionHintSourceElement_type") :
+			getString("_UI_ComplexModelConnectionHintSourceElement_type") + " " + label;
 	}
+	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

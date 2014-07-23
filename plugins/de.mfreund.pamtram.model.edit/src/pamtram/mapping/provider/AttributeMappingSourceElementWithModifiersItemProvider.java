@@ -5,26 +5,30 @@ package pamtram.mapping.provider;
 
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import pamtram.mapping.ComplexAttributeMatcherSourceElement;
+
+import pamtram.mapping.AttributeMappingSourceElementWithModifiers;
+import pamtram.mapping.MappingPackage;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.ComplexAttributeMatcherSourceElement} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.AttributeMappingSourceElementWithModifiers} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ComplexAttributeMatcherSourceElementItemProvider
-	extends AttributeMappingSourceElementWithModifiersItemProvider {
+public class AttributeMappingSourceElementWithModifiersItemProvider extends AttributeMappingSourceElementTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComplexAttributeMatcherSourceElementItemProvider(AdapterFactory adapterFactory) {
+	public AttributeMappingSourceElementWithModifiersItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -39,19 +43,31 @@ public class ComplexAttributeMatcherSourceElementItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addModifierPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This returns ComplexAttributeMatcherSourceElement.gif.
+	 * This adds a property descriptor for the Modifier feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ComplexAttributeMatcherSourceElement"));
+	protected void addModifierPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AttributeMappingSourceElementWithModifiers_modifier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeMappingSourceElementWithModifiers_modifier_feature", "_UI_AttributeMappingSourceElementWithModifiers_type"),
+				 MappingPackage.Literals.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS__MODIFIER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -62,11 +78,12 @@ public class ComplexAttributeMatcherSourceElementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ComplexAttributeMatcherSourceElement)object).getName();
+		String label = ((AttributeMappingSourceElementWithModifiers)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ComplexAttributeMatcherSourceElement_type") :
-			getString("_UI_ComplexAttributeMatcherSourceElement_type") + " " + label;
+			getString("_UI_AttributeMappingSourceElementWithModifiers_type") :
+			getString("_UI_AttributeMappingSourceElementWithModifiers_type") + " " + label;
 	}
+	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

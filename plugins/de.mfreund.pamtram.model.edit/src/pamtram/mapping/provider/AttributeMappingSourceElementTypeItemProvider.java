@@ -55,7 +55,6 @@ public class AttributeMappingSourceElementTypeItemProvider
 			super.getPropertyDescriptors(object);
 
 			addSourcePropertyDescriptor(object);
-			addModifierPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -128,28 +127,6 @@ public class AttributeMappingSourceElementTypeItemProvider
 					return choiceOfValues;
 				}
 			   });
-	}
-
-	/**
-	 * This adds a property descriptor for the Modifier feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addModifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AttributeMappingSourceElementType_modifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeMappingSourceElementType_modifier_feature", "_UI_AttributeMappingSourceElementType_type"),
-				 MappingPackage.Literals.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**

@@ -51,13 +51,12 @@ public class ItemSelectorDialog extends Dialog{
 	 * @param parent
 	 * @param style
 	 */
-	ItemSelectorDialog(Shell parent, int style, String message, Collection<String> listItems, String standardSelection) {
-		super(parent, SWT.DIALOG_TRIM | SWT.RESIZE | SWT.APPLICATION_MODAL);
+	ItemSelectorDialog(Shell parent, String message, Collection<String> listItems, String standardSelection) {
+		super(parent, SWT.CLOSE | SWT.MODELESS| SWT.BORDER | SWT.TITLE);
 		setText("SWT Dialog");
 		this.listItems=listItems;
 		this.message=message;
 		this.transformationStopRequested=false;
-		
 		//we need to check if the value standardSelection is part of the selections list 
 		selectedItem=listItems.iterator().next();
 		standardSelectionIndex=0;
@@ -104,7 +103,7 @@ public class ItemSelectorDialog extends Dialog{
 	 * Create contents of the dialog.
 	 */
 	private void createContents() {
-		shlPleaseSelectA = new Shell(getParent(), SWT.DIALOG_TRIM | SWT.MIN | SWT.RESIZE | SWT.APPLICATION_MODAL);
+		shlPleaseSelectA = new Shell(getParent(), SWT.CLOSE | SWT.MODELESS| SWT.BORDER | SWT.TITLE);
 
 
 		shlPleaseSelectA.setMinimumSize(new Point(300, 350));

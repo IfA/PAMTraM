@@ -2,7 +2,6 @@ package de.mfreund.gentrans.transformation.selectors;
 
 import java.util.List;
 
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
@@ -23,7 +22,7 @@ public class PathAndInstanceSelectorRunner {
 			public void run(){
 				Display display= Display.getDefault();
 				Shell shell=new Shell(display);
-				PathAndInstanceSelectorDialog d=new PathAndInstanceSelectorDialog(shell, SWT.APPLICATION_MODAL,message, paths,instances);
+				PathAndInstanceSelectorDialog d=new PathAndInstanceSelectorDialog(shell,message, paths,instances);
 
 				d.open();
 				path=d.getPath();

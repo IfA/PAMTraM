@@ -44,8 +44,8 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 	 * @param parent
 	 * @param style
 	 */
-	public PathAndInstanceSelectorDialog(Shell parent, int style, String message, List<String> paths, List<List<String>>  instances) {
-		super(parent, SWT.DIALOG_TRIM | SWT.RESIZE | SWT.APPLICATION_MODAL);
+	public PathAndInstanceSelectorDialog(Shell parent, String message, List<String> paths, List<List<String>>  instances) {
+		super(parent,SWT.CLOSE | SWT.MODELESS| SWT.BORDER | SWT.TITLE);
 		setText("SWT Dialog");
 		this.paths=paths;
 		this.instances=instances;
@@ -97,7 +97,7 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 	 * Create contents of the dialog.
 	 */
 	private void createContents() {
-		shlPleaseSelectA = new Shell(getParent(), SWT.DIALOG_TRIM | SWT.MIN | SWT.RESIZE | SWT.APPLICATION_MODAL);
+		shlPleaseSelectA = new Shell(getParent(), SWT.CLOSE | SWT.MODELESS| SWT.BORDER | SWT.TITLE);
 
 
 		shlPleaseSelectA.setMinimumSize(new Point(300, 350));

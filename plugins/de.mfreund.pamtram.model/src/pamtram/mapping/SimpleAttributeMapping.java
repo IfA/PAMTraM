@@ -13,6 +13,6 @@ package pamtram.mapping;
  * @model
  * @generated
  */
-public interface SimpleAttributeMapping extends AttributeMapping, AttributeMappingSourceElementType {
+public interface SimpleAttributeMapping extends AttributeMapping, AttributeMappingSourceElementWithModifiers {
 
 } // SimpleAttributeMapping

@@ -15,7 +15,7 @@ import pamtram.mapping.MappingPackage;
  *
  * @generated
  */
-public class ExpressionVariableImpl extends AttributeMappingSourceElementTypeImpl implements ExpressionVariable {
+public class ExpressionVariableImpl extends AttributeMappingSourceElementWithModifiersImpl implements ExpressionVariable {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

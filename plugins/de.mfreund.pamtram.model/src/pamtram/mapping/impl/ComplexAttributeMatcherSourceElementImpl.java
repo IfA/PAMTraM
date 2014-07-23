@@ -15,7 +15,7 @@ import pamtram.mapping.MappingPackage;
  *
  * @generated
  */
-public class ComplexAttributeMatcherSourceElementImpl extends AttributeMappingSourceElementTypeImpl implements ComplexAttributeMatcherSourceElement {
+public class ComplexAttributeMatcherSourceElementImpl extends AttributeMappingSourceElementWithModifiersImpl implements ComplexAttributeMatcherSourceElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

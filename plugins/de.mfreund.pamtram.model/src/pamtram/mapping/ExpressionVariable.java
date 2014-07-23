@@ -13,6 +13,6 @@ package pamtram.mapping;
  * @model
  * @generated
  */
-public interface ExpressionVariable extends AttributeMappingSourceElementType {
+public interface ExpressionVariable extends AttributeMappingSourceElementWithModifiers {
 
 } // ExpressionVariable

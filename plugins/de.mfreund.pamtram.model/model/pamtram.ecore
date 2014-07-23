@@ -340,9 +340,8 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelConnectionMatcher"
           eType="#//mapping/ModelConnectionHint" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ModelConnectionHint" eSuperTypes="#//NamedElement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceAttribute" lowerBound="1"
-          eType="#//metamodel/SourceSectionAttribute"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ModelConnectionHint" abstract="true"
+        eSuperTypes="#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="targetAttributes" lowerBound="1"
           upperBound="-1" eType="#//mapping/ConnectionHintTargetAttribute" containment="true"/>
     </eClassifiers>
@@ -352,35 +351,46 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
           eType="#//mapping/AttributeValueModifierSet"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="SimpleAttributeMapping" eSuperTypes="#//mapping/AttributeMapping #//mapping/AttributeMappingSourceElementType"/>
+    <eClassifiers xsi:type="ecore:EClass" name="SimpleAttributeMapping" eSuperTypes="#//mapping/AttributeMapping #//mapping/AttributeMappingSourceElementWithModifiers"/>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexAttributeMapping" eSuperTypes="#//mapping/AttributeMapping">
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceAttributeMappings"
           lowerBound="1" upperBound="-1" eType="#//mapping/ComplexAttribueMappingSourceElement"
           containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexAttribueMappingSourceElement"
-        eSuperTypes="#//mapping/AttributeMappingSourceElementType"/>
+        eSuperTypes="#//mapping/AttributeMappingSourceElementWithModifiers"/>
     <eClassifiers xsi:type="ecore:EClass" name="CalculatorMapping" eSuperTypes="#//mapping/AttributeMapping">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
           eType="#//mapping/ExpressionVariable" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ExpressionVariable" eSuperTypes="#//mapping/AttributeMappingSourceElementType"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ExpressionVariable" eSuperTypes="#//mapping/AttributeMappingSourceElementWithModifiers"/>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingSourceElementType"
         abstract="true" eSuperTypes="#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
           eType="#//metamodel/SourceSectionAttribute"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
-          eType="#//mapping/AttributeValueModifierSet"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexAttributeMatcher" eSuperTypes="#//mapping/AttributeMatcher">
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceAttributes" lowerBound="1"
           upperBound="-1" eType="#//mapping/ComplexAttributeMatcherSourceElement"
           containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="SimpleAttributeMatcher" eSuperTypes="#//mapping/AttributeMatcher #//mapping/AttributeMappingSourceElementType"/>
+    <eClassifiers xsi:type="ecore:EClass" name="SimpleAttributeMatcher" eSuperTypes="#//mapping/AttributeMatcher #//mapping/AttributeMappingSourceElementWithModifiers"/>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexAttributeMatcherSourceElement"
-        eSuperTypes="#//mapping/AttributeMappingSourceElementType"/>
+        eSuperTypes="#//mapping/AttributeMappingSourceElementWithModifiers"/>
+    <eClassifiers xsi:type="ecore:EClass" name="SimpleModelConnectionHint" eSuperTypes="#//mapping/ModelConnectionHint #//mapping/AttributeMappingSourceElementWithModifiers"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ComplexModelConnectionHint" eSuperTypes="#//mapping/ModelConnectionHint">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElements" lowerBound="1"
+          upperBound="-1" eType="#//mapping/ComplexModelConnectionHintSourceElement"
+          containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ComplexModelConnectionHintSourceElement"
+        eSuperTypes="#//mapping/AttributeMappingSourceElementWithModifiers"/>
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingSourceElementWithModifiers"
+        abstract="true" eSuperTypes="#//mapping/AttributeMappingSourceElementType">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
+          eType="#//mapping/AttributeValueModifierSet"/>
+    </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

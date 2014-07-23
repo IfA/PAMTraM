@@ -13,5 +13,5 @@ package pamtram.mapping;
  * @model
  * @generated
  */
-public interface SimpleAttributeMatcher extends AttributeMatcher, AttributeMappingSourceElementType {
+public interface SimpleAttributeMatcher extends AttributeMatcher, AttributeMappingSourceElementWithModifiers {
 } // SimpleAttributeMatcher

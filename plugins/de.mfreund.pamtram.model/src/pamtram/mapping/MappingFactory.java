@@ -112,15 +112,6 @@ public interface MappingFactory extends EFactory {
 	MappingHintGroup createMappingHintGroup();
 
 	/**
-	 * Returns a new object of class '<em>Model Connection Hint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Model Connection Hint</em>'.
-	 * @generated
-	 */
-	ModelConnectionHint createModelConnectionHint();
-
-	/**
 	 * Returns a new object of class '<em>Connection Hint Target Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -200,6 +191,33 @@ public interface MappingFactory extends EFactory {
 	 * @generated
 	 */
 	ComplexAttributeMatcherSourceElement createComplexAttributeMatcherSourceElement();
+
+	/**
+	 * Returns a new object of class '<em>Simple Model Connection Hint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Simple Model Connection Hint</em>'.
+	 * @generated
+	 */
+	SimpleModelConnectionHint createSimpleModelConnectionHint();
+
+	/**
+	 * Returns a new object of class '<em>Complex Model Connection Hint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Complex Model Connection Hint</em>'.
+	 * @generated
+	 */
+	ComplexModelConnectionHint createComplexModelConnectionHint();
+
+	/**
+	 * Returns a new object of class '<em>Complex Model Connection Hint Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Complex Model Connection Hint Source Element</em>'.
+	 * @generated
+	 */
+	ComplexModelConnectionHintSourceElement createComplexModelConnectionHintSourceElement();
 
 	/**
 	 * Returns the package supported by this factory.

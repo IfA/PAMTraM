@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="de.mfreund.pamtram.category"
+            name="PAMTraM">
+      </category>
+      <wizard
+            category="de.mfreund.pamtram.category"
+            class="de.mfreund.pamtram.wizards.NewPAMTraMProjectWizard"
+            id="de.mfreund.pamtram.newProjectWizard"
+            name="PAMTraM Project"
+            project="true">
+      </wizard>
+   </extension>
+
+</plugin>

@@ -24,6 +24,9 @@ import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.layout.RowLayout;
+import org.eclipse.swt.layout.RowData;
 
 public class PathAndInstanceSelectorDialog extends Dialog {
 
@@ -39,6 +42,12 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 	private Label dialogMessage;
 	private GridLayout gridLayout;
 	
+	private boolean transformationStopRequested;
+	
+	public boolean isTransformationStopRequested() {
+		return transformationStopRequested;
+	}
+	
 	/**
 	 * Create the dialog.
 	 * @param parent
@@ -50,6 +59,7 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 		this.paths=paths;
 		this.instances=instances;
 		this.message=message;
+		this.transformationStopRequested=false;
 		path=paths.get(0);
 		instance=instances.get(0).get(0);
 	}
@@ -172,6 +182,60 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 		instancesList.setSelection(0);
 		sashForm.setWeights(new int[] {347, 228});
 		
+		Composite composite = new Composite(shlPleaseSelectA, SWT.NONE);
+		composite.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		GridLayout gl_composite = new GridLayout(2, false);
+		gl_composite.horizontalSpacing = 0;
+		gl_composite.verticalSpacing = 0;
+		gl_composite.marginWidth = 0;
+		gl_composite.marginHeight = 0;
+		composite.setLayout(gl_composite);
+		
+		Button abortTransButton = new Button(composite, SWT.NONE);
+		GridData gd_abortTransButton = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
+		gd_abortTransButton.heightHint = 35;
+		gd_abortTransButton.minimumWidth = 80;
+		gd_abortTransButton.minimumHeight = 35;
+		abortTransButton.setLayoutData(gd_abortTransButton);
+		abortTransButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				path=paths.get(0);
+				instance=instances.get(0).get(0);	
+				transformationStopRequested=true;
+				shlPleaseSelectA.dispose();
+			}
+		});
+		abortTransButton.setText("Abort Transformation");
+		
+		Composite composite_1 = new Composite(composite, SWT.NONE);
+		RowLayout rl_composite_1 = new RowLayout(SWT.HORIZONTAL);
+		composite_1.setLayout(rl_composite_1);
+		composite_1.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, true, true, 1, 1));
+		
+		Button okButton = new Button(composite_1, SWT.NONE);
+		okButton.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					shlPleaseSelectA.dispose();
+				}
+		});		
+		okButton.setLayoutData(new RowData(80, 35));
+		okButton.setText("OK");
+		okButton.setSelection(true);
+		
+		Button abortButton = new Button(composite_1, SWT.NONE);
+		abortButton.setLayoutData(new RowData(80, 35));
+		abortButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				path=paths.get(0);
+				instance=instances.get(0).get(0);				
+				shlPleaseSelectA.dispose();
+			}
+		});
+		abortButton.setText("Abort");
+		
 		listViewer_1.addSelectionChangedListener(new ISelectionChangedListener() {
 			/**
 			 * Instance selection changed
@@ -181,20 +245,6 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 				instance=instances.get(pathList.getSelectionIndex()).get(instancesList.getSelectionIndex());				
 			}
 		});
-		
-		Button btnNewButton = new Button(shlPleaseSelectA, SWT.NONE);
-		btnNewButton.setSelection(true);
-		btnNewButton.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				shlPleaseSelectA.dispose();
-			}
-		});
-		GridData gd_btnNewButton = new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1);
-		gd_btnNewButton.heightHint = 30;
-		gd_btnNewButton.widthHint = 75;
-		btnNewButton.setLayoutData(gd_btnNewButton);
-		btnNewButton.setText("OK");
 
 	}
 	protected org.eclipse.swt.widgets.List getPathList() {
@@ -203,5 +253,4 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 	protected org.eclipse.swt.widgets.List getInstancesList() {
 		return instancesList;
 	}
-	
 }

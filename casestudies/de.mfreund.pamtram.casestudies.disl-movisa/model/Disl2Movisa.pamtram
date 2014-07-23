@@ -1,20 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:pamtram="http://mfreund.de/pamtram">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:pamtram="http://mfreund.de/pamtram">
   <sourceSectionModel>
     <metaModelPackage href="http://disl#/"/>
     <metaModelSections name="DislRoot">
       <eClass href="http://disl#//Disl"/>
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="">
+        <eReference href="http://disl#//Disl/head"/>
+        <value name="Head">
+          <eClass href="http://disl#//Head"/>
+          <references xsi:type="metamodel:SourceSectionContainmentReference" name="">
+            <eReference href="http://disl#//Head/meta"/>
+            <value name="MetaId" cardinality="ONE__INFINITY">
+              <eClass href="http://disl#//Meta"/>
+              <attributes name="content">
+                <attribute href="http://disl#//Meta/content"/>
+              </attributes>
+              <attributes name="name">
+                <attribute href="http://disl#//Meta/name"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="modell-ID" value="modell-ID"/>
+              </attributes>
+            </value>
+            <value name="MetaOther" cardinality="ZERO__INFINITY">
+              <eClass href="http://disl#//Meta"/>
+            </value>
+          </references>
+        </value>
+      </references>
     </metaModelSections>
   </sourceSectionModel>
   <targetSectionModel>
     <metaModelPackage href="http://stefan-hennig.de/movisa/platform#/"/>
     <metaModelSections name="VisAppModel">
       <eClass href="http://stefan-hennig.de/movisa/platform#//VisualizationApplicationModel"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="name" value="">
+        <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+      </attributes>
     </metaModelSections>
   </targetSectionModel>
   <mappingModel>
     <mapping name="RootMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.0">
-      <mappingHintGroups name="VisAppModelHintGroup" targetMMSection="//@targetSectionModel/@metaModelSections.0"/>
+      <mappingHintGroups name="VisAppModelHintGroup" targetMMSection="//@targetSectionModel/@metaModelSections.0">
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="id2name" target="//@targetSectionModel/@metaModelSections.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.0/@attributes.0"/>
+      </mappingHintGroups>
     </mapping>
   </mappingModel>
 </pamtram:PAMTraM>

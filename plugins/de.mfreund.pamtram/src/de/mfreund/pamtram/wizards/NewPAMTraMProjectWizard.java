@@ -81,29 +81,27 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard {
 
 	@Override
 	public boolean performFinish() {
-		/*
-		 * Create the Project 
-		 */
+		
 		try {
+			
+			// Create the Project 
 			createNewProject();
-		} catch (InvocationTargetException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (CoreException e) {
-			// TODO Auto-generated catch block
+			
+			if (newProject == null) {
+				return false;
+			}
+			
+			// Add the created project to a working set if necessary
+			IWorkingSet[] workingSets = mainPage.getSelectedWorkingSets();
+			workbench.getWorkingSetManager().addToWorkingSets(newProject.getProject(),
+					workingSets);
+			
+			// Create the project sturcture
+			doFinish();
+			
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		if (newProject == null) {
-			return false;
-		}
-		
-		IWorkingSet[] workingSets = mainPage.getSelectedWorkingSets();
-		workbench.getWorkingSetManager().addToWorkingSets(newProject.getProject(),
-				workingSets);
-		
-		
-		doFinish();
 		
 		return true;
 	}

@@ -2,9 +2,6 @@ package de.mfreund.pamtram.wizards;
 
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
@@ -16,9 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Composite;
@@ -29,7 +24,7 @@ import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.eclipse.ui.ide.undo.CreateProjectOperation;
 import org.eclipse.ui.ide.undo.WorkspaceUndoUtil;
 
-import pamtram.presentation.PamtramEditorPlugin;
+import de.mfreund.pamtram.util.ResourceHelper;
 import pamtram.presentation.PamtramModelWizard;
 import pamtram.presentation.pages.PamtramEPackageSpecificationPage;
 
@@ -39,6 +34,7 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard {
 	private IStructuredSelection selection;
 	// the project to be created
 	private IProject newProject;
+	// the wizard page where the project name can be entered
 	private WizardNewProjectCreationPage mainPage;
 
 	/**
@@ -102,9 +98,9 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard {
 			return false;
 		}
 		
-//		IWorkingSet[] workingSets = mainPage.getSelectedWorkingSets();
-//		workbench.getWorkingSetManager().addToWorkingSets(newProject.getProject(),
-//				workingSets);
+		IWorkingSet[] workingSets = mainPage.getSelectedWorkingSets();
+		workbench.getWorkingSetManager().addToWorkingSets(newProject.getProject(),
+				workingSets);
 		
 		
 		doFinish();
@@ -195,16 +191,38 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard {
 	}
 	
 	/**
-	 * The worker mehthod.
+	 * The worker method. It performs a 'WorkspaceModifyOperation' that
+	 * creates the required folders inside the project, creates an instance
+	 * of the Pamtram model and copies the source model if there is one.
 	 */
 	private void doFinish() {
+		
+		
 		/*
-		 * Copy and load the STGML model and generate the Movisa model
+		 * Create the folders, create a pamtram model and copy the source model
 		 */
 		WorkspaceModifyOperation operation =
 			new WorkspaceModifyOperation() {
 				@Override
 				protected void execute(IProgressMonitor progressMonitor) {
+					
+					progressMonitor.beginTask("Creating project structure...", 1);
+					
+					try {
+						// create the folders inside the project
+						String[] paths = { "pamtram", "srcModel", "targetModel" }; 
+						ResourceHelper.addToProjectStructure(newProject.getProject(), paths);
+					} catch (CoreException e) {
+						e.printStackTrace();
+						newProject = null;
+						progressMonitor.done();
+						return;
+					}
+					
+					//TODO copy the source model
+					
+					progressMonitor.beginTask("Creating PAMTraM instance", 1);
+					
 					try {
 						// Create a resource set
 						//
@@ -213,7 +231,8 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard {
 						// Get the URI of the model file.
 						//
 						org.eclipse.emf.common.util.URI fileURI = 
-								org.eclipse.emf.common.util.URI.createPlatformResourceURI(newProject.getFile("my.pamtram").getFullPath().toString(), true);
+								org.eclipse.emf.common.util.URI.createPlatformResourceURI(
+										newProject.getFile("pamtram/my.pamtram").getFullPath().toString(), true);
 
 						// Create a resource for this file.
 						//
@@ -228,23 +247,21 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard {
 
 						// Save the contents of the resource to the file system.
 						//
-						Map<Object, Object> options = new HashMap<Object, Object>();
-//						options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
 						resource.save(null);
 					}
-					catch (Exception exception) {
-						exception.printStackTrace();
+					catch (Exception e) {
+						e.printStackTrace();
 					}
-					finally {
-						progressMonitor.done();
-					}
+
+					progressMonitor.done();
+					return;
 				}
 		};
 
+		// run the operation
 		try {
 			getContainer().run(true, false, operation);
 		} catch (InvocationTargetException | InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

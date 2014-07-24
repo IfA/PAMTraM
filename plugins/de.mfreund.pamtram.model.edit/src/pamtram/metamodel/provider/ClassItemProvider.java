@@ -3,17 +3,21 @@
 package pamtram.metamodel.provider;
 
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import pamtram.SectionModel;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.Reference;
 
@@ -94,45 +98,56 @@ public class ClassItemProvider
 				 null,
 				 null)
 			   {
-				@SuppressWarnings("unchecked")
 				@Override
 				public Collection<?> getChoiceOfValues(Object object) {
 					
-					Collection<?> parentChoiceOfValues =  super.getChoiceOfValues(object);
+					pamtram.metamodel.Class section=((pamtram.metamodel.Class) object).getContainingSection();
 					
-					// if the class represents a top-level section, do not filter the choices
-					if(!(((pamtram.metamodel.Class) object).eContainer() instanceof pamtram.metamodel.Reference)) {
-						return parentChoiceOfValues;
-					}
-					// else, do only allow those eClasses that match the parent reference
+					List<EClass> choiceOfValues = new LinkedList<EClass>();
+					List<EPackage> packagesToScan=new LinkedList<EPackage>();
 					
-					// the containing reference
-					Reference ref = (Reference) ((pamtram.metamodel.Class) object).eContainer();
+					packagesToScan.add(((SectionModel)section.eContainer()).getMetaModelPackage());
 					
-					if(!(ref.getEReference().getEType() instanceof EClass)) {
-						throw new RuntimeException("Type checks can only be performed for instances of type 'EClass'");
-					}
-					
-					// the type of the non-containment reference
-					EClass refClass = (EClass) ref.getEReference().getEType();
-
-					List<Object> choiceOfValues = new ArrayList<Object>();
-					Iterator<EClass> it = (Iterator<EClass>) parentChoiceOfValues.iterator();
-					
-					// make sure that only those classes can be selected that correspond to the type of the parent reference
-					while(it.hasNext()) {
-						EClass eClass = it.next();
-						// at some point, it seems to occur that it.next() delivers 'null'
-						if(eClass == null) {
-							continue;
-						}
-						if(refClass.isSuperTypeOf(eClass)) {
-							choiceOfValues.add(eClass);
+					while(packagesToScan.size()>0){
+						EPackage pkg=packagesToScan.remove(0);
+						packagesToScan.addAll(pkg.getESubpackages());
+						for(EClassifier c : pkg.getEClassifiers()){
+							if(c instanceof EClass){
+								if(!((EClass) c).isAbstract()){
+									choiceOfValues.add((EClass) c);
+								}
+							}
 						}
 					}
 					
-					return choiceOfValues;
+					
+					
+					if(section.equals(object)){
+						return choiceOfValues;
+					}else { //not a top-level section
+						List<EClass> newChoiceOfValues = new LinkedList<EClass>();
+						pamtram.metamodel.Reference ref=(Reference) ((pamtram.metamodel.Class)object).eContainer();
+						if(ref.getEReference() != null){
+							if(!(ref.getEReference().getEType() instanceof EClass)) {
+								throw new RuntimeException("Type checks can only be performed for instances of type 'EClass'");
+							} else {
+								EClass refClass=(EClass) ref.getEReference().getEType();
+								
+								for(EClass c : choiceOfValues){
+									if(refClass.isSuperTypeOf(c)) {
+										newChoiceOfValues.add(c);
+									}
+								}
+								return newChoiceOfValues;
+								
+							}
+							
+						}
+			
+					} 
+					return super.getChoiceOfValues(object);
 				}
+
 			   });
 	}
 

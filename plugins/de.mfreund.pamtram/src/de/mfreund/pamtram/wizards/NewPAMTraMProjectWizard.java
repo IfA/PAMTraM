@@ -174,16 +174,7 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard {
 			throw new InvocationTargetException(e);
 		}
 		
-//		IJavaProject javaProject = JavaCore.create(newProjectHandle);
-//		// set the source folder
-//		IClasspathEntry srcEntry = JavaCore.newSourceEntry(newProjectHandle.getFolder("src").getFullPath());
-//		javaProject.setRawClasspath(new IClasspathEntry[]{srcEntry}, null);
-//		// set defa setOutputLocation(newProjectHandle.getFolder("build/classes").getFullPath(), null);
-//		
-		// create a faceted project and add the dynamic web and java facets
-//		newProject = ProjectManager.create(newProjectHandle);
 		newProject = newProjectHandle.getProject();
-//		addFacets(newProject);
 		
 		return newProject;
 	}
@@ -208,7 +199,7 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard {
 					
 					try {
 						// create the folders inside the project
-						String[] paths = { "pamtram", "srcModel", "targetModel" }; 
+						String[] paths = { "pamtram", "srcModel" }; 
 						ResourceHelper.addToProjectStructure(newProject.getProject(), paths);
 					} catch (CoreException e) {
 						e.printStackTrace();

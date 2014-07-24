@@ -2,14 +2,21 @@ package de.mfreund.pamtram.wizards;
 
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
+
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -199,7 +206,7 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard {
 					
 					try {
 						// create the folders inside the project
-						String[] paths = { "pamtram", "srcModel" }; 
+						String[] paths = { "Source", "Pamtram", "Target" }; 
 						ResourceHelper.addToProjectStructure(newProject.getProject(), paths);
 					} catch (CoreException e) {
 						e.printStackTrace();
@@ -209,6 +216,19 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard {
 					}
 					
 					//TODO copy the source model
+					
+//					// create linked resource to the lib path
+////					IFolder link = newProject.getProject().getFolder("Used EPackages");
+//					IFile srcPackageLink = newProject.getProject().getFile("Source EPackage");
+//					EPackage srcPackage = 
+//							ePackageSpecificationPage.getSourceEPackage();
+//					IPath location = new Path(srcPackage.eResource()..getURI().toPlatformString(true));
+//					try {
+//						srcPackageLink.createLink(location, IResource.NONE, null);
+//					} catch (CoreException e1) {
+//						// TODO Auto-generated catch block
+//						e1.printStackTrace();
+//					}
 					
 					progressMonitor.beginTask("Creating PAMTraM instance", 1);
 					
@@ -221,7 +241,7 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard {
 						//
 						org.eclipse.emf.common.util.URI fileURI = 
 								org.eclipse.emf.common.util.URI.createPlatformResourceURI(
-										newProject.getFile("pamtram/my.pamtram").getFullPath().toString(), true);
+										newProject.getFile("Pamtram/my.pamtram").getFullPath().toString(), true);
 
 						// Create a resource for this file.
 						//

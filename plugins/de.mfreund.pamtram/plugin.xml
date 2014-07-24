@@ -10,6 +10,7 @@
       <wizard
             category="de.mfreund.pamtram.category"
             class="de.mfreund.pamtram.wizards.NewPAMTraMProjectWizard"
+            icon="icons/project.png"
             id="de.mfreund.pamtram.newProjectWizard"
             name="PAMTraM Project"
             project="true">
@@ -31,5 +32,74 @@
             id="de.mfreund.pamtram.pamtramNatureImage"
             natureId="de.mfreund.pamtram.pamtramNature">
       </image>
+   </extension>
+   <extension
+         point="org.eclipse.ui.decorators">
+      <decorator
+            adaptable="true"
+            icon="icons/sourceFolder.png"
+            id="de.mfreund.pamtram.decorators.SourceFolderDecorator"
+            label="Source Folder Decorator"
+            state="true">
+         <enablement>
+         <and>
+            <objectState
+                  name="name"
+                  value="Source">
+            </objectState>
+            <objectClass
+                  name="org.eclipse.core.resources.IFolder">
+            </objectClass>
+            <objectState
+                  name="projectNature"
+                  value="de.mfreund.pamtram.pamtramNature">
+            </objectState>
+         </and>
+         </enablement>
+      </decorator>
+      <decorator
+            adaptable="true"
+            icon="icons/mappingFolder.png"
+            id="de.mfreund.pamtram.decorators.PamtramFolderDecorator"
+            label="Pamtram Folder Decorator"
+            state="true">
+         <enablement>
+         <and>
+            <objectState
+                  name="name"
+                  value="Pamtram">
+            </objectState>
+            <objectClass
+                  name="org.eclipse.core.resources.IFolder">
+            </objectClass>
+            <objectState
+                  name="projectNature"
+                  value="de.mfreund.pamtram.pamtramNature">
+            </objectState>
+         </and>
+         </enablement>
+      </decorator>
+      <decorator
+            adaptable="true"
+            icon="icons/targetFolder.png"
+            id="de.mfreund.pamtram.decorators.TargetFolderDecorator"
+            label="Target Folder Decorator"
+            state="true">
+         <enablement>
+         <and>
+            <objectState
+                  name="name"
+                  value="Target">
+            </objectState>
+            <objectClass
+                  name="org.eclipse.core.resources.IFolder">
+            </objectClass>
+            <objectState
+                  name="projectNature"
+                  value="de.mfreund.pamtram.pamtramNature">
+            </objectState>
+         </and>
+         </enablement>
+      </decorator>
    </extension>
 </plugin>

@@ -15,5 +15,13 @@
             project="true">
       </wizard>
    </extension>
-
+   <extension
+      point="org.eclipse.core.resources.natures"
+      id="pamtramNature"
+      name="PAMTraM Nature">
+      <runtime>
+         <run class="de.mfreund.natures.PamtramNature">
+         </run>
+      </runtime>
+   </extension>
 </plugin>

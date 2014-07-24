@@ -143,7 +143,7 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard {
 		final IProjectDescription description = workspace
 				.newProjectDescription(newProjectHandle.getName());
 		description.setLocationURI(location);
-//		description.setNatureIds(new String[]{"org.eclipse.wst.common.project.facet.core.nature", "org.eclipse.jdt.core.javanature", "org.eclipse.wst.common.modulecore.ModuleCoreNature", "org.eclipse.jem.workbench.JavaEMFNature"});
+		description.setNatureIds(new String[]{"de.mfreund.pamtram.pamtramNature"});
 //		description.setBuildConfigs(new String[]{"org.eclipse.wst.common.project.facet.core.builder"});
 		
 		// create the new project operation

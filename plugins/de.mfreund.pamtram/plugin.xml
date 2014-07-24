@@ -24,4 +24,12 @@
          </run>
       </runtime>
    </extension>
+   <extension
+         point="org.eclipse.ui.ide.projectNatureImages">
+      <image
+            icon="icons/project.png"
+            id="de.mfreund.pamtram.pamtramNatureImage"
+            natureId="de.mfreund.pamtram.pamtramNature">
+      </image>
+   </extension>
 </plugin>

@@ -153,13 +153,22 @@ public interface MappingPackage extends EPackage {
 	int MAPPING__MAPPING_HINT_GROUPS = MAPPING_TYPE_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Imported Mapping Hint Groups</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING__IMPORTED_MAPPING_HINT_GROUPS = MAPPING_TYPE_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Mapping</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_FEATURE_COUNT = MAPPING_TYPE_FEATURE_COUNT + 2;
+	int MAPPING_FEATURE_COUNT = MAPPING_TYPE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Mapping</em>' class.
@@ -735,6 +744,61 @@ public interface MappingPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.MappingHintGroupTypeImpl <em>Hint Group Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.MappingHintGroupTypeImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappingHintGroupType()
+	 * @generated
+	 */
+	int MAPPING_HINT_GROUP_TYPE = 16;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP_TYPE__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Target MM Section</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP_TYPE__TARGET_MM_SECTION = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Mapping Hints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Hint Group Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP_TYPE_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Hint Group Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP_TYPE_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappingHintGroupImpl <em>Hint Group</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -751,16 +815,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_GROUP__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Mapping Hints</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAPPING_HINT_GROUP__MAPPING_HINTS = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int MAPPING_HINT_GROUP__NAME = MAPPING_HINT_GROUP_TYPE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Target MM Section</b></em>' reference.
@@ -769,7 +824,16 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_GROUP__TARGET_MM_SECTION = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int MAPPING_HINT_GROUP__TARGET_MM_SECTION = MAPPING_HINT_GROUP_TYPE__TARGET_MM_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>Mapping Hints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP__MAPPING_HINTS = MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS;
 
 	/**
 	 * The feature id for the '<em><b>Model Connection Matcher</b></em>' containment reference.
@@ -778,7 +842,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER = MAPPING_HINT_GROUP_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Hint Group</em>' class.
@@ -787,7 +851,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_GROUP_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int MAPPING_HINT_GROUP_FEATURE_COUNT = MAPPING_HINT_GROUP_TYPE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Hint Group</em>' class.
@@ -796,8 +860,146 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_GROUP_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int MAPPING_HINT_GROUP_OPERATION_COUNT = MAPPING_HINT_GROUP_TYPE_OPERATION_COUNT + 0;
 
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.InstantiableMappingHintGroupImpl <em>Instantiable Mapping Hint Group</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.InstantiableMappingHintGroupImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getInstantiableMappingHintGroup()
+	 * @generated
+	 */
+	int INSTANTIABLE_MAPPING_HINT_GROUP = 17;
+
+	/**
+	 * The number of structural features of the '<em>Instantiable Mapping Hint Group</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANTIABLE_MAPPING_HINT_GROUP_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Instantiable Mapping Hint Group</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANTIABLE_MAPPING_HINT_GROUP_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.MappingHintGroupImporterImpl <em>Hint Group Importer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.MappingHintGroupImporterImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappingHintGroupImporter()
+	 * @generated
+	 */
+	int MAPPING_HINT_GROUP_IMPORTER = 18;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP_IMPORTER__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Hint Group</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Container</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP_IMPORTER__CONTAINER = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Hint Group Importer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP_IMPORTER_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Hint Group Importer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP_IMPORTER_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.ExportedMappingHintGroupImpl <em>Exported Mapping Hint Group</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.ExportedMappingHintGroupImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getExportedMappingHintGroup()
+	 * @generated
+	 */
+	int EXPORTED_MAPPING_HINT_GROUP = 19;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPORTED_MAPPING_HINT_GROUP__NAME = MAPPING_HINT_GROUP_TYPE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Target MM Section</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPORTED_MAPPING_HINT_GROUP__TARGET_MM_SECTION = MAPPING_HINT_GROUP_TYPE__TARGET_MM_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>Mapping Hints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPORTED_MAPPING_HINT_GROUP__MAPPING_HINTS = MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS;
+
+	/**
+	 * The number of structural features of the '<em>Exported Mapping Hint Group</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPORTED_MAPPING_HINT_GROUP_FEATURE_COUNT = MAPPING_HINT_GROUP_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Exported Mapping Hint Group</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPORTED_MAPPING_HINT_GROUP_OPERATION_COUNT = MAPPING_HINT_GROUP_TYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.ModelConnectionHintImpl <em>Model Connection Hint</em>}' class.
@@ -807,7 +1009,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHint()
 	 * @generated
 	 */
-	int MODEL_CONNECTION_HINT = 16;
+	int MODEL_CONNECTION_HINT = 20;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -863,7 +1065,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getConnectionHintTargetAttribute()
 	 * @generated
 	 */
-	int CONNECTION_HINT_TARGET_ATTRIBUTE = 17;
+	int CONNECTION_HINT_TARGET_ATTRIBUTE = 21;
 
 	/**
 	 * The feature id for the '<em><b>Target Attribute</b></em>' reference.
@@ -910,7 +1112,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getSimpleAttributeMapping()
 	 * @generated
 	 */
-	int SIMPLE_ATTRIBUTE_MAPPING = 18;
+	int SIMPLE_ATTRIBUTE_MAPPING = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -975,7 +1177,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexAttributeMapping()
 	 * @generated
 	 */
-	int COMPLEX_ATTRIBUTE_MAPPING = 19;
+	int COMPLEX_ATTRIBUTE_MAPPING = 23;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1031,7 +1233,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMappingSourceElementType()
 	 * @generated
 	 */
-	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE = 23;
+	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE = 27;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1077,7 +1279,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMappingSourceElementWithModifiers()
 	 * @generated
 	 */
-	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS = 30;
+	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS = 34;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1132,7 +1334,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexAttribueMappingSourceElement()
 	 * @generated
 	 */
-	int COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT = 20;
+	int COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT = 24;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1188,7 +1390,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getCalculatorMapping()
 	 * @generated
 	 */
-	int CALCULATOR_MAPPING = 21;
+	int CALCULATOR_MAPPING = 25;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1252,7 +1454,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExpressionVariable()
 	 * @generated
 	 */
-	int EXPRESSION_VARIABLE = 22;
+	int EXPRESSION_VARIABLE = 26;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1308,7 +1510,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexAttributeMatcher()
 	 * @generated
 	 */
-	int COMPLEX_ATTRIBUTE_MATCHER = 24;
+	int COMPLEX_ATTRIBUTE_MATCHER = 28;
 
 	/**
 	 * The feature id for the '<em><b>Target Attribute</b></em>' reference.
@@ -1354,7 +1556,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getSimpleAttributeMatcher()
 	 * @generated
 	 */
-	int SIMPLE_ATTRIBUTE_MATCHER = 25;
+	int SIMPLE_ATTRIBUTE_MATCHER = 29;
 
 	/**
 	 * The feature id for the '<em><b>Target Attribute</b></em>' reference.
@@ -1418,7 +1620,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexAttributeMatcherSourceElement()
 	 * @generated
 	 */
-	int COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT = 26;
+	int COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT = 30;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1474,7 +1676,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getSimpleModelConnectionHint()
 	 * @generated
 	 */
-	int SIMPLE_MODEL_CONNECTION_HINT = 27;
+	int SIMPLE_MODEL_CONNECTION_HINT = 31;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1547,7 +1749,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexModelConnectionHint()
 	 * @generated
 	 */
-	int COMPLEX_MODEL_CONNECTION_HINT = 28;
+	int COMPLEX_MODEL_CONNECTION_HINT = 32;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1611,7 +1813,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexModelConnectionHintSourceElement()
 	 * @generated
 	 */
-	int COMPLEX_MODEL_CONNECTION_HINT_SOURCE_ELEMENT = 29;
+	int COMPLEX_MODEL_CONNECTION_HINT_SOURCE_ELEMENT = 33;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1690,6 +1892,17 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMapping_MappingHintGroups();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.Mapping#getImportedMappingHintGroups <em>Imported Mapping Hint Groups</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Imported Mapping Hint Groups</em>'.
+	 * @see pamtram.mapping.Mapping#getImportedMappingHintGroups()
+	 * @see #getMapping()
+	 * @generated
+	 */
+	EReference getMapping_ImportedMappingHintGroups();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.MappingType <em>Type</em>}'.
@@ -1985,28 +2198,6 @@ public interface MappingPackage extends EPackage {
 	EClass getMappingHintGroup();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.MappingHintGroup#getMappingHints <em>Mapping Hints</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Mapping Hints</em>'.
-	 * @see pamtram.mapping.MappingHintGroup#getMappingHints()
-	 * @see #getMappingHintGroup()
-	 * @generated
-	 */
-	EReference getMappingHintGroup_MappingHints();
-
-	/**
-	 * Returns the meta object for the reference '{@link pamtram.mapping.MappingHintGroup#getTargetMMSection <em>Target MM Section</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target MM Section</em>'.
-	 * @see pamtram.mapping.MappingHintGroup#getTargetMMSection()
-	 * @see #getMappingHintGroup()
-	 * @generated
-	 */
-	EReference getMappingHintGroup_TargetMMSection();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link pamtram.mapping.MappingHintGroup#getModelConnectionMatcher <em>Model Connection Matcher</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2016,6 +2207,90 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMappingHintGroup_ModelConnectionMatcher();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.MappingHintGroupType <em>Hint Group Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Hint Group Type</em>'.
+	 * @see pamtram.mapping.MappingHintGroupType
+	 * @generated
+	 */
+	EClass getMappingHintGroupType();
+
+	/**
+	 * Returns the meta object for the reference '{@link pamtram.mapping.MappingHintGroupType#getTargetMMSection <em>Target MM Section</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target MM Section</em>'.
+	 * @see pamtram.mapping.MappingHintGroupType#getTargetMMSection()
+	 * @see #getMappingHintGroupType()
+	 * @generated
+	 */
+	EReference getMappingHintGroupType_TargetMMSection();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.MappingHintGroupType#getMappingHints <em>Mapping Hints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Mapping Hints</em>'.
+	 * @see pamtram.mapping.MappingHintGroupType#getMappingHints()
+	 * @see #getMappingHintGroupType()
+	 * @generated
+	 */
+	EReference getMappingHintGroupType_MappingHints();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.InstantiableMappingHintGroup <em>Instantiable Mapping Hint Group</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Instantiable Mapping Hint Group</em>'.
+	 * @see pamtram.mapping.InstantiableMappingHintGroup
+	 * @generated
+	 */
+	EClass getInstantiableMappingHintGroup();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.MappingHintGroupImporter <em>Hint Group Importer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Hint Group Importer</em>'.
+	 * @see pamtram.mapping.MappingHintGroupImporter
+	 * @generated
+	 */
+	EClass getMappingHintGroupImporter();
+
+	/**
+	 * Returns the meta object for the reference '{@link pamtram.mapping.MappingHintGroupImporter#getHintGroup <em>Hint Group</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Hint Group</em>'.
+	 * @see pamtram.mapping.MappingHintGroupImporter#getHintGroup()
+	 * @see #getMappingHintGroupImporter()
+	 * @generated
+	 */
+	EReference getMappingHintGroupImporter_HintGroup();
+
+	/**
+	 * Returns the meta object for the reference '{@link pamtram.mapping.MappingHintGroupImporter#getContainer <em>Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Container</em>'.
+	 * @see pamtram.mapping.MappingHintGroupImporter#getContainer()
+	 * @see #getMappingHintGroupImporter()
+	 * @generated
+	 */
+	EReference getMappingHintGroupImporter_Container();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.ExportedMappingHintGroup <em>Exported Mapping Hint Group</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Exported Mapping Hint Group</em>'.
+	 * @see pamtram.mapping.ExportedMappingHintGroup
+	 * @generated
+	 */
+	EClass getExportedMappingHintGroup();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.ModelConnectionHint <em>Model Connection Hint</em>}'.
@@ -2337,6 +2612,14 @@ public interface MappingPackage extends EPackage {
 		EReference MAPPING__MAPPING_HINT_GROUPS = eINSTANCE.getMapping_MappingHintGroups();
 
 		/**
+		 * The meta object literal for the '<em><b>Imported Mapping Hint Groups</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAPPING__IMPORTED_MAPPING_HINT_GROUPS = eINSTANCE.getMapping_ImportedMappingHintGroups();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.MappingTypeImpl <em>Type</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2591,12 +2874,22 @@ public interface MappingPackage extends EPackage {
 		EClass MAPPING_HINT_GROUP = eINSTANCE.getMappingHintGroup();
 
 		/**
-		 * The meta object literal for the '<em><b>Mapping Hints</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Model Connection Matcher</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MAPPING_HINT_GROUP__MAPPING_HINTS = eINSTANCE.getMappingHintGroup_MappingHints();
+		EReference MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER = eINSTANCE.getMappingHintGroup_ModelConnectionMatcher();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.impl.MappingHintGroupTypeImpl <em>Hint Group Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.impl.MappingHintGroupTypeImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getMappingHintGroupType()
+		 * @generated
+		 */
+		EClass MAPPING_HINT_GROUP_TYPE = eINSTANCE.getMappingHintGroupType();
 
 		/**
 		 * The meta object literal for the '<em><b>Target MM Section</b></em>' reference feature.
@@ -2604,15 +2897,61 @@ public interface MappingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MAPPING_HINT_GROUP__TARGET_MM_SECTION = eINSTANCE.getMappingHintGroup_TargetMMSection();
+		EReference MAPPING_HINT_GROUP_TYPE__TARGET_MM_SECTION = eINSTANCE.getMappingHintGroupType_TargetMMSection();
 
 		/**
-		 * The meta object literal for the '<em><b>Model Connection Matcher</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Mapping Hints</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER = eINSTANCE.getMappingHintGroup_ModelConnectionMatcher();
+		EReference MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS = eINSTANCE.getMappingHintGroupType_MappingHints();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.impl.InstantiableMappingHintGroupImpl <em>Instantiable Mapping Hint Group</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.impl.InstantiableMappingHintGroupImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getInstantiableMappingHintGroup()
+		 * @generated
+		 */
+		EClass INSTANTIABLE_MAPPING_HINT_GROUP = eINSTANCE.getInstantiableMappingHintGroup();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.impl.MappingHintGroupImporterImpl <em>Hint Group Importer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.impl.MappingHintGroupImporterImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getMappingHintGroupImporter()
+		 * @generated
+		 */
+		EClass MAPPING_HINT_GROUP_IMPORTER = eINSTANCE.getMappingHintGroupImporter();
+
+		/**
+		 * The meta object literal for the '<em><b>Hint Group</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP = eINSTANCE.getMappingHintGroupImporter_HintGroup();
+
+		/**
+		 * The meta object literal for the '<em><b>Container</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAPPING_HINT_GROUP_IMPORTER__CONTAINER = eINSTANCE.getMappingHintGroupImporter_Container();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.impl.ExportedMappingHintGroupImpl <em>Exported Mapping Hint Group</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.impl.ExportedMappingHintGroupImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getExportedMappingHintGroup()
+		 * @generated
+		 */
+		EClass EXPORTED_MAPPING_HINT_GROUP = eINSTANCE.getExportedMappingHintGroup();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.ModelConnectionHintImpl <em>Model Connection Hint</em>}' class.

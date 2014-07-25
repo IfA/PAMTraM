@@ -13,7 +13,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.condition.ComplexCondition;
 import pamtram.mapping.Mapping;
-import pamtram.mapping.MappingHintGroup;
+import pamtram.mapping.MappingHintGroupImporter;
+import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 
 /**
@@ -25,6 +26,7 @@ import pamtram.mapping.MappingPackage;
  * <ul>
  *   <li>{@link pamtram.mapping.impl.MappingImpl#getCondition <em>Condition</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingImpl#getMappingHintGroups <em>Mapping Hint Groups</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.MappingImpl#getImportedMappingHintGroups <em>Imported Mapping Hint Groups</em>}</li>
  * </ul>
  * </p>
  *
@@ -49,7 +51,17 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<MappingHintGroup> mappingHintGroups;
+	protected EList<MappingHintGroupType> mappingHintGroups;
+
+	/**
+	 * The cached value of the '{@link #getImportedMappingHintGroups() <em>Imported Mapping Hint Groups</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getImportedMappingHintGroups()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<MappingHintGroupImporter> importedMappingHintGroups;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -118,11 +130,23 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<MappingHintGroup> getMappingHintGroups() {
+	public EList<MappingHintGroupType> getMappingHintGroups() {
 		if (mappingHintGroups == null) {
-			mappingHintGroups = new EObjectContainmentEList<MappingHintGroup>(MappingHintGroup.class, this, MappingPackage.MAPPING__MAPPING_HINT_GROUPS);
+			mappingHintGroups = new EObjectContainmentEList<MappingHintGroupType>(MappingHintGroupType.class, this, MappingPackage.MAPPING__MAPPING_HINT_GROUPS);
 		}
 		return mappingHintGroups;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<MappingHintGroupImporter> getImportedMappingHintGroups() {
+		if (importedMappingHintGroups == null) {
+			importedMappingHintGroups = new EObjectContainmentEList<MappingHintGroupImporter>(MappingHintGroupImporter.class, this, MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS);
+		}
+		return importedMappingHintGroups;
 	}
 
 	/**
@@ -137,6 +161,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 				return basicSetCondition(null, msgs);
 			case MappingPackage.MAPPING__MAPPING_HINT_GROUPS:
 				return ((InternalEList<?>)getMappingHintGroups()).basicRemove(otherEnd, msgs);
+			case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
+				return ((InternalEList<?>)getImportedMappingHintGroups()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -153,6 +179,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 				return getCondition();
 			case MappingPackage.MAPPING__MAPPING_HINT_GROUPS:
 				return getMappingHintGroups();
+			case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
+				return getImportedMappingHintGroups();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -171,7 +199,11 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 				return;
 			case MappingPackage.MAPPING__MAPPING_HINT_GROUPS:
 				getMappingHintGroups().clear();
-				getMappingHintGroups().addAll((Collection<? extends MappingHintGroup>)newValue);
+				getMappingHintGroups().addAll((Collection<? extends MappingHintGroupType>)newValue);
+				return;
+			case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
+				getImportedMappingHintGroups().clear();
+				getImportedMappingHintGroups().addAll((Collection<? extends MappingHintGroupImporter>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -191,6 +223,9 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 			case MappingPackage.MAPPING__MAPPING_HINT_GROUPS:
 				getMappingHintGroups().clear();
 				return;
+			case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
+				getImportedMappingHintGroups().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -207,6 +242,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 				return condition != null;
 			case MappingPackage.MAPPING__MAPPING_HINT_GROUPS:
 				return mappingHintGroups != null && !mappingHintGroups.isEmpty();
+			case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
+				return importedMappingHintGroups != null && !importedMappingHintGroups.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

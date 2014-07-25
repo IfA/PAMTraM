@@ -31,6 +31,7 @@ import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.eclipse.ui.ide.undo.CreateProjectOperation;
 import org.eclipse.ui.ide.undo.WorkspaceUndoUtil;
 
+import de.mfreund.pamtram.pages.PamtramFileSpecificationPage;
 import de.mfreund.pamtram.util.ResourceHelper;
 import pamtram.presentation.PamtramModelWizard;
 import pamtram.presentation.pages.PamtramEPackageSpecificationPage;
@@ -39,10 +40,15 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard {
 
 	// the element currently selected (might e.g. be a working set)
 	private IStructuredSelection selection;
+	
 	// the project to be created
 	private IProject newProject;
+	
 	// the wizard page where the project name can be entered
 	private WizardNewProjectCreationPage mainPage;
+	
+	// the wizard page where the name of the pamtram file can be entered
+	private PamtramFileSpecificationPage fileSpecPage;
 
 	/**
 	 * Constructor for the NewPAMTraMProjectWizard
@@ -79,6 +85,11 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard {
 		mainPage.setTitle("PAMTraM Project");
 		mainPage.setDescription("This creates a new PAMTraM Project that consists of a PAMTraM model.");
 		this.addPage(mainPage);
+		
+		fileSpecPage = new PamtramFileSpecificationPage("Whatever2");
+		fileSpecPage.setTitle("Pamtram specification");
+		fileSpecPage.setDescription("Specify the name of the PAMTraM file.");
+		this.addPage(fileSpecPage);
 
 		ePackageSpecificationPage = new PamtramEPackageSpecificationPage("Whatever3");
 		ePackageSpecificationPage.setTitle("ePackage specification");

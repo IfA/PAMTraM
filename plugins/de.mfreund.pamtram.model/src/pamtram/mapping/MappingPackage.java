@@ -4,6 +4,7 @@ package pamtram.mapping;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -836,13 +837,22 @@ public interface MappingPackage extends EPackage {
 	int MODEL_CONNECTION_HINT_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Get Source Attributes</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_CONNECTION_HINT___GET_SOURCE_ATTRIBUTES = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Model Connection Hint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int MODEL_CONNECTION_HINT_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 
 	/**
@@ -1512,6 +1522,15 @@ public interface MappingPackage extends EPackage {
 	int SIMPLE_MODEL_CONNECTION_HINT_FEATURE_COUNT = MODEL_CONNECTION_HINT_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Get Source Attributes</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_MODEL_CONNECTION_HINT___GET_SOURCE_ATTRIBUTES = MODEL_CONNECTION_HINT___GET_SOURCE_ATTRIBUTES;
+
+	/**
 	 * The number of operations of the '<em>Simple Model Connection Hint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1565,6 +1584,15 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPLEX_MODEL_CONNECTION_HINT_FEATURE_COUNT = MODEL_CONNECTION_HINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Source Attributes</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_MODEL_CONNECTION_HINT___GET_SOURCE_ATTRIBUTES = MODEL_CONNECTION_HINT___GET_SOURCE_ATTRIBUTES;
 
 	/**
 	 * The number of operations of the '<em>Complex Model Connection Hint</em>' class.
@@ -2009,6 +2037,16 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getModelConnectionHint_TargetAttributes();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.ModelConnectionHint#getSourceAttributes() <em>Get Source Attributes</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Source Attributes</em>' operation.
+	 * @see pamtram.mapping.ModelConnectionHint#getSourceAttributes()
+	 * @generated
+	 */
+	EOperation getModelConnectionHint__GetSourceAttributes();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.ConnectionHintTargetAttribute <em>Connection Hint Target Attribute</em>}'.
@@ -2593,6 +2631,14 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES = eINSTANCE.getModelConnectionHint_TargetAttributes();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Source Attributes</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_CONNECTION_HINT___GET_SOURCE_ATTRIBUTES = eINSTANCE.getModelConnectionHint__GetSourceAttributes();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.ConnectionHintTargetAttributeImpl <em>Connection Hint Target Attribute</em>}' class.

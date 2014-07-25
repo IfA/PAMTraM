@@ -4,6 +4,7 @@ package pamtram.mapping.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
@@ -688,6 +689,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getModelConnectionHint__GetSourceAttributes() {
+		return modelConnectionHintEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getConnectionHintTargetAttribute() {
 		return connectionHintTargetAttributeEClass;
 	}
@@ -970,6 +980,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		modelConnectionHintEClass = createEClass(MODEL_CONNECTION_HINT);
 		createEReference(modelConnectionHintEClass, MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES);
+		createEOperation(modelConnectionHintEClass, MODEL_CONNECTION_HINT___GET_SOURCE_ATTRIBUTES);
 
 		connectionHintTargetAttributeEClass = createEClass(CONNECTION_HINT_TARGET_ATTRIBUTE);
 		createEReference(connectionHintTargetAttributeEClass, CONNECTION_HINT_TARGET_ATTRIBUTE__TARGET_ATTRIBUTE);
@@ -1128,6 +1139,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		initEClass(modelConnectionHintEClass, ModelConnectionHint.class, "ModelConnectionHint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelConnectionHint_TargetAttributes(), this.getConnectionHintTargetAttribute(), null, "targetAttributes", null, 1, -1, ModelConnectionHint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getModelConnectionHint__GetSourceAttributes(), theMetamodelPackage.getSourceSectionAttribute(), "getSourceAttributes", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(connectionHintTargetAttributeEClass, ConnectionHintTargetAttribute.class, "ConnectionHintTargetAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConnectionHintTargetAttribute_TargetAttribute(), theMetamodelPackage.getTargetSectionAttribute(), null, "targetAttribute", null, 1, 1, ConnectionHintTargetAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

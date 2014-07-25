@@ -2,12 +2,15 @@ package de.mfreund.gentrans.transformation;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -350,12 +353,16 @@ public class GenericTransformationRunner {
 								LinkedList<EObjectTransformationHelper> containerInstances = targetSectionRegistry.getFlattenedPamtramClassInstances(section.getContainer());
 								LinkedList<EObjectTransformationHelper> rootInstances = targetSectionRegistry.getPamtramClassInstances(section).get(g);		
 								containerInstances.removeAll(rootInstances);//we do not want the rootinstances to contain themselves
-								
+								Set<EClass> containerClasses=new HashSet<EClass>();
+								if(section.getContainer() != null){
+									containerClasses.add(section.getContainer().getEClass());
+								}
 								connectionHelpers.linkToTargetModelNoConnectionHint(
 										section.getEClass(),
 										rootInstances,
 										section, m.getName(), g.getName(),
 										section.getContainer() != null,
+										containerClasses,
 										containerInstances
 								);
 								if(connectionHelpers.isTransformationAborted()){
@@ -375,7 +382,9 @@ public class GenericTransformationRunner {
 							LinkedList<EObjectTransformationHelper> rootInstances=selMap.getInstances(i, g.getTargetMMSection());
 							if(rootInstances.size()> 0){
 								LinkedList<EObjectTransformationHelper> containerInstances = new LinkedList<EObjectTransformationHelper>();
+								Set<EClass> containerClasses=new HashSet<EClass>();
 								if(i.getContainer() != null){
+									containerClasses.add(i.getContainer().getEClass());
 									//get container instances created by this mapping instance
 									for(MappingHintGroupType group : m.getMappingHintGroups()){
 										if(group instanceof MappingHintGroup){
@@ -393,6 +402,7 @@ public class GenericTransformationRunner {
 										rootInstances,
 										g.getTargetMMSection(), m.getName(), g.getName(),
 										i.getContainer() != null,
+										containerClasses,										
 										containerInstances
 								);
 								if(connectionHelpers.isTransformationAborted()){

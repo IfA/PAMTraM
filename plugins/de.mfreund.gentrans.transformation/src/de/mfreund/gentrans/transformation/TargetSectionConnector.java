@@ -6,6 +6,7 @@ import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -415,7 +416,7 @@ class TargetSectionConnector {
 	@SuppressWarnings("unchecked")
 	void linkToTargetModelNoConnectionHint(EClass classToConnect,
 			List<EObjectTransformationHelper> rootInstances, TargetSectionClass section, String mappingName,
-			String mappingGroupName, boolean hasContainer, LinkedList<EObjectTransformationHelper> containerInstances){
+			String mappingGroupName, boolean hasContainer, Set<EClass> containerClasses  ,LinkedList<EObjectTransformationHelper> containerInstances){
 		ModelConnectionPath modelConnectionPath;
 
 		if (targetSectionRegistry.getPaths(classToConnect).size() > 0) {
@@ -429,17 +430,23 @@ class TargetSectionConnector {
 
 					if (containerInstances.size() == 0) {
 						consoleStream
-								.println("No instances of the targetSection '"
-										+ section.getContainer().getName()
-										+ "' were created. Instances of the targetSection '"
+								.println("Instances of the targetSection '"
 										+ section.getName()
-										+ "'specify that section as their container and can therefore not be linked to the target model.");
+										+ "'specify a container section (either the target section itself or a MappingHintImporter)."
+										+ "Unfortunately no instances of the specified container were created. Therefore the sections will not be linked to the target model.");
 						addToTargetModelRoot(rootInstances);
 						return;
 					}
 					for (ModelConnectionPath p : (LinkedList<ModelConnectionPath>) pathsToConsider.clone()) {
-						if (!p.leadsToRootType(section.getContainer()
-								.getEClass())) {
+						boolean found=false;
+						for(EClass c : containerClasses){
+							if(p.leadsToRootType(c)){
+								found=true;
+								break;
+							}
+						}
+						
+						if (!found) {
 							pathsToConsider.remove(p);// narrow down possible
 														// paths
 						}

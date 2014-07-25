@@ -16,8 +16,8 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
-import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.Mapping;
+import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
@@ -108,7 +108,7 @@ public class MappingHintGroupImporterItemProvider extends NamedElementItemProvid
 						Mapping mapping= (Mapping) ((EObject)object).eContainer();
 						
 						for(MappingHintGroupType g : mapping.getMappingHintGroups()){
-							if(g.getTargetMMSection() != null && !(g instanceof ExportedMappingHintGroup)){
+							if(g.getTargetMMSection() != null && g instanceof MappingHintGroup){
 								choiceOfValues.add(g.getTargetMMSection());
 								TreeIterator<EObject> it=g.getTargetMMSection().eAllContents();
 								while(it.hasNext()){

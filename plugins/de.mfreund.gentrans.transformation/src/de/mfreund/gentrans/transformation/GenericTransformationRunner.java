@@ -221,7 +221,7 @@ public class GenericTransformationRunner {
 		 * and remove the values from the MappingInstanceStorages
 		 */
 		consoleStream.println("Getting hint values of exported hint groups");//TODO remove if it works
-		Map<MappingHint, List<Object>> exportedMappingHints=new LinkedHashMap<MappingHint, List<Object>>();
+		Map<MappingHint, LinkedList<Object>> exportedMappingHints=new LinkedHashMap<MappingHint, LinkedList<Object>>();
 		for(MappingInstanceStorage selMap : selectedMappings){
 			for(MappingHintGroupType g : selMap.getMapping().getMappingHintGroups()){
 				if(g instanceof ExportedMappingHintGroup){
@@ -244,9 +244,10 @@ public class GenericTransformationRunner {
 					LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection = targetSectionInstantiator
 							.instantiateTargetSectionFirstPass(
 									g.getTargetMMSection(), (MappingHintGroup) g,
+									g.getMappingHints(),
 									selMap.getHintValues(),
 									selMap.getModelConnectionHintValues(),
-									selMap.getMapping());
+									selMap.getMapping().getName());
 					if (instancesBySection == null) {
 						if (g.getTargetMMSection().getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
 							consoleStream
@@ -264,6 +265,43 @@ public class GenericTransformationRunner {
 					}
 				}
 
+			}
+			
+			for(MappingHintGroupImporter g : selMap.getMapping().getImportedMappingHintGroups()){
+				ExportedMappingHintGroup expGrp=g.getHintGroup();
+				if(expGrp != null){
+					//import Hints
+					for(MappingHint h : expGrp.getMappingHints()){
+						selMap.getHintValues().put(h, (LinkedList<Object>) exportedMappingHints.get(h).clone());
+					}
+					//start instantiating
+					if(expGrp.getTargetMMSection() != null){
+
+						LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection = targetSectionInstantiator
+								.instantiateTargetSectionFirstPass(
+										expGrp.getTargetMMSection(),  g,
+										expGrp.getMappingHints(),
+										selMap.getHintValues(),
+										selMap.getModelConnectionHintValues(),
+										selMap.getMapping().getName());
+						if (instancesBySection == null) {
+							if (expGrp.getTargetMMSection().getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
+								consoleStream
+										.println("Error instantiating target section '"
+												+ expGrp.getTargetMMSection().getName()
+												+ "' using mapping rule '"
+												+ selMap.getMapping().getName()
+												+ "'");
+							}
+						} else {
+							for (TargetSectionClass section : instancesBySection.keySet()) {
+								selMap.addInstances(g, section,
+										instancesBySection.get(section));
+							}
+						}						
+					}
+					
+				}
 			}
 			
 			
@@ -378,10 +416,33 @@ public class GenericTransformationRunner {
 						targetSectionInstantiator
 								.instantiateTargetSectionSecondPass(
 										g.getTargetMMSection(),
-										selMap.getMapping(), (MappingHintGroup) g,
+										selMap.getMapping().getName(), (MappingHintGroup) g,
+										g.getTargetMMSection(),
 										g.getMappingHints(),
 										selMap.getHintValues(),
-										selMap.getInstancesBySection((MappingHintGroup) g));
+										selMap.getInstancesBySection((MappingHintGroup) g)
+							);
+						if(targetSectionInstantiator.isTransformationAborted()){
+							writePamtramMessage("Transformation aborted.");
+							return;
+						}
+					}
+				}
+			}
+			
+			for(MappingHintGroupImporter g : selMap.getMapping().getImportedMappingHintGroups()){
+				ExportedMappingHintGroup expGrp= g.getHintGroup();
+				if (expGrp.getTargetMMSection() != null) {
+					if (selMap.getInstancesBySection(g) != null) {
+						targetSectionInstantiator
+								.instantiateTargetSectionSecondPass(
+										expGrp.getTargetMMSection(),
+										selMap.getMapping().getName(), g,
+										expGrp.getTargetMMSection(),
+										expGrp.getMappingHints(),
+										selMap.getHintValues(),
+										selMap.getInstancesBySection(g)
+						);
 						if(targetSectionInstantiator.isTransformationAborted()){
 							writePamtramMessage("Transformation aborted.");
 							return;

@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.mapping.InstantiableMappingHintGroup;
-import pamtram.mapping.MappingHintGroup;
 import pamtram.metamodel.TargetSectionClass;
 
 /**
@@ -115,7 +114,7 @@ class TargetSectionRegistry {
 	 * @param group
 	 * @param targetSection
 	 */
-	void addClassInstance(EObjectTransformationHelper instance, MappingHintGroup group,
+	void addClassInstance(EObjectTransformationHelper instance, InstantiableMappingHintGroup group,
 			TargetSectionClass targetSection) {
 		EClass eClass = instance.getEObject().eClass();
 

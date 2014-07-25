@@ -21,7 +21,7 @@ import pamtram.mapping.CalculatorMapping;
 import pamtram.mapping.ClassMatcher;
 import pamtram.mapping.ComplexAttributeMapping;
 import pamtram.mapping.ComplexAttributeMatcher;
-import pamtram.mapping.Mapping;
+import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingInstanceSelector;
@@ -142,20 +142,22 @@ class TargetSectionInstantiator {
 	 *instantiate targetModelSection (first pass: attributes and containment references)
 	 * @param metamodelSection
 	 * @param mappingGroup
+	 * @param mappingHints
 	 * @param hintValues
 	 * @param conHintValues
-	 * @param mapping
+	 * @param mappingName
 	 * @return Map of target section instances
 	 */
 	LinkedHashMap<TargetSectionClass,LinkedList<EObjectTransformationHelper>> instantiateTargetSectionFirstPass(TargetSectionClass metamodelSection,
-																					MappingHintGroup mappingGroup,
+																					InstantiableMappingHintGroup mappingGroup,
+																					List<MappingHint> mappingHints,
 																					Map<MappingHint, LinkedList<Object>> hintValues,
 																					Map<ModelConnectionHint, LinkedList<Object>> conHintValues,																					
-																					Mapping mapping){
+																					String mappingName){
 		LinkedHashMap<TargetSectionClass,LinkedList<EObjectTransformationHelper>> instBySection=new LinkedHashMap<TargetSectionClass,LinkedList<EObjectTransformationHelper>> ();
 		
-		if( instantiateTargetSectionFirstPass(metamodelSection, mappingGroup, hintValues, conHintValues,
-				instBySection,mapping) != null){
+		if( instantiateTargetSectionFirstPass(metamodelSection, mappingGroup, mappingHints, hintValues, conHintValues,
+				instBySection,mappingName) != null){
 			return instBySection;
 		} else return null;
 			
@@ -171,37 +173,44 @@ class TargetSectionInstantiator {
  *private recursive version
  * @param metamodelSection
  * @param mappingGroup
+ * @param mappingHints
  * @param hintValues
  * @param conHintValues
  * @param instBySection
- * @param mapping
+ * @param mappingName
  * @return
  */
 @SuppressWarnings("unchecked")//TODO ModelConnectionHint
 private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPass(TargetSectionClass metamodelSection,
-																				MappingHintGroup mappingGroup,
+																				InstantiableMappingHintGroup mappingGroup,
+																				List<MappingHint> mappingHints,
 																				Map<MappingHint, LinkedList<Object>> hintValues,
 																				Map<ModelConnectionHint, LinkedList<Object>> conHintValues,
 																				Map<TargetSectionClass,LinkedList<EObjectTransformationHelper>> instBySection,
-																				Mapping mapping) {
+																				String mappingName) {
 	
 		
 		int cardinality= 1;
+
+
 			
 
 		if(!metamodelSection.getCardinality().equals(CardinalityType.ONE)){//ignore attribute hint and cardinality hint, if variableCardinality == false
 			 
 			 //check for attribute hint
 			 boolean hintFound=false;
-			 if(mappingGroup.getModelConnectionMatcher() != null){ 
-			 	if(mappingGroup.getTargetMMSection().equals(metamodelSection)){
-						hintFound=true;
-						cardinality=conHintValues.get(mappingGroup.getModelConnectionMatcher()).size();	 	
-			 	}
-			 } 
+			 if(mappingGroup instanceof MappingHintGroup){
+				 MappingHintGroup mhGrp=(MappingHintGroup) mappingGroup;
+				 if(mhGrp.getModelConnectionMatcher() != null){ 
+				 	if(mhGrp.getTargetMMSection().equals(metamodelSection)){
+							hintFound=true;
+							cardinality=conHintValues.get(mhGrp.getModelConnectionMatcher()).size();	 	
+				 	}
+				 }
+			 }
 			 
 			 
-				MappingHint hint=searchAttributeMapping(metamodelSection,mappingGroup.getMappingHints(), hintValues,null);
+				MappingHint hint=searchAttributeMapping(metamodelSection,mappingHints, hintValues,null);
 				if(hint != null){//there was an AttributeHint....
 					int hintCardinality=hintValues.get(hint).size();
 					if(hintCardinality > cardinality){
@@ -212,7 +221,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 				 		cardinality=0;
 				 		
 				 	}
-			 		for(MappingHint h : mappingGroup.getMappingHints()){
+			 		for(MappingHint h : mappingHints){
 			 			if(h instanceof AttributeMapping){
 			 				cardinality=0;
 			 				break;
@@ -244,7 +253,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 					MappingHint hintFound=null;
 					//look for an attribute mapping
 					LinkedList<Object> attrHintValues=null;
-					for(MappingHint hint : mappingGroup.getMappingHints()){
+					for(MappingHint hint : mappingHints){
 						if(hint instanceof AttributeMapping){
 							if(((AttributeMapping) hint).getTarget().equals(attr)){
 								hintFound=hint;
@@ -258,7 +267,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 									attrHintValues=hintValues.get(hint);
 									break;
 								} else{
-									consoleStream.println("Cardinality mismatch (expected: "+ cardinality + ", got :" +  hintValues.get(hint).size() +"): " + hint.getName() + " for Mapping "+ mapping.getName() 
+									consoleStream.println("Cardinality mismatch (expected: "+ cardinality + ", got :" +  hintValues.get(hint).size() +"): " + hint.getName() + " for Mapping "+ mappingName
 										+ " (Group: " + mappingGroup.getName() +") Maybe check Cardinality of Metamodel section?");
 									return null;
 								}
@@ -345,10 +354,11 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 						 for(TargetSectionClass val : ((TargetSectionContainmentReference) ref).getValue()){//instantiate targets
 							 LinkedList<EObjectTransformationHelper> children = instantiateTargetSectionFirstPass(val,
 									 											mappingGroup,
+									 											mappingHints,
 									 											hintValues,
 									 											conHintValues,
 									 											instBySection,
-									 											mapping);
+									 											mappingName);
 						 	if(children != null) { //error? //TODO also delete here?
 						 		childInstances.addAll(children);
 						 	} else{ 
@@ -406,27 +416,28 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 	
 	/**
 	 *  *instantiate targetModelSection (second pass: non-containment references)
-	 * @param targetMMSection
-	 * @param mapping
+	 * @param targetSectionClass
+	 * @param mappingName
 	 * @param group
+	 * @param groupTargetSection
 	 * @param hints
 	 * @param hintValues
 	 * @param instancesBySection
 	 */
 	void instantiateTargetSectionSecondPass(
-			TargetSectionClass targetMMSection,
-			Mapping mapping,
-			MappingHintGroup group,
+			TargetSectionClass targetSectionClass, String mappingName,
+			InstantiableMappingHintGroup group,
+			TargetSectionClass groupTargetSection,
 			List<MappingHint> hints,
 			LinkedHashMap<MappingHint, LinkedList<Object>> hintValues,
 			LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection) {
 
-		if (instancesBySection.get(targetMMSection) != null) {// only go on if
+		if (instancesBySection.get(targetSectionClass) != null) {// only go on if
 																// any instances
 																// of this
 																// section were
 																// created
-			for (TargetSectionReference ref : targetMMSection.getReferences()) {
+			for (TargetSectionReference ref : targetSectionClass.getReferences()) {
 				if (ref instanceof TargetSectionNonContainmentReference) {
 					LinkedList<TargetSectionClass> refValueClone = new LinkedList<TargetSectionClass>();
 					refValueClone.addAll(((TargetSectionNonContainmentReference) ref).getValue());
@@ -459,7 +470,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 									LinkedList<EObjectTransformationHelper> instancesToConsider = new LinkedList<EObjectTransformationHelper>();
 									instancesToConsider
 											.addAll(instancesBySection
-													.get(targetMMSection));
+													.get(targetSectionClass));
 									/*
 									 * Sizes of instances and attributeHints
 									 * must either match, or, in case there was
@@ -578,7 +589,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 										if (refValueClone.contains(((ClassMatcher) hSel.getMatcher()).getTargetClass())) {
 											// select any of the targetInstances available for the reference target
 											LinkedList<EObjectTransformationHelper> instancesToConsider = instancesBySection
-													.get(targetMMSection);// this will be applied to
+													.get(targetSectionClass);// this will be applied to
 																			// all instances of this
 																			// mapping TODO
 				
@@ -655,13 +666,13 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 						refValue.addAll(((TargetSectionNonContainmentReference) ref).getValue());
 												
 						//first check root targetMMSection itself
-						if(refValue.contains(group.getTargetMMSection())){
-							foundSections.add(group.getTargetMMSection());
-							refValue.remove(group.getTargetMMSection());
+						if(refValue.contains(groupTargetSection)){
+							foundSections.add(groupTargetSection);
+							refValue.remove(groupTargetSection);
 						}
 						
 						//then check all its children
-						TreeIterator<EObject> it=group.getTargetMMSection().eAllContents();
+						TreeIterator<EObject> it=groupTargetSection.eAllContents();
 						while(it.hasNext() && refValue.size() > 0){
 							EObject next=it.next();
 							if(refValue.contains(next)){//at least one of the values the pamtram-reference points to,
@@ -675,10 +686,10 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 						if(foundSections.size() > 0){							
 							//get source instances for the reference
 							LinkedList<EObjectTransformationHelper> sourceInstances=new LinkedList<EObjectTransformationHelper>();
-							sourceInstances.addAll(instancesBySection.get(targetMMSection));
+							sourceInstances.addAll(instancesBySection.get(targetSectionClass));
 							
 							//get root instances of groups targetMMSection
-							LinkedList<EObjectTransformationHelper> rootInstances=instancesBySection.get(group.getTargetMMSection());
+							LinkedList<EObjectTransformationHelper> rootInstances=instancesBySection.get(groupTargetSection);
 							
 							//get target instances for the reference
 							LinkedList<EObjectTransformationHelper> targetInstances=new LinkedList<EObjectTransformationHelper>();
@@ -740,7 +751,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 									consoleStream.println("Userdecision " + ref.getName());
 								} else {
 									consoleStream.println("No suitable refernce target found for non-cont. reference '" + ref.getName()
-											+ "' of the following instance of targetMMSection '" + targetMMSection.getName() + "'\n" + source.toString());//TODO description
+											+ "' of the following instance of targetMMSection '" + targetSectionClass.getName() + "'\n" + source.toString());//TODO description
 								}
 								
 							}
@@ -777,12 +788,12 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 							} else {
 								consoleStream.println("No suitable hint targets found for non-cont reference '"
 										+ ref.getName() + "' of TargetMMSection "
-										+ group.getTargetMMSection().getName() + "(Section: "	+ targetMMSection.getName() 
-										+ ") in Mapping " + mapping.getName() + "(Group: " + group.getName() +").");
+										+ groupTargetSection.getName() + "(Section: "	+ targetSectionClass.getName() 
+										+ ") in Mapping " + mappingName + "(Group: " + group.getName() +").");
 							}
 							
 							if(targetInstance != null){
-								for(EObjectTransformationHelper inst : instancesBySection.get(targetMMSection)){
+								for(EObjectTransformationHelper inst : instancesBySection.get(targetSectionClass)){
 									setReference(ref, targetInstance.getEObject(), inst.getEObject());
 								}
 							}
@@ -793,29 +804,31 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 					}
 				}
 			}
-			instantiateTargetSectionSecondPassGoDeeper(targetMMSection,
-					mapping, group, hints, hintValues, instancesBySection);			
+			instantiateTargetSectionSecondPassGoDeeper(targetSectionClass,mappingName,group, groupTargetSection,hints, hintValues, instancesBySection);			
 		}
 	}
 
 	/**
-	 * @param targetMMSection
-	 * @param mapping
+	 * @param targetSectionClass
+	 * @param mappingName
+	 * @param group
+	 * @param groupTargetSection
 	 * @param hints
 	 * @param hintValues
 	 * @param instancesBySection
 	 */
 	private void instantiateTargetSectionSecondPassGoDeeper(
-			TargetSectionClass targetMMSection,
-			Mapping mapping,
-			MappingHintGroup group,
+			TargetSectionClass targetSectionClass,
+			String mappingName,
+			InstantiableMappingHintGroup group,
+			TargetSectionClass groupTargetSection,
 			List<MappingHint> hints,
 			LinkedHashMap<MappingHint, LinkedList<Object>> hintValues,
 			LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection) {
-		for (TargetSectionReference ref : targetMMSection.getReferences()) {
+		for (TargetSectionReference ref : targetSectionClass.getReferences()) {
 			if (ref instanceof TargetSectionContainmentReference) {
 				for (TargetSectionClass val : ((TargetSectionContainmentReference) ref).getValue()) {// instantiate targets
-					instantiateTargetSectionSecondPass(val, mapping, group,hints,
+					instantiateTargetSectionSecondPass(val, mappingName, group,groupTargetSection,hints,
 							hintValues, instancesBySection);
 					if(transformationAborted){
 						return;

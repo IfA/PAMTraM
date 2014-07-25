@@ -183,7 +183,38 @@ public class MappingSwitch<T> extends Switch<T> {
 			case MappingPackage.MAPPING_HINT_GROUP: {
 				MappingHintGroup mappingHintGroup = (MappingHintGroup)theEObject;
 				T result = caseMappingHintGroup(mappingHintGroup);
+				if (result == null) result = caseMappingHintGroupType(mappingHintGroup);
+				if (result == null) result = caseInstantiableMappingHintGroup(mappingHintGroup);
 				if (result == null) result = caseNamedElement(mappingHintGroup);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.MAPPING_HINT_GROUP_TYPE: {
+				MappingHintGroupType mappingHintGroupType = (MappingHintGroupType)theEObject;
+				T result = caseMappingHintGroupType(mappingHintGroupType);
+				if (result == null) result = caseNamedElement(mappingHintGroupType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.INSTANTIABLE_MAPPING_HINT_GROUP: {
+				InstantiableMappingHintGroup instantiableMappingHintGroup = (InstantiableMappingHintGroup)theEObject;
+				T result = caseInstantiableMappingHintGroup(instantiableMappingHintGroup);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER: {
+				MappingHintGroupImporter mappingHintGroupImporter = (MappingHintGroupImporter)theEObject;
+				T result = caseMappingHintGroupImporter(mappingHintGroupImporter);
+				if (result == null) result = caseNamedElement(mappingHintGroupImporter);
+				if (result == null) result = caseInstantiableMappingHintGroup(mappingHintGroupImporter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.EXPORTED_MAPPING_HINT_GROUP: {
+				ExportedMappingHintGroup exportedMappingHintGroup = (ExportedMappingHintGroup)theEObject;
+				T result = caseExportedMappingHintGroup(exportedMappingHintGroup);
+				if (result == null) result = caseMappingHintGroupType(exportedMappingHintGroup);
+				if (result == null) result = caseNamedElement(exportedMappingHintGroup);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -558,6 +589,66 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMappingHintGroup(MappingHintGroup object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Hint Group Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Hint Group Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMappingHintGroupType(MappingHintGroupType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Instantiable Mapping Hint Group</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Instantiable Mapping Hint Group</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInstantiableMappingHintGroup(InstantiableMappingHintGroup object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Hint Group Importer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Hint Group Importer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMappingHintGroupImporter(MappingHintGroupImporter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Exported Mapping Hint Group</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Exported Mapping Hint Group</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExportedMappingHintGroup(ExportedMappingHintGroup object) {
 		return null;
 	}
 

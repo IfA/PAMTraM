@@ -4,6 +4,7 @@ package pamtram.mapping;
 
 import org.eclipse.emf.common.util.EList;
 import pamtram.NamedElement;
+import pamtram.metamodel.SourceSectionAttribute;
 
 
 /**
@@ -39,5 +40,14 @@ public interface ModelConnectionHint extends NamedElement {
 	 * @generated
 	 */
 	EList<ConnectionHintTargetAttribute> getTargetAttributes();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='\t\tEList<SourceSectionAttribute> sources= new org.eclipse.emf.common.util.BasicEList<SourceSectionAttribute>();\n\t\tif(this instanceof SimpleModelConnectionHint){\n\t\t\tsources.add(((SimpleModelConnectionHint)this).getSource());\n\t\t\n\t\t} else if(this instanceof ComplexModelConnectionHint){\n\t\t\tfor(ComplexModelConnectionHintSourceElement e : ((ComplexModelConnectionHint)this).getSourceElements()){\n\t\t\t\tsources.add(e.getSource());\n\t\t\t}\n\t\t}\n\t\treturn sources;'"
+	 * @generated
+	 */
+	EList<SourceSectionAttribute> getSourceAttributes();
 
 } // ModelConnectionHint

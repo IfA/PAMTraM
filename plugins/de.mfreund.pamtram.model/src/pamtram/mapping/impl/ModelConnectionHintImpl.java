@@ -2,6 +2,7 @@
  */
 package pamtram.mapping.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -10,9 +11,13 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.impl.NamedElementImpl;
+import pamtram.mapping.ComplexModelConnectionHint;
+import pamtram.mapping.ComplexModelConnectionHintSourceElement;
 import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModelConnectionHint;
+import pamtram.mapping.SimpleModelConnectionHint;
+import pamtram.metamodel.SourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -67,6 +72,24 @@ public abstract class ModelConnectionHintImpl extends NamedElementImpl implement
 			targetAttributes = new EObjectContainmentEList<ConnectionHintTargetAttribute>(ConnectionHintTargetAttribute.class, this, MappingPackage.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES);
 		}
 		return targetAttributes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<SourceSectionAttribute> getSourceAttributes() {
+				EList<SourceSectionAttribute> sources= new org.eclipse.emf.common.util.BasicEList<SourceSectionAttribute>();
+				if(this instanceof SimpleModelConnectionHint){
+					sources.add(((SimpleModelConnectionHint)this).getSource());
+				
+				} else if(this instanceof ComplexModelConnectionHint){
+					for(ComplexModelConnectionHintSourceElement e : ((ComplexModelConnectionHint)this).getSourceElements()){
+						sources.add(e.getSource());
+					}
+				}
+				return sources;
 	}
 
 	/**
@@ -141,6 +164,20 @@ public abstract class ModelConnectionHintImpl extends NamedElementImpl implement
 				return targetAttributes != null && !targetAttributes.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case MappingPackage.MODEL_CONNECTION_HINT___GET_SOURCE_ATTRIBUTES:
+				return getSourceAttributes();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //ModelConnectionHintImpl

@@ -66,6 +66,9 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.STRING_PREPENDER: return createStringPrepender();
 			case MappingPackage.ATTRIBUTE_VALUE_MODIFIER_SET: return createAttributeValueModifierSet();
 			case MappingPackage.MAPPING_HINT_GROUP: return createMappingHintGroup();
+			case MappingPackage.INSTANTIABLE_MAPPING_HINT_GROUP: return createInstantiableMappingHintGroup();
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER: return createMappingHintGroupImporter();
+			case MappingPackage.EXPORTED_MAPPING_HINT_GROUP: return createExportedMappingHintGroup();
 			case MappingPackage.CONNECTION_HINT_TARGET_ATTRIBUTE: return createConnectionHintTargetAttribute();
 			case MappingPackage.SIMPLE_ATTRIBUTE_MAPPING: return createSimpleAttributeMapping();
 			case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING: return createComplexAttributeMapping();
@@ -181,6 +184,36 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public MappingHintGroup createMappingHintGroup() {
 		MappingHintGroupImpl mappingHintGroup = new MappingHintGroupImpl();
 		return mappingHintGroup;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InstantiableMappingHintGroup createInstantiableMappingHintGroup() {
+		InstantiableMappingHintGroupImpl instantiableMappingHintGroup = new InstantiableMappingHintGroupImpl();
+		return instantiableMappingHintGroup;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MappingHintGroupImporter createMappingHintGroupImporter() {
+		MappingHintGroupImporterImpl mappingHintGroupImporter = new MappingHintGroupImporterImpl();
+		return mappingHintGroupImporter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExportedMappingHintGroup createExportedMappingHintGroup() {
+		ExportedMappingHintGroupImpl exportedMappingHintGroup = new ExportedMappingHintGroupImpl();
+		return exportedMappingHintGroup;
 	}
 
 	/**

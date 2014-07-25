@@ -118,6 +118,14 @@ public class MappingValidator extends EObjectValidator {
 				return validateAttributeValueModifierSet((AttributeValueModifierSet)value, diagnostics, context);
 			case MappingPackage.MAPPING_HINT_GROUP:
 				return validateMappingHintGroup((MappingHintGroup)value, diagnostics, context);
+			case MappingPackage.MAPPING_HINT_GROUP_TYPE:
+				return validateMappingHintGroupType((MappingHintGroupType)value, diagnostics, context);
+			case MappingPackage.INSTANTIABLE_MAPPING_HINT_GROUP:
+				return validateInstantiableMappingHintGroup((InstantiableMappingHintGroup)value, diagnostics, context);
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER:
+				return validateMappingHintGroupImporter((MappingHintGroupImporter)value, diagnostics, context);
+			case MappingPackage.EXPORTED_MAPPING_HINT_GROUP:
+				return validateExportedMappingHintGroup((ExportedMappingHintGroup)value, diagnostics, context);
 			case MappingPackage.MODEL_CONNECTION_HINT:
 				return validateModelConnectionHint((ModelConnectionHint)value, diagnostics, context);
 			case MappingPackage.CONNECTION_HINT_TARGET_ATTRIBUTE:
@@ -490,6 +498,42 @@ public class MappingValidator extends EObjectValidator {
 	 */
 	public boolean validateMappingHintGroup(MappingHintGroup mappingHintGroup, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(mappingHintGroup, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMappingHintGroupType(MappingHintGroupType mappingHintGroupType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(mappingHintGroupType, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateInstantiableMappingHintGroup(InstantiableMappingHintGroup instantiableMappingHintGroup, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(instantiableMappingHintGroup, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMappingHintGroupImporter(MappingHintGroupImporter mappingHintGroupImporter, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(mappingHintGroupImporter, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateExportedMappingHintGroup(ExportedMappingHintGroup exportedMappingHintGroup, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(exportedMappingHintGroup, diagnostics, context);
 	}
 
 	/**

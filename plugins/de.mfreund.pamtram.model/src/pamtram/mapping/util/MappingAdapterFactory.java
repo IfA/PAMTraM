@@ -134,6 +134,22 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createMappingHintGroupAdapter();
 			}
 			@Override
+			public Adapter caseMappingHintGroupType(MappingHintGroupType object) {
+				return createMappingHintGroupTypeAdapter();
+			}
+			@Override
+			public Adapter caseInstantiableMappingHintGroup(InstantiableMappingHintGroup object) {
+				return createInstantiableMappingHintGroupAdapter();
+			}
+			@Override
+			public Adapter caseMappingHintGroupImporter(MappingHintGroupImporter object) {
+				return createMappingHintGroupImporterAdapter();
+			}
+			@Override
+			public Adapter caseExportedMappingHintGroup(ExportedMappingHintGroup object) {
+				return createExportedMappingHintGroupAdapter();
+			}
+			@Override
 			public Adapter caseModelConnectionHint(ModelConnectionHint object) {
 				return createModelConnectionHintAdapter();
 			}
@@ -438,6 +454,62 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMappingHintGroupAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.MappingHintGroupType <em>Hint Group Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.MappingHintGroupType
+	 * @generated
+	 */
+	public Adapter createMappingHintGroupTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.InstantiableMappingHintGroup <em>Instantiable Mapping Hint Group</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.InstantiableMappingHintGroup
+	 * @generated
+	 */
+	public Adapter createInstantiableMappingHintGroupAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.MappingHintGroupImporter <em>Hint Group Importer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.MappingHintGroupImporter
+	 * @generated
+	 */
+	public Adapter createMappingHintGroupImporterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ExportedMappingHintGroup <em>Exported Mapping Hint Group</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.ExportedMappingHintGroup
+	 * @generated
+	 */
+	public Adapter createExportedMappingHintGroupAdapter() {
 		return null;
 	}
 

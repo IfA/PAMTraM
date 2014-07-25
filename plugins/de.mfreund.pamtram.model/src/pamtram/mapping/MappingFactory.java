@@ -112,6 +112,33 @@ public interface MappingFactory extends EFactory {
 	MappingHintGroup createMappingHintGroup();
 
 	/**
+	 * Returns a new object of class '<em>Instantiable Mapping Hint Group</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Instantiable Mapping Hint Group</em>'.
+	 * @generated
+	 */
+	InstantiableMappingHintGroup createInstantiableMappingHintGroup();
+
+	/**
+	 * Returns a new object of class '<em>Hint Group Importer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Hint Group Importer</em>'.
+	 * @generated
+	 */
+	MappingHintGroupImporter createMappingHintGroupImporter();
+
+	/**
+	 * Returns a new object of class '<em>Exported Mapping Hint Group</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Exported Mapping Hint Group</em>'.
+	 * @generated
+	 */
+	ExportedMappingHintGroup createExportedMappingHintGroup();
+
+	/**
 	 * Returns a new object of class '<em>Connection Hint Target Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

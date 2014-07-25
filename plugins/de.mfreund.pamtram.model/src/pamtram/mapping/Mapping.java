@@ -16,6 +16,7 @@ import pamtram.condition.ComplexCondition;
  * <ul>
  *   <li>{@link pamtram.mapping.Mapping#getCondition <em>Condition</em>}</li>
  *   <li>{@link pamtram.mapping.Mapping#getMappingHintGroups <em>Mapping Hint Groups</em>}</li>
+ *   <li>{@link pamtram.mapping.Mapping#getImportedMappingHintGroups <em>Imported Mapping Hint Groups</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,7 +53,7 @@ public interface Mapping extends MappingType {
 
 	/**
 	 * Returns the value of the '<em><b>Mapping Hint Groups</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.mapping.MappingHintGroup}.
+	 * The list contents are of type {@link pamtram.mapping.MappingHintGroupType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Mapping Hint Groups</em>' reference list isn't clear,
@@ -64,6 +65,22 @@ public interface Mapping extends MappingType {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<MappingHintGroup> getMappingHintGroups();
+	EList<MappingHintGroupType> getMappingHintGroups();
+
+	/**
+	 * Returns the value of the '<em><b>Imported Mapping Hint Groups</b></em>' containment reference list.
+	 * The list contents are of type {@link pamtram.mapping.MappingHintGroupImporter}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Imported Mapping Hint Groups</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Imported Mapping Hint Groups</em>' containment reference list.
+	 * @see pamtram.mapping.MappingPackage#getMapping_ImportedMappingHintGroups()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<MappingHintGroupImporter> getImportedMappingHintGroups();
 
 } // Mapping

@@ -265,7 +265,9 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//condition/ComplexCondition"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="mappingHintGroups" upperBound="-1"
-          eType="#//mapping/MappingHintGroup" containment="true"/>
+          eType="#//mapping/MappingHintGroupType" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="importedMappingHintGroups"
+          upperBound="-1" eType="#//mapping/MappingHintGroupImporter" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MappingType" abstract="true" eSuperTypes="#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceMMSection" lowerBound="1"
@@ -333,15 +335,30 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
           eType="#//mapping/AttributeValueModifier" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="MappingHintGroup" eSuperTypes="#//NamedElement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="mappingHints" upperBound="-1"
-          eType="#//mapping/MappingHint" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="targetMMSection" eType="#//metamodel/TargetSectionClass"/>
+    <eClassifiers xsi:type="ecore:EClass" name="MappingHintGroup" eSuperTypes="#//mapping/MappingHintGroupType #//mapping/InstantiableMappingHintGroup">
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelConnectionMatcher"
           eType="#//mapping/ModelConnectionHint" containment="true"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="MappingHintGroupType" abstract="true"
+        eSuperTypes="#//NamedElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="targetMMSection" eType="#//metamodel/TargetSectionClass"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="mappingHints" upperBound="-1"
+          eType="#//mapping/MappingHint" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="InstantiableMappingHintGroup"/>
+    <eClassifiers xsi:type="ecore:EClass" name="MappingHintGroupImporter" eSuperTypes="#//NamedElement #//mapping/InstantiableMappingHintGroup">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="hintGroup" lowerBound="1"
+          eType="#//mapping/ExportedMappingHintGroup"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//metamodel/TargetSectionClass"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ExportedMappingHintGroup" eSuperTypes="#//mapping/MappingHintGroupType"/>
     <eClassifiers xsi:type="ecore:EClass" name="ModelConnectionHint" abstract="true"
         eSuperTypes="#//NamedElement">
+      <eOperations name="getSourceAttributes" upperBound="-1" eType="#//metamodel/SourceSectionAttribute">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="&#x9;&#x9;EList&lt;SourceSectionAttribute> sources= new org.eclipse.emf.common.util.BasicEList&lt;SourceSectionAttribute>();&#xA;&#x9;&#x9;if(this instanceof SimpleModelConnectionHint){&#xA;&#x9;&#x9;&#x9;sources.add(((SimpleModelConnectionHint)this).getSource());&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;} else if(this instanceof ComplexModelConnectionHint){&#xA;&#x9;&#x9;&#x9;for(ComplexModelConnectionHintSourceElement e : ((ComplexModelConnectionHint)this).getSourceElements()){&#xA;&#x9;&#x9;&#x9;&#x9;sources.add(e.getSource());&#xA;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;return sources;"/>
+        </eAnnotations>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="targetAttributes" lowerBound="1"
           upperBound="-1" eType="#//mapping/ConnectionHintTargetAttribute" containment="true"/>
     </eClassifiers>

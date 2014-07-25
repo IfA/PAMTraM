@@ -1,6 +1,11 @@
 package de.mfreund.pamtram.pages;
 
 import java.io.File;
+import java.io.FileInputStream;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.jface.preference.FileFieldEditor;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
@@ -14,6 +19,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+
+import pamtram.presentation.pages.PamtramEPackageSpecificationPage;
 
 
 public class PamtramFileSpecificationPage extends WizardPage {
@@ -77,7 +84,25 @@ public class PamtramFileSpecificationPage extends WizardPage {
 			
 			@Override
 			public void propertyChange(PropertyChangeEvent event) {
+				
 				srcFile = srcFileFieldEditor.getStringValue();
+				
+				String nsUri = "";
+				try {
+					// load the selected file and try to determine the ePackage
+					FileInputStream fileInputStream = new FileInputStream(srcFile); 
+					XMIResource xmiResource = new XMIResourceImpl(); 
+					xmiResource.load(fileInputStream, null);
+					EObject object = xmiResource.getContents().get(0);
+					nsUri = object.eClass().getEPackage().getNsURI();
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+				
+				// set the source ePackage to be used in the next wizard page
+				((PamtramEPackageSpecificationPage)(getNextPage()))
+						.setSourceEPackage(nsUri);
+				
 				wizContainer.updateButtons();
 			}
 		});
@@ -112,8 +137,11 @@ public class PamtramFileSpecificationPage extends WizardPage {
     @Override
     public boolean isPageComplete() {
     	
+    	// has a pamtram file been specified?
     	boolean pamtramFileIsValid = pamtramFileTextfield.getText() != null &&
     			pamtramFileTextfield.getText() != "";
+    	// if a source file has been specified, check the file ending and if 
+    	// the file exists
     	boolean srcFileIsValid = srcFileFieldEditor.getStringValue() == "" ||
     				(srcFileFieldEditor.getStringValue().endsWith(".xmi") &&
     						(new File(srcFileFieldEditor.getStringValue())).exists());

@@ -5,19 +5,13 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -33,7 +27,6 @@ import org.eclipse.ui.ide.undo.CreateProjectOperation;
 import org.eclipse.ui.ide.undo.WorkspaceUndoUtil;
 
 import de.mfreund.pamtram.pages.PamtramFileSpecificationPage;
-import de.mfreund.pamtram.util.BundleContentHelper;
 import de.mfreund.pamtram.util.ResourceHelper;
 import pamtram.presentation.PamtramModelWizard;
 import pamtram.presentation.pages.PamtramEPackageSpecificationPage;
@@ -90,7 +83,7 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard {
 		
 		fileSpecPage = new PamtramFileSpecificationPage("Whatever2");
 		fileSpecPage.setTitle("Pamtram specification");
-		fileSpecPage.setDescription("Specify the name of the PAMTraM file.");
+		fileSpecPage.setDescription("Specify the name of the PAMTraM file and the source file (optional).");
 		this.addPage(fileSpecPage);
 
 		ePackageSpecificationPage = new PamtramEPackageSpecificationPage("Whatever3");

@@ -5,30 +5,39 @@ package pamtram.mapping.provider;
 
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import pamtram.mapping.MappingFactory;
-import pamtram.mapping.MappingHintGroup;
+import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 
+import pamtram.provider.NamedElementItemProvider;
+import pamtram.provider.PamtramEditPlugin;
+
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.MappingHintGroup} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.MappingHintGroupType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MappingHintGroupItemProvider
-	extends MappingHintGroupTypeItemProvider {
+public class MappingHintGroupTypeItemProvider extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MappingHintGroupItemProvider(AdapterFactory adapterFactory) {
+	public MappingHintGroupTypeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -43,8 +52,31 @@ public class MappingHintGroupItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addTargetMMSectionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Target MM Section feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTargetMMSectionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_MappingHintGroupType_targetMMSection_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MappingHintGroupType_targetMMSection_feature", "_UI_MappingHintGroupType_type"),
+				 MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__TARGET_MM_SECTION,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -59,7 +91,7 @@ public class MappingHintGroupItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER);
+			childrenFeatures.add(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS);
 		}
 		return childrenFeatures;
 	}
@@ -78,17 +110,6 @@ public class MappingHintGroupItemProvider
 	}
 
 	/**
-	 * This returns MappingHintGroup.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MappingHintGroup"));
-	}
-
-	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -96,11 +117,12 @@ public class MappingHintGroupItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((MappingHintGroup)object).getName();
+		String label = ((MappingHintGroupType)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_MappingHintGroup_type") :
-			getString("_UI_MappingHintGroup_type") + " " + label;
+			getString("_UI_MappingHintGroupType_type") :
+			getString("_UI_MappingHintGroupType_type") + " " + label;
 	}
+	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -113,8 +135,8 @@ public class MappingHintGroupItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(MappingHintGroup.class)) {
-			case MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER:
+		switch (notification.getFeatureID(MappingHintGroupType.class)) {
+			case MappingPackage.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -134,13 +156,39 @@ public class MappingHintGroupItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER,
-				 MappingFactory.eINSTANCE.createSimpleModelConnectionHint()));
+				(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS,
+				 MappingFactory.eINSTANCE.createCardinalityMapping()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER,
-				 MappingFactory.eINSTANCE.createComplexModelConnectionHint()));
+				(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS,
+				 MappingFactory.eINSTANCE.createMappingInstanceSelector()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS,
+				 MappingFactory.eINSTANCE.createSimpleAttributeMapping()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS,
+				 MappingFactory.eINSTANCE.createComplexAttributeMapping()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS,
+				 MappingFactory.eINSTANCE.createCalculatorMapping()));
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return PamtramEditPlugin.INSTANCE;
 	}
 
 }

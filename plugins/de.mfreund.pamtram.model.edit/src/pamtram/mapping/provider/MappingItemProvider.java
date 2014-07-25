@@ -66,6 +66,7 @@ public class MappingItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(MappingPackage.Literals.MAPPING__CONDITION);
 			childrenFeatures.add(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS);
+			childrenFeatures.add(MappingPackage.Literals.MAPPING__IMPORTED_MAPPING_HINT_GROUPS);
 		}
 		return childrenFeatures;
 	}
@@ -115,37 +116,6 @@ public class MappingItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Target MM Section feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 */
-	protected void addTargetMMSectionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MappingType_targetMMSection_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MappingType_targetMMSection_feature", "_UI_MappingType_type"),
-				 MappingPackage.Literals.MAPPING_HINT_GROUP__TARGET_MM_SECTION,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null)
-			  {
-				@Override
-				public Collection<?> getChoiceOfValues(Object object) {
-					
-					PAMTraM pamtram = (PAMTraM) EcoreUtil.getRootContainer((Mapping) object);
-
-					// all target metamodel sections are valid options
-					return pamtram.getTargetSectionModel().getMetaModelSections();
-				}
-			   });
-	}
-
-	/**
 	 * This returns Mapping.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -183,6 +153,7 @@ public class MappingItemProvider
 		switch (notification.getFeatureID(Mapping.class)) {
 			case MappingPackage.MAPPING__CONDITION:
 			case MappingPackage.MAPPING__MAPPING_HINT_GROUPS:
+			case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -224,6 +195,16 @@ public class MappingItemProvider
 			(createChildParameter
 				(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS,
 				 MappingFactory.eINSTANCE.createMappingHintGroup()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS,
+				 MappingFactory.eINSTANCE.createExportedMappingHintGroup()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.MAPPING__IMPORTED_MAPPING_HINT_GROUPS,
+				 MappingFactory.eINSTANCE.createMappingHintGroupImporter()));
 	}
 
 }

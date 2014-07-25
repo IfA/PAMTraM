@@ -302,6 +302,75 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.InstantiableMappingHintGroup} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected InstantiableMappingHintGroupItemProvider instantiableMappingHintGroupItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.InstantiableMappingHintGroup}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createInstantiableMappingHintGroupAdapter() {
+		if (instantiableMappingHintGroupItemProvider == null) {
+			instantiableMappingHintGroupItemProvider = new InstantiableMappingHintGroupItemProvider(this);
+		}
+
+		return instantiableMappingHintGroupItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.MappingHintGroupImporter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MappingHintGroupImporterItemProvider mappingHintGroupImporterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.MappingHintGroupImporter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMappingHintGroupImporterAdapter() {
+		if (mappingHintGroupImporterItemProvider == null) {
+			mappingHintGroupImporterItemProvider = new MappingHintGroupImporterItemProvider(this);
+		}
+
+		return mappingHintGroupImporterItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ExportedMappingHintGroup} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExportedMappingHintGroupItemProvider exportedMappingHintGroupItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.ExportedMappingHintGroup}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createExportedMappingHintGroupAdapter() {
+		if (exportedMappingHintGroupItemProvider == null) {
+			exportedMappingHintGroupItemProvider = new ExportedMappingHintGroupItemProvider(this);
+		}
+
+		return exportedMappingHintGroupItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ConnectionHintTargetAttribute} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -686,6 +755,9 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (stringPrependerItemProvider != null) stringPrependerItemProvider.dispose();
 		if (attributeValueModifierSetItemProvider != null) attributeValueModifierSetItemProvider.dispose();
 		if (mappingHintGroupItemProvider != null) mappingHintGroupItemProvider.dispose();
+		if (instantiableMappingHintGroupItemProvider != null) instantiableMappingHintGroupItemProvider.dispose();
+		if (mappingHintGroupImporterItemProvider != null) mappingHintGroupImporterItemProvider.dispose();
+		if (exportedMappingHintGroupItemProvider != null) exportedMappingHintGroupItemProvider.dispose();
 		if (connectionHintTargetAttributeItemProvider != null) connectionHintTargetAttributeItemProvider.dispose();
 		if (simpleAttributeMappingItemProvider != null) simpleAttributeMappingItemProvider.dispose();
 		if (complexAttributeMappingItemProvider != null) complexAttributeMappingItemProvider.dispose();

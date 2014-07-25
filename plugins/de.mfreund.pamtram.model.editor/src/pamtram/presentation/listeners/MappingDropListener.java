@@ -58,7 +58,7 @@ public class MappingDropListener extends ViewerDropAdapter {
 			itemProviderAdapter = new MappingItemProvider(mappingItemProviderFactory);
 			feature = (dragSource == DragSource.SourceSectionViewer) ?
 				 	MappingPackage.Literals.MAPPING_TYPE__SOURCE_MM_SECTION :
-				 	MappingPackage.Literals.MAPPING_HINT_GROUP__TARGET_MM_SECTION;
+				 	MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__TARGET_MM_SECTION;
 		} else if(this.getCurrentTarget() instanceof SimpleAttributeMapping) {
 			itemProviderAdapter = new SimpleAttributeMappingItemProvider(mappingItemProviderFactory);
 			feature = (dragSource == DragSource.SourceSectionViewer) ?

@@ -134,7 +134,7 @@ import pamtram.mapping.ComplexModelConnectionHint;
 import pamtram.mapping.ComplexModelConnectionHintSourceElement;
 import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.Mapping;
-import pamtram.mapping.MappingHintGroup;
+import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.SimpleAttributeMapping;
@@ -1184,7 +1184,7 @@ public class PamtramEditor
 			tree.addSelectionListener(new SelectionListener() {
 				
 				private Mapping currentMapping;
-				private MappingHintGroup currentMappingHintGroup;
+				private MappingHintGroupType currentMappingHintGroup;
 				
 				@Override
 				public void widgetSelected(SelectionEvent e) {
@@ -1192,7 +1192,7 @@ public class PamtramEditor
 					
 					if(((TreeItem) e.item).getData() instanceof Mapping
 						||
-						((TreeItem) e.item).getData() instanceof MappingHintGroup) {
+						((TreeItem) e.item).getData() instanceof MappingHintGroupType) {
 						
 						LinkedList<Object> expanded=new LinkedList<Object>();
 						Mapping mapping=null;
@@ -1200,10 +1200,10 @@ public class PamtramEditor
 						LinkedList<pamtram.metamodel.Class> targets=new LinkedList<pamtram.metamodel.Class>();
 						
 						
-						if(((TreeItem) e.item).getData() instanceof MappingHintGroup){
+						if(((TreeItem) e.item).getData() instanceof MappingHintGroupType){
 
-							if ((MappingHintGroup) ((TreeItem) e.item).getData() != null){
-								currentMappingHintGroup=(MappingHintGroup) ((TreeItem) e.item).getData();
+							if ((MappingHintGroupType) ((TreeItem) e.item).getData() != null){
+								currentMappingHintGroup=(MappingHintGroupType) ((TreeItem) e.item).getData();
 								mapping=(Mapping) currentMappingHintGroup.eContainer();
 								targets.add(currentMappingHintGroup.getTargetMMSection());		
 								source=mapping.getSourceMMSection();
@@ -1217,18 +1217,13 @@ public class PamtramEditor
 							
 							if(mapping != null){
 								expanded.add(mapping);
-								for(MappingHintGroup group : mapping.getMappingHintGroups()){
+								for(MappingHintGroupType group : mapping.getMappingHintGroups()){
 									targets.add(group.getTargetMMSection());
 								}
 							}
 									
 						}
-						
-						
-						
-						
 
-						
 						// Expand the mapping in the mapping tree viewer.
 						selectionViewer.setExpandedElements(
 								expanded.toArray());

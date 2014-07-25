@@ -11,9 +11,9 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 
+import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
-import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.TargetSectionClass;
@@ -44,7 +44,7 @@ class MappingInstanceStorage {
 	/**
 	 * Generated EObjects sorted bey TargetSectionCLass
 	 */
-	private LinkedHashMap<MappingHintGroup, LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>> instancesBySection;
+	private LinkedHashMap<InstantiableMappingHintGroup, LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>> instancesBySection;
 
 	
 	/**
@@ -66,7 +66,7 @@ class MappingInstanceStorage {
 		hintValues = new LinkedHashMap<pamtram.mapping.MappingHint, LinkedList<Object>>();
 		mapping = null;
 		associatedSourceModelElement = null;
-		instancesBySection = new LinkedHashMap<MappingHintGroup, LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>>();
+		instancesBySection = new LinkedHashMap<InstantiableMappingHintGroup, LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>>();
 		modelConnectionHintValues = new LinkedHashMap<ModelConnectionHint, LinkedList<Object>>();
 
 	}
@@ -121,7 +121,7 @@ class MappingInstanceStorage {
 	 * @param section
 	 * @param insts
 	 */
-	void addInstances(MappingHintGroup grp,
+	void addInstances(InstantiableMappingHintGroup grp,
 			TargetSectionClass section, Collection<EObjectTransformationHelper> insts) {
 		generateInstancesCollectionsIfNeeded(grp, section);
 		instancesBySection.get(grp).get(section).addAll(insts);
@@ -195,7 +195,7 @@ class MappingInstanceStorage {
 	 * @param grp
 	 * @param section
 	 */
-	private void generateInstancesCollectionsIfNeeded(MappingHintGroup grp,
+	private void generateInstancesCollectionsIfNeeded(InstantiableMappingHintGroup grp,
 			TargetSectionClass section) {
 		if (!instancesBySection.containsKey(grp)) {
 			instancesBySection
@@ -229,7 +229,7 @@ class MappingInstanceStorage {
 	 * @param group
 	 * @return generated target section instances associated with the MappingHintGroup
 	 */
-	LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> getInstancesBySection(MappingHintGroup group) {
+	LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> getInstancesBySection(InstantiableMappingHintGroup group) {
 			return instancesBySection.get(group);
 	}
 	
@@ -239,7 +239,7 @@ class MappingInstanceStorage {
 	 * @param section
 	 * @return
 	 */
-	LinkedList<EObjectTransformationHelper> getInstances(MappingHintGroup group, TargetSectionClass section) {
+	LinkedList<EObjectTransformationHelper> getInstances(InstantiableMappingHintGroup group, TargetSectionClass section) {
 		if(instancesBySection.containsKey(group)){
 				return instancesBySection.get(group).get(section);
 

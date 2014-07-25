@@ -26,6 +26,7 @@ import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
+import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.TargetSectionClass;
@@ -243,7 +244,7 @@ public class GenericTransformationRunner {
 					LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection = targetSectionInstantiator
 							.instantiateTargetSectionFirstPass(
 									g.getTargetMMSection(), (MappingHintGroup) g,
-									(Map<MappingHint, LinkedList<Object>>) selMap.getHintValues().clone(),
+									selMap.getHintValues(),
 									selMap.getModelConnectionHintValues(),
 									selMap.getMapping());
 					if (instancesBySection == null) {
@@ -308,12 +309,17 @@ public class GenericTransformationRunner {
 									}
 								}
 							} else {// link using container attribute or nothing
+								LinkedList<EObjectTransformationHelper> containerInstances = targetSectionRegistry.getFlattenedPamtramClassInstances(section.getContainer());
+								LinkedList<EObjectTransformationHelper> rootInstances = targetSectionRegistry.getPamtramClassInstances(section).get(g);		
+								containerInstances.removeAll(rootInstances);//we do not want the rootinstances to contain themselves
+								
 								connectionHelpers.linkToTargetModelNoConnectionHint(
 										section.getEClass(),
-										targetSectionRegistry
-												.getPamtramClassInstances(
-														section).get(g),
-										section, m.getName(), g.getName());
+										rootInstances,
+										section, m.getName(), g.getName(),
+										section.getContainer() != null,
+										containerInstances
+								);
 								if(connectionHelpers.isTransformationAborted()){
 									writePamtramMessage("Transformation aborted.");
 									return;
@@ -322,6 +328,43 @@ public class GenericTransformationRunner {
 						}
 					}
 				}
+			}
+			
+			for(MappingHintGroupImporter i : m.getImportedMappingHintGroups()){
+				ExportedMappingHintGroup g=i.getHintGroup();
+				if(g.getTargetMMSection() != null){
+						for(MappingInstanceStorage selMap: selectedMappingsByMapping.get(m)){
+							LinkedList<EObjectTransformationHelper> rootInstances=selMap.getInstances(i, g.getTargetMMSection());
+							if(rootInstances.size()> 0){
+								LinkedList<EObjectTransformationHelper> containerInstances = new LinkedList<EObjectTransformationHelper>();
+								if(i.getContainer() != null){
+									//get container instances created by this mapping instance
+									for(MappingHintGroupType group : m.getMappingHintGroups()){
+										if(group instanceof MappingHintGroup){
+											LinkedList<EObjectTransformationHelper> insts=selMap.getInstances((MappingHintGroup) group, i.getContainer());
+											if(insts != null){
+												containerInstances.addAll(insts);
+											}
+											
+										}
+									}
+								}
+								//link
+								connectionHelpers.linkToTargetModelNoConnectionHint(
+										g.getTargetMMSection().getEClass(),
+										rootInstances,
+										g.getTargetMMSection(), m.getName(), g.getName(),
+										i.getContainer() != null,
+										containerInstances
+								);
+								if(connectionHelpers.isTransformationAborted()){
+									writePamtramMessage("Transformation aborted.");
+									return;
+								}						
+							}
+						}
+						
+					}
 			}
 		}
 

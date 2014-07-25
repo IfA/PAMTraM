@@ -401,16 +401,21 @@ class TargetSectionConnector {
 	 * to other objects of the target model.
 	 * <p>
 	 * This method is used for connecting sections without model connection hints.
+	 * <p>
+	 * If hasContaienr is set true the rootInstances will be connected to one of the instances in 
+	 * containerInstances.
 	 * @param classToConnect
 	 * @param rootInstances
 	 * @param section
 	 * @param mappingName
 	 * @param mappingGroupName
+	 * @param hasContainer
+	 * @param containerInstances
 	 */
 	@SuppressWarnings("unchecked")
 	void linkToTargetModelNoConnectionHint(EClass classToConnect,
 			List<EObjectTransformationHelper> rootInstances, TargetSectionClass section, String mappingName,
-			String mappingGroupName){
+			String mappingGroupName, boolean hasContainer, LinkedList<EObjectTransformationHelper> containerInstances){
 		ModelConnectionPath modelConnectionPath;
 
 		if (targetSectionRegistry.getPaths(classToConnect).size() > 0) {
@@ -419,11 +424,6 @@ class TargetSectionConnector {
 
 			if (pathsToConsider.size() > 0) {
 				// handle container
-				LinkedList<EObjectTransformationHelper> containerInstances = targetSectionRegistry
-						.getFlattenedPamtramClassInstances(section
-								.getContainer());
-				containerInstances.removeAll(rootInstances);//we do not want the rootinstances to contain themselves
-				boolean hasContainer = section.getContainer() != null;
 				boolean onlyOnePath;
 				if (hasContainer) {
 

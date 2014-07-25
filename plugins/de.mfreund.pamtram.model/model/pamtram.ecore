@@ -345,7 +345,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="mappingHints" upperBound="-1"
           eType="#//mapping/MappingHint" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="InstantiableMappingHintGroup"/>
+    <eClassifiers xsi:type="ecore:EClass" name="InstantiableMappingHintGroup" eSuperTypes="#//NamedElement"/>
     <eClassifiers xsi:type="ecore:EClass" name="MappingHintGroupImporter" eSuperTypes="#//NamedElement #//mapping/InstantiableMappingHintGroup">
       <eStructuralFeatures xsi:type="ecore:EReference" name="hintGroup" lowerBound="1"
           eType="#//mapping/ExportedMappingHintGroup"/>

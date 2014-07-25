@@ -199,14 +199,15 @@ public class MappingSwitch<T> extends Switch<T> {
 			case MappingPackage.INSTANTIABLE_MAPPING_HINT_GROUP: {
 				InstantiableMappingHintGroup instantiableMappingHintGroup = (InstantiableMappingHintGroup)theEObject;
 				T result = caseInstantiableMappingHintGroup(instantiableMappingHintGroup);
+				if (result == null) result = caseNamedElement(instantiableMappingHintGroup);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER: {
 				MappingHintGroupImporter mappingHintGroupImporter = (MappingHintGroupImporter)theEObject;
 				T result = caseMappingHintGroupImporter(mappingHintGroupImporter);
-				if (result == null) result = caseNamedElement(mappingHintGroupImporter);
 				if (result == null) result = caseInstantiableMappingHintGroup(mappingHintGroupImporter);
+				if (result == null) result = caseNamedElement(mappingHintGroupImporter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

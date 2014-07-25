@@ -3,9 +3,7 @@
 package pamtram.mapping.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
+import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingPackage;
 
@@ -18,7 +16,7 @@ import pamtram.mapping.MappingPackage;
  *
  * @generated
  */
-public class InstantiableMappingHintGroupImpl extends MinimalEObjectImpl.Container implements InstantiableMappingHintGroup {
+public class InstantiableMappingHintGroupImpl extends NamedElementImpl implements InstantiableMappingHintGroup {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

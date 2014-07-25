@@ -2,7 +2,7 @@
  */
 package pamtram.mapping;
 
-import org.eclipse.emf.ecore.EObject;
+import pamtram.NamedElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,5 +14,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface InstantiableMappingHintGroup extends EObject {
+public interface InstantiableMappingHintGroup extends NamedElement {
 } // InstantiableMappingHintGroup

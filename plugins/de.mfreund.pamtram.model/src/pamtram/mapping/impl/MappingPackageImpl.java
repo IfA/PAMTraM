@@ -1176,6 +1176,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		mappingHintGroupEClass.getESuperTypes().add(this.getMappingHintGroupType());
 		mappingHintGroupEClass.getESuperTypes().add(this.getInstantiableMappingHintGroup());
 		mappingHintGroupTypeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
+		instantiableMappingHintGroupEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		mappingHintGroupImporterEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		mappingHintGroupImporterEClass.getESuperTypes().add(this.getInstantiableMappingHintGroup());
 		exportedMappingHintGroupEClass.getESuperTypes().add(this.getMappingHintGroupType());

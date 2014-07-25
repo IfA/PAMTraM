@@ -26,6 +26,7 @@ import pamtram.mapping.ExpressionVariable;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
+import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.SimpleAttributeMapping;
@@ -149,7 +150,7 @@ class SourceSectionMapper {
 	private List<MappingHint> getHints(Mapping m){
 		if(!mappingHints.containsKey(m)){
 			mappingHints.put(m, new LinkedList<MappingHint>());
-			for(MappingHintGroup g : m.getMappingHintGroups()){
+			for(MappingHintGroupType g : m.getMappingHintGroups()){
 				if(g.getMappingHints() != null){
 					mappingHints.get(m).addAll(g.getMappingHints());					
 				}
@@ -273,9 +274,11 @@ class SourceSectionMapper {
 	private List<ModelConnectionHint> getModelConnectionHints(Mapping m){
 		if(!modelConnectionHints.containsKey(m)){
 			modelConnectionHints.put(m, new LinkedList<ModelConnectionHint>());
-			for(MappingHintGroup g : m.getMappingHintGroups()){
-				if(g.getModelConnectionMatcher() != null){
-					modelConnectionHints.get(m).add(g.getModelConnectionMatcher());					
+			for(MappingHintGroupType g : m.getMappingHintGroups()){
+				if(g instanceof MappingHintGroup){
+					if(((MappingHintGroup) g).getModelConnectionMatcher() != null){
+						modelConnectionHints.get(m).add(((MappingHintGroup) g).getModelConnectionMatcher());					
+					}	
 				}
 			}
 		}

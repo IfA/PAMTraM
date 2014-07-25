@@ -23,7 +23,9 @@ import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.PAMTraM;
 import pamtram.mapping.Mapping;
+import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
+import pamtram.mapping.MappingHintGroupType;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.TargetSectionClass;
 
@@ -201,19 +203,15 @@ public class GenericTransformationRunner {
 		targetSectionRegistry.analyseTargetMetaModel(pamtramModel.getTargetSectionModel().getMetaModelPackage());
 
 		// creating target Model first pass (containment references)
-		consoleStream
-				.println("Instantiating targetModelSections for selected mappings. First pass...");
+		consoleStream.println("Instantiating targetModelSections for selected mappings. First pass...");
 		for (MappingInstanceStorage selMap : selectedMappings) {
-			// selMap.get("mapping").name.println;
-			List<MappingHintGroup> hintGroups = selMap.getMapping()
-					.getMappingHintGroups();
-			for (MappingHintGroup g : hintGroups) {
-				if (g.getTargetMMSection() != null) {
+			for (MappingHintGroupType g : selMap.getMapping().getMappingHintGroups()) {
+				if (g.getTargetMMSection() != null && g instanceof MappingHintGroup) {
 
 					LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection = targetSectionInstantiator
 							.instantiateTargetSectionFirstPass(
-									g.getTargetMMSection(), g,
-									selMap.getHintValues(),
+									g.getTargetMMSection(), (MappingHintGroup) g,
+									(Map<MappingHint, LinkedList<Object>>) selMap.getHintValues().clone(),
 									selMap.getModelConnectionHintValues(),
 									selMap.getMapping());
 					if (instancesBySection == null) {
@@ -227,21 +225,23 @@ public class GenericTransformationRunner {
 						}
 					} else {
 						for (TargetSectionClass section : instancesBySection.keySet()) {
-							selMap.addInstances(g, section,
+							selMap.addInstances((MappingHintGroup) g, section,
 									instancesBySection.get(section));
 						}
 					}
 				}
 
 			}
+			
+			
 		}
 
 		// creating missing links/containers for target model
 		consoleStream.println("Linking targetModelSections...");
 
 		for (Mapping m : suitableMappings) {
-			for (MappingHintGroup g : m.getMappingHintGroups()) {
-				if (g.getTargetMMSection() != null) {// targetSection exists?
+			for (MappingHintGroupType g : m.getMappingHintGroups()) {
+				if (g.getTargetMMSection() != null && g instanceof MappingHintGroup) {// targetSection exists?
 					TargetSectionClass section = g.getTargetMMSection();
 					if (targetSectionRegistry.getPamtramClassInstances(section)
 							.keySet().size() > 0) {// instances of section
@@ -249,25 +249,25 @@ public class GenericTransformationRunner {
 						if (targetSectionRegistry.getPamtramClassInstances(
 								section).get(g) != null) {// ..also of specific
 															// group
-							if (g.getModelConnectionMatcher() != null) {// link
+							if (((MappingHintGroup)g).getModelConnectionMatcher() != null) {// link
 																		// using
 																		// matcher
 								for (MappingInstanceStorage selMap : selectedMappingsByMapping
 										.get(m)) {
-									if (selMap.getInstances(g, section) != null) {
+									if (selMap.getInstances((MappingHintGroup) g, section) != null) {
 										connectionHelpers
 												.linkToTargetModelUsingModelConnectionHint(
 														section.getEClass(),
 														(List<EObjectTransformationHelper>) selMap
 																.getInstances(
-																		g,
+																		(MappingHintGroup) g,
 																		section)
 																.clone(),
 														section,
 														m.getName(),
 														g.getName(),
-														g.getModelConnectionMatcher(),
-														selMap.getModelConnectionHintValues(g
+														((MappingHintGroup) g).getModelConnectionMatcher(),
+														selMap.getModelConnectionHintValues(((MappingHintGroup) g)
 																.getModelConnectionMatcher()));
 										if(connectionHelpers.isTransformationAborted()){
 											consoleStream.println("Transformation aborted.");
@@ -297,17 +297,16 @@ public class GenericTransformationRunner {
 		consoleStream
 				.println("Instantiating targetModelSections for selected mappings. Second pass...");
 		for (MappingInstanceStorage selMap : selectedMappings) {
-			for (MappingHintGroup g : selMap.getMapping()
-					.getMappingHintGroups()) {
-				if (g.getTargetMMSection() != null) {
-					if (selMap.getInstancesBySection(g) != null) {
+			for (MappingHintGroupType g : selMap.getMapping().getMappingHintGroups()) {
+				if (g.getTargetMMSection() != null && g instanceof MappingHintGroup) {
+					if (selMap.getInstancesBySection((MappingHintGroup) g) != null) {
 						targetSectionInstantiator
 								.instantiateTargetSectionSecondPass(
 										g.getTargetMMSection(),
-										selMap.getMapping(), g,
+										selMap.getMapping(), (MappingHintGroup) g,
 										g.getMappingHints(),
 										selMap.getHintValues(),
-										selMap.getInstancesBySection(g));
+										selMap.getInstancesBySection((MappingHintGroup) g));
 						if(targetSectionInstantiator.isTransformationAborted()){
 							consoleStream.println("Transformation aborted.");
 							return;

@@ -24,6 +24,7 @@ public class PamtramEPackageSpecificationPage extends WizardPage {
 	}
 	
 	private EPackage sourceEPackage, targetEPackage;
+	private Combo sourceCombo, targetCombo;
 
 	@Override
 	public void createControl(Composite parent) {
@@ -52,7 +53,7 @@ public class PamtramEPackageSpecificationPage extends WizardPage {
 		}
 
 		// a combo box to select the source ePackage
-		final Combo sourceCombo = new Combo(composite, SWT.BORDER);
+		sourceCombo = new Combo(composite, SWT.BORDER);
 		{
 			GridData data = new GridData();
 			data.horizontalAlignment = GridData.FILL;
@@ -80,7 +81,7 @@ public class PamtramEPackageSpecificationPage extends WizardPage {
 		}
 
 		// a combo box to select the target ePackage
-		final Combo targetCombo = new Combo(composite, SWT.BORDER);
+		targetCombo = new Combo(composite, SWT.BORDER);
 		{
 			GridData data = new GridData();
 			data.horizontalAlignment = GridData.FILL;
@@ -100,7 +101,7 @@ public class PamtramEPackageSpecificationPage extends WizardPage {
 		// get all ePackages from the ePackage registry and add them
 		// to both combo boxes
 		for (String nsUri : EPackage.Registry.INSTANCE.keySet()) {
-			sourceCombo.add(nsUri);
+			sourceCombo.add(nsUri);	
 			targetCombo.add(nsUri);
 		}
 		
@@ -114,6 +115,27 @@ public class PamtramEPackageSpecificationPage extends WizardPage {
 	
 	public EPackage getSourceEPackage() {
 		return sourceEPackage;
+	}
+	
+	public boolean setSourceEPackage(EPackage sourceEPackage) {
+		
+		for(int i=0; i<this.sourceCombo.getItemCount(); i++) {
+			if(this.sourceCombo.getItem(i).equals(sourceEPackage.getNsURI())) {
+				this.sourceEPackage = sourceEPackage;
+				this.sourceCombo.select(i);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean setSourceEPackage(String sourceEPackageString) {
+		EPackage sourceEPackage = (EPackage) EPackage.Registry.INSTANCE.get(sourceEPackageString);
+		if(sourceEPackage != null) {
+			return setSourceEPackage(sourceEPackage);
+		} else {
+			return false;
+		}
 	}
 	
 	public EPackage getTargetEPackage() {

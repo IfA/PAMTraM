@@ -1,5 +1,6 @@
 package de.mfreund.pamtram.wizards;
 
+import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 
@@ -32,6 +33,7 @@ import org.eclipse.ui.ide.undo.CreateProjectOperation;
 import org.eclipse.ui.ide.undo.WorkspaceUndoUtil;
 
 import de.mfreund.pamtram.pages.PamtramFileSpecificationPage;
+import de.mfreund.pamtram.util.BundleContentHelper;
 import de.mfreund.pamtram.util.ResourceHelper;
 import pamtram.presentation.PamtramModelWizard;
 import pamtram.presentation.pages.PamtramEPackageSpecificationPage;
@@ -226,20 +228,14 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard {
 						return;
 					}
 					
-					//TODO copy the source model
-					
-//					// create linked resource to the lib path
-////					IFolder link = newProject.getProject().getFolder("Used EPackages");
-//					IFile srcPackageLink = newProject.getProject().getFile("Source EPackage");
-//					EPackage srcPackage = 
-//							ePackageSpecificationPage.getSourceEPackage();
-//					IPath location = new Path(srcPackage.eResource()..getURI().toPlatformString(true));
-//					try {
-//						srcPackageLink.createLink(location, IResource.NONE, null);
-//					} catch (CoreException e1) {
-//						// TODO Auto-generated catch block
-//						e1.printStackTrace();
-//					}
+					// copy the specified source file
+					String srcFile = fileSpecPage.getSrcFile();
+					if(!srcFile.isEmpty()) {
+						// copy files
+						ResourceHelper.copyFile(
+								new File(srcFile), "Source", newProject.getProject());
+						
+					}
 					
 					progressMonitor.beginTask("Creating PAMTraM instance", 1);
 					
@@ -248,11 +244,11 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard {
 						//
 						ResourceSet resourceSet = new ResourceSetImpl();
 
-						// Get the URI of the model file.
+						// Get the URI of the pamtram file to be created.
 						//
 						org.eclipse.emf.common.util.URI fileURI = 
 								org.eclipse.emf.common.util.URI.createPlatformResourceURI(
-										newProject.getFile("Pamtram/my.pamtram").getFullPath().toString(), true);
+										newProject.getFile("Pamtram/" + fileSpecPage.getPamtramFile()).getFullPath().toString(), true);
 
 						// Create a resource for this file.
 						//

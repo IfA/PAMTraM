@@ -22,8 +22,10 @@ public class PamtramFileSpecificationPage extends WizardPage {
 
 	private Label pamtramFileLabel;
 
+	private String pamtramFile = "my.pamtram";
 	private Text pamtramFileTextfield;
 
+	private String srcFile = "";
 	private FileFieldEditor srcFileFieldEditor;
 
 	public PamtramFileSpecificationPage(String pageName) {
@@ -57,6 +59,7 @@ public class PamtramFileSpecificationPage extends WizardPage {
 			
 			@Override
 			public void keyReleased(KeyEvent e) {
+				pamtramFile = pamtramFileTextfield.getText();
 				wizContainer.updateButtons();
 			}
 			
@@ -74,6 +77,7 @@ public class PamtramFileSpecificationPage extends WizardPage {
 			
 			@Override
 			public void propertyChange(PropertyChangeEvent event) {
+				srcFile = srcFileFieldEditor.getStringValue();
 				wizContainer.updateButtons();
 			}
 		});
@@ -82,12 +86,27 @@ public class PamtramFileSpecificationPage extends WizardPage {
 		setPageComplete(true);
 	}
 
+	/**
+	 * Returns the name of the pamtram file to be created (including
+	 * the file extension '.pamtram'
+	 * 
+	 * @return the pamtram file
+	 */
 	public String getPamtramFile() {
-		return this.pamtramFileTextfield.getText();
+		if(this.pamtramFile.endsWith(".pamtram")) {
+			return this.pamtramFile;
+		} else {
+			return this.pamtramFile + ".pamtram";
+		}
 	}
 	
+	/**
+	 * Return the full path of the srcFile to be copied to the project.
+	 * 
+	 * @return the path of the src file
+	 */
 	public String getSrcFile() {
-		return this.srcFileFieldEditor.getStringValue();
+		return this.srcFile;
 	}
 	
     @Override

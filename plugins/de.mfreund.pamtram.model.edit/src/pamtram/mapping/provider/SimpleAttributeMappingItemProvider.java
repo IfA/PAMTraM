@@ -64,7 +64,6 @@ public class SimpleAttributeMappingItemProvider
 	 * This adds a property descriptor for the Source feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	protected void addSourcePropertyDescriptor(Object object) {
 		// copied from 'AttributeMappingSourceElementTypeItemProvider'

@@ -22,6 +22,7 @@ import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.PAMTraM;
+import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
@@ -50,6 +51,17 @@ public class GenericTransformationRunner {
 		this.targetFilePath=targetFilePath;
 		consoleStream=findConsole("de.mfreund.gentrans.transformation_" + this.hashCode()).newMessageStream();
 
+	}
+	
+	/**
+	 * Writes a message on the console that helps to divide the transformation output into different stages of the transformation
+	 * @param msg
+	 */
+	private void writePamtramMessage(String msg){
+		consoleStream.println(
+				"\n################# "
+				+ msg
+				+ " #################\n");
 	}
 
 	/**
@@ -155,7 +167,7 @@ public class GenericTransformationRunner {
 		/*
 		 * create a list of all the containment references in the source model
 		 */
-		consoleStream.println("Analysing srcModel containment references...");
+		writePamtramMessage("Analysing srcModel containment references...");
 
 		// list of all unmapped nodes. obtained by iterating over all of the
 		// srcModels containment refs
@@ -168,7 +180,7 @@ public class GenericTransformationRunner {
 		 */
 		LinkedList<MappingInstanceStorage> selectedMappings = new LinkedList<MappingInstanceStorage>();
 		LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping = new LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>>();
-		consoleStream.println("Selecting Mappings for source model elements...");
+		writePamtramMessage("Selecting Mappings for source model elements...");
 
 		int numSrcModelElements = contRefsToMap.size();
 		int unmapped=0;
@@ -180,7 +192,7 @@ public class GenericTransformationRunner {
 			MappingInstanceStorage selectedMapping = sourceSectionMapper
 					.findMapping(contRefsToMap);
 			if(sourceSectionMapper.isTransformationAborted()){
-				consoleStream.println("Transformation aborted.");
+				writePamtramMessage("Transformation aborted.");
 				return;
 			}
 			if (selectedMapping != null) {
@@ -202,8 +214,28 @@ public class GenericTransformationRunner {
 				+ (numSrcModelElements - unmapped));
 		targetSectionRegistry.analyseTargetMetaModel(pamtramModel.getTargetSectionModel().getMetaModelPackage());
 
-		// creating target Model first pass (containment references)
-		consoleStream.println("Instantiating targetModelSections for selected mappings. First pass...");
+		
+		/*
+		 * Now write MappingHint values of Hints of ExportedMappingHintGroups to a separate storage,
+		 * and remove the values from the MappingInstanceStorages
+		 */
+		consoleStream.println("Getting hint values of exported hint groups");//TODO remove if it works
+		Map<MappingHint, List<Object>> exportedMappingHints=new LinkedHashMap<MappingHint, List<Object>>();
+		for(MappingInstanceStorage selMap : selectedMappings){
+			for(MappingHintGroupType g : selMap.getMapping().getMappingHintGroups()){
+				if(g instanceof ExportedMappingHintGroup){
+					for(MappingHint h : g.getMappingHints()){
+						if(!exportedMappingHints.containsKey(h)){
+							exportedMappingHints.put(h, new LinkedList<Object>());
+						}
+						exportedMappingHints.get(h).addAll(selMap.getHintValues().remove(h));//this works because the SourceSectionMapper guarantees that a key exists 
+																						     //for each MappingHint of the Mapping
+					}
+				}
+			}
+		}
+
+		writePamtramMessage("Instantiating targetModelSections for selected mappings. First pass...");
 		for (MappingInstanceStorage selMap : selectedMappings) {
 			for (MappingHintGroupType g : selMap.getMapping().getMappingHintGroups()) {
 				if (g.getTargetMMSection() != null && g instanceof MappingHintGroup) {
@@ -237,7 +269,7 @@ public class GenericTransformationRunner {
 		}
 
 		// creating missing links/containers for target model
-		consoleStream.println("Linking targetModelSections...");
+		writePamtramMessage("Linking targetModelSections...");
 
 		for (Mapping m : suitableMappings) {
 			for (MappingHintGroupType g : m.getMappingHintGroups()) {
@@ -270,7 +302,7 @@ public class GenericTransformationRunner {
 														selMap.getModelConnectionHintValues(((MappingHintGroup) g)
 																.getModelConnectionMatcher()));
 										if(connectionHelpers.isTransformationAborted()){
-											consoleStream.println("Transformation aborted.");
+											writePamtramMessage("Transformation aborted.");
 											return;
 										}
 									}
@@ -283,7 +315,7 @@ public class GenericTransformationRunner {
 														section).get(g),
 										section, m.getName(), g.getName());
 								if(connectionHelpers.isTransformationAborted()){
-									consoleStream.println("Transformation aborted.");
+									writePamtramMessage("Transformation aborted.");
 									return;
 								}
 							}
@@ -308,7 +340,7 @@ public class GenericTransformationRunner {
 										selMap.getHintValues(),
 										selMap.getInstancesBySection((MappingHintGroup) g));
 						if(targetSectionInstantiator.isTransformationAborted()){
-							consoleStream.println("Transformation aborted.");
+							writePamtramMessage("Transformation aborted.");
 							return;
 						}
 					}
@@ -325,6 +357,7 @@ public class GenericTransformationRunner {
 			options.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
 			options.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.TRUE);
 			targetModel.save(Collections.EMPTY_MAP);
+			writePamtramMessage("Transformation done");
 		} catch (Exception e) {
 			MessageDialog.openError(
 					PlatformUI.getWorkbench()

@@ -175,8 +175,7 @@ public class GenericTransformationRunner {
 
 		// list of all unmapped nodes. obtained by iterating over all of the
 		// srcModels containment refs
-		List<EObject> contRefsToMap = SourceSectionMapper
-				.buildContainmentTree(sourceModel);
+		List<EObject> contRefsToMap = SourceSectionMapper.buildContainmentTree(sourceModel);
 
 		/*
 		 * now start mapping each one of the references. We automatically start
@@ -319,30 +318,23 @@ public class GenericTransformationRunner {
 					TargetSectionClass section = g.getTargetMMSection();
 					if (targetSectionRegistry.getPamtramClassInstances(section)
 							.keySet().size() > 0) {// instances of section
-													// exist?
+						// exist?
 						if (targetSectionRegistry.getPamtramClassInstances(
 								section).get(g) != null) {// ..also of specific
-															// group
+							// group
 							if (((MappingHintGroup)g).getModelConnectionMatcher() != null) {// link
-																		// using
-																		// matcher
-								for (MappingInstanceStorage selMap : selectedMappingsByMapping
-										.get(m)) {
+								// using
+								// matcher
+								for (MappingInstanceStorage selMap : selectedMappingsByMapping.get(m)) {
 									if (selMap.getInstances((MappingHintGroup) g, section) != null) {
-										connectionHelpers
-												.linkToTargetModelUsingModelConnectionHint(
-														section.getEClass(),
-														(List<EObjectTransformationHelper>) selMap
-																.getInstances(
-																		(MappingHintGroup) g,
-																		section)
-																.clone(),
-														section,
-														m.getName(),
-														g.getName(),
-														((MappingHintGroup) g).getModelConnectionMatcher(),
-														selMap.getModelConnectionHintValues(((MappingHintGroup) g)
-																.getModelConnectionMatcher()));
+										connectionHelpers.linkToTargetModelUsingModelConnectionHint(
+												section.getEClass(),
+												(List<EObjectTransformationHelper>) selMap.getInstances((MappingHintGroup) g,section).clone(),
+												section,
+												m.getName(),
+												g.getName(),
+												((MappingHintGroup) g).getModelConnectionMatcher(),
+												selMap.getModelConnectionHintValues(((MappingHintGroup) g).getModelConnectionMatcher()));
 										if(connectionHelpers.isTransformationAborted()){
 											writePamtramMessage("Transformation aborted.");
 											return;
@@ -364,7 +356,7 @@ public class GenericTransformationRunner {
 										section.getContainer() != null,
 										containerClasses,
 										containerInstances
-								);
+										);
 								if(connectionHelpers.isTransformationAborted()){
 									writePamtramMessage("Transformation aborted.");
 									return;
@@ -374,26 +366,30 @@ public class GenericTransformationRunner {
 					}
 				}
 			}
-			
+
 			for(MappingHintGroupImporter i : m.getImportedMappingHintGroups()){
 				ExportedMappingHintGroup g=i.getHintGroup();
 				if(g.getTargetMMSection() != null){
+					/*
+					 * ImportedMAppingHintGroups with containers specified will be linked 
+					 * to a section that was created by the same mapping Instance
+					 */
+					if(i.getContainer() != null){
 						for(MappingInstanceStorage selMap: selectedMappingsByMapping.get(m)){
 							LinkedList<EObjectTransformationHelper> rootInstances=selMap.getInstances(i, g.getTargetMMSection());
 							if(rootInstances.size()> 0){
 								LinkedList<EObjectTransformationHelper> containerInstances = new LinkedList<EObjectTransformationHelper>();
 								Set<EClass> containerClasses=new HashSet<EClass>();
-								if(i.getContainer() != null){
-									containerClasses.add(i.getContainer().getEClass());
-									//get container instances created by this mapping instance
-									for(MappingHintGroupType group : m.getMappingHintGroups()){
-										if(group instanceof MappingHintGroup){
-											LinkedList<EObjectTransformationHelper> insts=selMap.getInstances((MappingHintGroup) group, i.getContainer());
-											if(insts != null){
-												containerInstances.addAll(insts);
-											}
-											
+
+								containerClasses.add(i.getContainer().getEClass());
+								//get container instances created by this mapping instance
+								for(MappingHintGroupType group : m.getMappingHintGroups()){
+									if(group instanceof MappingHintGroup){
+										LinkedList<EObjectTransformationHelper> insts=selMap.getInstances((MappingHintGroup) group, i.getContainer());
+										if(insts != null){
+											containerInstances.addAll(insts);
 										}
+
 									}
 								}
 								//link
@@ -401,18 +397,47 @@ public class GenericTransformationRunner {
 										g.getTargetMMSection().getEClass(),
 										rootInstances,
 										g.getTargetMMSection(), m.getName(), g.getName(),
-										i.getContainer() != null,
+										true,
 										containerClasses,										
 										containerInstances
-								);
+										);
 								if(connectionHelpers.isTransformationAborted()){
 									writePamtramMessage("Transformation aborted.");
 									return;
 								}						
 							}
 						}
+
+						//use container attribute of targetSection if one is specified
+						//(target section container == global instance search)
+					} else {
+						LinkedList<EObjectTransformationHelper> containerInstances = new LinkedList<EObjectTransformationHelper>();
+						LinkedList<EObjectTransformationHelper> rootInstances=targetSectionRegistry.getPamtramClassInstances(g.getTargetMMSection()).get(i);
+						Set<EClass> containerClasses=new HashSet<EClass>();
+						if (g.getTargetMMSection().getContainer() != null){
+							containerClasses.add(g.getTargetMMSection().getContainer().getEClass());
+							containerInstances.addAll(targetSectionRegistry.getFlattenedPamtramClassInstances(g.getTargetMMSection().getContainer()));
+
+						}
 						
+						if(rootInstances.size() > 0){
+							//link
+							connectionHelpers.linkToTargetModelNoConnectionHint(
+									g.getTargetMMSection().getEClass(),
+									rootInstances,
+									g.getTargetMMSection(), m.getName(), g.getName(),
+									containerClasses.size() > 0,
+									containerClasses,										
+									containerInstances
+									);
+							if(connectionHelpers.isTransformationAborted()){
+								writePamtramMessage("Transformation aborted.");
+								return;
+							}
+						}
 					}
+
+				}
 			}
 		}
 

@@ -154,8 +154,7 @@ class TargetSectionConnector {
 			if (connectionHintValues.size() == 1) {
 				connectionHintValuesCopy = new LinkedList<Object>();
 				for (int i = 0; i < rootInstances.size(); i++) {
-					connectionHintValuesCopy.add(connectionHintValues
-							.getFirst());
+					connectionHintValuesCopy.add(connectionHintValues.getFirst());
 				}
 			} else {
 				connectionHintValuesCopy = connectionHintValues;
@@ -225,8 +224,7 @@ class TargetSectionConnector {
 			for (String hintVal : rootInstancesByHintVal.keySet()) {
 				if (contInstsByHintVal.get(hintVal).size() == 1) {
 					rootInstancesByContainer.put(contInstsByHintVal
-							.get(hintVal).iterator().next(), rootInstancesByHintVal
-							.get(hintVal));
+							.get(hintVal).iterator().next(), rootInstancesByHintVal.get(hintVal));
 				} else if (contInstsByHintVal.get(hintVal).size() > 1) {// let
 																		// user
 																		// decide

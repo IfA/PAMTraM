@@ -107,7 +107,7 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 	 * Create contents of the dialog.
 	 */
 	private void createContents() {
-		shlPleaseSelectA = new Shell(getParent(), SWT.CLOSE | SWT.MODELESS| SWT.BORDER | SWT.TITLE);
+		shlPleaseSelectA = new Shell(getParent(), SWT.DIALOG_TRIM | SWT.RESIZE);
 
 
 		shlPleaseSelectA.setMinimumSize(new Point(300, 350));

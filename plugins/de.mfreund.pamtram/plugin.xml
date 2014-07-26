@@ -21,7 +21,7 @@
       id="pamtramNature"
       name="PAMTraM Nature">
       <runtime>
-         <run class="de.mfreund.natures.PamtramNature">
+         <run class="de.mfreund.pamtram.natures.PamtramNature">
          </run>
       </runtime>
    </extension>
@@ -102,4 +102,45 @@
          </enablement>
       </decorator>
    </extension>
+   <extension point = "org.eclipse.debug.core.launchConfigurationTypes">
+	   <launchConfigurationType
+	   	   id="de.mfreund.pamtram.launching.gentrans"
+		   name="Launch GenTrans Transformation"
+		   delegate="de.mfreund.pamtram.launching.GentransLaunchingDelegate"
+		   modes= "run">
+	   </launchConfigurationType>
+	</extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="de.mfreund.pamtram.launching.GentransLaunchConfigurationTabGroup"
+            id="de.mfreund.pamtram.launching.GentransLaunchConfigurationTabGroup"
+            type="de.mfreund.pamtram.launching.gentrans">
+      </launchConfigurationTabGroup>
+   </extension>
+   <extension point="org.eclipse.debug.ui.launchShortcuts">
+    <shortcut
+    label="GenTrans"
+    modes="run"
+    class="de.mfreund.pamtram.launching.GentransLaunchShortcut"
+    description="Launch a GenTrans transformation"
+    id="de.mfreund.pamtram.GentransLaunchShortcut">
+    <description
+     description="Performs a GenTrans transformation"
+     mode="run">
+    </description>
+  <contextualLaunch>
+  	<enablement>
+  	<with variable="selection">
+  	<iterate>
+          <test property="org.eclipse.core.resources.projectNature" value="de.mfreund.pamtram.pamtramNature" />
+      </iterate>
+     </with>
+  </enablement>
+  </contextualLaunch>
+  <configurationType
+    id="de.mfreund.pamtram.launching.gentrans">
+  </configurationType>
+  </shortcut>
+</extension>
 </plugin>

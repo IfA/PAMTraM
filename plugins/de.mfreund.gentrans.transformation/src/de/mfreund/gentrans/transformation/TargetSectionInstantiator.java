@@ -2,14 +2,17 @@ package de.mfreund.gentrans.transformation;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.console.MessageConsoleStream;
@@ -27,6 +30,7 @@ import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.SimpleAttributeMatcher;
+import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
@@ -157,7 +161,7 @@ class TargetSectionInstantiator {
 		LinkedHashMap<TargetSectionClass,LinkedList<EObjectTransformationHelper>> instBySection=new LinkedHashMap<TargetSectionClass,LinkedList<EObjectTransformationHelper>> ();
 		
 		if( instantiateTargetSectionFirstPass(metamodelSection, mappingGroup, mappingHints, hintValues, conHintValues,
-				instBySection,mappingName) != null){
+				instBySection,mappingName,new HashMap<EAttribute, Set<String>>()) != null){
 			return instBySection;
 		} else return null;
 			
@@ -187,7 +191,9 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 																				Map<MappingHint, LinkedList<Object>> hintValues,
 																				Map<ModelConnectionHint, LinkedList<Object>> conHintValues,
 																				Map<TargetSectionClass,LinkedList<EObjectTransformationHelper>> instBySection,
-																				String mappingName) {
+																				String mappingName,
+																				Map<EAttribute, Set<String>> sectionAttributeValues
+																				) {
 	
 		
 		int cardinality= 1;
@@ -250,6 +256,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 			LinkedList<EObjectTransformationHelper> markedForDelete = new LinkedList<EObjectTransformationHelper>();
 			for(TargetSectionAttribute attr : metamodelSection.getAttributes()){	
 					attributeValues.put(attr, new LinkedList<String>());
+
 					MappingHint hintFound=null;
 					//look for an attribute mapping
 					LinkedList<Object> attrHintValues=null;
@@ -309,11 +316,29 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 
 						
 						//Check if value is unique and was already used, mark instance for deletion if necessary
-						if(attr.isUnique() && (instance.attributeValueExists(attr,attrValue) || attributeValues.get(attr).contains(attrValue))){					
+						boolean attrValUsedInSection=false;
+						if(attr instanceof ActualAttribute){
+							EAttribute eAttr=((ActualAttribute) attr).getAttribute();
+							if(! sectionAttributeValues.containsKey(eAttr)){
+								sectionAttributeValues.put(eAttr, new HashSet<String>());
+							} else {
+								attrValUsedInSection=sectionAttributeValues.get(eAttr).contains(attrValue);
+							}
+							sectionAttributeValues.get(eAttr).add(attrValue);
+						}
+						if(attr.isUnique()
+								&& 
+								(instance.attributeValueExists(attr,attrValue) 
+										|| attributeValues.get(attr).contains(attrValue)
+										|| attrValUsedInSection
+								)
+						){					
 							markedForDelete.add(instance);//we can only delete this at the end, or else the attributeHint values won't fit anymore
 						}
 						//save attr value in Map
 						attributeValues.get(attr).add(attrValue);
+						
+
 					}
 			}
 			
@@ -358,7 +383,8 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 									 											hintValues,
 									 											conHintValues,
 									 											instBySection,
-									 											mappingName);
+									 											mappingName,
+									 											sectionAttributeValues);
 						 	if(children != null) { //error? //TODO also delete here?
 						 		childInstances.addAll(children);
 						 	} else{ 
@@ -368,7 +394,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 						 }
 						// we needed to create the targetSection
 						// even though we already knew we didn't want it to be part of the targetModel or else we
-						//would have gotten  problems with hintValues
+						//would get  problems with the hintValues
 						if (!markedForDelete.contains(instance)) {
 
 							if (ref.getEReference().getUpperBound() == 1) {

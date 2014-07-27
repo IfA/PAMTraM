@@ -1915,7 +1915,7 @@
             <eReference href="http://stefan-hennig.de/movisa/platform#//PresentationModel/OwnedPanel"/>
             <value name="Main Panel">
               <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/Panel"/>
-              <attributes xsi:type="metamodel:ActualAttribute" name="mainPanelName">
+              <attributes xsi:type="metamodel:ActualAttribute" name="mainPanelName" value="">
                 <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
               </attributes>
             </value>
@@ -2015,7 +2015,7 @@
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="trigger">
         <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/NavigationFlow/Trigger"/>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Name">
+      <attributes xsi:type="metamodel:ActualAttribute" name="Name" unique="true">
         <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>

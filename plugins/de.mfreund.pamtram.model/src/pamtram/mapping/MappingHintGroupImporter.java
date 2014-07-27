@@ -59,9 +59,11 @@ public interface MappingHintGroupImporter extends NamedElement, InstantiableMapp
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Container</em>' reference.
+	 * @see #isSetContainer()
+	 * @see #unsetContainer()
 	 * @see #setContainer(TargetSectionClass)
 	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupImporter_Container()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	TargetSectionClass getContainer();
@@ -71,9 +73,34 @@ public interface MappingHintGroupImporter extends NamedElement, InstantiableMapp
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Container</em>' reference.
+	 * @see #isSetContainer()
+	 * @see #unsetContainer()
 	 * @see #getContainer()
 	 * @generated
 	 */
 	void setContainer(TargetSectionClass value);
+
+	/**
+	 * Unsets the value of the '{@link pamtram.mapping.MappingHintGroupImporter#getContainer <em>Container</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetContainer()
+	 * @see #getContainer()
+	 * @see #setContainer(TargetSectionClass)
+	 * @generated
+	 */
+	void unsetContainer();
+
+	/**
+	 * Returns whether the value of the '{@link pamtram.mapping.MappingHintGroupImporter#getContainer <em>Container</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Container</em>' reference is set.
+	 * @see #unsetContainer()
+	 * @see #getContainer()
+	 * @see #setContainer(TargetSectionClass)
+	 * @generated
+	 */
+	boolean isSetContainer();
 
 } // MappingHintGroupImporter

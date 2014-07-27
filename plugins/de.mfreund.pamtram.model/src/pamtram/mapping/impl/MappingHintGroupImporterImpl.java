@@ -53,6 +53,15 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	protected TargetSectionClass container;
 
 	/**
+	 * This is true if the Container reference has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean containerESet;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -143,8 +152,33 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	public void setContainer(TargetSectionClass newContainer) {
 		TargetSectionClass oldContainer = container;
 		container = newContainer;
+		boolean oldContainerESet = containerESet;
+		containerESet = true;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONTAINER, oldContainer, container));
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONTAINER, oldContainer, container, !oldContainerESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetContainer() {
+		TargetSectionClass oldContainer = container;
+		boolean oldContainerESet = containerESet;
+		container = null;
+		containerESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONTAINER, oldContainer, null, oldContainerESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetContainer() {
+		return containerESet;
 	}
 
 	/**
@@ -195,7 +229,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 				setHintGroup((ExportedMappingHintGroup)null);
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONTAINER:
-				setContainer((TargetSectionClass)null);
+				unsetContainer();
 				return;
 		}
 		super.eUnset(featureID);
@@ -212,7 +246,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP:
 				return hintGroup != null;
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONTAINER:
-				return container != null;
+				return isSetContainer();
 		}
 		return super.eIsSet(featureID);
 	}

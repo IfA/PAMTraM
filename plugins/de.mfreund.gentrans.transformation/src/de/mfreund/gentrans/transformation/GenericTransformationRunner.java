@@ -238,6 +238,9 @@ public class GenericTransformationRunner {
 			}
 		}
 
+		/*
+		 * Instantiate all Target-Sections (containment refs and attributes)
+		 */
 		writePamtramMessage("Instantiating targetModelSections for selected mappings. First pass...");
 		for (MappingInstanceStorage selMap : selectedMappings) {
 			for (MappingHintGroupType g : selMap.getMapping().getMappingHintGroups()) {

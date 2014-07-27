@@ -571,10 +571,10 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 											  }
 											  setReference(ref,fittingVals.get(dialog.getSelection()).getEObject(),srcInst.getEObject());
 										} else {
+											consoleStream.println("The MappigInstanceSelector " + hSel.getName() + " (Mapping: " + mappingName + ", Group: " +
+													group.getName() + " ) has an AttributeMatcher that picked up the value '" + attrVal +"' to be matched to the"
+															+ "TargetAttribute, but no fitting TargetSectionInstance with this value could be found." );
 
-											consoleStream
-													.println("Nich gefunden: "
-															+  attrVal);
 										}
 									}
 									

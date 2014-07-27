@@ -324,7 +324,7 @@ class TargetSectionConnector {
 						}
 						int instSize=rootInstancesByContainer.get(container).size();
 						ItemSelectorDialogRunner dialog=new ItemSelectorDialogRunner(instSize 
-										+ " Instance" + (instSize > 1 ? "s" : "")  +"of the TargetSection '"
+										+ " Instance" + (instSize > 1 ? "s" : "")  +" of the TargetSection '"
 										+ section.getName()
 										+ "', created by the mapping '"
 										+ mappingName

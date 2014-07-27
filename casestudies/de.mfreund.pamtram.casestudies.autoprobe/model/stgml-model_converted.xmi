@@ -4340,6 +4340,108 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_Transferstrecke | Fork | 001_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.6">
+          <Alignment Name="NAVTOP_AT_Transferstrecke | Fork | 001_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_Transferstrecke | Fork | 001_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_Transferstrecke | Fork | 001" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_Transferstrecke | Fork | 001_pos">
+            <X Name="NAVTOP_AT_Transferstrecke | Fork | 001_pos_x" Unit="PIXEL" Value="1834.0"/>
+            <Y Name="NAVTOP_AT_Transferstrecke | Fork | 001_pos_y" Unit="PIXEL" Value="1555.0"/>
+            <Z Name="NAVTOP_AT_Transferstrecke | Fork | 001_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_Transferstrecke | Fork | 001_size">
+            <Height Name="NAVTOP_AT_Transferstrecke | Fork | 001_height" Unit="PIXEL" Value="20.0"/>
+            <Width Name="NAVTOP_AT_Transferstrecke | Fork | 001_width" Unit="PIXEL" Value="20.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_Transferstrecke | Fork | 002_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.6">
+          <Alignment Name="NAVTOP_AT_Transferstrecke | Fork | 002_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_Transferstrecke | Fork | 002_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_Transferstrecke | Fork | 002" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_Transferstrecke | Fork | 002_pos">
+            <X Name="NAVTOP_AT_Transferstrecke | Fork | 002_pos_x" Unit="PIXEL" Value="2147.0"/>
+            <Y Name="NAVTOP_AT_Transferstrecke | Fork | 002_pos_y" Unit="PIXEL" Value="1555.0"/>
+            <Z Name="NAVTOP_AT_Transferstrecke | Fork | 002_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_Transferstrecke | Fork | 002_size">
+            <Height Name="NAVTOP_AT_Transferstrecke | Fork | 002_height" Unit="PIXEL" Value="20.0"/>
+            <Width Name="NAVTOP_AT_Transferstrecke | Fork | 002_width" Unit="PIXEL" Value="20.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_Transferstrecke_1 | Fork | 006_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.6">
+          <Alignment Name="NAVTOP_AT_Transferstrecke_1 | Fork | 006_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_Transferstrecke_1 | Fork | 006_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_Transferstrecke_1 | Fork | 006" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_Transferstrecke_1 | Fork | 006_pos">
+            <X Name="NAVTOP_AT_Transferstrecke_1 | Fork | 006_pos_x" Unit="PIXEL" Value="1643.0"/>
+            <Y Name="NAVTOP_AT_Transferstrecke_1 | Fork | 006_pos_y" Unit="PIXEL" Value="1029.0"/>
+            <Z Name="NAVTOP_AT_Transferstrecke_1 | Fork | 006_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_Transferstrecke_1 | Fork | 006_size">
+            <Height Name="NAVTOP_AT_Transferstrecke_1 | Fork | 006_height" Unit="PIXEL" Value="20.0"/>
+            <Width Name="NAVTOP_AT_Transferstrecke_1 | Fork | 006_width" Unit="PIXEL" Value="20.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_Transferstrecke_1 | Fork | 003_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.6">
+          <Alignment Name="NAVTOP_AT_Transferstrecke_1 | Fork | 003_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_Transferstrecke_1 | Fork | 003_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_Transferstrecke_1 | Fork | 003" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_Transferstrecke_1 | Fork | 003_pos">
+            <X Name="NAVTOP_AT_Transferstrecke_1 | Fork | 003_pos_x" Unit="PIXEL" Value="1216.0"/>
+            <Y Name="NAVTOP_AT_Transferstrecke_1 | Fork | 003_pos_y" Unit="PIXEL" Value="1029.0"/>
+            <Z Name="NAVTOP_AT_Transferstrecke_1 | Fork | 003_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_Transferstrecke_1 | Fork | 003_size">
+            <Height Name="NAVTOP_AT_Transferstrecke_1 | Fork | 003_height" Unit="PIXEL" Value="20.0"/>
+            <Width Name="NAVTOP_AT_Transferstrecke_1 | Fork | 003_width" Unit="PIXEL" Value="20.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_Transferstrecke_7 | Fork | 005_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.6">
+          <Alignment Name="NAVTOP_AT_Transferstrecke_7 | Fork | 005_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_Transferstrecke_7 | Fork | 005_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_Transferstrecke_7 | Fork | 005" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_Transferstrecke_7 | Fork | 005_pos">
+            <X Name="NAVTOP_AT_Transferstrecke_7 | Fork | 005_pos_x" Unit="PIXEL" Value="1602.0"/>
+            <Y Name="NAVTOP_AT_Transferstrecke_7 | Fork | 005_pos_y" Unit="PIXEL" Value="380.0"/>
+            <Z Name="NAVTOP_AT_Transferstrecke_7 | Fork | 005_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_Transferstrecke_7 | Fork | 005_size">
+            <Height Name="NAVTOP_AT_Transferstrecke_7 | Fork | 005_height" Unit="PIXEL" Value="20.0"/>
+            <Width Name="NAVTOP_AT_Transferstrecke_7 | Fork | 005_width" Unit="PIXEL" Value="20.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_Transferstrecke_11 | Fork | 004_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.6">
+          <Alignment Name="NAVTOP_AT_Transferstrecke_11 | Fork | 004_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_Transferstrecke_11 | Fork | 004_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_Transferstrecke_11 | Fork | 004" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_Transferstrecke_11 | Fork | 004_pos">
+            <X Name="NAVTOP_AT_Transferstrecke_11 | Fork | 004_pos_x" Unit="PIXEL" Value="1430.0"/>
+            <Y Name="NAVTOP_AT_Transferstrecke_11 | Fork | 004_pos_y" Unit="PIXEL" Value="20.0"/>
+            <Z Name="NAVTOP_AT_Transferstrecke_11 | Fork | 004_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_Transferstrecke_11 | Fork | 004_size">
+            <Height Name="NAVTOP_AT_Transferstrecke_11 | Fork | 004_height" Unit="PIXEL" Value="20.0"/>
+            <Width Name="NAVTOP_AT_Transferstrecke_11 | Fork | 004_width" Unit="PIXEL" Value="20.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
     </OwnedPanel>
     <OwnedPanel Name="StockDouble">
       <OwnedUIComponent xsi:type="presentation:Button" Name="StockDouble_NAVTOP_button">

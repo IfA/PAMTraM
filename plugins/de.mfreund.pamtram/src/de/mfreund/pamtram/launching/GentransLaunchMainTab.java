@@ -1,27 +1,14 @@
 package de.mfreund.pamtram.launching;
 
 import java.io.File;
-import java.util.Arrays;
-
-import org.eclipse.core.internal.resources.Project;
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
-import org.eclipse.debug.internal.ui.SWTFactory;
-import org.eclipse.debug.internal.ui.launchConfigurations.LaunchConfigurationsMessages;
 import org.eclipse.debug.ui.AbstractLaunchConfigurationTab;
-import org.eclipse.jface.preference.FileFieldEditor;
-import org.eclipse.jface.util.IPropertyChangeListener;
-import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -31,11 +18,9 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.handlers.HandlerUtil;
 
 public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
@@ -217,78 +202,10 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			return;
 		}
 		
-		// handle a selection in a tree viewer
-		if(sel instanceof TreeSelection) {
-			TreeSelection treeSel = (TreeSelection) win.getSelectionService().getSelection();
-			Object el = treeSel.getFirstElement();
-			
-			IProject project;
-			IFile srcFile = null, pamtramFile = null;
-			
-			// determine the project based on the selection
-			if(el instanceof IProject) {
-				project = (IProject) el; 
-			} else if(el instanceof IFile) {
-				project = ((IFile) el).getProject();
-				IFile file = (IFile) el;
-				// check if the file can be used as source file...
-				if(file.getName().endsWith(".xmi") && 
-						file.getParent().getName().equals("Source")) {
-					srcFile = file;
-				// ... or as pamtram file
-				} else if(file.getName().endsWith(".pamtram") &&
-						file.getParent().getName().equals("Pamtram")) {
-					pamtramFile = file;
-				}
-			} else {
-				return;
-			}
-			
-			try {
-				
-				// check if the project has the pamtram nature assigned
-				if(project.hasNature("de.mfreund.pamtram.pamtramNature")) {
-					// set the project attribute
-					configuration.setAttribute("project", 
-							project.getLocation().toOSString());
-					
-					// set the srcFile attribute
-					if(srcFile == null) {
-						for(IResource res : project.getFolder("Source").members()) {
-							// search for a suitable src file
-							if(res instanceof IFile && ((IFile) res).getName().endsWith(".xmi")) {
-								srcFile = (IFile) res;
-								configuration.setAttribute("srcFile", srcFile.getName());
-								break;
-							}
-						}
-					} else {
-						configuration.setAttribute("srcFile", srcFile.getName());
-					}
-					// set the pamtramFile attribute
-					if(pamtramFile == null) {
-						for(IResource res : project.getFolder("Pamtram").members()) {
-							// search for a suitable pamtram file
-							if(res instanceof IFile && ((IFile) res).getName().endsWith(".pamtram")) {
-								pamtramFile = (IFile) res;
-								configuration.setAttribute("pamtramFile", pamtramFile.getName());
-								break;
-							}
-						}
-					} else {
-						configuration.setAttribute("pamtramFile", pamtramFile.getName());
-					}
-					// set the targetFile attribute
-					configuration.setAttribute("targetFile", "out.xmi");
-					
-				} else {
-					return;
-				}
-				
-			} catch (CoreException e) {
-				setErrorMessage(e.getMessage());
-				return;
-			}
+		try {
+			GentransLaunchConfigInitializer.init(configuration, sel);
+		} catch (CoreException e) {
+			setErrorMessage(e.getMessage());
 		}
 	}
 

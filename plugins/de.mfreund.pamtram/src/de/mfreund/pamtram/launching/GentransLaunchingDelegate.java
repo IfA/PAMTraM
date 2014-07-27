@@ -11,7 +11,11 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 	@Override
 	public void launch(ILaunchConfiguration configuration, String mode,
 			ILaunch launch, IProgressMonitor monitor) throws CoreException {
-		System.out.println("launching");
+		System.out.println("launching via the delegate");
+		System.out.println(configuration.getAttribute("project", ""));
+		System.out.println(configuration.getAttribute("srcFile", ""));
+		System.out.println(configuration.getAttribute("pamtramFile", ""));
+		System.out.println(configuration.getAttribute("targetFile", ""));
 	}
 
 }

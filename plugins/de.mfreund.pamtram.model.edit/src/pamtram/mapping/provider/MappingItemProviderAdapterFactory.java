@@ -647,6 +647,52 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.MappedAttributeValuePrepender} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MappedAttributeValuePrependerItemProvider mappedAttributeValuePrependerItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.MappedAttributeValuePrepender}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMappedAttributeValuePrependerAdapter() {
+		if (mappedAttributeValuePrependerItemProvider == null) {
+			mappedAttributeValuePrependerItemProvider = new MappedAttributeValuePrependerItemProvider(this);
+		}
+
+		return mappedAttributeValuePrependerItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.MappedAttributeValueAppender} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MappedAttributeValueAppenderItemProvider mappedAttributeValueAppenderItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.MappedAttributeValueAppender}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMappedAttributeValueAppenderAdapter() {
+		if (mappedAttributeValueAppenderItemProvider == null) {
+			mappedAttributeValueAppenderItemProvider = new MappedAttributeValueAppenderItemProvider(this);
+		}
+
+		return mappedAttributeValueAppenderItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -770,6 +816,8 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (simpleModelConnectionHintItemProvider != null) simpleModelConnectionHintItemProvider.dispose();
 		if (complexModelConnectionHintItemProvider != null) complexModelConnectionHintItemProvider.dispose();
 		if (complexModelConnectionHintSourceElementItemProvider != null) complexModelConnectionHintSourceElementItemProvider.dispose();
+		if (mappedAttributeValuePrependerItemProvider != null) mappedAttributeValuePrependerItemProvider.dispose();
+		if (mappedAttributeValueAppenderItemProvider != null) mappedAttributeValueAppenderItemProvider.dispose();
 	}
 
 }

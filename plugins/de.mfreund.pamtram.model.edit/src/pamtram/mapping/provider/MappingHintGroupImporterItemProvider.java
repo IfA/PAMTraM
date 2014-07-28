@@ -240,6 +240,16 @@ public class MappingHintGroupImporterItemProvider extends NamedElementItemProvid
 			(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
 				 MappingFactory.eINSTANCE.createCalculatorMapping()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
+				 MappingFactory.eINSTANCE.createMappedAttributeValuePrepender()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
+				 MappingFactory.eINSTANCE.createMappedAttributeValueAppender()));
 	}
 
 	/**

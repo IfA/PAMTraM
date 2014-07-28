@@ -178,21 +178,17 @@ class ModelConnectionPath {
 	@Override
 	public String toString() {
 		String path = "";
-		boolean first = true;
 
 		ListIterator<EObject> it = pathElements.listIterator(pathElements
 				.size());
 
 		while (it.hasPrevious()) {
-			if (!first) {
-				path += "  ";
-			} else
-				first = false;
 			EObject prev = it.previous();
 			if (prev instanceof EClass) {
 				path += ((EClass) prev).getName();
 			} else if (prev instanceof EReference) {
-				path += ((EReference) prev).getName();
+				//RegEx copied from: https://stackoverflow.com/questions/1097901/regular-expression-split-string-by-capital-letter-but-ignore-tla
+				path += "..."+((EReference) prev).getName().replaceAll("((?<=\\p{Ll})\\p{Lu}|\\p{Lu}(?=\\p{Ll}))", " $1").toLowerCase().trim()+"...";
 			}
 		}
 

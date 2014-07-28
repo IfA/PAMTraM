@@ -134,6 +134,7 @@ import pamtram.mapping.ComplexModelConnectionHint;
 import pamtram.mapping.ComplexModelConnectionHintSourceElement;
 import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.Mapping;
+import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
@@ -144,8 +145,10 @@ import pamtram.mapping.provider.MappingItemProviderAdapterFactory;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionNonContainmentReference;
 import pamtram.metamodel.TargetSectionAttribute;
+import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 import pamtram.metamodel.provider.MetamodelItemProviderAdapterFactory;
 import pamtram.presentation.listeners.MMElementDragListener;
@@ -1279,21 +1282,8 @@ public class PamtramEditor
 												
 						Attribute source = mapping.getSource();
 						
-						// Select the source and target item associated with  the selected mapping.
-						if(source == null) {
-							sourceViewer.setSelection(
-									new StructuredSelection());
-						} else {
-							sourceViewer.setSelection(
-									new StructuredSelection(source));
-						}
-						if(target == null) {
-							targetViewer.setSelection(
-									new StructuredSelection());
-						} else {
-							targetViewer.setSelection(
-									new StructuredSelection(target));
-						}
+						setSourceTargetViewerSingleItemSelections(target,
+								source);
 						
 					} else if(((TreeItem) e.item).getData() instanceof ComplexAttributeMapping || ((TreeItem) e.item).getData() instanceof CalculatorMapping) {
 						AttributeMapping mapping = (AttributeMapping) ((TreeItem) e.item).getData();
@@ -1331,20 +1321,7 @@ public class PamtramEditor
 						pamtram.metamodel.Class target = mapping.getTarget();
 						
 						// Select the source and target item associated with the selected mapping.
-						if(source == null) {
-							sourceViewer.setSelection(
-									new StructuredSelection());
-						} else {
-							sourceViewer.setSelection(
-									new StructuredSelection(source));
-						}
-						if(target == null) {
-							targetViewer.setSelection(
-									new StructuredSelection());
-						} else {
-							targetViewer.setSelection(
-									new StructuredSelection(target));
-						}
+						setSourceTargetViewerSingleItemSelections(target, source);
 					} else if(((TreeItem) e.item).getData() instanceof MappingInstanceSelector) {
 						
 						MappingInstanceSelector selector = (MappingInstanceSelector) ((TreeItem) e.item).getData();
@@ -1376,27 +1353,7 @@ public class PamtramEditor
 						}
 						
 						// Select the source and target item associated with the selected matcher.
-						if(source == null && target == null) {
-							sourceViewer.setSelection(
-									new StructuredSelection());
-							targetViewer.setSelection(
-									new StructuredSelection());
-						} else if(source != null && target == null){
-							sourceViewer.setSelection(
-									new StructuredSelection(source));
-							targetViewer.setSelection(
-									new StructuredSelection());
-						} else if(source == null && target != null){
-							sourceViewer.setSelection(
-									new StructuredSelection());
-							targetViewer.setSelection(
-									new StructuredSelection(target));
-						} else {
-							sourceViewer.setSelection(
-									new StructuredSelection(source));
-							targetViewer.setSelection(
-									new StructuredSelection(target));
-						}
+						setSourceTargetViewerSingleItemSelections(target, source);
 						
 					} else if(((TreeItem) e.item).getData() instanceof ComplexAttributeMatcher){
 						ComplexAttributeMatcher matcher= (ComplexAttributeMatcher) ((TreeItem) e.item).getData();
@@ -1461,6 +1418,34 @@ public class PamtramEditor
 						targetViewer.setSelection(new StructuredSelection(targets));
 						sourceViewer.setSelection(new StructuredSelection(sources));
 						
+					} else if(((TreeItem) e.item).getData() instanceof MappingHintGroupImporter){
+						MappingHintGroupImporter imp=(MappingHintGroupImporter) ((TreeItem) e.item).getData();
+						TargetSectionClass target=null;
+						SourceSectionClass source=null;
+						if(imp.getHintGroup() != null){
+							target=imp.getHintGroup().getTargetMMSection();
+							
+							source=((Mapping)imp.getHintGroup().eContainer()).getSourceMMSection();
+						}
+						setSourceTargetViewerSingleItemSelections(target, source);
+					}
+				}
+				private void setSourceTargetViewerSingleItemSelections(
+						Object target, Object source) {
+					// Select the source and target item associated with  the selected mapping.
+					if(source == null) {
+						sourceViewer.setSelection(
+								new StructuredSelection());
+					} else {
+						sourceViewer.setSelection(
+								new StructuredSelection(source));
+					}
+					if(target == null) {
+						targetViewer.setSelection(
+								new StructuredSelection());
+					} else {
+						targetViewer.setSelection(
+								new StructuredSelection(target));
 					}
 				}
 				@Override

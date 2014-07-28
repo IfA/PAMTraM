@@ -119,6 +119,7 @@ import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.PropertySheetPage;
 
 import pamtram.MappingModel;
+import pamtram.NamedElement;
 import pamtram.PAMTraM;
 import pamtram.condition.provider.ConditionItemProviderAdapterFactory;
 import pamtram.mapping.AttributeMapping;
@@ -1187,7 +1188,7 @@ public class PamtramEditor
 			tree.addSelectionListener(new SelectionListener() {
 				
 				private Mapping currentMapping;
-				private MappingHintGroupType currentMappingHintGroup;
+				private NamedElement currentMappingHintGroup;
 				
 				@Override
 				public void widgetSelected(SelectionEvent e) {
@@ -1195,7 +1196,9 @@ public class PamtramEditor
 					
 					if(((TreeItem) e.item).getData() instanceof Mapping
 						||
-						((TreeItem) e.item).getData() instanceof MappingHintGroupType) {
+						((TreeItem) e.item).getData() instanceof MappingHintGroupType
+						|| ((TreeItem) e.item).getData() instanceof MappingHintGroupImporter
+						) {
 						
 						LinkedList<Object> expanded=new LinkedList<Object>();
 						Mapping mapping=null;
@@ -1208,12 +1211,20 @@ public class PamtramEditor
 							if ((MappingHintGroupType) ((TreeItem) e.item).getData() != null){
 								currentMappingHintGroup=(MappingHintGroupType) ((TreeItem) e.item).getData();
 								mapping=(Mapping) currentMappingHintGroup.eContainer();
-								targets.add(currentMappingHintGroup.getTargetMMSection());		
+								targets.add(((MappingHintGroupType)currentMappingHintGroup).getTargetMMSection());		
 								source=mapping.getSourceMMSection();
 								expanded.add(mapping);
 								expanded.add(currentMappingHintGroup);
 							}
 
+						} else if(((TreeItem) e.item).getData() instanceof MappingHintGroupImporter){
+							currentMappingHintGroup=(MappingHintGroupImporter) ((TreeItem) e.item).getData();
+							mapping=(Mapping) currentMappingHintGroup.eContainer();
+							targets.add(((MappingHintGroupImporter)currentMappingHintGroup).getHintGroup().getTargetMMSection());	
+							source=mapping.getSourceMMSection();
+							expanded.add(mapping);
+							expanded.add(currentMappingHintGroup);
+							
 						} else {
 							mapping = (Mapping) ((TreeItem) e.item).getData();
 							source = mapping.getSourceMMSection();

@@ -23,6 +23,7 @@ import pamtram.mapping.ComplexAttributeMatcherSourceElement;
 import pamtram.mapping.ComplexModelConnectionHint;
 import pamtram.mapping.ComplexModelConnectionHintSourceElement;
 import pamtram.mapping.ExpressionVariable;
+import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
@@ -476,7 +477,13 @@ class SourceSectionMapper {
 							String valCopy = AttributeValueRegistry.applyAttributeValueModifiers(srcAttrAsString,((SimpleAttributeMapping) hint).getModifier());
 							changedRefsAndHints.addHintValue(hint, valCopy);
 						}
-					} else if(hint instanceof ComplexAttributeMapping){
+					} else if(hint instanceof MappedAttributeValueExpander){
+						if(((MappedAttributeValueExpander) hint).getSourceAttribute().equals(at)){
+							String valCopy = AttributeValueRegistry.applyAttributeValueModifiers(srcAttrAsString,((MappedAttributeValueExpander) hint).getModifiers());
+							changedRefsAndHints.addHintValue(hint, valCopy);
+						}
+						
+					}else if(hint instanceof ComplexAttributeMapping){
 						for(ComplexAttribueMappingSourceElement m : ((ComplexAttributeMapping) hint).getSourceAttributeMappings()){
 							if (m.getSource().equals(at)) {
 								String valCopy = AttributeValueRegistry.applyAttributeValueModifiers(srcAttrAsString,m.getModifier());

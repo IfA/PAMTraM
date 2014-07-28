@@ -25,13 +25,19 @@ import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.PAMTraM;
+import pamtram.mapping.AttributeMapping;
+import pamtram.mapping.ComplexAttribueMappingSourceElement;
+import pamtram.mapping.ComplexAttributeMapping;
 import pamtram.mapping.ExportedMappingHintGroup;
+import pamtram.mapping.MappedAttributeValueExpander;
+import pamtram.mapping.MappedAttributeValuePrepender;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingHintType;
+import pamtram.mapping.SimpleAttributeMapping;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.TargetSectionClass;
 
@@ -303,7 +309,53 @@ public class GenericTransformationRunner {
 						for(MappingHintType h : g.getMappingHints()){
 							if(h instanceof MappingHint){
 								hints.add((MappingHint) h);
-							}//TODO else if ...
+							} else if(h instanceof MappedAttributeValueExpander){
+								if(selMap.getHintValues().get(h).size() == 1){
+									String hintVal=(String) selMap.getHintValues().get(h).getFirst();
+									boolean prepend=h instanceof MappedAttributeValuePrepender;//of course this works only because the only other option is the Appender
+									for(MappingHint realHint : g.getHintGroup().getMappingHints()){
+										if(realHint instanceof AttributeMapping){
+											if(((AttributeMapping) realHint).getTarget().equals(((MappedAttributeValueExpander) h).getTargetAttribute())){
+												if(realHint instanceof SimpleAttributeMapping){//SimpleAttributeMapping
+													LinkedList<Object> vals=new LinkedList<Object>();
+													if(prepend){
+														for(Object s : selMap.getHintValues().get(realHint)){
+															vals.add(hintVal+((String)s));
+														}
+													} else {
+														for(Object s : selMap.getHintValues().get(realHint)){
+															vals.add(((String)s)+hintVal);
+														}														
+													}
+													selMap.setHintValueList(realHint, vals);
+												} else if(realHint instanceof ComplexAttributeMapping){//ComplexAttributeMapping
+													List<ComplexAttribueMappingSourceElement> sources=((ComplexAttributeMapping) realHint).getSourceAttributeMappings();
+													if(sources.size() > 0){
+														ComplexAttribueMappingSourceElement element;
+														if(prepend){
+															element=sources.get(0);
+														} else {
+															element=sources.get(sources.size()-1);
+														}
+
+														for(Object m : selMap.getHintValues().get(realHint)){
+															Map<ComplexAttribueMappingSourceElement,String> map=(Map<ComplexAttribueMappingSourceElement,String>) m;
+															if(map.containsKey(element)){
+																if(prepend){
+																	map.put(element, hintVal+map.get(element));
+																} else {
+																	map.put(element, map.get(element)+hintVal);
+																}
+															}
+														}
+													}
+												}//TODO add any remaining hitValue changes here
+	
+											}
+										}
+									}
+								} //else TODO maybe add something here when we know how to handle/control cardinality of ImportedMappingHints 
+							}
 						}
 						LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection = targetSectionInstantiator
 								.instantiateTargetSectionFirstPass(

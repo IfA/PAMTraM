@@ -24,9 +24,10 @@ import pamtram.mapping.ComplexModelConnectionHint;
 import pamtram.mapping.ComplexModelConnectionHintSourceElement;
 import pamtram.mapping.ExpressionVariable;
 import pamtram.mapping.Mapping;
-import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
+import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
+import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.SimpleAttributeMapping;
@@ -62,7 +63,7 @@ class SourceSectionMapper {
 	/**
 	 * Registry for MappingHints. Used When instantiating target model sections.
 	 */
-	private LinkedHashMap<Mapping,LinkedList<MappingHint>> mappingHints;
+	private LinkedHashMap<Mapping,LinkedList<MappingHintType>> mappingHints;
 	/**
 	 * Map Referencing the Class referenced by the ComplexAttributeMappingSourceElement that is buried deepest in the source Section,
 	 * sorted by ComplexAttributeMapping.
@@ -110,7 +111,7 @@ class SourceSectionMapper {
 	 */
 	SourceSectionMapper(List<Mapping> mappingsToChooseFrom, MessageConsoleStream consoleStream) {
 		mappedSections=new LinkedHashMap<SourceSectionClass,Set<EObject>> ();
-		mappingHints=new  LinkedHashMap<Mapping,LinkedList<MappingHint>>();
+		mappingHints=new  LinkedHashMap<Mapping,LinkedList<MappingHintType>>();
 		modelConnectionHints=new  LinkedHashMap<Mapping,LinkedList<ModelConnectionHint>>();
 		deepestComplexAttrMappingSrcElementsByCmplxMapping= new LinkedHashMap<ComplexAttributeMapping,SourceSectionClass>();
 		deepestCalcAttrMappingSrcElementsByCalcMapping = new LinkedHashMap<CalculatorMapping,SourceSectionClass>();
@@ -123,7 +124,7 @@ class SourceSectionMapper {
 		//this will fill some maps...
 		for(Mapping m : mappingsToChooseFrom){
 			getModelConnectionHints(m);
-			for(MappingHint h : getHints(m)){
+			for(MappingHintType h : getHints(m)){
 				if(h instanceof ComplexAttributeMapping){
 					buildDeepestCmplxAttrMappingElementsMap((ComplexAttributeMapping) h, m.getSourceMMSection());
 				} else if(h instanceof CalculatorMapping){
@@ -147,12 +148,18 @@ class SourceSectionMapper {
 	 * @param m Mapping
 	 * @return MappingHints of all the Mappings MappingHintGroups.
 	 */
-	private List<MappingHint> getHints(Mapping m){
+	private List<MappingHintType> getHints(Mapping m){
 		if(!mappingHints.containsKey(m)){
-			mappingHints.put(m, new LinkedList<MappingHint>());
+			mappingHints.put(m, new LinkedList<MappingHintType>());
 			for(MappingHintGroupType g : m.getMappingHintGroups()){
 				if(g.getMappingHints() != null){
 					mappingHints.get(m).addAll(g.getMappingHints());					
+				}
+			}
+			
+			for(MappingHintGroupImporter g : m.getImportedMappingHintGroups()){
+				if(g.getMappingHints() != null){
+					mappingHints.get(m).addAll(g.getMappingHints());
 				}
 			}
 		}
@@ -344,7 +351,7 @@ class SourceSectionMapper {
 	@SuppressWarnings("unchecked")
 	private  MappingInstanceStorage findMappingIterate(
 			EObject srcModelObject, boolean usedOkay,
-			Iterable<MappingHint> hints,
+			Iterable<MappingHintType> hints,
 			Iterable<ModelConnectionHint> connectionHints,
 			SourceSectionClass srcSection,
 			MappingInstanceStorage newRefsAndHints,
@@ -370,7 +377,7 @@ class SourceSectionMapper {
 		Map<ComplexAttributeMatcherSourceElement,String> complexAttrMatcherSourceElementHintValues=new LinkedHashMap<ComplexAttributeMatcherSourceElement,String>();
 		Map<ComplexModelConnectionHintSourceElement,String> complexConnectionHintSourceElementHintValues=new LinkedHashMap<ComplexModelConnectionHintSourceElement,String>();
 		
-		for (MappingHint hint : hints) {
+		for (MappingHintType hint : hints) {
 			
 			if( hint instanceof ComplexAttributeMapping 
 					|| hint instanceof CalculatorMapping){//ComplexAttributeMappings are handled differently because we want to make them work across vc-sections 
@@ -448,7 +455,7 @@ class SourceSectionMapper {
 				boolean containsInclusions=false;
 				for (AttributeValueConstraint constraint : at.getValueConstraint()) {
 					boolean constraintVal=constraint.checkConstraint(srcAttrAsString);
-					if (!constraintVal && constraint.getType().equals(AttributeValueConstraintType.EXCLUSION)) {//TODO
+					if (!constraintVal && constraint.getType().equals(AttributeValueConstraintType.EXCLUSION)) {
 						return null;
 					} else if(constraint.getType().equals(AttributeValueConstraintType.INCLUSION)){
 						containsInclusions=true;
@@ -463,7 +470,7 @@ class SourceSectionMapper {
 				}
 				
 				// handle possible attribute mappings
-				for (MappingHint hint : hints) {
+				for (MappingHintType hint : hints) {
 					if (hint instanceof SimpleAttributeMapping) {
 						if (((SimpleAttributeMapping) hint).getSource().equals(at)) {
 							String valCopy = AttributeValueRegistry.applyAttributeValueModifiers(srcAttrAsString,((SimpleAttributeMapping) hint).getModifier());
@@ -543,7 +550,7 @@ class SourceSectionMapper {
 		Set<CalculatorMapping> calculatorMappingsFound=new HashSet<CalculatorMapping>();		
 		Set<ComplexModelConnectionHint> complexConnectionHintsFound=new HashSet<ComplexModelConnectionHint>();
 		
-		for(MappingHint h : hints){
+		for(MappingHintType h : hints){
 			if(h instanceof ComplexAttributeMapping){
 				Map<ComplexAttribueMappingSourceElement,String> foundValues=new LinkedHashMap<ComplexAttribueMappingSourceElement,String>();
 				//append the complex hint value (cardinality either 0 or 1) with found values in right order
@@ -735,9 +742,7 @@ class SourceSectionMapper {
 						}
 					}
 					if (!foundMapping) {
-						consoleStream
-								.println("we need to find a mapping for every srcModelElement (at: " + srcSection.getName() + " )" 
-										+ EObjectTransformationHelper.asString(rt));
+						//TODO consoleStream.println("we need to find a mapping for every srcModelElement (at: " + srcSection.getName() + " )" + EObjectTransformationHelper.asString(rt));
 						return null; // we need to find a mapping for every
 										// srcModelElement if the reference Type
 										// was modeled in the srcMMSection
@@ -877,7 +882,7 @@ class SourceSectionMapper {
 			}
 		}
 		
-		for(MappingHint h : hints){
+		for(MappingHintType h : hints){
 				if(h instanceof ComplexAttributeMapping){
 					if(!(complexAttributeMappingsFound.contains(h) && 
 							deepestComplexAttrMappingSrcElementsByCmplxMapping.get(h).equals(srcSection))){

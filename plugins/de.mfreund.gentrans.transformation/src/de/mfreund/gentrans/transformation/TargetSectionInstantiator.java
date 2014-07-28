@@ -27,6 +27,7 @@ import pamtram.mapping.ComplexAttributeMatcher;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
+import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.SimpleAttributeMatcher;
@@ -103,7 +104,7 @@ class TargetSectionInstantiator {
 	 * @param oldSelectedHint
 	 * @return
 	 */
-	private static MappingHint searchAttributeMapping(TargetSectionClass metaModelSection, Collection<MappingHint> hints,  Map<MappingHint, LinkedList<Object>> hintValues, MappingHint  oldSelectedHint){
+	private static MappingHint searchAttributeMapping(TargetSectionClass metaModelSection, Collection<MappingHint> hints,  Map<MappingHintType, LinkedList<Object>> hintValues, MappingHint  oldSelectedHint){
 		MappingHint selectedHint=oldSelectedHint;
 		for(TargetSectionAttribute attr :  metaModelSection.getAttributes()){//check attributes		
 			for(MappingHint hint : hints){
@@ -155,7 +156,7 @@ class TargetSectionInstantiator {
 	LinkedHashMap<TargetSectionClass,LinkedList<EObjectTransformationHelper>> instantiateTargetSectionFirstPass(TargetSectionClass metamodelSection,
 																					InstantiableMappingHintGroup mappingGroup,
 																					List<MappingHint> mappingHints,
-																					Map<MappingHint, LinkedList<Object>> hintValues,
+																					Map<MappingHintType, LinkedList<Object>> hintValues,
 																					Map<ModelConnectionHint, LinkedList<Object>> conHintValues,																					
 																					String mappingName){
 		LinkedHashMap<TargetSectionClass,LinkedList<EObjectTransformationHelper>> instBySection=new LinkedHashMap<TargetSectionClass,LinkedList<EObjectTransformationHelper>> ();
@@ -188,7 +189,7 @@ class TargetSectionInstantiator {
 private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPass(TargetSectionClass metamodelSection,
 																				InstantiableMappingHintGroup mappingGroup,
 																				List<MappingHint> mappingHints,
-																				Map<MappingHint, LinkedList<Object>> hintValues,
+																				Map<MappingHintType, LinkedList<Object>> hintValues,
 																				Map<ModelConnectionHint, LinkedList<Object>> conHintValues,
 																				Map<TargetSectionClass,LinkedList<EObjectTransformationHelper>> instBySection,
 																				String mappingName,
@@ -455,7 +456,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 			InstantiableMappingHintGroup group,
 			TargetSectionClass groupTargetSection,
 			List<MappingHint> hints,
-			LinkedHashMap<MappingHint, LinkedList<Object>> hintValues,
+			LinkedHashMap<MappingHintType, LinkedList<Object>> hintValues,
 			LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection) {
 
 		if (instancesBySection.get(targetSectionClass) != null) {// only go on if
@@ -849,7 +850,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 			InstantiableMappingHintGroup group,
 			TargetSectionClass groupTargetSection,
 			List<MappingHint> hints,
-			LinkedHashMap<MappingHint, LinkedList<Object>> hintValues,
+			LinkedHashMap<MappingHintType, LinkedList<Object>> hintValues,
 			LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection) {
 		for (TargetSectionReference ref : targetSectionClass.getReferences()) {
 			if (ref instanceof TargetSectionContainmentReference) {

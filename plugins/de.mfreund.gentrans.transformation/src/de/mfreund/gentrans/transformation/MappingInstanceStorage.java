@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
-import pamtram.mapping.MappingHint;
+import pamtram.mapping.MappingHintType;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.TargetSectionClass;
@@ -50,7 +50,7 @@ class MappingInstanceStorage {
 	/**
 	 * HintValues to be used when instantiating the mapping's target section(s)
 	 */
-	private LinkedHashMap<pamtram.mapping.MappingHint, LinkedList<Object>> hintValues;
+	private LinkedHashMap<MappingHintType, LinkedList<Object>> hintValues;
 
 	
 	/**
@@ -63,7 +63,7 @@ class MappingInstanceStorage {
 	 */
 	public MappingInstanceStorage() {
 		sourceModelObjetsMapped = new LinkedHashMap<SourceSectionClass, Set<EObject>>();
-		hintValues = new LinkedHashMap<pamtram.mapping.MappingHint, LinkedList<Object>>();
+		hintValues = new LinkedHashMap<MappingHintType, LinkedList<Object>>();
 		mapping = null;
 		associatedSourceModelElement = null;
 		instancesBySection = new LinkedHashMap<InstantiableMappingHintGroup, LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>>();
@@ -94,7 +94,7 @@ class MappingInstanceStorage {
 	 * @param hint
 	 * @param value
 	 */
-	void addHintValue(MappingHint hint, String value) {
+	void addHintValue(MappingHintType hint, String value) {
 		if (!hintValues.containsKey(hint)) {
 			hintValues.put(hint, new LinkedList<Object>());
 		}
@@ -106,8 +106,8 @@ class MappingInstanceStorage {
 	 * @param newHintValues
 	 */
 	void addHintValues(
-			LinkedHashMap<pamtram.mapping.MappingHint, LinkedList<Object>> newHintValues) {
-		for (MappingHint h : newHintValues.keySet()) {
+			LinkedHashMap<MappingHintType, LinkedList<Object>> newHintValues) {
+		for (MappingHintType h : newHintValues.keySet()) {
 			if (!hintValues.containsKey(h)) {
 				hintValues.put(h, new LinkedList<Object>());
 			}
@@ -219,7 +219,7 @@ class MappingInstanceStorage {
 	 * Getter for the hintValues Map
 	 * @return hint values
 	 */
-	public LinkedHashMap<MappingHint, LinkedList<Object>> getHintValues() {
+	public LinkedHashMap<MappingHintType, LinkedList<Object>> getHintValues() {
 		return hintValues;
 	}
 
@@ -295,7 +295,7 @@ class MappingInstanceStorage {
 	 * @param hint
 	 * @param newHintValues
 	 */
-	void setHintValueList(MappingHint hint,
+	void setHintValueList(MappingHintType hint,
 			LinkedList<Object> newHintValues) {
 		hintValues.put(hint, newHintValues);
 

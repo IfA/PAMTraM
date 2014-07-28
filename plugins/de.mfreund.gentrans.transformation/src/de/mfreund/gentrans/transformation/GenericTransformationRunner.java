@@ -31,6 +31,7 @@ import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
+import pamtram.mapping.MappingHintType;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.TargetSectionClass;
 
@@ -222,7 +223,7 @@ public class GenericTransformationRunner {
 		 * Now write MappingHint values of Hints of ExportedMappingHintGroups to a separate storage,
 		 * and remove the values from the MappingInstanceStorages
 		 */
-		consoleStream.println("Getting hint values of exported hint groups");//TODO remove if it works
+		consoleStream.println("Getting hint values of exported hint groups and checking MappingHintImporters");//TODO remove if it works
 		Map<MappingHint, LinkedList<Object>> exportedMappingHints=new LinkedHashMap<MappingHint, LinkedList<Object>>();
 		for(MappingInstanceStorage selMap : selectedMappings){
 			for(MappingHintGroupType g : selMap.getMapping().getMappingHintGroups()){
@@ -233,6 +234,21 @@ public class GenericTransformationRunner {
 						}
 						exportedMappingHints.get(h).addAll(selMap.getHintValues().remove(h));//this works because the SourceSectionMapper guarantees that a key exists 
 																						     //for each MappingHint of the Mapping
+					}
+				}
+			}
+			/*
+			 * additional MappingHints for HintImporters are necessary but must be restricted to a cardinality of 0..1
+			 */
+			for(MappingHintGroupImporter g : selMap.getMapping().getImportedMappingHintGroups()){
+				for(MappingHintType h : g.getMappingHints()){
+					if(selMap.getHintValues().get(h).size() > 1){
+						consoleStream.println("The MappingHint " + h.getName() + " of the HintImporter " +
+								g.getName() + " in Mapping " + selMap.getMapping().getName() +
+								" picked up more than one HintValue. This is not allowed."
+						);//TODO OCL? (possible? => Even sections with card. type of ONE can have more than one hint value if they are part of a 
+						  // vc-section. However, we cannot restrict the parent sections to non-vc, argh...can we?)
+						selMap.getHintValues().put(h,new LinkedList<Object>());
 					}
 				}
 			}
@@ -282,10 +298,17 @@ public class GenericTransformationRunner {
 					//start instantiating
 					if(expGrp.getTargetMMSection() != null){
 
+						List<MappingHint> hints=new LinkedList<MappingHint>();
+						hints.addAll(expGrp.getMappingHints());
+						for(MappingHintType h : g.getMappingHints()){
+							if(h instanceof MappingHint){
+								hints.add((MappingHint) h);
+							}//TODO else if ...
+						}
 						LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection = targetSectionInstantiator
 								.instantiateTargetSectionFirstPass(
 										expGrp.getTargetMMSection(),  g,
-										expGrp.getMappingHints(),
+										hints,
 										selMap.getHintValues(),
 										selMap.getModelConnectionHintValues(),
 										selMap.getMapping().getName());
@@ -472,12 +495,20 @@ public class GenericTransformationRunner {
 				ExportedMappingHintGroup expGrp= g.getHintGroup();
 				if (expGrp.getTargetMMSection() != null) {
 					if (selMap.getInstancesBySection(g) != null) {
+						List<MappingHint> hints=new LinkedList<MappingHint>();
+						hints.addAll(expGrp.getMappingHints());
+						for(MappingHintType h : g.getMappingHints()){
+							if(h instanceof MappingHint){
+								hints.add((MappingHint) h);
+							}//TODO else if ...??-> should have already been done during 1st pass 
+						}
+						
 						targetSectionInstantiator
 								.instantiateTargetSectionSecondPass(
 										expGrp.getTargetMMSection(),
 										selMap.getMapping().getName(), g,
 										expGrp.getTargetMMSection(),
-										expGrp.getMappingHints(),
+										hints,
 										selMap.getHintValues(),
 										selMap.getInstancesBySection(g)
 						);

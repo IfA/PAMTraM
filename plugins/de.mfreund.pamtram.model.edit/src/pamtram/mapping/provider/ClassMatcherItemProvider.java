@@ -58,7 +58,6 @@ public class ClassMatcherItemProvider
 	 * This adds a property descriptor for the Target Class feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	protected void addTargetClassPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add

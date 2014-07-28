@@ -134,6 +134,7 @@ import pamtram.mapping.ComplexAttributeMatcherSourceElement;
 import pamtram.mapping.ComplexModelConnectionHint;
 import pamtram.mapping.ComplexModelConnectionHintSourceElement;
 import pamtram.mapping.ConnectionHintTargetAttribute;
+import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
@@ -1439,6 +1440,9 @@ public class PamtramEditor
 							source=((Mapping)imp.getHintGroup().eContainer()).getSourceMMSection();
 						}
 						setSourceTargetViewerSingleItemSelections(target, source);
+					} else if(((TreeItem)e.item).getData() instanceof MappedAttributeValueExpander){
+						MappedAttributeValueExpander exp = (MappedAttributeValueExpander)((TreeItem)e.item).getData();
+						setSourceTargetViewerSingleItemSelections(exp.getTargetAttribute(), exp.getSourceAttribute());
 					}
 				}
 				private void setSourceTargetViewerSingleItemSelections(

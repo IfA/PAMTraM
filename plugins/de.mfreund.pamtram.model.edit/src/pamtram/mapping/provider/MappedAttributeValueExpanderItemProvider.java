@@ -3,17 +3,29 @@
 package pamtram.mapping.provider;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
+import pamtram.mapping.AttributeMapping;
+import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.MappedAttributeValueExpander;
+import pamtram.mapping.Mapping;
+import pamtram.mapping.MappingHint;
+import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingPackage;
+import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.SourceSectionNonContainmentReference;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.MappedAttributeValueExpander} object.
@@ -54,11 +66,10 @@ public class MappedAttributeValueExpanderItemProvider extends HintImporterMappin
 	 * This adds a property descriptor for the Source Attribute feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	protected void addSourceAttributePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+			(new ItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_MappedAttributeValueExpander_sourceAttribute_feature"),
@@ -69,18 +80,55 @@ public class MappedAttributeValueExpanderItemProvider extends HintImporterMappin
 				 true,
 				 null,
 				 null,
-				 null));
+				 null){
+
+					@Override
+					public Collection<?> getChoiceOfValues(Object object) {
+
+						//the parent Mapping Hint Group
+						MappingHintGroupImporter parent=(MappingHintGroupImporter) ((MappedAttributeValueExpander) object).eContainer();
+
+						// the source section
+						SourceSectionClass source = ((Mapping)parent.getContainer()).getSourceMMSection();
+
+						List<Object> choiceOfValues = new ArrayList<Object>();
+						
+						// iterate over all elements and return the attributes as possible options
+						Set<SourceSectionClass> scanned=new HashSet<SourceSectionClass>();
+						List<SourceSectionClass> sectionsToScan=new ArrayList<SourceSectionClass>();
+						sectionsToScan.add(source);
+						
+						while(sectionsToScan.size() > 0){
+							SourceSectionClass classToScan=sectionsToScan.remove(0);
+							scanned.add(classToScan);
+							
+							Iterator<EObject> it = classToScan.eAllContents();
+							while(it.hasNext()) {
+								EObject next = it.next();
+								if(next instanceof pamtram.metamodel.Attribute) {
+									choiceOfValues.add(next);
+								} else if(next instanceof SourceSectionNonContainmentReference){
+									List<SourceSectionClass> vals=new ArrayList<SourceSectionClass>();
+									vals.addAll(((SourceSectionNonContainmentReference) next).getValue());
+									vals.removeAll(scanned);
+									sectionsToScan.addAll(vals);
+								}
+							}
+						}
+						
+						return choiceOfValues;
+					}
+			});
 	}
 
 	/**
 	 * This adds a property descriptor for the Target Attribute feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	protected void addTargetAttributePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+			(new ItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_MappedAttributeValueExpander_targetAttribute_feature"),
@@ -91,7 +139,28 @@ public class MappedAttributeValueExpanderItemProvider extends HintImporterMappin
 				 true,
 				 null,
 				 null,
-				 null));
+				 null){
+
+					@Override
+					public Collection<?> getChoiceOfValues(Object object) {
+
+						MappedAttributeValueExpander attrMapping=(MappedAttributeValueExpander) object;
+
+						// the target sections
+						ExportedMappingHintGroup expGroup=((MappingHintGroupImporter)attrMapping.eContainer()).getHintGroup();
+
+						List<Object> choiceOfValues = new ArrayList<Object>();
+						
+						for(MappingHint hint : expGroup.getMappingHints()){
+							if(hint instanceof AttributeMapping){
+								choiceOfValues.add(((AttributeMapping) hint).getTarget());
+							}
+						}
+						
+						return choiceOfValues;
+					}
+				
+			});
 	}
 
 	/**

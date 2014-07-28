@@ -19,7 +19,8 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
 import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.Mapping;
-import pamtram.mapping.MappingHintGroup;
+import pamtram.mapping.MappingHintGroupImporter;
+import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.SimpleAttributeMapping;
 import pamtram.metamodel.SourceSectionClass;
@@ -87,17 +88,20 @@ public class SimpleAttributeMappingItemProvider
 
 				//the parent Mapping Hint Group
 				EObject parent=((AttributeMappingSourceElementType) object).eContainer();
-				MappingHintGroup mappingHintGroup;
+				// the parent mapping
+				Mapping mapping;
 				while(true){
-					if(parent instanceof MappingHintGroup){
-						mappingHintGroup=(MappingHintGroup) parent;
+					if(parent instanceof MappingHintGroupType){
+						mapping=(Mapping)((MappingHintGroupType) parent).eContainer();
 						break;
-					} else {
+					} else if(parent instanceof MappingHintGroupImporter){
+						mapping=(Mapping)((MappingHintGroupImporter) parent).eContainer();
+						break;
+					}else {
 						parent=parent.eContainer();
 					}
 				}
-				// the parent mapping
-				Mapping mapping = (Mapping) mappingHintGroup.eContainer();
+
 				
 				// the source section
 				SourceSectionClass source = mapping.getSourceMMSection();

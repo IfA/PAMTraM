@@ -6,6 +6,7 @@ package pamtram.mapping.provider;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -15,10 +16,13 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import pamtram.mapping.MappingFactory;
-import pamtram.mapping.MappingHintGroup;
+import pamtram.mapping.MappingHintGroupImporter;
+import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.MappingPackage;
+import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 
 /**
@@ -77,7 +81,14 @@ public class MappingInstanceSelectorItemProvider
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
-						TreeIterator<EObject> it =((MappingHintGroup) ((MappingInstanceSelector)object).eContainer()).getTargetMMSection().eAllContents();
+						TargetSectionClass target=null;
+						if(((MappingInstanceSelector)object).eContainer() instanceof MappingHintGroupType){
+							target=((MappingHintGroupType) ((MappingInstanceSelector)object).eContainer()).getTargetMMSection();
+						} else if(((MappingInstanceSelector)object).eContainer() instanceof MappingHintGroupImporter){
+							target=((MappingHintGroupImporter) ((MappingInstanceSelector)object).eContainer()).getHintGroup().getTargetMMSection();
+						}
+						
+						TreeIterator<EObject> it =target.eAllContents();
 						List<EObject> vals= new ArrayList<EObject>();
 						
 						while(it.hasNext()){

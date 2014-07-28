@@ -7,16 +7,19 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+
 import pamtram.mapping.AttributeMapping;
-import pamtram.mapping.MappingHintGroup;
+import pamtram.mapping.MappingHintGroupImporter;
+import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
-import pamtram.metamodel.Class;
+import pamtram.metamodel.TargetSectionClass;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.AttributeMapping} object.
@@ -99,12 +102,16 @@ public class AttributeMappingItemProvider
 				@Override
 				public Collection<?> getChoiceOfValues(Object object) {
 
-				// the parent mapping
-				MappingHintGroup mappingHintGroup = (MappingHintGroup) ((AttributeMapping) object)
-						.eContainer();
+				AttributeMapping attrMapping=(AttributeMapping) object;
 
 				// the target sections
-				Class target = mappingHintGroup.getTargetMMSection();
+				TargetSectionClass target = null;
+				if(attrMapping.eContainer()  instanceof MappingHintGroupType){
+					target=((MappingHintGroupType)attrMapping.eContainer()).getTargetMMSection();
+				} else if(attrMapping.eContainer() instanceof MappingHintGroupImporter){
+					target=((MappingHintGroupImporter)attrMapping.eContainer()).getHintGroup().getTargetMMSection();
+				}
+				
 
 				List<Object> choiceOfValues = new ArrayList<Object>();
 

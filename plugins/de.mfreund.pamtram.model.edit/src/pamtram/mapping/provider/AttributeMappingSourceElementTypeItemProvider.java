@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -16,9 +17,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+
 import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.Mapping;
-import pamtram.mapping.MappingHintGroup;
+import pamtram.mapping.MappingHintGroupImporter;
+import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionNonContainmentReference;
@@ -84,17 +87,20 @@ public class AttributeMappingSourceElementTypeItemProvider
 
 					//the parent Mapping Hint Group
 					EObject parent=((AttributeMappingSourceElementType) object).eContainer();
-					MappingHintGroup mappingHintGroup;
+					// the parent mapping
+					Mapping mapping;
 					while(true){
-						if(parent instanceof MappingHintGroup){
-							mappingHintGroup=(MappingHintGroup) parent;
+						if(parent instanceof MappingHintGroupType){
+							mapping=(Mapping)((MappingHintGroupType) parent).eContainer();
 							break;
-						} else {
+						} else if(parent instanceof MappingHintGroupImporter){
+							mapping=(Mapping)((MappingHintGroupImporter) parent).eContainer();
+							break;
+						}else {
 							parent=parent.eContainer();
 						}
 					}
-					// the parent mapping
-					Mapping mapping = (Mapping) mappingHintGroup.eContainer();
+
 					
 					// the source section
 					SourceSectionClass source = mapping.getSourceMMSection();

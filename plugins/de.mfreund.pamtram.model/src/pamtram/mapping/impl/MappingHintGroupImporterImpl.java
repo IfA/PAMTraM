@@ -2,16 +2,22 @@
  */
 package pamtram.mapping.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.impl.NamedElementImpl;
 
 import pamtram.mapping.ExportedMappingHintGroup;
+import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingPackage;
 
@@ -26,6 +32,7 @@ import pamtram.metamodel.TargetSectionClass;
  * <ul>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImporterImpl#getHintGroup <em>Hint Group</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImporterImpl#getContainer <em>Container</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.MappingHintGroupImporterImpl#getMappingHints <em>Mapping Hints</em>}</li>
  * </ul>
  * </p>
  *
@@ -60,6 +67,16 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * @ordered
 	 */
 	protected boolean containerESet;
+
+	/**
+	 * The cached value of the '{@link #getMappingHints() <em>Mapping Hints</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMappingHints()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<MappingHint> mappingHints;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -186,6 +203,50 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<MappingHint> getMappingHints() {
+		if (mappingHints == null) {
+			mappingHints = new EObjectContainmentEList.Unsettable<MappingHint>(MappingHint.class, this, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS);
+		}
+		return mappingHints;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetMappingHints() {
+		if (mappingHints != null) ((InternalEList.Unsettable<?>)mappingHints).unset();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetMappingHints() {
+		return mappingHints != null && ((InternalEList.Unsettable<?>)mappingHints).isSet();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS:
+				return ((InternalEList<?>)getMappingHints()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -195,6 +256,8 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONTAINER:
 				if (resolve) return getContainer();
 				return basicGetContainer();
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS:
+				return getMappingHints();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -204,6 +267,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -212,6 +276,10 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONTAINER:
 				setContainer((TargetSectionClass)newValue);
+				return;
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS:
+				getMappingHints().clear();
+				getMappingHints().addAll((Collection<? extends MappingHint>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -231,6 +299,9 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONTAINER:
 				unsetContainer();
 				return;
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS:
+				unsetMappingHints();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -247,6 +318,8 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 				return hintGroup != null;
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONTAINER:
 				return isSetContainer();
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS:
+				return isSetMappingHints();
 		}
 		return super.eIsSet(featureID);
 	}

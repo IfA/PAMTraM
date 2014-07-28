@@ -2,6 +2,7 @@
  */
 package pamtram.mapping;
 
+import org.eclipse.emf.common.util.EList;
 import pamtram.NamedElement;
 
 import pamtram.metamodel.TargetSectionClass;
@@ -16,6 +17,7 @@ import pamtram.metamodel.TargetSectionClass;
  * <ul>
  *   <li>{@link pamtram.mapping.MappingHintGroupImporter#getHintGroup <em>Hint Group</em>}</li>
  *   <li>{@link pamtram.mapping.MappingHintGroupImporter#getContainer <em>Container</em>}</li>
+ *   <li>{@link pamtram.mapping.MappingHintGroupImporter#getMappingHints <em>Mapping Hints</em>}</li>
  * </ul>
  * </p>
  *
@@ -102,5 +104,44 @@ public interface MappingHintGroupImporter extends NamedElement, InstantiableMapp
 	 * @generated
 	 */
 	boolean isSetContainer();
+
+	/**
+	 * Returns the value of the '<em><b>Mapping Hints</b></em>' containment reference list.
+	 * The list contents are of type {@link pamtram.mapping.MappingHint}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Mapping Hints</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Mapping Hints</em>' containment reference list.
+	 * @see #isSetMappingHints()
+	 * @see #unsetMappingHints()
+	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupImporter_MappingHints()
+	 * @model containment="true" unsettable="true"
+	 * @generated
+	 */
+	EList<MappingHint> getMappingHints();
+
+	/**
+	 * Unsets the value of the '{@link pamtram.mapping.MappingHintGroupImporter#getMappingHints <em>Mapping Hints</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetMappingHints()
+	 * @see #getMappingHints()
+	 * @generated
+	 */
+	void unsetMappingHints();
+
+	/**
+	 * Returns whether the value of the '{@link pamtram.mapping.MappingHintGroupImporter#getMappingHints <em>Mapping Hints</em>}' containment reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Mapping Hints</em>' containment reference list is set.
+	 * @see #unsetMappingHints()
+	 * @see #getMappingHints()
+	 * @generated
+	 */
+	boolean isSetMappingHints();
 
 } // MappingHintGroupImporter

@@ -351,6 +351,8 @@
           eType="#//mapping/ExportedMappingHintGroup"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//metamodel/TargetSectionClass"
           unsettable="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="mappingHints" upperBound="-1"
+          eType="#//mapping/MappingHint" unsettable="true" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ExportedMappingHintGroup" eSuperTypes="#//mapping/MappingHintGroupType"/>
     <eClassifiers xsi:type="ecore:EClass" name="ModelConnectionHint" abstract="true"

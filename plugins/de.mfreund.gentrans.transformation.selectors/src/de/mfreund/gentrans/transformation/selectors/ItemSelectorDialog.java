@@ -41,6 +41,8 @@ public class ItemSelectorDialog extends Dialog{
 	private org.eclipse.swt.widgets.List listWidget;
 	private int standardSelectionIndex;
 	private boolean transformationStopRequested;
+	private static Point lastSize;
+	private static Point lastLocation;
 	
 	public boolean isTransformationStopRequested() {
 		return transformationStopRequested;
@@ -125,6 +127,11 @@ public class ItemSelectorDialog extends Dialog{
 				gd_dialogMessage.widthHint = shlPleaseSelectA.getClientArea().width -2*gridLayout.marginWidth;
 				shlPleaseSelectA.layout(true);
 				listWidget.showSelection();
+				lastSize=shlPleaseSelectA.getSize();
+			}
+			@Override
+			public void controlMoved(ControlEvent e) {
+				lastLocation=shlPleaseSelectA.getLocation();
 			}
 		});
 		
@@ -215,6 +222,13 @@ public class ItemSelectorDialog extends Dialog{
 		});
 		btnAbort.setText("Abort");
 
+		if(lastSize != null){
+			shlPleaseSelectA.setSize(lastSize);
+		} 
+		
+		if(lastLocation != null){
+			shlPleaseSelectA.setLocation(lastLocation);
+		}
 	}
 	
 	private Composite composite;

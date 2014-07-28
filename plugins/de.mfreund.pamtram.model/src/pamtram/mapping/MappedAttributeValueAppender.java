@@ -1,0 +1,17 @@
+/**
+ */
+package pamtram.mapping;
+
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Mapped Attribute Value Appender</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ *
+ * @see pamtram.mapping.MappingPackage#getMappedAttributeValueAppender()
+ * @model
+ * @generated
+ */
+public interface MappedAttributeValueAppender extends MappedAttributeValueExpander {
+} // MappedAttributeValueAppender

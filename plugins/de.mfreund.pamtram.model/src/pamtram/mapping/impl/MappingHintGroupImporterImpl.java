@@ -4,23 +4,18 @@ package pamtram.mapping.impl;
 
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.impl.NamedElementImpl;
-
 import pamtram.mapping.ExportedMappingHintGroup;
-import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroupImporter;
+import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingPackage;
-
 import pamtram.metamodel.TargetSectionClass;
 
 /**
@@ -76,7 +71,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<MappingHint> mappingHints;
+	protected EList<MappingHintType> mappingHints;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -203,9 +198,9 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<MappingHint> getMappingHints() {
+	public EList<MappingHintType> getMappingHints() {
 		if (mappingHints == null) {
-			mappingHints = new EObjectContainmentEList.Unsettable<MappingHint>(MappingHint.class, this, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS);
+			mappingHints = new EObjectContainmentEList.Unsettable<MappingHintType>(MappingHintType.class, this, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS);
 		}
 		return mappingHints;
 	}
@@ -279,7 +274,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS:
 				getMappingHints().clear();
-				getMappingHints().addAll((Collection<? extends MappingHint>)newValue);
+				getMappingHints().addAll((Collection<? extends MappingHintType>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

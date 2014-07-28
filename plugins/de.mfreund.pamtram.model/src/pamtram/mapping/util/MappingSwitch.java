@@ -86,6 +86,7 @@ public class MappingSwitch<T> extends Switch<T> {
 			case MappingPackage.MAPPING_HINT: {
 				MappingHint mappingHint = (MappingHint)theEObject;
 				T result = caseMappingHint(mappingHint);
+				if (result == null) result = caseMappingHintType(mappingHint);
 				if (result == null) result = caseNamedElement(mappingHint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -94,6 +95,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				AttributeMapping attributeMapping = (AttributeMapping)theEObject;
 				T result = caseAttributeMapping(attributeMapping);
 				if (result == null) result = caseMappingHint(attributeMapping);
+				if (result == null) result = caseMappingHintType(attributeMapping);
 				if (result == null) result = caseNamedElement(attributeMapping);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -102,6 +104,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				CardinalityMapping cardinalityMapping = (CardinalityMapping)theEObject;
 				T result = caseCardinalityMapping(cardinalityMapping);
 				if (result == null) result = caseMappingHint(cardinalityMapping);
+				if (result == null) result = caseMappingHintType(cardinalityMapping);
 				if (result == null) result = caseNamedElement(cardinalityMapping);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -110,6 +113,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				MappingInstanceSelector mappingInstanceSelector = (MappingInstanceSelector)theEObject;
 				T result = caseMappingInstanceSelector(mappingInstanceSelector);
 				if (result == null) result = caseMappingHint(mappingInstanceSelector);
+				if (result == null) result = caseMappingHintType(mappingInstanceSelector);
 				if (result == null) result = caseNamedElement(mappingInstanceSelector);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -239,6 +243,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseAttributeMappingSourceElementWithModifiers(simpleAttributeMapping);
 				if (result == null) result = caseMappingHint(simpleAttributeMapping);
 				if (result == null) result = caseAttributeMappingSourceElementType(simpleAttributeMapping);
+				if (result == null) result = caseMappingHintType(simpleAttributeMapping);
 				if (result == null) result = caseNamedElement(simpleAttributeMapping);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -248,6 +253,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				T result = caseComplexAttributeMapping(complexAttributeMapping);
 				if (result == null) result = caseAttributeMapping(complexAttributeMapping);
 				if (result == null) result = caseMappingHint(complexAttributeMapping);
+				if (result == null) result = caseMappingHintType(complexAttributeMapping);
 				if (result == null) result = caseNamedElement(complexAttributeMapping);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -266,6 +272,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				T result = caseCalculatorMapping(calculatorMapping);
 				if (result == null) result = caseAttributeMapping(calculatorMapping);
 				if (result == null) result = caseMappingHint(calculatorMapping);
+				if (result == null) result = caseMappingHintType(calculatorMapping);
 				if (result == null) result = caseNamedElement(calculatorMapping);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -346,6 +353,50 @@ public class MappingSwitch<T> extends Switch<T> {
 				T result = caseAttributeMappingSourceElementWithModifiers(attributeMappingSourceElementWithModifiers);
 				if (result == null) result = caseAttributeMappingSourceElementType(attributeMappingSourceElementWithModifiers);
 				if (result == null) result = caseNamedElement(attributeMappingSourceElementWithModifiers);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.MAPPING_HINT_TYPE: {
+				MappingHintType mappingHintType = (MappingHintType)theEObject;
+				T result = caseMappingHintType(mappingHintType);
+				if (result == null) result = caseNamedElement(mappingHintType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.HINT_IMPORTER_MAPPING_HINT: {
+				HintImporterMappingHint hintImporterMappingHint = (HintImporterMappingHint)theEObject;
+				T result = caseHintImporterMappingHint(hintImporterMappingHint);
+				if (result == null) result = caseMappingHintType(hintImporterMappingHint);
+				if (result == null) result = caseNamedElement(hintImporterMappingHint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER: {
+				MappedAttributeValueExpander mappedAttributeValueExpander = (MappedAttributeValueExpander)theEObject;
+				T result = caseMappedAttributeValueExpander(mappedAttributeValueExpander);
+				if (result == null) result = caseHintImporterMappingHint(mappedAttributeValueExpander);
+				if (result == null) result = caseMappingHintType(mappedAttributeValueExpander);
+				if (result == null) result = caseNamedElement(mappedAttributeValueExpander);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_PREPENDER: {
+				MappedAttributeValuePrepender mappedAttributeValuePrepender = (MappedAttributeValuePrepender)theEObject;
+				T result = caseMappedAttributeValuePrepender(mappedAttributeValuePrepender);
+				if (result == null) result = caseMappedAttributeValueExpander(mappedAttributeValuePrepender);
+				if (result == null) result = caseHintImporterMappingHint(mappedAttributeValuePrepender);
+				if (result == null) result = caseMappingHintType(mappedAttributeValuePrepender);
+				if (result == null) result = caseNamedElement(mappedAttributeValuePrepender);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_APPENDER: {
+				MappedAttributeValueAppender mappedAttributeValueAppender = (MappedAttributeValueAppender)theEObject;
+				T result = caseMappedAttributeValueAppender(mappedAttributeValueAppender);
+				if (result == null) result = caseMappedAttributeValueExpander(mappedAttributeValueAppender);
+				if (result == null) result = caseHintImporterMappingHint(mappedAttributeValueAppender);
+				if (result == null) result = caseMappingHintType(mappedAttributeValueAppender);
+				if (result == null) result = caseNamedElement(mappedAttributeValueAppender);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -875,6 +926,81 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAttributeMappingSourceElementWithModifiers(AttributeMappingSourceElementWithModifiers object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Hint Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Hint Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMappingHintType(MappingHintType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Hint Importer Mapping Hint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Hint Importer Mapping Hint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseHintImporterMappingHint(HintImporterMappingHint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Mapped Attribute Value Expander</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Mapped Attribute Value Expander</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMappedAttributeValueExpander(MappedAttributeValueExpander object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Mapped Attribute Value Prepender</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Mapped Attribute Value Prepender</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMappedAttributeValuePrepender(MappedAttributeValuePrepender object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Mapped Attribute Value Appender</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Mapped Attribute Value Appender</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMappedAttributeValueAppender(MappedAttributeValueAppender object) {
 		return null;
 	}
 

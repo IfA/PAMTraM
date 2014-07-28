@@ -107,7 +107,7 @@ public interface MappingHintGroupImporter extends NamedElement, InstantiableMapp
 
 	/**
 	 * Returns the value of the '<em><b>Mapping Hints</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.mapping.MappingHint}.
+	 * The list contents are of type {@link pamtram.mapping.MappingHintType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Mapping Hints</em>' containment reference list isn't clear,
@@ -121,7 +121,7 @@ public interface MappingHintGroupImporter extends NamedElement, InstantiableMapp
 	 * @model containment="true" unsettable="true"
 	 * @generated
 	 */
-	EList<MappingHint> getMappingHints();
+	EList<MappingHintType> getMappingHints();
 
 	/**
 	 * Unsets the value of the '{@link pamtram.mapping.MappingHintGroupImporter#getMappingHints <em>Mapping Hints</em>}' containment reference list.

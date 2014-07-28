@@ -180,6 +180,43 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_OPERATION_COUNT = MAPPING_TYPE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.MappingHintTypeImpl <em>Hint Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.MappingHintTypeImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappingHintType()
+	 * @generated
+	 */
+	int MAPPING_HINT_TYPE = 35;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_TYPE__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Hint Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_TYPE_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Hint Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_TYPE_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappingHintImpl <em>Hint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -196,7 +233,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
+	int MAPPING_HINT__NAME = MAPPING_HINT_TYPE__NAME;
 
 	/**
 	 * The number of structural features of the '<em>Hint</em>' class.
@@ -205,7 +242,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int MAPPING_HINT_FEATURE_COUNT = MAPPING_HINT_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Hint</em>' class.
@@ -214,7 +251,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int MAPPING_HINT_OPERATION_COUNT = MAPPING_HINT_TYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeMappingImpl <em>Attribute Mapping</em>}' class.
@@ -1880,6 +1917,237 @@ public interface MappingPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.HintImporterMappingHintImpl <em>Hint Importer Mapping Hint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.HintImporterMappingHintImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getHintImporterMappingHint()
+	 * @generated
+	 */
+	int HINT_IMPORTER_MAPPING_HINT = 36;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HINT_IMPORTER_MAPPING_HINT__NAME = MAPPING_HINT_TYPE__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Hint Importer Mapping Hint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HINT_IMPORTER_MAPPING_HINT_FEATURE_COUNT = MAPPING_HINT_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Hint Importer Mapping Hint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HINT_IMPORTER_MAPPING_HINT_OPERATION_COUNT = MAPPING_HINT_TYPE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.MappedAttributeValueExpanderImpl <em>Mapped Attribute Value Expander</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.MappedAttributeValueExpanderImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValueExpander()
+	 * @generated
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_EXPANDER = 37;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_EXPANDER__NAME = HINT_IMPORTER_MAPPING_HINT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Source Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE_ATTRIBUTE = HINT_IMPORTER_MAPPING_HINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Target Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_EXPANDER__TARGET_ATTRIBUTE = HINT_IMPORTER_MAPPING_HINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_EXPANDER__MODIFIERS = HINT_IMPORTER_MAPPING_HINT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Mapped Attribute Value Expander</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_EXPANDER_FEATURE_COUNT = HINT_IMPORTER_MAPPING_HINT_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Mapped Attribute Value Expander</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_EXPANDER_OPERATION_COUNT = HINT_IMPORTER_MAPPING_HINT_OPERATION_COUNT + 0;
+
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.MappedAttributeValuePrependerImpl <em>Mapped Attribute Value Prepender</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.MappedAttributeValuePrependerImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValuePrepender()
+	 * @generated
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_PREPENDER = 38;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_PREPENDER__NAME = MAPPED_ATTRIBUTE_VALUE_EXPANDER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Source Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_PREPENDER__SOURCE_ATTRIBUTE = MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Target Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_PREPENDER__TARGET_ATTRIBUTE = MAPPED_ATTRIBUTE_VALUE_EXPANDER__TARGET_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_PREPENDER__MODIFIERS = MAPPED_ATTRIBUTE_VALUE_EXPANDER__MODIFIERS;
+
+	/**
+	 * The number of structural features of the '<em>Mapped Attribute Value Prepender</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_PREPENDER_FEATURE_COUNT = MAPPED_ATTRIBUTE_VALUE_EXPANDER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Mapped Attribute Value Prepender</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_PREPENDER_OPERATION_COUNT = MAPPED_ATTRIBUTE_VALUE_EXPANDER_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.MappedAttributeValueAppenderImpl <em>Mapped Attribute Value Appender</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.MappedAttributeValueAppenderImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValueAppender()
+	 * @generated
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_APPENDER = 39;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_APPENDER__NAME = MAPPED_ATTRIBUTE_VALUE_EXPANDER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Source Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_APPENDER__SOURCE_ATTRIBUTE = MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Target Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_APPENDER__TARGET_ATTRIBUTE = MAPPED_ATTRIBUTE_VALUE_EXPANDER__TARGET_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_APPENDER__MODIFIERS = MAPPED_ATTRIBUTE_VALUE_EXPANDER__MODIFIERS;
+
+	/**
+	 * The number of structural features of the '<em>Mapped Attribute Value Appender</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_APPENDER_FEATURE_COUNT = MAPPED_ATTRIBUTE_VALUE_EXPANDER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Mapped Attribute Value Appender</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_APPENDER_OPERATION_COUNT = MAPPED_ATTRIBUTE_VALUE_EXPANDER_OPERATION_COUNT + 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.Mapping <em>Mapping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2592,6 +2860,89 @@ public interface MappingPackage extends EPackage {
 	EReference getAttributeMappingSourceElementWithModifiers_Modifier();
 
 	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.MappingHintType <em>Hint Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Hint Type</em>'.
+	 * @see pamtram.mapping.MappingHintType
+	 * @generated
+	 */
+	EClass getMappingHintType();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.HintImporterMappingHint <em>Hint Importer Mapping Hint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Hint Importer Mapping Hint</em>'.
+	 * @see pamtram.mapping.HintImporterMappingHint
+	 * @generated
+	 */
+	EClass getHintImporterMappingHint();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.MappedAttributeValueExpander <em>Mapped Attribute Value Expander</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Mapped Attribute Value Expander</em>'.
+	 * @see pamtram.mapping.MappedAttributeValueExpander
+	 * @generated
+	 */
+	EClass getMappedAttributeValueExpander();
+
+	/**
+	 * Returns the meta object for the reference '{@link pamtram.mapping.MappedAttributeValueExpander#getSourceAttribute <em>Source Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Source Attribute</em>'.
+	 * @see pamtram.mapping.MappedAttributeValueExpander#getSourceAttribute()
+	 * @see #getMappedAttributeValueExpander()
+	 * @generated
+	 */
+	EReference getMappedAttributeValueExpander_SourceAttribute();
+
+	/**
+	 * Returns the meta object for the reference '{@link pamtram.mapping.MappedAttributeValueExpander#getTargetAttribute <em>Target Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target Attribute</em>'.
+	 * @see pamtram.mapping.MappedAttributeValueExpander#getTargetAttribute()
+	 * @see #getMappedAttributeValueExpander()
+	 * @generated
+	 */
+	EReference getMappedAttributeValueExpander_TargetAttribute();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.mapping.MappedAttributeValueExpander#getModifiers <em>Modifiers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Modifiers</em>'.
+	 * @see pamtram.mapping.MappedAttributeValueExpander#getModifiers()
+	 * @see #getMappedAttributeValueExpander()
+	 * @generated
+	 */
+	EReference getMappedAttributeValueExpander_Modifiers();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.MappedAttributeValuePrepender <em>Mapped Attribute Value Prepender</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Mapped Attribute Value Prepender</em>'.
+	 * @see pamtram.mapping.MappedAttributeValuePrepender
+	 * @generated
+	 */
+	EClass getMappedAttributeValuePrepender();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.MappedAttributeValueAppender <em>Mapped Attribute Value Appender</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Mapped Attribute Value Appender</em>'.
+	 * @see pamtram.mapping.MappedAttributeValueAppender
+	 * @generated
+	 */
+	EClass getMappedAttributeValueAppender();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3227,6 +3578,80 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS__MODIFIER = eINSTANCE.getAttributeMappingSourceElementWithModifiers_Modifier();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.impl.MappingHintTypeImpl <em>Hint Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.impl.MappingHintTypeImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getMappingHintType()
+		 * @generated
+		 */
+		EClass MAPPING_HINT_TYPE = eINSTANCE.getMappingHintType();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.impl.HintImporterMappingHintImpl <em>Hint Importer Mapping Hint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.impl.HintImporterMappingHintImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getHintImporterMappingHint()
+		 * @generated
+		 */
+		EClass HINT_IMPORTER_MAPPING_HINT = eINSTANCE.getHintImporterMappingHint();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.impl.MappedAttributeValueExpanderImpl <em>Mapped Attribute Value Expander</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.impl.MappedAttributeValueExpanderImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValueExpander()
+		 * @generated
+		 */
+		EClass MAPPED_ATTRIBUTE_VALUE_EXPANDER = eINSTANCE.getMappedAttributeValueExpander();
+
+		/**
+		 * The meta object literal for the '<em><b>Source Attribute</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE_ATTRIBUTE = eINSTANCE.getMappedAttributeValueExpander_SourceAttribute();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Attribute</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAPPED_ATTRIBUTE_VALUE_EXPANDER__TARGET_ATTRIBUTE = eINSTANCE.getMappedAttributeValueExpander_TargetAttribute();
+
+		/**
+		 * The meta object literal for the '<em><b>Modifiers</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAPPED_ATTRIBUTE_VALUE_EXPANDER__MODIFIERS = eINSTANCE.getMappedAttributeValueExpander_Modifiers();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.impl.MappedAttributeValuePrependerImpl <em>Mapped Attribute Value Prepender</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.impl.MappedAttributeValuePrependerImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValuePrepender()
+		 * @generated
+		 */
+		EClass MAPPED_ATTRIBUTE_VALUE_PREPENDER = eINSTANCE.getMappedAttributeValuePrepender();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.impl.MappedAttributeValueAppenderImpl <em>Mapped Attribute Value Appender</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.impl.MappedAttributeValueAppenderImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValueAppender()
+		 * @generated
+		 */
+		EClass MAPPED_ATTRIBUTE_VALUE_APPENDER = eINSTANCE.getMappedAttributeValueAppender();
 
 	}
 

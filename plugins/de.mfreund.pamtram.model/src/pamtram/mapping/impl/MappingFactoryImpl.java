@@ -81,6 +81,8 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.SIMPLE_MODEL_CONNECTION_HINT: return createSimpleModelConnectionHint();
 			case MappingPackage.COMPLEX_MODEL_CONNECTION_HINT: return createComplexModelConnectionHint();
 			case MappingPackage.COMPLEX_MODEL_CONNECTION_HINT_SOURCE_ELEMENT: return createComplexModelConnectionHintSourceElement();
+			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_PREPENDER: return createMappedAttributeValuePrepender();
+			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_APPENDER: return createMappedAttributeValueAppender();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -334,6 +336,26 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public ComplexModelConnectionHintSourceElement createComplexModelConnectionHintSourceElement() {
 		ComplexModelConnectionHintSourceElementImpl complexModelConnectionHintSourceElement = new ComplexModelConnectionHintSourceElementImpl();
 		return complexModelConnectionHintSourceElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MappedAttributeValuePrepender createMappedAttributeValuePrepender() {
+		MappedAttributeValuePrependerImpl mappedAttributeValuePrepender = new MappedAttributeValuePrependerImpl();
+		return mappedAttributeValuePrepender;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MappedAttributeValueAppender createMappedAttributeValueAppender() {
+		MappedAttributeValueAppenderImpl mappedAttributeValueAppender = new MappedAttributeValueAppenderImpl();
+		return mappedAttributeValueAppender;
 	}
 
 	/**

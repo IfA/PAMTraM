@@ -273,7 +273,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceMMSection" lowerBound="1"
           eType="#//metamodel/SourceSectionClass"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="MappingHint" abstract="true" eSuperTypes="#//NamedElement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="MappingHint" abstract="true" eSuperTypes="#//mapping/MappingHintType"/>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeMapping" abstract="true"
         eSuperTypes="#//mapping/MappingHint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -352,7 +352,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//metamodel/TargetSectionClass"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="mappingHints" upperBound="-1"
-          eType="#//mapping/MappingHint" unsettable="true" containment="true"/>
+          eType="#//mapping/MappingHintType" unsettable="true" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ExportedMappingHintGroup" eSuperTypes="#//mapping/MappingHintGroupType"/>
     <eClassifiers xsi:type="ecore:EClass" name="ModelConnectionHint" abstract="true"
@@ -412,5 +412,19 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
           eType="#//mapping/AttributeValueModifierSet"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="MappingHintType" abstract="true" eSuperTypes="#//NamedElement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="HintImporterMappingHint" abstract="true"
+        eSuperTypes="#//mapping/MappingHintType"/>
+    <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValueExpander" abstract="true"
+        eSuperTypes="#//mapping/HintImporterMappingHint">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceAttribute" lowerBound="1"
+          eType="#//metamodel/SourceSectionAttribute"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="targetAttribute" lowerBound="1"
+          eType="#//metamodel/TargetSectionAttribute"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modifiers" upperBound="-1"
+          eType="#//mapping/AttributeValueModifierSet" unsettable="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValuePrepender" eSuperTypes="#//mapping/MappedAttributeValueExpander"/>
+    <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValueAppender" eSuperTypes="#//mapping/MappedAttributeValueExpander"/>
   </eSubpackages>
 </ecore:EPackage>

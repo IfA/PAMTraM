@@ -210,6 +210,26 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createAttributeMappingSourceElementWithModifiersAdapter();
 			}
 			@Override
+			public Adapter caseMappingHintType(MappingHintType object) {
+				return createMappingHintTypeAdapter();
+			}
+			@Override
+			public Adapter caseHintImporterMappingHint(HintImporterMappingHint object) {
+				return createHintImporterMappingHintAdapter();
+			}
+			@Override
+			public Adapter caseMappedAttributeValueExpander(MappedAttributeValueExpander object) {
+				return createMappedAttributeValueExpanderAdapter();
+			}
+			@Override
+			public Adapter caseMappedAttributeValuePrepender(MappedAttributeValuePrepender object) {
+				return createMappedAttributeValuePrependerAdapter();
+			}
+			@Override
+			public Adapter caseMappedAttributeValueAppender(MappedAttributeValueAppender object) {
+				return createMappedAttributeValueAppenderAdapter();
+			}
+			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -720,6 +740,76 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAttributeMappingSourceElementWithModifiersAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.MappingHintType <em>Hint Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.MappingHintType
+	 * @generated
+	 */
+	public Adapter createMappingHintTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.HintImporterMappingHint <em>Hint Importer Mapping Hint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.HintImporterMappingHint
+	 * @generated
+	 */
+	public Adapter createHintImporterMappingHintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.MappedAttributeValueExpander <em>Mapped Attribute Value Expander</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.MappedAttributeValueExpander
+	 * @generated
+	 */
+	public Adapter createMappedAttributeValueExpanderAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.MappedAttributeValuePrepender <em>Mapped Attribute Value Prepender</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.MappedAttributeValuePrepender
+	 * @generated
+	 */
+	public Adapter createMappedAttributeValuePrependerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.MappedAttributeValueAppender <em>Mapped Attribute Value Appender</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.MappedAttributeValueAppender
+	 * @generated
+	 */
+	public Adapter createMappedAttributeValueAppenderAdapter() {
 		return null;
 	}
 

@@ -31,13 +31,18 @@ import pamtram.mapping.ComplexModelConnectionHintSourceElement;
 import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.ExpressionVariable;
+import pamtram.mapping.HintImporterMappingHint;
 import pamtram.mapping.InstantiableMappingHintGroup;
+import pamtram.mapping.MappedAttributeValueAppender;
+import pamtram.mapping.MappedAttributeValueExpander;
+import pamtram.mapping.MappedAttributeValuePrepender;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
+import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.MappingType;
@@ -307,6 +312,41 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * @generated
 	 */
 	private EClass attributeMappingSourceElementWithModifiersEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mappingHintTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass hintImporterMappingHintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mappedAttributeValueExpanderEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mappedAttributeValuePrependerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mappedAttributeValueAppenderEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1009,6 +1049,78 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getMappingHintType() {
+		return mappingHintTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getHintImporterMappingHint() {
+		return hintImporterMappingHintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMappedAttributeValueExpander() {
+		return mappedAttributeValueExpanderEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMappedAttributeValueExpander_SourceAttribute() {
+		return (EReference)mappedAttributeValueExpanderEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMappedAttributeValueExpander_TargetAttribute() {
+		return (EReference)mappedAttributeValueExpanderEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMappedAttributeValueExpander_Modifiers() {
+		return (EReference)mappedAttributeValueExpanderEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMappedAttributeValuePrepender() {
+		return mappedAttributeValuePrependerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMappedAttributeValueAppender() {
+		return mappedAttributeValueAppenderEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public MappingFactory getMappingFactory() {
 		return (MappingFactory)getEFactoryInstance();
 	}
@@ -1134,6 +1246,19 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		attributeMappingSourceElementWithModifiersEClass = createEClass(ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS);
 		createEReference(attributeMappingSourceElementWithModifiersEClass, ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS__MODIFIER);
+
+		mappingHintTypeEClass = createEClass(MAPPING_HINT_TYPE);
+
+		hintImporterMappingHintEClass = createEClass(HINT_IMPORTER_MAPPING_HINT);
+
+		mappedAttributeValueExpanderEClass = createEClass(MAPPED_ATTRIBUTE_VALUE_EXPANDER);
+		createEReference(mappedAttributeValueExpanderEClass, MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE_ATTRIBUTE);
+		createEReference(mappedAttributeValueExpanderEClass, MAPPED_ATTRIBUTE_VALUE_EXPANDER__TARGET_ATTRIBUTE);
+		createEReference(mappedAttributeValueExpanderEClass, MAPPED_ATTRIBUTE_VALUE_EXPANDER__MODIFIERS);
+
+		mappedAttributeValuePrependerEClass = createEClass(MAPPED_ATTRIBUTE_VALUE_PREPENDER);
+
+		mappedAttributeValueAppenderEClass = createEClass(MAPPED_ATTRIBUTE_VALUE_APPENDER);
 	}
 
 	/**
@@ -1171,7 +1296,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		// Add supertypes to classes
 		mappingEClass.getESuperTypes().add(this.getMappingType());
 		mappingTypeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
-		mappingHintEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
+		mappingHintEClass.getESuperTypes().add(this.getMappingHintType());
 		attributeMappingEClass.getESuperTypes().add(this.getMappingHint());
 		cardinalityMappingEClass.getESuperTypes().add(this.getMappingHint());
 		mappingInstanceSelectorEClass.getESuperTypes().add(this.getMappingHint());
@@ -1207,6 +1332,11 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		complexModelConnectionHintEClass.getESuperTypes().add(this.getModelConnectionHint());
 		complexModelConnectionHintSourceElementEClass.getESuperTypes().add(this.getAttributeMappingSourceElementWithModifiers());
 		attributeMappingSourceElementWithModifiersEClass.getESuperTypes().add(this.getAttributeMappingSourceElementType());
+		mappingHintTypeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
+		hintImporterMappingHintEClass.getESuperTypes().add(this.getMappingHintType());
+		mappedAttributeValueExpanderEClass.getESuperTypes().add(this.getHintImporterMappingHint());
+		mappedAttributeValuePrependerEClass.getESuperTypes().add(this.getMappedAttributeValueExpander());
+		mappedAttributeValueAppenderEClass.getESuperTypes().add(this.getMappedAttributeValueExpander());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(mappingEClass, Mapping.class, "Mapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1267,7 +1397,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEClass(mappingHintGroupImporterEClass, MappingHintGroupImporter.class, "MappingHintGroupImporter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMappingHintGroupImporter_HintGroup(), this.getExportedMappingHintGroup(), null, "hintGroup", null, 1, 1, MappingHintGroupImporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMappingHintGroupImporter_Container(), theMetamodelPackage.getTargetSectionClass(), null, "container", null, 0, 1, MappingHintGroupImporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMappingHintGroupImporter_MappingHints(), this.getMappingHint(), null, "mappingHints", null, 0, -1, MappingHintGroupImporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMappingHintGroupImporter_MappingHints(), this.getMappingHintType(), null, "mappingHints", null, 0, -1, MappingHintGroupImporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(exportedMappingHintGroupEClass, ExportedMappingHintGroup.class, "ExportedMappingHintGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1312,6 +1442,19 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		initEClass(attributeMappingSourceElementWithModifiersEClass, AttributeMappingSourceElementWithModifiers.class, "AttributeMappingSourceElementWithModifiers", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAttributeMappingSourceElementWithModifiers_Modifier(), this.getAttributeValueModifierSet(), null, "modifier", null, 0, -1, AttributeMappingSourceElementWithModifiers.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(mappingHintTypeEClass, MappingHintType.class, "MappingHintType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(hintImporterMappingHintEClass, HintImporterMappingHint.class, "HintImporterMappingHint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(mappedAttributeValueExpanderEClass, MappedAttributeValueExpander.class, "MappedAttributeValueExpander", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMappedAttributeValueExpander_SourceAttribute(), theMetamodelPackage.getSourceSectionAttribute(), null, "sourceAttribute", null, 1, 1, MappedAttributeValueExpander.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMappedAttributeValueExpander_TargetAttribute(), theMetamodelPackage.getTargetSectionAttribute(), null, "targetAttribute", null, 1, 1, MappedAttributeValueExpander.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMappedAttributeValueExpander_Modifiers(), this.getAttributeValueModifierSet(), null, "modifiers", null, 0, -1, MappedAttributeValueExpander.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(mappedAttributeValuePrependerEClass, MappedAttributeValuePrepender.class, "MappedAttributeValuePrepender", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(mappedAttributeValueAppenderEClass, MappedAttributeValueAppender.class, "MappedAttributeValueAppender", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore

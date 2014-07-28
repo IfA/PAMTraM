@@ -247,6 +247,24 @@ public interface MappingFactory extends EFactory {
 	ComplexModelConnectionHintSourceElement createComplexModelConnectionHintSourceElement();
 
 	/**
+	 * Returns a new object of class '<em>Mapped Attribute Value Prepender</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Mapped Attribute Value Prepender</em>'.
+	 * @generated
+	 */
+	MappedAttributeValuePrepender createMappedAttributeValuePrepender();
+
+	/**
+	 * Returns a new object of class '<em>Mapped Attribute Value Appender</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Mapped Attribute Value Appender</em>'.
+	 * @generated
+	 */
+	MappedAttributeValueAppender createMappedAttributeValueAppender();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

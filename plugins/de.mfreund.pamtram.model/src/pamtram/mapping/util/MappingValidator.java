@@ -156,6 +156,16 @@ public class MappingValidator extends EObjectValidator {
 				return validateComplexModelConnectionHintSourceElement((ComplexModelConnectionHintSourceElement)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS:
 				return validateAttributeMappingSourceElementWithModifiers((AttributeMappingSourceElementWithModifiers)value, diagnostics, context);
+			case MappingPackage.MAPPING_HINT_TYPE:
+				return validateMappingHintType((MappingHintType)value, diagnostics, context);
+			case MappingPackage.HINT_IMPORTER_MAPPING_HINT:
+				return validateHintImporterMappingHint((HintImporterMappingHint)value, diagnostics, context);
+			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER:
+				return validateMappedAttributeValueExpander((MappedAttributeValueExpander)value, diagnostics, context);
+			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_PREPENDER:
+				return validateMappedAttributeValuePrepender((MappedAttributeValuePrepender)value, diagnostics, context);
+			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_APPENDER:
+				return validateMappedAttributeValueAppender((MappedAttributeValueAppender)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -702,6 +712,51 @@ public class MappingValidator extends EObjectValidator {
 	 */
 	public boolean validateAttributeMappingSourceElementWithModifiers(AttributeMappingSourceElementWithModifiers attributeMappingSourceElementWithModifiers, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(attributeMappingSourceElementWithModifiers, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMappingHintType(MappingHintType mappingHintType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(mappingHintType, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateHintImporterMappingHint(HintImporterMappingHint hintImporterMappingHint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(hintImporterMappingHint, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMappedAttributeValueExpander(MappedAttributeValueExpander mappedAttributeValueExpander, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(mappedAttributeValueExpander, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMappedAttributeValuePrepender(MappedAttributeValuePrepender mappedAttributeValuePrepender, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(mappedAttributeValuePrepender, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMappedAttributeValueAppender(MappedAttributeValueAppender mappedAttributeValueAppender, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(mappedAttributeValueAppender, diagnostics, context);
 	}
 
 	/**

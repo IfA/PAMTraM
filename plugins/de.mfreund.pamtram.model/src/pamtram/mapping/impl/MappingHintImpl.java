@@ -3,9 +3,6 @@
 package pamtram.mapping.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
-import pamtram.impl.NamedElementImpl;
-
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingPackage;
 
@@ -18,7 +15,7 @@ import pamtram.mapping.MappingPackage;
  *
  * @generated
  */
-public abstract class MappingHintImpl extends NamedElementImpl implements MappingHint {
+public abstract class MappingHintImpl extends MappingHintTypeImpl implements MappingHint {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -471,7 +471,6 @@
       </references>
       <attributes name="id">
         <attribute href="http://gfai.de/stgml.xsd#//State/id"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="exclude &quot;main&quot;" type="EXCLUSION" value="main"/>
       </attributes>
     </metaModelSections>
     <metaModelSections name="Event" container="//@sourceSectionModel/@metaModelSections.0/@references.1/@value.0">
@@ -1942,7 +1941,7 @@
               <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Source" value="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.4/@value.0">
                 <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/NavigationFlow/Source"/>
               </references>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Target" value="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.5/@value.0">
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Target">
                 <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/NavigationFlow/Target"/>
               </references>
               <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="initial">
@@ -1966,15 +1965,6 @@
             <eReference href="http://stefan-hennig.de/movisa/platform#//PresentationModel/OwnedNavigationRoot"/>
             <value name="NavigationRoot">
               <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/NavigationRoot"/>
-            </value>
-          </references>
-          <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedPanel">
-            <eReference href="http://stefan-hennig.de/movisa/platform#//PresentationModel/OwnedPanel"/>
-            <value name="Main Panel">
-              <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/Panel"/>
-              <attributes xsi:type="metamodel:ActualAttribute" name="mainPanelName" value="">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
-              </attributes>
             </value>
           </references>
           <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Presentation Model">
@@ -2072,7 +2062,7 @@
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="trigger">
         <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/NavigationFlow/Trigger"/>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Name" unique="true">
+      <attributes xsi:type="metamodel:ActualAttribute" name="Name NavFlow" unique="true">
         <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
@@ -3912,7 +3902,15 @@
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="VisAppModel" targetMMSection="//@targetSectionModel/@metaModelSections.0">
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="VisAppName" target="//@targetSectionModel/@metaModelSections.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.0/@attributes.0"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="VersionNumber" target="//@targetSectionModel/@metaModelSections.0/@attributes.4" source="//@sourceSectionModel/@metaModelSections.0/@attributes.1"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="mainPanelName" target="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.5/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0"/>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:ExportedMappingHintGroup" name="AbstractNavFlows" targetMMSection="//@targetSectionModel/@metaModelSections.8">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="NavFlowTrigger" affectedReference="//@targetSectionModel/@metaModelSections.8/@references.2">
+          <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.9/@attributes.0" source="//@sourceSectionModel/@metaModelSections.0/@references.0/@value.0/@references.1/@value.0/@attributes.0" modifier="//@mappingModel/@modifierSets.16"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="FlowName" target="//@targetSectionModel/@metaModelSections.8/@attributes.0" source="//@sourceSectionModel/@metaModelSections.0/@references.0/@value.0/@references.1/@value.0/@attributes.1"/>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="NavFlowTarget" affectedReference="//@targetSectionModel/@metaModelSections.8/@references.1">
+          <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.7/@attributes.0" name="target" source="//@sourceSectionModel/@metaModelSections.0/@references.0/@value.0/@references.1/@value.0/@attributes.1"/>
+        </mappingHints>
       </mappingHintGroups>
     </mapping>
     <mapping name="UA Items (SigInterface)" sourceMMSection="//@sourceSectionModel/@metaModelSections.2">
@@ -4114,6 +4112,12 @@
           <sourceAttributeMappings name="event" source="//@sourceSectionModel/@metaModelSections.4/@references.0/@value.0/@attributes.0" modifier="//@mappingModel/@modifierSets.16"/>
         </mappingHints>
       </mappingHintGroups>
+      <importedMappingHintGroups name="InheritedFlows" hintGroup="//@mappingModel/@mapping.0/@mappingHintGroups.1">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="sourcePanel" affectedReference="//@targetSectionModel/@metaModelSections.8/@references.0">
+          <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.7/@attributes.0" name="id" source="//@sourceSectionModel/@metaModelSections.4/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:MappedAttributeValuePrepender" name="Add State id" sourceAttribute="//@sourceSectionModel/@metaModelSections.4/@attributes.0" targetAttribute="//@targetSectionModel/@metaModelSections.8/@attributes.0" modifiers="//@mappingModel/@modifierSets.2"/>
+      </importedMappingHintGroups>
     </mapping>
     <mapping name="Events" sourceMMSection="//@sourceSectionModel/@metaModelSections.5">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetMMSection="//@targetSectionModel/@metaModelSections.9">
@@ -4662,7 +4666,6 @@
         </mappingHints>
         <modelConnectionMatcher xsi:type="mapping:SimpleModelConnectionHint" name="FunctionButton" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0">
           <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.7/@attributes.0"/>
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.5/@value.0/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDef FunctionButton" targetMMSection="//@targetSectionModel/@metaModelSections.15">
@@ -4780,7 +4783,6 @@
         </mappingHints>
         <modelConnectionMatcher xsi:type="mapping:SimpleModelConnectionHint" name="NavButton" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0">
           <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.7/@attributes.0"/>
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.5/@value.0/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDef NavButton" targetMMSection="//@targetSectionModel/@metaModelSections.15">
@@ -4850,7 +4852,6 @@
         </mappingHints>
         <modelConnectionMatcher xsi:type="mapping:SimpleModelConnectionHint" name="Image" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0">
           <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.7/@attributes.0"/>
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.5/@value.0/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Image ConveyorStraight" targetMMSection="//@targetSectionModel/@metaModelSections.21">
@@ -4916,7 +4917,6 @@
         </mappingHints>
         <modelConnectionMatcher xsi:type="mapping:SimpleModelConnectionHint" name="Image" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0">
           <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.7/@attributes.0"/>
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.5/@value.0/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Fork" targetMMSection="//@targetSectionModel/@metaModelSections.21">
@@ -4982,7 +4982,6 @@
         </mappingHints>
         <modelConnectionMatcher xsi:type="mapping:SimpleModelConnectionHint" name="Image" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0">
           <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.7/@attributes.0"/>
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.5/@value.0/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>

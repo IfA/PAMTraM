@@ -41,6 +41,8 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 	private GridData gd_dialogMessage;
 	private Label dialogMessage;
 	private GridLayout gridLayout;
+	private static Point lastSize;
+	private static Point lastLocation;
 	
 	private boolean transformationStopRequested;
 	
@@ -127,6 +129,11 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 			public void controlResized(ControlEvent e){
 				gd_dialogMessage.widthHint = shlPleaseSelectA.getClientArea().width -2*gridLayout.marginWidth;
 				shlPleaseSelectA.layout(true);
+				lastSize=shlPleaseSelectA.getSize();
+			}
+			@Override
+			public void controlMoved(ControlEvent e) {
+				lastLocation=shlPleaseSelectA.getLocation();
 			}
 		});
 		
@@ -245,6 +252,14 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 				instance=instances.get(pathList.getSelectionIndex()).get(instancesList.getSelectionIndex());				
 			}
 		});
+		
+		if(lastSize != null){
+			shlPleaseSelectA.setSize(lastSize);
+		} 
+		
+		if(lastLocation != null){
+			shlPleaseSelectA.setLocation(lastLocation);
+		}		
 
 	}
 	protected org.eclipse.swt.widgets.List getPathList() {

@@ -94,7 +94,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 				
 				// update the source file combo
 				for(File f : new File(projectPath + Path.SEPARATOR + "Source").listFiles()) {
-					if(f.getName().endsWith(".xmi")) {
+					if(f.getName().endsWith(".xmi") || f.getName().endsWith(".xml")) {
 						srcFileCombo.add(f.getName());
 					}
 				}
@@ -277,7 +277,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	private boolean isSrcFileComboValid() {
 		return (new File(projectCombo.getText() + Path.SEPARATOR + 
 							"Source" + Path.SEPARATOR + srcFileCombo.getText())).exists() && 
-						srcFileCombo.getText().endsWith(".xmi");
+						(srcFileCombo.getText().endsWith(".xmi") || srcFileCombo.getText().endsWith(".xml"));
 	}
 	
 	// check if the selected pamtram file is valid
@@ -313,8 +313,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			project = ((IFile) el).getProject();
 			IFile file = (IFile) el;
 			// check if the file can be used as source file...
-			if(file.getName().endsWith(".xmi") && 
-					file.getParent().getName().equals("Source")) {
+			if(file.getParent().getName().equals("Source") &&
+					(file.getName().endsWith(".xmi") || file.getName().endsWith(".xml"))) {
 				srcFile = file;
 			// ... or as pamtram file
 			} else if(file.getName().endsWith(".pamtram") &&

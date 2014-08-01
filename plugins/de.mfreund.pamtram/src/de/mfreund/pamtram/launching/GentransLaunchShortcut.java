@@ -154,7 +154,7 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 				// if a source or pamtram file has been selected, determine
 				// the corresponding project and return it
 				IFile file = (IFile) el;
-				if(file.getName().endsWith(".xmi") && 
+				if((file.getName().endsWith(".xmi") || file.getName().endsWith(".xml")) && 
 						file.getParent().getName().equals("Source")) {
 					return file.getProject();
 				} else if(file.getName().endsWith(".pamtram") && 

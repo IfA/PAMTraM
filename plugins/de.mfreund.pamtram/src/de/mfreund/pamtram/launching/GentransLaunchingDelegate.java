@@ -18,8 +18,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
 
 import de.mfreund.gentrans.transformation.GenericTransformationRunner;
 import de.mfreund.pamtram.util.ResourceHelper;
@@ -44,6 +48,13 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		String targetFile = project + Path.SEPARATOR + 
 				"Target" + Path.SEPARATOR + configuration.getAttribute("targetFile", "");
 		
+		// if an xml source file shall be transformed, 
+		// add the file extension to registry 
+		if(sourceFile.endsWith(".xml")) {
+			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
+				.put("xml", new GenericXMLResourceFactoryImpl());
+		}
+		
 		// Create a resource set. 
 		ResourceSet rs = new ResourceSetImpl();
 		
@@ -57,7 +68,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 			sourceResource = rs.getResource(sourceUri, true);
 			sourceResource.load(Collections.EMPTY_MAP);
 		} catch(Exception e) {
-			MessageDialog.openError(new Shell(), "Error loading resource", 
+			MessageDialog.openError(getShell(), "Error loading resource", 
 					e.getMessage());
 			return;
 		}
@@ -105,34 +116,44 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 	private boolean validateLaunchConfig(ILaunchConfiguration configuration) {
 		try {
 			if(configuration.getAttribute("project", "").equals("")) {
-				MessageDialog.openError(new Shell(), "Error", 
+				MessageDialog.openError(getShell(), "Error", 
 						"No project has been specified!");
 				return false;
 			}
 			
 			if(configuration.getAttribute("srcFile", "").equals("")) {
-				MessageDialog.openError(new Shell(), "Error", 
+				MessageDialog.openError(getShell(), "Error", 
 						"No source file has been specified!");
 				return false;
 			}
 		
 			if(configuration.getAttribute("pamtramFile", "").equals("")) {
-				MessageDialog.openError(new Shell(), "Error", 
+				MessageDialog.openError(getShell(), "Error", 
 						"No pamtram file has been specified!");
 				return false;
 			}
 			
 			if(configuration.getAttribute("targetFile", "").equals("")) {
-				MessageDialog.openError(new Shell(), "Error", 
+				MessageDialog.openError(getShell(), "Error", 
 						"No target file has been specified!");
 				return false;
 			}
 		} catch (CoreException e) {
-			MessageDialog.openError(new Shell(), "Error", 
+			MessageDialog.openError(getShell(), "Error", 
 					e.getMessage());
 			return false;
 		}
 		return true;
 	}
 
+	/**
+	 * Returns the current shell or creates a new one.
+	 * 
+	 * @return the current shell
+	 */
+	private Shell getShell() {
+		IWorkbench workbench = PlatformUI.getWorkbench(); 
+		IWorkbenchWindow window = workbench.getActiveWorkbenchWindow(); 
+		return window.getShell() != null ? window.getShell() : new Shell(); 
+	}
 }

@@ -1,7 +1,10 @@
 package de.mfreund.pamtram.launching;
 
+import java.io.File;
 import java.util.Collections;
 
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -19,6 +22,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Shell;
 
 import de.mfreund.gentrans.transformation.GenericTransformationRunner;
+import de.mfreund.pamtram.util.ResourceHelper;
 
 public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 
@@ -32,12 +36,12 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		}
 		
 		// get the associated files from the launch configuration
-		String project = configuration.getAttribute("project", "") + Path.SEPARATOR;
-		String sourceFile = project + 
+		String project = configuration.getAttribute("project", "");
+		String sourceFile = project + Path.SEPARATOR +
 				"Source" + Path.SEPARATOR + configuration.getAttribute("srcFile", "");
-		String pamtramFile = project + 
+		String pamtramFile = project + Path.SEPARATOR + 
 				"Pamtram" + Path.SEPARATOR + configuration.getAttribute("pamtramFile", "");
-		String targetFile = project + 
+		String targetFile = project + Path.SEPARATOR + 
 				"Target" + Path.SEPARATOR + configuration.getAttribute("targetFile", "");
 		
 		// Create a resource set. 
@@ -75,11 +79,18 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 				} catch (Exception e){
 					e.printStackTrace(System.out);
 					return org.eclipse.core.runtime.Status.CANCEL_STATUS;//TODO
+				} finally {
+					// refresh the project to see the results
+					IProject projectResource = ResourcesPlugin.getWorkspace().getRoot().
+			 			getProject((new File(project)).getName());
+					ResourceHelper.refresh(projectResource);
 				}
 
 			}
 			
 		};
+		
+		job.setUser(true);
 		job.schedule();
 		
 	}

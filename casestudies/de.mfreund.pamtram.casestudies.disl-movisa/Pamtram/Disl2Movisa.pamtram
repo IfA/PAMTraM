@@ -6,11 +6,11 @@
       <eClass href="http://disl#//Disl"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="">
         <eReference href="http://disl#//Disl/head"/>
-        <value name="Head">
+        <value name="Head" container="//@sourceSectionModel/@metaModelSections.0">
           <eClass href="http://disl#//Head"/>
           <references xsi:type="metamodel:SourceSectionContainmentReference" name="">
             <eReference href="http://disl#//Head/meta"/>
-            <value name="MetaId" cardinality="ONE__INFINITY">
+            <value name="MetaId" cardinality="ONE__INFINITY" container="//@sourceSectionModel/@metaModelSections.0/@references.0/@value.0">
               <eClass href="http://disl#//Meta"/>
               <attributes name="content">
                 <attribute href="http://disl#//Meta/content"/>
@@ -20,7 +20,7 @@
                 <valueConstraint xsi:type="metamodel:EqualityMatcher" name="modell-ID" value="modell-ID"/>
               </attributes>
             </value>
-            <value name="MetaOther" cardinality="ZERO__INFINITY">
+            <value name="MetaOther" cardinality="ZERO__INFINITY" container="//@sourceSectionModel/@metaModelSections.0/@references.0/@value.0">
               <eClass href="http://disl#//Meta"/>
             </value>
           </references>
@@ -39,8 +39,8 @@
   </targetSectionModel>
   <mappingModel>
     <mapping name="RootMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.0">
-      <mappingHintGroups name="VisAppModelHintGroup" targetMMSection="//@targetSectionModel/@metaModelSections.0">
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="id2name" target="//@targetSectionModel/@metaModelSections.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.0/@attributes.0"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="VisAppModelHintGroup" targetMMSection="//@targetSectionModel/@metaModelSections.0">
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="metaModelId2visAppModelName" target="//@targetSectionModel/@metaModelSections.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.0/@attributes.0"/>
       </mappingHintGroups>
     </mapping>
   </mappingModel>

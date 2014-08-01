@@ -1,7 +1,10 @@
 package de.mfreund.pamtram.launching;
 
 import java.io.File;
+
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
@@ -9,6 +12,7 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.ui.AbstractLaunchConfigurationTab;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -25,7 +29,8 @@ import org.eclipse.ui.PlatformUI;
 public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
 	// the list of projects in the current workspace
-	final private IProject[] projects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
+	final private IProject[] projects = 
+			ResourcesPlugin.getWorkspace().getRoot().getProjects();
 
 	// combo boxes to select the project, the source file, the pamtram file and the
 	// target file
@@ -33,12 +38,15 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
 	@Override
 	public void createControl(Composite parent) {
+		
+		// a composite to host all other controls
 		Composite comp = new Composite(parent, SWT.NONE);
 		setControl(comp);
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(getControl(), getHelpContextId());
 		comp.setLayout(new GridLayout(2, true));
 		comp.setFont(parent.getFont());
 		
+		// a group to host all project related settings
 		Group projectGroup = new Group(comp, SWT.NONE);
 		projectGroup.setText("Project");
 		{
@@ -46,14 +54,9 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			gd.horizontalSpan = 2;
 			projectGroup.setLayoutData(gd);
 			
-			GridLayout gl = new GridLayout(2, false);
+			GridLayout gl = new GridLayout(1, false);
 			projectGroup.setLayout(gl);
 		}
-		
-		// create a label for the project selection
-		Label projectLabel = new Label(projectGroup, SWT.NONE);
-		projectLabel.setText("Project:");
-		projectLabel.setLayoutData(new GridData());
 		
 		// create drop-down list for the project selection
 		projectCombo = new Combo(projectGroup, SWT.DROP_DOWN | SWT.BORDER);
@@ -63,7 +66,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			projectCombo.setLayoutData(gd);
 		}
 		
-		// collect the projects in the workspace and populate them to the list
+		// populate the current projects in the workspace to the list
 		for(IProject project : projects) {
 			projectCombo.add(project.getLocation().toOSString());
 		}
@@ -73,11 +76,14 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			
 			@Override
 			public void modifyText(ModifyEvent e) {
+				
 				String projectPath = ((Combo)e.widget).getText();
+				
 				// reset the source and pamtram file combo
 				srcFileCombo.setItems(new String[]{});
 				pamtramFileCombo.setItems(new String[]{});
 				targetFileCombo.setItems(new String[]{});
+				
 				// check if a valid project has been selected
 				if(projectPath.equals("") || projectCombo.indexOf(projectPath) == -1) {
 					srcFileCombo.setEnabled(false);
@@ -85,6 +91,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 					targetFileCombo.setEnabled(false);
 					return;
 				}
+				
 				// update the source file combo
 				for(File f : new File(projectPath + Path.SEPARATOR + "Source").listFiles()) {
 					if(f.getName().endsWith(".xmi")) {
@@ -114,6 +121,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			}
 		});
 		
+		// a group to host all file related settings
 		Group fileGroup = new Group(comp, SWT.NONE);
 		fileGroup.setText("Files");
 		{
@@ -198,12 +206,13 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		ISelection sel = win.getSelectionService().getSelection(); 
 		
 		// nothing can be done if the user did not select anything
-		if(sel.isEmpty()) {
+		if(sel.isEmpty() || !(sel instanceof TreeSelection)) {
 			return;
 		}
 		
 		try {
-			GentransLaunchConfigInitializer.init(configuration, sel);
+			// initialize the launch configuration
+			initLaunchConfiguration(configuration, (TreeSelection) sel);
 		} catch (CoreException e) {
 			setErrorMessage(e.getMessage());
 		}
@@ -260,22 +269,100 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	}
 	
 	private boolean isProjectComboValid() {
+		// check if the selected project exists
 		return (new File(projectCombo.getText())).exists();
 	}
 	
+	// check if the selected source file is valid
 	private boolean isSrcFileComboValid() {
 		return (new File(projectCombo.getText() + Path.SEPARATOR + 
 							"Source" + Path.SEPARATOR + srcFileCombo.getText())).exists() && 
 						srcFileCombo.getText().endsWith(".xmi");
 	}
 	
+	// check if the selected pamtram file is valid
 	private boolean isPamtramFileComboValid() {
 		return (new File(projectCombo.getText() + Path.SEPARATOR + 
 							"Pamtram" + Path.SEPARATOR + pamtramFileCombo.getText())).exists()  && 
 						pamtramFileCombo.getText().endsWith(".pamtram");
 	}
 	
+	// check if the selected target file is valid
 	private boolean isTargetFileComboValid() {
 		return targetFileCombo.getText().endsWith(".xmi");
+	}
+	
+	/** Initializes the values of a launch configuration based on the current selection
+	 * 
+	 * @param workingCopy a launch configuration to be initialized
+	 * @param selection the current selection
+	 */
+	private void initLaunchConfiguration(ILaunchConfigurationWorkingCopy workingCopy, 
+			TreeSelection selection) throws CoreException {
+		
+		// the selected element
+		Object el = selection.getFirstElement();
+		
+		IProject project;
+		IFile srcFile = null, pamtramFile = null;
+		
+		// determine the project based on the selection
+		if(el instanceof IProject) {
+			project = (IProject) el; 
+		} else if(el instanceof IFile) {
+			project = ((IFile) el).getProject();
+			IFile file = (IFile) el;
+			// check if the file can be used as source file...
+			if(file.getName().endsWith(".xmi") && 
+					file.getParent().getName().equals("Source")) {
+				srcFile = file;
+			// ... or as pamtram file
+			} else if(file.getName().endsWith(".pamtram") &&
+					file.getParent().getName().equals("Pamtram")) {
+				pamtramFile = file;
+			}
+		} else {
+			return;
+		}
+		
+		// check if the project has the pamtram nature assigned
+		if(project.hasNature("de.mfreund.pamtram.pamtramNature")) {
+			// set the project attribute
+			workingCopy.setAttribute("project", 
+					project.getLocation().toOSString());
+			
+			// set the srcFile attribute
+			if(srcFile == null) {
+				for(IResource res : project.getFolder("Source").members()) {
+					// search for a suitable src file
+					if(res instanceof IFile && ((IFile) res).getName().endsWith(".xmi")) {
+						srcFile = (IFile) res;
+						workingCopy.setAttribute("srcFile", srcFile.getName());
+						break;
+					}
+				}
+			} else {
+				workingCopy.setAttribute("srcFile", srcFile.getName());
+			}
+			// set the pamtramFile attribute
+			if(pamtramFile == null) {
+				for(IResource res : project.getFolder("Pamtram").members()) {
+					// search for a suitable pamtram file
+					if(res instanceof IFile && ((IFile) res).getName().endsWith(".pamtram")) {
+						pamtramFile = (IFile) res;
+						workingCopy.setAttribute("pamtramFile", pamtramFile.getName());
+						break;
+					}
+				}
+			} else {
+				workingCopy.setAttribute("pamtramFile", pamtramFile.getName());
+			}
+			// set the targetFile attribute
+			workingCopy.setAttribute("targetFile", "out.xmi");
+			
+		} else {
+			return;
+		}
+			
 	}
 }

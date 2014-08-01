@@ -25,7 +25,7 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 
 		ILaunchManager launchManager = DebugPlugin.getDefault().getLaunchManager();
 		ILaunchConfigurationType type = launchManager
-				.getLaunchConfigurationType("de.mfreund.pamtram.launching.gentrans");
+				.getLaunchConfigurationType("de.mfreund.pamtram.launchConfigurationType.gentrans");
 		
 		// get the existing launch configurations for the current selection
 		ILaunchConfiguration[] launchConfigs =
@@ -110,7 +110,7 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 		    
 			ILaunchManager launchManager = DebugPlugin.getDefault().getLaunchManager();
 		    ILaunchConfigurationType type = launchManager
-		    		.getLaunchConfigurationType("de.mfreund.pamtram.launching.gentrans");
+		    		.getLaunchConfigurationType("de.mfreund.pamtram.launchConfigurationType.gentrans");
 
 		    // retrieve the launch configurations from the launch manager
 		    ILaunchConfiguration[] launchConfigurations = 

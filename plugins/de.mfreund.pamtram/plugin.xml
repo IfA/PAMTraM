@@ -104,27 +104,35 @@
    </extension>
    <extension point = "org.eclipse.debug.core.launchConfigurationTypes">
 	   <launchConfigurationType
-	   	   id="de.mfreund.pamtram.launching.gentrans"
+	   	   id="de.mfreund.pamtram.launchConfigurationType.gentrans"
 		   name="Launch GenTrans Transformation"
 		   delegate="de.mfreund.pamtram.launching.GentransLaunchingDelegate"
 		   modes= "run">
 	   </launchConfigurationType>
 	</extension>
+	<extension point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+    <launchConfigurationTypeImage
+        icon="icons/project.png"
+        configTypeID="de.mfreund.pamtram.launchConfigurationType.gentrans"
+        id="de.mfreund.pamtram.launchConfigurationTypeImage.gentrans">
+    </launchConfigurationTypeImage>
+</extension>
    <extension
          point="org.eclipse.debug.ui.launchConfigurationTabGroups">
       <launchConfigurationTabGroup
             class="de.mfreund.pamtram.launching.GentransLaunchConfigurationTabGroup"
             id="de.mfreund.pamtram.launching.GentransLaunchConfigurationTabGroup"
-            type="de.mfreund.pamtram.launching.gentrans">
+            type="de.mfreund.pamtram.launchConfigurationType.gentrans">
       </launchConfigurationTabGroup>
    </extension>
    <extension point="org.eclipse.debug.ui.launchShortcuts">
     <shortcut
-    label="GenTrans"
-    modes="run"
-    class="de.mfreund.pamtram.launching.GentransLaunchShortcut"
-    description="Launch a GenTrans transformation"
-    id="de.mfreund.pamtram.GentransLaunchShortcut">
+          class="de.mfreund.pamtram.launching.GentransLaunchShortcut"
+          description="Launch a GenTrans transformation"
+          icon="icons/project.png"
+          id="de.mfreund.pamtram.GentransLaunchShortcut"
+          label="GenTrans"
+          modes="run">
     <description
      description="Performs a GenTrans transformation"
      mode="run">
@@ -139,7 +147,7 @@
   </enablement>
   </contextualLaunch>
   <configurationType
-    id="de.mfreund.pamtram.launching.gentrans">
+    id="de.mfreund.pamtram.launchConfigurationType.gentrans">
   </configurationType>
   </shortcut>
 </extension>

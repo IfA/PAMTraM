@@ -1,20 +1,21 @@
 package de.mfreund.pamtram.launching;
 
 import java.util.ArrayList;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.DebugPlugin;
-import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationType;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.core.ILaunchManager;
+import org.eclipse.debug.ui.CommonTab;
 import org.eclipse.debug.ui.ILaunchShortcut2;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TreeSelection;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
 
 public class GentransLaunchShortcut implements ILaunchShortcut2 {
@@ -35,27 +36,46 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 			// if no launch config has been found, create a new one
 			try {
 				IResource res = getLaunchableResource(selection);
+				if(res == null) {
+					MessageDialog.openError(new Shell(), 
+							"Error", "No launchable resource found!");
+					return;
+				}
 				ILaunchConfigurationWorkingCopy workingCopy = 
 						type.newInstance(null, res.getName());
-				GentransLaunchConfigInitializer.init(workingCopy, selection);
-				configToLaunch = workingCopy;
+				
+				// set default for common settings
+				CommonTab tab = new CommonTab();
+				tab.setDefaults(workingCopy);
+				tab.dispose();
+				
+				// set default for gentrans main settings
+				GentransLaunchMainTab mainTab = new GentransLaunchMainTab();
+				mainTab.setDefaults(workingCopy);
+				mainTab.dispose();
+				
+				// save the working copy
+				configToLaunch = workingCopy.doSave();
+			
 			} catch (CoreException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				MessageDialog.openError(new Shell(), "Error", e.getMessage());
+				return;
 			}
 			    
 		} else {
+			// use the first available launch configuration
+			// TODO let the user choose
 			configToLaunch = launchConfigs[0];
 		}
 		
 		try {
-			if(configToLaunch != null) {
-				ILaunch launch = configToLaunch.launch(mode, null);				
-				launchManager.addLaunch(launch);
-			}
+
+			// launch the configuration
+			configToLaunch.launch(mode, null);
+			
 		} catch (CoreException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			MessageDialog.openError(new Shell(), "Error", e.getMessage());
+			return;
 		}
 		
 	}
@@ -65,9 +85,19 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 		return;
 	}
 
+	/**
+	 * Retrieve the existing launch configurations that are available for the
+	 * current selection.
+	 * 
+	 * @param selection the current selection
+	 * @return a list of launch configurations for the current selection
+	 */
 	@Override
 	public ILaunchConfiguration[] getLaunchConfigurations(ISelection selection) {
+		
 		IResource res = getLaunchableResource(selection);
+		// if no launchable project could be determined, return
+		// an empty list of launch configurations
 		if(res == null || !(res instanceof IProject)) {
 			return new ILaunchConfiguration[]{};
 		}
@@ -76,17 +106,20 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 		ArrayList<ILaunchConfiguration> launchConfigs = 
 				new ArrayList<ILaunchConfiguration>();
 		
-		// retrieve the launch configs from the launch manager
 		try {
-		    ILaunchManager launchManager = DebugPlugin.getDefault().getLaunchManager();
+		    
+			ILaunchManager launchManager = DebugPlugin.getDefault().getLaunchManager();
 		    ILaunchConfigurationType type = launchManager
 		    		.getLaunchConfigurationType("de.mfreund.pamtram.launching.gentrans");
+
+		    // retrieve the launch configurations from the launch manager
 		    ILaunchConfiguration[] launchConfigurations = 
 		    		launchManager.getLaunchConfigurations(type);
+		    
 		    for (ILaunchConfiguration launchConfiguration : launchConfigurations) {
-		    	String projectPath =
-		    			launchConfiguration.getAttribute("project", "");
-		    	if (projectPath.equals(project.getLocation().toOSString())) {
+		    	// the launch configuration is applicable if the project
+		    	// attribute matches the launchable resource
+		    	if (launchConfiguration.getAttribute("project", "").equals(project.getLocation().toOSString())) {
 		    		launchConfigs.add(launchConfiguration);
 		    	}
 		    }
@@ -94,12 +127,8 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 			e.printStackTrace();
 		}
 		
-		ILaunchConfiguration[] configArray = 
-				new ILaunchConfiguration[launchConfigs.size()];
-		for(int i=0; i<launchConfigs.size(); i++) {
-			configArray[i] = launchConfigs.get(i);
-		}
-		return configArray;
+		// return the matching launch configurations
+		return launchConfigs.toArray(new ILaunchConfiguration[launchConfigs.size()]);
 	}
 
 	@Override
@@ -111,10 +140,19 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 	public IResource getLaunchableResource(ISelection selection) {
 		
 		if(!selection.isEmpty() && selection instanceof TreeSelection) {
+			
+			// the selected object
 			Object el = ((TreeSelection) selection).getFirstElement();
+			
 			if(el instanceof IProject) {
+				
+				// if a project has been selected, return it
 				return (IProject) el;
+				
 			} else if(el instanceof IFile) {
+				
+				// if a source or pamtram file has been selected, determine
+				// the corresponding project and return it
 				IFile file = (IFile) el;
 				if(file.getName().endsWith(".xmi") && 
 						file.getParent().getName().equals("Source")) {
@@ -125,6 +163,8 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 				}
 			}
 		}
+		
+		// no launchable resource could be determined
 		return null;
 	}
 

@@ -19,3 +19,4 @@ Import-Package: de.mfreund.gentrans.transformation.selectors,
  org.eclipse.emf.ecore.xmi.impl
 Bundle-ClassPath: lib/exp4j-0.3.11.jar,
  .
+Export-Package: de.mfreund.gentrans.transformation

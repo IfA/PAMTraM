@@ -46,7 +46,12 @@ operation Any createMetaModelSection() : Pamtram!Class {
 	var eClass = self.eClass;
 	
 	// the class as the root element of the section
-	var class = Pamtram!Class.createInstance;
+	var class;
+	if(isSource == true) {
+		class = Pamtram!SourceSectionClass.createInstance;
+	} else {
+		class = Pamtram!TargetSectionClass.createInstance;
+	}
 	class.eClass = eClass;
 	class.name = eClass.name;
 	
@@ -66,11 +71,14 @@ operation Any createMetaModelSection() : Pamtram!Class {
 	// plunge deeper by evaluating the containment references
 	for(eContainment in eAllContainments) {
 		// create a 'containment reference' object
-		var containmentReference = Pamtram!ContainmentReference.createInstance;
+		var containmentReference;
+		if(isSource == true) {
+			containmentReference = Pamtram!SourceSectionContainmentReference.createInstance;
+		} else {
+			containmentReference = Pamtram!TargetSectionContainmentReference.createInstance; 
+		}
 		containmentReference.eReference = eContainment;
 		containmentReference.name = eContainment.name;
-		// 'variableCardinality' is set to 'false' by default
-		containmentReference.variableCardinality = false;
 		
 		// get the objects contained via the containment reference
 		for(eObject in self.eGet(eContainment)) {
@@ -103,11 +111,16 @@ operation Any createMetaModelSection() : Pamtram!Class {
 	for(eNonContainment in eAllNonContainments) {
 		
 		// create a 'non containment reference' object
-		var nonContainmentReference = Pamtram!NonContainmentReference.createInstance;
+		var nonContainmentReference;
+		if(isSource == true) {
+			nonContainmentReference = 
+				Pamtram!SourceSectionNonContainmentReference.createInstance;
+		} else {
+			nonContainmentReference = 
+				Pamtram!TargetSectionNonContainmentReference.createInstance;
+		}
 		nonContainmentReference.eReference = eNonContainment;
 		nonContainmentReference.name = eNonContainment.name;
-		// 'variableCardinality' is set to 'false' by default
-		nonContainmentReference.variableCardinality = false;
 		
 		// get the objects referenced by the non-containment reference
 		for(eObject in self.eGet(eNonContainment)) {
@@ -147,12 +160,27 @@ operation Pamtram!Class createAttributes(eObject : Any) {
 	
 	var eAttributes = eClass.eAllAttributes;
 	for(eAttribute in eAttributes) {
-		var attribute = Pamtram!Attribute.createInstance;
+		var attribute;
+		if(isSource == true) {
+			attribute = Pamtram!SourceSectionAttribute.createInstance;
+		} else {
+			attribute = Pamtram!ActualAttribute.createInstance;
+		}
 		attribute.attribute = eAttribute;
 		attribute.name = eAttribute.name;
 		var attributeValue = eObject.eGet(eAttribute);
 		if(attributeValue <> null) {
-			attribute.value = attributeValue.asString;
+			if(isSource == true) {
+				var attValConstraint = new Pamtram!EqualityMatcher;
+				attValConstraint.caseSensitive = true;
+				attValConstraint.name = eAttribute.name + "_Constraint";
+				attValConstraint.type = AttributeValueConstraintType#INCLUSION;
+				attValConstraint.value = attributeValue.asString;
+				attribute.valueConstraint.add(attValConstraint);
+			} else {
+				attribute.value = attributeValue.asString;
+			}
+			
 		}
 		self.attributes.add(attribute);
 	}

@@ -34,13 +34,16 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
+import org.eclipse.ui.dialogs.ContainerCheckedTreeViewer;
 
 import pamtram.MappingModel;
 import pamtram.condition.provider.ConditionItemProviderAdapterFactory;
 import pamtram.mapping.provider.MappingItemProviderAdapterFactory;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.ContainmentReference;
+import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.NonContainmentReference;
+import pamtram.metamodel.Reference;
 import pamtram.metamodel.provider.MetamodelItemProviderAdapterFactory;
 import pamtram.provider.PamtramItemProviderAdapterFactory;
 import pamtram.transformation.provider.TransformationItemProviderAdapterFactory;
@@ -62,7 +65,6 @@ public class PreviewPage extends WizardPage {
 		@Override
 		public void widgetSelected(SelectionEvent e) {
 			TreeItem item = (TreeItem) e.item;
-			//ClassTreeItem data = (ClassTreeItem) item.getData();
 			
 			List<Attribute> lines = new ArrayList<Attribute>();
 			
@@ -72,16 +74,13 @@ public class PreviewPage extends WizardPage {
 						((pamtram.metamodel.Class)item.getData()).getAttributesGeneric());
 			}
 			
-//			// populate the attribute view
-//			lines.addAll(data.getAttributes());
-				
 			propertiesViewer.setInput(lines);
 			
 			// set the 'checked' states of the attributes
 			for(Attribute att : lines) {
 				// the attribute has been shown before -> reuse last setting
-				if(attributesToInclude.containsKey(att)) {
-					propertiesViewer.setChecked(att, attributesToInclude.get(att));
+				if(!elementsToExclude.contains(att)) {
+					propertiesViewer.setChecked(att, true);
 				// the attribute has not been shown before -> calculate the setting by the value
 				} else {
 				//	attributesToInclude.put(att, !(att.getValue() == null)); TODO
@@ -110,12 +109,13 @@ public class PreviewPage extends WizardPage {
 	}
 
 	private Composite container;
-	private TreeViewer viewer;
+	private ContainerCheckedTreeViewer viewer;
 	private CheckboxTableViewer propertiesViewer;
 	private HashMap<pamtram.metamodel.Class, TreeItem> treeItems = 
 				new HashMap<pamtram.metamodel.Class, TreeItem>();
-	private HashMap<Attribute, Boolean> attributesToInclude = new HashMap<Attribute, Boolean>(); 
 	private WizardData wizardData;
+	private ArrayList<MetaModelElement> elementsToExclude = 
+			new ArrayList<MetaModelElement>();
 	
 	/**
 	 * This is the one adapter factory used for providing views of the model.
@@ -174,6 +174,9 @@ public class PreviewPage extends WizardPage {
 				/*for(TreeItem item : viewer.getTree().getItems()) {
 					populateTreeItemMap(item);					
 				}*/
+				for (pamtram.metamodel.Class clazz : wizardData.getCreatedEObjects()) {
+					viewer.setSubtreeChecked(clazz, true);
+				}
 				// collapse the tree (NOTE: 'collapseAll()' cannot be used as this disposes the tree items)  
 				viewer.setExpandedTreePaths(new TreePath[]{});
 				// only expand the root element and its direct children
@@ -254,7 +257,7 @@ public class PreviewPage extends WizardPage {
 		container.setLayout(gl);
 		
 		// the viewer field is an already configured TreeViewer
-		viewer = new TreeViewer(container, SWT.H_SCROLL | SWT.V_SCROLL);
+		viewer = new ContainerCheckedTreeViewer(container, SWT.H_SCROLL | SWT.V_SCROLL);
 		viewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory) {
 			/* handle the fact that an array of the created sections 
 			 * will be set as input
@@ -288,10 +291,28 @@ public class PreviewPage extends WizardPage {
 	    //viewer.setContentProvider(new ResultPageTreeViewerContentProvider());
 	    //viewer.setLabelProvider(new ResultPageTreeViewerLabelProvider(wizardData.getBundle()));
 	    
+		viewer.addCheckStateListener(new ICheckStateListener() {
+			@Override
+			// update the value in the hashmap
+			public void checkStateChanged(CheckStateChangedEvent event) {
+				if(event.getElement() instanceof MetaModelElement) {
+					MetaModelElement element = 
+							(MetaModelElement) event.getElement();
+					if(event.getChecked()) {
+						if(elementsToExclude.contains(element)) {
+							elementsToExclude.remove(element);
+						}
+					} else {
+						if(!elementsToExclude.contains(element)) {
+							elementsToExclude.add(element);
+						}
+					}
+				}
+			}
+		});
+		
 	    // the tree that the viewer operates on
 	    final Tree tree = (Tree) viewer.getControl();
-	    
-	    new AdapterFactoryTreeEditor(tree, adapterFactory);
 	    
 	    // add a selection listener that - if a non-containment reference is selected
 	    // jumps to the referenced item in the tree
@@ -318,7 +339,16 @@ public class PreviewPage extends WizardPage {
 			@Override
 			// update the value in the hashmap
 			public void checkStateChanged(CheckStateChangedEvent event) {
-				attributesToInclude.put((Attribute) event.getElement(), event.getChecked());
+				Attribute att = (Attribute) event.getElement();
+				if(event.getChecked()) {
+					if(elementsToExclude.contains(att)) {
+						elementsToExclude.remove(att);
+					}
+				} else {
+					if(!elementsToExclude.contains(att)) {
+						elementsToExclude.add(att);
+					}
+				}
 			}
 		});
 	    
@@ -368,7 +398,7 @@ public class PreviewPage extends WizardPage {
 	    return viewerColumn;
 	}
 	
-	public HashMap<Attribute, Boolean> getAttributesToInclude() {
-		return this.attributesToInclude;
+	public ArrayList<MetaModelElement> getElementsToExclude() {
+		return this.elementsToExclude;
 	}
 }

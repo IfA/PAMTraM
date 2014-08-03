@@ -6,7 +6,9 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.impl.EStructuralFeatureImpl.ContainmentUpdatingFeatureMapEntry;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.provider.FeatureMapEntryWrapperItemProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Shell;
@@ -16,6 +18,7 @@ import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
+
 import de.mfreund.pamtram.model.generator.GeneratorWizard;
 import de.mfreund.pamtram.model.generator.WizardData;
 
@@ -39,12 +42,29 @@ public class ExportMetaModelSectionHandler extends AbstractHandler {
 			throw new RuntimeException("Nothing seems to be selected!");
 		}
 		
-		if(!(selection.getFirstElement() instanceof EObject)) {
-			throw new RuntimeException("Selection is not of type \"DynamicEObjectImpl\"!");
+		if(!(selection.getFirstElement() instanceof EObject) && !(selection.getFirstElement() instanceof FeatureMapEntryWrapperItemProvider)) {
+			throw new RuntimeException("The selected element is of no supported type!");
 		}
 		
+		EObject eObject = null;
+		
 		// get the selected eObject (the root object of the metamodel section)
-		EObject eObject = (EObject) selection.getFirstElement();
+		// depending on the type of selection
+		if(selection.getFirstElement() instanceof EObject) {
+			eObject = (EObject) selection.getFirstElement();
+		} else {
+			FeatureMapEntryWrapperItemProvider provider = 
+					((FeatureMapEntryWrapperItemProvider) selection.getFirstElement());
+			if(!(provider.getValue() instanceof ContainmentUpdatingFeatureMapEntry)) {
+				throw new RuntimeException("The selected element is of no supported type!");
+			}
+			
+			Object object = ((ContainmentUpdatingFeatureMapEntry) provider.getValue()).getValue();
+			if(!(object instanceof EObject)) {
+				throw new RuntimeException("The selected element is of no supported type!");
+			}
+			eObject = (EObject) object;
+		}
 		
 		// get the package that the eObject belongs to
 		EPackage ePackage = (EPackage) EcoreUtil.getRootContainer(eObject.eClass());

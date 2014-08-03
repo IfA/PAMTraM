@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -17,12 +20,14 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.console.ConsolePlugin;
 import org.eclipse.ui.console.IConsole;
 import org.eclipse.ui.console.IConsoleManager;
 import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.console.MessageConsoleStream;
+import org.eclipse.ui.progress.UIJob;
 
 import pamtram.PAMTraM;
 import pamtram.mapping.AttributeMapping;
@@ -61,7 +66,9 @@ public class GenericTransformationRunner {
 		this.pamtramPath = pamtramPath;
 		this.targetFilePath=targetFilePath;
 		consoleStream=findConsole("de.mfreund.gentrans.transformation_" + this.hashCode()).newMessageStream();
-
+		
+		// brings the console view to the front
+		showConsole();
 	}
 	
 	/**
@@ -110,6 +117,29 @@ public class GenericTransformationRunner {
 		MessageConsole myConsole = new MessageConsole(consoleName, null);
 		conMan.addConsoles(new IConsole[] { myConsole });
 		return myConsole;
+	}
+	
+	/**
+	 * Brings the console view to the foreground. If the view is
+	 * closed, it will be opened.
+	 */
+	private void showConsole() {
+		// as the transformation runs in a non-UI thread, we have to use
+		// a UIJob to find the console viw
+		UIJob job = new UIJob("Show Console View") {
+			@Override
+			public IStatus runInUIThread(IProgressMonitor monitor) {
+				try {
+					PlatformUI.getWorkbench().getActiveWorkbenchWindow().
+						getActivePage().showView("org.eclipse.ui.console.ConsoleView");
+				} catch (PartInitException e) {
+					e.printStackTrace();
+					return Status.CANCEL_STATUS;
+				}
+				return Status.OK_STATUS;
+			}
+		};
+		job.schedule();
 	}
 
 

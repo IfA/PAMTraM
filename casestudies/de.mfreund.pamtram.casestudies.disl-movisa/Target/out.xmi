@@ -1,2 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<movisa:VisualizationApplicationModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:movisa="http://stefan-hennig.de/movisa" Name="Neues Benutzungsmodell_1"/>
+<movisa:VisualizationApplicationModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:algorithm="http://stefan-hennig.de/movisa/algorithm" xmlns:movisa="http://stefan-hennig.de/movisa" xmlns:presentation="http://stefan-hennig.de/movisa/presentation" Name="Neues Benutzungsmodell_1" Author="disl2movisa.pamtram">
+  <AlgorithmDomain Name="AlgorithmModel" Author="disl2movisa.pamtram" MovisaBuildVersion="rev0.6.2-2010-11-24" Version="1.0">
+    <OwnedElement xsi:type="algorithm:BooleanType" Name="Boolean"/>
+    <OwnedElement xsi:type="algorithm:StringType" Name="String"/>
+    <OwnedElement xsi:type="algorithm:IntegerType" Name="Integer"/>
+    <OwnedElement xsi:type="algorithm:SignalCollection" Name="UiComponents"/>
+    <OwnedElement xsi:type="algorithm:SignalCollection" Name="PanelTransitions"/>
+    <OwnedElement xsi:type="algorithm:SignalCollection" Name="NavigationFlowTriggers">
+      <Signal Name="Dialog_1->Dialog_2"/>
+      <Signal Name="Dialog_1->Dialog_14"/>
+      <Signal Name="Dialog_1->Dialog_15"/>
+      <Signal Name="Dialog_1->Dialog_19"/>
+      <Signal Name="Dialog_2->Dialog_3"/>
+      <Signal Name="Dialog_3->Dialog_4"/>
+      <Signal Name="Dialog_3->Dialog_8"/>
+      <Signal Name="Dialog_3->Dialog_9"/>
+      <Signal Name="Dialog_3->Dialog_13"/>
+      <Signal Name="Dialog_4->Dialog_5"/>
+      <Signal Name="Dialog_5->Dialog_6"/>
+      <Signal Name="Dialog_5->Dialog_7"/>
+      <Signal Name="Dialog_6->Ende"/>
+      <Signal Name="Dialog_7->Ende"/>
+      <Signal Name="Dialog_8->Dialog_5"/>
+      <Signal Name="Dialog_9->Dialog_10"/>
+      <Signal Name="Dialog_10->Dialog_11"/>
+      <Signal Name="Dialog_10->Dialog_12"/>
+      <Signal Name="Dialog_11->Ende"/>
+      <Signal Name="Dialog_12->Ende"/>
+      <Signal Name="Dialog_13->Dialog_10"/>
+      <Signal Name="Dialog_14->Dialog_3"/>
+      <Signal Name="Dialog_15->Dialog_16"/>
+      <Signal Name="Dialog_16->Dialog_17"/>
+      <Signal Name="Dialog_16->Dialog_18"/>
+      <Signal Name="Dialog_17->Dialog_10"/>
+      <Signal Name="Dialog_18->Dialog_10"/>
+      <Signal Name="Dialog_19->Dialog_16"/>
+    </OwnedElement>
+  </AlgorithmDomain>
+  <PresentationDomain Name="PresentationModel" Author="disl2movisa.pamtram" MovisaBuildVersion="rev0.6.2-2010-11-24" Version="1.0">
+    <OwnedColorDefinition>
+      <OwnedColorValue xsi:type="presentation:RGBColor" Name="Geld" Transparency="1" Blue="12" Green="12" Red="255"/>
+    </OwnedColorDefinition>
+    <OwnedMultiLingualTextDefinition>
+      <OwnedLanguageDefinition Name="German" LocaleId="de-DE"/>
+    </OwnedMultiLingualTextDefinition>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_1->Dialog_2" Source="//@PresentationDomain/@OwnedPanel.0"/>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_1->Dialog_14" Source="//@PresentationDomain/@OwnedPanel.0"/>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_1->Dialog_15" Source="//@PresentationDomain/@OwnedPanel.0"/>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_1->Dialog_19" Source="//@PresentationDomain/@OwnedPanel.0"/>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_2->Dialog_3" Source="//@PresentationDomain/@OwnedPanel.1"/>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_3->Dialog_4" Source="//@PresentationDomain/@OwnedPanel.2"/>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_3->Dialog_8" Source="//@PresentationDomain/@OwnedPanel.2"/>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_3->Dialog_9" Source="//@PresentationDomain/@OwnedPanel.2"/>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_3->Dialog_13" Source="//@PresentationDomain/@OwnedPanel.2"/>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_4->Dialog_5" Source="//@PresentationDomain/@OwnedPanel.3"/>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_5->Dialog_6" Source="//@PresentationDomain/@OwnedPanel.4"/>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_5->Dialog_7" Source="//@PresentationDomain/@OwnedPanel.4"/>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_6->Ende" Source="//@PresentationDomain/@OwnedPanel.5"/>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_7->Ende" Source="//@PresentationDomain/@OwnedPanel.6"/>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_8->Dialog_5" Source="//@PresentationDomain/@OwnedPanel.7"/>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_9->Dialog_10" Source="//@PresentationDomain/@OwnedPanel.8"/>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_10->Dialog_11" Source="//@PresentationDomain/@OwnedPanel.9"/>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_10->Dialog_12" Source="//@PresentationDomain/@OwnedPanel.9"/>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_11->Ende" Source="//@PresentationDomain/@OwnedPanel.10"/>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_12->Ende" Source="//@PresentationDomain/@OwnedPanel.11"/>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_13->Dialog_10" Source="//@PresentationDomain/@OwnedPanel.12"/>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_14->Dialog_3" Source="//@PresentationDomain/@OwnedPanel.13"/>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_15->Dialog_16" Source="//@PresentationDomain/@OwnedPanel.14"/>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_16->Dialog_17" Source="//@PresentationDomain/@OwnedPanel.15"/>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_16->Dialog_18" Source="//@PresentationDomain/@OwnedPanel.15"/>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_17->Dialog_10" Source="//@PresentationDomain/@OwnedPanel.16"/>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_18->Dialog_10" Source="//@PresentationDomain/@OwnedPanel.17"/>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_19->Dialog_16" Source="//@PresentationDomain/@OwnedPanel.18"/>
+    <OwnedPanel Name="Dialog_1"/>
+    <OwnedPanel Name="Dialog_2"/>
+    <OwnedPanel Name="Dialog_3"/>
+    <OwnedPanel Name="Dialog_4"/>
+    <OwnedPanel Name="Dialog_5"/>
+    <OwnedPanel Name="Dialog_6"/>
+    <OwnedPanel Name="Dialog_7"/>
+    <OwnedPanel Name="Dialog_8"/>
+    <OwnedPanel Name="Dialog_9"/>
+    <OwnedPanel Name="Dialog_10"/>
+    <OwnedPanel Name="Dialog_11"/>
+    <OwnedPanel Name="Dialog_12"/>
+    <OwnedPanel Name="Dialog_13"/>
+    <OwnedPanel Name="Dialog_14"/>
+    <OwnedPanel Name="Dialog_15"/>
+    <OwnedPanel Name="Dialog_16"/>
+    <OwnedPanel Name="Dialog_17"/>
+    <OwnedPanel Name="Dialog_18"/>
+    <OwnedPanel Name="Dialog_19"/>
+    <OwnedPanel Name="Ende"/>
+  </PresentationDomain>
+</movisa:VisualizationApplicationModel>

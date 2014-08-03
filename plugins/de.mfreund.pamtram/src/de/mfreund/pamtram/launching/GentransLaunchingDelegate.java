@@ -154,6 +154,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 	private Shell getShell() {
 		IWorkbench workbench = PlatformUI.getWorkbench(); 
 		IWorkbenchWindow window = workbench.getActiveWorkbenchWindow(); 
-		return window.getShell() != null ? window.getShell() : new Shell(); 
+		return (window != null && window.getShell() != null) 
+				? window.getShell() : new Shell(); 
 	}
 }

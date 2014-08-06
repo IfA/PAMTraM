@@ -166,6 +166,8 @@ public class MappingValidator extends EObjectValidator {
 				return validateMappedAttributeValuePrepender((MappedAttributeValuePrepender)value, diagnostics, context);
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_APPENDER:
 				return validateMappedAttributeValueAppender((MappedAttributeValueAppender)value, diagnostics, context);
+			case MappingPackage.GLOBAL_VARIABLE:
+				return validateGlobalVariable((GlobalVariable)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -757,6 +759,15 @@ public class MappingValidator extends EObjectValidator {
 	 */
 	public boolean validateMappedAttributeValueAppender(MappedAttributeValueAppender mappedAttributeValueAppender, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(mappedAttributeValueAppender, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateGlobalVariable(GlobalVariable globalVariable, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(globalVariable, diagnostics, context);
 	}
 
 	/**

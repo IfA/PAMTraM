@@ -83,6 +83,7 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.COMPLEX_MODEL_CONNECTION_HINT_SOURCE_ELEMENT: return createComplexModelConnectionHintSourceElement();
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_PREPENDER: return createMappedAttributeValuePrepender();
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_APPENDER: return createMappedAttributeValueAppender();
+			case MappingPackage.GLOBAL_VARIABLE: return createGlobalVariable();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -356,6 +357,16 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public MappedAttributeValueAppender createMappedAttributeValueAppender() {
 		MappedAttributeValueAppenderImpl mappedAttributeValueAppender = new MappedAttributeValueAppenderImpl();
 		return mappedAttributeValueAppender;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GlobalVariable createGlobalVariable() {
+		GlobalVariableImpl globalVariable = new GlobalVariableImpl();
+		return globalVariable;
 	}
 
 	/**

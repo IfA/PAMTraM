@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.condition.ComplexCondition;
+import pamtram.mapping.GlobalVariable;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
@@ -27,6 +28,7 @@ import pamtram.mapping.MappingPackage;
  *   <li>{@link pamtram.mapping.impl.MappingImpl#getCondition <em>Condition</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingImpl#getMappingHintGroups <em>Mapping Hint Groups</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingImpl#getImportedMappingHintGroups <em>Imported Mapping Hint Groups</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.MappingImpl#getGlobalVariables <em>Global Variables</em>}</li>
  * </ul>
  * </p>
  *
@@ -62,6 +64,16 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 * @ordered
 	 */
 	protected EList<MappingHintGroupImporter> importedMappingHintGroups;
+
+	/**
+	 * The cached value of the '{@link #getGlobalVariables() <em>Global Variables</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGlobalVariables()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<GlobalVariable> globalVariables;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -154,6 +166,18 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<GlobalVariable> getGlobalVariables() {
+		if (globalVariables == null) {
+			globalVariables = new EObjectContainmentEList<GlobalVariable>(GlobalVariable.class, this, MappingPackage.MAPPING__GLOBAL_VARIABLES);
+		}
+		return globalVariables;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -163,6 +187,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 				return ((InternalEList<?>)getMappingHintGroups()).basicRemove(otherEnd, msgs);
 			case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
 				return ((InternalEList<?>)getImportedMappingHintGroups()).basicRemove(otherEnd, msgs);
+			case MappingPackage.MAPPING__GLOBAL_VARIABLES:
+				return ((InternalEList<?>)getGlobalVariables()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -181,6 +207,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 				return getMappingHintGroups();
 			case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
 				return getImportedMappingHintGroups();
+			case MappingPackage.MAPPING__GLOBAL_VARIABLES:
+				return getGlobalVariables();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -205,6 +233,10 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 				getImportedMappingHintGroups().clear();
 				getImportedMappingHintGroups().addAll((Collection<? extends MappingHintGroupImporter>)newValue);
 				return;
+			case MappingPackage.MAPPING__GLOBAL_VARIABLES:
+				getGlobalVariables().clear();
+				getGlobalVariables().addAll((Collection<? extends GlobalVariable>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -226,6 +258,9 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 			case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
 				getImportedMappingHintGroups().clear();
 				return;
+			case MappingPackage.MAPPING__GLOBAL_VARIABLES:
+				getGlobalVariables().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -244,6 +279,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 				return mappingHintGroups != null && !mappingHintGroups.isEmpty();
 			case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
 				return importedMappingHintGroups != null && !importedMappingHintGroups.isEmpty();
+			case MappingPackage.MAPPING__GLOBAL_VARIABLES:
+				return globalVariables != null && !globalVariables.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

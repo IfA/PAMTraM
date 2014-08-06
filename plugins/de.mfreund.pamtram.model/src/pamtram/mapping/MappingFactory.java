@@ -265,6 +265,15 @@ public interface MappingFactory extends EFactory {
 	MappedAttributeValueAppender createMappedAttributeValueAppender();
 
 	/**
+	 * Returns a new object of class '<em>Global Variable</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Global Variable</em>'.
+	 * @generated
+	 */
+	GlobalVariable createGlobalVariable();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

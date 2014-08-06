@@ -14,7 +14,7 @@
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_k7kNKhV2EeSncozrV-t8KA" fontColor="4210752" fontName="DejaVu Sans" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
     <element xmi:type="ecore:EClass" href="pamtram.ecore#//mapping/MappingHint"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_k7kNKxV2EeSncozrV-t8KA" x="145" y="655"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_k7kNKxV2EeSncozrV-t8KA" x="610" y="160"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_k7ulMBV2EeSncozrV-t8KA" type="1001">
     <children xmi:type="notation:Node" xmi:id="_k7vMQBV2EeSncozrV-t8KA" type="4001"/>
@@ -30,7 +30,7 @@
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_k7ulMRV2EeSncozrV-t8KA" fontColor="4210752" fontName="DejaVu Sans" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
     <element xmi:type="ecore:EClass" href="pamtram.ecore#//mapping/MappingHintGroup"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_k7ulMhV2EeSncozrV-t8KA" x="75" y="215"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_k7ulMhV2EeSncozrV-t8KA" x="1035" y="380"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_k7vzVBV2EeSncozrV-t8KA" type="1001">
     <children xmi:type="notation:Node" xmi:id="_k7vzVxV2EeSncozrV-t8KA" type="4001"/>
@@ -46,7 +46,7 @@
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_k7vzVRV2EeSncozrV-t8KA" fontColor="4210752" fontName="DejaVu Sans" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
     <element xmi:type="ecore:EClass" href="pamtram.ecore#//mapping/MappingHintGroupType"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_k7vzVhV2EeSncozrV-t8KA" x="200" y="125"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_k7vzVhV2EeSncozrV-t8KA" x="575" y="275"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_k7waaBV2EeSncozrV-t8KA" type="1001">
     <children xmi:type="notation:Node" xmi:id="_k7waaxV2EeSncozrV-t8KA" type="4001"/>
@@ -80,7 +80,7 @@
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_k7xBeRV2EeSncozrV-t8KA" fontColor="4210752" fontName="DejaVu Sans" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
     <element xmi:type="ecore:EClass" href="pamtram.ecore#//mapping/MappingHintGroupImporter"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_k7xBehV2EeSncozrV-t8KA" x="140" y="545"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_k7xBehV2EeSncozrV-t8KA" x="520" y="480"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_k7_q8BV2EeSncozrV-t8KA" type="1003">
     <children xmi:type="notation:Node" xmi:id="_k8ASABV2EeSncozrV-t8KA" type="4007"/>
@@ -103,7 +103,7 @@
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_k7_q8RV2EeSncozrV-t8KA" fontColor="4210752" fontName="DejaVu Sans" fontHeight="10" fillColor="14668776" lineColor="4210752"/>
     <element xmi:type="ecore:EAnnotation" href="pamtram.ecore#//mapping/%http:%2F%2Fwww.eclipse.org%2Femf%2F2002%2FEcore%"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_k7_q8hV2EeSncozrV-t8KA" x="1370" y="755"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_k7_q8hV2EeSncozrV-t8KA" x="30" y="30"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_60bW0BV2EeSncozrV-t8KA" type="1001">
     <children xmi:type="notation:Node" xmi:id="_60ck8BV2EeSncozrV-t8KA" type="4001"/>
@@ -138,7 +138,7 @@
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_EXAgURV3EeSncozrV-t8KA" fontColor="4210752" fontName="DejaVu Sans" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
     <element xmi:type="ecore:EClass" href="pamtram.ecore#//metamodel/TargetSectionClass"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_EXAgUhV3EeSncozrV-t8KA" x="875" y="715"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_EXAgUhV3EeSncozrV-t8KA" x="180" y="160"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_EXCVghV3EeSncozrV-t8KA" type="1001">
     <children xmi:type="notation:Node" xmi:id="_EXCVhRV3EeSncozrV-t8KA" type="4001"/>
@@ -154,7 +154,7 @@
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_EXCVgxV3EeSncozrV-t8KA" fontColor="4210752" fontName="DejaVu Sans" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
     <element xmi:type="ecore:EClass" href="pamtram.ecore#//mapping/ExportedMappingHintGroup"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_EXCVhBV3EeSncozrV-t8KA" x="290" y="215"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_EXCVhBV3EeSncozrV-t8KA" x="565" y="380"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_WCg4wBV3EeSncozrV-t8KA" type="1001">
     <children xmi:type="notation:Node" xmi:id="_WChf0BV3EeSncozrV-t8KA" type="4001"/>
@@ -170,7 +170,7 @@
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_WCg4wRV3EeSncozrV-t8KA" fontColor="4210752" fontName="DejaVu Sans" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
     <element xmi:type="ecore:EClass" href="pamtram.ecore#//mapping/Mapping"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCg4whV3EeSncozrV-t8KA" x="30" y="40"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WCg4whV3EeSncozrV-t8KA" x="830" y="580"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_uWtTABZUEeSH3NHR1ftsvw" type="1001">
     <children xmi:type="notation:Node" xmi:id="_uWt6EBZUEeSH3NHR1ftsvw" type="4001"/>
@@ -188,7 +188,7 @@
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_uWtTARZUEeSH3NHR1ftsvw" fontColor="4210752" fontName="DejaVu Sans" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
     <element xmi:type="ecore:EClass" href="pamtram.ecore#//mapping/MappingHintType"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uWtTAhZUEeSH3NHR1ftsvw" x="80" y="755"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uWtTAhZUEeSH3NHR1ftsvw" x="595" y="30"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_9uq7gBZUEeSH3NHR1ftsvw" type="1001">
     <children xmi:type="notation:Node" xmi:id="_9urikBZUEeSH3NHR1ftsvw" type="4001"/>
@@ -258,7 +258,7 @@
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_fXNYYRZVEeSH3NHR1ftsvw" fontColor="4210752" fontName="DejaVu Sans" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
     <element xmi:type="ecore:EClass" href="pamtram.ecore#//metamodel/TargetSectionAttribute"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_fXNYYhZVEeSH3NHR1ftsvw" x="1130" y="30"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_fXNYYhZVEeSH3NHR1ftsvw" x="365" y="30"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_sKp1sBZVEeSH3NHR1ftsvw" type="1001">
     <children xmi:type="notation:Node" xmi:id="_sKqcwBZVEeSH3NHR1ftsvw" type="4001"/>
@@ -470,9 +470,9 @@
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_fXeeIRZVEeSH3NHR1ftsvw" lineColor="4210752"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_fXeeIhZVEeSH3NHR1ftsvw" fontColor="4210752" fontName="DejaVu Sans" fontHeight="10"/>
     <element xmi:type="ecore:EReference" href="pamtram.ecore#//metamodel/TargetSectionAttribute/owningClass"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_fXeeIxZVEeSH3NHR1ftsvw" points="[0, 0, 181, -72]$[-181, 72, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_01O2gByzEeSIM9XHA84dnA" id="(0.25,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_01O2gRyzEeSIM9XHA84dnA" id="(0.33098591549295775,0.0)"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_fXeeIxZVEeSH3NHR1ftsvw" points="[0, 0, 176, -72]$[-176, 72, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_97H9wB2UEeSFZfEUrrq_cA" id="(0.5,1.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_97H9wR2UEeSFZfEUrrq_cA" id="(0.6619718309859155,0.0)"/>
   </edges>
   <edges xmi:type="notation:Edge" xmi:id="_fXfFMBZVEeSH3NHR1ftsvw" type="3002" source="_EXAgUBV3EeSncozrV-t8KA" target="_fXNYYBZVEeSH3NHR1ftsvw">
     <children xmi:type="notation:Node" xmi:id="_fXfsQBZVEeSH3NHR1ftsvw" type="4011">
@@ -484,9 +484,9 @@
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_fXfFMRZVEeSH3NHR1ftsvw" lineColor="4210752"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_fXfFMhZVEeSH3NHR1ftsvw" fontColor="4210752" fontName="DejaVu Sans" fontHeight="10"/>
     <element xmi:type="ecore:EReference" href="pamtram.ecore#//metamodel/TargetSectionClass/attributes"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_fXfFMxZVEeSH3NHR1ftsvw" points="[0, 0, -181, 72]$[181, -72, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_01R50ByzEeSIM9XHA84dnA" id="(0.33098591549295775,0.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_01R50RyzEeSIM9XHA84dnA" id="(0.25,1.0)"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_fXfFMxZVEeSH3NHR1ftsvw" points="[0, 0, -176, 72]$[176, -72, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_97E6ch2UEeSFZfEUrrq_cA" id="(0.6619718309859155,0.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_97E6cx2UEeSFZfEUrrq_cA" id="(0.5,1.0)"/>
   </edges>
   <edges xmi:type="notation:Edge" xmi:id="_hgnU4BZVEeSH3NHR1ftsvw" type="3002" source="_G5H44BZVEeSH3NHR1ftsvw" target="_fXNYYBZVEeSH3NHR1ftsvw">
     <children xmi:type="notation:Node" xmi:id="_hgnU5BZVEeSH3NHR1ftsvw" type="4011">

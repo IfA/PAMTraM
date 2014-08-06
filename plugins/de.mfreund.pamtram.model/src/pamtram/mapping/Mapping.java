@@ -17,6 +17,7 @@ import pamtram.condition.ComplexCondition;
  *   <li>{@link pamtram.mapping.Mapping#getCondition <em>Condition</em>}</li>
  *   <li>{@link pamtram.mapping.Mapping#getMappingHintGroups <em>Mapping Hint Groups</em>}</li>
  *   <li>{@link pamtram.mapping.Mapping#getImportedMappingHintGroups <em>Imported Mapping Hint Groups</em>}</li>
+ *   <li>{@link pamtram.mapping.Mapping#getGlobalVariables <em>Global Variables</em>}</li>
  * </ul>
  * </p>
  *
@@ -82,5 +83,21 @@ public interface Mapping extends MappingType {
 	 * @generated
 	 */
 	EList<MappingHintGroupImporter> getImportedMappingHintGroups();
+
+	/**
+	 * Returns the value of the '<em><b>Global Variables</b></em>' containment reference list.
+	 * The list contents are of type {@link pamtram.mapping.GlobalVariable}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Global Variables</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Global Variables</em>' containment reference list.
+	 * @see pamtram.mapping.MappingPackage#getMapping_GlobalVariables()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<GlobalVariable> getGlobalVariables();
 
 } // Mapping

@@ -1,5 +1,6 @@
 package de.mfreund.gentrans.transformation;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -23,6 +24,7 @@ import pamtram.mapping.ComplexAttributeMatcherSourceElement;
 import pamtram.mapping.ComplexModelConnectionHint;
 import pamtram.mapping.ComplexModelConnectionHintSourceElement;
 import pamtram.mapping.ExpressionVariable;
+import pamtram.mapping.GlobalVariable;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
@@ -100,6 +102,20 @@ class SourceSectionMapper {
 	private boolean transformationAborted;
 	
 	/**
+	 * Registry for values of global Variables
+	 * Only the newest value found is saved (GlobalVariables really only make sense for elements that appear only once)
+	 */
+	private Map<GlobalVariable,String> globalVarValues;
+	
+	/**
+	 * Getter for Registry for values of global Variables
+	 * @return Registry for values of global Variables
+	 */
+	public Map<GlobalVariable, String> getGlobalVarValues() {
+		return globalVarValues;
+	}
+
+	/**
 	 * @return true when user action was triggered to abort the transformation
 	 */
 	public boolean isTransformationAborted() {
@@ -118,6 +134,7 @@ class SourceSectionMapper {
 		deepestCalcAttrMappingSrcElementsByCalcMapping = new LinkedHashMap<CalculatorMapping,SourceSectionClass>();
 		deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher= new LinkedHashMap<ComplexAttributeMatcher, SourceSectionClass>();
 		deepestComplexConnectionHintSrcElementsByComplexConnectionHint= new LinkedHashMap<ComplexModelConnectionHint, SourceSectionClass>();
+		globalVarValues=new HashMap<GlobalVariable,String>();
 		this.mappingsToChooseFrom=mappingsToChooseFrom;
 		this.consoleStream=consoleStream;
 		this.transformationAborted=false;
@@ -354,6 +371,7 @@ class SourceSectionMapper {
 			EObject srcModelObject, boolean usedOkay,
 			Iterable<MappingHintType> hints,
 			Iterable<ModelConnectionHint> connectionHints,
+			Iterable<GlobalVariable> globalVars,
 			SourceSectionClass srcSection,
 			MappingInstanceStorage newRefsAndHints,
 			LinkedHashMap<SourceSectionClass, EObject> srcInstanceMap) {
@@ -406,6 +424,7 @@ class SourceSectionMapper {
 			}
 
 		}
+		
 		
 		for (ModelConnectionHint hint : connectionHints) {
 			changedRefsAndHints.setConnectionHintValueList(hint, new LinkedList<Object>());				
@@ -544,6 +563,13 @@ class SourceSectionMapper {
 						}
 					}
 				}
+				
+				for(GlobalVariable gVar : globalVars){
+					if(gVar.getSource().equals(at)){
+						String modifiedVal=AttributeValueRegistry.applyAttributeValueModifiers(srcAttrAsString, gVar.getModifier());
+						globalVarValues.put(gVar, modifiedVal);
+					}
+				}
 
 			} else {// attribute not set / null
 				consoleStream.println("Unset attribute");//TODO we probably don't want any output here
@@ -661,7 +687,7 @@ class SourceSectionMapper {
 						refTargetObj,
 						(reference instanceof NonContainmentReference) || usedOkay
 						, hints,
-						connectionHints, reference.getValuesGeneric().get(0),
+						connectionHints,globalVars ,reference.getValuesGeneric().get(0),
 						changedRefsAndHints, srcInstanceMap);
 				if(transformationAborted){
 					return null;
@@ -730,7 +756,7 @@ class SourceSectionMapper {
 						MappingInstanceStorage res = findMappingIterate(
 								rt,
 								(reference instanceof NonContainmentReference) || usedOkay,
-								hints, connectionHints, val,
+								hints, connectionHints, globalVars, val,
 								changedRefsAndHints, srcInstanceMap);
 						if(transformationAborted){
 							return null;
@@ -993,7 +1019,7 @@ class SourceSectionMapper {
 				if(doContainerCheck(element,m.getSourceMMSection()) ){
 					//("====== " + m.name + " ======").println;					
 					
-					res= findMappingIterate(element, false, getHints(m), getModelConnectionHints(m),
+					res= findMappingIterate(element, false, getHints(m), getModelConnectionHints(m), m.getGlobalVariables(),
 							m.getSourceMMSection(),
 							new MappingInstanceStorage(),
 							new LinkedHashMap<SourceSectionClass, EObject>());

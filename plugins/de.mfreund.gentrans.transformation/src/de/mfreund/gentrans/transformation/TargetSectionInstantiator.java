@@ -24,6 +24,7 @@ import pamtram.mapping.CalculatorMapping;
 import pamtram.mapping.ClassMatcher;
 import pamtram.mapping.ComplexAttributeMapping;
 import pamtram.mapping.ComplexAttributeMatcher;
+import pamtram.mapping.GlobalVariable;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
@@ -38,6 +39,7 @@ import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionContainmentReference;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 import pamtram.metamodel.TargetSectionReference;
+import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
 import de.congrace.exp4j.InvalidCustomFunctionException;
 import de.mfreund.gentrans.transformation.selectors.ItemSelectorDialogRunner;
@@ -76,22 +78,48 @@ class TargetSectionInstantiator {
 	public boolean isTransformationAborted() {
 		return transformationAborted;
 	}	
+	/**
+	 * Registry for values of global Variables that can be mapped to double
+	 */
+	private Map<String,Double> globalVarValueDoubles;
 
 	/**
 	 * @param targetSectionRegistry target section registry used when instantiating classes
 	 * @param attributeValueRegistry used when setting attribute values
 	 * @param consoleStream used to write console output
 	 */
-	TargetSectionInstantiator(TargetSectionRegistry targetSectionRegistry , AttributeValueRegistry attributeValueRegistry, MessageConsoleStream consoleStream) {
+	TargetSectionInstantiator(TargetSectionRegistry targetSectionRegistry , 
+			AttributeValueRegistry attributeValueRegistry, 
+			MessageConsoleStream consoleStream) {
 		this.targetSectionRegistry=targetSectionRegistry;
 		this.attributeValueRegistry=attributeValueRegistry;
 		this.consoleStream=consoleStream;
 		this.transformationAborted=false;
-		
+				
 		try{
 			round=new RoundFunction();
 		}catch(InvalidCustomFunctionException e){
 			consoleStream.println("This will never happen.");
+		}
+	}
+
+
+	/**
+	 * Fills the GlobalVarValues map
+	 * @param globalVarValues
+	 */
+	void fillGlobalVarValues(Map<GlobalVariable, String> globalVarValues) {
+		//find GlobalVars that can be mapped to double
+		globalVarValueDoubles=new HashMap<String,Double>();
+		for(GlobalVariable g : globalVarValues.keySet()){
+			try{
+				Calculable calc=new ExpressionBuilder(globalVarValues.get(g)).build();
+				double variableVal= calc.calculate();//parseDouble doesn't support Scientific notation, like: 0.42e2 == 4200e-2 == 42, 
+				globalVarValueDoubles.put(g.getName(), new Double(variableVal));
+			} catch(Exception e){
+				consoleStream.println(e.getMessage());
+			}
+			
 		}
 	}
 	
@@ -289,8 +317,15 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 						if(attrHintValues != null) {
 							if(hintFound instanceof CalculatorMapping){
 								try{
+									Map<String,Double>vars=new HashMap<String,Double>();
+									vars.putAll(globalVarValueDoubles);
+									/*
+									 * Names of local (ClacMapping) variables will overwrite names of global variables
+									 */
+									vars.putAll((Map<String,Double>)attrHintValues.remove(0));
+									
 									attrValue = String.valueOf(new ExpressionBuilder(((CalculatorMapping) hintFound).getExpression()).withCustomFunction(round)
-											.withVariables((Map<String,Double>)attrHintValues.remove(0)).build().calculate());									
+											.withVariables(vars).build().calculate());									
 								} catch(Exception e){//TODO this will lead to a lot of error output if it fails
 									consoleStream.println("Error parsing the expression of CalculatorMapping" + hintFound.getName() + ". Message:\n"
 											+ e.getMessage());

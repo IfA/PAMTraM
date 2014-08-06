@@ -203,7 +203,7 @@ public class GenericTransformationRunner {
 		TargetSectionConnector connectionHelpers = new TargetSectionConnector(
 				attrValueRegistry, targetSectionRegistry, targetModel, consoleStream);
 		TargetSectionInstantiator targetSectionInstantiator = new TargetSectionInstantiator(
-				targetSectionRegistry, attrValueRegistry, consoleStream);
+				targetSectionRegistry, attrValueRegistry,consoleStream);
 
 		/*
 		 * create a list of all the containment references in the source model
@@ -293,7 +293,10 @@ public class GenericTransformationRunner {
 		/*
 		 * Instantiate all Target-Sections (containment refs and attributes)
 		 */
+		writePamtramMessage("Parsing GlobalVariables for numbers...");
+		targetSectionInstantiator.fillGlobalVarValues(sourceSectionMapper.getGlobalVarValues());
 		writePamtramMessage("Instantiating targetModelSections for selected mappings. First pass...");
+		
 		for (MappingInstanceStorage selMap : selectedMappings) {
 			for (MappingHintGroupType g : selMap.getMapping().getMappingHintGroups()) {
 				if (g.getTargetMMSection() != null && g instanceof MappingHintGroup) {

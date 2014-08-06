@@ -431,7 +431,7 @@ class TargetSectionConnector {
 								.println("Instances of the targetSection '"
 										+ section.getName()
 										+ "'specify a container section (either the target section itself or a MappingHintImporter)."
-										+ "Unfortunately no instances of the specified container were created. Therefore the sections will not be linked to the target model.");
+										+ " Unfortunately no instances of the specified container were created. Therefore the sections will not be linked to the target model.");
 						addToTargetModelRoot(rootInstances);
 						return;
 					}
@@ -652,25 +652,9 @@ class TargetSectionConnector {
 					refStartInstance.eSet(ref, instancesAtEnd.get(0).getEObject());
 				}
 			} else if (ref.getUpperBound() < 0) {
-				LinkedList<EObject> newTarget = new LinkedList<EObject>();// it
-																			// is
-																			// absolutely
-																			// neccessary
-																			// to
-																			// copy
-																			// targetInst,
-																			// since
-																			// targetInst
-																			// will
-																			// be
-																			// cleared
-																			// by
-																			// eSet
-																			// before
-																			// new
-																			// elements
-																			// are
-																			// added
+				LinkedList<EObject> newTarget = new LinkedList<EObject>();// it is absolutely  neccessary  to  copy
+																			// targetInst,  since  targetInst  will  be  cleared  
+																			//by eSet before new elements are added
 				if (targetInst != null) {
 					newTarget.addAll((EList<EObject>) targetInst);
 				}

@@ -183,6 +183,7 @@ class TargetSectionInstantiator {
  * @param conHintValues
  * @param instBySection
  * @param mappingName
+ * @param sectionAttributeValues
  * @return
  */
 @SuppressWarnings("unchecked")//TODO ModelConnectionHint
@@ -473,31 +474,18 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 					for (MappingHint h : hints) {
 						if (h instanceof MappingInstanceSelector) {
 							MappingInstanceSelector hSel = (MappingInstanceSelector) h;
-							if (hSel.getAffectedReference().equals(ref)) {// hint
-																			// for
-																			// current
-																			// ref
-																			// found
-								if (hSel.getMatcher() instanceof AttributeMatcher) {// handle
-																					// hint
-																					// according
-																					// to
-																					// matcher
-									AttributeMatcher matcher = (AttributeMatcher) hSel
-											.getMatcher();
+							if (hSel.getAffectedReference().equals(ref)) {// hint for current ref found
+								if (hSel.getMatcher() instanceof AttributeMatcher) {// handle hint according to matcher
+									AttributeMatcher matcher = (AttributeMatcher) hSel.getMatcher();
 									hintFound = true;
 									// now search for target attributes
 									LinkedList<EObjectTransformationHelper> targetInstances = targetSectionRegistry
-											.getFlattenedPamtramClassInstances(matcher
-													.getTargetAttribute()
-													.getOwningClass());
+											.getFlattenedPamtramClassInstances(matcher.getTargetAttribute().getOwningClass());
 
 									// instances are sorted in the same order as
 									// hintValues
 									LinkedList<EObjectTransformationHelper> instancesToConsider = new LinkedList<EObjectTransformationHelper>();
-									instancesToConsider
-											.addAll(instancesBySection
-													.get(targetSectionClass));
+									instancesToConsider.addAll(instancesBySection.get(targetSectionClass));
 									/*
 									 * Sizes of instances and attributeHints
 									 * must either match, or, in case there was
@@ -506,14 +494,11 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 									 */
 									LinkedList<Object> newHintValues = new LinkedList<Object>();
 									if (hintValues.get(h).size() == 1) {
-										Object hintVal = (Object) hintValues.get(h)
-												.getFirst();
-										for (int i = 0; i < instancesToConsider
-												.size(); i++) {
+										Object hintVal = (Object) hintValues.get(h).getFirst();
+										for (int i = 0; i < instancesToConsider.size(); i++) {
 											newHintValues.add(hintVal);
 										}
-									} else if (instancesToConsider.size() == hintValues
-											.get(h).size()) {
+									} else if (instancesToConsider.size() == hintValues.get(h).size()) {
 										newHintValues = hintValues.get(h);
 										// newHintValues.addAll(hintValues.get(h));
 									} else {
@@ -544,26 +529,16 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 												}
 											}
 										}
-										EObjectTransformationHelper srcInst = instancesToConsider
-												.remove(0);
-										LinkedHashMap<String, EObjectTransformationHelper> fittingVals = new LinkedHashMap<String, EObjectTransformationHelper>();// TODO
-																												// select
-																												// between
-																												// fittingVals,
+										EObjectTransformationHelper srcInst = instancesToConsider.remove(0);
+										LinkedHashMap<String, EObjectTransformationHelper> fittingVals = new LinkedHashMap<String, EObjectTransformationHelper>();
 										for (EObjectTransformationHelper targetInst : targetInstances) {
 											// get Attribute value
 												// TODO check limited capacity
-												// TODO check type of referenced
-												// object
+												// TODO check type of referenced object
 												String targetValStr=targetInst.getAttributeValue(matcher.getTargetAttribute());
 												if (targetValStr != null) {
-													if (targetValStr
-															.equals(attrValStr)) {
-														// consoleStream.println("found "
-														// + targetVal + " "
-														// + attrVal);
+													if (targetValStr.equals(attrValStr)) {
 														fittingVals.put(targetInst.toString(),targetInst);
-	
 													}
 												} else {
 													consoleStream.println("Problemo?");
@@ -571,15 +546,8 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 										}
 										// select targetInst
 										if (fittingVals.keySet().size() == 1) {
-											setReference(ref,
-													fittingVals.values()
-															.iterator().next().getEObject(),
-													srcInst.getEObject());
-										} else if (fittingVals.keySet().size() > 1) {// let
-																						// user
-																						// decide
-											// TODO
-											
+											setReference(ref,fittingVals.values().iterator().next().getEObject(),srcInst.getEObject());
+										} else if (fittingVals.keySet().size() > 1) {// let user decide											
 											  ItemSelectorDialogRunner dialog=new  ItemSelectorDialogRunner(
 											  "The MappingInstanceSelector '" +
 											  h.getName() +
@@ -588,10 +556,9 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 											  "Please choose to which element the Reference '"
 											  + ref.getName() +
 											  "' of the following element should point to:\n\n"
-											 + srcInst.toString(),
-											  fittingVals.keySet(),
-											 fittingVals.keySet().iterator().next());
-												Display.getDefault().syncExec(dialog);
+											 + srcInst.toString(),fittingVals.keySet(), fittingVals.keySet().iterator().next());
+											 Display.getDefault().syncExec(dialog);
+											 
 											  if(dialog.wasTransformationStopRequested()){
 												  this.transformationAborted=true;
 												  return;
@@ -607,12 +574,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 									
 								} else if (hSel.getMatcher() instanceof ClassMatcher) {
 									hintFound=true;
-									if (((ClassMatcher) hSel.getMatcher())
-											.getTargetClass() != null) {// was
-																		// the
-																		// matcher
-																		// modeled
-																		// correctly?
+									if (((ClassMatcher) hSel.getMatcher()).getTargetClass() != null) {// was the matcher modeled correctly?
 										if (refValueClone.contains(((ClassMatcher) hSel.getMatcher()).getTargetClass())) {
 											// select any of the targetInstances available for the reference target
 											LinkedList<EObjectTransformationHelper> instancesToConsider = instancesBySection
@@ -670,8 +632,9 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 											+ hSel.getName()
 											+ " is not supported.");
 								}
-								if (hintFound)
+								if (hintFound){
 									break;
+								}
 							}
 						}
 					}

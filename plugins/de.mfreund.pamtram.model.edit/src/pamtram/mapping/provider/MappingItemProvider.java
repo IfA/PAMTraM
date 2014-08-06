@@ -67,6 +67,7 @@ public class MappingItemProvider
 			childrenFeatures.add(MappingPackage.Literals.MAPPING__CONDITION);
 			childrenFeatures.add(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS);
 			childrenFeatures.add(MappingPackage.Literals.MAPPING__IMPORTED_MAPPING_HINT_GROUPS);
+			childrenFeatures.add(MappingPackage.Literals.MAPPING__GLOBAL_VARIABLES);
 		}
 		return childrenFeatures;
 	}
@@ -154,6 +155,7 @@ public class MappingItemProvider
 			case MappingPackage.MAPPING__CONDITION:
 			case MappingPackage.MAPPING__MAPPING_HINT_GROUPS:
 			case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
+			case MappingPackage.MAPPING__GLOBAL_VARIABLES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -205,6 +207,11 @@ public class MappingItemProvider
 			(createChildParameter
 				(MappingPackage.Literals.MAPPING__IMPORTED_MAPPING_HINT_GROUPS,
 				 MappingFactory.eINSTANCE.createMappingHintGroupImporter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.MAPPING__GLOBAL_VARIABLES,
+				 MappingFactory.eINSTANCE.createGlobalVariable()));
 	}
 
 }

@@ -134,6 +134,7 @@ import pamtram.mapping.ComplexAttributeMatcherSourceElement;
 import pamtram.mapping.ComplexModelConnectionHint;
 import pamtram.mapping.ComplexModelConnectionHintSourceElement;
 import pamtram.mapping.ConnectionHintTargetAttribute;
+import pamtram.mapping.GlobalVariable;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupImporter;
@@ -1199,11 +1200,12 @@ public class PamtramEditor
 						||
 						((TreeItem) e.item).getData() instanceof MappingHintGroupType
 						|| ((TreeItem) e.item).getData() instanceof MappingHintGroupImporter
+						|| ((TreeItem) e.item).getData() instanceof GlobalVariable
 						) {
 						
 						LinkedList<Object> expanded=new LinkedList<Object>();
 						Mapping mapping=null;
-						pamtram.metamodel.Class source=null;
+						Object source=null;
 						LinkedList<pamtram.metamodel.Class> targets=new LinkedList<pamtram.metamodel.Class>();
 						
 						
@@ -1225,7 +1227,17 @@ public class PamtramEditor
 							source=mapping.getSourceMMSection();
 							expanded.add(mapping);
 							expanded.add(currentMappingHintGroup);
+						} else if(((TreeItem) e.item).getData() instanceof GlobalVariable){
+							GlobalVariable g=(GlobalVariable)(((TreeItem) e.item).getData());
+							mapping=(Mapping) g.eContainer();
+							if(g.getSource() != null){
+								expanded.add(g.getSource());
+								source=g.getSource();
+							} else{
+								source=mapping.getSourceMMSection();								
+							}
 							
+							expanded.add(mapping);
 						} else {
 							mapping = (Mapping) ((TreeItem) e.item).getData();
 							source = mapping.getSourceMMSection();

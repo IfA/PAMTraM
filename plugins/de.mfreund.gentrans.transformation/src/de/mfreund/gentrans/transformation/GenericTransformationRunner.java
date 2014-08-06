@@ -171,9 +171,6 @@ public class GenericTransformationRunner {
 
 		 PAMTraM pamtramModel= (PAMTraM) pamtramResource.getContents().get(0);
 		 
-		
-
-		// TODO check if the xmi resource already exists
 		try {
 			// try to create the xmi resource
 			URI targetFileUri = URI.createFileURI(new java.io.File(targetFilePath).toString());

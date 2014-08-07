@@ -72,7 +72,7 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.CONNECTION_HINT_TARGET_ATTRIBUTE: return createConnectionHintTargetAttribute();
 			case MappingPackage.SIMPLE_ATTRIBUTE_MAPPING: return createSimpleAttributeMapping();
 			case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING: return createComplexAttributeMapping();
-			case MappingPackage.COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT: return createComplexAttribueMappingSourceElement();
+			case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_SOURCE_ELEMENT: return createComplexAttributeMappingSourceElement();
 			case MappingPackage.CALCULATOR_MAPPING: return createCalculatorMapping();
 			case MappingPackage.EXPRESSION_VARIABLE: return createExpressionVariable();
 			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER: return createComplexAttributeMatcher();
@@ -255,9 +255,9 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComplexAttribueMappingSourceElement createComplexAttribueMappingSourceElement() {
-		ComplexAttribueMappingSourceElementImpl complexAttribueMappingSourceElement = new ComplexAttribueMappingSourceElementImpl();
-		return complexAttribueMappingSourceElement;
+	public ComplexAttributeMappingSourceElement createComplexAttributeMappingSourceElement() {
+		ComplexAttributeMappingSourceElementImpl complexAttributeMappingSourceElement = new ComplexAttributeMappingSourceElementImpl();
+		return complexAttributeMappingSourceElement;
 	}
 
 	/**

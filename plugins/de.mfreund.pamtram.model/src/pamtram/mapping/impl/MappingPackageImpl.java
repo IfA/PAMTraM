@@ -22,8 +22,8 @@ import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.CalculatorMapping;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ClassMatcher;
-import pamtram.mapping.ComplexAttribueMappingSourceElement;
 import pamtram.mapping.ComplexAttributeMapping;
+import pamtram.mapping.ComplexAttributeMappingSourceElement;
 import pamtram.mapping.ComplexAttributeMappingSourceInterface;
 import pamtram.mapping.ComplexAttributeMatcher;
 import pamtram.mapping.ComplexAttributeMatcherSourceElement;
@@ -244,7 +244,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass complexAttribueMappingSourceElementEClass = null;
+	private EClass complexAttributeMappingSourceElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -938,8 +938,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getComplexAttribueMappingSourceElement() {
-		return complexAttribueMappingSourceElementEClass;
+	public EClass getComplexAttributeMappingSourceElement() {
+		return complexAttributeMappingSourceElementEClass;
 	}
 
 	/**
@@ -1335,7 +1335,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		createEReference(complexAttributeMappingEClass, COMPLEX_ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS);
 		createEOperation(complexAttributeMappingEClass, COMPLEX_ATTRIBUTE_MAPPING___GET_LOCAL_SOURCE_ELEMENTS);
 
-		complexAttribueMappingSourceElementEClass = createEClass(COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT);
+		complexAttributeMappingSourceElementEClass = createEClass(COMPLEX_ATTRIBUTE_MAPPING_SOURCE_ELEMENT);
 
 		calculatorMappingEClass = createEClass(CALCULATOR_MAPPING);
 		createEAttribute(calculatorMappingEClass, CALCULATOR_MAPPING__EXPRESSION);
@@ -1446,8 +1446,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		simpleAttributeMappingEClass.getESuperTypes().add(this.getAttributeMapping());
 		simpleAttributeMappingEClass.getESuperTypes().add(this.getAttributeMappingSourceElementWithModifiers());
 		complexAttributeMappingEClass.getESuperTypes().add(this.getAttributeMapping());
-		complexAttribueMappingSourceElementEClass.getESuperTypes().add(this.getAttributeMappingSourceElementWithModifiers());
-		complexAttribueMappingSourceElementEClass.getESuperTypes().add(this.getComplexAttributeMappingSourceInterface());
+		complexAttributeMappingSourceElementEClass.getESuperTypes().add(this.getAttributeMappingSourceElementWithModifiers());
+		complexAttributeMappingSourceElementEClass.getESuperTypes().add(this.getComplexAttributeMappingSourceInterface());
 		calculatorMappingEClass.getESuperTypes().add(this.getAttributeMapping());
 		expressionVariableEClass.getESuperTypes().add(this.getAttributeMappingSourceElementWithModifiers());
 		attributeMappingSourceElementTypeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
@@ -1547,9 +1547,9 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEClass(complexAttributeMappingEClass, ComplexAttributeMapping.class, "ComplexAttributeMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getComplexAttributeMapping_SourceAttributeMappings(), this.getComplexAttributeMappingSourceInterface(), null, "sourceAttributeMappings", null, 1, -1, ComplexAttributeMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEOperation(getComplexAttributeMapping__GetLocalSourceElements(), this.getComplexAttribueMappingSourceElement(), "getLocalSourceElements", 0, -1, IS_UNIQUE, IS_ORDERED);
+		initEOperation(getComplexAttributeMapping__GetLocalSourceElements(), this.getComplexAttributeMappingSourceElement(), "getLocalSourceElements", 0, -1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(complexAttribueMappingSourceElementEClass, ComplexAttribueMappingSourceElement.class, "ComplexAttribueMappingSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(complexAttributeMappingSourceElementEClass, ComplexAttributeMappingSourceElement.class, "ComplexAttributeMappingSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(calculatorMappingEClass, CalculatorMapping.class, "CalculatorMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCalculatorMapping_Expression(), ecorePackage.getEString(), "expression", null, 1, 1, CalculatorMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

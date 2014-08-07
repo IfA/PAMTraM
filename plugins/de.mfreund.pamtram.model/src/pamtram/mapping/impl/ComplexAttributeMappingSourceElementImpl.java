@@ -3,29 +3,33 @@
 package pamtram.mapping.impl;
 
 import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
-import pamtram.mapping.ComplexAttribueMappingSourceElement;
+
+import pamtram.mapping.ComplexAttributeMappingSourceElement;
 import pamtram.mapping.ComplexAttributeMappingSourceInterface;
 import pamtram.mapping.MappingPackage;
+
 import pamtram.metamodel.SourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Complex Attribue Mapping Source Element</b></em>'.
+ * An implementation of the model object '<em><b>Complex Attribute Mapping Source Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class ComplexAttribueMappingSourceElementImpl extends AttributeMappingSourceElementWithModifiersImpl implements ComplexAttribueMappingSourceElement {
+public class ComplexAttributeMappingSourceElementImpl extends AttributeMappingSourceElementWithModifiersImpl implements ComplexAttributeMappingSourceElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ComplexAttribueMappingSourceElementImpl() {
+	protected ComplexAttributeMappingSourceElementImpl() {
 		super();
 	}
 
@@ -36,7 +40,7 @@ public class ComplexAttribueMappingSourceElementImpl extends AttributeMappingSou
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT;
+		return MappingPackage.Literals.COMPLEX_ATTRIBUTE_MAPPING_SOURCE_ELEMENT;
 	}
 
 	/**
@@ -56,8 +60,8 @@ public class ComplexAttribueMappingSourceElementImpl extends AttributeMappingSou
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == ComplexAttributeMappingSourceInterface.class) {
 			switch (baseOperationID) {
-				case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return MappingPackage.COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE;
-				case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE___GET_NAME: return MappingPackage.COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT___GET_NAME;
+				case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE;
+				case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE___GET_NAME: return MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_SOURCE_ELEMENT___GET_NAME;
 				default: return -1;
 			}
 		}
@@ -72,10 +76,10 @@ public class ComplexAttribueMappingSourceElementImpl extends AttributeMappingSou
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE:
+			case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE:
 				return getSourceAttribute();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
-} //ComplexAttribueMappingSourceElementImpl
+} //ComplexAttributeMappingSourceElementImpl

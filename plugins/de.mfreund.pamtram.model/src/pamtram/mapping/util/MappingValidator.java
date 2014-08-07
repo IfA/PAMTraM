@@ -134,8 +134,8 @@ public class MappingValidator extends EObjectValidator {
 				return validateSimpleAttributeMapping((SimpleAttributeMapping)value, diagnostics, context);
 			case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING:
 				return validateComplexAttributeMapping((ComplexAttributeMapping)value, diagnostics, context);
-			case MappingPackage.COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT:
-				return validateComplexAttribueMappingSourceElement((ComplexAttribueMappingSourceElement)value, diagnostics, context);
+			case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_SOURCE_ELEMENT:
+				return validateComplexAttributeMappingSourceElement((ComplexAttributeMappingSourceElement)value, diagnostics, context);
 			case MappingPackage.CALCULATOR_MAPPING:
 				return validateCalculatorMapping((CalculatorMapping)value, diagnostics, context);
 			case MappingPackage.EXPRESSION_VARIABLE:
@@ -615,8 +615,8 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateComplexAttribueMappingSourceElement(ComplexAttribueMappingSourceElement complexAttribueMappingSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(complexAttribueMappingSourceElement, diagnostics, context);
+	public boolean validateComplexAttributeMappingSourceElement(ComplexAttributeMappingSourceElement complexAttributeMappingSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(complexAttributeMappingSourceElement, diagnostics, context);
 	}
 
 	/**

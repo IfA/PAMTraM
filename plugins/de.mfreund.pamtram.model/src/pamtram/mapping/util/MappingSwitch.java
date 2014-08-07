@@ -258,13 +258,13 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT: {
-				ComplexAttribueMappingSourceElement complexAttribueMappingSourceElement = (ComplexAttribueMappingSourceElement)theEObject;
-				T result = caseComplexAttribueMappingSourceElement(complexAttribueMappingSourceElement);
-				if (result == null) result = caseAttributeMappingSourceElementWithModifiers(complexAttribueMappingSourceElement);
-				if (result == null) result = caseComplexAttributeMappingSourceInterface(complexAttribueMappingSourceElement);
-				if (result == null) result = caseAttributeMappingSourceElementType(complexAttribueMappingSourceElement);
-				if (result == null) result = caseNamedElement(complexAttribueMappingSourceElement);
+			case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_SOURCE_ELEMENT: {
+				ComplexAttributeMappingSourceElement complexAttributeMappingSourceElement = (ComplexAttributeMappingSourceElement)theEObject;
+				T result = caseComplexAttributeMappingSourceElement(complexAttributeMappingSourceElement);
+				if (result == null) result = caseAttributeMappingSourceElementWithModifiers(complexAttributeMappingSourceElement);
+				if (result == null) result = caseComplexAttributeMappingSourceInterface(complexAttributeMappingSourceElement);
+				if (result == null) result = caseAttributeMappingSourceElementType(complexAttributeMappingSourceElement);
+				if (result == null) result = caseNamedElement(complexAttributeMappingSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -787,17 +787,17 @@ public class MappingSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Complex Attribue Mapping Source Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Complex Attribute Mapping Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Complex Attribue Mapping Source Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Complex Attribute Mapping Source Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseComplexAttribueMappingSourceElement(ComplexAttribueMappingSourceElement object) {
+	public T caseComplexAttributeMappingSourceElement(ComplexAttributeMappingSourceElement object) {
 		return null;
 	}
 

@@ -1400,14 +1400,14 @@ public interface MappingPackage extends EPackage {
 	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS_OPERATION_COUNT = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ComplexAttribueMappingSourceElementImpl <em>Complex Attribue Mapping Source Element</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.impl.ComplexAttributeMappingSourceElementImpl <em>Complex Attribute Mapping Source Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ComplexAttribueMappingSourceElementImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexAttribueMappingSourceElement()
+	 * @see pamtram.mapping.impl.ComplexAttributeMappingSourceElementImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexAttributeMappingSourceElement()
 	 * @generated
 	 */
-	int COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT = 24;
+	int COMPLEX_ATTRIBUTE_MAPPING_SOURCE_ELEMENT = 24;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1416,7 +1416,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT__NAME = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS__NAME;
+	int COMPLEX_ATTRIBUTE_MAPPING_SOURCE_ELEMENT__NAME = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -1425,7 +1425,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT__SOURCE = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS__SOURCE;
+	int COMPLEX_ATTRIBUTE_MAPPING_SOURCE_ELEMENT__SOURCE = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
@@ -1434,16 +1434,16 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT__MODIFIER = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS__MODIFIER;
+	int COMPLEX_ATTRIBUTE_MAPPING_SOURCE_ELEMENT__MODIFIER = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS__MODIFIER;
 
 	/**
-	 * The number of structural features of the '<em>Complex Attribue Mapping Source Element</em>' class.
+	 * The number of structural features of the '<em>Complex Attribute Mapping Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT_FEATURE_COUNT = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS_FEATURE_COUNT + 0;
+	int COMPLEX_ATTRIBUTE_MAPPING_SOURCE_ELEMENT_FEATURE_COUNT = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Source Attribute</em>' operation.
@@ -1452,7 +1452,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS_OPERATION_COUNT + 0;
+	int COMPLEX_ATTRIBUTE_MAPPING_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Name</em>' operation.
@@ -1461,17 +1461,16 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT___GET_NAME = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS_OPERATION_COUNT + 1;
+	int COMPLEX_ATTRIBUTE_MAPPING_SOURCE_ELEMENT___GET_NAME = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS_OPERATION_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Complex Attribue Mapping Source Element</em>' class.
+	 * The number of operations of the '<em>Complex Attribute Mapping Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT_OPERATION_COUNT = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS_OPERATION_COUNT + 2;
-
+	int COMPLEX_ATTRIBUTE_MAPPING_SOURCE_ELEMENT_OPERATION_COUNT = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.CalculatorMappingImpl <em>Calculator Mapping</em>}' class.
@@ -2908,14 +2907,14 @@ public interface MappingPackage extends EPackage {
 	EOperation getComplexAttributeMapping__GetLocalSourceElements();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ComplexAttribueMappingSourceElement <em>Complex Attribue Mapping Source Element</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.ComplexAttributeMappingSourceElement <em>Complex Attribute Mapping Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Complex Attribue Mapping Source Element</em>'.
-	 * @see pamtram.mapping.ComplexAttribueMappingSourceElement
+	 * @return the meta object for class '<em>Complex Attribute Mapping Source Element</em>'.
+	 * @see pamtram.mapping.ComplexAttributeMappingSourceElement
 	 * @generated
 	 */
-	EClass getComplexAttribueMappingSourceElement();
+	EClass getComplexAttributeMappingSourceElement();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.CalculatorMapping <em>Calculator Mapping</em>}'.
@@ -3745,14 +3744,14 @@ public interface MappingPackage extends EPackage {
 		EOperation COMPLEX_ATTRIBUTE_MAPPING___GET_LOCAL_SOURCE_ELEMENTS = eINSTANCE.getComplexAttributeMapping__GetLocalSourceElements();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ComplexAttribueMappingSourceElementImpl <em>Complex Attribue Mapping Source Element</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.impl.ComplexAttributeMappingSourceElementImpl <em>Complex Attribute Mapping Source Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.ComplexAttribueMappingSourceElementImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexAttribueMappingSourceElement()
+		 * @see pamtram.mapping.impl.ComplexAttributeMappingSourceElementImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexAttributeMappingSourceElement()
 		 * @generated
 		 */
-		EClass COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT = eINSTANCE.getComplexAttribueMappingSourceElement();
+		EClass COMPLEX_ATTRIBUTE_MAPPING_SOURCE_ELEMENT = eINSTANCE.getComplexAttributeMappingSourceElement();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.CalculatorMappingImpl <em>Calculator Mapping</em>}' class.

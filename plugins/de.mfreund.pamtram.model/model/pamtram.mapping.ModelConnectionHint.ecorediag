@@ -237,7 +237,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_kt2QoxGZEeSc6r7nfHpnyg"/>
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_kt1plRGZEeSc6r7nfHpnyg" fontColor="4210752" fontName="DejaVu Sans" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
-    <element xmi:type="ecore:EClass" href="pamtram.ecore#//mapping/ComplexAttribueMappingSourceElement"/>
+    <element xmi:type="ecore:EClass" href="pamtram.ecore#//mapping/ComplexAttributeMappingSourceElement"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kt1plhGZEeSc6r7nfHpnyg" x="1360" y="260"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_kt2QpBGZEeSc6r7nfHpnyg" type="1001">

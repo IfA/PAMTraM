@@ -166,13 +166,13 @@ public interface MappingFactory extends EFactory {
 	ComplexAttributeMapping createComplexAttributeMapping();
 
 	/**
-	 * Returns a new object of class '<em>Complex Attribue Mapping Source Element</em>'.
+	 * Returns a new object of class '<em>Complex Attribute Mapping Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Complex Attribue Mapping Source Element</em>'.
+	 * @return a new object of class '<em>Complex Attribute Mapping Source Element</em>'.
 	 * @generated
 	 */
-	ComplexAttribueMappingSourceElement createComplexAttribueMappingSourceElement();
+	ComplexAttributeMappingSourceElement createComplexAttributeMappingSourceElement();
 
 	/**
 	 * Returns a new object of class '<em>Calculator Mapping</em>'.

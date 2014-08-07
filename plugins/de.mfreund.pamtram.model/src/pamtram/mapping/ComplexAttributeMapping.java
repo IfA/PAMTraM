@@ -41,9 +41,9 @@ public interface ComplexAttributeMapping extends AttributeMapping {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='\t\tEList<ComplexAttribueMappingSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<ComplexAttribueMappingSourceElement>();\n\t\t\n\t\tfor(ComplexAttributeMappingSourceInterface i : this.getSourceAttributeMappings()){\n\t\t\tif(i instanceof ComplexAttribueMappingSourceElement){\n\t\t\t\telements.add((ComplexAttribueMappingSourceElement) i);\n\t\t\t}\n\t\t}\n\t\t\n\t\treturn elements;'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='\t\tEList<ComplexAttributeMappingSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<ComplexAttributeMappingSourceElement>();\n\t\t\n\t\tfor(ComplexAttributeMappingSourceInterface i : this.getSourceAttributeMappings()){\n\t\t\tif(i instanceof ComplexAttributeMappingSourceElement){\n\t\t\t\telements.add((ComplexAttributeMappingSourceElement) i);\n\t\t\t}\n\t\t}\n\t\t\n\t\treturn elements;'"
 	 * @generated
 	 */
-	EList<ComplexAttribueMappingSourceElement> getLocalSourceElements();
+	EList<ComplexAttributeMappingSourceElement> getLocalSourceElements();
 
 } // ComplexAttributeMapping

@@ -4,14 +4,16 @@ package pamtram.mapping.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import pamtram.mapping.ComplexAttribueMappingSourceElement;
+
 import pamtram.mapping.ComplexAttributeMapping;
+import pamtram.mapping.ComplexAttributeMappingSourceElement;
 import pamtram.mapping.ComplexAttributeMappingSourceInterface;
 import pamtram.mapping.MappingPackage;
 
@@ -75,12 +77,12 @@ public class ComplexAttributeMappingImpl extends AttributeMappingImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ComplexAttribueMappingSourceElement> getLocalSourceElements() {
-				EList<ComplexAttribueMappingSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<ComplexAttribueMappingSourceElement>();
+	public EList<ComplexAttributeMappingSourceElement> getLocalSourceElements() {
+				EList<ComplexAttributeMappingSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<ComplexAttributeMappingSourceElement>();
 				
 				for(ComplexAttributeMappingSourceInterface i : this.getSourceAttributeMappings()){
-					if(i instanceof ComplexAttribueMappingSourceElement){
-						elements.add((ComplexAttribueMappingSourceElement) i);
+					if(i instanceof ComplexAttributeMappingSourceElement){
+						elements.add((ComplexAttributeMappingSourceElement) i);
 					}
 				}
 				

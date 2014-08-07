@@ -3,6 +3,7 @@
 package pamtram.mapping.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingPackage;
 

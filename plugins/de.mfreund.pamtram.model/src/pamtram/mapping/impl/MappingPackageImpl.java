@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import pamtram.PamtramPackage;
 import pamtram.condition.ConditionPackage;
 import pamtram.condition.impl.ConditionPackageImpl;

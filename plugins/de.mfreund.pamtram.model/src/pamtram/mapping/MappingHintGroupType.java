@@ -5,7 +5,6 @@ package pamtram.mapping;
 import org.eclipse.emf.common.util.EList;
 
 import pamtram.NamedElement;
-
 import pamtram.metamodel.TargetSectionClass;
 
 /**

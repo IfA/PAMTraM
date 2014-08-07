@@ -3,6 +3,7 @@
 package pamtram;
 
 import org.eclipse.emf.common.util.EList;
+
 import pamtram.metamodel.SourceSectionClass;
 
 

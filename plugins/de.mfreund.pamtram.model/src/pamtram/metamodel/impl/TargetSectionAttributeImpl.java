@@ -7,6 +7,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;

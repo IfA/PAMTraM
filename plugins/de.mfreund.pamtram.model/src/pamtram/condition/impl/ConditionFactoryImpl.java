@@ -6,12 +6,16 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import pamtram.condition.*;
+import pamtram.condition.And;
+import pamtram.condition.ComparatorEnum;
+import pamtram.condition.Condition;
+import pamtram.condition.ConditionFactory;
+import pamtram.condition.ConditionPackage;
+import pamtram.condition.Not;
+import pamtram.condition.Or;
 
 /**
  * <!-- begin-user-doc -->

@@ -5,12 +5,13 @@ package pamtram.transformation.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import pamtram.transformation.*;
+import pamtram.transformation.Transformation;
+import pamtram.transformation.TransformationFactory;
+import pamtram.transformation.TransformationMapping;
+import pamtram.transformation.TransformationPackage;
 
 /**
  * <!-- begin-user-doc -->

@@ -6,6 +6,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+
 import pamtram.NamedElement;
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.Attribute;

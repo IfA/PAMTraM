@@ -2,6 +2,8 @@
  */
 package pamtram.metamodel.impl;
 
+import static pamtram.metamodel.MetamodelPackage.CLASS;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -10,6 +12,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import pamtram.PamtramPackage;
 import pamtram.condition.ConditionPackage;
 import pamtram.condition.impl.ConditionPackageImpl;

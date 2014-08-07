@@ -3,7 +3,6 @@
 package pamtram.condition.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import pamtram.condition.ComplexCondition;

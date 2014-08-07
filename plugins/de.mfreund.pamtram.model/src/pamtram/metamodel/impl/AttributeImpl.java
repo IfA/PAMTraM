@@ -3,6 +3,7 @@
 package pamtram.metamodel.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.MetamodelPackage;
 

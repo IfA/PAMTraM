@@ -4,12 +4,53 @@ package pamtram.mapping.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
 
 import pamtram.NamedElement;
-
-import pamtram.mapping.*;
+import pamtram.mapping.AttributeMapping;
+import pamtram.mapping.AttributeMappingSourceElementType;
+import pamtram.mapping.AttributeMappingSourceElementWithModifiers;
+import pamtram.mapping.AttributeMatcher;
+import pamtram.mapping.AttributeValueModifier;
+import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.CalculatorMapping;
+import pamtram.mapping.CardinalityMapping;
+import pamtram.mapping.ClassMatcher;
+import pamtram.mapping.ComplexAttributeMapping;
+import pamtram.mapping.ComplexAttributeMappingSourceElement;
+import pamtram.mapping.ComplexAttributeMappingSourceInterface;
+import pamtram.mapping.ComplexAttributeMatcher;
+import pamtram.mapping.ComplexAttributeMatcherSourceElement;
+import pamtram.mapping.ComplexModelConnectionHint;
+import pamtram.mapping.ComplexModelConnectionHintSourceElement;
+import pamtram.mapping.ConnectionHintTargetAttribute;
+import pamtram.mapping.ExportedMappingHintGroup;
+import pamtram.mapping.ExpressionVariable;
+import pamtram.mapping.GlobalVariabeImporter;
+import pamtram.mapping.GlobalVariable;
+import pamtram.mapping.HintImporterMappingHint;
+import pamtram.mapping.InstantiableMappingHintGroup;
+import pamtram.mapping.MappedAttributeValueAppender;
+import pamtram.mapping.MappedAttributeValueExpander;
+import pamtram.mapping.MappedAttributeValuePrepender;
+import pamtram.mapping.Mapping;
+import pamtram.mapping.MappingHint;
+import pamtram.mapping.MappingHintGroup;
+import pamtram.mapping.MappingHintGroupImporter;
+import pamtram.mapping.MappingHintGroupType;
+import pamtram.mapping.MappingHintType;
+import pamtram.mapping.MappingInstanceSelector;
+import pamtram.mapping.MappingPackage;
+import pamtram.mapping.MappingType;
+import pamtram.mapping.Matcher;
+import pamtram.mapping.ModelConnectionHint;
+import pamtram.mapping.SimpleAttributeMapping;
+import pamtram.mapping.SimpleAttributeMatcher;
+import pamtram.mapping.SimpleModelConnectionHint;
+import pamtram.mapping.StringAppender;
+import pamtram.mapping.StringPrepender;
+import pamtram.mapping.SubstringReplacer;
+import pamtram.mapping.UniqueNumberAppender;
 
 /**
  * <!-- begin-user-doc -->

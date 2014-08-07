@@ -4,10 +4,16 @@ package pamtram.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
 
-import pamtram.*;
+import pamtram.MappingModel;
+import pamtram.NamedElement;
+import pamtram.PAMTraM;
+import pamtram.PamtramPackage;
+import pamtram.SectionModel;
+import pamtram.SourceSectionModel;
+import pamtram.TargetSectionModel;
+import pamtram.TransformationModel;
 
 /**
  * <!-- begin-user-doc -->

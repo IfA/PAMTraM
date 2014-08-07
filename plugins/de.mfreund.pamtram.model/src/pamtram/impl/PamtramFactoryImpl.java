@@ -5,12 +5,16 @@ package pamtram.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import pamtram.*;
+import pamtram.MappingModel;
+import pamtram.PAMTraM;
+import pamtram.PamtramFactory;
+import pamtram.PamtramPackage;
+import pamtram.SourceSectionModel;
+import pamtram.TargetSectionModel;
+import pamtram.TransformationModel;
 
 /**
  * <!-- begin-user-doc -->

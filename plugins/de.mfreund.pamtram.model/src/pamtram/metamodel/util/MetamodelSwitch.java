@@ -5,6 +5,7 @@ package pamtram.metamodel.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+
 import pamtram.NamedElement;
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.Attribute;

@@ -4,16 +4,14 @@ package pamtram.transformation.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
 
 import pamtram.NamedElement;
-
 import pamtram.mapping.MappingType;
-
-import pamtram.transformation.*;
+import pamtram.transformation.Transformation;
+import pamtram.transformation.TransformationMapping;
+import pamtram.transformation.TransformationPackage;
 
 /**
  * <!-- begin-user-doc -->

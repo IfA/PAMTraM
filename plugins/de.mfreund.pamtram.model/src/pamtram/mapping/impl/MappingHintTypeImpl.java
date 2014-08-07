@@ -5,7 +5,6 @@ package pamtram.mapping.impl;
 import org.eclipse.emf.ecore.EClass;
 
 import pamtram.impl.NamedElementImpl;
-
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingPackage;
 

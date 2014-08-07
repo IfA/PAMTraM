@@ -4,12 +4,17 @@ package pamtram.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
 
-import pamtram.*;
+import pamtram.MappingModel;
+import pamtram.NamedElement;
+import pamtram.PAMTraM;
+import pamtram.PamtramPackage;
+import pamtram.SectionModel;
+import pamtram.SourceSectionModel;
+import pamtram.TargetSectionModel;
+import pamtram.TransformationModel;
 
 /**
  * <!-- begin-user-doc -->

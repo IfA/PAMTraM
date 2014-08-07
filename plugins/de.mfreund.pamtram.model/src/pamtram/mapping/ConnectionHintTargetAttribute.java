@@ -4,6 +4,7 @@ package pamtram.mapping;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+
 import pamtram.metamodel.TargetSectionAttribute;
 
 /**

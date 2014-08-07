@@ -6,7 +6,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import pamtram.MappingModel;
@@ -18,21 +17,13 @@ import pamtram.SectionModel;
 import pamtram.SourceSectionModel;
 import pamtram.TargetSectionModel;
 import pamtram.TransformationModel;
-
 import pamtram.condition.ConditionPackage;
-
 import pamtram.condition.impl.ConditionPackageImpl;
-
 import pamtram.mapping.MappingPackage;
-
 import pamtram.mapping.impl.MappingPackageImpl;
-
 import pamtram.metamodel.MetamodelPackage;
-
 import pamtram.metamodel.impl.MetamodelPackageImpl;
-
 import pamtram.transformation.TransformationPackage;
-
 import pamtram.transformation.impl.TransformationPackageImpl;
 
 /**

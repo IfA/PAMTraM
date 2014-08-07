@@ -440,26 +440,26 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ComplexAttribueMappingSourceElement} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ComplexAttributeMappingSourceElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ComplexAttribueMappingSourceElementItemProvider complexAttribueMappingSourceElementItemProvider;
+	protected ComplexAttributeMappingSourceElementItemProvider complexAttributeMappingSourceElementItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ComplexAttribueMappingSourceElement}.
+	 * This creates an adapter for a {@link pamtram.mapping.ComplexAttributeMappingSourceElement}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createComplexAttribueMappingSourceElementAdapter() {
-		if (complexAttribueMappingSourceElementItemProvider == null) {
-			complexAttribueMappingSourceElementItemProvider = new ComplexAttribueMappingSourceElementItemProvider(this);
+	public Adapter createComplexAttributeMappingSourceElementAdapter() {
+		if (complexAttributeMappingSourceElementItemProvider == null) {
+			complexAttributeMappingSourceElementItemProvider = new ComplexAttributeMappingSourceElementItemProvider(this);
 		}
 
-		return complexAttribueMappingSourceElementItemProvider;
+		return complexAttributeMappingSourceElementItemProvider;
 	}
 
 	/**
@@ -853,7 +853,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (connectionHintTargetAttributeItemProvider != null) connectionHintTargetAttributeItemProvider.dispose();
 		if (simpleAttributeMappingItemProvider != null) simpleAttributeMappingItemProvider.dispose();
 		if (complexAttributeMappingItemProvider != null) complexAttributeMappingItemProvider.dispose();
-		if (complexAttribueMappingSourceElementItemProvider != null) complexAttribueMappingSourceElementItemProvider.dispose();
+		if (complexAttributeMappingSourceElementItemProvider != null) complexAttributeMappingSourceElementItemProvider.dispose();
 		if (calculatorMappingItemProvider != null) calculatorMappingItemProvider.dispose();
 		if (expressionVariableItemProvider != null) expressionVariableItemProvider.dispose();
 		if (complexAttributeMatcherItemProvider != null) complexAttributeMatcherItemProvider.dispose();

@@ -5,9 +5,12 @@ package pamtram.mapping.provider;
 
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+
 import pamtram.mapping.ComplexAttributeMappingSourceElement;
 
 /**
@@ -16,8 +19,7 @@ import pamtram.mapping.ComplexAttributeMappingSourceElement;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ComplexAttributeMappingSourceElementItemProvider
-	extends AttributeMappingSourceElementWithModifiersItemProvider {
+public class ComplexAttributeMappingSourceElementItemProvider extends AttributeMappingSourceElementWithModifiersItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -58,14 +60,16 @@ public class ComplexAttributeMappingSourceElementItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((ComplexAttributeMappingSourceElement)object).getName();
 		return label == null || label.length() == 0 ?
-			"Source Element" :
-			"Source Element " + label;
+			getString("_UI_ComplexAttributeMappingSourceElement_type") :
+			getString("_UI_ComplexAttributeMappingSourceElement_type") + " " + label;
 	}
+	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

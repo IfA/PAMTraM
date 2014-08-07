@@ -2,6 +2,7 @@
  */
 package pamtram.mapping.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -11,6 +12,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.mapping.ComplexAttribueMappingSourceElement;
 import pamtram.mapping.ComplexAttributeMapping;
+import pamtram.mapping.ComplexAttributeMappingSourceInterface;
 import pamtram.mapping.MappingPackage;
 
 /**
@@ -35,7 +37,7 @@ public class ComplexAttributeMappingImpl extends AttributeMappingImpl implements
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ComplexAttribueMappingSourceElement> sourceAttributeMappings;
+	protected EList<ComplexAttributeMappingSourceInterface> sourceAttributeMappings;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -61,11 +63,28 @@ public class ComplexAttributeMappingImpl extends AttributeMappingImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ComplexAttribueMappingSourceElement> getSourceAttributeMappings() {
+	public EList<ComplexAttributeMappingSourceInterface> getSourceAttributeMappings() {
 		if (sourceAttributeMappings == null) {
-			sourceAttributeMappings = new EObjectContainmentEList<ComplexAttribueMappingSourceElement>(ComplexAttribueMappingSourceElement.class, this, MappingPackage.COMPLEX_ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS);
+			sourceAttributeMappings = new EObjectContainmentEList<ComplexAttributeMappingSourceInterface>(ComplexAttributeMappingSourceInterface.class, this, MappingPackage.COMPLEX_ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS);
 		}
 		return sourceAttributeMappings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ComplexAttribueMappingSourceElement> getLocalSourceElements() {
+				EList<ComplexAttribueMappingSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<ComplexAttribueMappingSourceElement>();
+				
+				for(ComplexAttributeMappingSourceInterface i : this.getSourceAttributeMappings()){
+					if(i instanceof ComplexAttribueMappingSourceElement){
+						elements.add((ComplexAttribueMappingSourceElement) i);
+					}
+				}
+				
+				return elements;
 	}
 
 	/**
@@ -107,7 +126,7 @@ public class ComplexAttributeMappingImpl extends AttributeMappingImpl implements
 		switch (featureID) {
 			case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS:
 				getSourceAttributeMappings().clear();
-				getSourceAttributeMappings().addAll((Collection<? extends ComplexAttribueMappingSourceElement>)newValue);
+				getSourceAttributeMappings().addAll((Collection<? extends ComplexAttributeMappingSourceInterface>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -140,6 +159,20 @@ public class ComplexAttributeMappingImpl extends AttributeMappingImpl implements
 				return sourceAttributeMappings != null && !sourceAttributeMappings.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING___GET_LOCAL_SOURCE_ELEMENTS:
+				return getLocalSourceElements();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //ComplexAttributeMappingImpl

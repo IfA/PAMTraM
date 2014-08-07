@@ -262,6 +262,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				ComplexAttribueMappingSourceElement complexAttribueMappingSourceElement = (ComplexAttribueMappingSourceElement)theEObject;
 				T result = caseComplexAttribueMappingSourceElement(complexAttribueMappingSourceElement);
 				if (result == null) result = caseAttributeMappingSourceElementWithModifiers(complexAttribueMappingSourceElement);
+				if (result == null) result = caseComplexAttributeMappingSourceInterface(complexAttribueMappingSourceElement);
 				if (result == null) result = caseAttributeMappingSourceElementType(complexAttribueMappingSourceElement);
 				if (result == null) result = caseNamedElement(complexAttribueMappingSourceElement);
 				if (result == null) result = defaultCase(theEObject);
@@ -404,6 +405,20 @@ public class MappingSwitch<T> extends Switch<T> {
 				GlobalVariable globalVariable = (GlobalVariable)theEObject;
 				T result = caseGlobalVariable(globalVariable);
 				if (result == null) result = caseNamedElement(globalVariable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.GLOBAL_VARIABE_IMPORTER: {
+				GlobalVariabeImporter globalVariabeImporter = (GlobalVariabeImporter)theEObject;
+				T result = caseGlobalVariabeImporter(globalVariabeImporter);
+				if (result == null) result = caseNamedElement(globalVariabeImporter);
+				if (result == null) result = caseComplexAttributeMappingSourceInterface(globalVariabeImporter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE: {
+				ComplexAttributeMappingSourceInterface complexAttributeMappingSourceInterface = (ComplexAttributeMappingSourceInterface)theEObject;
+				T result = caseComplexAttributeMappingSourceInterface(complexAttributeMappingSourceInterface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1023,6 +1038,36 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseGlobalVariable(GlobalVariable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Global Variabe Importer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Global Variabe Importer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGlobalVariabeImporter(GlobalVariabeImporter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Complex Attribute Mapping Source Interface</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Complex Attribute Mapping Source Interface</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseComplexAttributeMappingSourceInterface(ComplexAttributeMappingSourceInterface object) {
 		return null;
 	}
 

@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
 public interface ComplexAttributeMapping extends AttributeMapping {
 	/**
 	 * Returns the value of the '<em><b>Source Attribute Mappings</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.mapping.ComplexAttribueMappingSourceElement}.
+	 * The list contents are of type {@link pamtram.mapping.ComplexAttributeMappingSourceInterface}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source Attribute Mappings</em>' reference list isn't clear,
@@ -35,6 +35,15 @@ public interface ComplexAttributeMapping extends AttributeMapping {
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<ComplexAttribueMappingSourceElement> getSourceAttributeMappings();
+	EList<ComplexAttributeMappingSourceInterface> getSourceAttributeMappings();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='\t\tEList<ComplexAttribueMappingSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<ComplexAttribueMappingSourceElement>();\n\t\t\n\t\tfor(ComplexAttributeMappingSourceInterface i : this.getSourceAttributeMappings()){\n\t\t\tif(i instanceof ComplexAttribueMappingSourceElement){\n\t\t\t\telements.add((ComplexAttribueMappingSourceElement) i);\n\t\t\t}\n\t\t}\n\t\t\n\t\treturn elements;'"
+	 * @generated
+	 */
+	EList<ComplexAttribueMappingSourceElement> getLocalSourceElements();
 
 } // ComplexAttributeMapping

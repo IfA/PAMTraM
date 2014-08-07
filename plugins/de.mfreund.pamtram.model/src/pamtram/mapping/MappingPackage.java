@@ -1280,13 +1280,22 @@ public interface MappingPackage extends EPackage {
 	int COMPLEX_ATTRIBUTE_MAPPING_FEATURE_COUNT = ATTRIBUTE_MAPPING_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Get Local Source Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_ATTRIBUTE_MAPPING___GET_LOCAL_SOURCE_ELEMENTS = ATTRIBUTE_MAPPING_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Complex Attribute Mapping</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_ATTRIBUTE_MAPPING_OPERATION_COUNT = ATTRIBUTE_MAPPING_OPERATION_COUNT + 0;
+	int COMPLEX_ATTRIBUTE_MAPPING_OPERATION_COUNT = ATTRIBUTE_MAPPING_OPERATION_COUNT + 1;
 
 
 	/**
@@ -1437,13 +1446,31 @@ public interface MappingPackage extends EPackage {
 	int COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT_FEATURE_COUNT = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Get Source Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT___GET_NAME = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Complex Attribue Mapping Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT_OPERATION_COUNT = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS_OPERATION_COUNT + 0;
+	int COMPLEX_ATTRIBUE_MAPPING_SOURCE_ELEMENT_OPERATION_COUNT = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS_OPERATION_COUNT + 2;
 
 
 	/**
@@ -2213,6 +2240,117 @@ public interface MappingPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.GlobalVariabeImporterImpl <em>Global Variabe Importer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.GlobalVariabeImporterImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalVariabeImporter()
+	 * @generated
+	 */
+	int GLOBAL_VARIABE_IMPORTER = 41;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOBAL_VARIABE_IMPORTER__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Global Variable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOBAL_VARIABE_IMPORTER__GLOBAL_VARIABLE = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Global Variabe Importer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOBAL_VARIABE_IMPORTER_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Source Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOBAL_VARIABE_IMPORTER___GET_SOURCE_ATTRIBUTE = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOBAL_VARIABE_IMPORTER___GET_NAME = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Global Variabe Importer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOBAL_VARIABE_IMPORTER_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.ComplexAttributeMappingSourceInterface <em>Complex Attribute Mapping Source Interface</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.ComplexAttributeMappingSourceInterface
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexAttributeMappingSourceInterface()
+	 * @generated
+	 */
+	int COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE = 42;
+
+	/**
+	 * The number of structural features of the '<em>Complex Attribute Mapping Source Interface</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE_FEATURE_COUNT = 0;
+
+	/**
+	 * The operation id for the '<em>Get Source Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE = 0;
+
+	/**
+	 * The operation id for the '<em>Get Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE___GET_NAME = 1;
+
+	/**
+	 * The number of operations of the '<em>Complex Attribute Mapping Source Interface</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE_OPERATION_COUNT = 2;
+
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.Mapping <em>Mapping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2760,6 +2898,16 @@ public interface MappingPackage extends EPackage {
 	EReference getComplexAttributeMapping_SourceAttributeMappings();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.ComplexAttributeMapping#getLocalSourceElements() <em>Get Local Source Elements</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Local Source Elements</em>' operation.
+	 * @see pamtram.mapping.ComplexAttributeMapping#getLocalSourceElements()
+	 * @generated
+	 */
+	EOperation getComplexAttributeMapping__GetLocalSourceElements();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.ComplexAttribueMappingSourceElement <em>Complex Attribue Mapping Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3049,6 +3197,57 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getGlobalVariable_Modifier();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.GlobalVariabeImporter <em>Global Variabe Importer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Global Variabe Importer</em>'.
+	 * @see pamtram.mapping.GlobalVariabeImporter
+	 * @generated
+	 */
+	EClass getGlobalVariabeImporter();
+
+	/**
+	 * Returns the meta object for the reference '{@link pamtram.mapping.GlobalVariabeImporter#getGlobalVariable <em>Global Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Global Variable</em>'.
+	 * @see pamtram.mapping.GlobalVariabeImporter#getGlobalVariable()
+	 * @see #getGlobalVariabeImporter()
+	 * @generated
+	 */
+	EReference getGlobalVariabeImporter_GlobalVariable();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.ComplexAttributeMappingSourceInterface <em>Complex Attribute Mapping Source Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Complex Attribute Mapping Source Interface</em>'.
+	 * @see pamtram.mapping.ComplexAttributeMappingSourceInterface
+	 * @generated
+	 */
+	EClass getComplexAttributeMappingSourceInterface();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.ComplexAttributeMappingSourceInterface#getSourceAttribute() <em>Get Source Attribute</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Source Attribute</em>' operation.
+	 * @see pamtram.mapping.ComplexAttributeMappingSourceInterface#getSourceAttribute()
+	 * @generated
+	 */
+	EOperation getComplexAttributeMappingSourceInterface__GetSourceAttribute();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.ComplexAttributeMappingSourceInterface#getName() <em>Get Name</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Name</em>' operation.
+	 * @see pamtram.mapping.ComplexAttributeMappingSourceInterface#getName()
+	 * @generated
+	 */
+	EOperation getComplexAttributeMappingSourceInterface__GetName();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -3538,6 +3737,14 @@ public interface MappingPackage extends EPackage {
 		EReference COMPLEX_ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS = eINSTANCE.getComplexAttributeMapping_SourceAttributeMappings();
 
 		/**
+		 * The meta object literal for the '<em><b>Get Local Source Elements</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COMPLEX_ATTRIBUTE_MAPPING___GET_LOCAL_SOURCE_ELEMENTS = eINSTANCE.getComplexAttributeMapping__GetLocalSourceElements();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.ComplexAttribueMappingSourceElementImpl <em>Complex Attribue Mapping Source Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3794,6 +4001,50 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference GLOBAL_VARIABLE__MODIFIER = eINSTANCE.getGlobalVariable_Modifier();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.impl.GlobalVariabeImporterImpl <em>Global Variabe Importer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.impl.GlobalVariabeImporterImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalVariabeImporter()
+		 * @generated
+		 */
+		EClass GLOBAL_VARIABE_IMPORTER = eINSTANCE.getGlobalVariabeImporter();
+
+		/**
+		 * The meta object literal for the '<em><b>Global Variable</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GLOBAL_VARIABE_IMPORTER__GLOBAL_VARIABLE = eINSTANCE.getGlobalVariabeImporter_GlobalVariable();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.ComplexAttributeMappingSourceInterface <em>Complex Attribute Mapping Source Interface</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.ComplexAttributeMappingSourceInterface
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexAttributeMappingSourceInterface()
+		 * @generated
+		 */
+		EClass COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE = eINSTANCE.getComplexAttributeMappingSourceInterface();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Source Attribute</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE = eINSTANCE.getComplexAttributeMappingSourceInterface__GetSourceAttribute();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Name</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE___GET_NAME = eINSTANCE.getComplexAttributeMappingSourceInterface__GetName();
 
 	}
 

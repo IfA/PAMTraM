@@ -375,12 +375,17 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SimpleAttributeMapping" eSuperTypes="#//mapping/AttributeMapping #//mapping/AttributeMappingSourceElementWithModifiers"/>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexAttributeMapping" eSuperTypes="#//mapping/AttributeMapping">
+      <eOperations name="getLocalSourceElements" upperBound="-1" eType="#//mapping/ComplexAttribueMappingSourceElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="&#x9;&#x9;EList&lt;ComplexAttribueMappingSourceElement> elements= new org.eclipse.emf.common.util.BasicEList&lt;ComplexAttribueMappingSourceElement>();&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;for(ComplexAttributeMappingSourceInterface i : this.getSourceAttributeMappings()){&#xA;&#x9;&#x9;&#x9;if(i instanceof ComplexAttribueMappingSourceElement){&#xA;&#x9;&#x9;&#x9;&#x9;elements.add((ComplexAttribueMappingSourceElement) i);&#xA;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;return elements;"/>
+        </eAnnotations>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceAttributeMappings"
-          lowerBound="1" upperBound="-1" eType="#//mapping/ComplexAttribueMappingSourceElement"
+          lowerBound="1" upperBound="-1" eType="#//mapping/ComplexAttributeMappingSourceInterface"
           containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexAttribueMappingSourceElement"
-        eSuperTypes="#//mapping/AttributeMappingSourceElementWithModifiers"/>
+        eSuperTypes="#//mapping/AttributeMappingSourceElementWithModifiers #//mapping/ComplexAttributeMappingSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="CalculatorMapping" eSuperTypes="#//mapping/AttributeMapping">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -433,6 +438,15 @@
           eType="#//metamodel/SourceSectionAttribute"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
           eType="#//mapping/AttributeValueModifierSet"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="GlobalVariabeImporter" eSuperTypes="#//NamedElement #//mapping/ComplexAttributeMappingSourceInterface">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="globalVariable" lowerBound="1"
+          eType="#//mapping/GlobalVariable"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ComplexAttributeMappingSourceInterface"
+        abstract="true" interface="true">
+      <eOperations name="getSourceAttribute" lowerBound="1" eType="#//metamodel/SourceSectionAttribute"/>
+      <eOperations name="getName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

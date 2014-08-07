@@ -168,6 +168,10 @@ public class MappingValidator extends EObjectValidator {
 				return validateMappedAttributeValueAppender((MappedAttributeValueAppender)value, diagnostics, context);
 			case MappingPackage.GLOBAL_VARIABLE:
 				return validateGlobalVariable((GlobalVariable)value, diagnostics, context);
+			case MappingPackage.GLOBAL_VARIABE_IMPORTER:
+				return validateGlobalVariabeImporter((GlobalVariabeImporter)value, diagnostics, context);
+			case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE:
+				return validateComplexAttributeMappingSourceInterface((ComplexAttributeMappingSourceInterface)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -768,6 +772,24 @@ public class MappingValidator extends EObjectValidator {
 	 */
 	public boolean validateGlobalVariable(GlobalVariable globalVariable, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(globalVariable, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateGlobalVariabeImporter(GlobalVariabeImporter globalVariabeImporter, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(globalVariabeImporter, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateComplexAttributeMappingSourceInterface(ComplexAttributeMappingSourceInterface complexAttributeMappingSourceInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(complexAttributeMappingSourceInterface, diagnostics, context);
 	}
 
 	/**

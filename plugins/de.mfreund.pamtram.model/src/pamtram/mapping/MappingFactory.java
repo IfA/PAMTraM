@@ -274,6 +274,15 @@ public interface MappingFactory extends EFactory {
 	GlobalVariable createGlobalVariable();
 
 	/**
+	 * Returns a new object of class '<em>Global Variabe Importer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Global Variabe Importer</em>'.
+	 * @generated
+	 */
+	GlobalVariabeImporter createGlobalVariabeImporter();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

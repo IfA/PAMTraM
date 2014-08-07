@@ -34,7 +34,7 @@ import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.ComplexAttributeMapping;
 import pamtram.mapping.ComplexAttributeMappingSourceInterface;
 import pamtram.mapping.ExportedMappingHintGroup;
-import pamtram.mapping.GlobalVariabeImporter;
+import pamtram.mapping.GlobalVariableImporter;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappedAttributeValuePrepender;
 import pamtram.mapping.Mapping;
@@ -279,9 +279,9 @@ public class GenericTransformationRunner {
 
 					if(h instanceof ComplexAttributeMapping){
 						for(ComplexAttributeMappingSourceInterface i : ((ComplexAttributeMapping) h).getSourceAttributeMappings()){
-							if(i instanceof GlobalVariabeImporter){
-								if(sourceSectionMapper.getGlobalVarValues().containsKey(((GlobalVariabeImporter) i).getGlobalVariable())){
-									String gVal=sourceSectionMapper.getGlobalVarValues().get(((GlobalVariabeImporter) i).getGlobalVariable());
+							if(i instanceof GlobalVariableImporter){
+								if(sourceSectionMapper.getGlobalVarValues().containsKey(((GlobalVariableImporter) i).getGlobalVariable())){
+									String gVal=sourceSectionMapper.getGlobalVarValues().get(((GlobalVariableImporter) i).getGlobalVariable());
 									for(Object m : selMap.getHintValues().get(h)){
 										Map<ComplexAttributeMappingSourceInterface,String> map=(Map<ComplexAttributeMappingSourceInterface,String>) m;
 										map.put(i, gVal);
@@ -300,9 +300,9 @@ public class GenericTransformationRunner {
 					
 					if(h instanceof ComplexAttributeMapping){
 						for(ComplexAttributeMappingSourceInterface i : ((ComplexAttributeMapping) h).getSourceAttributeMappings()){
-							if(i instanceof GlobalVariabeImporter){
-								if(sourceSectionMapper.getGlobalVarValues().containsKey(((GlobalVariabeImporter) i).getGlobalVariable())){
-									String gVal=sourceSectionMapper.getGlobalVarValues().get(((GlobalVariabeImporter) i).getGlobalVariable());
+							if(i instanceof GlobalVariableImporter){
+								if(sourceSectionMapper.getGlobalVarValues().containsKey(((GlobalVariableImporter) i).getGlobalVariable())){
+									String gVal=sourceSectionMapper.getGlobalVarValues().get(((GlobalVariableImporter) i).getGlobalVariable());
 									for(Object m : selMap.getHintValues().get(h)){
 										Map<ComplexAttributeMappingSourceInterface,String> map=(Map<ComplexAttributeMappingSourceInterface,String>) m;
 										map.put(i, gVal);

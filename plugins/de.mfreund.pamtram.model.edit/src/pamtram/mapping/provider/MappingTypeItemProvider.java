@@ -5,11 +5,13 @@ package pamtram.mapping.provider;
 
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.MappingType;
 import pamtram.provider.NamedElementItemProvider;

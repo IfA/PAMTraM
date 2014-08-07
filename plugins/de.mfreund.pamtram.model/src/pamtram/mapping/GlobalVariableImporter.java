@@ -6,21 +6,21 @@ import pamtram.NamedElement;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Global Variabe Importer</b></em>'.
+ * A representation of the model object '<em><b>Global Variable Importer</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link pamtram.mapping.GlobalVariabeImporter#getGlobalVariable <em>Global Variable</em>}</li>
+ *   <li>{@link pamtram.mapping.GlobalVariableImporter#getGlobalVariable <em>Global Variable</em>}</li>
  * </ul>
  * </p>
  *
- * @see pamtram.mapping.MappingPackage#getGlobalVariabeImporter()
+ * @see pamtram.mapping.MappingPackage#getGlobalVariableImporter()
  * @model
  * @generated
  */
-public interface GlobalVariabeImporter extends NamedElement, ComplexAttributeMappingSourceInterface {
+public interface GlobalVariableImporter extends NamedElement, ComplexAttributeMappingSourceInterface {
 	/**
 	 * Returns the value of the '<em><b>Global Variable</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -31,14 +31,14 @@ public interface GlobalVariabeImporter extends NamedElement, ComplexAttributeMap
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Global Variable</em>' reference.
 	 * @see #setGlobalVariable(GlobalVariable)
-	 * @see pamtram.mapping.MappingPackage#getGlobalVariabeImporter_GlobalVariable()
+	 * @see pamtram.mapping.MappingPackage#getGlobalVariableImporter_GlobalVariable()
 	 * @model required="true"
 	 * @generated
 	 */
 	GlobalVariable getGlobalVariable();
 
 	/**
-	 * Sets the value of the '{@link pamtram.mapping.GlobalVariabeImporter#getGlobalVariable <em>Global Variable</em>}' reference.
+	 * Sets the value of the '{@link pamtram.mapping.GlobalVariableImporter#getGlobalVariable <em>Global Variable</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Global Variable</em>' reference.
@@ -47,4 +47,4 @@ public interface GlobalVariabeImporter extends NamedElement, ComplexAttributeMap
 	 */
 	void setGlobalVariable(GlobalVariable value);
 
-} // GlobalVariabeImporter
+} // GlobalVariableImporter

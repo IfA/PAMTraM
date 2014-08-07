@@ -5,7 +5,6 @@ package pamtram.transformation.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
-
 import pamtram.NamedElement;
 import pamtram.mapping.MappingType;
 import pamtram.transformation.Transformation;

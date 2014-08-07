@@ -5,32 +5,37 @@ package pamtram.mapping.impl;
 import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import pamtram.impl.NamedElementImpl;
+
 import pamtram.mapping.ComplexAttributeMappingSourceInterface;
-import pamtram.mapping.GlobalVariabeImporter;
 import pamtram.mapping.GlobalVariable;
+import pamtram.mapping.GlobalVariableImporter;
 import pamtram.mapping.MappingPackage;
+
 import pamtram.metamodel.SourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Global Variabe Importer</b></em>'.
+ * An implementation of the model object '<em><b>Global Variable Importer</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link pamtram.mapping.impl.GlobalVariabeImporterImpl#getGlobalVariable <em>Global Variable</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.GlobalVariableImporterImpl#getGlobalVariable <em>Global Variable</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class GlobalVariabeImporterImpl extends NamedElementImpl implements GlobalVariabeImporter {
+public class GlobalVariableImporterImpl extends NamedElementImpl implements GlobalVariableImporter {
 	/**
 	 * The cached value of the '{@link #getGlobalVariable() <em>Global Variable</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -46,7 +51,7 @@ public class GlobalVariabeImporterImpl extends NamedElementImpl implements Globa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GlobalVariabeImporterImpl() {
+	protected GlobalVariableImporterImpl() {
 		super();
 	}
 
@@ -57,7 +62,7 @@ public class GlobalVariabeImporterImpl extends NamedElementImpl implements Globa
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.GLOBAL_VARIABE_IMPORTER;
+		return MappingPackage.Literals.GLOBAL_VARIABLE_IMPORTER;
 	}
 
 	/**
@@ -71,7 +76,7 @@ public class GlobalVariabeImporterImpl extends NamedElementImpl implements Globa
 			globalVariable = (GlobalVariable)eResolveProxy(oldGlobalVariable);
 			if (globalVariable != oldGlobalVariable) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.GLOBAL_VARIABE_IMPORTER__GLOBAL_VARIABLE, oldGlobalVariable, globalVariable));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.GLOBAL_VARIABLE_IMPORTER__GLOBAL_VARIABLE, oldGlobalVariable, globalVariable));
 			}
 		}
 		return globalVariable;
@@ -95,7 +100,7 @@ public class GlobalVariabeImporterImpl extends NamedElementImpl implements Globa
 		GlobalVariable oldGlobalVariable = globalVariable;
 		globalVariable = newGlobalVariable;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.GLOBAL_VARIABE_IMPORTER__GLOBAL_VARIABLE, oldGlobalVariable, globalVariable));
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.GLOBAL_VARIABLE_IMPORTER__GLOBAL_VARIABLE, oldGlobalVariable, globalVariable));
 	}
 
 	/**
@@ -118,7 +123,7 @@ public class GlobalVariabeImporterImpl extends NamedElementImpl implements Globa
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MappingPackage.GLOBAL_VARIABE_IMPORTER__GLOBAL_VARIABLE:
+			case MappingPackage.GLOBAL_VARIABLE_IMPORTER__GLOBAL_VARIABLE:
 				if (resolve) return getGlobalVariable();
 				return basicGetGlobalVariable();
 		}
@@ -133,7 +138,7 @@ public class GlobalVariabeImporterImpl extends NamedElementImpl implements Globa
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingPackage.GLOBAL_VARIABE_IMPORTER__GLOBAL_VARIABLE:
+			case MappingPackage.GLOBAL_VARIABLE_IMPORTER__GLOBAL_VARIABLE:
 				setGlobalVariable((GlobalVariable)newValue);
 				return;
 		}
@@ -148,7 +153,7 @@ public class GlobalVariabeImporterImpl extends NamedElementImpl implements Globa
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingPackage.GLOBAL_VARIABE_IMPORTER__GLOBAL_VARIABLE:
+			case MappingPackage.GLOBAL_VARIABLE_IMPORTER__GLOBAL_VARIABLE:
 				setGlobalVariable((GlobalVariable)null);
 				return;
 		}
@@ -163,7 +168,7 @@ public class GlobalVariabeImporterImpl extends NamedElementImpl implements Globa
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingPackage.GLOBAL_VARIABE_IMPORTER__GLOBAL_VARIABLE:
+			case MappingPackage.GLOBAL_VARIABLE_IMPORTER__GLOBAL_VARIABLE:
 				return globalVariable != null;
 		}
 		return super.eIsSet(featureID);
@@ -178,8 +183,8 @@ public class GlobalVariabeImporterImpl extends NamedElementImpl implements Globa
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == ComplexAttributeMappingSourceInterface.class) {
 			switch (baseOperationID) {
-				case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return MappingPackage.GLOBAL_VARIABE_IMPORTER___GET_SOURCE_ATTRIBUTE;
-				case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE___GET_NAME: return MappingPackage.GLOBAL_VARIABE_IMPORTER___GET_NAME;
+				case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return MappingPackage.GLOBAL_VARIABLE_IMPORTER___GET_SOURCE_ATTRIBUTE;
+				case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE___GET_NAME: return MappingPackage.GLOBAL_VARIABLE_IMPORTER___GET_NAME;
 				default: return -1;
 			}
 		}
@@ -194,10 +199,10 @@ public class GlobalVariabeImporterImpl extends NamedElementImpl implements Globa
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.GLOBAL_VARIABE_IMPORTER___GET_SOURCE_ATTRIBUTE:
+			case MappingPackage.GLOBAL_VARIABLE_IMPORTER___GET_SOURCE_ATTRIBUTE:
 				return getSourceAttribute();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
-} //GlobalVariabeImporterImpl
+} //GlobalVariableImporterImpl

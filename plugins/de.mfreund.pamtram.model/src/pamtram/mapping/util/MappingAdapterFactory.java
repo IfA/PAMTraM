@@ -6,52 +6,8 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-
 import pamtram.NamedElement;
-import pamtram.mapping.AttributeMapping;
-import pamtram.mapping.AttributeMappingSourceElementType;
-import pamtram.mapping.AttributeMappingSourceElementWithModifiers;
-import pamtram.mapping.AttributeMatcher;
-import pamtram.mapping.AttributeValueModifier;
-import pamtram.mapping.AttributeValueModifierSet;
-import pamtram.mapping.CalculatorMapping;
-import pamtram.mapping.CardinalityMapping;
-import pamtram.mapping.ClassMatcher;
-import pamtram.mapping.ComplexAttributeMapping;
-import pamtram.mapping.ComplexAttributeMappingSourceElement;
-import pamtram.mapping.ComplexAttributeMappingSourceInterface;
-import pamtram.mapping.ComplexAttributeMatcher;
-import pamtram.mapping.ComplexAttributeMatcherSourceElement;
-import pamtram.mapping.ComplexModelConnectionHint;
-import pamtram.mapping.ComplexModelConnectionHintSourceElement;
-import pamtram.mapping.ConnectionHintTargetAttribute;
-import pamtram.mapping.ExportedMappingHintGroup;
-import pamtram.mapping.ExpressionVariable;
-import pamtram.mapping.GlobalVariabeImporter;
-import pamtram.mapping.GlobalVariable;
-import pamtram.mapping.HintImporterMappingHint;
-import pamtram.mapping.InstantiableMappingHintGroup;
-import pamtram.mapping.MappedAttributeValueAppender;
-import pamtram.mapping.MappedAttributeValueExpander;
-import pamtram.mapping.MappedAttributeValuePrepender;
-import pamtram.mapping.Mapping;
-import pamtram.mapping.MappingHint;
-import pamtram.mapping.MappingHintGroup;
-import pamtram.mapping.MappingHintGroupImporter;
-import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.MappingHintType;
-import pamtram.mapping.MappingInstanceSelector;
-import pamtram.mapping.MappingPackage;
-import pamtram.mapping.MappingType;
-import pamtram.mapping.Matcher;
-import pamtram.mapping.ModelConnectionHint;
-import pamtram.mapping.SimpleAttributeMapping;
-import pamtram.mapping.SimpleAttributeMatcher;
-import pamtram.mapping.SimpleModelConnectionHint;
-import pamtram.mapping.StringAppender;
-import pamtram.mapping.StringPrepender;
-import pamtram.mapping.SubstringReplacer;
-import pamtram.mapping.UniqueNumberAppender;
+import pamtram.mapping.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -274,8 +230,8 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createGlobalVariableAdapter();
 			}
 			@Override
-			public Adapter caseGlobalVariabeImporter(GlobalVariabeImporter object) {
-				return createGlobalVariabeImporterAdapter();
+			public Adapter caseGlobalVariableImporter(GlobalVariableImporter object) {
+				return createGlobalVariableImporterAdapter();
 			}
 			@Override
 			public Adapter caseComplexAttributeMappingSourceInterface(ComplexAttributeMappingSourceInterface object) {
@@ -880,16 +836,16 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.GlobalVariabeImporter <em>Global Variabe Importer</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.GlobalVariableImporter <em>Global Variable Importer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.GlobalVariabeImporter
+	 * @see pamtram.mapping.GlobalVariableImporter
 	 * @generated
 	 */
-	public Adapter createGlobalVariabeImporterAdapter() {
+	public Adapter createGlobalVariableImporterAdapter() {
 		return null;
 	}
 

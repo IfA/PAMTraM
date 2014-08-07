@@ -439,7 +439,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
           eType="#//mapping/AttributeValueModifierSet"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="GlobalVariabeImporter" eSuperTypes="#//NamedElement #//mapping/ComplexAttributeMappingSourceInterface">
+    <eClassifiers xsi:type="ecore:EClass" name="GlobalVariableImporter" eSuperTypes="#//NamedElement #//mapping/ComplexAttributeMappingSourceInterface">
       <eStructuralFeatures xsi:type="ecore:EReference" name="globalVariable" lowerBound="1"
           eType="#//mapping/GlobalVariable"/>
     </eClassifiers>

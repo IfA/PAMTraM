@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import pamtram.PamtramPackage;
 import pamtram.condition.ConditionPackage;
 import pamtram.condition.impl.ConditionPackageImpl;
@@ -33,8 +32,8 @@ import pamtram.mapping.ComplexModelConnectionHintSourceElement;
 import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.ExpressionVariable;
-import pamtram.mapping.GlobalVariabeImporter;
 import pamtram.mapping.GlobalVariable;
+import pamtram.mapping.GlobalVariableImporter;
 import pamtram.mapping.HintImporterMappingHint;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappedAttributeValueAppender;
@@ -364,7 +363,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass globalVariabeImporterEClass = null;
+	private EClass globalVariableImporterEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1191,8 +1190,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getGlobalVariabeImporter() {
-		return globalVariabeImporterEClass;
+	public EClass getGlobalVariableImporter() {
+		return globalVariableImporterEClass;
 	}
 
 	/**
@@ -1200,8 +1199,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGlobalVariabeImporter_GlobalVariable() {
-		return (EReference)globalVariabeImporterEClass.getEStructuralFeatures().get(0);
+	public EReference getGlobalVariableImporter_GlobalVariable() {
+		return (EReference)globalVariableImporterEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1381,8 +1380,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		createEReference(globalVariableEClass, GLOBAL_VARIABLE__SOURCE);
 		createEReference(globalVariableEClass, GLOBAL_VARIABLE__MODIFIER);
 
-		globalVariabeImporterEClass = createEClass(GLOBAL_VARIABE_IMPORTER);
-		createEReference(globalVariabeImporterEClass, GLOBAL_VARIABE_IMPORTER__GLOBAL_VARIABLE);
+		globalVariableImporterEClass = createEClass(GLOBAL_VARIABLE_IMPORTER);
+		createEReference(globalVariableImporterEClass, GLOBAL_VARIABLE_IMPORTER__GLOBAL_VARIABLE);
 
 		complexAttributeMappingSourceInterfaceEClass = createEClass(COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE);
 		createEOperation(complexAttributeMappingSourceInterfaceEClass, COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE);
@@ -1467,8 +1466,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		mappedAttributeValuePrependerEClass.getESuperTypes().add(this.getMappedAttributeValueExpander());
 		mappedAttributeValueAppenderEClass.getESuperTypes().add(this.getMappedAttributeValueExpander());
 		globalVariableEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
-		globalVariabeImporterEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
-		globalVariabeImporterEClass.getESuperTypes().add(this.getComplexAttributeMappingSourceInterface());
+		globalVariableImporterEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
+		globalVariableImporterEClass.getESuperTypes().add(this.getComplexAttributeMappingSourceInterface());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(mappingEClass, Mapping.class, "Mapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1595,8 +1594,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEReference(getGlobalVariable_Source(), theMetamodelPackage.getSourceSectionAttribute(), null, "source", null, 1, 1, GlobalVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGlobalVariable_Modifier(), this.getAttributeValueModifierSet(), null, "modifier", null, 0, -1, GlobalVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(globalVariabeImporterEClass, GlobalVariabeImporter.class, "GlobalVariabeImporter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGlobalVariabeImporter_GlobalVariable(), this.getGlobalVariable(), null, "globalVariable", null, 1, 1, GlobalVariabeImporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(globalVariableImporterEClass, GlobalVariableImporter.class, "GlobalVariableImporter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGlobalVariableImporter_GlobalVariable(), this.getGlobalVariable(), null, "globalVariable", null, 1, 1, GlobalVariableImporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(complexAttributeMappingSourceInterfaceEClass, ComplexAttributeMappingSourceInterface.class, "ComplexAttributeMappingSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

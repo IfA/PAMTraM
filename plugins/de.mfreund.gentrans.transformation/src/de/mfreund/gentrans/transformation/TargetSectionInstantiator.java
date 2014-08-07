@@ -56,6 +56,14 @@ class TargetSectionInstantiator {
 	 */
 	private RoundFunction round;
 	/**
+	 * MaxFunction instance, needed when evaluating ClaculatorMappingHints
+	 */
+	private MaxFunction max;
+	/**
+	 * MinFunction instance, needed when evaluating ClaculatorMappingHints
+	 */
+	private MinFunction min;
+	/**
 	 * target section registry used when instantiating classes
 	 */
 	private TargetSectionRegistry targetSectionRegistry;
@@ -106,6 +114,8 @@ class TargetSectionInstantiator {
 				
 		try{
 			round=new RoundFunction();
+			max=new MaxFunction();
+			min=new MinFunction();
 		}catch(InvalidCustomFunctionException e){
 			consoleStream.println("This will never happen.");
 		}
@@ -336,8 +346,13 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 									 */
 									vars.putAll((Map<String,Double>)attrHintValues.remove(0));
 									
-									attrValue = String.valueOf(new ExpressionBuilder(((CalculatorMapping) hintFound).getExpression()).withCustomFunction(round)
-											.withVariables(vars).build().calculate());									
+									attrValue = String.valueOf(new ExpressionBuilder(((CalculatorMapping) hintFound).getExpression())
+											.withCustomFunction(round)
+											.withCustomFunction(max)
+											.withCustomFunction(min)
+											.withVariables(vars)
+											.build()
+											.calculate());									
 								} catch(Exception e){//TODO this will lead to a lot of error output if it fails
 									consoleStream.println("Error parsing the expression of CalculatorMapping" + hintFound.getName() + ". Message:\n"
 											+ e.getMessage());

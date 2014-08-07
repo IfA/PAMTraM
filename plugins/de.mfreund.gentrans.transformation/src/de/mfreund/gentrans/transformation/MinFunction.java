@@ -4,19 +4,20 @@ import de.congrace.exp4j.CustomFunction;
 import de.congrace.exp4j.InvalidCustomFunctionException;
 
 /**
- * "round" function extending Functionality of the ClaculatorMapping
+ * Provides a min(a,b) Function for exp4j
  * @author Sascha Steffen
  * @version 1.0
  *
  */
-class RoundFunction extends CustomFunction {
+public class MinFunction extends CustomFunction {
+
 
 	/**
-	 * Constructor
 	 * @throws InvalidCustomFunctionException
 	 */
-	public RoundFunction() throws InvalidCustomFunctionException {
-		super("round");
+	public MinFunction()
+			throws InvalidCustomFunctionException {
+		super("min",2);
 	}
 
 	/* (non-Javadoc)
@@ -24,7 +25,7 @@ class RoundFunction extends CustomFunction {
 	 */
 	@Override
 	public double applyFunction(double... args) {
-		return Math.round(args[0]);
+		return java.lang.Math.min(args[0], args[1]);
 	}
 
 }

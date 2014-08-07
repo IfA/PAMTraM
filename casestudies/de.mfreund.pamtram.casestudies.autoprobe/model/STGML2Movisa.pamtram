@@ -47,6 +47,18 @@
         <eReference href="http://gfai.de/stgml.xsd#//ScxmlType/visualization"/>
         <value name="Visualization">
           <eClass href="http://gfai.de/stgml.xsd#//Visualization"/>
+          <attributes name="xmax">
+            <attribute href="http://gfai.de/stgml.xsd#//Visualization/xmax"/>
+          </attributes>
+          <attributes name="xmin">
+            <attribute href="http://gfai.de/stgml.xsd#//Visualization/xmin"/>
+          </attributes>
+          <attributes name="ymax">
+            <attribute href="http://gfai.de/stgml.xsd#//Visualization/ymax"/>
+          </attributes>
+          <attributes name="ymin">
+            <attribute href="http://gfai.de/stgml.xsd#//Visualization/ymin"/>
+          </attributes>
         </value>
       </references>
       <attributes name="SCXMLName">
@@ -3912,6 +3924,10 @@
           <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.7/@attributes.0" name="target" source="//@sourceSectionModel/@metaModelSections.0/@references.0/@value.0/@references.1/@value.0/@attributes.1"/>
         </mappingHints>
       </mappingHintGroups>
+      <globalVariables name="xmax" source="//@sourceSectionModel/@metaModelSections.0/@references.2/@value.0/@attributes.0"/>
+      <globalVariables name="ymax" source="//@sourceSectionModel/@metaModelSections.0/@references.2/@value.0/@attributes.2"/>
+      <globalVariables name="xmin" source="//@sourceSectionModel/@metaModelSections.0/@references.2/@value.0/@attributes.1"/>
+      <globalVariables name="ymin" source="//@sourceSectionModel/@metaModelSections.0/@references.2/@value.0/@attributes.3"/>
     </mapping>
     <mapping name="UA Items (SigInterface)" sourceMMSection="//@sourceSectionModel/@metaModelSections.2">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPCUAItem Integer" targetMMSection="//@targetSectionModel/@metaModelSections.1">
@@ -4149,17 +4165,17 @@
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger repAn" affectedReference="//@targetSectionModel/@metaModelSections.13/@references.1/@value.0/@references.1/@value.0/@references.0">
           <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel/@modifierSets.15"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="TextLabelRepPosXValue" target="//@targetSectionModel/@metaModelSections.13/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="TextLabelRepPosXValue" target="//@targetSectionModel/@metaModelSections.13/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x/max(xmax/1266,ymax/668))">
           <variables name="x" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.13/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round((2000.0-0.1*y)-h*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.13/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round(((ymax-y)-h)/max(xmax/1266,ymax/668))">
           <variables name="y" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.2"/>
           <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.13/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.13/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w/max(xmax/1266,ymax/668))">
           <variables name="w" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.13/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.13/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h/max(xmax/1266,ymax/668))">
           <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="positionName" target="//@targetSectionModel/@metaModelSections.13/@references.0/@value.0/@references.1/@value.0/@attributes.0">
@@ -4198,17 +4214,17 @@
           <sourceAttributeMappings name="LayerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings name="label" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.5" modifier="//@mappingModel/@modifierSets.26"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="TextLabelRepPosXValue" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="TextLabelRepPosXValue" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x/max(xmax/1266,ymax/668))">
           <variables name="x" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round((2000.0-0.1*y)-h*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round(((ymax-y)-h)/max(xmax/1266,ymax/668))">
           <variables name="y" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.2"/>
           <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w/max(xmax/1266,ymax/668))">
           <variables name="w" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h/max(xmax/1266,ymax/668))">
           <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.0/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="posName" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.1/@value.0/@attributes.0">
@@ -4245,17 +4261,17 @@
           <sourceAttributeMappings name="LayerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings name="label" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.5" modifier="//@mappingModel/@modifierSets.25"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x/max(xmax/1266,ymax/668))">
           <variables name="x" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round((2000.0-0.1*y)-h*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round(((ymax-y)-h)/max(xmax/1266,ymax/668))">
           <variables name="y" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.2"/>
           <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w/max(xmax/1266,ymax/668))">
           <variables name="w" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h/max(xmax/1266,ymax/668))">
           <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="Name position" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.1/@value.0/@attributes.0">
@@ -4294,17 +4310,17 @@
           <sourceAttributeMappings name="LayerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings name="label" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.5" modifier="//@mappingModel/@modifierSets.26"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x/max(xmax/1266,ymax/668))">
           <variables name="x" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round((2000.0-0.1*y)-h*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round(((ymax-y)-h)/max(xmax/1266,ymax/668))">
           <variables name="y" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.2"/>
           <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w/max(xmax/1266,ymax/668))">
           <variables name="w" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h/max(xmax/1266,ymax/668))">
           <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.1/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="Name Position" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.1/@value.0/@attributes.0">
@@ -4347,17 +4363,17 @@
           <sourceAttributeMappings name="LayerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings name="label" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.2/@attributes.5" modifier="//@mappingModel/@modifierSets.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.18/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.18/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x/max(xmax/1266,ymax/668))">
           <variables name="x" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.2/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.18/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round((2000.0-0.1*y)-h*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.18/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round(((ymax-y)-h)/max(xmax/1266,ymax/668))">
           <variables name="y" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.2/@attributes.2"/>
           <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.2/@attributes.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.18/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.18/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w/max(xmax/1266,ymax/668))">
           <variables name="w" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.2/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.18/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.18/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h/max(xmax/1266,ymax/668))">
           <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.2/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="Name Position" target="//@targetSectionModel/@metaModelSections.18/@references.0/@value.0/@references.1/@value.0/@attributes.0">
@@ -4538,17 +4554,17 @@
           <sourceAttributeMappings name="LayerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings name="label" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.5" modifier="//@mappingModel/@modifierSets.25"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x/max(xmax/1266,ymax/668))">
           <variables name="x" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round((2000.0-0.1*y)-h*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round(((ymax-y)-h)/max(xmax/1266,ymax/668))">
           <variables name="y" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.2"/>
           <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w/max(xmax/1266,ymax/668))">
           <variables name="w" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h/max(xmax/1266,ymax/668))">
           <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="Name Postion" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.1/@value.0/@attributes.0">
@@ -4587,17 +4603,17 @@
           <sourceAttributeMappings name="LayerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings name="label" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.5" modifier="//@mappingModel/@modifierSets.26"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x/max(xmax/1266,ymax/668))">
           <variables name="x" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round((2000.0-0.1*y)-h*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round(((ymax-y)-h)/max(xmax/1266,ymax/668))">
           <variables name="y" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.2"/>
           <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w/max(xmax/1266,ymax/668))">
           <variables name="w" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h/max(xmax/1266,ymax/668))">
           <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.3/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="Name Pos" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.1/@value.0/@attributes.0">
@@ -4643,17 +4659,17 @@
           <sourceAttributeMappings name="LayerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings name="label" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.4/@attributes.5" modifier="//@mappingModel/@modifierSets.5"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.19/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.19/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x/max(xmax/1266,ymax/668))">
           <variables name="x" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.4/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.19/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round((2000.0-0.1*y)-h*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.19/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round(((ymax-y)-h)/max(xmax/1266,ymax/668))">
           <variables name="y" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.4/@attributes.2"/>
           <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.4/@attributes.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.19/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.19/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w/max(xmax/1266,ymax/668))">
           <variables name="w" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.4/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.19/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.19/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h/max(xmax/1266,ymax/668))">
           <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.4/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="Position Name" target="//@targetSectionModel/@metaModelSections.19/@references.0/@value.0/@references.1/@value.0/@attributes.0">
@@ -4751,17 +4767,17 @@
           <sourceAttributeMappings name="LayerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings name="label" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.5/@attributes.5" modifier="//@mappingModel/@modifierSets.22"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.20/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.20/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x/max(xmax/1266,ymax/668))">
           <variables name="x" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.5/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.20/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round((2000.0-0.1*y)-h*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.20/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round(((ymax-y)-h)/max(xmax/1266,ymax/668))">
           <variables name="y" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.5/@attributes.2"/>
           <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.5/@attributes.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.20/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.20/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w/max(xmax/1266,ymax/668))">
           <variables name="w" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.5/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.20/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.20/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h/max(xmax/1266,ymax/668))">
           <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.5/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Text" affectedReference="//@targetSectionModel/@metaModelSections.20/@references.0/@value.0/@references.4">
@@ -4834,17 +4850,17 @@
           <sourceAttributeMappings name="LayerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings name="imgName" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.6/@references.0/@value.0/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.22"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x/max(xmax/1266,ymax/668))">
           <variables name="x" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.6/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round((2000.0-0.1*y)-h*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round(((ymax-y)-h)/max(xmax/1266,ymax/668))">
           <variables name="y" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.6/@attributes.2"/>
           <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.6/@attributes.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w/max(xmax/1266,ymax/668))">
           <variables name="w" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.6/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h/max(xmax/1266,ymax/668))">
           <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.6/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="imgResource" affectedReference="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.4">
@@ -4899,17 +4915,17 @@
           <sourceAttributeMappings name="LayerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings name="imgName" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.9/@references.0/@value.0/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.22"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x/max(xmax/1266,ymax/668))">
           <variables name="x" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.9/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round((2000.0-0.1*y)-h*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round(((ymax-y)-h)/max(xmax/1266,ymax/668))">
           <variables name="y" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.9/@attributes.2"/>
           <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.9/@attributes.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w/max(xmax/1266,ymax/668))">
           <variables name="w" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.9/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h/max(xmax/1266,ymax/668))">
           <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.9/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="imgResource" affectedReference="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.4">
@@ -4964,17 +4980,17 @@
           <sourceAttributeMappings name="LayerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings name="imgName" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.10/@references.0/@value.0/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.22"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x/max(xmax/1266,ymax/668))">
           <variables name="x" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.10/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round((2000.0-0.1*y)-h*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round(((ymax-y)-h)/max(xmax/1266,ymax/668))">
           <variables name="y" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.10/@attributes.2"/>
           <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.10/@attributes.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w/max(xmax/1266,ymax/668))">
           <variables name="w" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.10/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h*0.1)">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h/max(xmax/1266,ymax/668))">
           <variables name="h" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.10/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="imgResource" affectedReference="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.4">

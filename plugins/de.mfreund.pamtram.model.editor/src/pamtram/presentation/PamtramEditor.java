@@ -136,6 +136,7 @@ import pamtram.mapping.ComplexModelConnectionHint;
 import pamtram.mapping.ComplexModelConnectionHintSourceElement;
 import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.GlobalVariable;
+import pamtram.mapping.GlobalVariableImporter;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupImporter;
@@ -1309,7 +1310,14 @@ public class PamtramEditor
 						
 						setSourceTargetViewerSingleItemSelections(target,
 								source);
+					}  else if(((TreeItem) e.item).getData() instanceof GlobalVariableImporter){
+						GlobalVariableImporter mapping = (GlobalVariableImporter) ((TreeItem) e.item).getData();
+						Attribute target = ((AttributeMapping)mapping.eContainer()).getTarget();
+						Attribute source=mapping.getSourceAttribute();
 						
+						setSourceTargetViewerSingleItemSelections(target, source);
+						
+	
 					} else if(((TreeItem) e.item).getData() instanceof ComplexAttributeMapping || ((TreeItem) e.item).getData() instanceof CalculatorMapping) {
 						AttributeMapping mapping = (AttributeMapping) ((TreeItem) e.item).getData();
 						Attribute target = mapping.getTarget();

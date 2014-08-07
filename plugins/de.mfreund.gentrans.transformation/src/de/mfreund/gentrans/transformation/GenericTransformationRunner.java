@@ -31,9 +31,10 @@ import org.eclipse.ui.progress.UIJob;
 
 import pamtram.PAMTraM;
 import pamtram.mapping.AttributeMapping;
-import pamtram.mapping.ComplexAttribueMappingSourceElement;
 import pamtram.mapping.ComplexAttributeMapping;
+import pamtram.mapping.ComplexAttributeMappingSourceInterface;
 import pamtram.mapping.ExportedMappingHintGroup;
+import pamtram.mapping.GlobalVariabeImporter;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappedAttributeValuePrepender;
 import pamtram.mapping.Mapping;
@@ -250,11 +251,16 @@ public class GenericTransformationRunner {
 		
 		/*
 		 * Now write MappingHint values of Hints of ExportedMappingHintGroups to a separate storage,
-		 * and remove the values from the MappingInstanceStorages
+		 * and remove the values from the MappingInstanceStorages.
+		 * 
+		 * Also add values of GlobalVariables to ComplexAttributeMapping's Hints
 		 */
-		consoleStream.println("Getting hint values of exported hint groups and checking MappingHintImporters");//TODO remove if it works
+		consoleStream.println("Getting hint values of exported hint groups, checking MappingHintImporters, adding global variables to hints");
 		Map<MappingHint, LinkedList<Object>> exportedMappingHints=new LinkedHashMap<MappingHint, LinkedList<Object>>();
 		for(MappingInstanceStorage selMap : selectedMappings){
+			/*
+			 * import hint values
+			 */
 			for(MappingHintGroupType g : selMap.getMapping().getMappingHintGroups()){
 				if(g instanceof ExportedMappingHintGroup){
 					for(MappingHint h : g.getMappingHints()){
@@ -263,6 +269,47 @@ public class GenericTransformationRunner {
 						}
 						exportedMappingHints.get(h).addAll(selMap.getHintValues().remove(h));//this works because the SourceSectionMapper guarantees that a key exists 
 																						     //for each MappingHint of the Mapping
+					}
+				}
+				/*
+				 * add global values
+				 */
+
+				for(MappingHint h : g.getMappingHints()){
+
+					if(h instanceof ComplexAttributeMapping){
+						for(ComplexAttributeMappingSourceInterface i : ((ComplexAttributeMapping) h).getSourceAttributeMappings()){
+							if(i instanceof GlobalVariabeImporter){
+								if(sourceSectionMapper.getGlobalVarValues().containsKey(((GlobalVariabeImporter) i).getGlobalVariable())){
+									String gVal=sourceSectionMapper.getGlobalVarValues().get(((GlobalVariabeImporter) i).getGlobalVariable());
+									for(Object m : selMap.getHintValues().get(h)){
+										Map<ComplexAttributeMappingSourceInterface,String> map=(Map<ComplexAttributeMappingSourceInterface,String>) m;
+										map.put(i, gVal);
+									}
+								}
+							}
+						}
+					}
+				}
+					
+				
+			}
+			
+			for(MappingHintGroupImporter g : selMap.getMapping().getImportedMappingHintGroups()){
+				for(MappingHintType h : g.getMappingHints()){
+					
+					if(h instanceof ComplexAttributeMapping){
+						for(ComplexAttributeMappingSourceInterface i : ((ComplexAttributeMapping) h).getSourceAttributeMappings()){
+							if(i instanceof GlobalVariabeImporter){
+								if(sourceSectionMapper.getGlobalVarValues().containsKey(((GlobalVariabeImporter) i).getGlobalVariable())){
+									String gVal=sourceSectionMapper.getGlobalVarValues().get(((GlobalVariabeImporter) i).getGlobalVariable());
+									for(Object m : selMap.getHintValues().get(h)){
+										Map<ComplexAttributeMappingSourceInterface,String> map=(Map<ComplexAttributeMappingSourceInterface,String>) m;
+										map.put(i, gVal);
+									}
+								}
+							}
+						}
 					}
 				}
 			}
@@ -285,11 +332,10 @@ public class GenericTransformationRunner {
 
 		/*
 		 * Instantiate all Target-Sections (containment refs and attributes)
-		 */
-		TargetSectionInstantiator targetSectionInstantiator = new TargetSectionInstantiator(
-				targetSectionRegistry, attrValueRegistry,sourceSectionMapper.getGlobalVarValues(),consoleStream);		
+		 */	
 		writePamtramMessage("Instantiating targetModelSections for selected mappings. First pass...");
-		
+		TargetSectionInstantiator targetSectionInstantiator = new TargetSectionInstantiator(
+				targetSectionRegistry, attrValueRegistry,sourceSectionMapper.getGlobalVarValues(),consoleStream);			
 		for (MappingInstanceStorage selMap : selectedMappings) {
 			for (MappingHintGroupType g : selMap.getMapping().getMappingHintGroups()) {
 				if (g.getTargetMMSection() != null && g instanceof MappingHintGroup) {
@@ -355,9 +401,9 @@ public class GenericTransformationRunner {
 													}
 													selMap.setHintValueList(realHint, vals);
 												} else if(realHint instanceof ComplexAttributeMapping){//ComplexAttributeMapping
-													List<ComplexAttribueMappingSourceElement> sources=((ComplexAttributeMapping) realHint).getSourceAttributeMappings();
+													List<ComplexAttributeMappingSourceInterface> sources=((ComplexAttributeMapping) realHint).getSourceAttributeMappings();
 													if(sources.size() > 0){
-														ComplexAttribueMappingSourceElement element;
+														ComplexAttributeMappingSourceInterface element;
 														if(prepend){
 															element=sources.get(0);
 														} else {
@@ -365,7 +411,7 @@ public class GenericTransformationRunner {
 														}
 
 														for(Object m : selMap.getHintValues().get(realHint)){
-															Map<ComplexAttribueMappingSourceElement,String> map=(Map<ComplexAttribueMappingSourceElement,String>) m;
+															Map<ComplexAttributeMappingSourceInterface,String> map=(Map<ComplexAttributeMappingSourceInterface,String>) m;
 															if(map.containsKey(element)){
 																if(prepend){
 																	map.put(element, hintVal+map.get(element));

@@ -17,8 +17,9 @@ import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.CalculatorMapping;
-import pamtram.mapping.ComplexAttribueMappingSourceElement;
 import pamtram.mapping.ComplexAttributeMapping;
+import pamtram.mapping.ComplexAttributeMappingSourceElement;
+import pamtram.mapping.ComplexAttributeMappingSourceInterface;
 import pamtram.mapping.ComplexAttributeMatcher;
 import pamtram.mapping.ComplexAttributeMatcherSourceElement;
 import pamtram.mapping.ComplexModelConnectionHint;
@@ -194,7 +195,7 @@ class SourceSectionMapper {
 	private void buildDeepestCmplxAttrMappingElementsMap(ComplexAttributeMapping m, SourceSectionClass srcSection){
 		if(!deepestComplexAttrMappingSrcElementsByCmplxMapping.containsKey(m)){
 			Set<AttributeMappingSourceElementType> srcElements=new HashSet<AttributeMappingSourceElementType>();
-			srcElements.addAll(m.getSourceAttributeMappings());
+			srcElements.addAll(m.getLocalSourceElements());
 			
 			sortOutElements(srcElements, srcSection);
 			if(srcElements.size() == 1){
@@ -391,7 +392,7 @@ class SourceSectionMapper {
 
 		// init hintValues --TODO this is absolutely neccessary as of now, maybe
 		// find out why?-> naccessary f.i. in targetSectionMApper for determination of cardinality
-		Map<ComplexAttribueMappingSourceElement,String> complexSourceElementHintValues=new LinkedHashMap<ComplexAttribueMappingSourceElement,String>();
+		Map<ComplexAttributeMappingSourceElement,String> complexSourceElementHintValues=new LinkedHashMap<ComplexAttributeMappingSourceElement,String>();
 		Map<ExpressionVariable,String> calcVariableHintValues=new LinkedHashMap<ExpressionVariable,String>();	
 		Map<ComplexAttributeMatcherSourceElement,String> complexAttrMatcherSourceElementHintValues=new LinkedHashMap<ComplexAttributeMatcherSourceElement,String>();
 		Map<ComplexModelConnectionHintSourceElement,String> complexConnectionHintSourceElementHintValues=new LinkedHashMap<ComplexModelConnectionHintSourceElement,String>();
@@ -405,7 +406,7 @@ class SourceSectionMapper {
 					changedRefsAndHints.getHintValues().get(hint).addAll(newRefsAndHints.getHintValues().get(hint));//the cardinality of 
 																												    //the existing hintval is either 0 or 1 at this point
 				} else if(hint instanceof ComplexAttributeMapping){
-					changedRefsAndHints.getHintValues().get(hint).add(new LinkedHashMap<ComplexAttributeMatcherSourceElement,String>());
+					changedRefsAndHints.getHintValues().get(hint).add(new LinkedHashMap<ComplexAttributeMappingSourceInterface,String>());
 				} else {
 					changedRefsAndHints.getHintValues().get(hint).add(new LinkedHashMap<String,Double>());
 				}
@@ -503,7 +504,7 @@ class SourceSectionMapper {
 						}
 						
 					}else if(hint instanceof ComplexAttributeMapping){
-						for(ComplexAttribueMappingSourceElement m : ((ComplexAttributeMapping) hint).getSourceAttributeMappings()){
+						for(ComplexAttributeMappingSourceElement m : ((ComplexAttributeMapping) hint).getLocalSourceElements()){
 							if (m.getSource().equals(at)) {
 								String valCopy = AttributeValueRegistry.applyAttributeValueModifiers(srcAttrAsString,m.getModifier());
 								complexSourceElementHintValues.put(m,valCopy);
@@ -585,9 +586,9 @@ class SourceSectionMapper {
 		
 		for(MappingHintType h : hints){
 			if(h instanceof ComplexAttributeMapping){
-				Map<ComplexAttribueMappingSourceElement,String> foundValues=new LinkedHashMap<ComplexAttribueMappingSourceElement,String>();
+				Map<ComplexAttributeMappingSourceInterface,String> foundValues=new LinkedHashMap<ComplexAttributeMappingSourceInterface,String>();
 				//append the complex hint value (cardinality either 0 or 1) with found values in right order
-				for(ComplexAttribueMappingSourceElement s : ((ComplexAttributeMapping) h).getSourceAttributeMappings()){
+				for(ComplexAttributeMappingSourceElement s : ((ComplexAttributeMapping) h).getLocalSourceElements()){
 					if(complexSourceElementHintValues.containsKey(s)){
 						foundValues.put(s,complexSourceElementHintValues.get(s));
 					}
@@ -596,7 +597,7 @@ class SourceSectionMapper {
 				if(foundValues.keySet().size() > 0){
 					complexAttributeMappingsFound.add((ComplexAttributeMapping)h);
 					
-					foundValues.putAll((Map<ComplexAttribueMappingSourceElement,String>) changedRefsAndHints.getHintValues().get(h).remove());					
+					foundValues.putAll((Map<ComplexAttributeMappingSourceInterface,String>) changedRefsAndHints.getHintValues().get(h).remove());					
 					changedRefsAndHints.getHintValues().get(h).add(foundValues);
 				}				
 			} else if(h instanceof MappingInstanceSelector){

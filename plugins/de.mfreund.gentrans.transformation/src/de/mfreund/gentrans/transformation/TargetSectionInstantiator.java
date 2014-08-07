@@ -23,6 +23,7 @@ import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.CalculatorMapping;
 import pamtram.mapping.ClassMatcher;
 import pamtram.mapping.ComplexAttributeMapping;
+import pamtram.mapping.ComplexAttributeMappingSourceInterface;
 import pamtram.mapping.ComplexAttributeMatcher;
 import pamtram.mapping.GlobalVariable;
 import pamtram.mapping.InstantiableMappingHintGroup;
@@ -86,10 +87,6 @@ class TargetSectionInstantiator {
 	public boolean isTransformationAborted() {
 		return transformationAborted;
 	}	
-	/**
-	 * Registry for values of global Variables 
-	 */
-	private Map<GlobalVariable,String> globalVarValues;
 	
 	/**
 	 * Registry for values of global Variables that can be mapped to double
@@ -110,7 +107,6 @@ class TargetSectionInstantiator {
 		this.attributeValueRegistry=attributeValueRegistry;
 		this.consoleStream=consoleStream;
 		this.transformationAborted=false;
-		this.globalVarValues=globalVarValues;
 				
 		try{
 			round=new RoundFunction();
@@ -120,15 +116,6 @@ class TargetSectionInstantiator {
 			consoleStream.println("This will never happen.");
 		}
 		
-		fillGlobalVarValues();
-	}
-
-
-	/**
-	 * Fills the GlobalVarValues map
-	 * @param globalVarValues
-	 */
-	private void fillGlobalVarValues() {
 		consoleStream.println("Parsing GlobalVariables for numbers. Look below for potential errors..");
 		//find GlobalVars that can be mapped to double
 		globalVarValueDoubles=new HashMap<String,Double>();
@@ -143,8 +130,7 @@ class TargetSectionInstantiator {
 			
 		}
 		consoleStream.println("...parsing done!");
-	}
-	
+	}	
 	
 	/**
 	 *find Attribute mapping to determine cardinality
@@ -359,12 +345,12 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 								}								
 							} else if (hintFound instanceof ComplexAttributeMapping){
 								attrValue="";
-								Map<AttributeMappingSourceElementType,String> hVal=(Map<AttributeMappingSourceElementType,String>) attrHintValues.remove(0);
-								for(AttributeMappingSourceElementType srcElement : ((ComplexAttributeMapping) hintFound).getSourceAttributeMappings()){
+								Map<ComplexAttributeMappingSourceInterface,String> hVal=(Map<ComplexAttributeMappingSourceInterface,String>) attrHintValues.remove(0);
+								for(ComplexAttributeMappingSourceInterface srcElement : ((ComplexAttributeMapping) hintFound).getSourceAttributeMappings()){
 									if(hVal.containsKey(srcElement)){
 											attrValue+=hVal.get(srcElement);
 									} else {
-										consoleStream.println("HintSourceValue not found " + srcElement.getName() + " in hint " 
+										consoleStream.println("HintSourceValue not found for element " + srcElement.getName() + " in hint " 
 												+ hintFound.getName() + "." );
 									}
 								}

@@ -197,10 +197,6 @@ public class GenericTransformationRunner {
 		SourceSectionMapper sourceSectionMapper = new SourceSectionMapper(suitableMappings, consoleStream);
 		TargetSectionRegistry targetSectionRegistry = new TargetSectionRegistry(consoleStream);
 		AttributeValueRegistry attrValueRegistry = new AttributeValueRegistry();
-		TargetSectionConnector connectionHelpers = new TargetSectionConnector(
-				attrValueRegistry, targetSectionRegistry, targetModel, consoleStream);
-		TargetSectionInstantiator targetSectionInstantiator = new TargetSectionInstantiator(
-				targetSectionRegistry, attrValueRegistry,consoleStream);
 
 		/*
 		 * create a list of all the containment references in the source model
@@ -290,8 +286,8 @@ public class GenericTransformationRunner {
 		/*
 		 * Instantiate all Target-Sections (containment refs and attributes)
 		 */
-		writePamtramMessage("Parsing GlobalVariables for numbers...");
-		targetSectionInstantiator.fillGlobalVarValues(sourceSectionMapper.getGlobalVarValues());
+		TargetSectionInstantiator targetSectionInstantiator = new TargetSectionInstantiator(
+				targetSectionRegistry, attrValueRegistry,sourceSectionMapper.getGlobalVarValues(),consoleStream);		
 		writePamtramMessage("Instantiating targetModelSections for selected mappings. First pass...");
 		
 		for (MappingInstanceStorage selMap : selectedMappings) {
@@ -419,7 +415,8 @@ public class GenericTransformationRunner {
 
 		// creating missing links/containers for target model
 		writePamtramMessage("Linking targetModelSections...");
-
+		TargetSectionConnector connectionHelpers = new TargetSectionConnector(
+				attrValueRegistry, targetSectionRegistry, targetModel, consoleStream);
 		for (Mapping m : suitableMappings) {
 			for (MappingHintGroupType g : m.getMappingHintGroups()) {
 				if (g.getTargetMMSection() != null && g instanceof MappingHintGroup) {// targetSection exists?

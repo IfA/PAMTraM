@@ -79,6 +79,11 @@ class TargetSectionInstantiator {
 		return transformationAborted;
 	}	
 	/**
+	 * Registry for values of global Variables 
+	 */
+	private Map<GlobalVariable,String> globalVarValues;
+	
+	/**
 	 * Registry for values of global Variables that can be mapped to double
 	 */
 	private Map<String,Double> globalVarValueDoubles;
@@ -86,21 +91,26 @@ class TargetSectionInstantiator {
 	/**
 	 * @param targetSectionRegistry target section registry used when instantiating classes
 	 * @param attributeValueRegistry used when setting attribute values
+	 * @param globalVarValues Registry for values of global Variables
 	 * @param consoleStream used to write console output
 	 */
 	TargetSectionInstantiator(TargetSectionRegistry targetSectionRegistry , 
 			AttributeValueRegistry attributeValueRegistry, 
+			Map<GlobalVariable,String> globalVarValues,
 			MessageConsoleStream consoleStream) {
 		this.targetSectionRegistry=targetSectionRegistry;
 		this.attributeValueRegistry=attributeValueRegistry;
 		this.consoleStream=consoleStream;
 		this.transformationAborted=false;
+		this.globalVarValues=globalVarValues;
 				
 		try{
 			round=new RoundFunction();
 		}catch(InvalidCustomFunctionException e){
 			consoleStream.println("This will never happen.");
 		}
+		
+		fillGlobalVarValues();
 	}
 
 
@@ -108,7 +118,8 @@ class TargetSectionInstantiator {
 	 * Fills the GlobalVarValues map
 	 * @param globalVarValues
 	 */
-	void fillGlobalVarValues(Map<GlobalVariable, String> globalVarValues) {
+	private void fillGlobalVarValues() {
+		consoleStream.println("Parsing GlobalVariables for numbers. Look below for potential errors..");
 		//find GlobalVars that can be mapped to double
 		globalVarValueDoubles=new HashMap<String,Double>();
 		for(GlobalVariable g : globalVarValues.keySet()){
@@ -121,6 +132,7 @@ class TargetSectionInstantiator {
 			}
 			
 		}
+		consoleStream.println("...parsing done!");
 	}
 	
 	

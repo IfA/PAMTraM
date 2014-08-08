@@ -1948,30 +1948,6 @@
           </references>
           <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedNavigationFlow">
             <eReference href="http://stefan-hennig.de/movisa/platform#//PresentationModel/OwnedNavigationFlow"/>
-            <value name="NewViewNavigationFlow">
-              <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/NewViewNavigationFlow"/>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Source" value="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.4/@value.0">
-                <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/NavigationFlow/Source"/>
-              </references>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Target">
-                <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/NavigationFlow/Target"/>
-              </references>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="initial">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
-              </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//CommentedMovisaModelElement/Comment"/>
-              </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Guard">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/NavigationFlow/Guard"/>
-              </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Dependent" value="true">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/NewViewNavigationFlow/Dependent"/>
-              </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Modal" value="true">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/NewViewNavigationFlow/Modal"/>
-              </attributes>
-            </value>
           </references>
           <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedNavigationRoot">
             <eReference href="http://stefan-hennig.de/movisa/platform#//PresentationModel/OwnedNavigationRoot"/>

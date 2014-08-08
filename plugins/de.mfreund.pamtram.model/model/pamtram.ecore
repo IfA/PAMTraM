@@ -444,6 +444,8 @@
           eType="#//mapping/GlobalVariable"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexAttributeMappingSourceInterface"
+        abstract="true" interface="true" eSuperTypes="#//mapping/ComplexMappingHintSourceInterface"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ComplexMappingHintSourceInterface"
         abstract="true" interface="true">
       <eOperations name="getSourceAttribute" lowerBound="1" eType="#//metamodel/SourceSectionAttribute"/>
       <eOperations name="getName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

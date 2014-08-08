@@ -261,6 +261,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseAttributeMappingSourceElementWithModifiers(complexAttributeMappingSourceElement);
 				if (result == null) result = caseComplexAttributeMappingSourceInterface(complexAttributeMappingSourceElement);
 				if (result == null) result = caseAttributeMappingSourceElementType(complexAttributeMappingSourceElement);
+				if (result == null) result = caseComplexMappingHintSourceInterface(complexAttributeMappingSourceElement);
 				if (result == null) result = caseNamedElement(complexAttributeMappingSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -410,12 +411,20 @@ public class MappingSwitch<T> extends Switch<T> {
 				T result = caseGlobalVariableImporter(globalVariableImporter);
 				if (result == null) result = caseNamedElement(globalVariableImporter);
 				if (result == null) result = caseComplexAttributeMappingSourceInterface(globalVariableImporter);
+				if (result == null) result = caseComplexMappingHintSourceInterface(globalVariableImporter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE: {
 				ComplexAttributeMappingSourceInterface complexAttributeMappingSourceInterface = (ComplexAttributeMappingSourceInterface)theEObject;
 				T result = caseComplexAttributeMappingSourceInterface(complexAttributeMappingSourceInterface);
+				if (result == null) result = caseComplexMappingHintSourceInterface(complexAttributeMappingSourceInterface);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.COMPLEX_MAPPING_HINT_SOURCE_INTERFACE: {
+				ComplexMappingHintSourceInterface complexMappingHintSourceInterface = (ComplexMappingHintSourceInterface)theEObject;
+				T result = caseComplexMappingHintSourceInterface(complexMappingHintSourceInterface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1065,6 +1074,21 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseComplexAttributeMappingSourceInterface(ComplexAttributeMappingSourceInterface object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Complex Mapping Hint Source Interface</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Complex Mapping Hint Source Interface</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseComplexMappingHintSourceInterface(ComplexMappingHintSourceInterface object) {
 		return null;
 	}
 

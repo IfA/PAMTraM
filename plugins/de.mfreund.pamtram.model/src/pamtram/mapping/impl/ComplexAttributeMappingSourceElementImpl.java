@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import pamtram.mapping.ComplexAttributeMappingSourceElement;
 import pamtram.mapping.ComplexAttributeMappingSourceInterface;
+import pamtram.mapping.ComplexMappingHintSourceInterface;
 import pamtram.mapping.MappingPackage;
 import pamtram.metamodel.SourceSectionAttribute;
 
@@ -56,10 +57,15 @@ public class ComplexAttributeMappingSourceElementImpl extends AttributeMappingSo
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == ComplexMappingHintSourceInterface.class) {
+			switch (baseOperationID) {
+				case MappingPackage.COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE;
+				case MappingPackage.COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_NAME: return MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_SOURCE_ELEMENT___GET_NAME;
+				default: return -1;
+			}
+		}
 		if (baseClass == ComplexAttributeMappingSourceInterface.class) {
 			switch (baseOperationID) {
-				case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE;
-				case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE___GET_NAME: return MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_SOURCE_ELEMENT___GET_NAME;
 				default: return -1;
 			}
 		}

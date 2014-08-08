@@ -2,9 +2,6 @@
  */
 package pamtram.mapping;
 
-import org.eclipse.emf.ecore.EObject;
-
-import pamtram.metamodel.SourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,21 +13,5 @@ import pamtram.metamodel.SourceSectionAttribute;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface ComplexAttributeMappingSourceInterface extends EObject {
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model kind="operation" required="true"
-	 * @generated
-	 */
-	SourceSectionAttribute getSourceAttribute();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model kind="operation" required="true"
-	 * @generated
-	 */
-	String getName();
+public interface ComplexAttributeMappingSourceInterface extends ComplexMappingHintSourceInterface {
 } // ComplexAttributeMappingSourceInterface

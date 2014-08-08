@@ -2303,6 +2303,52 @@ public interface MappingPackage extends EPackage {
 	int GLOBAL_VARIABLE_IMPORTER_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link pamtram.mapping.ComplexMappingHintSourceInterface <em>Complex Mapping Hint Source Interface</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.ComplexMappingHintSourceInterface
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexMappingHintSourceInterface()
+	 * @generated
+	 */
+	int COMPLEX_MAPPING_HINT_SOURCE_INTERFACE = 43;
+
+	/**
+	 * The number of structural features of the '<em>Complex Mapping Hint Source Interface</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_MAPPING_HINT_SOURCE_INTERFACE_FEATURE_COUNT = 0;
+
+	/**
+	 * The operation id for the '<em>Get Source Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE = 0;
+
+	/**
+	 * The operation id for the '<em>Get Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_NAME = 1;
+
+	/**
+	 * The number of operations of the '<em>Complex Mapping Hint Source Interface</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT = 2;
+
+	/**
 	 * The meta object id for the '{@link pamtram.mapping.ComplexAttributeMappingSourceInterface <em>Complex Attribute Mapping Source Interface</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2319,7 +2365,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE_FEATURE_COUNT = 0;
+	int COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE_FEATURE_COUNT = COMPLEX_MAPPING_HINT_SOURCE_INTERFACE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Source Attribute</em>' operation.
@@ -2328,7 +2374,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE = 0;
+	int COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE = COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE;
 
 	/**
 	 * The operation id for the '<em>Get Name</em>' operation.
@@ -2337,7 +2383,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE___GET_NAME = 1;
+	int COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE___GET_NAME = COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_NAME;
 
 	/**
 	 * The number of operations of the '<em>Complex Attribute Mapping Source Interface</em>' class.
@@ -2346,7 +2392,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE_OPERATION_COUNT = 2;
+	int COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE_OPERATION_COUNT = COMPLEX_MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT + 0;
 
 
 	/**
@@ -3229,24 +3275,34 @@ public interface MappingPackage extends EPackage {
 	EClass getComplexAttributeMappingSourceInterface();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.ComplexAttributeMappingSourceInterface#getSourceAttribute() <em>Get Source Attribute</em>}' operation.
+	 * Returns the meta object for class '{@link pamtram.mapping.ComplexMappingHintSourceInterface <em>Complex Mapping Hint Source Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Complex Mapping Hint Source Interface</em>'.
+	 * @see pamtram.mapping.ComplexMappingHintSourceInterface
+	 * @generated
+	 */
+	EClass getComplexMappingHintSourceInterface();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.ComplexMappingHintSourceInterface#getSourceAttribute() <em>Get Source Attribute</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Get Source Attribute</em>' operation.
-	 * @see pamtram.mapping.ComplexAttributeMappingSourceInterface#getSourceAttribute()
+	 * @see pamtram.mapping.ComplexMappingHintSourceInterface#getSourceAttribute()
 	 * @generated
 	 */
-	EOperation getComplexAttributeMappingSourceInterface__GetSourceAttribute();
+	EOperation getComplexMappingHintSourceInterface__GetSourceAttribute();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.ComplexAttributeMappingSourceInterface#getName() <em>Get Name</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.ComplexMappingHintSourceInterface#getName() <em>Get Name</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Get Name</em>' operation.
-	 * @see pamtram.mapping.ComplexAttributeMappingSourceInterface#getName()
+	 * @see pamtram.mapping.ComplexMappingHintSourceInterface#getName()
 	 * @generated
 	 */
-	EOperation getComplexAttributeMappingSourceInterface__GetName();
+	EOperation getComplexMappingHintSourceInterface__GetName();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -4030,12 +4086,22 @@ public interface MappingPackage extends EPackage {
 		EClass COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE = eINSTANCE.getComplexAttributeMappingSourceInterface();
 
 		/**
+		 * The meta object literal for the '{@link pamtram.mapping.ComplexMappingHintSourceInterface <em>Complex Mapping Hint Source Interface</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.ComplexMappingHintSourceInterface
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexMappingHintSourceInterface()
+		 * @generated
+		 */
+		EClass COMPLEX_MAPPING_HINT_SOURCE_INTERFACE = eINSTANCE.getComplexMappingHintSourceInterface();
+
+		/**
 		 * The meta object literal for the '<em><b>Get Source Attribute</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE = eINSTANCE.getComplexAttributeMappingSourceInterface__GetSourceAttribute();
+		EOperation COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE = eINSTANCE.getComplexMappingHintSourceInterface__GetSourceAttribute();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Name</b></em>' operation.
@@ -4043,7 +4109,7 @@ public interface MappingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE___GET_NAME = eINSTANCE.getComplexAttributeMappingSourceInterface__GetName();
+		EOperation COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_NAME = eINSTANCE.getComplexMappingHintSourceInterface__GetName();
 
 	}
 

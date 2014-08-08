@@ -202,7 +202,7 @@ public class GenericTransformationRunner {
 		/*
 		 * create a list of all the containment references in the source model
 		 */
-		writePamtramMessage("Analysing srcModel containment references...");
+		writePamtramMessage("Analysing srcModel containment references");
 
 		// list of all unmapped nodes. obtained by iterating over all of the
 		// srcModels containment refs
@@ -214,7 +214,7 @@ public class GenericTransformationRunner {
 		 */
 		LinkedList<MappingInstanceStorage> selectedMappings = new LinkedList<MappingInstanceStorage>();
 		LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping = new LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>>();
-		writePamtramMessage("Selecting Mappings for source model elements...");
+		writePamtramMessage("Selecting Mappings for source model elements");
 
 		int numSrcModelElements = contRefsToMap.size();
 		int unmapped=0;
@@ -333,7 +333,7 @@ public class GenericTransformationRunner {
 		/*
 		 * Instantiate all Target-Sections (containment refs and attributes)
 		 */	
-		writePamtramMessage("Instantiating targetModelSections for selected mappings. First pass...");
+		writePamtramMessage("Instantiating targetModelSections for selected mappings. First pass");
 		TargetSectionInstantiator targetSectionInstantiator = new TargetSectionInstantiator(
 				targetSectionRegistry, attrValueRegistry,sourceSectionMapper.getGlobalVarValues(),consoleStream);			
 		for (MappingInstanceStorage selMap : selectedMappings) {
@@ -460,7 +460,7 @@ public class GenericTransformationRunner {
 		}
 
 		// creating missing links/containers for target model
-		writePamtramMessage("Linking targetModelSections...");
+		writePamtramMessage("Linking targetModelSections");
 		TargetSectionConnector connectionHelpers = new TargetSectionConnector(
 				attrValueRegistry, targetSectionRegistry, targetModel, consoleStream);
 		for (Mapping m : suitableMappings) {
@@ -593,8 +593,7 @@ public class GenericTransformationRunner {
 		}
 
 		// creating target Model second pass (non-containment references)
-		consoleStream
-				.println("Instantiating targetModelSections for selected mappings. Second pass...");
+		writePamtramMessage("Instantiating targetModelSections for selected mappings. Second pass");
 		for (MappingInstanceStorage selMap : selectedMappings) {
 			for (MappingHintGroupType g : selMap.getMapping().getMappingHintGroups()) {
 				if (g.getTargetMMSection() != null && g instanceof MappingHintGroup) {

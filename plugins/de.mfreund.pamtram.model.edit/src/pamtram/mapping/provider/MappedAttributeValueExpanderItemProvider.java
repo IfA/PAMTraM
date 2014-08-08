@@ -89,7 +89,7 @@ public class MappedAttributeValueExpanderItemProvider extends HintImporterMappin
 						MappingHintGroupImporter parent=(MappingHintGroupImporter) ((MappedAttributeValueExpander) object).eContainer();
 
 						// the source section
-						SourceSectionClass source = ((Mapping)parent.getContainer()).getSourceMMSection();
+						SourceSectionClass source = ((Mapping)parent.eContainer()).getSourceMMSection();
 
 						List<Object> choiceOfValues = new ArrayList<Object>();
 						

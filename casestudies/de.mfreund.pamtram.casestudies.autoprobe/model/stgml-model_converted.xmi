@@ -114,6 +114,64 @@
       <Signal Name="AssemblyRH5A55VisionControl_AssemblyRH5A55_signal"/>
       <Signal Name="Quality_QualityPLC_signal"/>
       <Signal Name="QualityPLC_Quality_signal"/>
+      <Signal Name="NAVTOP_NAVTOP_signal"/>
+      <Signal Name="StockDouble_NAVTOP_signal"/>
+      <Signal Name="StockDoublePLC_NAVTOP_signal"/>
+      <Signal Name="MillAndTurn105_NAVTOP_signal"/>
+      <Signal Name="MillAndTurn105MillCNC_NAVTOP_signal"/>
+      <Signal Name="MillAndTurn105TurnCNC_NAVTOP_signal"/>
+      <Signal Name="MillAndTurn105Robot_NAVTOP_signal"/>
+      <Signal Name="Magazine1_NAVTOP_signal"/>
+      <Signal Name="Magazine2_NAVTOP_signal"/>
+      <Signal Name="BaseplateMagazine_NAVTOP_signal"/>
+      <Signal Name="DiffuseSensor_NAVTOP_signal"/>
+      <Signal Name="Palletholder_23_NAVTOP_signal"/>
+      <Signal Name="PalletSensor_4_NAVTOP_signal"/>
+      <Signal Name="Palletholder_20_NAVTOP_signal"/>
+      <Signal Name="PalletSensor_1_NAVTOP_signal"/>
+      <Signal Name="Palletholder_22_NAVTOP_signal"/>
+      <Signal Name="PalletSensor_3_NAVTOP_signal"/>
+      <Signal Name="Palletholder_21_NAVTOP_signal"/>
+      <Signal Name="PalletSensor_2_NAVTOP_signal"/>
+      <Signal Name="RobotGripper_NAVTOP_signal"/>
+      <Signal Name="Mill55_NAVTOP_signal"/>
+      <Signal Name="Mill55Robot_NAVTOP_signal"/>
+      <Signal Name="Mill55CNC_NAVTOP_signal"/>
+      <Signal Name="MillRobotGripper_NAVTOP_signal"/>
+      <Signal Name="PalletHolder_1_NAVTOP_signal"/>
+      <Signal Name="PalletSensor_5_NAVTOP_signal"/>
+      <Signal Name="PalletHolder_2_NAVTOP_signal"/>
+      <Signal Name="PalletSensor_6_NAVTOP_signal"/>
+      <Signal Name="PalletHolder_3_NAVTOP_signal"/>
+      <Signal Name="PalletSensor_7_NAVTOP_signal"/>
+      <Signal Name="Turn55_NAVTOP_signal"/>
+      <Signal Name="Turn55Robot_NAVTOP_signal"/>
+      <Signal Name="Turn55CNC_NAVTOP_signal"/>
+      <Signal Name="TurnRobotGripper_NAVTOP_signal"/>
+      <Signal Name="PalletHolder_4_NAVTOP_signal"/>
+      <Signal Name="PalletSensor_8_NAVTOP_signal"/>
+      <Signal Name="PalletHolder_5_NAVTOP_signal"/>
+      <Signal Name="PalletSensor_9_NAVTOP_signal"/>
+      <Signal Name="PalletHolder_6_NAVTOP_signal"/>
+      <Signal Name="PalletSensor_10_NAVTOP_signal"/>
+      <Signal Name="AssemblyRH5A55_NAVTOP_signal"/>
+      <Signal Name="AssemblyRH5A55Robot_NAVTOP_signal"/>
+      <Signal Name="AssemblyRH5A55VisionData_NAVTOP_signal"/>
+      <Signal Name="RobotGripper_1_NAVTOP_signal"/>
+      <Signal Name="PalletHolder_7_NAVTOP_signal"/>
+      <Signal Name="PalletHolder_8_NAVTOP_signal"/>
+      <Signal Name="PalletHolder_9_NAVTOP_signal"/>
+      <Signal Name="PalletHolder_10_NAVTOP_signal"/>
+      <Signal Name="MagazinInstrument_1_NAVTOP_signal"/>
+      <Signal Name="PenMagazin_NAVTOP_signal"/>
+      <Signal Name="MagazinInstrument_2_NAVTOP_signal"/>
+      <Signal Name="PalletSensor_11_NAVTOP_signal"/>
+      <Signal Name="PalletSensor_12_NAVTOP_signal"/>
+      <Signal Name="PalletSensor_13_NAVTOP_signal"/>
+      <Signal Name="PalletSensor_14_NAVTOP_signal"/>
+      <Signal Name="AssemblyRH5A55VisionControl_NAVTOP_signal"/>
+      <Signal Name="Quality_NAVTOP_signal"/>
+      <Signal Name="QualityPLC_NAVTOP_signal"/>
     </OwnedElement>
     <OwnedElement xsi:type="algorithm:SignalCollection" Name="UIComponents">
       <Signal Name="AssemblyRH5A55_signal"/>
@@ -4505,7 +4563,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="StockDouble_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="StockDouble_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_StockDouble_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_StockDouble_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.109"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="StockDouble_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -4596,7 +4654,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="StockDoublePLC_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="StockDoublePLC_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.2/@OwnedUIComponent.2/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_StockDoublePLC_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_StockDoublePLC_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.110"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="StockDoublePLC_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -4696,7 +4754,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="MillAndTurn105_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="MillAndTurn105_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.3/@OwnedUIComponent.2/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_MillAndTurn105_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_MillAndTurn105_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.111"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="MillAndTurn105_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -5196,7 +5254,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="MillAndTurn105MillCNC_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="MillAndTurn105MillCNC_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.4/@OwnedUIComponent.10/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_MillAndTurn105MillCNC_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_MillAndTurn105MillCNC_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.112"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="MillAndTurn105MillCNC_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -5486,7 +5544,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="MillAndTurn105TurnCNC_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="MillAndTurn105TurnCNC_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.5/@OwnedUIComponent.10/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_MillAndTurn105TurnCNC_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_MillAndTurn105TurnCNC_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.113"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="MillAndTurn105TurnCNC_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -7541,7 +7599,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="MillAndTurn105Robot_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="MillAndTurn105Robot_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.6/@OwnedUIComponent.77/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_MillAndTurn105Robot_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_MillAndTurn105Robot_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.114"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="MillAndTurn105Robot_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -7585,7 +7643,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="Magazine1_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="Magazine1_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.7/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Magazine1_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Magazine1_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.115"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="Magazine1_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -7629,7 +7687,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="Magazine2_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="Magazine2_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.8/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Magazine2_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Magazine2_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.116"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="Magazine2_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -7673,7 +7731,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="BaseplateMagazine_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="BaseplateMagazine_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.9/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_BaseplateMagazine_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_BaseplateMagazine_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.117"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="BaseplateMagazine_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -7785,7 +7843,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="DiffuseSensor_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="DiffuseSensor_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.10/@OwnedUIComponent.2/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_DiffuseSensor_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_DiffuseSensor_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.118"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="DiffuseSensor_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -7829,7 +7887,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="Palletholder_23_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="Palletholder_23_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.11/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Palletholder_23_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Palletholder_23_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.119"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="Palletholder_23_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -7941,7 +7999,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="PalletSensor_4_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="PalletSensor_4_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.12/@OwnedUIComponent.2/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletSensor_4_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletSensor_4_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.120"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="PalletSensor_4_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -7985,7 +8043,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="Palletholder_20_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="Palletholder_20_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.13/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Palletholder_20_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Palletholder_20_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.121"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="Palletholder_20_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -8097,7 +8155,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="PalletSensor_1_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="PalletSensor_1_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.14/@OwnedUIComponent.2/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletSensor_1_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletSensor_1_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.122"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="PalletSensor_1_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -8141,7 +8199,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="Palletholder_22_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="Palletholder_22_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.15/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Palletholder_22_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Palletholder_22_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.123"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="Palletholder_22_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -8253,7 +8311,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="PalletSensor_3_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="PalletSensor_3_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.16/@OwnedUIComponent.2/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletSensor_3_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletSensor_3_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.124"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="PalletSensor_3_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -8297,7 +8355,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="Palletholder_21_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="Palletholder_21_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.17/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Palletholder_21_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Palletholder_21_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.125"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="Palletholder_21_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -8409,7 +8467,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="PalletSensor_2_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="PalletSensor_2_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.18/@OwnedUIComponent.2/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletSensor_2_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletSensor_2_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.126"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="PalletSensor_2_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -8624,7 +8682,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="RobotGripper_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="RobotGripper_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.19/@OwnedUIComponent.7/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_RobotGripper_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_RobotGripper_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.127"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="RobotGripper_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -8724,7 +8782,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="Mill55_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="Mill55_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.20/@OwnedUIComponent.2/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Mill55_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Mill55_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.128"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="Mill55_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -9964,7 +10022,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="Mill55Robot_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="Mill55Robot_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.21/@OwnedUIComponent.42/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Mill55Robot_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Mill55Robot_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.129"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="Mill55Robot_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -10882,7 +10940,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="Mill55CNC_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="Mill55CNC_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.22/@OwnedUIComponent.37/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Mill55CNC_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Mill55CNC_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.130"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="Mill55CNC_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -11003,7 +11061,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="MillRobotGripper_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="MillRobotGripper_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.23/@OwnedUIComponent.3/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_MillRobotGripper_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_MillRobotGripper_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.131"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="MillRobotGripper_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -11047,7 +11105,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="PalletHolder_1_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="PalletHolder_1_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.24/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletHolder_1_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletHolder_1_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.132"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="PalletHolder_1_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -11159,7 +11217,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="PalletSensor_5_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="PalletSensor_5_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.25/@OwnedUIComponent.2/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletSensor_5_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletSensor_5_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.133"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="PalletSensor_5_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -11203,7 +11261,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="PalletHolder_2_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="PalletHolder_2_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.26/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletHolder_2_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletHolder_2_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.134"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="PalletHolder_2_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -11315,7 +11373,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="PalletSensor_6_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="PalletSensor_6_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.27/@OwnedUIComponent.2/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletSensor_6_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletSensor_6_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.135"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="PalletSensor_6_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -11359,7 +11417,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="PalletHolder_3_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="PalletHolder_3_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.28/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletHolder_3_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletHolder_3_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.136"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="PalletHolder_3_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -11471,7 +11529,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="PalletSensor_7_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="PalletSensor_7_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.29/@OwnedUIComponent.2/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletSensor_7_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletSensor_7_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.137"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="PalletSensor_7_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -11571,7 +11629,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="Turn55_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="Turn55_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.30/@OwnedUIComponent.2/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Turn55_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Turn55_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.138"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="Turn55_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -12811,7 +12869,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="Turn55Robot_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="Turn55Robot_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.31/@OwnedUIComponent.42/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Turn55Robot_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Turn55Robot_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.139"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="Turn55Robot_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -12883,7 +12941,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="Turn55CNC_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="Turn55CNC_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.32/@OwnedUIComponent.1/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Turn55CNC_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Turn55CNC_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.140"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="Turn55CNC_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -13004,7 +13062,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="TurnRobotGripper_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="TurnRobotGripper_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.33/@OwnedUIComponent.3/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_TurnRobotGripper_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_TurnRobotGripper_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.141"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="TurnRobotGripper_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -13048,7 +13106,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="PalletHolder_4_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="PalletHolder_4_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.34/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletHolder_4_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletHolder_4_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.142"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="PalletHolder_4_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -13160,7 +13218,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="PalletSensor_8_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="PalletSensor_8_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.35/@OwnedUIComponent.2/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletSensor_8_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletSensor_8_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.143"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="PalletSensor_8_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -13204,7 +13262,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="PalletHolder_5_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="PalletHolder_5_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.36/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletHolder_5_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletHolder_5_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.144"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="PalletHolder_5_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -13316,7 +13374,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="PalletSensor_9_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="PalletSensor_9_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.37/@OwnedUIComponent.2/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletSensor_9_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletSensor_9_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.145"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="PalletSensor_9_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -13360,7 +13418,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="PalletHolder_6_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="PalletHolder_6_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.38/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletHolder_6_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletHolder_6_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.146"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="PalletHolder_6_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -13472,7 +13530,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="PalletSensor_10_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="PalletSensor_10_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.39/@OwnedUIComponent.2/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletSensor_10_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletSensor_10_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.147"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="PalletSensor_10_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -13572,7 +13630,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="AssemblyRH5A55_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="AssemblyRH5A55_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.40/@OwnedUIComponent.2/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_AssemblyRH5A55_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_AssemblyRH5A55_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.148"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="AssemblyRH5A55_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -15382,7 +15440,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="AssemblyRH5A55Robot_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="AssemblyRH5A55Robot_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.41/@OwnedUIComponent.56/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_AssemblyRH5A55Robot_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_AssemblyRH5A55Robot_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.149"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="AssemblyRH5A55Robot_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -15725,7 +15783,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="AssemblyRH5A55VisionData_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="AssemblyRH5A55VisionData_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.42/@OwnedUIComponent.14/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_AssemblyRH5A55VisionData_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_AssemblyRH5A55VisionData_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.150"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="AssemblyRH5A55VisionData_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -15846,7 +15904,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="RobotGripper_1_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="RobotGripper_1_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.43/@OwnedUIComponent.3/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_RobotGripper_1_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_RobotGripper_1_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.151"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="RobotGripper_1_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -15890,7 +15948,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="PalletHolder_7_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="PalletHolder_7_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.44/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletHolder_7_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletHolder_7_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.152"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="PalletHolder_7_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -15934,7 +15992,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="PalletHolder_8_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="PalletHolder_8_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.45/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletHolder_8_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletHolder_8_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.153"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="PalletHolder_8_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -15978,7 +16036,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="PalletHolder_9_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="PalletHolder_9_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.46/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletHolder_9_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletHolder_9_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.154"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="PalletHolder_9_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -16022,7 +16080,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="PalletHolder_10_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="PalletHolder_10_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.47/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletHolder_10_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletHolder_10_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.155"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="PalletHolder_10_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -16066,7 +16124,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="MagazinInstrument_1_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="MagazinInstrument_1_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.48/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_MagazinInstrument_1_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_MagazinInstrument_1_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.156"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="MagazinInstrument_1_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -16110,7 +16168,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="PenMagazin_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="PenMagazin_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.49/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PenMagazin_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PenMagazin_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.157"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="PenMagazin_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -16154,7 +16212,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="MagazinInstrument_2_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="MagazinInstrument_2_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.50/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_MagazinInstrument_2_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_MagazinInstrument_2_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.158"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="MagazinInstrument_2_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -16245,7 +16303,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="PalletSensor_11_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="PalletSensor_11_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.51/@OwnedUIComponent.2/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletSensor_11_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletSensor_11_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.159"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="PalletSensor_11_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -16336,7 +16394,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="PalletSensor_12_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="PalletSensor_12_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.52/@OwnedUIComponent.2/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletSensor_12_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletSensor_12_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.160"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="PalletSensor_12_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -16427,7 +16485,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="PalletSensor_13_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="PalletSensor_13_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.53/@OwnedUIComponent.2/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletSensor_13_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletSensor_13_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.161"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="PalletSensor_13_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -16518,7 +16576,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="PalletSensor_14_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="PalletSensor_14_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.54/@OwnedUIComponent.2/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletSensor_14_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_PalletSensor_14_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.162"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="PalletSensor_14_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -16562,7 +16620,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="AssemblyRH5A55VisionControl_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="AssemblyRH5A55VisionControl_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.55/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_AssemblyRH5A55VisionControl_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_AssemblyRH5A55VisionControl_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.163"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="AssemblyRH5A55VisionControl_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -16606,7 +16664,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="Quality_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="Quality_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.56/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Quality_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Quality_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.164"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="Quality_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
@@ -18737,7 +18795,7 @@
       <OwnedUIComponent xsi:type="presentation:Button" Name="QualityPLC_NAVTOP_button">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Name="QualityPLC_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.85/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_QualityPLC_NAVTOP"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_QualityPLC_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.165"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120">
           <Alignment Name="QualityPLC_NAVTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>

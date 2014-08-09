@@ -151,4 +151,21 @@
   </configurationType>
   </shortcut>
 </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="de.mfreund.pamtram.PamtramPerspectiveFactory"
+            id="de.mfreund.pamtram.pamtramPerspective"
+            name="PAMTraM">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="de.mfreund.pamtram.pamtramPerspective">
+         <actionSet
+               id="org.eclipse.debug.ui.launchActionSet">
+         </actionSet>
+      </perspectiveExtension>
+   </extension>
 </plugin>

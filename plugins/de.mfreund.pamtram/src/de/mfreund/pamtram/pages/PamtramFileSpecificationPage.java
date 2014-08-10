@@ -1,11 +1,12 @@
 package de.mfreund.pamtram.pages;
 
 import java.io.File;
-import java.io.FileInputStream;
-
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.xmi.XMIResource;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 import org.eclipse.jface.preference.FileFieldEditor;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
@@ -78,7 +79,7 @@ public class PamtramFileSpecificationPage extends WizardPage {
 		srcFileFieldEditor = new FileFieldEditor("srcFileSelect", "", container);
 		srcFileFieldEditor.setLabelText("Source File:");
 		// set the allowed file extensions
-		srcFileFieldEditor.setFileExtensions(new String[]{"*.xmi"});
+		srcFileFieldEditor.setFileExtensions(new String[]{"*.xmi", "*.xml"});
 		// set a listener that updates the buttons
 		srcFileFieldEditor.setPropertyChangeListener(new IPropertyChangeListener() {
 			
@@ -89,11 +90,28 @@ public class PamtramFileSpecificationPage extends WizardPage {
 				
 				String nsUri = "";
 				try {
-					// load the selected file and try to determine the ePackage
-					FileInputStream fileInputStream = new FileInputStream(srcFile); 
-					XMIResource xmiResource = new XMIResourceImpl(); 
-					xmiResource.load(fileInputStream, null);
-					EObject object = xmiResource.getContents().get(0);
+					Resource resource;
+					EObject object = null;
+
+					// Create a resource set. 
+					ResourceSet rs = new ResourceSetImpl();
+					
+					if(srcFile.endsWith(".xml")) {
+						Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
+					    .put("xml", new GenericXMLResourceFactoryImpl());
+					}
+						
+					// Create a File URI
+					URI sourceUri = URI.createFileURI(new java.io.File(srcFile).toString());
+					
+					// Load the resource
+					resource = rs.getResource(sourceUri, true);
+					resource.load(null);
+					
+					// Get the first object in the resource
+					object = resource.getContents().get(0);
+					
+					// Get the namespace Uri
 					nsUri = object.eClass().getEPackage().getNsURI();
 				} catch(Exception e) {
 					e.printStackTrace();
@@ -143,7 +161,8 @@ public class PamtramFileSpecificationPage extends WizardPage {
     	// if a source file has been specified, check the file ending and if 
     	// the file exists
     	boolean srcFileIsValid = srcFileFieldEditor.getStringValue() == "" ||
-    				(srcFileFieldEditor.getStringValue().endsWith(".xmi") &&
+    				((srcFileFieldEditor.getStringValue().endsWith(".xmi") || 
+    						srcFileFieldEditor.getStringValue().endsWith(".xml")) &&
     						(new File(srcFileFieldEditor.getStringValue())).exists());
     	
     	return pamtramFileIsValid && srcFileIsValid;

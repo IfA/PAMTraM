@@ -10,6 +10,8 @@ import org.eclipse.core.resources.IProjectDescription;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExecutableExtension;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -25,13 +27,14 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.eclipse.ui.ide.undo.CreateProjectOperation;
 import org.eclipse.ui.ide.undo.WorkspaceUndoUtil;
+import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
 
 import de.mfreund.pamtram.pages.PamtramFileSpecificationPage;
 import de.mfreund.pamtram.util.ResourceHelper;
 import pamtram.presentation.PamtramModelWizard;
 import pamtram.presentation.pages.PamtramEPackageSpecificationPage;
 
-public class NewPAMTraMProjectWizard extends PamtramModelWizard {
+public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExecutableExtension{
 
 	// the element currently selected (might e.g. be a working set)
 	private IStructuredSelection selection;
@@ -44,6 +47,9 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard {
 	
 	// the wizard page where the name of the pamtram file can be entered
 	private PamtramFileSpecificationPage fileSpecPage;
+
+	// the configuration element for the wizard
+	private IConfigurationElement config;
 
 	/**
 	 * Constructor for the NewPAMTraMProjectWizard
@@ -111,6 +117,10 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard {
 			
 			// Create the project sturcture
 			doFinish();
+			
+			// Update the perspective to the 'final perspective' set in
+			// the plugin.xml
+			BasicNewProjectResourceWizard.updatePerspective(this.config);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -273,6 +283,13 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard {
 		} catch (InvocationTargetException | InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void setInitializationData(IConfigurationElement config,
+			String propertyName, Object data) throws CoreException {
+		// save the config element
+		this.config = config;
 	}
 
 }

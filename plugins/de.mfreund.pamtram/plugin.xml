@@ -10,6 +10,7 @@
       <wizard
             category="de.mfreund.pamtram.category"
             class="de.mfreund.pamtram.wizards.NewPAMTraMProjectWizard"
+            finalPerspective="de.mfreund.pamtram.pamtramPerspective"
             icon="icons/project.png"
             id="de.mfreund.pamtram.newProjectWizard"
             name="PAMTraM Project"

@@ -18,13 +18,13 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.mapping.AttributeMapping;
-import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.CalculatorMapping;
 import pamtram.mapping.ClassMatcher;
 import pamtram.mapping.ComplexAttributeMapping;
 import pamtram.mapping.ComplexAttributeMappingSourceInterface;
 import pamtram.mapping.ComplexAttributeMatcher;
+import pamtram.mapping.ComplexAttributeMatcherSourceInterface;
 import pamtram.mapping.GlobalVariable;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingHint;
@@ -567,8 +567,8 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 										} else if( hSel.getMatcher() instanceof ComplexAttributeMatcher){
 											attrValStr="";
 											@SuppressWarnings("unchecked")
-											Map<AttributeMappingSourceElementType,String> hVal=(Map<AttributeMappingSourceElementType,String>) attrVal;
-											for(AttributeMappingSourceElementType srcElement :  ((ComplexAttributeMatcher)hSel.getMatcher()).getSourceAttributes()){
+											Map<ComplexAttributeMatcherSourceInterface,String> hVal=(Map<ComplexAttributeMatcherSourceInterface,String>) attrVal;
+											for(ComplexAttributeMatcherSourceInterface srcElement :  ((ComplexAttributeMatcher)hSel.getMatcher()).getSourceAttributes()){
 												if(hVal.containsKey(srcElement)){
 														attrValStr+=hVal.get(srcElement);
 												} else {

@@ -22,8 +22,10 @@ import pamtram.mapping.ComplexAttributeMappingSourceElement;
 import pamtram.mapping.ComplexAttributeMappingSourceInterface;
 import pamtram.mapping.ComplexAttributeMatcher;
 import pamtram.mapping.ComplexAttributeMatcherSourceElement;
+import pamtram.mapping.ComplexAttributeMatcherSourceInterface;
 import pamtram.mapping.ComplexModelConnectionHint;
 import pamtram.mapping.ComplexModelConnectionHintSourceElement;
+import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
 import pamtram.mapping.ExpressionVariable;
 import pamtram.mapping.GlobalVariable;
 import pamtram.mapping.MappedAttributeValueExpander;
@@ -213,7 +215,7 @@ class SourceSectionMapper {
 	private void buildDeepestComplexAttrMatcherSrcElements(ComplexAttributeMatcher m, SourceSectionClass srcSection){
 		if(!deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher.containsKey(m)){
 			Set<AttributeMappingSourceElementType> srcElements=new HashSet<AttributeMappingSourceElementType>();
-			srcElements.addAll(m.getSourceAttributes());
+			srcElements.addAll(m.getLocalSourceElements());
 			
 			sortOutElements(srcElements, srcSection);
 			if(srcElements.size() == 1){
@@ -232,7 +234,7 @@ class SourceSectionMapper {
 	private void buildDeepestCmplxConnectionHintElementsMap(ComplexModelConnectionHint m, SourceSectionClass srcSection){
 		if(!deepestComplexConnectionHintSrcElementsByComplexConnectionHint.containsKey(m)){
 			Set<AttributeMappingSourceElementType> srcElements=new HashSet<AttributeMappingSourceElementType>();
-			srcElements.addAll(m.getSourceElements());
+			srcElements.addAll(m.getLocalSourceElements());
 			
 			sortOutElements(srcElements, srcSection);
 			if(srcElements.size() == 1){
@@ -417,7 +419,7 @@ class SourceSectionMapper {
 						changedRefsAndHints.getHintValues().get(hint).addAll(newRefsAndHints.getHintValues().get(hint));//the cardinality of 
 																													    //the existing hintval is either 0 or 1 at this point
 					} else {
-						changedRefsAndHints.getHintValues().get(hint).add(new LinkedHashMap<ComplexAttributeMatcherSourceElement,String>());
+						changedRefsAndHints.getHintValues().get(hint).add(new LinkedHashMap<ComplexAttributeMatcherSourceInterface,String>());
 					}					
 				}
 			}else {
@@ -433,7 +435,7 @@ class SourceSectionMapper {
 				if(newRefsAndHints.getModelConnectionHintValues().containsKey(hint)){
 					changedRefsAndHints.getModelConnectionHintValues().get(hint).addAll(newRefsAndHints.getModelConnectionHintValues().get(hint));
 				} else {
-					changedRefsAndHints.getModelConnectionHintValues().get(hint).add(new LinkedHashMap<ComplexModelConnectionHintSourceElement,String>());
+					changedRefsAndHints.getModelConnectionHintValues().get(hint).add(new LinkedHashMap<ComplexModelConnectionHintSourceInterface,String>());
 				}
 			}
 		}
@@ -535,7 +537,7 @@ class SourceSectionMapper {
 						} else if(((MappingInstanceSelector) hint).getMatcher() instanceof ComplexAttributeMatcher){
 							
 							ComplexAttributeMatcher matcher= (ComplexAttributeMatcher) ((MappingInstanceSelector) hint).getMatcher();
-							for(ComplexAttributeMatcherSourceElement e : matcher.getSourceAttributes()){
+							for(ComplexAttributeMatcherSourceElement e : matcher.getLocalSourceElements()){
 								if(e.getSource().equals(at)){
 									String valCopy = srcAttrAsString;
 									valCopy = AttributeValueRegistry.applyAttributeValueModifiers(valCopy, e.getModifier());
@@ -556,7 +558,7 @@ class SourceSectionMapper {
 
 						}						
 					} else if(hint instanceof ComplexModelConnectionHint){
-						for(ComplexModelConnectionHintSourceElement m : ((ComplexModelConnectionHint) hint).getSourceElements()){
+						for(ComplexModelConnectionHintSourceElement m : ((ComplexModelConnectionHint) hint).getLocalSourceElements()){
 							if (m.getSource().equals(at)) {
 								String modifiedVal=AttributeValueRegistry.applyAttributeValueModifiers(srcAttrAsString, m.getModifier());
 								complexConnectionHintSourceElementHintValues.put(m,modifiedVal);
@@ -603,9 +605,9 @@ class SourceSectionMapper {
 			} else if(h instanceof MappingInstanceSelector){
 				if (((MappingInstanceSelector) h).getMatcher() instanceof ComplexAttributeMatcher) {
 					ComplexAttributeMatcher m =(ComplexAttributeMatcher)((MappingInstanceSelector) h).getMatcher();
-					Map<ComplexAttributeMatcherSourceElement,String> foundValues=new LinkedHashMap<ComplexAttributeMatcherSourceElement,String>();
+					Map<ComplexAttributeMatcherSourceInterface,String> foundValues=new LinkedHashMap<ComplexAttributeMatcherSourceInterface,String>();
 					//append the complex hint value (cardinality either 0 or 1) with found values in right order
-					for(ComplexAttributeMatcherSourceElement s : m.getSourceAttributes()){
+					for(ComplexAttributeMatcherSourceElement s : m.getLocalSourceElements()){
 						if(complexAttrMatcherSourceElementHintValues.containsKey(s)){
 							foundValues.put(s,complexAttrMatcherSourceElementHintValues.get(s));
 						}
@@ -614,7 +616,7 @@ class SourceSectionMapper {
 					if(foundValues.keySet().size() > 0){
 						complexAttributeMatchersFound.add(m);
 						
-						foundValues.putAll((Map<ComplexAttributeMatcherSourceElement,String>) changedRefsAndHints.getHintValues().get(h).remove());					
+						foundValues.putAll((Map<ComplexAttributeMatcherSourceInterface,String>) changedRefsAndHints.getHintValues().get(h).remove());					
 						changedRefsAndHints.getHintValues().get(h).add(foundValues);
 					}	
 				}
@@ -650,9 +652,9 @@ class SourceSectionMapper {
 		//handle ComplexModelConnectionHints in the same way as ComplexAttributeMappings
 		for(ModelConnectionHint hint : connectionHints){
 			if(hint instanceof ComplexModelConnectionHint){
-				Map<ComplexModelConnectionHintSourceElement,String> foundValues=new LinkedHashMap<ComplexModelConnectionHintSourceElement,String>();
+				Map<ComplexModelConnectionHintSourceInterface,String> foundValues=new LinkedHashMap<ComplexModelConnectionHintSourceInterface,String>();
 				//append the complex hint value (cardinality either 0 or 1) with found values in right order
-				for(ComplexModelConnectionHintSourceElement s : ((ComplexModelConnectionHint) hint).getSourceElements()){
+				for(ComplexModelConnectionHintSourceElement s : ((ComplexModelConnectionHint) hint).getLocalSourceElements()){
 					if(complexConnectionHintSourceElementHintValues.containsKey(s)){
 						foundValues.put(s,complexConnectionHintSourceElementHintValues.get(s));
 					}
@@ -661,7 +663,7 @@ class SourceSectionMapper {
 				if(foundValues.keySet().size() > 0){
 					complexConnectionHintsFound.add((ComplexModelConnectionHint)hint);
 					
-					foundValues.putAll((Map<ComplexModelConnectionHintSourceElement,String>) changedRefsAndHints.getModelConnectionHintValues().get(hint).remove());					
+					foundValues.putAll((Map<ComplexModelConnectionHintSourceInterface,String>) changedRefsAndHints.getModelConnectionHintValues().get(hint).remove());					
 					changedRefsAndHints.getModelConnectionHintValues().get(hint).add(foundValues);
 				}					
 			}

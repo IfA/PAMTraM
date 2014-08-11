@@ -17,7 +17,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.mapping.ComplexModelConnectionHint;
-import pamtram.mapping.ComplexModelConnectionHintSourceElement;
+import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
 import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.SimpleModelConnectionHint;
@@ -167,8 +167,8 @@ class TargetSectionConnector {
 				} else if(connectionHint instanceof ComplexModelConnectionHint) {
 					hintValAsString="";
 					@SuppressWarnings("unchecked")
-					Map<ComplexModelConnectionHintSourceElement,String> hVal=(Map<ComplexModelConnectionHintSourceElement,String>) hintVal;
-					for(ComplexModelConnectionHintSourceElement srcElement : ((ComplexModelConnectionHint) connectionHint).getSourceElements()){
+					Map<ComplexModelConnectionHintSourceInterface,String> hVal=(Map<ComplexModelConnectionHintSourceInterface,String>) hintVal;
+					for(ComplexModelConnectionHintSourceInterface srcElement : ((ComplexModelConnectionHint) connectionHint).getSourceElements()){
 						if(hVal.containsKey(srcElement)){
 								hintValAsString+=hVal.get(srcElement);
 						} else {

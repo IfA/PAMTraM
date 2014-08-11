@@ -33,6 +33,10 @@ import pamtram.PAMTraM;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.ComplexAttributeMapping;
 import pamtram.mapping.ComplexAttributeMappingSourceInterface;
+import pamtram.mapping.ComplexAttributeMatcher;
+import pamtram.mapping.ComplexAttributeMatcherSourceInterface;
+import pamtram.mapping.ComplexModelConnectionHint;
+import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.GlobalVariableImporter;
 import pamtram.mapping.MappedAttributeValueExpander;
@@ -43,6 +47,7 @@ import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingHintType;
+import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.SimpleAttributeMapping;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.TargetSectionClass;
@@ -289,12 +294,50 @@ public class GenericTransformationRunner {
 								}
 							}
 						}
+					} else if(h instanceof MappingInstanceSelector){
+						if(((MappingInstanceSelector) h).getMatcher() instanceof ComplexAttributeMatcher){
+							ComplexAttributeMatcher m = (ComplexAttributeMatcher) ((MappingInstanceSelector) h).getMatcher();
+							for(ComplexAttributeMatcherSourceInterface i : m.getSourceAttributes()){
+								if(i instanceof GlobalVariableImporter){
+									if(sourceSectionMapper.getGlobalVarValues().containsKey(((GlobalVariableImporter) i).getGlobalVariable())){
+										String gVal=sourceSectionMapper.getGlobalVarValues().get(((GlobalVariableImporter) i).getGlobalVariable());
+										for(Object o : selMap.getHintValues().get(h)){
+											Map<ComplexAttributeMatcherSourceInterface,String> map=(Map<ComplexAttributeMatcherSourceInterface,String>) o;
+											map.put(i, gVal);
+										}										
+									}
+								}
+							}
+						}
 					}
 				}
-					
+				
+				/*
+				 * global vars for ModelConnectionHints
+				 */
+				if(g instanceof MappingHintGroup){
+					if(((MappingHintGroup) g).getModelConnectionMatcher() instanceof ComplexModelConnectionHint){
+						ComplexModelConnectionHint h=(ComplexModelConnectionHint) ((MappingHintGroup) g).getModelConnectionMatcher();
+						for(ComplexModelConnectionHintSourceInterface i : h.getSourceElements()){
+							if(i instanceof GlobalVariableImporter){
+								if(sourceSectionMapper.getGlobalVarValues().containsKey(((GlobalVariableImporter) i).getGlobalVariable())){
+									String gVal=sourceSectionMapper.getGlobalVarValues().get(((GlobalVariableImporter) i).getGlobalVariable());
+									for(Object o : selMap.getModelConnectionHintValues().get(h)){
+										Map<ComplexModelConnectionHintSourceInterface,String> map=(Map<ComplexModelConnectionHintSourceInterface,String>) o;
+										map.put(i, gVal);
+									}										
+								}
+							}							
+						}
+					}
+				}
 				
 			}
+
 			
+			/*
+			 * global vals for ImportedMappingHintGroups
+			 */
 			for(MappingHintGroupImporter g : selMap.getMapping().getImportedMappingHintGroups()){
 				for(MappingHintType h : g.getMappingHints()){
 					
@@ -306,6 +349,21 @@ public class GenericTransformationRunner {
 									for(Object m : selMap.getHintValues().get(h)){
 										Map<ComplexAttributeMappingSourceInterface,String> map=(Map<ComplexAttributeMappingSourceInterface,String>) m;
 										map.put(i, gVal);
+									}
+								}
+							}
+						}
+					} else if(h instanceof MappingInstanceSelector){
+						if(((MappingInstanceSelector) h).getMatcher() instanceof ComplexAttributeMatcher){
+							ComplexAttributeMatcher m = (ComplexAttributeMatcher) ((MappingInstanceSelector) h).getMatcher();
+							for(ComplexAttributeMatcherSourceInterface i : m.getSourceAttributes()){
+								if(i instanceof GlobalVariableImporter){
+									if(sourceSectionMapper.getGlobalVarValues().containsKey(((GlobalVariableImporter) i).getGlobalVariable())){
+										String gVal=sourceSectionMapper.getGlobalVarValues().get(((GlobalVariableImporter) i).getGlobalVariable());
+										for(Object o : selMap.getHintValues().get(h)){
+											Map<ComplexAttributeMatcherSourceInterface,String> map=(Map<ComplexAttributeMatcherSourceInterface,String>) o;
+											map.put(i, gVal);
+										}										
 									}
 								}
 							}

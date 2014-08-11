@@ -4775,8 +4775,8 @@
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="sendSignal" affectedReference="//@targetSectionModel/@metaModelSections.20/@references.1/@value.0/@references.0/@value.0/@references.0">
           <matcher xsi:type="mapping:ComplexAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.10/@attributes.0">
-            <sourceAttributes name="layer" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
-            <sourceAttributes name="send" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.5/@attributes.6" modifier="//@mappingModel/@modifierSets.16"/>
+            <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherSourceElement" name="layer" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
+            <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherSourceElement" name="send" source="//@sourceSectionModel/@metaModelSections.6/@references.0/@value.5/@attributes.6" modifier="//@mappingModel/@modifierSets.16"/>
           </matcher>
         </mappingHints>
         <modelConnectionMatcher xsi:type="mapping:SimpleModelConnectionHint" name="NavButton" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0">

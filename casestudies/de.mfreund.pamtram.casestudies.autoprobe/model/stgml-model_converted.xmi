@@ -2531,7 +2531,6 @@
         <TranslatedTextItem Value="StockDoublePLC" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
       </OwnedTextDefinition>
     </OwnedMultiLingualTextDefinition>
-    <OwnedNavigationFlow xsi:type="presentation:NewViewNavigationFlow" Name="initial" Source="//@PresentationDomain/@OwnedNavigationRoot"/>
     <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="NAVTOP->Mill55" Source="//@PresentationDomain/@OwnedPanel.0" Target="//@PresentationDomain/@OwnedPanel.20" Trigger="//@AlgorithmDomain/@OwnedElement.5/@Signal.11"/>
     <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="NAVTOP->Turn55" Source="//@PresentationDomain/@OwnedPanel.0" Target="//@PresentationDomain/@OwnedPanel.30" Trigger="//@AlgorithmDomain/@OwnedElement.5/@Signal.55"/>
     <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="NAVTOP->MillAndTurn105" Source="//@PresentationDomain/@OwnedPanel.0" Target="//@PresentationDomain/@OwnedPanel.3" Trigger="//@AlgorithmDomain/@OwnedElement.5/@Signal.14"/>

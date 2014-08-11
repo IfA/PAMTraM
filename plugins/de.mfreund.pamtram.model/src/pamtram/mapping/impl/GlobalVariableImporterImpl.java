@@ -9,7 +9,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import pamtram.impl.NamedElementImpl;
+import pamtram.mapping.ComplexAttributeMappingSourceInterface;
+import pamtram.mapping.ComplexAttributeMatcherSourceInterface;
 import pamtram.mapping.ComplexMappingHintSourceInterface;
+import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
 import pamtram.mapping.GlobalVariable;
 import pamtram.mapping.GlobalVariableImporter;
 import pamtram.mapping.MappingPackage;
@@ -178,6 +181,21 @@ public class GlobalVariableImporterImpl extends NamedElementImpl implements Glob
 			switch (baseOperationID) {
 				case MappingPackage.COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return MappingPackage.GLOBAL_VARIABLE_IMPORTER___GET_SOURCE_ATTRIBUTE;
 				case MappingPackage.COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_NAME: return MappingPackage.GLOBAL_VARIABLE_IMPORTER___GET_NAME;
+				default: return -1;
+			}
+		}
+		if (baseClass == ComplexAttributeMappingSourceInterface.class) {
+			switch (baseOperationID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == ComplexAttributeMatcherSourceInterface.class) {
+			switch (baseOperationID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == ComplexModelConnectionHintSourceInterface.class) {
+			switch (baseOperationID) {
 				default: return -1;
 			}
 		}

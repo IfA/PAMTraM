@@ -414,6 +414,9 @@ public class MappingSwitch<T> extends Switch<T> {
 				GlobalVariableImporter globalVariableImporter = (GlobalVariableImporter)theEObject;
 				T result = caseGlobalVariableImporter(globalVariableImporter);
 				if (result == null) result = caseNamedElement(globalVariableImporter);
+				if (result == null) result = caseComplexAttributeMappingSourceInterface(globalVariableImporter);
+				if (result == null) result = caseComplexAttributeMatcherSourceInterface(globalVariableImporter);
+				if (result == null) result = caseComplexModelConnectionHintSourceInterface(globalVariableImporter);
 				if (result == null) result = caseComplexMappingHintSourceInterface(globalVariableImporter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;

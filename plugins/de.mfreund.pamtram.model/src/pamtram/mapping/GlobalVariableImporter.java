@@ -20,7 +20,7 @@ import pamtram.NamedElement;
  * @model
  * @generated
  */
-public interface GlobalVariableImporter extends NamedElement, ComplexMappingHintSourceInterface {
+public interface GlobalVariableImporter extends NamedElement, ComplexAttributeMappingSourceInterface, ComplexAttributeMatcherSourceInterface, ComplexModelConnectionHintSourceInterface {
 	/**
 	 * Returns the value of the '<em><b>Global Variable</b></em>' reference.
 	 * <!-- begin-user-doc -->

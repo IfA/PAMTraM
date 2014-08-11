@@ -1566,7 +1566,9 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		mappedAttributeValueAppenderEClass.getESuperTypes().add(this.getMappedAttributeValueExpander());
 		globalVariableEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		globalVariableImporterEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
-		globalVariableImporterEClass.getESuperTypes().add(this.getComplexMappingHintSourceInterface());
+		globalVariableImporterEClass.getESuperTypes().add(this.getComplexAttributeMappingSourceInterface());
+		globalVariableImporterEClass.getESuperTypes().add(this.getComplexAttributeMatcherSourceInterface());
+		globalVariableImporterEClass.getESuperTypes().add(this.getComplexModelConnectionHintSourceInterface());
 		complexAttributeMappingSourceInterfaceEClass.getESuperTypes().add(this.getComplexMappingHintSourceInterface());
 		complexAttributeMatcherSourceInterfaceEClass.getESuperTypes().add(this.getComplexMappingHintSourceInterface());
 		complexModelConnectionHintSourceInterfaceEClass.getESuperTypes().add(this.getComplexMappingHintSourceInterface());

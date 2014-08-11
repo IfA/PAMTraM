@@ -138,11 +138,6 @@ public class ComplexAttributeMappingItemProvider
 			(createChildParameter
 				(MappingPackage.Literals.COMPLEX_ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS,
 				 MappingFactory.eINSTANCE.createComplexAttributeMappingSourceElement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.COMPLEX_ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS,
-				 MappingFactory.eINSTANCE.createGlobalVariableImporter()));
 	}
 
 }

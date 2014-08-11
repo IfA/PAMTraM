@@ -138,6 +138,11 @@ public class ComplexModelConnectionHintItemProvider extends ModelConnectionHintI
 			(createChildParameter
 				(MappingPackage.Literals.COMPLEX_MODEL_CONNECTION_HINT__SOURCE_ELEMENTS,
 				 MappingFactory.eINSTANCE.createComplexModelConnectionHintSourceElement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.COMPLEX_MODEL_CONNECTION_HINT__SOURCE_ELEMENTS,
+				 MappingFactory.eINSTANCE.createGlobalVariableImporter()));
 	}
 
 }

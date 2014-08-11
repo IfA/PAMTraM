@@ -131,9 +131,9 @@ import pamtram.mapping.ClassMatcher;
 import pamtram.mapping.ComplexAttributeMapping;
 import pamtram.mapping.ComplexAttributeMappingSourceInterface;
 import pamtram.mapping.ComplexAttributeMatcher;
-import pamtram.mapping.ComplexAttributeMatcherSourceElement;
+import pamtram.mapping.ComplexAttributeMatcherSourceInterface;
 import pamtram.mapping.ComplexModelConnectionHint;
-import pamtram.mapping.ComplexModelConnectionHintSourceElement;
+import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
 import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.GlobalVariable;
 import pamtram.mapping.GlobalVariableImporter;
@@ -1402,9 +1402,9 @@ public class PamtramEditor
 						
 						List<SourceSectionAttribute> sources= new LinkedList<SourceSectionAttribute> ();
 						
-						for(ComplexAttributeMatcherSourceElement srcElement : matcher.getSourceAttributes()){
-							if(srcElement.getSource() != null){
-								sources.add(srcElement.getSource());
+						for(ComplexAttributeMatcherSourceInterface srcElement : matcher.getSourceAttributes()){
+							if(srcElement.getSourceAttribute() != null){
+								sources.add(srcElement.getSourceAttribute());
 							}
 						}
 						
@@ -1441,8 +1441,8 @@ public class PamtramEditor
 						if(hint instanceof SimpleModelConnectionHint){
 							sources.add(((SimpleModelConnectionHint) hint).getSource());
 						} else if(hint instanceof ComplexModelConnectionHint){
-							for(ComplexModelConnectionHintSourceElement sourceElement : ((ComplexModelConnectionHint) hint).getSourceElements() ){
-								sources.add(sourceElement.getSource());
+							for(ComplexModelConnectionHintSourceInterface sourceElement : ((ComplexModelConnectionHint) hint).getSourceElements() ){
+								sources.add(sourceElement.getSourceAttribute());
 							}
 						}
 						

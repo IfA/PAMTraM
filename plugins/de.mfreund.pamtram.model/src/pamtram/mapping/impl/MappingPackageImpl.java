@@ -27,9 +27,11 @@ import pamtram.mapping.ComplexAttributeMappingSourceElement;
 import pamtram.mapping.ComplexAttributeMappingSourceInterface;
 import pamtram.mapping.ComplexAttributeMatcher;
 import pamtram.mapping.ComplexAttributeMatcherSourceElement;
+import pamtram.mapping.ComplexAttributeMatcherSourceInterface;
 import pamtram.mapping.ComplexMappingHintSourceInterface;
 import pamtram.mapping.ComplexModelConnectionHint;
 import pamtram.mapping.ComplexModelConnectionHintSourceElement;
+import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
 import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.ExpressionVariable;
@@ -379,6 +381,20 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * @generated
 	 */
 	private EClass complexMappingHintSourceInterfaceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass complexAttributeMatcherSourceInterfaceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass complexModelConnectionHintSourceInterfaceEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1027,6 +1043,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getComplexAttributeMatcher__GetLocalSourceElements() {
+		return complexAttributeMatcherEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSimpleAttributeMatcher() {
 		return simpleAttributeMatcherEClass;
 	}
@@ -1054,6 +1079,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getSimpleModelConnectionHint__GetSourceAttributes() {
+		return simpleModelConnectionHintEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getComplexModelConnectionHint() {
 		return complexModelConnectionHintEClass;
 	}
@@ -1065,6 +1099,24 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 */
 	public EReference getComplexModelConnectionHint_SourceElements() {
 		return (EReference)complexModelConnectionHintEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getComplexModelConnectionHint__GetLocalSourceElements() {
+		return complexModelConnectionHintEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getComplexModelConnectionHint__GetSourceAttributes() {
+		return complexModelConnectionHintEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -1252,6 +1304,24 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getComplexAttributeMatcherSourceInterface() {
+		return complexAttributeMatcherSourceInterfaceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getComplexModelConnectionHintSourceInterface() {
+		return complexModelConnectionHintSourceInterfaceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public MappingFactory getMappingFactory() {
 		return (MappingFactory)getEFactoryInstance();
 	}
@@ -1365,15 +1435,19 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		complexAttributeMatcherEClass = createEClass(COMPLEX_ATTRIBUTE_MATCHER);
 		createEReference(complexAttributeMatcherEClass, COMPLEX_ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES);
+		createEOperation(complexAttributeMatcherEClass, COMPLEX_ATTRIBUTE_MATCHER___GET_LOCAL_SOURCE_ELEMENTS);
 
 		simpleAttributeMatcherEClass = createEClass(SIMPLE_ATTRIBUTE_MATCHER);
 
 		complexAttributeMatcherSourceElementEClass = createEClass(COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT);
 
 		simpleModelConnectionHintEClass = createEClass(SIMPLE_MODEL_CONNECTION_HINT);
+		createEOperation(simpleModelConnectionHintEClass, SIMPLE_MODEL_CONNECTION_HINT___GET_SOURCE_ATTRIBUTES);
 
 		complexModelConnectionHintEClass = createEClass(COMPLEX_MODEL_CONNECTION_HINT);
 		createEReference(complexModelConnectionHintEClass, COMPLEX_MODEL_CONNECTION_HINT__SOURCE_ELEMENTS);
+		createEOperation(complexModelConnectionHintEClass, COMPLEX_MODEL_CONNECTION_HINT___GET_LOCAL_SOURCE_ELEMENTS);
+		createEOperation(complexModelConnectionHintEClass, COMPLEX_MODEL_CONNECTION_HINT___GET_SOURCE_ATTRIBUTES);
 
 		complexModelConnectionHintSourceElementEClass = createEClass(COMPLEX_MODEL_CONNECTION_HINT_SOURCE_ELEMENT);
 
@@ -1405,6 +1479,10 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		complexMappingHintSourceInterfaceEClass = createEClass(COMPLEX_MAPPING_HINT_SOURCE_INTERFACE);
 		createEOperation(complexMappingHintSourceInterfaceEClass, COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE);
 		createEOperation(complexMappingHintSourceInterfaceEClass, COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_NAME);
+
+		complexAttributeMatcherSourceInterfaceEClass = createEClass(COMPLEX_ATTRIBUTE_MATCHER_SOURCE_INTERFACE);
+
+		complexModelConnectionHintSourceInterfaceEClass = createEClass(COMPLEX_MODEL_CONNECTION_HINT_SOURCE_INTERFACE);
 	}
 
 	/**
@@ -1474,10 +1552,12 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		simpleAttributeMatcherEClass.getESuperTypes().add(this.getAttributeMatcher());
 		simpleAttributeMatcherEClass.getESuperTypes().add(this.getAttributeMappingSourceElementWithModifiers());
 		complexAttributeMatcherSourceElementEClass.getESuperTypes().add(this.getAttributeMappingSourceElementWithModifiers());
+		complexAttributeMatcherSourceElementEClass.getESuperTypes().add(this.getComplexAttributeMatcherSourceInterface());
 		simpleModelConnectionHintEClass.getESuperTypes().add(this.getModelConnectionHint());
 		simpleModelConnectionHintEClass.getESuperTypes().add(this.getAttributeMappingSourceElementWithModifiers());
 		complexModelConnectionHintEClass.getESuperTypes().add(this.getModelConnectionHint());
 		complexModelConnectionHintSourceElementEClass.getESuperTypes().add(this.getAttributeMappingSourceElementWithModifiers());
+		complexModelConnectionHintSourceElementEClass.getESuperTypes().add(this.getComplexModelConnectionHintSourceInterface());
 		attributeMappingSourceElementWithModifiersEClass.getESuperTypes().add(this.getAttributeMappingSourceElementType());
 		mappingHintTypeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		hintImporterMappingHintEClass.getESuperTypes().add(this.getMappingHintType());
@@ -1486,8 +1566,10 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		mappedAttributeValueAppenderEClass.getESuperTypes().add(this.getMappedAttributeValueExpander());
 		globalVariableEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		globalVariableImporterEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
-		globalVariableImporterEClass.getESuperTypes().add(this.getComplexAttributeMappingSourceInterface());
+		globalVariableImporterEClass.getESuperTypes().add(this.getComplexMappingHintSourceInterface());
 		complexAttributeMappingSourceInterfaceEClass.getESuperTypes().add(this.getComplexMappingHintSourceInterface());
+		complexAttributeMatcherSourceInterfaceEClass.getESuperTypes().add(this.getComplexMappingHintSourceInterface());
+		complexModelConnectionHintSourceInterfaceEClass.getESuperTypes().add(this.getComplexMappingHintSourceInterface());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(mappingEClass, Mapping.class, "Mapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1556,7 +1638,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEClass(modelConnectionHintEClass, ModelConnectionHint.class, "ModelConnectionHint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelConnectionHint_TargetAttributes(), this.getConnectionHintTargetAttribute(), null, "targetAttributes", null, 1, -1, ModelConnectionHint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEOperation(getModelConnectionHint__GetSourceAttributes(), theMetamodelPackage.getSourceSectionAttribute(), "getSourceAttributes", 0, -1, IS_UNIQUE, IS_ORDERED);
+		initEOperation(getModelConnectionHint__GetSourceAttributes(), theMetamodelPackage.getSourceSectionAttribute(), "getSourceAttributes", 0, -1, !IS_UNIQUE, IS_ORDERED);
 
 		initEClass(connectionHintTargetAttributeEClass, ConnectionHintTargetAttribute.class, "ConnectionHintTargetAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConnectionHintTargetAttribute_TargetAttribute(), theMetamodelPackage.getTargetSectionAttribute(), null, "targetAttribute", null, 1, 1, ConnectionHintTargetAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1567,7 +1649,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEClass(complexAttributeMappingEClass, ComplexAttributeMapping.class, "ComplexAttributeMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getComplexAttributeMapping_SourceAttributeMappings(), this.getComplexAttributeMappingSourceInterface(), null, "sourceAttributeMappings", null, 1, -1, ComplexAttributeMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEOperation(getComplexAttributeMapping__GetLocalSourceElements(), this.getComplexAttributeMappingSourceElement(), "getLocalSourceElements", 0, -1, IS_UNIQUE, IS_ORDERED);
+		initEOperation(getComplexAttributeMapping__GetLocalSourceElements(), this.getComplexAttributeMappingSourceElement(), "getLocalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
 
 		initEClass(complexAttributeMappingSourceElementEClass, ComplexAttributeMappingSourceElement.class, "ComplexAttributeMappingSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1581,7 +1663,9 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEReference(getAttributeMappingSourceElementType_Source(), theMetamodelPackage.getSourceSectionAttribute(), null, "source", null, 1, 1, AttributeMappingSourceElementType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(complexAttributeMatcherEClass, ComplexAttributeMatcher.class, "ComplexAttributeMatcher", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getComplexAttributeMatcher_SourceAttributes(), this.getComplexAttributeMatcherSourceElement(), null, "sourceAttributes", null, 1, -1, ComplexAttributeMatcher.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComplexAttributeMatcher_SourceAttributes(), this.getComplexAttributeMatcherSourceInterface(), null, "sourceAttributes", null, 1, -1, ComplexAttributeMatcher.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getComplexAttributeMatcher__GetLocalSourceElements(), this.getComplexAttributeMatcherSourceElement(), "getLocalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
 
 		initEClass(simpleAttributeMatcherEClass, SimpleAttributeMatcher.class, "SimpleAttributeMatcher", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1589,8 +1673,14 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		initEClass(simpleModelConnectionHintEClass, SimpleModelConnectionHint.class, "SimpleModelConnectionHint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		initEOperation(getSimpleModelConnectionHint__GetSourceAttributes(), theMetamodelPackage.getSourceSectionAttribute(), "getSourceAttributes", 0, -1, !IS_UNIQUE, IS_ORDERED);
+
 		initEClass(complexModelConnectionHintEClass, ComplexModelConnectionHint.class, "ComplexModelConnectionHint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getComplexModelConnectionHint_SourceElements(), this.getComplexModelConnectionHintSourceElement(), null, "sourceElements", null, 1, -1, ComplexModelConnectionHint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComplexModelConnectionHint_SourceElements(), this.getComplexModelConnectionHintSourceInterface(), null, "sourceElements", null, 1, -1, ComplexModelConnectionHint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getComplexModelConnectionHint__GetLocalSourceElements(), this.getComplexModelConnectionHintSourceElement(), "getLocalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getComplexModelConnectionHint__GetSourceAttributes(), theMetamodelPackage.getSourceSectionAttribute(), "getSourceAttributes", 0, -1, !IS_UNIQUE, IS_ORDERED);
 
 		initEClass(complexModelConnectionHintSourceElementEClass, ComplexModelConnectionHintSourceElement.class, "ComplexModelConnectionHintSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1624,6 +1714,10 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEOperation(getComplexMappingHintSourceInterface__GetSourceAttribute(), theMetamodelPackage.getSourceSectionAttribute(), "getSourceAttribute", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getComplexMappingHintSourceInterface__GetName(), ecorePackage.getEString(), "getName", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(complexAttributeMatcherSourceInterfaceEClass, ComplexAttributeMatcherSourceInterface.class, "ComplexAttributeMatcherSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(complexModelConnectionHintSourceInterfaceEClass, ComplexModelConnectionHintSourceInterface.class, "ComplexModelConnectionHintSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore

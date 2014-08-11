@@ -4,21 +4,16 @@ package pamtram.mapping.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import pamtram.impl.NamedElementImpl;
-import pamtram.mapping.ComplexModelConnectionHint;
-import pamtram.mapping.ComplexModelConnectionHintSourceElement;
 import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModelConnectionHint;
-import pamtram.mapping.SimpleModelConnectionHint;
 import pamtram.metamodel.SourceSectionAttribute;
 
 /**
@@ -82,16 +77,9 @@ public abstract class ModelConnectionHintImpl extends NamedElementImpl implement
 	 * @generated
 	 */
 	public EList<SourceSectionAttribute> getSourceAttributes() {
-				EList<SourceSectionAttribute> sources= new org.eclipse.emf.common.util.BasicEList<SourceSectionAttribute>();
-				if(this instanceof SimpleModelConnectionHint){
-					sources.add(((SimpleModelConnectionHint)this).getSource());
-				
-				} else if(this instanceof ComplexModelConnectionHint){
-					for(ComplexModelConnectionHintSourceElement e : ((ComplexModelConnectionHint)this).getSourceElements()){
-						sources.add(e.getSource());
-					}
-				}
-				return sources;
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**

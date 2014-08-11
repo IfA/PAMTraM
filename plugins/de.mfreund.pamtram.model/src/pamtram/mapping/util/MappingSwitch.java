@@ -315,7 +315,9 @@ public class MappingSwitch<T> extends Switch<T> {
 				ComplexAttributeMatcherSourceElement complexAttributeMatcherSourceElement = (ComplexAttributeMatcherSourceElement)theEObject;
 				T result = caseComplexAttributeMatcherSourceElement(complexAttributeMatcherSourceElement);
 				if (result == null) result = caseAttributeMappingSourceElementWithModifiers(complexAttributeMatcherSourceElement);
+				if (result == null) result = caseComplexAttributeMatcherSourceInterface(complexAttributeMatcherSourceElement);
 				if (result == null) result = caseAttributeMappingSourceElementType(complexAttributeMatcherSourceElement);
+				if (result == null) result = caseComplexMappingHintSourceInterface(complexAttributeMatcherSourceElement);
 				if (result == null) result = caseNamedElement(complexAttributeMatcherSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -342,7 +344,9 @@ public class MappingSwitch<T> extends Switch<T> {
 				ComplexModelConnectionHintSourceElement complexModelConnectionHintSourceElement = (ComplexModelConnectionHintSourceElement)theEObject;
 				T result = caseComplexModelConnectionHintSourceElement(complexModelConnectionHintSourceElement);
 				if (result == null) result = caseAttributeMappingSourceElementWithModifiers(complexModelConnectionHintSourceElement);
+				if (result == null) result = caseComplexModelConnectionHintSourceInterface(complexModelConnectionHintSourceElement);
 				if (result == null) result = caseAttributeMappingSourceElementType(complexModelConnectionHintSourceElement);
+				if (result == null) result = caseComplexMappingHintSourceInterface(complexModelConnectionHintSourceElement);
 				if (result == null) result = caseNamedElement(complexModelConnectionHintSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -410,7 +414,6 @@ public class MappingSwitch<T> extends Switch<T> {
 				GlobalVariableImporter globalVariableImporter = (GlobalVariableImporter)theEObject;
 				T result = caseGlobalVariableImporter(globalVariableImporter);
 				if (result == null) result = caseNamedElement(globalVariableImporter);
-				if (result == null) result = caseComplexAttributeMappingSourceInterface(globalVariableImporter);
 				if (result == null) result = caseComplexMappingHintSourceInterface(globalVariableImporter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -425,6 +428,20 @@ public class MappingSwitch<T> extends Switch<T> {
 			case MappingPackage.COMPLEX_MAPPING_HINT_SOURCE_INTERFACE: {
 				ComplexMappingHintSourceInterface complexMappingHintSourceInterface = (ComplexMappingHintSourceInterface)theEObject;
 				T result = caseComplexMappingHintSourceInterface(complexMappingHintSourceInterface);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER_SOURCE_INTERFACE: {
+				ComplexAttributeMatcherSourceInterface complexAttributeMatcherSourceInterface = (ComplexAttributeMatcherSourceInterface)theEObject;
+				T result = caseComplexAttributeMatcherSourceInterface(complexAttributeMatcherSourceInterface);
+				if (result == null) result = caseComplexMappingHintSourceInterface(complexAttributeMatcherSourceInterface);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.COMPLEX_MODEL_CONNECTION_HINT_SOURCE_INTERFACE: {
+				ComplexModelConnectionHintSourceInterface complexModelConnectionHintSourceInterface = (ComplexModelConnectionHintSourceInterface)theEObject;
+				T result = caseComplexModelConnectionHintSourceInterface(complexModelConnectionHintSourceInterface);
+				if (result == null) result = caseComplexMappingHintSourceInterface(complexModelConnectionHintSourceInterface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1089,6 +1106,36 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseComplexMappingHintSourceInterface(ComplexMappingHintSourceInterface object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Complex Attribute Matcher Source Interface</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Complex Attribute Matcher Source Interface</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseComplexAttributeMatcherSourceInterface(ComplexAttributeMatcherSourceInterface object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Complex Model Connection Hint Source Interface</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Complex Model Connection Hint Source Interface</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseComplexModelConnectionHintSourceInterface(ComplexModelConnectionHintSourceInterface object) {
 		return null;
 	}
 

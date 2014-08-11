@@ -2,6 +2,7 @@
  */
 package pamtram.mapping.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -13,6 +14,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.mapping.ComplexAttributeMatcher;
 import pamtram.mapping.ComplexAttributeMatcherSourceElement;
+import pamtram.mapping.ComplexAttributeMatcherSourceInterface;
 import pamtram.mapping.MappingPackage;
 
 /**
@@ -37,7 +39,7 @@ public class ComplexAttributeMatcherImpl extends AttributeMatcherImpl implements
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ComplexAttributeMatcherSourceElement> sourceAttributes;
+	protected EList<ComplexAttributeMatcherSourceInterface> sourceAttributes;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -63,11 +65,28 @@ public class ComplexAttributeMatcherImpl extends AttributeMatcherImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ComplexAttributeMatcherSourceElement> getSourceAttributes() {
+	public EList<ComplexAttributeMatcherSourceInterface> getSourceAttributes() {
 		if (sourceAttributes == null) {
-			sourceAttributes = new EObjectContainmentEList<ComplexAttributeMatcherSourceElement>(ComplexAttributeMatcherSourceElement.class, this, MappingPackage.COMPLEX_ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES);
+			sourceAttributes = new EObjectContainmentEList<ComplexAttributeMatcherSourceInterface>(ComplexAttributeMatcherSourceInterface.class, this, MappingPackage.COMPLEX_ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES);
 		}
 		return sourceAttributes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ComplexAttributeMatcherSourceElement> getLocalSourceElements() {
+				EList<ComplexAttributeMatcherSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<ComplexAttributeMatcherSourceElement>();
+				
+				for(ComplexAttributeMatcherSourceInterface i : this.getSourceAttributes()){
+					if(i instanceof ComplexAttributeMatcherSourceElement){
+						elements.add((ComplexAttributeMatcherSourceElement) i);
+					}
+				}
+				
+				return elements;
 	}
 
 	/**
@@ -109,7 +128,7 @@ public class ComplexAttributeMatcherImpl extends AttributeMatcherImpl implements
 		switch (featureID) {
 			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES:
 				getSourceAttributes().clear();
-				getSourceAttributes().addAll((Collection<? extends ComplexAttributeMatcherSourceElement>)newValue);
+				getSourceAttributes().addAll((Collection<? extends ComplexAttributeMatcherSourceInterface>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -142,6 +161,20 @@ public class ComplexAttributeMatcherImpl extends AttributeMatcherImpl implements
 				return sourceAttributes != null && !sourceAttributes.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER___GET_LOCAL_SOURCE_ELEMENTS:
+				return getLocalSourceElements();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //ComplexAttributeMatcherImpl

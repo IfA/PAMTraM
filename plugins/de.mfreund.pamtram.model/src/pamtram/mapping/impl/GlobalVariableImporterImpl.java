@@ -3,24 +3,16 @@
 package pamtram.mapping.impl;
 
 import java.lang.reflect.InvocationTargetException;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import pamtram.impl.NamedElementImpl;
-
-import pamtram.mapping.ComplexAttributeMappingSourceInterface;
 import pamtram.mapping.ComplexMappingHintSourceInterface;
 import pamtram.mapping.GlobalVariable;
 import pamtram.mapping.GlobalVariableImporter;
 import pamtram.mapping.MappingPackage;
-
 import pamtram.metamodel.SourceSectionAttribute;
 
 /**
@@ -186,11 +178,6 @@ public class GlobalVariableImporterImpl extends NamedElementImpl implements Glob
 			switch (baseOperationID) {
 				case MappingPackage.COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return MappingPackage.GLOBAL_VARIABLE_IMPORTER___GET_SOURCE_ATTRIBUTE;
 				case MappingPackage.COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_NAME: return MappingPackage.GLOBAL_VARIABLE_IMPORTER___GET_NAME;
-				default: return -1;
-			}
-		}
-		if (baseClass == ComplexAttributeMappingSourceInterface.class) {
-			switch (baseOperationID) {
 				default: return -1;
 			}
 		}

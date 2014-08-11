@@ -2,6 +2,7 @@
  */
 package pamtram.mapping.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -13,7 +14,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.mapping.ComplexModelConnectionHint;
 import pamtram.mapping.ComplexModelConnectionHintSourceElement;
+import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
 import pamtram.mapping.MappingPackage;
+import pamtram.metamodel.SourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,7 +40,7 @@ public class ComplexModelConnectionHintImpl extends ModelConnectionHintImpl impl
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ComplexModelConnectionHintSourceElement> sourceElements;
+	protected EList<ComplexModelConnectionHintSourceInterface> sourceElements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -63,11 +66,41 @@ public class ComplexModelConnectionHintImpl extends ModelConnectionHintImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ComplexModelConnectionHintSourceElement> getSourceElements() {
+	public EList<ComplexModelConnectionHintSourceInterface> getSourceElements() {
 		if (sourceElements == null) {
-			sourceElements = new EObjectContainmentEList<ComplexModelConnectionHintSourceElement>(ComplexModelConnectionHintSourceElement.class, this, MappingPackage.COMPLEX_MODEL_CONNECTION_HINT__SOURCE_ELEMENTS);
+			sourceElements = new EObjectContainmentEList<ComplexModelConnectionHintSourceInterface>(ComplexModelConnectionHintSourceInterface.class, this, MappingPackage.COMPLEX_MODEL_CONNECTION_HINT__SOURCE_ELEMENTS);
 		}
 		return sourceElements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ComplexModelConnectionHintSourceElement> getLocalSourceElements() {
+				EList<ComplexModelConnectionHintSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<ComplexModelConnectionHintSourceElement>();
+				
+				for(ComplexModelConnectionHintSourceInterface i : this.getSourceElements()){
+					if(i instanceof ComplexModelConnectionHintSourceElement){
+						elements.add((ComplexModelConnectionHintSourceElement) i);
+					}
+				}
+				
+				return elements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<SourceSectionAttribute> getSourceAttributes() {
+						EList<SourceSectionAttribute> sources= new org.eclipse.emf.common.util.BasicEList<SourceSectionAttribute>();
+							for(ComplexModelConnectionHintSourceInterface e : this.getSourceElements()){
+								sources.add(e.getSourceAttribute());
+							}
+						return sources;
 	}
 
 	/**
@@ -109,7 +142,7 @@ public class ComplexModelConnectionHintImpl extends ModelConnectionHintImpl impl
 		switch (featureID) {
 			case MappingPackage.COMPLEX_MODEL_CONNECTION_HINT__SOURCE_ELEMENTS:
 				getSourceElements().clear();
-				getSourceElements().addAll((Collection<? extends ComplexModelConnectionHintSourceElement>)newValue);
+				getSourceElements().addAll((Collection<? extends ComplexModelConnectionHintSourceInterface>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -142,6 +175,22 @@ public class ComplexModelConnectionHintImpl extends ModelConnectionHintImpl impl
 				return sourceElements != null && !sourceElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case MappingPackage.COMPLEX_MODEL_CONNECTION_HINT___GET_LOCAL_SOURCE_ELEMENTS:
+				return getLocalSourceElements();
+			case MappingPackage.COMPLEX_MODEL_CONNECTION_HINT___GET_SOURCE_ATTRIBUTES:
+				return getSourceAttributes();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //ComplexModelConnectionHintImpl

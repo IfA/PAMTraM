@@ -2,6 +2,7 @@
  */
 package pamtram.mapping.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -127,6 +128,18 @@ public class SimpleModelConnectionHintImpl extends ModelConnectionHintImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<SourceSectionAttribute> getSourceAttributes() {
+						EList<SourceSectionAttribute> sources= new org.eclipse.emf.common.util.BasicEList<SourceSectionAttribute>();
+						sources.add(this.getSource());
+						
+						return sources;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -235,6 +248,20 @@ public class SimpleModelConnectionHintImpl extends ModelConnectionHintImpl imple
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case MappingPackage.SIMPLE_MODEL_CONNECTION_HINT___GET_SOURCE_ATTRIBUTES:
+				return getSourceAttributes();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //SimpleModelConnectionHintImpl

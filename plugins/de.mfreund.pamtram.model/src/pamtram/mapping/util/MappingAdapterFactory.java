@@ -242,6 +242,14 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createComplexMappingHintSourceInterfaceAdapter();
 			}
 			@Override
+			public Adapter caseComplexAttributeMatcherSourceInterface(ComplexAttributeMatcherSourceInterface object) {
+				return createComplexAttributeMatcherSourceInterfaceAdapter();
+			}
+			@Override
+			public Adapter caseComplexModelConnectionHintSourceInterface(ComplexModelConnectionHintSourceInterface object) {
+				return createComplexModelConnectionHintSourceInterfaceAdapter();
+			}
+			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -878,6 +886,34 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createComplexMappingHintSourceInterfaceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ComplexAttributeMatcherSourceInterface <em>Complex Attribute Matcher Source Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.ComplexAttributeMatcherSourceInterface
+	 * @generated
+	 */
+	public Adapter createComplexAttributeMatcherSourceInterfaceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ComplexModelConnectionHintSourceInterface <em>Complex Model Connection Hint Source Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.ComplexModelConnectionHintSourceInterface
+	 * @generated
+	 */
+	public Adapter createComplexModelConnectionHintSourceInterfaceAdapter() {
 		return null;
 	}
 

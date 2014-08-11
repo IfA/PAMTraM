@@ -13,6 +13,6 @@ package pamtram.mapping;
  * @model
  * @generated
  */
-public interface ComplexAttributeMatcherSourceElement extends AttributeMappingSourceElementWithModifiers {
+public interface ComplexAttributeMatcherSourceElement extends AttributeMappingSourceElementWithModifiers, ComplexAttributeMatcherSourceInterface {
 
 } // ComplexAttributeMatcherSourceElement

@@ -126,6 +126,7 @@ import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.CalculatorMapping;
+import pamtram.mapping.CalculatorMappingSourceInterface;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ClassMatcher;
 import pamtram.mapping.ComplexAttributeMapping;
@@ -1334,9 +1335,9 @@ public class PamtramEditor
 							
 						} else {
 							
-							for(AttributeMappingSourceElementType c : ((CalculatorMapping) mapping).getVariables()){
-								if(c.getSource() != null){
-									sources.add(c.getSource());
+							for(CalculatorMappingSourceInterface c : ((CalculatorMapping) mapping).getVariables()){
+								if(c.getSourceAttribute() != null){
+									sources.add(c.getSourceAttribute());
 								}
 							}
 						}

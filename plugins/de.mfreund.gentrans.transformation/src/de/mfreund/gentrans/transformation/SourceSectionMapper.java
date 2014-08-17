@@ -17,12 +17,14 @@ import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.CalculatorMapping;
+import pamtram.mapping.CalculatorMappingSourceInterface;
 import pamtram.mapping.ComplexAttributeMapping;
 import pamtram.mapping.ComplexAttributeMappingSourceElement;
 import pamtram.mapping.ComplexAttributeMappingSourceInterface;
 import pamtram.mapping.ComplexAttributeMatcher;
 import pamtram.mapping.ComplexAttributeMatcherSourceElement;
 import pamtram.mapping.ComplexAttributeMatcherSourceInterface;
+import pamtram.mapping.ComplexMappingHintSourceInterface;
 import pamtram.mapping.ComplexModelConnectionHint;
 import pamtram.mapping.ComplexModelConnectionHintSourceElement;
 import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
@@ -1087,40 +1089,7 @@ class SourceSectionMapper {
 						res.setAssociatedSourceModelElement(element);
 						//if mapping possible check ExternalAttributeMappings
 						// check external attributes here; container element MUST be present (check was done earlier)
-						if(m.getSourceMMSection().getContainer() != null){
-								Map<ExternalAttributeMappingSourceElement,String> attrVals=new HashMap<ExternalAttributeMappingSourceElement,String>();
-								for(MappingHintType h : getHints(m)){
-									if(h instanceof ComplexAttributeMapping){
-										for(ComplexAttributeMappingSourceInterface i : ((ComplexAttributeMapping) h).getSourceAttributeMappings()){
-											mappingFailed = checkExternalAttributeMapping(m, res, mappingFailed,attrVals, i);
-											if(mappingFailed){
-												break;
-											}
-										}
-										//add to hintVals
-										if(mappingFailed){
-											break;
-										} else if(attrVals.keySet().size() > 0){
-												for(Object hVal: res.getHintValues().get(h)){
-													@SuppressWarnings("unchecked")
-													Map<ComplexAttributeMappingSourceInterface,String> map=(Map<ComplexAttributeMappingSourceInterface,String>) hVal;
-													for(ExternalAttributeMappingSourceElement e : attrVals.keySet()){
-														map.put((ComplexAttributeMappingSourceInterface) e, attrVals.get(e));
-													}
-												}
-												//last action: reset attrval list
-												attrVals.clear();
-										}
-									}//TODO other elements
-								}
-								
-//								for(ModelConnectionHint h : getModelConnectionHints(m)){
-//									//TODO see above
-//								}
-								
-							
-						}
-						//=========================================================
+						mappingFailed = handleExternalAttributeMappings(m, res, mappingFailed);
 					}
 					if(!mappingFailed){//if mapping possible add to list
 							res.setMapping(m);
@@ -1171,6 +1140,130 @@ class SourceSectionMapper {
 	}
 
 	/**
+	 * Tries to determine the hintValues for the ExternalAttributeMappingSourceElements, if present
+	 * @param m
+	 * @param res
+	 * @param mappingFailed
+	 * @return
+	 */
+	private boolean handleExternalAttributeMappings(Mapping m,
+			MappingInstanceStorage res, boolean mappingFailed) {
+		if(m.getSourceMMSection().getContainer() != null){
+				Map<ExternalAttributeMappingSourceElement,String> attrVals=new HashMap<ExternalAttributeMappingSourceElement,String>();
+				for(MappingHintType h : getHints(m)){
+					if(h instanceof ComplexAttributeMapping){
+						for(ComplexAttributeMappingSourceInterface i : ((ComplexAttributeMapping) h).getSourceAttributeMappings()){
+							mappingFailed = checkExternalAttributeMapping(m, res, mappingFailed,attrVals, i);
+							if(mappingFailed){
+								break;
+							}
+						}
+						//add to hintVals
+						if(mappingFailed){
+							break;
+						} else if(attrVals.keySet().size() > 0){
+								for(Object hVal: res.getHintValues().get(h)){
+									@SuppressWarnings("unchecked")
+									Map<ComplexAttributeMappingSourceInterface,String> map=(Map<ComplexAttributeMappingSourceInterface,String>) hVal;
+									for(ExternalAttributeMappingSourceElement e : attrVals.keySet()){
+										map.put((ComplexAttributeMappingSourceInterface) e, attrVals.get(e));
+									}
+								}
+								//last action: reset attrval list
+								attrVals.clear();
+						}
+					}else if(h instanceof CalculatorMapping){
+						for(CalculatorMappingSourceInterface i : ((CalculatorMapping) h).getVariables()){
+							mappingFailed = checkExternalAttributeMapping(m, res, mappingFailed,attrVals, i);
+							if(mappingFailed){
+								break;
+							}											
+						}
+						//add to hintVals
+						if(mappingFailed){
+							break;
+						} else if(attrVals.keySet().size() > 0){
+								Map<String,Double> newVals=new HashMap<String,Double>();
+								for(ExternalAttributeMappingSourceElement e : attrVals.keySet()){
+									try{
+										Calculable calc=new ExpressionBuilder(attrVals.get(e)).build();
+										double variableVal= calc.calculate();//parseDouble doesn't support Scientific notation, like: 0.42e2 == 4200e-2 == 42, 
+										newVals.put(e.getName(), new Double(variableVal));
+									} catch(Exception execption){
+										consoleStream.println("Couldn't convert variable " 
+												+ e.getName() + " of CalculatorMapping " + h.getName()
+												+ " from String to double. The problematic source element's attribute value was: " 
+												+ attrVals.get(e));
+									}
+								}
+								for(Object hVal: res.getHintValues().get(h)){
+									@SuppressWarnings("unchecked")
+									Map<String,Double> map=(Map<String,Double>) hVal;
+									map.putAll(newVals);
+								}
+								//last action: reset attrval list
+								attrVals.clear();
+						}										
+					}else if(h instanceof MappingInstanceSelector){
+						if(((MappingInstanceSelector) h).getMatcher()!= null){
+							if(((MappingInstanceSelector) h).getMatcher() instanceof ComplexAttributeMatcher){
+								ComplexAttributeMatcher matcher=(ComplexAttributeMatcher) ((MappingInstanceSelector) h).getMatcher();
+								for(ComplexAttributeMatcherSourceInterface i : matcher.getSourceAttributes()){
+									mappingFailed = checkExternalAttributeMapping(m, res, mappingFailed,attrVals, i);
+									if(mappingFailed){
+										break;
+									}													
+								}
+								//add to hintVals
+								if(mappingFailed){
+									break;
+								} else if(attrVals.keySet().size() > 0){
+										for(Object hVal: res.getHintValues().get(h)){
+											@SuppressWarnings("unchecked")
+											Map<ComplexAttributeMatcherSourceInterface,String> map=(Map<ComplexAttributeMatcherSourceInterface,String>) hVal;
+											for(ExternalAttributeMappingSourceElement e : attrVals.keySet()){
+												map.put((ComplexAttributeMatcherSourceInterface) e, attrVals.get(e));
+											}
+										}
+										//last action: reset attrval list
+										attrVals.clear();
+								}
+							}
+						}
+					}
+				}
+				
+				for(ModelConnectionHint h : getModelConnectionHints(m)){
+					if(h instanceof ComplexModelConnectionHint){
+						for(ComplexModelConnectionHintSourceInterface i : ((ComplexModelConnectionHint) h).getSourceElements()){
+							mappingFailed = checkExternalAttributeMapping(m, res, mappingFailed,attrVals, i);
+							if(mappingFailed){
+								break;
+							}
+						}
+						//add to hintVals
+						if(mappingFailed){
+							break;
+						} else if(attrVals.keySet().size() > 0){
+								for(Object hVal: res.getModelConnectionHintValues().get(h)){
+									@SuppressWarnings("unchecked")
+									Map<ComplexModelConnectionHintSourceInterface,String> map=(Map<ComplexModelConnectionHintSourceInterface,String>) hVal;
+									for(ExternalAttributeMappingSourceElement e : attrVals.keySet()){
+										map.put((ComplexModelConnectionHintSourceInterface) e, attrVals.get(e));
+									}
+								}
+								//last action: reset attrval list
+								attrVals.clear();
+						}										
+					}
+				}
+				
+			
+		}
+		return mappingFailed;
+	}
+
+	/**
 	 * Helper method to handle an ExternalAttributeMapping
 	 * @param m
 	 * @param res
@@ -1182,7 +1275,7 @@ class SourceSectionMapper {
 	private boolean checkExternalAttributeMapping(Mapping m,
 			MappingInstanceStorage res, boolean mappingFailed,
 			Map<ExternalAttributeMappingSourceElement, String> attrVals,
-			ComplexAttributeMappingSourceInterface i) {
+			ComplexMappingHintSourceInterface i) {
 		if(i instanceof ExternalAttributeMappingSourceElement){
 			String attrVal=getContainerAttributeValue(i.getSourceAttribute(),
 					m.getSourceMMSection().getContainer(),

@@ -453,10 +453,10 @@ public class MappingSwitch<T> extends Switch<T> {
 			case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT: {
 				ComplexAttributeMappingExternalSourceElement complexAttributeMappingExternalSourceElement = (ComplexAttributeMappingExternalSourceElement)theEObject;
 				T result = caseComplexAttributeMappingExternalSourceElement(complexAttributeMappingExternalSourceElement);
-				if (result == null) result = caseComplexAttributeMappingSourceInterface(complexAttributeMappingExternalSourceElement);
 				if (result == null) result = caseExternalAttributeMappingSourceElement(complexAttributeMappingExternalSourceElement);
-				if (result == null) result = caseComplexMappingHintSourceInterface(complexAttributeMappingExternalSourceElement);
+				if (result == null) result = caseComplexAttributeMappingSourceInterface(complexAttributeMappingExternalSourceElement);
 				if (result == null) result = caseAttributeMappingSourceElementWithModifiers(complexAttributeMappingExternalSourceElement);
+				if (result == null) result = caseComplexMappingHintSourceInterface(complexAttributeMappingExternalSourceElement);
 				if (result == null) result = caseAttributeMappingSourceElementType(complexAttributeMappingExternalSourceElement);
 				if (result == null) result = caseNamedElement(complexAttributeMappingExternalSourceElement);
 				if (result == null) result = defaultCase(theEObject);

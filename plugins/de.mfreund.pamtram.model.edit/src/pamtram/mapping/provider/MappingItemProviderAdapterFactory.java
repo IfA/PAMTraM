@@ -738,6 +738,52 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ComplexAttributeMappingExternalSourceElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ComplexAttributeMappingExternalSourceElementItemProvider complexAttributeMappingExternalSourceElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.ComplexAttributeMappingExternalSourceElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createComplexAttributeMappingExternalSourceElementAdapter() {
+		if (complexAttributeMappingExternalSourceElementItemProvider == null) {
+			complexAttributeMappingExternalSourceElementItemProvider = new ComplexAttributeMappingExternalSourceElementItemProvider(this);
+		}
+
+		return complexAttributeMappingExternalSourceElementItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ExterenalAttributeMappingSourceElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExterenalAttributeMappingSourceElementItemProvider exterenalAttributeMappingSourceElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.ExterenalAttributeMappingSourceElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createExterenalAttributeMappingSourceElementAdapter() {
+		if (exterenalAttributeMappingSourceElementItemProvider == null) {
+			exterenalAttributeMappingSourceElementItemProvider = new ExterenalAttributeMappingSourceElementItemProvider(this);
+		}
+
+		return exterenalAttributeMappingSourceElementItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -865,6 +911,8 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (mappedAttributeValueAppenderItemProvider != null) mappedAttributeValueAppenderItemProvider.dispose();
 		if (globalVariableItemProvider != null) globalVariableItemProvider.dispose();
 		if (globalVariableImporterItemProvider != null) globalVariableImporterItemProvider.dispose();
+		if (complexAttributeMappingExternalSourceElementItemProvider != null) complexAttributeMappingExternalSourceElementItemProvider.dispose();
+		if (exterenalAttributeMappingSourceElementItemProvider != null) exterenalAttributeMappingSourceElementItemProvider.dispose();
 	}
 
 }

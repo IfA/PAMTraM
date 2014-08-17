@@ -27,6 +27,7 @@ import pamtram.mapping.ComplexModelConnectionHint;
 import pamtram.mapping.ComplexModelConnectionHintSourceElement;
 import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
 import pamtram.mapping.ExpressionVariable;
+import pamtram.mapping.ExternalAttributeMappingSourceElement;
 import pamtram.mapping.GlobalVariable;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.Mapping;
@@ -46,6 +47,7 @@ import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.SourceSectionContainmentReference;
 import pamtram.metamodel.SourceSectionReference;
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
@@ -253,7 +255,7 @@ class SourceSectionMapper {
 	private void buildCalcAttrMappingsMaps(CalculatorMapping m, SourceSectionClass srcSection){
 		if(!deepestCalcAttrMappingSrcElementsByCalcMapping.containsKey(m)){
 			Set<AttributeMappingSourceElementType> srcElements=new HashSet<AttributeMappingSourceElementType>();
-			srcElements.addAll(m.getVariables());
+			srcElements.addAll(m.getLocalSourceElements());
 			
 			sortOutElements(srcElements, srcSection);
 			if(srcElements.size() == 1){
@@ -513,7 +515,7 @@ class SourceSectionMapper {
 							}
 						}
 					} else if(hint instanceof CalculatorMapping){
-						for(ExpressionVariable v : ((CalculatorMapping) hint).getVariables()){
+						for(ExpressionVariable v : ((CalculatorMapping) hint).getLocalSourceElements()){
 							if(v.getSource().equals(at)){
 								String valCopy = AttributeValueRegistry.applyAttributeValueModifiers(srcAttrAsString, v.getModifier());
 								calcVariableHintValues.put(v, valCopy);
@@ -623,7 +625,7 @@ class SourceSectionMapper {
 			} else if(h instanceof CalculatorMapping){
 				Map<String,Double> foundValues=new LinkedHashMap<String,Double>();//we need this as an extra, since found values might be empty strings
 				//append the complex hint value (cardinality either 0 or 1) with found values in right order
-				for(ExpressionVariable v : ((CalculatorMapping) h).getVariables()){
+				for(ExpressionVariable v : ((CalculatorMapping) h).getLocalSourceElements()){
 					if(calcVariableHintValues.containsKey(v)){
 						try{
 							Calculable calc=new ExpressionBuilder(calcVariableHintValues.get(v)).build();
@@ -999,6 +1001,58 @@ class SourceSectionMapper {
 	}
 	
 	/**
+	 * Finds the value for an ExternalAttributeMappingSourceElement
+	 * @param attr attribute to find
+	 * @param extClass container class to start looking
+	 * @param extObj  eObject corresponding to the container class
+	 * @return
+	 */
+	private String getContainerAttributeValue(SourceSectionAttribute attr, SourceSectionClass extClass, EObject extObj){
+		SourceSectionClass attrClass=attr.getOwningClass();
+		
+		while(true){
+			//found container section?
+			if(attrClass.equals(extClass)){
+				Object attrVal=extObj.eGet(attr.getAttribute());
+				if(attrVal == null){
+					consoleStream.println("Unset external Attriubte " + attr.getName());
+					return null;
+				} else { // convert Attribute value to String
+					return attr
+							.getAttribute()
+							.getEType()
+							.getEPackage()
+							.getEFactoryInstance()
+							.convertToString(attr.getAttribute().getEAttributeType(),
+									attrVal);
+				}
+			} else {
+				
+				if(extClass.eContainer() instanceof SourceSectionContainmentReference){
+					extClass=(SourceSectionClass) extClass.eContainer().eContainer();
+					extObj=extObj.eContainer();
+					//Check if the parent object exists, and if it was mapped for the section.
+					if(extObj == null){
+						return null;
+					} else{
+						if(mappedSections.containsKey(extClass)){
+							if(!mappedSections.get(extClass).contains(extObj)){
+								return null;
+							}
+						} else {
+							return null;
+						}
+					}
+				} else {//modeling error, object not found
+					consoleStream.println("Modeling error. ExternalAttributeMappingSourceElement " + attr.getName() + "is not part of the the container"
+							+ "section or the section that the container section is part of.");
+					return null;
+				}
+			}												
+		}
+	}
+	
+	/**
 	 * Try to apply a mapping that has the first Element of the supplied List as its root object.
 	 * <p>
 	 * It is assumed that the List was created by the buildContainmentTree method
@@ -1019,22 +1073,58 @@ class SourceSectionMapper {
 				//create  result map
 				MappingInstanceStorage res ;
 				
-				if(doContainerCheck(element,m.getSourceMMSection()) ){
-					//("====== " + m.name + " ======").println;					
-					
+				if(doContainerCheck(element,m.getSourceMMSection()) ){					
 					res= findMappingIterate(element, false, getHints(m), getModelConnectionHints(m), m.getGlobalVariables(),
 							m.getSourceMMSection(),
 							new MappingInstanceStorage(),
 							new LinkedHashMap<SourceSectionClass, EObject>());
-					
 					if(transformationAborted)
 					{
 						return null;
 					}
-					if(res != null){//if mapping possible add to list
-						res.setMapping(m);
-						mappingData.put(m.getName()+  (m.hashCode()), res);
-						
+					boolean mappingFailed=res == null;
+					if(!mappingFailed){
+						res.setAssociatedSourceModelElement(element);
+						//if mapping possible check ExternalAttributeMappings
+						// check external attributes here; container element MUST be present (check was done earlier)
+						if(m.getSourceMMSection().getContainer() != null){
+								Map<ExternalAttributeMappingSourceElement,String> attrVals=new HashMap<ExternalAttributeMappingSourceElement,String>();
+								for(MappingHintType h : getHints(m)){
+									if(h instanceof ComplexAttributeMapping){
+										for(ComplexAttributeMappingSourceInterface i : ((ComplexAttributeMapping) h).getSourceAttributeMappings()){
+											mappingFailed = checkExternalAttributeMapping(m, res, mappingFailed,attrVals, i);
+											if(mappingFailed){
+												break;
+											}
+										}
+										//add to hintVals
+										if(mappingFailed){
+											break;
+										} else if(attrVals.keySet().size() > 0){
+												for(Object hVal: res.getHintValues().get(h)){
+													@SuppressWarnings("unchecked")
+													Map<ComplexAttributeMappingSourceInterface,String> map=(Map<ComplexAttributeMappingSourceInterface,String>) hVal;
+													for(ExternalAttributeMappingSourceElement e : attrVals.keySet()){
+														map.put((ComplexAttributeMappingSourceInterface) e, attrVals.get(e));
+													}
+												}
+												//last action: reset attrval list
+												attrVals.clear();
+										}
+									}//TODO other elements
+								}
+								
+//								for(ModelConnectionHint h : getModelConnectionHints(m)){
+//									//TODO see above
+//								}
+								
+							
+						}
+						//=========================================================
+					}
+					if(!mappingFailed){//if mapping possible add to list
+							res.setMapping(m);
+							mappingData.put(m.getName()+  (m.hashCode()), res);
 						int used=0;
 						for(SourceSectionClass c : res.getSourceModelObjectsMapped().keySet()){
 							if(!mappedSections.containsKey(c)){
@@ -1078,6 +1168,33 @@ class SourceSectionMapper {
 			}
 			
 			return returnVal;
+	}
+
+	/**
+	 * Helper method to handle an ExternalAttributeMapping
+	 * @param m
+	 * @param res
+	 * @param mappingFailed
+	 * @param attrVals
+	 * @param i
+	 * @return
+	 */
+	private boolean checkExternalAttributeMapping(Mapping m,
+			MappingInstanceStorage res, boolean mappingFailed,
+			Map<ExternalAttributeMappingSourceElement, String> attrVals,
+			ComplexAttributeMappingSourceInterface i) {
+		if(i instanceof ExternalAttributeMappingSourceElement){
+			String attrVal=getContainerAttributeValue(i.getSourceAttribute(),
+					m.getSourceMMSection().getContainer(),
+					res.getAssociatedSourceModelElement().eContainer()
+					);
+			if(attrVal == null){
+				mappingFailed=true;
+			} else {
+				attrVals.put((ExternalAttributeMappingSourceElement) i, attrVal);
+			}
+		}
+		return mappingFailed;
 	}
 
 	

@@ -12,7 +12,6 @@ import java.util.EventObject;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -88,26 +87,19 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
-import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.FileTransfer;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
-import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -127,47 +119,10 @@ import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.PropertySheetPage;
 
-import pamtram.MappingModel;
-import pamtram.NamedElement;
 import pamtram.PAMTraM;
 import pamtram.condition.provider.ConditionItemProviderAdapterFactory;
-import pamtram.mapping.AttributeMapping;
-import pamtram.mapping.AttributeMappingSourceElementType;
-import pamtram.mapping.AttributeMatcher;
-import pamtram.mapping.CalculatorMapping;
-import pamtram.mapping.CalculatorMappingSourceInterface;
-import pamtram.mapping.CardinalityMapping;
-import pamtram.mapping.ClassMatcher;
-import pamtram.mapping.ComplexAttributeMapping;
-import pamtram.mapping.ComplexAttributeMappingSourceInterface;
-import pamtram.mapping.ComplexAttributeMatcher;
-import pamtram.mapping.ComplexAttributeMatcherSourceInterface;
-import pamtram.mapping.ComplexModelConnectionHint;
-import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
-import pamtram.mapping.ConnectionHintTargetAttribute;
-import pamtram.mapping.GlobalVariable;
-import pamtram.mapping.GlobalVariableImporter;
-import pamtram.mapping.MappedAttributeValueExpander;
-import pamtram.mapping.Mapping;
-import pamtram.mapping.MappingHintGroupImporter;
-import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.MappingInstanceSelector;
-import pamtram.mapping.ModelConnectionHint;
-import pamtram.mapping.SimpleAttributeMapping;
-import pamtram.mapping.SimpleAttributeMatcher;
-import pamtram.mapping.SimpleModelConnectionHint;
 import pamtram.mapping.provider.MappingItemProviderAdapterFactory;
-import pamtram.metamodel.Attribute;
-import pamtram.metamodel.NonContainmentReference;
-import pamtram.metamodel.SourceSectionAttribute;
-import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.SourceSectionNonContainmentReference;
-import pamtram.metamodel.TargetSectionAttribute;
-import pamtram.metamodel.TargetSectionClass;
-import pamtram.metamodel.TargetSectionNonContainmentReference;
 import pamtram.metamodel.provider.MetamodelItemProviderAdapterFactory;
-import pamtram.presentation.listeners.MMElementDragListener;
-import pamtram.presentation.listeners.MappingDropListener;
 import pamtram.provider.PamtramItemProviderAdapterFactory;
 import pamtram.transformation.provider.TransformationItemProviderAdapterFactory;
 
@@ -1335,6 +1290,18 @@ public class PamtramEditor
 						getContainer(), SWT.None, adapterFactory, this);
 				int pageIndex = addPage(mainPage);
 				setPageText(pageIndex, getString("_UI_SelectionPage_label"));
+			}
+			
+			// Create a page for the source section matcher view.
+			//
+			{
+				PamtramEditorSourceSectionMatcherPage sourceSectionMatcherPage =
+						new PamtramEditorSourceSectionMatcherPage(
+								getContainer(), 
+								SWT.NONE, adapterFactory, this);
+//										createContextMenuFor(parentViewer);
+				int pageIndex = addPage(sourceSectionMatcherPage);
+				setPageText(pageIndex, getString("_UI_ParentPage_label"));
 			}
 			
 			getSite().getShell().getDisplay().asyncExec

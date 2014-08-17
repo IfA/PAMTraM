@@ -166,6 +166,11 @@ public class CalculatorMappingItemProvider
 			(createChildParameter
 				(MappingPackage.Literals.CALCULATOR_MAPPING__VARIABLES,
 				 MappingFactory.eINSTANCE.createExpressionVariable()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.CALCULATOR_MAPPING__VARIABLES,
+				 MappingFactory.eINSTANCE.createExternalExpressionVariable()));
 	}
 
 }

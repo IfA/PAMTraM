@@ -761,6 +761,75 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ComplexModelConnectionHintExternalSourceElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ComplexModelConnectionHintExternalSourceElementItemProvider complexModelConnectionHintExternalSourceElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.ComplexModelConnectionHintExternalSourceElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createComplexModelConnectionHintExternalSourceElementAdapter() {
+		if (complexModelConnectionHintExternalSourceElementItemProvider == null) {
+			complexModelConnectionHintExternalSourceElementItemProvider = new ComplexModelConnectionHintExternalSourceElementItemProvider(this);
+		}
+
+		return complexModelConnectionHintExternalSourceElementItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ExternalExpressionVariable} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExternalExpressionVariableItemProvider externalExpressionVariableItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.ExternalExpressionVariable}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createExternalExpressionVariableAdapter() {
+		if (externalExpressionVariableItemProvider == null) {
+			externalExpressionVariableItemProvider = new ExternalExpressionVariableItemProvider(this);
+		}
+
+		return externalExpressionVariableItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ComplexAttributeMatcherExternalSourceElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ComplexAttributeMatcherExternalSourceElementItemProvider complexAttributeMatcherExternalSourceElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.ComplexAttributeMatcherExternalSourceElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createComplexAttributeMatcherExternalSourceElementAdapter() {
+		if (complexAttributeMatcherExternalSourceElementItemProvider == null) {
+			complexAttributeMatcherExternalSourceElementItemProvider = new ComplexAttributeMatcherExternalSourceElementItemProvider(this);
+		}
+
+		return complexAttributeMatcherExternalSourceElementItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -889,6 +958,9 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (globalVariableItemProvider != null) globalVariableItemProvider.dispose();
 		if (globalVariableImporterItemProvider != null) globalVariableImporterItemProvider.dispose();
 		if (complexAttributeMappingExternalSourceElementItemProvider != null) complexAttributeMappingExternalSourceElementItemProvider.dispose();
+		if (complexModelConnectionHintExternalSourceElementItemProvider != null) complexModelConnectionHintExternalSourceElementItemProvider.dispose();
+		if (externalExpressionVariableItemProvider != null) externalExpressionVariableItemProvider.dispose();
+		if (complexAttributeMatcherExternalSourceElementItemProvider != null) complexAttributeMatcherExternalSourceElementItemProvider.dispose();
 	}
 
 }

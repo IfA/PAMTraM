@@ -262,6 +262,18 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createExternalAttributeMappingSourceElementAdapter();
 			}
 			@Override
+			public Adapter caseComplexModelConnectionHintExternalSourceElement(ComplexModelConnectionHintExternalSourceElement object) {
+				return createComplexModelConnectionHintExternalSourceElementAdapter();
+			}
+			@Override
+			public Adapter caseExternalExpressionVariable(ExternalExpressionVariable object) {
+				return createExternalExpressionVariableAdapter();
+			}
+			@Override
+			public Adapter caseComplexAttributeMatcherExternalSourceElement(ComplexAttributeMatcherExternalSourceElement object) {
+				return createComplexAttributeMatcherExternalSourceElementAdapter();
+			}
+			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -968,6 +980,48 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createExternalAttributeMappingSourceElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ComplexModelConnectionHintExternalSourceElement <em>Complex Model Connection Hint External Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.ComplexModelConnectionHintExternalSourceElement
+	 * @generated
+	 */
+	public Adapter createComplexModelConnectionHintExternalSourceElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ExternalExpressionVariable <em>External Expression Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.ExternalExpressionVariable
+	 * @generated
+	 */
+	public Adapter createExternalExpressionVariableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ComplexAttributeMatcherExternalSourceElement <em>Complex Attribute Matcher External Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.ComplexAttributeMatcherExternalSourceElement
+	 * @generated
+	 */
+	public Adapter createComplexAttributeMatcherExternalSourceElementAdapter() {
 		return null;
 	}
 

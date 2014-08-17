@@ -292,6 +292,33 @@ public interface MappingFactory extends EFactory {
 	ComplexAttributeMappingExternalSourceElement createComplexAttributeMappingExternalSourceElement();
 
 	/**
+	 * Returns a new object of class '<em>Complex Model Connection Hint External Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Complex Model Connection Hint External Source Element</em>'.
+	 * @generated
+	 */
+	ComplexModelConnectionHintExternalSourceElement createComplexModelConnectionHintExternalSourceElement();
+
+	/**
+	 * Returns a new object of class '<em>External Expression Variable</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>External Expression Variable</em>'.
+	 * @generated
+	 */
+	ExternalExpressionVariable createExternalExpressionVariable();
+
+	/**
+	 * Returns a new object of class '<em>Complex Attribute Matcher External Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Complex Attribute Matcher External Source Element</em>'.
+	 * @generated
+	 */
+	ComplexAttributeMatcherExternalSourceElement createComplexAttributeMatcherExternalSourceElement();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

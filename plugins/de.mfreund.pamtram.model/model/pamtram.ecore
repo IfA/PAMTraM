@@ -477,10 +477,15 @@
     <eClassifiers xsi:type="ecore:EClass" name="ComplexModelConnectionHintSourceInterface"
         abstract="true" interface="true" eSuperTypes="#//mapping/ComplexMappingHintSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexAttributeMappingExternalSourceElement"
-        eSuperTypes="#//mapping/ComplexAttributeMappingSourceInterface #//mapping/ExternalAttributeMappingSourceElement"/>
+        eSuperTypes="#//mapping/ExternalAttributeMappingSourceElement #//mapping/ComplexAttributeMappingSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="CalculatorMappingSourceInterface"
         abstract="true" interface="true" eSuperTypes="#//mapping/ComplexMappingHintSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="ExternalAttributeMappingSourceElement"
         abstract="true" eSuperTypes="#//mapping/AttributeMappingSourceElementWithModifiers"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ComplexModelConnectionHintExternalSourceElement"
+        eSuperTypes="#//mapping/ExternalAttributeMappingSourceElement #//mapping/ComplexModelConnectionHintSourceInterface"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ExternalExpressionVariable" eSuperTypes="#//mapping/ExternalAttributeMappingSourceElement #//mapping/CalculatorMappingSourceInterface"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ComplexAttributeMatcherExternalSourceElement"
+        eSuperTypes="#//mapping/ExternalAttributeMappingSourceElement #//mapping/ComplexAttributeMatcherSourceInterface"/>
   </eSubpackages>
 </ecore:EPackage>

@@ -180,6 +180,12 @@ public class MappingValidator extends EObjectValidator {
 				return validateCalculatorMappingSourceInterface((CalculatorMappingSourceInterface)value, diagnostics, context);
 			case MappingPackage.EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT:
 				return validateExternalAttributeMappingSourceElement((ExternalAttributeMappingSourceElement)value, diagnostics, context);
+			case MappingPackage.COMPLEX_MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT:
+				return validateComplexModelConnectionHintExternalSourceElement((ComplexModelConnectionHintExternalSourceElement)value, diagnostics, context);
+			case MappingPackage.EXTERNAL_EXPRESSION_VARIABLE:
+				return validateExternalExpressionVariable((ExternalExpressionVariable)value, diagnostics, context);
+			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT:
+				return validateComplexAttributeMatcherExternalSourceElement((ComplexAttributeMatcherExternalSourceElement)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -852,6 +858,33 @@ public class MappingValidator extends EObjectValidator {
 	 */
 	public boolean validateExternalAttributeMappingSourceElement(ExternalAttributeMappingSourceElement externalAttributeMappingSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(externalAttributeMappingSourceElement, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateComplexModelConnectionHintExternalSourceElement(ComplexModelConnectionHintExternalSourceElement complexModelConnectionHintExternalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(complexModelConnectionHintExternalSourceElement, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateExternalExpressionVariable(ExternalExpressionVariable externalExpressionVariable, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(externalExpressionVariable, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateComplexAttributeMatcherExternalSourceElement(ComplexAttributeMatcherExternalSourceElement complexAttributeMatcherExternalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(complexAttributeMatcherExternalSourceElement, diagnostics, context);
 	}
 
 	/**

@@ -83,6 +83,9 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.GLOBAL_VARIABLE: return createGlobalVariable();
 			case MappingPackage.GLOBAL_VARIABLE_IMPORTER: return createGlobalVariableImporter();
 			case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT: return createComplexAttributeMappingExternalSourceElement();
+			case MappingPackage.COMPLEX_MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT: return createComplexModelConnectionHintExternalSourceElement();
+			case MappingPackage.EXTERNAL_EXPRESSION_VARIABLE: return createExternalExpressionVariable();
+			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT: return createComplexAttributeMatcherExternalSourceElement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -386,6 +389,36 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public ComplexAttributeMappingExternalSourceElement createComplexAttributeMappingExternalSourceElement() {
 		ComplexAttributeMappingExternalSourceElementImpl complexAttributeMappingExternalSourceElement = new ComplexAttributeMappingExternalSourceElementImpl();
 		return complexAttributeMappingExternalSourceElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ComplexModelConnectionHintExternalSourceElement createComplexModelConnectionHintExternalSourceElement() {
+		ComplexModelConnectionHintExternalSourceElementImpl complexModelConnectionHintExternalSourceElement = new ComplexModelConnectionHintExternalSourceElementImpl();
+		return complexModelConnectionHintExternalSourceElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExternalExpressionVariable createExternalExpressionVariable() {
+		ExternalExpressionVariableImpl externalExpressionVariable = new ExternalExpressionVariableImpl();
+		return externalExpressionVariable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ComplexAttributeMatcherExternalSourceElement createComplexAttributeMatcherExternalSourceElement() {
+		ComplexAttributeMatcherExternalSourceElementImpl complexAttributeMatcherExternalSourceElement = new ComplexAttributeMatcherExternalSourceElementImpl();
+		return complexAttributeMatcherExternalSourceElement;
 	}
 
 	/**

@@ -292,15 +292,6 @@ public interface MappingFactory extends EFactory {
 	ComplexAttributeMappingExternalSourceElement createComplexAttributeMappingExternalSourceElement();
 
 	/**
-	 * Returns a new object of class '<em>Exterenal Attribute Mapping Source Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Exterenal Attribute Mapping Source Element</em>'.
-	 * @generated
-	 */
-	ExterenalAttributeMappingSourceElement createExterenalAttributeMappingSourceElement();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

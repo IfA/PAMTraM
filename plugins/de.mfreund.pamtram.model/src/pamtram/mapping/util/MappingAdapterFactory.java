@@ -258,8 +258,8 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createCalculatorMappingSourceInterfaceAdapter();
 			}
 			@Override
-			public Adapter caseExterenalAttributeMappingSourceElement(ExterenalAttributeMappingSourceElement object) {
-				return createExterenalAttributeMappingSourceElementAdapter();
+			public Adapter caseExternalAttributeMappingSourceElement(ExternalAttributeMappingSourceElement object) {
+				return createExternalAttributeMappingSourceElementAdapter();
 			}
 			@Override
 			public Adapter caseNamedElement(NamedElement object) {
@@ -958,16 +958,16 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ExterenalAttributeMappingSourceElement <em>Exterenal Attribute Mapping Source Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ExternalAttributeMappingSourceElement <em>External Attribute Mapping Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.ExterenalAttributeMappingSourceElement
+	 * @see pamtram.mapping.ExternalAttributeMappingSourceElement
 	 * @generated
 	 */
-	public Adapter createExterenalAttributeMappingSourceElementAdapter() {
+	public Adapter createExternalAttributeMappingSourceElementAdapter() {
 		return null;
 	}
 

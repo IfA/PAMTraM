@@ -83,7 +83,6 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.GLOBAL_VARIABLE: return createGlobalVariable();
 			case MappingPackage.GLOBAL_VARIABLE_IMPORTER: return createGlobalVariableImporter();
 			case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT: return createComplexAttributeMappingExternalSourceElement();
-			case MappingPackage.EXTERENAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT: return createExterenalAttributeMappingSourceElement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -387,16 +386,6 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public ComplexAttributeMappingExternalSourceElement createComplexAttributeMappingExternalSourceElement() {
 		ComplexAttributeMappingExternalSourceElementImpl complexAttributeMappingExternalSourceElement = new ComplexAttributeMappingExternalSourceElementImpl();
 		return complexAttributeMappingExternalSourceElement;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ExterenalAttributeMappingSourceElement createExterenalAttributeMappingSourceElement() {
-		ExterenalAttributeMappingSourceElementImpl exterenalAttributeMappingSourceElement = new ExterenalAttributeMappingSourceElementImpl();
-		return exterenalAttributeMappingSourceElement;
 	}
 
 	/**

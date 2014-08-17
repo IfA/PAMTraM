@@ -2690,14 +2690,14 @@ public interface MappingPackage extends EPackage {
 
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ExterenalAttributeMappingSourceElementImpl <em>Exterenal Attribute Mapping Source Element</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.impl.ExternalAttributeMappingSourceElementImpl <em>External Attribute Mapping Source Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ExterenalAttributeMappingSourceElementImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getExterenalAttributeMappingSourceElement()
+	 * @see pamtram.mapping.impl.ExternalAttributeMappingSourceElementImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalAttributeMappingSourceElement()
 	 * @generated
 	 */
-	int EXTERENAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT = 48;
+	int EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT = 48;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2706,7 +2706,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERENAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT__NAME = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS__NAME;
+	int EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT__NAME = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -2715,7 +2715,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERENAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT__SOURCE = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS__SOURCE;
+	int EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT__SOURCE = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
@@ -2724,26 +2724,25 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERENAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT__MODIFIER = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS__MODIFIER;
+	int EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT__MODIFIER = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS__MODIFIER;
 
 	/**
-	 * The number of structural features of the '<em>Exterenal Attribute Mapping Source Element</em>' class.
+	 * The number of structural features of the '<em>External Attribute Mapping Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERENAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT_FEATURE_COUNT = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS_FEATURE_COUNT + 0;
+	int EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT_FEATURE_COUNT = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>Exterenal Attribute Mapping Source Element</em>' class.
+	 * The number of operations of the '<em>External Attribute Mapping Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERENAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT_OPERATION_COUNT = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS_OPERATION_COUNT + 0;
-
+	int EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT_OPERATION_COUNT = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS_OPERATION_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.Mapping <em>Mapping</em>}'.
@@ -3745,14 +3744,14 @@ public interface MappingPackage extends EPackage {
 	EClass getCalculatorMappingSourceInterface();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ExterenalAttributeMappingSourceElement <em>Exterenal Attribute Mapping Source Element</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.ExternalAttributeMappingSourceElement <em>External Attribute Mapping Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Exterenal Attribute Mapping Source Element</em>'.
-	 * @see pamtram.mapping.ExterenalAttributeMappingSourceElement
+	 * @return the meta object for class '<em>External Attribute Mapping Source Element</em>'.
+	 * @see pamtram.mapping.ExternalAttributeMappingSourceElement
 	 * @generated
 	 */
-	EClass getExterenalAttributeMappingSourceElement();
+	EClass getExternalAttributeMappingSourceElement();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -4642,14 +4641,14 @@ public interface MappingPackage extends EPackage {
 		EClass CALCULATOR_MAPPING_SOURCE_INTERFACE = eINSTANCE.getCalculatorMappingSourceInterface();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ExterenalAttributeMappingSourceElementImpl <em>Exterenal Attribute Mapping Source Element</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.impl.ExternalAttributeMappingSourceElementImpl <em>External Attribute Mapping Source Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.ExterenalAttributeMappingSourceElementImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getExterenalAttributeMappingSourceElement()
+		 * @see pamtram.mapping.impl.ExternalAttributeMappingSourceElementImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalAttributeMappingSourceElement()
 		 * @generated
 		 */
-		EClass EXTERENAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT = eINSTANCE.getExterenalAttributeMappingSourceElement();
+		EClass EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT = eINSTANCE.getExternalAttributeMappingSourceElement();
 
 	}
 

@@ -37,7 +37,7 @@ import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
 import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.ExpressionVariable;
-import pamtram.mapping.ExterenalAttributeMappingSourceElement;
+import pamtram.mapping.ExternalAttributeMappingSourceElement;
 import pamtram.mapping.GlobalVariable;
 import pamtram.mapping.GlobalVariableImporter;
 import pamtram.mapping.HintImporterMappingHint;
@@ -418,7 +418,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass exterenalAttributeMappingSourceElementEClass = null;
+	private EClass externalAttributeMappingSourceElementEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1373,8 +1373,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExterenalAttributeMappingSourceElement() {
-		return exterenalAttributeMappingSourceElementEClass;
+	public EClass getExternalAttributeMappingSourceElement() {
+		return externalAttributeMappingSourceElementEClass;
 	}
 
 	/**
@@ -1549,7 +1549,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		calculatorMappingSourceInterfaceEClass = createEClass(CALCULATOR_MAPPING_SOURCE_INTERFACE);
 
-		exterenalAttributeMappingSourceElementEClass = createEClass(EXTERENAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT);
+		externalAttributeMappingSourceElementEClass = createEClass(EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT);
 	}
 
 	/**
@@ -1641,9 +1641,9 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		complexAttributeMatcherSourceInterfaceEClass.getESuperTypes().add(this.getComplexMappingHintSourceInterface());
 		complexModelConnectionHintSourceInterfaceEClass.getESuperTypes().add(this.getComplexMappingHintSourceInterface());
 		complexAttributeMappingExternalSourceElementEClass.getESuperTypes().add(this.getComplexAttributeMappingSourceInterface());
-		complexAttributeMappingExternalSourceElementEClass.getESuperTypes().add(this.getExterenalAttributeMappingSourceElement());
+		complexAttributeMappingExternalSourceElementEClass.getESuperTypes().add(this.getExternalAttributeMappingSourceElement());
 		calculatorMappingSourceInterfaceEClass.getESuperTypes().add(this.getComplexMappingHintSourceInterface());
-		exterenalAttributeMappingSourceElementEClass.getESuperTypes().add(this.getAttributeMappingSourceElementWithModifiers());
+		externalAttributeMappingSourceElementEClass.getESuperTypes().add(this.getAttributeMappingSourceElementWithModifiers());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(mappingEClass, Mapping.class, "Mapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1799,7 +1799,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		initEClass(calculatorMappingSourceInterfaceEClass, CalculatorMappingSourceInterface.class, "CalculatorMappingSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(exterenalAttributeMappingSourceElementEClass, ExterenalAttributeMappingSourceElement.class, "ExterenalAttributeMappingSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(externalAttributeMappingSourceElementEClass, ExternalAttributeMappingSourceElement.class, "ExternalAttributeMappingSourceElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore

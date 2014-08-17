@@ -363,7 +363,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_Z4H5qCXkEeSTOJzOYtmRgQ"/>
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_Z4HSkSXkEeSTOJzOYtmRgQ" fontColor="4210752" fontName="DejaVu Sans" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
-    <element xmi:type="ecore:EClass" href="pamtram.ecore#//mapping/ExterenalAttributeMappingSourceElement"/>
+    <element xmi:type="ecore:EClass" href="pamtram.ecore#//mapping/ExternalAttributeMappingSourceElement"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z4HSkiXkEeSTOJzOYtmRgQ" x="1005" y="345"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_pIo48Q0PEeStheRX--IC1g"/>
@@ -484,7 +484,7 @@
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_FUikwRy4EeSIM9XHA84dnA" lineColor="4210752"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_FUikwhy4EeSIM9XHA84dnA" fontColor="4210752" fontName="DejaVu Sans" fontHeight="10"/>
     <element xmi:type="ecore:EReference" href="pamtram.ecore#//mapping/CalculatorMapping/variables"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_FUikwxy4EeSIM9XHA84dnA" points="[-7, 24, 684, -328]$[-76, 265, 615, -87]$[-76, 265, 615, -87]$[-658, 348, 33, -4]"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_FUikwxy4EeSIM9XHA84dnA" points="[2, 24, 552, -328]$[18, 265, 568, -87]$[-516, 347, 34, -5]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_FUoEUBy4EeSIM9XHA84dnA" id="(0.9620253164556962,0.5714285714285714)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_IQ_90CXXEeSTOJzOYtmRgQ" id="(0.8625,0.5714285714285714)"/>
   </edges>

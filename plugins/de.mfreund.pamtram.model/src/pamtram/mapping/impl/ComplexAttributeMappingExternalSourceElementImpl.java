@@ -3,17 +3,13 @@
 package pamtram.mapping.impl;
 
 import java.lang.reflect.InvocationTargetException;
-
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import pamtram.NamedElement;
 import pamtram.PamtramPackage;
@@ -21,9 +17,8 @@ import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.AttributeMappingSourceElementWithModifiers;
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.ComplexAttributeMappingExternalSourceElement;
-import pamtram.mapping.ExterenalAttributeMappingSourceElement;
+import pamtram.mapping.ExternalAttributeMappingSourceElement;
 import pamtram.mapping.MappingPackage;
-
 import pamtram.metamodel.SourceSectionAttribute;
 
 /**
@@ -212,7 +207,7 @@ public class ComplexAttributeMappingExternalSourceElementImpl extends MinimalEOb
 				default: return -1;
 			}
 		}
-		if (baseClass == ExterenalAttributeMappingSourceElement.class) {
+		if (baseClass == ExternalAttributeMappingSourceElement.class) {
 			switch (derivedFeatureID) {
 				default: return -1;
 			}
@@ -245,7 +240,7 @@ public class ComplexAttributeMappingExternalSourceElementImpl extends MinimalEOb
 				default: return -1;
 			}
 		}
-		if (baseClass == ExterenalAttributeMappingSourceElement.class) {
+		if (baseClass == ExternalAttributeMappingSourceElement.class) {
 			switch (baseFeatureID) {
 				default: return -1;
 			}

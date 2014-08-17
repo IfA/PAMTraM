@@ -5,10 +5,7 @@ package pamtram.mapping.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -24,7 +21,6 @@ import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.SourceSectionNonContainmentReference;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.ExternalAttributeMappingSourceElement} object.

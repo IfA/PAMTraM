@@ -1528,13 +1528,22 @@ public interface MappingPackage extends EPackage {
 	int CALCULATOR_MAPPING_FEATURE_COUNT = ATTRIBUTE_MAPPING_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Get Local Source Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALCULATOR_MAPPING___GET_LOCAL_SOURCE_ELEMENTS = ATTRIBUTE_MAPPING_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Calculator Mapping</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CALCULATOR_MAPPING_OPERATION_COUNT = ATTRIBUTE_MAPPING_OPERATION_COUNT + 0;
+	int CALCULATOR_MAPPING_OPERATION_COUNT = ATTRIBUTE_MAPPING_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.ExpressionVariableImpl <em>Expression Variable</em>}' class.
@@ -1583,13 +1592,31 @@ public interface MappingPackage extends EPackage {
 	int EXPRESSION_VARIABLE_FEATURE_COUNT = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Get Source Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_VARIABLE___GET_SOURCE_ATTRIBUTE = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_VARIABLE___GET_NAME = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Expression Variable</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION_VARIABLE_OPERATION_COUNT = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS_OPERATION_COUNT + 0;
+	int EXPRESSION_VARIABLE_OPERATION_COUNT = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS_OPERATION_COUNT + 2;
 
 
 	/**
@@ -2543,6 +2570,182 @@ public interface MappingPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.ComplexAttributeMappingExternalSourceElementImpl <em>Complex Attribute Mapping External Source Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.ComplexAttributeMappingExternalSourceElementImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexAttributeMappingExternalSourceElement()
+	 * @generated
+	 */
+	int COMPLEX_ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT = 46;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT__NAME = COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT__SOURCE = COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT__MODIFIER = COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Complex Attribute Mapping External Source Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT_FEATURE_COUNT = COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE_FEATURE_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Get Source Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE = COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE;
+
+	/**
+	 * The operation id for the '<em>Get Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT___GET_NAME = COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE___GET_NAME;
+
+	/**
+	 * The number of operations of the '<em>Complex Attribute Mapping External Source Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT_OPERATION_COUNT = COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.CalculatorMappingSourceInterface <em>Calculator Mapping Source Interface</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.CalculatorMappingSourceInterface
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getCalculatorMappingSourceInterface()
+	 * @generated
+	 */
+	int CALCULATOR_MAPPING_SOURCE_INTERFACE = 47;
+
+	/**
+	 * The number of structural features of the '<em>Calculator Mapping Source Interface</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALCULATOR_MAPPING_SOURCE_INTERFACE_FEATURE_COUNT = COMPLEX_MAPPING_HINT_SOURCE_INTERFACE_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Source Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALCULATOR_MAPPING_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE = COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE;
+
+	/**
+	 * The operation id for the '<em>Get Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALCULATOR_MAPPING_SOURCE_INTERFACE___GET_NAME = COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_NAME;
+
+	/**
+	 * The number of operations of the '<em>Calculator Mapping Source Interface</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALCULATOR_MAPPING_SOURCE_INTERFACE_OPERATION_COUNT = COMPLEX_MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT + 0;
+
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.ExterenalAttributeMappingSourceElementImpl <em>Exterenal Attribute Mapping Source Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.ExterenalAttributeMappingSourceElementImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getExterenalAttributeMappingSourceElement()
+	 * @generated
+	 */
+	int EXTERENAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT = 48;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERENAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT__NAME = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERENAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT__SOURCE = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERENAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT__MODIFIER = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS__MODIFIER;
+
+	/**
+	 * The number of structural features of the '<em>Exterenal Attribute Mapping Source Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERENAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT_FEATURE_COUNT = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Exterenal Attribute Mapping Source Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERENAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT_OPERATION_COUNT = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS_OPERATION_COUNT + 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.Mapping <em>Mapping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3142,6 +3345,16 @@ public interface MappingPackage extends EPackage {
 	EReference getCalculatorMapping_Variables();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.CalculatorMapping#getLocalSourceElements() <em>Get Local Source Elements</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Local Source Elements</em>' operation.
+	 * @see pamtram.mapping.CalculatorMapping#getLocalSourceElements()
+	 * @generated
+	 */
+	EOperation getCalculatorMapping__GetLocalSourceElements();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.ExpressionVariable <em>Expression Variable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3510,6 +3723,36 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getComplexModelConnectionHintSourceInterface();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.ComplexAttributeMappingExternalSourceElement <em>Complex Attribute Mapping External Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Complex Attribute Mapping External Source Element</em>'.
+	 * @see pamtram.mapping.ComplexAttributeMappingExternalSourceElement
+	 * @generated
+	 */
+	EClass getComplexAttributeMappingExternalSourceElement();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.CalculatorMappingSourceInterface <em>Calculator Mapping Source Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Calculator Mapping Source Interface</em>'.
+	 * @see pamtram.mapping.CalculatorMappingSourceInterface
+	 * @generated
+	 */
+	EClass getCalculatorMappingSourceInterface();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.ExterenalAttributeMappingSourceElement <em>Exterenal Attribute Mapping Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Exterenal Attribute Mapping Source Element</em>'.
+	 * @see pamtram.mapping.ExterenalAttributeMappingSourceElement
+	 * @generated
+	 */
+	EClass getExterenalAttributeMappingSourceElement();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -4043,6 +4286,14 @@ public interface MappingPackage extends EPackage {
 		EReference CALCULATOR_MAPPING__VARIABLES = eINSTANCE.getCalculatorMapping_Variables();
 
 		/**
+		 * The meta object literal for the '<em><b>Get Local Source Elements</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CALCULATOR_MAPPING___GET_LOCAL_SOURCE_ELEMENTS = eINSTANCE.getCalculatorMapping__GetLocalSourceElements();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.ExpressionVariableImpl <em>Expression Variable</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4369,6 +4620,36 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EClass COMPLEX_MODEL_CONNECTION_HINT_SOURCE_INTERFACE = eINSTANCE.getComplexModelConnectionHintSourceInterface();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.impl.ComplexAttributeMappingExternalSourceElementImpl <em>Complex Attribute Mapping External Source Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.impl.ComplexAttributeMappingExternalSourceElementImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexAttributeMappingExternalSourceElement()
+		 * @generated
+		 */
+		EClass COMPLEX_ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT = eINSTANCE.getComplexAttributeMappingExternalSourceElement();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.CalculatorMappingSourceInterface <em>Calculator Mapping Source Interface</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.CalculatorMappingSourceInterface
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getCalculatorMappingSourceInterface()
+		 * @generated
+		 */
+		EClass CALCULATOR_MAPPING_SOURCE_INTERFACE = eINSTANCE.getCalculatorMappingSourceInterface();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.impl.ExterenalAttributeMappingSourceElementImpl <em>Exterenal Attribute Mapping Source Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.impl.ExterenalAttributeMappingSourceElementImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getExterenalAttributeMappingSourceElement()
+		 * @generated
+		 */
+		EClass EXTERENAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT = eINSTANCE.getExterenalAttributeMappingSourceElement();
 
 	}
 

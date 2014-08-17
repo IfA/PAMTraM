@@ -174,6 +174,12 @@ public class MappingValidator extends EObjectValidator {
 				return validateComplexAttributeMatcherSourceInterface((ComplexAttributeMatcherSourceInterface)value, diagnostics, context);
 			case MappingPackage.COMPLEX_MODEL_CONNECTION_HINT_SOURCE_INTERFACE:
 				return validateComplexModelConnectionHintSourceInterface((ComplexModelConnectionHintSourceInterface)value, diagnostics, context);
+			case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT:
+				return validateComplexAttributeMappingExternalSourceElement((ComplexAttributeMappingExternalSourceElement)value, diagnostics, context);
+			case MappingPackage.CALCULATOR_MAPPING_SOURCE_INTERFACE:
+				return validateCalculatorMappingSourceInterface((CalculatorMappingSourceInterface)value, diagnostics, context);
+			case MappingPackage.EXTERENAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT:
+				return validateExterenalAttributeMappingSourceElement((ExterenalAttributeMappingSourceElement)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -819,6 +825,33 @@ public class MappingValidator extends EObjectValidator {
 	 */
 	public boolean validateComplexModelConnectionHintSourceInterface(ComplexModelConnectionHintSourceInterface complexModelConnectionHintSourceInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(complexModelConnectionHintSourceInterface, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateComplexAttributeMappingExternalSourceElement(ComplexAttributeMappingExternalSourceElement complexAttributeMappingExternalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(complexAttributeMappingExternalSourceElement, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCalculatorMappingSourceInterface(CalculatorMappingSourceInterface calculatorMappingSourceInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(calculatorMappingSourceInterface, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateExterenalAttributeMappingSourceElement(ExterenalAttributeMappingSourceElement exterenalAttributeMappingSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(exterenalAttributeMappingSourceElement, diagnostics, context);
 	}
 
 	/**

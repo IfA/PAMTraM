@@ -2,6 +2,7 @@
  */
 package pamtram.mapping.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -14,6 +15,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.mapping.CalculatorMapping;
+import pamtram.mapping.CalculatorMappingSourceInterface;
 import pamtram.mapping.ExpressionVariable;
 import pamtram.mapping.MappingPackage;
 
@@ -60,7 +62,7 @@ public class CalculatorMappingImpl extends AttributeMappingImpl implements Calcu
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ExpressionVariable> variables;
+	protected EList<CalculatorMappingSourceInterface> variables;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -107,11 +109,28 @@ public class CalculatorMappingImpl extends AttributeMappingImpl implements Calcu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ExpressionVariable> getVariables() {
+	public EList<CalculatorMappingSourceInterface> getVariables() {
 		if (variables == null) {
-			variables = new EObjectContainmentEList<ExpressionVariable>(ExpressionVariable.class, this, MappingPackage.CALCULATOR_MAPPING__VARIABLES);
+			variables = new EObjectContainmentEList<CalculatorMappingSourceInterface>(CalculatorMappingSourceInterface.class, this, MappingPackage.CALCULATOR_MAPPING__VARIABLES);
 		}
 		return variables;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ExpressionVariable> getLocalSourceElements() {
+						EList<ExpressionVariable> elements= new org.eclipse.emf.common.util.BasicEList<ExpressionVariable>();
+						
+						for(CalculatorMappingSourceInterface i : this.getVariables()){
+							if(i instanceof ExpressionVariable){
+								elements.add((ExpressionVariable) i);
+							}
+						}
+						
+						return elements;
 	}
 
 	/**
@@ -158,7 +177,7 @@ public class CalculatorMappingImpl extends AttributeMappingImpl implements Calcu
 				return;
 			case MappingPackage.CALCULATOR_MAPPING__VARIABLES:
 				getVariables().clear();
-				getVariables().addAll((Collection<? extends ExpressionVariable>)newValue);
+				getVariables().addAll((Collection<? extends CalculatorMappingSourceInterface>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -196,6 +215,20 @@ public class CalculatorMappingImpl extends AttributeMappingImpl implements Calcu
 				return variables != null && !variables.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case MappingPackage.CALCULATOR_MAPPING___GET_LOCAL_SOURCE_ELEMENTS:
+				return getLocalSourceElements();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

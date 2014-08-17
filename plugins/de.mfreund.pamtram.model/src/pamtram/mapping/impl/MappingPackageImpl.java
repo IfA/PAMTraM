@@ -20,9 +20,11 @@ import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.AttributeValueModifier;
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.CalculatorMapping;
+import pamtram.mapping.CalculatorMappingSourceInterface;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ClassMatcher;
 import pamtram.mapping.ComplexAttributeMapping;
+import pamtram.mapping.ComplexAttributeMappingExternalSourceElement;
 import pamtram.mapping.ComplexAttributeMappingSourceElement;
 import pamtram.mapping.ComplexAttributeMappingSourceInterface;
 import pamtram.mapping.ComplexAttributeMatcher;
@@ -35,6 +37,7 @@ import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
 import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.ExpressionVariable;
+import pamtram.mapping.ExterenalAttributeMappingSourceElement;
 import pamtram.mapping.GlobalVariable;
 import pamtram.mapping.GlobalVariableImporter;
 import pamtram.mapping.HintImporterMappingHint;
@@ -395,6 +398,27 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * @generated
 	 */
 	private EClass complexModelConnectionHintSourceInterfaceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass complexAttributeMappingExternalSourceElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass calculatorMappingSourceInterfaceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass exterenalAttributeMappingSourceElementEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -998,6 +1022,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getCalculatorMapping__GetLocalSourceElements() {
+		return calculatorMappingEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getExpressionVariable() {
 		return expressionVariableEClass;
 	}
@@ -1322,6 +1355,33 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getComplexAttributeMappingExternalSourceElement() {
+		return complexAttributeMappingExternalSourceElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCalculatorMappingSourceInterface() {
+		return calculatorMappingSourceInterfaceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getExterenalAttributeMappingSourceElement() {
+		return exterenalAttributeMappingSourceElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public MappingFactory getMappingFactory() {
 		return (MappingFactory)getEFactoryInstance();
 	}
@@ -1427,6 +1487,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		calculatorMappingEClass = createEClass(CALCULATOR_MAPPING);
 		createEAttribute(calculatorMappingEClass, CALCULATOR_MAPPING__EXPRESSION);
 		createEReference(calculatorMappingEClass, CALCULATOR_MAPPING__VARIABLES);
+		createEOperation(calculatorMappingEClass, CALCULATOR_MAPPING___GET_LOCAL_SOURCE_ELEMENTS);
 
 		expressionVariableEClass = createEClass(EXPRESSION_VARIABLE);
 
@@ -1483,6 +1544,12 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		complexAttributeMatcherSourceInterfaceEClass = createEClass(COMPLEX_ATTRIBUTE_MATCHER_SOURCE_INTERFACE);
 
 		complexModelConnectionHintSourceInterfaceEClass = createEClass(COMPLEX_MODEL_CONNECTION_HINT_SOURCE_INTERFACE);
+
+		complexAttributeMappingExternalSourceElementEClass = createEClass(COMPLEX_ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT);
+
+		calculatorMappingSourceInterfaceEClass = createEClass(CALCULATOR_MAPPING_SOURCE_INTERFACE);
+
+		exterenalAttributeMappingSourceElementEClass = createEClass(EXTERENAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT);
 	}
 
 	/**
@@ -1547,6 +1614,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		complexAttributeMappingSourceElementEClass.getESuperTypes().add(this.getComplexAttributeMappingSourceInterface());
 		calculatorMappingEClass.getESuperTypes().add(this.getAttributeMapping());
 		expressionVariableEClass.getESuperTypes().add(this.getAttributeMappingSourceElementWithModifiers());
+		expressionVariableEClass.getESuperTypes().add(this.getCalculatorMappingSourceInterface());
 		attributeMappingSourceElementTypeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		complexAttributeMatcherEClass.getESuperTypes().add(this.getAttributeMatcher());
 		simpleAttributeMatcherEClass.getESuperTypes().add(this.getAttributeMatcher());
@@ -1572,6 +1640,10 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		complexAttributeMappingSourceInterfaceEClass.getESuperTypes().add(this.getComplexMappingHintSourceInterface());
 		complexAttributeMatcherSourceInterfaceEClass.getESuperTypes().add(this.getComplexMappingHintSourceInterface());
 		complexModelConnectionHintSourceInterfaceEClass.getESuperTypes().add(this.getComplexMappingHintSourceInterface());
+		complexAttributeMappingExternalSourceElementEClass.getESuperTypes().add(this.getComplexAttributeMappingSourceInterface());
+		complexAttributeMappingExternalSourceElementEClass.getESuperTypes().add(this.getExterenalAttributeMappingSourceElement());
+		calculatorMappingSourceInterfaceEClass.getESuperTypes().add(this.getComplexMappingHintSourceInterface());
+		exterenalAttributeMappingSourceElementEClass.getESuperTypes().add(this.getAttributeMappingSourceElementWithModifiers());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(mappingEClass, Mapping.class, "Mapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1657,7 +1729,9 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		initEClass(calculatorMappingEClass, CalculatorMapping.class, "CalculatorMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCalculatorMapping_Expression(), ecorePackage.getEString(), "expression", null, 1, 1, CalculatorMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCalculatorMapping_Variables(), this.getExpressionVariable(), null, "variables", null, 0, -1, CalculatorMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCalculatorMapping_Variables(), this.getCalculatorMappingSourceInterface(), null, "variables", null, 0, -1, CalculatorMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getCalculatorMapping__GetLocalSourceElements(), this.getExpressionVariable(), "getLocalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
 
 		initEClass(expressionVariableEClass, ExpressionVariable.class, "ExpressionVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1720,6 +1794,12 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEClass(complexAttributeMatcherSourceInterfaceEClass, ComplexAttributeMatcherSourceInterface.class, "ComplexAttributeMatcherSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(complexModelConnectionHintSourceInterfaceEClass, ComplexModelConnectionHintSourceInterface.class, "ComplexModelConnectionHintSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(complexAttributeMappingExternalSourceElementEClass, ComplexAttributeMappingExternalSourceElement.class, "ComplexAttributeMappingExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(calculatorMappingSourceInterfaceEClass, CalculatorMappingSourceInterface.class, "CalculatorMappingSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(exterenalAttributeMappingSourceElementEClass, ExterenalAttributeMappingSourceElement.class, "ExterenalAttributeMappingSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore

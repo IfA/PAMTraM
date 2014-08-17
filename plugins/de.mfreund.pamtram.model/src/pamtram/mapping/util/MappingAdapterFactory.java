@@ -250,6 +250,18 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createComplexModelConnectionHintSourceInterfaceAdapter();
 			}
 			@Override
+			public Adapter caseComplexAttributeMappingExternalSourceElement(ComplexAttributeMappingExternalSourceElement object) {
+				return createComplexAttributeMappingExternalSourceElementAdapter();
+			}
+			@Override
+			public Adapter caseCalculatorMappingSourceInterface(CalculatorMappingSourceInterface object) {
+				return createCalculatorMappingSourceInterfaceAdapter();
+			}
+			@Override
+			public Adapter caseExterenalAttributeMappingSourceElement(ExterenalAttributeMappingSourceElement object) {
+				return createExterenalAttributeMappingSourceElementAdapter();
+			}
+			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -914,6 +926,48 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createComplexModelConnectionHintSourceInterfaceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ComplexAttributeMappingExternalSourceElement <em>Complex Attribute Mapping External Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.ComplexAttributeMappingExternalSourceElement
+	 * @generated
+	 */
+	public Adapter createComplexAttributeMappingExternalSourceElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.CalculatorMappingSourceInterface <em>Calculator Mapping Source Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.CalculatorMappingSourceInterface
+	 * @generated
+	 */
+	public Adapter createCalculatorMappingSourceInterfaceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ExterenalAttributeMappingSourceElement <em>Exterenal Attribute Mapping Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.ExterenalAttributeMappingSourceElement
+	 * @generated
+	 */
+	public Adapter createExterenalAttributeMappingSourceElementAdapter() {
 		return null;
 	}
 

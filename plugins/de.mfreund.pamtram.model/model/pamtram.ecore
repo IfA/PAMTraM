@@ -383,12 +383,17 @@
     <eClassifiers xsi:type="ecore:EClass" name="ComplexAttributeMappingSourceElement"
         eSuperTypes="#//mapping/AttributeMappingSourceElementWithModifiers #//mapping/ComplexAttributeMappingSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="CalculatorMapping" eSuperTypes="#//mapping/AttributeMapping">
+      <eOperations name="getLocalSourceElements" unique="false" upperBound="-1" eType="#//mapping/ExpressionVariable">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="&#x9;&#x9;&#x9;&#x9;EList&lt;ExpressionVariable> elements= new org.eclipse.emf.common.util.BasicEList&lt;ExpressionVariable>();&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;for(CalculatorMappingSourceInterface i : this.getVariables()){&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(i instanceof ExpressionVariable){&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;elements.add((ExpressionVariable) i);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;return elements;"/>
+        </eAnnotations>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
-          eType="#//mapping/ExpressionVariable" containment="true"/>
+          eType="#//mapping/CalculatorMappingSourceInterface" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ExpressionVariable" eSuperTypes="#//mapping/AttributeMappingSourceElementWithModifiers"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ExpressionVariable" eSuperTypes="#//mapping/AttributeMappingSourceElementWithModifiers #//mapping/CalculatorMappingSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingSourceElementType"
         abstract="true" eSuperTypes="#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
@@ -471,5 +476,11 @@
         abstract="true" interface="true" eSuperTypes="#//mapping/ComplexMappingHintSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexModelConnectionHintSourceInterface"
         abstract="true" interface="true" eSuperTypes="#//mapping/ComplexMappingHintSourceInterface"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ComplexAttributeMappingExternalSourceElement"
+        eSuperTypes="#//mapping/ComplexAttributeMappingSourceInterface #//mapping/ExterenalAttributeMappingSourceElement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="CalculatorMappingSourceInterface"
+        abstract="true" interface="true" eSuperTypes="#//mapping/ComplexMappingHintSourceInterface"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ExterenalAttributeMappingSourceElement"
+        eSuperTypes="#//mapping/AttributeMappingSourceElementWithModifiers"/>
   </eSubpackages>
 </ecore:EPackage>

@@ -50,7 +50,7 @@ public interface CalculatorMapping extends AttributeMapping {
 
 	/**
 	 * Returns the value of the '<em><b>Variables</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.mapping.ExpressionVariable}.
+	 * The list contents are of type {@link pamtram.mapping.CalculatorMappingSourceInterface}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Variables</em>' containment reference list isn't clear,
@@ -62,6 +62,15 @@ public interface CalculatorMapping extends AttributeMapping {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ExpressionVariable> getVariables();
+	EList<CalculatorMappingSourceInterface> getVariables();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" unique="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='\t\t\t\tEList<ExpressionVariable> elements= new org.eclipse.emf.common.util.BasicEList<ExpressionVariable>();\n\t\t\t\t\n\t\t\t\tfor(CalculatorMappingSourceInterface i : this.getVariables()){\n\t\t\t\t\tif(i instanceof ExpressionVariable){\n\t\t\t\t\t\telements.add((ExpressionVariable) i);\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\t\n\t\t\t\treturn elements;'"
+	 * @generated
+	 */
+	EList<ExpressionVariable> getLocalSourceElements();
 
 } // CalculatorMapping

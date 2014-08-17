@@ -21,6 +21,7 @@ import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.SourceSectionContainmentReference;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.ExternalAttributeMappingSourceElement} object.
@@ -142,8 +143,8 @@ public class ExternalAttributeMappingSourceElementItemProvider extends Attribute
 						//add atttributes of container and the metamodel section above
 						while(true){
 							choiceOfValues.addAll(container.getAttributes());
-							if(container.eContainer() instanceof SourceSectionClass){
-								container=(SourceSectionClass) container.eContainer();
+							if(container.eContainer() instanceof SourceSectionContainmentReference){
+								container=(SourceSectionClass) container.eContainer().eContainer();
 							} else {
 								break;
 							}

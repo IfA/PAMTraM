@@ -123,7 +123,6 @@ class ModelConnectionPath {
 	 * @param targetInstance
 	 * @return path capacity
 	 */
-	@SuppressWarnings("unchecked") 
 	int getCapacity(EObject targetInstance) {
 		boolean use = false; // gets toggled every loop, to help us separate
 								// refs from types
@@ -148,10 +147,10 @@ class ModelConnectionPath {
 						if (ref.getUpperBound() == 1) {
 							instance = (EObject) targets;
 						} else if (ref.getUpperBound() > 1) {
+							@SuppressWarnings("unchecked")
+							EList<EObject> targetsL=(EList<EObject>) targets;
 							instance = null;
-							max = max
-									* (ref.getUpperBound() - ((EList<EObject>) targets)
-											.size());
+							max = max* (ref.getUpperBound() - targetsL.size());
 						} else if (ref.getUpperBound() < 0) {
 							return -1;
 						} else { // can only be 0

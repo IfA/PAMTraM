@@ -222,7 +222,6 @@ class TargetSectionInstantiator {
  * @param sectionAttributeValues
  * @return
  */
-@SuppressWarnings("unchecked")//TODO ModelConnectionHint
 private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPass(TargetSectionClass metamodelSection,
 																				InstantiableMappingHintGroup mappingGroup,
 																				List<MappingHint> mappingHints,
@@ -328,9 +327,11 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 									Map<String,Double>vars=new HashMap<String,Double>();
 									vars.putAll(globalVarValueDoubles);
 									/*
-									 * Names of local (ClacMapping) variables will overwrite names of global variables
+									 * Names of local (CalcMapping) variables will overwrite names of global variables
 									 */
-									vars.putAll((Map<String,Double>)attrHintValues.remove(0));
+									@SuppressWarnings("unchecked")
+									Map<String,Double> varValues=(Map<String,Double>)attrHintValues.remove(0);
+									vars.putAll(varValues);
 									
 									attrValue = String.valueOf(new ExpressionBuilder(((CalculatorMapping) hintFound).getExpression())
 											.withCustomFunction(round)
@@ -345,6 +346,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 								}								
 							} else if (hintFound instanceof ComplexAttributeMapping){
 								attrValue="";
+								@SuppressWarnings("unchecked")
 								Map<ComplexAttributeMappingSourceInterface,String> hVal=(Map<ComplexAttributeMappingSourceInterface,String>) attrHintValues.remove(0);
 								for(ComplexAttributeMappingSourceInterface srcElement : ((ComplexAttributeMapping) hintFound).getSourceAttributeMappings()){
 									if(hVal.containsKey(srcElement)){

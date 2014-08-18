@@ -373,7 +373,6 @@ class SourceSectionMapper {
 	 * @param newRefsAndHints
 	 * @param srcInstanceMap
 	 */
-	@SuppressWarnings("unchecked")
 	private  MappingInstanceStorage findMappingIterate(
 			EObject srcModelObject, boolean usedOkay,
 			Iterable<MappingHintType> hints,
@@ -602,8 +601,9 @@ class SourceSectionMapper {
 				
 				if(foundValues.keySet().size() > 0){
 					complexAttributeMappingsFound.add((ComplexAttributeMapping)h);
-					
-					foundValues.putAll((Map<ComplexAttributeMappingSourceInterface,String>) changedRefsAndHints.getHintValues().get(h).remove());					
+					@SuppressWarnings("unchecked")
+					Map<ComplexAttributeMappingSourceInterface,String>oldValues=(Map<ComplexAttributeMappingSourceInterface,String>) changedRefsAndHints.getHintValues().get(h).remove();
+					foundValues.putAll(oldValues);					
 					changedRefsAndHints.getHintValues().get(h).add(foundValues);
 				}				
 			} else if(h instanceof MappingInstanceSelector){
@@ -619,8 +619,9 @@ class SourceSectionMapper {
 					
 					if(foundValues.keySet().size() > 0){
 						complexAttributeMatchersFound.add(m);
-						
-						foundValues.putAll((Map<ComplexAttributeMatcherSourceInterface,String>) changedRefsAndHints.getHintValues().get(h).remove());					
+						@SuppressWarnings("unchecked")
+						Map<ComplexAttributeMatcherSourceInterface,String> oldValues=(Map<ComplexAttributeMatcherSourceInterface,String>) changedRefsAndHints.getHintValues().get(h).remove();
+						foundValues.putAll(oldValues);					
 						changedRefsAndHints.getHintValues().get(h).add(foundValues);
 					}	
 				}
@@ -646,7 +647,9 @@ class SourceSectionMapper {
 					calculatorMappingsFound.add((CalculatorMapping)h);
 					
 					Map<String,Double> calcValues=new LinkedHashMap<String,Double>();
-					calcValues.putAll((Map<String,Double>) changedRefsAndHints.getHintValues().get(h).remove());					
+					@SuppressWarnings("unchecked")
+					Map<String,Double> oldValues=(Map<String,Double>) changedRefsAndHints.getHintValues().get(h).remove();
+					calcValues.putAll(oldValues);					
 					calcValues.putAll(foundValues);
 					changedRefsAndHints.getHintValues().get(h).add(calcValues);
 				}				
@@ -666,8 +669,9 @@ class SourceSectionMapper {
 				
 				if(foundValues.keySet().size() > 0){
 					complexConnectionHintsFound.add((ComplexModelConnectionHint)hint);
-					
-					foundValues.putAll((Map<ComplexModelConnectionHintSourceInterface,String>) changedRefsAndHints.getModelConnectionHintValues().get(hint).remove());					
+					@SuppressWarnings("unchecked")
+					Map<ComplexModelConnectionHintSourceInterface,String>oldValues=(Map<ComplexModelConnectionHintSourceInterface,String>) changedRefsAndHints.getModelConnectionHintValues().get(hint).remove();
+					foundValues.putAll(oldValues);					
 					changedRefsAndHints.getModelConnectionHintValues().get(hint).add(foundValues);
 				}					
 			}
@@ -720,8 +724,9 @@ class SourceSectionMapper {
 					|| reference.getEReference().getUpperBound() == -2)// unspecified
 			{
 				// cast refTarget to EList
-				LinkedList<EObject> refTargetL = new LinkedList<EObject>();
-				refTargetL.addAll(((EList<EObject>) refTarget));
+				@SuppressWarnings("unchecked")
+				LinkedList<EObject> refTargetL = new LinkedList<EObject>((EList<EObject>) refTarget);
+
 				/*
 				 * this is a little more complicated: now we need to find ONE
 				 * possible way to map our referenceTargets to the source
@@ -1297,7 +1302,6 @@ class SourceSectionMapper {
 	 * @param sourceSectionClass
 	 * @return true if the container attribute of the sourceSection Class doesn't exist or a fitting container instance exists
 	 */
-	@SuppressWarnings("unchecked")
 	private boolean doContainerCheck(EObject element, SourceSectionClass sourceSectionClass){
 		if(sourceSectionClass.getContainer() != null){
 			if(mappedSections.containsKey(sourceSectionClass.getContainer())){//was the container section instantiated
@@ -1321,6 +1325,7 @@ class SourceSectionMapper {
 										return true;
 									}
 								} else {
+									@SuppressWarnings("unchecked")
 									EList<EObject> refTargetsList=(EList<EObject>) refTargets;
 									for(EObject t : refTargetsList){
 										if(t.equals(element)){

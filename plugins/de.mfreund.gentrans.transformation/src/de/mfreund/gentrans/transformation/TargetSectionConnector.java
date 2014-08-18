@@ -411,7 +411,6 @@ class TargetSectionConnector {
 	 * @param hasContainer
 	 * @param containerInstances
 	 */
-	@SuppressWarnings("unchecked")
 	void linkToTargetModelNoConnectionHint(EClass classToConnect,
 			List<EObjectTransformationHelper> rootInstances, TargetSectionClass section, String mappingName,
 			String mappingGroupName, boolean hasContainer, Set<EClass> containerClasses  ,LinkedList<EObjectTransformationHelper> containerInstances){
@@ -435,7 +434,8 @@ class TargetSectionConnector {
 						addToTargetModelRoot(rootInstances);
 						return;
 					}
-					for (ModelConnectionPath p : (LinkedList<ModelConnectionPath>) pathsToConsider.clone()) {
+					
+					for (ModelConnectionPath p : new LinkedList<ModelConnectionPath>(pathsToConsider)) {
 						boolean found=false;
 						for(EClass c : containerClasses){
 							if(p.leadsToRootType(c)){
@@ -581,7 +581,6 @@ class TargetSectionConnector {
 	 * @param refStartInstance
 	 * @param instancesAtEnd
 	 */
-	@SuppressWarnings("unchecked")
 	private void instantiateMissingPath(
 			LinkedList<EObject> invertedPath, EObject refStartInstance,
 			List<EObjectTransformationHelper> instancesAtEnd) {
@@ -625,7 +624,9 @@ class TargetSectionConnector {
 																			// are
 																			// added
 				if (targetInst != null) {
-					newTarget.addAll((EList<EObject>) targetInst);
+					@SuppressWarnings("unchecked")
+					EList<EObject> targetInstL=(EList<EObject>) targetInst;
+					newTarget.addAll(targetInstL);
 				}
 				
 				EClass classToCreate=(EClass) invertedPath.get(0);
@@ -656,7 +657,9 @@ class TargetSectionConnector {
 																			// targetInst,  since  targetInst  will  be  cleared  
 																			//by eSet before new elements are added
 				if (targetInst != null) {
-					newTarget.addAll((EList<EObject>) targetInst);
+					@SuppressWarnings("unchecked")
+					EList<EObject> targetInstL=(EList<EObject>) targetInst;
+					newTarget.addAll(targetInstL);
 				}
 				for(EObjectTransformationHelper inst : instancesAtEnd){
 					newTarget.add(inst.getEObject());

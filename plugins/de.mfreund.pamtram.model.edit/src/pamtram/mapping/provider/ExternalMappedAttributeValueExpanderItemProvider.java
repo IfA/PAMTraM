@@ -93,6 +93,7 @@ public class ExternalMappedAttributeValueExpanderItemProvider extends MappedAttr
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
+
 	/* (non-Javadoc)
 	 * @see pamtram.mapping.provider.MappedAttributeValueExpanderItemProvider#addSourceAttributePropertyDescriptor(java.lang.Object)
 	 */
@@ -104,7 +105,7 @@ public class ExternalMappedAttributeValueExpanderItemProvider extends MappedAttr
 			 getResourceLocator(),
 			 getString("_UI_MappedAttributeValueExpander_sourceAttribute_feature"),
 			 getString("_UI_PropertyDescriptor_description", "_UI_MappedAttributeValueExpander_sourceAttribute_feature", "_UI_MappedAttributeValueExpander_type"),
-			 MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE_ATTRIBUTE,
+			 MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__SOURCE_ATTRIBUTE,
 			 true,
 			 false,
 			 true,

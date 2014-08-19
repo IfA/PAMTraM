@@ -33,7 +33,7 @@ import pamtram.metamodel.SourceSectionNonContainmentReference;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MappedAttributeValueExpanderItemProvider extends HintImporterMappingHintItemProvider {
+public class MappedAttributeValueExpanderItemProvider extends MappedAttributeValueExpanderTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -55,9 +55,6 @@ public class MappedAttributeValueExpanderItemProvider extends HintImporterMappin
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addSourceAttributePropertyDescriptor(object);
-			addTargetAttributePropertyDescriptor(object);
-			addModifiersPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -67,6 +64,7 @@ public class MappedAttributeValueExpanderItemProvider extends HintImporterMappin
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	protected void addSourceAttributePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(new ItemPropertyDescriptor
@@ -74,7 +72,7 @@ public class MappedAttributeValueExpanderItemProvider extends HintImporterMappin
 				 getResourceLocator(),
 				 getString("_UI_MappedAttributeValueExpander_sourceAttribute_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_MappedAttributeValueExpander_sourceAttribute_feature", "_UI_MappedAttributeValueExpander_type"),
-				 MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE_ATTRIBUTE,
+				 MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__SOURCE_ATTRIBUTE,
 				 true,
 				 false,
 				 true,
@@ -126,6 +124,7 @@ public class MappedAttributeValueExpanderItemProvider extends HintImporterMappin
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	protected void addTargetAttributePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(new ItemPropertyDescriptor
@@ -133,7 +132,7 @@ public class MappedAttributeValueExpanderItemProvider extends HintImporterMappin
 				 getResourceLocator(),
 				 getString("_UI_MappedAttributeValueExpander_targetAttribute_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_MappedAttributeValueExpander_targetAttribute_feature", "_UI_MappedAttributeValueExpander_type"),
-				 MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER__TARGET_ATTRIBUTE,
+				 MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__TARGET_ATTRIBUTE,
 				 true,
 				 false,
 				 true,
@@ -161,28 +160,6 @@ public class MappedAttributeValueExpanderItemProvider extends HintImporterMappin
 					}
 				
 			});
-	}
-
-	/**
-	 * This adds a property descriptor for the Modifiers feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addModifiersPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MappedAttributeValueExpander_modifiers_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MappedAttributeValueExpander_modifiers_feature", "_UI_MappedAttributeValueExpander_type"),
-				 MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER__MODIFIERS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**

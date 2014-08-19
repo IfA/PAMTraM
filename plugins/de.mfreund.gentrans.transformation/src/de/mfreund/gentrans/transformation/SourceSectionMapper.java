@@ -123,6 +123,14 @@ class SourceSectionMapper {
 	public Map<GlobalVariable, String> getGlobalVarValues() {
 		return globalVarValues;
 	}
+	
+	/**
+	 * Getter for Registry for mapped sections
+	 * @return Registry for mapped sections
+	 */
+	public LinkedHashMap<SourceSectionClass, Set<EObject>> getMappedSections() {
+		return mappedSections;
+	}
 
 	/**
 	 * @return true when user action was triggered to abort the transformation

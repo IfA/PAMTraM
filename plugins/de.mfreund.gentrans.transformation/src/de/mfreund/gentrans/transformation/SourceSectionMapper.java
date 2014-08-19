@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.console.MessageConsoleStream;
 
+import pamtram.SourceSectionModel;
 import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.CalculatorMapping;
 import pamtram.mapping.CalculatorMappingSourceInterface;
@@ -1033,29 +1034,41 @@ class SourceSectionMapper {
 							.convertToString(attr.getAttribute().getEAttributeType(),
 									attrVal);
 				}
-			} else {
-				
-				if(extClass.eContainer() instanceof SourceSectionContainmentReference){
-					extClass=(SourceSectionClass) extClass.eContainer().eContainer();
-					extObj=extObj.eContainer();
-					//Check if the parent object exists, and if it was mapped for the section.
-					if(extObj == null){
-						return null;
-					} else{
-						if(mappedSections.containsKey(extClass)){
-							if(!mappedSections.get(extClass).contains(extObj)){
-								return null;
-							}
-						} else {
+			} else if(extClass.eContainer() instanceof SourceSectionContainmentReference){
+				extClass=(SourceSectionClass) extClass.eContainer().eContainer();
+				extObj=extObj.eContainer();
+				//Check if the parent object exists, and if it was mapped for the section.
+				if(extObj == null){
+					return null;
+				} else{
+					if(mappedSections.containsKey(extClass)){
+						if(!mappedSections.get(extClass).contains(extObj)){
 							return null;
 						}
+					} else {
+						return null;
 					}
-				} else {//modeling error, object not found
-					consoleStream.println("Modeling error. ExternalAttributeMappingSourceElement " + attr.getName() + "is not part of the the container"
-							+ "section or the section that the container section is part of.");
-					return null;
 				}
-			}												
+			} else if(extClass.eContainer() instanceof SourceSectionModel && extClass.getContainer() != null){
+				extClass=extClass.getContainer();
+				extObj=extObj.eContainer();
+				if(extObj == null){
+					return null;
+				} else {
+					if(mappedSections.containsKey(extClass)){
+						if(!mappedSections.get(extClass).contains(extObj)){
+							return null;
+						}
+					} else {
+						return null;
+					}					
+				}
+			}else {//modeling error, object not found
+				consoleStream.println("Modeling error. ExternalAttributeMappingSourceElement " + attr.getName() + "is not part of the the container"
+						+ "section or the section that the container section is part of.");
+				return null;
+			}
+															
 		}
 	}
 	

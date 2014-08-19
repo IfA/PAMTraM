@@ -86,6 +86,8 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.COMPLEX_MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT: return createComplexModelConnectionHintExternalSourceElement();
 			case MappingPackage.EXTERNAL_EXPRESSION_VARIABLE: return createExternalExpressionVariable();
 			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT: return createComplexAttributeMatcherExternalSourceElement();
+			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER: return createExternalMappedAttributeValuePrepender();
+			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER: return createExternalMappedAttributeValueAppender();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -419,6 +421,26 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public ComplexAttributeMatcherExternalSourceElement createComplexAttributeMatcherExternalSourceElement() {
 		ComplexAttributeMatcherExternalSourceElementImpl complexAttributeMatcherExternalSourceElement = new ComplexAttributeMatcherExternalSourceElementImpl();
 		return complexAttributeMatcherExternalSourceElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExternalMappedAttributeValuePrepender createExternalMappedAttributeValuePrepender() {
+		ExternalMappedAttributeValuePrependerImpl externalMappedAttributeValuePrepender = new ExternalMappedAttributeValuePrependerImpl();
+		return externalMappedAttributeValuePrepender;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExternalMappedAttributeValueAppender createExternalMappedAttributeValueAppender() {
+		ExternalMappedAttributeValueAppenderImpl externalMappedAttributeValueAppender = new ExternalMappedAttributeValueAppenderImpl();
+		return externalMappedAttributeValueAppender;
 	}
 
 	/**

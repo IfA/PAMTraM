@@ -319,6 +319,24 @@ public interface MappingFactory extends EFactory {
 	ComplexAttributeMatcherExternalSourceElement createComplexAttributeMatcherExternalSourceElement();
 
 	/**
+	 * Returns a new object of class '<em>External Mapped Attribute Value Prepender</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>External Mapped Attribute Value Prepender</em>'.
+	 * @generated
+	 */
+	ExternalMappedAttributeValuePrepender createExternalMappedAttributeValuePrepender();
+
+	/**
+	 * Returns a new object of class '<em>External Mapped Attribute Value Appender</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>External Mapped Attribute Value Appender</em>'.
+	 * @generated
+	 */
+	ExternalMappedAttributeValueAppender createExternalMappedAttributeValueAppender();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

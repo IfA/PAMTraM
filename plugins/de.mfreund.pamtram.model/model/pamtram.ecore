@@ -487,5 +487,11 @@
     <eClassifiers xsi:type="ecore:EClass" name="ExternalExpressionVariable" eSuperTypes="#//mapping/ExternalAttributeMappingSourceElement #//mapping/CalculatorMappingSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexAttributeMatcherExternalSourceElement"
         eSuperTypes="#//mapping/ExternalAttributeMappingSourceElement #//mapping/ComplexAttributeMatcherSourceInterface"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ExternalMappedAttributeValueExpander"
+        abstract="true" eSuperTypes="#//mapping/MappedAttributeValueExpander"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ExternalMappedAttributeValuePrepender"
+        eSuperTypes="#//mapping/ExternalMappedAttributeValueExpander"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ExternalMappedAttributeValueAppender"
+        eSuperTypes="#//mapping/ExternalMappedAttributeValueExpander"/>
   </eSubpackages>
 </ecore:EPackage>

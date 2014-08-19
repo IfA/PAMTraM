@@ -218,6 +218,10 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createMappedAttributeValueExpanderAdapter();
 			}
 			@Override
+			public Adapter caseMappedAttributeValueExpanderType(MappedAttributeValueExpanderType object) {
+				return createMappedAttributeValueExpanderTypeAdapter();
+			}
+			@Override
 			public Adapter caseMappedAttributeValuePrepender(MappedAttributeValuePrepender object) {
 				return createMappedAttributeValuePrependerAdapter();
 			}
@@ -838,6 +842,20 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMappedAttributeValueExpanderAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.MappedAttributeValueExpanderType <em>Mapped Attribute Value Expander Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.MappedAttributeValueExpanderType
+	 * @generated
+	 */
+	public Adapter createMappedAttributeValueExpanderTypeAdapter() {
 		return null;
 	}
 

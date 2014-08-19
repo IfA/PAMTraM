@@ -379,9 +379,19 @@ public class MappingSwitch<T> extends Switch<T> {
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER: {
 				MappedAttributeValueExpander mappedAttributeValueExpander = (MappedAttributeValueExpander)theEObject;
 				T result = caseMappedAttributeValueExpander(mappedAttributeValueExpander);
+				if (result == null) result = caseMappedAttributeValueExpanderType(mappedAttributeValueExpander);
 				if (result == null) result = caseHintImporterMappingHint(mappedAttributeValueExpander);
 				if (result == null) result = caseMappingHintType(mappedAttributeValueExpander);
 				if (result == null) result = caseNamedElement(mappedAttributeValueExpander);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE: {
+				MappedAttributeValueExpanderType mappedAttributeValueExpanderType = (MappedAttributeValueExpanderType)theEObject;
+				T result = caseMappedAttributeValueExpanderType(mappedAttributeValueExpanderType);
+				if (result == null) result = caseHintImporterMappingHint(mappedAttributeValueExpanderType);
+				if (result == null) result = caseMappingHintType(mappedAttributeValueExpanderType);
+				if (result == null) result = caseNamedElement(mappedAttributeValueExpanderType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -389,6 +399,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				MappedAttributeValuePrepender mappedAttributeValuePrepender = (MappedAttributeValuePrepender)theEObject;
 				T result = caseMappedAttributeValuePrepender(mappedAttributeValuePrepender);
 				if (result == null) result = caseMappedAttributeValueExpander(mappedAttributeValuePrepender);
+				if (result == null) result = caseMappedAttributeValueExpanderType(mappedAttributeValuePrepender);
 				if (result == null) result = caseHintImporterMappingHint(mappedAttributeValuePrepender);
 				if (result == null) result = caseMappingHintType(mappedAttributeValuePrepender);
 				if (result == null) result = caseNamedElement(mappedAttributeValuePrepender);
@@ -399,6 +410,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				MappedAttributeValueAppender mappedAttributeValueAppender = (MappedAttributeValueAppender)theEObject;
 				T result = caseMappedAttributeValueAppender(mappedAttributeValueAppender);
 				if (result == null) result = caseMappedAttributeValueExpander(mappedAttributeValueAppender);
+				if (result == null) result = caseMappedAttributeValueExpanderType(mappedAttributeValueAppender);
 				if (result == null) result = caseHintImporterMappingHint(mappedAttributeValueAppender);
 				if (result == null) result = caseMappingHintType(mappedAttributeValueAppender);
 				if (result == null) result = caseNamedElement(mappedAttributeValueAppender);
@@ -518,6 +530,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				ExternalMappedAttributeValueExpander externalMappedAttributeValueExpander = (ExternalMappedAttributeValueExpander)theEObject;
 				T result = caseExternalMappedAttributeValueExpander(externalMappedAttributeValueExpander);
 				if (result == null) result = caseMappedAttributeValueExpander(externalMappedAttributeValueExpander);
+				if (result == null) result = caseMappedAttributeValueExpanderType(externalMappedAttributeValueExpander);
 				if (result == null) result = caseHintImporterMappingHint(externalMappedAttributeValueExpander);
 				if (result == null) result = caseMappingHintType(externalMappedAttributeValueExpander);
 				if (result == null) result = caseNamedElement(externalMappedAttributeValueExpander);
@@ -529,6 +542,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				T result = caseExternalMappedAttributeValuePrepender(externalMappedAttributeValuePrepender);
 				if (result == null) result = caseExternalMappedAttributeValueExpander(externalMappedAttributeValuePrepender);
 				if (result == null) result = caseMappedAttributeValueExpander(externalMappedAttributeValuePrepender);
+				if (result == null) result = caseMappedAttributeValueExpanderType(externalMappedAttributeValuePrepender);
 				if (result == null) result = caseHintImporterMappingHint(externalMappedAttributeValuePrepender);
 				if (result == null) result = caseMappingHintType(externalMappedAttributeValuePrepender);
 				if (result == null) result = caseNamedElement(externalMappedAttributeValuePrepender);
@@ -540,6 +554,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				T result = caseExternalMappedAttributeValueAppender(externalMappedAttributeValueAppender);
 				if (result == null) result = caseExternalMappedAttributeValueExpander(externalMappedAttributeValueAppender);
 				if (result == null) result = caseMappedAttributeValueExpander(externalMappedAttributeValueAppender);
+				if (result == null) result = caseMappedAttributeValueExpanderType(externalMappedAttributeValueAppender);
 				if (result == null) result = caseHintImporterMappingHint(externalMappedAttributeValueAppender);
 				if (result == null) result = caseMappingHintType(externalMappedAttributeValueAppender);
 				if (result == null) result = caseNamedElement(externalMappedAttributeValueAppender);
@@ -1117,6 +1132,21 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMappedAttributeValueExpander(MappedAttributeValueExpander object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Mapped Attribute Value Expander Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Mapped Attribute Value Expander Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMappedAttributeValueExpanderType(MappedAttributeValueExpanderType object) {
 		return null;
 	}
 

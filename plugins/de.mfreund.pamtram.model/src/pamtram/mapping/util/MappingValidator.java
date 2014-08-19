@@ -158,6 +158,8 @@ public class MappingValidator extends EObjectValidator {
 				return validateHintImporterMappingHint((HintImporterMappingHint)value, diagnostics, context);
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER:
 				return validateMappedAttributeValueExpander((MappedAttributeValueExpander)value, diagnostics, context);
+			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE:
+				return validateMappedAttributeValueExpanderType((MappedAttributeValueExpanderType)value, diagnostics, context);
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_PREPENDER:
 				return validateMappedAttributeValuePrepender((MappedAttributeValuePrepender)value, diagnostics, context);
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_APPENDER:
@@ -765,6 +767,15 @@ public class MappingValidator extends EObjectValidator {
 	 */
 	public boolean validateMappedAttributeValueExpander(MappedAttributeValueExpander mappedAttributeValueExpander, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(mappedAttributeValueExpander, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMappedAttributeValueExpanderType(MappedAttributeValueExpanderType mappedAttributeValueExpanderType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(mappedAttributeValueExpanderType, diagnostics, context);
 	}
 
 	/**

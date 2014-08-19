@@ -50,6 +50,7 @@ import pamtram.mapping.HintImporterMappingHint;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappedAttributeValueAppender;
 import pamtram.mapping.MappedAttributeValueExpander;
+import pamtram.mapping.MappedAttributeValueExpanderType;
 import pamtram.mapping.MappedAttributeValuePrepender;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingFactory;
@@ -348,6 +349,13 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * @generated
 	 */
 	private EClass mappedAttributeValueExpanderEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mappedAttributeValueExpanderTypeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1259,8 +1267,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMappedAttributeValueExpander_SourceAttribute() {
-		return (EReference)mappedAttributeValueExpanderEClass.getEStructuralFeatures().get(0);
+	public EClass getMappedAttributeValueExpanderType() {
+		return mappedAttributeValueExpanderTypeEClass;
 	}
 
 	/**
@@ -1268,8 +1276,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMappedAttributeValueExpander_TargetAttribute() {
-		return (EReference)mappedAttributeValueExpanderEClass.getEStructuralFeatures().get(1);
+	public EReference getMappedAttributeValueExpanderType_SourceAttribute() {
+		return (EReference)mappedAttributeValueExpanderTypeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1277,8 +1285,17 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMappedAttributeValueExpander_Modifiers() {
-		return (EReference)mappedAttributeValueExpanderEClass.getEStructuralFeatures().get(2);
+	public EReference getMappedAttributeValueExpanderType_TargetAttribute() {
+		return (EReference)mappedAttributeValueExpanderTypeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMappedAttributeValueExpanderType_Modifiers() {
+		return (EReference)mappedAttributeValueExpanderTypeEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1622,9 +1639,11 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		hintImporterMappingHintEClass = createEClass(HINT_IMPORTER_MAPPING_HINT);
 
 		mappedAttributeValueExpanderEClass = createEClass(MAPPED_ATTRIBUTE_VALUE_EXPANDER);
-		createEReference(mappedAttributeValueExpanderEClass, MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE_ATTRIBUTE);
-		createEReference(mappedAttributeValueExpanderEClass, MAPPED_ATTRIBUTE_VALUE_EXPANDER__TARGET_ATTRIBUTE);
-		createEReference(mappedAttributeValueExpanderEClass, MAPPED_ATTRIBUTE_VALUE_EXPANDER__MODIFIERS);
+
+		mappedAttributeValueExpanderTypeEClass = createEClass(MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE);
+		createEReference(mappedAttributeValueExpanderTypeEClass, MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__SOURCE_ATTRIBUTE);
+		createEReference(mappedAttributeValueExpanderTypeEClass, MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__TARGET_ATTRIBUTE);
+		createEReference(mappedAttributeValueExpanderTypeEClass, MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__MODIFIERS);
 
 		mappedAttributeValuePrependerEClass = createEClass(MAPPED_ATTRIBUTE_VALUE_PREPENDER);
 
@@ -1743,7 +1762,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		attributeMappingSourceElementWithModifiersEClass.getESuperTypes().add(this.getAttributeMappingSourceElementType());
 		mappingHintTypeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		hintImporterMappingHintEClass.getESuperTypes().add(this.getMappingHintType());
-		mappedAttributeValueExpanderEClass.getESuperTypes().add(this.getHintImporterMappingHint());
+		mappedAttributeValueExpanderEClass.getESuperTypes().add(this.getMappedAttributeValueExpanderType());
+		mappedAttributeValueExpanderTypeEClass.getESuperTypes().add(this.getHintImporterMappingHint());
 		mappedAttributeValuePrependerEClass.getESuperTypes().add(this.getMappedAttributeValueExpander());
 		mappedAttributeValueAppenderEClass.getESuperTypes().add(this.getMappedAttributeValueExpander());
 		globalVariableEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
@@ -1891,9 +1911,11 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEClass(hintImporterMappingHintEClass, HintImporterMappingHint.class, "HintImporterMappingHint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(mappedAttributeValueExpanderEClass, MappedAttributeValueExpander.class, "MappedAttributeValueExpander", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMappedAttributeValueExpander_SourceAttribute(), theMetamodelPackage.getSourceSectionAttribute(), null, "sourceAttribute", null, 1, 1, MappedAttributeValueExpander.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMappedAttributeValueExpander_TargetAttribute(), theMetamodelPackage.getTargetSectionAttribute(), null, "targetAttribute", null, 1, 1, MappedAttributeValueExpander.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMappedAttributeValueExpander_Modifiers(), this.getAttributeValueModifierSet(), null, "modifiers", null, 0, -1, MappedAttributeValueExpander.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(mappedAttributeValueExpanderTypeEClass, MappedAttributeValueExpanderType.class, "MappedAttributeValueExpanderType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMappedAttributeValueExpanderType_SourceAttribute(), theMetamodelPackage.getSourceSectionAttribute(), null, "sourceAttribute", null, 1, 1, MappedAttributeValueExpanderType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMappedAttributeValueExpanderType_TargetAttribute(), theMetamodelPackage.getTargetSectionAttribute(), null, "targetAttribute", null, 1, 1, MappedAttributeValueExpanderType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMappedAttributeValueExpanderType_Modifiers(), this.getAttributeValueModifierSet(), null, "modifiers", null, 0, -1, MappedAttributeValueExpanderType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(mappedAttributeValuePrependerEClass, MappedAttributeValuePrepender.class, "MappedAttributeValuePrepender", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

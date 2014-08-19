@@ -96,10 +96,9 @@ public class ExternalAttributeMappingSourceElementItemProvider extends Attribute
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
-	/**
-	 * This adds a property descriptor for the Source feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+
+	/* (non-Javadoc)
+	 * @see pamtram.mapping.provider.AttributeMappingSourceElementTypeItemProvider#addSourcePropertyDescriptor(java.lang.Object)
 	 */
 	@Override
 	protected void addSourcePropertyDescriptor(Object object) {

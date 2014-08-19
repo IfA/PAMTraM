@@ -830,6 +830,52 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ExternalMappedAttributeValuePrepender} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExternalMappedAttributeValuePrependerItemProvider externalMappedAttributeValuePrependerItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.ExternalMappedAttributeValuePrepender}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createExternalMappedAttributeValuePrependerAdapter() {
+		if (externalMappedAttributeValuePrependerItemProvider == null) {
+			externalMappedAttributeValuePrependerItemProvider = new ExternalMappedAttributeValuePrependerItemProvider(this);
+		}
+
+		return externalMappedAttributeValuePrependerItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ExternalMappedAttributeValueAppender} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExternalMappedAttributeValueAppenderItemProvider externalMappedAttributeValueAppenderItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.ExternalMappedAttributeValueAppender}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createExternalMappedAttributeValueAppenderAdapter() {
+		if (externalMappedAttributeValueAppenderItemProvider == null) {
+			externalMappedAttributeValueAppenderItemProvider = new ExternalMappedAttributeValueAppenderItemProvider(this);
+		}
+
+		return externalMappedAttributeValueAppenderItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -961,6 +1007,8 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (complexModelConnectionHintExternalSourceElementItemProvider != null) complexModelConnectionHintExternalSourceElementItemProvider.dispose();
 		if (externalExpressionVariableItemProvider != null) externalExpressionVariableItemProvider.dispose();
 		if (complexAttributeMatcherExternalSourceElementItemProvider != null) complexAttributeMatcherExternalSourceElementItemProvider.dispose();
+		if (externalMappedAttributeValuePrependerItemProvider != null) externalMappedAttributeValuePrependerItemProvider.dispose();
+		if (externalMappedAttributeValueAppenderItemProvider != null) externalMappedAttributeValueAppenderItemProvider.dispose();
 	}
 
 }

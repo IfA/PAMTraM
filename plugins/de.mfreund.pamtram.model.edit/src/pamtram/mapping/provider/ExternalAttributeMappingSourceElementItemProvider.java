@@ -14,6 +14,7 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
+import pamtram.SourceSectionModel;
 import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.ExternalAttributeMappingSourceElement;
 import pamtram.mapping.Mapping;
@@ -145,6 +146,8 @@ public class ExternalAttributeMappingSourceElementItemProvider extends Attribute
 							choiceOfValues.addAll(container.getAttributes());
 							if(container.eContainer() instanceof SourceSectionContainmentReference){
 								container=(SourceSectionClass) container.eContainer().eContainer();
+							}else if(container.eContainer() instanceof SourceSectionModel && container.getContainer() != null){
+								container=container.getContainer();
 							} else {
 								break;
 							}

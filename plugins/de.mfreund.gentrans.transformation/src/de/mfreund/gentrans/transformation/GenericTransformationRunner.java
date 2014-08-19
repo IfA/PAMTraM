@@ -51,6 +51,7 @@ import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.SimpleAttributeMapping;
 import pamtram.metamodel.CardinalityType;
+import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.TargetSectionClass;
 
 /**
@@ -808,5 +809,118 @@ public class GenericTransformationRunner {
 			}
 		}
 		return exportedMappingHints;
+	}
+	
+	/**
+	 * This is a temporary method that is called by the 'source section matcher
+	 * page' in order to get the matched sections for a sample source model. 
+	 * Therefore, it performs half a transformation and then returns the matched 
+	 * section. 
+	 * This should be changed in the future e.g. by using the 
+	 * 'transformation model'.
+	 * @author mfreund
+	 * @return 
+	 */
+	public LinkedHashMap<SourceSectionClass, Set<EObject>> mapSections() {
+		XMIResource targetModel, pamtramResource;
+		
+		XMIResourceFactoryImpl resFactory = new XMIResourceFactoryImpl();
+		
+		// Create a resource set. 
+		ResourceSet resourceSet = new ResourceSetImpl(); 
+
+		 // the selected resource (IMPORTANT: needs to be represented as absolute URI with "file://" scheme; 
+		// if other schemes are used, the relative paths to the wprops and other model files are not set correct!)
+		URI pamtramUri = URI.createFileURI(new java.io.File(pamtramPath).toString());
+
+		//try to load pamtram model
+		 pamtramResource = (XMIResource) resourceSet.getResource(pamtramUri, true);
+		 
+		 try {
+			pamtramResource.load(Collections.EMPTY_MAP);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		 PAMTraM pamtramModel= (PAMTraM) pamtramResource.getContents().get(0);
+		 
+		try {
+			// try to create the xmi resource
+			URI targetFileUri = URI.createFileURI(new java.io.File(targetFilePath).toString());
+			targetModel = (XMIResource) resFactory
+					.createResource(targetFileUri);
+			targetModel.setEncoding("UTF-8");
+
+
+		} catch (Exception e) {
+			MessageDialog
+					.openError(PlatformUI.getWorkbench()
+							.getActiveWorkbenchWindow().getShell(), "Error",
+							"The XMI resource for thhe targetModel output could not be created.");
+			e.printStackTrace();
+			return null;
+		}
+		
+		// find and resolve ambiguous mappings as far as possible without user
+		// input
+		List<Mapping> suitableMappings = pamtramModel.getMappingModel()
+				.getMapping();// TODO apply contextModel
+
+		// generate storage objects and generators
+		SourceSectionMapper sourceSectionMapper = new SourceSectionMapper(suitableMappings, consoleStream);
+		TargetSectionRegistry targetSectionRegistry = new TargetSectionRegistry(consoleStream);
+		AttributeValueRegistry attrValueRegistry = new AttributeValueRegistry();
+
+		/*
+		 * create a list of all the containment references in the source model
+		 */
+		writePamtramMessage("Analysing srcModel containment references");
+
+		// list of all unmapped nodes. obtained by iterating over all of the
+		// srcModels containment refs
+		List<EObject> contRefsToMap = SourceSectionMapper.buildContainmentTree(sourceModel);
+
+		/*
+		 * now start mapping each one of the references. We automatically start
+		 * at the sourceModel root node
+		 */
+		LinkedList<MappingInstanceStorage> selectedMappings = new LinkedList<MappingInstanceStorage>();
+		LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping = new LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>>();
+		writePamtramMessage("Selecting Mappings for source model elements");
+
+		int numSrcModelElements = contRefsToMap.size();
+		int unmapped=0;
+		while (contRefsToMap.size() > 0) {
+			// find mapping
+			// remove(0) automatically selects element highest in the hierarchy
+			// we currently try to map
+
+			MappingInstanceStorage selectedMapping = sourceSectionMapper
+					.findMapping(contRefsToMap);
+			if(sourceSectionMapper.isTransformationAborted()){
+				writePamtramMessage("Transformation aborted.");
+				return null;
+			}
+			if (selectedMapping != null) {
+				selectedMappings.add(selectedMapping);
+				if (!selectedMappingsByMapping.containsKey(selectedMapping
+						.getMapping())) {
+					selectedMappingsByMapping.put(selectedMapping.getMapping(),
+							new LinkedList<MappingInstanceStorage>());
+				}
+				selectedMappingsByMapping.get(selectedMapping.getMapping())
+						.add(selectedMapping);
+
+			} else {
+				unmapped++;
+			}
+
+		}
+		consoleStream.println("Used srcModel elements: "
+				+ (numSrcModelElements - unmapped));
+		
+		return sourceSectionMapper.getMappedSections();
+
 	}
 }

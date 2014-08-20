@@ -345,17 +345,17 @@ class TargetSectionConnector {
 						}
 						modelConnectionPath = pathNames.get(dialog.getSelection());
 					} else {
-						consoleStream.println("no  paths????????");// TODO should
-																// be more
-																// helpful
+						consoleStream.println("Could not find a path that leads to the container specified by the ModelConnectionHint of " 
+								+ mappingName + "::" + mappingGroupName);
+				addToTargetModelRoot(rootInstances);
 						addToTargetModelRoot(rootInstancesByContainer.get(container));
 						continue;
 					}
 
 					if (!standardPaths.containsKey(connectionHint)) {
 						standardPaths.put(connectionHint, modelConnectionPath);
-						consoleStream.println(section.getName() + "("
-								+ mappingName + "): " + modelConnectionPath.toString());
+						consoleStream.println("Path found: " + section.getName() + "("
+								+ mappingName + "::"+ mappingGroupName +"): " + modelConnectionPath.toString());
 					}
 
 					// now instantiate path(s))
@@ -477,8 +477,8 @@ class TargetSectionConnector {
 						return;
 					}
 
-					consoleStream.println(section.getName() + "(" + mappingName
-							+ "): " + modelConnectionPath.toString());
+					consoleStream.println("Path found: " + section.getName() + "(" + mappingName 
+							+ "::"+ mappingGroupName +"): " + modelConnectionPath.toString());
 					instantiateMissingPath(modelConnectionPath.getInvertedPathElementList(), inst.getEObject(),
 							rootInstances);
 
@@ -565,8 +565,8 @@ class TargetSectionConnector {
 			}
 
 		} else {
-			consoleStream.println("No suitable path found for element:\n"
-					+ classToConnect);
+			consoleStream.println("No suitable path found for target class: "
+					+ classToConnect.getName());
 			addToTargetModelRoot(rootInstances);
 		}
 	}

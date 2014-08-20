@@ -1319,6 +1319,9 @@ public class PamtramEditor
 						setSourceTargetViewerSingleItemSelections(target, source);
 						
 	
+					}else if(((TreeItem) e.item).getData() instanceof ConnectionHintTargetAttribute){
+						ConnectionHintTargetAttribute attr = (ConnectionHintTargetAttribute) ((TreeItem) e.item).getData();
+						setSourceTargetViewerSingleItemSelections(attr.getTargetAttribute(), null);
 					} else if(((TreeItem) e.item).getData() instanceof ComplexAttributeMapping || ((TreeItem) e.item).getData() instanceof CalculatorMapping) {
 						AttributeMapping mapping = (AttributeMapping) ((TreeItem) e.item).getData();
 						Attribute target = mapping.getTarget();

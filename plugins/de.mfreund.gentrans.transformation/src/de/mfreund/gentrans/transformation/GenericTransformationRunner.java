@@ -55,8 +55,8 @@ import pamtram.metamodel.TargetSectionClass;
 
 /**
  * Main Class for running the generic transformation for a PAMTraM model.
- * @author Sascha Steffen
- * @version 0.8
+ * @author Sascha Steffen, Matthias Freund
+ * @version 0.9
  */
 public class GenericTransformationRunner {
 
@@ -153,7 +153,6 @@ public class GenericTransformationRunner {
 	/**
 	 * Starts the transformation.
 	 */
-	@SuppressWarnings("unchecked")
 	public void runTransformation() {
 		XMIResource targetModel, pamtramResource;
 		
@@ -200,6 +199,34 @@ public class GenericTransformationRunner {
 		List<Mapping> suitableMappings = pamtramModel.getMappingModel()
 				.getMapping();// TODO apply contextModel
 
+		if(executeMappings(targetModel, pamtramModel, suitableMappings)){
+			//save targetModel
+			try {
+				// try to save the xmi resource
+				//			xmiResource.save(Collections.EMPTY_MAP);
+				Map<Object, Object> options = new LinkedHashMap<Object, Object>();
+				options.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
+				options.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.TRUE);
+				targetModel.save(Collections.EMPTY_MAP);
+				writePamtramMessage("Transformation done");
+			} catch (Exception e) {
+				MessageDialog.openError(
+						PlatformUI.getWorkbench()
+						.getActiveWorkbenchWindow().getShell(), "Error", "The XMI resource could not be saved.");
+				e.printStackTrace();
+				return;
+			}
+		}
+
+	}
+
+	/**
+	 * @param targetModel
+	 * @param pamtramModel
+	 * @param suitableMappings
+	 */
+	private boolean executeMappings(XMIResource targetModel, PAMTraM pamtramModel,
+			List<Mapping> suitableMappings) {
 		// generate storage objects and generators
 		SourceSectionMapper sourceSectionMapper = new SourceSectionMapper(suitableMappings, consoleStream);
 		TargetSectionRegistry targetSectionRegistry = new TargetSectionRegistry(consoleStream);
@@ -233,7 +260,7 @@ public class GenericTransformationRunner {
 					.findMapping(contRefsToMap);
 			if(sourceSectionMapper.isTransformationAborted()){
 				writePamtramMessage("Transformation aborted.");
-				return;
+				return false;
 			}
 			if (selectedMapping != null) {
 				selectedMappings.add(selectedMapping);
@@ -261,138 +288,253 @@ public class GenericTransformationRunner {
 		 * 
 		 * Also add values of GlobalVariables to ComplexAttributeMapping's Hints
 		 */
-		consoleStream.println("Getting hint values of exported hint groups, checking MappingHintImporters, adding global variables to hints");
-		Map<MappingHint, LinkedList<Object>> exportedMappingHints=new LinkedHashMap<MappingHint, LinkedList<Object>>();
-		for(MappingInstanceStorage selMap : selectedMappings){
-			/*
-			 * import hint values
-			 */
-			for(MappingHintGroupType g : selMap.getMapping().getMappingHintGroups()){
-				if(g instanceof ExportedMappingHintGroup){
-					for(MappingHint h : g.getMappingHints()){
-						if(!exportedMappingHints.containsKey(h)){
-							exportedMappingHints.put(h, new LinkedList<Object>());
-						}
-						exportedMappingHints.get(h).addAll(selMap.getHintValues().remove(h));//this works because the SourceSectionMapper guarantees that a key exists 
-																						     //for each MappingHint of the Mapping
-					}
-				}
-				/*
-				 * add global values
-				 */
-
-				for(MappingHint h : g.getMappingHints()){
-
-					if(h instanceof ComplexAttributeMapping){
-						for(ComplexAttributeMappingSourceInterface i : ((ComplexAttributeMapping) h).getSourceAttributeMappings()){
-							if(i instanceof GlobalVariableImporter){
-								if(sourceSectionMapper.getGlobalVarValues().containsKey(((GlobalVariableImporter) i).getGlobalVariable())){
-									String gVal=sourceSectionMapper.getGlobalVarValues().get(((GlobalVariableImporter) i).getGlobalVariable());
-									for(Object m : selMap.getHintValues().get(h)){
-										Map<ComplexAttributeMappingSourceInterface,String> map=(Map<ComplexAttributeMappingSourceInterface,String>) m;
-										map.put(i, gVal);
-									}
-								}
-							}
-						}
-					} else if(h instanceof MappingInstanceSelector){
-						if(((MappingInstanceSelector) h).getMatcher() instanceof ComplexAttributeMatcher){
-							ComplexAttributeMatcher m = (ComplexAttributeMatcher) ((MappingInstanceSelector) h).getMatcher();
-							for(ComplexAttributeMatcherSourceInterface i : m.getSourceAttributes()){
-								if(i instanceof GlobalVariableImporter){
-									if(sourceSectionMapper.getGlobalVarValues().containsKey(((GlobalVariableImporter) i).getGlobalVariable())){
-										String gVal=sourceSectionMapper.getGlobalVarValues().get(((GlobalVariableImporter) i).getGlobalVariable());
-										for(Object o : selMap.getHintValues().get(h)){
-											Map<ComplexAttributeMatcherSourceInterface,String> map=(Map<ComplexAttributeMatcherSourceInterface,String>) o;
-											map.put(i, gVal);
-										}										
-									}
-								}
-							}
-						}
-					}
-				}
-				
-				/*
-				 * global vars for ModelConnectionHints
-				 */
-				if(g instanceof MappingHintGroup){
-					if(((MappingHintGroup) g).getModelConnectionMatcher() instanceof ComplexModelConnectionHint){
-						ComplexModelConnectionHint h=(ComplexModelConnectionHint) ((MappingHintGroup) g).getModelConnectionMatcher();
-						for(ComplexModelConnectionHintSourceInterface i : h.getSourceElements()){
-							if(i instanceof GlobalVariableImporter){
-								if(sourceSectionMapper.getGlobalVarValues().containsKey(((GlobalVariableImporter) i).getGlobalVariable())){
-									String gVal=sourceSectionMapper.getGlobalVarValues().get(((GlobalVariableImporter) i).getGlobalVariable());
-									for(Object o : selMap.getModelConnectionHintValues().get(h)){
-										Map<ComplexModelConnectionHintSourceInterface,String> map=(Map<ComplexModelConnectionHintSourceInterface,String>) o;
-										map.put(i, gVal);
-									}										
-								}
-							}							
-						}
-					}
-				}
-				
-			}
-
-			
-			/*
-			 * global vals for ImportedMappingHintGroups
-			 */
-			for(MappingHintGroupImporter g : selMap.getMapping().getImportedMappingHintGroups()){
-				for(MappingHintType h : g.getMappingHints()){
-					
-					if(h instanceof ComplexAttributeMapping){
-						for(ComplexAttributeMappingSourceInterface i : ((ComplexAttributeMapping) h).getSourceAttributeMappings()){
-							if(i instanceof GlobalVariableImporter){
-								if(sourceSectionMapper.getGlobalVarValues().containsKey(((GlobalVariableImporter) i).getGlobalVariable())){
-									String gVal=sourceSectionMapper.getGlobalVarValues().get(((GlobalVariableImporter) i).getGlobalVariable());
-									for(Object m : selMap.getHintValues().get(h)){
-										Map<ComplexAttributeMappingSourceInterface,String> map=(Map<ComplexAttributeMappingSourceInterface,String>) m;
-										map.put(i, gVal);
-									}
-								}
-							}
-						}
-					} else if(h instanceof MappingInstanceSelector){
-						if(((MappingInstanceSelector) h).getMatcher() instanceof ComplexAttributeMatcher){
-							ComplexAttributeMatcher m = (ComplexAttributeMatcher) ((MappingInstanceSelector) h).getMatcher();
-							for(ComplexAttributeMatcherSourceInterface i : m.getSourceAttributes()){
-								if(i instanceof GlobalVariableImporter){
-									if(sourceSectionMapper.getGlobalVarValues().containsKey(((GlobalVariableImporter) i).getGlobalVariable())){
-										String gVal=sourceSectionMapper.getGlobalVarValues().get(((GlobalVariableImporter) i).getGlobalVariable());
-										for(Object o : selMap.getHintValues().get(h)){
-											Map<ComplexAttributeMatcherSourceInterface,String> map=(Map<ComplexAttributeMatcherSourceInterface,String>) o;
-											map.put(i, gVal);
-										}										
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-			/*
-			 * additional MappingHints for HintImporters are necessary but must be restricted to a cardinality of 0..1
-			 */
-			for(MappingHintGroupImporter g : selMap.getMapping().getImportedMappingHintGroups()){
-				for(MappingHintType h : g.getMappingHints()){
-					if(selMap.getHintValues().get(h).size() > 1){
-						consoleStream.println("The MappingHint " + h.getName() + " of the HintImporter " +
-								g.getName() + " in Mapping " + selMap.getMapping().getName() +
-								" picked up more than one HintValue. This is not allowed."
-						);//TODO OCL? (possible? => Even sections with card. type of ONE can have more than one hint value if they are part of a 
-						  // vc-section. However, we cannot restrict the parent sections to non-vc, argh...can we?)
-						selMap.getHintValues().put(h,new LinkedList<Object>());
-					}
-				}
-			}
-		}
+		Map<MappingHint, LinkedList<Object>> exportedMappingHints = handleGlobalVarsAndExportedMappings(
+				sourceSectionMapper, selectedMappings);
 
 		/*
 		 * Instantiate all Target-Sections (containment refs and attributes)
 		 */	
 		writePamtramMessage("Instantiating targetModelSections for selected mappings. First pass");
+		TargetSectionInstantiator targetSectionInstantiator = runInstantiationFirstPass(
+				sourceSectionMapper, targetSectionRegistry, attrValueRegistry,
+				selectedMappings, exportedMappingHints);
+
+		// creating missing links/containers for target model
+		writePamtramMessage("Linking targetModelSections");
+		if(!linkTargetSections(targetModel, suitableMappings,targetSectionRegistry, attrValueRegistry,selectedMappingsByMapping)){
+			return false;
+		}
+
+		// creating target Model second pass (non-containment references)
+		writePamtramMessage("Instantiating targetModelSections for selected mappings. Second pass");
+		return runInstantiationSecondPass(selectedMappings, targetSectionInstantiator);
+	}
+
+	/**
+	 * @param selectedMappings
+	 * @param targetSectionInstantiator
+	 * @return
+	 */
+	private boolean runInstantiationSecondPass(
+			LinkedList<MappingInstanceStorage> selectedMappings,
+			TargetSectionInstantiator targetSectionInstantiator) {
+		for (MappingInstanceStorage selMap : selectedMappings) {
+			for (MappingHintGroupType g : selMap.getMapping().getMappingHintGroups()) {
+				if (g.getTargetMMSection() != null && g instanceof MappingHintGroup) {
+					if (selMap.getInstancesBySection((MappingHintGroup) g) != null) {
+						targetSectionInstantiator
+								.instantiateTargetSectionSecondPass(
+										g.getTargetMMSection(),
+										selMap.getMapping().getName(), (MappingHintGroup) g,
+										g.getTargetMMSection(),
+										g.getMappingHints(),
+										selMap.getHintValues(),
+										selMap.getInstancesBySection((MappingHintGroup) g)
+							);
+						if(targetSectionInstantiator.isTransformationAborted()){
+							writePamtramMessage("Transformation aborted.");
+							return false;
+						}
+					}
+				}
+			}
+			
+			for(MappingHintGroupImporter g : selMap.getMapping().getImportedMappingHintGroups()){
+				ExportedMappingHintGroup expGrp= g.getHintGroup();
+				if (expGrp.getTargetMMSection() != null) {
+					if (selMap.getInstancesBySection(g) != null) {
+						List<MappingHint> hints=new LinkedList<MappingHint>();
+						hints.addAll(expGrp.getMappingHints());
+						for(MappingHintType h : g.getMappingHints()){
+							if(h instanceof MappingHint){
+								hints.add((MappingHint) h);
+							}//TODO else if ...??-> should have already been done during 1st pass 
+						}
+						
+						targetSectionInstantiator
+								.instantiateTargetSectionSecondPass(
+										expGrp.getTargetMMSection(),
+										selMap.getMapping().getName(), g,
+										expGrp.getTargetMMSection(),
+										hints,
+										selMap.getHintValues(),
+										selMap.getInstancesBySection(g)
+						);
+						if(targetSectionInstantiator.isTransformationAborted()){
+							writePamtramMessage("Transformation aborted.");
+							return false;
+						}
+					}
+				}
+			}
+
+		}
+		
+		return true;
+	}
+
+	/**
+	 * @param targetModel
+	 * @param suitableMappings
+	 * @param targetSectionRegistry
+	 * @param attrValueRegistry
+	 * @param selectedMappingsByMapping
+	 * @return
+	 */
+	private boolean linkTargetSections(
+			XMIResource targetModel,
+			List<Mapping> suitableMappings,
+			TargetSectionRegistry targetSectionRegistry,
+			AttributeValueRegistry attrValueRegistry,
+			LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping) {
+		TargetSectionConnector connectionHelpers = new TargetSectionConnector(
+				attrValueRegistry, targetSectionRegistry, targetModel, consoleStream);
+		for (Mapping m : suitableMappings) {
+			for (MappingHintGroupType g : m.getMappingHintGroups()) {
+				if (g.getTargetMMSection() != null && g instanceof MappingHintGroup) {// targetSection exists?
+					TargetSectionClass section = g.getTargetMMSection();
+					if (targetSectionRegistry.getPamtramClassInstances(section)
+							.keySet().size() > 0) {// instances of section
+						// exist?
+						if (targetSectionRegistry.getPamtramClassInstances(
+								section).get(g) != null) {// ..also of specific
+							// group
+							if (((MappingHintGroup)g).getModelConnectionMatcher() != null) {// link
+								// using
+								// matcher
+								for (MappingInstanceStorage selMap : selectedMappingsByMapping.get(m)) {
+									if (selMap.getInstances((MappingHintGroup) g, section) != null) {
+										connectionHelpers.linkToTargetModelUsingModelConnectionHint(
+												section.getEClass(),
+												new LinkedList<EObjectTransformationHelper>( selMap.getInstances((MappingHintGroup) g,section)),
+												section,
+												m.getName(),
+												g.getName(),
+												((MappingHintGroup) g).getModelConnectionMatcher(),
+												selMap.getModelConnectionHintValues(((MappingHintGroup) g).getModelConnectionMatcher()));
+										if(connectionHelpers.isTransformationAborted()){
+											writePamtramMessage("Transformation aborted.");
+											return false;
+										}
+									}
+								}
+							} else {// link using container attribute or nothing
+								LinkedList<EObjectTransformationHelper> containerInstances = targetSectionRegistry.getFlattenedPamtramClassInstances(section.getContainer());
+								LinkedList<EObjectTransformationHelper> rootInstances = targetSectionRegistry.getPamtramClassInstances(section).get(g);		
+								containerInstances.removeAll(rootInstances);//we do not want the rootinstances to contain themselves
+								Set<EClass> containerClasses=new HashSet<EClass>();
+								if(section.getContainer() != null){
+									containerClasses.add(section.getContainer().getEClass());
+								}
+								connectionHelpers.linkToTargetModelNoConnectionHint(
+										section.getEClass(),
+										rootInstances,
+										section, m.getName(), g.getName(),
+										section.getContainer() != null,
+										containerClasses,
+										containerInstances
+										);
+								if(connectionHelpers.isTransformationAborted()){
+									writePamtramMessage("Transformation aborted.");
+									return false;
+								}
+							}
+						}
+					}
+				}
+			}
+
+			for(MappingHintGroupImporter i : m.getImportedMappingHintGroups()){
+				ExportedMappingHintGroup g=i.getHintGroup();
+				if(g.getTargetMMSection() != null){
+					/*
+					 * ImportedMAppingHintGroups with containers specified will be linked 
+					 * to a section that was created by the same mapping Instance
+					 */
+					if(i.getContainer() != null){
+						for(MappingInstanceStorage selMap: selectedMappingsByMapping.get(m)){
+							LinkedList<EObjectTransformationHelper> rootInstances=selMap.getInstances(i, g.getTargetMMSection());
+							if(rootInstances.size()> 0){
+								LinkedList<EObjectTransformationHelper> containerInstances = new LinkedList<EObjectTransformationHelper>();
+								Set<EClass> containerClasses=new HashSet<EClass>();
+
+								containerClasses.add(i.getContainer().getEClass());
+								//get container instances created by this mapping instance
+								for(MappingHintGroupType group : m.getMappingHintGroups()){
+									if(group instanceof MappingHintGroup){
+										LinkedList<EObjectTransformationHelper> insts=selMap.getInstances((MappingHintGroup) group, i.getContainer());
+										if(insts != null){
+											containerInstances.addAll(insts);
+										}
+
+									}
+								}
+								//link
+								connectionHelpers.linkToTargetModelNoConnectionHint(
+										g.getTargetMMSection().getEClass(),
+										rootInstances,
+										g.getTargetMMSection(), m.getName(), g.getName(),
+										true,
+										containerClasses,										
+										containerInstances
+										);
+								if(connectionHelpers.isTransformationAborted()){
+									writePamtramMessage("Transformation aborted.");
+									return false;
+								}						
+							}
+						}
+
+						//use container attribute of targetSection if one is specified
+						//(target section container == global instance search)
+					} else {
+						LinkedList<EObjectTransformationHelper> containerInstances = new LinkedList<EObjectTransformationHelper>();
+						LinkedList<EObjectTransformationHelper> rootInstances=targetSectionRegistry.getPamtramClassInstances(g.getTargetMMSection()).get(i);
+						Set<EClass> containerClasses=new HashSet<EClass>();
+						if (g.getTargetMMSection().getContainer() != null){
+							containerClasses.add(g.getTargetMMSection().getContainer().getEClass());
+							containerInstances.addAll(targetSectionRegistry.getFlattenedPamtramClassInstances(g.getTargetMMSection().getContainer()));
+
+						}
+						
+						if(rootInstances.size() > 0){
+							//link
+							connectionHelpers.linkToTargetModelNoConnectionHint(
+									g.getTargetMMSection().getEClass(),
+									rootInstances,
+									g.getTargetMMSection(), m.getName(), g.getName(),
+									containerClasses.size() > 0,
+									containerClasses,										
+									containerInstances
+									);
+							if(connectionHelpers.isTransformationAborted()){
+								writePamtramMessage("Transformation aborted.");
+								return false;
+							}
+						}
+					}
+
+				}
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Instantiates the containment Refs of the target sections
+	 * @param sourceSectionMapper
+	 * @param targetSectionRegistry
+	 * @param attrValueRegistry
+	 * @param selectedMappings
+	 * @param exportedMappingHints
+	 * @return
+	 */
+	private TargetSectionInstantiator runInstantiationFirstPass(
+			SourceSectionMapper sourceSectionMapper,
+			TargetSectionRegistry targetSectionRegistry,
+			AttributeValueRegistry attrValueRegistry,
+			LinkedList<MappingInstanceStorage> selectedMappings,
+			Map<MappingHint, LinkedList<Object>> exportedMappingHints) {
 		TargetSectionInstantiator targetSectionInstantiator = new TargetSectionInstantiator(
 				targetSectionRegistry, attrValueRegistry,sourceSectionMapper.getGlobalVarValues(),consoleStream);			
 		for (MappingInstanceStorage selMap : selectedMappings) {
@@ -430,7 +572,7 @@ public class GenericTransformationRunner {
 				if(expGrp != null){
 					//import Hints
 					for(MappingHint h : expGrp.getMappingHints()){
-						selMap.getHintValues().put(h, (LinkedList<Object>) exportedMappingHints.get(h).clone());
+						selMap.getHintValues().put(h, new LinkedList<Object>(exportedMappingHints.get(h)));
 					}
 					//start instantiating
 					if(expGrp.getTargetMMSection() != null){
@@ -470,6 +612,7 @@ public class GenericTransformationRunner {
 														}
 
 														for(Object m : selMap.getHintValues().get(realHint)){
+															@SuppressWarnings("unchecked")
 															Map<ComplexAttributeMappingSourceInterface,String> map=(Map<ComplexAttributeMappingSourceInterface,String>) m;
 															if(map.containsKey(element)){
 																if(prepend){
@@ -517,210 +660,153 @@ public class GenericTransformationRunner {
 			
 			
 		}
+		return targetSectionInstantiator;
+	}
 
-		// creating missing links/containers for target model
-		writePamtramMessage("Linking targetModelSections");
-		TargetSectionConnector connectionHelpers = new TargetSectionConnector(
-				attrValueRegistry, targetSectionRegistry, targetModel, consoleStream);
-		for (Mapping m : suitableMappings) {
-			for (MappingHintGroupType g : m.getMappingHintGroups()) {
-				if (g.getTargetMMSection() != null && g instanceof MappingHintGroup) {// targetSection exists?
-					TargetSectionClass section = g.getTargetMMSection();
-					if (targetSectionRegistry.getPamtramClassInstances(section)
-							.keySet().size() > 0) {// instances of section
-						// exist?
-						if (targetSectionRegistry.getPamtramClassInstances(
-								section).get(g) != null) {// ..also of specific
-							// group
-							if (((MappingHintGroup)g).getModelConnectionMatcher() != null) {// link
-								// using
-								// matcher
-								for (MappingInstanceStorage selMap : selectedMappingsByMapping.get(m)) {
-									if (selMap.getInstances((MappingHintGroup) g, section) != null) {
-										connectionHelpers.linkToTargetModelUsingModelConnectionHint(
-												section.getEClass(),
-												(List<EObjectTransformationHelper>) selMap.getInstances((MappingHintGroup) g,section).clone(),
-												section,
-												m.getName(),
-												g.getName(),
-												((MappingHintGroup) g).getModelConnectionMatcher(),
-												selMap.getModelConnectionHintValues(((MappingHintGroup) g).getModelConnectionMatcher()));
-										if(connectionHelpers.isTransformationAborted()){
-											writePamtramMessage("Transformation aborted.");
-											return;
-										}
+	/**
+	 *Write MappingHint values of Hints of ExportedMappingHintGroups to a separate storage,
+	 * and remove the values from the MappingInstanceStorages.
+	 * 
+	 * Also add values of GlobalVariables to ComplexAttributeMapping's Hints
+	 * @param sourceSectionMapper
+	 * @param selectedMappings
+	 * @return
+	 */
+	private Map<MappingHint, LinkedList<Object>> handleGlobalVarsAndExportedMappings(
+			SourceSectionMapper sourceSectionMapper,
+			LinkedList<MappingInstanceStorage> selectedMappings) {
+		consoleStream.println("Getting hint values of exported hint groups, checking MappingHintImporters, adding global variables to hints");
+		Map<MappingHint, LinkedList<Object>> exportedMappingHints=new LinkedHashMap<MappingHint, LinkedList<Object>>();
+		for(MappingInstanceStorage selMap : selectedMappings){
+			/*
+			 * import hint values
+			 */
+			for(MappingHintGroupType g : selMap.getMapping().getMappingHintGroups()){
+				if(g instanceof ExportedMappingHintGroup){
+					for(MappingHint h : g.getMappingHints()){
+						if(!exportedMappingHints.containsKey(h)){
+							exportedMappingHints.put(h, new LinkedList<Object>());
+						}
+						exportedMappingHints.get(h).addAll(selMap.getHintValues().remove(h));//this works because the SourceSectionMapper guarantees that a key exists 
+																						     //for each MappingHint of the Mapping
+					}
+				}
+				/*
+				 * add global values
+				 */
+
+				for(MappingHint h : g.getMappingHints()){
+
+					if(h instanceof ComplexAttributeMapping){
+						for(ComplexAttributeMappingSourceInterface i : ((ComplexAttributeMapping) h).getSourceAttributeMappings()){
+							if(i instanceof GlobalVariableImporter){
+								if(sourceSectionMapper.getGlobalVarValues().containsKey(((GlobalVariableImporter) i).getGlobalVariable())){
+									String gVal=sourceSectionMapper.getGlobalVarValues().get(((GlobalVariableImporter) i).getGlobalVariable());
+									for(Object m : selMap.getHintValues().get(h)){
+										@SuppressWarnings("unchecked")
+										Map<ComplexAttributeMappingSourceInterface,String> map=(Map<ComplexAttributeMappingSourceInterface,String>) m;
+										map.put(i, gVal);
 									}
 								}
-							} else {// link using container attribute or nothing
-								LinkedList<EObjectTransformationHelper> containerInstances = targetSectionRegistry.getFlattenedPamtramClassInstances(section.getContainer());
-								LinkedList<EObjectTransformationHelper> rootInstances = targetSectionRegistry.getPamtramClassInstances(section).get(g);		
-								containerInstances.removeAll(rootInstances);//we do not want the rootinstances to contain themselves
-								Set<EClass> containerClasses=new HashSet<EClass>();
-								if(section.getContainer() != null){
-									containerClasses.add(section.getContainer().getEClass());
-								}
-								connectionHelpers.linkToTargetModelNoConnectionHint(
-										section.getEClass(),
-										rootInstances,
-										section, m.getName(), g.getName(),
-										section.getContainer() != null,
-										containerClasses,
-										containerInstances
-										);
-								if(connectionHelpers.isTransformationAborted()){
-									writePamtramMessage("Transformation aborted.");
-									return;
-								}
 							}
 						}
-					}
-				}
-			}
-
-			for(MappingHintGroupImporter i : m.getImportedMappingHintGroups()){
-				ExportedMappingHintGroup g=i.getHintGroup();
-				if(g.getTargetMMSection() != null){
-					/*
-					 * ImportedMAppingHintGroups with containers specified will be linked 
-					 * to a section that was created by the same mapping Instance
-					 */
-					if(i.getContainer() != null){
-						for(MappingInstanceStorage selMap: selectedMappingsByMapping.get(m)){
-							LinkedList<EObjectTransformationHelper> rootInstances=selMap.getInstances(i, g.getTargetMMSection());
-							if(rootInstances.size()> 0){
-								LinkedList<EObjectTransformationHelper> containerInstances = new LinkedList<EObjectTransformationHelper>();
-								Set<EClass> containerClasses=new HashSet<EClass>();
-
-								containerClasses.add(i.getContainer().getEClass());
-								//get container instances created by this mapping instance
-								for(MappingHintGroupType group : m.getMappingHintGroups()){
-									if(group instanceof MappingHintGroup){
-										LinkedList<EObjectTransformationHelper> insts=selMap.getInstances((MappingHintGroup) group, i.getContainer());
-										if(insts != null){
-											containerInstances.addAll(insts);
-										}
-
+					} else if(h instanceof MappingInstanceSelector){
+						if(((MappingInstanceSelector) h).getMatcher() instanceof ComplexAttributeMatcher){
+							ComplexAttributeMatcher m = (ComplexAttributeMatcher) ((MappingInstanceSelector) h).getMatcher();
+							for(ComplexAttributeMatcherSourceInterface i : m.getSourceAttributes()){
+								if(i instanceof GlobalVariableImporter){
+									if(sourceSectionMapper.getGlobalVarValues().containsKey(((GlobalVariableImporter) i).getGlobalVariable())){
+										String gVal=sourceSectionMapper.getGlobalVarValues().get(((GlobalVariableImporter) i).getGlobalVariable());
+										for(Object o : selMap.getHintValues().get(h)){
+											@SuppressWarnings("unchecked")
+											Map<ComplexAttributeMatcherSourceInterface,String> map=(Map<ComplexAttributeMatcherSourceInterface,String>) o;
+											map.put(i, gVal);
+										}										
 									}
 								}
-								//link
-								connectionHelpers.linkToTargetModelNoConnectionHint(
-										g.getTargetMMSection().getEClass(),
-										rootInstances,
-										g.getTargetMMSection(), m.getName(), g.getName(),
-										true,
-										containerClasses,										
-										containerInstances
-										);
-								if(connectionHelpers.isTransformationAborted()){
-									writePamtramMessage("Transformation aborted.");
-									return;
-								}						
-							}
-						}
-
-						//use container attribute of targetSection if one is specified
-						//(target section container == global instance search)
-					} else {
-						LinkedList<EObjectTransformationHelper> containerInstances = new LinkedList<EObjectTransformationHelper>();
-						LinkedList<EObjectTransformationHelper> rootInstances=targetSectionRegistry.getPamtramClassInstances(g.getTargetMMSection()).get(i);
-						Set<EClass> containerClasses=new HashSet<EClass>();
-						if (g.getTargetMMSection().getContainer() != null){
-							containerClasses.add(g.getTargetMMSection().getContainer().getEClass());
-							containerInstances.addAll(targetSectionRegistry.getFlattenedPamtramClassInstances(g.getTargetMMSection().getContainer()));
-
-						}
-						
-						if(rootInstances.size() > 0){
-							//link
-							connectionHelpers.linkToTargetModelNoConnectionHint(
-									g.getTargetMMSection().getEClass(),
-									rootInstances,
-									g.getTargetMMSection(), m.getName(), g.getName(),
-									containerClasses.size() > 0,
-									containerClasses,										
-									containerInstances
-									);
-							if(connectionHelpers.isTransformationAborted()){
-								writePamtramMessage("Transformation aborted.");
-								return;
 							}
 						}
 					}
-
 				}
-			}
-		}
-
-		// creating target Model second pass (non-containment references)
-		writePamtramMessage("Instantiating targetModelSections for selected mappings. Second pass");
-		for (MappingInstanceStorage selMap : selectedMappings) {
-			for (MappingHintGroupType g : selMap.getMapping().getMappingHintGroups()) {
-				if (g.getTargetMMSection() != null && g instanceof MappingHintGroup) {
-					if (selMap.getInstancesBySection((MappingHintGroup) g) != null) {
-						targetSectionInstantiator
-								.instantiateTargetSectionSecondPass(
-										g.getTargetMMSection(),
-										selMap.getMapping().getName(), (MappingHintGroup) g,
-										g.getTargetMMSection(),
-										g.getMappingHints(),
-										selMap.getHintValues(),
-										selMap.getInstancesBySection((MappingHintGroup) g)
-							);
-						if(targetSectionInstantiator.isTransformationAborted()){
-							writePamtramMessage("Transformation aborted.");
-							return;
+				
+				/*
+				 * global vars for ModelConnectionHints
+				 */
+				if(g instanceof MappingHintGroup){
+					if(((MappingHintGroup) g).getModelConnectionMatcher() instanceof ComplexModelConnectionHint){
+						ComplexModelConnectionHint h=(ComplexModelConnectionHint) ((MappingHintGroup) g).getModelConnectionMatcher();
+						for(ComplexModelConnectionHintSourceInterface i : h.getSourceElements()){
+							if(i instanceof GlobalVariableImporter){
+								if(sourceSectionMapper.getGlobalVarValues().containsKey(((GlobalVariableImporter) i).getGlobalVariable())){
+									String gVal=sourceSectionMapper.getGlobalVarValues().get(((GlobalVariableImporter) i).getGlobalVariable());
+									for(Object o : selMap.getModelConnectionHintValues().get(h)){
+										@SuppressWarnings("unchecked")
+										Map<ComplexModelConnectionHintSourceInterface,String> map=(Map<ComplexModelConnectionHintSourceInterface,String>) o;
+										map.put(i, gVal);
+									}										
+								}
+							}							
 						}
 					}
 				}
+				
 			}
+
 			
+			/*
+			 * global vals for ImportedMappingHintGroups
+			 */
 			for(MappingHintGroupImporter g : selMap.getMapping().getImportedMappingHintGroups()){
-				ExportedMappingHintGroup expGrp= g.getHintGroup();
-				if (expGrp.getTargetMMSection() != null) {
-					if (selMap.getInstancesBySection(g) != null) {
-						List<MappingHint> hints=new LinkedList<MappingHint>();
-						hints.addAll(expGrp.getMappingHints());
-						for(MappingHintType h : g.getMappingHints()){
-							if(h instanceof MappingHint){
-								hints.add((MappingHint) h);
-							}//TODO else if ...??-> should have already been done during 1st pass 
+				for(MappingHintType h : g.getMappingHints()){
+					
+					if(h instanceof ComplexAttributeMapping){
+						for(ComplexAttributeMappingSourceInterface i : ((ComplexAttributeMapping) h).getSourceAttributeMappings()){
+							if(i instanceof GlobalVariableImporter){
+								if(sourceSectionMapper.getGlobalVarValues().containsKey(((GlobalVariableImporter) i).getGlobalVariable())){
+									String gVal=sourceSectionMapper.getGlobalVarValues().get(((GlobalVariableImporter) i).getGlobalVariable());
+									for(Object m : selMap.getHintValues().get(h)){
+										@SuppressWarnings("unchecked")
+										Map<ComplexAttributeMappingSourceInterface,String> map=(Map<ComplexAttributeMappingSourceInterface,String>) m;
+										map.put(i, gVal);
+									}
+								}
+							}
 						}
-						
-						targetSectionInstantiator
-								.instantiateTargetSectionSecondPass(
-										expGrp.getTargetMMSection(),
-										selMap.getMapping().getName(), g,
-										expGrp.getTargetMMSection(),
-										hints,
-										selMap.getHintValues(),
-										selMap.getInstancesBySection(g)
-						);
-						if(targetSectionInstantiator.isTransformationAborted()){
-							writePamtramMessage("Transformation aborted.");
-							return;
+					} else if(h instanceof MappingInstanceSelector){
+						if(((MappingInstanceSelector) h).getMatcher() instanceof ComplexAttributeMatcher){
+							ComplexAttributeMatcher m = (ComplexAttributeMatcher) ((MappingInstanceSelector) h).getMatcher();
+							for(ComplexAttributeMatcherSourceInterface i : m.getSourceAttributes()){
+								if(i instanceof GlobalVariableImporter){
+									if(sourceSectionMapper.getGlobalVarValues().containsKey(((GlobalVariableImporter) i).getGlobalVariable())){
+										String gVal=sourceSectionMapper.getGlobalVarValues().get(((GlobalVariableImporter) i).getGlobalVariable());
+										for(Object o : selMap.getHintValues().get(h)){
+											@SuppressWarnings("unchecked")
+											Map<ComplexAttributeMatcherSourceInterface,String> map=(Map<ComplexAttributeMatcherSourceInterface,String>) o;
+											map.put(i, gVal);
+										}										
+									}
+								}
+							}
 						}
 					}
 				}
 			}
-
+			/*
+			 * additional MappingHints for HintImporters are necessary but must be restricted to a cardinality of 0..1
+			 */
+			for(MappingHintGroupImporter g : selMap.getMapping().getImportedMappingHintGroups()){
+				for(MappingHintType h : g.getMappingHints()){
+					if(selMap.getHintValues().get(h).size() > 1){
+						consoleStream.println("The MappingHint " + h.getName() + " of the HintImporter " +
+								g.getName() + " in Mapping " + selMap.getMapping().getName() +
+								" picked up more than one HintValue. This is not allowed."
+						);//TODO OCL? (possible? => Even sections with card. type of ONE can have more than one hint value if they are part of a 
+						  // vc-section. However, we cannot restrict the parent sections to non-vc, argh...can we?)
+						selMap.getHintValues().put(h,new LinkedList<Object>());
+					}
+				}
+			}
 		}
-		
-		//save targetModel
-		try {
-			// try to save the xmi resource
-//			xmiResource.save(Collections.EMPTY_MAP);
-			Map<Object, Object> options = new LinkedHashMap<Object, Object>();
-			options.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
-			options.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.TRUE);
-			targetModel.save(Collections.EMPTY_MAP);
-			writePamtramMessage("Transformation done");
-		} catch (Exception e) {
-			MessageDialog.openError(
-					PlatformUI.getWorkbench()
-					.getActiveWorkbenchWindow().getShell(), "Error", "The XMI resource could not be saved.");
-			e.printStackTrace();
-			return;
-		}
-
+		return exportedMappingHints;
 	}
 }

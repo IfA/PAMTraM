@@ -31,6 +31,7 @@ import pamtram.mapping.ComplexModelConnectionHintSourceElement;
 import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
 import pamtram.mapping.ExpressionVariable;
 import pamtram.mapping.ExternalAttributeMappingSourceElement;
+import pamtram.mapping.ExternalMappedAttributeValueExpander;
 import pamtram.mapping.GlobalVariable;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.Mapping;
@@ -404,10 +405,9 @@ class SourceSectionMapper {
 		Map<ComplexModelConnectionHintSourceElement,String> complexConnectionHintSourceElementHintValues=new LinkedHashMap<ComplexModelConnectionHintSourceElement,String>();
 		
 		for (MappingHintType hint : hints) {
-			
+			changedRefsAndHints.setHintValueList(hint, new LinkedList<Object>());				
 			if( hint instanceof ComplexAttributeMapping 
 					|| hint instanceof CalculatorMapping){//ComplexAttributeMappings are handled differently because we want to make them work across vc-sections 
-				changedRefsAndHints.setHintValueList(hint, new LinkedList<Object>());	
 				if(newRefsAndHints.getHintValues().containsKey(hint)){
 					changedRefsAndHints.getHintValues().get(hint).addAll(newRefsAndHints.getHintValues().get(hint));//the cardinality of 
 																												    //the existing hintval is either 0 or 1 at this point
@@ -418,7 +418,6 @@ class SourceSectionMapper {
 				}
 			} else if (hint instanceof MappingInstanceSelector) {
 				if(((MappingInstanceSelector) hint).getMatcher() instanceof ComplexAttributeMatcher){
-					changedRefsAndHints.setHintValueList(hint, new LinkedList<Object>());	
 					if(newRefsAndHints.getHintValues().containsKey(hint)){
 						changedRefsAndHints.getHintValues().get(hint).addAll(newRefsAndHints.getHintValues().get(hint));//the cardinality of 
 																													    //the existing hintval is either 0 or 1 at this point
@@ -426,8 +425,6 @@ class SourceSectionMapper {
 						changedRefsAndHints.getHintValues().get(hint).add(new LinkedHashMap<ComplexAttributeMatcherSourceInterface,String>());
 					}					
 				}
-			}else {
-				changedRefsAndHints.setHintValueList(hint, new LinkedList<Object>());				
 			}
 
 		}
@@ -1064,7 +1061,7 @@ class SourceSectionMapper {
 					}					
 				}
 			}else {//modeling error, object not found
-				consoleStream.println("Modeling error. ExternalAttributeMappingSourceElement " + attr.getName() + "is not part of the the container"
+				consoleStream.println("Modeling error. External Source Element " + attr.getName() + "is not part of the the container"
 						+ "section or the section that the container section is part of.");
 				return null;
 			}
@@ -1180,6 +1177,10 @@ class SourceSectionMapper {
 						if(mappingFailed){
 							break;
 						} else if(attrVals.keySet().size() > 0){
+								//if the external element was the only one in the hint we need to add a hint value
+							if(res.getHintValues().get(h).size() == 0){
+								res.getHintValues().get(h).add(new LinkedHashMap<ComplexAttributeMappingSourceInterface,String>());
+							}
 								for(Object hVal: res.getHintValues().get(h)){
 									@SuppressWarnings("unchecked")
 									Map<ComplexAttributeMappingSourceInterface,String> map=(Map<ComplexAttributeMappingSourceInterface,String>) hVal;
@@ -1190,6 +1191,19 @@ class SourceSectionMapper {
 								//last action: reset attrval list
 								attrVals.clear();
 						}
+					}else if(h instanceof ExternalMappedAttributeValueExpander){
+							String attrVal=getContainerAttributeValue(((ExternalMappedAttributeValueExpander) h).getSourceAttribute(),
+									m.getSourceMMSection().getContainer(),
+									res.getAssociatedSourceModelElement().eContainer()
+									);
+							if(attrVal == null){
+								mappingFailed=true;
+								break;
+							} else {
+								attrVal=AttributeValueRegistry.applyAttributeValueModifiers(attrVal, ((ExternalMappedAttributeValueExpander) h).getModifiers());
+								res.getHintValues().get(h).add(attrVal);
+							}
+											
 					}else if(h instanceof CalculatorMapping){
 						for(CalculatorMappingSourceInterface i : ((CalculatorMapping) h).getVariables()){
 							mappingFailed = checkExternalAttributeMapping(m, res, mappingFailed,attrVals, i);
@@ -1201,6 +1215,9 @@ class SourceSectionMapper {
 						if(mappingFailed){
 							break;
 						} else if(attrVals.keySet().size() > 0){
+							if(res.getHintValues().get(h).size() == 0){
+								res.getHintValues().get(h).add(new LinkedHashMap<String,Double>());
+							}
 								Map<String,Double> newVals=new HashMap<String,Double>();
 								for(ExternalAttributeMappingSourceElement e : attrVals.keySet()){
 									try{
@@ -1236,6 +1253,9 @@ class SourceSectionMapper {
 								if(mappingFailed){
 									break;
 								} else if(attrVals.keySet().size() > 0){
+									if(res.getHintValues().get(h).size() == 0){
+										res.getHintValues().get(h).add(new LinkedHashMap<ComplexAttributeMatcherSourceInterface,String>());
+									}
 										for(Object hVal: res.getHintValues().get(h)){
 											@SuppressWarnings("unchecked")
 											Map<ComplexAttributeMatcherSourceInterface,String> map=(Map<ComplexAttributeMatcherSourceInterface,String>) hVal;
@@ -1263,6 +1283,9 @@ class SourceSectionMapper {
 						if(mappingFailed){
 							break;
 						} else if(attrVals.keySet().size() > 0){
+							if(res.getModelConnectionHintValues().get(h).size() == 0){
+								res.getModelConnectionHintValues().get(h).add(new LinkedHashMap<ComplexModelConnectionHintSourceInterface,String>());
+							}
 								for(Object hVal: res.getModelConnectionHintValues().get(h)){
 									@SuppressWarnings("unchecked")
 									Map<ComplexModelConnectionHintSourceInterface,String> map=(Map<ComplexModelConnectionHintSourceInterface,String>) hVal;
@@ -1302,6 +1325,7 @@ class SourceSectionMapper {
 			if(attrVal == null){
 				mappingFailed=true;
 			} else {
+				attrVal=AttributeValueRegistry.applyAttributeValueModifiers(attrVal, ((ExternalAttributeMappingSourceElement) i).getModifier());
 				attrVals.put((ExternalAttributeMappingSourceElement) i, attrVal);
 			}
 		}

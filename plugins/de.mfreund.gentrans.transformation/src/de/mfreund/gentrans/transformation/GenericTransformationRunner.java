@@ -38,8 +38,9 @@ import pamtram.mapping.ComplexAttributeMatcherSourceInterface;
 import pamtram.mapping.ComplexModelConnectionHint;
 import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
 import pamtram.mapping.ExportedMappingHintGroup;
+import pamtram.mapping.ExternalMappedAttributeValuePrepender;
 import pamtram.mapping.GlobalVariableImporter;
-import pamtram.mapping.MappedAttributeValueExpander;
+import pamtram.mapping.MappedAttributeValueExpanderType;
 import pamtram.mapping.MappedAttributeValuePrepender;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
@@ -439,13 +440,13 @@ public class GenericTransformationRunner {
 						for(MappingHintType h : g.getMappingHints()){
 							if(h instanceof MappingHint){
 								hints.add((MappingHint) h);
-							} else if(h instanceof MappedAttributeValueExpander){
+							} else if(h instanceof MappedAttributeValueExpanderType){
 								if(selMap.getHintValues().get(h).size() == 1){
 									String hintVal=(String) selMap.getHintValues().get(h).getFirst();
-									boolean prepend=h instanceof MappedAttributeValuePrepender;//of course this works only because the only other option is the Appender
+									boolean prepend=h instanceof MappedAttributeValuePrepender || h instanceof ExternalMappedAttributeValuePrepender;//of course this works only because the only other option is the Appender
 									for(MappingHint realHint : g.getHintGroup().getMappingHints()){
 										if(realHint instanceof AttributeMapping){
-											if(((AttributeMapping) realHint).getTarget().equals(((MappedAttributeValueExpander) h).getTargetAttribute())){
+											if(((AttributeMapping) realHint).getTarget().equals(((MappedAttributeValueExpanderType) h).getTargetAttribute())){
 												if(realHint instanceof SimpleAttributeMapping){//SimpleAttributeMapping
 													LinkedList<Object> vals=new LinkedList<Object>();
 													if(prepend){

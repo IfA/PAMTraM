@@ -8,6 +8,7 @@ Created on Wed Jun  4 18:31:49 2014
 
 import csv
 import matplotlib
+import sys
 matplotlib.use("Qt4Agg")
 import pylab as pl
 import prettyplotlib as ppl
@@ -40,8 +41,10 @@ def readFile(filename):
                     elif i == 3:
                         vals[mapping][numEls].append(float(val))
         return (vals, histRaw);
-
-values,histRaw=readFile("build.log")
+fileName="build.log"
+if len(sys.argv) == 2:
+  fileName=sys.argv[1]
+values,histRaw=readFile(fileName)
 
 fig,ax2=pl.subplots(num=None, figsize=(13, 7), dpi=100, edgecolor='k')
 #ppl.hist(ax2,histRaw, bins=40, color=(0.8,0.8,0.8))-> sieht scheiße aus

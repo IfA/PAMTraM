@@ -21,5 +21,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
  de.mfreund.pamtram.model,
- de.mfreund.pamtram.model.editor
+ de.mfreund.pamtram.model.editor,
+ de.mfreund.gentrans.transformation
 Bundle-ActivationPolicy: lazy

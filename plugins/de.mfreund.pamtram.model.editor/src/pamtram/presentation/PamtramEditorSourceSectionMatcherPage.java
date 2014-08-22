@@ -1,16 +1,17 @@
 package pamtram.presentation;
 
 import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Set;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
@@ -37,9 +38,10 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.ide.ResourceUtil;
 
-import pamtram.metamodel.SourceSectionNonContainmentReference;
-import pamtram.metamodel.TargetSectionNonContainmentReference;
+import de.mfreund.gentrans.transformation.GenericTransformationRunner;
+import pamtram.metamodel.SourceSectionClass;
 import pamtram.presentation.listeners.MMElementDragListener;
+import pamtram.util.EObjectTreeContentProvider;
 
 public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 	
@@ -84,6 +86,54 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 	 * This is the current active project.
 	 */
 	protected IProject project;
+
+	/**
+	 * This is the listener that is used to highlight matching sections when
+	 * the user selects a source section.
+	 */
+	protected SelectionListener highlightMatchedSectionsListener = new SelectionListener() {
+		
+		@Override
+		public void widgetSelected(SelectionEvent e) {
+			editor.setCurrentViewer(sourceViewer);
+			
+			if(((TreeItem) e.item).getData() instanceof SourceSectionClass) {
+				
+				SourceSectionClass sourceSectionClass = (SourceSectionClass) ((TreeItem) e.item).getData();
+				
+				for (SourceSectionClass c : matchedSections.keySet()) {
+					if(EcoreUtil.equals(sourceSectionClass, c)) {
+						Set<EObject> matchedEObjects = matchedSections.get(c);
+						
+						if(matchedEObjects == null) {
+							continue;
+						}
+						
+						sourceModelViewer.setSelection(
+								new StructuredSelection(matchedEObjects.toArray()),
+								true
+							);
+						
+						break;
+					}
+				}
+			}
+			
+			if(((TreeItem) e.item).getData() instanceof SourceSectionClass) {
+				
+				
+			}
+		}
+		
+		@Override
+		public void widgetDefaultSelected(SelectionEvent e) {}
+	};
+	
+	/**
+	 * This is the list of matched sections that is determined when the user
+	 * selects a source model.
+	 */
+	protected LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections;
 	
 	public PamtramEditorSourceSectionMatcherPage(
 			Composite parent, 
@@ -133,41 +183,7 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 		sourceViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 		sourceViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 		sourceViewer.setInput(editor.pamtram.getSourceSectionModel());
-		sourceTree.addSelectionListener(new SelectionListener() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				editor.setCurrentViewer(sourceViewer);
-				
-				if(((TreeItem) e.item).getData() instanceof SourceSectionNonContainmentReference) {
-					
-					SourceSectionNonContainmentReference reference = (SourceSectionNonContainmentReference) ((TreeItem) e.item).getData();
-					
-					EList<pamtram.metamodel.SourceSectionClass> referencedElements = reference.getValue();
-					
-					// if a non containment reference has been selected while holding down the
-					// control key, jump to the referenced class 
-					if(reference != null && e.stateMask == SWT.CTRL) {
-						sourceViewer.setSelection(
-								new StructuredSelection(referencedElements.toArray()));
-					}
-				} else 	if(((TreeItem) e.item).getData() instanceof TargetSectionNonContainmentReference) {
-					
-					TargetSectionNonContainmentReference reference = (TargetSectionNonContainmentReference) ((TreeItem) e.item).getData();
-					
-					EList<pamtram.metamodel.TargetSectionClass> referencedElements = reference.getValue();
-					
-					// if a non containment reference has been selected while holding down the
-					// control key, jump to the referenced class 
-					if(reference != null && e.stateMask == SWT.CTRL) {
-						sourceViewer.setSelection(
-								new StructuredSelection(referencedElements.toArray()));
-					}
-				}
-			}
-			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
-			}
-		});
+		//sourceTree.addSelectionListener(highlightMatchedSectionsListener);
 		
 		new AdapterFactoryTreeEditor(sourceViewer.getTree(), adapterFactory);
 		
@@ -219,21 +235,9 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 		sourceModelViewer = new TreeViewer(sourceModelTree);
 		sourceModelTree.setLayoutData(
 				new GridData(SWT.FILL, SWT.FILL, true, true));
-		sourceModelViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory){
-			/* extend the content provider in a way that an eList of objects can
-			 * be set as input
-			 */
-			@SuppressWarnings("rawtypes")
-			@Override
-			public Object[] getElements(Object object) {
-				if(object instanceof EList) {
-					return ((EList) object).toArray();
-				}
-				return super.getElements(object);
-			}
-			
-		});
+		sourceModelViewer.setContentProvider(new EObjectTreeContentProvider());
 		sourceModelViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+		
 	}
 
 	/**
@@ -251,9 +255,6 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 		String modelFile = project.getFullPath().toString() + Path.SEPARATOR + 
 				"Source" + Path.SEPARATOR + sourceModelCombo.getText();
 		
-		// create a resource set
-		ResourceSet rs = new ResourceSetImpl();
-		
 		// if an xml source file has been selected, 
 		// add the file extension to registry 
 		if(modelFile.endsWith(".xml")) {
@@ -267,7 +268,7 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 		Resource modelResource = null;
 		try {
 			// load the source model
-			modelResource = rs.getResource(modelUri, true);
+			modelResource = editor.getEditingDomain().getResourceSet().getResource(modelUri, true);
 			modelResource.load(Collections.EMPTY_MAP);
 		} catch(Exception e) {
 			MessageDialog.openError(getShell(), "Error loading resource", 
@@ -278,6 +279,26 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 		
 		// set the contents of the resource as input for the source model viewer
 		sourceModelViewer.setInput(modelResource.getContents());
+		
+		// the pamtram file
+		String pamtramFile = project.getFullPath().toString() + Path.SEPARATOR + 
+				"Pamtram" + Path.SEPARATOR + "Disl2Movisa.pamtram";
+		
+		// the target file
+		String targetFile = project.getFullPath().toString() + Path.SEPARATOR + 
+				"Target" + Path.SEPARATOR + "test.xmi";
+		
+		// Create a transformation runner and use it to get the matching source sections
+		GenericTransformationRunner tr = 
+				new GenericTransformationRunner(modelResource.getContents().get(0), pamtramFile, targetFile);
+		
+		matchedSections = tr.mapSections();
+		
+		if(matchedSections == null) {
+			return;
+		}
+		
+		sourceViewer.getTree().addSelectionListener(highlightMatchedSectionsListener);
 	}
 
 }

@@ -150,7 +150,7 @@ public class PamtramActionBarContributor
 	protected Collection<IAction> otherActions;
 	
 	/**
-	 * 
+	 * This is the menu manager into which menu contribution items should be added for "other actions" actions.
 	 */
 	protected IMenuManager otherActionsMenuManager;
 
@@ -206,6 +206,8 @@ public class PamtramActionBarContributor
 		createSiblingMenuManager = new MenuManager(PamtramEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
 		submenuManager.insertBefore("additions", createSiblingMenuManager);
 
+		// Prepare for other actions item addition or removal.
+		//		
 		otherActionsMenuManager = new MenuManager("other actions");
 		submenuManager.insertBefore("additions", otherActionsMenuManager);
 		

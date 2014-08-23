@@ -34,6 +34,13 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 
+import pamtram.mapping.SimpleAttributeMapping;
+import pamtram.mapping.SimpleModelConnectionHint;
+import pamtram.presentation.actions.SimpleToComplexAttributeMappingAction;
+import pamtram.presentation.actions.SimpleToComplexModelConnectionHint;
+import pamtram.presentation.actions.SimpleToExternalComplexAttributeMappingAction;
+import pamtram.presentation.actions.SimpleToExternalComplexModelConnectionHint;
+
 /**
  * This is the action bar contributor for the Pamtram model editor.
  * <!-- begin-user-doc -->
@@ -127,7 +134,7 @@ public class PamtramActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection<IAction> createSiblingActions;
+	protected Collection<IAction> createSiblingActions;	
 
 	/**
 	 * This is the menu manager into which menu contribution items should be added for CreateSibling actions.
@@ -136,6 +143,16 @@ public class PamtramActionBarContributor
 	 * @generated
 	 */
 	protected IMenuManager createSiblingMenuManager;
+	
+	/**
+	 * Other Menu Actions
+	 */
+	protected Collection<IAction> otherActions;
+	
+	/**
+	 * 
+	 */
+	protected IMenuManager otherActionsMenuManager;
 
 	/**
 	 * This creates an instance of the contributor.
@@ -167,7 +184,6 @@ public class PamtramActionBarContributor
 	 * as well as the sub-menus for object creation items.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public void contributeToMenu(IMenuManager menuManager) {
@@ -190,6 +206,9 @@ public class PamtramActionBarContributor
 		createSiblingMenuManager = new MenuManager(PamtramEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
 		submenuManager.insertBefore("additions", createSiblingMenuManager);
 
+		otherActionsMenuManager = new MenuManager("other actions");
+		submenuManager.insertBefore("additions", otherActionsMenuManager);
+		
 		// Force an update because Eclipse hides empty menus now.
 		//
 		submenuManager.addMenuListener
@@ -239,7 +258,6 @@ public class PamtramActionBarContributor
 	 * that can be added to the selected object and updating the menus accordingly.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	public void selectionChanged(SelectionChangedEvent event) {
 		// Remove any menu items for old selection.
@@ -250,12 +268,15 @@ public class PamtramActionBarContributor
 		if (createSiblingMenuManager != null) {
 			depopulateManager(createSiblingMenuManager, createSiblingActions);
 		}
+		if(otherActionsMenuManager != null){
+			depopulateManager(otherActionsMenuManager, otherActions);
+		}
 
 		// Query the new selection for appropriate new child/sibling descriptors
 		//
 		Collection<?> newChildDescriptors = null;
 		Collection<?> newSiblingDescriptors = null;
-
+		Object otherActionsDescriptor=null;
 		ISelection selection = event.getSelection();
 		if (selection instanceof IStructuredSelection && ((IStructuredSelection)selection).size() == 1) {
 			Object object = ((IStructuredSelection)selection).getFirstElement();
@@ -264,13 +285,17 @@ public class PamtramActionBarContributor
 
 			newChildDescriptors = domain.getNewChildDescriptors(object, null);
 			newSiblingDescriptors = domain.getNewChildDescriptors(null, object);
+			otherActionsDescriptor=object;
+			
 		}
 
 		// Generate actions for selection; populate and redraw the menus.
 		//
 		createChildActions = generateCreateChildActions(newChildDescriptors, selection);
 		createSiblingActions = generateCreateSiblingActions(newSiblingDescriptors, selection);
+		otherActions=generateOtherActionsActions(otherActionsDescriptor, selection);
 
+		
 		if (createChildMenuManager != null) {
 			populateManager(createChildMenuManager, createChildActions, null);
 			createChildMenuManager.update(true);
@@ -278,6 +303,10 @@ public class PamtramActionBarContributor
 		if (createSiblingMenuManager != null) {
 			populateManager(createSiblingMenuManager, createSiblingActions, null);
 			createSiblingMenuManager.update(true);
+		}
+		if(otherActionsMenuManager != null){
+			populateManager(otherActionsMenuManager, otherActions, null);
+			otherActionsMenuManager.update(true);
 		}
 	}
 
@@ -297,6 +326,29 @@ public class PamtramActionBarContributor
 		}
 		return actions;
 	}
+	
+	protected Collection<IAction> generateOtherActionsActions(Object descriptor, ISelection selection) {
+		Collection<IAction> actions = new ArrayList<IAction>();
+		if(descriptor instanceof pamtram.mapping.SimpleAttributeMapping){
+//				Display display= Display.getDefault(); TODO
+//				Shell shell=new Shell(display);
+//				MessageBox dialog = 
+//						  new MessageBox(shell, SWT.ICON_QUESTION | SWT.OK| SWT.CANCEL);
+//						dialog.setText("My info");
+//						dialog.setMessage("Do you really want to do this?");
+//
+//						 dialog.open(); 
+				//actions.add(new SimpleToComplexAttributeMappingCommandAction(activeEditorPart, "to complx",selection));
+			actions.add(new SimpleToComplexAttributeMappingAction((SimpleAttributeMapping) descriptor));
+			actions.add(new SimpleToExternalComplexAttributeMappingAction((SimpleAttributeMapping) descriptor));
+			
+		} else if(descriptor instanceof pamtram.mapping.SimpleModelConnectionHint){
+			actions.add(new SimpleToComplexModelConnectionHint((SimpleModelConnectionHint) descriptor));
+			actions.add(new SimpleToExternalComplexModelConnectionHint((SimpleModelConnectionHint) descriptor));
+		}
+		return actions;
+	}
+
 
 	/**
 	 * This generates a {@link org.eclipse.emf.edit.ui.action.CreateSiblingAction} for each object in <code>descriptors</code>,
@@ -371,7 +423,6 @@ public class PamtramActionBarContributor
 	 * This populates the pop-up menu before it appears.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public void menuAboutToShow(IMenuManager menuManager) {
@@ -384,6 +435,10 @@ public class PamtramActionBarContributor
 
 		submenuManager = new MenuManager(PamtramEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
 		populateManager(submenuManager, createSiblingActions, null);
+		menuManager.insertBefore("edit", submenuManager);
+		
+		submenuManager = new MenuManager("other actions");
+		populateManager(submenuManager, otherActions, null);
 		menuManager.insertBefore("edit", submenuManager);
 	}
 

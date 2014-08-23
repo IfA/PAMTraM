@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import pamtram.SectionModel;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.MetamodelPackage;
@@ -174,6 +175,31 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * If the 'container' reference is set, returns the value of
+	 * this reference. If it is not set but the container can 
+	 * automatically be determined by stepping up in the
+	 * section hierarchy, the determined container is returned.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public pamtram.metamodel.Class getContainerGeneric() {
+		pamtram.metamodel.Class ret;
+		if(this instanceof SourceSectionClass){
+			ret = ((SourceSectionClass)this).getContainer();
+		} else if(this instanceof TargetSectionClass){
+			ret = ((TargetSectionClass)this).getContainer();
+		} else {
+			return null;
+		}
+		if(ret == null && this.eContainer() instanceof Reference &&
+				!(this.eContainer() instanceof SectionModel)) {
+			ret = (pamtram.metamodel.Class) this.eContainer().eContainer();
+		}
+		return ret;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -253,6 +279,8 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 				return getReferencesGeneric();
 			case MetamodelPackage.CLASS___GET_ATTRIBUTES_GENERIC:
 				return getAttributesGeneric();
+			case MetamodelPackage.CLASS___GET_CONTAINER_GENERIC:
+				return getContainerGeneric();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

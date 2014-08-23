@@ -2,8 +2,6 @@
  */
 package pamtram.metamodel.impl;
 
-import static pamtram.metamodel.MetamodelPackage.CLASS;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -392,6 +390,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 */
 	public EOperation getClass__GetAttributesGeneric() {
 		return classEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getClass__GetContainerGeneric() {
+		return classEClass.getEOperations().get(2);
 	}
 
 	/**
@@ -889,6 +896,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEAttribute(classEClass, CLASS__CARDINALITY);
 		createEOperation(classEClass, CLASS___GET_REFERENCES_GENERIC);
 		createEOperation(classEClass, CLASS___GET_ATTRIBUTES_GENERIC);
+		createEOperation(classEClass, CLASS___GET_CONTAINER_GENERIC);
 
 		sourceSectionClassEClass = createEClass(SOURCE_SECTION_CLASS);
 		createEReference(sourceSectionClassEClass, SOURCE_SECTION_CLASS__REFERENCES);
@@ -1040,6 +1048,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEOperation(getClass__GetReferencesGeneric(), this.getReference(), "getReferencesGeneric", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getClass__GetAttributesGeneric(), this.getAttribute(), "getAttributesGeneric", 0, -1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getClass__GetContainerGeneric(), this.getClass_(), "getContainerGeneric", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(sourceSectionClassEClass, SourceSectionClass.class, "SourceSectionClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSourceSectionClass_References(), this.getSourceSectionReference(), this.getSourceSectionReference_OwningClass(), "references", null, 0, -1, SourceSectionClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -99,4 +99,13 @@ public interface Class extends MetaModelElement {
 	 */
 	EList<Attribute> getAttributesGeneric();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='pamtram.metamodel.Class ret;\r\nif(this instanceof SourceSectionClass){\r\n\tret = ((SourceSectionClass)this).getContainer();\r\n} else if(this instanceof TargetSectionClass){\r\n\tret = ((TargetSectionClass)this).getContainer();\r\n} else {\r\n\treturn null;\r\n}\r\nif(ret == null && this.eContainer() instanceof Reference &&\r\n\t\t!(this.eContainer() instanceof SectionModel)) {\r\n\tret = (pamtram.metamodel.Class) this.eContainer().eContainer();\r\n}\r\nreturn ret;'"
+	 * @generated
+	 */
+	Class getContainerGeneric();
+
 } // Class

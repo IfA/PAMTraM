@@ -181,13 +181,22 @@ public interface MetamodelPackage extends EPackage {
 	int CLASS___GET_ATTRIBUTES_GENERIC = META_MODEL_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Get Container Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS___GET_CONTAINER_GENERIC = META_MODEL_ELEMENT_OPERATION_COUNT + 2;
+
+	/**
 	 * The number of operations of the '<em>Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_OPERATION_COUNT = META_MODEL_ELEMENT_OPERATION_COUNT + 2;
+	int CLASS_OPERATION_COUNT = META_MODEL_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link pamtram.metamodel.impl.SourceSectionClassImpl <em>Source Section Class</em>}' class.
@@ -288,6 +297,15 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int SOURCE_SECTION_CLASS___GET_ATTRIBUTES_GENERIC = CLASS___GET_ATTRIBUTES_GENERIC;
+
+	/**
+	 * The operation id for the '<em>Get Container Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_CLASS___GET_CONTAINER_GENERIC = CLASS___GET_CONTAINER_GENERIC;
 
 	/**
 	 * The number of operations of the '<em>Source Section Class</em>' class.
@@ -397,6 +415,15 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int TARGET_SECTION_CLASS___GET_ATTRIBUTES_GENERIC = CLASS___GET_ATTRIBUTES_GENERIC;
+
+	/**
+	 * The operation id for the '<em>Get Container Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CLASS___GET_CONTAINER_GENERIC = CLASS___GET_CONTAINER_GENERIC;
 
 	/**
 	 * The number of operations of the '<em>Target Section Class</em>' class.
@@ -1981,6 +2008,16 @@ public interface MetamodelPackage extends EPackage {
 	EOperation getClass__GetAttributesGeneric();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.metamodel.Class#getContainerGeneric() <em>Get Container Generic</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Container Generic</em>' operation.
+	 * @see pamtram.metamodel.Class#getContainerGeneric()
+	 * @generated
+	 */
+	EOperation getClass__GetContainerGeneric();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.SourceSectionClass <em>Source Section Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2595,6 +2632,14 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation CLASS___GET_ATTRIBUTES_GENERIC = eINSTANCE.getClass__GetAttributesGeneric();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Container Generic</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CLASS___GET_CONTAINER_GENERIC = eINSTANCE.getClass__GetContainerGeneric();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.SourceSectionClassImpl <em>Source Section Class</em>}' class.

@@ -65,9 +65,14 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 	protected Group sourceGroup;
 
 	/**
-	 * This is the the viewer for the source meta model sections.
+	 * This is the viewer for the source meta model sections.
 	 */
 	protected TreeViewer sourceViewer;
+	
+	/**
+	 * This is the selection listener for the source tree.
+	 */
+	protected SelectionListener sourceTreeSelectionListener;
 	
 	/**
 	 * This is the group for the mapping tree viewer.
@@ -78,6 +83,11 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 	 * This is the the viewer for the mappings.
 	 */
 	protected TreeViewer mappingViewer;
+	
+	/**
+	 * This is the selection listener for the mapping tree.
+	 */
+	protected SelectionListener mappingTreeSelectionListener;
 	
 	/**
 	 * This is the group for the source model that shall be matched.
@@ -99,60 +109,6 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 	 */
 	protected IProject project;
 
-	/**
-	 * This is the listener that is used to highlight matching sections when
-	 * the user selects a source section or a mapping.
-	 */
-	protected SelectionListener highlightMatchedSectionsListener = new SelectionListener() {
-		
-		@Override
-		public void widgetSelected(SelectionEvent e) {
-			editor.setCurrentViewer(sourceViewer);
-			
-			SourceSectionClass sourceSectionClass = null;
-			
-			// get the source section for which the matched elements in the source
-			// model viewer shall be shown (depending on the users selection)
-			//
-			if(((TreeItem) e.item).getData() instanceof SourceSectionClass) {
-				sourceSectionClass = (SourceSectionClass) ((TreeItem) e.item).getData();
-				// do not select a mapping because multiple mappings could make use of
-				// this source section
-				mappingViewer.setSelection(new StructuredSelection());
-			} else if(((TreeItem) e.item).getData() instanceof MappingType) {
-				sourceSectionClass = ((MappingType) ((TreeItem) e.item).getData()).getSourceMMSection();
-				// select the source section for this mapping (that is used to find the matched elements
-				sourceViewer.setSelection(new StructuredSelection(sourceSectionClass), true);
-			} else {
-				sourceModelViewer.setSelection(new StructuredSelection());
-				return;
-			}
-				
-			// find the 'matched sections' for the selected source section
-			for (SourceSectionClass c : matchedSections.keySet()) {
-				if(EcoreUtil.equals(sourceSectionClass, c)) {
-					// the matched elements that shall be highlighted
-					Set<EObject> matchedEObjects = matchedSections.get(c);
-					
-					if(matchedEObjects == null) {
-						continue;
-					}
-					
-					sourceModelViewer.collapseAll();
-					sourceModelViewer.setSelection(
-							new StructuredSelection(matchedEObjects.toArray()),
-							true
-						);
-					
-					break;
-				}
-			}
-		}
-		
-		@Override
-		public void widgetDefaultSelected(SelectionEvent e) {}
-	};
-	
 	/**
 	 * This is the list of matched sections that is determined when the user
 	 * selects a source model.
@@ -208,7 +164,17 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 		sourceViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 		sourceViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 		sourceViewer.setInput(editor.pamtram.getSourceSectionModel());
-		//sourceTree.addSelectionListener(highlightMatchedSectionsListener);
+		sourceTreeSelectionListener = new SelectionListener() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				editor.setCurrentViewer(sourceViewer);
+			}
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+		};
+		sourceTree.addSelectionListener(sourceTreeSelectionListener);
 		
 		new AdapterFactoryTreeEditor(sourceViewer.getTree(), adapterFactory);
 		
@@ -247,278 +213,18 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 		});
 		mappingViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 		mappingViewer.setInput(editor.pamtram.getMappingModel());
-		mappingTree.addSelectionListener(highlightMatchedSectionsListener);
-//		mappingTree.addSelectionListener(new SelectionListener() {
-//			
-//			private Mapping currentMapping;
-//			private NamedElement currentMappingHintGroup;
-//			
-//			@Override
-//			public void widgetSelected(SelectionEvent e) {
-//				editor.setCurrentViewer(mappingViewer);
-//				
-//				if(((TreeItem) e.item).getData() instanceof Mapping) {
-//					
-//					LinkedList<Object> expanded=new LinkedList<Object>();
-//					Mapping mapping=null;
-//					Object source=null;
-//					LinkedList<pamtram.metamodel.Class> targets=new LinkedList<pamtram.metamodel.Class>();
-//					
-//					mapping = (Mapping) ((TreeItem) e.item).getData();
-//					source = mapping.getSourceMMSection();
-//					
-//					if(mapping != null){
-//						expanded.add(mapping);
-//						for(MappingHintGroupType group : mapping.getMappingHintGroups()){
-//							targets.add(group.getTargetMMSection());
-//						}
-//					}
-//					
-//					// Expand the mapping in the mapping tree viewer.
-//					mappingViewer.setExpandedElements(
-//							expanded.toArray());
-//					
-//					// Select and expand the source and target items associated with
-//					// the selected mapping.
-//					if(source == null) {
-//						sourceViewer.setSelection(
-//								new StructuredSelection());
-//						if(mapping != currentMapping) {
-//							sourceViewer.setExpandedElements(
-//									new Object[]{});
-//						}
-//					} else {
-//						sourceViewer.setSelection(
-//								new StructuredSelection(source));
-//						if(mapping != currentMapping) {
-//							sourceViewer.setExpandedElements(
-//									new Object[]{source});
-//						}
-//					}
-//					if(targets.isEmpty()) {
-//						targetViewer.setSelection(
-//								new StructuredSelection());
-//						if(mapping != currentMapping) {
-//							targetViewer.setExpandedElements(
-//									new Object[]{});
-//						}
-//					} else {
-//						targetViewer.setSelection(
-//								new StructuredSelection(targets));
-//						if(mapping != currentMapping) {
-//							targetViewer.setExpandedElements(
-//									targets.toArray());
-//						}
-//					}
-//					
-//					// Update the currently selected mapping.
-//					currentMapping = mapping;
-//				}  else if(((TreeItem) e.item).getData() instanceof AttributeMappingSourceElementType 
-//						&& ! (((TreeItem) e.item).getData()instanceof SimpleAttributeMatcher)
-//						&& ! (((TreeItem) e.item).getData()instanceof SimpleModelConnectionHint)
-//						) {
-//					AttributeMappingSourceElementType mapping = (AttributeMappingSourceElementType) ((TreeItem) e.item).getData();
-//					
-//					Attribute target = null;
-//					
-//					if(mapping.eContainer() instanceof AttributeMapping){
-//						target= ((AttributeMapping)mapping.eContainer()).getTarget();
-//					} else if (mapping instanceof SimpleAttributeMapping){
-//						target=((SimpleAttributeMapping) mapping).getTarget();
-//					}
-//					
-//					Attribute source = mapping.getSource();
-//					
-//					setSourceTargetViewerSingleItemSelections(target,
-//							source);
-//				}  else if(((TreeItem) e.item).getData() instanceof GlobalVariableImporter){
-//					GlobalVariableImporter mapping = (GlobalVariableImporter) ((TreeItem) e.item).getData();
-//					Attribute target = ((AttributeMapping)mapping.eContainer()).getTarget();
-//					Attribute source=mapping.getSourceAttribute();
-//					
-//					setSourceTargetViewerSingleItemSelections(target, source);
-//					
-//					
-//				} else if(((TreeItem) e.item).getData() instanceof ComplexAttributeMapping || ((TreeItem) e.item).getData() instanceof CalculatorMapping) {
-//					AttributeMapping mapping = (AttributeMapping) ((TreeItem) e.item).getData();
-//					Attribute target = mapping.getTarget();
-//					
-//					
-//					List<Attribute> sources = new LinkedList<Attribute>();
-//					
-//					if(mapping instanceof ComplexAttributeMapping){							
-//						for(ComplexAttributeMappingSourceInterface c : ((ComplexAttributeMapping) mapping).getSourceAttributeMappings()){
-//							if(c.getSourceAttribute() != null){
-//								sources.add(c.getSourceAttribute());
-//							}
-//						}
-//						
-//					} else {
-//						
-//						for(CalculatorMappingSourceInterface c : ((CalculatorMapping) mapping).getVariables()){
-//							if(c.getSourceAttribute() != null){
-//								sources.add(c.getSourceAttribute());
-//							}
-//						}
-//					}
-//					
-//					
-//					
-//					sourceViewer.setSelection(new StructuredSelection(sources));
-//					
-//					if(target == null) {
-//						targetViewer.setSelection(
-//								new StructuredSelection());
-//					} else {
-//						targetViewer.setSelection(
-//								new StructuredSelection(target));
-//					}
-//					
-//				} else if(((TreeItem) e.item).getData() instanceof CardinalityMapping) {
-//					
-//					CardinalityMapping mapping = (CardinalityMapping) ((TreeItem) e.item).getData();
-//					
-//					pamtram.metamodel.Class source = mapping.getSource();
-//					pamtram.metamodel.Class target = mapping.getTarget();
-//					
-//					// Select the source and target item associated with the selected mapping.
-//					setSourceTargetViewerSingleItemSelections(target, source);
-//				} else if(((TreeItem) e.item).getData() instanceof MappingInstanceSelector) {
-//					
-//					MappingInstanceSelector selector = (MappingInstanceSelector) ((TreeItem) e.item).getData();
-//					
-//					NonContainmentReference reference = selector.getAffectedReference();
-//					
-//					// Select the reference associated with the selected Mapping Instance Selector.
-//					if(reference == null) {
-//						targetViewer.setSelection(
-//								new StructuredSelection());
-//					} else {
-//						targetViewer.setSelection(
-//								new StructuredSelection(reference));
-//					}
-//					sourceViewer.setSelection(new StructuredSelection());
-//					
-//				} else if(((TreeItem) e.item).getData() instanceof SimpleAttributeMatcher) {
-//					
-//					AttributeMatcher matcher = (AttributeMatcher) ((TreeItem) e.item).getData();
-//					
-//					
-//					TargetSectionAttribute target=matcher.getTargetAttribute();
-//					SourceSectionAttribute source=null;
-//					
-//					if(matcher instanceof SimpleAttributeMatcher){
-//						source=((SimpleAttributeMatcher) matcher).getSource();
-//					} else if(matcher instanceof AttributeMappingSourceElementType){
-//						source=((AttributeMappingSourceElementType) matcher).getSource();
-//					}
-//					
-//					// Select the source and target item associated with the selected matcher.
-//					setSourceTargetViewerSingleItemSelections(target, source);
-//					
-//				} else if(((TreeItem) e.item).getData() instanceof ComplexAttributeMatcher){
-//					ComplexAttributeMatcher matcher= (ComplexAttributeMatcher) ((TreeItem) e.item).getData();
-//					
-//					TargetSectionAttribute target= matcher.getTargetAttribute();
-//					
-//					List<SourceSectionAttribute> sources= new LinkedList<SourceSectionAttribute> ();
-//					
-//					for(ComplexAttributeMatcherSourceInterface srcElement : matcher.getSourceAttributes()){
-//						if(srcElement.getSourceAttribute() != null){
-//							sources.add(srcElement.getSourceAttribute());
-//						}
-//					}
-//					
-//					sourceViewer.setSelection(new StructuredSelection(sources));
-//					
-//					if(target == null){
-//						targetViewer.setSelection(new StructuredSelection());
-//					} else {
-//						targetViewer.setSelection(new StructuredSelection(target));
-//					}
-//					
-//				} else if(((TreeItem) e.item).getData() instanceof ClassMatcher) {
-//					
-//					ClassMatcher matcher = (ClassMatcher) ((TreeItem) e.item).getData();
-//					
-//					pamtram.metamodel.Class target = matcher.getTargetClass();
-//					
-//					// Select the source and target item associated with the selected matcher.
-//					if(target == null) {
-//						targetViewer.setSelection(
-//								new StructuredSelection());
-//					} else {
-//						targetViewer.setSelection(
-//								new StructuredSelection(target));
-//					}
-//					sourceViewer.setSelection(new StructuredSelection());
-//					
-//				} else if(((TreeItem) e.item).getData() instanceof ModelConnectionHint) {
-//					
-//					ModelConnectionHint hint = (ModelConnectionHint) ((TreeItem) e.item).getData();
-//					
-//					LinkedList<Attribute> sources = new LinkedList<Attribute>();
-//					
-//					if(hint instanceof SimpleModelConnectionHint){
-//						sources.add(((SimpleModelConnectionHint) hint).getSource());
-//					} else if(hint instanceof ComplexModelConnectionHint){
-//						for(ComplexModelConnectionHintSourceInterface sourceElement : ((ComplexModelConnectionHint) hint).getSourceElements() ){
-//							sources.add(sourceElement.getSourceAttribute());
-//						}
-//					}
-//					
-//					LinkedList<Attribute> targets = new LinkedList<Attribute>();
-//					
-//					
-//					
-//					for(ConnectionHintTargetAttribute a : hint.getTargetAttributes()){
-//						targets.add(a.getTargetAttribute());
-//					}
-//					
-//					// Select the source and target item associated with the selected matcher.
-//					targetViewer.setSelection(new StructuredSelection(targets));
-//					sourceViewer.setSelection(new StructuredSelection(sources));
-//					
-//				} else if(((TreeItem) e.item).getData() instanceof MappingHintGroupImporter){
-//					MappingHintGroupImporter imp=(MappingHintGroupImporter) ((TreeItem) e.item).getData();
-//					TargetSectionClass target=null;
-//					SourceSectionClass source=null;
-//					if(imp.getHintGroup() != null){
-//						target=imp.getHintGroup().getTargetMMSection();
-//						
-//						source=((Mapping)imp.getHintGroup().eContainer()).getSourceMMSection();
-//					}
-//					setSourceTargetViewerSingleItemSelections(target, source);
-//				} else if(((TreeItem)e.item).getData() instanceof MappedAttributeValueExpander){
-//					MappedAttributeValueExpander exp = (MappedAttributeValueExpander)((TreeItem)e.item).getData();
-//					setSourceTargetViewerSingleItemSelections(exp.getTargetAttribute(), exp.getSourceAttribute());
-//				}
-//			}
-//			private void setSourceTargetViewerSingleItemSelections(
-//					Object target, Object source) {
-//				// Select the source and target item associated with  the selected mapping.
-//				if(source == null) {
-//					sourceViewer.setSelection(
-//							new StructuredSelection());
-//				} else {
-//					sourceViewer.setSelection(
-//							new StructuredSelection(source));
-//				}
-//				if(target == null) {
-//					targetViewer.setSelection(
-//							new StructuredSelection());
-//				} else {
-//					targetViewer.setSelection(
-//							new StructuredSelection(target));
-//				}
-//			}
-//			@Override
-//			public void widgetDefaultSelected(SelectionEvent e) {
-//			}
-//			
-//		});
-//		
-		//new AdapterFactoryTreeEditor(mappingViewer.getTree(), adapterFactory);
+		mappingTreeSelectionListener = new SelectionListener() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				editor.setCurrentViewer(mappingViewer);
+			}
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+		};
+		mappingTree.addSelectionListener(mappingTreeSelectionListener);
 		
 		editor.createContextMenuFor(mappingViewer);
 		
@@ -570,6 +276,16 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 				new GridData(SWT.FILL, SWT.FILL, true, true));
 		sourceModelViewer.setContentProvider(new EObjectTreeContentProvider());
 		sourceModelViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+		sourceModelTree.addSelectionListener(new SelectionListener() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				editor.setCurrentViewer(sourceModelViewer);
+			}
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+		});
 		
 	}
 
@@ -614,12 +330,12 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 		sourceModelViewer.setInput(modelResource.getContents());
 		
 		// the pamtram file
-		String pamtramFile = project.getFullPath().toString() + Path.SEPARATOR + 
-				"Pamtram" + Path.SEPARATOR + "Disl2Movisa.pamtram";
-		
-		// the target file
-		String targetFile = project.getFullPath().toString() + Path.SEPARATOR + 
-				"Target" + Path.SEPARATOR + "test.xmi";
+				String pamtramFile = project.getFullPath().toString() + Path.SEPARATOR + 
+						"Pamtram" + Path.SEPARATOR + editor.getEditorInput().getName();
+				
+				// the target file
+				String targetFile = project.getFullPath().toString() + Path.SEPARATOR + 
+						"Target" + Path.SEPARATOR + "temp.xmi";
 		
 		// Create a transformation runner and use it to get the matching source sections
 		GenericTransformationRunner tr = 
@@ -631,7 +347,104 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 			return;
 		}
 		
-		sourceViewer.getTree().addSelectionListener(highlightMatchedSectionsListener);
+		// add a selection listener for the highlighting (overwrite the old one)
+		sourceViewer.getTree().removeSelectionListener(sourceTreeSelectionListener);
+		sourceTreeSelectionListener = new SelectionListener() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+				SourceSectionClass sourceSectionClass = null;
+				
+				// get the source section for which the matched elements in the source
+				// model viewer shall be shown (depending on the users selection)
+				//
+				if(((TreeItem) e.item).getData() instanceof SourceSectionClass) {
+					sourceSectionClass = (SourceSectionClass) ((TreeItem) e.item).getData();
+					// do not select a mapping because multiple mappings could make use of
+					// this source section
+					mappingViewer.setSelection(new StructuredSelection());
+				} else {
+					sourceModelViewer.setSelection(new StructuredSelection());
+				}
+					
+				if(sourceSectionClass != null) {
+					// find the 'matched sections' for the selected source section
+					for (SourceSectionClass c : matchedSections.keySet()) {
+						if(EcoreUtil.equals(sourceSectionClass, c)) {
+							// the matched elements that shall be highlighted
+							Set<EObject> matchedEObjects = matchedSections.get(c);
+							
+							if(matchedEObjects == null) {
+								continue;
+							}
+							
+							sourceModelViewer.collapseAll();
+							sourceModelViewer.setSelection(
+									new StructuredSelection(matchedEObjects.toArray()),
+									true
+									);
+							
+							break;
+						}
+					}
+				}
+				
+				editor.setCurrentViewer(sourceViewer);
+			}
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {}
+		};
+		sourceViewer.getTree().addSelectionListener(sourceTreeSelectionListener);
+		
+		// add a selection listener for the highlighting (overwrite the old one)
+		mappingViewer.getTree().removeSelectionListener(mappingTreeSelectionListener);
+		mappingTreeSelectionListener = new SelectionListener() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+				SourceSectionClass sourceSectionClass = null;
+				
+				// get the source section for which the matched elements in the source
+				// model viewer shall be shown (depending on the users selection)
+				//
+				if(((TreeItem) e.item).getData() instanceof MappingType) {
+					sourceSectionClass = ((MappingType) ((TreeItem) e.item).getData()).getSourceMMSection();
+					// select the source section for this mapping (that is used to find the matched elements
+					sourceViewer.setSelection(new StructuredSelection(sourceSectionClass), true);
+				} else {
+					sourceModelViewer.setSelection(new StructuredSelection());
+				}
+					
+				if(sourceSectionClass != null) {
+					// find the 'matched sections' for the selected source section
+					for (SourceSectionClass c : matchedSections.keySet()) {
+						if(EcoreUtil.equals(sourceSectionClass, c)) {
+							// the matched elements that shall be highlighted
+							Set<EObject> matchedEObjects = matchedSections.get(c);
+							
+							if(matchedEObjects == null) {
+								continue;
+							}
+							
+							sourceModelViewer.collapseAll();
+							sourceModelViewer.setSelection(
+									new StructuredSelection(matchedEObjects.toArray()),
+									true
+									);
+							
+							break;
+						}
+					}
+				}
+				
+				editor.setCurrentViewer(mappingViewer);
+			}
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {}
+		};
+		mappingViewer.getTree().addSelectionListener(mappingTreeSelectionListener);
 	}
 
 }

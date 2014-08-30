@@ -537,7 +537,15 @@ public class PamtramEditorMainPage extends SashForm {
 					setSourceTargetViewerSingleItemSelections(target, source);
 				} else if(((TreeItem)e.item).getData() instanceof MappedAttributeValueExpander){
 					MappedAttributeValueExpander exp = (MappedAttributeValueExpander)((TreeItem)e.item).getData();
-					setSourceTargetViewerSingleItemSelections(exp.getTargetAttribute(), exp.getSourceAttribute());
+					
+					setSourceTargetViewerSingleItemSelections(null, exp.getSourceAttribute());
+					
+					List<TargetSectionAttribute> attr = new LinkedList<TargetSectionAttribute>();
+					for(AttributeMapping m : exp.getHintsToExpand()){
+						attr.add(m.getTarget());
+					}
+					targetViewer.setSelection(new StructuredSelection(attr));
+					
 				}
 			}
 			private void setSourceTargetViewerSingleItemSelections(

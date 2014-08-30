@@ -40,7 +40,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		}
 		
 		// get the associated files from the launch configuration
-		String project = configuration.getAttribute("project", "");
+		final String project = configuration.getAttribute("project", "");
 		String sourceFile = project + Path.SEPARATOR +
 				"Source" + Path.SEPARATOR + configuration.getAttribute("srcFile", "");
 		String pamtramFile = project + Path.SEPARATOR + 

@@ -29,8 +29,12 @@ import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.console.MessageConsoleStream;
 import org.eclipse.ui.progress.UIJob;
 
+import de.congrace.exp4j.Calculable;
+import de.congrace.exp4j.ExpressionBuilder;
 import pamtram.PAMTraM;
 import pamtram.mapping.AttributeMapping;
+import pamtram.mapping.CalculatorMapping;
+import pamtram.mapping.CalculatorMappingSourceInterface;
 import pamtram.mapping.ComplexAttributeMapping;
 import pamtram.mapping.ComplexAttributeMappingSourceInterface;
 import pamtram.mapping.ComplexAttributeMatcher;
@@ -40,6 +44,7 @@ import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.ExternalMappedAttributeValuePrepender;
 import pamtram.mapping.GlobalVariableImporter;
+import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappedAttributeValueExpanderType;
 import pamtram.mapping.MappedAttributeValuePrepender;
 import pamtram.mapping.Mapping;
@@ -589,7 +594,7 @@ public class GenericTransformationRunner {
 									boolean prepend=h instanceof MappedAttributeValuePrepender || h instanceof ExternalMappedAttributeValuePrepender;//of course this works only because the only other option is the Appender
 									for(MappingHint realHint : g.getHintGroup().getMappingHints()){
 										if(realHint instanceof AttributeMapping){
-											if(((AttributeMapping) realHint).getTarget().equals(((MappedAttributeValueExpanderType) h).getTargetAttribute())){
+											if(((MappedAttributeValueExpander) h).getHintsToExpand().contains((AttributeMapping) realHint)){
 												if(realHint instanceof SimpleAttributeMapping){//SimpleAttributeMapping
 													LinkedList<Object> vals=new LinkedList<Object>();
 													if(prepend){
@@ -622,6 +627,25 @@ public class GenericTransformationRunner {
 																	map.put(element, map.get(element)+hintVal);
 																}
 															}
+														}
+													}
+												}else if(realHint instanceof CalculatorMapping){//CalculatorMapping
+													List<CalculatorMappingSourceInterface> sources= ((CalculatorMapping) realHint).getVariables();
+													if(sources.size()> 0){
+														try{
+															Calculable calc=new ExpressionBuilder(hintVal).build();
+															double variableVal= calc.calculate();//parseDouble doesn't support Scientific notation, like: 0.42e2 == 4200e-2 == 42, 
+															String varName=((MappedAttributeValueExpanderType)h).getSourceAttribute().getName();
+															for(Object m : selMap.getHintValues().get(realHint)){
+																@SuppressWarnings("unchecked")
+																Map<String,Double> map=(Map<String, Double>) m;
+																map.put(varName, variableVal);
+															}
+														} catch(Exception e){
+															consoleStream.println("Couldn't convert variable " 
+																	+ ((MappedAttributeValueExpanderType)h).getSourceAttribute().getName() + " of " + h.getClass().getName() + " " + h.getName()
+																	+ " from String to double. The problematic source element's attribute value was: " 
+																	+ hintVal);
 														}
 													}
 												}//TODO add any remaining hitValue changes here

@@ -4037,10 +4037,10 @@
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="sourcePanel" affectedReference="//@targetSectionModel/@metaModelSections.8/@references.0">
           <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.7/@attributes.0" source="//@sourceSectionModel/@metaModelSections.4/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappedAttributeValuePrepender" name="Add State id" sourceAttribute="//@sourceSectionModel/@metaModelSections.4/@attributes.0" targetAttribute="//@targetSectionModel/@metaModelSections.8/@attributes.0" modifiers="//@mappingModel/@modifierSets.3"/>
+        <mappingHints xsi:type="mapping:MappedAttributeValuePrepender" name="Add State id" sourceAttribute="//@sourceSectionModel/@metaModelSections.4/@attributes.0" modifiers="//@mappingModel/@modifierSets.3" hintsToExpand="//@mappingModel/@mapping.0/@mappingHintGroups.1/@mappingHints.1"/>
       </importedMappingHintGroups>
       <importedMappingHintGroups name="Inherited NavFlowTriggers" hintGroup="//@mappingModel/@mapping.0/@mappingHintGroups.2">
-        <mappingHints xsi:type="mapping:MappedAttributeValuePrepender" name="id" sourceAttribute="//@sourceSectionModel/@metaModelSections.4/@attributes.0" targetAttribute="//@targetSectionModel/@metaModelSections.10/@attributes.0" modifiers="//@mappingModel/@modifierSets.2"/>
+        <mappingHints xsi:type="mapping:MappedAttributeValuePrepender" name="id" sourceAttribute="//@sourceSectionModel/@metaModelSections.4/@attributes.0" modifiers="//@mappingModel/@modifierSets.2" hintsToExpand="//@mappingModel/@mapping.0/@mappingHintGroups.2/@mappingHints.0"/>
       </importedMappingHintGroups>
     </mapping>
     <mapping name="Transitions" sourceMMSection="//@sourceSectionModel/@metaModelSections.5">

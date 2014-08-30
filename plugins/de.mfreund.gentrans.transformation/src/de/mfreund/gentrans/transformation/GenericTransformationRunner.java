@@ -869,8 +869,6 @@ public class GenericTransformationRunner {
 
 		// generate storage objects and generators
 		SourceSectionMapper sourceSectionMapper = new SourceSectionMapper(suitableMappings, consoleStream);
-		TargetSectionRegistry targetSectionRegistry = new TargetSectionRegistry(consoleStream);
-		AttributeValueRegistry attrValueRegistry = new AttributeValueRegistry();
 
 		/*
 		 * create a list of all the containment references in the source model
@@ -885,8 +883,6 @@ public class GenericTransformationRunner {
 		 * now start mapping each one of the references. We automatically start
 		 * at the sourceModel root node
 		 */
-		LinkedList<MappingInstanceStorage> selectedMappings = new LinkedList<MappingInstanceStorage>();
-		LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping = new LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>>();
 		writePamtramMessage("Selecting Mappings for source model elements");
 
 		int numSrcModelElements = contRefsToMap.size();
@@ -902,17 +898,7 @@ public class GenericTransformationRunner {
 				writePamtramMessage("Transformation aborted.");
 				return null;
 			}
-			if (selectedMapping != null) {
-				selectedMappings.add(selectedMapping);
-				if (!selectedMappingsByMapping.containsKey(selectedMapping
-						.getMapping())) {
-					selectedMappingsByMapping.put(selectedMapping.getMapping(),
-							new LinkedList<MappingInstanceStorage>());
-				}
-				selectedMappingsByMapping.get(selectedMapping.getMapping())
-						.add(selectedMapping);
-
-			} else {
+			if (selectedMapping == null) {
 				unmapped++;
 			}
 

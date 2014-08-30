@@ -3,25 +3,17 @@
 package pamtram.mapping.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.MappedAttributeValueExpanderType;
 import pamtram.mapping.MappingPackage;
-
 import pamtram.metamodel.SourceSectionAttribute;
-import pamtram.metamodel.TargetSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,7 +23,6 @@ import pamtram.metamodel.TargetSectionAttribute;
  * The following features are implemented:
  * <ul>
  *   <li>{@link pamtram.mapping.impl.MappedAttributeValueExpanderTypeImpl#getSourceAttribute <em>Source Attribute</em>}</li>
- *   <li>{@link pamtram.mapping.impl.MappedAttributeValueExpanderTypeImpl#getTargetAttribute <em>Target Attribute</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappedAttributeValueExpanderTypeImpl#getModifiers <em>Modifiers</em>}</li>
  * </ul>
  * </p>
@@ -48,16 +39,6 @@ public abstract class MappedAttributeValueExpanderTypeImpl extends HintImporterM
 	 * @ordered
 	 */
 	protected SourceSectionAttribute sourceAttribute;
-
-	/**
-	 * The cached value of the '{@link #getTargetAttribute() <em>Target Attribute</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTargetAttribute()
-	 * @generated
-	 * @ordered
-	 */
-	protected TargetSectionAttribute targetAttribute;
 
 	/**
 	 * The cached value of the '{@link #getModifiers() <em>Modifiers</em>}' reference list.
@@ -131,44 +112,6 @@ public abstract class MappedAttributeValueExpanderTypeImpl extends HintImporterM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TargetSectionAttribute getTargetAttribute() {
-		if (targetAttribute != null && targetAttribute.eIsProxy()) {
-			InternalEObject oldTargetAttribute = (InternalEObject)targetAttribute;
-			targetAttribute = (TargetSectionAttribute)eResolveProxy(oldTargetAttribute);
-			if (targetAttribute != oldTargetAttribute) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__TARGET_ATTRIBUTE, oldTargetAttribute, targetAttribute));
-			}
-		}
-		return targetAttribute;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TargetSectionAttribute basicGetTargetAttribute() {
-		return targetAttribute;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTargetAttribute(TargetSectionAttribute newTargetAttribute) {
-		TargetSectionAttribute oldTargetAttribute = targetAttribute;
-		targetAttribute = newTargetAttribute;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__TARGET_ATTRIBUTE, oldTargetAttribute, targetAttribute));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<AttributeValueModifierSet> getModifiers() {
 		if (modifiers == null) {
 			modifiers = new EObjectResolvingEList.Unsettable<AttributeValueModifierSet>(AttributeValueModifierSet.class, this, MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__MODIFIERS);
@@ -205,9 +148,6 @@ public abstract class MappedAttributeValueExpanderTypeImpl extends HintImporterM
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__SOURCE_ATTRIBUTE:
 				if (resolve) return getSourceAttribute();
 				return basicGetSourceAttribute();
-			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__TARGET_ATTRIBUTE:
-				if (resolve) return getTargetAttribute();
-				return basicGetTargetAttribute();
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__MODIFIERS:
 				return getModifiers();
 		}
@@ -225,9 +165,6 @@ public abstract class MappedAttributeValueExpanderTypeImpl extends HintImporterM
 		switch (featureID) {
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__SOURCE_ATTRIBUTE:
 				setSourceAttribute((SourceSectionAttribute)newValue);
-				return;
-			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__TARGET_ATTRIBUTE:
-				setTargetAttribute((TargetSectionAttribute)newValue);
 				return;
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__MODIFIERS:
 				getModifiers().clear();
@@ -248,9 +185,6 @@ public abstract class MappedAttributeValueExpanderTypeImpl extends HintImporterM
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__SOURCE_ATTRIBUTE:
 				setSourceAttribute((SourceSectionAttribute)null);
 				return;
-			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__TARGET_ATTRIBUTE:
-				setTargetAttribute((TargetSectionAttribute)null);
-				return;
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__MODIFIERS:
 				unsetModifiers();
 				return;
@@ -268,8 +202,6 @@ public abstract class MappedAttributeValueExpanderTypeImpl extends HintImporterM
 		switch (featureID) {
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__SOURCE_ATTRIBUTE:
 				return sourceAttribute != null;
-			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__TARGET_ATTRIBUTE:
-				return targetAttribute != null;
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__MODIFIERS:
 				return isSetModifiers();
 		}

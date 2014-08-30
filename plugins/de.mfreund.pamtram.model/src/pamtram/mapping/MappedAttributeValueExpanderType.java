@@ -3,9 +3,7 @@
 package pamtram.mapping;
 
 import org.eclipse.emf.common.util.EList;
-
 import pamtram.metamodel.SourceSectionAttribute;
-import pamtram.metamodel.TargetSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,7 +14,6 @@ import pamtram.metamodel.TargetSectionAttribute;
  * The following features are supported:
  * <ul>
  *   <li>{@link pamtram.mapping.MappedAttributeValueExpanderType#getSourceAttribute <em>Source Attribute</em>}</li>
- *   <li>{@link pamtram.mapping.MappedAttributeValueExpanderType#getTargetAttribute <em>Target Attribute</em>}</li>
  *   <li>{@link pamtram.mapping.MappedAttributeValueExpanderType#getModifiers <em>Modifiers</em>}</li>
  * </ul>
  * </p>
@@ -51,32 +48,6 @@ public interface MappedAttributeValueExpanderType extends HintImporterMappingHin
 	 * @generated
 	 */
 	void setSourceAttribute(SourceSectionAttribute value);
-
-	/**
-	 * Returns the value of the '<em><b>Target Attribute</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Target Attribute</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Target Attribute</em>' reference.
-	 * @see #setTargetAttribute(TargetSectionAttribute)
-	 * @see pamtram.mapping.MappingPackage#getMappedAttributeValueExpanderType_TargetAttribute()
-	 * @model required="true"
-	 * @generated
-	 */
-	TargetSectionAttribute getTargetAttribute();
-
-	/**
-	 * Sets the value of the '{@link pamtram.mapping.MappedAttributeValueExpanderType#getTargetAttribute <em>Target Attribute</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target Attribute</em>' reference.
-	 * @see #getTargetAttribute()
-	 * @generated
-	 */
-	void setTargetAttribute(TargetSectionAttribute value);
 
 	/**
 	 * Returns the value of the '<em><b>Modifiers</b></em>' reference list.

@@ -1267,6 +1267,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getMappedAttributeValueExpander_HintsToExpand() {
+		return (EReference)mappedAttributeValueExpanderEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getMappedAttributeValueExpanderType() {
 		return mappedAttributeValueExpanderTypeEClass;
 	}
@@ -1285,17 +1294,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMappedAttributeValueExpanderType_TargetAttribute() {
-		return (EReference)mappedAttributeValueExpanderTypeEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getMappedAttributeValueExpanderType_Modifiers() {
-		return (EReference)mappedAttributeValueExpanderTypeEClass.getEStructuralFeatures().get(2);
+		return (EReference)mappedAttributeValueExpanderTypeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1639,10 +1639,10 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		hintImporterMappingHintEClass = createEClass(HINT_IMPORTER_MAPPING_HINT);
 
 		mappedAttributeValueExpanderEClass = createEClass(MAPPED_ATTRIBUTE_VALUE_EXPANDER);
+		createEReference(mappedAttributeValueExpanderEClass, MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND);
 
 		mappedAttributeValueExpanderTypeEClass = createEClass(MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE);
 		createEReference(mappedAttributeValueExpanderTypeEClass, MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__SOURCE_ATTRIBUTE);
-		createEReference(mappedAttributeValueExpanderTypeEClass, MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__TARGET_ATTRIBUTE);
 		createEReference(mappedAttributeValueExpanderTypeEClass, MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__MODIFIERS);
 
 		mappedAttributeValuePrependerEClass = createEClass(MAPPED_ATTRIBUTE_VALUE_PREPENDER);
@@ -1911,10 +1911,10 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEClass(hintImporterMappingHintEClass, HintImporterMappingHint.class, "HintImporterMappingHint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(mappedAttributeValueExpanderEClass, MappedAttributeValueExpander.class, "MappedAttributeValueExpander", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMappedAttributeValueExpander_HintsToExpand(), this.getAttributeMapping(), null, "hintsToExpand", null, 1, -1, MappedAttributeValueExpander.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(mappedAttributeValueExpanderTypeEClass, MappedAttributeValueExpanderType.class, "MappedAttributeValueExpanderType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMappedAttributeValueExpanderType_SourceAttribute(), theMetamodelPackage.getSourceSectionAttribute(), null, "sourceAttribute", null, 1, 1, MappedAttributeValueExpanderType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMappedAttributeValueExpanderType_TargetAttribute(), theMetamodelPackage.getTargetSectionAttribute(), null, "targetAttribute", null, 1, 1, MappedAttributeValueExpanderType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMappedAttributeValueExpanderType_Modifiers(), this.getAttributeValueModifierSet(), null, "modifiers", null, 0, -1, MappedAttributeValueExpanderType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(mappedAttributeValuePrependerEClass, MappedAttributeValuePrepender.class, "MappedAttributeValuePrepender", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

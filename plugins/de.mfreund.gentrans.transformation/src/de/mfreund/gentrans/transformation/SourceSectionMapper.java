@@ -19,6 +19,7 @@ import pamtram.SourceSectionModel;
 import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.CalculatorMapping;
 import pamtram.mapping.CalculatorMappingSourceInterface;
+import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ComplexAttributeMapping;
 import pamtram.mapping.ComplexAttributeMappingSourceElement;
 import pamtram.mapping.ComplexAttributeMappingSourceInterface;
@@ -695,20 +696,58 @@ class SourceSectionMapper {
 																				// in
 																				// srcModel
 			// behave, depending on cardinality
-			if (reference.getEReference().getUpperBound() == 1
-					&& reference.getValuesGeneric().size() == 1) {
+			/*
+			 * There are cases in which modeling more than target values for a section than it can actually hold
+			 * might make sense depending on how the target's CardinalityType value was set.
+			 * Therefore we do not check the modeled references values at this point. 
+			 */
+			if (reference.getEReference().getUpperBound() == 1) {
 				EObject refTargetObj = (EObject) refTarget;
 				if (refTargetObj == null)
 					return null;
-				MappingInstanceStorage res = findMappingIterate(
-						refTargetObj,
-						(reference instanceof NonContainmentReference) || usedOkay
-						, hints,
-						connectionHints,globalVars ,reference.getValuesGeneric().get(0),
-						changedRefsAndHints, srcInstanceMap);
-				if(transformationAborted){
-					return null;
+				MappingInstanceStorage res = null;
+				boolean nonZeroCardSectionFound=false;
+
+				for(SourceSectionClass c : reference.getValuesGeneric()){
+					//check non-zero sections first (it doesn't make sense in this case to model ZERO_INFINITY sections, if there is one 
+					//section with a minimum cardinality of 1, but it can be handled
+					if(!c.getCardinality().equals(CardinalityType.ZERO_INFINITY)){
+						if(nonZeroCardSectionFound){//modeling error
+							consoleStream.println("Modeling error in source section: '" + srcSection.getContainer().getName() + "'"
+									+", subsection: '" + srcSection.getName() + "'. The Reference '" + reference.getName() + "'"
+									+ " points to a metamodel refernce, that can only hold one value but in the source section it references more than one Class with"
+									+ "a CardinalityType that is not ZERO_INFINITY." );
+						}
+						nonZeroCardSectionFound=true;
+						 res = findMappingIterate(
+									refTargetObj,
+									(reference instanceof NonContainmentReference) || usedOkay
+									, hints,
+									connectionHints,globalVars ,c,
+									changedRefsAndHints, srcInstanceMap);
+						 if(transformationAborted){
+								return null;
+						 }
+					}
 				}
+				
+				if(!nonZeroCardSectionFound){
+					for(SourceSectionClass c : reference.getValuesGeneric()){
+							 res = findMappingIterate(
+										refTargetObj,
+										(reference instanceof NonContainmentReference) || usedOkay
+										, hints,
+										connectionHints,globalVars ,c,
+										changedRefsAndHints, srcInstanceMap);
+								if(transformationAborted){
+									return null;
+								}
+						 if(res != null){
+							 break;
+						 }
+					}					
+				}
+
 				if (res != null) {
 					// success: combine refs and hints
 					if (reference instanceof ContainmentReference) {
@@ -720,15 +759,12 @@ class SourceSectionMapper {
 					// check for a cardinality hint (it doesn't really make
 					// sense to model this for a class connected to a reference
 					// with cardinality == 1 but it can be tolerated ) TODO
+
 				} else {
 					return null;
 				}
 
-			} else if (reference.getValuesGeneric().size() <= reference.getEReference()
-					.getUpperBound()
-					|| reference.getEReference().getUpperBound() == -1 // unbounded
-					|| reference.getEReference().getUpperBound() == -2)// unspecified
-			{
+			} else {//unbounded or unspecified
 				// cast refTarget to EList
 				@SuppressWarnings("unchecked")
 				LinkedList<EObject> refTargetL = new LinkedList<EObject>((EList<EObject>) refTarget);
@@ -928,8 +964,6 @@ class SourceSectionMapper {
 
 				//TODO (?) cardinality mapping
 
-			} else {// cardinality doesn't match ==> rule not applicable
-				return null;
 			}
 		}
 		

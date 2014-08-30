@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -18,7 +19,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
 import pamtram.mapping.AttributeMapping;
-import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
@@ -55,8 +55,50 @@ public class MappedAttributeValueExpanderItemProvider extends MappedAttributeVal
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addHintsToExpandPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Hints To Expand feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 */
+	protected void addHintsToExpandPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(new ItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_MappedAttributeValueExpander_hintsToExpand_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MappedAttributeValueExpander_hintsToExpand_feature", "_UI_MappedAttributeValueExpander_type"),
+				 MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null){
+
+					@Override
+					public Collection<?> getChoiceOfValues(Object object) {
+						//the parent Mapping Hint Group
+						MappingHintGroupImporter parent=(MappingHintGroupImporter) ((MappedAttributeValueExpander) object).eContainer();
+						
+						List<AttributeMapping> choices=new LinkedList<AttributeMapping>();
+						
+						if(parent.getHintGroup() != null){
+							for(MappingHint h : parent.getHintGroup().getMappingHints()){
+								if(h instanceof AttributeMapping){
+									choices.add((AttributeMapping) h);
+								}
+							}
+						}
+	
+						return choices;
+					}
+				
+			});
 	}
 
 	/**
@@ -116,49 +158,6 @@ public class MappedAttributeValueExpanderItemProvider extends MappedAttributeVal
 						
 						return choiceOfValues;
 					}
-			});
-	}
-
-	/**
-	 * This adds a property descriptor for the Target Attribute feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 */
-	@Override
-	protected void addTargetAttributePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MappedAttributeValueExpander_targetAttribute_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MappedAttributeValueExpander_targetAttribute_feature", "_UI_MappedAttributeValueExpander_type"),
-				 MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__TARGET_ATTRIBUTE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null){
-
-					@Override
-					public Collection<?> getChoiceOfValues(Object object) {
-
-						MappedAttributeValueExpander attrMapping=(MappedAttributeValueExpander) object;
-
-						// the target sections
-						ExportedMappingHintGroup expGroup=((MappingHintGroupImporter)attrMapping.eContainer()).getHintGroup();
-
-						List<Object> choiceOfValues = new ArrayList<Object>();
-						
-						for(MappingHint hint : expGroup.getMappingHints()){
-							if(hint instanceof AttributeMapping){
-								choiceOfValues.add(((AttributeMapping) hint).getTarget());
-							}
-						}
-						
-						return choiceOfValues;
-					}
-				
 			});
 	}
 

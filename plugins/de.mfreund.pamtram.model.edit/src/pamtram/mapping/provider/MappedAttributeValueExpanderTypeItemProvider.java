@@ -44,7 +44,6 @@ public class MappedAttributeValueExpanderTypeItemProvider extends HintImporterMa
 			super.getPropertyDescriptors(object);
 
 			addSourceAttributePropertyDescriptor(object);
-			addTargetAttributePropertyDescriptor(object);
 			addModifiersPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -64,28 +63,6 @@ public class MappedAttributeValueExpanderTypeItemProvider extends HintImporterMa
 				 getString("_UI_MappedAttributeValueExpanderType_sourceAttribute_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_MappedAttributeValueExpanderType_sourceAttribute_feature", "_UI_MappedAttributeValueExpanderType_type"),
 				 MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__SOURCE_ATTRIBUTE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Target Attribute feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTargetAttributePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MappedAttributeValueExpanderType_targetAttribute_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MappedAttributeValueExpanderType_targetAttribute_feature", "_UI_MappedAttributeValueExpanderType_type"),
-				 MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__TARGET_ATTRIBUTE,
 				 true,
 				 false,
 				 true,

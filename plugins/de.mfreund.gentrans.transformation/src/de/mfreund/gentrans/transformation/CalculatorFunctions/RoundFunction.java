@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation;
+package de.mfreund.gentrans.transformation.CalculatorFunctions;
 
 import de.congrace.exp4j.CustomFunction;
 import de.congrace.exp4j.InvalidCustomFunctionException;
@@ -9,7 +9,7 @@ import de.congrace.exp4j.InvalidCustomFunctionException;
  * @version 1.0
  *
  */
-class RoundFunction extends CustomFunction {
+public class RoundFunction extends CustomFunction {
 
 	/**
 	 * Constructor

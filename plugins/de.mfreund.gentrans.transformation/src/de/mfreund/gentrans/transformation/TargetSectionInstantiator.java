@@ -43,6 +43,9 @@ import pamtram.metamodel.TargetSectionReference;
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
 import de.congrace.exp4j.InvalidCustomFunctionException;
+import de.mfreund.gentrans.transformation.CalculatorFunctions.MaxFunction;
+import de.mfreund.gentrans.transformation.CalculatorFunctions.MinFunction;
+import de.mfreund.gentrans.transformation.CalculatorFunctions.RoundFunction;
 import de.mfreund.gentrans.transformation.selectors.ItemSelectorDialogRunner;
 
 /**

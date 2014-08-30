@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation;
+package de.mfreund.gentrans.transformation.CalculatorFunctions;
 
 import de.congrace.exp4j.CustomFunction;
 import de.congrace.exp4j.InvalidCustomFunctionException;

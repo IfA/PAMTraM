@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
+import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
-import pamtram.metamodel.SourceSectionNonContainmentReference;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionContainmentReference;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
@@ -45,8 +45,8 @@ public class ResultPageTreeViewerContentProvider implements ITreeContentProvider
     			for(SourceSectionClass c : ((pamtram.metamodel.SourceSectionContainmentReference) ref).getValue()) {
     				ret.add(ClassTreeItem.createClassTreeItem(c, ref));
     			}
-    		} else if(ref instanceof pamtram.metamodel.SourceSectionNonContainmentReference) {
-    			for(SourceSectionClass c : ((pamtram.metamodel.SourceSectionNonContainmentReference) ref).getValue()) {
+    		} else if(ref instanceof pamtram.metamodel.MetaModelSectionReference) {
+    			for(SourceSectionClass c : ((pamtram.metamodel.MetaModelSectionReference) ref).getValue()) {
     				ret.add(ClassTreeItem.createClassTreeItem(c, ref));
     			}
     		}else if(ref instanceof pamtram.metamodel.TargetSectionContainmentReference) {
@@ -83,8 +83,8 @@ public class ResultPageTreeViewerContentProvider implements ITreeContentProvider
     				if(!(((SourceSectionContainmentReference) ref).getValue().isEmpty())) {
     					return true;
     				}
-    			} else if(ref instanceof pamtram.metamodel.SourceSectionNonContainmentReference) {
-    				if(!(((SourceSectionNonContainmentReference) ref).getValue().isEmpty())) {
+    			} else if(ref instanceof pamtram.metamodel.MetaModelSectionReference) {
+    				if(!(((MetaModelSectionReference) ref).getValue().isEmpty())) {
     					return true;
     				}
     			} else  if(ref instanceof pamtram.metamodel.TargetSectionContainmentReference) {

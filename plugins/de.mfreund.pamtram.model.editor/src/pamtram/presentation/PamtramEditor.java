@@ -439,6 +439,13 @@ public class PamtramEditor
 				}
 			}
 		};
+		
+	/**
+	 * Adapter used to automatically determine attribute values and reference
+	 * targets when objects are created or changed.
+	 */
+	protected EContentAdapter pamtramContentAdapter = 
+			new PamtramContentAdapter();
 
 	/**
 	 * This listens for workspace changes.
@@ -1282,6 +1289,9 @@ public class PamtramEditor
 				return;
 			}
 			pamtram = (PAMTraM) resources.get(0).getContents().get(0);
+			
+			// Set the Pamtram content adapter.
+			pamtram.eAdapters().add(pamtramContentAdapter);
 						
 			// Create a page for the selection tree view.
 			//
@@ -1867,8 +1877,7 @@ public class PamtramEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void dispose() {
+	public void disposeGen() {
 		updateProblemIndication = false;
 
 		ResourcesPlugin.getWorkspace().removeResourceChangeListener(resourceChangeListener);
@@ -1890,6 +1899,23 @@ public class PamtramEditor
 		}
 
 		super.dispose();
+	}
+	
+	/**
+	 * Dispose the PamtramContentAdapter and call the
+	 * original dispose() function.
+	 */
+	@Override
+	public void dispose() {
+		
+		// Dispose the Pamtram content adapter.
+		pamtram.eAdapters().remove(pamtramContentAdapter);
+		
+		// Dispose the problem indication adapter.
+		editingDomain.getResourceSet().eAdapters().remove(
+				problemIndicationAdapter);
+		
+		disposeGen();
 	}
 
 	/**

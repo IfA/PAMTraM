@@ -19,7 +19,6 @@ import pamtram.SourceSectionModel;
 import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.CalculatorMapping;
 import pamtram.mapping.CalculatorMappingSourceInterface;
-import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ComplexAttributeMapping;
 import pamtram.mapping.ComplexAttributeMappingSourceElement;
 import pamtram.mapping.ComplexAttributeMappingSourceInterface;
@@ -49,7 +48,7 @@ import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.ContainmentReference;
-import pamtram.metamodel.NonContainmentReference;
+import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
@@ -721,7 +720,7 @@ class SourceSectionMapper {
 						nonZeroCardSectionFound=true;
 						 res = findMappingIterate(
 									refTargetObj,
-									(reference instanceof NonContainmentReference) || usedOkay
+									(reference instanceof MetaModelSectionReference) || usedOkay
 									, hints,
 									connectionHints,globalVars ,c,
 									changedRefsAndHints, srcInstanceMap);
@@ -735,7 +734,7 @@ class SourceSectionMapper {
 					for(SourceSectionClass c : reference.getValuesGeneric()){
 							 res = findMappingIterate(
 										refTargetObj,
-										(reference instanceof NonContainmentReference) || usedOkay
+										(reference instanceof MetaModelSectionReference) || usedOkay
 										, hints,
 										connectionHints,globalVars ,c,
 										changedRefsAndHints, srcInstanceMap);
@@ -809,7 +808,7 @@ class SourceSectionMapper {
 					for (SourceSectionClass val : reference.getValuesGeneric()) {
 						MappingInstanceStorage res = findMappingIterate(
 								rt,
-								(reference instanceof NonContainmentReference) || usedOkay,
+								(reference instanceof MetaModelSectionReference) || usedOkay,
 								hints, connectionHints, globalVars, val,
 								changedRefsAndHints, srcInstanceMap);
 						if(transformationAborted){

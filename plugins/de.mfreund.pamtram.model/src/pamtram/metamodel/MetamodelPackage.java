@@ -992,14 +992,14 @@ public interface MetamodelPackage extends EPackage {
 	int SOURCE_SECTION_CONTAINMENT_REFERENCE_OPERATION_COUNT = CONTAINMENT_REFERENCE_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link pamtram.metamodel.impl.SourceSectionNonContainmentReferenceImpl <em>Source Section Non Containment Reference</em>}' class.
+	 * The meta object id for the '{@link pamtram.metamodel.impl.MetaModelSectionReferenceImpl <em>Meta Model Section Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.metamodel.impl.SourceSectionNonContainmentReferenceImpl
-	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getSourceSectionNonContainmentReference()
+	 * @see pamtram.metamodel.impl.MetaModelSectionReferenceImpl
+	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getMetaModelSectionReference()
 	 * @generated
 	 */
-	int SOURCE_SECTION_NON_CONTAINMENT_REFERENCE = 12;
+	int META_MODEL_SECTION_REFERENCE = 12;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1008,7 +1008,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_NON_CONTAINMENT_REFERENCE__NAME = NON_CONTAINMENT_REFERENCE__NAME;
+	int META_MODEL_SECTION_REFERENCE__NAME = SOURCE_SECTION_REFERENCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>EReference</b></em>' reference.
@@ -1017,7 +1017,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_NON_CONTAINMENT_REFERENCE__EREFERENCE = NON_CONTAINMENT_REFERENCE__EREFERENCE;
+	int META_MODEL_SECTION_REFERENCE__EREFERENCE = SOURCE_SECTION_REFERENCE__EREFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
@@ -1026,7 +1026,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_NON_CONTAINMENT_REFERENCE__OWNING_CLASS = NON_CONTAINMENT_REFERENCE_FEATURE_COUNT + 0;
+	int META_MODEL_SECTION_REFERENCE__OWNING_CLASS = SOURCE_SECTION_REFERENCE__OWNING_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' reference list.
@@ -1035,16 +1035,16 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_NON_CONTAINMENT_REFERENCE__VALUE = NON_CONTAINMENT_REFERENCE_FEATURE_COUNT + 1;
+	int META_MODEL_SECTION_REFERENCE__VALUE = SOURCE_SECTION_REFERENCE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Source Section Non Containment Reference</em>' class.
+	 * The number of structural features of the '<em>Meta Model Section Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_NON_CONTAINMENT_REFERENCE_FEATURE_COUNT = NON_CONTAINMENT_REFERENCE_FEATURE_COUNT + 2;
+	int META_MODEL_SECTION_REFERENCE_FEATURE_COUNT = SOURCE_SECTION_REFERENCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -1053,7 +1053,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_NON_CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION = NON_CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION;
+	int META_MODEL_SECTION_REFERENCE___GET_CONTAINING_SECTION = SOURCE_SECTION_REFERENCE___GET_CONTAINING_SECTION;
 
 	/**
 	 * The operation id for the '<em>Get Values Generic</em>' operation.
@@ -1062,16 +1062,16 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_NON_CONTAINMENT_REFERENCE___GET_VALUES_GENERIC = NON_CONTAINMENT_REFERENCE_OPERATION_COUNT + 0;
+	int META_MODEL_SECTION_REFERENCE___GET_VALUES_GENERIC = SOURCE_SECTION_REFERENCE___GET_VALUES_GENERIC;
 
 	/**
-	 * The number of operations of the '<em>Source Section Non Containment Reference</em>' class.
+	 * The number of operations of the '<em>Meta Model Section Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_NON_CONTAINMENT_REFERENCE_OPERATION_COUNT = NON_CONTAINMENT_REFERENCE_OPERATION_COUNT + 1;
+	int META_MODEL_SECTION_REFERENCE_OPERATION_COUNT = SOURCE_SECTION_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.metamodel.impl.AttributeImpl <em>Attribute</em>}' class.
@@ -2270,25 +2270,25 @@ public interface MetamodelPackage extends EPackage {
 	EReference getSourceSectionContainmentReference_Value();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.metamodel.SourceSectionNonContainmentReference <em>Source Section Non Containment Reference</em>}'.
+	 * Returns the meta object for class '{@link pamtram.metamodel.MetaModelSectionReference <em>Meta Model Section Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Source Section Non Containment Reference</em>'.
-	 * @see pamtram.metamodel.SourceSectionNonContainmentReference
+	 * @return the meta object for class '<em>Meta Model Section Reference</em>'.
+	 * @see pamtram.metamodel.MetaModelSectionReference
 	 * @generated
 	 */
-	EClass getSourceSectionNonContainmentReference();
+	EClass getMetaModelSectionReference();
 
 	/**
-	 * Returns the meta object for the reference list '{@link pamtram.metamodel.SourceSectionNonContainmentReference#getValue <em>Value</em>}'.
+	 * Returns the meta object for the reference list '{@link pamtram.metamodel.MetaModelSectionReference#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Value</em>'.
-	 * @see pamtram.metamodel.SourceSectionNonContainmentReference#getValue()
-	 * @see #getSourceSectionNonContainmentReference()
+	 * @see pamtram.metamodel.MetaModelSectionReference#getValue()
+	 * @see #getMetaModelSectionReference()
 	 * @generated
 	 */
-	EReference getSourceSectionNonContainmentReference_Value();
+	EReference getMetaModelSectionReference_Value();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.Attribute <em>Attribute</em>}'.
@@ -2854,14 +2854,14 @@ public interface MetamodelPackage extends EPackage {
 		EReference SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE = eINSTANCE.getSourceSectionContainmentReference_Value();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.metamodel.impl.SourceSectionNonContainmentReferenceImpl <em>Source Section Non Containment Reference</em>}' class.
+		 * The meta object literal for the '{@link pamtram.metamodel.impl.MetaModelSectionReferenceImpl <em>Meta Model Section Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.metamodel.impl.SourceSectionNonContainmentReferenceImpl
-		 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getSourceSectionNonContainmentReference()
+		 * @see pamtram.metamodel.impl.MetaModelSectionReferenceImpl
+		 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getMetaModelSectionReference()
 		 * @generated
 		 */
-		EClass SOURCE_SECTION_NON_CONTAINMENT_REFERENCE = eINSTANCE.getSourceSectionNonContainmentReference();
+		EClass META_MODEL_SECTION_REFERENCE = eINSTANCE.getMetaModelSectionReference();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' reference list feature.
@@ -2869,7 +2869,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SOURCE_SECTION_NON_CONTAINMENT_REFERENCE__VALUE = eINSTANCE.getSourceSectionNonContainmentReference_Value();
+		EReference META_MODEL_SECTION_REFERENCE__VALUE = eINSTANCE.getMetaModelSectionReference_Value();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.AttributeImpl <em>Attribute</em>}' class.

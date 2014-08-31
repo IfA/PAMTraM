@@ -5,7 +5,6 @@ package pamtram.metamodel.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
-
 import pamtram.NamedElement;
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.Attribute;
@@ -16,6 +15,7 @@ import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.EndingMatcher;
 import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.MetaModelElement;
+import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.Reference;
@@ -23,7 +23,6 @@ import pamtram.metamodel.RegExMatcher;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
-import pamtram.metamodel.SourceSectionNonContainmentReference;
 import pamtram.metamodel.SourceSectionReference;
 import pamtram.metamodel.SubstringMatcher;
 import pamtram.metamodel.TargetSectionAttribute;
@@ -200,14 +199,13 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.SOURCE_SECTION_NON_CONTAINMENT_REFERENCE: {
-				SourceSectionNonContainmentReference sourceSectionNonContainmentReference = (SourceSectionNonContainmentReference)theEObject;
-				T result = caseSourceSectionNonContainmentReference(sourceSectionNonContainmentReference);
-				if (result == null) result = caseNonContainmentReference(sourceSectionNonContainmentReference);
-				if (result == null) result = caseSourceSectionReference(sourceSectionNonContainmentReference);
-				if (result == null) result = caseReference(sourceSectionNonContainmentReference);
-				if (result == null) result = caseMetaModelElement(sourceSectionNonContainmentReference);
-				if (result == null) result = caseNamedElement(sourceSectionNonContainmentReference);
+			case MetamodelPackage.META_MODEL_SECTION_REFERENCE: {
+				MetaModelSectionReference metaModelSectionReference = (MetaModelSectionReference)theEObject;
+				T result = caseMetaModelSectionReference(metaModelSectionReference);
+				if (result == null) result = caseSourceSectionReference(metaModelSectionReference);
+				if (result == null) result = caseReference(metaModelSectionReference);
+				if (result == null) result = caseMetaModelElement(metaModelSectionReference);
+				if (result == null) result = caseNamedElement(metaModelSectionReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -501,17 +499,17 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Source Section Non Containment Reference</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Meta Model Section Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Source Section Non Containment Reference</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Meta Model Section Reference</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSourceSectionNonContainmentReference(SourceSectionNonContainmentReference object) {
+	public T caseMetaModelSectionReference(MetaModelSectionReference object) {
 		return null;
 	}
 

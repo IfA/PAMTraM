@@ -9,10 +9,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
-import pamtram.metamodel.SourceSectionNonContainmentReference;
 import pamtram.metamodel.SourceSectionReference;
 
 /**
@@ -64,14 +64,14 @@ public abstract class SourceSectionReferenceImpl extends ReferenceImpl implement
 	 * @generated
 	 */
 	public EList<SourceSectionClass> getValuesGeneric() {
-		EList<SourceSectionClass> secs= new org.eclipse.emf.common.util.BasicEList<SourceSectionClass>();
-		if(this instanceof SourceSectionContainmentReference){
-		 secs.addAll(((SourceSectionContainmentReference) this).getValue());
-		
-		} else if(this instanceof SourceSectionNonContainmentReference){
-		 secs.addAll(((SourceSectionNonContainmentReference) this).getValue());
-		}
-		return secs;
+						EList<SourceSectionClass> secs= new org.eclipse.emf.common.util.BasicEList<SourceSectionClass>();
+						if(this instanceof SourceSectionContainmentReference){
+						 secs.addAll(((SourceSectionContainmentReference) this).getValue());
+						
+						} else if(this instanceof MetaModelSectionReference){
+						 secs.addAll(((MetaModelSectionReference) this).getValue());
+						}
+						return secs;
 	}
 
 	/**

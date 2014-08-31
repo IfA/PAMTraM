@@ -6,7 +6,6 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-
 import pamtram.NamedElement;
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.Attribute;
@@ -17,6 +16,7 @@ import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.EndingMatcher;
 import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.MetaModelElement;
+import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.Reference;
@@ -24,7 +24,6 @@ import pamtram.metamodel.RegExMatcher;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
-import pamtram.metamodel.SourceSectionNonContainmentReference;
 import pamtram.metamodel.SourceSectionReference;
 import pamtram.metamodel.SubstringMatcher;
 import pamtram.metamodel.TargetSectionAttribute;
@@ -139,8 +138,8 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 				return createSourceSectionContainmentReferenceAdapter();
 			}
 			@Override
-			public Adapter caseSourceSectionNonContainmentReference(SourceSectionNonContainmentReference object) {
-				return createSourceSectionNonContainmentReferenceAdapter();
+			public Adapter caseMetaModelSectionReference(MetaModelSectionReference object) {
+				return createMetaModelSectionReferenceAdapter();
 			}
 			@Override
 			public Adapter caseAttribute(Attribute object) {
@@ -383,16 +382,16 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.SourceSectionNonContainmentReference <em>Source Section Non Containment Reference</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.MetaModelSectionReference <em>Meta Model Section Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.metamodel.SourceSectionNonContainmentReference
+	 * @see pamtram.metamodel.MetaModelSectionReference
 	 * @generated
 	 */
-	public Adapter createSourceSectionNonContainmentReferenceAdapter() {
+	public Adapter createMetaModelSectionReferenceAdapter() {
 		return null;
 	}
 

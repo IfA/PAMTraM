@@ -8,20 +8,19 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.BeginningMatcher;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.EndingMatcher;
 import pamtram.metamodel.EqualityMatcher;
+import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.RegExMatcher;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
-import pamtram.metamodel.SourceSectionNonContainmentReference;
 import pamtram.metamodel.SubstringMatcher;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionContainmentReference;
@@ -77,7 +76,7 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			case MetamodelPackage.TARGET_SECTION_CONTAINMENT_REFERENCE: return createTargetSectionContainmentReference();
 			case MetamodelPackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE: return createTargetSectionNonContainmentReference();
 			case MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE: return createSourceSectionContainmentReference();
-			case MetamodelPackage.SOURCE_SECTION_NON_CONTAINMENT_REFERENCE: return createSourceSectionNonContainmentReference();
+			case MetamodelPackage.META_MODEL_SECTION_REFERENCE: return createMetaModelSectionReference();
 			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE: return createSourceSectionAttribute();
 			case MetamodelPackage.ACTUAL_ATTRIBUTE: return createActualAttribute();
 			case MetamodelPackage.VIRTUAL_ATTRIBUTE: return createVirtualAttribute();
@@ -180,9 +179,9 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionNonContainmentReference createSourceSectionNonContainmentReference() {
-		SourceSectionNonContainmentReferenceImpl sourceSectionNonContainmentReference = new SourceSectionNonContainmentReferenceImpl();
-		return sourceSectionNonContainmentReference;
+	public MetaModelSectionReference createMetaModelSectionReference() {
+		MetaModelSectionReferenceImpl metaModelSectionReference = new MetaModelSectionReferenceImpl();
+		return metaModelSectionReference;
 	}
 
 	/**

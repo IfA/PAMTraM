@@ -43,7 +43,7 @@ public interface SourceSectionReference extends Reference {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<SourceSectionClass> secs= new org.eclipse.emf.common.util.BasicEList<SourceSectionClass>();\nif(this instanceof SourceSectionContainmentReference){\n secs.addAll(((SourceSectionContainmentReference) this).getValue());\n\n} else if(this instanceof SourceSectionNonContainmentReference){\n secs.addAll(((SourceSectionNonContainmentReference) this).getValue());\n}\nreturn secs;'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='\t\t\t\tEList<SourceSectionClass> secs= new org.eclipse.emf.common.util.BasicEList<SourceSectionClass>();\n\t\t\t\tif(this instanceof SourceSectionContainmentReference){\n\t\t\t\t secs.addAll(((SourceSectionContainmentReference) this).getValue());\n\t\t\t\t\n\t\t\t\t} else if(this instanceof MetaModelSectionReference){\n\t\t\t\t secs.addAll(((MetaModelSectionReference) this).getValue());\n\t\t\t\t}\n\t\t\t\treturn secs;'"
 	 * @generated
 	 */
 	EList<SourceSectionClass> getValuesGeneric();

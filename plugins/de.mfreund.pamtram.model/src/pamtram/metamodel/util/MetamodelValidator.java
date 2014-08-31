@@ -3,13 +3,11 @@
 package pamtram.metamodel.util;
 
 import java.util.Map;
-
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
-
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.AttributeValueConstraint;
@@ -21,6 +19,7 @@ import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.EndingMatcher;
 import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.MetaModelElement;
+import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.Reference;
@@ -28,7 +27,6 @@ import pamtram.metamodel.RegExMatcher;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
-import pamtram.metamodel.SourceSectionNonContainmentReference;
 import pamtram.metamodel.SourceSectionReference;
 import pamtram.metamodel.SubstringMatcher;
 import pamtram.metamodel.TargetSectionAttribute;
@@ -134,8 +132,8 @@ public class MetamodelValidator extends EObjectValidator {
 				return validateTargetSectionNonContainmentReference((TargetSectionNonContainmentReference)value, diagnostics, context);
 			case MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE:
 				return validateSourceSectionContainmentReference((SourceSectionContainmentReference)value, diagnostics, context);
-			case MetamodelPackage.SOURCE_SECTION_NON_CONTAINMENT_REFERENCE:
-				return validateSourceSectionNonContainmentReference((SourceSectionNonContainmentReference)value, diagnostics, context);
+			case MetamodelPackage.META_MODEL_SECTION_REFERENCE:
+				return validateMetaModelSectionReference((MetaModelSectionReference)value, diagnostics, context);
 			case MetamodelPackage.ATTRIBUTE:
 				return validateAttribute((Attribute)value, diagnostics, context);
 			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE:
@@ -546,18 +544,17 @@ public class MetamodelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSourceSectionNonContainmentReference(SourceSectionNonContainmentReference sourceSectionNonContainmentReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(sourceSectionNonContainmentReference, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(sourceSectionNonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(sourceSectionNonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(sourceSectionNonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(sourceSectionNonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(sourceSectionNonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(sourceSectionNonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(sourceSectionNonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(sourceSectionNonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateReference_eReferenceMatchesParentEClass(sourceSectionNonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateNonContainmentReference_eReferenceIsNonContainment(sourceSectionNonContainmentReference, diagnostics, context);
+	public boolean validateMetaModelSectionReference(MetaModelSectionReference metaModelSectionReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(metaModelSectionReference, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(metaModelSectionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(metaModelSectionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(metaModelSectionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(metaModelSectionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(metaModelSectionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(metaModelSectionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(metaModelSectionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(metaModelSectionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateReference_eReferenceMatchesParentEClass(metaModelSectionReference, diagnostics, context);
 		return result;
 	}
 

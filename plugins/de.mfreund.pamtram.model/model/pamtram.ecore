@@ -126,7 +126,7 @@
         eSuperTypes="#//metamodel/Reference">
       <eOperations name="getValuesGeneric" upperBound="-1" eType="#//metamodel/SourceSectionClass">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="EList&lt;SourceSectionClass> secs= new org.eclipse.emf.common.util.BasicEList&lt;SourceSectionClass>();&#xA;if(this instanceof SourceSectionContainmentReference){&#xA; secs.addAll(((SourceSectionContainmentReference) this).getValue());&#xA;&#xA;} else if(this instanceof SourceSectionNonContainmentReference){&#xA; secs.addAll(((SourceSectionNonContainmentReference) this).getValue());&#xA;}&#xA;return secs;"/>
+          <details key="body" value="&#x9;&#x9;&#x9;&#x9;EList&lt;SourceSectionClass> secs= new org.eclipse.emf.common.util.BasicEList&lt;SourceSectionClass>();&#xA;&#x9;&#x9;&#x9;&#x9;if(this instanceof SourceSectionContainmentReference){&#xA;&#x9;&#x9;&#x9;&#x9; secs.addAll(((SourceSectionContainmentReference) this).getValue());&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;} else if(this instanceof MetaModelSectionReference){&#xA;&#x9;&#x9;&#x9;&#x9; secs.addAll(((MetaModelSectionReference) this).getValue());&#xA;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;&#x9;return secs;"/>
         </eAnnotations>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="owningClass" lowerBound="1"
@@ -157,8 +157,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="value" upperBound="-1"
           eType="#//metamodel/SourceSectionClass" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="SourceSectionNonContainmentReference"
-        eSuperTypes="#//metamodel/NonContainmentReference #//metamodel/SourceSectionReference">
+    <eClassifiers xsi:type="ecore:EClass" name="MetaModelSectionReference" eSuperTypes="#//metamodel/SourceSectionReference">
       <eStructuralFeatures xsi:type="ecore:EReference" name="value" upperBound="-1"
           eType="#//metamodel/SourceSectionClass"/>
     </eClassifiers>

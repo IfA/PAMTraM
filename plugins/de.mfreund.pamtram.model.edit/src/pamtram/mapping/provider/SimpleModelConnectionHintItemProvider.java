@@ -24,7 +24,7 @@ import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.SimpleModelConnectionHint;
 import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.SourceSectionNonContainmentReference;
+import pamtram.metamodel.MetaModelSectionReference;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.SimpleModelConnectionHint} object.
@@ -121,9 +121,9 @@ public class SimpleModelConnectionHintItemProvider extends ModelConnectionHintIt
 								EObject next = it.next();
 								if(next instanceof pamtram.metamodel.Attribute) {
 									choiceOfValues.add(next);
-								} else if(next instanceof SourceSectionNonContainmentReference){
+								} else if(next instanceof MetaModelSectionReference){
 									List<SourceSectionClass> vals=new ArrayList<SourceSectionClass>();
-									vals.addAll(((SourceSectionNonContainmentReference) next).getValue());
+									vals.addAll(((MetaModelSectionReference) next).getValue());
 									vals.removeAll(scanned);
 									sectionsToScan.addAll(vals);
 								}

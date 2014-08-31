@@ -186,26 +186,26 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.SourceSectionNonContainmentReference} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.MetaModelSectionReference} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SourceSectionNonContainmentReferenceItemProvider sourceSectionNonContainmentReferenceItemProvider;
+	protected MetaModelSectionReferenceItemProvider metaModelSectionReferenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.metamodel.SourceSectionNonContainmentReference}.
+	 * This creates an adapter for a {@link pamtram.metamodel.MetaModelSectionReference}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createSourceSectionNonContainmentReferenceAdapter() {
-		if (sourceSectionNonContainmentReferenceItemProvider == null) {
-			sourceSectionNonContainmentReferenceItemProvider = new SourceSectionNonContainmentReferenceItemProvider(this);
+	public Adapter createMetaModelSectionReferenceAdapter() {
+		if (metaModelSectionReferenceItemProvider == null) {
+			metaModelSectionReferenceItemProvider = new MetaModelSectionReferenceItemProvider(this);
 		}
 
-		return sourceSectionNonContainmentReferenceItemProvider;
+		return metaModelSectionReferenceItemProvider;
 	}
 
 	/**
@@ -496,7 +496,7 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 		if (targetSectionContainmentReferenceItemProvider != null) targetSectionContainmentReferenceItemProvider.dispose();
 		if (targetSectionNonContainmentReferenceItemProvider != null) targetSectionNonContainmentReferenceItemProvider.dispose();
 		if (sourceSectionContainmentReferenceItemProvider != null) sourceSectionContainmentReferenceItemProvider.dispose();
-		if (sourceSectionNonContainmentReferenceItemProvider != null) sourceSectionNonContainmentReferenceItemProvider.dispose();
+		if (metaModelSectionReferenceItemProvider != null) metaModelSectionReferenceItemProvider.dispose();
 		if (sourceSectionAttributeItemProvider != null) sourceSectionAttributeItemProvider.dispose();
 		if (actualAttributeItemProvider != null) actualAttributeItemProvider.dispose();
 		if (virtualAttributeItemProvider != null) virtualAttributeItemProvider.dispose();

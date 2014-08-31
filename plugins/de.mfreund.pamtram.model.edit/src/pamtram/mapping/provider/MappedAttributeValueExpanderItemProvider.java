@@ -24,8 +24,8 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingPackage;
+import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.SourceSectionNonContainmentReference;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.MappedAttributeValueExpander} object.
@@ -147,9 +147,9 @@ public class MappedAttributeValueExpanderItemProvider extends MappedAttributeVal
 								EObject next = it.next();
 								if(next instanceof pamtram.metamodel.Attribute) {
 									choiceOfValues.add(next);
-								} else if(next instanceof SourceSectionNonContainmentReference){
+								} else if(next instanceof MetaModelSectionReference){
 									List<SourceSectionClass> vals=new ArrayList<SourceSectionClass>();
-									vals.addAll(((SourceSectionNonContainmentReference) next).getValue());
+									vals.addAll(((MetaModelSectionReference) next).getValue());
 									vals.removeAll(scanned);
 									sectionsToScan.addAll(vals);
 								}

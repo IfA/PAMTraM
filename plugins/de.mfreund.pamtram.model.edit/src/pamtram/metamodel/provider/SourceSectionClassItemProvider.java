@@ -165,7 +165,7 @@ public class SourceSectionClassItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(MetamodelPackage.Literals.SOURCE_SECTION_CLASS__REFERENCES,
-				 MetamodelFactory.eINSTANCE.createSourceSectionNonContainmentReference()));
+				 MetamodelFactory.eINSTANCE.createMetaModelSectionReference()));
 
 		newChildDescriptors.add
 			(createChildParameter

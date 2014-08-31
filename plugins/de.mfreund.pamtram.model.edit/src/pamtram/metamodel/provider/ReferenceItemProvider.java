@@ -13,7 +13,9 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
+import pamtram.metamodel.Class;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.Reference;
 
@@ -55,11 +57,10 @@ public class ReferenceItemProvider
 	 * This adds a property descriptor for the EReference feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	protected void addEReferencePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+			(new ItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Reference_eReference_feature"),
@@ -70,7 +71,19 @@ public class ReferenceItemProvider
 				 true,
 				 null,
 				 null,
-				 null));
+				 null){
+
+					@Override
+					public Collection<?> getChoiceOfValues(Object object) {
+			        	
+			        	// make sure that only those references can be selected that belong to the parent eClass
+			        	pamtram.metamodel.Class parent = (Class) ((Reference) object).eContainer();
+			        	return parent.getEClass().getEAllReferences(); 
+
+					}
+				
+				
+			});
 	}
 
 	/**

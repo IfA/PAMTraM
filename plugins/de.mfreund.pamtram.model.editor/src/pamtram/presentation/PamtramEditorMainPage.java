@@ -55,7 +55,7 @@ import pamtram.metamodel.Attribute;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.SourceSectionNonContainmentReference;
+import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
@@ -171,9 +171,9 @@ public class PamtramEditorMainPage extends SashForm {
 			public void widgetSelected(SelectionEvent e) {
 				editor.setCurrentViewer(sourceViewer);
 				
-				if(((TreeItem) e.item).getData() instanceof SourceSectionNonContainmentReference) {
+				if(((TreeItem) e.item).getData() instanceof MetaModelSectionReference) {
 					
-					SourceSectionNonContainmentReference reference = (SourceSectionNonContainmentReference) ((TreeItem) e.item).getData();
+					MetaModelSectionReference reference = (MetaModelSectionReference) ((TreeItem) e.item).getData();
 					
 					EList<pamtram.metamodel.SourceSectionClass> referencedElements = reference.getValue();
 					
@@ -652,9 +652,9 @@ public class PamtramEditorMainPage extends SashForm {
 				
 				// if a non containment reference has been selected while holding down the
 				// control key, jump to the referenced class 
-				if(((TreeItem) e.item).getData() instanceof SourceSectionNonContainmentReference) {
+				if(((TreeItem) e.item).getData() instanceof MetaModelSectionReference) {
 					
-					SourceSectionNonContainmentReference reference = (SourceSectionNonContainmentReference) ((TreeItem) e.item).getData();
+					MetaModelSectionReference reference = (MetaModelSectionReference) ((TreeItem) e.item).getData();
 					
 					EList<pamtram.metamodel.SourceSectionClass> referencedElements = reference.getValue();
 					

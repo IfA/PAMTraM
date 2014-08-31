@@ -6,6 +6,7 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
@@ -299,10 +300,10 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 			sourceModelViewer.setInput(null);
 			return;
 		}
-
+		 
 		// the selected file
-		String modelFile = project.getFullPath().toString() + Path.SEPARATOR + 
-				"Source" + Path.SEPARATOR + sourceModelCombo.getText();
+		String modelFile = ResourcesPlugin.getWorkspace().getRoot().getProject(project.getName()).getLocation().toOSString() +
+				Path.SEPARATOR + "Source" + Path.SEPARATOR + sourceModelCombo.getText();
 		
 		// if an xml source file has been selected, 
 		// add the file extension to registry 

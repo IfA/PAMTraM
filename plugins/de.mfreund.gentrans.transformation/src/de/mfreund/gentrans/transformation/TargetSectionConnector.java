@@ -203,7 +203,7 @@ class TargetSectionConnector {
 							// TODO check limited capacity
 							// TODO check type of referenced object
 						
-						String targetValStr=contInst.getAttributeValue(((ActualAttribute) conAttr.getTargetAttribute()));
+						String targetValStr=contInst.getAttributeValue(conAttr.getTargetAttribute());
 						
 							if (targetValStr != null) {
 								if (modifiedHintVal.equals(targetValStr)) {

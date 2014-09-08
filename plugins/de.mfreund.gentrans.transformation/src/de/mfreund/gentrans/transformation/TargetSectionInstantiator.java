@@ -47,6 +47,7 @@ import de.mfreund.gentrans.transformation.CalculatorFunctions.MaxFunction;
 import de.mfreund.gentrans.transformation.CalculatorFunctions.MinFunction;
 import de.mfreund.gentrans.transformation.CalculatorFunctions.RoundFunction;
 import de.mfreund.gentrans.transformation.selectors.ItemSelectorDialogRunner;
+import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunner;
 
 /**
  * Class for instantiating target model sections using the hints supplied by MappingInstancestorages.
@@ -528,7 +529,10 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 						if (h instanceof MappingInstanceSelector) {
 							MappingInstanceSelector hSel = (MappingInstanceSelector) h;
 							if (hSel.getAffectedReference().equals(ref)) {// hint for current ref found
-								if (hSel.getMatcher() instanceof AttributeMatcher) {// handle hint according to matcher
+								/*
+								 * handle AttributeMatcher
+								 */
+								if (hSel.getMatcher() instanceof AttributeMatcher) {
 									AttributeMatcher matcher = (AttributeMatcher) hSel.getMatcher();
 									hintFound = true;
 									// now search for target attributes
@@ -555,13 +559,13 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 										newHintValues = hintValues.get(h);
 										// newHintValues.addAll(hintValues.get(h));
 									} else {
-										// TODO find a sensible way to throw
-										// this error
-										consoleStream.println("Tschaka "
+										consoleStream.println("There was a size mismatch while trying to set a non-containment reference, using the Hint "
 												+ h.getName()
+												+ ". There where "
 												+ instancesToConsider.size()
-												+ " "
-												+ hintValues.get(h).size() +"\n"+ hintValues.get(h)+ "\n" + instancesToConsider);
+												+ " instances to be connected but "
+												+ hintValues.get(h).size() +" MappingHint values. The output below"
+												+ " shows the hint values and the source instances for the reference:\n"+ hintValues.get(h)+ "\n" + instancesToConsider);
 									}
 									
 									for (Object attrVal : newHintValues) {
@@ -586,8 +590,6 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 										LinkedHashMap<String, EObjectTransformationHelper> fittingVals = new LinkedHashMap<String, EObjectTransformationHelper>();
 										for (EObjectTransformationHelper targetInst : targetInstances) {
 											// get Attribute value
-												// TODO check limited capacity
-												// TODO check type of referenced object
 												String targetValStr=targetInst.getAttributeValue(matcher.getTargetAttribute());
 												if (targetValStr != null) {
 													if (targetValStr.equals(attrValStr)) {
@@ -600,11 +602,12 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 										// select targetInst
 										if (fittingVals.keySet().size() == 1) {
 											setReference(ref,fittingVals.values().iterator().next().getEObject(),srcInst.getEObject());
-										} else if (fittingVals.keySet().size() > 1) {// let user decide											
+										} else if (fittingVals.keySet().size() > 1) {// let user decide			
+											// TODO check limited capacity											
 											  ItemSelectorDialogRunner dialog=new  ItemSelectorDialogRunner(
 											  "The MappingInstanceSelector '" +
-											  h.getName() +
-											  "' has an AttributeMatcher that points to a non-unique Attribute. "
+											  h.getName() + " of Mapping" + mappingName + "(Group: " + group.getName()  
+											  + ")' has a Matcher that points to a target element with more than one instance. "
 											  +
 											  "Please choose to which element the Reference '"
 											  + ref.getName() +
@@ -625,6 +628,9 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 										}
 									}
 									
+								/*
+								 * Handle ClassMatcher
+								 */
 								} else if (hSel.getMatcher() instanceof ClassMatcher) {
 									hintFound=true;
 									if (((ClassMatcher) hSel.getMatcher()).getTargetClass() != null) {// was the matcher modeled correctly?
@@ -640,13 +646,13 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 											LinkedList<String> targetSectionChoices = new LinkedList<String>();
 											LinkedList<LinkedList<String>> instanceChoices = new LinkedList<LinkedList<String>>();
 				
-											TargetSectionClass v =((ClassMatcher) hSel.getMatcher()).getTargetClass();
+											TargetSectionClass matcherTargetClass =((ClassMatcher) hSel.getMatcher()).getTargetClass();
 				
-												LinkedList<EObjectTransformationHelper> insts = targetSectionRegistry.getFlattenedPamtramClassInstances(v);//select potential instances globally
+												LinkedList<EObjectTransformationHelper> insts = targetSectionRegistry.getFlattenedPamtramClassInstances(matcherTargetClass);//select potential instances globally
 				
 												if (insts.size() > 0) {
-													targetSectionsToConsider.put(v.toString(), v);
-													targetSectionChoices.add(v.toString());
+													targetSectionsToConsider.put(matcherTargetClass.toString(), matcherTargetClass);
+													targetSectionChoices.add(matcherTargetClass.toString());
 													LinkedList<String> choices = new LinkedList<String>();
 													for (EObjectTransformationHelper i : insts) {
 														targetInstancesToConsider.put(i.toString(),i);
@@ -654,19 +660,37 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 													}
 													instanceChoices.add(choices);
 												}
-				
-
-				
+						
 												EObjectTransformationHelper targetInstance = null;
 											if (targetInstancesToConsider.values().size() == 1) {
 												targetInstance = targetInstancesToConsider.values()
 														.iterator().next();
 											} else if (targetInstancesToConsider.values().size() > 1) {
 												// Dialog
-												consoleStream.println("Dialog? " + ref.getName());
+												  ItemSelectorDialogRunner dialog=new  ItemSelectorDialogRunner(
+												  "The MappingInstanceSelector '" +
+												  h.getName() + " of Mapping" + mappingName + "(Group: " + group.getName()  
+												  + ")' has a Matcher that points to a target element with more than one instance. "
+												  +
+												  "Please choose to which element the Reference '"
+												  + ref.getName() +
+												  "' of the affected elements should point to.",
+												  targetInstancesToConsider.keySet(), targetInstancesToConsider.keySet().iterator().next());
+												 Display.getDefault().syncExec(dialog);
+												 
+												  if(dialog.wasTransformationStopRequested()){
+													  this.transformationAborted=true;
+													  return;
+												  }
+												  targetInstance=targetInstancesToConsider.get(dialog.getSelection());
 											} else {
 												consoleStream
-														.println("Schade schade " + ref.getName()); // TODO sinnvoller Fehlertext  wäre hierangebracht
+														.println("The MappingInstanceSelector '" +
+																  h.getName() + " of Mapping" + mappingName + "(Group: " + group.getName()  
+																  + ")' has a Matcher that points to the target class "
+																  + matcherTargetClass.getName() 
+																  + " (Section: " + matcherTargetClass.getContainingSection().getName() 
+																  + "). Sadly, no instances of this Class were created.");
 											}
 				
 											if (targetInstance != null) {
@@ -674,7 +698,6 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 													setReference(ref, targetInstance.getEObject(), inst.getEObject());
 												}
 											}
-											// TODO
 										}
 									}
 								} else {
@@ -790,26 +813,46 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 								if(numRefTargets == 1){
 									setReference(ref, targetInstancesByRoot.get(rootBySourceInstance.get(source)).getFirst().getEObject(), source.getEObject());
 								} else if(numRefTargets > 1){
-									//TODO let user decide
-									consoleStream.println("Userdecision " + ref.getName());
+									Map<String,EObjectTransformationHelper> instances=new LinkedHashMap<String,EObjectTransformationHelper>();
+									for(EObjectTransformationHelper i : targetInstancesByRoot.get(rootBySourceInstance.get(source))){
+										instances.put(i.toString(), i);
+									}
+									// Dialog
+									  ItemSelectorDialogRunner dialog=new  ItemSelectorDialogRunner(
+											  "There was more than one target element found for the NonContainmmentReference '"
+														+ ref.getName() + "' of TargetMMSection "
+														+ groupTargetSection.getName() + "(Section: "	+ targetSectionClass.getName() 
+														+ ") in Mapping " + mappingName + "(Group: " + group.getName() +") ."
+													  +"Please select a target element for the following source:\n"
+													  + source.toString(),
+									  instances.keySet(), instances.keySet().iterator().next());
+									 Display.getDefault().syncExec(dialog);
+									 
+									  if(dialog.wasTransformationStopRequested()){
+										  this.transformationAborted=true;
+										  return;
+									  }
+									setReference(ref, instances.get(dialog.getSelection()).getEObject(), source.getEObject());
+
 								} else {
 									consoleStream.println("No suitable refernce target found for non-cont. reference '" + ref.getName()
-											+ "' of the following instance of targetMMSection '" + targetSectionClass.getName() + "'\n" + source.toString());//TODO description
+											+ "' of the following instance of target class " 
+											+ targetSectionClass.getName() 
+											+ " (Section: " + targetSectionClass.getContainingSection().getName()
+											+ ").'\n" + source.toString());
 								}
 								
 							}
 						} else {
-							LinkedHashMap<String, TargetSectionClass> targetSectionsToConsider = new LinkedHashMap<String, TargetSectionClass>();
 							LinkedHashMap<String, EObjectTransformationHelper> targetInstancesToConsider = new LinkedHashMap<String, EObjectTransformationHelper>();
-							LinkedList<String> targetSectionChoices = new LinkedList<String>();//TODO there seems to be some EOL legacy in here
-							LinkedList<LinkedList<String>> instanceChoices = new LinkedList<LinkedList<String>>();
+							LinkedList<String> targetSectionChoices = new LinkedList<String>();
+							LinkedList<List<String>> instanceChoices = new LinkedList<List<String>>();
 
 							for (TargetSectionClass v : refValueClone) {
-								String classString=v.getName() + " (" + v.hashCode() + ")";
+								String classString=v.getName()  + " (Section: "+ v.getContainingSection().getName() +")";
 								LinkedList<EObjectTransformationHelper> insts = targetSectionRegistry.getFlattenedPamtramClassInstances(v);
 
 								if (insts.size() > 0) {
-									targetSectionsToConsider.put(classString, v);
 									targetSectionChoices.add(classString);
 									LinkedList<String> choices = new LinkedList<String>();
 									for (EObjectTransformationHelper i : insts) {
@@ -826,8 +869,21 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 							if (targetInstancesToConsider.values().size() == 1) {
 								targetInstance = targetInstancesToConsider.values().iterator().next();
 							} else if (targetInstancesToConsider.values().size() > 1) {
-								//TODO Dialog
-								consoleStream.println("Dialog? " + ref.getName());
+								// Dialog
+								  PathAndInstanceSelectorRunner dialog=new  PathAndInstanceSelectorRunner(
+									"There was more than one target element found for the NonContainmmentReference '"
+									+ ref.getName() + "' of TargetMMSection "
+									+ groupTargetSection.getName() + "(Section: "	+ targetSectionClass.getName() 
+									+ ") in Mapping " + mappingName + "(Group: " + group.getName() +") ."
+								  +"Please select a target Class and element.",
+								  targetSectionChoices, instanceChoices);
+								 Display.getDefault().syncExec(dialog);
+								 
+								  if(dialog.wasTransformationStopRequested()){
+									  this.transformationAborted=true;
+									  return;
+								  }
+								  targetInstance=targetInstancesToConsider.get(dialog.getInstance());
 							} else {
 								consoleStream.println("No suitable hint targets found for non-cont reference '"
 										+ ref.getName() + "' of TargetMMSection "

@@ -52,6 +52,13 @@ class TargetSectionConnector {
 	 * Output stream for messages
 	 */
 	private MessageConsoleStream consoleStream;
+	
+	/**
+	 * used for modifying attribute values
+	 */
+	private AttributeValueModifierExecutor attributeValuemodifier;
+
+	
 	/**
 	 * true when the transformation was aborted by the user
 	 */
@@ -70,7 +77,7 @@ class TargetSectionConnector {
 	 * @param targetModel
 	 * @param consoleStream Output stream for messages
 	 */
-	TargetSectionConnector(AttributeValueRegistry attrValRegistry, TargetSectionRegistry targetSectionRegistry,
+	TargetSectionConnector(AttributeValueRegistry attrValRegistry, TargetSectionRegistry targetSectionRegistry, AttributeValueModifierExecutor attributeValuemodifier,
 			XMIResource targetModel, MessageConsoleStream consoleStream){
 		standardPaths = new LinkedHashMap<ModelConnectionHint, ModelConnectionPath>();
 		this.attrValRegistry=attrValRegistry;
@@ -78,6 +85,7 @@ class TargetSectionConnector {
 		this.targetModel=targetModel;
 		this.consoleStream=consoleStream;
 		this.transformationAborted=false;
+		this.attributeValuemodifier=attributeValuemodifier;
 	}
 
 	/**
@@ -193,7 +201,7 @@ class TargetSectionConnector {
 
 				for(ConnectionHintTargetAttribute conAttr : containerInstancesByTargetAttribute.keySet()){
 					
-					String modifiedHintVal =  AttributeValueRegistry.applyAttributeValueModifiers(hintValAsString,conAttr.getModifier());
+					String modifiedHintVal =  attributeValuemodifier.applyAttributeValueModifiers(hintValAsString,conAttr.getModifier());
 
 					
 					for (EObjectTransformationHelper contInst : containerInstancesByTargetAttribute.get(conAttr)) {// now find a

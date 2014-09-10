@@ -234,7 +234,8 @@ public class GenericTransformationRunner {
 	private boolean executeMappings(XMIResource targetModel, PAMTraM pamtramModel,
 			List<Mapping> suitableMappings) {
 		// generate storage objects and generators
-		SourceSectionMapper sourceSectionMapper = new SourceSectionMapper(suitableMappings, consoleStream);
+		AttributeValueModifierExecutor attributeValueModifier= new AttributeValueModifierExecutor(consoleStream);
+		SourceSectionMapper sourceSectionMapper = new SourceSectionMapper(suitableMappings, attributeValueModifier,consoleStream);
 		TargetSectionRegistry targetSectionRegistry = new TargetSectionRegistry(consoleStream);
 		AttributeValueRegistry attrValueRegistry = new AttributeValueRegistry();
 
@@ -307,7 +308,7 @@ public class GenericTransformationRunner {
 
 		// creating missing links/containers for target model
 		writePamtramMessage("Linking targetModelSections");
-		if(!linkTargetSections(targetModel, suitableMappings,targetSectionRegistry, attrValueRegistry,selectedMappingsByMapping)){
+		if(!linkTargetSections(targetModel, suitableMappings,targetSectionRegistry, attrValueRegistry,attributeValueModifier, selectedMappingsByMapping)){
 			return false;
 		}
 
@@ -392,9 +393,10 @@ public class GenericTransformationRunner {
 			List<Mapping> suitableMappings,
 			TargetSectionRegistry targetSectionRegistry,
 			AttributeValueRegistry attrValueRegistry,
+			AttributeValueModifierExecutor attributeValueModifier,
 			LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping) {
 		TargetSectionConnector connectionHelpers = new TargetSectionConnector(
-				attrValueRegistry, targetSectionRegistry, targetModel, consoleStream);
+				attrValueRegistry, targetSectionRegistry, attributeValueModifier, targetModel, consoleStream);
 		for (Mapping m : suitableMappings) {
 			for (MappingHintGroupType g : m.getMappingHintGroups()) {
 				if (g.getTargetMMSection() != null && g instanceof MappingHintGroup) {// targetSection exists?
@@ -892,7 +894,8 @@ public class GenericTransformationRunner {
 				.getMapping();// TODO apply contextModel
 
 		// generate storage objects and generators
-		SourceSectionMapper sourceSectionMapper = new SourceSectionMapper(suitableMappings, consoleStream);
+		AttributeValueModifierExecutor attributeValueModifier= new AttributeValueModifierExecutor(consoleStream);
+		SourceSectionMapper sourceSectionMapper = new SourceSectionMapper(suitableMappings, attributeValueModifier,consoleStream);
 
 		/*
 		 * create a list of all the containment references in the source model

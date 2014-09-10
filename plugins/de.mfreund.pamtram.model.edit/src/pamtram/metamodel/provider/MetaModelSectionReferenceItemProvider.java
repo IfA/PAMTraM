@@ -3,19 +3,22 @@
 package pamtram.metamodel.provider;
 
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+
+import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.Reference;
-import pamtram.metamodel.impl.ReferenceImpl;
+import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.TargetSectionClass;
 
 /**
  * This is the item provider adapter for a {@link pamtram.metamodel.MetaModelSectionReference} object.
@@ -70,32 +73,31 @@ public class MetaModelSectionReferenceItemProvider extends SourceSectionReferenc
 				 null,
 				 null){
 
-					@Override
-					public Collection<?> getChoiceOfValues(Object object) {
-						
-						// all possible choices (all instances of "Class")
-						@SuppressWarnings("unchecked")
-						Iterator<pamtram.metamodel.Class> it = 
-								(Iterator<pamtram.metamodel.Class>) super.getChoiceOfValues(object).iterator();
-						
-						if(!(((ReferenceImpl) object).getEReference().getEType() instanceof EClass)) {
-							throw new RuntimeException("Type checks can only be performed for instances of type 'EClass'");
-						}
-						
-						// the type of the reference
-						EClass refClass = (EClass) ((Reference) object).getEReference().getEType();
-						
-						List<Object> choiceOfValues = new ArrayList<Object>();
-						// make sure that only those classes can be selected that correspond to the type of the chosen reference
-						while(it.hasNext()) {
-							pamtram.metamodel.Class c = it.next();
-							if(refClass.isSuperTypeOf(c.getEClass())) {
-								choiceOfValues.add(c);
+				@Override
+				public Collection<?> getChoiceOfValues(Object object) {
+					Collection<?> superChoices=super.getChoiceOfValues(object);
+					
+					EClass refClass =null;
+					try{
+						refClass=((MetaModelSectionReference)object).getEReference().getEReferenceType();
+					} catch(Exception e){
+						return superChoices;
+					}
+						List<SourceSectionClass> choices=new LinkedList<SourceSectionClass>();
+						Iterator<?>  it=superChoices.iterator();
+						while(it.hasNext()){
+							Object next=it.next();
+							if(next instanceof SourceSectionClass){
+								if(((SourceSectionClass) next).getEClass() != null){
+									if(refClass.isSuperTypeOf(((TargetSectionClass) next).getEClass())){
+										choices.add((SourceSectionClass) next);
+									}
+								}
 							}
 						}
 						
-						return choiceOfValues;
-					}
+						return choices;
+				}
 				
 				
 			});

@@ -9,15 +9,15 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
-import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.MappingPackage;
 import pamtram.metamodel.TargetSectionAttribute;
+import pamtram.metamodel.TargetSectionClass;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.AttributeMatcher} object.
@@ -75,25 +75,18 @@ public class AttributeMatcherItemProvider
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
-						AttributeMatcher matcher=(AttributeMatcher) object;
 						//the parent MappingInstanceSelector
-						MappingInstanceSelector miSelector= (MappingInstanceSelector) matcher.eContainer();
-						EClass refType=miSelector.getAffectedReference().getEReference().getEReferenceType();
-						Collection<?> choices= super.getChoiceOfValues(object);
-						Collection<TargetSectionAttribute> newChoices=new LinkedList<TargetSectionAttribute>();
-						
+						Collection<TargetSectionAttribute> choices=new LinkedList<TargetSectionAttribute>();
+						Collection<TargetSectionClass>refClasses=((MappingInstanceSelector) ((EObject) object).eContainer()).getAffectedReference().getValue();
+
 						/*
-						 * Only show attributes that belong to an Class that fits the Reference type
+						 * Only show attributes that belong to an Class that was modeled as the reference's value
 						 */
-						for(Object choice : choices){
-							if(choice instanceof TargetSectionAttribute){
-								if(((TargetSectionAttribute) choice).getOwningClass().getEClass().isSuperTypeOf(refType)){
-									newChoices.add((TargetSectionAttribute) choice);
-								} 
-							}
+						for(TargetSectionClass val : refClasses){
+							choices.addAll(val.getAttributes());
 						}
 						
-						return newChoices;
+						return choices;
 					}
 				
 				

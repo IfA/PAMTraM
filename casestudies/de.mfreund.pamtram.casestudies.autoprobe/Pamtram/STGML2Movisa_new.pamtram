@@ -4084,9 +4084,9 @@
         </mappingHints>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepColorName" target="//@targetSectionModel/@metaModelSections.13/@references.0/@value.0/@references.4/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.8/@attributes.5" modifier="//@mappingModel/@modifierSets.28"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepBorderName" target="//@targetSectionModel/@metaModelSections.13/@references.0/@value.0/@references.5/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.8/@attributes.5" modifier="//@mappingModel/@modifierSets.29"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelColorAnimationOnName" target="//@targetSectionModel/@metaModelSections.13/@references.1/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.8/@attributes.5" modifier="//@mappingModel/@modifierSets.30"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelColorAnimationOffName" target="//@targetSectionModel/@metaModelSections.13/@references.1/@value.0/@references.1/@value.0/@references.1/@value.1/@attributes.0" source="//@sourceSectionModel/@metaModelSections.8/@attributes.5" modifier="//@mappingModel/@modifierSets.31"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepBooleanCompName" target="//@targetSectionModel/@metaModelSections.13/@references.1/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.8/@attributes.5" modifier="//@mappingModel/@modifierSets.25"/>
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelColorAnimationOnName" target="//@targetSectionModel/@metaModelSections.13/@references.1/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.8/@attributes.5" modifier="//@mappingModel/@modifierSets.30 //@mappingModel/@modifierSets.0"/>
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelColorAnimationOffName" target="//@targetSectionModel/@metaModelSections.13/@references.1/@value.0/@references.1/@value.0/@references.1/@value.1/@attributes.0" source="//@sourceSectionModel/@metaModelSections.8/@attributes.5" modifier="//@mappingModel/@modifierSets.31 //@mappingModel/@modifierSets.0"/>
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepBooleanCompName" target="//@targetSectionModel/@metaModelSections.13/@references.1/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.8/@attributes.5" modifier="//@mappingModel/@modifierSets.25 //@mappingModel/@modifierSets.0"/>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger vo" affectedReference="//@targetSectionModel/@metaModelSections.13/@references.1/@value.0/@references.0/@value.0/@references.0">
           <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" source="//@sourceSectionModel/@metaModelSections.8/@references.0/@value.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel/@modifierSets.16"/>
         </mappingHints>
@@ -4671,8 +4671,8 @@
           <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" source="//@sourceSectionModel/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.16"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="rAnimCompName" target="//@targetSectionModel/@metaModelSections.19/@references.2/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.12/@attributes.5" modifier="//@mappingModel/@modifierSets.9"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="repAnimationStateAccessibleName" target="//@targetSectionModel/@metaModelSections.19/@references.2/@value.0/@references.0/@value.0/@references.2/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.12/@attributes.5" modifier="//@mappingModel/@modifierSets.7"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="repAnimationStateNotAccessibleName" target="//@targetSectionModel/@metaModelSections.19/@references.2/@value.0/@references.0/@value.0/@references.2/@value.1/@attributes.0" source="//@sourceSectionModel/@metaModelSections.12/@attributes.5" modifier="//@mappingModel/@modifierSets.8"/>
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="repAnimationStateAccessibleName" target="//@targetSectionModel/@metaModelSections.19/@references.2/@value.0/@references.0/@value.0/@references.2/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.12/@attributes.5" modifier="//@mappingModel/@modifierSets.7 //@mappingModel/@modifierSets.0"/>
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="repAnimationStateNotAccessibleName" target="//@targetSectionModel/@metaModelSections.19/@references.2/@value.0/@references.0/@value.0/@references.2/@value.1/@attributes.0" source="//@sourceSectionModel/@metaModelSections.12/@attributes.5" modifier="//@mappingModel/@modifierSets.8 //@mappingModel/@modifierSets.0"/>
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="textLabelName" target="//@targetSectionModel/@metaModelSections.19/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="label" source="//@sourceSectionModel/@metaModelSections.12/@attributes.5" modifier="//@mappingModel/@modifierSets.6"/>
@@ -5048,7 +5048,9 @@
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
-    <modifierSets/>
+    <modifierSets name="append uniqueNumber">
+      <modifier xsi:type="mapping:UniqueNumberAppender" name="appender"/>
+    </modifierSets>
     <modifierSets name="append _Checkbox">
       <modifier xsi:type="mapping:StringAppender" name="_Checkbox" string="_Checkbox"/>
     </modifierSets>
@@ -5161,6 +5163,13 @@
     </modifierSets>
     <modifierSets name="prepend text_">
       <modifier xsi:type="mapping:StringPrepender" name="text_" string="text_"/>
+      <modifier xsi:type="mapping:SubstringReplacer" name="Replace Space" regex=" " replacement="_"/>
+      <modifier xsi:type="mapping:SubstringReplacer" name="Replace (" regex="(" replacement="_"/>
+      <modifier xsi:type="mapping:SubstringReplacer" name="Replace )" regex=")" replacement="_"/>
+      <modifier xsi:type="mapping:SubstringReplacer" name="DollarSign" regex="\$" replacement=""/>
+      <modifier xsi:type="mapping:SubstringReplacer" name="AT" regex="@" replacement="AT"/>
+      <modifier xsi:type="mapping:SubstringReplacer" name="Hashtag" regex="#" replacement=""/>
+      <modifier xsi:type="mapping:SubstringReplacer" name="dot to _" regex="\." replacement="_"/>
     </modifierSets>
     <modifierSets name="append _ColorAnimationOn_Bool:Out">
       <modifier xsi:type="mapping:StringAppender" name="_ColorAnimationOn_Bool:Out" string="_ColorAnimationOn_Bool:Out"/>

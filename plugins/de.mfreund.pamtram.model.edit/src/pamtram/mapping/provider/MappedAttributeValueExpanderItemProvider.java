@@ -19,10 +19,13 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
 import pamtram.mapping.AttributeMapping;
+import pamtram.mapping.AttributeMatcher;
+import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroupImporter;
+import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.MappingPackage;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.SourceSectionClass;
@@ -85,12 +88,16 @@ public class MappedAttributeValueExpanderItemProvider extends MappedAttributeVal
 						//the parent Mapping Hint Group
 						MappingHintGroupImporter parent=(MappingHintGroupImporter) ((MappedAttributeValueExpander) object).eContainer();
 						
-						List<AttributeMapping> choices=new LinkedList<AttributeMapping>();
+						List<ExpandableHint> choices=new LinkedList<ExpandableHint>();
 						
 						if(parent.getHintGroup() != null){
 							for(MappingHint h : parent.getHintGroup().getMappingHints()){
 								if(h instanceof AttributeMapping){
 									choices.add((AttributeMapping) h);
+								} else if(h instanceof MappingInstanceSelector){
+									if(((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher){
+										choices.add((ExpandableHint) ((MappingInstanceSelector) h).getMatcher());
+									}
 								}
 							}
 						}

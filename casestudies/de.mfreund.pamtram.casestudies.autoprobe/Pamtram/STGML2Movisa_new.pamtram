@@ -1104,7 +1104,7 @@
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="externaldata">
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
-        <value name="ExternalData == Conveyor" cardinality="ZERO__INFINITY">
+        <value name="ExternalData == Conveyor">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
           <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
             <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
@@ -1164,7 +1164,7 @@
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="externaldata">
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
-        <value name="ExternalData == Conveyor" cardinality="ZERO__INFINITY">
+        <value name="ExternalData == Conveyor">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
           <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
             <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
@@ -1225,7 +1225,7 @@
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="externaldata">
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
-        <value name="ExternalData == Conveyor" cardinality="ZERO__INFINITY">
+        <value name="ExternalData == Conveyor">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
           <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
             <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>

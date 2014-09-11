@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<scxml name="Navigation" xmlns="http://gfai.de/stgml.xsd">
+
+  <datamodel/>
+
+  <configuration>
+    <event name="NAVTOP" value="NAVTOP"/>
+  </configuration>
+
+  <code language=""/>
+
+  <initial>
+    <transition target="root5257B2052684E11C"/>
+  </initial>
+
+  <state id="root5257B2052684E11C">
+    <transition event="NAVTOP" target="NAVTOP"/>
+    <initial>
+      <transition target="NAVTOP"/>
+    </initial>
+    <state id="NAVTOP">
+    </state>
+  </state>
+
+  <visualization name="Navigation" unitspermeter="100000" xmax="29700" xmin="0" ymax="21000" ymin="0">
+    <externaldata>
+      <extdata name="Roles">
+        <extdata name="RoleDefinition">
+          <extdata name="Id" value="0"/>
+          <extdata name="Name" value="Admin"/>
+        </extdata>
+        <extdata name="RoleDefinition">
+          <extdata name="Id" value="1"/>
+          <extdata name="Name" value="Tool Setter"/>
+        </extdata>
+        <extdata name="RoleDefinition">
+          <extdata name="Id" value="2"/>
+          <extdata name="Name" value="User"/>
+        </extdata>
+      </extdata>
+    </externaldata>
+    <layer name="NAVTOP" visible="true"> 
+ 	<viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2978.76" label="StockDouble" send="StockDouble" width="5692.21" x="11923.6" y="1400">
+        <externaldata>
+          <extdata name="ClassPath" value="Station.FESTO.Stock"/>
+          <extdata name="PositionId" value="002"/>
+          <extdata name="typeID" value="Station"/>
+          <extdata name="name" value="StockDouble1"/>
+        </externaldata>
+      </viobject>
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="8432.56" label="MillAndTurn105" send="MillAndTurn105" width="4475.55" x="5804.86" y="2575.47">
+        <externaldata>
+          <extdata name="ClassPath" value="Station.FESTO.MillAndTurn1"/>
+          <extdata name="PositionId" value="012"/>
+          <extdata name="typeID" value="Station"/>
+          <extdata name="name" value="MillAndTurn105"/>
+        </externaldata>
+      </viobject>
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2778.61" label="Mill55" send="Mill55" width="4399.88" x="7472.3" y="14960.7">
+        <externaldata>
+          <extdata name="ClassPath" value="Station.FESTO1.Mill"/>
+          <extdata name="PositionId" value="010"/>
+          <extdata name="typeID" value="Station"/>
+          <extdata name="name" value="Mill55"/>
+        </externaldata>
+      </viobject>
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="4946.92" label="Turn55" send="Turn55" width="4123.72" x="23980.3" y="4196.16">
+        <externaldata>
+          <extdata name="ClassPath" value="Station.FESTO.Turn"/>
+          <extdata name="PositionId" value="006"/>
+          <extdata name="typeID" value="Station"/>
+          <extdata name="name" value="Turn55"/>
+        </externaldata>
+      </viobject>
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2978.83" label="AssemblyRH5A55" send="AssemblyRH5A55" width="3698.33" x="18239.8" y="16043.8">
+        <externaldata>
+          <extdata name="ClassPath" value="Station.FESTO.Assembly"/>
+          <extdata name="PositionId" value="008"/>
+          <extdata name="typeID" value="Station"/>
+          <extdata name="name" value="AssemblyRH5A55"/>
+        </externaldata>
+      </viobject>
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="3031.44" label="Quality" send="Quality" width="1799.61" x="19556.6" y="1410.4">
+        <externaldata>
+          <extdata name="ClassPath" value="Station.FESTO.Quality"/>
+          <extdata name="PositionId" value="004"/>
+          <extdata name="typeID" value="Station"/>
+          <extdata name="name" value="Quality"/>
+        </externaldata>
+      </viobject> 
+    </layer>
+  </visualization>
+
+</scxml>

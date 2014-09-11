@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<scxml name="Navigation" xmlns="http://gfai.de/stgml.xsd">
+
+  <datamodel/>
+
+  <configuration>
+    <event name="NAVTOP" value="NAVTOP"/>
+  </configuration>
+
+  <code language=""/>
+
+  <initial>
+    <transition target="root5257B2052684E11C"/>
+  </initial>
+
+  <state id="root5257B2052684E11C">
+    <transition event="NAVTOP" target="NAVTOP"/>
+    <initial>
+      <transition target="NAVTOP"/>
+    </initial>
+    <state id="NAVTOP">
+    </state>
+  </state>
+
+  <visualization name="Navigation" unitspermeter="100000" xmax="29700" xmin="0" ymax="21000" ymin="0">
+    <externaldata>
+      <extdata name="Roles">
+        <extdata name="RoleDefinition">
+          <extdata name="Id" value="0"/>
+          <extdata name="Name" value="Admin"/>
+        </extdata>
+        <extdata name="RoleDefinition">
+          <extdata name="Id" value="1"/>
+          <extdata name="Name" value="Tool Setter"/>
+        </extdata>
+        <extdata name="RoleDefinition">
+          <extdata name="Id" value="2"/>
+          <extdata name="Name" value="User"/>
+        </extdata>
+      </extdata>
+    </externaldata>
+    <layer name="NAVTOP" visible="true"> 
+ 	<!-- <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2978.76" label="StockDouble" send="StockDouble" width="5692.21" x="11923.6" y="1400">
+        <externaldata>
+          <extdata name="ClassPath" value="Station.FESTO.Stock"/>
+          <extdata name="PositionId" value="002"/>
+          <extdata name="typeID" value="Station"/>
+          <extdata name="name" value="StockDouble1"/>
+        </externaldata>
+      </viobject>
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="8432.56" label="MillAndTurn105" send="MillAndTurn105" width="4475.55" x="5804.86" y="2575.47">
+        <externaldata>
+          <extdata name="ClassPath" value="Station.FESTO.MillAndTurn"/>
+          <extdata name="PositionId" value="012"/>
+          <extdata name="typeID" value="Station"/>
+          <extdata name="name" value="MillAndTurn105"/>
+        </externaldata>
+      </viobject>
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2778.61" label="Mill55" send="Mill55" width="4399.88" x="7472.3" y="14960.7">
+        <externaldata>
+          <extdata name="ClassPath" value="Station.FESTO.Mill"/>
+          <extdata name="PositionId" value="010"/>
+          <extdata name="typeID" value="Station"/>
+          <extdata name="name" value="Mill55"/>
+        </externaldata>
+      </viobject>
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="4946.92" label="Turn55" send="Turn55" width="4123.72" x="23980.3" y="4196.16">
+        <externaldata>
+          <extdata name="ClassPath" value="Station.FESTO.Turn"/>
+          <extdata name="PositionId" value="006"/>
+          <extdata name="typeID" value="Station"/>
+          <extdata name="name" value="Turn55"/>
+        </externaldata>
+      </viobject>
+
+
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2978.83" label="AssemblyRH5A55" send="AssemblyRH5A55" width="3698.33" x="1000" y="16043.8">
+        <externaldata>
+          <extdata name="ClassPath" value="Station.FESTO.Assembly"/>
+          <extdata name="PositionId" value="008"/>
+          <extdata name="typeID" value="Station"/>
+          <extdata name="name" value="AssemblyRH5A55"/>
+        </externaldata>
+      </viobject>
+      
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2978.83" label="AssemblyRH7A23" send="AssemblyRH7A23" width="3698.33" x="5000" y="16043.8">
+        <externaldata>
+          <extdata name="ClassPath" value="Station.FESTO.Assembly"/>
+          <extdata name="PositionId" value="008"/>
+          <extdata name="typeID" value="Station"/>
+          <extdata name="name" value="AssemblyRH7A23"/>
+        </externaldata>
+      </viobject>      -->
+      
+      <!-- 
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="3031.44" label="Quality1" send="Quality1" width="1799.61" x="19556.6" y="1410.4">
+        <externaldata>
+          <extdata name="ClassPath" value="Station.FESTO.Quality"/>
+          <extdata name="PositionId" value="004"/>
+          <extdata name="typeID" value="Station"/>
+          <extdata name="name" value="Quality"/>
+        </externaldata>
+      </viobject> 
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="3031.44" label="Quality2" send="Quality2" width="1799.61" x="19556.6" y="1410.4">
+        <externaldata>
+          <extdata name="ClassPath" value="Station.FESTO.Quality"/>
+          <extdata name="PositionId" value="004"/>
+          <extdata name="typeID" value="Station"/>
+          <extdata name="name" value="Quality"/>
+        </externaldata>
+      </viobject> 
+     
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2978.83" label="ClonedComponent" send="ClonedComponent" width="3698.33" x="18239.8" y="16043.8">
+        <externaldata>
+          <extdata name="ClassPath" value="Evaluation"/>
+          <extdata name="PositionId" value="008"/>
+          <extdata name="typeID" value="Station"/>
+          <extdata name="name" value="ClonedComponent"/>
+        </externaldata>
+      </viobject>-->
+      
+       <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="8946.92" label="Log" send="Log" width="19123.72" x="23980.3" y="4196.16">
+        <externaldata>
+          <extdata name="ClassPath" value=""/>
+          <extdata name="PositionId" value="006"/>
+          <extdata name="typeID" value="Station"/>
+          <extdata name="name" value="Log"/>
+          <extdata name="SignalInterface">
+            <extdata name="Hardware" value="OPCUA"/>
+            <extdata name="Protocol" value="AutoProBe_OPC"/>
+            <extdata name="typeID" value="SignalInterface"/>
+            <extdata name="name" value="SignalInterface"/>
+            <extdata name="Signals">
+              <extdata name="LogMsgId">
+                <extdata name="Description" value="Input"/>
+                <extdata name="Type" value="Integer"/>
+                <extdata name="typeID" value="Signal"/>
+                <extdata name="name" value="LogMsgId"/>
+                <extdata name="DataItems">
+                  <extdata name="OPCItem" value="..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.Log.MsgId"/>
+                  <extdata name="Access" value="ReadOnly"/>
+                </extdata>
+              </extdata>
+              <extdata name="LogAckId">
+                <extdata name="Description" value="Input"/>
+                <extdata name="Type" value="Integer"/>
+                <extdata name="typeID" value="Signal"/>
+                <extdata name="name" value="LogAckId"/>
+                <extdata name="DataItems">
+                  <extdata name="OPCItem" value="..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.Log.AckId"/>
+                  <extdata name="Access" value="ReadOnly"/>
+                </extdata>
+              </extdata>
+              <extdata name="LogMsg">
+                <extdata name="Description" value="Input"/>
+                <extdata name="Type" value="String"/>
+                <extdata name="typeID" value="Signal"/>
+                <extdata name="name" value="LogMsg"/>
+                <extdata name="DataItems">
+                  <extdata name="OPCItem" value="..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.Log.Msg"/>
+                  <extdata name="Access" value="ReadOnly"/>
+                </extdata>
+              </extdata>
+              <extdata name="LogOption1">
+                <extdata name="Description" value="Input"/>
+                <extdata name="Type" value="String"/>
+                <extdata name="typeID" value="Signal"/>
+                <extdata name="name" value="LogOption1"/>
+                <extdata name="DataItems">
+                  <extdata name="OPCItem" value="..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.Log.Option1"/>
+                  <extdata name="Access" value="ReadOnly"/>
+                </extdata>
+              </extdata>
+                 <extdata name="LogOption2">
+                <extdata name="Description" value="Input"/>
+                <extdata name="Type" value="String"/>
+                <extdata name="typeID" value="Signal"/>
+                <extdata name="name" value="LogOption2"/>
+                <extdata name="DataItems">
+                  <extdata name="OPCItem" value="..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.Log.Option2"/>
+                  <extdata name="Access" value="ReadOnly"/>
+                </extdata>
+              </extdata>
+                 <extdata name="LogOption3">
+                <extdata name="Description" value="Input"/>
+                <extdata name="Type" value="String"/>
+                <extdata name="typeID" value="Signal"/>
+                <extdata name="name" value="LogOption3"/>
+                <extdata name="DataItems">
+                  <extdata name="OPCItem" value="..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.Log.Option3"/>
+                  <extdata name="Access" value="ReadOnly"/>
+                </extdata>
+              </extdata>
+                 <extdata name="LogOption4">
+                <extdata name="Description" value="Input"/>
+                <extdata name="Type" value="String"/>
+                <extdata name="typeID" value="Signal"/>
+                <extdata name="name" value="LogOption4"/>
+                <extdata name="DataItems">
+                  <extdata name="OPCItem" value="..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.Log.Option4"/>
+                  <extdata name="Access" value="ReadOnly"/>
+                </extdata>
+              </extdata>
+              <extdata name="ReactMsgId">
+                <extdata name="Description" value="Input"/>
+                <extdata name="Type" value="Integer"/>
+                <extdata name="typeID" value="Signal"/>
+                <extdata name="name" value="ReactMsgId"/>
+                <extdata name="DataItems">
+                  <extdata name="OPCItem" value="..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.React.MsgId"/>
+                  <extdata name="Access" value="ReadOnly"/>
+                </extdata>
+              </extdata>
+              <extdata name="ReactMsg">
+                <extdata name="Description" value="Input"/>
+                <extdata name="Type" value="String"/>
+                <extdata name="typeID" value="Signal"/>
+                <extdata name="name" value="ReactMsg"/>
+                <extdata name="DataItems">
+                  <extdata name="OPCItem" value="..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.React.Msg"/>
+                  <extdata name="Access" value="ReadOnly"/>
+                </extdata>
+              </extdata>
+            </extdata>
+          </extdata>
+        </externaldata>
+      </viobject>
+      
+      
+      <!--
+       <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="3031.44" label="Interaction" send="Interaction" width="1799.61" x="19556.6" y="1410.4">
+        <externaldata>
+          <extdata name="ClassPath" value="Evaluation"/>
+          <extdata name="PositionId" value="004"/>
+          <extdata name="typeID" value="Station"/>
+          <extdata name="name" value="Interaction"/>
+          <extdata name="SignalInterface">
+            <extdata name="Hardware" value="OPCUA"/>
+            <extdata name="Protocol" value="AutoProBe_OPC"/>
+            <extdata name="typeID" value="SignalInterface"/>
+            <extdata name="name" value="SignalInterface"/>
+            <extdata name="Signals">
+              <extdata name="Static_CurrentRead_CurrentWrite">
+                <extdata name="Description" value="CurrentRead_CurrentWrite"/>
+                <extdata name="Type" value="Integer"/>
+                <extdata name="typeID" value="Signal"/>
+                <extdata name="name" value="Static_CurrentRead_CurrentWrite"/>
+                <extdata name="DataItems">
+                  <extdata name="Access" value="ReadOnly"/>
+                  <extdata name="OPCItem" value="..LocalHost.$MATFLOW.ControlElements.Merge_003.1.CarrierID"/>
+                </extdata>
+              </extdata>
+             </extdata>
+            </extdata>
+        </externaldata>
+      </viobject>
+      
+      
+      
+    <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.053" id="_5295D27003A0B0D1" width="2109.11" x="11245.2" y="4348.21">
+        <externaldata>
+          <extdata name="id" value="43"/>
+          <extdata name="parent" value=""/>
+          <extdata name="typeID" value="Conveyor"/>
+          <extdata name="name" value="AT_Einmuendung_links_6 | Merge | 003 | 035 -> AT_Einmuendung_links_6 | Merge | 003"/>
+          <extdata name="In" value="1"/>
+          <extdata name="Out" value="2"/>
+          <extdata name="partref">
+            <extdata name="fromid" value="_5295D27003A09C9A"/>
+            <extdata name="toid" value="_5295D27003A0A85C"/>
+          </extdata>
+        </externaldata>
+      </viobject>
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.053" id="_5295D27003A0BA65" width="881.714" x="10363.5" y="4342.58">
+        <externaldata>
+          <extdata name="id" value="66"/>
+          <extdata name="parent" value=""/>
+          <extdata name="typeID" value="Conveyor"/>
+          <extdata name="name" value="AT_HauptStation_11 | Stopper | 012 | 012 -> AT_Einmuendung_links_6 | Merge | 003 | 035"/>
+          <extdata name="In" value="24"/>
+          <extdata name="Out" value="1"/>
+          <extdata name="partref">
+            <extdata name="fromid" value="_5295D27003A0AB04"/>
+            <extdata name="toid" value="_5295D27003A09C9A"/>
+          </extdata>
+        </externaldata>
+      </viobject>
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.212" id="_5295D27003A09C9A" width="204.212" x="11143.1" y="4246.11">
+        <externaldata>
+          <extdata name="id" value="1"/>
+          <extdata name="parent" value=""/>
+          <extdata name="typeID" value="Stopper"/>
+          <extdata name="name" value="AT_Einmuendung_links_6 | Merge | 003 | 035"/>
+          <extdata name="Controller" value="91"/>
+          <extdata name="Capacity" value="2"/>
+          <extdata name="SignalInterface">
+            <extdata name="Hardware" value="OPCUA"/>
+            <extdata name="Protocol" value="AutoProBe_OPC"/>
+            <extdata name="typeID" value="SignalInterface"/>
+            <extdata name="name" value="SignalInterface"/>
+            <extdata name="Signals">
+              <extdata name="BufferPlace.1.CarrierID">
+                <extdata name="Description" value="CarrierID"/>
+                <extdata name="Type" value="Integer"/>
+                <extdata name="typeID" value="Signal"/>
+                <extdata name="name" value="BufferPlace.1.CarrierID"/>
+                <extdata name="DataItems">
+                  <extdata name="Access" value="ReadOnly"/>
+                  <extdata name="OPCItem" value="..LocalHost.$MATFLOW.ControlElements.Merge_003.1.CarrierID"/>
+                </extdata>
+              </extdata>
+              <extdata name="BufferPlace.1.ProductID">
+                <extdata name="Description" value="ProductID"/>
+                <extdata name="Type" value="Integer"/>
+                <extdata name="typeID" value="Signal"/>
+                <extdata name="name" value="BufferPlace.1.ProductID"/>
+                <extdata name="DataItems">
+                  <extdata name="Access" value="ReadOnly"/>
+                  <extdata name="OPCItem" value="..LocalHost.$MATFLOW.ControlElements.Merge_003.1.ProductID"/>
+                </extdata>
+              </extdata>
+              <extdata name="BufferPlace.1.Status">
+                <extdata name="Description" value="Status"/>
+                <extdata name="Type" value="String"/>
+                <extdata name="typeID" value="Signal"/>
+                <extdata name="name" value="BufferPlace.1.Status"/>
+                <extdata name="DataItems">
+                  <extdata name="Access" value="ReadOnly"/>
+                  <extdata name="OPCItem" value="..LocalHost.$MATFLOW.ControlElements.Merge_003.1.Status"/>
+                </extdata>
+              </extdata>
+              <extdata name="BufferPlace.2.CarrierID">
+                <extdata name="Description" value="CarrierID"/>
+                <extdata name="Type" value="Integer"/>
+                <extdata name="typeID" value="Signal"/>
+                <extdata name="name" value="BufferPlace.2.CarrierID"/>
+                <extdata name="DataItems">
+                  <extdata name="Access" value="ReadOnly"/>
+                  <extdata name="OPCItem" value="..LocalHost.$MATFLOW.ControlElements.Merge_003.2.CarrierID"/>
+                </extdata>
+              </extdata>
+              <extdata name="BufferPlace.2.ProductID">
+                <extdata name="Description" value="ProductID"/>
+                <extdata name="Type" value="Integer"/>
+                <extdata name="typeID" value="Signal"/>
+                <extdata name="name" value="BufferPlace.2.ProductID"/>
+                <extdata name="DataItems">
+                  <extdata name="Access" value="ReadOnly"/>
+                  <extdata name="OPCItem" value="..LocalHost.$MATFLOW.ControlElements.Merge_003.2.ProductID"/>
+                </extdata>
+              </extdata>
+              <extdata name="BufferPlace.2.Status">
+                <extdata name="Description" value="Status"/>
+                <extdata name="Type" value="String"/>
+                <extdata name="typeID" value="Signal"/>
+                <extdata name="name" value="BufferPlace.2.Status"/>
+                <extdata name="DataItems">
+                  <extdata name="Access" value="ReadOnly"/>
+                  <extdata name="OPCItem" value="..LocalHost.$MATFLOW.ControlElements.Merge_003.2.Status"/>
+                </extdata>
+              </extdata>
+            </extdata>
+          </extdata>
+        </externaldata>
+      </viobject>
+         <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="215.869" label="AssemblyRH5A55Robot" send="AssemblyRH5A55Robot" width="575.208" x="9945.07" y="7857.51">
+        <externaldata>
+          <extdata name="Class" value="Robot Mitsubishi"/>
+          <extdata name="ClassPath" value="Component.Robot"/>
+          <extdata name="typeID" value="Component"/>
+          <extdata name="name" value="AssemblyRH5A55Robot"/>
+          <extdata name="SignalInterface">
+            <extdata name="Hardware" value="OPCUA"/>
+            <extdata name="Protocol" value="AutoProBe_OPC"/>
+            <extdata name="typeID" value="SignalInterface"/>
+            <extdata name="name" value="SignalInterface"/>
+            <extdata name="Signals">
+              <extdata name="SimulationActivate">
+                <extdata name="Description" value="Input"/>
+                <extdata name="Type" value="Bool"/>
+                <extdata name="typeID" value="Signal"/>
+                <extdata name="name" value="SimulationActivate"/>
+                <extdata name="DataItems">
+                  <extdata name="OPCItem" value="Objects.SimulationActivate"/>
+                  <extdata name="Access" value="ReadOnly"/>
+                </extdata>
+              </extdata>
+            </extdata>
+          </extdata>
+        </externaldata>
+      </viobject>  -->
+    </layer>
+  </visualization>
+
+</scxml>

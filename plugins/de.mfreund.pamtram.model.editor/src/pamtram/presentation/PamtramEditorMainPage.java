@@ -40,6 +40,7 @@ import pamtram.mapping.ComplexAttributeMatcherSourceInterface;
 import pamtram.mapping.ComplexModelConnectionHint;
 import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
 import pamtram.mapping.ConnectionHintTargetAttribute;
+import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.GlobalVariable;
 import pamtram.mapping.GlobalVariableImporter;
 import pamtram.mapping.MappedAttributeValueExpander;
@@ -541,8 +542,12 @@ public class PamtramEditorMainPage extends SashForm {
 					setSourceTargetViewerSingleItemSelections(null, exp.getSourceAttribute());
 					
 					List<TargetSectionAttribute> attr = new LinkedList<TargetSectionAttribute>();
-					for(AttributeMapping m : exp.getHintsToExpand()){
-						attr.add(m.getTarget());
+					for(ExpandableHint m : exp.getHintsToExpand()){
+						if(m instanceof AttributeMapping){
+							attr.add(((AttributeMapping) m).getTarget());
+						} else if(m instanceof AttributeMatcher){
+							attr.add(((AttributeMatcher) m).getTargetAttribute());
+						}
 					}
 					targetViewer.setSelection(new StructuredSelection(attr));
 					

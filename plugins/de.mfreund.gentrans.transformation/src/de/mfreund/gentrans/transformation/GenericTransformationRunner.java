@@ -505,19 +505,21 @@ public class GenericTransformationRunner {
 
 						}
 						
-						if(rootInstances.size() > 0){
-							//link
-							connectionHelpers.linkToTargetModelNoConnectionHint(
-									g.getTargetMMSection().getEClass(),
-									rootInstances,
-									g.getTargetMMSection(), m.getName(), g.getName(),
-									containerClasses.size() > 0,
-									containerClasses,										
-									containerInstances
-									);
-							if(connectionHelpers.isTransformationAborted()){
-								writePamtramMessage("Transformation aborted.");
-								return false;
+						if(rootInstances != null){
+							if(rootInstances.size() > 0){
+								//link
+								connectionHelpers.linkToTargetModelNoConnectionHint(
+										g.getTargetMMSection().getEClass(),
+										rootInstances,
+										g.getTargetMMSection(), m.getName(), g.getName(),
+										containerClasses.size() > 0,
+										containerClasses,										
+										containerInstances
+										);
+								if(connectionHelpers.isTransformationAborted()){
+									writePamtramMessage("Transformation aborted.");
+									return false;
+								}
 							}
 						}
 					}

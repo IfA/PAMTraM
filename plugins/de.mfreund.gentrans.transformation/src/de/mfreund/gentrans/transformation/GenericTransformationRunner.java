@@ -33,6 +33,7 @@ import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
 import pamtram.PAMTraM;
 import pamtram.mapping.AttributeMapping;
+import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.CalculatorMapping;
 import pamtram.mapping.CalculatorMappingSourceInterface;
 import pamtram.mapping.ComplexAttributeMapping;
@@ -55,6 +56,7 @@ import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.SimpleAttributeMapping;
+import pamtram.mapping.SimpleAttributeMatcher;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.TargetSectionClass;
@@ -654,6 +656,49 @@ public class GenericTransformationRunner {
 													}
 												}//TODO add any remaining hitValue changes here
 	
+											}
+										} else if(realHint instanceof MappingInstanceSelector){
+											if(((MappingInstanceSelector) realHint).getMatcher() instanceof AttributeMatcher){
+												AttributeMatcher matcher=(AttributeMatcher) ((MappingInstanceSelector) realHint).getMatcher();
+
+												if(((MappedAttributeValueExpander) h).getHintsToExpand().contains(matcher)){
+													if(matcher instanceof SimpleAttributeMatcher){//SimpleAttributeMatcher
+														LinkedList<Object> vals=new LinkedList<Object>();
+														if(prepend){
+															for(Object s : selMap.getHintValues().get(realHint)){
+																vals.add(hintVal+((String)s));
+															}
+														} else {
+															for(Object s : selMap.getHintValues().get(realHint)){
+																vals.add(((String)s)+hintVal);
+															}														
+														}
+														selMap.setHintValueList(realHint, vals);
+													} else if(matcher instanceof ComplexAttributeMatcher){//ComplexAttributeMatcher
+														List<ComplexAttributeMatcherSourceInterface> sources=((ComplexAttributeMatcher) matcher).getSourceAttributes();
+														if(sources.size() > 0){
+															ComplexAttributeMatcherSourceInterface element;
+															if(prepend){
+																element=sources.get(0);
+															} else {
+																element=sources.get(sources.size()-1);
+															}
+
+															for(Object m : selMap.getHintValues().get(realHint)){
+																@SuppressWarnings("unchecked")
+																Map<ComplexAttributeMatcherSourceInterface,String> map=(Map<ComplexAttributeMatcherSourceInterface,String>) m;
+																if(map.containsKey(element)){
+																	if(prepend){
+																		map.put(element, hintVal+map.get(element));
+																	} else {
+																		map.put(element, map.get(element)+hintVal);
+																	}
+																}
+															}
+														}
+													}//TODO add any remaining hitValue changes here
+		
+												}												
 											}
 										}
 									}

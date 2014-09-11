@@ -243,7 +243,7 @@ class TargetSectionConnector {
 					}
 
 					ItemSelectorDialogRunner dialog=new ItemSelectorDialogRunner("The ModelConnectionHint '"
-									+ connectionHint.getName() + " (Hint :" +mappingName +", Group: " + mappingGroupName + ")" 
+									+ connectionHint.getName() + " (Mapping :" +mappingName +", Group: " + mappingGroupName + ")" 
 									+ "' points to a non-unique Attribute."
 									+ " Please choose under which elements " 
 									+ (rootInstancesByHintVal.get(hintVal).size()>1 ?

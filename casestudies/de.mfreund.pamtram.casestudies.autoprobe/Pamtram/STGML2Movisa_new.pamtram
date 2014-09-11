@@ -1380,7 +1380,7 @@
               <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/LogicalDataPerspective"/>
               <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedDataItem">
                 <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/LogicalDataPerspective/OwnedDataItem"/>
-                <value name="DataItem">
+                <value name="DataItem (dummy)">
                   <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/DataItem"/>
                   <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Dimension" value="//@targetSectionModel/@metaModelSections.0/@references.1/@value.0/@references.0/@value.0/@references.1/@value.0">
                     <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/DataItem/Dimension"/>
@@ -1475,6 +1475,18 @@
                 <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/LogicalDataPerspective/OwnedSubscription"/>
                 <value name="Subscription &quot;opcUaDataItemSubscription&quot;">
                   <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/Subscription"/>
+                  <references xsi:type="metamodel:TargetSectionContainmentReference" name="dummyMonitoredItem">
+                    <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/Subscription/OwnedMonitoredItem"/>
+                    <value name="dummyItem">
+                      <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/MonitoredItem"/>
+                      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="DummyItem" value="//@targetSectionModel/@metaModelSections.0/@references.1/@value.0/@references.0/@value.0/@references.0/@value.0">
+                        <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/MonitoredItem/DataItemToMonitor"/>
+                      </references>
+                      <attributes xsi:type="metamodel:ActualAttribute" name="Dummy_monitored" value="Dummy_monitored">
+                        <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+                      </attributes>
+                    </value>
+                  </references>
                   <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="opcUaDataItemSubscription">
                     <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
                   </attributes>
@@ -1493,6 +1505,33 @@
                 <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/TechnicalDataPerspective/OwnedServer"/>
                 <value name="OpcUaServer">
                   <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/opcua/OpcUaServer"/>
+                  <references xsi:type="metamodel:TargetSectionContainmentReference" name="dummyVariable">
+                    <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/opcua/OpcUaServer/OwnedUaItem"/>
+                    <value name="OpcUaItem Sig/FuncInterface" container="//@targetSectionModel/@metaModelSections.0/@references.1/@value.0/@references.1/@value.0/@references.0/@value.0">
+                      <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/opcua/DataVariable"/>
+                      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="IsAccessedVia" value="//@targetSectionModel/@metaModelSections.0/@references.1/@value.0/@references.0/@value.0/@references.0/@value.0">
+                        <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/ServerDataItem/IsAccessedVia"/>
+                      </references>
+                      <references xsi:type="metamodel:TargetSectionContainmentReference" name="dataType">
+                        <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/opcua/DataVariable/DataType"/>
+                        <value name="Boolean">
+                          <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/opcua/Boolean"/>
+                          <attributes xsi:type="metamodel:ActualAttribute" name="Name == Boolean" value="Boolean">
+                            <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+                          </attributes>
+                        </value>
+                      </references>
+                      <attributes xsi:type="metamodel:ActualAttribute" name="BrowseName" value="dummy">
+                        <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/opcua/OpcUaItem/BrowseName"/>
+                      </attributes>
+                      <attributes xsi:type="metamodel:ActualAttribute" name="BrowsePath" value="/dummy">
+                        <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/opcua/OpcUaItem/BrowsePath"/>
+                      </attributes>
+                      <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="dummyVariable">
+                        <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+                      </attributes>
+                    </value>
+                  </references>
                   <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="cirosUaServer">
                     <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
                   </attributes>

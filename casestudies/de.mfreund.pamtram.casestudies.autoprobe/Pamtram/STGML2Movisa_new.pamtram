@@ -2535,7 +2535,7 @@
           <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Language" value="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.2/@value.0/@references.0/@value.0">
             <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/TextItem/Language"/>
           </references>
-          <attributes xsi:type="metamodel:ActualAttribute" name="TextDef Label value Value" unique="true">
+          <attributes xsi:type="metamodel:ActualAttribute" name="TextDef Label value Value">
             <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/TextItem/Value"/>
           </attributes>
         </value>
@@ -4529,8 +4529,7 @@
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="textDef" affectedReference="//@targetSectionModel/@metaModelSections.18/@references.0/@value.0/@references.4">
           <matcher xsi:type="mapping:ComplexAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.15/@attributes.0">
-            <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherExternalSourceElement" name="LayerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.2"/>
-            <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherSourceElement" name="label" source="//@sourceSectionModel/@metaModelSections.10/@attributes.5" modifier="//@mappingModel/@modifierSets.1 //@mappingModel/@modifierSets.2"/>
+            <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherSourceElement" name="label" source="//@sourceSectionModel/@metaModelSections.10/@attributes.5" modifier="//@mappingModel/@modifierSets.2 //@mappingModel/@modifierSets.34"/>
           </matcher>
         </mappingHints>
         <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="TextLabel Bool:In">
@@ -4574,8 +4573,7 @@
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDef @ Bool:In" targetMMSection="//@targetSectionModel/@metaModelSections.15">
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="Label value name @Bool:Out" target="//@targetSectionModel/@metaModelSections.15/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.2"/>
-          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="label" source="//@sourceSectionModel/@metaModelSections.10/@attributes.5" modifier="//@mappingModel/@modifierSets.1 //@mappingModel/@modifierSets.2"/>
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="label" source="//@sourceSectionModel/@metaModelSections.10/@attributes.5" modifier="//@mappingModel/@modifierSets.2 //@mappingModel/@modifierSets.34"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="Label value value @Bool:Out" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="label" source="//@sourceSectionModel/@metaModelSections.10/@attributes.5"/>

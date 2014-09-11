@@ -1221,7 +1221,7 @@
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Ellipse" value="Ellipse"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections name="viObject StructureComponentControl, Fork" container="//@sourceSectionModel/@metaModelSections.7">
+    <metaModelSections name="viObject StructureComponentControl, Fork and Merge" container="//@sourceSectionModel/@metaModelSections.7">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="externaldata">
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
@@ -1243,9 +1243,10 @@
                 <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
                 <valueConstraint xsi:type="metamodel:EqualityMatcher" name="typeID" value="typeID"/>
               </attributes>
-              <attributes name="value == Conveyor">
+              <attributes name="value == Fork or Merge">
                 <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
                 <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Fork" value="Fork"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="MergingPoint" value="MergingPoint"/>
               </attributes>
             </value>
             <value name="Extdata name">
@@ -5123,7 +5124,7 @@
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
-    <mapping name="Fork" sourceMMSection="//@sourceSectionModel/@metaModelSections.16">
+    <mapping name="Fork and Merge" sourceMMSection="//@sourceSectionModel/@metaModelSections.16">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Fork" targetMMSection="//@targetSectionModel/@metaModelSections.21">
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="ImageName" target="//@targetSectionModel/@metaModelSections.21/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.2"/>

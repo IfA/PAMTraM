@@ -194,6 +194,8 @@ public class MappingValidator extends EObjectValidator {
 				return validateExternalMappedAttributeValuePrepender((ExternalMappedAttributeValuePrepender)value, diagnostics, context);
 			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER:
 				return validateExternalMappedAttributeValueAppender((ExternalMappedAttributeValueAppender)value, diagnostics, context);
+			case MappingPackage.EXPANDABLE_HINT:
+				return validateExpandableHint((ExpandableHint)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -929,6 +931,15 @@ public class MappingValidator extends EObjectValidator {
 	 */
 	public boolean validateExternalMappedAttributeValueAppender(ExternalMappedAttributeValueAppender externalMappedAttributeValueAppender, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(externalMappedAttributeValueAppender, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateExpandableHint(ExpandableHint expandableHint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(expandableHint, diagnostics, context);
 	}
 
 	/**

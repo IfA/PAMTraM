@@ -22,7 +22,7 @@ import pamtram.metamodel.TargetSectionAttribute;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL sourceAttributeMatchesSection='' targetAttributeMatchesSection='\n'"
  * @generated
  */
-public interface AttributeMapping extends MappingHint {
+public interface AttributeMapping extends MappingHint, ExpandableHint {
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->

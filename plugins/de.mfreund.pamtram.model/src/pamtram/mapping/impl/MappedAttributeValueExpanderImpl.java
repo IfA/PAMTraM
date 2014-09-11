@@ -6,7 +6,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import pamtram.mapping.AttributeMapping;
+import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappingPackage;
 
@@ -32,7 +32,7 @@ public abstract class MappedAttributeValueExpanderImpl extends MappedAttributeVa
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AttributeMapping> hintsToExpand;
+	protected EList<ExpandableHint> hintsToExpand;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -58,9 +58,9 @@ public abstract class MappedAttributeValueExpanderImpl extends MappedAttributeVa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<AttributeMapping> getHintsToExpand() {
+	public EList<ExpandableHint> getHintsToExpand() {
 		if (hintsToExpand == null) {
-			hintsToExpand = new EObjectResolvingEList<AttributeMapping>(AttributeMapping.class, this, MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND);
+			hintsToExpand = new EObjectResolvingEList<ExpandableHint>(ExpandableHint.class, this, MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND);
 		}
 		return hintsToExpand;
 	}
@@ -90,7 +90,7 @@ public abstract class MappedAttributeValueExpanderImpl extends MappedAttributeVa
 		switch (featureID) {
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
 				getHintsToExpand().clear();
-				getHintsToExpand().addAll((Collection<? extends AttributeMapping>)newValue);
+				getHintsToExpand().addAll((Collection<? extends ExpandableHint>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

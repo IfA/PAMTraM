@@ -3210,6 +3210,34 @@ public interface MappingPackage extends EPackage {
 	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER_OPERATION_COUNT = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link pamtram.mapping.ExpandableHint <em>Expandable Hint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.ExpandableHint
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getExpandableHint()
+	 * @generated
+	 */
+	int EXPANDABLE_HINT = 56;
+
+	/**
+	 * The number of structural features of the '<em>Expandable Hint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPANDABLE_HINT_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Expandable Hint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPANDABLE_HINT_OPERATION_COUNT = 0;
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.Mapping <em>Mapping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4289,6 +4317,16 @@ public interface MappingPackage extends EPackage {
 	EClass getExternalMappedAttributeValueAppender();
 
 	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.ExpandableHint <em>Expandable Hint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Expandable Hint</em>'.
+	 * @see pamtram.mapping.ExpandableHint
+	 * @generated
+	 */
+	EClass getExpandableHint();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5254,6 +5292,16 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EClass EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER = eINSTANCE.getExternalMappedAttributeValueAppender();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.ExpandableHint <em>Expandable Hint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.ExpandableHint
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getExpandableHint()
+		 * @generated
+		 */
+		EClass EXPANDABLE_HINT = eINSTANCE.getExpandableHint();
 
 	}
 

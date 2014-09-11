@@ -281,7 +281,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MappingHint" abstract="true" eSuperTypes="#//mapping/MappingHintType"/>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeMapping" abstract="true"
-        eSuperTypes="#//mapping/MappingHint">
+        eSuperTypes="#//mapping/MappingHint #//mapping/ExpandableHint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="sourceAttributeMatchesSection&#xD;&#xA;targetAttributeMatchesSection"/>
       </eAnnotations>
@@ -310,7 +310,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Matcher" abstract="true"/>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeMatcher" abstract="true"
-        eSuperTypes="#//mapping/Matcher">
+        eSuperTypes="#//mapping/Matcher #//mapping/ExpandableHint">
       <eStructuralFeatures xsi:type="ecore:EReference" name="targetAttribute" lowerBound="1"
           eType="#//metamodel/TargetSectionAttribute"/>
     </eClassifiers>
@@ -451,7 +451,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValueExpander" abstract="true"
         eSuperTypes="#//mapping/MappedAttributeValueExpanderType">
       <eStructuralFeatures xsi:type="ecore:EReference" name="hintsToExpand" lowerBound="1"
-          upperBound="-1" eType="#//mapping/AttributeMapping"/>
+          upperBound="-1" eType="#//mapping/ExpandableHint"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValueExpanderType"
         abstract="true" eSuperTypes="#//mapping/HintImporterMappingHint">
@@ -500,5 +500,6 @@
         eSuperTypes="#//mapping/ExternalMappedAttributeValueExpander"/>
     <eClassifiers xsi:type="ecore:EClass" name="ExternalMappedAttributeValueAppender"
         eSuperTypes="#//mapping/ExternalMappedAttributeValueExpander"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ExpandableHint" abstract="true" interface="true"/>
   </eSubpackages>
 </ecore:EPackage>

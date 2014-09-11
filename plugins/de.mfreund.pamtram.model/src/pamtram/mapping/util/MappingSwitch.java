@@ -92,6 +92,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				AttributeMapping attributeMapping = (AttributeMapping)theEObject;
 				T result = caseAttributeMapping(attributeMapping);
 				if (result == null) result = caseMappingHint(attributeMapping);
+				if (result == null) result = caseExpandableHint(attributeMapping);
 				if (result == null) result = caseMappingHintType(attributeMapping);
 				if (result == null) result = caseNamedElement(attributeMapping);
 				if (result == null) result = defaultCase(theEObject);
@@ -125,6 +126,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				AttributeMatcher attributeMatcher = (AttributeMatcher)theEObject;
 				T result = caseAttributeMatcher(attributeMatcher);
 				if (result == null) result = caseMatcher(attributeMatcher);
+				if (result == null) result = caseExpandableHint(attributeMatcher);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -239,6 +241,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseAttributeMapping(simpleAttributeMapping);
 				if (result == null) result = caseAttributeMappingSourceElementWithModifiers(simpleAttributeMapping);
 				if (result == null) result = caseMappingHint(simpleAttributeMapping);
+				if (result == null) result = caseExpandableHint(simpleAttributeMapping);
 				if (result == null) result = caseAttributeMappingSourceElementType(simpleAttributeMapping);
 				if (result == null) result = caseMappingHintType(simpleAttributeMapping);
 				if (result == null) result = caseNamedElement(simpleAttributeMapping);
@@ -250,6 +253,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				T result = caseComplexAttributeMapping(complexAttributeMapping);
 				if (result == null) result = caseAttributeMapping(complexAttributeMapping);
 				if (result == null) result = caseMappingHint(complexAttributeMapping);
+				if (result == null) result = caseExpandableHint(complexAttributeMapping);
 				if (result == null) result = caseMappingHintType(complexAttributeMapping);
 				if (result == null) result = caseNamedElement(complexAttributeMapping);
 				if (result == null) result = defaultCase(theEObject);
@@ -271,6 +275,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				T result = caseCalculatorMapping(calculatorMapping);
 				if (result == null) result = caseAttributeMapping(calculatorMapping);
 				if (result == null) result = caseMappingHint(calculatorMapping);
+				if (result == null) result = caseExpandableHint(calculatorMapping);
 				if (result == null) result = caseMappingHintType(calculatorMapping);
 				if (result == null) result = caseNamedElement(calculatorMapping);
 				if (result == null) result = defaultCase(theEObject);
@@ -299,6 +304,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				T result = caseComplexAttributeMatcher(complexAttributeMatcher);
 				if (result == null) result = caseAttributeMatcher(complexAttributeMatcher);
 				if (result == null) result = caseMatcher(complexAttributeMatcher);
+				if (result == null) result = caseExpandableHint(complexAttributeMatcher);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -308,6 +314,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseAttributeMatcher(simpleAttributeMatcher);
 				if (result == null) result = caseAttributeMappingSourceElementWithModifiers(simpleAttributeMatcher);
 				if (result == null) result = caseMatcher(simpleAttributeMatcher);
+				if (result == null) result = caseExpandableHint(simpleAttributeMatcher);
 				if (result == null) result = caseAttributeMappingSourceElementType(simpleAttributeMatcher);
 				if (result == null) result = caseNamedElement(simpleAttributeMatcher);
 				if (result == null) result = defaultCase(theEObject);
@@ -558,6 +565,12 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseHintImporterMappingHint(externalMappedAttributeValueAppender);
 				if (result == null) result = caseMappingHintType(externalMappedAttributeValueAppender);
 				if (result == null) result = caseNamedElement(externalMappedAttributeValueAppender);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.EXPANDABLE_HINT: {
+				ExpandableHint expandableHint = (ExpandableHint)theEObject;
+				T result = caseExpandableHint(expandableHint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1402,6 +1415,21 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseExternalMappedAttributeValueAppender(ExternalMappedAttributeValueAppender object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Expandable Hint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Expandable Hint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExpandableHint(ExpandableHint object) {
 		return null;
 	}
 

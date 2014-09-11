@@ -290,6 +290,10 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createExternalMappedAttributeValueAppenderAdapter();
 			}
 			@Override
+			public Adapter caseExpandableHint(ExpandableHint object) {
+				return createExpandableHintAdapter();
+			}
+			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -1094,6 +1098,20 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createExternalMappedAttributeValueAppenderAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ExpandableHint <em>Expandable Hint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.ExpandableHint
+	 * @generated
+	 */
+	public Adapter createExpandableHintAdapter() {
 		return null;
 	}
 

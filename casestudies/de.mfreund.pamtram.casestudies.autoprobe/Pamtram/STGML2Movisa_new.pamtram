@@ -2003,7 +2003,7 @@
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="navTarget" value="//@targetSectionModel/@metaModelSections.7">
         <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/NavigationFlow/Target"/>
       </references>
-      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="trigger">
+      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="trigger" value="//@targetSectionModel/@metaModelSections.10 //@targetSectionModel/@metaModelSections.9 //@targetSectionModel/@metaModelSections.6">
         <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/NavigationFlow/Trigger"/>
       </references>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name NavFlow" unique="true">
@@ -3512,7 +3512,7 @@
                   <attributes xsi:type="metamodel:ActualAttribute" name="NavButtonRepSizeHeightValue">
                     <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty/Value"/>
                   </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="Unit">
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="PIXEL">
                     <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty/Unit"/>
                   </attributes>
                 </value>
@@ -4059,14 +4059,19 @@
     <mapping name="Transitions" sourceMMSection="//@sourceSectionModel/@metaModelSections.5">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NavFlow" targetMMSection="//@targetSectionModel/@metaModelSections.8">
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="NavFlowTrigger" affectedReference="//@targetSectionModel/@metaModelSections.8/@references.2">
-          <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.9/@attributes.0" source="//@sourceSectionModel/@metaModelSections.5/@attributes.0" modifier="//@mappingModel/@modifierSets.18 //@mappingModel/@modifierSets.2"/>
+          <matcher xsi:type="mapping:ComplexAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.10/@attributes.0">
+            <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.4/@attributes.0" modifier="//@mappingModel/@modifierSets.2 //@mappingModel/@modifierSets.3"/>
+            <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherSourceElement" name="Target" source="//@sourceSectionModel/@metaModelSections.5/@attributes.1" modifier="//@mappingModel/@modifierSets.2 //@mappingModel/@modifierSets.18"/>
+          </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="FlowName" target="//@targetSectionModel/@metaModelSections.8/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.4/@attributes.0" modifier="//@mappingModel/@modifierSets.4 //@mappingModel/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="target" source="//@sourceSectionModel/@metaModelSections.5/@attributes.1" modifier="//@mappingModel/@modifierSets.2"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="NavFlowTarget" affectedReference="//@targetSectionModel/@metaModelSections.8/@references.1">
-          <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.7/@attributes.0" source="//@sourceSectionModel/@metaModelSections.5/@attributes.1" modifier="//@mappingModel/@modifierSets.2"/>
+          <matcher xsi:type="mapping:ComplexAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.7/@attributes.0">
+            <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherSourceElement" name="Target" source="//@sourceSectionModel/@metaModelSections.5/@attributes.1" modifier="//@mappingModel/@modifierSets.2"/>
+          </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="sourcePanel" affectedReference="//@targetSectionModel/@metaModelSections.8/@references.0">
           <matcher xsi:type="mapping:ComplexAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.7/@attributes.0">

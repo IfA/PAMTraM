@@ -243,12 +243,13 @@ class TargetSectionConnector {
 					}
 
 					ItemSelectorDialogRunner dialog=new ItemSelectorDialogRunner("The ModelConnectionHint '"
-									+ connectionHint.getName()
+									+ connectionHint.getName() + " (Hint :" +mappingName +", Group: " + mappingGroupName + ")" 
 									+ "' points to a non-unique Attribute."
-									+ "Please choose under which elements theese "
-									+ rootInstancesByHintVal.get(hintVal)
-											.size()
-									+ " elements  should be inserted.\n\n"
+									+ " Please choose under which elements " 
+									+ (rootInstancesByHintVal.get(hintVal).size()>1 ?
+											"theese " + rootInstancesByHintVal.get(hintVal).size() + "elements" 
+											:  "this " + rootInstancesByHintVal.get(hintVal).size() + "element" )
+									+ " should be inserted.\n\n"
 									+ "Attribute value: " + hintVal,
 									containerDescriptions.keySet(), "");
 					Display.getDefault().syncExec(dialog);

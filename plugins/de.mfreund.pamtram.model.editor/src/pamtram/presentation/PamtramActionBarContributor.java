@@ -35,8 +35,10 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 
 import pamtram.mapping.SimpleAttributeMapping;
+import pamtram.mapping.SimpleAttributeMatcher;
 import pamtram.mapping.SimpleModelConnectionHint;
 import pamtram.presentation.actions.SimpleToComplexAttributeMappingAction;
+import pamtram.presentation.actions.SimpleToComplexAttributeMatcherAction;
 import pamtram.presentation.actions.SimpleToComplexModelConnectionHint;
 import pamtram.presentation.actions.SimpleToExternalComplexAttributeMappingAction;
 import pamtram.presentation.actions.SimpleToExternalComplexModelConnectionHint;
@@ -347,6 +349,8 @@ public class PamtramActionBarContributor
 		} else if(descriptor instanceof pamtram.mapping.SimpleModelConnectionHint){
 			actions.add(new SimpleToComplexModelConnectionHint((SimpleModelConnectionHint) descriptor));
 			actions.add(new SimpleToExternalComplexModelConnectionHint((SimpleModelConnectionHint) descriptor));
+		} else if(descriptor instanceof pamtram.mapping.SimpleAttributeMatcher){
+			actions.add(new SimpleToComplexAttributeMatcherAction((SimpleAttributeMatcher) descriptor));
 		}
 		return actions;
 	}

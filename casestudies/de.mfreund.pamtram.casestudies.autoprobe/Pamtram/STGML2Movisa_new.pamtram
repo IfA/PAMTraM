@@ -1895,6 +1895,15 @@
           </references>
           <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedNavigationFlow">
             <eReference href="http://stefan-hennig.de/movisa/platform#//PresentationModel/OwnedNavigationFlow"/>
+            <value name="NewViewNavFlow">
+              <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/NewViewNavigationFlow"/>
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="source" value="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.4/@value.0">
+                <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/NavigationFlow/Source"/>
+              </references>
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="target" value="//@targetSectionModel/@metaModelSections.7">
+                <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/NavigationFlow/Target"/>
+              </references>
+            </value>
           </references>
           <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedNavigationRoot">
             <eReference href="http://stefan-hennig.de/movisa/platform#//PresentationModel/OwnedNavigationRoot"/>
@@ -3837,6 +3846,9 @@
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="VisAppModel" targetMMSection="//@targetSectionModel/@metaModelSections.0">
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="VisAppName" target="//@targetSectionModel/@metaModelSections.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.0/@attributes.0"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="VersionNumber" target="//@targetSectionModel/@metaModelSections.0/@attributes.4" source="//@sourceSectionModel/@metaModelSections.0/@attributes.1"/>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="initfialFlowTarget" affectedReference="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.3/@value.0/@references.1">
+          <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.7/@attributes.0" name="initial Panel" source="//@sourceSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
+        </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:ExportedMappingHintGroup" name="AbstractNavFlows" targetMMSection="//@targetSectionModel/@metaModelSections.8">
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="NavFlowTrigger" affectedReference="//@targetSectionModel/@metaModelSections.8/@references.2">
@@ -5064,8 +5076,9 @@
       <modifier xsi:type="mapping:SubstringReplacer" name="Hashtag" regex="#" replacement=""/>
       <modifier xsi:type="mapping:SubstringReplacer" name="dot to _" regex="\." replacement="_"/>
       <modifier xsi:type="mapping:SubstringReplacer" name="| to _" regex="\|" replacement="_"/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="> to -" regex=">" replacement="-"/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="&lt; to -" regex="&lt;" replacement="-"/>
+      <modifier xsi:type="mapping:SubstringReplacer" name="> to _" regex=">" replacement="_"/>
+      <modifier xsi:type="mapping:SubstringReplacer" name="&lt; to _" regex="&lt;" replacement="_"/>
+      <modifier xsi:type="mapping:SubstringReplacer" name="- to _" regex="-" replacement="_"/>
     </modifierSets>
     <modifierSets name="append _">
       <modifier xsi:type="mapping:StringAppender" name="_" string="_"/>

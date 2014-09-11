@@ -20495,9 +20495,145 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="QualityPLC_Handler_CommandDispatch_ReturnAck_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.182">
+          <Alignment Name="Handler_CommandDispatch_ReturnAck_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="Handler_CommandDispatch_ReturnAck_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="QualityPLC_Handler_CommandDispatch_ReturnAck" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="QualityPLC_Handler_CommandDispatch_ReturnAck_pos">
+            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="7.0"/>
+            <Y Name="QualityPLC_pos_y" Unit="PIXEL" Value="641.0"/>
+            <Z Name="QualityPLC_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="QualityPLC_size">
+            <Height Name="QualityPLC_height" Unit="PIXEL" Value="20.0"/>
+            <Width Name="QualityPLC_width" Unit="PIXEL" Value="267.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="QualityPLC_Handler_CommandDispatch_SpsID_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.183">
+          <Alignment Name="Handler_CommandDispatch_SpsID_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="Handler_CommandDispatch_SpsID_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="QualityPLC_Handler_CommandDispatch_SpsID" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="QualityPLC_Handler_CommandDispatch_SpsID_pos">
+            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="7.0"/>
+            <Y Name="QualityPLC_pos_y" Unit="PIXEL" Value="622.0"/>
+            <Z Name="QualityPLC_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="QualityPLC_size">
+            <Height Name="QualityPLC_height" Unit="PIXEL" Value="20.0"/>
+            <Width Name="QualityPLC_width" Unit="PIXEL" Value="267.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="QualityPLC_Handler_CommandDispatch_CommandID_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.184">
+          <Alignment Name="Handler_CommandDispatch_CommandID_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="Handler_CommandDispatch_CommandID_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="QualityPLC_Handler_CommandDispatch_CommandID" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="QualityPLC_Handler_CommandDispatch_CommandID_pos">
+            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="7.0"/>
+            <Y Name="QualityPLC_pos_y" Unit="PIXEL" Value="602.0"/>
+            <Z Name="QualityPLC_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="QualityPLC_size">
+            <Height Name="QualityPLC_height" Unit="PIXEL" Value="20.0"/>
+            <Width Name="QualityPLC_width" Unit="PIXEL" Value="267.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="QualityPLC_Handler_CommandDispatch_Param3_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.185">
+          <Alignment Name="Handler_CommandDispatch_Param3_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="Handler_CommandDispatch_Param3_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="QualityPLC_Handler_CommandDispatch_Param3" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="QualityPLC_Handler_CommandDispatch_Param3_pos">
+            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="7.0"/>
+            <Y Name="QualityPLC_pos_y" Unit="PIXEL" Value="582.0"/>
+            <Z Name="QualityPLC_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="QualityPLC_size">
+            <Height Name="QualityPLC_height" Unit="PIXEL" Value="20.0"/>
+            <Width Name="QualityPLC_width" Unit="PIXEL" Value="267.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="QualityPLC_Handler_CommandDispatch_Param2_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.186">
+          <Alignment Name="Handler_CommandDispatch_Param2_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="Handler_CommandDispatch_Param2_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="QualityPLC_Handler_CommandDispatch_Param2" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="QualityPLC_Handler_CommandDispatch_Param2_pos">
+            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="7.0"/>
+            <Y Name="QualityPLC_pos_y" Unit="PIXEL" Value="562.0"/>
+            <Z Name="QualityPLC_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="QualityPLC_size">
+            <Height Name="QualityPLC_height" Unit="PIXEL" Value="20.0"/>
+            <Width Name="QualityPLC_width" Unit="PIXEL" Value="267.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="QualityPLC_Handler_CommandDispatch_Param1_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.187">
+          <Alignment Name="Handler_CommandDispatch_Param1_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="Handler_CommandDispatch_Param1_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="QualityPLC_Handler_CommandDispatch_Param1" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="QualityPLC_Handler_CommandDispatch_Param1_pos">
+            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="7.0"/>
+            <Y Name="QualityPLC_pos_y" Unit="PIXEL" Value="542.0"/>
+            <Z Name="QualityPLC_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="QualityPLC_size">
+            <Height Name="QualityPLC_height" Unit="PIXEL" Value="20.0"/>
+            <Width Name="QualityPLC_width" Unit="PIXEL" Value="267.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="QualityPLC_Handler_CommandDispatch_Command_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.188">
+          <Alignment Name="Handler_CommandDispatch_Command_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="Handler_CommandDispatch_Command_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="QualityPLC_Handler_CommandDispatch_Command" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="QualityPLC_Handler_CommandDispatch_Command_pos">
+            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="7.0"/>
+            <Y Name="QualityPLC_pos_y" Unit="PIXEL" Value="523.0"/>
+            <Z Name="QualityPLC_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="QualityPLC_size">
+            <Height Name="QualityPLC_height" Unit="PIXEL" Value="20.0"/>
+            <Width Name="QualityPLC_width" Unit="PIXEL" Value="267.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="QualityPLC_Diameter_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.189">
+          <Alignment Name="Diameter_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="Diameter_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="QualityPLC_Diameter" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="QualityPLC_Diameter_pos">
+            <X Name="QualityPLC_pos_x" Unit="PIXEL" Value="7.0"/>
+            <Y Name="QualityPLC_pos_y" Unit="PIXEL" Value="503.0"/>
+            <Z Name="QualityPLC_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="QualityPLC_size">
+            <Height Name="QualityPLC_height" Unit="PIXEL" Value="20.0"/>
+            <Width Name="QualityPLC_width" Unit="PIXEL" Value="267.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
       <OwnedUIComponent xsi:type="presentation:Button" Name="QualityPLC_NAVTOP_button">
         <Interaction>
-          <CommonTrigger xsi:type="presentation:Click" Name="QualityPLC_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.77/@Interaction/@OwnedEffect.0"/>
+          <CommonTrigger xsi:type="presentation:Click" Name="QualityPLC_NAVTOPSignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.85/@Interaction/@OwnedEffect.0"/>
           <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_QualityPLC_NAVTOP" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.57"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.199">
@@ -20518,7 +20654,7 @@
       </OwnedUIComponent>
       <OwnedUIComponent xsi:type="presentation:Button" Name="QualityPLC_Quality_button">
         <Interaction>
-          <CommonTrigger xsi:type="presentation:Click" Name="QualityPLC_QualitySignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.78/@Interaction/@OwnedEffect.0"/>
+          <CommonTrigger xsi:type="presentation:Click" Name="QualityPLC_QualitySignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.57/@OwnedUIComponent.86/@Interaction/@OwnedEffect.0"/>
           <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_QualityPLC_Quality" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.165"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.200">

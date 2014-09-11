@@ -4373,6 +4373,177 @@
       <OwnedTextDefinition Name="text_StockDoublePLC">
         <TranslatedTextItem Value="StockDoublePLC" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
       </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.PLC.FESTO.Quality_QualityPLC">
+        <TranslatedTextItem Value="text_Component_PLC_FESTO_Quality_QualityPLC" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.Robot.Mitsubishi_AssemblyRH5A55Robot">
+        <TranslatedTextItem Value="text_Component_Robot_Mitsubishi_AssemblyRH5A55Robot" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.Sensor.SEN_CAMERA.Component.Vision.FESTO.Data_AssemblyRH5A55VisionData">
+        <TranslatedTextItem Value="text_Component_Sensor_SEN_CAMERA_Component_Vision_FESTO_Data_AssemblyRH5A55VisionData" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.Actor_RobotGripper_1">
+        <TranslatedTextItem Value="text_Component_Actor_RobotGripper_1" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Assembly.Buffer_PalletHolder_7">
+        <TranslatedTextItem Value="text_Assembly_Buffer_PalletHolder_7" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Assembly.Buffer_PalletHolder_8">
+        <TranslatedTextItem Value="text_Assembly_Buffer_PalletHolder_8" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Assembly.Buffer_PalletHolder_9">
+        <TranslatedTextItem Value="text_Assembly_Buffer_PalletHolder_9" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Assembly.Buffer_PalletHolder_10">
+        <TranslatedTextItem Value="text_Assembly_Buffer_PalletHolder_10" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Assembly.Magazin_MagazinInstrument_1">
+        <TranslatedTextItem Value="text_Assembly_Magazin_MagazinInstrument_1" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Assembly.Magazin_PenMagazin">
+        <TranslatedTextItem Value="text_Assembly_Magazin_PenMagazin" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Assembly.Magazin_MagazinInstrument_2">
+        <TranslatedTextItem Value="text_Assembly_Magazin_MagazinInstrument_2" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.Sensor.SEN_INDUCTIVE_PalletSensor_11">
+        <TranslatedTextItem Value="text_Component_Sensor_SEN_INDUCTIVE_PalletSensor_11" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.Sensor.SEN_INDUCTIVE_PalletSensor_12">
+        <TranslatedTextItem Value="text_Component_Sensor_SEN_INDUCTIVE_PalletSensor_12" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.Sensor.SEN_INDUCTIVE_PalletSensor_13">
+        <TranslatedTextItem Value="text_Component_Sensor_SEN_INDUCTIVE_PalletSensor_13" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.Sensor.SEN_INDUCTIVE_PalletSensor_14">
+        <TranslatedTextItem Value="text_Component_Sensor_SEN_INDUCTIVE_PalletSensor_14" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.Vision.FESTO.Control_AssemblyRH5A55VisionControl">
+        <TranslatedTextItem Value="text_Component_Vision_FESTO_Control_AssemblyRH5A55VisionControl" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.Sensor.SEN_INDUCTIVE_PalletSensor_10">
+        <TranslatedTextItem Value="text_Component_Sensor_SEN_INDUCTIVE_PalletSensor_10" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.Sensor.SEN_INDUCTIVE_PalletSensor_9">
+        <TranslatedTextItem Value="text_Component_Sensor_SEN_INDUCTIVE_PalletSensor_9" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.Sensor.SEN_INDUCTIVE_PalletSensor_8">
+        <TranslatedTextItem Value="text_Component_Sensor_SEN_INDUCTIVE_PalletSensor_8" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.Robot.Mitsubishi_Turn55Robot">
+        <TranslatedTextItem Value="text_Component_Robot_Mitsubishi_Turn55Robot" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.CNC.EMCO.Turn_Turn55CNC">
+        <TranslatedTextItem Value="text_Component_CNC_EMCO_Turn_Turn55CNC" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.Actor_TurnRobotGripper">
+        <TranslatedTextItem Value="text_Component_Actor_TurnRobotGripper" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Assembly.Buffer_PalletHolder_4">
+        <TranslatedTextItem Value="text_Assembly_Buffer_PalletHolder_4" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Assembly.Buffer_PalletHolder_5">
+        <TranslatedTextItem Value="text_Assembly_Buffer_PalletHolder_5" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Assembly.Buffer_PalletHolder_6">
+        <TranslatedTextItem Value="text_Assembly_Buffer_PalletHolder_6" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.Sensor.SEN_INDUCTIVE_PalletSensor_7">
+        <TranslatedTextItem Value="text_Component_Sensor_SEN_INDUCTIVE_PalletSensor_7" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.Sensor.SEN_INDUCTIVE_PalletSensor_6">
+        <TranslatedTextItem Value="text_Component_Sensor_SEN_INDUCTIVE_PalletSensor_6" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.Sensor.SEN_INDUCTIVE_PalletSensor_5">
+        <TranslatedTextItem Value="text_Component_Sensor_SEN_INDUCTIVE_PalletSensor_5" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.Robot.Mitsubishi_Mill55Robot">
+        <TranslatedTextItem Value="text_Component_Robot_Mitsubishi_Mill55Robot" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.CNC.EMCO.Mill_Mill55CNC">
+        <TranslatedTextItem Value="text_Component_CNC_EMCO_Mill_Mill55CNC" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.Actor_MillRobotGripper">
+        <TranslatedTextItem Value="text_Component_Actor_MillRobotGripper" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Assembly.Buffer_PalletHolder_1">
+        <TranslatedTextItem Value="text_Assembly_Buffer_PalletHolder_1" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Assembly.Buffer_PalletHolder_2">
+        <TranslatedTextItem Value="text_Assembly_Buffer_PalletHolder_2" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Assembly.Buffer_PalletHolder_3">
+        <TranslatedTextItem Value="text_Assembly_Buffer_PalletHolder_3" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.Sensor.SEN_INDUCTIVE_PalletSensor_3">
+        <TranslatedTextItem Value="text_Component_Sensor_SEN_INDUCTIVE_PalletSensor_3" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.Sensor.SEN_INDUCTIVE_PalletSensor_4">
+        <TranslatedTextItem Value="text_Component_Sensor_SEN_INDUCTIVE_PalletSensor_4" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.Sensor.SEN_INDUCTIVE_PalletSensor_2">
+        <TranslatedTextItem Value="text_Component_Sensor_SEN_INDUCTIVE_PalletSensor_2" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.Sensor.SEN_INDUCTIVE_PalletSensor_1">
+        <TranslatedTextItem Value="text_Component_Sensor_SEN_INDUCTIVE_PalletSensor_1" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.Sensor.SEN_OPT_REFLEX_DiffuseSensor">
+        <TranslatedTextItem Value="text_Component_Sensor_SEN_OPT_REFLEX_DiffuseSensor" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.CNC.EMCO.Mill_MillAndTurn105MillCNC">
+        <TranslatedTextItem Value="text_Component_CNC_EMCO_Mill_MillAndTurn105MillCNC" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.CNC.EMCO.Turn_MillAndTurn105TurnCNC">
+        <TranslatedTextItem Value="text_Component_CNC_EMCO_Turn_MillAndTurn105TurnCNC" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.Robot.Mitsubishi_MillAndTurn105Robot">
+        <TranslatedTextItem Value="text_Component_Robot_Mitsubishi_MillAndTurn105Robot" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Assembly.Magazin_Magazine1">
+        <TranslatedTextItem Value="text_Assembly_Magazin_Magazine1" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Assembly.Magazin_Magazine2">
+        <TranslatedTextItem Value="text_Assembly_Magazin_Magazine2" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Assembly.Magazin_BaseplateMagazine">
+        <TranslatedTextItem Value="text_Assembly_Magazin_BaseplateMagazine" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Assembly.Buffer_Palletholder_23">
+        <TranslatedTextItem Value="text_Assembly_Buffer_Palletholder_23" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Assembly.Buffer_Palletholder_20">
+        <TranslatedTextItem Value="text_Assembly_Buffer_Palletholder_20" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Assembly.Buffer_Palletholder_22">
+        <TranslatedTextItem Value="text_Assembly_Buffer_Palletholder_22" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Assembly.Buffer_Palletholder_21">
+        <TranslatedTextItem Value="text_Assembly_Buffer_Palletholder_21" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.Actor_RobotGripper">
+        <TranslatedTextItem Value="text_Component_Actor_RobotGripper" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Component.PLC.FESTO.Stock_StockDoublePLC">
+        <TranslatedTextItem Value="text_Component_PLC_FESTO_Stock_StockDoublePLC" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Station.FESTO.Stock_StockDouble">
+        <TranslatedTextItem Value="text_Station_FESTO_Stock_StockDouble" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Station.FESTO.MillAndTurn_MillAndTurn105">
+        <TranslatedTextItem Value="text_Station_FESTO_MillAndTurn_MillAndTurn105" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Station.FESTO.Mill_Mill55">
+        <TranslatedTextItem Value="text_Station_FESTO_Mill_Mill55" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Station.FESTO.Turn_Turn55">
+        <TranslatedTextItem Value="text_Station_FESTO_Turn_Turn55" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Station.FESTO.Assembly_AssemblyRH5A55">
+        <TranslatedTextItem Value="text_Station_FESTO_Assembly_AssemblyRH5A55" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="Station.FESTO.Quality_Quality">
+        <TranslatedTextItem Value="text_Station_FESTO_Quality_Quality" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
     </OwnedMultiLingualTextDefinition>
     <OwnedNavigationFlow xsi:type="presentation:NewViewNavigationFlow" Source="//@PresentationDomain/@OwnedNavigationRoot" Target="//@PresentationDomain/@OwnedPanel.0"/>
     <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="NAVTOP_to_NAVTOP" Source="//@PresentationDomain/@OwnedPanel.0" Target="//@PresentationDomain/@OwnedPanel.0" Trigger="//@AlgorithmDomain/@OwnedElement.4/@Signal.0"/>
@@ -6401,6 +6572,108 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="NAVTOP_StockDouble_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.255">
+          <Alignment Name="StockDouble_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="StockDouble_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_StockDouble" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_StockDouble_pos">
+            <X Name="NAVTOP_pos_x" Unit="PIXEL" Value="398.0"/>
+            <Y Name="NAVTOP_pos_y" Unit="PIXEL" Value="522.0"/>
+            <Z Name="NAVTOP_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="NAVTOP_size">
+            <Height Name="NAVTOP_height" Unit="PIXEL" Value="99.0"/>
+            <Width Name="NAVTOP_width" Unit="PIXEL" Value="190.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="NAVTOP_MillAndTurn105_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.238">
+          <Alignment Name="MillAndTurn105_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="MillAndTurn105_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_MillAndTurn105" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_MillAndTurn105_pos">
+            <X Name="NAVTOP_pos_x" Unit="PIXEL" Value="194.0"/>
+            <Y Name="NAVTOP_pos_y" Unit="PIXEL" Value="300.0"/>
+            <Z Name="NAVTOP_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="NAVTOP_size">
+            <Height Name="NAVTOP_height" Unit="PIXEL" Value="282.0"/>
+            <Width Name="NAVTOP_width" Unit="PIXEL" Value="149.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="NAVTOP_Mill55_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.229">
+          <Alignment Name="Mill55_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="Mill55_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_Mill55" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_Mill55_pos">
+            <X Name="NAVTOP_pos_x" Unit="PIXEL" Value="250.0"/>
+            <Y Name="NAVTOP_pos_y" Unit="PIXEL" Value="76.0"/>
+            <Z Name="NAVTOP_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="NAVTOP_size">
+            <Height Name="NAVTOP_height" Unit="PIXEL" Value="93.0"/>
+            <Width Name="NAVTOP_width" Unit="PIXEL" Value="147.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="NAVTOP_Turn55_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.219">
+          <Alignment Name="Turn55_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="Turn55_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_Turn55" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_Turn55_pos">
+            <X Name="NAVTOP_pos_x" Unit="PIXEL" Value="801.0"/>
+            <Y Name="NAVTOP_pos_y" Unit="PIXEL" Value="363.0"/>
+            <Z Name="NAVTOP_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="NAVTOP_size">
+            <Height Name="NAVTOP_height" Unit="PIXEL" Value="165.0"/>
+            <Width Name="NAVTOP_width" Unit="PIXEL" Value="138.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="NAVTOP_AssemblyRH5A55_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.202">
+          <Alignment Name="AssemblyRH5A55_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="AssemblyRH5A55_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AssemblyRH5A55" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AssemblyRH5A55_pos">
+            <X Name="NAVTOP_pos_x" Unit="PIXEL" Value="609.0"/>
+            <Y Name="NAVTOP_pos_y" Unit="PIXEL" Value="33.0"/>
+            <Z Name="NAVTOP_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="NAVTOP_size">
+            <Height Name="NAVTOP_height" Unit="PIXEL" Value="99.0"/>
+            <Width Name="NAVTOP_width" Unit="PIXEL" Value="124.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="NAVTOP_Quality_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.200">
+          <Alignment Name="Quality_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="Quality_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_Quality" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_Quality_pos">
+            <X Name="NAVTOP_pos_x" Unit="PIXEL" Value="653.0"/>
+            <Y Name="NAVTOP_pos_y" Unit="PIXEL" Value="520.0"/>
+            <Z Name="NAVTOP_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="NAVTOP_size">
+            <Height Name="NAVTOP_height" Unit="PIXEL" Value="101.0"/>
+            <Width Name="NAVTOP_width" Unit="PIXEL" Value="60.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
     </OwnedPanel>
     <OwnedPanel Name="StockDouble">
       <OwnedUIComponent xsi:type="presentation:Button" Name="StockDouble_NAVTOP_button">
@@ -6442,6 +6715,23 @@
           <Size Name="StockDouble_StockDoublePLC_size">
             <Height Name="StockDouble_StockDoublePLC_height" Unit="PIXEL" Value="33.0"/>
             <Width Name="StockDouble_StockDoublePLC_width" Unit="PIXEL" Value="100.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="StockDouble_StockDoublePLC_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.256">
+          <Alignment Name="StockDoublePLC_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="StockDoublePLC_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="StockDouble_StockDoublePLC" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="StockDouble_StockDoublePLC_pos">
+            <X Name="StockDouble_pos_x" Unit="PIXEL" Value="7.0"/>
+            <Y Name="StockDouble_pos_y" Unit="PIXEL" Value="137.0"/>
+            <Z Name="StockDouble_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="StockDouble_size">
+            <Height Name="StockDouble_height" Unit="PIXEL" Value="394.0"/>
+            <Width Name="StockDouble_width" Unit="PIXEL" Value="989.0"/>
           </Size>
         </Representation>
       </OwnedUIComponent>
@@ -6843,6 +7133,193 @@
           <Size Name="MillAndTurn105_Magazine2_size">
             <Height Name="MillAndTurn105_Magazine2_height" Unit="PIXEL" Value="33.0"/>
             <Width Name="MillAndTurn105_Magazine2_width" Unit="PIXEL" Value="84.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105_MillAndTurn105MillCNC_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.252">
+          <Alignment Name="MillAndTurn105MillCNC_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="MillAndTurn105MillCNC_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="MillAndTurn105_MillAndTurn105MillCNC" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="MillAndTurn105_MillAndTurn105MillCNC_pos">
+            <X Name="MillAndTurn105_pos_x" Unit="PIXEL" Value="423.0"/>
+            <Y Name="MillAndTurn105_pos_y" Unit="PIXEL" Value="450.0"/>
+            <Z Name="MillAndTurn105_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="MillAndTurn105_size">
+            <Height Name="MillAndTurn105_height" Unit="PIXEL" Value="171.0"/>
+            <Width Name="MillAndTurn105_width" Unit="PIXEL" Value="179.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105_MillAndTurn105TurnCNC_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.249">
+          <Alignment Name="MillAndTurn105TurnCNC_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="MillAndTurn105TurnCNC_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="MillAndTurn105_MillAndTurn105TurnCNC" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="MillAndTurn105_MillAndTurn105TurnCNC_pos">
+            <X Name="MillAndTurn105_pos_x" Unit="PIXEL" Value="423.0"/>
+            <Y Name="MillAndTurn105_pos_y" Unit="PIXEL" Value="47.0"/>
+            <Z Name="MillAndTurn105_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="MillAndTurn105_size">
+            <Height Name="MillAndTurn105_height" Unit="PIXEL" Value="213.0"/>
+            <Width Name="MillAndTurn105_width" Unit="PIXEL" Value="175.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105_MillAndTurn105Robot_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.250">
+          <Alignment Name="MillAndTurn105Robot_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="MillAndTurn105Robot_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="MillAndTurn105_MillAndTurn105Robot" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="MillAndTurn105_MillAndTurn105Robot_pos">
+            <X Name="MillAndTurn105_pos_x" Unit="PIXEL" Value="609.0"/>
+            <Y Name="MillAndTurn105_pos_y" Unit="PIXEL" Value="77.0"/>
+            <Z Name="MillAndTurn105_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="MillAndTurn105_size">
+            <Height Name="MillAndTurn105_height" Unit="PIXEL" Value="65.0"/>
+            <Width Name="MillAndTurn105_width" Unit="PIXEL" Value="61.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105_Magazine1_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.251">
+          <Alignment Name="Magazine1_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="Magazine1_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="MillAndTurn105_Magazine1" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="MillAndTurn105_Magazine1_pos">
+            <X Name="MillAndTurn105_pos_x" Unit="PIXEL" Value="480.0"/>
+            <Y Name="MillAndTurn105_pos_y" Unit="PIXEL" Value="367.0"/>
+            <Z Name="MillAndTurn105_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="MillAndTurn105_size">
+            <Height Name="MillAndTurn105_height" Unit="PIXEL" Value="11.0"/>
+            <Width Name="MillAndTurn105_width" Unit="PIXEL" Value="85.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105_Magazine2_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.254">
+          <Alignment Name="Magazine2_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="Magazine2_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="MillAndTurn105_Magazine2" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="MillAndTurn105_Magazine2_pos">
+            <X Name="MillAndTurn105_pos_x" Unit="PIXEL" Value="480.0"/>
+            <Y Name="MillAndTurn105_pos_y" Unit="PIXEL" Value="348.0"/>
+            <Z Name="MillAndTurn105_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="MillAndTurn105_size">
+            <Height Name="MillAndTurn105_height" Unit="PIXEL" Value="11.0"/>
+            <Width Name="MillAndTurn105_width" Unit="PIXEL" Value="85.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105_BaseplateMagazine_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.247">
+          <Alignment Name="BaseplateMagazine_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="BaseplateMagazine_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="MillAndTurn105_BaseplateMagazine" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="MillAndTurn105_BaseplateMagazine_pos">
+            <X Name="MillAndTurn105_pos_x" Unit="PIXEL" Value="457.0"/>
+            <Y Name="MillAndTurn105_pos_y" Unit="PIXEL" Value="408.0"/>
+            <Z Name="MillAndTurn105_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="MillAndTurn105_size">
+            <Height Name="MillAndTurn105_height" Unit="PIXEL" Value="34.0"/>
+            <Width Name="MillAndTurn105_width" Unit="PIXEL" Value="87.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105_Palletholder_23_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.241">
+          <Alignment Name="Palletholder_23_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="Palletholder_23_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="MillAndTurn105_Palletholder_23" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="MillAndTurn105_Palletholder_23_pos">
+            <X Name="MillAndTurn105_pos_x" Unit="PIXEL" Value="574.0"/>
+            <Y Name="MillAndTurn105_pos_y" Unit="PIXEL" Value="371.0"/>
+            <Z Name="MillAndTurn105_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="MillAndTurn105_size">
+            <Height Name="MillAndTurn105_height" Unit="PIXEL" Value="36.0"/>
+            <Width Name="MillAndTurn105_width" Unit="PIXEL" Value="61.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105_Palletholder_20_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.245">
+          <Alignment Name="Palletholder_20_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="Palletholder_20_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="MillAndTurn105_Palletholder_20" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="MillAndTurn105_Palletholder_20_pos">
+            <X Name="MillAndTurn105_pos_x" Unit="PIXEL" Value="574.0"/>
+            <Y Name="MillAndTurn105_pos_y" Unit="PIXEL" Value="267.0"/>
+            <Z Name="MillAndTurn105_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="MillAndTurn105_size">
+            <Height Name="MillAndTurn105_height" Unit="PIXEL" Value="34.0"/>
+            <Width Name="MillAndTurn105_width" Unit="PIXEL" Value="59.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105_Palletholder_22_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.239">
+          <Alignment Name="Palletholder_22_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="Palletholder_22_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="MillAndTurn105_Palletholder_22" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="MillAndTurn105_Palletholder_22_pos">
+            <X Name="MillAndTurn105_pos_x" Unit="PIXEL" Value="574.0"/>
+            <Y Name="MillAndTurn105_pos_y" Unit="PIXEL" Value="336.0"/>
+            <Z Name="MillAndTurn105_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="MillAndTurn105_size">
+            <Height Name="MillAndTurn105_height" Unit="PIXEL" Value="34.0"/>
+            <Width Name="MillAndTurn105_width" Unit="PIXEL" Value="59.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105_Palletholder_21_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.243">
+          <Alignment Name="Palletholder_21_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="Palletholder_21_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="MillAndTurn105_Palletholder_21" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="MillAndTurn105_Palletholder_21_pos">
+            <X Name="MillAndTurn105_pos_x" Unit="PIXEL" Value="574.0"/>
+            <Y Name="MillAndTurn105_pos_y" Unit="PIXEL" Value="301.0"/>
+            <Z Name="MillAndTurn105_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="MillAndTurn105_size">
+            <Height Name="MillAndTurn105_height" Unit="PIXEL" Value="34.0"/>
+            <Width Name="MillAndTurn105_width" Unit="PIXEL" Value="59.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="MillAndTurn105_RobotGripper_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.253">
+          <Alignment Name="RobotGripper_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="RobotGripper_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="MillAndTurn105_RobotGripper" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="MillAndTurn105_RobotGripper_pos">
+            <X Name="MillAndTurn105_pos_x" Unit="PIXEL" Value="620.0"/>
+            <Y Name="MillAndTurn105_pos_y" Unit="PIXEL" Value="165.0"/>
+            <Z Name="MillAndTurn105_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="MillAndTurn105_size">
+            <Height Name="MillAndTurn105_height" Unit="PIXEL" Value="28.0"/>
+            <Width Name="MillAndTurn105_width" Unit="PIXEL" Value="39.0"/>
           </Size>
         </Representation>
       </OwnedUIComponent>
@@ -9634,6 +10111,23 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="BaseplateMagazine_DiffuseSensor_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.248">
+          <Alignment Name="DiffuseSensor_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="DiffuseSensor_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="BaseplateMagazine_DiffuseSensor" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="BaseplateMagazine_DiffuseSensor_pos">
+            <X Name="BaseplateMagazine_pos_x" Unit="PIXEL" Value="7.0"/>
+            <Y Name="BaseplateMagazine_pos_y" Unit="PIXEL" Value="213.0"/>
+            <Z Name="BaseplateMagazine_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="BaseplateMagazine_size">
+            <Height Name="BaseplateMagazine_height" Unit="PIXEL" Value="242.0"/>
+            <Width Name="BaseplateMagazine_width" Unit="PIXEL" Value="989.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
     </OwnedPanel>
     <OwnedPanel Name="DiffuseSensor">
       <OwnedUIComponent xsi:type="presentation:TextLabel" Name="DiffuseSensor_Part_AV__Werkstrhanden_textLabel" Comment="RoleRestrictionComment TODO">
@@ -9787,6 +10281,23 @@
           <Size Name="Palletholder_23_PalletSensor_4_size">
             <Height Name="Palletholder_23_PalletSensor_4_height" Unit="PIXEL" Value="33.0"/>
             <Width Name="Palletholder_23_PalletSensor_4_width" Unit="PIXEL" Value="100.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Palletholder_23_PalletSensor_4_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.242">
+          <Alignment Name="PalletSensor_4_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="PalletSensor_4_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="Palletholder_23_PalletSensor_4" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="Palletholder_23_PalletSensor_4_pos">
+            <X Name="Palletholder_23_pos_x" Unit="PIXEL" Value="7.0"/>
+            <Y Name="Palletholder_23_pos_y" Unit="PIXEL" Value="225.0"/>
+            <Z Name="Palletholder_23_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="Palletholder_23_size">
+            <Height Name="Palletholder_23_height" Unit="PIXEL" Value="218.0"/>
+            <Width Name="Palletholder_23_width" Unit="PIXEL" Value="989.0"/>
           </Size>
         </Representation>
       </OwnedUIComponent>
@@ -9946,6 +10457,23 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Palletholder_20_PalletSensor_1_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.246">
+          <Alignment Name="PalletSensor_1_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="PalletSensor_1_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="Palletholder_20_PalletSensor_1" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="Palletholder_20_PalletSensor_1_pos">
+            <X Name="Palletholder_20_pos_x" Unit="PIXEL" Value="7.0"/>
+            <Y Name="Palletholder_20_pos_y" Unit="PIXEL" Value="225.0"/>
+            <Z Name="Palletholder_20_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="Palletholder_20_size">
+            <Height Name="Palletholder_20_height" Unit="PIXEL" Value="218.0"/>
+            <Width Name="Palletholder_20_width" Unit="PIXEL" Value="989.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
     </OwnedPanel>
     <OwnedPanel Name="PalletSensor_1">
       <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PalletSensor_1_Ident_textLabel" Comment="RoleRestrictionComment TODO">
@@ -10102,6 +10630,23 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Palletholder_22_PalletSensor_3_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.240">
+          <Alignment Name="PalletSensor_3_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="PalletSensor_3_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="Palletholder_22_PalletSensor_3" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="Palletholder_22_PalletSensor_3_pos">
+            <X Name="Palletholder_22_pos_x" Unit="PIXEL" Value="7.0"/>
+            <Y Name="Palletholder_22_pos_y" Unit="PIXEL" Value="225.0"/>
+            <Z Name="Palletholder_22_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="Palletholder_22_size">
+            <Height Name="Palletholder_22_height" Unit="PIXEL" Value="218.0"/>
+            <Width Name="Palletholder_22_width" Unit="PIXEL" Value="989.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
     </OwnedPanel>
     <OwnedPanel Name="PalletSensor_3">
       <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PalletSensor_3_Ident_textLabel" Comment="RoleRestrictionComment TODO">
@@ -10255,6 +10800,23 @@
           <Size Name="Palletholder_21_PalletSensor_2_size">
             <Height Name="Palletholder_21_PalletSensor_2_height" Unit="PIXEL" Value="33.0"/>
             <Width Name="Palletholder_21_PalletSensor_2_width" Unit="PIXEL" Value="100.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Palletholder_21_PalletSensor_2_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.244">
+          <Alignment Name="PalletSensor_2_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="PalletSensor_2_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="Palletholder_21_PalletSensor_2" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="Palletholder_21_PalletSensor_2_pos">
+            <X Name="Palletholder_21_pos_x" Unit="PIXEL" Value="7.0"/>
+            <Y Name="Palletholder_21_pos_y" Unit="PIXEL" Value="237.0"/>
+            <Z Name="Palletholder_21_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="Palletholder_21_size">
+            <Height Name="Palletholder_21_height" Unit="PIXEL" Value="194.0"/>
+            <Width Name="Palletholder_21_width" Unit="PIXEL" Value="989.0"/>
           </Size>
         </Representation>
       </OwnedUIComponent>
@@ -10766,6 +11328,108 @@
           <Size Name="Mill55_PalletHolder_3_size">
             <Height Name="Mill55_PalletHolder_3_height" Unit="PIXEL" Value="33.0"/>
             <Width Name="Mill55_PalletHolder_3_width" Unit="PIXEL" Value="100.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55_Mill55Robot_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.235">
+          <Alignment Name="Mill55Robot_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="Mill55Robot_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="Mill55_Mill55Robot" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="Mill55_Mill55Robot_pos">
+            <X Name="Mill55_pos_x" Unit="PIXEL" Value="642.0"/>
+            <Y Name="Mill55_pos_y" Unit="PIXEL" Value="114.0"/>
+            <Z Name="Mill55_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="Mill55_size">
+            <Height Name="Mill55_height" Unit="PIXEL" Value="223.0"/>
+            <Width Name="Mill55_width" Unit="PIXEL" Value="112.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55_Mill55CNC_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.236">
+          <Alignment Name="Mill55CNC_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="Mill55CNC_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="Mill55_Mill55CNC" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="Mill55_Mill55CNC_pos">
+            <X Name="Mill55_pos_x" Unit="PIXEL" Value="114.0"/>
+            <Y Name="Mill55_pos_y" Unit="PIXEL" Value="82.0"/>
+            <Z Name="Mill55_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="Mill55_size">
+            <Height Name="Mill55_height" Unit="PIXEL" Value="456.0"/>
+            <Width Name="Mill55_width" Unit="PIXEL" Value="490.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55_MillRobotGripper_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.237">
+          <Alignment Name="MillRobotGripper_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="MillRobotGripper_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="Mill55_MillRobotGripper" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="Mill55_MillRobotGripper_pos">
+            <X Name="Mill55_pos_x" Unit="PIXEL" Value="675.0"/>
+            <Y Name="Mill55_pos_y" Unit="PIXEL" Value="381.0"/>
+            <Z Name="Mill55_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="Mill55_size">
+            <Height Name="Mill55_height" Unit="PIXEL" Value="85.0"/>
+            <Width Name="Mill55_width" Unit="PIXEL" Value="146.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55_PalletHolder_1_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.233">
+          <Alignment Name="PalletHolder_1_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="PalletHolder_1_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="Mill55_PalletHolder_1" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="Mill55_PalletHolder_1_pos">
+            <X Name="Mill55_pos_x" Unit="PIXEL" Value="834.0"/>
+            <Y Name="Mill55_pos_y" Unit="PIXEL" Value="389.0"/>
+            <Z Name="Mill55_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="Mill55_size">
+            <Height Name="Mill55_height" Unit="PIXEL" Value="78.0"/>
+            <Width Name="Mill55_width" Unit="PIXEL" Value="161.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55_PalletHolder_2_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.231">
+          <Alignment Name="PalletHolder_2_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="PalletHolder_2_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="Mill55_PalletHolder_2" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="Mill55_PalletHolder_2_pos">
+            <X Name="Mill55_pos_x" Unit="PIXEL" Value="829.0"/>
+            <Y Name="Mill55_pos_y" Unit="PIXEL" Value="478.0"/>
+            <Z Name="Mill55_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="Mill55_size">
+            <Height Name="Mill55_height" Unit="PIXEL" Value="78.0"/>
+            <Width Name="Mill55_width" Unit="PIXEL" Value="163.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Mill55_PalletHolder_3_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.228">
+          <Alignment Name="PalletHolder_3_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="PalletHolder_3_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="Mill55_PalletHolder_3" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="Mill55_PalletHolder_3_pos">
+            <X Name="Mill55_pos_x" Unit="PIXEL" Value="656.0"/>
+            <Y Name="Mill55_pos_y" Unit="PIXEL" Value="518.0"/>
+            <Z Name="Mill55_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="Mill55_size">
+            <Height Name="Mill55_height" Unit="PIXEL" Value="67.0"/>
+            <Width Name="Mill55_width" Unit="PIXEL" Value="150.0"/>
           </Size>
         </Representation>
       </OwnedUIComponent>
@@ -13008,6 +13672,23 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PalletHolder_1_PalletSensor_5_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.234">
+          <Alignment Name="PalletSensor_5_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="PalletSensor_5_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="PalletHolder_1_PalletSensor_5" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="PalletHolder_1_PalletSensor_5_pos">
+            <X Name="PalletHolder_1_pos_x" Unit="PIXEL" Value="7.0"/>
+            <Y Name="PalletHolder_1_pos_y" Unit="PIXEL" Value="212.0"/>
+            <Z Name="PalletHolder_1_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="PalletHolder_1_size">
+            <Height Name="PalletHolder_1_height" Unit="PIXEL" Value="244.0"/>
+            <Width Name="PalletHolder_1_width" Unit="PIXEL" Value="989.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
     </OwnedPanel>
     <OwnedPanel Name="PalletSensor_5">
       <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PalletSensor_5_Ident_textLabel" Comment="RoleRestrictionComment TODO">
@@ -13164,6 +13845,23 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PalletHolder_2_PalletSensor_6_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.232">
+          <Alignment Name="PalletSensor_6_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="PalletSensor_6_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="PalletHolder_2_PalletSensor_6" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="PalletHolder_2_PalletSensor_6_pos">
+            <X Name="PalletHolder_2_pos_x" Unit="PIXEL" Value="7.0"/>
+            <Y Name="PalletHolder_2_pos_y" Unit="PIXEL" Value="225.0"/>
+            <Z Name="PalletHolder_2_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="PalletHolder_2_size">
+            <Height Name="PalletHolder_2_height" Unit="PIXEL" Value="218.0"/>
+            <Width Name="PalletHolder_2_width" Unit="PIXEL" Value="989.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
     </OwnedPanel>
     <OwnedPanel Name="PalletSensor_6">
       <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PalletSensor_6_Ident_textLabel" Comment="RoleRestrictionComment TODO">
@@ -13317,6 +14015,23 @@
           <Size Name="PalletHolder_3_PalletSensor_7_size">
             <Height Name="PalletHolder_3_PalletSensor_7_height" Unit="PIXEL" Value="33.0"/>
             <Width Name="PalletHolder_3_PalletSensor_7_width" Unit="PIXEL" Value="100.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PalletHolder_3_PalletSensor_7_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.230">
+          <Alignment Name="PalletSensor_7_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="PalletSensor_7_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="PalletHolder_3_PalletSensor_7" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="PalletHolder_3_PalletSensor_7_pos">
+            <X Name="PalletHolder_3_pos_x" Unit="PIXEL" Value="7.0"/>
+            <Y Name="PalletHolder_3_pos_y" Unit="PIXEL" Value="206.0"/>
+            <Z Name="PalletHolder_3_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="PalletHolder_3_size">
+            <Height Name="PalletHolder_3_height" Unit="PIXEL" Value="257.0"/>
+            <Width Name="PalletHolder_3_width" Unit="PIXEL" Value="989.0"/>
           </Size>
         </Representation>
       </OwnedUIComponent>
@@ -13613,6 +14328,108 @@
           <Size Name="Turn55_PalletHolder_6_size">
             <Height Name="Turn55_PalletHolder_6_height" Unit="PIXEL" Value="33.0"/>
             <Width Name="Turn55_PalletHolder_6_width" Unit="PIXEL" Value="105.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Turn55_Turn55Robot_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.225">
+          <Alignment Name="Turn55Robot_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="Turn55Robot_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="Turn55_Turn55Robot" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="Turn55_Turn55Robot_pos">
+            <X Name="Turn55_pos_x" Unit="PIXEL" Value="340.0"/>
+            <Y Name="Turn55_pos_y" Unit="PIXEL" Value="299.0"/>
+            <Z Name="Turn55_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="Turn55_size">
+            <Height Name="Turn55_height" Unit="PIXEL" Value="227.0"/>
+            <Width Name="Turn55_width" Unit="PIXEL" Value="114.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Turn55_Turn55CNC_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.226">
+          <Alignment Name="Turn55CNC_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="Turn55CNC_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="Turn55_Turn55CNC" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="Turn55_Turn55CNC_pos">
+            <X Name="Turn55_pos_x" Unit="PIXEL" Value="594.0"/>
+            <Y Name="Turn55_pos_y" Unit="PIXEL" Value="196.0"/>
+            <Z Name="Turn55_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="Turn55_size">
+            <Height Name="Turn55_height" Unit="PIXEL" Value="425.0"/>
+            <Width Name="Turn55_width" Unit="PIXEL" Value="353.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Turn55_TurnRobotGripper_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.227">
+          <Alignment Name="TurnRobotGripper_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="TurnRobotGripper_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="Turn55_TurnRobotGripper" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="Turn55_TurnRobotGripper_pos">
+            <X Name="Turn55_pos_x" Unit="PIXEL" Value="392.0"/>
+            <Y Name="Turn55_pos_y" Unit="PIXEL" Value="167.0"/>
+            <Z Name="Turn55_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="Turn55_size">
+            <Height Name="Turn55_height" Unit="PIXEL" Value="87.0"/>
+            <Width Name="Turn55_width" Unit="PIXEL" Value="159.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Turn55_PalletHolder_4_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.223">
+          <Alignment Name="PalletHolder_4_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="PalletHolder_4_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="Turn55_PalletHolder_4" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="Turn55_PalletHolder_4_pos">
+            <X Name="Turn55_pos_x" Unit="PIXEL" Value="166.0"/>
+            <Y Name="Turn55_pos_y" Unit="PIXEL" Value="161.0"/>
+            <Z Name="Turn55_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="Turn55_size">
+            <Height Name="Turn55_height" Unit="PIXEL" Value="77.0"/>
+            <Width Name="Turn55_width" Unit="PIXEL" Value="184.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Turn55_PalletHolder_5_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.221">
+          <Alignment Name="PalletHolder_5_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="PalletHolder_5_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="Turn55_PalletHolder_5" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="Turn55_PalletHolder_5_pos">
+            <X Name="Turn55_pos_x" Unit="PIXEL" Value="206.0"/>
+            <Y Name="Turn55_pos_y" Unit="PIXEL" Value="72.0"/>
+            <Z Name="Turn55_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="Turn55_size">
+            <Height Name="Turn55_height" Unit="PIXEL" Value="75.0"/>
+            <Width Name="Turn55_width" Unit="PIXEL" Value="150.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Turn55_PalletHolder_6_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.218">
+          <Alignment Name="PalletHolder_6_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="PalletHolder_6_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="Turn55_PalletHolder_6" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="Turn55_PalletHolder_6_pos">
+            <X Name="Turn55_pos_x" Unit="PIXEL" Value="378.0"/>
+            <Y Name="Turn55_pos_y" Unit="PIXEL" Value="47.0"/>
+            <Z Name="Turn55_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="Turn55_size">
+            <Height Name="Turn55_height" Unit="PIXEL" Value="65.0"/>
+            <Width Name="Turn55_width" Unit="PIXEL" Value="162.0"/>
           </Size>
         </Representation>
       </OwnedUIComponent>
@@ -15009,6 +15826,23 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PalletHolder_4_PalletSensor_8_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.224">
+          <Alignment Name="PalletSensor_8_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="PalletSensor_8_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="PalletHolder_4_PalletSensor_8" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="PalletHolder_4_PalletSensor_8_pos">
+            <X Name="PalletHolder_4_pos_x" Unit="PIXEL" Value="7.0"/>
+            <Y Name="PalletHolder_4_pos_y" Unit="PIXEL" Value="199.0"/>
+            <Z Name="PalletHolder_4_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="PalletHolder_4_size">
+            <Height Name="PalletHolder_4_height" Unit="PIXEL" Value="271.0"/>
+            <Width Name="PalletHolder_4_width" Unit="PIXEL" Value="989.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
     </OwnedPanel>
     <OwnedPanel Name="PalletSensor_8">
       <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PalletSensor_8_Ident_textLabel" Comment="RoleRestrictionComment TODO">
@@ -15165,6 +15999,23 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PalletHolder_5_PalletSensor_9_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.222">
+          <Alignment Name="PalletSensor_9_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="PalletSensor_9_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="PalletHolder_5_PalletSensor_9" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="PalletHolder_5_PalletSensor_9_pos">
+            <X Name="PalletHolder_5_pos_x" Unit="PIXEL" Value="7.0"/>
+            <Y Name="PalletHolder_5_pos_y" Unit="PIXEL" Value="219.0"/>
+            <Z Name="PalletHolder_5_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="PalletHolder_5_size">
+            <Height Name="PalletHolder_5_height" Unit="PIXEL" Value="230.0"/>
+            <Width Name="PalletHolder_5_width" Unit="PIXEL" Value="989.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
     </OwnedPanel>
     <OwnedPanel Name="PalletSensor_9">
       <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PalletSensor_9_Ident_textLabel" Comment="RoleRestrictionComment TODO">
@@ -15318,6 +16169,23 @@
           <Size Name="PalletHolder_6_PalletSensor_10_size">
             <Height Name="PalletHolder_6_PalletSensor_10_height" Unit="PIXEL" Value="33.0"/>
             <Width Name="PalletHolder_6_PalletSensor_10_width" Unit="PIXEL" Value="100.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="PalletHolder_6_PalletSensor_10_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.220">
+          <Alignment Name="PalletSensor_10_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="PalletSensor_10_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="PalletHolder_6_PalletSensor_10" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="PalletHolder_6_PalletSensor_10_pos">
+            <X Name="PalletHolder_6_pos_x" Unit="PIXEL" Value="7.0"/>
+            <Y Name="PalletHolder_6_pos_y" Unit="PIXEL" Value="226.0"/>
+            <Z Name="PalletHolder_6_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="PalletHolder_6_size">
+            <Height Name="PalletHolder_6_height" Unit="PIXEL" Value="216.0"/>
+            <Width Name="PalletHolder_6_width" Unit="PIXEL" Value="989.0"/>
           </Size>
         </Representation>
       </OwnedUIComponent>
@@ -15803,6 +16671,261 @@
           <Size Name="AssemblyRH5A55_PalletHolder_10_size">
             <Height Name="AssemblyRH5A55_PalletHolder_10_height" Unit="PIXEL" Value="33.0"/>
             <Width Name="AssemblyRH5A55_PalletHolder_10_width" Unit="PIXEL" Value="60.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55_AssemblyRH5A55Robot_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.215">
+          <Alignment Name="AssemblyRH5A55Robot_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="AssemblyRH5A55Robot_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="AssemblyRH5A55_AssemblyRH5A55Robot" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="AssemblyRH5A55_AssemblyRH5A55Robot_pos">
+            <X Name="AssemblyRH5A55_pos_x" Unit="PIXEL" Value="597.0"/>
+            <Y Name="AssemblyRH5A55_pos_y" Unit="PIXEL" Value="238.0"/>
+            <Z Name="AssemblyRH5A55_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="AssemblyRH5A55_size">
+            <Height Name="AssemblyRH5A55_height" Unit="PIXEL" Value="101.0"/>
+            <Width Name="AssemblyRH5A55_width" Unit="PIXEL" Value="270.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55_AssemblyRH5A55VisionData_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.206">
+          <Alignment Name="AssemblyRH5A55VisionData_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="AssemblyRH5A55VisionData_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="AssemblyRH5A55_AssemblyRH5A55VisionData" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="AssemblyRH5A55_AssemblyRH5A55VisionData_pos">
+            <X Name="AssemblyRH5A55_pos_x" Unit="PIXEL" Value="402.0"/>
+            <Y Name="AssemblyRH5A55_pos_y" Unit="PIXEL" Value="433.0"/>
+            <Z Name="AssemblyRH5A55_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="AssemblyRH5A55_size">
+            <Height Name="AssemblyRH5A55_height" Unit="PIXEL" Value="85.0"/>
+            <Width Name="AssemblyRH5A55_width" Unit="PIXEL" Value="274.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55_RobotGripper_1_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.208">
+          <Alignment Name="RobotGripper_1_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="RobotGripper_1_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="AssemblyRH5A55_RobotGripper_1" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="AssemblyRH5A55_RobotGripper_1_pos">
+            <X Name="AssemblyRH5A55_pos_x" Unit="PIXEL" Value="181.0"/>
+            <Y Name="AssemblyRH5A55_pos_y" Unit="PIXEL" Value="586.0"/>
+            <Z Name="AssemblyRH5A55_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="AssemblyRH5A55_size">
+            <Height Name="AssemblyRH5A55_height" Unit="PIXEL" Value="35.0"/>
+            <Width Name="AssemblyRH5A55_width" Unit="PIXEL" Value="156.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55_PalletHolder_7_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.210">
+          <Alignment Name="PalletHolder_7_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="PalletHolder_7_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="AssemblyRH5A55_PalletHolder_7" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="AssemblyRH5A55_PalletHolder_7_pos">
+            <X Name="AssemblyRH5A55_pos_x" Unit="PIXEL" Value="181.0"/>
+            <Y Name="AssemblyRH5A55_pos_y" Unit="PIXEL" Value="265.0"/>
+            <Z Name="AssemblyRH5A55_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="AssemblyRH5A55_size">
+            <Height Name="AssemblyRH5A55_height" Unit="PIXEL" Value="53.0"/>
+            <Width Name="AssemblyRH5A55_width" Unit="PIXEL" Value="145.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55_PalletHolder_8_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.212">
+          <Alignment Name="PalletHolder_8_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="PalletHolder_8_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="AssemblyRH5A55_PalletHolder_8" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="AssemblyRH5A55_PalletHolder_8_pos">
+            <X Name="AssemblyRH5A55_pos_x" Unit="PIXEL" Value="181.0"/>
+            <Y Name="AssemblyRH5A55_pos_y" Unit="PIXEL" Value="365.0"/>
+            <Z Name="AssemblyRH5A55_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="AssemblyRH5A55_size">
+            <Height Name="AssemblyRH5A55_height" Unit="PIXEL" Value="53.0"/>
+            <Width Name="AssemblyRH5A55_width" Unit="PIXEL" Value="145.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55_PalletHolder_9_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.214">
+          <Alignment Name="PalletHolder_9_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="PalletHolder_9_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="AssemblyRH5A55_PalletHolder_9" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="AssemblyRH5A55_PalletHolder_9_pos">
+            <X Name="AssemblyRH5A55_pos_x" Unit="PIXEL" Value="181.0"/>
+            <Y Name="AssemblyRH5A55_pos_y" Unit="PIXEL" Value="474.0"/>
+            <Z Name="AssemblyRH5A55_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="AssemblyRH5A55_size">
+            <Height Name="AssemblyRH5A55_height" Unit="PIXEL" Value="39.0"/>
+            <Width Name="AssemblyRH5A55_width" Unit="PIXEL" Value="145.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55_PalletHolder_10_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.217">
+          <Alignment Name="PalletHolder_10_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="PalletHolder_10_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="AssemblyRH5A55_PalletHolder_10" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="AssemblyRH5A55_PalletHolder_10_pos">
+            <X Name="AssemblyRH5A55_pos_x" Unit="PIXEL" Value="181.0"/>
+            <Y Name="AssemblyRH5A55_pos_y" Unit="PIXEL" Value="557.0"/>
+            <Z Name="AssemblyRH5A55_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="AssemblyRH5A55_size">
+            <Height Name="AssemblyRH5A55_height" Unit="PIXEL" Value="28.0"/>
+            <Width Name="AssemblyRH5A55_width" Unit="PIXEL" Value="156.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55_MagazinInstrument_1_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.204">
+          <Alignment Name="MagazinInstrument_1_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="MagazinInstrument_1_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="AssemblyRH5A55_MagazinInstrument_1" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="AssemblyRH5A55_MagazinInstrument_1_pos">
+            <X Name="AssemblyRH5A55_pos_x" Unit="PIXEL" Value="681.0"/>
+            <Y Name="AssemblyRH5A55_pos_y" Unit="PIXEL" Value="52.0"/>
+            <Z Name="AssemblyRH5A55_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="AssemblyRH5A55_size">
+            <Height Name="AssemblyRH5A55_height" Unit="PIXEL" Value="165.0"/>
+            <Width Name="AssemblyRH5A55_width" Unit="PIXEL" Value="207.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55_PenMagazin_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.209">
+          <Alignment Name="PenMagazin_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="PenMagazin_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="AssemblyRH5A55_PenMagazin" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="AssemblyRH5A55_PenMagazin_pos">
+            <X Name="AssemblyRH5A55_pos_x" Unit="PIXEL" Value="196.0"/>
+            <Y Name="AssemblyRH5A55_pos_y" Unit="PIXEL" Value="53.0"/>
+            <Z Name="AssemblyRH5A55_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="AssemblyRH5A55_size">
+            <Height Name="AssemblyRH5A55_height" Unit="PIXEL" Value="153.0"/>
+            <Width Name="AssemblyRH5A55_width" Unit="PIXEL" Value="125.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55_MagazinInstrument_2_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.205">
+          <Alignment Name="MagazinInstrument_2_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="MagazinInstrument_2_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="AssemblyRH5A55_MagazinInstrument_2" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="AssemblyRH5A55_MagazinInstrument_2_pos">
+            <X Name="AssemblyRH5A55_pos_x" Unit="PIXEL" Value="408.0"/>
+            <Y Name="AssemblyRH5A55_pos_y" Unit="PIXEL" Value="47.0"/>
+            <Z Name="AssemblyRH5A55_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="AssemblyRH5A55_size">
+            <Height Name="AssemblyRH5A55_height" Unit="PIXEL" Value="165.0"/>
+            <Width Name="AssemblyRH5A55_width" Unit="PIXEL" Value="207.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55_PalletSensor_11_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.211">
+          <Alignment Name="PalletSensor_11_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="PalletSensor_11_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="AssemblyRH5A55_PalletSensor_11" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="AssemblyRH5A55_PalletSensor_11_pos">
+            <X Name="AssemblyRH5A55_pos_x" Unit="PIXEL" Value="181.0"/>
+            <Y Name="AssemblyRH5A55_pos_y" Unit="PIXEL" Value="222.0"/>
+            <Z Name="AssemblyRH5A55_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="AssemblyRH5A55_size">
+            <Height Name="AssemblyRH5A55_height" Unit="PIXEL" Value="35.0"/>
+            <Width Name="AssemblyRH5A55_width" Unit="PIXEL" Value="165.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55_PalletSensor_12_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.203">
+          <Alignment Name="PalletSensor_12_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="PalletSensor_12_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="AssemblyRH5A55_PalletSensor_12" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="AssemblyRH5A55_PalletSensor_12_pos">
+            <X Name="AssemblyRH5A55_pos_x" Unit="PIXEL" Value="181.0"/>
+            <Y Name="AssemblyRH5A55_pos_y" Unit="PIXEL" Value="324.0"/>
+            <Z Name="AssemblyRH5A55_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="AssemblyRH5A55_size">
+            <Height Name="AssemblyRH5A55_height" Unit="PIXEL" Value="38.0"/>
+            <Width Name="AssemblyRH5A55_width" Unit="PIXEL" Value="165.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55_PalletSensor_13_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.213">
+          <Alignment Name="PalletSensor_13_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="PalletSensor_13_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="AssemblyRH5A55_PalletSensor_13" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="AssemblyRH5A55_PalletSensor_13_pos">
+            <X Name="AssemblyRH5A55_pos_x" Unit="PIXEL" Value="181.0"/>
+            <Y Name="AssemblyRH5A55_pos_y" Unit="PIXEL" Value="435.0"/>
+            <Z Name="AssemblyRH5A55_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="AssemblyRH5A55_size">
+            <Height Name="AssemblyRH5A55_height" Unit="PIXEL" Value="33.0"/>
+            <Width Name="AssemblyRH5A55_width" Unit="PIXEL" Value="165.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55_PalletSensor_14_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.207">
+          <Alignment Name="PalletSensor_14_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="PalletSensor_14_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="AssemblyRH5A55_PalletSensor_14" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="AssemblyRH5A55_PalletSensor_14_pos">
+            <X Name="AssemblyRH5A55_pos_x" Unit="PIXEL" Value="181.0"/>
+            <Y Name="AssemblyRH5A55_pos_y" Unit="PIXEL" Value="519.0"/>
+            <Z Name="AssemblyRH5A55_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="AssemblyRH5A55_size">
+            <Height Name="AssemblyRH5A55_height" Unit="PIXEL" Value="33.0"/>
+            <Width Name="AssemblyRH5A55_width" Unit="PIXEL" Value="161.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="AssemblyRH5A55_AssemblyRH5A55VisionControl_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.216">
+          <Alignment Name="AssemblyRH5A55VisionControl_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="AssemblyRH5A55VisionControl_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="AssemblyRH5A55_AssemblyRH5A55VisionControl" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="AssemblyRH5A55_AssemblyRH5A55VisionControl_pos">
+            <X Name="AssemblyRH5A55_pos_x" Unit="PIXEL" Value="380.0"/>
+            <Y Name="AssemblyRH5A55_pos_y" Unit="PIXEL" Value="580.0"/>
+            <Z Name="AssemblyRH5A55_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="AssemblyRH5A55_size">
+            <Height Name="AssemblyRH5A55_height" Unit="PIXEL" Value="27.0"/>
+            <Width Name="AssemblyRH5A55_width" Unit="PIXEL" Value="305.0"/>
           </Size>
         </Representation>
       </OwnedUIComponent>
@@ -18543,6 +19666,23 @@
           <Size Name="Quality_QualityPLC_size">
             <Height Name="Quality_QualityPLC_height" Unit="PIXEL" Value="33.0"/>
             <Width Name="Quality_QualityPLC_width" Unit="PIXEL" Value="100.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Quality_QualityPLC_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.201">
+          <Alignment Name="QualityPLC_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="QualityPLC_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="Quality_QualityPLC" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="Quality_QualityPLC_pos">
+            <X Name="Quality_pos_x" Unit="PIXEL" Value="310.0"/>
+            <Y Name="Quality_pos_y" Unit="PIXEL" Value="47.0"/>
+            <Z Name="Quality_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="Quality_size">
+            <Height Name="Quality_height" Unit="PIXEL" Value="574.0"/>
+            <Width Name="Quality_width" Unit="PIXEL" Value="383.0"/>
           </Size>
         </Representation>
       </OwnedUIComponent>

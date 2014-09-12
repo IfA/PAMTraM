@@ -138,12 +138,17 @@ class SourceSectionMapper {
 	public boolean isTransformationAborted() {
 		return transformationAborted;
 	}
+	
+	/**
+	 * used for modifying attribute values
+	 */
+	private AttributeValueModifierExecutor attributeValuemodifier;
 
 	/**
 	 * @param mappingsToChooseFrom Mappings from the PAMTram model
 	 * @param consoleStream Output stream for messages
 	 */
-	SourceSectionMapper(List<Mapping> mappingsToChooseFrom, MessageConsoleStream consoleStream) {
+	SourceSectionMapper(List<Mapping> mappingsToChooseFrom, AttributeValueModifierExecutor attributeValuemodifier, MessageConsoleStream consoleStream) {
 		mappedSections=new LinkedHashMap<SourceSectionClass,Set<EObject>> ();
 		mappingHints=new  LinkedHashMap<Mapping,LinkedList<MappingHintType>>();
 		modelConnectionHints=new  LinkedHashMap<Mapping,LinkedList<ModelConnectionHint>>();
@@ -155,6 +160,7 @@ class SourceSectionMapper {
 		this.mappingsToChooseFrom=mappingsToChooseFrom;
 		this.consoleStream=consoleStream;
 		this.transformationAborted=false;
+		this.attributeValuemodifier=attributeValuemodifier;
 		
 		//this will fill some maps...
 		for(Mapping m : mappingsToChooseFrom){
@@ -392,7 +398,7 @@ class SourceSectionMapper {
 			MappingInstanceStorage newRefsAndHints,
 			LinkedHashMap<SourceSectionClass, EObject> srcInstanceMap) {
 
-		boolean classFits= srcModelObject.eClass().equals(srcSection.getClass()) || srcSection.getEClass().isSuperTypeOf(srcModelObject.eClass());
+		boolean classFits= srcSection.getEClass().isSuperTypeOf(srcModelObject.eClass());
 		
 		// first of all: check if usedRefs contains this item and if type fits
 		// (we do not check any of the used elements of other mappings, since
@@ -505,26 +511,26 @@ class SourceSectionMapper {
 				for (MappingHintType hint : hints) {
 					if (hint instanceof SimpleAttributeMapping) {
 						if (((SimpleAttributeMapping) hint).getSource().equals(at)) {
-							String valCopy = AttributeValueRegistry.applyAttributeValueModifiers(srcAttrAsString,((SimpleAttributeMapping) hint).getModifier());
+							String valCopy = attributeValuemodifier.applyAttributeValueModifiers(srcAttrAsString,((SimpleAttributeMapping) hint).getModifier());
 							changedRefsAndHints.addHintValue(hint, valCopy);
 						}
 					} else if(hint instanceof MappedAttributeValueExpander){
 						if(((MappedAttributeValueExpander) hint).getSourceAttribute().equals(at)){
-							String valCopy = AttributeValueRegistry.applyAttributeValueModifiers(srcAttrAsString,((MappedAttributeValueExpander) hint).getModifiers());
+							String valCopy = attributeValuemodifier.applyAttributeValueModifiers(srcAttrAsString,((MappedAttributeValueExpander) hint).getModifiers());
 							changedRefsAndHints.addHintValue(hint, valCopy);
 						}
 						
 					}else if(hint instanceof ComplexAttributeMapping){
 						for(ComplexAttributeMappingSourceElement m : ((ComplexAttributeMapping) hint).getLocalSourceElements()){
 							if (m.getSource().equals(at)) {
-								String valCopy = AttributeValueRegistry.applyAttributeValueModifiers(srcAttrAsString,m.getModifier());
+								String valCopy = attributeValuemodifier.applyAttributeValueModifiers(srcAttrAsString,m.getModifier());
 								complexSourceElementHintValues.put(m,valCopy);
 							}
 						}
 					} else if(hint instanceof CalculatorMapping){
 						for(ExpressionVariable v : ((CalculatorMapping) hint).getLocalSourceElements()){
 							if(v.getSource().equals(at)){
-								String valCopy = AttributeValueRegistry.applyAttributeValueModifiers(srcAttrAsString, v.getModifier());
+								String valCopy = attributeValuemodifier.applyAttributeValueModifiers(srcAttrAsString, v.getModifier());
 								calcVariableHintValues.put(v, valCopy);
 								
 							}
@@ -539,7 +545,7 @@ class SourceSectionMapper {
 									.getMatcher();
 							if (matcher.getSource().equals(at)) {
 								String valCopy = srcAttrAsString;
-								valCopy = AttributeValueRegistry.applyAttributeValueModifiers(valCopy,
+								valCopy = attributeValuemodifier.applyAttributeValueModifiers(valCopy,
 										matcher.getModifier());
 								changedRefsAndHints.addHintValue(hint, valCopy);
 							} 
@@ -549,7 +555,7 @@ class SourceSectionMapper {
 							for(ComplexAttributeMatcherSourceElement e : matcher.getLocalSourceElements()){
 								if(e.getSource().equals(at)){
 									String valCopy = srcAttrAsString;
-									valCopy = AttributeValueRegistry.applyAttributeValueModifiers(valCopy, e.getModifier());
+									valCopy = attributeValuemodifier.applyAttributeValueModifiers(valCopy, e.getModifier());
 									complexAttrMatcherSourceElementHintValues.put(e, valCopy);								
 								}
 							}
@@ -562,14 +568,14 @@ class SourceSectionMapper {
 				for (ModelConnectionHint hint : connectionHints) {
 					if(hint instanceof SimpleModelConnectionHint){
 						if (((SimpleModelConnectionHint) hint).getSource().equals(at)) {
-							String modifiedVal=AttributeValueRegistry.applyAttributeValueModifiers(srcAttrAsString, ((SimpleModelConnectionHint) hint).getModifier());
+							String modifiedVal=attributeValuemodifier.applyAttributeValueModifiers(srcAttrAsString, ((SimpleModelConnectionHint) hint).getModifier());
 							changedRefsAndHints.addModelConnectionHintValue(hint,modifiedVal);
 
 						}						
 					} else if(hint instanceof ComplexModelConnectionHint){
 						for(ComplexModelConnectionHintSourceElement m : ((ComplexModelConnectionHint) hint).getLocalSourceElements()){
 							if (m.getSource().equals(at)) {
-								String modifiedVal=AttributeValueRegistry.applyAttributeValueModifiers(srcAttrAsString, m.getModifier());
+								String modifiedVal=attributeValuemodifier.applyAttributeValueModifiers(srcAttrAsString, m.getModifier());
 								complexConnectionHintSourceElementHintValues.put(m,modifiedVal);
 							}
 						}
@@ -578,7 +584,7 @@ class SourceSectionMapper {
 				
 				for(GlobalVariable gVar : globalVars){
 					if(gVar.getSource().equals(at)){
-						String modifiedVal=AttributeValueRegistry.applyAttributeValueModifiers(srcAttrAsString, gVar.getModifier());
+						String modifiedVal=attributeValuemodifier.applyAttributeValueModifiers(srcAttrAsString, gVar.getModifier());
 						globalVarValues.put(gVar, modifiedVal);
 					}
 				}
@@ -1241,7 +1247,7 @@ class SourceSectionMapper {
 								mappingFailed=true;
 								break;
 							} else {
-								attrVal=AttributeValueRegistry.applyAttributeValueModifiers(attrVal, ((ExternalMappedAttributeValueExpander) h).getModifiers());
+								attrVal=attributeValuemodifier.applyAttributeValueModifiers(attrVal, ((ExternalMappedAttributeValueExpander) h).getModifiers());
 								res.getHintValues().get(h).add(attrVal);
 							}
 											
@@ -1366,7 +1372,7 @@ class SourceSectionMapper {
 			if(attrVal == null){
 				mappingFailed=true;
 			} else {
-				attrVal=AttributeValueRegistry.applyAttributeValueModifiers(attrVal, ((ExternalAttributeMappingSourceElement) i).getModifier());
+				attrVal=attributeValuemodifier.applyAttributeValueModifiers(attrVal, ((ExternalAttributeMappingSourceElement) i).getModifier());
 				attrVals.put((ExternalAttributeMappingSourceElement) i, attrVal);
 			}
 		}

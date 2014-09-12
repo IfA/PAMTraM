@@ -3,13 +3,10 @@ package de.mfreund.gentrans.transformation;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
-import pamtram.mapping.AttributeValueModifier;
-import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.VirtualAttribute;
@@ -42,15 +39,10 @@ class AttributeValueRegistry {
 		return virtualAttributes;
 	}
 
-
-
-
 	/**
 	Storage of all generated Virtual Attribute Values
 	*/
 	private  LinkedHashMap<EClass,LinkedHashMap<VirtualAttribute, LinkedHashSet<String>>> virtualAttributes;
-	
-	
 	
 	/**
 	 * Constructor
@@ -87,21 +79,6 @@ class AttributeValueRegistry {
 		return false;
 	}
 	
-	/**
-	 * Static method for applying attribute value modifiers to 
-	 * @param value 
-	 * @param modifierSets
-	 * @return modified String
-	 */
-	static String applyAttributeValueModifiers(final String value,
-			EList<AttributeValueModifierSet> modifierSets) {
-		String retVal = value;
-		for (AttributeValueModifierSet set : modifierSets) {
-			for (AttributeValueModifier m : set.getModifier()) {
-				retVal = m.modify(retVal);
-			}
-		}
-		return retVal;
-	}
+
 
 }

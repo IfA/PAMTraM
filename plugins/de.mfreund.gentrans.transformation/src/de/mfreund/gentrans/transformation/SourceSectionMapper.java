@@ -590,7 +590,10 @@ class SourceSectionMapper {
 				}
 
 			} else {// attribute not set / null
-				consoleStream.println("Unset attribute");//TODO we probably don't want any output here
+//				consoleStream.println("Unset attribute " + at.getName() + "(Class: "
+//						+ at.getOwningClass().getName()
+//						+ ", Section: " + at.getContainingSection().getName());// we probably don't want any output here
+//				
 				return null;
 			}
 		}

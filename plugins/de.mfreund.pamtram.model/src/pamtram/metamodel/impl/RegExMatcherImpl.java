@@ -2,6 +2,8 @@
  */
 package pamtram.metamodel.impl;
 
+import jregex.Pattern;
+
 import org.eclipse.emf.ecore.EClass;
 
 import pamtram.metamodel.AttributeValueConstraintType;
@@ -37,7 +39,8 @@ public class RegExMatcherImpl extends AttributeValueConstraintImpl implements
 
 	@Override
 	public boolean checkConstraint(String attrValue) {
-		boolean condition = attrValue.matches(this.value);
+		Pattern p=new Pattern(this.value == null ? "" : this.value);
+		boolean condition = p.matches(attrValue);
 		return (condition && this.type.equals(AttributeValueConstraintType.INCLUSION))
 				|| (!condition && this.type.equals(AttributeValueConstraintType.EXCLUSION));
 	}

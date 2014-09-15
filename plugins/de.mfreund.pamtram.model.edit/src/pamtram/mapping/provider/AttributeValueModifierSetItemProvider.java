@@ -102,8 +102,8 @@ public class AttributeValueModifierSetItemProvider
 	public String getText(Object object) {
 		String label = ((AttributeValueModifierSet)object).getName();
 		return label == null || label.length() == 0 ?
-			"" :
-			 label;
+			"ModifierSet" :
+				"ModifierSet " + label;
 	}
 
 	/**

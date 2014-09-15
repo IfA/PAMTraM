@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import jregex.PatternSyntaxException;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -143,6 +145,11 @@ class SourceSectionMapper {
 	 * used for modifying attribute values
 	 */
 	private AttributeValueModifierExecutor attributeValuemodifier;
+	
+	/**
+	 * Set that contains all ValueModifiers with errors so we don't need to send a potential error message twice
+	 */
+	private Set<AttributeValueConstraint> constraintsWithErrors;
 
 	/**
 	 * @param mappingsToChooseFrom Mappings from the PAMTram model
@@ -161,6 +168,7 @@ class SourceSectionMapper {
 		this.consoleStream=consoleStream;
 		this.transformationAborted=false;
 		this.attributeValuemodifier=attributeValuemodifier;
+		constraintsWithErrors=new HashSet<AttributeValueConstraint>();
 		
 		//this will fill some maps...
 		for(Mapping m : mappingsToChooseFrom){
@@ -487,12 +495,25 @@ class SourceSectionMapper {
 				 * 
 				 * Inclusions are OR connected
 				 * 
-				 * Eclusions are AND connected
+				 * Exclusions are NOR connected
 				 */
 				boolean inclusionMatched=false;
 				boolean containsInclusions=false;
 				for (AttributeValueConstraint constraint : at.getValueConstraint()) {
-					boolean constraintVal=constraint.checkConstraint(srcAttrAsString);
+					if(constraintsWithErrors.contains(constraint)) continue;
+					
+					boolean constraintVal;
+					try{
+						constraintVal=constraint.checkConstraint(srcAttrAsString);
+					} catch(PatternSyntaxException e){
+						constraintsWithErrors.add(constraint);
+						consoleStream.println("The AttributeValueConstraint '" + constraint.getName() + "' of the "
+								+ "Attribute '" + at.getName() + " (Class: " + at.getOwningClass().getName() 
+								+ ", Section: " + at.getContainingSection().getName() + ")"
+								+ "' could not be evaluated and will be ignored. The following error was supplied:\n"
+								+ e.getLocalizedMessage());
+						continue;
+					}
 					if (!constraintVal && constraint.getType().equals(AttributeValueConstraintType.EXCLUSION)) {
 						return null;
 					} else if(constraint.getType().equals(AttributeValueConstraintType.INCLUSION)){

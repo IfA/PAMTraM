@@ -2,9 +2,6 @@
  */
 package pamtram.mapping.impl;
 
-import jregex.Pattern;
-import jregex.Replacer;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -216,10 +213,8 @@ public class SubstringReplacerImpl extends AttributeValueModifierImpl implements
 
 	@Override
 	protected String modifyValue(String value) {
-		Pattern p=new Pattern(this.regex == null ? "" : this.regex);
-		
-		Replacer r=new Replacer(p, this.replacement == null ? "" : this.replacement, true);
-		return r.replace(value);
+
+		return value.replaceAll(this.regex == null ? "" : this.regex, this.replacement == null ? "" : this.replacement);
 	}
 	
 	

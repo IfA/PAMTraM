@@ -41,7 +41,7 @@ import pamtram.mapping.ComplexModelConnectionHint;
 import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
 import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.ExpandableHint;
-import pamtram.mapping.GlobalVariable;
+import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalVariableImporter;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.Mapping;
@@ -270,7 +270,7 @@ public class PamtramEditorMainPage extends SashForm {
 						||
 						((TreeItem) e.item).getData() instanceof MappingHintGroupType
 						|| ((TreeItem) e.item).getData() instanceof MappingHintGroupImporter
-						|| ((TreeItem) e.item).getData() instanceof GlobalVariable
+						|| ((TreeItem) e.item).getData() instanceof GlobalAttribute
 						) {
 					
 					LinkedList<Object> expanded=new LinkedList<Object>();
@@ -297,8 +297,8 @@ public class PamtramEditorMainPage extends SashForm {
 						source=mapping.getSourceMMSection();
 						expanded.add(mapping);
 						expanded.add(currentMappingHintGroup);
-					} else if(((TreeItem) e.item).getData() instanceof GlobalVariable){
-						GlobalVariable g=(GlobalVariable)(((TreeItem) e.item).getData());
+					} else if(((TreeItem) e.item).getData() instanceof GlobalAttribute){
+						GlobalAttribute g=(GlobalAttribute)(((TreeItem) e.item).getData());
 						mapping=(Mapping) g.eContainer();
 						if(g.getSource() != null){
 							expanded.add(g.getSource());

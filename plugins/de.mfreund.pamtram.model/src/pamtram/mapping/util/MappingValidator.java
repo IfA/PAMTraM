@@ -196,6 +196,10 @@ public class MappingValidator extends EObjectValidator {
 				return validateExternalMappedAttributeValueAppender((ExternalMappedAttributeValueAppender)value, diagnostics, context);
 			case MappingPackage.EXPANDABLE_HINT:
 				return validateExpandableHint((ExpandableHint)value, diagnostics, context);
+			case MappingPackage.MATCH_TO_LOWER_CASE_CONVERTER:
+				return validateMatchToLowerCaseConverter((MatchToLowerCaseConverter)value, diagnostics, context);
+			case MappingPackage.MATCH_TO_UPPER_CASE_CONVERTER:
+				return validateMatchToUpperCaseConverter((MatchToUpperCaseConverter)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -940,6 +944,24 @@ public class MappingValidator extends EObjectValidator {
 	 */
 	public boolean validateExpandableHint(ExpandableHint expandableHint, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(expandableHint, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMatchToLowerCaseConverter(MatchToLowerCaseConverter matchToLowerCaseConverter, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(matchToLowerCaseConverter, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMatchToUpperCaseConverter(MatchToUpperCaseConverter matchToUpperCaseConverter, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(matchToUpperCaseConverter, diagnostics, context);
 	}
 
 	/**

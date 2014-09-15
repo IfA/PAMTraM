@@ -294,6 +294,14 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createExpandableHintAdapter();
 			}
 			@Override
+			public Adapter caseMatchToLowerCaseConverter(MatchToLowerCaseConverter object) {
+				return createMatchToLowerCaseConverterAdapter();
+			}
+			@Override
+			public Adapter caseMatchToUpperCaseConverter(MatchToUpperCaseConverter object) {
+				return createMatchToUpperCaseConverterAdapter();
+			}
+			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -1112,6 +1120,34 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createExpandableHintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.MatchToLowerCaseConverter <em>Match To Lower Case Converter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.MatchToLowerCaseConverter
+	 * @generated
+	 */
+	public Adapter createMatchToLowerCaseConverterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.MatchToUpperCaseConverter <em>Match To Upper Case Converter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.MatchToUpperCaseConverter
+	 * @generated
+	 */
+	public Adapter createMatchToUpperCaseConverterAdapter() {
 		return null;
 	}
 

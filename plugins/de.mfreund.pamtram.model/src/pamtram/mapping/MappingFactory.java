@@ -337,6 +337,24 @@ public interface MappingFactory extends EFactory {
 	ExternalMappedAttributeValueAppender createExternalMappedAttributeValueAppender();
 
 	/**
+	 * Returns a new object of class '<em>Match To Lower Case Converter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Match To Lower Case Converter</em>'.
+	 * @generated
+	 */
+	MatchToLowerCaseConverter createMatchToLowerCaseConverter();
+
+	/**
+	 * Returns a new object of class '<em>Match To Upper Case Converter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Match To Upper Case Converter</em>'.
+	 * @generated
+	 */
+	MatchToUpperCaseConverter createMatchToUpperCaseConverter();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

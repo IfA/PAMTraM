@@ -574,6 +574,22 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MappingPackage.MATCH_TO_LOWER_CASE_CONVERTER: {
+				MatchToLowerCaseConverter matchToLowerCaseConverter = (MatchToLowerCaseConverter)theEObject;
+				T result = caseMatchToLowerCaseConverter(matchToLowerCaseConverter);
+				if (result == null) result = caseAttributeValueModifier(matchToLowerCaseConverter);
+				if (result == null) result = caseNamedElement(matchToLowerCaseConverter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.MATCH_TO_UPPER_CASE_CONVERTER: {
+				MatchToUpperCaseConverter matchToUpperCaseConverter = (MatchToUpperCaseConverter)theEObject;
+				T result = caseMatchToUpperCaseConverter(matchToUpperCaseConverter);
+				if (result == null) result = caseAttributeValueModifier(matchToUpperCaseConverter);
+				if (result == null) result = caseNamedElement(matchToUpperCaseConverter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -1430,6 +1446,36 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseExpandableHint(ExpandableHint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Match To Lower Case Converter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Match To Lower Case Converter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMatchToLowerCaseConverter(MatchToLowerCaseConverter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Match To Upper Case Converter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Match To Upper Case Converter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMatchToUpperCaseConverter(MatchToUpperCaseConverter object) {
 		return null;
 	}
 

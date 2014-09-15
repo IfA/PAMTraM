@@ -88,6 +88,8 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT: return createComplexAttributeMatcherExternalSourceElement();
 			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER: return createExternalMappedAttributeValuePrepender();
 			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER: return createExternalMappedAttributeValueAppender();
+			case MappingPackage.MATCH_TO_LOWER_CASE_CONVERTER: return createMatchToLowerCaseConverter();
+			case MappingPackage.MATCH_TO_UPPER_CASE_CONVERTER: return createMatchToUpperCaseConverter();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -441,6 +443,26 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public ExternalMappedAttributeValueAppender createExternalMappedAttributeValueAppender() {
 		ExternalMappedAttributeValueAppenderImpl externalMappedAttributeValueAppender = new ExternalMappedAttributeValueAppenderImpl();
 		return externalMappedAttributeValueAppender;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MatchToLowerCaseConverter createMatchToLowerCaseConverter() {
+		MatchToLowerCaseConverterImpl matchToLowerCaseConverter = new MatchToLowerCaseConverterImpl();
+		return matchToLowerCaseConverter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MatchToUpperCaseConverter createMatchToUpperCaseConverter() {
+		MatchToUpperCaseConverterImpl matchToUpperCaseConverter = new MatchToUpperCaseConverterImpl();
+		return matchToUpperCaseConverter;
 	}
 
 	/**

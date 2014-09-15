@@ -166,8 +166,8 @@ public class MappingValidator extends EObjectValidator {
 				return validateMappedAttributeValueAppender((MappedAttributeValueAppender)value, diagnostics, context);
 			case MappingPackage.GLOBAL_ATTRIBUTE:
 				return validateGlobalAttribute((GlobalAttribute)value, diagnostics, context);
-			case MappingPackage.GLOBAL_VARIABLE_IMPORTER:
-				return validateGlobalVariableImporter((GlobalVariableImporter)value, diagnostics, context);
+			case MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER:
+				return validateGlobalAttributeImporter((GlobalAttributeImporter)value, diagnostics, context);
 			case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_SOURCE_INTERFACE:
 				return validateComplexAttributeMappingSourceInterface((ComplexAttributeMappingSourceInterface)value, diagnostics, context);
 			case MappingPackage.COMPLEX_MAPPING_HINT_SOURCE_INTERFACE:
@@ -818,8 +818,8 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateGlobalVariableImporter(GlobalVariableImporter globalVariableImporter, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(globalVariableImporter, diagnostics, context);
+	public boolean validateGlobalAttributeImporter(GlobalAttributeImporter globalAttributeImporter, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(globalAttributeImporter, diagnostics, context);
 	}
 
 	/**

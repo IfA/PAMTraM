@@ -14,7 +14,7 @@ import pamtram.mapping.ComplexAttributeMatcherSourceInterface;
 import pamtram.mapping.ComplexMappingHintSourceInterface;
 import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
 import pamtram.mapping.GlobalAttribute;
-import pamtram.mapping.GlobalVariableImporter;
+import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.MappingPackage;
 import pamtram.metamodel.SourceSectionAttribute;
 
@@ -25,29 +25,28 @@ import pamtram.metamodel.SourceSectionAttribute;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link pamtram.mapping.impl.GlobalVariableImporterImpl#getGlobalVariable <em>Global Variable</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.GlobalAttributeImporterImpl#getGlobalAttribute <em>Global Attribute</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class GlobalVariableImporterImpl extends NamedElementImpl implements GlobalVariableImporter {
+public class GlobalAttributeImporterImpl extends NamedElementImpl implements GlobalAttributeImporter {
 	/**
-	 * The cached value of the '{@link #getGlobalVariable() <em>Global Variable</em>}' reference.
+	 * The cached value of the '{@link #getGlobalAttribute() <em>Global Attribute</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getGlobalVariable()
+	 * @see #getGlobalAttribute()
 	 * @generated
 	 * @ordered
 	 */
-	protected GlobalAttribute globalVariable;
-
+	protected GlobalAttribute globalAttribute;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GlobalVariableImporterImpl() {
+	protected GlobalAttributeImporterImpl() {
 		super();
 	}
 
@@ -58,7 +57,7 @@ public class GlobalVariableImporterImpl extends NamedElementImpl implements Glob
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.GLOBAL_VARIABLE_IMPORTER;
+		return MappingPackage.Literals.GLOBAL_ATTRIBUTE_IMPORTER;
 	}
 
 	/**
@@ -66,16 +65,16 @@ public class GlobalVariableImporterImpl extends NamedElementImpl implements Glob
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GlobalAttribute getGlobalVariable() {
-		if (globalVariable != null && globalVariable.eIsProxy()) {
-			InternalEObject oldGlobalVariable = (InternalEObject)globalVariable;
-			globalVariable = (GlobalAttribute)eResolveProxy(oldGlobalVariable);
-			if (globalVariable != oldGlobalVariable) {
+	public GlobalAttribute getGlobalAttribute() {
+		if (globalAttribute != null && globalAttribute.eIsProxy()) {
+			InternalEObject oldGlobalAttribute = (InternalEObject)globalAttribute;
+			globalAttribute = (GlobalAttribute)eResolveProxy(oldGlobalAttribute);
+			if (globalAttribute != oldGlobalAttribute) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.GLOBAL_VARIABLE_IMPORTER__GLOBAL_VARIABLE, oldGlobalVariable, globalVariable));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE, oldGlobalAttribute, globalAttribute));
 			}
 		}
-		return globalVariable;
+		return globalAttribute;
 	}
 
 	/**
@@ -83,8 +82,8 @@ public class GlobalVariableImporterImpl extends NamedElementImpl implements Glob
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GlobalAttribute basicGetGlobalVariable() {
-		return globalVariable;
+	public GlobalAttribute basicGetGlobalAttribute() {
+		return globalAttribute;
 	}
 
 	/**
@@ -92,11 +91,11 @@ public class GlobalVariableImporterImpl extends NamedElementImpl implements Glob
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setGlobalVariable(GlobalAttribute newGlobalVariable) {
-		GlobalAttribute oldGlobalVariable = globalVariable;
-		globalVariable = newGlobalVariable;
+	public void setGlobalAttribute(GlobalAttribute newGlobalAttribute) {
+		GlobalAttribute oldGlobalAttribute = globalAttribute;
+		globalAttribute = newGlobalAttribute;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.GLOBAL_VARIABLE_IMPORTER__GLOBAL_VARIABLE, oldGlobalVariable, globalVariable));
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE, oldGlobalAttribute, globalAttribute));
 	}
 
 	/**
@@ -104,10 +103,10 @@ public class GlobalVariableImporterImpl extends NamedElementImpl implements Glob
 	 * <!-- end-user-doc -->
 	 */
 	public SourceSectionAttribute getSourceAttribute() {
-		if(this.getGlobalVariable() == null){
+		if(this.getGlobalAttribute() == null){
 			return null;
 		} else {
-			return this.getGlobalVariable().getSource();
+			return this.getGlobalAttribute().getSource();
 		}
 	}
 
@@ -119,9 +118,9 @@ public class GlobalVariableImporterImpl extends NamedElementImpl implements Glob
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MappingPackage.GLOBAL_VARIABLE_IMPORTER__GLOBAL_VARIABLE:
-				if (resolve) return getGlobalVariable();
-				return basicGetGlobalVariable();
+			case MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE:
+				if (resolve) return getGlobalAttribute();
+				return basicGetGlobalAttribute();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -134,8 +133,8 @@ public class GlobalVariableImporterImpl extends NamedElementImpl implements Glob
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingPackage.GLOBAL_VARIABLE_IMPORTER__GLOBAL_VARIABLE:
-				setGlobalVariable((GlobalAttribute)newValue);
+			case MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE:
+				setGlobalAttribute((GlobalAttribute)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -149,8 +148,8 @@ public class GlobalVariableImporterImpl extends NamedElementImpl implements Glob
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingPackage.GLOBAL_VARIABLE_IMPORTER__GLOBAL_VARIABLE:
-				setGlobalVariable((GlobalAttribute)null);
+			case MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE:
+				setGlobalAttribute((GlobalAttribute)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -164,8 +163,8 @@ public class GlobalVariableImporterImpl extends NamedElementImpl implements Glob
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingPackage.GLOBAL_VARIABLE_IMPORTER__GLOBAL_VARIABLE:
-				return globalVariable != null;
+			case MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE:
+				return globalAttribute != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -179,8 +178,8 @@ public class GlobalVariableImporterImpl extends NamedElementImpl implements Glob
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == ComplexMappingHintSourceInterface.class) {
 			switch (baseOperationID) {
-				case MappingPackage.COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return MappingPackage.GLOBAL_VARIABLE_IMPORTER___GET_SOURCE_ATTRIBUTE;
-				case MappingPackage.COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_NAME: return MappingPackage.GLOBAL_VARIABLE_IMPORTER___GET_NAME;
+				case MappingPackage.COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER___GET_SOURCE_ATTRIBUTE;
+				case MappingPackage.COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_NAME: return MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER___GET_NAME;
 				default: return -1;
 			}
 		}
@@ -210,10 +209,10 @@ public class GlobalVariableImporterImpl extends NamedElementImpl implements Glob
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.GLOBAL_VARIABLE_IMPORTER___GET_SOURCE_ATTRIBUTE:
+			case MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER___GET_SOURCE_ATTRIBUTE:
 				return getSourceAttribute();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
-} //GlobalVariableImporterImpl
+} //GlobalAttributeImporterImpl

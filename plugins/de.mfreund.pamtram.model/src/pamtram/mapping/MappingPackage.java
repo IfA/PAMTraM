@@ -2374,14 +2374,14 @@ public interface MappingPackage extends EPackage {
 	int GLOBAL_ATTRIBUTE_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.GlobalVariableImporterImpl <em>Global Variable Importer</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.impl.GlobalAttributeImporterImpl <em>Global Attribute Importer</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.GlobalVariableImporterImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalVariableImporter()
+	 * @see pamtram.mapping.impl.GlobalAttributeImporterImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalAttributeImporter()
 	 * @generated
 	 */
-	int GLOBAL_VARIABLE_IMPORTER = 42;
+	int GLOBAL_ATTRIBUTE_IMPORTER = 42;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2390,25 +2390,25 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GLOBAL_VARIABLE_IMPORTER__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
+	int GLOBAL_ATTRIBUTE_IMPORTER__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Global Variable</b></em>' reference.
+	 * The feature id for the '<em><b>Global Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GLOBAL_VARIABLE_IMPORTER__GLOBAL_VARIABLE = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Global Variable Importer</em>' class.
+	 * The number of structural features of the '<em>Global Attribute Importer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GLOBAL_VARIABLE_IMPORTER_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int GLOBAL_ATTRIBUTE_IMPORTER_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Source Attribute</em>' operation.
@@ -2417,7 +2417,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GLOBAL_VARIABLE_IMPORTER___GET_SOURCE_ATTRIBUTE = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int GLOBAL_ATTRIBUTE_IMPORTER___GET_SOURCE_ATTRIBUTE = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Name</em>' operation.
@@ -2426,16 +2426,16 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GLOBAL_VARIABLE_IMPORTER___GET_NAME = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
+	int GLOBAL_ATTRIBUTE_IMPORTER___GET_NAME = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Global Variable Importer</em>' class.
+	 * The number of operations of the '<em>Global Attribute Importer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GLOBAL_VARIABLE_IMPORTER_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
+	int GLOBAL_ATTRIBUTE_IMPORTER_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.ComplexMappingHintSourceInterface <em>Complex Mapping Hint Source Interface</em>}' class.
@@ -4283,25 +4283,25 @@ public interface MappingPackage extends EPackage {
 	EReference getGlobalAttribute_Modifier();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.GlobalVariableImporter <em>Global Variable Importer</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.GlobalAttributeImporter <em>Global Attribute Importer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Global Variable Importer</em>'.
-	 * @see pamtram.mapping.GlobalVariableImporter
+	 * @return the meta object for class '<em>Global Attribute Importer</em>'.
+	 * @see pamtram.mapping.GlobalAttributeImporter
 	 * @generated
 	 */
-	EClass getGlobalVariableImporter();
+	EClass getGlobalAttributeImporter();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.mapping.GlobalVariableImporter#getGlobalVariable <em>Global Variable</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.mapping.GlobalAttributeImporter#getGlobalAttribute <em>Global Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Global Variable</em>'.
-	 * @see pamtram.mapping.GlobalVariableImporter#getGlobalVariable()
-	 * @see #getGlobalVariableImporter()
+	 * @return the meta object for the reference '<em>Global Attribute</em>'.
+	 * @see pamtram.mapping.GlobalAttributeImporter#getGlobalAttribute()
+	 * @see #getGlobalAttributeImporter()
 	 * @generated
 	 */
-	EReference getGlobalVariableImporter_GlobalVariable();
+	EReference getGlobalAttributeImporter_GlobalAttribute();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.ComplexAttributeMappingSourceInterface <em>Complex Attribute Mapping Source Interface</em>}'.
@@ -5330,22 +5330,22 @@ public interface MappingPackage extends EPackage {
 		EReference GLOBAL_ATTRIBUTE__MODIFIER = eINSTANCE.getGlobalAttribute_Modifier();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.GlobalVariableImporterImpl <em>Global Variable Importer</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.impl.GlobalAttributeImporterImpl <em>Global Attribute Importer</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.GlobalVariableImporterImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalVariableImporter()
+		 * @see pamtram.mapping.impl.GlobalAttributeImporterImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalAttributeImporter()
 		 * @generated
 		 */
-		EClass GLOBAL_VARIABLE_IMPORTER = eINSTANCE.getGlobalVariableImporter();
+		EClass GLOBAL_ATTRIBUTE_IMPORTER = eINSTANCE.getGlobalAttributeImporter();
 
 		/**
-		 * The meta object literal for the '<em><b>Global Variable</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Global Attribute</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GLOBAL_VARIABLE_IMPORTER__GLOBAL_VARIABLE = eINSTANCE.getGlobalVariableImporter_GlobalVariable();
+		EReference GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE = eINSTANCE.getGlobalAttributeImporter_GlobalAttribute();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.ComplexAttributeMappingSourceInterface <em>Complex Attribute Mapping Source Interface</em>}' class.

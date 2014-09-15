@@ -431,14 +431,14 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.GLOBAL_VARIABLE_IMPORTER: {
-				GlobalVariableImporter globalVariableImporter = (GlobalVariableImporter)theEObject;
-				T result = caseGlobalVariableImporter(globalVariableImporter);
-				if (result == null) result = caseNamedElement(globalVariableImporter);
-				if (result == null) result = caseComplexAttributeMappingSourceInterface(globalVariableImporter);
-				if (result == null) result = caseComplexAttributeMatcherSourceInterface(globalVariableImporter);
-				if (result == null) result = caseComplexModelConnectionHintSourceInterface(globalVariableImporter);
-				if (result == null) result = caseComplexMappingHintSourceInterface(globalVariableImporter);
+			case MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER: {
+				GlobalAttributeImporter globalAttributeImporter = (GlobalAttributeImporter)theEObject;
+				T result = caseGlobalAttributeImporter(globalAttributeImporter);
+				if (result == null) result = caseNamedElement(globalAttributeImporter);
+				if (result == null) result = caseComplexAttributeMappingSourceInterface(globalAttributeImporter);
+				if (result == null) result = caseComplexAttributeMatcherSourceInterface(globalAttributeImporter);
+				if (result == null) result = caseComplexModelConnectionHintSourceInterface(globalAttributeImporter);
+				if (result == null) result = caseComplexMappingHintSourceInterface(globalAttributeImporter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1232,17 +1232,17 @@ public class MappingSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Global Variable Importer</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Global Attribute Importer</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Global Variable Importer</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Global Attribute Importer</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseGlobalVariableImporter(GlobalVariableImporter object) {
+	public T caseGlobalAttributeImporter(GlobalAttributeImporter object) {
 		return null;
 	}
 

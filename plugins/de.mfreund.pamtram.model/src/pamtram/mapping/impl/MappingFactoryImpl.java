@@ -81,7 +81,7 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_PREPENDER: return createMappedAttributeValuePrepender();
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_APPENDER: return createMappedAttributeValueAppender();
 			case MappingPackage.GLOBAL_ATTRIBUTE: return createGlobalAttribute();
-			case MappingPackage.GLOBAL_VARIABLE_IMPORTER: return createGlobalVariableImporter();
+			case MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER: return createGlobalAttributeImporter();
 			case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT: return createComplexAttributeMappingExternalSourceElement();
 			case MappingPackage.COMPLEX_MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT: return createComplexModelConnectionHintExternalSourceElement();
 			case MappingPackage.EXTERNAL_EXPRESSION_VARIABLE: return createExternalExpressionVariable();
@@ -381,9 +381,9 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GlobalVariableImporter createGlobalVariableImporter() {
-		GlobalVariableImporterImpl globalVariableImporter = new GlobalVariableImporterImpl();
-		return globalVariableImporter;
+	public GlobalAttributeImporter createGlobalAttributeImporter() {
+		GlobalAttributeImporterImpl globalAttributeImporter = new GlobalAttributeImporterImpl();
+		return globalAttributeImporter;
 	}
 
 	/**

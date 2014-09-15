@@ -274,13 +274,13 @@ public interface MappingFactory extends EFactory {
 	GlobalAttribute createGlobalAttribute();
 
 	/**
-	 * Returns a new object of class '<em>Global Variable Importer</em>'.
+	 * Returns a new object of class '<em>Global Attribute Importer</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Global Variable Importer</em>'.
+	 * @return a new object of class '<em>Global Attribute Importer</em>'.
 	 * @generated
 	 */
-	GlobalVariableImporter createGlobalVariableImporter();
+	GlobalAttributeImporter createGlobalAttributeImporter();
 
 	/**
 	 * Returns a new object of class '<em>Complex Attribute Mapping External Source Element</em>'.

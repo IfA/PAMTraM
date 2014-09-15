@@ -4526,24 +4526,6 @@
       <OwnedTextDefinition Name="Component.PLC.FESTO.Stock_StockDoublePLC">
         <TranslatedTextItem Value="text_Component_PLC_FESTO_Stock_StockDoublePLC" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
       </OwnedTextDefinition>
-      <OwnedTextDefinition Name="Station.FESTO.Stock_StockDouble">
-        <TranslatedTextItem Value="text_Station_FESTO_Stock_StockDouble" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
-      </OwnedTextDefinition>
-      <OwnedTextDefinition Name="Station.FESTO.MillAndTurn_MillAndTurn105">
-        <TranslatedTextItem Value="text_Station_FESTO_MillAndTurn_MillAndTurn105" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
-      </OwnedTextDefinition>
-      <OwnedTextDefinition Name="Station.FESTO.Mill_Mill55">
-        <TranslatedTextItem Value="text_Station_FESTO_Mill_Mill55" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
-      </OwnedTextDefinition>
-      <OwnedTextDefinition Name="Station.FESTO.Turn_Turn55">
-        <TranslatedTextItem Value="text_Station_FESTO_Turn_Turn55" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
-      </OwnedTextDefinition>
-      <OwnedTextDefinition Name="Station.FESTO.Assembly_AssemblyRH5A55">
-        <TranslatedTextItem Value="text_Station_FESTO_Assembly_AssemblyRH5A55" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
-      </OwnedTextDefinition>
-      <OwnedTextDefinition Name="Station.FESTO.Quality_Quality">
-        <TranslatedTextItem Value="text_Station_FESTO_Quality_Quality" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
-      </OwnedTextDefinition>
     </OwnedMultiLingualTextDefinition>
     <OwnedNavigationFlow xsi:type="presentation:NewViewNavigationFlow" Source="//@PresentationDomain/@OwnedNavigationRoot" Target="//@PresentationDomain/@OwnedPanel.0"/>
     <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="NAVTOP_to_NAVTOP" Source="//@PresentationDomain/@OwnedPanel.0" Target="//@PresentationDomain/@OwnedPanel.0" Trigger="//@AlgorithmDomain/@OwnedElement.4/@Signal.0"/>
@@ -6674,105 +6656,105 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="NAVTOP_StockDouble_textLabel_label" Comment="RoleRestrictionComment TODO">
-        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.255">
-          <Alignment Name="StockDouble_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
-          <Format Name="StockDouble_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_StockDouble_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_StockDouble_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_StockDouble_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
             <FontSize Name="NAVTOP_StockDouble" Unit="POINT" Value="9.0"/>
           </Format>
           <Position Name="NAVTOP_StockDouble_pos">
-            <X Name="NAVTOP_pos_x" Unit="PIXEL" Value="398.0"/>
-            <Y Name="NAVTOP_pos_y" Unit="PIXEL" Value="522.0"/>
-            <Z Name="NAVTOP_pos_z" Unit="PIXEL"/>
+            <X Name="NAVTOP_StockDouble_pos_x" Unit="PIXEL" Value="398.0"/>
+            <Y Name="NAVTOP_StockDouble_pos_y" Unit="PIXEL" Value="522.0"/>
+            <Z Name="NAVTOP_StockDouble_pos_z" Unit="PIXEL" Value="10.0"/>
           </Position>
-          <Size Name="NAVTOP_size">
-            <Height Name="NAVTOP_height" Unit="PIXEL" Value="99.0"/>
-            <Width Name="NAVTOP_width" Unit="PIXEL" Value="190.0"/>
+          <Size Name="NAVTOP_StockDouble_size">
+            <Height Name="NAVTOP_StockDouble_height" Unit="PIXEL" Value="99.0"/>
+            <Width Name="NAVTOP_StockDouble_width" Unit="PIXEL" Value="190.0"/>
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="NAVTOP_MillAndTurn105_textLabel_label" Comment="RoleRestrictionComment TODO">
-        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.238">
-          <Alignment Name="MillAndTurn105_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
-          <Format Name="MillAndTurn105_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_MillAndTurn105_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_MillAndTurn105_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_MillAndTurn105_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
             <FontSize Name="NAVTOP_MillAndTurn105" Unit="POINT" Value="9.0"/>
           </Format>
           <Position Name="NAVTOP_MillAndTurn105_pos">
-            <X Name="NAVTOP_pos_x" Unit="PIXEL" Value="194.0"/>
-            <Y Name="NAVTOP_pos_y" Unit="PIXEL" Value="300.0"/>
-            <Z Name="NAVTOP_pos_z" Unit="PIXEL"/>
+            <X Name="NAVTOP_MillAndTurn105_pos_x" Unit="PIXEL" Value="194.0"/>
+            <Y Name="NAVTOP_MillAndTurn105_pos_y" Unit="PIXEL" Value="300.0"/>
+            <Z Name="NAVTOP_MillAndTurn105_pos_z" Unit="PIXEL" Value="10.0"/>
           </Position>
-          <Size Name="NAVTOP_size">
-            <Height Name="NAVTOP_height" Unit="PIXEL" Value="282.0"/>
-            <Width Name="NAVTOP_width" Unit="PIXEL" Value="149.0"/>
+          <Size Name="NAVTOP_MillAndTurn105_size">
+            <Height Name="NAVTOP_MillAndTurn105_height" Unit="PIXEL" Value="282.0"/>
+            <Width Name="NAVTOP_MillAndTurn105_width" Unit="PIXEL" Value="149.0"/>
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="NAVTOP_Mill55_textLabel_label" Comment="RoleRestrictionComment TODO">
-        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.229">
-          <Alignment Name="Mill55_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
-          <Format Name="Mill55_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_Mill55_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_Mill55_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_Mill55_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
             <FontSize Name="NAVTOP_Mill55" Unit="POINT" Value="9.0"/>
           </Format>
           <Position Name="NAVTOP_Mill55_pos">
-            <X Name="NAVTOP_pos_x" Unit="PIXEL" Value="250.0"/>
-            <Y Name="NAVTOP_pos_y" Unit="PIXEL" Value="76.0"/>
-            <Z Name="NAVTOP_pos_z" Unit="PIXEL"/>
+            <X Name="NAVTOP_Mill55_pos_x" Unit="PIXEL" Value="250.0"/>
+            <Y Name="NAVTOP_Mill55_pos_y" Unit="PIXEL" Value="76.0"/>
+            <Z Name="NAVTOP_Mill55_pos_z" Unit="PIXEL" Value="10.0"/>
           </Position>
-          <Size Name="NAVTOP_size">
-            <Height Name="NAVTOP_height" Unit="PIXEL" Value="93.0"/>
-            <Width Name="NAVTOP_width" Unit="PIXEL" Value="147.0"/>
+          <Size Name="NAVTOP_Mill55_size">
+            <Height Name="NAVTOP_Mill55_height" Unit="PIXEL" Value="93.0"/>
+            <Width Name="NAVTOP_Mill55_width" Unit="PIXEL" Value="147.0"/>
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="NAVTOP_Turn55_textLabel_label" Comment="RoleRestrictionComment TODO">
-        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.219">
-          <Alignment Name="Turn55_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
-          <Format Name="Turn55_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_Turn55_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_Turn55_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_Turn55_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
             <FontSize Name="NAVTOP_Turn55" Unit="POINT" Value="9.0"/>
           </Format>
           <Position Name="NAVTOP_Turn55_pos">
-            <X Name="NAVTOP_pos_x" Unit="PIXEL" Value="801.0"/>
-            <Y Name="NAVTOP_pos_y" Unit="PIXEL" Value="363.0"/>
-            <Z Name="NAVTOP_pos_z" Unit="PIXEL"/>
+            <X Name="NAVTOP_Turn55_pos_x" Unit="PIXEL" Value="801.0"/>
+            <Y Name="NAVTOP_Turn55_pos_y" Unit="PIXEL" Value="363.0"/>
+            <Z Name="NAVTOP_Turn55_pos_z" Unit="PIXEL" Value="10.0"/>
           </Position>
-          <Size Name="NAVTOP_size">
-            <Height Name="NAVTOP_height" Unit="PIXEL" Value="165.0"/>
-            <Width Name="NAVTOP_width" Unit="PIXEL" Value="138.0"/>
+          <Size Name="NAVTOP_Turn55_size">
+            <Height Name="NAVTOP_Turn55_height" Unit="PIXEL" Value="165.0"/>
+            <Width Name="NAVTOP_Turn55_width" Unit="PIXEL" Value="138.0"/>
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="NAVTOP_AssemblyRH5A55_textLabel_label" Comment="RoleRestrictionComment TODO">
-        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.202">
-          <Alignment Name="AssemblyRH5A55_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
-          <Format Name="AssemblyRH5A55_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AssemblyRH5A55_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_AssemblyRH5A55_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AssemblyRH5A55_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
             <FontSize Name="NAVTOP_AssemblyRH5A55" Unit="POINT" Value="9.0"/>
           </Format>
           <Position Name="NAVTOP_AssemblyRH5A55_pos">
-            <X Name="NAVTOP_pos_x" Unit="PIXEL" Value="609.0"/>
-            <Y Name="NAVTOP_pos_y" Unit="PIXEL" Value="33.0"/>
-            <Z Name="NAVTOP_pos_z" Unit="PIXEL"/>
+            <X Name="NAVTOP_AssemblyRH5A55_pos_x" Unit="PIXEL" Value="609.0"/>
+            <Y Name="NAVTOP_AssemblyRH5A55_pos_y" Unit="PIXEL" Value="33.0"/>
+            <Z Name="NAVTOP_AssemblyRH5A55_pos_z" Unit="PIXEL" Value="10.0"/>
           </Position>
-          <Size Name="NAVTOP_size">
-            <Height Name="NAVTOP_height" Unit="PIXEL" Value="99.0"/>
-            <Width Name="NAVTOP_width" Unit="PIXEL" Value="124.0"/>
+          <Size Name="NAVTOP_AssemblyRH5A55_size">
+            <Height Name="NAVTOP_AssemblyRH5A55_height" Unit="PIXEL" Value="99.0"/>
+            <Width Name="NAVTOP_AssemblyRH5A55_width" Unit="PIXEL" Value="124.0"/>
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="NAVTOP_Quality_textLabel_label" Comment="RoleRestrictionComment TODO">
-        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.200">
-          <Alignment Name="Quality_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
-          <Format Name="Quality_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_Quality_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_Quality_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_Quality_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
             <FontSize Name="NAVTOP_Quality" Unit="POINT" Value="9.0"/>
           </Format>
           <Position Name="NAVTOP_Quality_pos">
-            <X Name="NAVTOP_pos_x" Unit="PIXEL" Value="653.0"/>
-            <Y Name="NAVTOP_pos_y" Unit="PIXEL" Value="520.0"/>
-            <Z Name="NAVTOP_pos_z" Unit="PIXEL"/>
+            <X Name="NAVTOP_Quality_pos_x" Unit="PIXEL" Value="653.0"/>
+            <Y Name="NAVTOP_Quality_pos_y" Unit="PIXEL" Value="520.0"/>
+            <Z Name="NAVTOP_Quality_pos_z" Unit="PIXEL" Value="10.0"/>
           </Position>
-          <Size Name="NAVTOP_size">
-            <Height Name="NAVTOP_height" Unit="PIXEL" Value="101.0"/>
-            <Width Name="NAVTOP_width" Unit="PIXEL" Value="60.0"/>
+          <Size Name="NAVTOP_Quality_size">
+            <Height Name="NAVTOP_Quality_height" Unit="PIXEL" Value="101.0"/>
+            <Width Name="NAVTOP_Quality_width" Unit="PIXEL" Value="60.0"/>
           </Size>
         </Representation>
       </OwnedUIComponent>

@@ -217,7 +217,8 @@ public class SubstringReplacerImpl extends AttributeValueModifierImpl implements
 	@Override
 	protected String modifyValue(String value) {
 		Pattern p=new Pattern(this.regex == null ? "" : this.regex);
-		Replacer r=p.replacer(this.replacement == null ? "" : this.replacement);
+		
+		Replacer r=new Replacer(p, this.replacement == null ? "" : this.replacement, true);
 		return r.replace(value);
 	}
 	

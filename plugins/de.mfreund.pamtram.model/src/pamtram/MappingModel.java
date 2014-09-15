@@ -6,6 +6,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.GlobalValue;
 import pamtram.mapping.Mapping;
 
 /**
@@ -18,6 +19,7 @@ import pamtram.mapping.Mapping;
  * <ul>
  *   <li>{@link pamtram.MappingModel#getMapping <em>Mapping</em>}</li>
  *   <li>{@link pamtram.MappingModel#getModifierSets <em>Modifier Sets</em>}</li>
+ *   <li>{@link pamtram.MappingModel#getGlobalValues <em>Global Values</em>}</li>
  * </ul>
  * </p>
  *
@@ -57,5 +59,21 @@ public interface MappingModel extends EObject {
 	 * @generated
 	 */
 	EList<AttributeValueModifierSet> getModifierSets();
+
+	/**
+	 * Returns the value of the '<em><b>Global Values</b></em>' containment reference list.
+	 * The list contents are of type {@link pamtram.mapping.GlobalValue}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Global Values</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Global Values</em>' containment reference list.
+	 * @see pamtram.PamtramPackage#getMappingModel_GlobalValues()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<GlobalValue> getGlobalValues();
 
 } // MappingModel

@@ -315,6 +315,15 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getMappingModel_GlobalValues() {
+		return (EReference)mappingModelEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTransformationModel() {
 		return transformationModelEClass;
 	}
@@ -378,6 +387,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		mappingModelEClass = createEClass(MAPPING_MODEL);
 		createEReference(mappingModelEClass, MAPPING_MODEL__MAPPING);
 		createEReference(mappingModelEClass, MAPPING_MODEL__MODIFIER_SETS);
+		createEReference(mappingModelEClass, MAPPING_MODEL__GLOBAL_VALUES);
 
 		transformationModelEClass = createEClass(TRANSFORMATION_MODEL);
 		createEReference(transformationModelEClass, TRANSFORMATION_MODEL__TRANSFORMATION);
@@ -449,6 +459,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		initEClass(mappingModelEClass, MappingModel.class, "MappingModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMappingModel_Mapping(), theMappingPackage.getMapping(), null, "mapping", null, 1, -1, MappingModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMappingModel_ModifierSets(), theMappingPackage.getAttributeValueModifierSet(), null, "modifierSets", null, 0, -1, MappingModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMappingModel_GlobalValues(), theMappingPackage.getGlobalValue(), null, "globalValues", null, 0, -1, MappingModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(transformationModelEClass, TransformationModel.class, "TransformationModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTransformationModel_Transformation(), theTransformationPackage.getTransformation(), null, "transformation", null, 0, -1, TransformationModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

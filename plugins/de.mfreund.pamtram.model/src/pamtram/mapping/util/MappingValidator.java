@@ -200,6 +200,8 @@ public class MappingValidator extends EObjectValidator {
 				return validateMatchToLowerCaseConverter((MatchToLowerCaseConverter)value, diagnostics, context);
 			case MappingPackage.MATCH_TO_UPPER_CASE_CONVERTER:
 				return validateMatchToUpperCaseConverter((MatchToUpperCaseConverter)value, diagnostics, context);
+			case MappingPackage.GLOBAL_VALUE:
+				return validateGlobalValue((GlobalValue)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -962,6 +964,15 @@ public class MappingValidator extends EObjectValidator {
 	 */
 	public boolean validateMatchToUpperCaseConverter(MatchToUpperCaseConverter matchToUpperCaseConverter, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(matchToUpperCaseConverter, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateGlobalValue(GlobalValue globalValue, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(globalValue, diagnostics, context);
 	}
 
 	/**

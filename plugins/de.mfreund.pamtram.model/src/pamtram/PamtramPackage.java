@@ -324,13 +324,22 @@ public interface PamtramPackage extends EPackage {
 	int MAPPING_MODEL__MODIFIER_SETS = 1;
 
 	/**
+	 * The feature id for the '<em><b>Global Values</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_MODEL__GLOBAL_VALUES = 2;
+
+	/**
 	 * The number of structural features of the '<em>Mapping Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_MODEL_FEATURE_COUNT = 2;
+	int MAPPING_MODEL_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Mapping Model</em>' class.
@@ -561,6 +570,17 @@ public interface PamtramPackage extends EPackage {
 	EReference getMappingModel_ModifierSets();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.MappingModel#getGlobalValues <em>Global Values</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Global Values</em>'.
+	 * @see pamtram.MappingModel#getGlobalValues()
+	 * @see #getMappingModel()
+	 * @generated
+	 */
+	EReference getMappingModel_GlobalValues();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.TransformationModel <em>Transformation Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -751,6 +771,14 @@ public interface PamtramPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MAPPING_MODEL__MODIFIER_SETS = eINSTANCE.getMappingModel_ModifierSets();
+
+		/**
+		 * The meta object literal for the '<em><b>Global Values</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAPPING_MODEL__GLOBAL_VALUES = eINSTANCE.getMappingModel_GlobalValues();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.impl.TransformationModelImpl <em>Transformation Model</em>}' class.

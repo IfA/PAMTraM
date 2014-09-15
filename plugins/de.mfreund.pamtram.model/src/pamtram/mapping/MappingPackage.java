@@ -3329,6 +3329,52 @@ public interface MappingPackage extends EPackage {
 	int MATCH_TO_UPPER_CASE_CONVERTER_OPERATION_COUNT = ATTRIBUTE_VALUE_MODIFIER_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.GlobalValueImpl <em>Global Value</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.GlobalValueImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalValue()
+	 * @generated
+	 */
+	int GLOBAL_VALUE = 59;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOBAL_VALUE__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOBAL_VALUE__VALUE = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Global Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOBAL_VALUE_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Global Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOBAL_VALUE_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.Mapping <em>Mapping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4460,6 +4506,27 @@ public interface MappingPackage extends EPackage {
 	EAttribute getMatchToUpperCaseConverter_Regex();
 
 	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.GlobalValue <em>Global Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Global Value</em>'.
+	 * @see pamtram.mapping.GlobalValue
+	 * @generated
+	 */
+	EClass getGlobalValue();
+
+	/**
+	 * Returns the meta object for the attribute '{@link pamtram.mapping.GlobalValue#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see pamtram.mapping.GlobalValue#getValue()
+	 * @see #getGlobalValue()
+	 * @generated
+	 */
+	EAttribute getGlobalValue_Value();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5471,6 +5538,24 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MATCH_TO_UPPER_CASE_CONVERTER__REGEX = eINSTANCE.getMatchToUpperCaseConverter_Regex();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.impl.GlobalValueImpl <em>Global Value</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.impl.GlobalValueImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalValue()
+		 * @generated
+		 */
+		EClass GLOBAL_VALUE = eINSTANCE.getGlobalValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GLOBAL_VALUE__VALUE = eINSTANCE.getGlobalValue_Value();
 
 	}
 

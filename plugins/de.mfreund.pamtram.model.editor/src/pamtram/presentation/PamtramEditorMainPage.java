@@ -1,5 +1,6 @@
 package pamtram.presentation;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -581,7 +582,7 @@ public class PamtramEditorMainPage extends SashForm {
 		
 		// Create a group for the attribute value modifier viewer.
 		attValModGroup = new Group(mappingSash, SWT.NONE);
-		attValModGroup.setText("Attribute Value Modifier Sets");
+		attValModGroup.setText("Modifier Sets and Global Values");
 		attValModGroup.setLayoutData(
 				new GridData(SWT.FILL, SWT.FILL, true, true));
 		attValModGroup.setLayout(new GridLayout(1, true));
@@ -599,7 +600,10 @@ public class PamtramEditorMainPage extends SashForm {
 			@Override
 			public Object[] getElements(Object object) {
 				if(object instanceof MappingModel) {
-					return ((MappingModel) object).getModifierSets().toArray();
+					List<Object> elements=new ArrayList<Object>();
+					elements.addAll(((MappingModel) object).getModifierSets());
+					elements.addAll(((MappingModel) object).getGlobalValues());
+					return elements.toArray();
 				}
 				return super.getElements(object);
 			}

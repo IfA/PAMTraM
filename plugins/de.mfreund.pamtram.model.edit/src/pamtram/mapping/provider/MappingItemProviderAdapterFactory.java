@@ -876,6 +876,52 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.MatchToLowerCaseConverter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MatchToLowerCaseConverterItemProvider matchToLowerCaseConverterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.MatchToLowerCaseConverter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMatchToLowerCaseConverterAdapter() {
+		if (matchToLowerCaseConverterItemProvider == null) {
+			matchToLowerCaseConverterItemProvider = new MatchToLowerCaseConverterItemProvider(this);
+		}
+
+		return matchToLowerCaseConverterItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.MatchToUpperCaseConverter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MatchToUpperCaseConverterItemProvider matchToUpperCaseConverterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.MatchToUpperCaseConverter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMatchToUpperCaseConverterAdapter() {
+		if (matchToUpperCaseConverterItemProvider == null) {
+			matchToUpperCaseConverterItemProvider = new MatchToUpperCaseConverterItemProvider(this);
+		}
+
+		return matchToUpperCaseConverterItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1009,6 +1055,8 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (complexAttributeMatcherExternalSourceElementItemProvider != null) complexAttributeMatcherExternalSourceElementItemProvider.dispose();
 		if (externalMappedAttributeValuePrependerItemProvider != null) externalMappedAttributeValuePrependerItemProvider.dispose();
 		if (externalMappedAttributeValueAppenderItemProvider != null) externalMappedAttributeValueAppenderItemProvider.dispose();
+		if (matchToLowerCaseConverterItemProvider != null) matchToLowerCaseConverterItemProvider.dispose();
+		if (matchToUpperCaseConverterItemProvider != null) matchToUpperCaseConverterItemProvider.dispose();
 	}
 
 }

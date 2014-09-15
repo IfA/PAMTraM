@@ -155,6 +155,16 @@ public class AttributeValueModifierSetItemProvider
 			(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER,
 				 MappingFactory.eINSTANCE.createStringPrepender()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER,
+				 MappingFactory.eINSTANCE.createMatchToLowerCaseConverter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER,
+				 MappingFactory.eINSTANCE.createMatchToUpperCaseConverter()));
 	}
 
 	/**

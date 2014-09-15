@@ -106,7 +106,7 @@ public class PamtramEditorMainPage extends SashForm {
 	/**
 	 * This is the the viewer for the att val modifier sets.
 	 */
-	protected TreeViewer attValModViewer;
+	protected TreeViewer globalElementsViewer;
 	
 	/**
 	 * This is the group for the target tree viewer.
@@ -589,11 +589,11 @@ public class PamtramEditorMainPage extends SashForm {
 		
 		// Create the mapping tree viewer.
 		Tree attValModtree = new Tree(attValModGroup, SWT.MULTI);
-		attValModViewer = new TreeViewer(attValModtree);
+		globalElementsViewer = new TreeViewer(attValModtree);
 		attValModtree.setLayoutData(
 				new GridData(SWT.FILL, SWT.FILL, true, true));
 		
-		attValModViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory){
+		globalElementsViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory){
 			/* extend the content provider in a way that no mappings but only attribute value
 			 * modifier sets are returned as children of a mapping model
 			 */
@@ -608,24 +608,24 @@ public class PamtramEditorMainPage extends SashForm {
 				return super.getElements(object);
 			}
 		});
-		attValModViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
-		attValModViewer.setInput(editor.pamtram.getMappingModel());
+		globalElementsViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+		globalElementsViewer.setInput(editor.pamtram.getMappingModel());
 		
 		attValModtree.addSelectionListener(new SelectionListener() {
 			
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				editor.setCurrentViewer(attValModViewer);
+				editor.setCurrentViewer(globalElementsViewer);
 			}
 			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
 		});
 		
-		new AdapterFactoryTreeEditor(attValModViewer.getTree(), adapterFactory);
+		new AdapterFactoryTreeEditor(globalElementsViewer.getTree(), adapterFactory);
 		
 		editor.createContextMenuFor(mappingViewer);
-		editor.createContextMenuFor(attValModViewer);
+		editor.createContextMenuFor(globalElementsViewer);
 		
 	}
 	

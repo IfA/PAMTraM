@@ -715,26 +715,26 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.GlobalVariableImporter} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.GlobalAttributeImporter} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GlobalVariableImporterItemProvider globalVariableImporterItemProvider;
+	protected GlobalAttributeImporterItemProvider globalAttributeImporterItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.GlobalVariableImporter}.
+	 * This creates an adapter for a {@link pamtram.mapping.GlobalAttributeImporter}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createGlobalVariableImporterAdapter() {
-		if (globalVariableImporterItemProvider == null) {
-			globalVariableImporterItemProvider = new GlobalVariableImporterItemProvider(this);
+	public Adapter createGlobalAttributeImporterAdapter() {
+		if (globalAttributeImporterItemProvider == null) {
+			globalAttributeImporterItemProvider = new GlobalAttributeImporterItemProvider(this);
 		}
 
-		return globalVariableImporterItemProvider;
+		return globalAttributeImporterItemProvider;
 	}
 
 	/**
@@ -1071,7 +1071,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (mappedAttributeValuePrependerItemProvider != null) mappedAttributeValuePrependerItemProvider.dispose();
 		if (mappedAttributeValueAppenderItemProvider != null) mappedAttributeValueAppenderItemProvider.dispose();
 		if (globalAttributeItemProvider != null) globalAttributeItemProvider.dispose();
-		if (globalVariableImporterItemProvider != null) globalVariableImporterItemProvider.dispose();
+		if (globalAttributeImporterItemProvider != null) globalAttributeImporterItemProvider.dispose();
 		if (complexAttributeMappingExternalSourceElementItemProvider != null) complexAttributeMappingExternalSourceElementItemProvider.dispose();
 		if (complexModelConnectionHintExternalSourceElementItemProvider != null) complexModelConnectionHintExternalSourceElementItemProvider.dispose();
 		if (externalExpressionVariableItemProvider != null) externalExpressionVariableItemProvider.dispose();

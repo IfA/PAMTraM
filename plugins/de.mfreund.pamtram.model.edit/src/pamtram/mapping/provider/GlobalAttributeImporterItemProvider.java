@@ -14,26 +14,26 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
-import pamtram.mapping.GlobalVariableImporter;
+import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.MappingPackage;
 
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.GlobalVariableImporter} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.GlobalAttributeImporter} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class GlobalVariableImporterItemProvider extends NamedElementItemProvider {
+public class GlobalAttributeImporterItemProvider extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GlobalVariableImporterItemProvider(AdapterFactory adapterFactory) {
+	public GlobalAttributeImporterItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -48,25 +48,25 @@ public class GlobalVariableImporterItemProvider extends NamedElementItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addGlobalVariablePropertyDescriptor(object);
+			addGlobalAttributePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Global Variable feature.
+	 * This adds a property descriptor for the Global Attribute feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addGlobalVariablePropertyDescriptor(Object object) {
+	protected void addGlobalAttributePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_GlobalVariableImporter_globalVariable_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GlobalVariableImporter_globalVariable_feature", "_UI_GlobalVariableImporter_type"),
-				 MappingPackage.Literals.GLOBAL_VARIABLE_IMPORTER__GLOBAL_VARIABLE,
+				 getString("_UI_GlobalAttributeImporter_globalAttribute_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GlobalAttributeImporter_globalAttribute_feature", "_UI_GlobalAttributeImporter_type"),
+				 MappingPackage.Literals.GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE,
 				 true,
 				 false,
 				 true,
@@ -76,14 +76,14 @@ public class GlobalVariableImporterItemProvider extends NamedElementItemProvider
 	}
 
 	/**
-	 * This returns GlobalVariableImporter.gif.
+	 * This returns GlobalAttributeImporter.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/GlobalVariableImporter"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/GlobalAttributeImporter"));
 	}
 
 	/**
@@ -94,10 +94,10 @@ public class GlobalVariableImporterItemProvider extends NamedElementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((GlobalVariableImporter)object).getName();
+		String label = ((GlobalAttributeImporter)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_GlobalVariableImporter_type") :
-			getString("_UI_GlobalVariableImporter_type") + " " + label;
+			getString("_UI_GlobalAttributeImporter_type") :
+			getString("_UI_GlobalAttributeImporter_type") + " " + label;
 	}
 	
 

@@ -142,7 +142,7 @@ public class ComplexAttributeMappingItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.COMPLEX_ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS,
-				 MappingFactory.eINSTANCE.createGlobalVariableImporter()));
+				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 
 		newChildDescriptors.add
 			(createChildParameter

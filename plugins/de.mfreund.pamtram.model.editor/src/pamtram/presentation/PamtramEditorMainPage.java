@@ -43,7 +43,7 @@ import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
 import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.GlobalAttribute;
-import pamtram.mapping.GlobalVariableImporter;
+import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupImporter;
@@ -379,8 +379,8 @@ public class PamtramEditorMainPage extends SashForm {
 					
 					setSourceTargetViewerSingleItemSelections(target,
 							source);
-				}  else if(((TreeItem) e.item).getData() instanceof GlobalVariableImporter){
-					GlobalVariableImporter mapping = (GlobalVariableImporter) ((TreeItem) e.item).getData();
+				}  else if(((TreeItem) e.item).getData() instanceof GlobalAttributeImporter){
+					GlobalAttributeImporter mapping = (GlobalAttributeImporter) ((TreeItem) e.item).getData();
 					Attribute target = ((AttributeMapping)mapping.eContainer()).getTarget();
 					Attribute source=mapping.getSourceAttribute();
 					

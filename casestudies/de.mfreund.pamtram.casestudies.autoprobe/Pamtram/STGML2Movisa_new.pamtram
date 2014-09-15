@@ -943,116 +943,6 @@
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
         <value name="extdataType">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
-          <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
-            <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
-            <value name="ExtData &quot;FunInterface&quot;">
-              <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-              <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
-                <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
-                <value name="ExtData &quot;Hardware&quot;">
-                  <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                  <attributes name="name">
-                    <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Hardware" value="Hardware"/>
-                  </attributes>
-                  <attributes name="valueOPCUA">
-                    <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
-                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="OPCUA" value="OPCUA"/>
-                  </attributes>
-                </value>
-                <value name="ExtData Rest" cardinality="ZERO__INFINITY">
-                  <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                </value>
-                <value name="ExtData &quot;Functions&quot;">
-                  <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                  <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
-                    <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
-                    <value name="ExtData Function" cardinality="ZERO__INFINITY">
-                      <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                      <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
-                        <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
-                        <value name="typeId = Function">
-                          <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                          <attributes name="name">
-                            <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-                            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="typeID" value="typeID"/>
-                          </attributes>
-                          <attributes name="value Function">
-                            <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
-                            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Function" value="Function"/>
-                          </attributes>
-                        </value>
-                        <value name="ExtData Rest" cardinality="ZERO__INFINITY">
-                          <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                        </value>
-                        <value name="ExtData DataItems">
-                          <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                          <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
-                            <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
-                            <value name="ExtData LockedChannel">
-                              <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                              <attributes name="name">
-                                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-                                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="LockedChannel" value="LockedChannel"/>
-                              </attributes>
-                              <attributes name="valueLockedChannel">
-                                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
-                              </attributes>
-                            </value>
-                            <value name="ExtData ParamChannel">
-                              <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                              <attributes name="name">
-                                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-                                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ParamChannel" value="ParamChannel"/>
-                              </attributes>
-                              <attributes name="valueParamChannel">
-                                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
-                              </attributes>
-                            </value>
-                            <value name="ExtData ActivateChannel">
-                              <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                              <attributes name="name">
-                                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-                                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ActivateChannel" value="ActivateChannel"/>
-                              </attributes>
-                              <attributes name="valueActivateChannel">
-                                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
-                              </attributes>
-                            </value>
-                            <value name="ExtData ReturnChannel">
-                              <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                              <attributes name="name">
-                                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-                                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ReturnChannel" value="ReturnChannel"/>
-                              </attributes>
-                              <attributes name="valueReturnChannel">
-                                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
-                              </attributes>
-                            </value>
-                            <value name="ExtData Rest" cardinality="ZERO__INFINITY">
-                              <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                            </value>
-                          </references>
-                          <attributes name="name">
-                            <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-                            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="name=DataItems" value="DataItems"/>
-                          </attributes>
-                        </value>
-                      </references>
-                    </value>
-                  </references>
-                  <attributes name="name = Functions">
-                    <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Functions" value="Functions"/>
-                  </attributes>
-                </value>
-              </references>
-              <attributes name="name = FunctionInterface">
-                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="FunctionInterface" value="FunctionInterface"/>
-              </attributes>
-            </value>
-          </references>
           <references xsi:type="metamodel:MetaModelSectionReference" name="extdata" value="//@sourceSectionModel/@metaModelSections.3">
             <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
           </references>
@@ -4994,14 +4884,14 @@
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepAlignmentName@Double:Out Label" target="//@targetSectionModel/@metaModelSections.19/@references.0/@value.0/@references.3/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.12/@attributes.5" modifier="//@mappingModel/@modifierSets.27 //@mappingModel/@modifierSets.2"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="WriteFixedBoolName" target="//@targetSectionModel/@metaModelSections.19/@references.1/@value.0/@references.0/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.12/@attributes.5" modifier="//@mappingModel/@modifierSets.6 //@mappingModel/@modifierSets.2"/>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="LPItem WriteFIxedBool" affectedReference="//@targetSectionModel/@metaModelSections.19/@references.1/@value.0/@references.0/@value.0/@references.0">
-          <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.11/@attributes.4" source="//@sourceSectionModel/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.14 //@mappingModel/@modifierSets.2"/>
+          <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.11/@attributes.4" source="//@sourceSectionModel/@metaModelSections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.14 //@mappingModel/@modifierSets.2"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Text" affectedReference="//@targetSectionModel/@metaModelSections.19/@references.0/@value.0/@references.4">
           <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.15/@attributes.0" source="//@sourceSectionModel/@metaModelSections.12/@attributes.5" modifier="//@mappingModel/@modifierSets.35 //@mappingModel/@modifierSets.2"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="ClickTriggerName" target="//@targetSectionModel/@metaModelSections.19/@references.1/@value.0/@references.1/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.12/@attributes.5" modifier="//@mappingModel/@modifierSets.5 //@mappingModel/@modifierSets.2"/>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="ButtonAnimationTriggerSignal" affectedReference="//@targetSectionModel/@metaModelSections.19/@references.2/@value.0/@references.0/@value.0/@references.0">
-          <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" source="//@sourceSectionModel/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.17 //@mappingModel/@modifierSets.2"/>
+          <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" source="//@sourceSectionModel/@metaModelSections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.17 //@mappingModel/@modifierSets.2"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="rAnimCompName" target="//@targetSectionModel/@metaModelSections.19/@references.2/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.12/@attributes.5" modifier="//@mappingModel/@modifierSets.10 //@mappingModel/@modifierSets.2"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="repAnimationStateAccessibleName" target="//@targetSectionModel/@metaModelSections.19/@references.2/@value.0/@references.0/@value.0/@references.2/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.12/@attributes.5" modifier="//@mappingModel/@modifierSets.8 //@mappingModel/@modifierSets.2"/>
@@ -5054,41 +4944,6 @@
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDef FunctionButton" targetMMSection="//@targetSectionModel/@metaModelSections.15">
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="Label value name" target="//@targetSectionModel/@metaModelSections.15/@attributes.0" source="//@sourceSectionModel/@metaModelSections.12/@attributes.5" modifier="//@mappingModel/@modifierSets.35 //@mappingModel/@modifierSets.2"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="Label value value" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.12/@attributes.5"/>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="MonitoredItem Boolean FuncInterface" targetMMSection="//@targetSectionModel/@metaModelSections.12">
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="MonitoredItem" affectedReference="//@targetSectionModel/@metaModelSections.12/@references.0">
-          <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.11/@attributes.4" source="//@sourceSectionModel/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.14 //@mappingModel/@modifierSets.2"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="MonitoredItemName@Bool" target="//@targetSectionModel/@metaModelSections.12/@attributes.0" source="//@sourceSectionModel/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.14 //@mappingModel/@modifierSets.2"/>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OpcUaItem Bool FuncInterface" targetMMSection="//@targetSectionModel/@metaModelSections.1">
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="activateDataItem BrowseName" target="//@targetSectionModel/@metaModelSections.1/@attributes.0" source="//@sourceSectionModel/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.15"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="activateDataItem BrowsePath" target="//@targetSectionModel/@metaModelSections.1/@attributes.1" source="//@sourceSectionModel/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.16"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="activateDataItem Name" target="//@targetSectionModel/@metaModelSections.1/@attributes.2" source="//@sourceSectionModel/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.17 //@mappingModel/@modifierSets.2"/>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="TP IsAccessedVia @ Bool" affectedReference="//@targetSectionModel/@metaModelSections.1/@references.0">
-          <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.11/@attributes.4" source="//@sourceSectionModel/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.14 //@mappingModel/@modifierSets.2"/>
-        </mappingHints>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="DataItem Bool FuncInterface" targetMMSection="//@targetSectionModel/@metaModelSections.11">
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="LP SignalOnChange @ Bool" affectedReference="//@targetSectionModel/@metaModelSections.11/@references.0">
-          <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" source="//@sourceSectionModel/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.17 //@mappingModel/@modifierSets.2"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="LPDataItemName@Bool" target="//@targetSectionModel/@metaModelSections.11/@attributes.4" source="//@sourceSectionModel/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.14 //@mappingModel/@modifierSets.2"/>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="DataType" affectedReference="//@targetSectionModel/@metaModelSections.11/@references.2">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.0"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Dimension" affectedReference="//@targetSectionModel/@metaModelSections.11/@references.1">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.1/@value.0/@references.0/@value.0/@references.1/@value.0"/>
-        </mappingHints>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal Bool FuncInterface" targetMMSection="//@targetSectionModel/@metaModelSections.6">
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="signalName@Bool" target="//@targetSectionModel/@metaModelSections.6/@attributes.0" source="//@sourceSectionModel/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.17 //@mappingModel/@modifierSets.2"/>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="BaseDataType  Bool FuncInterface" targetMMSection="//@targetSectionModel/@metaModelSections.3">
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="activateDataItem Name" target="//@targetSectionModel/@metaModelSections.3/@attributes.1" source="//@sourceSectionModel/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.2 //@mappingModel/@modifierSets.18"/>
-        <modelConnectionMatcher xsi:type="mapping:SimpleModelConnectionHint" name="OpcUAItem" source="//@sourceSectionModel/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2" modifier="//@mappingModel/@modifierSets.17 //@mappingModel/@modifierSets.2"/>
-        </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
     <mapping name="NavigatorButton" sourceMMSection="//@sourceSectionModel/@metaModelSections.13">

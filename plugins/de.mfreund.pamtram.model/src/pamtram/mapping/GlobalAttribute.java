@@ -16,16 +16,16 @@ import pamtram.metamodel.SourceSectionAttribute;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link pamtram.mapping.GlobalVariable#getSource <em>Source</em>}</li>
- *   <li>{@link pamtram.mapping.GlobalVariable#getModifier <em>Modifier</em>}</li>
+ *   <li>{@link pamtram.mapping.GlobalAttribute#getSource <em>Source</em>}</li>
+ *   <li>{@link pamtram.mapping.GlobalAttribute#getModifier <em>Modifier</em>}</li>
  * </ul>
  * </p>
  *
- * @see pamtram.mapping.MappingPackage#getGlobalVariable()
+ * @see pamtram.mapping.MappingPackage#getGlobalAttribute()
  * @model
  * @generated
  */
-public interface GlobalVariable extends NamedElement {
+public interface GlobalAttribute extends NamedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
@@ -37,14 +37,14 @@ public interface GlobalVariable extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(SourceSectionAttribute)
-	 * @see pamtram.mapping.MappingPackage#getGlobalVariable_Source()
+	 * @see pamtram.mapping.MappingPackage#getGlobalAttribute_Source()
 	 * @model required="true"
 	 * @generated
 	 */
 	SourceSectionAttribute getSource();
 
 	/**
-	 * Sets the value of the '{@link pamtram.mapping.GlobalVariable#getSource <em>Source</em>}' reference.
+	 * Sets the value of the '{@link pamtram.mapping.GlobalAttribute#getSource <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Source</em>' reference.
@@ -63,7 +63,7 @@ public interface GlobalVariable extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Modifier</em>' reference list.
-	 * @see pamtram.mapping.MappingPackage#getGlobalVariable_Modifier()
+	 * @see pamtram.mapping.MappingPackage#getGlobalAttribute_Modifier()
 	 * @model
 	 * @generated
 	 */

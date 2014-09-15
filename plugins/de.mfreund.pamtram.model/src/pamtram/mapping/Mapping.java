@@ -86,7 +86,7 @@ public interface Mapping extends MappingType {
 
 	/**
 	 * Returns the value of the '<em><b>Global Variables</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.mapping.GlobalVariable}.
+	 * The list contents are of type {@link pamtram.mapping.GlobalAttribute}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Global Variables</em>' containment reference list isn't clear,
@@ -98,6 +98,6 @@ public interface Mapping extends MappingType {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<GlobalVariable> getGlobalVariables();
+	EList<GlobalAttribute> getGlobalVariables();
 
 } // Mapping

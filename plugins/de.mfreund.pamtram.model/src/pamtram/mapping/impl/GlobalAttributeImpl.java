@@ -13,25 +13,25 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.AttributeValueModifierSet;
-import pamtram.mapping.GlobalVariable;
+import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.MappingPackage;
 import pamtram.metamodel.SourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Global Variable</b></em>'.
+ * An implementation of the model object '<em><b>Global Attribute</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link pamtram.mapping.impl.GlobalVariableImpl#getSource <em>Source</em>}</li>
- *   <li>{@link pamtram.mapping.impl.GlobalVariableImpl#getModifier <em>Modifier</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.GlobalAttributeImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.GlobalAttributeImpl#getModifier <em>Modifier</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class GlobalVariableImpl extends NamedElementImpl implements GlobalVariable {
+public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttribute {
 	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -56,7 +56,7 @@ public class GlobalVariableImpl extends NamedElementImpl implements GlobalVariab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GlobalVariableImpl() {
+	protected GlobalAttributeImpl() {
 		super();
 	}
 
@@ -67,7 +67,7 @@ public class GlobalVariableImpl extends NamedElementImpl implements GlobalVariab
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.GLOBAL_VARIABLE;
+		return MappingPackage.Literals.GLOBAL_ATTRIBUTE;
 	}
 
 	/**
@@ -81,7 +81,7 @@ public class GlobalVariableImpl extends NamedElementImpl implements GlobalVariab
 			source = (SourceSectionAttribute)eResolveProxy(oldSource);
 			if (source != oldSource) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.GLOBAL_VARIABLE__SOURCE, oldSource, source));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.GLOBAL_ATTRIBUTE__SOURCE, oldSource, source));
 			}
 		}
 		return source;
@@ -105,7 +105,7 @@ public class GlobalVariableImpl extends NamedElementImpl implements GlobalVariab
 		SourceSectionAttribute oldSource = source;
 		source = newSource;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.GLOBAL_VARIABLE__SOURCE, oldSource, source));
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.GLOBAL_ATTRIBUTE__SOURCE, oldSource, source));
 	}
 
 	/**
@@ -115,7 +115,7 @@ public class GlobalVariableImpl extends NamedElementImpl implements GlobalVariab
 	 */
 	public EList<AttributeValueModifierSet> getModifier() {
 		if (modifier == null) {
-			modifier = new EObjectResolvingEList<AttributeValueModifierSet>(AttributeValueModifierSet.class, this, MappingPackage.GLOBAL_VARIABLE__MODIFIER);
+			modifier = new EObjectResolvingEList<AttributeValueModifierSet>(AttributeValueModifierSet.class, this, MappingPackage.GLOBAL_ATTRIBUTE__MODIFIER);
 		}
 		return modifier;
 	}
@@ -128,10 +128,10 @@ public class GlobalVariableImpl extends NamedElementImpl implements GlobalVariab
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MappingPackage.GLOBAL_VARIABLE__SOURCE:
+			case MappingPackage.GLOBAL_ATTRIBUTE__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
-			case MappingPackage.GLOBAL_VARIABLE__MODIFIER:
+			case MappingPackage.GLOBAL_ATTRIBUTE__MODIFIER:
 				return getModifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -146,10 +146,10 @@ public class GlobalVariableImpl extends NamedElementImpl implements GlobalVariab
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingPackage.GLOBAL_VARIABLE__SOURCE:
+			case MappingPackage.GLOBAL_ATTRIBUTE__SOURCE:
 				setSource((SourceSectionAttribute)newValue);
 				return;
-			case MappingPackage.GLOBAL_VARIABLE__MODIFIER:
+			case MappingPackage.GLOBAL_ATTRIBUTE__MODIFIER:
 				getModifier().clear();
 				getModifier().addAll((Collection<? extends AttributeValueModifierSet>)newValue);
 				return;
@@ -165,10 +165,10 @@ public class GlobalVariableImpl extends NamedElementImpl implements GlobalVariab
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingPackage.GLOBAL_VARIABLE__SOURCE:
+			case MappingPackage.GLOBAL_ATTRIBUTE__SOURCE:
 				setSource((SourceSectionAttribute)null);
 				return;
-			case MappingPackage.GLOBAL_VARIABLE__MODIFIER:
+			case MappingPackage.GLOBAL_ATTRIBUTE__MODIFIER:
 				getModifier().clear();
 				return;
 		}
@@ -183,12 +183,12 @@ public class GlobalVariableImpl extends NamedElementImpl implements GlobalVariab
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingPackage.GLOBAL_VARIABLE__SOURCE:
+			case MappingPackage.GLOBAL_ATTRIBUTE__SOURCE:
 				return source != null;
-			case MappingPackage.GLOBAL_VARIABLE__MODIFIER:
+			case MappingPackage.GLOBAL_ATTRIBUTE__MODIFIER:
 				return modifier != null && !modifier.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //GlobalVariableImpl
+} //GlobalAttributeImpl

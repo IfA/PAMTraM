@@ -30,12 +30,12 @@ public interface GlobalVariableImporter extends NamedElement, ComplexAttributeMa
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Global Variable</em>' reference.
-	 * @see #setGlobalVariable(GlobalVariable)
+	 * @see #setGlobalVariable(GlobalAttribute)
 	 * @see pamtram.mapping.MappingPackage#getGlobalVariableImporter_GlobalVariable()
 	 * @model required="true"
 	 * @generated
 	 */
-	GlobalVariable getGlobalVariable();
+	GlobalAttribute getGlobalVariable();
 
 	/**
 	 * Sets the value of the '{@link pamtram.mapping.GlobalVariableImporter#getGlobalVariable <em>Global Variable</em>}' reference.
@@ -45,6 +45,6 @@ public interface GlobalVariableImporter extends NamedElement, ComplexAttributeMa
 	 * @see #getGlobalVariable()
 	 * @generated
 	 */
-	void setGlobalVariable(GlobalVariable value);
+	void setGlobalVariable(GlobalAttribute value);
 
 } // GlobalVariableImporter

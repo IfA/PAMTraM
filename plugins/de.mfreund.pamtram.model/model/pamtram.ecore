@@ -273,7 +273,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="importedMappingHintGroups"
           upperBound="-1" eType="#//mapping/MappingHintGroupImporter" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="globalVariables" upperBound="-1"
-          eType="#//mapping/GlobalVariable" containment="true"/>
+          eType="#//mapping/GlobalAttribute" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MappingType" abstract="true" eSuperTypes="#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceMMSection" lowerBound="1"
@@ -462,7 +462,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValuePrepender" eSuperTypes="#//mapping/MappedAttributeValueExpander"/>
     <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValueAppender" eSuperTypes="#//mapping/MappedAttributeValueExpander"/>
-    <eClassifiers xsi:type="ecore:EClass" name="GlobalVariable" eSuperTypes="#//NamedElement">
+    <eClassifiers xsi:type="ecore:EClass" name="GlobalAttribute" eSuperTypes="#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
           eType="#//metamodel/SourceSectionAttribute"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
@@ -470,7 +470,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="GlobalVariableImporter" eSuperTypes="#//NamedElement #//mapping/ComplexAttributeMappingSourceInterface #//mapping/ComplexAttributeMatcherSourceInterface #//mapping/ComplexModelConnectionHintSourceInterface">
       <eStructuralFeatures xsi:type="ecore:EReference" name="globalVariable" lowerBound="1"
-          eType="#//mapping/GlobalVariable"/>
+          eType="#//mapping/GlobalAttribute"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexAttributeMappingSourceInterface"
         abstract="true" interface="true" eSuperTypes="#//mapping/ComplexMappingHintSourceInterface"/>

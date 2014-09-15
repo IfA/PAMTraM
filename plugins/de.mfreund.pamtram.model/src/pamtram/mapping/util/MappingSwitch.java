@@ -424,10 +424,10 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.GLOBAL_VARIABLE: {
-				GlobalVariable globalVariable = (GlobalVariable)theEObject;
-				T result = caseGlobalVariable(globalVariable);
-				if (result == null) result = caseNamedElement(globalVariable);
+			case MappingPackage.GLOBAL_ATTRIBUTE: {
+				GlobalAttribute globalAttribute = (GlobalAttribute)theEObject;
+				T result = caseGlobalAttribute(globalAttribute);
+				if (result == null) result = caseNamedElement(globalAttribute);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1210,17 +1210,17 @@ public class MappingSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Global Variable</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Global Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Global Variable</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Global Attribute</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseGlobalVariable(GlobalVariable object) {
+	public T caseGlobalAttribute(GlobalAttribute object) {
 		return null;
 	}
 

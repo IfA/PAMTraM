@@ -3,7 +3,6 @@
 package pamtram.mapping.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -12,9 +11,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import pamtram.condition.ComplexCondition;
-import pamtram.mapping.GlobalVariable;
+import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
@@ -75,7 +73,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<GlobalVariable> globalVariables;
+	protected EList<GlobalAttribute> globalVariables;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -168,9 +166,9 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<GlobalVariable> getGlobalVariables() {
+	public EList<GlobalAttribute> getGlobalVariables() {
 		if (globalVariables == null) {
-			globalVariables = new EObjectContainmentEList<GlobalVariable>(GlobalVariable.class, this, MappingPackage.MAPPING__GLOBAL_VARIABLES);
+			globalVariables = new EObjectContainmentEList<GlobalAttribute>(GlobalAttribute.class, this, MappingPackage.MAPPING__GLOBAL_VARIABLES);
 		}
 		return globalVariables;
 	}
@@ -237,7 +235,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 				return;
 			case MappingPackage.MAPPING__GLOBAL_VARIABLES:
 				getGlobalVariables().clear();
-				getGlobalVariables().addAll((Collection<? extends GlobalVariable>)newValue);
+				getGlobalVariables().addAll((Collection<? extends GlobalAttribute>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

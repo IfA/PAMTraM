@@ -230,8 +230,8 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createMappedAttributeValueAppenderAdapter();
 			}
 			@Override
-			public Adapter caseGlobalVariable(GlobalVariable object) {
-				return createGlobalVariableAdapter();
+			public Adapter caseGlobalAttribute(GlobalAttribute object) {
+				return createGlobalAttributeAdapter();
 			}
 			@Override
 			public Adapter caseGlobalVariableImporter(GlobalVariableImporter object) {
@@ -900,16 +900,16 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.GlobalVariable <em>Global Variable</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.GlobalAttribute <em>Global Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.GlobalVariable
+	 * @see pamtram.mapping.GlobalAttribute
 	 * @generated
 	 */
-	public Adapter createGlobalVariableAdapter() {
+	public Adapter createGlobalAttributeAdapter() {
 		return null;
 	}
 

@@ -2,8 +2,7 @@ package de.mfreund.gentrans.transformation;
 
 import java.util.HashSet;
 import java.util.Set;
-
-import jregex.PatternSyntaxException;
+import java.util.regex.PatternSyntaxException;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ui.console.MessageConsoleStream;

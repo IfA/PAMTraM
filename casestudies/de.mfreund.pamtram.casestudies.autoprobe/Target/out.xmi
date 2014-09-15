@@ -3593,11 +3593,11 @@
       <OwnedImageResource xsi:type="presentation:FixedImage" Name="conveyorImage_left_top_down" Url="img/conveyor_left_top_down.png"/>
       <OwnedImageResource xsi:type="presentation:FixedImage" Name="conveyorImage_left_right_top" Url="img/conveyor_left_right_top.png"/>
       <OwnedImageResource xsi:type="presentation:FixedImage" Name="conveyorImage_left_right_down" Url="img/conveyor_left_right_down.png"/>
-      <OwnedImageResource xsi:type="presentation:FixedImage" Name="MillAndTurn105Image" Url="img/mill_and_turn_105.png"/>
       <OwnedImageResource xsi:type="presentation:FixedImage" Name="StockDoubleImage" Url="img/stock-double.png"/>
+      <OwnedImageResource xsi:type="presentation:FixedImage" Name="MillAndTurn105Image" Url="img/mill-and-turn105.png"/>
       <OwnedImageResource xsi:type="presentation:FixedImage" Name="Mill55Image" Url="img/mill55.png"/>
       <OwnedImageResource xsi:type="presentation:FixedImage" Name="Turn55Image" Url="img/turn55.png"/>
-      <OwnedImageResource xsi:type="presentation:FixedImage" Name="AssemblyRH5A55Image" Url="img/assembly-rh5a55.png"/>
+      <OwnedImageResource xsi:type="presentation:FixedImage" Name="AssemblyRH5A55Image" Url="img/assembly-rh5-a55.png"/>
       <OwnedImageResource xsi:type="presentation:FixedImage" Name="QualityImage" Url="img/quality.png"/>
     </OwnedImageBundle>
     <OwnedMultiLingualTextDefinition>
@@ -6674,7 +6674,7 @@
         </Representation>
       </OwnedUIComponent>
       <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_MillAndTurn105_image">
-        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.11">
           <Alignment Name="NAVTOP_MillAndTurn105_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
           <Format Name="NAVTOP_MillAndTurn105_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
             <FontSize Name="NAVTOP_MillAndTurn105" Unit="POINT" Value="9.0"/>
@@ -6691,7 +6691,7 @@
         </Representation>
       </OwnedUIComponent>
       <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_Mill55_image">
-        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.12">
           <Alignment Name="NAVTOP_Mill55_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
           <Format Name="NAVTOP_Mill55_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
             <FontSize Name="NAVTOP_Mill55" Unit="POINT" Value="9.0"/>
@@ -6708,7 +6708,7 @@
         </Representation>
       </OwnedUIComponent>
       <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_Turn55_image">
-        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.13">
           <Alignment Name="NAVTOP_Turn55_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
           <Format Name="NAVTOP_Turn55_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
             <FontSize Name="NAVTOP_Turn55" Unit="POINT" Value="9.0"/>
@@ -6725,7 +6725,7 @@
         </Representation>
       </OwnedUIComponent>
       <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AssemblyRH5A55_image">
-        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.14">
           <Alignment Name="NAVTOP_AssemblyRH5A55_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
           <Format Name="NAVTOP_AssemblyRH5A55_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
             <FontSize Name="NAVTOP_AssemblyRH5A55" Unit="POINT" Value="9.0"/>
@@ -6742,7 +6742,7 @@
         </Representation>
       </OwnedUIComponent>
       <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_Quality_image">
-        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.15">
           <Alignment Name="NAVTOP_Quality_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
           <Format Name="NAVTOP_Quality_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
             <FontSize Name="NAVTOP_Quality" Unit="POINT" Value="9.0"/>

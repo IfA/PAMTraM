@@ -922,6 +922,29 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.GlobalValue} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected GlobalValueItemProvider globalValueItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.GlobalValue}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createGlobalValueAdapter() {
+		if (globalValueItemProvider == null) {
+			globalValueItemProvider = new GlobalValueItemProvider(this);
+		}
+
+		return globalValueItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1057,6 +1080,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (externalMappedAttributeValueAppenderItemProvider != null) externalMappedAttributeValueAppenderItemProvider.dispose();
 		if (matchToLowerCaseConverterItemProvider != null) matchToLowerCaseConverterItemProvider.dispose();
 		if (matchToUpperCaseConverterItemProvider != null) matchToUpperCaseConverterItemProvider.dispose();
+		if (globalValueItemProvider != null) globalValueItemProvider.dispose();
 	}
 
 }

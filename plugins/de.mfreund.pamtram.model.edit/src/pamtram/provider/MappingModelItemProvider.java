@@ -76,6 +76,7 @@ public class MappingModelItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(PamtramPackage.Literals.MAPPING_MODEL__MAPPING);
 			childrenFeatures.add(PamtramPackage.Literals.MAPPING_MODEL__MODIFIER_SETS);
+			childrenFeatures.add(PamtramPackage.Literals.MAPPING_MODEL__GLOBAL_VALUES);
 		}
 		return childrenFeatures;
 	}
@@ -129,6 +130,7 @@ public class MappingModelItemProvider
 		switch (notification.getFeatureID(MappingModel.class)) {
 			case PamtramPackage.MAPPING_MODEL__MAPPING:
 			case PamtramPackage.MAPPING_MODEL__MODIFIER_SETS:
+			case PamtramPackage.MAPPING_MODEL__GLOBAL_VALUES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -155,6 +157,11 @@ public class MappingModelItemProvider
 			(createChildParameter
 				(PamtramPackage.Literals.MAPPING_MODEL__MODIFIER_SETS,
 				 MappingFactory.eINSTANCE.createAttributeValueModifierSet()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(PamtramPackage.Literals.MAPPING_MODEL__GLOBAL_VALUES,
+				 MappingFactory.eINSTANCE.createGlobalValue()));
 	}
 
 	/**

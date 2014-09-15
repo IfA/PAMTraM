@@ -49,14 +49,11 @@ public class SourceSectionReferenceItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((SourceSectionReference)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_SourceSectionReference_type") :
-			getString("_UI_SourceSectionReference_type") + " " + label;
+		return label;
 	}
 
 	/**

@@ -18,7 +18,6 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.TargetSectionClass;
 
 /**
  * This is the item provider adapter for a {@link pamtram.metamodel.MetaModelSectionReference} object.
@@ -89,7 +88,7 @@ public class MetaModelSectionReferenceItemProvider extends SourceSectionReferenc
 							Object next=it.next();
 							if(next instanceof SourceSectionClass){
 								if(((SourceSectionClass) next).getEClass() != null){
-									if(refClass.isSuperTypeOf(((TargetSectionClass) next).getEClass())){
+									if(refClass.isSuperTypeOf(((SourceSectionClass) next).getEClass())){
 										choices.add((SourceSectionClass) next);
 									}
 								}

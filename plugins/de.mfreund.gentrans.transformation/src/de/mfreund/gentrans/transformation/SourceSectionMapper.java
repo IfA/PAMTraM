@@ -33,7 +33,7 @@ import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
 import pamtram.mapping.ExpressionVariable;
 import pamtram.mapping.ExternalAttributeMappingSourceElement;
 import pamtram.mapping.ExternalMappedAttributeValueExpander;
-import pamtram.mapping.GlobalVariable;
+import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
@@ -115,13 +115,13 @@ class SourceSectionMapper {
 	 * Registry for values of global Variables
 	 * Only the newest value found is saved (GlobalVariables really only make sense for elements that appear only once)
 	 */
-	private Map<GlobalVariable,String> globalVarValues;
+	private Map<GlobalAttribute,String> globalVarValues;
 	
 	/**
 	 * Getter for Registry for values of global Variables
 	 * @return Registry for values of global Variables
 	 */
-	public Map<GlobalVariable, String> getGlobalVarValues() {
+	public Map<GlobalAttribute, String> getGlobalVarValues() {
 		return globalVarValues;
 	}
 	
@@ -162,7 +162,7 @@ class SourceSectionMapper {
 		deepestCalcAttrMappingSrcElementsByCalcMapping = new LinkedHashMap<CalculatorMapping,SourceSectionClass>();
 		deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher= new LinkedHashMap<ComplexAttributeMatcher, SourceSectionClass>();
 		deepestComplexConnectionHintSrcElementsByComplexConnectionHint= new LinkedHashMap<ComplexModelConnectionHint, SourceSectionClass>();
-		globalVarValues=new HashMap<GlobalVariable,String>();
+		globalVarValues=new HashMap<GlobalAttribute,String>();
 		this.mappingsToChooseFrom=mappingsToChooseFrom;
 		this.consoleStream=consoleStream;
 		this.transformationAborted=false;
@@ -400,7 +400,7 @@ class SourceSectionMapper {
 			EObject srcModelObject, boolean usedOkay,
 			Iterable<MappingHintType> hints,
 			Iterable<ModelConnectionHint> connectionHints,
-			Iterable<GlobalVariable> globalVars,
+			Iterable<GlobalAttribute> globalVars,
 			SourceSectionClass srcSection,
 			MappingInstanceStorage newRefsAndHints,
 			LinkedHashMap<SourceSectionClass, EObject> srcInstanceMap) {
@@ -602,7 +602,7 @@ class SourceSectionMapper {
 					}
 				}
 				
-				for(GlobalVariable gVar : globalVars){
+				for(GlobalAttribute gVar : globalVars){
 					if(gVar.getSource().equals(at)){
 						String modifiedVal=attributeValuemodifier.applyAttributeValueModifiers(srcAttrAsString, gVar.getModifier());
 						globalVarValues.put(gVar, modifiedVal);

@@ -25,7 +25,8 @@ import pamtram.mapping.ComplexAttributeMapping;
 import pamtram.mapping.ComplexAttributeMappingSourceInterface;
 import pamtram.mapping.ComplexAttributeMatcher;
 import pamtram.mapping.ComplexAttributeMatcherSourceInterface;
-import pamtram.mapping.GlobalVariable;
+import pamtram.mapping.GlobalAttribute;
+import pamtram.mapping.GlobalValue;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
@@ -102,10 +103,12 @@ class TargetSectionInstantiator {
 	 * @param attributeValueRegistry used when setting attribute values
 	 * @param globalVarValues Registry for values of global Variables
 	 * @param consoleStream used to write console output
+	 * @param globalVals 
 	 */
 	TargetSectionInstantiator(TargetSectionRegistry targetSectionRegistry , 
 			AttributeValueRegistry attributeValueRegistry, 
-			Map<GlobalVariable,String> globalVarValues,
+			Map<GlobalAttribute,String> globalVarValues,
+			List<GlobalValue> globalVals,
 			MessageConsoleStream consoleStream) {
 		this.targetSectionRegistry=targetSectionRegistry;
 		this.attributeValueRegistry=attributeValueRegistry;
@@ -121,9 +124,9 @@ class TargetSectionInstantiator {
 		}
 		
 		consoleStream.println("Parsing GlobalVariables for numbers. Look below for potential errors..");
-		//find GlobalVars that can be mapped to double
+		//find GlobalAttrs that can be mapped to double
 		globalVarValueDoubles=new HashMap<String,Double>();
-		for(GlobalVariable g : globalVarValues.keySet()){
+		for(GlobalAttribute g : globalVarValues.keySet()){
 			try{
 				Calculable calc=new ExpressionBuilder(globalVarValues.get(g)).build();
 				double variableVal= calc.calculate();//parseDouble doesn't support Scientific notation, like: 0.42e2 == 4200e-2 == 42, 
@@ -132,6 +135,15 @@ class TargetSectionInstantiator {
 				consoleStream.println(e.getMessage());
 			}
 			
+		}
+		
+		/*
+		 * add global values
+		 */
+		for(GlobalValue val : globalVals){
+			if(val.getName() != null){
+				globalVarValueDoubles.put(val.getName(), val.getValue());
+			}
 		}
 		consoleStream.println("...parsing done!");
 	}	

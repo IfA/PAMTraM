@@ -29,8 +29,6 @@ import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.console.MessageConsoleStream;
 import org.eclipse.ui.progress.UIJob;
 
-import de.congrace.exp4j.Calculable;
-import de.congrace.exp4j.ExpressionBuilder;
 import pamtram.PAMTraM;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMatcher;
@@ -44,7 +42,8 @@ import pamtram.mapping.ComplexModelConnectionHint;
 import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.ExternalMappedAttributeValuePrepender;
-import pamtram.mapping.GlobalVariableImporter;
+import pamtram.mapping.GlobalValue;
+import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappedAttributeValueExpanderType;
 import pamtram.mapping.MappedAttributeValuePrepender;
@@ -60,6 +59,8 @@ import pamtram.mapping.SimpleAttributeMatcher;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.TargetSectionClass;
+import de.congrace.exp4j.Calculable;
+import de.congrace.exp4j.ExpressionBuilder;
 
 /**
  * Main Class for running the generic transformation for a PAMTraM model.
@@ -306,7 +307,7 @@ public class GenericTransformationRunner {
 		writePamtramMessage("Instantiating targetModelSections for selected mappings. First pass");
 		TargetSectionInstantiator targetSectionInstantiator = runInstantiationFirstPass(
 				sourceSectionMapper, targetSectionRegistry, attrValueRegistry,
-				selectedMappings, exportedMappingHints);
+				selectedMappings, exportedMappingHints,pamtramModel.getMappingModel().getGlobalValues());
 
 		// creating missing links/containers for target model
 		writePamtramMessage("Linking targetModelSections");
@@ -539,6 +540,7 @@ public class GenericTransformationRunner {
 	 * @param attrValueRegistry
 	 * @param selectedMappings
 	 * @param exportedMappingHints
+	 * @param globalValues 
 	 * @return
 	 */
 	private TargetSectionInstantiator runInstantiationFirstPass(
@@ -546,9 +548,9 @@ public class GenericTransformationRunner {
 			TargetSectionRegistry targetSectionRegistry,
 			AttributeValueRegistry attrValueRegistry,
 			LinkedList<MappingInstanceStorage> selectedMappings,
-			Map<MappingHint, LinkedList<Object>> exportedMappingHints) {
+			Map<MappingHint, LinkedList<Object>> exportedMappingHints, List<GlobalValue> globalValues) {
 		TargetSectionInstantiator targetSectionInstantiator = new TargetSectionInstantiator(
-				targetSectionRegistry, attrValueRegistry,sourceSectionMapper.getGlobalVarValues(),consoleStream);			
+				targetSectionRegistry, attrValueRegistry,sourceSectionMapper.getGlobalVarValues(),globalValues,consoleStream);			
 		for (MappingInstanceStorage selMap : selectedMappings) {
 			for (MappingHintGroupType g : selMap.getMapping().getMappingHintGroups()) {
 				if (g.getTargetMMSection() != null && g instanceof MappingHintGroup) {
@@ -765,17 +767,18 @@ public class GenericTransformationRunner {
 																						     //for each MappingHint of the Mapping
 					}
 				}
+
 				/*
-				 * add global values
+				 * add global attributes
 				 */
 
 				for(MappingHint h : g.getMappingHints()){
 
 					if(h instanceof ComplexAttributeMapping){
 						for(ComplexAttributeMappingSourceInterface i : ((ComplexAttributeMapping) h).getSourceAttributeMappings()){
-							if(i instanceof GlobalVariableImporter){
-								if(sourceSectionMapper.getGlobalVarValues().containsKey(((GlobalVariableImporter) i).getGlobalVariable())){
-									String gVal=sourceSectionMapper.getGlobalVarValues().get(((GlobalVariableImporter) i).getGlobalVariable());
+							if(i instanceof GlobalAttributeImporter){
+								if(sourceSectionMapper.getGlobalVarValues().containsKey(((GlobalAttributeImporter) i).getGlobalAttribute())){
+									String gVal=sourceSectionMapper.getGlobalVarValues().get(((GlobalAttributeImporter) i).getGlobalAttribute());
 									for(Object m : selMap.getHintValues().get(h)){
 										@SuppressWarnings("unchecked")
 										Map<ComplexAttributeMappingSourceInterface,String> map=(Map<ComplexAttributeMappingSourceInterface,String>) m;
@@ -788,9 +791,9 @@ public class GenericTransformationRunner {
 						if(((MappingInstanceSelector) h).getMatcher() instanceof ComplexAttributeMatcher){
 							ComplexAttributeMatcher m = (ComplexAttributeMatcher) ((MappingInstanceSelector) h).getMatcher();
 							for(ComplexAttributeMatcherSourceInterface i : m.getSourceAttributes()){
-								if(i instanceof GlobalVariableImporter){
-									if(sourceSectionMapper.getGlobalVarValues().containsKey(((GlobalVariableImporter) i).getGlobalVariable())){
-										String gVal=sourceSectionMapper.getGlobalVarValues().get(((GlobalVariableImporter) i).getGlobalVariable());
+								if(i instanceof GlobalAttributeImporter){
+									if(sourceSectionMapper.getGlobalVarValues().containsKey(((GlobalAttributeImporter) i).getGlobalAttribute())){
+										String gVal=sourceSectionMapper.getGlobalVarValues().get(((GlobalAttributeImporter) i).getGlobalAttribute());
 										for(Object o : selMap.getHintValues().get(h)){
 											@SuppressWarnings("unchecked")
 											Map<ComplexAttributeMatcherSourceInterface,String> map=(Map<ComplexAttributeMatcherSourceInterface,String>) o;
@@ -804,15 +807,15 @@ public class GenericTransformationRunner {
 				}
 				
 				/*
-				 * global vars for ModelConnectionHints
+				 * global attributes for ModelConnectionHints
 				 */
 				if(g instanceof MappingHintGroup){
 					if(((MappingHintGroup) g).getModelConnectionMatcher() instanceof ComplexModelConnectionHint){
 						ComplexModelConnectionHint h=(ComplexModelConnectionHint) ((MappingHintGroup) g).getModelConnectionMatcher();
 						for(ComplexModelConnectionHintSourceInterface i : h.getSourceElements()){
-							if(i instanceof GlobalVariableImporter){
-								if(sourceSectionMapper.getGlobalVarValues().containsKey(((GlobalVariableImporter) i).getGlobalVariable())){
-									String gVal=sourceSectionMapper.getGlobalVarValues().get(((GlobalVariableImporter) i).getGlobalVariable());
+							if(i instanceof GlobalAttributeImporter){
+								if(sourceSectionMapper.getGlobalVarValues().containsKey(((GlobalAttributeImporter) i).getGlobalAttribute())){
+									String gVal=sourceSectionMapper.getGlobalVarValues().get(((GlobalAttributeImporter) i).getGlobalAttribute());
 									for(Object o : selMap.getModelConnectionHintValues().get(h)){
 										@SuppressWarnings("unchecked")
 										Map<ComplexModelConnectionHintSourceInterface,String> map=(Map<ComplexModelConnectionHintSourceInterface,String>) o;
@@ -835,9 +838,9 @@ public class GenericTransformationRunner {
 					
 					if(h instanceof ComplexAttributeMapping){
 						for(ComplexAttributeMappingSourceInterface i : ((ComplexAttributeMapping) h).getSourceAttributeMappings()){
-							if(i instanceof GlobalVariableImporter){
-								if(sourceSectionMapper.getGlobalVarValues().containsKey(((GlobalVariableImporter) i).getGlobalVariable())){
-									String gVal=sourceSectionMapper.getGlobalVarValues().get(((GlobalVariableImporter) i).getGlobalVariable());
+							if(i instanceof GlobalAttributeImporter){
+								if(sourceSectionMapper.getGlobalVarValues().containsKey(((GlobalAttributeImporter) i).getGlobalAttribute())){
+									String gVal=sourceSectionMapper.getGlobalVarValues().get(((GlobalAttributeImporter) i).getGlobalAttribute());
 									for(Object m : selMap.getHintValues().get(h)){
 										@SuppressWarnings("unchecked")
 										Map<ComplexAttributeMappingSourceInterface,String> map=(Map<ComplexAttributeMappingSourceInterface,String>) m;
@@ -850,9 +853,9 @@ public class GenericTransformationRunner {
 						if(((MappingInstanceSelector) h).getMatcher() instanceof ComplexAttributeMatcher){
 							ComplexAttributeMatcher m = (ComplexAttributeMatcher) ((MappingInstanceSelector) h).getMatcher();
 							for(ComplexAttributeMatcherSourceInterface i : m.getSourceAttributes()){
-								if(i instanceof GlobalVariableImporter){
-									if(sourceSectionMapper.getGlobalVarValues().containsKey(((GlobalVariableImporter) i).getGlobalVariable())){
-										String gVal=sourceSectionMapper.getGlobalVarValues().get(((GlobalVariableImporter) i).getGlobalVariable());
+								if(i instanceof GlobalAttributeImporter){
+									if(sourceSectionMapper.getGlobalVarValues().containsKey(((GlobalAttributeImporter) i).getGlobalAttribute())){
+										String gVal=sourceSectionMapper.getGlobalVarValues().get(((GlobalAttributeImporter) i).getGlobalAttribute());
 										for(Object o : selMap.getHintValues().get(h)){
 											@SuppressWarnings("unchecked")
 											Map<ComplexAttributeMatcherSourceInterface,String> map=(Map<ComplexAttributeMatcherSourceInterface,String>) o;

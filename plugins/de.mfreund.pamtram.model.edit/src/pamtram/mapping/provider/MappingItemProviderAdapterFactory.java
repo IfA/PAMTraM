@@ -692,26 +692,26 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.GlobalVariable} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.GlobalAttribute} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GlobalVariableItemProvider globalVariableItemProvider;
+	protected GlobalAttributeItemProvider globalAttributeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.GlobalVariable}.
+	 * This creates an adapter for a {@link pamtram.mapping.GlobalAttribute}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createGlobalVariableAdapter() {
-		if (globalVariableItemProvider == null) {
-			globalVariableItemProvider = new GlobalVariableItemProvider(this);
+	public Adapter createGlobalAttributeAdapter() {
+		if (globalAttributeItemProvider == null) {
+			globalAttributeItemProvider = new GlobalAttributeItemProvider(this);
 		}
 
-		return globalVariableItemProvider;
+		return globalAttributeItemProvider;
 	}
 
 	/**
@@ -1047,7 +1047,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (complexModelConnectionHintSourceElementItemProvider != null) complexModelConnectionHintSourceElementItemProvider.dispose();
 		if (mappedAttributeValuePrependerItemProvider != null) mappedAttributeValuePrependerItemProvider.dispose();
 		if (mappedAttributeValueAppenderItemProvider != null) mappedAttributeValueAppenderItemProvider.dispose();
-		if (globalVariableItemProvider != null) globalVariableItemProvider.dispose();
+		if (globalAttributeItemProvider != null) globalAttributeItemProvider.dispose();
 		if (globalVariableImporterItemProvider != null) globalVariableImporterItemProvider.dispose();
 		if (complexAttributeMappingExternalSourceElementItemProvider != null) complexAttributeMappingExternalSourceElementItemProvider.dispose();
 		if (complexModelConnectionHintExternalSourceElementItemProvider != null) complexModelConnectionHintExternalSourceElementItemProvider.dispose();

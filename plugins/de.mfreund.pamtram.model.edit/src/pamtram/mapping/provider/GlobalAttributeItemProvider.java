@@ -17,7 +17,7 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
-import pamtram.mapping.GlobalVariable;
+import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingPackage;
 import pamtram.metamodel.SourceSectionAttribute;
@@ -27,19 +27,19 @@ import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.GlobalVariable} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.GlobalAttribute} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class GlobalVariableItemProvider extends NamedElementItemProvider {
+public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GlobalVariableItemProvider(AdapterFactory adapterFactory) {
+	public GlobalAttributeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -72,7 +72,7 @@ public class GlobalVariableItemProvider extends NamedElementItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_GlobalVariable_source_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_GlobalVariable_source_feature", "_UI_GlobalVariable_type"),
-				 MappingPackage.Literals.GLOBAL_VARIABLE__SOURCE,
+				 MappingPackage.Literals.GLOBAL_ATTRIBUTE__SOURCE,
 				 true,
 				 false,
 				 true,
@@ -134,9 +134,9 @@ public class GlobalVariableItemProvider extends NamedElementItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_GlobalVariable_modifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GlobalVariable_modifier_feature", "_UI_GlobalVariable_type"),
-				 MappingPackage.Literals.GLOBAL_VARIABLE__MODIFIER,
+				 getString("_UI_GlobalAttribute_modifier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GlobalAttribute_modifier_feature", "_UI_GlobalAttribute_type"),
+				 MappingPackage.Literals.GLOBAL_ATTRIBUTE__MODIFIER,
 				 true,
 				 false,
 				 true,
@@ -146,14 +146,14 @@ public class GlobalVariableItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This returns GlobalVariable.gif.
+	 * This returns GlobalAttribute.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/GlobalVariable"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/GlobalAttribute"));
 	}
 
 	/**
@@ -164,10 +164,10 @@ public class GlobalVariableItemProvider extends NamedElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((GlobalVariable)object).getName();
+		String label = ((GlobalAttribute)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_GlobalVariable_type") :
-			getString("_UI_GlobalVariable_type") + " " + label;
+			getString("_UI_GlobalAttribute_type") :
+			getString("_UI_GlobalAttribute_type") + " " + label;
 	}
 	
 

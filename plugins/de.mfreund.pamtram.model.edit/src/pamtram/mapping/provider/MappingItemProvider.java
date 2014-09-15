@@ -213,7 +213,7 @@ public class MappingItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.MAPPING__GLOBAL_VARIABLES,
-				 MappingFactory.eINSTANCE.createGlobalVariable()));
+				 MappingFactory.eINSTANCE.createGlobalAttribute()));
 	}
 
 }

@@ -48,7 +48,7 @@ public class UniqueNumberAppenderImpl extends AttributeValueModifierImpl impleme
 	}
 
 	@Override
-	protected String modifyValue(String value) {
+	public String modifyValue(String value) {
 		return value+getUniqueNumber();
 	}
 

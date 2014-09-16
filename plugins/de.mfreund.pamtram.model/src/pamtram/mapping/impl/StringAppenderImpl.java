@@ -158,7 +158,7 @@ public class StringAppenderImpl extends AttributeValueModifierImpl implements St
 	}
 
 	@Override
-	protected String modifyValue(String value) {
+	public String modifyValue(String value) {
 		return value+(this.string == null ? "" : this.string);
 	}
 

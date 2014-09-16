@@ -161,7 +161,7 @@ public class MatchToUpperCaseConverterImpl extends AttributeValueModifierImpl im
 	}
 	
 	@Override
-	protected String modifyValue(String value) {
+	public String modifyValue(String value) {
 		/*
 		 * copied from: https://stackoverflow.com/questions/2770967/use-java-and-regex-to-convert-casing-in-a-string
 		 */

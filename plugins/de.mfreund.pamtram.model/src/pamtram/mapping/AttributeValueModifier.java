@@ -16,6 +16,14 @@ import pamtram.NamedElement;
  */
 public interface AttributeValueModifier extends NamedElement {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" valueRequired="true"
+	 * @generated
+	 */
+	String modifyValue(String value);
+
+	/**
 	 * @param value
 	 * @return
 	 */

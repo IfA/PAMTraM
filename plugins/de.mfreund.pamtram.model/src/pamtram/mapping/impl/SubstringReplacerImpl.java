@@ -212,7 +212,7 @@ public class SubstringReplacerImpl extends AttributeValueModifierImpl implements
 	}
 
 	@Override
-	protected String modifyValue(String value) {
+	public String modifyValue(String value) {
 
 		return value.replaceAll(this.regex == null ? "" : this.regex, this.replacement == null ? "" : this.replacement);
 	}

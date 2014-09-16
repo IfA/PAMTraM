@@ -158,7 +158,7 @@ public class StringPrependerImpl extends AttributeValueModifierImpl implements S
 	}
 	
 	@Override
-	protected String modifyValue(String value) {
+	public String modifyValue(String value) {
 		return (this.string == null ? "" : this.string) +value;
 	}
 

@@ -321,7 +321,11 @@
           eType="#//metamodel/TargetSectionClass"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeValueModifier" abstract="true"
-        eSuperTypes="#//NamedElement"/>
+        eSuperTypes="#//NamedElement">
+      <eOperations name="modifyValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eParameters name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eOperations>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SubstringReplacer" eSuperTypes="#//mapping/AttributeValueModifier">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="regex" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

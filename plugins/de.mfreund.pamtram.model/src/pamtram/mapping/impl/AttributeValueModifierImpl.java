@@ -2,6 +2,8 @@
  */
 package pamtram.mapping.impl;
 
+import java.lang.reflect.InvocationTargetException;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import pamtram.impl.NamedElementImpl;
@@ -37,7 +39,31 @@ public abstract class AttributeValueModifierImpl extends NamedElementImpl implem
 		return MappingPackage.Literals.ATTRIBUTE_VALUE_MODIFIER;
 	}
 	
-	protected abstract String modifyValue(String value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String modifyValue(String value) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case MappingPackage.ATTRIBUTE_VALUE_MODIFIER___MODIFY_VALUE__STRING:
+				return modifyValue((String)arguments.get(0));
+		}
+		return super.eInvoke(operationID, arguments);
+	}
 
 	@Override
 	public String modify(String value) {

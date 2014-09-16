@@ -550,13 +550,22 @@ public interface MappingPackage extends EPackage {
 	int ATTRIBUTE_VALUE_MODIFIER_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Modify Value</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_VALUE_MODIFIER___MODIFY_VALUE__STRING = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Attribute Value Modifier</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_VALUE_MODIFIER_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int ATTRIBUTE_VALUE_MODIFIER_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.SubstringReplacerImpl <em>Substring Replacer</em>}' class.
@@ -605,6 +614,15 @@ public interface MappingPackage extends EPackage {
 	int SUBSTRING_REPLACER_FEATURE_COUNT = ATTRIBUTE_VALUE_MODIFIER_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Modify Value</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBSTRING_REPLACER___MODIFY_VALUE__STRING = ATTRIBUTE_VALUE_MODIFIER___MODIFY_VALUE__STRING;
+
+	/**
 	 * The number of operations of the '<em>Substring Replacer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -651,6 +669,15 @@ public interface MappingPackage extends EPackage {
 	int STRING_APPENDER_FEATURE_COUNT = ATTRIBUTE_VALUE_MODIFIER_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Modify Value</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_APPENDER___MODIFY_VALUE__STRING = ATTRIBUTE_VALUE_MODIFIER___MODIFY_VALUE__STRING;
+
+	/**
 	 * The number of operations of the '<em>String Appender</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -686,6 +713,15 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int UNIQUE_NUMBER_APPENDER_FEATURE_COUNT = ATTRIBUTE_VALUE_MODIFIER_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Modify Value</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNIQUE_NUMBER_APPENDER___MODIFY_VALUE__STRING = ATTRIBUTE_VALUE_MODIFIER___MODIFY_VALUE__STRING;
 
 	/**
 	 * The number of operations of the '<em>Unique Number Appender</em>' class.
@@ -732,6 +768,15 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int STRING_PREPENDER_FEATURE_COUNT = ATTRIBUTE_VALUE_MODIFIER_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Modify Value</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_PREPENDER___MODIFY_VALUE__STRING = ATTRIBUTE_VALUE_MODIFIER___MODIFY_VALUE__STRING;
 
 	/**
 	 * The number of operations of the '<em>String Prepender</em>' class.
@@ -3274,6 +3319,15 @@ public interface MappingPackage extends EPackage {
 	int MATCH_TO_LOWER_CASE_CONVERTER_FEATURE_COUNT = ATTRIBUTE_VALUE_MODIFIER_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Modify Value</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MATCH_TO_LOWER_CASE_CONVERTER___MODIFY_VALUE__STRING = ATTRIBUTE_VALUE_MODIFIER___MODIFY_VALUE__STRING;
+
+	/**
 	 * The number of operations of the '<em>Match To Lower Case Converter</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3318,6 +3372,15 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int MATCH_TO_UPPER_CASE_CONVERTER_FEATURE_COUNT = ATTRIBUTE_VALUE_MODIFIER_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Modify Value</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MATCH_TO_UPPER_CASE_CONVERTER___MODIFY_VALUE__STRING = ATTRIBUTE_VALUE_MODIFIER___MODIFY_VALUE__STRING;
 
 	/**
 	 * The number of operations of the '<em>Match To Upper Case Converter</em>' class.
@@ -3605,6 +3668,16 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getAttributeValueModifier();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.AttributeValueModifier#modifyValue(java.lang.String) <em>Modify Value</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Modify Value</em>' operation.
+	 * @see pamtram.mapping.AttributeValueModifier#modifyValue(java.lang.String)
+	 * @generated
+	 */
+	EOperation getAttributeValueModifier__ModifyValue__String();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.SubstringReplacer <em>Substring Replacer</em>}'.
@@ -4744,6 +4817,14 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EClass ATTRIBUTE_VALUE_MODIFIER = eINSTANCE.getAttributeValueModifier();
+
+		/**
+		 * The meta object literal for the '<em><b>Modify Value</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ATTRIBUTE_VALUE_MODIFIER___MODIFY_VALUE__STRING = eINSTANCE.getAttributeValueModifier__ModifyValue__String();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.SubstringReplacerImpl <em>Substring Replacer</em>}' class.

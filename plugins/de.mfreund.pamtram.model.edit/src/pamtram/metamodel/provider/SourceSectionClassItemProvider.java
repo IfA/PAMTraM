@@ -4,7 +4,6 @@ package pamtram.metamodel.provider;
 
 
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -12,11 +11,8 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import pamtram.metamodel.CardinalityType;
-import pamtram.metamodel.Class;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.SourceSectionClass;
@@ -176,35 +172,4 @@ public class SourceSectionClassItemProvider
 				(MetamodelPackage.Literals.SOURCE_SECTION_CLASS__ATTRIBUTES,
 				 MetamodelFactory.eINSTANCE.createSourceSectionAttribute()));
 	}
-
-	@Override
-	protected void addCardinalityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-		(new ItemPropertyDescriptor
-			(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-			 getResourceLocator(),
-			 getString("_UI_Class_cardinality_feature"),
-			 getString("_UI_PropertyDescriptor_description", "_UI_Class_cardinality_feature", "_UI_Class_type"),
-			 MetamodelPackage.Literals.CLASS__CARDINALITY,
-			 true,
-			 false,
-			 false,
-			 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-			 null,
-			 null){
-			@Override
-			public Collection<?> getChoiceOfValues(Object object) {
-				if(((Class)object).getContainingSection().equals(object)){
-					LinkedList<CardinalityType> type=new LinkedList<CardinalityType>();
-					type.add(CardinalityType.ONE);
-					return type; 
-				}else {
-					return super.getChoiceOfValues(object);					
-				}
-			}
-		});	
-	}
-	
-	
-
 }

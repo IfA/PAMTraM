@@ -853,7 +853,7 @@
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/height"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections name="viObject StructureComponentControl Library" container="//@sourceSectionModel/@metaModelSections.7">
+    <metaModelSections name="viObject  Library, MatFlow" container="//@sourceSectionModel/@metaModelSections.7">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="externaldata">
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
@@ -896,7 +896,7 @@
                 <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
                 <valueConstraint xsi:type="metamodel:EqualityMatcher" name="typeID" value="typeID"/>
               </attributes>
-              <attributes name="value == Station">
+              <attributes name="value != Station">
                 <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
                 <valueConstraint xsi:type="metamodel:EqualityMatcher" name="no Station" type="EXCLUSION" value="Station"/>
               </attributes>
@@ -978,6 +978,66 @@
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/width"/>
       </attributes>
       <attributes name="height@StructureComponentControlStation">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/height"/>
+      </attributes>
+      <attributes name="label">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/label"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections name="viObject StructureComponentControl MatFlow" container="//@sourceSectionModel/@metaModelSections.7">
+      <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="externaldata">
+        <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
+        <value name="ExternalData == MatFlow">
+          <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
+          <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
+            <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
+            <value name="ExtData Rest" cardinality="ZERO__INFINITY">
+              <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+              <attributes name="Name exclusions">
+                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="typeID" type="EXCLUSION" value="typeID"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="name" type="EXCLUSION" value="name"/>
+              </attributes>
+            </value>
+            <value name="ExtData typeID">
+              <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+              <attributes name="Name == typeID">
+                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="typeID" value="typeID"/>
+              </attributes>
+              <attributes name="value == Matflow">
+                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Matflow" value="Matflow"/>
+              </attributes>
+            </value>
+            <value name="Extdata name">
+              <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+              <attributes name="name == &quot;name&quot;">
+                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="name" value="name"/>
+              </attributes>
+              <attributes name="NameStation">
+                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
+              </attributes>
+            </value>
+          </references>
+        </value>
+      </references>
+      <attributes name="ctrltype = &quot;StructureComponentControl&quot;">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="StructureComponentControl" value="StructureComponentControl"/>
+      </attributes>
+      <attributes name="x">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/x"/>
+      </attributes>
+      <attributes name="y">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/y"/>
+      </attributes>
+      <attributes name="width">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/width"/>
+      </attributes>
+      <attributes name="height">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/height"/>
       </attributes>
       <attributes name="label">
@@ -1383,7 +1443,7 @@
                     <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ConstantColor/Color"/>
                   </attributes>
                 </value>
-                <value name="ConstantColor">
+                <value name="ConstantColor Black">
                   <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/ConstantColor"/>
                   <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Color_CarrierWithProductFG">
                     <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
@@ -1395,7 +1455,7 @@
                     <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ConstantColor/Color"/>
                   </attributes>
                 </value>
-                <value name="ConstantColor">
+                <value name="ConstantColor Yellow">
                   <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/ConstantColor"/>
                   <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Color_CarrierWithProductBG">
                     <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
@@ -1404,6 +1464,18 @@
                     <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ColorValue/Transparency"/>
                   </attributes>
                   <attributes xsi:type="metamodel:ActualAttribute" name="Color" value="YELLOW">
+                    <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ConstantColor/Color"/>
+                  </attributes>
+                </value>
+                <value name="ConstantColor Transparent">
+                  <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/ConstantColor"/>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Color_CarrierWithProductBG">
+                    <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Transparency" value="255">
+                    <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ColorValue/Transparency"/>
+                  </attributes>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Color" value="WHITE">
                     <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ConstantColor/Color"/>
                   </attributes>
                 </value>
@@ -1872,7 +1944,7 @@
                   <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="POINT">
                     <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty/Unit"/>
                   </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="9">
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="8">
                     <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty/Value"/>
                   </attributes>
                   <attributes xsi:type="metamodel:ActualAttribute" name="Name Font">
@@ -1904,7 +1976,7 @@
               <attributes xsi:type="metamodel:ActualAttribute" name="TextLabelRepAlignmentName">
                 <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
               </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Horizontal" value="CENTER">
+              <attributes xsi:type="metamodel:ActualAttribute" name="Horizontal" value="LEFT">
                 <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/Alignment/HorizontalAlignment"/>
               </attributes>
               <attributes xsi:type="metamodel:ActualAttribute" name="Vertical" value="MIDDLE">
@@ -2169,7 +2241,7 @@
                   <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="POINT">
                     <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty/Unit"/>
                   </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="9">
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="8">
                     <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty/Value"/>
                   </attributes>
                   <attributes xsi:type="metamodel:ActualAttribute" name="Name Font">
@@ -2211,6 +2283,21 @@
           </references>
           <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Text @ Label Output:Bool" value="//@targetSectionModel/@metaModelSections.15">
             <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/TextContainingWidgetRepresentation/Text"/>
+          </references>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="color">
+            <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Representation/Color"/>
+            <value name="Color">
+              <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/Color"/>
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="foreground" value="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.0/@value.0/@references.0/@value.6">
+                <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Color/Foreground"/>
+              </references>
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="background" value="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.0/@value.0/@references.0/@value.10 //@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.0/@value.0/@references.0/@value.11">
+                <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Color/Background"/>
+              </references>
+              <attributes xsi:type="metamodel:ActualAttribute" name="TextLabelRepColorName" value="">
+                <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+              </attributes>
+            </value>
           </references>
         </value>
       </references>
@@ -2350,7 +2437,7 @@
                   <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="POINT">
                     <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty/Unit"/>
                   </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="9">
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="8">
                     <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty/Value"/>
                   </attributes>
                   <attributes xsi:type="metamodel:ActualAttribute" name="Name Font">
@@ -2382,7 +2469,7 @@
               <attributes xsi:type="metamodel:ActualAttribute" name="TextLabelRepAlignmentName (Out:Double)">
                 <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
               </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Horizontal" value="CENTER">
+              <attributes xsi:type="metamodel:ActualAttribute" name="Horizontal" value="LEFT">
                 <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/Alignment/HorizontalAlignment"/>
               </attributes>
               <attributes xsi:type="metamodel:ActualAttribute" name="Vertical" value="MIDDLE">
@@ -2590,7 +2677,7 @@
                   <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="POINT">
                     <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty/Unit"/>
                   </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="9">
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="8">
                     <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty/Value"/>
                   </attributes>
                   <attributes xsi:type="metamodel:ActualAttribute" name="Name Font">
@@ -3037,7 +3124,7 @@
                   <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="POINT">
                     <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty/Unit"/>
                   </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="9">
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="8">
                     <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty/Value"/>
                   </attributes>
                   <attributes xsi:type="metamodel:ActualAttribute" name="Name Font">
@@ -3298,7 +3385,7 @@
                   <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="POINT">
                     <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty/Unit"/>
                   </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="9">
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="8">
                     <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/ScaledProperty/Value"/>
                   </attributes>
                   <attributes xsi:type="metamodel:ActualAttribute" name="Name Font">
@@ -4043,7 +4130,7 @@
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="label" source="//@sourceSectionModel/@metaModelSections.8/@attributes.5" modifier="//@mappingModel/@modifierSets.29 //@mappingModel/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="TextLabelRepPosXValue" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="TextLabelRepPosXValue" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(variableLabelXOffset+x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))">
           <variables xsi:type="mapping:ExpressionVariable" name="x" source="//@sourceSectionModel/@metaModelSections.8/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))">
@@ -4083,6 +4170,9 @@
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.25 //@mappingModel/@modifierSets.2"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="cardinalityErsatz" target="//@targetSectionModel/@metaModelSections.14/@attributes.2" source="//@sourceSectionModel/@metaModelSections.2/@references.0/@value.1/@references.0/@value.2/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="backGroundColor" affectedReference="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.5/@value.0/@references.1">
+          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.0/@value.0/@references.0/@value.11"/>
+        </mappingHints>
         <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="TextLabel Bool:Out">
           <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0"/>
@@ -4168,7 +4258,7 @@
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="label" source="//@sourceSectionModel/@metaModelSections.9/@attributes.5" modifier="//@mappingModel/@modifierSets.29 //@mappingModel/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(variableLabelXOffset+x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))">
           <variables xsi:type="mapping:ExpressionVariable" name="x" source="//@sourceSectionModel/@metaModelSections.9/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))">
@@ -4373,7 +4463,7 @@
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="label" source="//@sourceSectionModel/@metaModelSections.11/@attributes.5" modifier="//@mappingModel/@modifierSets.29 //@mappingModel/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))">
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosXValue" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(variableLabelXOffset+x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))">
           <variables xsi:type="mapping:ExpressionVariable" name="x" source="//@sourceSectionModel/@metaModelSections.11/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.17/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))">
@@ -4840,6 +4930,12 @@
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="TextLabelRepPosZName" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.25 //@mappingModel/@modifierSets.2"/>
         </mappingHints>
+        <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="TextLabelRepSizeName (Bool:Output Label)" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.5/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.2 //@mappingModel/@modifierSets.30"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="backGroundColor" affectedReference="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.5/@value.0/@references.1">
+          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.0/@value.0/@references.0/@value.11"/>
+        </mappingHints>
         <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="TextLabel Bool:Out">
           <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0"/>
@@ -4917,6 +5013,81 @@
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="FixedImage" targetMMSection="//@targetSectionModel/@metaModelSections.23">
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="name" target="//@targetSectionModel/@metaModelSections.23/@attributes.0" source="//@sourceSectionModel/@metaModelSections.18/@attributes.5" modifier="//@mappingModel/@modifierSets.40 //@mappingModel/@modifierSets.2"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="url" target="//@targetSectionModel/@metaModelSections.23/@attributes.1" source="//@sourceSectionModel/@metaModelSections.18/@attributes.5" modifier="//@mappingModel/@modifierSets.41"/>
+      </mappingHintGroups>
+    </mapping>
+    <mapping name="MatFlow" sourceMMSection="//@sourceSectionModel/@metaModelSections.19">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDef" targetMMSection="//@targetSectionModel/@metaModelSections.15">
+        <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="name" target="//@targetSectionModel/@metaModelSections.15/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="Type" source="//@sourceSectionModel/@metaModelSections.19/@references.0/@value.0/@references.0/@value.1/@attributes.1" modifier="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.35"/>
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="NameElement" source="//@sourceSectionModel/@metaModelSections.19/@attributes.5"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="value" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="Type" source="//@sourceSectionModel/@metaModelSections.19/@references.0/@value.0/@references.0/@value.1/@attributes.1" modifier="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.35 //@mappingModel/@modifierSets.2"/>
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="NameElement" source="//@sourceSectionModel/@metaModelSections.19/@attributes.5" modifier="//@mappingModel/@modifierSets.2"/>
+        </mappingHints>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel" targetMMSection="//@targetSectionModel/@metaModelSections.14">
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepFormatName" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.2/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.19/@attributes.5" modifier="//@mappingModel/@modifierSets.26 //@mappingModel/@modifierSets.2"/>
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepAlignmentName Label" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.3/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.19/@attributes.5" modifier="//@mappingModel/@modifierSets.27 //@mappingModel/@modifierSets.2"/>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Text @ Label Output:Bool" affectedReference="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.4">
+          <matcher xsi:type="mapping:ComplexAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.15/@attributes.0">
+            <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherSourceElement" name="type" source="//@sourceSectionModel/@metaModelSections.19/@references.0/@value.0/@references.0/@value.1/@attributes.1" modifier="//@mappingModel/@modifierSets.35 //@mappingModel/@modifierSets.2 //@mappingModel/@modifierSets.3"/>
+            <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherSourceElement" name="label" source="//@sourceSectionModel/@metaModelSections.19/@attributes.5" modifier="//@mappingModel/@modifierSets.2"/>
+          </matcher>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="textLabelName" target="//@targetSectionModel/@metaModelSections.14/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.2"/>
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="label" source="//@sourceSectionModel/@metaModelSections.19/@attributes.5" modifier="//@mappingModel/@modifierSets.29 //@mappingModel/@modifierSets.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="TextLabelRepPosXValue" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))">
+          <variables xsi:type="mapping:ExpressionVariable" name="x" source="//@sourceSectionModel/@metaModelSections.19/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="PosYValue" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))">
+          <variables xsi:type="mapping:ExpressionVariable" name="y" source="//@sourceSectionModel/@metaModelSections.19/@attributes.2"/>
+          <variables xsi:type="mapping:ExpressionVariable" name="h" source="//@sourceSectionModel/@metaModelSections.19/@attributes.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="width" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1" expression="round(w/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))">
+          <variables xsi:type="mapping:ExpressionVariable" name="w" source="//@sourceSectionModel/@metaModelSections.19/@attributes.3"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="height" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" expression="round(h/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))">
+          <variables xsi:type="mapping:ExpressionVariable" name="h" source="//@sourceSectionModel/@metaModelSections.19/@attributes.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="posName" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.1/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.2"/>
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="label" source="//@sourceSectionModel/@metaModelSections.19/@attributes.5" modifier="//@mappingModel/@modifierSets.38 //@mappingModel/@modifierSets.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="fontName" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.2/@value.0/@references.0/@value.0/@attributes.2">
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.2"/>
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="label" source="//@sourceSectionModel/@metaModelSections.19/@attributes.5" modifier="//@mappingModel/@modifierSets.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="TextLabelRepSizeName (Bool:Output Label)" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.20 //@mappingModel/@modifierSets.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="TextLabelRepSizeHeightName" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.22 //@mappingModel/@modifierSets.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="TextLabelRepSizeWidthName" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.21 //@mappingModel/@modifierSets.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="TextLabelRepPosXName" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.23 //@mappingModel/@modifierSets.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="TextLabelRepPosYName" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.24 //@mappingModel/@modifierSets.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="TextLabelRepPosZName" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.25 //@mappingModel/@modifierSets.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="TextLabelRepSizeName (Bool:Output Label)" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.5/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.2 //@mappingModel/@modifierSets.30"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="backGroundColor" affectedReference="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.5/@value.0/@references.1">
+          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.0/@value.0/@references.0/@value.10"/>
+        </mappingHints>
+        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="TextLabel Bool:Out">
+          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
+          <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0"/>
+        </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
     <modifierSets name="append uniqueNumber">
@@ -5079,7 +5250,8 @@
       <modifier xsi:type="mapping:StringPrepender" name="img/" string="img/"/>
       <modifier xsi:type="mapping:StringAppender" name=".png" string=".png"/>
     </modifierSets>
-    <globalValues name="xRes" value="1024.0"/>
-    <globalValues name="yRes" value="200.0"/>
+    <globalValues name="xRes" value="1920.0"/>
+    <globalValues name="yRes" value="1080.0"/>
+    <globalValues name="variableLabelXOffset" value="50.0"/>
   </mappingModel>
 </pamtram:PAMTraM>

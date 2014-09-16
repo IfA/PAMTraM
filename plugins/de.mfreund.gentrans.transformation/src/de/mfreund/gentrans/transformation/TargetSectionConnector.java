@@ -21,7 +21,6 @@ import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
 import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.SimpleModelConnectionHint;
-import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import de.mfreund.gentrans.transformation.selectors.ItemSelectorDialogRunner;
 import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunner;

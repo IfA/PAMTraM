@@ -42,6 +42,12 @@ class MappingInstanceStorage {
 	private EObject associatedSourceModelElement;
 	
 	/**
+	 * SourceSectionClass associated to the root Class of the soureceMMSection of the mapping. 
+	 */	
+	private SourceSectionClass associatedSourceClass;
+	
+
+	/**
 	 * Generated EObjects sorted bey TargetSectionCLass
 	 */
 	private LinkedHashMap<InstantiableMappingHintGroup, LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>> instancesBySection;
@@ -66,6 +72,7 @@ class MappingInstanceStorage {
 		hintValues = new LinkedHashMap<MappingHintType, LinkedList<Object>>();
 		mapping = null;
 		associatedSourceModelElement = null;
+		associatedSourceClass = null;
 		instancesBySection = new LinkedHashMap<InstantiableMappingHintGroup, LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>>();
 		modelConnectionHintValues = new LinkedHashMap<ModelConnectionHint, LinkedList<Object>>();
 
@@ -214,6 +221,13 @@ class MappingInstanceStorage {
 	public EObject getAssociatedSourceModelElement() {
 		return associatedSourceModelElement;
 	}
+	
+	/**
+	 * @return associated SourceSectionClass
+	 */
+	public SourceSectionClass getAssociatedSourceClass() {
+		return associatedSourceClass;
+	}
 
 	/**
 	 * Getter for the hintValues Map
@@ -283,11 +297,14 @@ class MappingInstanceStorage {
 	}
 
 	/**
+	 * @param associatedSourceClass
 	 * @param associatedSourceModelElement
 	 */
-	public void setAssociatedSourceModelElement(
+	public void setAssociatedSourceElement(
+			SourceSectionClass associatedSourceClass,
 			EObject associatedSourceModelElement) {
 		this.associatedSourceModelElement = associatedSourceModelElement;
+		this.associatedSourceClass=associatedSourceClass;
 	}
 
 	/**

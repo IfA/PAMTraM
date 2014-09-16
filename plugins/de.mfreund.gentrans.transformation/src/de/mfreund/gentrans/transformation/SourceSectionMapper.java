@@ -396,7 +396,7 @@ class SourceSectionMapper {
 	 * @param newRefsAndHints
 	 * @param srcInstanceMap
 	 */
-	private  MappingInstanceStorage findMappingIterate(
+	private  MappingInstanceStorage findMapping(
 			EObject srcModelObject, boolean usedOkay,
 			Iterable<MappingHintType> hints,
 			Iterable<ModelConnectionHint> connectionHints,
@@ -417,6 +417,7 @@ class SourceSectionMapper {
 		// we will return this in Case we find the mapping to be applicable
 		// else we return null
 		MappingInstanceStorage changedRefsAndHints = new MappingInstanceStorage();
+		changedRefsAndHints.setAssociatedSourceElement(srcSection, srcModelObject);
 
 		// init hintValues --TODO this is absolutely neccessary as of now, maybe
 		// find out why?-> naccessary f.i. in targetSectionMApper for determination of cardinality
@@ -711,45 +712,60 @@ class SourceSectionMapper {
 				}					
 			}
 		}
+		
+		/*
+		 * Combine values of references of same type
+		 */
+		Map<EReference,List<SourceSectionClass>> classByRefMap=new LinkedHashMap<EReference,List<SourceSectionClass>>();
+		Map<SourceSectionClass,SourceSectionReference> refByClassMap=new HashMap<SourceSectionClass,SourceSectionReference>();//TODO if this gets to slow, maybe add a map (refBySectionByClass) to this
+		
+		for(SourceSectionReference ref : srcSection.getReferences()){
+			if(!classByRefMap.containsKey(ref.getEReference())){
+				classByRefMap.put(ref.getEReference(), new LinkedList<SourceSectionClass>());
+			}
+			
+			classByRefMap.get(ref.getEReference()).addAll(ref.getValuesGeneric());
+			
+			for(SourceSectionClass c : ref.getValuesGeneric()){
+				refByClassMap.put(c, ref);
+			}
+		}
 
 		// now go through all the srcMmSection refs
-		for (SourceSectionReference reference : srcSection.getReferences()) {
+		for (EReference ref : classByRefMap.keySet()) {
 			// reference.name.println;
 			// check if reference is allowed by src metamodel
 			// check if reference in srcMMSection points anywhere
-			if (reference.getValuesGeneric().size() < 1)
+			if (classByRefMap.get(ref).size() < 1)
 				break;
-			Object refTarget = srcModelObject.eGet(reference.getEReference());// get
-																				// refTarget(s)
-																				// in
-																				// srcModel
+			Object refTarget = srcModelObject.eGet(ref);// getrefTarget(s) in srcModel
 			// behave, depending on cardinality
 			/*
 			 * There are cases in which modeling more than target values for a section than it can actually hold
 			 * might make sense depending on how the target's CardinalityType value was set.
 			 * Therefore we do not check the modeled references values at this point. 
 			 */
-			if (reference.getEReference().getUpperBound() == 1) {
+			if (ref.getUpperBound() == 1) {
 				EObject refTargetObj = (EObject) refTarget;
 				if (refTargetObj == null)
 					return null;
 				MappingInstanceStorage res = null;
 				boolean nonZeroCardSectionFound=false;
 
-				for(SourceSectionClass c : reference.getValuesGeneric()){
+				for(SourceSectionClass c : classByRefMap.get(ref)){
 					//check non-zero sections first (it doesn't make sense in this case to model ZERO_INFINITY sections, if there is one 
 					//section with a minimum cardinality of 1, but it can be handled
 					if(!c.getCardinality().equals(CardinalityType.ZERO_INFINITY)){
 						if(nonZeroCardSectionFound){//modeling error
 							consoleStream.println("Modeling error in source section: '" + srcSection.getContainer().getName() + "'"
-									+", subsection: '" + srcSection.getName() + "'. The Reference '" + reference.getName() + "'"
+									+", subsection: '" + srcSection.getName() + "'. The Reference '" + refByClassMap.get(c) + "'"//TODO
 									+ " points to a metamodel refernce, that can only hold one value but in the source section it references more than one Class with"
 									+ "a CardinalityType that is not ZERO_INFINITY." );
 						}
 						nonZeroCardSectionFound=true;
-						 res = findMappingIterate(
+						 res = findMapping(
 									refTargetObj,
-									(reference instanceof MetaModelSectionReference) || usedOkay
+									(refByClassMap.get(c) instanceof MetaModelSectionReference) || usedOkay
 									, hints,
 									connectionHints,globalVars ,c,
 									changedRefsAndHints, srcInstanceMap);
@@ -760,10 +776,10 @@ class SourceSectionMapper {
 				}
 				
 				if(!nonZeroCardSectionFound){
-					for(SourceSectionClass c : reference.getValuesGeneric()){
-							 res = findMappingIterate(
+					for(SourceSectionClass c : classByRefMap.get(ref)){
+							 res = findMapping(
 										refTargetObj,
-										(reference instanceof MetaModelSectionReference) || usedOkay
+										(refByClassMap.get(c) instanceof MetaModelSectionReference) || usedOkay
 										, hints,
 										connectionHints,globalVars ,c,
 										changedRefsAndHints, srcInstanceMap);
@@ -778,7 +794,7 @@ class SourceSectionMapper {
 
 				if (res != null) {
 					// success: combine refs and hints
-					if (reference instanceof ContainmentReference) {
+					if (refByClassMap.get(res.getAssociatedSourceClass()) instanceof ContainmentReference) {
 						changedRefsAndHints.add(res);
 					} else {
 						changedRefsAndHints.addHintValues(res.getHintValues());
@@ -812,7 +828,7 @@ class SourceSectionMapper {
 				// Map to store possible srcModelSections to MMSections
 				// (non-vc))
 				SrcSectionMappingResultsMap possibleSrcModelElementsNoVC = new SrcSectionMappingResultsMap();
-				for (SourceSectionClass val : reference.getValuesGeneric()) {
+				for (SourceSectionClass val : classByRefMap.get(ref)) {
 					if (val.getCardinality().equals(CardinalityType.ONE)) {
 						possibleSrcModelElementsNoVC
 								.put(val,
@@ -822,7 +838,7 @@ class SourceSectionMapper {
 
 				// Map to store possible srcModelSections to MMSections (vc))
 				SrcSectionMappingResultsMap possibleSrcModelElementsVC = new SrcSectionMappingResultsMap();
-				for (SourceSectionClass val : reference.getValuesGeneric()) {
+				for (SourceSectionClass val : classByRefMap.get(ref)) {
 					if (!val.getCardinality().equals(CardinalityType.ONE)) {
 						possibleSrcModelElementsVC
 								.put(val,
@@ -834,10 +850,10 @@ class SourceSectionMapper {
 				// find possible srcElements for mmsections
 				for (EObject rt : refTargetL) {
 					boolean foundMapping = false;
-					for (SourceSectionClass val : reference.getValuesGeneric()) {
-						MappingInstanceStorage res = findMappingIterate(
+					for (SourceSectionClass val : classByRefMap.get(ref)) {
+						MappingInstanceStorage res = findMapping(
 								rt,
-								(reference instanceof MetaModelSectionReference) || usedOkay,
+								(refByClassMap.get(val) instanceof MetaModelSectionReference) || usedOkay,
 								hints, connectionHints, globalVars, val,
 								changedRefsAndHints, srcInstanceMap);
 						if(transformationAborted){
@@ -845,7 +861,7 @@ class SourceSectionMapper {
 						}
 						if (res != null) {// mapping possible
 							foundMapping = true;
-							res.setAssociatedSourceModelElement(rt);
+							res.setAssociatedSourceElement(val,rt);
 							if (!val.getCardinality().equals(
 									CardinalityType.ONE)) {
 								possibleSrcModelElementsVC.get(val).add(res);
@@ -857,7 +873,6 @@ class SourceSectionMapper {
 						}
 					}
 					if (!foundMapping) {
-						//TODO consoleStream.println("we need to find a mapping for every srcModelElement (at: " + srcSection.getName() + " )" + EObjectTransformationHelper.asString(rt));
 						return null; // we need to find a mapping for every
 										// srcModelElement if the reference Type
 										// was modeled in the srcMMSection
@@ -899,7 +914,7 @@ class SourceSectionMapper {
 						}
 
 						// remember mapping
-						if (reference instanceof ContainmentReference) {
+						if (refByClassMap.get(srcSectionResult.getAssociatedSourceClass()) instanceof ContainmentReference) {
 							changedRefsAndHints.add(srcSectionResult);
 
 						} else {
@@ -952,7 +967,7 @@ class SourceSectionMapper {
 									smallestKey).getFirst();
 						}
 						// remember mapping
-						if (reference instanceof ContainmentReference) {
+						if (refByClassMap.get(srcSectionResult.getAssociatedSourceClass()) instanceof ContainmentReference) {
 							changedRefsAndHints.add(srcSectionResult);
 
 						} else {
@@ -1161,7 +1176,7 @@ class SourceSectionMapper {
 				MappingInstanceStorage res ;
 				
 				if(doContainerCheck(element,m.getSourceMMSection()) ){					
-					res= findMappingIterate(element, false, getHints(m), getModelConnectionHints(m), m.getGlobalVariables(),
+					res= findMapping(element, false, getHints(m), getModelConnectionHints(m), m.getGlobalVariables(),
 							m.getSourceMMSection(),
 							new MappingInstanceStorage(),
 							new LinkedHashMap<SourceSectionClass, EObject>());
@@ -1171,7 +1186,6 @@ class SourceSectionMapper {
 					}
 					boolean mappingFailed=res == null;
 					if(!mappingFailed){
-						res.setAssociatedSourceModelElement(element);
 						//if mapping possible check ExternalAttributeMappings
 						// check external attributes here; container element MUST be present (check was done earlier)
 						mappingFailed = handleExternalAttributeMappings(m, res, mappingFailed);

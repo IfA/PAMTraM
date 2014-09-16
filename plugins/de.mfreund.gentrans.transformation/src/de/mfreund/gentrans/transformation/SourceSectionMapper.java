@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.PatternSyntaxException;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -32,7 +33,7 @@ import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
 import pamtram.mapping.ExpressionVariable;
 import pamtram.mapping.ExternalAttributeMappingSourceElement;
 import pamtram.mapping.ExternalMappedAttributeValueExpander;
-import pamtram.mapping.GlobalVariable;
+import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
@@ -114,13 +115,13 @@ class SourceSectionMapper {
 	 * Registry for values of global Variables
 	 * Only the newest value found is saved (GlobalVariables really only make sense for elements that appear only once)
 	 */
-	private Map<GlobalVariable,String> globalVarValues;
+	private Map<GlobalAttribute,String> globalVarValues;
 	
 	/**
 	 * Getter for Registry for values of global Variables
 	 * @return Registry for values of global Variables
 	 */
-	public Map<GlobalVariable, String> getGlobalVarValues() {
+	public Map<GlobalAttribute, String> getGlobalVarValues() {
 		return globalVarValues;
 	}
 	
@@ -143,6 +144,11 @@ class SourceSectionMapper {
 	 * used for modifying attribute values
 	 */
 	private AttributeValueModifierExecutor attributeValuemodifier;
+	
+	/**
+	 * Set that contains all ValueModifiers with errors so we don't need to send a potential error message twice
+	 */
+	private Set<AttributeValueConstraint> constraintsWithErrors;
 
 	/**
 	 * @param mappingsToChooseFrom Mappings from the PAMTram model
@@ -156,11 +162,12 @@ class SourceSectionMapper {
 		deepestCalcAttrMappingSrcElementsByCalcMapping = new LinkedHashMap<CalculatorMapping,SourceSectionClass>();
 		deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher= new LinkedHashMap<ComplexAttributeMatcher, SourceSectionClass>();
 		deepestComplexConnectionHintSrcElementsByComplexConnectionHint= new LinkedHashMap<ComplexModelConnectionHint, SourceSectionClass>();
-		globalVarValues=new HashMap<GlobalVariable,String>();
+		globalVarValues=new HashMap<GlobalAttribute,String>();
 		this.mappingsToChooseFrom=mappingsToChooseFrom;
 		this.consoleStream=consoleStream;
 		this.transformationAborted=false;
 		this.attributeValuemodifier=attributeValuemodifier;
+		constraintsWithErrors=new HashSet<AttributeValueConstraint>();
 		
 		//this will fill some maps...
 		for(Mapping m : mappingsToChooseFrom){
@@ -393,7 +400,7 @@ class SourceSectionMapper {
 			EObject srcModelObject, boolean usedOkay,
 			Iterable<MappingHintType> hints,
 			Iterable<ModelConnectionHint> connectionHints,
-			Iterable<GlobalVariable> globalVars,
+			Iterable<GlobalAttribute> globalVars,
 			SourceSectionClass srcSection,
 			MappingInstanceStorage newRefsAndHints,
 			LinkedHashMap<SourceSectionClass, EObject> srcInstanceMap) {
@@ -487,12 +494,25 @@ class SourceSectionMapper {
 				 * 
 				 * Inclusions are OR connected
 				 * 
-				 * Eclusions are AND connected
+				 * Exclusions are NOR connected
 				 */
 				boolean inclusionMatched=false;
 				boolean containsInclusions=false;
 				for (AttributeValueConstraint constraint : at.getValueConstraint()) {
-					boolean constraintVal=constraint.checkConstraint(srcAttrAsString);
+					if(constraintsWithErrors.contains(constraint)) continue;
+					
+					boolean constraintVal;
+					try{
+						constraintVal=constraint.checkConstraint(srcAttrAsString);
+					} catch(PatternSyntaxException e){
+						constraintsWithErrors.add(constraint);
+						consoleStream.println("The AttributeValueConstraint '" + constraint.getName() + "' of the "
+								+ "Attribute '" + at.getName() + " (Class: " + at.getOwningClass().getName() 
+								+ ", Section: " + at.getContainingSection().getName() + ")"
+								+ "' could not be evaluated and will be ignored. The following error was supplied:\n"
+								+ e.getLocalizedMessage());
+						continue;
+					}
 					if (!constraintVal && constraint.getType().equals(AttributeValueConstraintType.EXCLUSION)) {
 						return null;
 					} else if(constraint.getType().equals(AttributeValueConstraintType.INCLUSION)){
@@ -582,7 +602,7 @@ class SourceSectionMapper {
 					}
 				}
 				
-				for(GlobalVariable gVar : globalVars){
+				for(GlobalAttribute gVar : globalVars){
 					if(gVar.getSource().equals(at)){
 						String modifiedVal=attributeValuemodifier.applyAttributeValueModifiers(srcAttrAsString, gVar.getModifier());
 						globalVarValues.put(gVar, modifiedVal);
@@ -590,7 +610,10 @@ class SourceSectionMapper {
 				}
 
 			} else {// attribute not set / null
-				consoleStream.println("Unset attribute");//TODO we probably don't want any output here
+//				consoleStream.println("Unset attribute " + at.getName() + "(Class: "
+//						+ at.getOwningClass().getName()
+//						+ ", Section: " + at.getContainingSection().getName());// we probably don't want any output here
+//				
 				return null;
 			}
 		}

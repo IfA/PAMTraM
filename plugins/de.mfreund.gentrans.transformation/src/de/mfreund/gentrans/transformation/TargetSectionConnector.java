@@ -181,7 +181,7 @@ class TargetSectionConnector {
 								hintValAsString+=hVal.get(srcElement);
 						} else {
 							consoleStream.println("HintSourceValue not found " + srcElement.getName() + " in ComplexModelConnectionHint " 
-									+ connectionHint.getName() + "." );
+									+ connectionHint.getName() + "(Mapping: " + mappingName + ", Group: " + mappingGroupName + ")." );
 						}
 					}
 				}

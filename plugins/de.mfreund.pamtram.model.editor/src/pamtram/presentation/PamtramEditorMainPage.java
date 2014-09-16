@@ -1,5 +1,6 @@
 package pamtram.presentation;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -41,8 +42,8 @@ import pamtram.mapping.ComplexModelConnectionHint;
 import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
 import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.ExpandableHint;
-import pamtram.mapping.GlobalVariable;
-import pamtram.mapping.GlobalVariableImporter;
+import pamtram.mapping.GlobalAttribute;
+import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupImporter;
@@ -105,7 +106,7 @@ public class PamtramEditorMainPage extends SashForm {
 	/**
 	 * This is the the viewer for the att val modifier sets.
 	 */
-	protected TreeViewer attValModViewer;
+	protected TreeViewer globalElementsViewer;
 	
 	/**
 	 * This is the group for the target tree viewer.
@@ -270,7 +271,7 @@ public class PamtramEditorMainPage extends SashForm {
 						||
 						((TreeItem) e.item).getData() instanceof MappingHintGroupType
 						|| ((TreeItem) e.item).getData() instanceof MappingHintGroupImporter
-						|| ((TreeItem) e.item).getData() instanceof GlobalVariable
+						|| ((TreeItem) e.item).getData() instanceof GlobalAttribute
 						) {
 					
 					LinkedList<Object> expanded=new LinkedList<Object>();
@@ -297,8 +298,8 @@ public class PamtramEditorMainPage extends SashForm {
 						source=mapping.getSourceMMSection();
 						expanded.add(mapping);
 						expanded.add(currentMappingHintGroup);
-					} else if(((TreeItem) e.item).getData() instanceof GlobalVariable){
-						GlobalVariable g=(GlobalVariable)(((TreeItem) e.item).getData());
+					} else if(((TreeItem) e.item).getData() instanceof GlobalAttribute){
+						GlobalAttribute g=(GlobalAttribute)(((TreeItem) e.item).getData());
 						mapping=(Mapping) g.eContainer();
 						if(g.getSource() != null){
 							expanded.add(g.getSource());
@@ -378,8 +379,8 @@ public class PamtramEditorMainPage extends SashForm {
 					
 					setSourceTargetViewerSingleItemSelections(target,
 							source);
-				}  else if(((TreeItem) e.item).getData() instanceof GlobalVariableImporter){
-					GlobalVariableImporter mapping = (GlobalVariableImporter) ((TreeItem) e.item).getData();
+				}  else if(((TreeItem) e.item).getData() instanceof GlobalAttributeImporter){
+					GlobalAttributeImporter mapping = (GlobalAttributeImporter) ((TreeItem) e.item).getData();
 					Attribute target = ((AttributeMapping)mapping.eContainer()).getTarget();
 					Attribute source=mapping.getSourceAttribute();
 					
@@ -581,47 +582,50 @@ public class PamtramEditorMainPage extends SashForm {
 		
 		// Create a group for the attribute value modifier viewer.
 		attValModGroup = new Group(mappingSash, SWT.NONE);
-		attValModGroup.setText("Attribute Value Modifier Sets");
+		attValModGroup.setText("Modifier Sets and Global Values");
 		attValModGroup.setLayoutData(
 				new GridData(SWT.FILL, SWT.FILL, true, true));
 		attValModGroup.setLayout(new GridLayout(1, true));
 		
 		// Create the mapping tree viewer.
 		Tree attValModtree = new Tree(attValModGroup, SWT.MULTI);
-		attValModViewer = new TreeViewer(attValModtree);
+		globalElementsViewer = new TreeViewer(attValModtree);
 		attValModtree.setLayoutData(
 				new GridData(SWT.FILL, SWT.FILL, true, true));
 		
-		attValModViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory){
+		globalElementsViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory){
 			/* extend the content provider in a way that no mappings but only attribute value
 			 * modifier sets are returned as children of a mapping model
 			 */
 			@Override
 			public Object[] getElements(Object object) {
 				if(object instanceof MappingModel) {
-					return ((MappingModel) object).getModifierSets().toArray();
+					List<Object> elements=new ArrayList<Object>();
+					elements.addAll(((MappingModel) object).getModifierSets());
+					elements.addAll(((MappingModel) object).getGlobalValues());
+					return elements.toArray();
 				}
 				return super.getElements(object);
 			}
 		});
-		attValModViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
-		attValModViewer.setInput(editor.pamtram.getMappingModel());
+		globalElementsViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+		globalElementsViewer.setInput(editor.pamtram.getMappingModel());
 		
 		attValModtree.addSelectionListener(new SelectionListener() {
 			
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				editor.setCurrentViewer(attValModViewer);
+				editor.setCurrentViewer(globalElementsViewer);
 			}
 			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
 		});
 		
-		new AdapterFactoryTreeEditor(attValModViewer.getTree(), adapterFactory);
+		new AdapterFactoryTreeEditor(globalElementsViewer.getTree(), adapterFactory);
 		
 		editor.createContextMenuFor(mappingViewer);
-		editor.createContextMenuFor(attValModViewer);
+		editor.createContextMenuFor(globalElementsViewer);
 		
 	}
 	

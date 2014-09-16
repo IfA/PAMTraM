@@ -246,7 +246,7 @@ public class PamtramEditor
 	/**
 	 * This is the viewer that displays the attribute value modifier sets.
 	 */
-	protected TreeViewer attValModViewer;
+	protected TreeViewer globalElementsViewer;
 	
 	/**
 	 * This is the the viewer for the source meta model sections.

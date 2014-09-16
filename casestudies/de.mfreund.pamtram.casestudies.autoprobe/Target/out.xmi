@@ -3594,6 +3594,9 @@
       <OwnedImageResource xsi:type="presentation:FixedImage" Name="conveyorImage_left_top_down" Url="img/conveyor_left_top_down.png"/>
       <OwnedImageResource xsi:type="presentation:FixedImage" Name="conveyorImage_left_right_top" Url="img/conveyor_left_right_top.png"/>
       <OwnedImageResource xsi:type="presentation:FixedImage" Name="conveyorImage_left_right_down" Url="img/conveyor_left_right_down.png"/>
+      <OwnedImageResource xsi:type="presentation:FixedImage" Name="stopperepmtyImage" Url="img/stopper_empty.png"/>
+      <OwnedImageResource xsi:type="presentation:FixedImage" Name="conveyorLeftRightImage" Url="img/conveyor_left_right.png"/>
+      <OwnedImageResource xsi:type="presentation:FixedImage" Name="stopperfullImage" Url="img/stopper_full.png"/>
       <OwnedImageResource xsi:type="presentation:FixedImage" Name="StockDoubleImage" Url="img/stock-double.png"/>
       <OwnedImageResource xsi:type="presentation:FixedImage" Name="MillAndTurn105Image" Url="img/mill-and-turn105.png"/>
       <OwnedImageResource xsi:type="presentation:FixedImage" Name="Mill55Image" Url="img/mill55.png"/>
@@ -6661,7 +6664,7 @@
         </Representation>
       </OwnedUIComponent>
       <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_StockDouble_image">
-        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.13">
           <Alignment Name="NAVTOP_StockDouble_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
           <Format Name="NAVTOP_StockDouble_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
             <FontSize Name="NAVTOP_StockDouble" Unit="POINT" Value="9.0"/>
@@ -6678,7 +6681,7 @@
         </Representation>
       </OwnedUIComponent>
       <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_MillAndTurn105_image">
-        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.11">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.14">
           <Alignment Name="NAVTOP_MillAndTurn105_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
           <Format Name="NAVTOP_MillAndTurn105_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
             <FontSize Name="NAVTOP_MillAndTurn105" Unit="POINT" Value="9.0"/>
@@ -6695,7 +6698,7 @@
         </Representation>
       </OwnedUIComponent>
       <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_Mill55_image">
-        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.12">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.15">
           <Alignment Name="NAVTOP_Mill55_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
           <Format Name="NAVTOP_Mill55_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
             <FontSize Name="NAVTOP_Mill55" Unit="POINT" Value="9.0"/>
@@ -6712,7 +6715,7 @@
         </Representation>
       </OwnedUIComponent>
       <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_Turn55_image">
-        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.13">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.16">
           <Alignment Name="NAVTOP_Turn55_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
           <Format Name="NAVTOP_Turn55_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
             <FontSize Name="NAVTOP_Turn55" Unit="POINT" Value="9.0"/>
@@ -6729,7 +6732,7 @@
         </Representation>
       </OwnedUIComponent>
       <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AssemblyRH5A55_image">
-        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.14">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.17">
           <Alignment Name="NAVTOP_AssemblyRH5A55_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
           <Format Name="NAVTOP_AssemblyRH5A55_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
             <FontSize Name="NAVTOP_AssemblyRH5A55" Unit="POINT" Value="9.0"/>
@@ -6746,7 +6749,7 @@
         </Representation>
       </OwnedUIComponent>
       <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_Quality_image">
-        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.15">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.18">
           <Alignment Name="NAVTOP_Quality_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
           <Format Name="NAVTOP_Quality_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
             <FontSize Name="NAVTOP_Quality" Unit="POINT" Value="9.0"/>
@@ -6777,6 +6780,482 @@
           <Size Name="NAVTOP_size">
             <Height Name="NAVTOP_height" Unit="PIXEL" Value="762.0"/>
             <Width Name="NAVTOP_width" Unit="PIXEL" Value="681.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_Einmuendung_links_6___Merge___003___035_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_AT_Einmuendung_links_6___Merge___003___035_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_Einmuendung_links_6___Merge___003___035_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_Einmuendung_links_6___Merge___003___035" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_Einmuendung_links_6___Merge___003___035_pos">
+            <X Name="NAVTOP_AT_Einmuendung_links_6___Merge___003___035_pos_x" Unit="PIXEL" Value="546.0"/>
+            <Y Name="NAVTOP_AT_Einmuendung_links_6___Merge___003___035_pos_y" Unit="PIXEL" Value="762.0"/>
+            <Z Name="NAVTOP_AT_Einmuendung_links_6___Merge___003___035_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_Einmuendung_links_6___Merge___003___035_size">
+            <Height Name="NAVTOP_AT_Einmuendung_links_6___Merge___003___035_height" Unit="PIXEL" Value="10.0"/>
+            <Width Name="NAVTOP_AT_Einmuendung_links_6___Merge___003___035_width" Unit="PIXEL" Value="10.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_VorStation_6___Stopper___001___001_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_AT_VorStation_6___Stopper___001___001_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_VorStation_6___Stopper___001___001_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_VorStation_6___Stopper___001___001" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_VorStation_6___Stopper___001___001_pos">
+            <X Name="NAVTOP_AT_VorStation_6___Stopper___001___001_pos_x" Unit="PIXEL" Value="679.0"/>
+            <Y Name="NAVTOP_AT_VorStation_6___Stopper___001___001_pos_y" Unit="PIXEL" Value="762.0"/>
+            <Z Name="NAVTOP_AT_VorStation_6___Stopper___001___001_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_VorStation_6___Stopper___001___001_size">
+            <Height Name="NAVTOP_AT_VorStation_6___Stopper___001___001_height" Unit="PIXEL" Value="10.0"/>
+            <Width Name="NAVTOP_AT_VorStation_6___Stopper___001___001_width" Unit="PIXEL" Value="10.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_HauptStation_6___Stopper___002___002_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_AT_HauptStation_6___Stopper___002___002_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_HauptStation_6___Stopper___002___002_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_HauptStation_6___Stopper___002___002" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_HauptStation_6___Stopper___002___002_pos">
+            <X Name="NAVTOP_AT_HauptStation_6___Stopper___002___002_pos_x" Unit="PIXEL" Value="708.0"/>
+            <Y Name="NAVTOP_AT_HauptStation_6___Stopper___002___002_pos_y" Unit="PIXEL" Value="762.0"/>
+            <Z Name="NAVTOP_AT_HauptStation_6___Stopper___002___002_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_HauptStation_6___Stopper___002___002_size">
+            <Height Name="NAVTOP_AT_HauptStation_6___Stopper___002___002_height" Unit="PIXEL" Value="10.0"/>
+            <Width Name="NAVTOP_AT_HauptStation_6___Stopper___002___002_width" Unit="PIXEL" Value="10.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_Weiche_links_4___Fork___001___021_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_AT_Weiche_links_4___Fork___001___021_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_Weiche_links_4___Fork___001___021_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_Weiche_links_4___Fork___001___021" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_Weiche_links_4___Fork___001___021_pos">
+            <X Name="NAVTOP_AT_Weiche_links_4___Fork___001___021_pos_x" Unit="PIXEL" Value="845.0"/>
+            <Y Name="NAVTOP_AT_Weiche_links_4___Fork___001___021_pos_y" Unit="PIXEL" Value="762.0"/>
+            <Z Name="NAVTOP_AT_Weiche_links_4___Fork___001___021_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_Weiche_links_4___Fork___001___021_size">
+            <Height Name="NAVTOP_AT_Weiche_links_4___Fork___001___021_height" Unit="PIXEL" Value="10.0"/>
+            <Width Name="NAVTOP_AT_Weiche_links_4___Fork___001___021_width" Unit="PIXEL" Value="10.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_VorStation_7___Stopper___003___003_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_AT_VorStation_7___Stopper___003___003_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_VorStation_7___Stopper___003___003_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_VorStation_7___Stopper___003___003" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_VorStation_7___Stopper___003___003_pos">
+            <X Name="NAVTOP_AT_VorStation_7___Stopper___003___003_pos_x" Unit="PIXEL" Value="962.0"/>
+            <Y Name="NAVTOP_AT_VorStation_7___Stopper___003___003_pos_y" Unit="PIXEL" Value="762.0"/>
+            <Z Name="NAVTOP_AT_VorStation_7___Stopper___003___003_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_VorStation_7___Stopper___003___003_size">
+            <Height Name="NAVTOP_AT_VorStation_7___Stopper___003___003_height" Unit="PIXEL" Value="10.0"/>
+            <Width Name="NAVTOP_AT_VorStation_7___Stopper___003___003_width" Unit="PIXEL" Value="10.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_HauptStation_7___Stopper___004___004_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_AT_HauptStation_7___Stopper___004___004_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_HauptStation_7___Stopper___004___004_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_HauptStation_7___Stopper___004___004" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_HauptStation_7___Stopper___004___004_pos">
+            <X Name="NAVTOP_AT_HauptStation_7___Stopper___004___004_pos_x" Unit="PIXEL" Value="991.0"/>
+            <Y Name="NAVTOP_AT_HauptStation_7___Stopper___004___004_pos_y" Unit="PIXEL" Value="762.0"/>
+            <Z Name="NAVTOP_AT_HauptStation_7___Stopper___004___004_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_HauptStation_7___Stopper___004___004_size">
+            <Height Name="NAVTOP_AT_HauptStation_7___Stopper___004___004_height" Unit="PIXEL" Value="10.0"/>
+            <Width Name="NAVTOP_AT_HauptStation_7___Stopper___004___004_width" Unit="PIXEL" Value="10.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_Weiche_links_5___Fork___002___022_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_AT_Weiche_links_5___Fork___002___022_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_Weiche_links_5___Fork___002___022_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_Weiche_links_5___Fork___002___022" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_Weiche_links_5___Fork___002___022_pos">
+            <X Name="NAVTOP_AT_Weiche_links_5___Fork___002___022_pos_x" Unit="PIXEL" Value="1034.0"/>
+            <Y Name="NAVTOP_AT_Weiche_links_5___Fork___002___022_pos_y" Unit="PIXEL" Value="762.0"/>
+            <Z Name="NAVTOP_AT_Weiche_links_5___Fork___002___022_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_Weiche_links_5___Fork___002___022_size">
+            <Height Name="NAVTOP_AT_Weiche_links_5___Fork___002___022_height" Unit="PIXEL" Value="10.0"/>
+            <Width Name="NAVTOP_AT_Weiche_links_5___Fork___002___022_width" Unit="PIXEL" Value="10.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_VorStation_8___Stopper___005___005_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_AT_VorStation_8___Stopper___005___005_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_VorStation_8___Stopper___005___005_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_VorStation_8___Stopper___005___005" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_VorStation_8___Stopper___005___005_pos">
+            <X Name="NAVTOP_AT_VorStation_8___Stopper___005___005_pos_x" Unit="PIXEL" Value="1170.0"/>
+            <Y Name="NAVTOP_AT_VorStation_8___Stopper___005___005_pos_y" Unit="PIXEL" Value="641.0"/>
+            <Z Name="NAVTOP_AT_VorStation_8___Stopper___005___005_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_VorStation_8___Stopper___005___005_size">
+            <Height Name="NAVTOP_AT_VorStation_8___Stopper___005___005_height" Unit="PIXEL" Value="10.0"/>
+            <Width Name="NAVTOP_AT_VorStation_8___Stopper___005___005_width" Unit="PIXEL" Value="10.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_HauptStation_8___Stopper___006___006_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_AT_HauptStation_8___Stopper___006___006_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_HauptStation_8___Stopper___006___006_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_HauptStation_8___Stopper___006___006" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_HauptStation_8___Stopper___006___006_pos">
+            <X Name="NAVTOP_AT_HauptStation_8___Stopper___006___006_pos_x" Unit="PIXEL" Value="1170.0"/>
+            <Y Name="NAVTOP_AT_HauptStation_8___Stopper___006___006_pos_y" Unit="PIXEL" Value="612.0"/>
+            <Z Name="NAVTOP_AT_HauptStation_8___Stopper___006___006_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_HauptStation_8___Stopper___006___006_size">
+            <Height Name="NAVTOP_AT_HauptStation_8___Stopper___006___006_height" Unit="PIXEL" Value="10.0"/>
+            <Width Name="NAVTOP_AT_HauptStation_8___Stopper___006___006_width" Unit="PIXEL" Value="10.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_Einmuendung_links_7___Merge___004___037_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_AT_Einmuendung_links_7___Merge___004___037_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_Einmuendung_links_7___Merge___004___037_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_Einmuendung_links_7___Merge___004___037" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_Einmuendung_links_7___Merge___004___037_pos">
+            <X Name="NAVTOP_AT_Einmuendung_links_7___Merge___004___037_pos_x" Unit="PIXEL" Value="1101.0"/>
+            <Y Name="NAVTOP_AT_Einmuendung_links_7___Merge___004___037_pos_y" Unit="PIXEL" Value="504.0"/>
+            <Z Name="NAVTOP_AT_Einmuendung_links_7___Merge___004___037_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_Einmuendung_links_7___Merge___004___037_size">
+            <Height Name="NAVTOP_AT_Einmuendung_links_7___Merge___004___037_height" Unit="PIXEL" Value="10.0"/>
+            <Width Name="NAVTOP_AT_Einmuendung_links_7___Merge___004___037_width" Unit="PIXEL" Value="10.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_Einmuendung_links_5___Merge___002___033_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_AT_Einmuendung_links_5___Merge___002___033_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_Einmuendung_links_5___Merge___002___033_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_Einmuendung_links_5___Merge___002___033" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_Einmuendung_links_5___Merge___002___033_pos">
+            <X Name="NAVTOP_AT_Einmuendung_links_5___Merge___002___033_pos_x" Unit="PIXEL" Value="912.0"/>
+            <Y Name="NAVTOP_AT_Einmuendung_links_5___Merge___002___033_pos_y" Unit="PIXEL" Value="504.0"/>
+            <Z Name="NAVTOP_AT_Einmuendung_links_5___Merge___002___033_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_Einmuendung_links_5___Merge___002___033_size">
+            <Height Name="NAVTOP_AT_Einmuendung_links_5___Merge___002___033_height" Unit="PIXEL" Value="10.0"/>
+            <Width Name="NAVTOP_AT_Einmuendung_links_5___Merge___002___033_width" Unit="PIXEL" Value="10.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_Einmuendung_rechts_3___Merge___006___041_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_AT_Einmuendung_rechts_3___Merge___006___041_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_Einmuendung_rechts_3___Merge___006___041_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_Einmuendung_rechts_3___Merge___006___041" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_Einmuendung_rechts_3___Merge___006___041_pos">
+            <X Name="NAVTOP_AT_Einmuendung_rechts_3___Merge___006___041_pos_x" Unit="PIXEL" Value="724.0"/>
+            <Y Name="NAVTOP_AT_Einmuendung_rechts_3___Merge___006___041_pos_y" Unit="PIXEL" Value="504.0"/>
+            <Z Name="NAVTOP_AT_Einmuendung_rechts_3___Merge___006___041_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_Einmuendung_rechts_3___Merge___006___041_size">
+            <Height Name="NAVTOP_AT_Einmuendung_rechts_3___Merge___006___041_height" Unit="PIXEL" Value="10.0"/>
+            <Width Name="NAVTOP_AT_Einmuendung_rechts_3___Merge___006___041_width" Unit="PIXEL" Value="10.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_Weiche_links_7___Fork___003___023_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_AT_Weiche_links_7___Fork___003___023_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_Weiche_links_7___Fork___003___023_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_Weiche_links_7___Fork___003___023" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_Weiche_links_7___Fork___003___023_pos">
+            <X Name="NAVTOP_AT_Weiche_links_7___Fork___003___023_pos_x" Unit="PIXEL" Value="613.0"/>
+            <Y Name="NAVTOP_AT_Weiche_links_7___Fork___003___023_pos_y" Unit="PIXEL" Value="504.0"/>
+            <Z Name="NAVTOP_AT_Weiche_links_7___Fork___003___023_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_Weiche_links_7___Fork___003___023_size">
+            <Height Name="NAVTOP_AT_Weiche_links_7___Fork___003___023_height" Unit="PIXEL" Value="10.0"/>
+            <Width Name="NAVTOP_AT_Weiche_links_7___Fork___003___023_width" Unit="PIXEL" Value="10.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_HauptStation_11___Stopper___012___012_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_AT_HauptStation_11___Stopper___012___012_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_HauptStation_11___Stopper___012___012_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_HauptStation_11___Stopper___012___012" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_HauptStation_11___Stopper___012___012_pos">
+            <X Name="NAVTOP_AT_HauptStation_11___Stopper___012___012_pos_x" Unit="PIXEL" Value="503.0"/>
+            <Y Name="NAVTOP_AT_HauptStation_11___Stopper___012___012_pos_y" Unit="PIXEL" Value="662.0"/>
+            <Z Name="NAVTOP_AT_HauptStation_11___Stopper___012___012_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_HauptStation_11___Stopper___012___012_size">
+            <Height Name="NAVTOP_AT_HauptStation_11___Stopper___012___012_height" Unit="PIXEL" Value="10.0"/>
+            <Width Name="NAVTOP_AT_HauptStation_11___Stopper___012___012_width" Unit="PIXEL" Value="10.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_Einmuendung_links_6___Merge___003___036_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_AT_Einmuendung_links_6___Merge___003___036_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_Einmuendung_links_6___Merge___003___036_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_Einmuendung_links_6___Merge___003___036" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_Einmuendung_links_6___Merge___003___036_pos">
+            <X Name="NAVTOP_AT_Einmuendung_links_6___Merge___003___036_pos_x" Unit="PIXEL" Value="623.0"/>
+            <Y Name="NAVTOP_AT_Einmuendung_links_6___Merge___003___036_pos_y" Unit="PIXEL" Value="719.0"/>
+            <Z Name="NAVTOP_AT_Einmuendung_links_6___Merge___003___036_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_Einmuendung_links_6___Merge___003___036_size">
+            <Height Name="NAVTOP_AT_Einmuendung_links_6___Merge___003___036_height" Unit="PIXEL" Value="10.0"/>
+            <Width Name="NAVTOP_AT_Einmuendung_links_6___Merge___003___036_width" Unit="PIXEL" Value="10.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_Weiche_rechts_2___Fork___005___025_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_AT_Weiche_rechts_2___Fork___005___025_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_Weiche_rechts_2___Fork___005___025_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_Weiche_rechts_2___Fork___005___025" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_Weiche_rechts_2___Fork___005___025_pos">
+            <X Name="NAVTOP_AT_Weiche_rechts_2___Fork___005___025_pos_x" Unit="PIXEL" Value="785.0"/>
+            <Y Name="NAVTOP_AT_Weiche_rechts_2___Fork___005___025_pos_y" Unit="PIXEL" Value="305.0"/>
+            <Z Name="NAVTOP_AT_Weiche_rechts_2___Fork___005___025_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_Weiche_rechts_2___Fork___005___025_size">
+            <Height Name="NAVTOP_AT_Weiche_rechts_2___Fork___005___025_height" Unit="PIXEL" Value="10.0"/>
+            <Width Name="NAVTOP_AT_Weiche_rechts_2___Fork___005___025_width" Unit="PIXEL" Value="10.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_Einmuendung_links_4___Merge___001___032_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_AT_Einmuendung_links_4___Merge___001___032_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_Einmuendung_links_4___Merge___001___032_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_Einmuendung_links_4___Merge___001___032" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_Einmuendung_links_4___Merge___001___032_pos">
+            <X Name="NAVTOP_AT_Einmuendung_links_4___Merge___001___032_pos_x" Unit="PIXEL" Value="785.0"/>
+            <Y Name="NAVTOP_AT_Einmuendung_links_4___Merge___001___032_pos_y" Unit="PIXEL" Value="52.0"/>
+            <Z Name="NAVTOP_AT_Einmuendung_links_4___Merge___001___032_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_Einmuendung_links_4___Merge___001___032_size">
+            <Height Name="NAVTOP_AT_Einmuendung_links_4___Merge___001___032_height" Unit="PIXEL" Value="10.0"/>
+            <Width Name="NAVTOP_AT_Einmuendung_links_4___Merge___001___032_width" Unit="PIXEL" Value="10.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_VorStation_10___Stopper___009___009_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_AT_VorStation_10___Stopper___009___009_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_VorStation_10___Stopper___009___009_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_VorStation_10___Stopper___009___009" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_VorStation_10___Stopper___009___009_pos">
+            <X Name="NAVTOP_AT_VorStation_10___Stopper___009___009_pos_x" Unit="PIXEL" Value="577.0"/>
+            <Y Name="NAVTOP_AT_VorStation_10___Stopper___009___009_pos_y" Unit="PIXEL" Value="126.0"/>
+            <Z Name="NAVTOP_AT_VorStation_10___Stopper___009___009_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_VorStation_10___Stopper___009___009_size">
+            <Height Name="NAVTOP_AT_VorStation_10___Stopper___009___009_height" Unit="PIXEL" Value="10.0"/>
+            <Width Name="NAVTOP_AT_VorStation_10___Stopper___009___009_width" Unit="PIXEL" Value="10.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_HauptStation_10___Stopper___010___010_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_AT_HauptStation_10___Stopper___010___010_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_HauptStation_10___Stopper___010___010_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_HauptStation_10___Stopper___010___010" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_HauptStation_10___Stopper___010___010_pos">
+            <X Name="NAVTOP_AT_HauptStation_10___Stopper___010___010_pos_x" Unit="PIXEL" Value="577.0"/>
+            <Y Name="NAVTOP_AT_HauptStation_10___Stopper___010___010_pos_y" Unit="PIXEL" Value="156.0"/>
+            <Z Name="NAVTOP_AT_HauptStation_10___Stopper___010___010_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_HauptStation_10___Stopper___010___010_size">
+            <Height Name="NAVTOP_AT_HauptStation_10___Stopper___010___010_height" Unit="PIXEL" Value="10.0"/>
+            <Width Name="NAVTOP_AT_HauptStation_10___Stopper___010___010_width" Unit="PIXEL" Value="10.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_Einmuendung_rechts_2___Merge___005___040_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_AT_Einmuendung_rechts_2___Merge___005___040_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_Einmuendung_rechts_2___Merge___005___040_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_Einmuendung_rechts_2___Merge___005___040" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_Einmuendung_rechts_2___Merge___005___040_pos">
+            <X Name="NAVTOP_AT_Einmuendung_rechts_2___Merge___005___040_pos_x" Unit="PIXEL" Value="638.0"/>
+            <Y Name="NAVTOP_AT_Einmuendung_rechts_2___Merge___005___040_pos_y" Unit="PIXEL" Value="268.0"/>
+            <Z Name="NAVTOP_AT_Einmuendung_rechts_2___Merge___005___040_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_Einmuendung_rechts_2___Merge___005___040_size">
+            <Height Name="NAVTOP_AT_Einmuendung_rechts_2___Merge___005___040_height" Unit="PIXEL" Value="10.0"/>
+            <Width Name="NAVTOP_AT_Einmuendung_rechts_2___Merge___005___040_width" Unit="PIXEL" Value="10.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_Einmuendung_rechts_3___Merge___006___042_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_AT_Einmuendung_rechts_3___Merge___006___042_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_Einmuendung_rechts_3___Merge___006___042_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_Einmuendung_rechts_3___Merge___006___042" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_Einmuendung_rechts_3___Merge___006___042_pos">
+            <X Name="NAVTOP_AT_Einmuendung_rechts_3___Merge___006___042_pos_x" Unit="PIXEL" Value="681.0"/>
+            <Y Name="NAVTOP_AT_Einmuendung_rechts_3___Merge___006___042_pos_y" Unit="PIXEL" Value="461.0"/>
+            <Z Name="NAVTOP_AT_Einmuendung_rechts_3___Merge___006___042_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_Einmuendung_rechts_3___Merge___006___042_size">
+            <Height Name="NAVTOP_AT_Einmuendung_rechts_3___Merge___006___042_height" Unit="PIXEL" Value="10.0"/>
+            <Width Name="NAVTOP_AT_Einmuendung_rechts_3___Merge___006___042_width" Unit="PIXEL" Value="10.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_Einmuendung_rechts_2___Merge___005___039_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_AT_Einmuendung_rechts_2___Merge___005___039_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_Einmuendung_rechts_2___Merge___005___039_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_Einmuendung_rechts_2___Merge___005___039" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_Einmuendung_rechts_2___Merge___005___039_pos">
+            <X Name="NAVTOP_AT_Einmuendung_rechts_2___Merge___005___039_pos_x" Unit="PIXEL" Value="681.0"/>
+            <Y Name="NAVTOP_AT_Einmuendung_rechts_2___Merge___005___039_pos_y" Unit="PIXEL" Value="224.0"/>
+            <Z Name="NAVTOP_AT_Einmuendung_rechts_2___Merge___005___039_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_Einmuendung_rechts_2___Merge___005___039_size">
+            <Height Name="NAVTOP_AT_Einmuendung_rechts_2___Merge___005___039_height" Unit="PIXEL" Value="10.0"/>
+            <Width Name="NAVTOP_AT_Einmuendung_rechts_2___Merge___005___039_width" Unit="PIXEL" Value="10.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_VorStation_9___Stopper___007___007_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_AT_VorStation_9___Stopper___007___007_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_VorStation_9___Stopper___007___007_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_VorStation_9___Stopper___007___007" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_VorStation_9___Stopper___007___007_pos">
+            <X Name="NAVTOP_AT_VorStation_9___Stopper___007___007_pos_x" Unit="PIXEL" Value="889.0"/>
+            <Y Name="NAVTOP_AT_VorStation_9___Stopper___007___007_pos_y" Unit="PIXEL" Value="137.0"/>
+            <Z Name="NAVTOP_AT_VorStation_9___Stopper___007___007_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_VorStation_9___Stopper___007___007_size">
+            <Height Name="NAVTOP_AT_VorStation_9___Stopper___007___007_height" Unit="PIXEL" Value="10.0"/>
+            <Width Name="NAVTOP_AT_VorStation_9___Stopper___007___007_width" Unit="PIXEL" Value="10.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_HauptStation_9___Stopper___008___008_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_AT_HauptStation_9___Stopper___008___008_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_HauptStation_9___Stopper___008___008_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_HauptStation_9___Stopper___008___008" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_HauptStation_9___Stopper___008___008_pos">
+            <X Name="NAVTOP_AT_HauptStation_9___Stopper___008___008_pos_x" Unit="PIXEL" Value="889.0"/>
+            <Y Name="NAVTOP_AT_HauptStation_9___Stopper___008___008_pos_y" Unit="PIXEL" Value="108.0"/>
+            <Z Name="NAVTOP_AT_HauptStation_9___Stopper___008___008_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_HauptStation_9___Stopper___008___008_size">
+            <Height Name="NAVTOP_AT_HauptStation_9___Stopper___008___008_height" Unit="PIXEL" Value="10.0"/>
+            <Width Name="NAVTOP_AT_HauptStation_9___Stopper___008___008_width" Unit="PIXEL" Value="10.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_Einmuendung_links_4___Merge___001___031_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_AT_Einmuendung_links_4___Merge___001___031_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_Einmuendung_links_4___Merge___001___031_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_Einmuendung_links_4___Merge___001___031" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_Einmuendung_links_4___Merge___001___031_pos">
+            <X Name="NAVTOP_AT_Einmuendung_links_4___Merge___001___031_pos_x" Unit="PIXEL" Value="814.0"/>
+            <Y Name="NAVTOP_AT_Einmuendung_links_4___Merge___001___031_pos_y" Unit="PIXEL" Value="10.0"/>
+            <Z Name="NAVTOP_AT_Einmuendung_links_4___Merge___001___031_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_Einmuendung_links_4___Merge___001___031_size">
+            <Height Name="NAVTOP_AT_Einmuendung_links_4___Merge___001___031_height" Unit="PIXEL" Value="10.0"/>
+            <Width Name="NAVTOP_AT_Einmuendung_links_4___Merge___001___031_width" Unit="PIXEL" Value="10.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_Einmuendung_links_7___Merge___004___038_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_AT_Einmuendung_links_7___Merge___004___038_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_Einmuendung_links_7___Merge___004___038_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_Einmuendung_links_7___Merge___004___038" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_Einmuendung_links_7___Merge___004___038_pos">
+            <X Name="NAVTOP_AT_Einmuendung_links_7___Merge___004___038_pos_x" Unit="PIXEL" Value="1025.0"/>
+            <Y Name="NAVTOP_AT_Einmuendung_links_7___Merge___004___038_pos_y" Unit="PIXEL" Value="547.0"/>
+            <Z Name="NAVTOP_AT_Einmuendung_links_7___Merge___004___038_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_Einmuendung_links_7___Merge___004___038_size">
+            <Height Name="NAVTOP_AT_Einmuendung_links_7___Merge___004___038_height" Unit="PIXEL" Value="10.0"/>
+            <Width Name="NAVTOP_AT_Einmuendung_links_7___Merge___004___038_width" Unit="PIXEL" Value="10.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_Einmuendung_links_5___Merge___002___034_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_AT_Einmuendung_links_5___Merge___002___034_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_Einmuendung_links_5___Merge___002___034_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_Einmuendung_links_5___Merge___002___034" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_Einmuendung_links_5___Merge___002___034_pos">
+            <X Name="NAVTOP_AT_Einmuendung_links_5___Merge___002___034_pos_x" Unit="PIXEL" Value="872.0"/>
+            <Y Name="NAVTOP_AT_Einmuendung_links_5___Merge___002___034_pos_y" Unit="PIXEL" Value="547.0"/>
+            <Z Name="NAVTOP_AT_Einmuendung_links_5___Merge___002___034_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_Einmuendung_links_5___Merge___002___034_size">
+            <Height Name="NAVTOP_AT_Einmuendung_links_5___Merge___002___034_height" Unit="PIXEL" Value="10.0"/>
+            <Width Name="NAVTOP_AT_Einmuendung_links_5___Merge___002___034_width" Unit="PIXEL" Value="10.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="NAVTOP_AT_VorStation_11___Stopper___011___011_image">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.10">
+          <Alignment Name="NAVTOP_AT_VorStation_11___Stopper___011___011_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Format Name="NAVTOP_AT_VorStation_11___Stopper___011___011_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_AT_VorStation_11___Stopper___011___011" Unit="POINT" Value="9.0"/>
+          </Format>
+          <Position Name="NAVTOP_AT_VorStation_11___Stopper___011___011_pos">
+            <X Name="NAVTOP_AT_VorStation_11___Stopper___011___011_pos_x" Unit="PIXEL" Value="503.0"/>
+            <Y Name="NAVTOP_AT_VorStation_11___Stopper___011___011_pos_y" Unit="PIXEL" Value="632.0"/>
+            <Z Name="NAVTOP_AT_VorStation_11___Stopper___011___011_pos_z" Unit="PIXEL" Value="10.0"/>
+          </Position>
+          <Size Name="NAVTOP_AT_VorStation_11___Stopper___011___011_size">
+            <Height Name="NAVTOP_AT_VorStation_11___Stopper___011___011_height" Unit="PIXEL" Value="10.0"/>
+            <Width Name="NAVTOP_AT_VorStation_11___Stopper___011___011_width" Unit="PIXEL" Value="10.0"/>
           </Size>
         </Representation>
       </OwnedUIComponent>

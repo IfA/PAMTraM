@@ -261,6 +261,7 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 			shlPleaseSelectA.setLocation(lastLocation);
 		}		
 
+		okButton.setFocus();
 	}
 	protected org.eclipse.swt.widgets.List getPathList() {
 		return pathList;

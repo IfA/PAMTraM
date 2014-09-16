@@ -200,16 +200,16 @@ public class ItemSelectorDialog extends Dialog{
 		rl_composite_1.fill = true;
 		composite_1.setLayout(rl_composite_1);
 		
-		button = new Button(composite_1, SWT.NONE);
-		button.setLayoutData(new RowData(80, 35));
-		button.addSelectionListener(new SelectionAdapter() {
+		okButton = new Button(composite_1, SWT.NONE);
+		okButton.setLayoutData(new RowData(80, 35));
+		okButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				shlPleaseSelectA.dispose();
 			}
 		});
-		button.setText("OK");
-		button.setSelection(true);
+		okButton.setText("OK");
+		okButton.setSelection(true);
 		
 		btnAbort = new Button(composite_1, SWT.NONE);
 		btnAbort.setLayoutData(new RowData(80, 35));
@@ -229,10 +229,12 @@ public class ItemSelectorDialog extends Dialog{
 		if(lastLocation != null){
 			shlPleaseSelectA.setLocation(lastLocation);
 		}
+		
+		okButton.setFocus();
 	}
 	
 	private Composite composite;
-	private Button button;
+	private Button okButton;
 	private Button btnAbort;
 	private Button abortTransFormationButton;
 	private Composite composite_1;

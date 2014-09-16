@@ -5079,7 +5079,7 @@
       <modifier xsi:type="mapping:StringPrepender" name="img/" string="img/"/>
       <modifier xsi:type="mapping:StringAppender" name=".png" string=".png"/>
     </modifierSets>
-    <globalValues name="xRes" value="800.0"/>
-    <globalValues name="yRes" value="600.0"/>
+    <globalValues name="xRes" value="1024.0"/>
+    <globalValues name="yRes" value="200.0"/>
   </mappingModel>
 </pamtram:PAMTraM>

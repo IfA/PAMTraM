@@ -739,13 +739,13 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 					 * 2. consider all available instances of the ref target 
 					 */
 					if (!hintFound) { // last chance
-						LinkedHashSet<TargetSectionClass> foundSections=new LinkedHashSet<TargetSectionClass>();
+						LinkedHashSet<TargetSectionClass> foundLocalNonContRefTargets=new LinkedHashSet<TargetSectionClass>();
 						LinkedList<TargetSectionClass> refValue=new LinkedList<TargetSectionClass>();
 						refValue.addAll(((TargetSectionNonContainmentReference) ref).getValue());
 												
 						//first check root targetMMSection itself
 						if(refValue.contains(groupTargetSection)){
-							foundSections.add(groupTargetSection);
+							foundLocalNonContRefTargets.add(groupTargetSection);
 							refValue.remove(groupTargetSection);
 						}
 						
@@ -755,13 +755,16 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 							EObject next=it.next();
 							if(refValue.contains(next)){//at least one of the values the pamtram-reference points to,
 															  //is part of the same MappingHintGroup's targetMMSection
-								foundSections.add((TargetSectionClass)next);
+								foundLocalNonContRefTargets.add((TargetSectionClass)next);
 								refValue.remove(next);
 							}
 
 							
 						}
-						if(foundSections.size() > 0){							
+						/*
+						 * only non-cont ref targets to other subsections of this targetMMSection are considered
+						 */
+						if(foundLocalNonContRefTargets.size() > 0){							
 							//get source instances for the reference
 							LinkedList<EObjectTransformationHelper> sourceInstances=new LinkedList<EObjectTransformationHelper>();
 							sourceInstances.addAll(instancesBySection.get(targetSectionClass));
@@ -771,7 +774,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 							
 							//get target instances for the reference
 							LinkedList<EObjectTransformationHelper> targetInstances=new LinkedList<EObjectTransformationHelper>();
-							for(TargetSectionClass section: foundSections){
+							for(TargetSectionClass section: foundLocalNonContRefTargets){
 								targetInstances.addAll(instancesBySection.get(section));
 							}
 							
@@ -855,6 +858,9 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 								}
 								
 							}
+						/*
+						 * consider all available instances of the ref target
+						 */
 						} else {
 							LinkedHashMap<String, EObjectTransformationHelper> targetInstancesToConsider = new LinkedHashMap<String, EObjectTransformationHelper>();
 							LinkedList<String> targetSectionChoices = new LinkedList<String>();

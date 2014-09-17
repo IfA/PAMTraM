@@ -15,7 +15,7 @@ import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.AttributeValueModifier;
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.ComplexAttributeMappingSourceElement;
-import pamtram.mapping.GlobalVariable;
+import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
@@ -67,8 +67,8 @@ public class PamtramContentAdapter extends EContentAdapter {
         	handleAttributeMappingSourceElementTypeNotification(n, n.getFeatureID(ComplexAttributeMappingSourceElement.class));
         } else if(notifier instanceof AttributeValueModifier) {
         	handleAttributeValueModifierNotification(n, n.getFeatureID(AttributeValueModifier.class));
-        } else if(notifier instanceof GlobalVariable) {
-        	handleGlobalVariableNotification(n, n.getFeatureID(GlobalVariable.class));
+        } else if(notifier instanceof GlobalAttribute) {
+        	handleGlobalAttributeNotification(n, n.getFeatureID(GlobalAttribute.class));
         }
 	}
 	
@@ -235,13 +235,13 @@ public class PamtramContentAdapter extends EContentAdapter {
 	
 	}
 	
-	// A Global Variable has issued a notification.
-	private void handleGlobalVariableNotification(Notification n, int featureID) {
+	// A Global Attribute has issued a notification.
+	private void handleGlobalAttributeNotification(Notification n, int featureID) {
 	
 		if(n.getEventType() == Notification.SET) {
 	
-			if(featureID == MappingPackage.GLOBAL_VARIABLE__SOURCE) {
-				setNameDerived((GlobalVariable) n.getNotifier(), n);
+			if(featureID == MappingPackage.GLOBAL_ATTRIBUTE__SOURCE) {
+				setNameDerived((GlobalAttribute) n.getNotifier(), n);
 			}
 		}
 	}

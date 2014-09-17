@@ -147,8 +147,8 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 		grpPossiblePaths.setText("Possible Paths");
 		grpPossiblePaths.setLayout(new FillLayout(SWT.HORIZONTAL));
 		
-		ListViewer listViewer = new ListViewer(grpPossiblePaths, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
-		pathList = listViewer.getList();
+		ListViewer pathListViewer = new ListViewer(grpPossiblePaths, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
+		pathList = pathListViewer.getList();
 		pathList.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDoubleClick(MouseEvent e) {
@@ -157,7 +157,7 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 		});
 		pathList.setItems(paths.toArray(new String[1]));
 		
-		listViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+		pathListViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 			/**
 			 * Path selection changed
 			 */
@@ -174,8 +174,8 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 		grpPossibleInstances.setText("Possible Instances");
 		grpPossibleInstances.setLayout(new FillLayout(SWT.HORIZONTAL));
 		
-		ListViewer listViewer_1 = new ListViewer(grpPossibleInstances, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
-		instancesList = listViewer_1.getList();
+		ListViewer instancesListViewer = new ListViewer(grpPossibleInstances, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
+		instancesList = instancesListViewer.getList();
 		instancesList.addMouseListener(new MouseAdapter() {
 			/**
 			 * close Dialog on double clicked
@@ -187,6 +187,7 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 		});
 		instancesList.setItems(instances.get(0).toArray(new String[1]));
 		instancesList.setSelection(0);
+		pathList.setSelection(0);
 		sashForm.setWeights(new int[] {347, 228});
 		
 		Composite composite = new Composite(shlPleaseSelectA, SWT.NONE);
@@ -243,7 +244,7 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 		});
 		abortButton.setText("Abort");
 		
-		listViewer_1.addSelectionChangedListener(new ISelectionChangedListener() {
+		instancesListViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 			/**
 			 * Instance selection changed
 			 */
@@ -261,6 +262,7 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 			shlPleaseSelectA.setLocation(lastLocation);
 		}		
 
+		okButton.setFocus();
 	}
 	protected org.eclipse.swt.widgets.List getPathList() {
 		return pathList;

@@ -4,11 +4,16 @@ package pamtram.mapping.provider;
 
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -18,7 +23,11 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
+import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.commands.BasicDragAndDropSetCommand;
+import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.provider.PamtramEditPlugin;
 
 /**
@@ -162,6 +171,40 @@ public class ConnectionHintTargetAttributeItemProvider
 	@Override
 	public ResourceLocator getResourceLocator() {
 		return PamtramEditPlugin.INSTANCE;
+	}
+	
+	@Override
+	protected Command createDragAndDropCommand(EditingDomain domain,
+			Object owner, float location, int operations, int operation,
+			Collection<?> collection) {
+		
+		if(collection.size() == 1) {
+			Object value = collection.iterator().next();
+			if(value instanceof TargetSectionAttribute) {
+		
+				return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
+						MappingPackage.Literals.CONNECTION_HINT_TARGET_ATTRIBUTE__TARGET_ATTRIBUTE, value, 0);
+			}
+		}
+		
+		EList<AttributeValueModifierSet> values = ((ConnectionHintTargetAttribute) owner).getModifier();
+		for(Iterator<?> iter = collection.iterator(); iter.hasNext(); ) {
+			Object value = iter.next();
+			if(value instanceof AttributeValueModifierSet) {
+				values.add((AttributeValueModifierSet) value);
+			} else {
+				return super.createDragAndDropCommand(domain, owner, location, operations,
+						operation, collection); 
+			}
+		}
+		
+		if(values.isEmpty()) {
+			return super.createDragAndDropCommand(domain, owner, location, operations,
+					operation, collection); 
+		} else {
+			return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
+					MappingPackage.Literals.CONNECTION_HINT_TARGET_ATTRIBUTE__MODIFIER, values, 0);
+		}
 	}
 
 }

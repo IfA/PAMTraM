@@ -6,14 +6,19 @@ package pamtram.mapping.provider;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.MappingType;
+import pamtram.mapping.commands.BasicDragAndDropSetCommand;
+import pamtram.metamodel.SourceSectionClass;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 
@@ -123,4 +128,21 @@ public class MappingTypeItemProvider
 		return PamtramEditPlugin.INSTANCE;
 	}
 
+
+	@Override
+	protected Command createDragAndDropCommand(EditingDomain domain,
+			Object owner, float location, int operations, int operation,
+			Collection<?> collection) {
+		
+		if(collection.size() == 1) {
+			Object value = collection.iterator().next();
+			if(value instanceof SourceSectionClass && value == ((SourceSectionClass) value).getContainingSection()) {
+				return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
+						MappingPackage.Literals.MAPPING_TYPE__SOURCE_MM_SECTION, value, 0);
+			}
+		}
+		
+		return super.createDragAndDropCommand(domain, owner, location, operations,
+				operation, collection);
+	}
 }

@@ -8,13 +8,17 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
+import pamtram.mapping.commands.BasicDragAndDropSetCommand;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
@@ -146,6 +150,25 @@ public class TargetSectionNonContainmentReferenceItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+	
+	@Override
+	protected Command createDragAndDropCommand(EditingDomain domain,
+			Object owner, float location, int operations, int operation,
+			Collection<?> collection) {
+		
+		if(collection.size() == 1) {
+			Object value = collection.iterator().next();
+			if(value instanceof TargetSectionClass) {
+		
+				return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
+						MetamodelPackage.Literals.TARGET_SECTION_NON_CONTAINMENT_REFERENCE__VALUE, value, 0);
+			}
+		}
+		
+		return super.createDragAndDropCommand(domain, owner, location, operations,
+				operation, collection); 
+		
 	}
 
 }

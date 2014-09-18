@@ -4,16 +4,24 @@ package pamtram.mapping.provider;
 
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
+import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappedAttributeValueExpanderType;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.commands.BasicDragAndDropSetCommand;
+import pamtram.metamodel.SourceSectionAttribute;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.MappedAttributeValueExpanderType} object.
@@ -131,6 +139,41 @@ public class MappedAttributeValueExpanderTypeItemProvider extends HintImporterMa
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+	
+	@Override
+	protected Command createDragAndDropCommand(EditingDomain domain,
+			Object owner, float location, int operations, int operation,
+			Collection<?> collection) {
+		
+		
+		if(collection.size() == 1) {
+			Object value = collection.iterator().next();
+			if(value instanceof SourceSectionAttribute) {
+		
+				return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
+						MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__SOURCE_ATTRIBUTE, value, 0);
+			}
+		}
+		
+		EList<AttributeValueModifierSet> values = ((MappedAttributeValueExpander) owner).getModifiers();
+		for(Iterator<?> iter = collection.iterator(); iter.hasNext(); ) {
+			Object value = iter.next();
+			if(value instanceof AttributeValueModifierSet) {
+				values.add((AttributeValueModifierSet) value);
+			} else {
+				return super.createDragAndDropCommand(domain, owner, location, operations,
+						operation, collection); 
+			}
+		}
+		
+		if(values.isEmpty()) {
+			return super.createDragAndDropCommand(domain, owner, location, operations,
+					operation, collection); 
+		} else {
+			return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
+					MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__MODIFIERS, values, 0);
+		}
 	}
 
 }

@@ -8199,7 +8199,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.159" Value="CMODE">
           <Alignment Name="CMODE_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="CMODE_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105MillCNC_CMODE" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105MillCNC_CMODE" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105MillCNC_CMODE" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="CMODE_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -8509,7 +8509,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.159" Value="CMODE">
           <Alignment Name="CMODE_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="CMODE_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105TurnCNC_CMODE" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105TurnCNC_CMODE" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105TurnCNC_CMODE" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="CMODE_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -9807,7 +9807,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.131" Value="GRCLOSE">
           <Alignment Name="GRCLOSE_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="GRCLOSE_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_GRCLOSE" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_GRCLOSE" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_GRCLOSE" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="GRCLOSE_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -9837,7 +9837,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.132" Value="GROPEN">
           <Alignment Name="GROPEN_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="GROPEN_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_GROPEN" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_GROPEN" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_GROPEN" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="GROPEN_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -9867,7 +9867,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.160" Value="T_ATREF">
           <Alignment Name="T_ATREF_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="T_ATREF_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_T_ATREF" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_T_ATREF" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_T_ATREF" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="T_ATREF_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -9897,7 +9897,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.161" Value="T_READY">
           <Alignment Name="T_READY_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="T_READY_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_T_READY" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_T_READY" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_T_READY" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="T_READY_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -9927,7 +9927,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.162" Value="T_STATUS">
           <Alignment Name="T_STATUS_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="T_STATUS_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_T_STATUS" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_T_STATUS" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_T_STATUS" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="T_STATUS_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -9957,7 +9957,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.163" Value="T_RMODE">
           <Alignment Name="T_RMODE_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="T_RMODE_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_T_RMODE" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_T_RMODE" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_T_RMODE" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="T_RMODE_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -9987,7 +9987,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.164" Value="T_VCLOSED">
           <Alignment Name="T_VCLOSED_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="T_VCLOSED_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_T_VCLOSED" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_T_VCLOSED" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_T_VCLOSED" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="T_VCLOSED_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -10017,7 +10017,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.165" Value="T_VOPENED">
           <Alignment Name="T_VOPENED_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="T_VOPENED_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_T_VOPENED" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_T_VOPENED" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_T_VOPENED" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="T_VOPENED_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -10047,7 +10047,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.166" Value="T_DCLOSED">
           <Alignment Name="T_DCLOSED_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="T_DCLOSED_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_T_DCLOSED" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_T_DCLOSED" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_T_DCLOSED" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="T_DCLOSED_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -10077,7 +10077,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.167" Value="T_DOPENED">
           <Alignment Name="T_DOPENED_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="T_DOPENED_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_T_DOPENED" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_T_DOPENED" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_T_DOPENED" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="T_DOPENED_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -10107,7 +10107,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.168" Value="M_ATREF">
           <Alignment Name="M_ATREF_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="M_ATREF_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_M_ATREF" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_M_ATREF" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_M_ATREF" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="M_ATREF_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -10137,7 +10137,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.169" Value="M_READY">
           <Alignment Name="M_READY_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="M_READY_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_M_READY" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_M_READY" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_M_READY" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="M_READY_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -10167,7 +10167,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.170" Value="M_STATUS">
           <Alignment Name="M_STATUS_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="M_STATUS_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_M_STATUS" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_M_STATUS" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_M_STATUS" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="M_STATUS_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -10197,7 +10197,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.171" Value="M_RMODE">
           <Alignment Name="M_RMODE_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="M_RMODE_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_M_RMODE" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_M_RMODE" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_M_RMODE" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="M_RMODE_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -10227,7 +10227,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.172" Value="M_VCLOSED">
           <Alignment Name="M_VCLOSED_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="M_VCLOSED_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_M_VCLOSED" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_M_VCLOSED" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_M_VCLOSED" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="M_VCLOSED_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -10257,7 +10257,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.173" Value="M_VOPENED">
           <Alignment Name="M_VOPENED_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="M_VOPENED_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_M_VOPENED" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_M_VOPENED" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_M_VOPENED" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="M_VOPENED_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -10287,7 +10287,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.174" Value="M_DCLOSED">
           <Alignment Name="M_DCLOSED_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="M_DCLOSED_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_M_DCLOSED" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_M_DCLOSED" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_M_DCLOSED" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="M_DCLOSED_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -10317,7 +10317,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.175" Value="M_DOPENED">
           <Alignment Name="M_DOPENED_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="M_DOPENED_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_M_DOPENED" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_M_DOPENED" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_M_DOPENED" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="M_DOPENED_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -10347,7 +10347,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.176" Value="BPAV">
           <Alignment Name="BPAV_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="BPAV_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_BPAV" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_BPAV" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_BPAV" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="BPAV_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -10377,7 +10377,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.177" Value="SEPDOWN">
           <Alignment Name="SEPDOWN_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="SEPDOWN_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_SEPDOWN" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_SEPDOWN" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_SEPDOWN" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="SEPDOWN_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -10407,7 +10407,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.178" Value="SEPUP">
           <Alignment Name="SEPUP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="SEPUP_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_SEPUP" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_SEPUP" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_SEPUP" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="SEPUP_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -10437,7 +10437,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.179" Value="ALUAV">
           <Alignment Name="ALUAV_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="ALUAV_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_ALUAV" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_ALUAV" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_ALUAV" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="ALUAV_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -10467,7 +10467,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.180" Value="BRASSAV">
           <Alignment Name="BRASSAV_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="BRASSAV_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_BRASSAV" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_BRASSAV" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_BRASSAV" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="BRASSAV_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -10497,7 +10497,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.140" Value="P4AV">
           <Alignment Name="P4AV_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="P4AV_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_P4AV" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_P4AV" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_P4AV" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="P4AV_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -10527,7 +10527,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.141" Value="P3AV">
           <Alignment Name="P3AV_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="P3AV_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_P3AV" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_P3AV" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_P3AV" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="P3AV_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -10557,7 +10557,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.142" Value="P2AV">
           <Alignment Name="P2AV_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="P2AV_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_P2AV" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_P2AV" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_P2AV" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="P2AV_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -10587,7 +10587,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.143" Value="P1AV">
           <Alignment Name="P1AV_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="P1AV_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_P1AV" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_P1AV" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_P1AV" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="P1AV_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -10617,7 +10617,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.144" Value="RRESET">
           <Alignment Name="RRESET_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="RRESET_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_RRESET" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_RRESET" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_RRESET" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="RRESET_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -10647,7 +10647,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.181" Value="AUTOMAN">
           <Alignment Name="AUTOMAN_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="AUTOMAN_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_AUTOMAN" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_AUTOMAN" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_AUTOMAN" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="AUTOMAN_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -10677,7 +10677,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.146" Value="ASTOP">
           <Alignment Name="ASTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="ASTOP_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_ASTOP" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_ASTOP" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_ASTOP" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="ASTOP_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -10707,7 +10707,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.147" Value="ASTART">
           <Alignment Name="ASTART_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="ASTART_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillAndTurn105Robot_ASTART" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillAndTurn105Robot_ASTART" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillAndTurn105Robot_ASTART" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="ASTART_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -11940,7 +11940,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.149" Value="Close">
           <Alignment Name="Close_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="Close_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="RobotGripper_Close" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="RobotGripper_Close" Unit="PIXEL" Value="3.5"/>
             <Width Name="RobotGripper_Close" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="Close_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -13027,7 +13027,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.150" Value="GRCLOSED">
           <Alignment Name="GRCLOSED_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="GRCLOSED_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Mill55Robot_GRCLOSED" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Mill55Robot_GRCLOSED" Unit="PIXEL" Value="3.5"/>
             <Width Name="Mill55Robot_GRCLOSED" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="GRCLOSED_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -13057,7 +13057,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.132" Value="GROPEN">
           <Alignment Name="GROPEN_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="GROPEN_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Mill55Robot_GROPEN" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Mill55Robot_GROPEN" Unit="PIXEL" Value="3.5"/>
             <Width Name="Mill55Robot_GROPEN" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="GROPEN_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -13087,7 +13087,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.151" Value="ALARM">
           <Alignment Name="ALARM_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="ALARM_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Mill55Robot_ALARM" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Mill55Robot_ALARM" Unit="PIXEL" Value="3.5"/>
             <Width Name="Mill55Robot_ALARM" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="ALARM_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -13117,7 +13117,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.152" Value="STATUS">
           <Alignment Name="STATUS_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="STATUS_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Mill55Robot_STATUS" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Mill55Robot_STATUS" Unit="PIXEL" Value="3.5"/>
             <Width Name="Mill55Robot_STATUS" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="STATUS_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -13147,7 +13147,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.153" Value="RPOS">
           <Alignment Name="RPOS_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="RPOS_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Mill55Robot_RPOS" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Mill55Robot_RPOS" Unit="PIXEL" Value="3.5"/>
             <Width Name="Mill55Robot_RPOS" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="RPOS_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -13177,7 +13177,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.154" Value="VCLOSED">
           <Alignment Name="VCLOSED_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="VCLOSED_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Mill55Robot_VCLOSED" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Mill55Robot_VCLOSED" Unit="PIXEL" Value="3.5"/>
             <Width Name="Mill55Robot_VCLOSED" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="VCLOSED_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -13207,7 +13207,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.155" Value="VOPENED">
           <Alignment Name="VOPENED_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="VOPENED_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Mill55Robot_VOPENED" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Mill55Robot_VOPENED" Unit="PIXEL" Value="3.5"/>
             <Width Name="Mill55Robot_VOPENED" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="VOPENED_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -13237,7 +13237,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.156" Value="DCLOSED">
           <Alignment Name="DCLOSED_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="DCLOSED_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Mill55Robot_DCLOSED" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Mill55Robot_DCLOSED" Unit="PIXEL" Value="3.5"/>
             <Width Name="Mill55Robot_DCLOSED" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="DCLOSED_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -13267,7 +13267,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.157" Value="DOPENED">
           <Alignment Name="DOPENED_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="DOPENED_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Mill55Robot_DOPENED" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Mill55Robot_DOPENED" Unit="PIXEL" Value="3.5"/>
             <Width Name="Mill55Robot_DOPENED" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="DOPENED_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -13297,7 +13297,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.141" Value="P3AV">
           <Alignment Name="P3AV_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="P3AV_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Mill55Robot_P3AV" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Mill55Robot_P3AV" Unit="PIXEL" Value="3.5"/>
             <Width Name="Mill55Robot_P3AV" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="P3AV_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -13327,7 +13327,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.142" Value="P2AV">
           <Alignment Name="P2AV_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="P2AV_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Mill55Robot_P2AV" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Mill55Robot_P2AV" Unit="PIXEL" Value="3.5"/>
             <Width Name="Mill55Robot_P2AV" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="P2AV_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -13357,7 +13357,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.143" Value="P1AV">
           <Alignment Name="P1AV_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="P1AV_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Mill55Robot_P1AV" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Mill55Robot_P1AV" Unit="PIXEL" Value="3.5"/>
             <Width Name="Mill55Robot_P1AV" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="P1AV_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -13387,7 +13387,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.158" Value="PRESET">
           <Alignment Name="PRESET_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="PRESET_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Mill55Robot_PRESET" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Mill55Robot_PRESET" Unit="PIXEL" Value="3.5"/>
             <Width Name="Mill55Robot_PRESET" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="PRESET_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -13417,7 +13417,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.145" Value="KSWITCH">
           <Alignment Name="KSWITCH_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="KSWITCH_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Mill55Robot_KSWITCH" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Mill55Robot_KSWITCH" Unit="PIXEL" Value="3.5"/>
             <Width Name="Mill55Robot_KSWITCH" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="KSWITCH_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -13447,7 +13447,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.146" Value="ASTOP">
           <Alignment Name="ASTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="ASTOP_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Mill55Robot_ASTOP" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Mill55Robot_ASTOP" Unit="PIXEL" Value="3.5"/>
             <Width Name="Mill55Robot_ASTOP" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="ASTOP_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -13477,7 +13477,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.147" Value="ASTART">
           <Alignment Name="ASTART_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="ASTART_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Mill55Robot_ASTART" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Mill55Robot_ASTART" Unit="PIXEL" Value="3.5"/>
             <Width Name="Mill55Robot_ASTART" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="ASTART_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -14611,7 +14611,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.149" Value="Close">
           <Alignment Name="Close_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="Close_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="MillRobotGripper_Close" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="MillRobotGripper_Close" Unit="PIXEL" Value="3.5"/>
             <Width Name="MillRobotGripper_Close" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="Close_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -16247,7 +16247,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.150" Value="GRCLOSED">
           <Alignment Name="GRCLOSED_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="GRCLOSED_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Turn55Robot_GRCLOSED" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Turn55Robot_GRCLOSED" Unit="PIXEL" Value="3.5"/>
             <Width Name="Turn55Robot_GRCLOSED" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="GRCLOSED_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -16277,7 +16277,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.132" Value="GROPEN">
           <Alignment Name="GROPEN_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="GROPEN_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Turn55Robot_GROPEN" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Turn55Robot_GROPEN" Unit="PIXEL" Value="3.5"/>
             <Width Name="Turn55Robot_GROPEN" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="GROPEN_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -16307,7 +16307,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.151" Value="ALARM">
           <Alignment Name="ALARM_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="ALARM_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Turn55Robot_ALARM" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Turn55Robot_ALARM" Unit="PIXEL" Value="3.5"/>
             <Width Name="Turn55Robot_ALARM" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="ALARM_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -16337,7 +16337,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.152" Value="STATUS">
           <Alignment Name="STATUS_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="STATUS_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Turn55Robot_STATUS" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Turn55Robot_STATUS" Unit="PIXEL" Value="3.5"/>
             <Width Name="Turn55Robot_STATUS" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="STATUS_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -16367,7 +16367,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.153" Value="RPOS">
           <Alignment Name="RPOS_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="RPOS_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Turn55Robot_RPOS" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Turn55Robot_RPOS" Unit="PIXEL" Value="3.5"/>
             <Width Name="Turn55Robot_RPOS" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="RPOS_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -16397,7 +16397,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.154" Value="VCLOSED">
           <Alignment Name="VCLOSED_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="VCLOSED_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Turn55Robot_VCLOSED" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Turn55Robot_VCLOSED" Unit="PIXEL" Value="3.5"/>
             <Width Name="Turn55Robot_VCLOSED" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="VCLOSED_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -16427,7 +16427,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.155" Value="VOPENED">
           <Alignment Name="VOPENED_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="VOPENED_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Turn55Robot_VOPENED" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Turn55Robot_VOPENED" Unit="PIXEL" Value="3.5"/>
             <Width Name="Turn55Robot_VOPENED" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="VOPENED_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -16457,7 +16457,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.156" Value="DCLOSED">
           <Alignment Name="DCLOSED_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="DCLOSED_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Turn55Robot_DCLOSED" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Turn55Robot_DCLOSED" Unit="PIXEL" Value="3.5"/>
             <Width Name="Turn55Robot_DCLOSED" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="DCLOSED_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -16487,7 +16487,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.157" Value="DOPENED">
           <Alignment Name="DOPENED_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="DOPENED_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Turn55Robot_DOPENED" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Turn55Robot_DOPENED" Unit="PIXEL" Value="3.5"/>
             <Width Name="Turn55Robot_DOPENED" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="DOPENED_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -16517,7 +16517,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.141" Value="P3AV">
           <Alignment Name="P3AV_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="P3AV_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Turn55Robot_P3AV" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Turn55Robot_P3AV" Unit="PIXEL" Value="3.5"/>
             <Width Name="Turn55Robot_P3AV" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="P3AV_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -16547,7 +16547,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.142" Value="P2AV">
           <Alignment Name="P2AV_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="P2AV_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Turn55Robot_P2AV" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Turn55Robot_P2AV" Unit="PIXEL" Value="3.5"/>
             <Width Name="Turn55Robot_P2AV" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="P2AV_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -16577,7 +16577,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.143" Value="P1AV">
           <Alignment Name="P1AV_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="P1AV_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Turn55Robot_P1AV" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Turn55Robot_P1AV" Unit="PIXEL" Value="3.5"/>
             <Width Name="Turn55Robot_P1AV" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="P1AV_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -16607,7 +16607,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.158" Value="PRESET">
           <Alignment Name="PRESET_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="PRESET_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Turn55Robot_PRESET" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Turn55Robot_PRESET" Unit="PIXEL" Value="3.5"/>
             <Width Name="Turn55Robot_PRESET" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="PRESET_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -16637,7 +16637,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.145" Value="KSWITCH">
           <Alignment Name="KSWITCH_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="KSWITCH_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Turn55Robot_KSWITCH" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Turn55Robot_KSWITCH" Unit="PIXEL" Value="3.5"/>
             <Width Name="Turn55Robot_KSWITCH" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="KSWITCH_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -16667,7 +16667,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.146" Value="ASTOP">
           <Alignment Name="ASTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="ASTOP_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Turn55Robot_ASTOP" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Turn55Robot_ASTOP" Unit="PIXEL" Value="3.5"/>
             <Width Name="Turn55Robot_ASTOP" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="ASTOP_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -16697,7 +16697,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.147" Value="ASTART">
           <Alignment Name="ASTART_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="ASTART_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="Turn55Robot_ASTART" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="Turn55Robot_ASTART" Unit="PIXEL" Value="3.5"/>
             <Width Name="Turn55Robot_ASTART" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="ASTART_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -16895,7 +16895,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.149" Value="Close">
           <Alignment Name="Close_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="Close_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="TurnRobotGripper_Close" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="TurnRobotGripper_Close" Unit="PIXEL" Value="3.5"/>
             <Width Name="TurnRobotGripper_Close" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="Close_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -19074,7 +19074,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.125" Value="HCLOSED4">
           <Alignment Name="HCLOSED4_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="HCLOSED4_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="AssemblyRH5A55Robot_HCLOSED4" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="AssemblyRH5A55Robot_HCLOSED4" Unit="PIXEL" Value="3.5"/>
             <Width Name="AssemblyRH5A55Robot_HCLOSED4" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="HCLOSED4_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -19104,7 +19104,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.126" Value="HOPENED4">
           <Alignment Name="HOPENED4_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="HOPENED4_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="AssemblyRH5A55Robot_HOPENED4" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="AssemblyRH5A55Robot_HOPENED4" Unit="PIXEL" Value="3.5"/>
             <Width Name="AssemblyRH5A55Robot_HOPENED4" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="HOPENED4_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -19134,7 +19134,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.127" Value="HCLOSED3">
           <Alignment Name="HCLOSED3_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="HCLOSED3_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="AssemblyRH5A55Robot_HCLOSED3" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="AssemblyRH5A55Robot_HCLOSED3" Unit="PIXEL" Value="3.5"/>
             <Width Name="AssemblyRH5A55Robot_HCLOSED3" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="HCLOSED3_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -19164,7 +19164,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.128" Value="HOPENED3">
           <Alignment Name="HOPENED3_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="HOPENED3_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="AssemblyRH5A55Robot_HOPENED3" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="AssemblyRH5A55Robot_HOPENED3" Unit="PIXEL" Value="3.5"/>
             <Width Name="AssemblyRH5A55Robot_HOPENED3" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="HOPENED3_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -19194,7 +19194,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.129" Value="HCLOSED2">
           <Alignment Name="HCLOSED2_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="HCLOSED2_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="AssemblyRH5A55Robot_HCLOSED2" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="AssemblyRH5A55Robot_HCLOSED2" Unit="PIXEL" Value="3.5"/>
             <Width Name="AssemblyRH5A55Robot_HCLOSED2" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="HCLOSED2_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -19224,7 +19224,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.130" Value="HOPENED2">
           <Alignment Name="HOPENED2_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="HOPENED2_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="AssemblyRH5A55Robot_HOPENED2" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="AssemblyRH5A55Robot_HOPENED2" Unit="PIXEL" Value="3.5"/>
             <Width Name="AssemblyRH5A55Robot_HOPENED2" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="HOPENED2_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -19254,7 +19254,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.131" Value="GRCLOSE">
           <Alignment Name="GRCLOSE_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="GRCLOSE_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="AssemblyRH5A55Robot_GRCLOSE" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="AssemblyRH5A55Robot_GRCLOSE" Unit="PIXEL" Value="3.5"/>
             <Width Name="AssemblyRH5A55Robot_GRCLOSE" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="GRCLOSE_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -19284,7 +19284,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.132" Value="GROPEN">
           <Alignment Name="GROPEN_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="GROPEN_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="AssemblyRH5A55Robot_GROPEN" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="AssemblyRH5A55Robot_GROPEN" Unit="PIXEL" Value="3.5"/>
             <Width Name="AssemblyRH5A55Robot_GROPEN" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="GROPEN_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -19314,7 +19314,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.133" Value="FED2AV">
           <Alignment Name="FED2AV_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="FED2AV_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="AssemblyRH5A55Robot_FED2AV" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="AssemblyRH5A55Robot_FED2AV" Unit="PIXEL" Value="3.5"/>
             <Width Name="AssemblyRH5A55Robot_FED2AV" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="FED2AV_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -19344,7 +19344,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.134" Value="FED2BP">
           <Alignment Name="FED2BP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="FED2BP_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="AssemblyRH5A55Robot_FED2BP" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="AssemblyRH5A55Robot_FED2BP" Unit="PIXEL" Value="3.5"/>
             <Width Name="AssemblyRH5A55Robot_FED2BP" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="FED2BP_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -19374,7 +19374,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.135" Value="FED1AV">
           <Alignment Name="FED1AV_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="FED1AV_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="AssemblyRH5A55Robot_FED1AV" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="AssemblyRH5A55Robot_FED1AV" Unit="PIXEL" Value="3.5"/>
             <Width Name="AssemblyRH5A55Robot_FED1AV" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="FED1AV_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -19404,7 +19404,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.136" Value="FED1BP">
           <Alignment Name="FED1BP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="FED1BP_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="AssemblyRH5A55Robot_FED1BP" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="AssemblyRH5A55Robot_FED1BP" Unit="PIXEL" Value="3.5"/>
             <Width Name="AssemblyRH5A55Robot_FED1BP" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="FED1BP_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -19434,7 +19434,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.137" Value="FWORKP">
           <Alignment Name="FWORKP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="FWORKP_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="AssemblyRH5A55Robot_FWORKP" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="AssemblyRH5A55Robot_FWORKP" Unit="PIXEL" Value="3.5"/>
             <Width Name="AssemblyRH5A55Robot_FWORKP" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="FWORKP_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -19464,7 +19464,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.138" Value="FCYL2">
           <Alignment Name="FCYL2_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="FCYL2_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="AssemblyRH5A55Robot_FCYL2" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="AssemblyRH5A55Robot_FCYL2" Unit="PIXEL" Value="3.5"/>
             <Width Name="AssemblyRH5A55Robot_FCYL2" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="FCYL2_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -19494,7 +19494,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.139" Value="FCYL1">
           <Alignment Name="FCYL1_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="FCYL1_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="AssemblyRH5A55Robot_FCYL1" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="AssemblyRH5A55Robot_FCYL1" Unit="PIXEL" Value="3.5"/>
             <Width Name="AssemblyRH5A55Robot_FCYL1" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="FCYL1_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -19524,7 +19524,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.140" Value="P4AV">
           <Alignment Name="P4AV_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="P4AV_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="AssemblyRH5A55Robot_P4AV" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="AssemblyRH5A55Robot_P4AV" Unit="PIXEL" Value="3.5"/>
             <Width Name="AssemblyRH5A55Robot_P4AV" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="P4AV_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -19554,7 +19554,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.141" Value="P3AV">
           <Alignment Name="P3AV_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="P3AV_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="AssemblyRH5A55Robot_P3AV" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="AssemblyRH5A55Robot_P3AV" Unit="PIXEL" Value="3.5"/>
             <Width Name="AssemblyRH5A55Robot_P3AV" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="P3AV_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -19584,7 +19584,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.142" Value="P2AV">
           <Alignment Name="P2AV_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="P2AV_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="AssemblyRH5A55Robot_P2AV" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="AssemblyRH5A55Robot_P2AV" Unit="PIXEL" Value="3.5"/>
             <Width Name="AssemblyRH5A55Robot_P2AV" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="P2AV_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -19614,7 +19614,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.143" Value="P1AV">
           <Alignment Name="P1AV_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="P1AV_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="AssemblyRH5A55Robot_P1AV" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="AssemblyRH5A55Robot_P1AV" Unit="PIXEL" Value="3.5"/>
             <Width Name="AssemblyRH5A55Robot_P1AV" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="P1AV_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -19644,7 +19644,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.144" Value="RRESET">
           <Alignment Name="RRESET_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="RRESET_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="AssemblyRH5A55Robot_RRESET" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="AssemblyRH5A55Robot_RRESET" Unit="PIXEL" Value="3.5"/>
             <Width Name="AssemblyRH5A55Robot_RRESET" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="RRESET_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -19674,7 +19674,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.145" Value="KSWITCH">
           <Alignment Name="KSWITCH_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="KSWITCH_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="AssemblyRH5A55Robot_KSWITCH" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="AssemblyRH5A55Robot_KSWITCH" Unit="PIXEL" Value="3.5"/>
             <Width Name="AssemblyRH5A55Robot_KSWITCH" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="KSWITCH_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -19704,7 +19704,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.146" Value="ASTOP">
           <Alignment Name="ASTOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="ASTOP_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="AssemblyRH5A55Robot_ASTOP" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="AssemblyRH5A55Robot_ASTOP" Unit="PIXEL" Value="3.5"/>
             <Width Name="AssemblyRH5A55Robot_ASTOP" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="ASTOP_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -19734,7 +19734,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.147" Value="ASTART">
           <Alignment Name="ASTART_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="ASTART_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="AssemblyRH5A55Robot_ASTART" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="AssemblyRH5A55Robot_ASTART" Unit="PIXEL" Value="3.5"/>
             <Width Name="AssemblyRH5A55Robot_ASTART" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="ASTART_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -19764,7 +19764,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.148" Value="STOP">
           <Alignment Name="STOP_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="STOP_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="AssemblyRH5A55Robot_STOP" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="AssemblyRH5A55Robot_STOP" Unit="PIXEL" Value="3.5"/>
             <Width Name="AssemblyRH5A55Robot_STOP" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="STOP_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -20262,7 +20262,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.149" Value="Close">
           <Alignment Name="Close_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="Close_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="RobotGripper_1_Close" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="RobotGripper_1_Close" Unit="PIXEL" Value="3.5"/>
             <Width Name="RobotGripper_1_Close" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="Close_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -22310,7 +22310,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.102" Value="PANEL_S4">
           <Alignment Name="PANEL_S4_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="PANEL_S4_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="QualityPLC_PANEL_S4" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="QualityPLC_PANEL_S4" Unit="PIXEL" Value="3.5"/>
             <Width Name="QualityPLC_PANEL_S4" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="PANEL_S4_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -22340,7 +22340,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.103" Value="PANEL_S3">
           <Alignment Name="PANEL_S3_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="PANEL_S3_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="QualityPLC_PANEL_S3" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="QualityPLC_PANEL_S3" Unit="PIXEL" Value="3.5"/>
             <Width Name="QualityPLC_PANEL_S3" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="PANEL_S3_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -22370,7 +22370,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.104" Value="PANEL_S2">
           <Alignment Name="PANEL_S2_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="PANEL_S2_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="QualityPLC_PANEL_S2" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="QualityPLC_PANEL_S2" Unit="PIXEL" Value="3.5"/>
             <Width Name="QualityPLC_PANEL_S2" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="PANEL_S2_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -22400,7 +22400,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.105" Value="PANEL_S1">
           <Alignment Name="PANEL_S1_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="PANEL_S1_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="QualityPLC_PANEL_S1" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="QualityPLC_PANEL_S1" Unit="PIXEL" Value="3.5"/>
             <Width Name="QualityPLC_PANEL_S1" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="PANEL_S1_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -22430,7 +22430,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.106" Value="STATION_B16">
           <Alignment Name="STATION_B16_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="STATION_B16_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="QualityPLC_STATION_B16" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="QualityPLC_STATION_B16" Unit="PIXEL" Value="3.5"/>
             <Width Name="QualityPLC_STATION_B16" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="STATION_B16_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -22460,7 +22460,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.107" Value="STATION_B15">
           <Alignment Name="STATION_B15_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="STATION_B15_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="QualityPLC_STATION_B15" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="QualityPLC_STATION_B15" Unit="PIXEL" Value="3.5"/>
             <Width Name="QualityPLC_STATION_B15" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="STATION_B15_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -22490,7 +22490,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.108" Value="STATION_B14">
           <Alignment Name="STATION_B14_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="STATION_B14_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="QualityPLC_STATION_B14" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="QualityPLC_STATION_B14" Unit="PIXEL" Value="3.5"/>
             <Width Name="QualityPLC_STATION_B14" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="STATION_B14_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -22520,7 +22520,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.109" Value="PANEL_EStop">
           <Alignment Name="PANEL_EStop_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="PANEL_EStop_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="QualityPLC_PANEL_EStop" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="QualityPLC_PANEL_EStop" Unit="PIXEL" Value="3.5"/>
             <Width Name="QualityPLC_PANEL_EStop" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="PANEL_EStop_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -22550,7 +22550,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.110" Value="STATION_B13">
           <Alignment Name="STATION_B13_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="STATION_B13_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="QualityPLC_STATION_B13" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="QualityPLC_STATION_B13" Unit="PIXEL" Value="3.5"/>
             <Width Name="QualityPLC_STATION_B13" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="STATION_B13_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -22580,7 +22580,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.111" Value="STATION_B12">
           <Alignment Name="STATION_B12_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="STATION_B12_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="QualityPLC_STATION_B12" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="QualityPLC_STATION_B12" Unit="PIXEL" Value="3.5"/>
             <Width Name="QualityPLC_STATION_B12" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="STATION_B12_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -22610,7 +22610,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.112" Value="STATION_B11">
           <Alignment Name="STATION_B11_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="STATION_B11_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="QualityPLC_STATION_B11" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="QualityPLC_STATION_B11" Unit="PIXEL" Value="3.5"/>
             <Width Name="QualityPLC_STATION_B11" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="STATION_B11_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -22640,7 +22640,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.113" Value="STATION_B10">
           <Alignment Name="STATION_B10_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="STATION_B10_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="QualityPLC_STATION_B10" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="QualityPLC_STATION_B10" Unit="PIXEL" Value="3.5"/>
             <Width Name="QualityPLC_STATION_B10" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="STATION_B10_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -22670,7 +22670,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.114" Value="STATION_7B1">
           <Alignment Name="STATION_7B1_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="STATION_7B1_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="QualityPLC_STATION_7B1" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="QualityPLC_STATION_7B1" Unit="PIXEL" Value="3.5"/>
             <Width Name="QualityPLC_STATION_7B1" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="STATION_7B1_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -22700,7 +22700,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.115" Value="STATION_6B1">
           <Alignment Name="STATION_6B1_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="STATION_6B1_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="QualityPLC_STATION_6B1" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="QualityPLC_STATION_6B1" Unit="PIXEL" Value="3.5"/>
             <Width Name="QualityPLC_STATION_6B1" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="STATION_6B1_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -22730,7 +22730,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.116" Value="STATION_5B1">
           <Alignment Name="STATION_5B1_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="STATION_5B1_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="QualityPLC_STATION_5B1" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="QualityPLC_STATION_5B1" Unit="PIXEL" Value="3.5"/>
             <Width Name="QualityPLC_STATION_5B1" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="STATION_5B1_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -22760,7 +22760,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.117" Value="STATION_4B2">
           <Alignment Name="STATION_4B2_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="STATION_4B2_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="QualityPLC_STATION_4B2" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="QualityPLC_STATION_4B2" Unit="PIXEL" Value="3.5"/>
             <Width Name="QualityPLC_STATION_4B2" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="STATION_4B2_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -22790,7 +22790,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.118" Value="STATION_4B1">
           <Alignment Name="STATION_4B1_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="STATION_4B1_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="QualityPLC_STATION_4B1" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="QualityPLC_STATION_4B1" Unit="PIXEL" Value="3.5"/>
             <Width Name="QualityPLC_STATION_4B1" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="STATION_4B1_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -22820,7 +22820,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.119" Value="STATION_3B2">
           <Alignment Name="STATION_3B2_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="STATION_3B2_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="QualityPLC_STATION_3B2" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="QualityPLC_STATION_3B2" Unit="PIXEL" Value="3.5"/>
             <Width Name="QualityPLC_STATION_3B2" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="STATION_3B2_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -22850,7 +22850,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.120" Value="STATION_3B1">
           <Alignment Name="STATION_3B1_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="STATION_3B1_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="QualityPLC_STATION_3B1" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="QualityPLC_STATION_3B1" Unit="PIXEL" Value="3.5"/>
             <Width Name="QualityPLC_STATION_3B1" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="STATION_3B1_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -22880,7 +22880,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.121" Value="STATION_2B2">
           <Alignment Name="STATION_2B2_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="STATION_2B2_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="QualityPLC_STATION_2B2" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="QualityPLC_STATION_2B2" Unit="PIXEL" Value="3.5"/>
             <Width Name="QualityPLC_STATION_2B2" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="STATION_2B2_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -22910,7 +22910,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.122" Value="STATION_2B1">
           <Alignment Name="STATION_2B1_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="STATION_2B1_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="QualityPLC_STATION_2B1" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="QualityPLC_STATION_2B1" Unit="PIXEL" Value="3.5"/>
             <Width Name="QualityPLC_STATION_2B1" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="STATION_2B1_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -22940,7 +22940,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.123" Value="STATION_1B2">
           <Alignment Name="STATION_1B2_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="STATION_1B2_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="QualityPLC_STATION_1B2" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="QualityPLC_STATION_1B2" Unit="PIXEL" Value="3.5"/>
             <Width Name="QualityPLC_STATION_1B2" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="STATION_1B2_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
@@ -22970,7 +22970,7 @@
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.124" Value="STATION_1B1">
           <Alignment Name="STATION_1B1_alignment" HorizontalAlignment="LEFT" VerticalAlignment="TOP"/>
           <Border Name="STATION_1B1_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
-            <Padding Name="QualityPLC_STATION_1B1" Unit="PIXEL" Value="1.75"/>
+            <Padding Name="QualityPLC_STATION_1B1" Unit="PIXEL" Value="3.5"/>
             <Width Name="QualityPLC_STATION_1B1" Unit="PIXEL" Value="1.0"/>
           </Border>
           <Color Name="STATION_1B1_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>

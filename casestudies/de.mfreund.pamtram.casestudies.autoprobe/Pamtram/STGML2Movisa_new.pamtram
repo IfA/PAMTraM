@@ -5209,7 +5209,7 @@
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="FixedImage" targetMMSection="//@targetSectionModel/@metaModelSections.23">
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="name" target="//@targetSectionModel/@metaModelSections.23/@attributes.0" source="//@sourceSectionModel/@metaModelSections.18/@attributes.5" modifier="//@mappingModel/@modifierSets.40 //@mappingModel/@modifierSets.2"/>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="url" target="//@targetSectionModel/@metaModelSections.23/@attributes.1" source="//@sourceSectionModel/@metaModelSections.18/@attributes.5" modifier="//@mappingModel/@modifierSets.41"/>
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="url" target="//@targetSectionModel/@metaModelSections.23/@attributes.1" source="//@sourceSectionModel/@metaModelSections.18/@references.0/@value.0/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.41"/>
       </mappingHintGroups>
     </mapping>
     <mapping name="MatFlow" sourceMMSection="//@sourceSectionModel/@metaModelSections.19">

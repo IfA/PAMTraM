@@ -5418,7 +5418,7 @@
       <modifier xsi:type="mapping:SubstringReplacer" name="BrowseName" regex="([^\\.])*([\\.]+)" replacement=""/>
     </modifierSets>
     <modifierSets name="BrowsePath Extractor">
-      <modifier xsi:type="mapping:SubstringReplacer" name="BrowsePath" regex="([^\\.])*([\\.]+)" replacement="$&amp;"/>
+      <modifier xsi:type="mapping:SubstringReplacer" name="delete BrowseName" regex="([^\.])+$" replacement=""/>
       <modifier xsi:type="mapping:SubstringReplacer" name="LocalHost2Objects.Supervision" regex="..LocalHost" replacement="Objects.Supervision"/>
       <modifier xsi:type="mapping:SubstringReplacer" name="Dot2Slash" regex="\." replacement="\/"/>
       <modifier xsi:type="mapping:StringPrepender" name="Add Slash" string="/"/>

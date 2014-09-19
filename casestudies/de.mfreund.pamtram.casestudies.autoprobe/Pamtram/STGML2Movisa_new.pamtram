@@ -980,9 +980,6 @@
       <attributes name="height@StructureComponentControlStation">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/height"/>
       </attributes>
-      <attributes name="label">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/label"/>
-      </attributes>
     </metaModelSections>
     <metaModelSections name="viObject StructureComponentControl MatFlow" container="//@sourceSectionModel/@metaModelSections.7">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
@@ -1009,7 +1006,7 @@
                 <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
                 <valueConstraint xsi:type="metamodel:EqualityMatcher" name="name" value="name"/>
               </attributes>
-              <attributes name="NameStation">
+              <attributes name="NameMatFlow">
                 <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
               </attributes>
             </value>
@@ -5200,7 +5197,7 @@
           <variables xsi:type="mapping:ExpressionVariable" name="h" source="//@sourceSectionModel/@metaModelSections.18/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="ImageName" affectedReference="//@targetSectionModel/@metaModelSections.22/@references.0/@value.0/@references.4">
-          <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.23/@attributes.0" name="ImageName" source="//@sourceSectionModel/@metaModelSections.18/@attributes.5" modifier="//@mappingModel/@modifierSets.40 //@mappingModel/@modifierSets.2"/>
+          <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.23/@attributes.0" name="ImageName" source="//@sourceSectionModel/@metaModelSections.18/@references.0/@value.0/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.40 //@mappingModel/@modifierSets.2"/>
         </mappingHints>
         <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="Image">
           <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
@@ -5208,7 +5205,7 @@
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="FixedImage" targetMMSection="//@targetSectionModel/@metaModelSections.23">
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="name" target="//@targetSectionModel/@metaModelSections.23/@attributes.0" source="//@sourceSectionModel/@metaModelSections.18/@attributes.5" modifier="//@mappingModel/@modifierSets.40 //@mappingModel/@modifierSets.2"/>
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="name" target="//@targetSectionModel/@metaModelSections.23/@attributes.0" source="//@sourceSectionModel/@metaModelSections.18/@references.0/@value.0/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.40 //@mappingModel/@modifierSets.2"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="url" target="//@targetSectionModel/@metaModelSections.23/@attributes.1" source="//@sourceSectionModel/@metaModelSections.18/@references.0/@value.0/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.41"/>
       </mappingHintGroups>
     </mapping>
@@ -5216,7 +5213,7 @@
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDef" targetMMSection="//@targetSectionModel/@metaModelSections.15">
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="name" target="//@targetSectionModel/@metaModelSections.15/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="Type" source="//@sourceSectionModel/@metaModelSections.19/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.35"/>
-          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="NameElement" source="//@sourceSectionModel/@metaModelSections.19/@attributes.5"/>
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="NameElement" source="//@sourceSectionModel/@metaModelSections.19/@references.0/@value.0/@references.0/@value.1/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="value" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="Type" source="//@sourceSectionModel/@metaModelSections.19/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.2"/>

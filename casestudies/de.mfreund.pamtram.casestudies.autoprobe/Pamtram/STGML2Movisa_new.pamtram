@@ -3789,6 +3789,9 @@
       <attributes xsi:type="metamodel:ActualAttribute" name="Name Image">
         <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
       </attributes>
+      <attributes xsi:type="metamodel:ActualAttribute" name="comment">
+        <attribute href="http://stefan-hennig.de/movisa/platform#//CommentedMovisaModelElement/Comment"/>
+      </attributes>
     </metaModelSections>
     <metaModelSections name="Image Station">
       <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/Image"/>
@@ -3987,11 +3990,13 @@
     </mapping>
     <mapping name="UA Items (SigInterface)" sourceMMSection="//@sourceSectionModel/@metaModelSections.2">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPCUAItem Integer" targetMMSection="//@targetSectionModel/@metaModelSections.1">
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="BrowseName@Integer" target="//@targetSectionModel/@metaModelSections.1/@attributes.0" source="//@sourceSectionModel/@metaModelSections.2/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel/@modifierSets.15"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="BrowsePath@Integer" target="//@targetSectionModel/@metaModelSections.1/@attributes.1" source="//@sourceSectionModel/@metaModelSections.2/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel/@modifierSets.16"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="Name@Integer" target="//@targetSectionModel/@metaModelSections.1/@attributes.2" source="//@sourceSectionModel/@metaModelSections.2/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel/@modifierSets.17 //@mappingModel/@modifierSets.2"/>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="TP IsAccessedVia @ Integer" affectedReference="//@targetSectionModel/@metaModelSections.1/@references.0">
           <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.11/@attributes.4" source="//@sourceSectionModel/@metaModelSections.2/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel/@modifierSets.14 //@mappingModel/@modifierSets.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="BrowseName@Integer" target="//@targetSectionModel/@metaModelSections.1/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="valueBrowsePath @ Integer" source="//@sourceSectionModel/@metaModelSections.2/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel/@modifierSets.15"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPCUAItem Boolean" targetMMSection="//@targetSectionModel/@metaModelSections.1">
@@ -5346,6 +5351,11 @@
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="imgResource" affectedReference="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.4">
           <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.1/@value.0/@references.0/@value.10"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="comment" target="//@targetSectionModel/@metaModelSections.21/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="namest" source="//@sourceSectionModel/@metaModelSections.20/@references.0/@value.0/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.3"/>
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="valst" source="//@sourceSectionModel/@metaModelSections.20/@references.0/@value.0/@references.0/@value.1/@attributes.1" modifier="//@mappingModel/@modifierSets.3"/>
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="namest" source="//@sourceSectionModel/@metaModelSections.2/@references.0/@value.0/@attributes.0" modifier="//@mappingModel/@modifierSets.3"/>
         </mappingHints>
         <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="Image">
           <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>

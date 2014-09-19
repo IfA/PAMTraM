@@ -1217,7 +1217,7 @@ class SourceSectionMapper {
 					
 					//combine values
 					for(SourceSectionClass c :  m.keySet()){
-							LinkedList<Map<ComplexAttributeMappingSourceElement,String>> vals=m.remove(c);
+							LinkedList<Map<ComplexAttributeMappingSourceElement,String>> vals=m.get(c);
 								if(vals.size() == 1){
 									for(Map<ComplexAttributeMappingSourceElement,String> valMap : syncedComplexMappings){
 										valMap.putAll(vals.getFirst());
@@ -1228,6 +1228,7 @@ class SourceSectionMapper {
 									}
 								}	
 					}
+					m.clear();
 					
 					if(isCommonParent){//sync
 						//add to changedRefsAndHints
@@ -1276,7 +1277,7 @@ class SourceSectionMapper {
 					
 					//combine values
 					for(SourceSectionClass c :  m.keySet()){
-							LinkedList<Map<ComplexAttributeMatcherSourceElement,String>> vals=m.remove(c);
+							LinkedList<Map<ComplexAttributeMatcherSourceElement,String>> vals=m.get(c);
 								if(vals.size() == 1){
 									for(Map<ComplexAttributeMatcherSourceElement,String> valMap : syncedComplexMappings){
 										valMap.putAll(vals.getFirst());
@@ -1287,6 +1288,7 @@ class SourceSectionMapper {
 									}
 								}	
 					}
+					m.clear();
 					
 					if(isCommonParent){//sync
 						//add to changedRefsAndHints
@@ -1335,7 +1337,7 @@ class SourceSectionMapper {
 					
 					//combine values
 					for(SourceSectionClass c :  m.keySet()){
-							LinkedList<Map<ExpressionVariable,String>> vals=m.remove(c);
+							LinkedList<Map<ExpressionVariable,String>> vals=m.get(c);
 								if(vals.size() == 1){
 									for(Map<ExpressionVariable,String> valMap : syncedComplexMappings){
 										valMap.putAll(vals.getFirst());
@@ -1346,6 +1348,7 @@ class SourceSectionMapper {
 									}
 								}	
 					}
+					m.clear();
 					
 					if(isCommonParent){//sync
 						//add to changedRefsAndHints
@@ -1394,7 +1397,7 @@ class SourceSectionMapper {
 					
 					//combine values
 					for(SourceSectionClass c :  m.keySet()){
-							LinkedList<Map<ComplexModelConnectionHintSourceElement,String>> vals=m.remove(c);
+							LinkedList<Map<ComplexModelConnectionHintSourceElement,String>> vals=m.get(c);
 								if(vals.size() == 1){
 									for(Map<ComplexModelConnectionHintSourceElement,String> valMap : syncedComplexMappings){
 										valMap.putAll(vals.getFirst());
@@ -1405,6 +1408,7 @@ class SourceSectionMapper {
 									}
 								}	
 					}
+					m.clear();
 					
 					if(isCommonParent){//sync
 						//add to changedRefsAndHints

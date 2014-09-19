@@ -2,7 +2,6 @@ package de.mfreund.gentrans.transformation;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.regex.PatternSyntaxException;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ui.console.MessageConsoleStream;
@@ -45,13 +44,13 @@ public class AttributeValueModifierExecutor {
 					/*
 					 * Catch an exception thrown by RegExes that aren't formatted correctly
 					 */
-					} catch(PatternSyntaxException e){
+					} catch(Exception e){
 						modifiersWithErrors.add(m);
 						consoleStream.println("The AttributeValueModifier '" + m.getName() + "' of the "
 								+ "AttributeValueModifierSet '" + set.getName() 
 								+ "' could not be evaluated. The following error was supplied:\n"
 								+ e.getLocalizedMessage());
-					}
+					} 
 				}
 			}
 		}

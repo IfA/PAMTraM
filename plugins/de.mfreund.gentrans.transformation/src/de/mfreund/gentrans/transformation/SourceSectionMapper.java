@@ -8,7 +8,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.regex.PatternSyntaxException;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -584,7 +583,7 @@ class SourceSectionMapper {
 					boolean constraintVal;
 					try{
 						constraintVal=constraint.checkConstraint(srcAttrAsString);
-					} catch(PatternSyntaxException e){
+					} catch(Exception e){
 						constraintsWithErrors.add(constraint);
 						consoleStream.println("The AttributeValueConstraint '" + constraint.getName() + "' of the "
 								+ "Attribute '" + at.getName() + " (Class: " + at.getOwningClass().getName() 

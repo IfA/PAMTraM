@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import pamtram.mapping.ComplexAttributeMappingSourceElement;
 import pamtram.mapping.ComplexAttributeMatcherSourceElement;
+import pamtram.mapping.ComplexModelConnectionHint;
 import pamtram.mapping.ComplexModelConnectionHintSourceElement;
 import pamtram.mapping.ExpressionVariable;
 import pamtram.mapping.InstantiableMappingHintGroup;
@@ -73,10 +74,10 @@ class MappingInstanceStorage {
 	/**
 	 * unsynced hints TODO
 	 */
-	Map<SourceSectionClass, LinkedList<Map<ComplexAttributeMappingSourceElement,String>>> unSyncedComplexAttrMappings;
-	Map<SourceSectionClass, LinkedList<Map<ExpressionVariable,String>>> unSyncedCalcMappings;
-	Map<SourceSectionClass, LinkedList<Map<ComplexAttributeMatcherSourceElement,String>>> unSyncedComplexAttrMatchers;
-	Map<SourceSectionClass, LinkedList<Map<ComplexModelConnectionHintSourceElement,String>>> unSyncedComplexConnectionHints;
+	Map<MappingHintType, Map<SourceSectionClass,LinkedList<Map<ComplexAttributeMappingSourceElement,String>>>> unSyncedComplexAttrMappings;
+	Map<MappingHintType, Map<SourceSectionClass,LinkedList<Map<ExpressionVariable,String>>>> unSyncedCalcMappings;
+	Map<MappingHintType, Map<SourceSectionClass,LinkedList<Map<ComplexAttributeMatcherSourceElement,String>>>> unSyncedComplexAttrMatchers;
+	Map<ComplexModelConnectionHint, Map<SourceSectionClass,LinkedList<Map<ComplexModelConnectionHintSourceElement,String>>>> unSyncedComplexConnectionHints;
 	
 	
 	/**
@@ -90,30 +91,30 @@ class MappingInstanceStorage {
 		associatedSourceClass = null;
 		instancesBySection = new LinkedHashMap<InstantiableMappingHintGroup, LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>>();
 		modelConnectionHintValues = new LinkedHashMap<ModelConnectionHint, LinkedList<Object>>();
-		unSyncedComplexAttrMappings = new LinkedHashMap<SourceSectionClass, LinkedList<Map<ComplexAttributeMappingSourceElement,String>>>();
-		unSyncedCalcMappings = new HashMap<SourceSectionClass, LinkedList<Map<ExpressionVariable,String>>>(); 
-		unSyncedComplexAttrMatchers= new HashMap<SourceSectionClass, LinkedList<Map<ComplexAttributeMatcherSourceElement,String>>>();
-		unSyncedComplexConnectionHints= new HashMap<SourceSectionClass, LinkedList<Map<ComplexModelConnectionHintSourceElement,String>>>();
+		unSyncedComplexAttrMappings = new LinkedHashMap<MappingHintType, Map<SourceSectionClass,LinkedList<Map<ComplexAttributeMappingSourceElement,String>>>>();
+		unSyncedCalcMappings = new HashMap<MappingHintType,Map<SourceSectionClass, LinkedList<Map<ExpressionVariable,String>>>>(); 
+		unSyncedComplexAttrMatchers= new HashMap<MappingHintType,Map<SourceSectionClass, LinkedList<Map<ComplexAttributeMatcherSourceElement,String>>>>();
+		unSyncedComplexConnectionHints= new HashMap<ComplexModelConnectionHint,Map<SourceSectionClass, LinkedList<Map<ComplexModelConnectionHintSourceElement,String>>>>();
 
 	}
 
 	
-	public Map<SourceSectionClass, LinkedList<Map<ComplexAttributeMappingSourceElement, String>>> getUnSyncedComplexAttrMappings() {
+	public Map<MappingHintType,Map<SourceSectionClass, LinkedList<Map<ComplexAttributeMappingSourceElement, String>>>> getUnSyncedComplexAttrMappings() {
 		return unSyncedComplexAttrMappings;
 	}
 
 
-	public Map<SourceSectionClass, LinkedList<Map<ExpressionVariable, String>>> getUnSyncedCalcMappings() {
+	public Map<MappingHintType,Map<SourceSectionClass, LinkedList<Map<ExpressionVariable, String>>>> getUnSyncedCalcMappings() {
 		return unSyncedCalcMappings;
 	}
 
 
-	public Map<SourceSectionClass, LinkedList<Map<ComplexAttributeMatcherSourceElement, String>>> getUnSyncedComplexAttrMatchers() {
+	public Map<MappingHintType, Map<SourceSectionClass,LinkedList<Map<ComplexAttributeMatcherSourceElement, String>>>> getUnSyncedComplexAttrMatchers() {
 		return unSyncedComplexAttrMatchers;
 	}
 
 
-	public Map<SourceSectionClass, LinkedList<Map<ComplexModelConnectionHintSourceElement, String>>> getUnSyncedComplexConnectionHints() {
+	public Map<ComplexModelConnectionHint,Map<SourceSectionClass, LinkedList<Map<ComplexModelConnectionHintSourceElement, String>>>> getUnSyncedComplexConnectionHints() {
 		return unSyncedComplexConnectionHints;
 	}
 
@@ -169,53 +170,73 @@ class MappingInstanceStorage {
 	}
 	//TODO comment
 	void addUnSyncedHintValues(	
-			Map<SourceSectionClass, LinkedList<Map<ComplexAttributeMappingSourceElement,String>>> unSyncedComplexAttrMappings,
-			Map<SourceSectionClass, LinkedList<Map<ExpressionVariable,String>>> unSyncedCalcMappings,
-			Map<SourceSectionClass, LinkedList<Map<ComplexAttributeMatcherSourceElement,String>>> unSyncedComplexAttrMatchers,
-			Map<SourceSectionClass, LinkedList<Map<ComplexModelConnectionHintSourceElement,String>>> unSyncedComplexConnectionHints){
+			Map<MappingHintType, Map<SourceSectionClass,LinkedList<Map<ComplexAttributeMappingSourceElement,String>>>> unSyncedComplexAttrMappings,
+			Map<MappingHintType, Map<SourceSectionClass,LinkedList<Map<ExpressionVariable,String>>>> unSyncedCalcMappings,
+			Map<MappingHintType, Map<SourceSectionClass, LinkedList<Map<ComplexAttributeMatcherSourceElement,String>>>> unSyncedComplexAttrMatchers,
+			Map<ComplexModelConnectionHint, Map<SourceSectionClass, LinkedList<Map<ComplexModelConnectionHintSourceElement,String>>>> unSyncedComplexConnectionHints){
 		
 		/*
 		 * AttributeMapping
 		 */
-		for(SourceSectionClass c : unSyncedComplexAttrMappings.keySet()){
-			if(!this.unSyncedComplexAttrMappings.containsKey(c)){
-				this.unSyncedComplexAttrMappings.put(c, new LinkedList<Map<ComplexAttributeMappingSourceElement,String>>());
+		for(MappingHintType h : unSyncedComplexAttrMappings.keySet()){
+			if(!this.unSyncedComplexAttrMappings.containsKey(h)){
+				this.unSyncedComplexAttrMappings.put(h, new  HashMap<SourceSectionClass,LinkedList<Map<ComplexAttributeMappingSourceElement,String>>>());
 			}
 			
-			this.unSyncedComplexAttrMappings.get(c).addAll(unSyncedComplexAttrMappings.get(c));
+			for(SourceSectionClass c : unSyncedComplexAttrMappings.get(h).keySet()){
+				if(!this.unSyncedComplexAttrMappings.get(h).containsKey(c)){
+					this.unSyncedComplexAttrMappings.get(h).put(c, new LinkedList<Map<ComplexAttributeMappingSourceElement,String>>());
+				}
+				this.unSyncedComplexAttrMappings.get(h).get(c).addAll(unSyncedComplexAttrMappings.get(h).get(c));
+			}	
 		}
 		
 		/*
 		 * CalcMapping
 		 */
-		for(SourceSectionClass c : unSyncedCalcMappings.keySet()){
-			if(!this.unSyncedCalcMappings.containsKey(c)){
-				this.unSyncedCalcMappings.put(c, new LinkedList<Map<ExpressionVariable,String>>());
+		for(MappingHintType h : unSyncedCalcMappings.keySet()){
+			if(!this.unSyncedCalcMappings.containsKey(h)){
+				this.unSyncedCalcMappings.put(h, new  HashMap<SourceSectionClass,LinkedList<Map<ExpressionVariable,String>>>());
 			}
 			
-			this.unSyncedCalcMappings.get(c).addAll(unSyncedCalcMappings.get(c));
+			for(SourceSectionClass c : unSyncedCalcMappings.get(h).keySet()){
+				if(!this.unSyncedCalcMappings.get(h).containsKey(c)){
+					this.unSyncedCalcMappings.get(h).put(c, new LinkedList<Map<ExpressionVariable,String>>());
+				}
+				this.unSyncedCalcMappings.get(h).get(c).addAll(unSyncedCalcMappings.get(h).get(c));
+			}	
 		}	
 		
 		/*
 		 * AttributeMatcher
 		 */
-		for(SourceSectionClass c : unSyncedComplexAttrMatchers.keySet()){
-			if(!this.unSyncedComplexAttrMatchers.containsKey(c)){
-				this.unSyncedComplexAttrMatchers.put(c, new LinkedList<Map<ComplexAttributeMatcherSourceElement,String>>());
+		for(MappingHintType h : unSyncedComplexAttrMatchers.keySet()){
+			if(!this.unSyncedComplexAttrMatchers.containsKey(h)){
+				this.unSyncedComplexAttrMatchers.put(h, new  HashMap<SourceSectionClass,LinkedList<Map<ComplexAttributeMatcherSourceElement,String>>>());
 			}
 			
-			this.unSyncedComplexAttrMatchers.get(c).addAll(unSyncedComplexAttrMatchers.get(c));
+			for(SourceSectionClass c : unSyncedComplexAttrMatchers.get(h).keySet()){
+				if(!this.unSyncedComplexAttrMatchers.get(h).containsKey(c)){
+					this.unSyncedComplexAttrMatchers.get(h).put(c, new LinkedList<Map<ComplexAttributeMatcherSourceElement,String>>());
+				}
+				this.unSyncedComplexAttrMatchers.get(h).get(c).addAll(unSyncedComplexAttrMatchers.get(h).get(c));
+			}	
 		}		
 		
 		/*
 		 * ModelConnectionHint
 		 */
-		for(SourceSectionClass c : unSyncedComplexConnectionHints.keySet()){
-			if(!this.unSyncedComplexConnectionHints.containsKey(c)){
-				this.unSyncedComplexConnectionHints.put(c, new LinkedList<Map<ComplexModelConnectionHintSourceElement,String>>());
+		for(ComplexModelConnectionHint h : unSyncedComplexConnectionHints.keySet()){
+			if(!this.unSyncedComplexConnectionHints.containsKey(h)){
+				this.unSyncedComplexConnectionHints.put(h, new  HashMap<SourceSectionClass,LinkedList<Map<ComplexModelConnectionHintSourceElement,String>>>());
 			}
 			
-			this.unSyncedComplexConnectionHints.get(c).addAll(unSyncedComplexConnectionHints.get(c));
+			for(SourceSectionClass c : unSyncedComplexConnectionHints.get(h).keySet()){
+				if(!this.unSyncedComplexConnectionHints.get(h).containsKey(c)){
+					this.unSyncedComplexConnectionHints.get(h).put(c, new LinkedList<Map<ComplexModelConnectionHintSourceElement,String>>());
+				}
+				this.unSyncedComplexConnectionHints.get(h).get(c).addAll(unSyncedComplexConnectionHints.get(h).get(c));
+			}	
 		}		
 	}
 

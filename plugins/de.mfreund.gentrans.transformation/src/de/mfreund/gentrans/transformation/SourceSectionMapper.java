@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.console.MessageConsoleStream;
 
-import pamtram.NamedElement;
 import pamtram.SourceSectionModel;
 import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.CalculatorMapping;
@@ -89,7 +88,7 @@ class SourceSectionMapper {
 	/**
 	 * Map to determine at which point ComplexHints need to be joined
 	 */
-	private Map<SourceSectionClass,Set<Object>>   commonContainerOfDeepestComplexMappingClasses;//TODO Name?
+	private Map<Object,SourceSectionClass>   commonContainerClassOfComplexMappings;//TODO Name?
 	/**
 	 * Map Referencing the Classes referenced by the ExpressionVariable that is buried deepest in the source Section,
 	 * sorted by CalculatorMapping.
@@ -176,7 +175,7 @@ class SourceSectionMapper {
 		this.transformationAborted=false;
 		this.attributeValuemodifier=attributeValuemodifier;
 		constraintsWithErrors=new HashSet<AttributeValueConstraint>();
-		commonContainerOfDeepestComplexMappingClasses=new HashMap<SourceSectionClass,Set<Object>>();
+		commonContainerClassOfComplexMappings=new HashMap<Object,SourceSectionClass>();
 		
 		//this will fill some maps...
 		for(Mapping m : mappingsToChooseFrom){
@@ -251,8 +250,9 @@ class SourceSectionMapper {
 			Set<AttributeMappingSourceElementType> srcElements=new HashSet<AttributeMappingSourceElementType>();
 			srcElements.addAll(m.getLocalSourceElements());
 			deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher.put(m,new HashSet<SourceSectionClass>());
-					
-			deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher.get(m).addAll(findDeepestClassesAndCommonContainer(srcElements, srcSection,m));				
+			
+			MappingInstanceSelector s=(MappingInstanceSelector) m.eContainer();
+			deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher.get(m).addAll(findDeepestClassesAndCommonContainer(srcElements, srcSection,s));				
 
 		}		
 	}
@@ -308,107 +308,97 @@ class SourceSectionMapper {
 			resultSet.add(t.getSource().getOwningClass());
 		}
 		
-		/*
-		 * now start sorting out
-		 */
-		Set<SourceSectionClass> classesToCheck=new HashSet<SourceSectionClass>();
-		classesToCheck.add(srcSection);//init classesToCheck
 		
-		int depth=0;
-		while(true){
-			/*
-			 * Sort out srcElements of this level
-			 */
-			Set<SourceSectionClass> nextResultSet=new HashSet<SourceSectionClass>(resultSet);
-			nextResultSet.removeAll(classesToCheck);
-			if(nextResultSet.size() <= 0){
-				break;
-			} else {
-				resultSet=nextResultSet;
-				depth++;
+		
+		/*
+		 * Find deeppest Elements
+		 */
+		Map<SourceSectionClass,Set<SourceSectionClass>> resultSets=new HashMap<SourceSectionClass,Set<SourceSectionClass>>();
+		boolean commonContainerFound=false;
+		/*
+		 * init classesToCheck
+		 */
+		if(resultSet.size()==1){
+			return resultSet;
+		} else{
+			if(resultSet.contains(srcSection)){
+				resultSet.remove(srcSection);
+				commonContainerClassOfComplexMappings.put(hint, srcSection);
+				commonContainerFound=true;
 			}
-					
-			/*
-			 * determine Classes to check for next level
-			 */
-			Set<SourceSectionClass> nextClassesToCheck=new HashSet<SourceSectionClass>();
-			for(SourceSectionClass c : classesToCheck){
-				for(SourceSectionReference r : c.getReferences()){
-					nextClassesToCheck.addAll(r.getValuesGeneric());
-				}
-			}
-			classesToCheck=nextClassesToCheck;
+			resultSets.put(srcSection, new HashSet<SourceSectionClass>(resultSet));
 		}
 		
 		/*
-		 * Now determine common container
+		 * Find deepest elements
 		 */
-		if(resultSet.size() == 1){
-			//the common container is, in this special case the deepest container itself, since no merging of hints is neccessary here
-			SourceSectionClass c=resultSet.iterator().next();
-			if(!commonContainerOfDeepestComplexMappingClasses.containsKey(c)){
-				commonContainerOfDeepestComplexMappingClasses.put(c, new HashSet<Object>());
-			}
-			commonContainerOfDeepestComplexMappingClasses.get(c).add(hint);
-		} else if(resultSet.size() > 1){
-			/*
-			 * This works because we know that all the elements are at the same depth (which is at least 1) in the section.
-			 * 
-			 * We have to traverse the section from the top, since checking the eContainer of the elements won't work 
-			 * because some SourceSectionAttributes might be part of a section referenced by a MetaModelSectionRef. or a
-			 * NonContainmentRef.
-			 */
-			SourceSectionClass containerCandidate=srcSection;
-			while(true){
-				boolean goDeeper=false;
-				for(SourceSectionReference ref : containerCandidate.getReferences()){
-					for(SourceSectionClass refVal : ref.getValuesGeneric()){
-						Set<SourceSectionClass> childElements=new HashSet<SourceSectionClass>();
+		while(resultSets.size()>0){
+			Map<SourceSectionClass,Set<SourceSectionClass>> nextResultSets=new HashMap<SourceSectionClass,Set<SourceSectionClass>>();
+			for(SourceSectionClass cl : resultSets.keySet()){
+				
+				
+				for(SourceSectionReference ref : cl.getReferences()){
+					boolean breakLoop=false;
+					for(SourceSectionClass childClass : ref.getValuesGeneric()){
+						nextResultSets.put(childClass, new HashSet<SourceSectionClass>());
+
 						/*
-						 * get child elements until depth is reached
+						 * get all child classes and add them to set
 						 */
-						for(int i=1; i<depth; i++){						
-							for(SourceSectionClass c : ref.getValuesGeneric()){
-								for(SourceSectionReference r : c.getReferences()){
-									childElements.addAll(r.getValuesGeneric());
+						Set<SourceSectionClass> childrenChecked=new HashSet<SourceSectionClass>();//to prevent endless loops
+						List<SourceSectionClass> classesToCheck=new LinkedList<SourceSectionClass>();
+						classesToCheck.add(childClass);
+						while(classesToCheck.size()>0){
+							SourceSectionClass chkClass=classesToCheck.remove(0);
+							
+							childrenChecked.add(chkClass);
+							nextResultSets.get(childClass).add(chkClass);
+							
+							/*
+							 * next checks
+							 */
+							for(SourceSectionReference chRef : chkClass.getReferences()){
+								for(SourceSectionClass refVal : chRef.getValuesGeneric()){
+									if(!childrenChecked.contains(refVal)){
+										classesToCheck.add(refVal);
+									}
 								}
 							}
 						}
+						
 						/*
-						 * Now check
-						 * 
-						 * only one of the references can still contain all the classes
+						 * is the resultSet still a subset of the childClasses set? 
 						 */
-						if(childElements.containsAll(resultSet)){
-							containerCandidate=refVal;
-							depth--;
-							goDeeper=true;
+						
+						if(nextResultSets.get(childClass).containsAll(resultSets.get(cl))){
+							breakLoop=true;
+							nextResultSets.put(childClass, resultSets.get(cl));
 							break;
+						} else {
+							if(!commonContainerFound){
+								commonContainerClassOfComplexMappings.put(hint,cl);
+								commonContainerFound=true;
+							}
+							nextResultSets.get(childClass).retainAll(resultSets.get(cl));//remove all non-result classes (intersection)
+							if(nextResultSets.get(childClass).size()<1){
+								resultSet.add(childClass);
+								nextResultSets.remove(childClass);
+							}
 						}
 					}
-					
-					if(goDeeper){
+					if(breakLoop){
 						break;
 					}
 				}
 				
-				if(!goDeeper){
-					//we have found our candidate
-					if(!commonContainerOfDeepestComplexMappingClasses.containsKey(containerCandidate)){
-						commonContainerOfDeepestComplexMappingClasses.put(containerCandidate, new HashSet<Object>());
-					}
-					commonContainerOfDeepestComplexMappingClasses.get(containerCandidate).add(hint);		
-					break;
-				}
-			}			
-
+			}
+			
+			//next iteration
+			resultSets=nextResultSets;
 		}
-		
-		
 		return resultSet;
 		
 	}	
-	
 	
 	/**
 	 * @param m
@@ -1117,176 +1107,12 @@ class SourceSectionMapper {
 		}
 		
 		/*
-		 * TODO sync complex hints
+		 * sync complex hints
 		 */
-		if(commonContainerOfDeepestComplexMappingClasses.containsKey(srcSection)){
-			for(Object hint : commonContainerOfDeepestComplexMappingClasses.get(srcSection)){
-				if(hint instanceof ComplexAttributeMapping){
-					if(deepestComplexAttrMappingSrcElementsByCmplxMapping.get(hint).size() <=1)break;
-					//list of "synced" hints
-					LinkedList<Map<ComplexAttributeMappingSourceElement,String>> syncedComplexMappings=null;
-					//find longest list (ideally they are either of the same length, or there is only one value)
-					SourceSectionClass deepestElementForLongestList=null;
-					for(SourceSectionClass c :  deepestComplexAttrMappingSrcElementsByCmplxMapping.get(hint)){
-						if(syncedComplexMappings == null){
-							syncedComplexMappings=changedRefsAndHints.getUnSyncedComplexAttrMappings().get(c);
-							deepestElementForLongestList=c;
-						} else if(changedRefsAndHints.getUnSyncedComplexAttrMappings().get(c).size() > syncedComplexMappings.size()){
-							syncedComplexMappings=changedRefsAndHints.getUnSyncedComplexAttrMappings().get(c);
-							deepestElementForLongestList=c;
-						}
-					}
-					//remove selected List from unsyncedVals
-					changedRefsAndHints.getUnSyncedComplexAttrMappings().remove(deepestElementForLongestList);
-					
-					//combine values
-					for(SourceSectionClass c :  deepestComplexAttrMappingSrcElementsByCmplxMapping.get(hint)){
-						if(!c.equals(deepestElementForLongestList)){
-							LinkedList<Map<ComplexAttributeMappingSourceElement,String>> vals=changedRefsAndHints.getUnSyncedComplexAttrMappings().remove(c);
-							if(vals != null){
-								if(vals.size() == 1){
-									for(Map<ComplexAttributeMappingSourceElement,String> valMap : syncedComplexMappings){
-										valMap.putAll(vals.getFirst());
-									}
-								} else if(vals.size() > 1){
-									for(int i=0; i<vals.size(); i++){//remember: the size of vals will be lower or equel the size of syncedComplexAttrMappings
-										syncedComplexMappings.get(i).putAll(vals.get(i));
-									}
-								}	
-							}
-						}
-					}
-					
-					//add to changedRefsAndHints
-					if(syncedComplexMappings != null){
-						changedRefsAndHints.getHintValues()
-						.get(hint)
-						.addAll(syncedComplexMappings);
-					}
-
-				} else if(hint instanceof ComplexAttributeMatcher){
-					if(deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher.get(hint).size() <=1)break;
-					//list of "synced" hints
-					LinkedList<Map<ComplexAttributeMatcherSourceElement,String>> syncedComplexMappings=null;
-					//find longest list (ideally they are either of the same length, or there is only one value)
-					SourceSectionClass deepestElementForLongestList=null;
-					for(SourceSectionClass c :  deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher.get(hint)){
-						if(syncedComplexMappings == null){
-							syncedComplexMappings=changedRefsAndHints.getUnSyncedComplexAttrMatchers().get(c);
-							deepestElementForLongestList=c;
-						} else if(changedRefsAndHints.getUnSyncedComplexAttrMatchers().get(c).size() > syncedComplexMappings.size()){
-							syncedComplexMappings=changedRefsAndHints.getUnSyncedComplexAttrMatchers().get(c);
-							deepestElementForLongestList=c;
-						}
-					}
-					//remove selected List from unsyncedVals
-					changedRefsAndHints.getUnSyncedComplexAttrMatchers().remove(deepestElementForLongestList);
-					
-					//combine values
-					for(SourceSectionClass c :  deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher.get(hint)){
-						if(!c.equals(deepestElementForLongestList)){
-							LinkedList<Map<ComplexAttributeMatcherSourceElement,String>> vals=changedRefsAndHints.getUnSyncedComplexAttrMatchers().remove(c);
-							if(vals != null){
-								if(vals.size() == 1){
-									for(Map<ComplexAttributeMatcherSourceElement,String> valMap : syncedComplexMappings){
-										valMap.putAll(vals.getFirst());
-									}
-								} else if(vals.size() > 1){
-									for(int i=0; i<vals.size(); i++){//remember: the size of vals will be lower or equel the size of syncedComplexMappings
-										syncedComplexMappings.get(i).putAll(vals.get(i));
-									}
-								}	
-							}
-						}
-					}
-					
-					//add to changedRefsAndHints
-					if(syncedComplexMappings != null){
-						changedRefsAndHints.getHintValues().get(((ComplexAttributeMatcher) hint).eContainer()).addAll(syncedComplexMappings);
-					}
-				} else if(hint instanceof CalculatorMapping){
-					if(deepestCalcAttrMappingSrcElementsByCalcMapping.get(hint).size() <=1)break;
-					
-					//list of "synced" hints
-					LinkedList<Map<ExpressionVariable,String>> syncedComplexMappings=null;
-					//find longest list (ideally they are either of the same length, or there is only one value)
-					SourceSectionClass deepestElementForLongestList=null;
-					for(SourceSectionClass c :  deepestCalcAttrMappingSrcElementsByCalcMapping.get(hint)){
-						if(syncedComplexMappings == null){
-							syncedComplexMappings=changedRefsAndHints.getUnSyncedCalcMappings().get(c);
-							deepestElementForLongestList=c;
-						} else if(changedRefsAndHints.getUnSyncedCalcMappings().get(c).size() > syncedComplexMappings.size()){
-							syncedComplexMappings=changedRefsAndHints.getUnSyncedCalcMappings().get(c);
-							deepestElementForLongestList=c;
-						}
-					}
-					//remove selected List from unsyncedVals
-					changedRefsAndHints.getUnSyncedCalcMappings().remove(deepestElementForLongestList);
-					
-					//combine values
-					for(SourceSectionClass c :  deepestCalcAttrMappingSrcElementsByCalcMapping.get(hint)){
-						if(!c.equals(deepestElementForLongestList)){
-							LinkedList<Map<ExpressionVariable,String>> vals=changedRefsAndHints.getUnSyncedCalcMappings().remove(c);
-							if(vals != null){
-								if(vals.size() == 1){
-									for(Map<ExpressionVariable,String> valMap : syncedComplexMappings){
-										valMap.putAll(vals.getFirst());
-									}
-								} else if(vals.size() > 1){
-									for(int i=0; i<vals.size(); i++){//remember: the size of vals will be lower or equel the size of syncedComplexMappings
-										syncedComplexMappings.get(i).putAll(vals.get(i));
-									}
-								}	
-							}
-						}
-					}
-					
-					//add to changedRefsAndHints
-					if(syncedComplexMappings != null){
-						changedRefsAndHints.getHintValues().get(hint).addAll(syncedComplexMappings);
-					}
-				}else if(hint instanceof ComplexModelConnectionHint){
-					if(deepestComplexConnectionHintSrcElementsByComplexConnectionHint.get(hint).size() <=1)break;					
-					//list of "synced" hints
-					LinkedList<Map<ComplexModelConnectionHintSourceElement,String>> syncedComplexMappings=null;
-					//find longest list (ideally they are either of the same length, or there is only one value)
-					SourceSectionClass deepestElementForLongestList=null;
-					for(SourceSectionClass c :  deepestComplexConnectionHintSrcElementsByComplexConnectionHint.get(hint)){
-						if(syncedComplexMappings == null){
-							syncedComplexMappings=changedRefsAndHints.getUnSyncedComplexConnectionHints().get(c);
-							deepestElementForLongestList=c;
-						} else if(changedRefsAndHints.getUnSyncedComplexConnectionHints().get(c).size() > syncedComplexMappings.size()){
-							syncedComplexMappings=changedRefsAndHints.getUnSyncedComplexConnectionHints().get(c);
-							deepestElementForLongestList=c;
-						}
-					}
-					//remove selected List from unsyncedVals
-					changedRefsAndHints.getUnSyncedComplexConnectionHints().remove(deepestElementForLongestList);
-					
-					//combine values
-					for(SourceSectionClass c :  deepestComplexConnectionHintSrcElementsByComplexConnectionHint.get(hint)){
-						if(!c.equals(deepestElementForLongestList)){
-							LinkedList<Map<ComplexModelConnectionHintSourceElement,String>> vals=changedRefsAndHints.getUnSyncedComplexConnectionHints().remove(c);
-							if(vals != null){
-								if(vals.size() == 1){
-									for(Map<ComplexModelConnectionHintSourceElement,String> valMap : syncedComplexMappings){
-										valMap.putAll(vals.getFirst());
-									}
-								} else if(vals.size() > 1){
-									for(int i=0; i<vals.size(); i++){//remember: the size of vals will be lower or equel the size of syncedComplexMappings
-										syncedComplexMappings.get(i).putAll(vals.get(i));
-									}
-								}	
-							}
-						}
-					}
-					if(syncedComplexMappings != null){
-						//add to changedRefsAndHints
-						changedRefsAndHints.getModelConnectionHintValues().get(hint).addAll(syncedComplexMappings);
-					}
-				} 
-			}
-		}
+		syncComplexAttrMappings(srcSection, changedRefsAndHints);
+		syncCalcMappings(srcSection, changedRefsAndHints);
+		syncComplexAttrMatchers(srcSection, changedRefsAndHints);
+		syncModelConnectionHints(srcSection, changedRefsAndHints);
 		
 		
 		/*
@@ -1299,10 +1125,13 @@ class SourceSectionMapper {
 							deepestComplexAttrMappingSrcElementsByCmplxMapping.get(h).contains(srcSection))){
 						changedRefsAndHints.getHintValues().get(h).remove();//remove incomplete hint value	
 					} else if(deepestComplexAttrMappingSrcElementsByCmplxMapping.get(h).size()>1){
-						changedRefsAndHints.getUnSyncedComplexAttrMappings().put(srcSection, new LinkedList<Map<ComplexAttributeMappingSourceElement,String>>());
+						if(!changedRefsAndHints.getUnSyncedComplexAttrMappings().containsKey(h)){
+							changedRefsAndHints.getUnSyncedComplexAttrMappings().put(h,new  HashMap<SourceSectionClass,LinkedList<Map<ComplexAttributeMappingSourceElement,String>>>());							
+						}
+						changedRefsAndHints.getUnSyncedComplexAttrMappings().get(h).put(srcSection,new LinkedList<Map<ComplexAttributeMappingSourceElement,String>>());
 						@SuppressWarnings("unchecked")
 						Map<ComplexAttributeMappingSourceElement, String> val=(Map<ComplexAttributeMappingSourceElement, String>) changedRefsAndHints.getHintValues().get(h).remove();
-						changedRefsAndHints.getUnSyncedComplexAttrMappings().get(srcSection).add(val);
+						changedRefsAndHints.getUnSyncedComplexAttrMappings().get(h).get(srcSection).add(val);
 					}
 				} else if(h instanceof MappingInstanceSelector){
 					if(((MappingInstanceSelector) h).getMatcher()  instanceof ComplexAttributeMatcher){
@@ -1313,20 +1142,26 @@ class SourceSectionMapper {
 							changedRefsAndHints.getHintValues().get(h).remove();//remove incomplete hint value	
 						} else if(deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher
 								.get(((MappingInstanceSelector) h).getMatcher()).size()>1){
-							changedRefsAndHints.getUnSyncedComplexAttrMatchers().put(srcSection, new LinkedList<Map<ComplexAttributeMatcherSourceElement,String>>());
+							if(!changedRefsAndHints.getUnSyncedComplexAttrMatchers().containsKey(h)){
+								changedRefsAndHints.getUnSyncedComplexAttrMatchers().put(h,new  HashMap<SourceSectionClass,LinkedList<Map<ComplexAttributeMatcherSourceElement,String>>>());							
+							}
+							changedRefsAndHints.getUnSyncedComplexAttrMatchers().get(h).put(srcSection,new LinkedList<Map<ComplexAttributeMatcherSourceElement,String>>());
 							@SuppressWarnings("unchecked")
 							Map<ComplexAttributeMatcherSourceElement, String> val=(Map<ComplexAttributeMatcherSourceElement, String>) changedRefsAndHints.getHintValues().get(h).remove();
-							changedRefsAndHints.getUnSyncedComplexAttrMatchers().get(srcSection).add(val);
+							changedRefsAndHints.getUnSyncedComplexAttrMatchers().get(h).get(srcSection).add(val);
 						}
 					}
 				} else if (h instanceof CalculatorMapping){
 					if(!(calculatorMappingsFound.contains(h) &&  deepestCalcAttrMappingSrcElementsByCalcMapping.get(h).contains(srcSection))){
 						changedRefsAndHints.getHintValues().get(h).remove();//remove incomplete hint value						
 					} else if(deepestCalcAttrMappingSrcElementsByCalcMapping.get(h).size()>1){
-						changedRefsAndHints.getUnSyncedCalcMappings().put(srcSection, new LinkedList<Map<ExpressionVariable,String>>());
+						if(!changedRefsAndHints.getUnSyncedCalcMappings().containsKey(h)){
+							changedRefsAndHints.getUnSyncedCalcMappings().put(h,new  HashMap<SourceSectionClass,LinkedList<Map<ExpressionVariable,String>>>());							
+						}
+						changedRefsAndHints.getUnSyncedCalcMappings().get(h).put(srcSection,new LinkedList<Map<ExpressionVariable,String>>());
 						@SuppressWarnings("unchecked")
 						Map<ExpressionVariable, String> val=(Map<ExpressionVariable, String>) changedRefsAndHints.getHintValues().get(h).remove();
-						changedRefsAndHints.getUnSyncedCalcMappings().get(srcSection).add(val);
+						changedRefsAndHints.getUnSyncedCalcMappings().get(h).get(srcSection).add(val);
 					}
 				}				
 		}
@@ -1337,10 +1172,13 @@ class SourceSectionMapper {
 						deepestComplexConnectionHintSrcElementsByComplexConnectionHint.get(h).contains(srcSection))){
 					changedRefsAndHints.getModelConnectionHintValues().get(h).remove();//remove incomplete hint value
 				} else if(deepestComplexConnectionHintSrcElementsByComplexConnectionHint.get(h).size() > 1){
-					changedRefsAndHints.getUnSyncedComplexConnectionHints().put(srcSection, new LinkedList<Map<ComplexModelConnectionHintSourceElement,String>>());
+					if(!changedRefsAndHints.getUnSyncedComplexConnectionHints().containsKey(h)){
+						changedRefsAndHints.getUnSyncedComplexConnectionHints().put((ComplexModelConnectionHint) h,new  HashMap<SourceSectionClass,LinkedList<Map<ComplexModelConnectionHintSourceElement,String>>>());							
+					}
+					changedRefsAndHints.getUnSyncedComplexConnectionHints().get(h).put(srcSection,new LinkedList<Map<ComplexModelConnectionHintSourceElement,String>>());
 					@SuppressWarnings("unchecked")
 					Map<ComplexModelConnectionHintSourceElement, String> val=(Map<ComplexModelConnectionHintSourceElement, String>) changedRefsAndHints.getModelConnectionHintValues().get(h).remove();
-					changedRefsAndHints.getUnSyncedComplexConnectionHints().get(srcSection).add(val);
+					changedRefsAndHints.getUnSyncedComplexConnectionHints().get(h).get(srcSection).add(val);
 				}
 			}
 		}
@@ -1348,6 +1186,242 @@ class SourceSectionMapper {
 		return changedRefsAndHints;
 
 	}
+
+	/**
+	 * @param srcSection
+	 * @param changedRefsAndHints
+	 */
+	private void syncComplexAttrMappings(SourceSectionClass srcSection,
+			MappingInstanceStorage changedRefsAndHints) {
+		for(MappingHintType h : changedRefsAndHints.getUnSyncedComplexAttrMappings().keySet()){
+			boolean isCommonParent=commonContainerClassOfComplexMappings.get(h).equals(srcSection);
+			
+			if(changedRefsAndHints.getUnSyncedComplexAttrMappings().containsKey(h)){
+				if(changedRefsAndHints.getUnSyncedComplexAttrMappings().get(h).size()>1 || isCommonParent){
+					Map<SourceSectionClass, LinkedList<Map<ComplexAttributeMappingSourceElement, String>>> m=
+							changedRefsAndHints.getUnSyncedComplexAttrMappings().get(h);
+					//list of "synced" hints
+					LinkedList<Map<ComplexAttributeMappingSourceElement,String>> syncedComplexMappings=null;
+					//find longest list (ideally they are either of the same length, or there is only one value)
+					SourceSectionClass cl=null;
+					for(SourceSectionClass c :  m.keySet()){
+						if(syncedComplexMappings == null){
+							syncedComplexMappings=m.get(c);
+							cl=c;
+						} else if(m.get(c).size() > syncedComplexMappings.size()){
+							syncedComplexMappings=m.get(c);
+							cl=c;
+						}
+					}
+					//remove selected List from m
+					m.remove(cl);
+					
+					//combine values
+					for(SourceSectionClass c :  m.keySet()){
+							LinkedList<Map<ComplexAttributeMappingSourceElement,String>> vals=m.remove(c);
+								if(vals.size() == 1){
+									for(Map<ComplexAttributeMappingSourceElement,String> valMap : syncedComplexMappings){
+										valMap.putAll(vals.getFirst());
+									}
+								} else if(vals.size() > 1){
+									for(int i=0; i<vals.size(); i++){//remember: the size of vals will be lower or equel the size of syncedComplexAttrMappings
+										syncedComplexMappings.get(i).putAll(vals.get(i));
+									}
+								}	
+					}
+					
+					if(isCommonParent){//sync
+						//add to changedRefsAndHints
+						//TODO if(syncedComplexMappings != null){
+							changedRefsAndHints.getHintValues()
+							.get(h)
+							.addAll(syncedComplexMappings);
+						//}
+					} else {
+						changedRefsAndHints.getUnSyncedComplexAttrMappings().get(h).clear();//remove old hints
+						changedRefsAndHints.getUnSyncedComplexAttrMappings().get(h).put(srcSection, syncedComplexMappings);//add new hints
+					}
+				}
+			}
+		}
+	}
+	
+	/**
+	 * @param srcSection
+	 * @param changedRefsAndHints
+	 */
+	private void syncComplexAttrMatchers(SourceSectionClass srcSection,
+			MappingInstanceStorage changedRefsAndHints) {
+		for(MappingHintType h : changedRefsAndHints.getUnSyncedComplexAttrMatchers().keySet()){
+			boolean isCommonParent=commonContainerClassOfComplexMappings.get(h).equals(srcSection);
+			
+			if(changedRefsAndHints.getUnSyncedComplexAttrMatchers().containsKey(h)){
+				if(changedRefsAndHints.getUnSyncedComplexAttrMatchers().get(h).size()>1 || isCommonParent){
+					Map<SourceSectionClass, LinkedList<Map<ComplexAttributeMatcherSourceElement, String>>> m=
+							changedRefsAndHints.getUnSyncedComplexAttrMatchers().get(h);
+					//list of "synced" hints
+					LinkedList<Map<ComplexAttributeMatcherSourceElement,String>> syncedComplexMappings=null;
+					//find longest list (ideally they are either of the same length, or there is only one value)
+					SourceSectionClass cl=null;
+					for(SourceSectionClass c :  m.keySet()){
+						if(syncedComplexMappings == null){
+							syncedComplexMappings=m.get(c);
+							cl=c;
+						} else if(m.get(c).size() > syncedComplexMappings.size()){
+							syncedComplexMappings=m.get(c);
+							cl=c;
+						}
+					}
+					//remove selected List from m
+					m.remove(cl);
+					
+					//combine values
+					for(SourceSectionClass c :  m.keySet()){
+							LinkedList<Map<ComplexAttributeMatcherSourceElement,String>> vals=m.remove(c);
+								if(vals.size() == 1){
+									for(Map<ComplexAttributeMatcherSourceElement,String> valMap : syncedComplexMappings){
+										valMap.putAll(vals.getFirst());
+									}
+								} else if(vals.size() > 1){
+									for(int i=0; i<vals.size(); i++){//remember: the size of vals will be lower or equal the size of syncedComplexAttrMappings
+										syncedComplexMappings.get(i).putAll(vals.get(i));
+									}
+								}	
+					}
+					
+					if(isCommonParent){//sync
+						//add to changedRefsAndHints
+						//TODO if(syncedComplexMappings != null){
+							changedRefsAndHints.getHintValues()
+							.get(h)
+							.addAll(syncedComplexMappings);
+						//}
+					} else {
+						changedRefsAndHints.getUnSyncedComplexAttrMatchers().get(h).clear();//remove old hints
+						changedRefsAndHints.getUnSyncedComplexAttrMatchers().get(h).put(srcSection, syncedComplexMappings);//add new hints
+					}
+				}
+			}
+		}
+	}	
+	
+	/**
+	 * @param srcSection
+	 * @param changedRefsAndHints
+	 */
+	private void syncCalcMappings(SourceSectionClass srcSection,
+			MappingInstanceStorage changedRefsAndHints) {
+		for(MappingHintType h : changedRefsAndHints.getUnSyncedCalcMappings().keySet()){
+			boolean isCommonParent=commonContainerClassOfComplexMappings.get(h).equals(srcSection);
+			
+			if(changedRefsAndHints.getUnSyncedCalcMappings().containsKey(h)){
+				if(changedRefsAndHints.getUnSyncedCalcMappings().get(h).size()>1 || isCommonParent){
+					Map<SourceSectionClass, LinkedList<Map<ExpressionVariable, String>>> m=
+							changedRefsAndHints.getUnSyncedCalcMappings().get(h);
+					//list of "synced" hints
+					LinkedList<Map<ExpressionVariable,String>> syncedComplexMappings=null;
+					//find longest list (ideally they are either of the same length, or there is only one value)
+					SourceSectionClass cl=null;
+					for(SourceSectionClass c :  m.keySet()){
+						if(syncedComplexMappings == null){
+							syncedComplexMappings=m.get(c);
+							cl=c;
+						} else if(m.get(c).size() > syncedComplexMappings.size()){
+							syncedComplexMappings=m.get(c);
+							cl=c;
+						}
+					}
+					//remove selected List from m
+					m.remove(cl);
+					
+					//combine values
+					for(SourceSectionClass c :  m.keySet()){
+							LinkedList<Map<ExpressionVariable,String>> vals=m.remove(c);
+								if(vals.size() == 1){
+									for(Map<ExpressionVariable,String> valMap : syncedComplexMappings){
+										valMap.putAll(vals.getFirst());
+									}
+								} else if(vals.size() > 1){
+									for(int i=0; i<vals.size(); i++){//remember: the size of vals will be lower or equal the size of syncedComplexAttrMappings
+										syncedComplexMappings.get(i).putAll(vals.get(i));
+									}
+								}	
+					}
+					
+					if(isCommonParent){//sync
+						//add to changedRefsAndHints
+						//TODO if(syncedComplexMappings != null){
+							changedRefsAndHints.getHintValues()
+							.get(h)
+							.addAll(syncedComplexMappings);
+						//}
+					} else {
+						changedRefsAndHints.getUnSyncedCalcMappings().get(h).clear();//remove old hints
+						changedRefsAndHints.getUnSyncedCalcMappings().get(h).put(srcSection, syncedComplexMappings);//add new hints
+					}
+				}
+			}
+		}
+	}
+	
+	/**
+	 * @param srcSection
+	 * @param changedRefsAndHints
+	 */
+	private void syncModelConnectionHints(SourceSectionClass srcSection,
+			MappingInstanceStorage changedRefsAndHints) {
+		for(ModelConnectionHint h : changedRefsAndHints.getUnSyncedComplexConnectionHints().keySet()){
+			boolean isCommonParent=commonContainerClassOfComplexMappings.get(h).equals(srcSection);
+			
+			if(changedRefsAndHints.getUnSyncedComplexConnectionHints().containsKey(h)){
+				if(changedRefsAndHints.getUnSyncedComplexConnectionHints().get(h).size()>1 || isCommonParent){
+					Map<SourceSectionClass, LinkedList<Map<ComplexModelConnectionHintSourceElement, String>>> m=
+							changedRefsAndHints.getUnSyncedComplexConnectionHints().get(h);
+					//list of "synced" hints
+					LinkedList<Map<ComplexModelConnectionHintSourceElement,String>> syncedComplexMappings=null;
+					//find longest list (ideally they are either of the same length, or there is only one value)
+					SourceSectionClass cl=null;
+					for(SourceSectionClass c :  m.keySet()){
+						if(syncedComplexMappings == null){
+							syncedComplexMappings=m.get(c);
+							cl=c;
+						} else if(m.get(c).size() > syncedComplexMappings.size()){
+							syncedComplexMappings=m.get(c);
+							cl=c;
+						}
+					}
+					//remove selected List from m
+					m.remove(cl);
+					
+					//combine values
+					for(SourceSectionClass c :  m.keySet()){
+							LinkedList<Map<ComplexModelConnectionHintSourceElement,String>> vals=m.remove(c);
+								if(vals.size() == 1){
+									for(Map<ComplexModelConnectionHintSourceElement,String> valMap : syncedComplexMappings){
+										valMap.putAll(vals.getFirst());
+									}
+								} else if(vals.size() > 1){
+									for(int i=0; i<vals.size(); i++){//remember: the size of vals will be lower or equal the size of syncedComplexAttrMappings
+										syncedComplexMappings.get(i).putAll(vals.get(i));
+									}
+								}	
+					}
+					
+					if(isCommonParent){//sync
+						//add to changedRefsAndHints
+						//TODO if(syncedComplexMappings != null){
+							changedRefsAndHints.getHintValues()
+							.get(h)
+							.addAll(syncedComplexMappings);
+						//}
+					} else {
+						changedRefsAndHints.getUnSyncedComplexConnectionHints().get(h).clear();//remove old hints
+						changedRefsAndHints.getUnSyncedComplexConnectionHints().get(h).put(srcSection, syncedComplexMappings);//add new hints
+					}
+				}
+			}
+		}
+	}		
 
 	/**
 	 * Counts how often each associated source model element is referenced by each MappingInstdanceStorage

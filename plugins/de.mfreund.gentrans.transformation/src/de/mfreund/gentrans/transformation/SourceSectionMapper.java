@@ -1550,34 +1550,42 @@ class SourceSectionMapper {
 				//create  result map
 				MappingInstanceStorage res ;
 				
-				if(doContainerCheck(element,m.getSourceMMSection()) ){					
-					res= findMapping(element, false, getHints(m), getModelConnectionHints(m), m.getGlobalVariables(),
-							m.getSourceMMSection(),
-							new MappingInstanceStorage(),
-							new LinkedHashMap<SourceSectionClass, EObject>());
-					if(transformationAborted) return null;
-					
-					boolean mappingFailed=res == null;
-					if(!mappingFailed){
-						//if mapping possible check ExternalAttributeMappings
-						// check external attributes here; container element MUST be present (check was done earlier)
-						mappingFailed = handleExternalAttributeMappings(m, res, mappingFailed);
-					}
-					if(!mappingFailed){//if mapping possible add to list
-							res.setMapping(m);
-							mappingData.put(m.getName()+  (m.hashCode()), res);
-						int used=0;
-						for(SourceSectionClass c : res.getSourceModelObjectsMapped().keySet()){
-							if(!mappedSections.containsKey(c)){
-								mappedSections.put(c,new LinkedHashSet<EObject>());
-							}
-							used+=res.getSourceModelObjectsMapped().get(c).size();
-							mappedSections.get(c).addAll(res.getSourceModelObjectsMapped().get(c));
-							
-							contRefObjectsToMap.removeAll(res.getSourceModelObjectsMapped().get(c));//remove mapped elements from list of elements to be mapped
+				if(m.getSourceMMSection().getEClass().isSuperTypeOf(element.eClass())){//This check is also done by findMapping, but 
+																					   //since it will most likely fail at the top level,
+																						//for most mappings we do it here 
+																					    //before we construct any collections and so on.
+																					   //This might save us a little time, but of course that depends on the number mappings
+																						//and the source metamodel.
+																										
+					if(doContainerCheck(element,m.getSourceMMSection()) ){					
+						res= findMapping(element, false, getHints(m), getModelConnectionHints(m), m.getGlobalVariables(),
+								m.getSourceMMSection(),
+								new MappingInstanceStorage(),
+								new LinkedHashMap<SourceSectionClass, EObject>());
+						if(transformationAborted) return null;
+						
+						boolean mappingFailed=res == null;
+						if(!mappingFailed){
+							//if mapping possible check ExternalAttributeMappings
+							// check external attributes here; container element MUST be present (check was done earlier)
+							mappingFailed = handleExternalAttributeMappings(m, res, mappingFailed);
 						}
-						usedInMapping.put(res, String.valueOf(used));
-					}		
+						if(!mappingFailed){//if mapping possible add to list
+								res.setMapping(m);
+								mappingData.put(m.getName()+  (m.hashCode()), res);
+							int used=0;
+							for(SourceSectionClass c : res.getSourceModelObjectsMapped().keySet()){
+								if(!mappedSections.containsKey(c)){
+									mappedSections.put(c,new LinkedHashSet<EObject>());
+								}
+								used+=res.getSourceModelObjectsMapped().get(c).size();
+								mappedSections.get(c).addAll(res.getSourceModelObjectsMapped().get(c));
+								
+								contRefObjectsToMap.removeAll(res.getSourceModelObjectsMapped().get(c));//remove mapped elements from list of elements to be mapped
+							}
+							usedInMapping.put(res, String.valueOf(used));
+						}		
+					}
 				}
 			}
 			time=System.nanoTime()-start;

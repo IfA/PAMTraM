@@ -1,6 +1,7 @@
 package de.mfreund.gentrans.transformation;
 
 import java.io.IOException;
+import java.sql.Time;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -181,6 +182,8 @@ public class GenericTransformationRunner {
 	 * Starts the transformation.
 	 */
 	public void runTransformation() {
+		long startTime = System.nanoTime();
+
 		XMIResource targetModel, pamtramResource;
 		
 		XMIResourceFactoryImpl resFactory = new XMIResourceFactoryImpl();
@@ -235,7 +238,8 @@ public class GenericTransformationRunner {
 				options.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
 				options.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.TRUE);
 				targetModel.save(Collections.EMPTY_MAP);
-				writePamtramMessage("Transformation done");
+				long endTime = System.nanoTime();
+				writePamtramMessage("Transformation done. Time: " +  Math.ceil((endTime-startTime)/100000000L)/10.0 + "s");
 			} catch (Exception e) {
 				MessageDialog.openError(
 						PlatformUI.getWorkbench()
@@ -243,6 +247,7 @@ public class GenericTransformationRunner {
 				e.printStackTrace();
 				return;
 			}
+			
 		}
 
 	}

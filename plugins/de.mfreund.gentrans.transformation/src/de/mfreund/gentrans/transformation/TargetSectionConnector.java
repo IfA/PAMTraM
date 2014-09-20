@@ -62,6 +62,10 @@ class TargetSectionConnector {
 	 * true when the transformation was aborted by the user
 	 */
 	private boolean transformationAborted;
+	/**
+	 * Only consider direct target section connection paths
+	 */
+	private boolean directPathsOnly;
 	
 	/**
 	 * @return true when the transformation was aborted by the user
@@ -77,7 +81,7 @@ class TargetSectionConnector {
 	 * @param consoleStream Output stream for messages
 	 */
 	TargetSectionConnector(AttributeValueRegistry attrValRegistry, TargetSectionRegistry targetSectionRegistry, AttributeValueModifierExecutor attributeValuemodifier,
-			XMIResource targetModel, MessageConsoleStream consoleStream){
+			XMIResource targetModel, boolean directPathsOnly, MessageConsoleStream consoleStream){
 		standardPaths = new LinkedHashMap<ModelConnectionHint, ModelConnectionPath>();
 		this.attrValRegistry=attrValRegistry;
 		this.targetSectionRegistry=targetSectionRegistry;
@@ -85,6 +89,7 @@ class TargetSectionConnector {
 		this.consoleStream=consoleStream;
 		this.transformationAborted=false;
 		this.attributeValuemodifier=attributeValuemodifier;
+		this.directPathsOnly=directPathsOnly;
 	}
 
 	/**
@@ -97,7 +102,7 @@ class TargetSectionConnector {
 	private  LinkedList<ModelConnectionPath> findPathsWithMinimumCapacity(
 			EClass classToConnect, EObject startInstance, int minimumCapacity) {
 		LinkedList<ModelConnectionPath> pathsToConsider = new LinkedList<ModelConnectionPath>();
-		for (ModelConnectionPath p : targetSectionRegistry.getPaths(classToConnect)) {
+		for (ModelConnectionPath p : targetSectionRegistry.getPaths(classToConnect,directPathsOnly)) {
 			if (startInstance != null) {
 				if (!p.leadsToRootType(startInstance.eClass())) {
 					continue;// only consider paths with the right start
@@ -138,7 +143,7 @@ class TargetSectionConnector {
 			return;// if we don't do this here an ArrayOutOfBoundsException
 					// might occur later' TODO
 
-		if (targetSectionRegistry.getPaths(classToConnect).size() > 0) {
+		if (targetSectionRegistry.getPaths(classToConnect,directPathsOnly).size() > 0) {
 			// now search for target attributes
 
 			LinkedHashMap<ConnectionHintTargetAttribute,LinkedList<EObjectTransformationHelper>> containerInstancesByTargetAttribute = new LinkedHashMap<ConnectionHintTargetAttribute,LinkedList<EObjectTransformationHelper>>();
@@ -424,7 +429,7 @@ class TargetSectionConnector {
 			String mappingGroupName, boolean hasContainer, Set<EClass> containerClasses  ,LinkedList<EObjectTransformationHelper> containerInstances){
 		ModelConnectionPath modelConnectionPath;
 
-		if (targetSectionRegistry.getPaths(classToConnect).size() > 0) {
+		if (targetSectionRegistry.getPaths(classToConnect,directPathsOnly).size() > 0) {
 			LinkedList<ModelConnectionPath> pathsToConsider = findPathsWithMinimumCapacity(
 					classToConnect, null, rootInstances.size());//only go on with paths that could theoretically fit all of the elements
 

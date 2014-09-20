@@ -77,10 +77,24 @@ public class GenericTransformationRunner {
 	 */
 	public GenericTransformationRunner(EObject sourceModel,
 			String pamtramPath, String targetFilePath) {
+		this(sourceModel,pamtramPath,targetFilePath,false);		
+	}
+	
+	
+	/**
+	 * Constructor
+	 * @param sourceModel Root EObject of the source Model
+	 * @param pamtramPath Path to the transformation model
+	 * @param targetFilePath File path to the transformation target
+	 * @param directPathsOnly
+	 */
+	public GenericTransformationRunner(EObject sourceModel,
+			String pamtramPath, String targetFilePath, boolean directPathsOnly) {
 		super();
 		this.sourceModel = sourceModel;
 		this.pamtramPath = pamtramPath;
 		this.targetFilePath=targetFilePath;
+		this.directPathsOnly=directPathsOnly;
 		consoleStream=findConsole("de.mfreund.gentrans.transformation_" + this.hashCode()).newMessageStream();
 		
 		// brings the console view to the front
@@ -115,6 +129,10 @@ public class GenericTransformationRunner {
 	 * Message output stream (Console view)
 	 */
 	private MessageConsoleStream consoleStream;
+	/**
+	 * Only consider direct target section connection paths
+	 */
+	private boolean directPathsOnly;
 	
 	
 	/**
@@ -399,7 +417,7 @@ public class GenericTransformationRunner {
 			AttributeValueModifierExecutor attributeValueModifier,
 			LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping) {
 		TargetSectionConnector connectionHelpers = new TargetSectionConnector(
-				attrValueRegistry, targetSectionRegistry, attributeValueModifier, targetModel, consoleStream);
+				attrValueRegistry, targetSectionRegistry, attributeValueModifier, targetModel, directPathsOnly,consoleStream);
 		for (Mapping m : suitableMappings) {
 			for (MappingHintGroupType g : m.getMappingHintGroups()) {
 				if (g.getTargetMMSection() != null && g instanceof MappingHintGroup) {// targetSection exists?

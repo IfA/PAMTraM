@@ -323,11 +323,11 @@ class TargetSectionRegistry {
 	 * @param eClass
 	 * @return Possible paths to connect target Model sections, for a specific Class of the target model
 	 */
-	LinkedHashSet<ModelConnectionPath> getPaths(EClass eClass) {
+	LinkedHashSet<ModelConnectionPath> getPaths(EClass eClass,boolean directPathsOnly) {
 		if (!possiblePathsRegistry.containsKey(eClass)) {
 			possiblePathsRegistry.put(eClass, new LinkedHashSet<ModelConnectionPath>());
 
-			new ModelConnectionPath(this).findPathsToInstances(eClass);
+			new ModelConnectionPath(this).findPathsToInstances(eClass,directPathsOnly);
 		}
 
 		return possiblePathsRegistry.get(eClass);

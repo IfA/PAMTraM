@@ -4706,6 +4706,7 @@
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
+    <mapping name="Layer" sourceMMSection="//@sourceSectionModel/@metaModelSections.7"/>
     <mapping name="FunctionButton" sourceMMSection="//@sourceSectionModel/@metaModelSections.12">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="FunctionButton" targetMMSection="//@targetSectionModel/@metaModelSections.19">
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="TextLabelRepSizeName (Double:Output Label)" target="//@targetSectionModel/@metaModelSections.19/@references.0/@value.0/@references.0/@value.0/@attributes.0">

@@ -1,5 +1,6 @@
 package de.mfreund.gentrans.transformation;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -1840,8 +1841,30 @@ class SourceSectionMapper {
 					}
 				}
 				return false; //if we reach this point, then no fitting container instance could be found   
-			} else {
-				return false;//no instances of the container exist => mapping must fail
+			} else {//no mappings of the container exist => we just check if all containers could be mapped
+				SourceSectionClass currentClass=sourceSectionClass;
+				EObject currentEObject=element;
+				while(currentClass.getContainer() != null){
+					if(currentEObject.eContainer() != null){
+						currentClass=currentClass.getContainer();
+						currentEObject=currentEObject.eContainer();
+						
+						MappingInstanceStorage res=findMapping(currentEObject, true, Collections.<MappingHintType> emptyList(), 
+																					 Collections.<ModelConnectionHint> emptyList(),
+																					 Collections.<GlobalAttribute> emptyList(),
+																					 currentClass,
+																					 new MappingInstanceStorage(),
+																					 new LinkedHashMap<SourceSectionClass, EObject>());
+						if(transformationAborted || res == null)
+						{
+							return false;
+						}
+					} else {//EObject has no container
+						return false;
+					}
+				}
+				return true;//if we made it this far all is well
+				
 			}
 		} else {
 			return true; //no container == srcModelSection will not be excluded

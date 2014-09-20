@@ -48,6 +48,9 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		String targetFile = project + Path.SEPARATOR + 
 				"Target" + Path.SEPARATOR + configuration.getAttribute("targetFile", "");
 		
+		//get the settings
+		boolean directPathsOnly=configuration.getAttribute("directPathsOnly", false);
+		
 		// if an xml source file shall be transformed, 
 		// add the file extension to registry 
 		if(sourceFile.endsWith(".xml")) {
@@ -76,7 +79,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		// get the root object of the xml resource
 		EObject root = sourceResource.getContents().get(0);
 		final GenericTransformationRunner tr = 
-				new GenericTransformationRunner(root, pamtramFile, targetFile);
+				new GenericTransformationRunner(root, pamtramFile, targetFile,directPathsOnly);
 
 		Job job = new Job("Gentrans"){
 

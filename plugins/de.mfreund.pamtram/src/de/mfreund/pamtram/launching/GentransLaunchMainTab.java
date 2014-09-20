@@ -25,6 +25,9 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 
 public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
@@ -35,7 +38,11 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	// combo boxes to select the project, the source file, the pamtram file and the
 	// target file
 	private Combo projectCombo, srcFileCombo, pamtramFileCombo, targetFileCombo;
+	private Button pathSettingCheckBox;
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	@Override
 	public void createControl(Composite parent) {
 		
@@ -136,7 +143,6 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		// create a label for the source file selection
 		Label srcFileLabel = new Label(fileGroup, SWT.NONE);
 		srcFileLabel.setText("Source File:");
-		srcFileLabel.setLayoutData(new GridData());		
 		
 		// create drop-down list for the source file selection (based on the project)
 		srcFileCombo = new Combo(fileGroup, SWT.DROP_DOWN | SWT.BORDER);
@@ -157,7 +163,6 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		// create a label for the pamtram file selection
 		Label pamtramFileLabel = new Label(fileGroup, SWT.NONE);
 		pamtramFileLabel.setText("Pamtram File:");
-		pamtramFileLabel.setLayoutData(new GridData());		
 		
 		// create drop-down list for the pamtram file selection (based on the project)
 		pamtramFileCombo = new Combo(fileGroup, SWT.DROP_DOWN | SWT.BORDER);
@@ -178,7 +183,6 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		// create a label for the target file
 		Label targetFileLabel = new Label(fileGroup, SWT.NONE);
 		targetFileLabel.setText("Target File:");
-		targetFileLabel.setLayoutData(new GridData());
 		
 		// create drop-down list for the target file selection (based on the project)
 		targetFileCombo = new Combo(fileGroup, SWT.DROP_DOWN | SWT.BORDER);
@@ -195,6 +199,31 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 				updateLaunchConfigurationDialog();
 			}
 		});
+		
+		
+		// a group for specific GenTrans settings
+		Group settingsGroup = new Group(comp, SWT.NONE);
+		settingsGroup.setText("Settings");
+		{
+			GridData gd = new GridData(GridData.FILL_HORIZONTAL);
+			gd.horizontalSpan = 2;
+			settingsGroup.setLayoutData(gd);
+			
+			GridLayout gl = new GridLayout(2, false);
+			settingsGroup.setLayout(gl);
+		}
+		
+		// create a checkbox for path setting
+		pathSettingCheckBox= new Button(settingsGroup, SWT.CHECK);
+		pathSettingCheckBox.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				updateLaunchConfigurationDialog();
+			}
+		});
+		pathSettingCheckBox.setText("Only consider direct paths");
+		new Label(settingsGroup, SWT.NONE);
+
 	}
 
 	@Override
@@ -227,6 +256,9 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			srcFileCombo.setText(configuration.getAttribute("srcFile", ""));
 			pamtramFileCombo.setText(configuration.getAttribute("pamtramFile", ""));
 			targetFileCombo.setText(configuration.getAttribute("targetFile", ""));
+			//settings
+			pathSettingCheckBox.setSelection(configuration.getAttribute("directPathsOnly", false));
+			
 		} catch (CoreException e) {
 			setErrorMessage(e.getMessage());
 		}
@@ -240,6 +272,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		configuration.setAttribute("srcFile", srcFileCombo.getText());
 		configuration.setAttribute("pamtramFile", pamtramFileCombo.getText());
 		configuration.setAttribute("targetFile", targetFileCombo.getText());
+		//settings
+		configuration.setAttribute("directPathsOnly", pathSettingCheckBox.getSelection());
 	}
 
 	@Override
@@ -359,6 +393,9 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			}
 			// set the targetFile attribute
 			workingCopy.setAttribute("targetFile", "out.xmi");
+			
+			//set the direct paths only setting
+			workingCopy.setAttribute("directPathsOnly", false);
 			
 		} else {
 			return;

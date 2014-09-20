@@ -848,9 +848,7 @@ class SourceSectionMapper {
 									, hints,
 									connectionHints,globalVars ,c,
 									changedRefsAndHints, srcInstanceMap);
-						 if(transformationAborted){
-								return null;
-						 }
+						 if(transformationAborted) return null;
 					}
 				}
 				
@@ -862,9 +860,7 @@ class SourceSectionMapper {
 										, hints,
 										connectionHints,globalVars ,c,
 										changedRefsAndHints, srcInstanceMap);
-								if(transformationAborted){
-									return null;
-								}
+								 if(transformationAborted) return null;
 						 if(res != null){
 							 break;
 						 }
@@ -940,9 +936,8 @@ class SourceSectionMapper {
 								(refByClassMap.get(val) instanceof MetaModelSectionReference) || usedOkay,
 								hints, connectionHints, globalVars, val,
 								changedRefsAndHints, srcInstanceMap);
-						if(transformationAborted){
-							return null;
-						}
+						 if(transformationAborted) return null;
+						 
 						if (res != null) {// mapping possible
 							foundMapping = true;
 							res.setAssociatedSourceElement(val,rt);
@@ -1556,15 +1551,15 @@ class SourceSectionMapper {
 				//create  result map
 				MappingInstanceStorage res ;
 				
-				if(doContainerCheck(element,m.getSourceMMSection()) ){					
+				if(doContainerCheck(element,m.getSourceMMSection()) ){	
+					if(transformationAborted) return null;
+					 
 					res= findMapping(element, false, getHints(m), getModelConnectionHints(m), m.getGlobalVariables(),
 							m.getSourceMMSection(),
 							new MappingInstanceStorage(),
 							new LinkedHashMap<SourceSectionClass, EObject>());
-					if(transformationAborted)
-					{
-						return null;
-					}
+					if(transformationAborted) return null;
+					
 					boolean mappingFailed=res == null;
 					if(!mappingFailed){
 						//if mapping possible check ExternalAttributeMappings

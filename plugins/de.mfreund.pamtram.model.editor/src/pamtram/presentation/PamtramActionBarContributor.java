@@ -34,9 +34,15 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 
+import pamtram.mapping.ComplexAttributeMappingSourceElement;
+import pamtram.mapping.ComplexAttributeMatcherSourceElement;
+import pamtram.mapping.ExpressionVariable;
 import pamtram.mapping.SimpleAttributeMapping;
 import pamtram.mapping.SimpleAttributeMatcher;
 import pamtram.mapping.SimpleModelConnectionHint;
+import pamtram.presentation.actions.InternalToExternalExpressionVariableAction;
+import pamtram.presentation.actions.InternalToExternalSourceAttrMappingElementAction;
+import pamtram.presentation.actions.InternalToExternalSourceAttrMatcherElementAction;
 import pamtram.presentation.actions.SimpleToComplexAttributeMappingAction;
 import pamtram.presentation.actions.SimpleToComplexAttributeMatcherAction;
 import pamtram.presentation.actions.SimpleToComplexModelConnectionHint;
@@ -346,11 +352,17 @@ public class PamtramActionBarContributor
 			actions.add(new SimpleToComplexAttributeMappingAction((SimpleAttributeMapping) descriptor));
 			actions.add(new SimpleToExternalComplexAttributeMappingAction((SimpleAttributeMapping) descriptor));
 			
-		} else if(descriptor instanceof pamtram.mapping.SimpleModelConnectionHint){
+		} else if(descriptor instanceof SimpleModelConnectionHint){
 			actions.add(new SimpleToComplexModelConnectionHint((SimpleModelConnectionHint) descriptor));
 			actions.add(new SimpleToExternalComplexModelConnectionHint((SimpleModelConnectionHint) descriptor));
-		} else if(descriptor instanceof pamtram.mapping.SimpleAttributeMatcher){
+		} else if(descriptor instanceof SimpleAttributeMatcher){
 			actions.add(new SimpleToComplexAttributeMatcherAction((SimpleAttributeMatcher) descriptor));
+		} else if(descriptor instanceof ComplexAttributeMappingSourceElement){
+			actions.add(new InternalToExternalSourceAttrMappingElementAction((ComplexAttributeMappingSourceElement) descriptor));
+		} else if(descriptor instanceof ComplexAttributeMatcherSourceElement){
+			actions.add(new InternalToExternalSourceAttrMatcherElementAction((ComplexAttributeMatcherSourceElement) descriptor));
+		} else if(descriptor instanceof ExpressionVariable){
+			actions.add(new InternalToExternalExpressionVariableAction((ExpressionVariable) descriptor));
 		}
 		return actions;
 	}

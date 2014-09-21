@@ -30,6 +30,7 @@ import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.SimpleAttributeMatcher;
 import pamtram.mapping.commands.BasicDragAndDropSetCommand;
+import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.MetaModelSectionReference;
 
@@ -249,6 +250,14 @@ public class SimpleAttributeMatcherItemProvider
 			Object owner, float location, int operations, int operation,
 			Collection<?> collection) {
 		
+		if(collection.size() == 1) {
+			Object value = collection.iterator().next();
+			if(value instanceof SourceSectionAttribute) {
+		
+				return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
+						MappingPackage.Literals.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE, value, 0);
+			}
+		}
 		
 		EList<AttributeValueModifierSet> values = ((SimpleAttributeMatcher) owner).getModifier();
 		for(Iterator<?> iter = collection.iterator(); iter.hasNext(); ) {

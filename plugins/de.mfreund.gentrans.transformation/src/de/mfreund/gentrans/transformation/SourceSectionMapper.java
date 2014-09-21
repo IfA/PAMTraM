@@ -689,11 +689,13 @@ class SourceSectionMapper {
 				}
 
 			} else {// attribute not set / null
-//				consoleStream.println("Unset attribute " + at.getName() + "(Class: "
-//						+ at.getOwningClass().getName()
-//						+ ", Section: " + at.getContainingSection().getName());// we probably don't want any output here
-//				
-				return null;
+				//return null;
+				//Not a problem unless any mappings point here or Constraints were modelled.
+				//Unset mapping hint values are handled elsewhere.
+				//Here we only need to check for matchers
+				if(at.getValueConstraint().size() > 0){
+					return null;
+				}
 			}
 		}
 		

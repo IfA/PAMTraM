@@ -1,28 +1,22 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<scxml name="Navigation" xmlns="http://gfai.de/stgml.xsd">
-
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://gfai.de/stgml.xsd" name="Navigation">
   <datamodel/>
-
   <configuration>
     <event name="NAVTOP" value="NAVTOP"/>
   </configuration>
-
   <code language=""/>
-
   <initial>
     <transition target="root5257B2052684E11C"/>
   </initial>
-
   <state id="root5257B2052684E11C">
     <transition event="NAVTOP" target="NAVTOP"/>
     <initial>
       <transition target="NAVTOP"/>
     </initial>
-    <state id="NAVTOP">
-    </state>
+    <state id="NAVTOP"/>
   </state>
-
-  <visualization name="Navigation" unitspermeter="100000" xmax="29700" xmin="0" ymax="21000" ymin="0">
+  <visualization name="Navigation" unitspermeter="100000.0" xmax="29700.0" xmin="0.0"
+      ymax="21000.0" ymin="0.0">
     <externaldata>
       <extdata name="Roles">
         <extdata name="RoleDefinition">
@@ -39,8 +33,9 @@
         </extdata>
       </extdata>
     </externaldata>
-    <layer name="NAVTOP" visible="true"> 
- 	<viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="3000" label="SignalSender" send="SignalSender" width="6000" x="1000" y="10000">
+    <layer name="NAVTOP" visible="true">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="3000.0"
+          label="SignalSender" send="SignalSender" width="6000.0" x="1000.0" y="10000.0">
         <externaldata>
           <extdata name="ClassPath" value="Evaluation.Signals"/>
           <extdata name="PositionId" value="002"/>
@@ -48,7 +43,8 @@
           <extdata name="name" value="Sender"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="3000" label="SignalReceiver" send="SignalReceiver" width="6000" x="1000" y="7000">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="3000.0"
+          label="SignalReceiver" send="SignalReceiver" width="6000.0" x="1000.0" y="7000.0">
         <externaldata>
           <extdata name="ClassPath" value="Evaluation.Signals"/>
           <extdata name="PositionId" value="012"/>
@@ -58,5 +54,4 @@
       </viobject>
     </layer>
   </visualization>
-
 </scxml>

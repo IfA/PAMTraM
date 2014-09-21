@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<scxml name="Navigation" xmlns="http://gfai.de/stgml.xsd">
-
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://gfai.de/stgml.xsd" name="Navigation">
   <datamodel/>
-
   <configuration>
     <event name="AssemblyRH5A55" value="AssemblyRH5A55"/>
     <event name="AssemblyRH5A55Robot" value="AssemblyRH5A55Robot"/>
@@ -63,13 +61,10 @@
     <event name="Turn55Robot" value="Turn55Robot"/>
     <event name="TurnRobotGripper" value="TurnRobotGripper"/>
   </configuration>
-
   <code language="JavaScript"/>
-
   <initial>
     <transition target="root52A57A0210EC1DCB"/>
   </initial>
-
   <state id="root52A57A0210EC1DCB">
     <transition event="NAVTOP" target="NAVTOP"/>
     <initial>
@@ -77,8 +72,8 @@
     </initial>
     <state id="NAVTOP"/>
   </state>
-
-  <visualization name="Navigation" unitspermeter="100000" xmax="30000" xmin="0" ymax="20000" ymin="0">
+  <visualization name="Navigation" unitspermeter="100000.0" xmax="30000.0" xmin="0.0"
+      ymax="20000.0" ymin="0.0">
     <externaldata>
       <extdata name="Roles">
         <extdata name="RoleDefinition">
@@ -97,184 +92,243 @@
     </externaldata>
     <layer name="Frame" visible="true"/>
     <layer name="SwitchLayers" visible="false">
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="NAVTOP" width="2000" x="45850" y="16000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="NAVTOP"
+          width="2000.0" x="45850.0" y="16000.0">
         <bind name="_data" src="NAVTOP" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="StockDouble" width="2000" x="1000" y="11000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="StockDouble"
+          width="2000.0" x="1000.0" y="11000.0">
         <bind name="_data" src="StockDouble" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="StockDoublePLC" width="2000" x="1000" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="StockDoublePLC"
+          width="2000.0" x="1000.0" y="6000.0">
         <bind name="_data" src="StockDoublePLC" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="MillAndTurn105" width="2000" x="14800" y="11000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="MillAndTurn105"
+          width="2000.0" x="14800.0" y="11000.0">
         <bind name="_data" src="MillAndTurn105" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="BaseplateMagazine" width="2000" x="3300" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="BaseplateMagazine"
+          width="2000.0" x="3300.0" y="6000.0">
         <bind name="_data" src="BaseplateMagazine" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="DiffuseSensor" width="2000" x="3300" y="1000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="DiffuseSensor"
+          width="2000.0" x="3300.0" y="1000.0">
         <bind name="_data" src="DiffuseSensor" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="Palletholder_20" width="2000" x="5600" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="Palletholder_20"
+          width="2000.0" x="5600.0" y="6000.0">
         <bind name="_data" src="Palletholder_20" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="PalletSensor_1" width="2000" x="5600" y="1000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="PalletSensor_1"
+          width="2000.0" x="5600.0" y="1000.0">
         <bind name="_data" src="PalletSensor_1" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="Palletholder_21" width="2000" x="7900" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="Palletholder_21"
+          width="2000.0" x="7900.0" y="6000.0">
         <bind name="_data" src="Palletholder_21" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="PalletSensor_2" width="2000" x="7900" y="1000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="PalletSensor_2"
+          width="2000.0" x="7900.0" y="1000.0">
         <bind name="_data" src="PalletSensor_2" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="MillAndTurn105TurnCNC" width="2000" x="10200" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="MillAndTurn105TurnCNC"
+          width="2000.0" x="10200.0" y="6000.0">
         <bind name="_data" src="MillAndTurn105TurnCNC" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="Palletholder_23" width="2000" x="12500" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="Palletholder_23"
+          width="2000.0" x="12500.0" y="6000.0">
         <bind name="_data" src="Palletholder_23" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="PalletSensor_4" width="2000" x="12500" y="1000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="PalletSensor_4"
+          width="2000.0" x="12500.0" y="1000.0">
         <bind name="_data" src="PalletSensor_4" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="MillAndTurn105Robot" width="2000" x="14800" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="MillAndTurn105Robot"
+          width="2000.0" x="14800.0" y="6000.0">
         <bind name="_data" src="MillAndTurn105Robot" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="Palletholder_22" width="2000" x="17100" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="Palletholder_22"
+          width="2000.0" x="17100.0" y="6000.0">
         <bind name="_data" src="Palletholder_22" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="PalletSensor_3" width="2000" x="17100" y="1000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="PalletSensor_3"
+          width="2000.0" x="17100.0" y="1000.0">
         <bind name="_data" src="PalletSensor_3" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="Magazine1" width="2000" x="19400" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="Magazine1"
+          width="2000.0" x="19400.0" y="6000.0">
         <bind name="_data" src="Magazine1" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="MillAndTurn105MillCNC" width="2000" x="21700" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="MillAndTurn105MillCNC"
+          width="2000.0" x="21700.0" y="6000.0">
         <bind name="_data" src="MillAndTurn105MillCNC" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="RobotGripper" width="2000" x="24000" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="RobotGripper"
+          width="2000.0" x="24000.0" y="6000.0">
         <bind name="_data" src="RobotGripper" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="Magazine2" width="2000" x="26300" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="Magazine2"
+          width="2000.0" x="26300.0" y="6000.0">
         <bind name="_data" src="Magazine2" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="Mill55" width="2000" x="34350" y="11000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="Mill55"
+          width="2000.0" x="34350.0" y="11000.0">
         <bind name="_data" src="Mill55" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="Mill55Robot" width="2000" x="28600" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="Mill55Robot"
+          width="2000.0" x="28600.0" y="6000.0">
         <bind name="_data" src="Mill55Robot" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="Mill55CNC" width="2000" x="30900" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="Mill55CNC"
+          width="2000.0" x="30900.0" y="6000.0">
         <bind name="_data" src="Mill55CNC" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="MillRobotGripper" width="2000" x="33200" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="MillRobotGripper"
+          width="2000.0" x="33200.0" y="6000.0">
         <bind name="_data" src="MillRobotGripper" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="PalletHolder_1" width="2000" x="35500" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="PalletHolder_1"
+          width="2000.0" x="35500.0" y="6000.0">
         <bind name="_data" src="PalletHolder_1" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="PalletSensor_5" width="2000" x="35500" y="1000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="PalletSensor_5"
+          width="2000.0" x="35500.0" y="1000.0">
         <bind name="_data" src="PalletSensor_5" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="PalletHolder_2" width="2000" x="37800" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="PalletHolder_2"
+          width="2000.0" x="37800.0" y="6000.0">
         <bind name="_data" src="PalletHolder_2" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="PalletSensor_6" width="2000" x="37800" y="1000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="PalletSensor_6"
+          width="2000.0" x="37800.0" y="1000.0">
         <bind name="_data" src="PalletSensor_6" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="PalletHolder_3" width="2000" x="40100" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="PalletHolder_3"
+          width="2000.0" x="40100.0" y="6000.0">
         <bind name="_data" src="PalletHolder_3" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="PalletSensor_7" width="2000" x="40100" y="1000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="PalletSensor_7"
+          width="2000.0" x="40100.0" y="1000.0">
         <bind name="_data" src="PalletSensor_7" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="Turn55" width="2000" x="48150" y="11000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="Turn55"
+          width="2000.0" x="48150.0" y="11000.0">
         <bind name="_data" src="Turn55" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="Turn55Robot" width="2000" x="42400" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="Turn55Robot"
+          width="2000.0" x="42400.0" y="6000.0">
         <bind name="_data" src="Turn55Robot" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="Turn55CNC" width="2000" x="44700" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="Turn55CNC"
+          width="2000.0" x="44700.0" y="6000.0">
         <bind name="_data" src="Turn55CNC" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="TurnRobotGripper" width="2000" x="47000" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="TurnRobotGripper"
+          width="2000.0" x="47000.0" y="6000.0">
         <bind name="_data" src="TurnRobotGripper" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="PalletHolder_4" width="2000" x="49300" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="PalletHolder_4"
+          width="2000.0" x="49300.0" y="6000.0">
         <bind name="_data" src="PalletHolder_4" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="PalletSensor_8" width="2000" x="49300" y="1000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="PalletSensor_8"
+          width="2000.0" x="49300.0" y="1000.0">
         <bind name="_data" src="PalletSensor_8" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="PalletHolder_5" width="2000" x="51600" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="PalletHolder_5"
+          width="2000.0" x="51600.0" y="6000.0">
         <bind name="_data" src="PalletHolder_5" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="PalletSensor_9" width="2000" x="51600" y="1000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="PalletSensor_9"
+          width="2000.0" x="51600.0" y="1000.0">
         <bind name="_data" src="PalletSensor_9" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="PalletHolder_6" width="2000" x="53900" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="PalletHolder_6"
+          width="2000.0" x="53900.0" y="6000.0">
         <bind name="_data" src="PalletHolder_6" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="PalletSensor_10" width="2000" x="53900" y="1000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="PalletSensor_10"
+          width="2000.0" x="53900.0" y="1000.0">
         <bind name="_data" src="PalletSensor_10" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="AssemblyRH5A55" width="2000" x="72300" y="11000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="AssemblyRH5A55"
+          width="2000.0" x="72300.0" y="11000.0">
         <bind name="_data" src="AssemblyRH5A55" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="PalletSensor_11" width="2000" x="56200" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="PalletSensor_11"
+          width="2000.0" x="56200.0" y="6000.0">
         <bind name="_data" src="PalletSensor_11" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="MagazinInstrument_1" width="2000" x="58500" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="MagazinInstrument_1"
+          width="2000.0" x="58500.0" y="6000.0">
         <bind name="_data" src="MagazinInstrument_1" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="AssemblyRH5A55VisionControl" width="2000" x="60800" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="AssemblyRH5A55VisionControl"
+          width="2000.0" x="60800.0" y="6000.0">
         <bind name="_data" src="AssemblyRH5A55VisionControl" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="AssemblyRH5A55VisionData" width="2000" x="63100" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="AssemblyRH5A55VisionData"
+          width="2000.0" x="63100.0" y="6000.0">
         <bind name="_data" src="AssemblyRH5A55VisionData" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="PalletSensor_13" width="2000" x="65400" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="PalletSensor_13"
+          width="2000.0" x="65400.0" y="6000.0">
         <bind name="_data" src="PalletSensor_13" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="RobotGripper_1" width="2000" x="67700" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="RobotGripper_1"
+          width="2000.0" x="67700.0" y="6000.0">
         <bind name="_data" src="RobotGripper_1" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="PenMagazin" width="2000" x="70000" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="PenMagazin"
+          width="2000.0" x="70000.0" y="6000.0">
         <bind name="_data" src="PenMagazin" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="PalletHolder_7" width="2000" x="72300" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="PalletHolder_7"
+          width="2000.0" x="72300.0" y="6000.0">
         <bind name="_data" src="PalletHolder_7" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="MagazinInstrument_2" width="2000" x="74600" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="MagazinInstrument_2"
+          width="2000.0" x="74600.0" y="6000.0">
         <bind name="_data" src="MagazinInstrument_2" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="PalletHolder_8" width="2000" x="76900" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="PalletHolder_8"
+          width="2000.0" x="76900.0" y="6000.0">
         <bind name="_data" src="PalletHolder_8" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="PalletSensor_12" width="2000" x="79200" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="PalletSensor_12"
+          width="2000.0" x="79200.0" y="6000.0">
         <bind name="_data" src="PalletSensor_12" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="PalletHolder_9" width="2000" x="81500" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="PalletHolder_9"
+          width="2000.0" x="81500.0" y="6000.0">
         <bind name="_data" src="PalletHolder_9" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="AssemblyRH5A55Robot" width="2000" x="83800" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="AssemblyRH5A55Robot"
+          width="2000.0" x="83800.0" y="6000.0">
         <bind name="_data" src="AssemblyRH5A55Robot" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="PalletSensor_14" width="2000" x="86100" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="PalletSensor_14"
+          width="2000.0" x="86100.0" y="6000.0">
         <bind name="_data" src="PalletSensor_14" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="PalletHolder_10" width="2000" x="88400" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="PalletHolder_10"
+          width="2000.0" x="88400.0" y="6000.0">
         <bind name="_data" src="PalletHolder_10" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="Quality" width="2000" x="90700" y="11000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="Quality"
+          width="2000.0" x="90700.0" y="11000.0">
         <bind name="_data" src="Quality" type="state"/>
       </viobject>
-      <viobject ctrltype="Generic" grtype="Rectangle" height="2000" label="QualityPLC" width="2000" x="90700" y="6000">
+      <viobject ctrltype="Generic" grtype="Rectangle" height="2000.0" label="QualityPLC"
+          width="2000.0" x="90700.0" y="6000.0">
         <bind name="_data" src="QualityPLC" type="state"/>
       </viobject>
     </layer>
     <layer name="Graphic" visible="true"/>
     <layer name="NAVTOP" visible="true">
-      <viobject ctrltype="FunctionButton" grtype="Rectangle" height="1000" label="Produziere ueber PPS (Sequenz)" width="3708.85" x="200" y="2800">
+      <viobject ctrltype="FunctionButton" grtype="Rectangle" height="1000.0" label="Produziere ueber PPS (Sequenz)"
+          width="3708.85" x="200.0" y="2800.0">
         <externaldata>
           <extdata name="FunctionInterface">
             <extdata name="Hardware" value="OPCUA"/>
@@ -303,7 +357,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="FunctionButton" grtype="Rectangle" height="1000" label="Produziere ueber PPS (Zeit)" width="3708.85" x="200" y="5800">
+      <viobject ctrltype="FunctionButton" grtype="Rectangle" height="1000.0" label="Produziere ueber PPS (Zeit)"
+          width="3708.85" x="200.0" y="5800.0">
         <externaldata>
           <extdata name="FunctionInterface">
             <extdata name="Hardware" value="OPCUA"/>
@@ -332,7 +387,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="FunctionButton" grtype="Rectangle" height="1000" label="Produziere ueber PPS (Liste)" width="3708.85" x="200" y="8800">
+      <viobject ctrltype="FunctionButton" grtype="Rectangle" height="1000.0" label="Produziere ueber PPS (Liste)"
+          width="3708.85" x="200.0" y="8800.0">
         <externaldata>
           <extdata name="FunctionInterface">
             <extdata name="Hardware" value="OPCUA"/>
@@ -361,7 +417,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="FunctionButton" grtype="Rectangle" height="1000" label="Oeffne PPS" width="3708.85" x="200" y="11800">
+      <viobject ctrltype="FunctionButton" grtype="Rectangle" height="1000.0" label="Oeffne PPS"
+          width="3708.85" x="200.0" y="11800.0">
         <externaldata>
           <extdata name="FunctionInterface">
             <extdata name="Hardware" value="OPCUA"/>
@@ -390,7 +447,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="FunctionButton" grtype="Rectangle" height="1000" label="Produziere DeskSet Typ2" width="3708.85" x="200" y="14800">
+      <viobject ctrltype="FunctionButton" grtype="Rectangle" height="1000.0" label="Produziere DeskSet Typ2"
+          width="3708.85" x="200.0" y="14800.0">
         <externaldata>
           <extdata name="FunctionInterface">
             <extdata name="Hardware" value="OPCUA"/>
@@ -419,7 +477,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="FunctionButton" grtype="Rectangle" height="1000" label="Produziere DeskSet Typ1" width="3708.85" x="200" y="17800">
+      <viobject ctrltype="FunctionButton" grtype="Rectangle" height="1000.0" label="Produziere DeskSet Typ1"
+          width="3708.85" x="200.0" y="17800.0">
         <externaldata>
           <extdata name="FunctionInterface">
             <extdata name="Hardware" value="OPCUA"/>
@@ -448,13 +507,15 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="15558.7" label="Matflow" width="13908.4" x="10176.2" y="4241.35">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="15558.7"
+          label="Matflow" width="13908.4" x="10176.2" y="4241.35">
         <externaldata>
           <extdata name="typeID" value="Matflow"/>
           <extdata name="name" value="Matflow"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC2EBF" width="204.275" x="11141.3" y="4241.35">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC2EBF" width="204.275" x="11141.3" y="4241.35">
         <externaldata>
           <extdata name="id" value="1"/>
           <extdata name="parent" value=""/>
@@ -532,7 +593,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC2F16" width="204.275" x="13846.6" y="4241.35">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC2F16" width="204.275" x="13846.6" y="4241.35">
         <externaldata>
           <extdata name="id" value="3"/>
           <extdata name="parent" value=""/>
@@ -610,7 +672,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC2F6D" width="204.275" x="14449.7" y="4241.35">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC2F6D" width="204.275" x="14449.7" y="4241.35">
         <externaldata>
           <extdata name="id" value="4"/>
           <extdata name="parent" value=""/>
@@ -658,7 +721,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC2FC4" width="204.275" x="17245.4" y="4241.35">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC2FC4" width="204.275" x="17245.4" y="4241.35">
         <externaldata>
           <extdata name="id" value="5"/>
           <extdata name="parent" value=""/>
@@ -796,7 +860,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC301B" width="204.275" x="19631.4" y="4241.35">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC301B" width="204.275" x="19631.4" y="4241.35">
         <externaldata>
           <extdata name="id" value="7"/>
           <extdata name="parent" value=""/>
@@ -904,7 +969,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3072" width="204.275" x="20234.6" y="4241.35">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3072" width="204.275" x="20234.6" y="4241.35">
         <externaldata>
           <extdata name="id" value="8"/>
           <extdata name="parent" value=""/>
@@ -952,7 +1018,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC30C9" width="204.275" x="21105.7" y="4241.35">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC30C9" width="204.275" x="21105.7" y="4241.35">
         <externaldata>
           <extdata name="id" value="9"/>
           <extdata name="parent" value=""/>
@@ -1000,7 +1067,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3120" width="204.275" x="23880.3" y="6708.76">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3120" width="204.275" x="23880.3" y="6708.76">
         <externaldata>
           <extdata name="id" value="11"/>
           <extdata name="parent" value=""/>
@@ -1108,7 +1176,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3177" width="204.275" x="23880.3" y="7311.93">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3177" width="204.275" x="23880.3" y="7311.93">
         <externaldata>
           <extdata name="id" value="12"/>
           <extdata name="parent" value=""/>
@@ -1156,7 +1225,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC31CE" width="204.275" x="22480.9" y="9505.84">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC31CE" width="204.275" x="22480.9" y="9505.84">
         <externaldata>
           <extdata name="id" value="13"/>
           <extdata name="parent" value=""/>
@@ -1234,7 +1304,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3225" width="204.275" x="18620.6" y="9505.84">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3225" width="204.275" x="18620.6" y="9505.84">
         <externaldata>
           <extdata name="id" value="15"/>
           <extdata name="parent" value=""/>
@@ -1372,7 +1443,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC327C" width="204.275" x="16787" y="9505.84">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC327C" width="204.275" x="16787.0" y="9505.84">
         <externaldata>
           <extdata name="id" value="17"/>
           <extdata name="parent" value=""/>
@@ -1382,7 +1454,8 @@
           <extdata name="Capacity" value="0"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC32D3" width="204.275" x="14784.5" y="9505.84">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC32D3" width="204.275" x="14784.5" y="9505.84">
         <externaldata>
           <extdata name="id" value="19"/>
           <extdata name="parent" value=""/>
@@ -1460,7 +1533,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC332A" width="204.275" x="12516.5" y="9505.84">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC332A" width="204.275" x="12516.5" y="9505.84">
         <externaldata>
           <extdata name="id" value="21"/>
           <extdata name="parent" value=""/>
@@ -1508,7 +1582,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3381" width="204.275" x="10176.2" y="6887.76">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3381" width="204.275" x="10176.2" y="6887.76">
         <externaldata>
           <extdata name="id" value="23"/>
           <extdata name="parent" value=""/>
@@ -1646,7 +1721,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC33D8" width="204.275" x="10176.2" y="6284.59">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC33D8" width="204.275" x="10176.2" y="6284.59">
         <externaldata>
           <extdata name="id" value="24"/>
           <extdata name="parent" value=""/>
@@ -1694,7 +1770,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC342F" width="204.275" x="11744.5" y="5112.33">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC342F" width="204.275" x="11744.5" y="5112.33">
         <externaldata>
           <extdata name="id" value="25"/>
           <extdata name="parent" value=""/>
@@ -1892,7 +1969,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3486" width="204.275" x="16014.9" y="13559.2">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3486" width="204.275" x="16014.9" y="13559.2">
         <externaldata>
           <extdata name="id" value="26"/>
           <extdata name="parent" value=""/>
@@ -2090,7 +2168,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC34DD" width="204.275" x="16014.9" y="18724.7">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC34DD" width="204.275" x="16014.9" y="18724.7">
         <externaldata>
           <extdata name="id" value="28"/>
           <extdata name="parent" value=""/>
@@ -2348,7 +2427,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3534" width="204.275" x="14663.8" y="19595.7">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3534" width="204.275" x="14663.8" y="19595.7">
         <externaldata>
           <extdata name="id" value="30"/>
           <extdata name="parent" value=""/>
@@ -2358,7 +2438,8 @@
           <extdata name="Capacity" value="0"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC358B" width="204.275" x="11768.6" y="17221.4">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC358B" width="204.275" x="11768.6" y="17221.4">
         <externaldata>
           <extdata name="id" value="32"/>
           <extdata name="parent" value=""/>
@@ -2466,7 +2547,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC35E2" width="204.275" x="11768.6" y="16618.2">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC35E2" width="204.275" x="11768.6" y="16618.2">
         <externaldata>
           <extdata name="id" value="33"/>
           <extdata name="parent" value=""/>
@@ -2514,7 +2596,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3639" width="204.275" x="13022.1" y="14331.2">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3639" width="204.275" x="13022.1" y="14331.2">
         <externaldata>
           <extdata name="id" value="34"/>
           <extdata name="parent" value=""/>
@@ -2592,7 +2675,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3690" width="204.275" x="13891.8" y="10375.5">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3690" width="204.275" x="13891.8" y="10375.5">
         <externaldata>
           <extdata name="id" value="36"/>
           <extdata name="parent" value=""/>
@@ -2760,7 +2844,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC36E7" width="204.275" x="13891.8" y="15223.9">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC36E7" width="204.275" x="13891.8" y="15223.9">
         <externaldata>
           <extdata name="id" value="37"/>
           <extdata name="parent" value=""/>
@@ -2958,7 +3043,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC373E" width="204.275" x="18138.1" y="16990.9">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC373E" width="204.275" x="18138.1" y="16990.9">
         <externaldata>
           <extdata name="id" value="38"/>
           <extdata name="parent" value=""/>
@@ -3096,7 +3182,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3795" width="204.275" x="18138.1" y="17594">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3795" width="204.275" x="18138.1" y="17594.0">
         <externaldata>
           <extdata name="id" value="39"/>
           <extdata name="parent" value=""/>
@@ -3144,7 +3231,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC37EC" width="204.275" x="16618.1" y="19595.7">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC37EC" width="204.275" x="16618.1" y="19595.7">
         <externaldata>
           <extdata name="id" value="40"/>
           <extdata name="parent" value=""/>
@@ -3252,7 +3340,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3843" width="204.275" x="21877.8" y="8634.86">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3843" width="204.275" x="21877.8" y="8634.86">
         <externaldata>
           <extdata name="id" value="41"/>
           <extdata name="parent" value=""/>
@@ -3450,7 +3539,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC389A" width="204.275" x="18017.5" y="8634.86">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC389A" width="204.275" x="18017.5" y="8634.86">
         <externaldata>
           <extdata name="id" value="42"/>
           <extdata name="parent" value=""/>
@@ -3648,7 +3738,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC38F1" width="204.275" x="17607.3" y="4241.35">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC38F1" width="204.275" x="17607.3" y="4241.35">
         <externaldata>
           <extdata name="id" value="6"/>
           <extdata name="parent" value=""/>
@@ -3657,7 +3748,8 @@
           <extdata name="Controller" value="91"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3948" width="204.275" x="21467.6" y="4241.35">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3948" width="204.275" x="21467.6" y="4241.35">
         <externaldata>
           <extdata name="id" value="10"/>
           <extdata name="parent" value=""/>
@@ -3666,7 +3758,8 @@
           <extdata name="Controller" value="91"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC399F" width="204.275" x="16425.1" y="9505.84">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC399F" width="204.275" x="16425.1" y="9505.84">
         <externaldata>
           <extdata name="id" value="18"/>
           <extdata name="parent" value=""/>
@@ -3675,7 +3768,8 @@
           <extdata name="Controller" value="91"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC39F6" width="204.275" x="12154.6" y="9505.84">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC39F6" width="204.275" x="12154.6" y="9505.84">
         <externaldata>
           <extdata name="id" value="22"/>
           <extdata name="parent" value=""/>
@@ -3684,7 +3778,8 @@
           <extdata name="Controller" value="91"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3A4D" width="204.275" x="16014.9" y="13921.1">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3A4D" width="204.275" x="16014.9" y="13921.1">
         <externaldata>
           <extdata name="id" value="27"/>
           <extdata name="parent" value=""/>
@@ -3693,7 +3788,8 @@
           <extdata name="Controller" value="91"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3AA4" width="204.275" x="14301.9" y="19595.7">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3AA4" width="204.275" x="14301.9" y="19595.7">
         <externaldata>
           <extdata name="id" value="31"/>
           <extdata name="parent" value=""/>
@@ -3702,7 +3798,8 @@
           <extdata name="Controller" value="91"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3AFB" width="204.275" x="12516.5" y="4241.35">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3AFB" width="204.275" x="12516.5" y="4241.35">
         <externaldata>
           <extdata name="id" value="2"/>
           <extdata name="parent" value=""/>
@@ -3711,7 +3808,8 @@
           <extdata name="Controller" value="91"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3B52" width="204.275" x="21105.7" y="9505.84">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3B52" width="204.275" x="21105.7" y="9505.84">
         <externaldata>
           <extdata name="id" value="14"/>
           <extdata name="parent" value=""/>
@@ -3720,7 +3818,8 @@
           <extdata name="Controller" value="91"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3BA9" width="204.275" x="17245.4" y="9505.84">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3BA9" width="204.275" x="17245.4" y="9505.84">
         <externaldata>
           <extdata name="id" value="16"/>
           <extdata name="parent" value=""/>
@@ -3729,7 +3828,8 @@
           <extdata name="Controller" value="91"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3C00" width="204.275" x="13119.7" y="9505.84">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3C00" width="204.275" x="13119.7" y="9505.84">
         <externaldata>
           <extdata name="id" value="20"/>
           <extdata name="parent" value=""/>
@@ -3738,7 +3838,8 @@
           <extdata name="Controller" value="91"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3C57" width="204.275" x="15242.9" y="19595.7">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3C57" width="204.275" x="15242.9" y="19595.7">
         <externaldata>
           <extdata name="id" value="29"/>
           <extdata name="parent" value=""/>
@@ -3747,7 +3848,8 @@
           <extdata name="Controller" value="91"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3CAE" width="204.275" x="13891.8" y="13559.2">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3CAE" width="204.275" x="13891.8" y="13559.2">
         <externaldata>
           <extdata name="id" value="35"/>
           <extdata name="parent" value=""/>
@@ -3756,7 +3858,8 @@
           <extdata name="Controller" value="91"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3D05" width="204.275" x="23880.3" y="4241.35">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3D05" width="204.275" x="23880.3" y="4241.35">
         <externaldata>
           <extdata name="id" value="52"/>
           <extdata name="parent" value=""/>
@@ -3766,7 +3869,8 @@
           <extdata name="Out" value="11"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3D58" width="204.275" x="23880.3" y="9505.84">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3D58" width="204.275" x="23880.3" y="9505.84">
         <externaldata>
           <extdata name="id" value="54"/>
           <extdata name="parent" value=""/>
@@ -3776,7 +3880,8 @@
           <extdata name="Out" value="13"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3DAB" width="204.275" x="11744.5" y="9505.84">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3DAB" width="204.275" x="11744.5" y="9505.84">
         <externaldata>
           <extdata name="id" value="67"/>
           <extdata name="parent" value=""/>
@@ -3786,7 +3891,8 @@
           <extdata name="Out" value="25"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3DFE" width="204.275" x="11744.5" y="4241.35">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3DFE" width="204.275" x="11744.5" y="4241.35">
         <externaldata>
           <extdata name="id" value="68"/>
           <extdata name="parent" value=""/>
@@ -3796,7 +3902,8 @@
           <extdata name="Out" value="2"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3E51" width="204.275" x="16014.9" y="9505.84">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3E51" width="204.275" x="16014.9" y="9505.84">
         <externaldata>
           <extdata name="id" value="69"/>
           <extdata name="parent" value=""/>
@@ -3806,7 +3913,8 @@
           <extdata name="Out" value="26"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3EA4" width="204.275" x="16014.9" y="19595.7">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3EA4" width="204.275" x="16014.9" y="19595.7">
         <externaldata>
           <extdata name="id" value="72"/>
           <extdata name="parent" value=""/>
@@ -3816,7 +3924,8 @@
           <extdata name="Out" value="29"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3EF7" width="204.275" x="11768.6" y="19595.7">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3EF7" width="204.275" x="11768.6" y="19595.7">
         <externaldata>
           <extdata name="id" value="75"/>
           <extdata name="parent" value=""/>
@@ -3826,7 +3935,8 @@
           <extdata name="Out" value="32"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3F4A" width="204.275" x="11768.6" y="14331.2">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3F4A" width="204.275" x="11768.6" y="14331.2">
         <externaldata>
           <extdata name="id" value="77"/>
           <extdata name="parent" value=""/>
@@ -3836,7 +3946,8 @@
           <extdata name="Out" value="34"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3F9D" width="204.275" x="13891.8" y="14331.2">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3F9D" width="204.275" x="13891.8" y="14331.2">
         <externaldata>
           <extdata name="id" value="78"/>
           <extdata name="parent" value=""/>
@@ -3846,7 +3957,8 @@
           <extdata name="Out" value="35"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC3FF0" width="204.275" x="13891.8" y="9505.84">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC3FF0" width="204.275" x="13891.8" y="9505.84">
         <externaldata>
           <extdata name="id" value="80"/>
           <extdata name="parent" value=""/>
@@ -3856,7 +3968,8 @@
           <extdata name="Out" value="20"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC4043" width="204.275" x="13891.8" y="19595.7">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC4043" width="204.275" x="13891.8" y="19595.7">
         <externaldata>
           <extdata name="id" value="81"/>
           <extdata name="parent" value=""/>
@@ -3866,7 +3979,8 @@
           <extdata name="Out" value="37"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC4096" width="204.275" x="18138.1" y="13921.1">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC4096" width="204.275" x="18138.1" y="13921.1">
         <externaldata>
           <extdata name="id" value="83"/>
           <extdata name="parent" value=""/>
@@ -3876,7 +3990,8 @@
           <extdata name="Out" value="38"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC40E9" width="204.275" x="18138.1" y="19595.7">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC40E9" width="204.275" x="18138.1" y="19595.7">
         <externaldata>
           <extdata name="id" value="85"/>
           <extdata name="parent" value=""/>
@@ -3886,7 +4001,8 @@
           <extdata name="Out" value="40"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC413C" width="204.275" x="21877.8" y="4241.35">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC413C" width="204.275" x="21877.8" y="4241.35">
         <externaldata>
           <extdata name="id" value="87"/>
           <extdata name="parent" value=""/>
@@ -3896,7 +4012,8 @@
           <extdata name="Out" value="41"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC418F" width="204.275" x="21877.8" y="9505.84">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC418F" width="204.275" x="21877.8" y="9505.84">
         <externaldata>
           <extdata name="id" value="88"/>
           <extdata name="parent" value=""/>
@@ -3906,7 +4023,8 @@
           <extdata name="Out" value="14"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC41E2" width="204.275" x="18017.5" y="4241.35">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC41E2" width="204.275" x="18017.5" y="4241.35">
         <externaldata>
           <extdata name="id" value="89"/>
           <extdata name="parent" value=""/>
@@ -3916,7 +4034,8 @@
           <extdata name="Out" value="42"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC4235" width="204.275" x="18017.5" y="9505.84">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC4235" width="204.275" x="18017.5" y="9505.84">
         <externaldata>
           <extdata name="id" value="90"/>
           <extdata name="parent" value=""/>
@@ -3926,7 +4045,8 @@
           <extdata name="Out" value="16"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC4288" width="204.275" x="10176.2" y="9505.84">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC4288" width="204.275" x="10176.2" y="9505.84">
         <externaldata>
           <extdata name="id" value="64"/>
           <extdata name="parent" value=""/>
@@ -3936,7 +4056,8 @@
           <extdata name="Out" value="23"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275" id="_52A57AB610EC42DB" width="204.275" x="10176.2" y="4241.35">
+      <viobject ctrltype="StructureComponentControl" grtype="Ellipse" height="204.275"
+          id="_52A57AB610EC42DB" width="204.275" x="10176.2" y="4241.35">
         <externaldata>
           <extdata name="id" value="66"/>
           <extdata name="parent" value=""/>
@@ -3946,7 +4067,8 @@
           <extdata name="Out" value="1"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC4333" width="1375.23" x="11243.4" y="4343.49">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC4333" width="1375.23" x="11243.4" y="4343.49">
         <externaldata>
           <extdata name="id" value="43"/>
           <extdata name="parent" value=""/>
@@ -3960,7 +4082,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC439C" width="1330.05" x="12618.7" y="4343.49">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC439C" width="1330.05" x="12618.7" y="4343.49">
         <externaldata>
           <extdata name="id" value="44"/>
           <extdata name="parent" value=""/>
@@ -3974,7 +4097,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC4403" width="603.173" x="13948.7" y="4343.49">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC4403" width="603.173" x="13948.7" y="4343.49">
         <externaldata>
           <extdata name="id" value="45"/>
           <extdata name="parent" value=""/>
@@ -3988,7 +4112,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC446A" width="2795.66" x="14551.9" y="4343.49">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC446A" width="2795.66" x="14551.9" y="4343.49">
         <externaldata>
           <extdata name="id" value="46"/>
           <extdata name="parent" value=""/>
@@ -4002,7 +4127,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC44D1" width="361.904" x="17347.5" y="4343.49">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC44D1" width="361.904" x="17347.5" y="4343.49">
         <externaldata>
           <extdata name="id" value="47"/>
           <extdata name="parent" value=""/>
@@ -4016,7 +4142,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC4538" width="2024.1" x="17709.4" y="4343.49">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC4538" width="2024.1" x="17709.4" y="4343.49">
         <externaldata>
           <extdata name="id" value="48"/>
           <extdata name="parent" value=""/>
@@ -4030,7 +4157,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC459F" width="603.173" x="19733.5" y="4343.49">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC459F" width="603.173" x="19733.5" y="4343.49">
         <externaldata>
           <extdata name="id" value="49"/>
           <extdata name="parent" value=""/>
@@ -4044,7 +4172,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC4606" width="871.127" x="20336.7" y="4343.49">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC4606" width="871.127" x="20336.7" y="4343.49">
         <externaldata>
           <extdata name="id" value="50"/>
           <extdata name="parent" value=""/>
@@ -4058,7 +4187,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC466D" width="361.904" x="21207.8" y="4343.49">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC466D" width="361.904" x="21207.8" y="4343.49">
         <externaldata>
           <extdata name="id" value="51"/>
           <extdata name="parent" value=""/>
@@ -4072,7 +4202,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2467.41" id="_52A57AB610EC46D4" width="51.0687" x="23982.4" y="4343.49">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2467.41"
+          id="_52A57AB610EC46D4" width="51.0687" x="23982.4" y="4343.49">
         <externaldata>
           <extdata name="id" value="52"/>
           <extdata name="parent" value=""/>
@@ -4086,7 +4217,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="603.173" id="_52A57AB610EC473D" width="51.0687" x="23982.4" y="6810.9">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="603.173"
+          id="_52A57AB610EC473D" width="51.0687" x="23982.4" y="6810.9">
         <externaldata>
           <extdata name="id" value="53"/>
           <extdata name="parent" value=""/>
@@ -4100,7 +4232,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC47A4" width="1399.36" x="22583.1" y="9607.98">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC47A4" width="1399.36" x="22583.1" y="9607.98">
         <externaldata>
           <extdata name="id" value="54"/>
           <extdata name="parent" value=""/>
@@ -4114,7 +4247,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC480D" width="1375.23" x="21207.8" y="9607.98">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC480D" width="1375.23" x="21207.8" y="9607.98">
         <externaldata>
           <extdata name="id" value="55"/>
           <extdata name="parent" value=""/>
@@ -4128,7 +4262,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC4874" width="2485.07" x="18722.8" y="9607.98">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC4874" width="2485.07" x="18722.8" y="9607.98">
         <externaldata>
           <extdata name="id" value="56"/>
           <extdata name="parent" value=""/>
@@ -4142,7 +4277,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC48DB" width="1375.23" x="17347.5" y="9607.98">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC48DB" width="1375.23" x="17347.5" y="9607.98">
         <externaldata>
           <extdata name="id" value="57"/>
           <extdata name="parent" value=""/>
@@ -4156,7 +4292,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC4942" width="458.412" x="16889.1" y="9607.98">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC4942" width="458.412" x="16889.1" y="9607.98">
         <externaldata>
           <extdata name="id" value="58"/>
           <extdata name="parent" value=""/>
@@ -4170,7 +4307,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC49A9" width="361.904" x="16527.2" y="9607.98">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC49A9" width="361.904" x="16527.2" y="9607.98">
         <externaldata>
           <extdata name="id" value="59"/>
           <extdata name="parent" value=""/>
@@ -4184,7 +4322,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC4A10" width="1640.63" x="14886.6" y="9607.98">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC4A10" width="1640.63" x="14886.6" y="9607.98">
         <externaldata>
           <extdata name="id" value="60"/>
           <extdata name="parent" value=""/>
@@ -4198,7 +4337,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC4A77" width="1664.76" x="13221.8" y="9607.98">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC4A77" width="1664.76" x="13221.8" y="9607.98">
         <externaldata>
           <extdata name="id" value="61"/>
           <extdata name="parent" value=""/>
@@ -4212,7 +4352,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC4ADE" width="603.173" x="12618.7" y="9607.98">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC4ADE" width="603.173" x="12618.7" y="9607.98">
         <externaldata>
           <extdata name="id" value="62"/>
           <extdata name="parent" value=""/>
@@ -4226,7 +4367,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC4B45" width="361.904" x="12256.8" y="9607.98">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC4B45" width="361.904" x="12256.8" y="9607.98">
         <externaldata>
           <extdata name="id" value="63"/>
           <extdata name="parent" value=""/>
@@ -4240,7 +4382,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2618.09" id="_52A57AB610EC4BAC" width="51.0687" x="10278.3" y="6989.9">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2618.09"
+          id="_52A57AB610EC4BAC" width="51.0687" x="10278.3" y="6989.9">
         <externaldata>
           <extdata name="id" value="64"/>
           <extdata name="parent" value=""/>
@@ -4254,7 +4397,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="603.173" id="_52A57AB610EC4C15" width="51.0687" x="10278.3" y="6386.72">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="603.173"
+          id="_52A57AB610EC4C15" width="51.0687" x="10278.3" y="6386.72">
         <externaldata>
           <extdata name="id" value="65"/>
           <extdata name="parent" value=""/>
@@ -4268,7 +4412,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC4C7C" width="965.077" x="10278.3" y="4343.49">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC4C7C" width="965.077" x="10278.3" y="4343.49">
         <externaldata>
           <extdata name="id" value="66"/>
           <extdata name="parent" value=""/>
@@ -4282,7 +4427,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="4393.51" id="_52A57AB610EC4CE3" width="51.0687" x="11846.6" y="5214.47">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="4393.51"
+          id="_52A57AB610EC4CE3" width="51.0687" x="11846.6" y="5214.47">
         <externaldata>
           <extdata name="id" value="67"/>
           <extdata name="parent" value=""/>
@@ -4296,7 +4442,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC4D4C" width="772.062" x="11846.6" y="4343.49">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC4D4C" width="772.062" x="11846.6" y="4343.49">
         <externaldata>
           <extdata name="id" value="68"/>
           <extdata name="parent" value=""/>
@@ -4310,7 +4457,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="4053.32" id="_52A57AB610EC4DB1" width="51.0687" x="16117.1" y="9607.98">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="4053.32"
+          id="_52A57AB610EC4DB1" width="51.0687" x="16117.1" y="9607.98">
         <externaldata>
           <extdata name="id" value="69"/>
           <extdata name="parent" value=""/>
@@ -4324,7 +4472,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="361.904" id="_52A57AB610EC4E1A" width="51.0687" x="16117.1" y="13661.3">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="361.904"
+          id="_52A57AB610EC4E1A" width="51.0687" x="16117.1" y="13661.3">
         <externaldata>
           <extdata name="id" value="70"/>
           <extdata name="parent" value=""/>
@@ -4338,7 +4487,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="4803.67" id="_52A57AB610EC4E81" width="51.0687" x="16117.1" y="14023.2">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="4803.67"
+          id="_52A57AB610EC4E81" width="51.0687" x="16117.1" y="14023.2">
         <externaldata>
           <extdata name="id" value="71"/>
           <extdata name="parent" value=""/>
@@ -4352,7 +4502,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC4EE8" width="772.062" x="15345" y="19697.9">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC4EE8" width="772.062" x="15345.0" y="19697.9">
         <externaldata>
           <extdata name="id" value="72"/>
           <extdata name="parent" value=""/>
@@ -4366,7 +4517,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC4F51" width="579.046" x="14766" y="19697.9">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC4F51" width="579.046" x="14766.0" y="19697.9">
         <externaldata>
           <extdata name="id" value="73"/>
           <extdata name="parent" value=""/>
@@ -4380,7 +4532,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC4FB8" width="361.904" x="14404.1" y="19697.9">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC4FB8" width="361.904" x="14404.1" y="19697.9">
         <externaldata>
           <extdata name="id" value="74"/>
           <extdata name="parent" value=""/>
@@ -4394,7 +4547,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2374.33" id="_52A57AB610EC501F" width="51.0687" x="11870.7" y="17323.5">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2374.33"
+          id="_52A57AB610EC501F" width="51.0687" x="11870.7" y="17323.5">
         <externaldata>
           <extdata name="id" value="75"/>
           <extdata name="parent" value=""/>
@@ -4408,7 +4562,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="603.173" id="_52A57AB610EC5088" width="51.0687" x="11870.7" y="16720.4">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="603.173"
+          id="_52A57AB610EC5088" width="51.0687" x="11870.7" y="16720.4">
         <externaldata>
           <extdata name="id" value="76"/>
           <extdata name="parent" value=""/>
@@ -4422,7 +4577,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC50EF" width="1253.54" x="11870.7" y="14433.4">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC50EF" width="1253.54" x="11870.7" y="14433.4">
         <externaldata>
           <extdata name="id" value="77"/>
           <extdata name="parent" value=""/>
@@ -4436,7 +4592,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="772.062" id="_52A57AB610EC5158" width="51.0687" x="13993.9" y="13661.3">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="772.062"
+          id="_52A57AB610EC5158" width="51.0687" x="13993.9" y="13661.3">
         <externaldata>
           <extdata name="id" value="78"/>
           <extdata name="parent" value=""/>
@@ -4450,7 +4607,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="3183.69" id="_52A57AB610EC51C1" width="51.0687" x="13993.9" y="10477.6">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="3183.69"
+          id="_52A57AB610EC51C1" width="51.0687" x="13993.9" y="10477.6">
         <externaldata>
           <extdata name="id" value="79"/>
           <extdata name="parent" value=""/>
@@ -4464,7 +4622,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC5228" width="772.062" x="13221.8" y="9607.98">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC5228" width="772.062" x="13221.8" y="9607.98">
         <externaldata>
           <extdata name="id" value="80"/>
           <extdata name="parent" value=""/>
@@ -4478,7 +4637,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="4371.8" id="_52A57AB610EC528D" width="51.0687" x="13993.9" y="15326.1">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="4371.8"
+          id="_52A57AB610EC528D" width="51.0687" x="13993.9" y="15326.1">
         <externaldata>
           <extdata name="id" value="81"/>
           <extdata name="parent" value=""/>
@@ -4492,7 +4652,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="1664.76" id="_52A57AB610EC52F6" width="51.0687" x="13993.9" y="13661.3">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="1664.76"
+          id="_52A57AB610EC52F6" width="51.0687" x="13993.9" y="13661.3">
         <externaldata>
           <extdata name="id" value="82"/>
           <extdata name="parent" value=""/>
@@ -4506,7 +4667,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="3069.79" id="_52A57AB610EC5359" width="51.0687" x="18240.2" y="14023.2">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="3069.79"
+          id="_52A57AB610EC5359" width="51.0687" x="18240.2" y="14023.2">
         <externaldata>
           <extdata name="id" value="83"/>
           <extdata name="parent" value=""/>
@@ -4520,7 +4682,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="603.173" id="_52A57AB610EC53C2" width="51.0687" x="18240.2" y="17093">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="603.173"
+          id="_52A57AB610EC53C2" width="51.0687" x="18240.2" y="17093.0">
         <externaldata>
           <extdata name="id" value="84"/>
           <extdata name="parent" value=""/>
@@ -4534,7 +4697,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC5429" width="1520" x="16720.2" y="19697.9">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC5429" width="1520.0" x="16720.2" y="19697.9">
         <externaldata>
           <extdata name="id" value="85"/>
           <extdata name="parent" value=""/>
@@ -4548,7 +4712,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC5492" width="1375.23" x="15345" y="19697.9">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC5492" width="1375.23" x="15345.0" y="19697.9">
         <externaldata>
           <extdata name="id" value="86"/>
           <extdata name="parent" value=""/>
@@ -4562,7 +4727,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="4393.51" id="_52A57AB610EC54F5" width="51.0687" x="21979.9" y="4343.49">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="4393.51"
+          id="_52A57AB610EC54F5" width="51.0687" x="21979.9" y="4343.49">
         <externaldata>
           <extdata name="id" value="87"/>
           <extdata name="parent" value=""/>
@@ -4576,7 +4742,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC555E" width="772.062" x="21207.8" y="9607.98">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC555E" width="772.062" x="21207.8" y="9607.98">
         <externaldata>
           <extdata name="id" value="88"/>
           <extdata name="parent" value=""/>
@@ -4590,7 +4757,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="4393.51" id="_52A57AB610EC55C3" width="51.0687" x="18119.6" y="4343.49">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="4393.51"
+          id="_52A57AB610EC55C3" width="51.0687" x="18119.6" y="4343.49">
         <externaldata>
           <extdata name="id" value="89"/>
           <extdata name="parent" value=""/>
@@ -4604,7 +4772,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC562C" width="772.062" x="17347.5" y="9607.98">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC562C" width="772.062" x="17347.5" y="9607.98">
         <externaldata>
           <extdata name="id" value="90"/>
           <extdata name="parent" value=""/>
@@ -4618,7 +4787,8 @@
           </extdata>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC5691" width="2412.69" x="21569.8" y="4343.49">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC5691" width="2412.69" x="21569.8" y="4343.49">
         <externaldata>
           <extdata name="id" value="52"/>
           <extdata name="parent" value=""/>
@@ -4628,7 +4798,8 @@
           <extdata name="Out" value="11"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2193.91" id="_52A57AB610EC56EC" width="51.0687" x="23982.4" y="7414.07">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2193.91"
+          id="_52A57AB610EC56EC" width="51.0687" x="23982.4" y="7414.07">
         <externaldata>
           <extdata name="id" value="54"/>
           <extdata name="parent" value=""/>
@@ -4638,7 +4809,8 @@
           <extdata name="Out" value="13"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC5747" width="410.158" x="11846.6" y="9607.98">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC5747" width="410.158" x="11846.6" y="9607.98">
         <externaldata>
           <extdata name="id" value="67"/>
           <extdata name="parent" value=""/>
@@ -4648,7 +4820,8 @@
           <extdata name="Out" value="25"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="870.982" id="_52A57AB610EC57A2" width="51.0687" x="11846.6" y="4343.49">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="870.982"
+          id="_52A57AB610EC57A2" width="51.0687" x="11846.6" y="4343.49">
         <externaldata>
           <extdata name="id" value="68"/>
           <extdata name="parent" value=""/>
@@ -4658,7 +4831,8 @@
           <extdata name="Out" value="2"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC57FD" width="410.158" x="16117.1" y="9607.98">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC57FD" width="410.158" x="16117.1" y="9607.98">
         <externaldata>
           <extdata name="id" value="69"/>
           <extdata name="parent" value=""/>
@@ -4668,7 +4842,8 @@
           <extdata name="Out" value="26"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="870.982" id="_52A57AB610EC5858" width="51.0687" x="16117.1" y="18826.9">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="870.982"
+          id="_52A57AB610EC5858" width="51.0687" x="16117.1" y="18826.9">
         <externaldata>
           <extdata name="id" value="72"/>
           <extdata name="parent" value=""/>
@@ -4678,7 +4853,8 @@
           <extdata name="Out" value="29"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC58B3" width="2533.33" x="11870.7" y="19697.9">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC58B3" width="2533.33" x="11870.7" y="19697.9">
         <externaldata>
           <extdata name="id" value="75"/>
           <extdata name="parent" value=""/>
@@ -4688,7 +4864,8 @@
           <extdata name="Out" value="32"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2286.99" id="_52A57AB610EC590E" width="51.0687" x="11870.7" y="14433.4">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2286.99"
+          id="_52A57AB610EC590E" width="51.0687" x="11870.7" y="14433.4">
         <externaldata>
           <extdata name="id" value="77"/>
           <extdata name="parent" value=""/>
@@ -4698,7 +4875,8 @@
           <extdata name="Out" value="34"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC5969" width="869.631" x="13124.3" y="14433.4">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC5969" width="869.631" x="13124.3" y="14433.4">
         <externaldata>
           <extdata name="id" value="78"/>
           <extdata name="parent" value=""/>
@@ -4708,7 +4886,8 @@
           <extdata name="Out" value="35"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="869.631" id="_52A57AB610EC59C4" width="51.0687" x="13993.9" y="9607.98">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="869.631"
+          id="_52A57AB610EC59C4" width="51.0687" x="13993.9" y="9607.98">
         <externaldata>
           <extdata name="id" value="80"/>
           <extdata name="parent" value=""/>
@@ -4718,7 +4897,8 @@
           <extdata name="Out" value="20"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC5A1F" width="410.158" x="13993.9" y="19697.9">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC5A1F" width="410.158" x="13993.9" y="19697.9">
         <externaldata>
           <extdata name="id" value="81"/>
           <extdata name="parent" value=""/>
@@ -4728,7 +4908,8 @@
           <extdata name="Out" value="37"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC5A7A" width="2123.17" x="16117.1" y="14023.2">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC5A7A" width="2123.17" x="16117.1" y="14023.2">
         <externaldata>
           <extdata name="id" value="83"/>
           <extdata name="parent" value=""/>
@@ -4738,7 +4919,8 @@
           <extdata name="Out" value="38"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2001.69" id="_52A57AB610EC5AD5" width="51.0687" x="18240.2" y="17696.2">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2001.69"
+          id="_52A57AB610EC5AD5" width="51.0687" x="18240.2" y="17696.2">
         <externaldata>
           <extdata name="id" value="85"/>
           <extdata name="parent" value=""/>
@@ -4748,7 +4930,8 @@
           <extdata name="Out" value="40"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC5B30" width="410.158" x="21569.8" y="4343.49">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC5B30" width="410.158" x="21569.8" y="4343.49">
         <externaldata>
           <extdata name="id" value="87"/>
           <extdata name="parent" value=""/>
@@ -4758,7 +4941,8 @@
           <extdata name="Out" value="41"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="870.982" id="_52A57AB610EC5B8B" width="51.0687" x="21979.9" y="8737">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="870.982"
+          id="_52A57AB610EC5B8B" width="51.0687" x="21979.9" y="8737.0">
         <externaldata>
           <extdata name="id" value="88"/>
           <extdata name="parent" value=""/>
@@ -4768,7 +4952,8 @@
           <extdata name="Out" value="14"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC5BE6" width="410.158" x="17709.4" y="4343.49">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC5BE6" width="410.158" x="17709.4" y="4343.49">
         <externaldata>
           <extdata name="id" value="89"/>
           <extdata name="parent" value=""/>
@@ -4778,7 +4963,8 @@
           <extdata name="Out" value="42"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="870.982" id="_52A57AB610EC5C41" width="51.0687" x="18119.6" y="8737">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="870.982"
+          id="_52A57AB610EC5C41" width="51.0687" x="18119.6" y="8737.0">
         <externaldata>
           <extdata name="id" value="90"/>
           <extdata name="parent" value=""/>
@@ -4788,7 +4974,8 @@
           <extdata name="Out" value="16"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687" id="_52A57AB610EC5C9C" width="1978.41" x="10278.3" y="9607.98">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="51.0687"
+          id="_52A57AB610EC5C9C" width="1978.41" x="10278.3" y="9607.98">
         <externaldata>
           <extdata name="id" value="64"/>
           <extdata name="parent" value=""/>
@@ -4798,7 +4985,8 @@
           <extdata name="Out" value="23"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2043.24" id="_52A57AB610EC5CF7" width="51.0687" x="10278.3" y="4343.49">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2043.24"
+          id="_52A57AB610EC5CF7" width="51.0687" x="10278.3" y="4343.49">
         <externaldata>
           <extdata name="id" value="66"/>
           <extdata name="parent" value=""/>
@@ -4808,7 +4996,8 @@
           <extdata name="Out" value="1"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2979.68" label="StockDouble" send="StockDouble" width="5693.96" x="11922" y="1400">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2979.68"
+          label="StockDouble" send="StockDouble" width="5693.96" x="11922.0" y="1400.0">
         <externaldata>
           <extdata name="ClassPath" value="Station.FESTO.Stock"/>
           <extdata name="PositionId" value="002"/>
@@ -4816,7 +5005,9 @@
           <extdata name="name" value="StockDouble"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="8435.14" label="MillAndTurn105" send="MillAndTurn105" width="4476.92" x="5801.45" y="2575.83">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="8435.14"
+          label="MillAndTurn105" send="MillAndTurn105" width="4476.92" x="5801.45"
+          y="2575.83">
         <externaldata>
           <extdata name="ClassPath" value="Station.FESTO.MillAndTurn"/>
           <extdata name="PositionId" value="012"/>
@@ -4824,7 +5015,8 @@
           <extdata name="name" value="MillAndTurn105"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2748.95" label="Mill55" send="Mill55" width="4318.84" x="7551.91" y="14989">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2748.95"
+          label="Mill55" send="Mill55" width="4318.84" x="7551.91" y="14989.0">
         <externaldata>
           <extdata name="ClassPath" value="Station.FESTO.Mill"/>
           <extdata name="PositionId" value="010"/>
@@ -4832,7 +5024,8 @@
           <extdata name="name" value="Mill55"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="4948.43" label="Turn55" send="Turn55" width="4124.98" x="23982.4" y="4197.01">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="4948.43"
+          label="Turn55" send="Turn55" width="4124.98" x="23982.4" y="4197.01">
         <externaldata>
           <extdata name="ClassPath" value="Station.FESTO.Turn"/>
           <extdata name="PositionId" value="006"/>
@@ -4840,7 +5033,9 @@
           <extdata name="name" value="Turn55"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2653.96" label="AssemblyRH5A55" send="AssemblyRH5A55" width="2098.97" x="18240.2" y="16357.1">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2653.96"
+          label="AssemblyRH5A55" send="AssemblyRH5A55" width="2098.97" x="18240.2"
+          y="16357.1">
         <externaldata>
           <extdata name="ClassPath" value="Station.FESTO.Assembly"/>
           <extdata name="PositionId" value="008"/>
@@ -4848,7 +5043,8 @@
           <extdata name="name" value="AssemblyRH5A55"/>
         </externaldata>
       </viobject>
-      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="3032.37" label="Quality" send="Quality" width="1800.16" x="19557.4" y="1410.4">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="3032.37"
+          label="Quality" send="Quality" width="1800.16" x="19557.4" y="1410.4">
         <externaldata>
           <extdata name="ClassPath" value="Station.FESTO.Quality"/>
           <extdata name="PositionId" value="004"/>
@@ -4859,5 +5055,4 @@
     </layer>
     <layer name="Annotation" visible="true"/>
   </visualization>
-
 </scxml>

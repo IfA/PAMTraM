@@ -40,6 +40,8 @@ import pamtram.mapping.ExpressionVariable;
 import pamtram.mapping.SimpleAttributeMapping;
 import pamtram.mapping.SimpleAttributeMatcher;
 import pamtram.mapping.SimpleModelConnectionHint;
+import pamtram.metamodel.MetaModelElement;
+import pamtram.presentation.actions.CutClassAndPasteAsNewSectionAction;
 import pamtram.presentation.actions.InternalToExternalExpressionVariableAction;
 import pamtram.presentation.actions.InternalToExternalSourceAttrMappingElementAction;
 import pamtram.presentation.actions.InternalToExternalSourceAttrMatcherElementAction;
@@ -363,6 +365,10 @@ public class PamtramActionBarContributor
 			actions.add(new InternalToExternalSourceAttrMatcherElementAction((ComplexAttributeMatcherSourceElement) descriptor));
 		} else if(descriptor instanceof ExpressionVariable){
 			actions.add(new InternalToExternalExpressionVariableAction((ExpressionVariable) descriptor));
+		} else if(descriptor instanceof pamtram.metamodel.Class){
+			if(!((MetaModelElement) descriptor).getContainingSection().equals(descriptor)){
+				actions.add(new CutClassAndPasteAsNewSectionAction((pamtram.metamodel.Class) descriptor));				
+			}
 		}
 		return actions;
 	}

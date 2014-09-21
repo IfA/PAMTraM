@@ -1,84 +1,173 @@
-     [echo] Logging to /home/sascha/Dokumente/Studium/ss14/da/workspace/de.mfreund.pamtram.casestudies.autoprobe/build.log
-
-cleanup:
-   [delete] Deleting directory /home/sascha/Dokumente/Studium/ss14/da/workspace/de.mfreund.pamtram.casestudies.autoprobe/out
-    [mkdir] Created dir: /home/sascha/Dokumente/Studium/ss14/da/workspace/de.mfreund.pamtram.casestudies.autoprobe/out
-
-load-models:
-
-convertStgmlXml:
-     [echo] Converting STGML from XML format to XMI format
-[epsilon.eol - xml2xmi.eol] EXCEPTION: java.io.FileNotFoundException: /home/sascha/Dokumente/Studium/ss14/da/workspace/de.mfreund.gentrans.transformation/template/xml2xmi.eol (Datei oder Verzeichnis nicht gefunden)
-	at java.io.FileInputStream.open(Native Method)
-	at java.io.FileInputStream.<init>(FileInputStream.java:146)
-	at java.io.FileInputStream.<init>(FileInputStream.java:101)
-	at sun.net.www.protocol.file.FileURLConnection.connect(FileURLConnection.java:90)
-	at sun.net.www.protocol.file.FileURLConnection.getInputStream(FileURLConnection.java:188)
-	at java.net.URL.openStream(URL.java:1037)
-	at org.eclipse.epsilon.eol.AbstractModule.parse(AbstractModule.java:91)
-	at org.eclipse.epsilon.eol.AbstractModule.parse(AbstractModule.java:80)
-	at org.eclipse.epsilon.workflow.tasks.ExecutableModuleTask.parseModule(ExecutableModuleTask.java:218)
-	at org.eclipse.epsilon.workflow.tasks.ExecutableModuleTask.executeImpl(ExecutableModuleTask.java:188)
-	at org.eclipse.epsilon.workflow.tasks.EpsilonTask.execute(EpsilonTask.java:39)
-	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)
-	at sun.reflect.GeneratedMethodAccessor171.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
-	at org.apache.tools.ant.Task.perform(Task.java:348)
-	at org.apache.tools.ant.Target.execute(Target.java:392)
-	at org.apache.tools.ant.Target.performTasks(Target.java:413)
-	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1399)
-	at org.apache.tools.ant.Project.executeTarget(Project.java:1368)
-	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
-	at org.eclipse.ant.internal.core.ant.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:32)
-	at org.apache.tools.ant.Project.executeTargets(Project.java:1251)
-	at org.eclipse.ant.internal.core.ant.InternalAntRunner.run(InternalAntRunner.java:672)
-	at org.eclipse.ant.internal.core.ant.InternalAntRunner.run(InternalAntRunner.java:498)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.eclipse.ant.core.AntRunner.run(AntRunner.java:378)
-	at org.eclipse.ant.internal.launching.launchConfigurations.AntLaunchDelegate$1.run(AntLaunchDelegate.java:284)
-	at java.lang.Thread.run(Thread.java:744)
-
-BUILD FAILED
-
-/home/sascha/Dokumente/Studium/ss14/da/workspace/de.mfreund.pamtram.casestudies.autoprobe/run.xml:86: java.io.FileNotFoundException: /home/sascha/Dokumente/Studium/ss14/da/workspace/de.mfreund.gentrans.transformation/template/xml2xmi.eol (Datei oder Verzeichnis nicht gefunden)
-	at org.eclipse.epsilon.workflow.tasks.ExecutableModuleTask.executeImpl(ExecutableModuleTask.java:210)
-	at org.eclipse.epsilon.workflow.tasks.EpsilonTask.execute(EpsilonTask.java:39)
-	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)
-	at sun.reflect.GeneratedMethodAccessor171.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
-	at org.apache.tools.ant.Task.perform(Task.java:348)
-	at org.apache.tools.ant.Target.execute(Target.java:392)
-	at org.apache.tools.ant.Target.performTasks(Target.java:413)
-	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1399)
-	at org.apache.tools.ant.Project.executeTarget(Project.java:1368)
-	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
-	at org.eclipse.ant.internal.core.ant.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:32)
-	at org.apache.tools.ant.Project.executeTargets(Project.java:1251)
-	at org.eclipse.ant.internal.core.ant.InternalAntRunner.run(InternalAntRunner.java:672)
-	at org.eclipse.ant.internal.core.ant.InternalAntRunner.run(InternalAntRunner.java:498)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.eclipse.ant.core.AntRunner.run(AntRunner.java:378)
-	at org.eclipse.ant.internal.launching.launchConfigurations.AntLaunchDelegate$1.run(AntLaunchDelegate.java:284)
-	at java.lang.Thread.run(Thread.java:744)
-Caused by: java.io.FileNotFoundException: /home/sascha/Dokumente/Studium/ss14/da/workspace/de.mfreund.gentrans.transformation/template/xml2xmi.eol (Datei oder Verzeichnis nicht gefunden)
-	at java.io.FileInputStream.open(Native Method)
-	at java.io.FileInputStream.<init>(FileInputStream.java:146)
-	at java.io.FileInputStream.<init>(FileInputStream.java:101)
-	at sun.net.www.protocol.file.FileURLConnection.connect(FileURLConnection.java:90)
-	at sun.net.www.protocol.file.FileURLConnection.getInputStream(FileURLConnection.java:188)
-	at java.net.URL.openStream(URL.java:1037)
-	at org.eclipse.epsilon.eol.AbstractModule.parse(AbstractModule.java:91)
-	at org.eclipse.epsilon.eol.AbstractModule.parse(AbstractModule.java:80)
-	at org.eclipse.epsilon.workflow.tasks.ExecutableModuleTask.parseModule(ExecutableModuleTask.java:218)
-	at org.eclipse.epsilon.workflow.tasks.ExecutableModuleTask.executeImpl(ExecutableModuleTask.java:188)
-	... 23 more
+,Movisa Template, 7 ,  13347510
+,Events, 1 ,  954098
+,Events, 1 ,  966989
+,Events, 1 ,  2243680
+,Events, 1 ,  1180583
+,Events, 1 ,  1054480
+,Events, 1 ,  1148356
+,Events, 1 ,  928059
+,Events, 1 ,  681623
+,Events, 1 ,  705831
+,Events, 1 ,  1763540
+,Events, 1 ,  1061095
+,Events, 1 ,  1342527
+,Events, 1 ,  1206646
+,Events, 1 ,  624804
+,Events, 1 ,  599614
+,Events, 1 ,  986772
+,Events, 1 ,  1013120
+,Events, 1 ,  1132781
+,Events, 1 ,  673434
+,Events, 1 ,  787003
+,Events, 1 ,  597192
+,Events, 1 ,  531937
+,Events, 1 ,  528423
+,Events, 1 ,  519368
+,Events, 1 ,  766854
+,Events, 1 ,  713136
+,Events, 1 ,  681914
+,Events, 1 ,  665273
+,Events, 1 ,  695765
+,Events, 1 ,  619638
+,Events, 1 ,  521542
+,Events, 1 ,  522514
+,Events, 1 ,  577584
+,Events, 1 ,  881519
+,Events, 1 ,  2003218
+,Events, 1 ,  1040753
+,Events, 1 ,  1102967
+,Events, 1 ,  1990459
+,Events, 1 ,  883621
+,Events, 1 ,  873064
+,Events, 1 ,  860750
+,Events, 1 ,  872465
+,Events, 1 ,  943909
+,Events, 1 ,  2220347
+,Events, 1 ,  1286907
+,Events, 1 ,  1451849
+,Events, 1 ,  1674905
+,Events, 1 ,  1047698
+,Events, 1 ,  911321
+,Events, 1 ,  929315
+,Events, 1 ,  886804
+,Events, 1 ,  780682
+,Events, 1 ,  544457
+,Events, 1 ,  636964
+,Events, 1 ,  861559
+,Events, 1 ,  748642
+,Events, 1 ,  911640
+,Events, 1 ,  1143375
+,Events, 1 ,  1064475
+,States2Panels, 7 ,  3147567
+,States2Panels, 2 ,  3667518
+,States2Panels, 2 ,  2777433
+,States2Panels, 12 ,  2633124
+,States2Panels, 2 ,  1794072
+,States2Panels, 2 ,  1369619
+,States2Panels, 2 ,  1545062
+,States2Panels, 2 ,  1236580
+,States2Panels, 2 ,  2914420
+,States2Panels, 3 ,  1612592
+,States2Panels, 2 ,  2312528
+,States2Panels, 3 ,  3196522
+,States2Panels, 2 ,  2153558
+,States2Panels, 3 ,  2236099
+,States2Panels, 2 ,  2019018
+,States2Panels, 3 ,  2297812
+,States2Panels, 2 ,  2093046
+,States2Panels, 3 ,  2283708
+,States2Panels, 2 ,  1773389
+,States2Panels, 2 ,  1320768
+,States2Panels, 7 ,  3578481
+,States2Panels, 2 ,  1433538
+,States2Panels, 2 ,  1206586
+,States2Panels, 2 ,  4012511
+,States2Panels, 3 ,  2457316
+,States2Panels, 2 ,  3148087
+,States2Panels, 3 ,  5028078
+,States2Panels, 2 ,  5106584
+,States2Panels, 3 ,  1486027
+,States2Panels, 2 ,  1093610
+,States2Panels, 7 ,  2137193
+,States2Panels, 2 ,  1032895
+,States2Panels, 2 ,  1437150
+,States2Panels, 2 ,  1250456
+,States2Panels, 3 ,  1627679
+,States2Panels, 2 ,  1277574
+,States2Panels, 3 ,  1230447
+,States2Panels, 2 ,  1121839
+,States2Panels, 3 ,  1258761
+,States2Panels, 2 ,  1389449
+,States2Panels, 16 ,  1947206
+,States2Panels, 2 ,  1141921
+,States2Panels, 2 ,  1101894
+,States2Panels, 2 ,  1097189
+,States2Panels, 2 ,  1066659
+,States2Panels, 2 ,  1529805
+,States2Panels, 2 ,  1355216
+,States2Panels, 2 ,  1121243
+,States2Panels, 2 ,  1030683
+,States2Panels, 2 ,  1014655
+,States2Panels, 2 ,  971395
+,States2Panels, 2 ,  1022409
+,States2Panels, 2 ,  1242637
+,States2Panels, 2 ,  1239724
+,States2Panels, 2 ,  1005922
+,States2Panels, 2 ,  1037439
+,States2Panels, 2 ,  1006460
+,States2Panels, 2 ,  893895
+,Layer , 1 ,  3280648
+,Layer , 59 ,  76969499
+,Layer , 1 ,  2045386
+,Layer , 9 ,  23599951
+,Layer , 3 ,  5007095
+,Layer , 3 ,  4893185
+,Layer , 3 ,  5045210
+,Layer , 19 ,  16695842
+,Layer , 3 ,  5171689
+,Layer , 19 ,  16918682
+,Layer , 3 ,  4904391
+,Layer , 3 ,  5256474
+,Layer , 35 ,  29452362
+,Layer , 19 ,  25717455
+,Layer , 115 ,  72577915
+,Layer , 3 ,  4768122
+,Layer , 3 ,  4595940
+,Layer , 19 ,  16561770
+,Layer , 160 ,  201802931
+,Layer , 19 ,  16064221
+,Layer , 9 ,  15374684
+,Layer , 19 ,  16172760
+,Layer , 9 ,  13971679
+,Layer , 19 ,  16560987
+,Layer , 9 ,  13994510
+,Layer , 35 ,  27322566
+,Layer , 26 ,  22359276
+,Layer , 91 ,  103351231
+,Layer , 19 ,  15329172
+,Layer , 9 ,  13422977
+,Layer , 19 ,  15629577
+,Layer , 9 ,  13626305
+,Layer , 19 ,  15982538
+,Layer , 9 ,  13246820
+,Layer , 35 ,  26275611
+,Layer , 91 ,  108861272
+,Layer , 3 ,  4355508
+,Layer , 67 ,  42778003
+,Layer , 106 ,  67493541
+,Layer , 3 ,  4430620
+,Layer , 19 ,  15407762
+,Layer , 9 ,  13365461
+,Layer , 19 ,  31810246
+,Layer , 9 ,  12906781
+,Layer , 106 ,  66606985
+,Layer , 19 ,  15930033
+,Layer , 9 ,  13105744
+,Layer , 19 ,  14541431
+,Layer , 9 ,  13216662
+,Layer , 19 ,  14735205
+,Layer , 9 ,  13180461
+,Layer , 126 ,  145356678
+,Layer , 19 ,  14529780
+,Layer , 9 ,  12566361
+,Layer , 1 ,  531648

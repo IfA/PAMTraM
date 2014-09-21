@@ -13,6 +13,7 @@ import java.util.Set;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -27,6 +28,7 @@ import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.SimpleAttributeMapping;
+import pamtram.mapping.commands.BasicDragAndDropAddCommand;
 import pamtram.mapping.commands.BasicDragAndDropSetCommand;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.SourceSectionAttribute;
@@ -228,7 +230,7 @@ public class SimpleAttributeMappingItemProvider
 			}
 		}
 		
-		EList<AttributeValueModifierSet> values = ((SimpleAttributeMapping) owner).getModifier();
+		EList<AttributeValueModifierSet> values = new BasicEList<AttributeValueModifierSet>();
 		for(Iterator<?> iter = collection.iterator(); iter.hasNext(); ) {
 			Object value = iter.next();
 			if(value instanceof AttributeValueModifierSet) {
@@ -243,8 +245,8 @@ public class SimpleAttributeMappingItemProvider
 			return super.createDragAndDropCommand(domain, owner, location, operations,
 					operation, collection); 
 		} else {
-			return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
-					MappingPackage.Literals.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS__MODIFIER, values, 0);
+			return new BasicDragAndDropAddCommand(domain, (EObject) owner, 
+					MappingPackage.Literals.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS__MODIFIER, values);
 		}
 	}
 	

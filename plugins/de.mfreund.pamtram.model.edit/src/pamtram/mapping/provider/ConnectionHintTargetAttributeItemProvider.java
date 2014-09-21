@@ -10,6 +10,7 @@ import java.util.List;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EObject;
@@ -24,8 +25,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
 import pamtram.mapping.AttributeValueModifierSet;
-import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.commands.BasicDragAndDropAddCommand;
 import pamtram.mapping.commands.BasicDragAndDropSetCommand;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.provider.PamtramEditPlugin;
@@ -187,7 +188,7 @@ public class ConnectionHintTargetAttributeItemProvider
 			}
 		}
 		
-		EList<AttributeValueModifierSet> values = ((ConnectionHintTargetAttribute) owner).getModifier();
+		EList<AttributeValueModifierSet> values = new BasicEList<AttributeValueModifierSet>();
 		for(Iterator<?> iter = collection.iterator(); iter.hasNext(); ) {
 			Object value = iter.next();
 			if(value instanceof AttributeValueModifierSet) {
@@ -202,8 +203,8 @@ public class ConnectionHintTargetAttributeItemProvider
 			return super.createDragAndDropCommand(domain, owner, location, operations,
 					operation, collection); 
 		} else {
-			return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
-					MappingPackage.Literals.CONNECTION_HINT_TARGET_ATTRIBUTE__MODIFIER, values, 0);
+			return new BasicDragAndDropAddCommand(domain, (EObject) owner, 
+					MappingPackage.Literals.CONNECTION_HINT_TARGET_ATTRIBUTE__MODIFIER, values);
 		}
 	}
 

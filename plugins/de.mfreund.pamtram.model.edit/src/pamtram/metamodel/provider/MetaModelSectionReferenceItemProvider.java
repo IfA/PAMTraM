@@ -11,6 +11,7 @@ import java.util.List;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -19,7 +20,7 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
-import pamtram.mapping.commands.BasicDragAndDropSetCommand;
+import pamtram.mapping.commands.BasicDragAndDropAddCommand;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.SourceSectionClass;
@@ -159,7 +160,7 @@ public class MetaModelSectionReferenceItemProvider extends SourceSectionReferenc
 			Object owner, float location, int operations, int operation,
 			Collection<?> collection) {
 		
-		EList<SourceSectionClass> values = ((MetaModelSectionReference) owner).getValue();
+		EList<SourceSectionClass> values = new BasicEList<SourceSectionClass>();
 		for(Iterator<?> iter = collection.iterator(); iter.hasNext(); ) {
 			Object value = iter.next();
 			if(value instanceof SourceSectionClass) {
@@ -174,8 +175,8 @@ public class MetaModelSectionReferenceItemProvider extends SourceSectionReferenc
 			return super.createDragAndDropCommand(domain, owner, location, operations,
 					operation, collection); 
 		} else {
-			return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
-					MetamodelPackage.Literals.META_MODEL_SECTION_REFERENCE__VALUE, values, 0);
+			return new BasicDragAndDropAddCommand(domain, (EObject) owner, 
+					MetamodelPackage.Literals.META_MODEL_SECTION_REFERENCE__VALUE, values);
 		}
 	}
 }

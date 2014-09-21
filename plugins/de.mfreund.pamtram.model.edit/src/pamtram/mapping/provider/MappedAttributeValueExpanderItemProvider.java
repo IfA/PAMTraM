@@ -14,6 +14,7 @@ import java.util.Set;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -30,7 +31,7 @@ import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.commands.BasicDragAndDropSetCommand;
+import pamtram.mapping.commands.BasicDragAndDropAddCommand;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.SourceSectionClass;
 
@@ -218,7 +219,7 @@ public class MappedAttributeValueExpanderItemProvider extends MappedAttributeVal
 			Collection<?> collection) {
 		
 		
-		EList<ExpandableHint> values = ((MappedAttributeValueExpander) owner).getHintsToExpand();
+		EList<ExpandableHint> values = new BasicEList<ExpandableHint>();
 		for(Iterator<?> iter = collection.iterator(); iter.hasNext(); ) {
 			Object value = iter.next();
 			if(value instanceof ExpandableHint) {
@@ -233,8 +234,8 @@ public class MappedAttributeValueExpanderItemProvider extends MappedAttributeVal
 			return super.createDragAndDropCommand(domain, owner, location, operations,
 					operation, collection); 
 		} else {
-			return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
-					MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND, values, 0);
+			return new BasicDragAndDropAddCommand(domain, (EObject) owner, 
+					MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND, values);
 		}
 	}
 }

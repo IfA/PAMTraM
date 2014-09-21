@@ -10,6 +10,7 @@ import java.util.List;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -19,7 +20,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import pamtram.mapping.AttributeMappingSourceElementWithModifiers;
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.commands.BasicDragAndDropSetCommand;
+import pamtram.mapping.commands.BasicDragAndDropAddCommand;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.AttributeMappingSourceElementWithModifiers} object.
@@ -121,7 +122,7 @@ public class AttributeMappingSourceElementWithModifiersItemProvider extends Attr
 			Object owner, float location, int operations, int operation,
 			Collection<?> collection) {
 		
-		EList<AttributeValueModifierSet> values = ((AttributeMappingSourceElementWithModifiers) owner).getModifier();
+		EList<AttributeValueModifierSet> values = new BasicEList<AttributeValueModifierSet>();
 		for(Iterator<?> iter = collection.iterator(); iter.hasNext(); ) {
 			Object value = iter.next();
 			if(value instanceof AttributeValueModifierSet) {
@@ -136,8 +137,8 @@ public class AttributeMappingSourceElementWithModifiersItemProvider extends Attr
 			return super.createDragAndDropCommand(domain, owner, location, operations,
 					operation, collection); 
 		} else {
-			return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
-					MappingPackage.Literals.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE, values, 0);
+			return new BasicDragAndDropAddCommand(domain, (EObject) owner, 
+					MappingPackage.Literals.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE, values);
 			
 		}
 	}

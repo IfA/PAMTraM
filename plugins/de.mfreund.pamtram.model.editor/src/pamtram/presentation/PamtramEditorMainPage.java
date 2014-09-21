@@ -7,15 +7,12 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
-import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
-import org.eclipse.swt.dnd.DND;
-import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
@@ -61,8 +58,6 @@ import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
-import pamtram.presentation.listeners.MMElementDragListener;
-import pamtram.presentation.listeners.MappingDropListener;
 
 public class PamtramEditorMainPage extends SashForm {
 	
@@ -158,13 +153,6 @@ public class PamtramEditorMainPage extends SashForm {
 		sourceTree.setLayoutData(
 				new GridData(SWT.FILL, SWT.FILL, true, true));
 		
-		// add d'n'd support
-		{
-			int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
-			Transfer[] transferTypes = new Transfer[]{LocalTransfer.getInstance()};
-			sourceViewer.addDragSupport(dndOperations, transferTypes, new MMElementDragListener(sourceViewer));
-		}
-		
 		sourceViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 		sourceViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 		sourceViewer.setInput(editor.pamtram.getSourceSectionModel());
@@ -236,13 +224,6 @@ public class PamtramEditorMainPage extends SashForm {
 				new GridData(SWT.FILL, SWT.FILL, true, true));
 		
 		editor.setCurrentViewer(mappingViewer);
-		
-		// add d'n'd support
-		{
-			int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
-			Transfer[] transferTypes = new Transfer[]{LocalTransfer.getInstance()};
-			mappingViewer.addDropSupport(dndOperations, transferTypes, new MappingDropListener(mappingViewer));
-		}
 		
 		mappingViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory) {
 			/* extend the content provider in a way that no attribute value modifier sets 
@@ -643,13 +624,6 @@ public class PamtramEditorMainPage extends SashForm {
 		targetViewer = new TreeViewer(targetTree);
 		targetTree.setLayoutData(
 				new GridData(SWT.FILL, SWT.FILL, true, true));
-		
-		// add d'n'd support
-		{
-			int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
-			Transfer[] transferTypes = new Transfer[]{LocalTransfer.getInstance()};
-			targetViewer.addDragSupport(dndOperations, transferTypes, new MMElementDragListener(targetViewer));
-		}
 		
 		targetViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 		targetViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));

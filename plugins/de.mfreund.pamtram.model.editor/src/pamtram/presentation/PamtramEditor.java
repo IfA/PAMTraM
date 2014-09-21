@@ -923,7 +923,7 @@ public class PamtramEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void createContextMenuForGen(StructuredViewer viewer) {
+	protected void createContextMenuFor(StructuredViewer viewer) {
 		MenuManager contextMenu = new MenuManager("#PopUp");
 		contextMenu.add(new Separator("additions"));
 		contextMenu.setRemoveAllWhenShown(true);
@@ -938,26 +938,6 @@ public class PamtramEditor
 		viewer.addDropSupport(dndOperations, transfers, new EditingDomainViewerDropAdapter(editingDomain, viewer));
 	}
 	
-	/**
-	 * This creates a context menu for the viewer and adds a listener as well registering the menu for extension.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 */
-	protected void createContextMenuFor(StructuredViewer viewer) {
-		MenuManager contextMenu = new MenuManager("#PopUp");
-		contextMenu.add(new Separator("additions"));
-		contextMenu.setRemoveAllWhenShown(true);
-		contextMenu.addMenuListener(this);
-		Menu menu= contextMenu.createContextMenu(viewer.getControl());
-		viewer.getControl().setMenu(menu);
-		getSite().registerContextMenu(contextMenu, new UnwrappingSelectionProvider(viewer));
-
-//		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
-//		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance(), LocalSelectionTransfer.getTransfer(), FileTransfer.getInstance() };
-//		viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(viewer));
-//		viewer.addDropSupport(dndOperations, transfers, new EditingDomainViewerDropAdapter(editingDomain, viewer));
-	}
-
 	/**
 	 * This is the method called to load a resource into the editing domain's resource set based on the editor's input.
 	 * <!-- begin-user-doc -->

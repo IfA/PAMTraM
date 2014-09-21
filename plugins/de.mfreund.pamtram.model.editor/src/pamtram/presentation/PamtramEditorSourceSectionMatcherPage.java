@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
-import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -24,8 +23,6 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
-import org.eclipse.swt.dnd.DND;
-import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionEvent;
@@ -43,7 +40,6 @@ import de.mfreund.gentrans.transformation.GenericTransformationRunner;
 import pamtram.MappingModel;
 import pamtram.mapping.MappingType;
 import pamtram.metamodel.SourceSectionClass;
-import pamtram.presentation.listeners.MMElementDragListener;
 import pamtram.util.EObjectTreeContentProvider;
 
 public class PamtramEditorSourceSectionMatcherPage extends SashForm {
@@ -154,13 +150,6 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 		sourceViewer = new TreeViewer(sourceTree);
 		sourceTree.setLayoutData(
 				new GridData(SWT.FILL, SWT.FILL, true, true));
-		
-		// add d'n'd support
-		{
-			int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
-			Transfer[] transferTypes = new Transfer[]{LocalTransfer.getInstance()};
-			sourceViewer.addDragSupport(dndOperations, transferTypes, new MMElementDragListener(sourceViewer));
-		}
 		
 		sourceViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 		sourceViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));

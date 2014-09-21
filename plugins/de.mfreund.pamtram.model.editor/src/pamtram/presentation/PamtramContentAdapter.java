@@ -14,10 +14,10 @@ import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.AttributeValueModifier;
 import pamtram.mapping.AttributeValueModifierSet;
-import pamtram.mapping.ComplexAttributeMappingSourceElement;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
+import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.StringAppender;
 import pamtram.mapping.StringPrepender;
@@ -50,38 +50,40 @@ public class PamtramContentAdapter extends EContentAdapter {
         Object notifier = n.getNotifier();
         
         if(notifier instanceof Reference) {
-        	handleReferenceNotification(n, n.getFeatureID(Reference.class));
+        	handleReferenceNotification(n);
         } else if(notifier instanceof pamtram.metamodel.Class) {
-        	handleClassNotification(n, n.getFeatureID(pamtram.metamodel.Class.class));
+        	handleClassNotification(n);
         } else if(notifier instanceof Attribute) {
-        	handleAttributeNotification(n, n.getFeatureID(Attribute.class));
+        	handleAttributeNotification(n);
         } else if(notifier instanceof AttributeValueConstraint) {
-        	handleAttributeValueConstraintNotification(n, n.getFeatureID(AttributeValueConstraint.class));
+        	handleAttributeValueConstraintNotification(n);
         } else if(notifier instanceof Mapping) {
-        	handleMappingNotification(n, n.getFeatureID(Mapping.class));
+        	handleMappingNotification(n);
         } else if(notifier instanceof MappingHintGroupType) {
-        	handleMappingHintGroupTypeNotification(n, n.getFeatureID(MappingHintGroupType.class));
+        	handleMappingHintGroupTypeNotification(n);
         } else if(notifier instanceof AttributeMapping) {
-        	handleAttributeMappingNotification(n, n.getFeatureID(AttributeMapping.class));
+        	handleAttributeMappingNotification(n);
         } else if(notifier instanceof AttributeMappingSourceElementType) {
-        	handleAttributeMappingSourceElementTypeNotification(n, n.getFeatureID(ComplexAttributeMappingSourceElement.class));
+        	handleAttributeMappingSourceElementTypeNotification(n);
         } else if(notifier instanceof AttributeValueModifier) {
-        	handleAttributeValueModifierNotification(n, n.getFeatureID(AttributeValueModifier.class));
+        	handleAttributeValueModifierNotification(n);
         } else if(notifier instanceof GlobalAttribute) {
-        	handleGlobalAttributeNotification(n, n.getFeatureID(GlobalAttribute.class));
+        	handleGlobalAttributeNotification(n);
+        } else if(notifier instanceof MappingInstanceSelector) {
+        	handleMappingInstanceSelectorNotification(n);
         }
 	}
-	
+
 	// A ContainmentReference has issued a notification.
-	private void handleReferenceNotification(Notification n, int featureID) {
+	private void handleReferenceNotification(Notification n) {
 		
 		// the notifying reference
 		Reference ref = (Reference) n.getNotifier();
 		
-	    if (featureID == MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE ||
-	    		featureID == MetamodelPackage.TARGET_SECTION_CONTAINMENT_REFERENCE__VALUE ||
-	    		featureID == MetamodelPackage.META_MODEL_SECTION_REFERENCE__VALUE ||
-	    		featureID == MetamodelPackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE__VALUE){
+	    if (n.getFeature() == MetamodelPackage.Literals.SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE ||
+	    		n.getFeature() == MetamodelPackage.Literals.TARGET_SECTION_CONTAINMENT_REFERENCE__VALUE ||
+	    		n.getFeature() == MetamodelPackage.Literals.META_MODEL_SECTION_REFERENCE__VALUE ||
+	    		n.getFeature() == MetamodelPackage.Literals.TARGET_SECTION_NON_CONTAINMENT_REFERENCE__VALUE){
 	    	
 			if(n.getEventType() == Notification.ADD) {
 				
@@ -91,22 +93,19 @@ public class PamtramContentAdapter extends EContentAdapter {
 							setEClass(ref.getEReference().getEReferenceType());
 				}
 			}
-	    } else if (featureID == MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE__EREFERENCE ||
-	    		featureID == MetamodelPackage.TARGET_SECTION_CONTAINMENT_REFERENCE__EREFERENCE ||
-	    		featureID == MetamodelPackage.META_MODEL_SECTION_REFERENCE__EREFERENCE ||
-	    		featureID == MetamodelPackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE__EREFERENCE) {
+	    } else if (n.getFeature() == MetamodelPackage.Literals.REFERENCE__EREFERENCE) {
 	    	// if the name of the reference has not been changed by the user, set it based on its eReference
 	    	setNameDerived(ref, n);
 	    }
 	}
 	
 	// A Class has issued a notification.
-	private void handleClassNotification(Notification n, int featureID) {
+	private void handleClassNotification(Notification n) {
 		
 		if(n.getEventType() == Notification.ADD) {
 		
-		    if (featureID == MetamodelPackage.SOURCE_SECTION_CLASS__REFERENCES ||
-		    		featureID == MetamodelPackage.TARGET_SECTION_CLASS__REFERENCES){
+		    if (n.getFeature() == MetamodelPackage.Literals.SOURCE_SECTION_CLASS__REFERENCES ||
+		    		n.getFeature() == MetamodelPackage.Literals.TARGET_SECTION_CLASS__REFERENCES){
 	    		if(n.getNewValue() instanceof ContainmentReference) {
 	    			// the notifying class
 	    			pamtram.metamodel.Class c = (Class) n.getNotifier();
@@ -123,63 +122,63 @@ public class PamtramContentAdapter extends EContentAdapter {
 	    	}
 		} else if(n.getEventType() == Notification.SET) {
 			
-		    if (featureID == pamtram.metamodel.MetamodelPackage.CLASS__ECLASS) {
+		    if (n.getFeature() == MetamodelPackage.Literals.CLASS__ECLASS) {
 		    	setNameDerived((pamtram.metamodel.Class) n.getNotifier(), n);
 		    }
 		}
 	}
 	
 	// An Attribute has issued a notification.
-	private void handleAttributeNotification(Notification n, int featureID) {
+	private void handleAttributeNotification(Notification n) {
 		
 		if(n.getEventType() == Notification.SET) {
 		
-			if (featureID == MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE ||
-					featureID == MetamodelPackage.ACTUAL_ATTRIBUTE__ATTRIBUTE) {
+			if (n.getFeature() == MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE ||
+					n.getFeature() == MetamodelPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE) {
 				setNameDerived((Attribute) n.getNotifier(), n);
 		    }
 		}
 	}
 	
 	// An Attribute Value Constraint has issued a notification.
-	private void handleAttributeValueConstraintNotification(Notification n, int featureID) {
+	private void handleAttributeValueConstraintNotification(Notification n) {
 	
 		if(n.getEventType() == Notification.SET) {
 			
-			if(featureID == MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT__VALUE) {
+			if(n.getFeature() == MetamodelPackage.Literals.ATTRIBUTE_VALUE_CONSTRAINT__VALUE) {
 				setNameDerived((AttributeValueConstraint) n.getNotifier(), n);
 			}
 		}
 	}
 	
 	// A Mapping has issued a notification.
-	private void handleMappingNotification(Notification n, int featureID) {
+	private void handleMappingNotification(Notification n) {
 		
 		if(n.getEventType() == Notification.SET) {
 			
-			if(featureID == MappingPackage.MAPPING__SOURCE_MM_SECTION) {
+			if(n.getFeature() == MappingPackage.Literals.MAPPING_TYPE__SOURCE_MM_SECTION) {
 				setNameDerived((Mapping) n.getNotifier(), n, "", "Mapping");
 			}
 		}
 	}
 	
 	// A Mapping Hint Group or an Exported Mapping Hint Group has issued a notification.
-	private void handleMappingHintGroupTypeNotification(Notification n, int featureID) {
+	private void handleMappingHintGroupTypeNotification(Notification n) {
 		
 		if(n.getEventType() == Notification.SET) {
 			
-			if(featureID == MappingPackage.MAPPING_HINT_GROUP_TYPE__TARGET_MM_SECTION) {
+			if(n.getFeature() == MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__TARGET_MM_SECTION) {
 				setNameDerived((MappingHintGroupType) n.getNotifier(), n);
 			}
 		}
 	}
 	
 	// An Attribute Mapping has issued a notification.
-	private void handleAttributeMappingNotification(Notification n, int featureID) {
+	private void handleAttributeMappingNotification(Notification n) {
 		
 		if(n.getEventType() == Notification.SET) {
 			
-			if(featureID == MappingPackage.ATTRIBUTE_MAPPING__TARGET) {
+			if(n.getFeature() == MappingPackage.Literals.ATTRIBUTE_MAPPING__TARGET) {
 				setNameDerived((AttributeMapping) n.getNotifier(), n, "", "Mapping");
 			}
 		}
@@ -187,18 +186,18 @@ public class PamtramContentAdapter extends EContentAdapter {
 	
 	// An Attribute Mapping Source Element Type has issued a notification.
 	private void handleAttributeMappingSourceElementTypeNotification(
-			Notification n, int featureID) {
+			Notification n) {
 		
 		if(n.getEventType() == Notification.SET) {
 			
-			if(featureID == MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE) {
+			if(n.getFeature() == MappingPackage.Literals.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE) {
 				setNameDerived((AttributeMappingSourceElementType) n.getNotifier(), n);
 			}
 		}
 	}
 	
 	// An Attribute Value Modifier has issued a notification.
-	private void handleAttributeValueModifierNotification(Notification n, int featureID) {
+	private void handleAttributeValueModifierNotification(Notification n) {
 	
 		// the notifying attribute value modifier
 		AttributeValueModifier mod = (AttributeValueModifier) n.getNotifier();
@@ -210,22 +209,22 @@ public class PamtramContentAdapter extends EContentAdapter {
 			
 			if(mod instanceof SubstringReplacer) {
 				SubstringReplacer rep = (SubstringReplacer) mod;
-				if(featureID == MappingPackage.SUBSTRING_REPLACER__REGEX) {
+				if(n.getFeature() == MappingPackage.Literals.SUBSTRING_REPLACER__REGEX) {
 					String appendString = "_to_" + (rep.getReplacement() != null ? rep.getReplacement() : "");
 					setNameDerived(mod, n, "", appendString);
 					if(set.getModifier().size() == 1) {
 						setNameDerived(set, n, "replace \"", "\"");
 					}
-				} else if(featureID == MappingPackage.SUBSTRING_REPLACER__REPLACEMENT) {
+				} else if(n.getFeature() == MappingPackage.Literals.SUBSTRING_REPLACER__REPLACEMENT) {
 					String preprendString = (rep.getRegex() != null ? rep.getRegex() : "") + "_to_";
 					setNameDerived(rep, n, preprendString, "");
 				}
-			} else if(mod instanceof StringPrepender && featureID == MappingPackage.STRING_PREPENDER__STRING) {
+			} else if(mod instanceof StringPrepender && n.getFeature() == MappingPackage.Literals.STRING_PREPENDER__STRING) {
 				setNameDerived(mod, n);
 				if(set.getModifier().size() == 1) {
 					setNameDerived(set, n, "prepend \"", "\"");
 				}
-			} else if(mod instanceof StringAppender && featureID == MappingPackage.STRING_APPENDER__STRING) {
+			} else if(mod instanceof StringAppender && n.getFeature() == MappingPackage.Literals.STRING_APPENDER__STRING) {
 				setNameDerived(mod, n);
 				if(set.getModifier().size() == 1) {
 					setNameDerived(set, n, "append \"", "\"");
@@ -236,14 +235,26 @@ public class PamtramContentAdapter extends EContentAdapter {
 	}
 	
 	// A Global Attribute has issued a notification.
-	private void handleGlobalAttributeNotification(Notification n, int featureID) {
+	private void handleGlobalAttributeNotification(Notification n) {
 	
 		if(n.getEventType() == Notification.SET) {
 	
-			if(featureID == MappingPackage.GLOBAL_ATTRIBUTE__SOURCE) {
+			if(n.getFeature() == MappingPackage.Literals.GLOBAL_ATTRIBUTE__SOURCE) {
 				setNameDerived((GlobalAttribute) n.getNotifier(), n);
 			}
 		}
+	}
+	
+	// A Mapping Instance Selector has issued a notification.
+	private void handleMappingInstanceSelectorNotification(Notification n) {
+
+		if(n.getEventType() == Notification.SET) {
+			
+			if(n.getFeature() == MappingPackage.Literals.MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE) {
+				setNameDerived((MappingInstanceSelector) n.getNotifier(), n);
+			}
+		}
+		
 	}
 	
 	/**
@@ -257,14 +268,14 @@ public class PamtramContentAdapter extends EContentAdapter {
 	 * original feature.
 	 * 
 	 * @param object the element for which the feature shall be set
-	 * @param derivedFeatureId the id of the feature to set
+	 * @param derivedFeature the feature to set
 	 * @param n the notification that shall be used to calculate the new value
 	 * @param prependString a string that shall be prepended to the new value
 	 * @param appendString a string that shall be appended to the new value
 	 */
-	private void setFeatureDerived(EObject object, int derivedFeatureId, Notification n, String prependString, String appendString) {
+	private void setFeatureDerived(EObject object, EStructuralFeature derivedFeature, Notification n, String prependString, String appendString) {
 	
-		EStructuralFeature derivedFeature = object.eClass().getEStructuralFeature(derivedFeatureId);
+//		EStructuralFeature derivedFeature = object.eClass().getEStructuralFeature(derivedFeatureId);
 		
 		// The derived feature must be of type EString...
 		if(derivedFeature == null || !(derivedFeature.getEType().getName().equals("EString"))) {
@@ -316,12 +327,12 @@ public class PamtramContentAdapter extends EContentAdapter {
 	 * Equal to calling 'setFeatureDerived(object, derivedFeatureId, n, "", "")'.
 	 * 
 	 * @param object
-	 * @param derivedFeatureId
+	 * @param derivedFeature
 	 * @param n
 	 */
 	@SuppressWarnings("unused")
-	private void setFeatureDerived(EObject object, int derivedFeatureId, Notification n) {
-		setFeatureDerived(object, derivedFeatureId, n, "", "");
+	private void setFeatureDerived(EObject object, EStructuralFeature derivedFeature, Notification n) {
+		setFeatureDerived(object, derivedFeature, n, "", "");
 	}
 	
 	/**
@@ -332,7 +343,7 @@ public class PamtramContentAdapter extends EContentAdapter {
 	 * @param n the notification that shall be used to calculate the new value
 	 */
 	private void setNameDerived(EObject object, Notification n) {
-		setFeatureDerived(object, PamtramPackage.NAMED_ELEMENT__NAME, n, "", "");
+		setFeatureDerived(object, PamtramPackage.Literals.NAMED_ELEMENT__NAME, n, "", "");
 	}
 	
 	/**
@@ -346,7 +357,7 @@ public class PamtramContentAdapter extends EContentAdapter {
 	 * @param appendString a string that shall be appended to the new value
 	 */
 	private void setNameDerived(EObject object, Notification n, String prependString, String appendString) {
-		setFeatureDerived(object, PamtramPackage.NAMED_ELEMENT__NAME, n, prependString, appendString);
+		setFeatureDerived(object, PamtramPackage.Literals.NAMED_ELEMENT__NAME, n, prependString, appendString);
 	}
 	
 	/**

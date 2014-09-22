@@ -98,10 +98,10 @@ class TargetSectionConnector {
 	 * @param minimumCapacity
 	 * @return possible paths
 	 */
-	private  LinkedList<ModelConnectionPath> findPathsWithMinimumCapacity(
+	private  LinkedHashSet<ModelConnectionPath> findPathsWithMinimumCapacity(
 			LinkedHashSet<ModelConnectionPath> paths,
 			EObject startInstance, int minimumCapacity) {
-		LinkedList<ModelConnectionPath> pathsToConsider = new LinkedList<ModelConnectionPath>();
+		LinkedHashSet<ModelConnectionPath> pathsToConsider = new LinkedHashSet<ModelConnectionPath>();
 		for (ModelConnectionPath p : paths) {
 			if (startInstance != null) {
 				if (!p.leadsToRootType(startInstance.eClass())) {
@@ -300,14 +300,14 @@ class TargetSectionConnector {
 					}
 
 					// sort possible paths by path capacity
-					LinkedList<ModelConnectionPath> pathsToConsider = new LinkedList<ModelConnectionPath>();
+					LinkedHashSet<ModelConnectionPath> pathsToConsider = new LinkedHashSet<ModelConnectionPath>();
 					if (otherPathsNeeded) {
 						pathsToConsider = findPathsWithMinimumCapacity(targetSectionRegistry.getConnections(classToConnect, container.getEObject().eClass(), otherPathsNeeded),
 								container.getEObject(),
 								rootInstancesByContainer.get(container).size());
 
 					} else {
-						pathsToConsider = new LinkedList<ModelConnectionPath>();
+						pathsToConsider = new LinkedHashSet<ModelConnectionPath>();
 						pathsToConsider.add(standardPaths.get(connectionHint));
 
 					}
@@ -315,10 +315,10 @@ class TargetSectionConnector {
 					ModelConnectionPath modelConnectionPath;
 					if (pathsToConsider.size() == 1) {// only one path to choose
 														// from
-						modelConnectionPath = pathsToConsider.getFirst();
+						modelConnectionPath = pathsToConsider.iterator().next();
 					} else if (pathsToConsider.size() > 0) {// user decides
 						LinkedHashMap<String, ModelConnectionPath> pathNames = new LinkedHashMap<String, ModelConnectionPath>();
-						ModelConnectionPath standardPath = pathsToConsider.getFirst();// get
+						ModelConnectionPath standardPath = pathsToConsider.iterator().next();// get
 																		// shortest
 																		// path
 
@@ -424,10 +424,19 @@ class TargetSectionConnector {
 			List<EObjectTransformationHelper> rootInstances, TargetSectionClass section, String mappingName,
 			String mappingGroupName, boolean hasContainer, Set<EClass> containerClasses  ,LinkedList<EObjectTransformationHelper> containerInstances){
 		ModelConnectionPath modelConnectionPath;
+		
+		LinkedHashSet<ModelConnectionPath> pathsToConsider=new LinkedHashSet<ModelConnectionPath>();
+		if(hasContainer){
+			for(EClass c : containerClasses){
+				pathsToConsider.addAll(targetSectionRegistry.getConnections(classToConnect, c, directPathsOnly));
+			}
+		} else {
+			pathsToConsider.addAll(targetSectionRegistry.getPaths(classToConnect,directPathsOnly));
+		}
 
-		if (targetSectionRegistry.getPaths(classToConnect,directPathsOnly).size() > 0) {
-			LinkedList<ModelConnectionPath> pathsToConsider = findPathsWithMinimumCapacity(
-					targetSectionRegistry.getPaths(classToConnect,directPathsOnly), null, rootInstances.size());//only go on with paths that could theoretically fit all of the elements
+		if (pathsToConsider.size() > 0) {
+			pathsToConsider = findPathsWithMinimumCapacity(
+					pathsToConsider, null, rootInstances.size());//only go on with paths that could theoretically fit all of the elements
 
 			if (pathsToConsider.size() > 0) {
 				// handle container
@@ -464,12 +473,12 @@ class TargetSectionConnector {
 				} else {
 					onlyOnePath = pathsToConsider.size() == 1
 							&& targetSectionRegistry.getTargetClassInstances(
-									pathsToConsider.getFirst().getRootType())
+									pathsToConsider.iterator().next().getRootType())
 									.size() == 1;
 				}
 
 				if (onlyOnePath) {// only one path to choose from
-					modelConnectionPath = pathsToConsider.getFirst();
+					modelConnectionPath = pathsToConsider.iterator().next();
 					// select instance of path end to associate elements to
 					EObjectTransformationHelper inst;
 					if (hasContainer) {
@@ -494,7 +503,7 @@ class TargetSectionConnector {
 				} else if (pathsToConsider.size() > 0) {// user decides
 					LinkedHashMap<String, ModelConnectionPath> pathNames = new LinkedHashMap<String, ModelConnectionPath>();
 					LinkedHashMap<String, LinkedHashMap<String, EObjectTransformationHelper>> instancesByPath = new LinkedHashMap<String, LinkedHashMap<String, EObjectTransformationHelper>>();
-					ModelConnectionPath standardPath = pathsToConsider.getFirst();// get
+					ModelConnectionPath standardPath = pathsToConsider.iterator().next();// get
 																	// shortest
 																	// path
 					for (ModelConnectionPath p : pathsToConsider) {// prepare user selections

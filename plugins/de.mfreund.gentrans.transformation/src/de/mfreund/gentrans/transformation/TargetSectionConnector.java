@@ -497,8 +497,11 @@ class TargetSectionConnector {
 
 					consoleStream.println("Path found: " + section.getName() + "(" + mappingName 
 							+ "::"+ mappingGroupName +"): " + modelConnectionPath.toString());
-					instantiateMissingPath(modelConnectionPath.getInvertedPathElementList(), inst.getEObject(),
-							rootInstances);
+					List<EObjectTransformationHelper> instancesAtEnd=instantiateMissingPath(modelConnectionPath.getInvertedPathElementList(), inst.getEObject(),rootInstances);
+					if(instancesAtEnd.size()>0){
+						consoleStream.println("Could not link some instances to model because of capacity error");
+						addToTargetModelRoot(instancesAtEnd);
+					}
 
 				} else if (pathsToConsider.size() > 0) {// user decides
 					LinkedHashMap<String, ModelConnectionPath> pathNames = new LinkedHashMap<String, ModelConnectionPath>();
@@ -568,8 +571,11 @@ class TargetSectionConnector {
 							dialog.getInstance());
 					consoleStream.println(section.getName() + "(" + mappingName
 							+ "): " + modelConnectionPath.toString());
-					instantiateMissingPath(modelConnectionPath.getInvertedPathElementList(), inst.getEObject(),
-							rootInstances);
+					List<EObjectTransformationHelper> instancesAtEnd=instantiateMissingPath(modelConnectionPath.getInvertedPathElementList(), inst.getEObject(),rootInstances);
+					if(instancesAtEnd.size()>0){
+						consoleStream.println("Could not link some instances to model because of capacity error");
+						addToTargetModelRoot(instancesAtEnd);
+					}
 
 				} else {// no suitable container found
 					consoleStream
@@ -598,11 +604,12 @@ class TargetSectionConnector {
 	 * @param invertedPath
 	 * @param refStartInstance
 	 * @param instancesAtEnd
+	 * @returns unLinkedInstances
 	 */
-	private void instantiateMissingPath(
+	private List<EObjectTransformationHelper> instantiateMissingPath(
 			LinkedList<EObject> invertedPath, EObject refStartInstance,
 			List<EObjectTransformationHelper> instancesAtEnd) {
-		invertedPath.remove(0);// EClass refStart=(EClass)
+		EClass refStart=(EClass) invertedPath.remove(0);// EClass refStart=(EClass)
 		EReference ref = (EReference) invertedPath.remove(0);
 		Object targetInst = refStartInstance.eGet(ref);
 
@@ -618,29 +625,19 @@ class TargetSectionConnector {
 					
 					targetInst=inst;
 				}
-				instantiateMissingPath(invertedPath, (EObject) targetInst,
-						instancesAtEnd);
+				
+				List<EObjectTransformationHelper> returnList=instantiateMissingPath(invertedPath, refStartInstance,instancesAtEnd);
+				if(returnList.size()>0){
+					invertedPath.add(0,ref);//theese will get changed every time
+					invertedPath.add(0,refStart);
+				}
+				return returnList;
+
 
 			} else if (ref.getUpperBound() < 0) {
-				LinkedList<EObject> newTarget = new LinkedList<EObject>();// it
-																			// is
-																			// absolutely
-																			// neccessary
-																			// to
-																			// copy
-																			// targetInst,
-																			// since
-																			// targetInst
-																			// will
-																			// be
-																			// cleared
-																			// by
-																			// eSet
-																			// before
-																			// new
-																			// elements
-																			// are
-																			// added
+				LinkedList<EObject> newTarget = new LinkedList<EObject>();// it is absolutely neccessary to copy
+																			// targetInst, since targetInst will be cleared by
+																			// eSet before new elements are added
 				if (targetInst != null) {
 					@SuppressWarnings("unchecked")
 					EList<EObject> targetInstL=(EList<EObject>) targetInst;
@@ -655,20 +652,35 @@ class TargetSectionConnector {
 				newTarget.add(instance);
 				targetSectionRegistry.addClassInstance(new EObjectTransformationHelper((EObject)newTarget.getLast(),attrValRegistry));
 				refStartInstance.eSet(ref, newTarget);
-				instantiateMissingPath(invertedPath, newTarget.getLast(),
-						instancesAtEnd);
+				List<EObjectTransformationHelper>returnList=instantiateMissingPath(invertedPath, newTarget.getLast(),instancesAtEnd);
+				while(returnList.size()>0){
+					invertedPath.add(0,ref);//theese will get changed every time
+					invertedPath.add(0,refStart);
+					returnList= instantiateMissingPath(invertedPath, refStartInstance, returnList);
+				}
+				return returnList;
 
 			} else {// cardinality less than infinity
 				// TODO
 				consoleStream.println("Owei, owei");
+				addToTargetModelRoot(instancesAtEnd);
+				return  new LinkedList<EObjectTransformationHelper>();
+
 			}
 
 		} else {// at End
 			if (ref.getUpperBound() == 1) {
-				if (targetInst != null)
+				if (targetInst != null){
 					consoleStream.println("Big mistake"); // this shouldn't happen
-				else {
-					refStartInstance.eSet(ref, instancesAtEnd.get(0).getEObject());
+					addToTargetModelRoot(instancesAtEnd);
+					return new LinkedList<EObjectTransformationHelper>();
+				} else {
+					refStartInstance.eSet(ref, instancesAtEnd.remove(0).getEObject());
+					
+					invertedPath.add(0,ref);//theese will get changed every time
+					invertedPath.add(0,refStart);
+					return instancesAtEnd;
+
 				}
 			} else if (ref.getUpperBound() < 0) {
 				LinkedList<EObject> newTarget = new LinkedList<EObject>();// it is absolutely  neccessary  to  copy
@@ -684,13 +696,15 @@ class TargetSectionConnector {
 				}
 
 				refStartInstance.eSet(ref, newTarget);
-
+				return new LinkedList<EObjectTransformationHelper>();
 			} else {// cardinality less than infinity
 					// TODO
 				consoleStream.println("owei, owei");
+				addToTargetModelRoot(instancesAtEnd);
+				return new LinkedList<EObjectTransformationHelper>();
 			}
 		}
 
-	}
+	} 
 
 }

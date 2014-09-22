@@ -83,6 +83,12 @@ class SourceSectionMapper {
 	 */
 	private Map<ComplexAttributeMapping,Set<SourceSectionClass>> deepestComplexAttrMappingSrcElementsByCmplxMapping;
 	
+	/**
+	 * We save any user selection for a particular set of possible Mappings so we don't have to ask twice
+	 * for the same combination of Mappings.
+	 */
+	private Map<Set<Mapping>,Mapping> ambiguousMappingSelections;
+	
 	
 	/**
 	 * Map to determine at which point ComplexHints need to be joined
@@ -175,6 +181,7 @@ class SourceSectionMapper {
 		this.attributeValuemodifier=attributeValuemodifier;
 		constraintsWithErrors=new HashSet<AttributeValueConstraint>();
 		commonContainerClassOfComplexMappings=new HashMap<Object,SourceSectionClass>();
+		ambiguousMappingSelections=new HashMap<Set<Mapping>,Mapping>();
 		
 		//this will fill some maps...
 		for(Mapping m : mappingsToChooseFrom){
@@ -1545,8 +1552,8 @@ class SourceSectionMapper {
 		EObject element=contRefObjectsToMap.remove(0);//source model element which we will now try to map
 		
 		start = System.nanoTime();
-		LinkedHashMap<MappingInstanceStorage,String> usedInMapping=new LinkedHashMap<MappingInstanceStorage,String>();
-		LinkedHashMap<String, MappingInstanceStorage> mappingData=new LinkedHashMap<String, MappingInstanceStorage>();
+		Map<MappingInstanceStorage,String> usedInMapping=new LinkedHashMap<MappingInstanceStorage,String>();
+		Map<Mapping, MappingInstanceStorage> mappingData=new LinkedHashMap<Mapping, MappingInstanceStorage>();
 			//find mapping rules that are applicable to a srcMM element 
 			for(Mapping m : mappingsToChooseFrom){
 				//create  result map
@@ -1574,7 +1581,7 @@ class SourceSectionMapper {
 						}
 						if(!mappingFailed){//if mapping possible add to list
 								res.setMapping(m);
-								mappingData.put(m.getName()+  (m.hashCode()), res);
+								mappingData.put(m, res);
 							int used=0;
 							for(SourceSectionClass c : res.getSourceModelObjectsMapped().keySet()){
 								if(!mappedSections.containsKey(c)){
@@ -1602,15 +1609,24 @@ class SourceSectionMapper {
 					returnVal= mappingData.values().iterator().next();
 					break;
 				default:
-					ItemSelectorDialogRunner dialog= new ItemSelectorDialogRunner("Please select a Mapping for the source element\n'" 
-					+  EObjectTransformationHelper.asString(element) + "'" , 
-								mappingData.keySet(), mappingData.keySet().iterator().next());
-					Display.getDefault().syncExec(dialog);
-					if(dialog.wasTransformationStopRequested()){
-						transformationAborted=true;
-						return null;
+					if(ambiguousMappingSelections.containsKey(mappingData.keySet())){
+						returnVal=mappingData.get(ambiguousMappingSelections.get(mappingData.keySet()));
+					} else {
+						Map<String,Mapping> names=new LinkedHashMap<String,Mapping>();
+						for(Mapping m: mappingData.keySet()){
+							names.put( m.getName()+  (m.hashCode()), m);
+						}
+						ItemSelectorDialogRunner dialog= new ItemSelectorDialogRunner("Please select a Mapping for the source element\n'" 
+								+  EObjectTransformationHelper.asString(element) + "'" , 
+											names.keySet(), names.keySet().iterator().next());
+								Display.getDefault().syncExec(dialog);
+								if(dialog.wasTransformationStopRequested()){
+									transformationAborted=true;
+									return null;
+								}
+								returnVal= mappingData.get(names.get(dialog.getSelection()));
+								ambiguousMappingSelections.put(mappingData.keySet(), names.get(dialog.getSelection()));
 					}
-					returnVal= mappingData.get(dialog.getSelection());
 			}	
 			
 			if(returnVal != null){

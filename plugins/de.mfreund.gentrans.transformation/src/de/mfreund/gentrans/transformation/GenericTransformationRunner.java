@@ -1,7 +1,6 @@
 package de.mfreund.gentrans.transformation;
 
 import java.io.IOException;
-import java.sql.Time;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -428,14 +427,10 @@ public class GenericTransformationRunner {
 				if (g.getTargetMMSection() != null && g instanceof MappingHintGroup) {// targetSection exists?
 					TargetSectionClass section = g.getTargetMMSection();
 					if (targetSectionRegistry.getPamtramClassInstances(section)
-							.keySet().size() > 0) {// instances of section
-						// exist?
+							.keySet().size() > 0) {// instances of section exist?
 						if (targetSectionRegistry.getPamtramClassInstances(
-								section).get(g) != null) {// ..also of specific
-							// group
-							if (((MappingHintGroup)g).getModelConnectionMatcher() != null) {// link
-								// using
-								// matcher
+								section).get(g) != null) {// ..also of specific group
+							if (((MappingHintGroup)g).getModelConnectionMatcher() != null) {// link using matcher
 								for (MappingInstanceStorage selMap : selectedMappingsByMapping.get(m)) {
 									if (selMap.getInstances((MappingHintGroup) g, section) != null) {
 										connectionHelpers.linkToTargetModelUsingModelConnectionHint(

@@ -1552,7 +1552,6 @@ class SourceSectionMapper {
 		EObject element=contRefObjectsToMap.remove(0);//source model element which we will now try to map
 		
 		start = System.nanoTime();
-		Map<MappingInstanceStorage,String> usedInMapping=new LinkedHashMap<MappingInstanceStorage,String>();
 		Map<Mapping, MappingInstanceStorage> mappingData=new LinkedHashMap<Mapping, MappingInstanceStorage>();
 			//find mapping rules that are applicable to a srcMM element 
 			for(Mapping m : mappingsToChooseFrom){
@@ -1582,17 +1581,6 @@ class SourceSectionMapper {
 						if(!mappingFailed){//if mapping possible add to list
 								res.setMapping(m);
 								mappingData.put(m, res);
-							int used=0;
-							for(SourceSectionClass c : res.getSourceModelObjectsMapped().keySet()){
-								if(!mappedSections.containsKey(c)){
-									mappedSections.put(c,new LinkedHashSet<EObject>());
-								}
-								used+=res.getSourceModelObjectsMapped().get(c).size();
-								mappedSections.get(c).addAll(res.getSourceModelObjectsMapped().get(c));
-								
-								contRefObjectsToMap.removeAll(res.getSourceModelObjectsMapped().get(c));//remove mapped elements from list of elements to be mapped
-							}
-							usedInMapping.put(res, String.valueOf(used));
 						}		
 					}
 				}
@@ -1614,7 +1602,7 @@ class SourceSectionMapper {
 					} else {
 						Map<String,Mapping> names=new LinkedHashMap<String,Mapping>();
 						for(Mapping m: mappingData.keySet()){
-							names.put( m.getName()+  (m.hashCode()), m);
+							names.put( m.getName()+  " (" + m.hashCode()+ ")", m);
 						}
 						ItemSelectorDialogRunner dialog= new ItemSelectorDialogRunner("Please select a Mapping for the source element\n'" 
 								+  EObjectTransformationHelper.asString(element) + "'" , 
@@ -1630,7 +1618,17 @@ class SourceSectionMapper {
 			}	
 			
 			if(returnVal != null){
-				consoleStream.println(','  + returnVal.getMapping().getName() + ", " + usedInMapping.get(returnVal) + " ,  "+ time );
+				int used=0;
+				for(SourceSectionClass c : returnVal.getSourceModelObjectsMapped().keySet()){
+					if(!mappedSections.containsKey(c)){
+						mappedSections.put(c,new LinkedHashSet<EObject>());
+					}
+					used+=returnVal.getSourceModelObjectsMapped().get(c).size();
+					mappedSections.get(c).addAll(returnVal.getSourceModelObjectsMapped().get(c));
+					
+					contRefObjectsToMap.removeAll(returnVal.getSourceModelObjectsMapped().get(c));//remove mapped elements from list of elements to be mapped
+				}
+				consoleStream.println(','  + returnVal.getMapping().getName() + ", " + used  + " ,  "+ time );
 
 			}
 			

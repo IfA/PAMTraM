@@ -27,6 +27,8 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.layout.RowData;
+import org.eclipse.swt.events.KeyAdapter;
+import org.eclipse.swt.events.KeyEvent;
 
 public class ItemSelectorDialog extends Dialog{
 
@@ -158,6 +160,16 @@ public class ItemSelectorDialog extends Dialog{
 			}
 		});
 		listWidget = listViewer.getList();
+		listWidget.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.keyCode == SWT.KeyDown){
+					listWidget.select(listWidget.getSelectionIndex()+1);
+				}else if(e.keyCode == SWT.KeyUp){
+					listWidget.select(listWidget.getSelectionIndex()-1);
+				}
+			}
+		});
 		listWidget.setItems(this.listItems.toArray(new String[1]));
 		listWidget.setSelection(standardSelectionIndex);
 		listWidget.showSelection();

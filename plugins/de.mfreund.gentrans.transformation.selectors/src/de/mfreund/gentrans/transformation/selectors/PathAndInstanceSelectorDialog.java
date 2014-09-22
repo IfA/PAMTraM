@@ -27,6 +27,8 @@ import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.layout.RowData;
+import org.eclipse.swt.events.KeyAdapter;
+import org.eclipse.swt.events.KeyEvent;
 
 public class PathAndInstanceSelectorDialog extends Dialog {
 
@@ -149,6 +151,16 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 		
 		ListViewer pathListViewer = new ListViewer(grpPossiblePaths, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		pathList = pathListViewer.getList();
+		pathList.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.keyCode == SWT.KeyDown){
+					pathList.select(pathList.getSelectionIndex()+1);
+				}else if(e.keyCode == SWT.KeyUp){
+					pathList.select(pathList.getSelectionIndex()-1);
+				}
+			}
+		});
 		pathList.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDoubleClick(MouseEvent e) {
@@ -176,6 +188,16 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 		
 		ListViewer instancesListViewer = new ListViewer(grpPossibleInstances, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		instancesList = instancesListViewer.getList();
+		instancesList.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.keyCode == SWT.KeyDown){
+					instancesList.select(instancesList.getSelectionIndex()+1);
+				}else if(e.keyCode == SWT.KeyUp){
+					instancesList.select(instancesList.getSelectionIndex()-1);
+				}
+			}
+		});
 		instancesList.addMouseListener(new MouseAdapter() {
 			/**
 			 * close Dialog on double clicked

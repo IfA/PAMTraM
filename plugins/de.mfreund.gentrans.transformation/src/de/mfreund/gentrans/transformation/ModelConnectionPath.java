@@ -60,25 +60,71 @@ class ModelConnectionPath {
 	 * @param newElement
 	 * @param targetSectionRegistry
 	 */
-	private ModelConnectionPath(LinkedList<EObject> pathElements, EObject newElement,TargetSectionRegistry targetSectionRegistry) {
+	private ModelConnectionPath(LinkedList<EObject> pathElements, EObject newElement,TargetSectionRegistry targetSectionRegistry, boolean reverse) {
 
 		this.pathElements = new LinkedList<EObject>();
 		this.pathElements.addAll(pathElements);
 		this.pathElements.add(newElement);
+		if(reverse){
+			this.pathElements=getInvertedPathElementList();
+		}
 		this.targetSectionRegistry=targetSectionRegistry;
+	}
+	
+	/**
+	 *(from container class to class to connect, "down")
+	 * @param classToConnect
+	 * @param containerClass
+	 * @param directPathsOnly
+	 */
+	void findPathsFromContainerToConnectClass(EClass classToConnect, EClass containerClass, boolean directPathsOnly){
+		if(classToConnect.equals(containerClass) && pathElements.size()>0){
+			// add copy of path to possiblePaths
+			ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements, classToConnect,targetSectionRegistry,true);
+
+			targetSectionRegistry.addConnection(newSelf, classToConnect, (EClass) pathElements.getFirst());
+			return;			
+		}
+		
+		if(!directPathsOnly || this.pathElements.size()<1){
+			// check for inherited types
+			for (EClass c : targetSectionRegistry.getChildClasses(containerClass)) {
+				ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements,targetSectionRegistry);
+				newSelf.findPathsFromContainerToConnectClass(classToConnect, c, directPathsOnly);
+			}
+
+			// detect loop
+			if (pathElements.contains(containerClass)) {
+				return;
+
+			}
+
+			// add class to path if not abstract
+			if (!containerClass.isAbstract()) {
+				pathElements.add(containerClass);
+
+				// continue path finding for references
+				for (EReference cont : containerClass.getEAllContainments()) {
+					ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements, cont,targetSectionRegistry,false);
+					newSelf.findPathsFromContainerToConnectClass(classToConnect, cont.getEReferenceType(), directPathsOnly);
+				}
+
+			}
+		}
 	}
 
 	/**
 	 * Finds paths to instances of the provided class.
-	 * @param targetSectionClass
+	 * (from class to connect to container class, "up")
+	 * @param pathStartClass
 	 */
-	void findPathsToInstances(EClass targetSectionClass, boolean directPathsOnly) {
+	void findPathsToInstances(EClass pathStartClass, boolean directPathsOnly) {
 
 		// check if path to this MM-Class found
-		if (targetSectionRegistry.getTargetClassInstances(targetSectionClass).size() > 0
+		if (targetSectionRegistry.getTargetClassInstances(pathStartClass).size() > 0
 				&& pathElements.size() > 0) {
 			// add copy of path to possiblePaths
-			ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements, targetSectionClass,targetSectionRegistry);
+			ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements, pathStartClass,targetSectionRegistry,false);
 
 			// self.first.~possiblePaths.add(newSelf);
 			targetSectionRegistry.addPath(newSelf, (EClass) this.pathElements.getFirst()); // first
@@ -87,27 +133,27 @@ class ModelConnectionPath {
 		}
 		if(!directPathsOnly || this.pathElements.size()<1){
 			// check for inherited types
-			for (EClass c : targetSectionRegistry.getChildClasses(targetSectionClass)) {
+			for (EClass c : targetSectionRegistry.getChildClasses(pathStartClass)) {
 				ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements,targetSectionRegistry);
 				newSelf.findPathsToInstances(c,directPathsOnly);
 			}
 
 			// detect loop
-			if (pathElements.contains(targetSectionClass)) {
+			if (pathElements.contains(pathStartClass)) {
 				return;
 
 			}
 
 			// add class to path if not abstract
-			if (!targetSectionClass.isAbstract()) {
-				pathElements.add(targetSectionClass);
+			if (!pathStartClass.isAbstract()) {
+				pathElements.add(pathStartClass);
 
 				// continue path finding for references
 				for (EReference cont : targetSectionRegistry
-						.getClassReferences(targetSectionClass)) {
+						.getClassReferences(pathStartClass)) {
 
 					for (EClass s : targetSectionRegistry.getReferenceSources(cont)) {
-						ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements, cont,targetSectionRegistry);
+						ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements, cont,targetSectionRegistry,false);
 						newSelf.findPathsToInstances(s,directPathsOnly);
 					}
 				}

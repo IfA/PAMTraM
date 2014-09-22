@@ -94,15 +94,15 @@ class TargetSectionConnector {
 
 	/**
 	 * Return possible paths that can connect a minimum number of elements
-	 * @param classToConnect
 	 * @param startInstance may be null
 	 * @param minimumCapacity
 	 * @return possible paths
 	 */
 	private  LinkedList<ModelConnectionPath> findPathsWithMinimumCapacity(
-			EClass classToConnect, EObject startInstance, int minimumCapacity) {
+			LinkedHashSet<ModelConnectionPath> paths,
+			EObject startInstance, int minimumCapacity) {
 		LinkedList<ModelConnectionPath> pathsToConsider = new LinkedList<ModelConnectionPath>();
-		for (ModelConnectionPath p : targetSectionRegistry.getPaths(classToConnect,directPathsOnly)) {
+		for (ModelConnectionPath p : paths) {
 			if (startInstance != null) {
 				if (!p.leadsToRootType(startInstance.eClass())) {
 					continue;// only consider paths with the right start
@@ -143,7 +143,13 @@ class TargetSectionConnector {
 			return;// if we don't do this here an ArrayOutOfBoundsException
 					// might occur later' TODO
 
-		if (targetSectionRegistry.getPaths(classToConnect,directPathsOnly).size() > 0) {
+		//check for connections
+		int size=0;
+		for(ConnectionHintTargetAttribute attr : connectionHint.getTargetAttributes()){
+			size+=targetSectionRegistry.getConnections(classToConnect, attr.getTargetAttribute().getOwningClass().getEClass(), directPathsOnly).size();
+		}
+		
+		if (size > 0) {
 			// now search for target attributes
 
 			LinkedHashMap<ConnectionHintTargetAttribute,LinkedList<EObjectTransformationHelper>> containerInstancesByTargetAttribute = new LinkedHashMap<ConnectionHintTargetAttribute,LinkedList<EObjectTransformationHelper>>();
@@ -281,18 +287,7 @@ class TargetSectionConnector {
 				for (EObjectTransformationHelper container : rootInstancesByContainer.keySet()) {
 					boolean otherPathsNeeded = false;
 
-					if (!standardPaths.containsKey(connectionHint)) {// we have
-																		// te
-																		// check
-																		// this
-																		// first,
-																		// or
-																		// otherwise
-																		// we
-																		// might
-																		// risk
-																		// a
-																		// nullpointerexception
+					if (!standardPaths.containsKey(connectionHint)) {
 						otherPathsNeeded = true;
 					} else {
 						int capacity = standardPaths.get(connectionHint)
@@ -307,8 +302,8 @@ class TargetSectionConnector {
 					// sort possible paths by path capacity
 					LinkedList<ModelConnectionPath> pathsToConsider = new LinkedList<ModelConnectionPath>();
 					if (otherPathsNeeded) {
-						pathsToConsider = findPathsWithMinimumCapacity(
-								classToConnect, container.getEObject(),
+						pathsToConsider = findPathsWithMinimumCapacity(targetSectionRegistry.getConnections(classToConnect, container.getEObject().eClass(), otherPathsNeeded),
+								container.getEObject(),
 								rootInstancesByContainer.get(container).size());
 
 					} else {
@@ -385,6 +380,7 @@ class TargetSectionConnector {
 			consoleStream
 					.println("Could not find a path that leads to the modelConnectionTarget Class specified for '"
 							+ mappingName + "' (" + mappingGroupName + ")");
+
 			addToTargetModelRoot(rootInstances);
 		}
 	}
@@ -431,7 +427,7 @@ class TargetSectionConnector {
 
 		if (targetSectionRegistry.getPaths(classToConnect,directPathsOnly).size() > 0) {
 			LinkedList<ModelConnectionPath> pathsToConsider = findPathsWithMinimumCapacity(
-					classToConnect, null, rootInstances.size());//only go on with paths that could theoretically fit all of the elements
+					targetSectionRegistry.getPaths(classToConnect,directPathsOnly), null, rootInstances.size());//only go on with paths that could theoretically fit all of the elements
 
 			if (pathsToConsider.size() > 0) {
 				// handle container

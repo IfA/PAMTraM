@@ -81,6 +81,11 @@ class TargetSectionRegistry {
 	private  LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>> possiblePathsRegistry;
 	
 	/**
+	 * Possible connections from a start class to a specific target class
+	 */
+	private  LinkedHashMap<EClass, LinkedHashMap<EClass,LinkedHashSet<ModelConnectionPath>>> possibleConnectionsRegistry;	
+	
+	/**
 	 * List of classes that contain references to a Class
 	 */
 	private  LinkedHashMap<EClass, LinkedHashSet<EReference>> targetClassReferencesRegistry;
@@ -103,6 +108,7 @@ class TargetSectionRegistry {
 		targetClassInstanceByHintGroupRegistry = new LinkedHashMap<TargetSectionClass, LinkedHashMap<InstantiableMappingHintGroup, LinkedList<EObjectTransformationHelper>>>();
 		childClassesRegistry= new LinkedHashMap<EClass, LinkedHashSet<EClass>>();
 		possiblePathsRegistry= new LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>>();
+		possibleConnectionsRegistry=new LinkedHashMap<EClass,LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>>>();
 		targetClassReferencesRegistry= new LinkedHashMap<EClass, LinkedHashSet<EReference>>(); // ==refsToThis
 		referenceSourcesRegistry=new LinkedHashMap<EReference, LinkedHashSet<EClass>>(); // ==sources
 	}
@@ -210,6 +216,16 @@ class TargetSectionRegistry {
 		}
 		possiblePathsRegistry.get(eClass).add(modelConnectionPath);
 
+	}
+	
+	void addConnection(ModelConnectionPath path, EClass elementClass, EClass containerClass){
+		if(!possibleConnectionsRegistry.containsKey(elementClass)){
+			possibleConnectionsRegistry.put(elementClass, new LinkedHashMap<EClass,LinkedHashSet<ModelConnectionPath>>());
+		}
+		if(!possibleConnectionsRegistry.get(elementClass).containsKey(containerClass)){
+			possibleConnectionsRegistry.get(elementClass).put(containerClass, new LinkedHashSet<ModelConnectionPath>());
+		}
+		possibleConnectionsRegistry.get(elementClass).get(containerClass).add(path);
 	}
 
 	/**
@@ -332,6 +348,23 @@ class TargetSectionRegistry {
 
 		return possiblePathsRegistry.get(eClass);
 
+	}
+	
+	LinkedHashSet<ModelConnectionPath> getConnections(EClass elementClass, EClass containerClass, boolean directPathsOnly){
+		if(!possibleConnectionsRegistry.containsKey(elementClass)){
+			possibleConnectionsRegistry.put(elementClass, new LinkedHashMap<EClass,LinkedHashSet<ModelConnectionPath>>());
+		}
+		if(!possibleConnectionsRegistry.get(elementClass).containsKey(containerClass)){
+			possibleConnectionsRegistry.get(elementClass).put(containerClass, new LinkedHashSet<ModelConnectionPath>());
+			
+			new ModelConnectionPath(this).findPathsFromContainerToConnectClass(elementClass, containerClass, directPathsOnly);
+		}
+		
+		if( possibleConnectionsRegistry.get(elementClass).containsKey(containerClass)){
+			return possibleConnectionsRegistry.get(elementClass).get(containerClass);
+		} else {
+			return null;
+		}
 	}
 
 }

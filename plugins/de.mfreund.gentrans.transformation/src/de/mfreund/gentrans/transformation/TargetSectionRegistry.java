@@ -218,6 +218,11 @@ class TargetSectionRegistry {
 
 	}
 	
+	/**
+	 * @param path
+	 * @param elementClass
+	 * @param containerClass
+	 */
 	void addConnection(ModelConnectionPath path, EClass elementClass, EClass containerClass){
 		if(!possibleConnectionsRegistry.containsKey(elementClass)){
 			possibleConnectionsRegistry.put(elementClass, new LinkedHashMap<EClass,LinkedHashSet<ModelConnectionPath>>());
@@ -357,7 +362,7 @@ class TargetSectionRegistry {
 		if(!possibleConnectionsRegistry.get(elementClass).containsKey(containerClass)){
 			possibleConnectionsRegistry.get(elementClass).put(containerClass, new LinkedHashSet<ModelConnectionPath>());
 			
-			new ModelConnectionPath(this).findPathsFromContainerToConnectClass(elementClass, containerClass, directPathsOnly);
+			new ModelConnectionPath(this).findPathsFromContainerToClassToConnect(elementClass, containerClass, directPathsOnly);
 		}
 		
 		if( possibleConnectionsRegistry.get(elementClass).containsKey(containerClass)){

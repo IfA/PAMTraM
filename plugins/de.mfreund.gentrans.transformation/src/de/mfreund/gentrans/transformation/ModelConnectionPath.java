@@ -1,6 +1,7 @@
 package de.mfreund.gentrans.transformation;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ListIterator;
 
 import org.eclipse.emf.common.util.EList;
@@ -28,6 +29,15 @@ class ModelConnectionPath {
 	 * EReferences and EClasses.
 	 */
 	private LinkedList<EObject> pathElements;
+
+	/**
+	 * (there should'nt be a getter for pathElements, therefore we compare the elemnets list this way)
+	 * @param pathElements
+	 * @return true if list contain same elements
+	 */
+	boolean comparePathElements(List<EObject> pathElements){
+		return pathElements.equals(this.pathElements);
+	}
 
 	/**
 	 * Constructor
@@ -77,7 +87,7 @@ class ModelConnectionPath {
 	 * @param containerClass
 	 * @param directPathsOnly
 	 */
-	void findPathsFromContainerToConnectClass(EClass classToConnect, EClass containerClass, boolean directPathsOnly){
+	void findPathsFromContainerToClassToConnect(EClass classToConnect, EClass containerClass, boolean directPathsOnly){
 		if(classToConnect.equals(containerClass) && pathElements.size()>0){
 			// add copy of path to possiblePaths
 			ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements, classToConnect,targetSectionRegistry,true);
@@ -86,13 +96,13 @@ class ModelConnectionPath {
 			return;			
 		}
 		
+		// check for inherited types
+		for (EClass c :  targetSectionRegistry.getChildClasses(containerClass)) {
+			ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements,targetSectionRegistry);
+			newSelf.findPathsFromContainerToClassToConnect(classToConnect, c, directPathsOnly);
+		}
+		
 		if(!directPathsOnly || this.pathElements.size()<1){
-			// check for inherited types
-			for (EClass c : targetSectionRegistry.getChildClasses(containerClass)) {
-				ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements,targetSectionRegistry);
-				newSelf.findPathsFromContainerToConnectClass(classToConnect, c, directPathsOnly);
-			}
-
 			// detect loop
 			if (pathElements.contains(containerClass)) {
 				return;
@@ -106,7 +116,7 @@ class ModelConnectionPath {
 				// continue path finding for references
 				for (EReference cont : containerClass.getEAllContainments()) {
 					ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements, cont,targetSectionRegistry,false);
-					newSelf.findPathsFromContainerToConnectClass(classToConnect, cont.getEReferenceType(), directPathsOnly);
+					newSelf.findPathsFromContainerToClassToConnect(classToConnect, cont.getEReferenceType(), directPathsOnly);
 				}
 
 			}
@@ -131,13 +141,14 @@ class ModelConnectionPath {
 																				// class
 			return;
 		}
+		
+		// check for inherited types
+		for (EClass c : targetSectionRegistry.getChildClasses(pathStartClass)) {
+			ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements,targetSectionRegistry);
+			newSelf.findPathsToInstances(c,directPathsOnly);
+		}
+		
 		if(!directPathsOnly || this.pathElements.size()<1){
-			// check for inherited types
-			for (EClass c : targetSectionRegistry.getChildClasses(pathStartClass)) {
-				ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements,targetSectionRegistry);
-				newSelf.findPathsToInstances(c,directPathsOnly);
-			}
-
 			// detect loop
 			if (pathElements.contains(pathStartClass)) {
 				return;
@@ -288,4 +299,28 @@ class ModelConnectionPath {
 	int size() {
 		return pathElements.size();
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof ModelConnectionPath){
+			return ((ModelConnectionPath) obj).comparePathElements(pathElements);
+		}else {
+			return false;
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		return pathElements.hashCode();
+	}
+	
+	
+	
+	
 }

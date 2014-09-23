@@ -3875,7 +3875,10 @@
       </attributes>
     </metaModelSections>
     <metaModelSections name="dummy TextLabelRepresentation" container="//@targetSectionModel/@metaModelSections.8">
-      <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/TextLabelRepresentation"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/ToolTipText"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="Name">
+        <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+      </attributes>
     </metaModelSections>
   </targetSectionModel>
   <mappingModel>
@@ -5290,11 +5293,10 @@
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="dummy TextLabelRepresentation" targetMMSection="//@targetSectionModel/@metaModelSections.26">
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="zzs">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.8/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.3"/>
-          <sourceElements xsi:type="mapping:ComplexModelConnectionHintSourceElement" name="y" source="//@sourceSectionModel/@metaModelSections.15/@attributes.2"/>
-        </modelConnectionMatcher>
+        <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.26/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.3"/>
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="x" source="//@sourceSectionModel/@metaModelSections.15/@attributes.1"/>
+        </mappingHints>
       </mappingHintGroups>
     </mapping>
     <modifierSets name="append uniqueNumber">

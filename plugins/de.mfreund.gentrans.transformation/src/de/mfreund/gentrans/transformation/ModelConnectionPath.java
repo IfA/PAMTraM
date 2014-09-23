@@ -1,5 +1,6 @@
 package de.mfreund.gentrans.transformation;
 
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
@@ -30,6 +31,7 @@ class ModelConnectionPath {
 	 */
 	private LinkedList<EObject> pathElements;
 
+	
 	/**
 	 * (there should'nt be a getter for pathElements, therefore we compare the elemnets list this way)
 	 * @param pathElements
@@ -255,7 +257,7 @@ class ModelConnectionPath {
 	 * Used when instantiating a path.
 	 * @return inverted List of path elements
 	 */
-	public LinkedList<EObject> getInvertedPathElementList() {
+	private LinkedList<EObject> getInvertedPathElementList() {
 		LinkedList<EObject> inverted = new LinkedList<EObject>();
 		ListIterator<EObject> it = pathElements.listIterator(pathElements
 				.size());
@@ -271,7 +273,7 @@ class ModelConnectionPath {
 	/**
 	 * @return EClass of the end of the path.
 	 */
-	public EClass getRootType() {
+	EClass getRootType() {
 		return (EClass) pathElements.getLast();
 
 	}
@@ -321,6 +323,124 @@ class ModelConnectionPath {
 	}
 	
 	
+	/**
+	 * INstantiate the Path for all the supplied elements.
+	 * (This will not modify the List "instancesAtEnd")
+	 * @param refStartInstance
+	 * @param instancesAtEnd
+	 * @return unconnected instances
+	 */
+	List<EObjectTransformationHelper> instantiate(EObject refStartInstance, Collection<EObjectTransformationHelper> instancesAtEnd){
+		return instantiateMissingPath(getInvertedPathElementList(), refStartInstance, new LinkedList<EObjectTransformationHelper>(instancesAtEnd));
+	}
+	
+	/**
+	 * The actual method for linking Objects to another object.
+	 * <p>
+	 * Missing instances of objects along the path will be created.
+	 * @param invertedPath
+	 * @param refStartInstance
+	 * @param instancesAtEnd
+	 * @param attrValRegistry 
+	 * @returns unLinkedInstances
+	 */
+	private List<EObjectTransformationHelper> instantiateMissingPath(
+			LinkedList<EObject> invertedPath, EObject refStartInstance,
+			List<EObjectTransformationHelper> instancesAtEnd) {
+		LinkedList<EObject> pathCopy=new LinkedList<EObject> ();
+		pathCopy.addAll(invertedPath);
+		pathCopy.remove(0);// EClass refStart=(EClass)
+		EReference ref = (EReference) pathCopy.remove(0);
+		Object targetInst = refStartInstance.eGet(ref);
+
+		if (pathCopy.size() > 1) {
+			if (ref.getUpperBound() == 1) {// only one target instance allowed,
+											// check if it exists
+				if (targetInst == null) {
+					EClass classToCreate=(EClass) pathCopy.get(0);
+					EObject inst =  classToCreate.getEPackage().getEFactoryInstance().create(classToCreate);
+
+					targetSectionRegistry.addClassInstance(inst);
+					refStartInstance.eSet(ref, inst);
+					
+					targetInst=inst;
+				}
+				
+				instancesAtEnd=instantiateMissingPath(pathCopy, (EObject) targetInst,instancesAtEnd);
+				return instancesAtEnd;
+
+
+			} else if (ref.getUpperBound() < 0) {
+				LinkedList<EObject> newTarget = new LinkedList<EObject>();// it is absolutely neccessary to copy
+																			// targetInst, since targetInst will be cleared by
+				List<EObject> targetInstL=new LinkedList<EObject>();														// eSet before new elements are added
+				if (targetInst != null) {
+					@SuppressWarnings("unchecked")
+					EList<EObject> castedList=(EList<EObject>) targetInst;
+					targetInstL.addAll(castedList);
+				}
+				
+				EClass classToCreate=(EClass) pathCopy.get(0);
+				
+				while(instancesAtEnd.size()>0){
+					EObject instance = classToCreate.getEPackage().getEFactoryInstance().create(classToCreate);
+					// instance.~description="Class '" + newSelf.first.name +
+					// "' (created to link targetSection):"; TODO seee above
+					targetInstL.add(instance);
+					newTarget.clear();//shouldn't be neccesssary because eSet will clear this
+					newTarget.addAll(targetInstL);
+					targetSectionRegistry.addClassInstance((EObject)newTarget.getLast());
+					refStartInstance.eSet(ref, newTarget);
+					
+					instancesAtEnd=instantiateMissingPath(pathCopy,instance,instancesAtEnd);
+				}
+				
+				return instancesAtEnd;
+
+			} else {// cardinality less than infinity
+				// TODO
+				System.out.println("Owei, owei");
+				//addToTargetModelRoot(instancesAtEnd);
+				return  new LinkedList<EObjectTransformationHelper>();
+
+			}
+
+		} else {// at End
+			if (ref.getUpperBound() == 1) {
+				if (targetInst != null){
+					System.out.println("Big mistake"); // this shouldn't happen
+					//addToTargetModelRoot(instancesAtEnd);
+					return new LinkedList<EObjectTransformationHelper>();
+				} else {
+					refStartInstance.eSet(ref, instancesAtEnd.remove(0).getEObject());
+					
+					return instancesAtEnd;
+
+				}
+			} else if (ref.getUpperBound() < 0) {
+				LinkedList<EObject> newTarget = new LinkedList<EObject>();// it is absolutely  neccessary  to  copy
+																			// targetInst,  since  targetInst  will  be  cleared  
+																			//by eSet before new elements are added
+				if (targetInst != null) {
+					@SuppressWarnings("unchecked")
+					EList<EObject> targetInstL=(EList<EObject>) targetInst;
+					newTarget.addAll(targetInstL);
+				}
+				for(EObjectTransformationHelper inst : instancesAtEnd){
+					newTarget.add(inst.getEObject());
+				}
+
+				refStartInstance.eSet(ref, newTarget);
+				return new LinkedList<EObjectTransformationHelper>();
+			} else {// cardinality less than infinity
+					// TODO
+				System.out.println("owei, owei");
+				//addToTargetModelRoot(instancesAtEnd);
+				return new LinkedList<EObjectTransformationHelper>();
+			}
+		}
+
+	} 
 	
 	
 }

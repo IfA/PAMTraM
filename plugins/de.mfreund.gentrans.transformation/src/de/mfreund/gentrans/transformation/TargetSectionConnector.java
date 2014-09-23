@@ -8,10 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.console.MessageConsoleStream;
@@ -35,10 +33,7 @@ class TargetSectionConnector {
 	 * Paths previously selected by the user.
 	 */
 	private  LinkedHashMap<ModelConnectionHint, ModelConnectionPath> standardPaths;
-	/**
-	 * Attribute value registry, needed when applying model connection hints
-	 */
-	private AttributeValueRegistry attrValRegistry;
+
 	/**
 	 * target section registry, used when finding instances to which sections can be connected 
 	 */
@@ -83,7 +78,6 @@ class TargetSectionConnector {
 	TargetSectionConnector(AttributeValueRegistry attrValRegistry, TargetSectionRegistry targetSectionRegistry, AttributeValueModifierExecutor attributeValuemodifier,
 			XMIResource targetModel, boolean directPathsOnly, MessageConsoleStream consoleStream){
 		standardPaths = new LinkedHashMap<ModelConnectionHint, ModelConnectionPath>();
-		this.attrValRegistry=attrValRegistry;
 		this.targetSectionRegistry=targetSectionRegistry;
 		this.targetModel=targetModel;
 		this.consoleStream=consoleStream;
@@ -370,9 +364,10 @@ class TargetSectionConnector {
 					if(rootInstancesByContainer.get(container).contains(container)){//we will allow objects that reference themselves as container 
 						addToTargetModelRoot(container);							//because this was explicitly specified by tho ModelConnectionHint
 					}
-					
-					instantiateMissingPath(modelConnectionPath.getInvertedPathElementList(), container.getEObject(),
-							new LinkedList<EObjectTransformationHelper>(rootInstancesByContainer.get(container)));
+					/*
+					 * Try to instantiate Paths and add failed elements to target model root
+					 */
+					addToTargetModelRoot(modelConnectionPath.instantiate(container.getEObject(), rootInstancesByContainer.get(container)));
 
 				}
 			}
@@ -497,11 +492,11 @@ class TargetSectionConnector {
 
 					consoleStream.println("Path found: " + section.getName() + "(" + mappingName 
 							+ "::"+ mappingGroupName +"): " + modelConnectionPath.toString());
-					List<EObjectTransformationHelper> instancesAtEnd=instantiateMissingPath(modelConnectionPath.getInvertedPathElementList(), inst.getEObject(),rootInstances);
-					if(instancesAtEnd.size()>0){
-						consoleStream.println("Could not link some instances to model because of capacity error");
-						addToTargetModelRoot(instancesAtEnd);
-					}
+							
+					/*
+					 * Try to instantiate Paths and add failed elements to target model root
+					 */
+					addToTargetModelRoot(modelConnectionPath.instantiate(inst.getEObject(), rootInstances));		
 
 				} else if (pathsToConsider.size() > 0) {// user decides
 					LinkedHashMap<String, ModelConnectionPath> pathNames = new LinkedHashMap<String, ModelConnectionPath>();
@@ -571,11 +566,11 @@ class TargetSectionConnector {
 							dialog.getInstance());
 					consoleStream.println(section.getName() + "(" + mappingName
 							+ "): " + modelConnectionPath.toString());
-					List<EObjectTransformationHelper> instancesAtEnd=instantiateMissingPath(modelConnectionPath.getInvertedPathElementList(), inst.getEObject(),rootInstances);
-					if(instancesAtEnd.size()>0){
-						consoleStream.println("Could not link some instances to model because of capacity error");
-						addToTargetModelRoot(instancesAtEnd);
-					}
+
+					/*
+					 * Try to instantiate Paths and add failed elements to target model root
+					 */
+					addToTargetModelRoot(modelConnectionPath.instantiate(inst.getEObject(), rootInstances));
 
 				} else {// no suitable container found
 					consoleStream
@@ -594,114 +589,5 @@ class TargetSectionConnector {
 			addToTargetModelRoot(rootInstances);
 		}
 	}
-
-	// --TODO clean this up so we don't need to differentiate between middle and
-	// end
-	/**
-	 * The actual method for linking Objects to another object.
-	 * <p>
-	 * Missing instances of objects along the path will be created.
-	 * @param invertedPath
-	 * @param refStartInstance
-	 * @param instancesAtEnd
-	 * @returns unLinkedInstances
-	 */
-	private List<EObjectTransformationHelper> instantiateMissingPath(
-			LinkedList<EObject> invertedPath, EObject refStartInstance,
-			List<EObjectTransformationHelper> instancesAtEnd) {
-		LinkedList<EObject> pathCopy=new LinkedList<EObject> ();
-		pathCopy.addAll(invertedPath);
-		pathCopy.remove(0);// EClass refStart=(EClass)
-		EReference ref = (EReference) pathCopy.remove(0);
-		Object targetInst = refStartInstance.eGet(ref);
-
-		if (pathCopy.size() > 1) {
-			if (ref.getUpperBound() == 1) {// only one target instance allowed,
-											// check if it exists
-				if (targetInst == null) {
-					EClass classToCreate=(EClass) pathCopy.get(0);
-					EObject inst =  classToCreate.getEPackage().getEFactoryInstance().create(classToCreate);
-
-					targetSectionRegistry.addClassInstance(new EObjectTransformationHelper(inst,attrValRegistry));
-					refStartInstance.eSet(ref, inst);
-					
-					targetInst=inst;
-				}
-				
-				instancesAtEnd=instantiateMissingPath(pathCopy, (EObject) targetInst,instancesAtEnd);
-				return instancesAtEnd;
-
-
-			} else if (ref.getUpperBound() < 0) {
-				LinkedList<EObject> newTarget = new LinkedList<EObject>();// it is absolutely neccessary to copy
-																			// targetInst, since targetInst will be cleared by
-				List<EObject> targetInstL=new LinkedList<EObject>();														// eSet before new elements are added
-				if (targetInst != null) {
-					@SuppressWarnings("unchecked")
-					EList<EObject> castedList=(EList<EObject>) targetInst;
-					targetInstL.addAll(castedList);
-				}
-				
-				EClass classToCreate=(EClass) pathCopy.get(0);
-				
-				while(instancesAtEnd.size()>0){
-					EObject instance = classToCreate.getEPackage().getEFactoryInstance().create(classToCreate);
-					// instance.~description="Class '" + newSelf.first.name +
-					// "' (created to link targetSection):"; TODO seee above
-					targetInstL.add(instance);
-					newTarget.clear();//shouldn't be neccesssary because eSet will clear this
-					newTarget.addAll(targetInstL);
-					targetSectionRegistry.addClassInstance(new EObjectTransformationHelper((EObject)newTarget.getLast(),attrValRegistry));
-					refStartInstance.eSet(ref, newTarget);
-					
-					instancesAtEnd=instantiateMissingPath(pathCopy,instance,instancesAtEnd);
-				}
-				
-				return instancesAtEnd;
-
-			} else {// cardinality less than infinity
-				// TODO
-				consoleStream.println("Owei, owei");
-				addToTargetModelRoot(instancesAtEnd);
-				return  new LinkedList<EObjectTransformationHelper>();
-
-			}
-
-		} else {// at End
-			if (ref.getUpperBound() == 1) {
-				if (targetInst != null){
-					consoleStream.println("Big mistake"); // this shouldn't happen
-					addToTargetModelRoot(instancesAtEnd);
-					return new LinkedList<EObjectTransformationHelper>();
-				} else {
-					refStartInstance.eSet(ref, instancesAtEnd.remove(0).getEObject());
-					
-					return instancesAtEnd;
-
-				}
-			} else if (ref.getUpperBound() < 0) {
-				LinkedList<EObject> newTarget = new LinkedList<EObject>();// it is absolutely  neccessary  to  copy
-																			// targetInst,  since  targetInst  will  be  cleared  
-																			//by eSet before new elements are added
-				if (targetInst != null) {
-					@SuppressWarnings("unchecked")
-					EList<EObject> targetInstL=(EList<EObject>) targetInst;
-					newTarget.addAll(targetInstL);
-				}
-				for(EObjectTransformationHelper inst : instancesAtEnd){
-					newTarget.add(inst.getEObject());
-				}
-
-				refStartInstance.eSet(ref, newTarget);
-				return new LinkedList<EObjectTransformationHelper>();
-			} else {// cardinality less than infinity
-					// TODO
-				consoleStream.println("owei, owei");
-				addToTargetModelRoot(instancesAtEnd);
-				return new LinkedList<EObjectTransformationHelper>();
-			}
-		}
-
-	} 
 
 }

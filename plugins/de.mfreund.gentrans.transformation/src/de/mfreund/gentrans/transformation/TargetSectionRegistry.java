@@ -6,6 +6,7 @@ import java.util.LinkedList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ui.console.MessageConsoleStream;
@@ -27,6 +28,11 @@ class TargetSectionRegistry {
 	public LinkedHashMap<EClass, LinkedList<EObjectTransformationHelper>> getTargetClassInstanceRegistry() {
 		return targetClassInstanceRegistry;
 	}
+	
+	/**
+	 * Attribute value registry, needed when applying model connection hints
+	 */
+	private AttributeValueRegistry attrValRegistry;
 
 	/**
 	 * @return targetClassInstanceByHintGroupRegistry
@@ -101,8 +107,9 @@ class TargetSectionRegistry {
 	/**
 	 * Constructor
 	 * @param consoleStream
+	 * @param attrValRegistry 
 	 */
-	TargetSectionRegistry(MessageConsoleStream consoleStream) {
+	TargetSectionRegistry(MessageConsoleStream consoleStream, AttributeValueRegistry attrValRegistry) {
 		this.consoleStream=consoleStream;
 		targetClassInstanceRegistry= new LinkedHashMap<EClass, LinkedList<EObjectTransformationHelper>>();
 		targetClassInstanceByHintGroupRegistry = new LinkedHashMap<TargetSectionClass, LinkedHashMap<InstantiableMappingHintGroup, LinkedList<EObjectTransformationHelper>>>();
@@ -111,6 +118,7 @@ class TargetSectionRegistry {
 		possibleConnectionsRegistry=new LinkedHashMap<EClass,LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>>>();
 		targetClassReferencesRegistry= new LinkedHashMap<EClass, LinkedHashSet<EReference>>(); // ==refsToThis
 		referenceSourcesRegistry=new LinkedHashMap<EReference, LinkedHashSet<EClass>>(); // ==sources
+		this.attrValRegistry=attrValRegistry;
 	}
 	
 	
@@ -151,13 +159,13 @@ class TargetSectionRegistry {
 	 * Used when linking target model sections
 	 * @param instance
 	 */
-	void addClassInstance(EObjectTransformationHelper instance) {
-		EClass eClass = instance.getEObject().eClass();
+	 void addClassInstance(EObject instance) {
+		EClass eClass = instance.eClass();
 
 		if (!targetClassInstanceRegistry.containsKey(eClass)) {
 			targetClassInstanceRegistry.put(eClass, new LinkedList<EObjectTransformationHelper>());
 		}
-		targetClassInstanceRegistry.get(eClass).add(instance);
+		targetClassInstanceRegistry.get(eClass).add(new EObjectTransformationHelper(instance, attrValRegistry));
 
 	}
 	

@@ -261,8 +261,8 @@ public class GenericTransformationRunner {
 		// generate storage objects and generators
 		AttributeValueModifierExecutor attributeValueModifier= new AttributeValueModifierExecutor(consoleStream);
 		SourceSectionMapper sourceSectionMapper = new SourceSectionMapper(suitableMappings, attributeValueModifier,consoleStream);
-		TargetSectionRegistry targetSectionRegistry = new TargetSectionRegistry(consoleStream);
 		AttributeValueRegistry attrValueRegistry = new AttributeValueRegistry();
+		TargetSectionRegistry targetSectionRegistry = new TargetSectionRegistry(consoleStream, attrValueRegistry);
 
 		/*
 		 * create a list of all the containment references in the source model

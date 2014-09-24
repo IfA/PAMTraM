@@ -70,6 +70,12 @@ class SourceSectionMapper {
 	 */
 	private LinkedHashMap<SourceSectionClass, Set<EObject>> mappedSections;
 	/**
+	 * Registry for src model objects that were "not officially" mapped but 
+	 * included through a container mapping
+	 */
+	private LinkedHashMap<SourceSectionClass, Set<EObject>> mappedContainers;
+
+	/**
 	 * Registry for ModelConnectionHints. Used When linking target model sections.
 	 */
 	private Map<Mapping, LinkedList<ModelConnectionHint>> modelConnectionHints;
@@ -168,6 +174,7 @@ class SourceSectionMapper {
 	 */
 	SourceSectionMapper(List<Mapping> mappingsToChooseFrom, AttributeValueModifierExecutor attributeValuemodifier, MessageConsoleStream consoleStream) {
 		mappedSections=new LinkedHashMap<SourceSectionClass,Set<EObject>> ();
+		mappedContainers=new LinkedHashMap<SourceSectionClass,Set<EObject>> ();
 		mappingHints=new  LinkedHashMap<Mapping,LinkedList<MappingHintType>>();
 		modelConnectionHints=new  LinkedHashMap<Mapping,LinkedList<ModelConnectionHint>>();
 		deepestComplexAttrMappingSrcElementsByCmplxMapping= new LinkedHashMap<ComplexAttributeMapping,Set<SourceSectionClass>>();
@@ -1489,7 +1496,7 @@ class SourceSectionMapper {
 			if(attrClass.equals(extClass)){
 				Object attrVal=extObj.eGet(attr.getAttribute());
 				if(attrVal == null){
-					consoleStream.println("Unset external Attriubte " + attr.getName());
+					consoleStream.println("Unset external Attrbute " + attr.getName());
 					return null;
 				} else { // convert Attribute value to String
 					return attr
@@ -1504,31 +1511,11 @@ class SourceSectionMapper {
 				extClass=(SourceSectionClass) extClass.eContainer().eContainer();
 				extObj=extObj.eContainer();
 				//Check if the parent object exists, and if it was mapped for the section.
-				if(extObj == null){
-					return null;
-				} else{
-					if(mappedSections.containsKey(extClass)){
-						if(!mappedSections.get(extClass).contains(extObj)){
-							return null;
-						}
-					} else {
-						return null;
-					}
-				}
+				if(!checkObjectWasMapped(extClass, extObj)) return null;
 			} else if(extClass.eContainer() instanceof SourceSectionModel && extClass.getContainer() != null){
 				extClass=extClass.getContainer();
 				extObj=extObj.eContainer();
-				if(extObj == null){
-					return null;
-				} else {
-					if(mappedSections.containsKey(extClass)){
-						if(!mappedSections.get(extClass).contains(extObj)){
-							return null;
-						}
-					} else {
-						return null;
-					}					
-				}
+				if(!checkObjectWasMapped(extClass, extObj)) return null;
 			}else {//modeling error, object not found
 				consoleStream.println("Modeling error. External Source Element " + attr.getName() + "is not part of the the container"
 						+ "section or the section that the container section is part of.");
@@ -1536,6 +1523,30 @@ class SourceSectionMapper {
 			}
 															
 		}
+	}
+
+	/**
+	 * @param extClass
+	 * @param extObj
+	 */
+	private boolean checkObjectWasMapped(SourceSectionClass extClass,
+			EObject extObj) {
+		if(extObj == null){
+			return false;
+		} else{
+			if(mappedSections.containsKey(extClass)){
+				if(!mappedSections.get(extClass).contains(extObj)){
+					return false;
+				}
+			} else if(mappedContainers.containsKey(extClass)){
+				if(!mappedSections.get(extClass).contains(extObj)){
+					return false;
+				}
+			} else {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	/**
@@ -1550,7 +1561,6 @@ class SourceSectionMapper {
 		long time;
 		
 		EObject element=contRefObjectsToMap.remove(0);//source model element which we will now try to map
-		
 		start = System.nanoTime();
 		Map<Mapping, MappingInstanceStorage> mappingData=new LinkedHashMap<Mapping, MappingInstanceStorage>();
 			//find mapping rules that are applicable to a srcMM element 

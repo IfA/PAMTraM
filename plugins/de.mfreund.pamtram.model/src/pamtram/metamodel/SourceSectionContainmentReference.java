@@ -26,6 +26,7 @@ public interface SourceSectionContainmentReference extends ContainmentReference,
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.metamodel.SourceSectionClass}.
+	 * It is bidirectional and its opposite is '{@link pamtram.metamodel.SourceSectionClass#getOwningContainmentReference <em>Owning Containment Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Value</em>' containment reference list isn't clear,
@@ -34,7 +35,8 @@ public interface SourceSectionContainmentReference extends ContainmentReference,
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value</em>' containment reference list.
 	 * @see pamtram.metamodel.MetamodelPackage#getSourceSectionContainmentReference_Value()
-	 * @model containment="true"
+	 * @see pamtram.metamodel.SourceSectionClass#getOwningContainmentReference
+	 * @model opposite="owningContainmentReference" containment="true"
 	 * @generated
 	 */
 	EList<SourceSectionClass> getValue();

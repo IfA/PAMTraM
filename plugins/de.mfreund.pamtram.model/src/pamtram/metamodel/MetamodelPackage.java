@@ -263,13 +263,22 @@ public interface MetamodelPackage extends EPackage {
 	int SOURCE_SECTION_CLASS__CONTAINER = CLASS_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Owning Containment Reference</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_CLASS__OWNING_CONTAINMENT_REFERENCE = CLASS_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Source Section Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 3;
+	int SOURCE_SECTION_CLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -2061,6 +2070,17 @@ public interface MetamodelPackage extends EPackage {
 	EReference getSourceSectionClass_Container();
 
 	/**
+	 * Returns the meta object for the container reference '{@link pamtram.metamodel.SourceSectionClass#getOwningContainmentReference <em>Owning Containment Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owning Containment Reference</em>'.
+	 * @see pamtram.metamodel.SourceSectionClass#getOwningContainmentReference()
+	 * @see #getSourceSectionClass()
+	 * @generated
+	 */
+	EReference getSourceSectionClass_OwningContainmentReference();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.TargetSectionClass <em>Target Section Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2674,6 +2694,14 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SOURCE_SECTION_CLASS__CONTAINER = eINSTANCE.getSourceSectionClass_Container();
+
+		/**
+		 * The meta object literal for the '<em><b>Owning Containment Reference</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SOURCE_SECTION_CLASS__OWNING_CONTAINMENT_REFERENCE = eINSTANCE.getSourceSectionClass_OwningContainmentReference();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.TargetSectionClassImpl <em>Target Section Class</em>}' class.

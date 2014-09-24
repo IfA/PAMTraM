@@ -11,11 +11,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.SourceSectionContainmentReference;
 import pamtram.metamodel.SourceSectionReference;
 
 /**
@@ -28,6 +30,7 @@ import pamtram.metamodel.SourceSectionReference;
  *   <li>{@link pamtram.metamodel.impl.SourceSectionClassImpl#getReferences <em>References</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.SourceSectionClassImpl#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.SourceSectionClassImpl#getContainer <em>Container</em>}</li>
+ *   <li>{@link pamtram.metamodel.impl.SourceSectionClassImpl#getOwningContainmentReference <em>Owning Containment Reference</em>}</li>
  * </ul>
  * </p>
  *
@@ -149,6 +152,47 @@ public class SourceSectionClassImpl extends ClassImpl implements SourceSectionCl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public SourceSectionContainmentReference getOwningContainmentReference() {
+		if (eContainerFeatureID() != MetamodelPackage.SOURCE_SECTION_CLASS__OWNING_CONTAINMENT_REFERENCE) return null;
+		return (SourceSectionContainmentReference)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwningContainmentReference(SourceSectionContainmentReference newOwningContainmentReference, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newOwningContainmentReference, MetamodelPackage.SOURCE_SECTION_CLASS__OWNING_CONTAINMENT_REFERENCE, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwningContainmentReference(SourceSectionContainmentReference newOwningContainmentReference) {
+		if (newOwningContainmentReference != eInternalContainer() || (eContainerFeatureID() != MetamodelPackage.SOURCE_SECTION_CLASS__OWNING_CONTAINMENT_REFERENCE && newOwningContainmentReference != null)) {
+			if (EcoreUtil.isAncestor(this, newOwningContainmentReference))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwningContainmentReference != null)
+				msgs = ((InternalEObject)newOwningContainmentReference).eInverseAdd(this, MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE, SourceSectionContainmentReference.class, msgs);
+			msgs = basicSetOwningContainmentReference(newOwningContainmentReference, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.SOURCE_SECTION_CLASS__OWNING_CONTAINMENT_REFERENCE, newOwningContainmentReference, newOwningContainmentReference));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -157,6 +201,10 @@ public class SourceSectionClassImpl extends ClassImpl implements SourceSectionCl
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getReferences()).basicAdd(otherEnd, msgs);
 			case MetamodelPackage.SOURCE_SECTION_CLASS__ATTRIBUTES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAttributes()).basicAdd(otherEnd, msgs);
+			case MetamodelPackage.SOURCE_SECTION_CLASS__OWNING_CONTAINMENT_REFERENCE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwningContainmentReference((SourceSectionContainmentReference)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -173,8 +221,24 @@ public class SourceSectionClassImpl extends ClassImpl implements SourceSectionCl
 				return ((InternalEList<?>)getReferences()).basicRemove(otherEnd, msgs);
 			case MetamodelPackage.SOURCE_SECTION_CLASS__ATTRIBUTES:
 				return ((InternalEList<?>)getAttributes()).basicRemove(otherEnd, msgs);
+			case MetamodelPackage.SOURCE_SECTION_CLASS__OWNING_CONTAINMENT_REFERENCE:
+				return basicSetOwningContainmentReference(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case MetamodelPackage.SOURCE_SECTION_CLASS__OWNING_CONTAINMENT_REFERENCE:
+				return eInternalContainer().eInverseRemove(this, MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE, SourceSectionContainmentReference.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -192,6 +256,8 @@ public class SourceSectionClassImpl extends ClassImpl implements SourceSectionCl
 			case MetamodelPackage.SOURCE_SECTION_CLASS__CONTAINER:
 				if (resolve) return getContainer();
 				return basicGetContainer();
+			case MetamodelPackage.SOURCE_SECTION_CLASS__OWNING_CONTAINMENT_REFERENCE:
+				return getOwningContainmentReference();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -216,6 +282,9 @@ public class SourceSectionClassImpl extends ClassImpl implements SourceSectionCl
 			case MetamodelPackage.SOURCE_SECTION_CLASS__CONTAINER:
 				setContainer((SourceSectionClass)newValue);
 				return;
+			case MetamodelPackage.SOURCE_SECTION_CLASS__OWNING_CONTAINMENT_REFERENCE:
+				setOwningContainmentReference((SourceSectionContainmentReference)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -237,6 +306,9 @@ public class SourceSectionClassImpl extends ClassImpl implements SourceSectionCl
 			case MetamodelPackage.SOURCE_SECTION_CLASS__CONTAINER:
 				setContainer((SourceSectionClass)null);
 				return;
+			case MetamodelPackage.SOURCE_SECTION_CLASS__OWNING_CONTAINMENT_REFERENCE:
+				setOwningContainmentReference((SourceSectionContainmentReference)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -255,6 +327,8 @@ public class SourceSectionClassImpl extends ClassImpl implements SourceSectionCl
 				return attributes != null && !attributes.isEmpty();
 			case MetamodelPackage.SOURCE_SECTION_CLASS__CONTAINER:
 				return container != null;
+			case MetamodelPackage.SOURCE_SECTION_CLASS__OWNING_CONTAINMENT_REFERENCE:
+				return getOwningContainmentReference() != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link pamtram.metamodel.SourceSectionClass#getReferences <em>References</em>}</li>
  *   <li>{@link pamtram.metamodel.SourceSectionClass#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link pamtram.metamodel.SourceSectionClass#getContainer <em>Container</em>}</li>
+ *   <li>{@link pamtram.metamodel.SourceSectionClass#getOwningContainmentReference <em>Owning Containment Reference</em>}</li>
  * </ul>
  * </p>
  *
@@ -86,6 +87,34 @@ public interface SourceSectionClass extends pamtram.metamodel.Class {
 	 * @generated
 	 */
 	void setContainer(SourceSectionClass value);
+
+	/**
+	 * Returns the value of the '<em><b>Owning Containment Reference</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link pamtram.metamodel.SourceSectionContainmentReference#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owning Containment Reference</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owning Containment Reference</em>' container reference.
+	 * @see #setOwningContainmentReference(SourceSectionContainmentReference)
+	 * @see pamtram.metamodel.MetamodelPackage#getSourceSectionClass_OwningContainmentReference()
+	 * @see pamtram.metamodel.SourceSectionContainmentReference#getValue
+	 * @model opposite="value" transient="false"
+	 * @generated
+	 */
+	SourceSectionContainmentReference getOwningContainmentReference();
+
+	/**
+	 * Sets the value of the '{@link pamtram.metamodel.SourceSectionClass#getOwningContainmentReference <em>Owning Containment Reference</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Containment Reference</em>' container reference.
+	 * @see #getOwningContainmentReference()
+	 * @generated
+	 */
+	void setOwningContainmentReference(SourceSectionContainmentReference value);
 	
 	
 } // SourceSectionClass

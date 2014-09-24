@@ -88,6 +88,8 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
           eType="#//metamodel/SourceSectionAttribute" containment="true" eOpposite="#//metamodel/SourceSectionAttribute/owningClass"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//metamodel/SourceSectionClass"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="owningContainmentReference"
+          eType="#//metamodel/SourceSectionContainmentReference" eOpposite="#//metamodel/SourceSectionContainmentReference/value"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TargetSectionClass" eSuperTypes="#//metamodel/Class">
       <eStructuralFeatures xsi:type="ecore:EReference" name="references" upperBound="-1"
@@ -157,7 +159,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="SourceSectionContainmentReference"
         eSuperTypes="#//metamodel/ContainmentReference #//metamodel/SourceSectionReference">
       <eStructuralFeatures xsi:type="ecore:EReference" name="value" upperBound="-1"
-          eType="#//metamodel/SourceSectionClass" containment="true"/>
+          eType="#//metamodel/SourceSectionClass" containment="true" eOpposite="#//metamodel/SourceSectionClass/owningContainmentReference"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MetaModelSectionReference" eSuperTypes="#//metamodel/SourceSectionReference">
       <eStructuralFeatures xsi:type="ecore:EReference" name="value" upperBound="-1"

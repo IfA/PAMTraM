@@ -4,14 +4,12 @@ package pamtram.metamodel.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.SourceSectionClass;
@@ -79,7 +77,7 @@ public class SourceSectionContainmentReferenceImpl extends ContainmentReferenceI
 	 */
 	public EList<SourceSectionClass> getValue() {
 		if (value == null) {
-			value = new EObjectContainmentEList<SourceSectionClass>(SourceSectionClass.class, this, MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE);
+			value = new EObjectContainmentWithInverseEList<SourceSectionClass>(SourceSectionClass.class, this, MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE, MetamodelPackage.SOURCE_SECTION_CLASS__OWNING_CONTAINMENT_REFERENCE);
 		}
 		return value;
 	}
@@ -105,6 +103,7 @@ public class SourceSectionContainmentReferenceImpl extends ContainmentReferenceI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -112,6 +111,8 @@ public class SourceSectionContainmentReferenceImpl extends ContainmentReferenceI
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return eBasicSetContainer(otherEnd, MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE__OWNING_CLASS, msgs);
+			case MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getValue()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}

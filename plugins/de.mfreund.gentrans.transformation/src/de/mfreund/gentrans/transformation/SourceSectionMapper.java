@@ -1,5 +1,6 @@
 package de.mfreund.gentrans.transformation;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -493,8 +494,7 @@ class SourceSectionMapper {
 			Iterable<ModelConnectionHint> connectionHints,
 			Iterable<GlobalAttribute> globalVars,
 			SourceSectionClass srcSection,
-			MappingInstanceStorage newRefsAndHints,
-			LinkedHashMap<SourceSectionClass, EObject> srcInstanceMap		
+			MappingInstanceStorage newRefsAndHints	
 			) {
 
 		boolean classFits= srcSection.getEClass().isSuperTypeOf(srcModelObject.eClass());
@@ -560,9 +560,6 @@ class SourceSectionMapper {
 
 		// add self to new Refs
 		changedRefsAndHints.addSourceModelObjectMapped(srcModelObject, srcSection);
-
-		// set self in sourceInstanceMAp
-		srcInstanceMap.put(srcSection, srcModelObject);
 
 		// check attributes
 		for (SourceSectionAttribute at : srcSection.getAttributes()) {// look
@@ -862,7 +859,7 @@ class SourceSectionMapper {
 									(refByClassMap.get(c) instanceof MetaModelSectionReference) || usedOkay
 									, hints,
 									connectionHints,globalVars ,c,
-									changedRefsAndHints, srcInstanceMap);
+									changedRefsAndHints);
 						 if(transformationAborted) return null;
 					}
 				}
@@ -874,7 +871,7 @@ class SourceSectionMapper {
 										(refByClassMap.get(c) instanceof MetaModelSectionReference) || usedOkay
 										, hints,
 										connectionHints,globalVars ,c,
-										changedRefsAndHints, srcInstanceMap);
+										changedRefsAndHints);
 								 if(transformationAborted) return null;
 						 if(res != null){
 							 break;
@@ -950,7 +947,7 @@ class SourceSectionMapper {
 								rt,
 								(refByClassMap.get(val) instanceof MetaModelSectionReference) || usedOkay,
 								hints, connectionHints, globalVars, val,
-								changedRefsAndHints, srcInstanceMap);
+								changedRefsAndHints);
 						 if(transformationAborted) return null;
 						 
 						if (res != null) {// mapping possible
@@ -1531,22 +1528,18 @@ class SourceSectionMapper {
 	 */
 	private boolean checkObjectWasMapped(SourceSectionClass extClass,
 			EObject extObj) {
-		if(extObj == null){
-			return false;
-		} else{
+		if(extObj != null){
 			if(mappedSections.containsKey(extClass)){
-				if(!mappedSections.get(extClass).contains(extObj)){
-					return false;
+				if(mappedSections.get(extClass).contains(extObj)){
+					return true;
 				}
 			} else if(mappedContainers.containsKey(extClass)){
-				if(!mappedSections.get(extClass).contains(extObj)){
-					return false;
-				}
-			} else {
-				return false;
+					if(mappedContainers.get(extClass).contains(extObj)){
+						return true;
+					}
 			}
 		}
-		return true;
+		return false;
 	}
 	
 	/**
@@ -1578,8 +1571,7 @@ class SourceSectionMapper {
 					if(doContainerCheck(element,m.getSourceMMSection()) ){					
 						res= findMapping(element, false, getHints(m), getModelConnectionHints(m), m.getGlobalVariables(),
 								m.getSourceMMSection(),
-								new MappingInstanceStorage(),
-								new LinkedHashMap<SourceSectionClass, EObject>());
+								new MappingInstanceStorage());
 						if(transformationAborted) return null;
 						
 						boolean mappingFailed=res == null;
@@ -1825,54 +1817,101 @@ class SourceSectionMapper {
 
 	
 	/**
-	 * Check if the container section referenced by the sourceSection Classe's container ref. was mapped.
+	 * Check if the container section referenced by the sourceSection Classe's container ref. can be mapped.
 	 * @param element
 	 * @param sourceSectionClass
 	 * @return true if the container attribute of the sourceSection Class doesn't exist or a fitting container instance exists
 	 */
 	private boolean doContainerCheck(EObject element, SourceSectionClass sourceSectionClass){
-		if(sourceSectionClass.getContainer() != null){
-			if(mappedSections.containsKey(sourceSectionClass.getContainer())){//was the container section instantiated
-				for(EReference ref : sourceSectionClass.getContainer().getEClass().getEAllContainments()){
-					
-					//exclude references that are modeled in the srcSection, since they cannot, by definition, reference the element
-					boolean refExistsInContainerSection=false;
-					for(SourceSectionReference containerRef : sourceSectionClass.getContainer().getReferences()){
-						if(ref.equals(containerRef.getEReference())){
-							refExistsInContainerSection=true;
-							break;
-						}	
+		if(sourceSectionClass.getContainer() == null){
+			//this part is easy
+			return true;
+		} else {
+			/*
+			 * Step 1: identify all containers the corresponding elements
+			 */
+			List<SourceSectionClass> containerClasses=new LinkedList<SourceSectionClass>();			
+			List<EObject> containerElements=new LinkedList<EObject>();
+			
+			SourceSectionClass currentClass=sourceSectionClass;
+			EObject currentElement=element;
+			
+			while(currentClass.getContainer() !=null){
+				/*
+				 * "jump" SourceMMSection boundary
+				 */
+				if(currentElement.eContainer() != null){
+					currentElement=currentElement.eContainer();
+					currentClass=currentClass.getContainer();
+
+					/*
+					 * scan all levels of source section until we are at a top level again
+					 * 
+					 * we do not concern ourselves with mapping of the elements at this point, all we need are
+					 * the container sections
+					 */
+					while(!currentClass.getContainingSection().equals(currentClass)){
+						if(currentElement.eContainer() != null){
+							currentElement=currentElement.eContainer();
+							currentClass= currentClass.getOwningContainmentReference().getOwningClass();
+						}  else {
+							return false;
+						}
 					}
+					containerElements.add(currentElement);
+					containerClasses.add(currentClass);
 					
-					if(!refExistsInContainerSection){
-						for(EObject instance : mappedSections.get(sourceSectionClass.getContainer())){//check for each instance
-							Object refTargets=instance.eGet(ref);
-							if(ref != null){
-								if(ref.getUpperBound() == 1){
-									if(refTargets.equals(element)){
-										return true;
-									}
-								} else {
-									@SuppressWarnings("unchecked")
-									EList<EObject> refTargetsList=(EList<EObject>) refTargets;
-									for(EObject t : refTargetsList){
-										if(t.equals(element)){
-											return true;
-										}
-									}
-								}
+				} else {
+					return false;
+				}
+			}
+
+			/*
+			 * Step 2: try to map each container section, starting from the highest
+			 */
+			int index=containerClasses.size()-1;
+			while(index>=0){
+				/*
+				 * map container if it wasn't mapped before
+				 */
+				if(!checkObjectWasMapped(containerClasses.get(index), containerElements.get(index))){
+					MappingInstanceStorage res= findMapping(containerElements.get(index), false, 
+							Collections.<MappingHintType>emptyList(), 
+							Collections.<ModelConnectionHint>emptyList(), 
+							Collections.<GlobalAttribute>emptyList(),
+							containerClasses.get(index),
+							new MappingInstanceStorage());
+					if(res == null){
+						return false;
+					} else {
+						for(SourceSectionClass c : res.getSourceModelObjectsMapped().keySet()){
+							if(!mappedContainers.containsKey(c)){
+								mappedContainers.put(c,new LinkedHashSet<EObject>());
 							}
+							mappedContainers.get(c).addAll(res.getSourceModelObjectsMapped().get(c));							
 						}						
-						
 					}
 				}
-				return false; //if we reach this point, then no fitting container instance could be found   
-			} else {
-				return false;//no instances of the container exist => mapping must fail
+				
+				/*
+				 * make sure that next container's container was mapped at the appropriate position
+				 */
+				index--;
+				if(index>=0){
+					if(!checkObjectWasMapped(containerClasses.get(index).getContainer(),containerElements.get(index).eContainer() )){
+						return false;
+					}
+				} else {//we cannot put this element in the list because we do not want to map it already
+					if(!checkObjectWasMapped(sourceSectionClass.getContainer(), element.eContainer())){
+						return false;
+					}
+				}
 			}
-		} else {
-			return true; //no container == srcModelSection will not be excluded
+			//if we reached this point all went well
+			return true;
 		}
 	}
-
+	
 }
+
+

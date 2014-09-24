@@ -4625,7 +4625,6 @@
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
-    <mapping name="Layer" sourceMMSection="//@sourceSectionModel/@metaModelSections.7"/>
     <mapping name="FunctionButton" sourceMMSection="//@sourceSectionModel/@metaModelSections.12">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="FunctionButton" targetMMSection="//@targetSectionModel/@metaModelSections.20">
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="TextLabelRepSizeName (Double:Output Label)" target="//@targetSectionModel/@metaModelSections.20/@references.0/@value.0/@references.0/@value.0/@attributes.0">
@@ -5278,7 +5277,6 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="VIObject Container Rectangle" sourceMMSection="//@sourceSectionModel/@metaModelSections.14"/>
-    <mapping name="VIObject Container Ellipse" sourceMMSection="//@sourceSectionModel/@metaModelSections.20"/>
     <mapping name="dummy" sourceMMSection="//@sourceSectionModel/@metaModelSections.15">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal (UIComponents)" targetMMSection="//@targetSectionModel/@metaModelSections.10">
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="Name (Signal UIComponents)Mapping" target="//@targetSectionModel/@metaModelSections.10/@attributes.0">

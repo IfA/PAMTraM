@@ -1,6 +1,7 @@
 package de.mfreund.gentrans.transformation;
 
 import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
@@ -442,5 +443,33 @@ class ModelConnectionPath {
 
 	} 
 	
-	
+	/**
+	 * Return possible paths that can connect a minimum number of elements
+	 * @param startInstance may be null
+	 * @param minimumCapacity
+	 * @return possible paths
+	 */
+	 static LinkedHashSet<ModelConnectionPath> findPathsWithMinimumCapacity(
+			LinkedHashSet<ModelConnectionPath> paths,
+			EObject startInstance, int minimumCapacity) {
+		LinkedHashSet<ModelConnectionPath> pathsToConsider = new LinkedHashSet<ModelConnectionPath>();
+		for (ModelConnectionPath p : paths) {
+			if (startInstance != null) {
+				if (!p.leadsToRootType(startInstance.eClass())) {
+					continue;// only consider paths with the right start
+								// instance type
+				}
+			}
+
+			int capacity = p.getCapacity(startInstance);
+			if (capacity != 0) {
+				if ((minimumCapacity != -1 && capacity >= minimumCapacity)
+						|| capacity == -1) {
+					pathsToConsider.add(p);
+				}
+			}
+		}
+		return pathsToConsider;
+	}
+
 }

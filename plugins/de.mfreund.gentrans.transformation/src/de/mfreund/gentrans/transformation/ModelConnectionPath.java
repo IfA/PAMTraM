@@ -38,7 +38,7 @@ class ModelConnectionPath {
 	 * @param pathElements
 	 * @return true if list contain same elements
 	 */
-	boolean comparePathElements(List<EObject> pathElements){
+	private boolean comparePathElements(List<EObject> pathElements){
 		return pathElements.equals(this.pathElements);
 	}
 

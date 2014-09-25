@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.console.MessageConsoleStream;
@@ -86,34 +85,6 @@ class TargetSectionConnector {
 		this.directPathsOnly=directPathsOnly;
 	}
 
-	/**
-	 * Return possible paths that can connect a minimum number of elements
-	 * @param startInstance may be null
-	 * @param minimumCapacity
-	 * @return possible paths
-	 */
-	private  LinkedHashSet<ModelConnectionPath> findPathsWithMinimumCapacity(
-			LinkedHashSet<ModelConnectionPath> paths,
-			EObject startInstance, int minimumCapacity) {
-		LinkedHashSet<ModelConnectionPath> pathsToConsider = new LinkedHashSet<ModelConnectionPath>();
-		for (ModelConnectionPath p : paths) {
-			if (startInstance != null) {
-				if (!p.leadsToRootType(startInstance.eClass())) {
-					continue;// only consider paths with the right start
-								// instance type
-				}
-			}
-
-			int capacity = p.getCapacity(startInstance);
-			if (capacity != 0) {
-				if ((minimumCapacity != -1 && capacity >= minimumCapacity)
-						|| capacity == -1) {
-					pathsToConsider.add(p);
-				}
-			}
-		}
-		return pathsToConsider;
-	}
 
 	/**
 	 * Try to link a List of instances ( and therefore entire sections of the target model)
@@ -296,7 +267,7 @@ class TargetSectionConnector {
 					// sort possible paths by path capacity
 					LinkedHashSet<ModelConnectionPath> pathsToConsider = new LinkedHashSet<ModelConnectionPath>();
 					if (otherPathsNeeded) {
-						pathsToConsider = findPathsWithMinimumCapacity(targetSectionRegistry.getConnections(classToConnect, container.getEObject().eClass(), otherPathsNeeded),
+						pathsToConsider = ModelConnectionPath.findPathsWithMinimumCapacity(targetSectionRegistry.getConnections(classToConnect, container.getEObject().eClass(), otherPathsNeeded),
 								container.getEObject(),
 								rootInstancesByContainer.get(container).size());
 
@@ -430,7 +401,7 @@ class TargetSectionConnector {
 		}
 
 		if (pathsToConsider.size() > 0) {
-			pathsToConsider = findPathsWithMinimumCapacity(
+			pathsToConsider = ModelConnectionPath.findPathsWithMinimumCapacity(
 					pathsToConsider, null, rootInstances.size());//only go on with paths that could theoretically fit all of the elements
 
 			if (pathsToConsider.size() > 0) {

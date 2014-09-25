@@ -4,7 +4,6 @@
 package de.mfreund.gentrans.transformation;
 
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
@@ -60,12 +59,7 @@ class EObjectTransformationHelper {
 	EObjectTransformationHelper(EObject eObject, AttributeValueRegistry attrValRegistry) {
 		this.eObject=eObject;
 		this.attrValRegistry=attrValRegistry;
-		virtualAttributes=new LinkedHashMap<VirtualAttribute,String>();
-		if(!attrValRegistry.getAttrValueRegistryActualAttributes().containsKey(eObject.eClass())){
-			
-			attrValRegistry.getAttrValueRegistryActualAttributes().put(eObject.eClass(), new LinkedHashMap<EAttribute,LinkedHashSet<String>>());
-			attrValRegistry.getAttrValueRegistryVirtualAttributes().put(eObject.eClass(), new LinkedHashMap<VirtualAttribute,LinkedHashSet<String>>());
-		}		
+		virtualAttributes=new LinkedHashMap<VirtualAttribute,String>();	
 	}
 
 	
@@ -77,37 +71,37 @@ class EObjectTransformationHelper {
 	 * @return true if Value exists in AttributeValueRegistry
 	 */
 	boolean attributeValueExists(TargetSectionAttribute attr, String value){
-		return attrValRegistry.attributeValueExists(attr, value, eObject);
+		return attrValRegistry.attributeValueExists(attr, value, eObject.eClass());
 	}
 	
 	/**
-	 * Sets virtual or actual values of e TargetSectionAttribute
+	 * Sets virtual  values of e TargetSectionAttribute
 	 * @param attr Attribute to be set
 	 * @param value Value to be set
 	 * @throws IllegalArgumentException
 	 */
-	void setAttributeValue(TargetSectionAttribute attr, String value) throws IllegalArgumentException{
-		if(attr instanceof VirtualAttribute){
-			virtualAttributes.put((VirtualAttribute) attr, value);
-			
-			//add value to registry
-			if(!attrValRegistry.getAttrValueRegistryVirtualAttributes().get(eObject.eClass()).containsKey(attr)){
-				attrValRegistry.getAttrValueRegistryVirtualAttributes().get(eObject.eClass()).put((VirtualAttribute) attr, new LinkedHashSet<String>());
-			}
-			attrValRegistry.getAttrValueRegistryVirtualAttributes().get(eObject.eClass()).get(attr).add(value);
-		} else if(attr instanceof ActualAttribute){
-				eObject.eSet(((ActualAttribute) attr).getAttribute(),
-						((ActualAttribute) attr).getAttribute().getEType()
-						.getEPackage().getEFactoryInstance()
-						.createFromString(((ActualAttribute) attr).getAttribute().getEAttributeType(), value));
+	void setAttributeValue(VirtualAttribute attr, String value) {
+		virtualAttributes.put((VirtualAttribute) attr, value);
 
-			
-			if(!attrValRegistry.getAttrValueRegistryActualAttributes().get(eObject.eClass()).containsKey(((ActualAttribute) attr).getAttribute())){
-				attrValRegistry.getAttrValueRegistryActualAttributes().get(eObject.eClass()).put(((ActualAttribute) attr).getAttribute(), new LinkedHashSet<String>());
-			}
-			attrValRegistry.getAttrValueRegistryActualAttributes().get(eObject.eClass()).get(((ActualAttribute) attr).getAttribute()).add(value);
-		}
+		attrValRegistry.registerValue(attr, eObject.eClass(),value);
 	}
+
+	/**
+	 * Sets actual values of e TargetSectionAttribute
+	 * @param attr Attribute to be set
+	 * @param value Value to be set
+	 * @throws IllegalArgumentException
+	 */
+	void setAttributeValue(ActualAttribute attr, String value) throws IllegalArgumentException{
+		eObject.eSet(((ActualAttribute) attr).getAttribute(),
+				((ActualAttribute) attr).getAttribute().getEType()
+				.getEPackage().getEFactoryInstance()
+				.createFromString(((ActualAttribute) attr).getAttribute().getEAttributeType(), value));
+
+
+		attrValRegistry.registerValue(attr, eObject.eClass(),value);
+
+	}	
 	
 	/**
 	 * Static helper method for  converting an Attribute value to a String
@@ -175,6 +169,22 @@ class EObjectTransformationHelper {
 		returnString+="\n";
 
 		return returnString;
+	}
+
+
+	/**
+	 * Sets values of a TargetSectionAttribute
+	 * @param attr
+	 * @param setValue
+	 * @throws IllegalArgumentException
+	 */
+	public void setAttributeValue(TargetSectionAttribute attr, String setValue) {
+		if(attr instanceof ActualAttribute){
+			setAttributeValue((ActualAttribute)attr, setValue);
+		} else if(attr instanceof VirtualAttribute){
+			setAttributeValue((VirtualAttribute)attr, setValue);
+		}
+		
 	}
 	
 	

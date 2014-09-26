@@ -394,8 +394,8 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 								attrValue=(String)attrHintValues.remove(0);
 							}
 						}
-						//overwrite hint value with value of targetMMSection if present
-						if(attr.getValue() != null && !attr.getValue().equals("")){
+						// only use value of targetmmsection if no hint value present
+						if(attr.getValue() != null && attrValue == null && !attr.getValue().equals("")){
 								attrValue=attr.getValue();
 						}
 						
@@ -509,7 +509,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 				targetSectionRegistry.addClassInstance(instance,mappingGroup, metamodelSection);
 			}
 			if(instBySection.containsKey(metamodelSection)){
-				instBySection.get(metamodelSection).addAll(instances);//TODO find out why this case is even possible
+				instBySection.get(metamodelSection).addAll(instances);
 			} else {
 				LinkedList<EObjectTransformationHelper> instClone=new LinkedList<EObjectTransformationHelper>();
 				instClone.addAll(instances);
@@ -652,7 +652,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 											  setReference(ref,fittingVals.get(dialog.getSelection()).getEObject(),srcInst.getEObject());
 										} else {
 											consoleStream.println("The MappigInstanceSelector " + hSel.getName() + " (Mapping: " + mappingName + ", Group: " +
-													group.getName() + " ) has an AttributeMatcher that picked up the value '" + attrVal +"' to be matched to the"
+													group.getName() + " ) has an AttributeMatcher that picked up the value '" + attrVal +"' to be matched to the "
 															+ "TargetAttribute, but no fitting TargetSectionInstance with this value could be found." );
 
 										}

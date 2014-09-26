@@ -7,9 +7,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
@@ -193,4 +195,12 @@ public class SourceSectionAttributeItemProvider
 				 MetamodelFactory.eINSTANCE.createRegExMatcher()));
 	}
 
+	@Override
+	protected Command createDragAndDropCommand(EditingDomain domain,
+			Object owner, float location, int operations, int operation,
+			Collection<?> collection) {
+		// TODO Auto-generated method stub
+		return super.createDragAndDropCommand(domain, owner, location, operations,
+				operation, collection);
+	}
 }

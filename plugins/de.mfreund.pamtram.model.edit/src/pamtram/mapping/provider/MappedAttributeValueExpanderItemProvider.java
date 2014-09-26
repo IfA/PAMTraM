@@ -11,9 +11,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
@@ -27,6 +31,7 @@ import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.commands.BasicDragAndDropAddCommand;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.SourceSectionClass;
 
@@ -208,4 +213,29 @@ public class MappedAttributeValueExpanderItemProvider extends MappedAttributeVal
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
+	@Override
+	protected Command createDragAndDropCommand(EditingDomain domain,
+			Object owner, float location, int operations, int operation,
+			Collection<?> collection) {
+		
+		
+		EList<ExpandableHint> values = new BasicEList<ExpandableHint>();
+		for(Iterator<?> iter = collection.iterator(); iter.hasNext(); ) {
+			Object value = iter.next();
+			if(value instanceof ExpandableHint) {
+				values.add((ExpandableHint) value);
+			} else {
+				return super.createDragAndDropCommand(domain, owner, location, operations,
+						operation, collection); 
+			}
+		}
+		
+		if(values.isEmpty()) {
+			return super.createDragAndDropCommand(domain, owner, location, operations,
+					operation, collection); 
+		} else {
+			return new BasicDragAndDropAddCommand(domain, (EObject) owner, 
+					MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND, values);
+		}
+	}
 }

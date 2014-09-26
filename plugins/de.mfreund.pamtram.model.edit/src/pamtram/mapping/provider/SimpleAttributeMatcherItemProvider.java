@@ -10,9 +10,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
@@ -20,11 +24,15 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.PamtramPackage;
 import pamtram.mapping.AttributeMappingSourceElementType;
+import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.SimpleAttributeMatcher;
+import pamtram.mapping.commands.BasicDragAndDropAddCommand;
+import pamtram.mapping.commands.BasicDragAndDropSetCommand;
+import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.MetaModelSectionReference;
 
@@ -237,6 +245,40 @@ public class SimpleAttributeMatcherItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+	
+	@Override
+	protected Command createDragAndDropCommand(EditingDomain domain,
+			Object owner, float location, int operations, int operation,
+			Collection<?> collection) {
+		
+		if(collection.size() == 1) {
+			Object value = collection.iterator().next();
+			if(value instanceof SourceSectionAttribute) {
+		
+				return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
+						MappingPackage.Literals.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE, value, 0);
+			}
+		}
+		
+		EList<AttributeValueModifierSet> values = new BasicEList<AttributeValueModifierSet>();
+		for(Iterator<?> iter = collection.iterator(); iter.hasNext(); ) {
+			Object value = iter.next();
+			if(value instanceof AttributeValueModifierSet) {
+				values.add((AttributeValueModifierSet) value);
+			} else {
+				return super.createDragAndDropCommand(domain, owner, location, operations,
+						operation, collection); 
+			}
+		}
+		
+		if(values.isEmpty()) {
+			return super.createDragAndDropCommand(domain, owner, location, operations,
+					operation, collection); 
+		} else {
+			return new BasicDragAndDropAddCommand(domain, (EObject) owner, 
+					MappingPackage.Literals.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS__MODIFIER, values);
+		}
 	}
 
 }

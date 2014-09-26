@@ -8,9 +8,11 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
@@ -19,6 +21,8 @@ import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.commands.BasicDragAndDropSetCommand;
+import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 
 /**
@@ -178,6 +182,25 @@ public class AttributeMappingItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+	
+	@Override
+	protected Command createDragAndDropCommand(EditingDomain domain,
+			Object owner, float location, int operations, int operation,
+			Collection<?> collection) {
+		
+		
+		if(collection.size() == 1) {
+			Object value = collection.iterator().next();
+			if(value instanceof TargetSectionAttribute) {
+		
+				return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
+						MappingPackage.Literals.ATTRIBUTE_MAPPING__TARGET, value, 0);
+			}
+		}
+		
+		return super.createDragAndDropCommand(domain, owner, location, operations,
+					operation, collection); 
 	}
 
 }

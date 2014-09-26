@@ -5,8 +5,10 @@ package pamtram.mapping.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -18,9 +20,13 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
+import pamtram.mapping.MappingHintGroupImporter;
+import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.Class;
+import pamtram.metamodel.MetaModelSectionReference;
+import pamtram.metamodel.SourceSectionClass;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.CardinalityMapping} object.
@@ -101,23 +107,51 @@ public class CardinalityMappingItemProvider
 			   {
 				@Override
 				public Collection<?> getChoiceOfValues(Object object) {
-					
+
+					//the parent Mapping Hint Group
+					EObject parent=((CardinalityMapping) object).eContainer();
 					// the parent mapping
-					MappingHintGroup mappingGroup = (MappingHintGroup) ((CardinalityMapping) object).eContainer();
-					Mapping mapping = (Mapping) mappingGroup.eContainer();
+					Mapping mapping;
+					while(true){
+						if(parent instanceof MappingHintGroupType){
+							mapping=(Mapping)((MappingHintGroupType) parent).eContainer();
+							break;
+						} else if(parent instanceof MappingHintGroupImporter){
+							mapping=(Mapping)((MappingHintGroupImporter) parent).eContainer();
+							break;
+						}else {
+							parent=parent.eContainer();
+						}
+					}
+
 					
 					// the source section
-					pamtram.metamodel.Class source = mapping.getSourceMMSection();
+					SourceSectionClass source = mapping.getSourceMMSection();
 
 					List<Object> choiceOfValues = new ArrayList<Object>();
 					
 					// iterate over all elements and return the attributes as possible options
-					Iterator<EObject> it = source.eAllContents(); 
-					while(it.hasNext()) {
-						EObject next = it.next();
-						if(next instanceof pamtram.metamodel.Class && 
-								((pamtram.metamodel.Class) next).getCardinality().getValue() != CardinalityType.ONE_VALUE) {
-							choiceOfValues.add(next);
+					Set<SourceSectionClass> scanned=new HashSet<SourceSectionClass>();
+					List<SourceSectionClass> sectionsToScan=new ArrayList<SourceSectionClass>();
+					sectionsToScan.add(source);
+					
+					while(sectionsToScan.size() > 0){
+						SourceSectionClass classToScan=sectionsToScan.remove(0);
+						scanned.add(classToScan);
+						
+						Iterator<EObject> it = classToScan.eAllContents();
+						while(it.hasNext()) {
+							EObject next = it.next();
+							if(next instanceof SourceSectionClass) {
+								if(!((SourceSectionClass) next).getCardinality().equals(CardinalityType.ONE)){
+									choiceOfValues.add(next);									
+								}
+							} else if(next instanceof MetaModelSectionReference){
+								List<SourceSectionClass> vals=new ArrayList<SourceSectionClass>();
+								vals.addAll(((MetaModelSectionReference) next).getValue());
+								vals.removeAll(scanned);
+								sectionsToScan.addAll(vals);
+							}
 						}
 					}
 					

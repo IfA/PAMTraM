@@ -20,6 +20,7 @@ import org.eclipse.ui.console.MessageConsoleStream;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.CalculatorMapping;
+import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ClassMatcher;
 import pamtram.mapping.ComplexAttributeMapping;
 import pamtram.mapping.ComplexAttributeMappingSourceInterface;
@@ -251,7 +252,24 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 		
 		int cardinality= 1;
 
+		boolean attrMappingExists=false;
+		int cardHintValue=0;
+		
+ 		for(MappingHint h : mappingHints){
+ 			if(h instanceof AttributeMapping){
+ 				attrMappingExists=true;
+ 			} else if(h instanceof CardinalityMapping){
+ 				if(((CardinalityMapping) h).getTarget().equals(metamodelSection)){
+ 					if(hintValues.containsKey(h)){
+ 						if(hintValues.get(h).size()>1){
+ 	 						Integer val=(Integer) hintValues.get(h).remove(0);
+ 	 						cardHintValue=val.intValue();							
+ 						}
 
+ 					}
+ 				}
+ 			}
+ 		}
 			
 
 		if(!metamodelSection.getCardinality().equals(CardinalityType.ONE)){//ignore attribute hint and cardinality hint, if variableCardinality == false
@@ -275,17 +293,17 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 					if(hintCardinality > cardinality){
 				 		cardinality=hintCardinality;				
 					}
-				 } else {
-				 	if(! hintFound){
+				 } else {//no AttributeHint found
+				 	if(hintFound && attrMappingExists){ //mc hint found....only go on if there were no attrMappings
 				 		cardinality=0;
-				 		
 				 	}
-			 		for(MappingHint h : mappingHints){
-			 			if(h instanceof AttributeMapping){
-			 				cardinality=0;
-			 				break;
-			 			}
-			 		}
+				 	//no modelConnaectionHint or AttributeMapping found
+				 	//or cardinality is still 1
+				 	//last chance
+				 	if(cardinality==1){
+				 		cardinality=cardHintValue;
+				 	}
+
 				}
 		}
 

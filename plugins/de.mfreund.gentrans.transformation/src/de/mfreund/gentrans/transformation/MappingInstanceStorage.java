@@ -148,7 +148,7 @@ class MappingInstanceStorage {
 	 * @param hint
 	 * @param value
 	 */
-	void addHintValue(MappingHintType hint, String value) {
+	void addHintValue(MappingHintType hint, Object value) {
 		if (!hintValues.containsKey(hint)) {
 			hintValues.put(hint, new LinkedList<Object>());
 		}

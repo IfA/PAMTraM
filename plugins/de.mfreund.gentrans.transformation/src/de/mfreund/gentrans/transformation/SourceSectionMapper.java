@@ -20,6 +20,7 @@ import pamtram.SourceSectionModel;
 import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.CalculatorMapping;
 import pamtram.mapping.CalculatorMappingSourceInterface;
+import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ComplexAttributeMapping;
 import pamtram.mapping.ComplexAttributeMappingSourceElement;
 import pamtram.mapping.ComplexAttributeMappingSourceInterface;
@@ -538,7 +539,7 @@ class SourceSectionMapper {
 					} else {
 						changedRefsAndHints.getHintValues().get(hint).add(new LinkedHashMap<ComplexAttributeMatcherSourceInterface,String>());
 					}					
-				}
+				} 
 			}
 
 		}
@@ -808,7 +809,9 @@ class SourceSectionMapper {
 		 * Combine values of references of same type
 		 */
 		Map<EReference,List<SourceSectionClass>> classByRefMap=new LinkedHashMap<EReference,List<SourceSectionClass>>();
-		Map<SourceSectionClass,SourceSectionReference> refByClassMap=new HashMap<SourceSectionClass,SourceSectionReference>();//TODO if this gets to slow, maybe add a map (refBySectionByClass) to this
+		Map<SourceSectionClass,SourceSectionReference> refByClassMap=new HashMap<SourceSectionClass,SourceSectionReference>();//TODO if this gets to slow, maybe add a map (refBySectionByClass) to this class
+		
+		Map<SourceSectionClass,Integer> mappingCounts=new HashMap<SourceSectionClass,Integer>();
 		
 		for(SourceSectionReference ref : srcSection.getReferences()){
 			if(!classByRefMap.containsKey(ref.getEReference())){
@@ -819,6 +822,7 @@ class SourceSectionMapper {
 			
 			for(SourceSectionClass c : ref.getValuesGeneric()){
 				refByClassMap.put(c, ref);
+				mappingCounts.put(c, new Integer(0));
 			}
 		}
 
@@ -849,9 +853,10 @@ class SourceSectionMapper {
 					if(!c.getCardinality().equals(CardinalityType.ZERO_INFINITY)){
 						if(nonZeroCardSectionFound){//modeling error
 							consoleStream.println("Modeling error in source section: '" + srcSection.getContainer().getName() + "'"
-									+", subsection: '" + srcSection.getName() + "'. The Reference '" + refByClassMap.get(c) + "'"//TODO
-									+ " points to a metamodel refernce, that can only hold one value but in the source section it references more than one Class with"
+									+", subsection: '" + srcSection.getName() + "'. The Reference '" + refByClassMap.get(c) + "'"
+									+ " points to a metamodel reference, that can only hold one value but in the source section it references more than one Class with"
 									+ "a CardinalityType that is not ZERO_INFINITY." );
+							return null;
 						}
 						nonZeroCardSectionFound=true;
 						 res = findMapping(
@@ -894,7 +899,9 @@ class SourceSectionMapper {
 					}
 					// check for a cardinality hint (it doesn't really make
 					// sense to model this for a class connected to a reference
-					// with cardinality == 1 but it can be tolerated ) TODO
+					// with cardinality == 1 but it can be tolerated )
+					mappingCounts.put(res.getAssociatedSourceClass(),
+							new Integer(mappingCounts.get(res.getAssociatedSourceClass()).intValue() +1));
 
 				} else {
 					return null;
@@ -1027,12 +1034,12 @@ class SourceSectionMapper {
 								.removeResultsForElement(srcSectionResult);
 						possibleSrcModelElementsVC
 								.removeResultsForElement(srcSectionResult);
-						possibleSrcModelElementsNoVC.remove(smallestKey);// remove
-																			// successfully
-																			// mapped
-																			// mmSection
-																			// from
-																			// list
+						possibleSrcModelElementsNoVC.remove(smallestKey);// remove successfully mapped
+																			// mmSection  from  list
+						
+						//update cardinality
+						mappingCounts.put(srcSectionResult.getAssociatedSourceClass(),
+								new Integer(mappingCounts.get(srcSectionResult.getAssociatedSourceClass()).intValue() +1));
 					} else {
 						// consoleStream.println("no-vc mapping failed");
 						return null;// all non-vc-elements need to be mapped
@@ -1086,13 +1093,17 @@ class SourceSectionMapper {
 						// MMSections
 						possibleSrcModelElementsVC
 								.removeResultsForElement(srcSectionResult);
+						
+						//update cardinality
+						mappingCounts.put(srcSectionResult.getAssociatedSourceClass(),
+								new Integer(mappingCounts.get(srcSectionResult.getAssociatedSourceClass()).intValue() +1));
+					
+						
+						
 					} else if (usedKeys.contains(smallestKey)
 							|| smallestKey.getCardinality().equals(
 									CardinalityType.ZERO_INFINITY)) {
-						possibleSrcModelElementsVC.remove(smallestKey);// remove
-																		// mmSection
-																		// from
-																		// list
+						possibleSrcModelElementsVC.remove(smallestKey);// remove  mmSection  from  list
 					} else {
 						// consoleStream.println("vc mapping failed");
 						return null; // the fact that samllestKey is not in the
@@ -1107,9 +1118,17 @@ class SourceSectionMapper {
 					consoleStream.println("Not everything could be mapped");
 					return null;
 				}
-
-				//TODO (?) cardinality mapping
-
+			}
+		}
+		
+		/*
+		 * Handle cardinality Hints
+		 */
+		for(MappingHintType h : hints){
+			if(h instanceof CardinalityMapping){
+				if(mappingCounts.keySet().contains(((CardinalityMapping) h).getSource())){
+					changedRefsAndHints.addHintValue(h, mappingCounts.get(((CardinalityMapping) h).getSource()));
+				}
 			}
 		}
 		
@@ -1632,6 +1651,14 @@ class SourceSectionMapper {
 				}
 				consoleStream.println(','  + returnVal.getMapping().getName() + ", " + used  + " ,  "+ time );
 
+				/*
+				 * Handle cardinality Hints for section root (doesn't make sense to model this but we will tolerate it)
+				 */
+				for(MappingHintType h : getHints(returnVal.getMapping())){
+					if(h instanceof CardinalityMapping){
+						returnVal.addHintValue(h, new Integer(1));
+					}
+				}
 			}
 			
 			return returnVal;

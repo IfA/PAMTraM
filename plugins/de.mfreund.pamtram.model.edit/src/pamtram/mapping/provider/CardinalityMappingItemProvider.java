@@ -19,7 +19,6 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.Mapping;
-import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
@@ -108,20 +107,12 @@ public class CardinalityMappingItemProvider
 				@Override
 				public Collection<?> getChoiceOfValues(Object object) {
 
-					//the parent Mapping Hint Group
-					EObject parent=((CardinalityMapping) object).eContainer();
 					// the parent mapping
-					Mapping mapping;
-					while(true){
-						if(parent instanceof MappingHintGroupType){
-							mapping=(Mapping)((MappingHintGroupType) parent).eContainer();
-							break;
-						} else if(parent instanceof MappingHintGroupImporter){
-							mapping=(Mapping)((MappingHintGroupImporter) parent).eContainer();
-							break;
-						}else {
-							parent=parent.eContainer();
-						}
+					Mapping mapping = null;
+					if(object instanceof MappingHintGroupType){
+							mapping=(Mapping)((MappingHintGroupType) object).eContainer();
+					} else if(object instanceof MappingHintGroupImporter){
+							mapping=(Mapping)((MappingHintGroupImporter) object).eContainer();
 					}
 
 					
@@ -205,12 +196,14 @@ public class CardinalityMappingItemProvider
 				@Override
 				public Collection<?> getChoiceOfValues(Object object) {
 					
-				// the parent mapping
-				MappingHintGroup mappingHintGroup = (MappingHintGroup) ((CardinalityMapping) object)
-						.eContainer();
 
-				// the source section
-				Class target = mappingHintGroup.getTargetMMSection();
+				// the target section
+				Class target = null;
+				if(object instanceof MappingHintGroupType){
+						target=(Class)((MappingHintGroupType) object).getTargetMMSection();
+				} else if(object instanceof MappingHintGroupImporter){
+						target=(Class)((MappingHintGroupImporter) object).getHintGroup().getTargetMMSection();
+				}
 
 				List<Object> choiceOfValues = new ArrayList<Object>();
 

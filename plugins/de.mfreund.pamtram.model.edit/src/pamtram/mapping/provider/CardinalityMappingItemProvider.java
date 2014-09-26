@@ -109,10 +109,10 @@ public class CardinalityMappingItemProvider
 
 					// the parent mapping
 					Mapping mapping = null;
-					if(object instanceof MappingHintGroupType){
-							mapping=(Mapping)((MappingHintGroupType) object).eContainer();
-					} else if(object instanceof MappingHintGroupImporter){
-							mapping=(Mapping)((MappingHintGroupImporter) object).eContainer();
+					if(((CardinalityMapping)object).eContainer() instanceof MappingHintGroupType){
+							mapping=(Mapping)((MappingHintGroupType) ((CardinalityMapping)object).eContainer()).eContainer();
+					} else if(((CardinalityMapping)object).eContainer() instanceof MappingHintGroupImporter){
+							mapping=(Mapping)((MappingHintGroupImporter) ((CardinalityMapping)object).eContainer()).eContainer();
 					}
 
 					
@@ -129,6 +129,10 @@ public class CardinalityMappingItemProvider
 					while(sectionsToScan.size() > 0){
 						SourceSectionClass classToScan=sectionsToScan.remove(0);
 						scanned.add(classToScan);
+						
+						if(!((SourceSectionClass) classToScan).getCardinality().equals(CardinalityType.ONE)){
+								choiceOfValues.add(classToScan);									
+						}
 						
 						Iterator<EObject> it = classToScan.eAllContents();
 						while(it.hasNext()) {
@@ -199,10 +203,10 @@ public class CardinalityMappingItemProvider
 
 				// the target section
 				Class target = null;
-				if(object instanceof MappingHintGroupType){
-						target=(Class)((MappingHintGroupType) object).getTargetMMSection();
-				} else if(object instanceof MappingHintGroupImporter){
-						target=(Class)((MappingHintGroupImporter) object).getHintGroup().getTargetMMSection();
+				if(((CardinalityMapping)object).eContainer() instanceof MappingHintGroupType){
+						target=(Class)((MappingHintGroupType) ((CardinalityMapping)object).eContainer()).getTargetMMSection();
+				} else if(((CardinalityMapping)object).eContainer() instanceof MappingHintGroupImporter){
+						target=(Class)((MappingHintGroupImporter) ((CardinalityMapping)object).eContainer()).getHintGroup().getTargetMMSection();
 				}
 
 				List<Object> choiceOfValues = new ArrayList<Object>();

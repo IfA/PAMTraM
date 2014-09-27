@@ -77,7 +77,7 @@ public class GenericTransformationRunner {
 	 */
 	public GenericTransformationRunner(EObject sourceModel,
 			String pamtramPath, String targetFilePath) {
-		this(sourceModel,pamtramPath,targetFilePath,false);		
+		this(sourceModel,pamtramPath,targetFilePath,-1);		
 	}
 	
 	
@@ -86,15 +86,15 @@ public class GenericTransformationRunner {
 	 * @param sourceModel Root EObject of the source Model
 	 * @param pamtramPath Path to the transformation model
 	 * @param targetFilePath File path to the transformation target
-	 * @param directPathsOnly
+	 * @param maxPathLength (-1 == unbounded)
 	 */
 	public GenericTransformationRunner(EObject sourceModel,
-			String pamtramPath, String targetFilePath, boolean directPathsOnly) {
+			String pamtramPath, String targetFilePath, int maxPathlength) {
 		super();
 		this.sourceModel = sourceModel;
 		this.pamtramPath = pamtramPath;
 		this.targetFilePath=targetFilePath;
-		this.directPathsOnly=directPathsOnly;
+		this.maxPathLength=maxPathlength;
 		consoleStream=findConsole("de.mfreund.gentrans.transformation_" + this.hashCode()).newMessageStream();
 		
 		// brings the console view to the front
@@ -130,9 +130,9 @@ public class GenericTransformationRunner {
 	 */
 	private MessageConsoleStream consoleStream;
 	/**
-	 * Only consider direct target section connection paths
+	 * Maximum length for connection paths maxPathLength<0 == unbounded
 	 */
-	private boolean directPathsOnly;
+	private int maxPathLength;
 	
 	
 	/**
@@ -421,7 +421,7 @@ public class GenericTransformationRunner {
 			AttributeValueModifierExecutor attributeValueModifier,
 			LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping) {
 		TargetSectionConnector connectionHelpers = new TargetSectionConnector(
-				attrValueRegistry, targetSectionRegistry, attributeValueModifier, targetModel, directPathsOnly,consoleStream);
+				attrValueRegistry, targetSectionRegistry, attributeValueModifier, targetModel, maxPathLength,consoleStream);
 		for (Mapping m : suitableMappings) {
 			for (MappingHintGroupType g : m.getMappingHintGroups()) {
 				if (g.getTargetMMSection() != null && g instanceof MappingHintGroup) {// targetSection exists?
@@ -440,7 +440,7 @@ public class GenericTransformationRunner {
 												m.getName(),
 												g.getName(),
 												((MappingHintGroup) g).getModelConnectionMatcher(),
-												selMap.getModelConnectionHintValues(((MappingHintGroup) g).getModelConnectionMatcher()));
+												selMap.getModelConnectionHintValues(((MappingHintGroup) g).getModelConnectionMatcher()),maxPathLength);
 										if(connectionHelpers.isTransformationAborted()){
 											writePamtramMessage("Transformation aborted.");
 											return false;

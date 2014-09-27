@@ -352,25 +352,25 @@ class TargetSectionRegistry {
 	 * @param eClass
 	 * @return Possible paths to connect target Model sections, for a specific Class of the target model
 	 */
-	LinkedHashSet<ModelConnectionPath> getPaths(EClass eClass,boolean directPathsOnly) {
+	LinkedHashSet<ModelConnectionPath> getPaths(EClass eClass,int maxPathLength) {
 		if (!possiblePathsRegistry.containsKey(eClass)) {
 			possiblePathsRegistry.put(eClass, new LinkedHashSet<ModelConnectionPath>());
 
-			 ModelConnectionPath.findPathsToInstances(this,eClass,directPathsOnly);
+			 ModelConnectionPath.findPathsToInstances(this,eClass,maxPathLength);
 		}
 
 		return possiblePathsRegistry.get(eClass);
 
 	}
 	
-	LinkedHashSet<ModelConnectionPath> getConnections(EClass elementClass, EClass containerClass, boolean directPathsOnly){
+	LinkedHashSet<ModelConnectionPath> getConnections(EClass elementClass, EClass containerClass, int maxPathLength){
 		if(!possibleConnectionsRegistry.containsKey(elementClass)){
 			possibleConnectionsRegistry.put(elementClass, new LinkedHashMap<EClass,LinkedHashSet<ModelConnectionPath>>());
 		}
 		if(!possibleConnectionsRegistry.get(elementClass).containsKey(containerClass)){
 			possibleConnectionsRegistry.get(elementClass).put(containerClass, new LinkedHashSet<ModelConnectionPath>());
 			
-			ModelConnectionPath.findPathsFromContainerToClassToConnect(this,elementClass, containerClass, directPathsOnly);
+			ModelConnectionPath.findPathsFromContainerToClassToConnect(this,elementClass, containerClass, maxPathLength);
 		}
 		
 		if( possibleConnectionsRegistry.get(elementClass).containsKey(containerClass)){

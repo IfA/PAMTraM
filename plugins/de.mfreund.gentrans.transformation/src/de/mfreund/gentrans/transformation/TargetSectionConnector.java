@@ -57,9 +57,9 @@ class TargetSectionConnector {
 	 */
 	private boolean transformationAborted;
 	/**
-	 * Only consider direct target section connection paths
+	 * Maximum length for connection paths maxPathlength<0 == unbounded
 	 */
-	private boolean directPathsOnly;
+	private int maxPathlength;
 	
 	/**
 	 * @return true when the transformation was aborted by the user
@@ -75,14 +75,14 @@ class TargetSectionConnector {
 	 * @param consoleStream Output stream for messages
 	 */
 	TargetSectionConnector(AttributeValueRegistry attrValRegistry, TargetSectionRegistry targetSectionRegistry, AttributeValueModifierExecutor attributeValuemodifier,
-			XMIResource targetModel, boolean directPathsOnly, MessageConsoleStream consoleStream){
+			XMIResource targetModel, int maxPathLength, MessageConsoleStream consoleStream){
 		standardPaths = new LinkedHashMap<ModelConnectionHint, ModelConnectionPath>();
 		this.targetSectionRegistry=targetSectionRegistry;
 		this.targetModel=targetModel;
 		this.consoleStream=consoleStream;
 		this.transformationAborted=false;
 		this.attributeValuemodifier=attributeValuemodifier;
-		this.directPathsOnly=directPathsOnly;
+		this.maxPathlength=maxPathLength;
 	}
 
 
@@ -103,7 +103,7 @@ class TargetSectionConnector {
 			EClass classToConnect, List<EObjectTransformationHelper> rootInstances, TargetSectionClass section,
 			String mappingName, String mappingGroupName,
 			ModelConnectionHint connectionHint,
-			LinkedList<Object> connectionHintValues) {// connectionHint.targetAttribute.~owningClass
+			LinkedList<Object> connectionHintValues, int maxPathLength) {// connectionHint.targetAttribute.~owningClass
 		if (rootInstances.size() < 1)
 			return;// if we don't do this here an ArrayOutOfBoundsException
 					// might occur later' TODO
@@ -111,7 +111,7 @@ class TargetSectionConnector {
 		//check for connections
 		int size=0;
 		for(ConnectionHintTargetAttribute attr : connectionHint.getTargetAttributes()){
-			size+=targetSectionRegistry.getConnections(classToConnect, attr.getTargetAttribute().getOwningClass().getEClass(), directPathsOnly).size();
+			size+=targetSectionRegistry.getConnections(classToConnect, attr.getTargetAttribute().getOwningClass().getEClass(), maxPathlength).size();
 		}
 		
 		if (size > 0) {
@@ -267,7 +267,7 @@ class TargetSectionConnector {
 					// sort possible paths by path capacity
 					LinkedHashSet<ModelConnectionPath> pathsToConsider = new LinkedHashSet<ModelConnectionPath>();
 					if (otherPathsNeeded) {
-						pathsToConsider = ModelConnectionPath.findPathsWithMinimumCapacity(targetSectionRegistry.getConnections(classToConnect, container.getEObject().eClass(), otherPathsNeeded),
+						pathsToConsider = ModelConnectionPath.findPathsWithMinimumCapacity(targetSectionRegistry.getConnections(classToConnect, container.getEObject().eClass(), maxPathLength),
 								container.getEObject(),
 								rootInstancesByContainer.get(container).size());
 
@@ -394,10 +394,10 @@ class TargetSectionConnector {
 		LinkedHashSet<ModelConnectionPath> pathsToConsider=new LinkedHashSet<ModelConnectionPath>();
 		if(hasContainer){
 			for(EClass c : containerClasses){
-				pathsToConsider.addAll(targetSectionRegistry.getConnections(classToConnect, c, directPathsOnly));
+				pathsToConsider.addAll(targetSectionRegistry.getConnections(classToConnect, c, maxPathlength));
 			}
 		} else {
-			pathsToConsider.addAll(targetSectionRegistry.getPaths(classToConnect,directPathsOnly));
+			pathsToConsider.addAll(targetSectionRegistry.getPaths(classToConnect,maxPathlength));
 		}
 
 		if (pathsToConsider.size() > 0) {

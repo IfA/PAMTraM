@@ -80,8 +80,8 @@ class ModelConnectionPath {
 	 * @param directPathsOnly
 	 */
 	 static void findPathsFromContainerToClassToConnect(TargetSectionRegistry registry, EClass elementClass, EClass containerClass,
-			boolean directPathsOnly) {
-		new ModelConnectionPath(registry).findPathsFromContainerToClassToConnect(elementClass, containerClass, directPathsOnly);
+			int maxPathLength) {
+		new ModelConnectionPath(registry).findPathsFromContainerToClassToConnect(elementClass, containerClass, maxPathLength);
 	}
 	
 	/**
@@ -90,7 +90,7 @@ class ModelConnectionPath {
 	 * @param containerClass
 	 * @param directPathsOnly
 	 */
-	private void findPathsFromContainerToClassToConnect(EClass classToConnect, EClass containerClass, boolean directPathsOnly){
+	private void findPathsFromContainerToClassToConnect(EClass classToConnect, EClass containerClass, int maxPathLength){
 		if(classToConnect.equals(containerClass) && pathElements.size()>0){
 			// add copy of path to possiblePaths
 			ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements, classToConnect,targetSectionRegistry,true);
@@ -102,10 +102,10 @@ class ModelConnectionPath {
 		// check for inherited types
 		for (EClass c :  targetSectionRegistry.getChildClasses(containerClass)) {
 			ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements,targetSectionRegistry);
-			newSelf.findPathsFromContainerToClassToConnect(classToConnect, c, directPathsOnly);
+			newSelf.findPathsFromContainerToClassToConnect(classToConnect, c, maxPathLength);
 		}
 		
-		if(!directPathsOnly || this.pathElements.size()<1){
+		if(maxPathLength < 0 || (this.pathElements.size()/2-1) < maxPathLength){
 			// detect loop
 			if (pathElements.contains(containerClass)) {
 				return;
@@ -119,15 +119,15 @@ class ModelConnectionPath {
 				// continue path finding for references
 				for (EReference cont : containerClass.getEAllContainments()) {
 					ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements, cont,targetSectionRegistry,false);
-					newSelf.findPathsFromContainerToClassToConnect(classToConnect, cont.getEReferenceType(), directPathsOnly);
+					newSelf.findPathsFromContainerToClassToConnect(classToConnect, cont.getEReferenceType(), maxPathLength);
 				}
 
 			}
 		}
 	}
 	
-	static void findPathsToInstances(TargetSectionRegistry registry, EClass pathStartClass, boolean directPathsOnly) {
-		new ModelConnectionPath(registry).findPathsToInstances(pathStartClass,directPathsOnly);
+	static void findPathsToInstances(TargetSectionRegistry registry, EClass pathStartClass, int maxPathLength) {
+		new ModelConnectionPath(registry).findPathsToInstances(pathStartClass,maxPathLength);
 	}
 
 	/**
@@ -135,7 +135,7 @@ class ModelConnectionPath {
 	 * (from class to connect to container class, "up")
 	 * @param pathStartClass
 	 */
-	private void findPathsToInstances(EClass pathStartClass, boolean directPathsOnly) {
+	private void findPathsToInstances(EClass pathStartClass, int maxPathLength) {
 
 		// check if path to this MM-Class found
 		if (targetSectionRegistry.getTargetClassInstances(pathStartClass).size() > 0
@@ -152,10 +152,10 @@ class ModelConnectionPath {
 		// check for inherited types
 		for (EClass c : targetSectionRegistry.getChildClasses(pathStartClass)) {
 			ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements,targetSectionRegistry);
-			newSelf.findPathsToInstances(c,directPathsOnly);
+			newSelf.findPathsToInstances(c,maxPathLength);
 		}
 		
-		if(!directPathsOnly || this.pathElements.size()<1){
+		if(maxPathLength < 0 || (this.pathElements.size()/2-1) < maxPathLength){
 			// detect loop
 			if (pathElements.contains(pathStartClass)) {
 				return;
@@ -172,7 +172,7 @@ class ModelConnectionPath {
 
 					for (EClass s : targetSectionRegistry.getReferenceSources(cont)) {
 						ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements, cont,targetSectionRegistry,false);
-						newSelf.findPathsToInstances(s,directPathsOnly);
+						newSelf.findPathsToInstances(s,maxPathLength);
 					}
 				}
 

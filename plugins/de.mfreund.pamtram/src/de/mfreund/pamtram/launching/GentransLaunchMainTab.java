@@ -225,7 +225,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		});
 
 		Label pathLengthLabel=new Label(settingsGroup, SWT.NONE);
-		pathLengthLabel.setText("max. Length for model connection paths (0 = direct connection, -1 = unbounded)");
+		pathLengthLabel.setText("max. length for model connection paths (0 = direct connection only, -1 = unbounded)");
 		
 		
 

@@ -32,16 +32,6 @@ class ModelConnectionPath {
 	 */
 	private LinkedList<EObject> pathElements;
 
-	
-	/**
-	 * (there should'nt be a getter for pathElements, therefore we compare the elements list this way)
-	 * @param pathElements
-	 * @return true if list contain same elements
-	 */
-	private boolean comparePathElements(List<EObject> pathElements){
-		return pathElements.equals(this.pathElements);
-	}
-
 	/**
 	 * Constructor
 	 * @param targetSectionRegistry
@@ -323,7 +313,7 @@ class ModelConnectionPath {
 	@Override
 	public boolean equals(Object obj) {
 		if(obj instanceof ModelConnectionPath){
-			return ((ModelConnectionPath) obj).comparePathElements(pathElements);
+			return ((ModelConnectionPath) obj).pathElements.equals(this.pathElements);
 		}else {
 			return false;
 		}

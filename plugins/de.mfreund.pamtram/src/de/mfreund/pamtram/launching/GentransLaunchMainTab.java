@@ -16,18 +16,18 @@ import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 
 public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
@@ -38,7 +38,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	// combo boxes to select the project, the source file, the pamtram file and the
 	// target file
 	private Combo projectCombo, srcFileCombo, pamtramFileCombo, targetFileCombo;
-	private Button pathSettingCheckBox;
+	private Spinner pathLengthSpinner;
 
 	/**
 	 * @wbp.parser.entryPoint
@@ -209,20 +209,25 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			gd.horizontalSpan = 2;
 			settingsGroup.setLayoutData(gd);
 			
-			GridLayout gl = new GridLayout(2, false);
+			GridLayout gl = new GridLayout(3, false);
 			settingsGroup.setLayout(gl);
 		}
 		
-		// create a checkbox for path setting
-		pathSettingCheckBox= new Button(settingsGroup, SWT.CHECK);
-		pathSettingCheckBox.addSelectionListener(new SelectionAdapter() {
+		// create a spinner for path setting
+		pathLengthSpinner= new Spinner(settingsGroup, SWT.BORDER);
+		pathLengthSpinner.setMinimum(-1);
+		pathLengthSpinner.setMaximum(Integer.MAX_VALUE);
+		pathLengthSpinner.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				updateLaunchConfigurationDialog();
 			}
 		});
-		pathSettingCheckBox.setText("Only consider direct paths");
-		new Label(settingsGroup, SWT.NONE);
+
+		Label pathLengthLabel=new Label(settingsGroup, SWT.NONE);
+		pathLengthLabel.setText("max. Length for model connection paths (0 = direct connection, -1 = unbounded)");
+		
+		
 
 	}
 
@@ -257,7 +262,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			pamtramFileCombo.setText(configuration.getAttribute("pamtramFile", ""));
 			targetFileCombo.setText(configuration.getAttribute("targetFile", ""));
 			//settings
-			pathSettingCheckBox.setSelection(configuration.getAttribute("directPathsOnly", false));
+			pathLengthSpinner.setSelection(configuration.getAttribute("maxPathLength", -1));
 			
 		} catch (CoreException e) {
 			setErrorMessage(e.getMessage());
@@ -273,7 +278,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		configuration.setAttribute("pamtramFile", pamtramFileCombo.getText());
 		configuration.setAttribute("targetFile", targetFileCombo.getText());
 		//settings
-		configuration.setAttribute("directPathsOnly", pathSettingCheckBox.getSelection());
+		configuration.setAttribute("maxPathLength", pathLengthSpinner.getSelection());
 	}
 
 	@Override

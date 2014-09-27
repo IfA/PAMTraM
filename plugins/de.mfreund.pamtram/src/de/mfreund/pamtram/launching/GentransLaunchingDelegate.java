@@ -49,7 +49,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 				"Target" + Path.SEPARATOR + configuration.getAttribute("targetFile", "");
 		
 		//get the settings
-		boolean directPathsOnly=configuration.getAttribute("directPathsOnly", false);
+		int maxPathLength=configuration.getAttribute("maxPathLength", -1);
 		
 		// if an xml source file shall be transformed, 
 		// add the file extension to registry 
@@ -79,7 +79,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		// get the root object of the xml resource
 		EObject root = sourceResource.getContents().get(0);
 		final GenericTransformationRunner tr = 
-				new GenericTransformationRunner(root, pamtramFile, targetFile,directPathsOnly);
+				new GenericTransformationRunner(root, pamtramFile, targetFile,maxPathLength);
 
 		Job job = new Job("Gentrans"){
 

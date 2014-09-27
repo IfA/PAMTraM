@@ -356,7 +356,7 @@ class TargetSectionRegistry {
 		if (!possiblePathsRegistry.containsKey(eClass)) {
 			possiblePathsRegistry.put(eClass, new LinkedHashSet<ModelConnectionPath>());
 
-			new ModelConnectionPath(this).findPathsToInstances(eClass,directPathsOnly);
+			 ModelConnectionPath.findPathsToInstances(this,eClass,directPathsOnly);
 		}
 
 		return possiblePathsRegistry.get(eClass);
@@ -370,7 +370,7 @@ class TargetSectionRegistry {
 		if(!possibleConnectionsRegistry.get(elementClass).containsKey(containerClass)){
 			possibleConnectionsRegistry.get(elementClass).put(containerClass, new LinkedHashSet<ModelConnectionPath>());
 			
-			new ModelConnectionPath(this).findPathsFromContainerToClassToConnect(elementClass, containerClass, directPathsOnly);
+			ModelConnectionPath.findPathsFromContainerToClassToConnect(this,elementClass, containerClass, directPathsOnly);
 		}
 		
 		if( possibleConnectionsRegistry.get(elementClass).containsKey(containerClass)){

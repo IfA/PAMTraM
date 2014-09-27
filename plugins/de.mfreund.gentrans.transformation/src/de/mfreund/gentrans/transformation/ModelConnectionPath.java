@@ -34,7 +34,7 @@ class ModelConnectionPath {
 
 	
 	/**
-	 * (there should'nt be a getter for pathElements, therefore we compare the elemnets list this way)
+	 * (there should'nt be a getter for pathElements, therefore we compare the elements list this way)
 	 * @param pathElements
 	 * @return true if list contain same elements
 	 */
@@ -46,7 +46,7 @@ class ModelConnectionPath {
 	 * Constructor
 	 * @param targetSectionRegistry
 	 */
-	ModelConnectionPath(TargetSectionRegistry targetSectionRegistry) {
+	private ModelConnectionPath(TargetSectionRegistry targetSectionRegistry) {
 		this.pathElements = new LinkedList<EObject>();
 		this.targetSectionRegistry=targetSectionRegistry;
 
@@ -85,12 +85,22 @@ class ModelConnectionPath {
 	}
 	
 	/**
+	 * @param elementClass
+	 * @param containerClass
+	 * @param directPathsOnly
+	 */
+	 static void findPathsFromContainerToClassToConnect(TargetSectionRegistry registry, EClass elementClass, EClass containerClass,
+			boolean directPathsOnly) {
+		new ModelConnectionPath(registry).findPathsFromContainerToClassToConnect(elementClass, containerClass, directPathsOnly);
+	}
+	
+	/**
 	 *(from container class to class to connect, "down")
 	 * @param classToConnect
 	 * @param containerClass
 	 * @param directPathsOnly
 	 */
-	void findPathsFromContainerToClassToConnect(EClass classToConnect, EClass containerClass, boolean directPathsOnly){
+	private void findPathsFromContainerToClassToConnect(EClass classToConnect, EClass containerClass, boolean directPathsOnly){
 		if(classToConnect.equals(containerClass) && pathElements.size()>0){
 			// add copy of path to possiblePaths
 			ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements, classToConnect,targetSectionRegistry,true);
@@ -125,13 +135,17 @@ class ModelConnectionPath {
 			}
 		}
 	}
+	
+	static void findPathsToInstances(TargetSectionRegistry registry, EClass pathStartClass, boolean directPathsOnly) {
+		new ModelConnectionPath(registry).findPathsToInstances(pathStartClass,directPathsOnly);
+	}
 
 	/**
 	 * Finds paths to instances of the provided class.
 	 * (from class to connect to container class, "up")
 	 * @param pathStartClass
 	 */
-	void findPathsToInstances(EClass pathStartClass, boolean directPathsOnly) {
+	private void findPathsToInstances(EClass pathStartClass, boolean directPathsOnly) {
 
 		// check if path to this MM-Class found
 		if (targetSectionRegistry.getTargetClassInstances(pathStartClass).size() > 0

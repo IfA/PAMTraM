@@ -82,7 +82,7 @@ class SourceSectionMapper {
 	 */
 	private Map<Mapping, LinkedList<ModelConnectionHint>> modelConnectionHints;
 	/**
-	 * Registry for MappingHints. Used When instantiating target model sections.
+	 * Registry for MappingHints.
 	 */
 	private Map<Mapping,LinkedList<MappingHintType>> mappingHints;
 	/**
@@ -101,7 +101,7 @@ class SourceSectionMapper {
 	/**
 	 * Map to determine at which point ComplexHints need to be joined
 	 */
-	private Map<Object,SourceSectionClass>   commonContainerClassOfComplexMappings;//TODO Name?
+	private Map<Object,SourceSectionClass>   commonContainerClassOfComplexMappings;
 	/**
 	 * Map Referencing the Classes referenced by the ExpressionVariable that is buried deepest in the source Section,
 	 * sorted by CalculatorMapping.
@@ -349,9 +349,7 @@ class SourceSectionMapper {
 		 */
 		while(resultSets.size()>0){
 			Map<SourceSectionClass,Set<SourceSectionClass>> nextResultSets=new HashMap<SourceSectionClass,Set<SourceSectionClass>>();
-			for(SourceSectionClass cl : resultSets.keySet()){
-				
-				
+			for(SourceSectionClass cl : resultSets.keySet()){		
 				for(SourceSectionReference ref : cl.getReferences()){
 					boolean breakLoop=false;
 					for(SourceSectionClass childClass : ref.getValuesGeneric()){
@@ -512,13 +510,12 @@ class SourceSectionMapper {
 		MappingInstanceStorage changedRefsAndHints = new MappingInstanceStorage();
 		changedRefsAndHints.setAssociatedSourceElement(srcSection, srcModelObject);
 
-		// init hintValues --TODO this is absolutely neccessary as of now, maybe
-		// find out why?-> naccessary f.i. in targetSectionMApper for determination of cardinality
 		Map<ComplexAttributeMappingSourceElement,String> complexSourceElementHintValues=new LinkedHashMap<ComplexAttributeMappingSourceElement,String>();
 		Map<ExpressionVariable,String> calcVariableHintValues=new LinkedHashMap<ExpressionVariable,String>();	
 		Map<ComplexAttributeMatcherSourceElement,String> complexAttrMatcherSourceElementHintValues=new LinkedHashMap<ComplexAttributeMatcherSourceElement,String>();
 		Map<ComplexModelConnectionHintSourceElement,String> complexConnectionHintSourceElementHintValues=new LinkedHashMap<ComplexModelConnectionHintSourceElement,String>();
 		
+		// init hintValues
 		for (MappingHintType hint : hints) {
 			changedRefsAndHints.setHintValueList(hint, new LinkedList<Object>());				
 			if( hint instanceof ComplexAttributeMapping 
@@ -563,14 +560,8 @@ class SourceSectionMapper {
 		changedRefsAndHints.addSourceModelObjectMapped(srcModelObject, srcSection);
 
 		// check attributes
-		for (SourceSectionAttribute at : srcSection.getAttributes()) {// look
-																			// for
-																			// attributes
-																			// in
-																			// srcSection
-			
+		for (SourceSectionAttribute at : srcSection.getAttributes()) {// look for attributes in srcSection	
 			// does it exist in src model?
-
 			Object srcAttr = srcModelObject.eGet(at.getAttribute());
 			if (srcAttr != null) {
 				// convert Attribute value to String
@@ -1259,7 +1250,6 @@ class SourceSectionMapper {
 					
 					if(isCommonParent){//sync
 						//add to changedRefsAndHints
-						//TODO if(syncedComplexMappings != null){
 							changedRefsAndHints.getHintValues()
 							.get(h)
 							.addAll(syncedComplexMappings);
@@ -1319,7 +1309,6 @@ class SourceSectionMapper {
 					
 					if(isCommonParent){//sync
 						//add to changedRefsAndHints
-						//TODO if(syncedComplexMappings != null){
 							changedRefsAndHints.getHintValues()
 							.get(h)
 							.addAll(syncedComplexMappings);
@@ -1379,7 +1368,6 @@ class SourceSectionMapper {
 					
 					if(isCommonParent){//sync
 						//add to changedRefsAndHints
-						//TODO if(syncedComplexMappings != null){
 							changedRefsAndHints.getHintValues()
 							.get(h)
 							.addAll(syncedComplexMappings);
@@ -1439,7 +1427,6 @@ class SourceSectionMapper {
 					
 					if(isCommonParent){//sync
 						//add to changedRefsAndHints
-						//TODO if(syncedComplexMappings != null){
 							changedRefsAndHints.getHintValues()
 							.get(h)
 							.addAll(syncedComplexMappings);

@@ -9,6 +9,7 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: pamtram.condition.provider,
+ pamtram.converter,
  pamtram.mapping.commands,
  pamtram.mapping.provider,
  pamtram.metamodel.provider,

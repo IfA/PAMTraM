@@ -213,6 +213,10 @@ public class GenericConvertCommand<SourceType extends EObject, TargetType extend
 		/**
 		 * Converts an instance of the SourceType to an instance of the TargetType.
 		 * 
+		 * Attention: When implementing this interface, make sure that 'EcoreUtil.copyAll()' is
+		 * used to copy child elements (referenced via a containment reference). Otherwise, 
+		 * 'undo()' does not work correctly (the child elements are lost).
+		 * 
 		 * @param source instance of the source type
 		 * @return instance of the target type
 		 */

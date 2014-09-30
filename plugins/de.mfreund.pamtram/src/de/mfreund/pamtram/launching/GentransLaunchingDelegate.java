@@ -7,8 +7,9 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.jobs.IJobChangeEvent;
+import org.eclipse.core.runtime.jobs.IJobChangeListener;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
@@ -25,7 +26,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
-import de.mfreund.gentrans.transformation.GenericTransformationRunner;
+import de.mfreund.gentrans.transformation.handler.GenericTransformationJob;
 import de.mfreund.pamtram.util.ResourceHelper;
 
 public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
@@ -78,34 +79,52 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		
 		// get the root object of the xml resource
 		EObject root = sourceResource.getContents().get(0);
-		final GenericTransformationRunner tr = 
-				new GenericTransformationRunner(root, pamtramFile, targetFile,maxPathLength);
 
-		Job job = new Job("Gentrans"){
+		Job job = new GenericTransformationJob("GenTrans", root, pamtramFile, targetFile, maxPathLength); 
 
-			@Override
-			protected IStatus run(IProgressMonitor monitor) {
-				try{
-					// perform the transformation
-					tr.runTransformation();
-					return org.eclipse.core.runtime.Status.OK_STATUS;
-					
-				} catch (Exception e){
-					e.printStackTrace(System.out);
-					return org.eclipse.core.runtime.Status.CANCEL_STATUS;//TODO
-				} finally {
-					// refresh the project to see the results
-					IProject projectResource = ResourcesPlugin.getWorkspace().getRoot().
-			 			getProject((new File(project)).getName());
-					ResourceHelper.refresh(projectResource);
-				}
-
-			}
-			
-		};
-		
 		job.setUser(true);
 		job.schedule();
+		
+		job.addJobChangeListener(new IJobChangeListener() {
+			
+			@Override
+			public void done(IJobChangeEvent event) {
+				// refresh the project to see the results
+				IProject projectResource = ResourcesPlugin.getWorkspace().getRoot().
+		 			getProject((new File(project)).getName());
+				ResourceHelper.refresh(projectResource);
+
+			}
+
+			@Override
+			public void aboutToRun(IJobChangeEvent event) {
+				
+			}
+
+			@Override
+			public void awake(IJobChangeEvent event) {
+				
+			}
+
+			@Override
+			public void running(IJobChangeEvent event) {
+				
+			}
+
+			@Override
+			public void scheduled(IJobChangeEvent event) {
+				
+			}
+
+			@Override
+			public void sleeping(IJobChangeEvent event) {
+				
+			}
+
+		});
+		
+
+
 		
 	}
 

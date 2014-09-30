@@ -36,7 +36,7 @@ public interface MappingHintGroupType extends NamedElement {
 	 * @return the value of the '<em>Target MM Section</em>' reference.
 	 * @see #setTargetMMSection(TargetSectionClass)
 	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupType_TargetMMSection()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	TargetSectionClass getTargetMMSection();

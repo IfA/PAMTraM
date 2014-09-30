@@ -355,7 +355,8 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MappingHintGroupType" abstract="true"
         eSuperTypes="#//NamedElement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="targetMMSection" eType="#//metamodel/TargetSectionClass"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="targetMMSection" lowerBound="1"
+          eType="#//metamodel/TargetSectionClass"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="mappingHints" upperBound="-1"
           eType="#//mapping/MappingHint" containment="true"/>
     </eClassifiers>

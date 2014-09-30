@@ -91,6 +91,8 @@ class ModelConnectionPath {
 	 * @param directPathsOnly
 	 */
 	private void findPathsFromContainerToClassToConnect(EClass classToConnect, EClass containerClass, int maxPathLength){
+		if(targetSectionRegistry.isTransFormationCancelled()) return;
+		
 		if(classToConnect.equals(containerClass) && pathElements.size()>0){
 			// add copy of path to possiblePaths
 			ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements, classToConnect,targetSectionRegistry,true);
@@ -136,7 +138,8 @@ class ModelConnectionPath {
 	 * @param pathStartClass
 	 */
 	private void findPathsToInstances(EClass pathStartClass, int maxPathLength) {
-
+		if(targetSectionRegistry.isTransFormationCancelled()) return;
+		
 		// check if path to this MM-Class found
 		if (targetSectionRegistry.getTargetClassInstances(pathStartClass).size() > 0
 				&& pathElements.size() > 0) {

@@ -27,7 +27,7 @@ import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunne
  * @author Sascha Steffen
  * @version 0.8
  */
-class TargetSectionConnector {
+class TargetSectionConnector implements CancellationListener{
 	/**
 	 * Paths previously selected by the user.
 	 */
@@ -216,7 +216,7 @@ class TargetSectionConnector {
 						containerDescriptions
 								.put(contInst.toString(), contInst);
 					}
-
+					if(transformationAborted) return;
 					ItemSelectorDialogRunner dialog=new ItemSelectorDialogRunner("The ModelConnectionHint '"
 									+ connectionHint.getName() + " (Mapping :" +mappingName +", Group: " + mappingGroupName + ")" 
 									+ "' points to a non-unique Attribute."
@@ -296,6 +296,7 @@ class TargetSectionConnector {
 								standardPath = p;// save shortest path
 						}
 						int instSize=rootInstancesByContainer.get(container).size();
+						if(transformationAborted) return ;
 						ItemSelectorDialogRunner dialog=new ItemSelectorDialogRunner(instSize 
 										+ " Instance" + (instSize > 1 ? "s" : "")  +" of the TargetSection '"
 										+ section.getName()
@@ -512,6 +513,7 @@ class TargetSectionConnector {
 
 						instanceNames.add(instNamesAsList);
 					}
+					if(transformationAborted) return;
 					PathAndInstanceSelectorRunner dialog=new PathAndInstanceSelectorRunner(rootInstances.size()
 									+ " Instance" + (rootInstances.size()>1 ? "s" : "")+ " of the TargetSection '"
 									+ section.getName()
@@ -561,6 +563,12 @@ class TargetSectionConnector {
 					+ classToConnect.getName());
 			addToTargetModelRoot(rootInstances);
 		}
+	}
+
+	@Override
+	public void cancel() {
+		this.transformationAborted=true;
+		
 	}
 
 }

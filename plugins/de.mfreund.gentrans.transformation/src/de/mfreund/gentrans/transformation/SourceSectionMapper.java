@@ -65,7 +65,7 @@ import de.mfreund.gentrans.transformation.selectors.ItemSelectorDialogRunner;
  * @author Sascha Steffen
  * @version 0.8
  */
-class SourceSectionMapper {
+class SourceSectionMapper implements CancellationListener {
 	
 	/**
 	 * Registry for source model objects already mapped
@@ -438,7 +438,7 @@ class SourceSectionMapper {
 	 *            from srcModel
 	 * @return list of the srcModels elements in hierarchical order
 	 */
-	static List<EObject> buildContainmentTree(EObject object) {
+	 List<EObject> buildContainmentTree(EObject object) {
 
 		List<EObject> list = new LinkedList<EObject>();
 		return buildContainmentTree(object, list);
@@ -452,9 +452,10 @@ class SourceSectionMapper {
 	 * @return list of the srcModels elements in hierarchical order
 	 */
 	@SuppressWarnings("unchecked")
-	private static List<EObject> buildContainmentTree(EObject object,
+	private List<EObject> buildContainmentTree(EObject object,
 			List<EObject> list) {
-
+		if(transformationAborted) return list;
+		
 		list.add(object);
 
 		for (EReference feature : object.eClass().getEAllContainments()) {
@@ -1612,6 +1613,7 @@ class SourceSectionMapper {
 						for(Mapping m: mappingData.keySet()){
 							names.put( m.getName()+  " (" + m.hashCode()+ ")", m);
 						}
+						if(transformationAborted) return null;
 						ItemSelectorDialogRunner dialog= new ItemSelectorDialogRunner("Please select a Mapping for the source element\n'" 
 								+  EObjectTransformationHelper.asString(element) + "'" , 
 											names.keySet(), names.keySet().iterator().next());
@@ -1924,6 +1926,12 @@ class SourceSectionMapper {
 			//if we reached this point all went well
 			return true;
 		}
+	}
+
+	@Override
+	public void cancel() {
+		this.transformationAborted=true;
+		
 	}
 	
 }

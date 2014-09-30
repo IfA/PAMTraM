@@ -42,8 +42,8 @@ import pamtram.mapping.ComplexModelConnectionHint;
 import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.ExternalMappedAttributeValuePrepender;
-import pamtram.mapping.GlobalValue;
 import pamtram.mapping.GlobalAttributeImporter;
+import pamtram.mapping.GlobalValue;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappedAttributeValueExpanderType;
 import pamtram.mapping.MappedAttributeValuePrepender;
@@ -91,12 +91,13 @@ public class GenericTransformationRunner {
 	public GenericTransformationRunner(EObject sourceModel,
 			String pamtramPath, String targetFilePath, int maxPathlength) {
 		super();
+		this.isCancelled=false;
 		this.sourceModel = sourceModel;
 		this.pamtramPath = pamtramPath;
 		this.targetFilePath=targetFilePath;
 		this.maxPathLength=maxPathlength;
 		consoleStream=findConsole("de.mfreund.gentrans.transformation_" + this.hashCode()).newMessageStream();
-		
+		this.objectsToCancel=new LinkedList<CancellationListener>();
 		// brings the console view to the front
 		showConsole();
 	}
@@ -112,6 +113,11 @@ public class GenericTransformationRunner {
 				+ " #################\n");
 	}
 
+	/**
+	 * List of objects to cancel
+	 */
+	private List<CancellationListener> objectsToCancel;
+	
 	/**
 	 * Root EObject of the source Model
 	 */
@@ -133,6 +139,8 @@ public class GenericTransformationRunner {
 	 * Maximum length for connection paths maxPathLength<0 == unbounded
 	 */
 	private int maxPathLength;
+	
+	private boolean isCancelled;
 	
 	
 	/**
@@ -228,7 +236,7 @@ public class GenericTransformationRunner {
 		List<Mapping> suitableMappings = pamtramModel.getMappingModel()
 				.getMapping();// TODO apply contextModel
 
-		if(executeMappings(targetModel, pamtramModel, suitableMappings)){
+		if(executeMappings(targetModel, pamtramModel, suitableMappings)  && !isCancelled){
 			//save targetModel
 			try {
 				// try to save the xmi resource
@@ -255,6 +263,7 @@ public class GenericTransformationRunner {
 	 * @param targetModel
 	 * @param pamtramModel
 	 * @param suitableMappings
+	 * @return true on success
 	 */
 	private boolean executeMappings(XMIResource targetModel, PAMTraM pamtramModel,
 			List<Mapping> suitableMappings) {
@@ -264,6 +273,9 @@ public class GenericTransformationRunner {
 		AttributeValueRegistry attrValueRegistry = new AttributeValueRegistry();
 		TargetSectionRegistry targetSectionRegistry = new TargetSectionRegistry(consoleStream, attrValueRegistry);
 
+		objectsToCancel.add(sourceSectionMapper);
+		objectsToCancel.add(targetSectionRegistry);
+		
 		/*
 		 * create a list of all the containment references in the source model
 		 */
@@ -271,8 +283,8 @@ public class GenericTransformationRunner {
 
 		// list of all unmapped nodes. obtained by iterating over all of the
 		// srcModels containment refs
-		List<EObject> contRefsToMap = SourceSectionMapper.buildContainmentTree(sourceModel);
-
+		List<EObject> contRefsToMap = sourceSectionMapper.buildContainmentTree(sourceModel);
+		
 		/*
 		 * now start mapping each one of the references. We automatically start
 		 * at the sourceModel root node
@@ -283,7 +295,7 @@ public class GenericTransformationRunner {
 
 		int numSrcModelElements = contRefsToMap.size();
 		int unmapped=0;
-		while (contRefsToMap.size() > 0) {
+		while (contRefsToMap.size() > 0 && !isCancelled) {
 			// find mapping
 			// remove(0) automatically selects element highest in the hierarchy
 			// we currently try to map
@@ -309,6 +321,10 @@ public class GenericTransformationRunner {
 			}
 
 		}
+		
+		if(isCancelled) return false;
+		
+		
 		consoleStream.println("Used srcModel elements: "
 				+ (numSrcModelElements - unmapped));
 		targetSectionRegistry.analyseTargetMetaModel(pamtramModel.getTargetSectionModel().getMetaModelPackage());
@@ -323,6 +339,9 @@ public class GenericTransformationRunner {
 		Map<MappingHint, LinkedList<Object>> exportedMappingHints = handleGlobalVarsAndExportedMappings(
 				sourceSectionMapper, selectedMappings);
 
+		if(isCancelled) return false;
+
+		
 		/*
 		 * Instantiate all Target-Sections (containment refs and attributes)
 		 */	
@@ -331,11 +350,24 @@ public class GenericTransformationRunner {
 				sourceSectionMapper, targetSectionRegistry, attrValueRegistry,
 				selectedMappings, exportedMappingHints,pamtramModel.getMappingModel().getGlobalValues());
 
+		objectsToCancel.add(targetSectionInstantiator);
+		
+		if(isCancelled) return false;
+		
+		
 		// creating missing links/containers for target model
 		writePamtramMessage("Linking targetModelSections");
-		if(!linkTargetSections(targetModel, suitableMappings,targetSectionRegistry, attrValueRegistry,attributeValueModifier, selectedMappingsByMapping)){
+		if(!linkTargetSections(targetModel, 
+				suitableMappings,
+				targetSectionRegistry, 
+				attrValueRegistry,
+				attributeValueModifier, 
+				selectedMappingsByMapping)){
 			return false;
 		}
+		
+		if(isCancelled) return false;
+
 
 		// creating target Model second pass (non-containment references)
 		writePamtramMessage("Instantiating targetModelSections for selected mappings. Second pass");
@@ -352,6 +384,8 @@ public class GenericTransformationRunner {
 			TargetSectionInstantiator targetSectionInstantiator) {
 		for (MappingInstanceStorage selMap : selectedMappings) {
 			for (MappingHintGroupType g : selMap.getMapping().getMappingHintGroups()) {
+				if(isCancelled) return false;
+
 				if (g.getTargetMMSection() != null && g instanceof MappingHintGroup) {
 					if (selMap.getInstancesBySection((MappingHintGroup) g) != null) {
 						targetSectionInstantiator
@@ -378,6 +412,8 @@ public class GenericTransformationRunner {
 						List<MappingHint> hints=new LinkedList<MappingHint>();
 						hints.addAll(expGrp.getMappingHints());
 						for(MappingHintType h : g.getMappingHints()){
+							if(isCancelled) return false;
+
 							if(h instanceof MappingHint){
 								hints.add((MappingHint) h);
 							}//TODO else if ...??-> should have already been done during 1st pass 
@@ -422,8 +458,10 @@ public class GenericTransformationRunner {
 			LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping) {
 		TargetSectionConnector connectionHelpers = new TargetSectionConnector(
 				attrValueRegistry, targetSectionRegistry, attributeValueModifier, targetModel, maxPathLength,consoleStream);
+		objectsToCancel.add(connectionHelpers);
 		for (Mapping m : suitableMappings) {
 			for (MappingHintGroupType g : m.getMappingHintGroups()) {
+				
 				if (g.getTargetMMSection() != null && g instanceof MappingHintGroup) {// targetSection exists?
 					TargetSectionClass section = g.getTargetMMSection();
 					if (targetSectionRegistry.getPamtramClassInstances(section)
@@ -433,6 +471,8 @@ public class GenericTransformationRunner {
 							if (((MappingHintGroup)g).getModelConnectionMatcher() != null) {// link using matcher
 								for (MappingInstanceStorage selMap : selectedMappingsByMapping.get(m)) {
 									if (selMap.getInstances((MappingHintGroup) g, section) != null) {
+										if(isCancelled) return false;
+
 										connectionHelpers.linkToTargetModelUsingModelConnectionHint(
 												section.getEClass(),
 												new LinkedList<EObjectTransformationHelper>( selMap.getInstances((MappingHintGroup) g,section)),
@@ -490,6 +530,8 @@ public class GenericTransformationRunner {
 								containerClasses.add(i.getContainer().getEClass());
 								//get container instances created by this mapping instance
 								for(MappingHintGroupType group : m.getMappingHintGroups()){
+									if(isCancelled) return false;
+
 									if(group instanceof MappingHintGroup){
 										LinkedList<EObjectTransformationHelper> insts=selMap.getInstances((MappingHintGroup) group, i.getContainer());
 										if(insts != null){
@@ -972,7 +1014,7 @@ public class GenericTransformationRunner {
 
 		// list of all unmapped nodes. obtained by iterating over all of the
 		// srcModels containment refs
-		List<EObject> contRefsToMap = SourceSectionMapper.buildContainmentTree(sourceModel);
+		List<EObject> contRefsToMap = sourceSectionMapper.buildContainmentTree(sourceModel);
 
 		/*
 		 * now start mapping each one of the references. We automatically start
@@ -1003,5 +1045,12 @@ public class GenericTransformationRunner {
 		
 		return sourceSectionMapper.getMappedSections();
 
+	}
+	
+	public void cancel(){
+		isCancelled=true;
+		for(CancellationListener l : objectsToCancel){
+			l.cancel();
+		}
 	}
 }

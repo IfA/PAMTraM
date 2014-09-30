@@ -20,7 +20,7 @@ import pamtram.metamodel.TargetSectionClass;
  * @version 0.8
  *
  */
-class TargetSectionRegistry {
+class TargetSectionRegistry implements CancellationListener{
 
 	/**
 	 * @return targetClassInstanceRegistry
@@ -119,7 +119,10 @@ class TargetSectionRegistry {
 		targetClassReferencesRegistry= new LinkedHashMap<EClass, LinkedHashSet<EReference>>(); // ==refsToThis
 		referenceSourcesRegistry=new LinkedHashMap<EReference, LinkedHashSet<EClass>>(); // ==sources
 		this.attrValRegistry=attrValRegistry;
+		this.setTransFormationCancelled(false);
 	}
+	
+	private boolean transFormationCancelled;
 	
 	
 	/**
@@ -378,6 +381,20 @@ class TargetSectionRegistry {
 		} else {
 			return null;
 		}
+	}
+
+	@Override
+	public void cancel() {
+		this.setTransFormationCancelled(true);
+		
+	}
+
+	public boolean isTransFormationCancelled() {
+		return transFormationCancelled;
+	}
+
+	public void setTransFormationCancelled(boolean transFormationCancelled) {
+		this.transFormationCancelled = transFormationCancelled;
 	}
 
 }

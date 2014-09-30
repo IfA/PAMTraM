@@ -138,8 +138,7 @@ public class AttributeMappingSourceElementWithModifiersItemProvider extends Attr
 					operation, collection); 
 		} else {
 			return new BasicDragAndDropAddCommand(domain, (EObject) owner, 
-					MappingPackage.Literals.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE, values);
-			
+					MappingPackage.Literals.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS__MODIFIER, values);
 		}
 	}
 

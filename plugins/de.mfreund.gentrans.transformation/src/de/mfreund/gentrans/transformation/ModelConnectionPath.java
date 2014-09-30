@@ -144,8 +144,7 @@ class ModelConnectionPath {
 			ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements, pathStartClass,targetSectionRegistry,false);
 
 			// self.first.~possiblePaths.add(newSelf);
-			targetSectionRegistry.addPath(newSelf, (EClass) this.pathElements.getFirst()); // first
-																				// class
+			targetSectionRegistry.addPath(newSelf, (EClass) this.pathElements.getFirst()); // first  class
 			return;
 		}
 		

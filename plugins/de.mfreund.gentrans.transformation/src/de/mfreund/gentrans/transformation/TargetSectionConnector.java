@@ -472,11 +472,8 @@ class TargetSectionConnector {
 				} else if (pathsToConsider.size() > 0) {// user decides
 					LinkedHashMap<String, ModelConnectionPath> pathNames = new LinkedHashMap<String, ModelConnectionPath>();
 					LinkedHashMap<String, LinkedHashMap<String, EObjectTransformationHelper>> instancesByPath = new LinkedHashMap<String, LinkedHashMap<String, EObjectTransformationHelper>>();
-					ModelConnectionPath standardPath = pathsToConsider.iterator().next();// get
-																	// shortest
-																	// path
+					ModelConnectionPath standardPath = pathsToConsider.iterator().next();// get  shortest  path
 					for (ModelConnectionPath p : pathsToConsider) {// prepare user selections
-						pathNames.put(p.toString(), p);
 						LinkedHashMap<String, EObjectTransformationHelper> instances = new LinkedHashMap<String, EObjectTransformationHelper>();
 						for (EObjectTransformationHelper inst : targetSectionRegistry.getTargetClassInstances(p
 								.getRootType())) {
@@ -488,19 +485,24 @@ class TargetSectionConnector {
 
 						}
 						
-						if( instances.size() == 0) {
-							consoleStream
-							.println("Could not find a path that leads to the container specified for targetSection '"
-									+ section.getName() + "'");
-							addToTargetModelRoot(rootInstances);
-							return;
+						if( instances.size() > 0) {
+							instancesByPath.put(p.toString(), instances);
+							pathNames.put(p.toString(), p);
+							if (p.size() < standardPath.size()) {
+								standardPath = p;// save standard path
+							}
 						}
-						instancesByPath.put(p.toString(), instances);
-						if (p.size() < standardPath.size()) {
-							standardPath = p;// save standard path
-						}
-					}
 
+					}
+					
+					if( instancesByPath.keySet().size() == 0) {
+						consoleStream
+						.println("Could not find a path that leads to the container specified for targetSection '"
+								+ section.getName() + "'");
+						addToTargetModelRoot(rootInstances);
+						return;
+					}
+					
 					LinkedList<String> namesAsList = new LinkedList<String>();
 					namesAsList.addAll(pathNames.keySet());
 					List<List<String>> instanceNames = new LinkedList<List<String>>();//TODO this was only needed in EOL, should probably easier in Java
@@ -545,7 +547,7 @@ class TargetSectionConnector {
 
 				} else {// no suitable container found
 					consoleStream
-							.println("Could not find a path that leads to the container specified for targetSection '"
+							.println("Could not find a path that leads to the container specified for the target section '"
 									+ section.getName() + "'");
 					addToTargetModelRoot(rootInstances);
 				}

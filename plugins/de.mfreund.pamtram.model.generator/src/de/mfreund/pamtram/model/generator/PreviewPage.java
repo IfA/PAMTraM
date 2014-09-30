@@ -5,8 +5,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
+import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
+import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.epsilon.eol.types.EolOrderedSet;
 import org.eclipse.jface.viewers.CheckStateChangedEvent;
 import org.eclipse.jface.viewers.CheckboxTableViewer;
@@ -27,10 +34,19 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
+import org.eclipse.ui.dialogs.ContainerCheckedTreeViewer;
 
+import pamtram.MappingModel;
+import pamtram.condition.provider.ConditionItemProviderAdapterFactory;
+import pamtram.mapping.provider.MappingItemProviderAdapterFactory;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.ContainmentReference;
+import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.NonContainmentReference;
+import pamtram.metamodel.Reference;
+import pamtram.metamodel.provider.MetamodelItemProviderAdapterFactory;
+import pamtram.provider.PamtramItemProviderAdapterFactory;
+import pamtram.transformation.provider.TransformationItemProviderAdapterFactory;
 import de.mfreund.pamtram.model.generator.provider.ResultPageTableViewerContentProvider;
 import de.mfreund.pamtram.model.generator.provider.ResultPageTableViewerLabelProvider;
 import de.mfreund.pamtram.model.generator.provider.ResultPageTreeViewerContentProvider;
@@ -49,20 +65,22 @@ public class PreviewPage extends WizardPage {
 		@Override
 		public void widgetSelected(SelectionEvent e) {
 			TreeItem item = (TreeItem) e.item;
-			ClassTreeItem data = (ClassTreeItem) item.getData();
 			
 			List<Attribute> lines = new ArrayList<Attribute>();
 			
-			// populate the attribute view
-			lines.addAll(data.getAttributes());
-				
+			if(item.getData() instanceof pamtram.metamodel.Class) {
+				// populate the attribute view
+				lines.addAll(
+						((pamtram.metamodel.Class)item.getData()).getAttributesGeneric());
+			}
+			
 			propertiesViewer.setInput(lines);
 			
 			// set the 'checked' states of the attributes
 			for(Attribute att : lines) {
 				// the attribute has been shown before -> reuse last setting
-				if(attributesToInclude.containsKey(att)) {
-					propertiesViewer.setChecked(att, attributesToInclude.get(att));
+				if(!elementsToExclude.contains(att)) {
+					propertiesViewer.setChecked(att, true);
 				// the attribute has not been shown before -> calculate the setting by the value
 				} else {
 				//	attributesToInclude.put(att, !(att.getValue() == null)); TODO
@@ -70,20 +88,20 @@ public class PreviewPage extends WizardPage {
 				}
 			}
 			
-			if(data.getReferenceObject() != null) {
-				pamtram.metamodel.Reference ref = data.getReferenceObject();
-				// jump to the referenced element only if it is a non-containment reference
-				// and if the user did not click on the check-box besides the element
-				if(ref instanceof NonContainmentReference && e.detail != 32) {
-					
-					TreeItem referencedItem = treeItems.get(data.getClassObject());
-					if(referencedItem == null) {
-						setErrorMessage("Referenced Item is null!");
-					} else {
-						tree.setSelection(referencedItem);
-					}
-				}
-			}
+//			if(data.getReferenceObject() != null) {
+//				pamtram.metamodel.Reference ref = data.getReferenceObject();
+//				// jump to the referenced element only if it is a non-containment reference
+//				// and if the user did not click on the check-box besides the element
+//				if(ref instanceof NonContainmentReference && e.detail != 32) {
+//					
+//					TreeItem referencedItem = treeItems.get(data.getClassObject());
+//					if(referencedItem == null) {
+//						setErrorMessage("Referenced Item is null!");
+//					} else {
+//						tree.setSelection(referencedItem);
+//					}
+//				}
+//			}
 		}
 
 		@Override
@@ -91,12 +109,20 @@ public class PreviewPage extends WizardPage {
 	}
 
 	private Composite container;
-	private TreeViewer viewer;
+	private ContainerCheckedTreeViewer viewer;
 	private CheckboxTableViewer propertiesViewer;
 	private HashMap<pamtram.metamodel.Class, TreeItem> treeItems = 
 				new HashMap<pamtram.metamodel.Class, TreeItem>();
-	private HashMap<Attribute, Boolean> attributesToInclude = new HashMap<Attribute, Boolean>(); 
 	private WizardData wizardData;
+	private ArrayList<MetaModelElement> elementsToExclude = 
+			new ArrayList<MetaModelElement>();
+	
+	/**
+	 * This is the one adapter factory used for providing views of the model.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 */
+	protected ComposedAdapterFactory adapterFactory;
 	
 	public PreviewPage(WizardData wizardData) {
 		super("Preview");
@@ -105,6 +131,14 @@ public class PreviewPage extends WizardPage {
 				+ "Check/Uncheck the attributes to include/exclude them from the section.");
 		
 		this.wizardData = wizardData;
+		
+		// Create an adapter factory that yields item providers.
+		//
+		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+
+		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new MetamodelItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 	}
 	
 	/* try to generate the section by launching the eol transformation;
@@ -132,12 +166,16 @@ public class PreviewPage extends WizardPage {
 			if(wizardData.getCreatedEObjects() != null) {				
 				viewer.setInput(
 //						wizardData.getCreatedEObjects());
-						ClassTreeItem.createClassTreeItems(wizardData.getCreatedEObjects()));
+						//ClassTreeItem.createClassTreeItems(wizardData.getCreatedEObjects()));
+						wizardData.getCreatedEObjects());
 				// expand the tree so that the tree item map can be generated
 				viewer.expandAll();
 				// create a map of the items in the tree that is later used for jumping to these items
-				for(TreeItem item : viewer.getTree().getItems()) {
+				/*for(TreeItem item : viewer.getTree().getItems()) {
 					populateTreeItemMap(item);					
+				}*/
+				for (pamtram.metamodel.Class clazz : wizardData.getCreatedEObjects()) {
+					viewer.setSubtreeChecked(clazz, true);
 				}
 				// collapse the tree (NOTE: 'collapseAll()' cannot be used as this disposes the tree items)  
 				viewer.setExpandedTreePaths(new TreePath[]{});
@@ -185,7 +223,7 @@ public class PreviewPage extends WizardPage {
 	 * hashmap that points to its actual place in the model hierarchie (non-containment
 	 * references are not treated)
 	 */
-	private void populateTreeItemMap(TreeItem obj) {
+	/*private void populateTreeItemMap(TreeItem obj) {
 		
 		if(obj.getData() == null) {
 			return;
@@ -204,7 +242,7 @@ public class PreviewPage extends WizardPage {
 			populateTreeItemMap(child);
 		}
 	}
-	
+	*/
 	@Override
 	public void createControl(Composite parent) {
 
@@ -219,10 +257,60 @@ public class PreviewPage extends WizardPage {
 		container.setLayout(gl);
 		
 		// the viewer field is an already configured TreeViewer
-		viewer = new TreeViewer(container, SWT.H_SCROLL | SWT.V_SCROLL);
-	    viewer.setContentProvider(new ResultPageTreeViewerContentProvider());
-	    viewer.setLabelProvider(new ResultPageTreeViewerLabelProvider(wizardData.getBundle()));
+		viewer = new ContainerCheckedTreeViewer(container, SWT.H_SCROLL | SWT.V_SCROLL);
+		viewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory) {
+			/* handle the fact that an array of the created sections 
+			 * will be set as input
+			 */
+			@Override
+			public Object[] getElements(Object object) {
+				if(object instanceof Object[]) {
+					return (Object[]) object;
+				} else {
+					return super.getElements(object);
+				}
+			}
+			@Override
+			public Object[] getChildren(Object object) {
+				if(object instanceof pamtram.metamodel.Class) {
+					return ((pamtram.metamodel.Class) object).getReferencesGeneric().toArray();
+				} else {
+					return super.getChildren(object);
+				}
+			}
+			@Override
+			public boolean hasChildren(Object object) {
+				if(object instanceof pamtram.metamodel.Class) {
+					return !((pamtram.metamodel.Class) object).getReferencesGeneric().isEmpty();
+				} else {
+					return super.hasChildren(object);
+				}
+			}
+		});
+		viewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+	    //viewer.setContentProvider(new ResultPageTreeViewerContentProvider());
+	    //viewer.setLabelProvider(new ResultPageTreeViewerLabelProvider(wizardData.getBundle()));
 	    
+		viewer.addCheckStateListener(new ICheckStateListener() {
+			@Override
+			// update the value in the hashmap
+			public void checkStateChanged(CheckStateChangedEvent event) {
+				if(event.getElement() instanceof MetaModelElement) {
+					MetaModelElement element = 
+							(MetaModelElement) event.getElement();
+					if(event.getChecked()) {
+						if(elementsToExclude.contains(element)) {
+							elementsToExclude.remove(element);
+						}
+					} else {
+						if(!elementsToExclude.contains(element)) {
+							elementsToExclude.add(element);
+						}
+					}
+				}
+			}
+		});
+		
 	    // the tree that the viewer operates on
 	    final Tree tree = (Tree) viewer.getControl();
 	    
@@ -251,7 +339,16 @@ public class PreviewPage extends WizardPage {
 			@Override
 			// update the value in the hashmap
 			public void checkStateChanged(CheckStateChangedEvent event) {
-				attributesToInclude.put((Attribute) event.getElement(), event.getChecked());
+				Attribute att = (Attribute) event.getElement();
+				if(event.getChecked()) {
+					if(elementsToExclude.contains(att)) {
+						elementsToExclude.remove(att);
+					}
+				} else {
+					if(!elementsToExclude.contains(att)) {
+						elementsToExclude.add(att);
+					}
+				}
 			}
 		});
 	    
@@ -301,7 +398,7 @@ public class PreviewPage extends WizardPage {
 	    return viewerColumn;
 	}
 	
-	public HashMap<Attribute, Boolean> getAttributesToInclude() {
-		return this.attributesToInclude;
+	public ArrayList<MetaModelElement> getElementsToExclude() {
+		return this.elementsToExclude;
 	}
 }

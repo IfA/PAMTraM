@@ -14,7 +14,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.epsilon.emc.emf;bundle-version="1.0.0",
  org.eclipse.epsilon.eol.dt;bundle-version="1.0.0",
  org.eclipse.ui.ide;bundle-version="3.9.0",
- de.mfreund.pamtram.model
+ de.mfreund.pamtram.model,
+ org.eclipse.emf.edit.ui,
+ de.mfreund.pamtram.model.edit
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Export-Package: de.mfreund.pamtram.model.generator

@@ -11,6 +11,8 @@ import org.eclipse.epsilon.eol.types.EolOrderedSet;
 import org.eclipse.jface.wizard.Wizard;
 
 import pamtram.metamodel.Attribute;
+import pamtram.metamodel.MetaModelElement;
+import pamtram.metamodel.Reference;
 
 public class GeneratorWizard extends Wizard {
 	
@@ -38,17 +40,10 @@ public class GeneratorWizard extends Wizard {
 		
 		// remove the attributes that have been unchecked in the preview page
 		IModel model = (IModel) this.wizardData.getEolExecutor().getModels().values().toArray()[0];
-		ArrayList<Attribute> attributesToExclude = new ArrayList<Attribute>();
-		// therefore, collect the attributes to be excluded
-		for(Attribute att : two.getAttributesToInclude().keySet()) {
-			if(two.getAttributesToInclude().get(att) == false) {
-				attributesToExclude.add(att);
-			}
-		}
-		// now, delete the attributes
-		for(Attribute att : attributesToExclude) {
+
+		for(MetaModelElement element : two.getElementsToExclude()) {
 			try {
-				model.deleteElement(att);
+				model.deleteElement(element);
 			} catch (EolRuntimeException e) {
 				e.printStackTrace();
 			}

@@ -3,7 +3,12 @@
 var pamtram = Pamtram!PAMTraM.all.first;
 
 // get all class objects in the model
-var classObjects = Pamtram!Class.all;
+var classObjects;
+if(isSource == true) {
+	classObjects = Pamtram!SourceSectionModel.all.first.metaModelSections;
+} else {
+	classObjects = Pamtram!TargetSectionModel.all.first.metaModelSections;
+}
 
 if(isSource == true) {
 	// check for mergable source items
@@ -59,7 +64,16 @@ operation Pamtram!Class hash() : String {
 	
 	var hash = "";
 	for(att in self.attributes) {
-		hash = hash + att.attribute.name + att.value;
+		hash = hash + att.attribute.name;
+		if(isSource == true) {
+			if(att.valueConstraint.size > 0){
+				hash = hash + att.valueConstraint.get(0).value;
+			} else {
+				hash = hash + "noValue";
+			}
+		} else {
+			hash = hash + att.value;
+		}
 	}
 	return hash;
 }

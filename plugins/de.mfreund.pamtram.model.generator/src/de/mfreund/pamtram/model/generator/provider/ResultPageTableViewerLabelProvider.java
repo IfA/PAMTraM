@@ -5,6 +5,8 @@ import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
 import pamtram.metamodel.Attribute;
+import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.TargetSectionAttribute;
 
 public class ResultPageTableViewerLabelProvider implements ITableLabelProvider {
 
@@ -37,8 +39,17 @@ public class ResultPageTableViewerLabelProvider implements ITableLabelProvider {
 		case 0:
 			return att.getName();
 		case 1:
-			//return att.getValue(); TODO
-			return ""; //TODO
+			if(att instanceof SourceSectionAttribute) {
+				if(!((SourceSectionAttribute) att).getValueConstraint().isEmpty()) {
+					return ((SourceSectionAttribute) att).getValueConstraint().get(0).getValue();
+				} else {
+					return "";
+				}
+			} else if(att instanceof TargetSectionAttribute) {
+				return ((TargetSectionAttribute) att).getValue();
+			} else {
+				return "";
+			}
 		default:
 			return "";
 		}

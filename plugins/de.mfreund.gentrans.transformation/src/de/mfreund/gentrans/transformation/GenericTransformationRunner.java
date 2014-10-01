@@ -271,10 +271,8 @@ public class GenericTransformationRunner {
 		AttributeValueModifierExecutor attributeValueModifier= new AttributeValueModifierExecutor(consoleStream);
 		SourceSectionMapper sourceSectionMapper = new SourceSectionMapper(suitableMappings, attributeValueModifier,consoleStream);
 		AttributeValueRegistry attrValueRegistry = new AttributeValueRegistry();
-		TargetSectionRegistry targetSectionRegistry = new TargetSectionRegistry(consoleStream, attrValueRegistry);
 
 		objectsToCancel.add(sourceSectionMapper);
-		objectsToCancel.add(targetSectionRegistry);
 		
 		/*
 		 * create a list of all the containment references in the source model
@@ -327,7 +325,6 @@ public class GenericTransformationRunner {
 		
 		consoleStream.println("Used srcModel elements: "
 				+ (numSrcModelElements - unmapped));
-		targetSectionRegistry.analyseTargetMetaModel(pamtramModel.getTargetSectionModel().getMetaModelPackage());
 
 		
 		/*
@@ -341,6 +338,12 @@ public class GenericTransformationRunner {
 
 		if(isCancelled) return false;
 
+		/*
+		 * Instantiate TargetSectionRegistry, analyzes target-metamodel
+		 */
+		writePamtramMessage("Analyzing target metamodel");
+		TargetSectionRegistry targetSectionRegistry = new TargetSectionRegistry(consoleStream, attrValueRegistry,pamtramModel.getTargetSectionModel().getMetaModelPackage());
+		objectsToCancel.add(targetSectionRegistry);
 		
 		/*
 		 * Instantiate all Target-Sections (containment refs and attributes)
@@ -489,7 +492,8 @@ public class GenericTransformationRunner {
 								}
 							} else {// link using container attribute or nothing
 								LinkedList<EObjectTransformationHelper> containerInstances = targetSectionRegistry.getFlattenedPamtramClassInstances(section.getContainer());
-								LinkedList<EObjectTransformationHelper> rootInstances = targetSectionRegistry.getPamtramClassInstances(section).get(g);		
+								LinkedList<EObjectTransformationHelper> rootInstances = targetSectionRegistry.getPamtramClassInstances(section).get(g);	//fetch ALL instances created by the MH-Group in question 
+																																						//=> less user input and possibly shorter processing time
 								containerInstances.removeAll(rootInstances);//we do not want the rootinstances to contain themselves
 								Set<EClass> containerClasses=new HashSet<EClass>();
 								if(section.getContainer() != null){

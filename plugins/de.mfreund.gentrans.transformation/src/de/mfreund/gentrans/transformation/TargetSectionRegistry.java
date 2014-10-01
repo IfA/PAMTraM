@@ -21,53 +21,12 @@ import pamtram.metamodel.TargetSectionClass;
  *
  */
 class TargetSectionRegistry implements CancellationListener{
-
-	/**
-	 * @return targetClassInstanceRegistry
-	 */
-	public LinkedHashMap<EClass, LinkedList<EObjectTransformationHelper>> getTargetClassInstanceRegistry() {
-		return targetClassInstanceRegistry;
-	}
 	
 	/**
 	 * Attribute value registry, needed when applying model connection hints
 	 */
 	private AttributeValueRegistry attrValRegistry;
 
-	/**
-	 * @return targetClassInstanceByHintGroupRegistry
-	 */
-	public LinkedHashMap<TargetSectionClass, LinkedHashMap<InstantiableMappingHintGroup, LinkedList<EObjectTransformationHelper>>> getTargetClassInstanceByHintGroupRegistry() {
-		return targetClassInstanceByHintGroupRegistry;
-	}
-
-	/**
-	 * @return childClassesRegistry
-	 */
-	public LinkedHashMap<EClass, LinkedHashSet<EClass>> getChildClassesRegistry() {
-		return childClassesRegistry;
-	}
-
-	/**
-	 * @return possiblePathsRegistry
-	 */
-	public LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>> getPossiblePathsRegistry() {
-		return possiblePathsRegistry;
-	}
-
-	/**
-	 * @return targetClassReferencesRegistry
-	 */
-	public LinkedHashMap<EClass, LinkedHashSet<EReference>> getTargetClassReferencesRegistry() {
-		return targetClassReferencesRegistry;
-	}
-
-	/**
-	 * @return referenceSourcesRegistry
-	 */
-	public LinkedHashMap<EReference, LinkedHashSet<EClass>> getReferenceSourcesRegistry() {
-		return referenceSourcesRegistry;
-	}
 
 	/**
 	 * Map of instantiated EObjects, sorted by TargetSectionClass
@@ -98,7 +57,7 @@ class TargetSectionRegistry implements CancellationListener{
 	/**
 	 * Source classes that are the starting point of a specific reference
 	 */
-	private  LinkedHashMap<EReference, LinkedHashSet<EClass>> referenceSourcesRegistry;
+	private  LinkedHashMap<EReference, LinkedHashSet<EClass>> containmentReferenceSourcesRegistry;
 	/**
 	 * Message output stream
 	 */
@@ -109,7 +68,7 @@ class TargetSectionRegistry implements CancellationListener{
 	 * @param consoleStream
 	 * @param attrValRegistry 
 	 */
-	TargetSectionRegistry(MessageConsoleStream consoleStream, AttributeValueRegistry attrValRegistry) {
+	TargetSectionRegistry(MessageConsoleStream consoleStream, AttributeValueRegistry attrValRegistry, EPackage targetMetaModel) {
 		this.consoleStream=consoleStream;
 		targetClassInstanceRegistry= new LinkedHashMap<EClass, LinkedList<EObjectTransformationHelper>>();
 		targetClassInstanceByHintGroupRegistry = new LinkedHashMap<TargetSectionClass, LinkedHashMap<InstantiableMappingHintGroup, LinkedList<EObjectTransformationHelper>>>();
@@ -117,9 +76,11 @@ class TargetSectionRegistry implements CancellationListener{
 		possiblePathsRegistry= new LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>>();
 		possibleConnectionsRegistry=new LinkedHashMap<EClass,LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>>>();
 		targetClassReferencesRegistry= new LinkedHashMap<EClass, LinkedHashSet<EReference>>(); // ==refsToThis
-		referenceSourcesRegistry=new LinkedHashMap<EReference, LinkedHashSet<EClass>>(); // ==sources
+		containmentReferenceSourcesRegistry=new LinkedHashMap<EReference, LinkedHashSet<EClass>>(); // ==sources
 		this.attrValRegistry=attrValRegistry;
 		this.setTransFormationCancelled(false);
+		
+		analyseTargetMetaModel(targetMetaModel);
 	}
 	
 	private boolean transFormationCancelled;
@@ -257,7 +218,7 @@ class TargetSectionRegistry implements CancellationListener{
 
 	/**
 	 * @param eClass
-	 * @return Set of classes that contain references to a Class
+	 * @return Set of classes that contain references to eClass
 	 */
 	LinkedHashSet<EReference> getClassReferences(EClass eClass) {
 
@@ -268,10 +229,10 @@ class TargetSectionRegistry implements CancellationListener{
 
 	/**
 	 * @param ref
-	 * @return Set of classes that are the starting point of a specific reference
+	 * @return Set of classes that are the starting point of a specific containment reference
 	 */
 	LinkedHashSet<EClass> getReferenceSources(EReference ref) {
-		return referenceSourcesRegistry.containsKey(ref) ? referenceSourcesRegistry
+		return containmentReferenceSourcesRegistry.containsKey(ref) ? containmentReferenceSourcesRegistry
 				.get(ref) : new LinkedHashSet<EClass>();
 
 	}
@@ -305,7 +266,7 @@ class TargetSectionRegistry implements CancellationListener{
 	 * Build various lists that describe structural features of the  target MetaModel
 	 * @param targetMetaModel
 	 */
-	void analyseTargetMetaModel(EPackage targetMetaModel) {
+	private void analyseTargetMetaModel(EPackage targetMetaModel) {
 		// Map targetMetaModel classes
 		
 		consoleStream.println("Mapping targetMetaModel classes");
@@ -326,10 +287,10 @@ class TargetSectionRegistry implements CancellationListener{
 			for (EReference c : e.getEAllContainments()) {
 				if (targetClassReferencesRegistry.containsKey(c
 						.getEReferenceType())) {
-					if (!referenceSourcesRegistry.containsKey(c)) {
-						referenceSourcesRegistry.put(c, new LinkedHashSet<EClass>());
+					if (!containmentReferenceSourcesRegistry.containsKey(c)) {
+						containmentReferenceSourcesRegistry.put(c, new LinkedHashSet<EClass>());
 					}
-					referenceSourcesRegistry.get(c).add(e);
+					containmentReferenceSourcesRegistry.get(c).add(e);
 					targetClassReferencesRegistry.get(c.getEReferenceType())
 							.add(c);
 				} else {

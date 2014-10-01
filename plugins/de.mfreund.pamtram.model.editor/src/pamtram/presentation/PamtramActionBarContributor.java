@@ -35,6 +35,7 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 
+import pamtram.converter.HintGroupToExportedHintGroupConverter;
 import pamtram.converter.InternalToExternalExpressionVariableConverter;
 import pamtram.converter.InternalToExternalSourceAttrMatcherElementConverter;
 import pamtram.converter.SimpleToComplexAttributeMappingConverter;
@@ -50,8 +51,10 @@ import pamtram.mapping.ComplexAttributeMatcher;
 import pamtram.mapping.ComplexAttributeMatcherExternalSourceElement;
 import pamtram.mapping.ComplexAttributeMatcherSourceElement;
 import pamtram.mapping.ComplexModelConnectionHint;
+import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.ExpressionVariable;
 import pamtram.mapping.ExternalExpressionVariable;
+import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.SimpleAttributeMapping;
@@ -351,7 +354,16 @@ public class PamtramActionBarContributor
 	
 	protected Collection<IAction> generateOtherActionsActions(final Object descriptor, ISelection selection) {
 		Collection<IAction> actions = new ArrayList<IAction>();
-		if(descriptor instanceof pamtram.mapping.SimpleAttributeMapping){
+		if(descriptor instanceof MappingHintGroup){
+			actions.add(
+					new GenericConversionCommandAction<MappingHintGroup, ExportedMappingHintGroup>(
+							activeEditorPart, 
+							selection, 
+							"Convert to exported MappingHintGroup",
+							MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS,
+							(MappingHintGroup) descriptor,
+							new HintGroupToExportedHintGroupConverter()));
+		} else if(descriptor instanceof pamtram.mapping.SimpleAttributeMapping){
 			actions.add(
 					new GenericConversionCommandAction<SimpleAttributeMapping, ComplexAttributeMapping>(
 							activeEditorPart, 

@@ -114,7 +114,12 @@ class ModelConnectionPath {
 						}
 					}
 				}			
-			}			
+			}	
+			
+			try {//keep UI responsive
+				Thread.sleep(0, 1);
+			} catch (InterruptedException e) {
+			}
 		}
 		
 	}
@@ -166,6 +171,10 @@ class ModelConnectionPath {
 					}		
 				}			
 	
+				try {//keep UI responsive
+					Thread.sleep(0, 1);
+				} catch (InterruptedException e) {
+				}
 			}
 			
 		}

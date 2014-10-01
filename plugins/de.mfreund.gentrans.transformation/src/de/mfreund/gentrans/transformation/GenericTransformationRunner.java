@@ -194,7 +194,7 @@ public class GenericTransformationRunner {
 	public void runTransformation(IProgressMonitor monitor) {
 		long startTime = System.nanoTime();
 		
-		monitor.beginTask("GenTrans", 100);
+		monitor.beginTask("GenTrans", 1000);
 
 		XMIResource targetModel, pamtramResource;
 		
@@ -318,7 +318,7 @@ public class GenericTransformationRunner {
 
 		int numSrcModelElements = contRefsToMap.size();
 		int lastIterNumSrcElements=numSrcModelElements;
-		double workUnit=25.0/((double)numSrcModelElements);
+		double workUnit=250.0/((double)numSrcModelElements);
 		double accumulatedWork=0;
 		int unmapped=0;
 		while (contRefsToMap.size() > 0 && !isCancelled) {
@@ -422,7 +422,7 @@ public class GenericTransformationRunner {
 	private boolean runInstantiationSecondPass(
 			LinkedList<MappingInstanceStorage> selectedMappings,
 			TargetSectionInstantiator targetSectionInstantiator, IProgressMonitor monitor) {
-		double workUnit=25.0/selectedMappings.size();
+		double workUnit=250.0/selectedMappings.size();
 		double accumulatedWork=0;
 		for (MappingInstanceStorage selMap : selectedMappings) {
 			for (MappingHintGroupType g : selMap.getMapping().getMappingHintGroups()) {
@@ -507,7 +507,7 @@ public class GenericTransformationRunner {
 		TargetSectionConnector connectionHelpers = new TargetSectionConnector(
 				attrValueRegistry, targetSectionRegistry, attributeValueModifier, targetModel, maxPathLength,consoleStream);
 		objectsToCancel.add(connectionHelpers);
-		double workUnit=25.0/suitableMappings.size();
+		double workUnit=250.0/suitableMappings.size();
 		double accumulatedWork=0;
 		for (Mapping m : suitableMappings) {
 			for (MappingHintGroupType g : m.getMappingHintGroups()) {
@@ -669,7 +669,7 @@ public class GenericTransformationRunner {
 			Map<MappingHint, LinkedList<Object>> exportedMappingHints, List<GlobalValue> globalValues, IProgressMonitor monitor) {
 		TargetSectionInstantiator targetSectionInstantiator = new TargetSectionInstantiator(
 				targetSectionRegistry, attrValueRegistry,sourceSectionMapper.getGlobalVarValues(),globalValues,consoleStream);	
-		double workUnit=25.0/selectedMappings.size();
+		double workUnit=250.0/selectedMappings.size();
 		double accumulatedWork=0;
 		for (MappingInstanceStorage selMap : selectedMappings) {
 			for (MappingHintGroupType g : selMap.getMapping().getMappingHintGroups()) {

@@ -189,9 +189,12 @@ public class GenericTransformationRunner {
 
 	/**
 	 * Starts the transformation.
+	 * @param monitor 
 	 */
-	public void runTransformation() {
+	public void runTransformation(IProgressMonitor monitor) {
 		long startTime = System.nanoTime();
+		
+		monitor.beginTask("GenTrans", 100);
 
 		XMIResource targetModel, pamtramResource;
 		
@@ -256,7 +259,7 @@ public class GenericTransformationRunner {
 		List<Mapping> suitableMappings = pamtramModel.getMappingModel()
 				.getMapping();// TODO apply contextModel
 
-		if(executeMappings(targetModel, pamtramModel, suitableMappings)  && !isCancelled){
+		if(executeMappings(targetModel, pamtramModel, suitableMappings,monitor)  && !isCancelled){
 			//save targetModel
 			try {
 				// try to save the xmi resource
@@ -283,10 +286,11 @@ public class GenericTransformationRunner {
 	 * @param targetModel
 	 * @param pamtramModel
 	 * @param suitableMappings
+	 * @param monitor 
 	 * @return true on success
 	 */
 	private boolean executeMappings(XMIResource targetModel, PAMTraM pamtramModel,
-			List<Mapping> suitableMappings) {
+			List<Mapping> suitableMappings, IProgressMonitor monitor) {
 		// generate storage objects and generators
 		AttributeValueModifierExecutor attributeValueModifier= new AttributeValueModifierExecutor(consoleStream);
 		SourceSectionMapper sourceSectionMapper = new SourceSectionMapper(suitableMappings, attributeValueModifier,consoleStream);
@@ -297,7 +301,8 @@ public class GenericTransformationRunner {
 		/*
 		 * create a list of all the containment references in the source model
 		 */
-		writePamtramMessage("Analysing srcModel containment references");
+		writePamtramMessage("Analysing source metamodel");
+		monitor.subTask("Selecting Mappings for source model elements");
 
 		// list of all unmapped nodes. obtained by iterating over all of the
 		// srcModels containment refs
@@ -312,6 +317,9 @@ public class GenericTransformationRunner {
 		writePamtramMessage("Selecting Mappings for source model elements");
 
 		int numSrcModelElements = contRefsToMap.size();
+		int lastIterNumSrcElements=numSrcModelElements;
+		double workUnit=25.0/((double)numSrcModelElements);
+		double accumulatedWork=0;
 		int unmapped=0;
 		while (contRefsToMap.size() > 0 && !isCancelled) {
 			// find mapping
@@ -337,15 +345,19 @@ public class GenericTransformationRunner {
 			} else {
 				unmapped++;
 			}
-
+			
+			accumulatedWork+=workUnit*(lastIterNumSrcElements-contRefsToMap.size());
+			lastIterNumSrcElements=contRefsToMap.size();
+			if(accumulatedWork>=1){
+				monitor.worked((int) Math.floor(accumulatedWork));
+				accumulatedWork-=Math.floor(accumulatedWork);
+			}
 		}
 		
 		if(isCancelled) return false;
 		
-		
 		consoleStream.println("Used srcModel elements: "
 				+ (numSrcModelElements - unmapped));
-
 		
 		/*
 		 * Now write MappingHint values of Hints of ExportedMappingHintGroups to a separate storage,
@@ -361,6 +373,7 @@ public class GenericTransformationRunner {
 		/*
 		 * Instantiate TargetSectionRegistry, analyzes target-metamodel
 		 */
+		monitor.subTask("Instantiating targetModelSections for selected mappings. First pass");
 		writePamtramMessage("Analyzing target metamodel");
 		TargetSectionRegistry targetSectionRegistry = new TargetSectionRegistry(consoleStream, attrValueRegistry,pamtramModel.getTargetSectionModel().getMetaModelPackage());
 		objectsToCancel.add(targetSectionRegistry);
@@ -371,7 +384,7 @@ public class GenericTransformationRunner {
 		writePamtramMessage("Instantiating targetModelSections for selected mappings. First pass");
 		TargetSectionInstantiator targetSectionInstantiator = runInstantiationFirstPass(
 				sourceSectionMapper, targetSectionRegistry, attrValueRegistry,
-				selectedMappings, exportedMappingHints,pamtramModel.getMappingModel().getGlobalValues());
+				selectedMappings, exportedMappingHints,pamtramModel.getMappingModel().getGlobalValues(),monitor);
 
 		objectsToCancel.add(targetSectionInstantiator);
 		
@@ -380,12 +393,14 @@ public class GenericTransformationRunner {
 		
 		// creating missing links/containers for target model
 		writePamtramMessage("Linking targetModelSections");
+		monitor.subTask("Linking targetModelSections");
+
 		if(!linkTargetSections(targetModel, 
 				suitableMappings,
 				targetSectionRegistry, 
 				attrValueRegistry,
 				attributeValueModifier, 
-				selectedMappingsByMapping)){
+				selectedMappingsByMapping,monitor)){
 			return false;
 		}
 		
@@ -394,17 +409,21 @@ public class GenericTransformationRunner {
 
 		// creating target Model second pass (non-containment references)
 		writePamtramMessage("Instantiating targetModelSections for selected mappings. Second pass");
-		return runInstantiationSecondPass(selectedMappings, targetSectionInstantiator);
+		monitor.subTask("Instantiating targetModelSections for selected mappings. Second pass");
+		return runInstantiationSecondPass(selectedMappings, targetSectionInstantiator,monitor);
 	}
 
 	/**
 	 * @param selectedMappings
 	 * @param targetSectionInstantiator
+	 * @param monitor 
 	 * @return
 	 */
 	private boolean runInstantiationSecondPass(
 			LinkedList<MappingInstanceStorage> selectedMappings,
-			TargetSectionInstantiator targetSectionInstantiator) {
+			TargetSectionInstantiator targetSectionInstantiator, IProgressMonitor monitor) {
+		double workUnit=25.0/selectedMappings.size();
+		double accumulatedWork=0;
 		for (MappingInstanceStorage selMap : selectedMappings) {
 			for (MappingHintGroupType g : selMap.getMapping().getMappingHintGroups()) {
 				if(isCancelled) return false;
@@ -459,6 +478,11 @@ public class GenericTransformationRunner {
 				}
 			}
 
+			accumulatedWork+=workUnit;
+			if(accumulatedWork>=1){
+				monitor.worked((int) Math.floor(accumulatedWork));
+				accumulatedWork-=Math.floor(accumulatedWork);
+			}
 		}
 		
 		return true;
@@ -470,6 +494,7 @@ public class GenericTransformationRunner {
 	 * @param targetSectionRegistry
 	 * @param attrValueRegistry
 	 * @param selectedMappingsByMapping
+	 * @param monitor 
 	 * @return
 	 */
 	private boolean linkTargetSections(
@@ -478,10 +503,12 @@ public class GenericTransformationRunner {
 			TargetSectionRegistry targetSectionRegistry,
 			AttributeValueRegistry attrValueRegistry,
 			AttributeValueModifierExecutor attributeValueModifier,
-			LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping) {
+			LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping, IProgressMonitor monitor) {
 		TargetSectionConnector connectionHelpers = new TargetSectionConnector(
 				attrValueRegistry, targetSectionRegistry, attributeValueModifier, targetModel, maxPathLength,consoleStream);
 		objectsToCancel.add(connectionHelpers);
+		double workUnit=25.0/suitableMappings.size();
+		double accumulatedWork=0;
 		for (Mapping m : suitableMappings) {
 			for (MappingHintGroupType g : m.getMappingHintGroups()) {
 				
@@ -613,6 +640,12 @@ public class GenericTransformationRunner {
 
 				}
 			}
+			
+			accumulatedWork+=workUnit;
+			if(accumulatedWork>=1){
+				monitor.worked((int) Math.floor(accumulatedWork));
+				accumulatedWork-=Math.floor(accumulatedWork);
+			}
 		}
 		return true;
 	}
@@ -625,6 +658,7 @@ public class GenericTransformationRunner {
 	 * @param selectedMappings
 	 * @param exportedMappingHints
 	 * @param globalValues 
+	 * @param monitor 
 	 * @return
 	 */
 	private TargetSectionInstantiator runInstantiationFirstPass(
@@ -632,9 +666,11 @@ public class GenericTransformationRunner {
 			TargetSectionRegistry targetSectionRegistry,
 			AttributeValueRegistry attrValueRegistry,
 			LinkedList<MappingInstanceStorage> selectedMappings,
-			Map<MappingHint, LinkedList<Object>> exportedMappingHints, List<GlobalValue> globalValues) {
+			Map<MappingHint, LinkedList<Object>> exportedMappingHints, List<GlobalValue> globalValues, IProgressMonitor monitor) {
 		TargetSectionInstantiator targetSectionInstantiator = new TargetSectionInstantiator(
-				targetSectionRegistry, attrValueRegistry,sourceSectionMapper.getGlobalVarValues(),globalValues,consoleStream);			
+				targetSectionRegistry, attrValueRegistry,sourceSectionMapper.getGlobalVarValues(),globalValues,consoleStream);	
+		double workUnit=25.0/selectedMappings.size();
+		double accumulatedWork=0;
 		for (MappingInstanceStorage selMap : selectedMappings) {
 			for (MappingHintGroupType g : selMap.getMapping().getMappingHintGroups()) {
 				if (g.getTargetMMSection() != null && g instanceof MappingHintGroup) {
@@ -818,7 +854,11 @@ public class GenericTransformationRunner {
 				}
 			}
 			
-			
+			accumulatedWork+=workUnit;
+			if(accumulatedWork>=1){
+				monitor.worked((int) Math.floor(accumulatedWork));
+				accumulatedWork-=Math.floor(accumulatedWork);
+			}
 		}
 		return targetSectionInstantiator;
 	}

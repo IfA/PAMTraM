@@ -27,6 +27,7 @@ public class GenericTransformationJob extends Job {
 			String pamtramPath, String targetFilePath, int maxPathlength) {
 		super(jobName);
 		genTransRunner=new GenericTransformationRunner(sourceModel, pamtramPath, targetFilePath,maxPathlength);
+		setPriority(Job.BUILD);
 	}
 	
 	/**
@@ -47,7 +48,7 @@ public class GenericTransformationJob extends Job {
 	protected IStatus run(IProgressMonitor monitor) {
 		try{
 			// perform the transformation
-			genTransRunner.runTransformation();
+			genTransRunner.runTransformation(monitor);
 			return org.eclipse.core.runtime.Status.OK_STATUS;
 			
 		} catch (Exception e){

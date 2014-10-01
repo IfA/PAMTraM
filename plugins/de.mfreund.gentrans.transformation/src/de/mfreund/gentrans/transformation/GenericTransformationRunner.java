@@ -15,8 +15,10 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -213,6 +215,24 @@ public class GenericTransformationRunner {
 		}
 
 		 PAMTraM pamtramModel= (PAMTraM) pamtramResource.getContents().get(0);
+		 
+		 LinkedList<EPackage> mmPackagesToCheck=new LinkedList<EPackage>();
+		 mmPackagesToCheck.add(pamtramModel.getSourceSectionModel().getMetaModelPackage());
+		 mmPackagesToCheck.add(pamtramModel.getTargetSectionModel().getMetaModelPackage());
+		 
+		 while(mmPackagesToCheck.size()>0){
+			 EPackage pkg=mmPackagesToCheck.removeFirst();
+			 
+			 if(pkg.eIsProxy()){
+				 writePamtramMessage("The EPackage with the eProxyURI '" + EcoreUtil.getURI(pkg)+ "' is not loaded correctly. Aborting");
+				 return;
+ 
+			 } else {
+				 for(EPackage p : pkg.getESubpackages()){
+					 mmPackagesToCheck.add(p);
+				 }
+			 }
+		 }
 		 
 		try {
 			// try to create the xmi resource

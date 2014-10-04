@@ -1,10 +1,13 @@
 package de.mfreund.gentrans.transformation;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -32,21 +35,11 @@ class ModelConnectionPath {
 	 */
 	private LinkedList<EObject> pathElements;
 
-	
-	/**
-	 * (there should'nt be a getter for pathElements, therefore we compare the elemnets list this way)
-	 * @param pathElements
-	 * @return true if list contain same elements
-	 */
-	private boolean comparePathElements(List<EObject> pathElements){
-		return pathElements.equals(this.pathElements);
-	}
-
 	/**
 	 * Constructor
 	 * @param targetSectionRegistry
 	 */
-	ModelConnectionPath(TargetSectionRegistry targetSectionRegistry) {
+	private ModelConnectionPath(TargetSectionRegistry targetSectionRegistry) {
 		this.pathElements = new LinkedList<EObject>();
 		this.targetSectionRegistry=targetSectionRegistry;
 
@@ -65,6 +58,62 @@ class ModelConnectionPath {
 		this.targetSectionRegistry=targetSectionRegistry;
 
 
+	}
+	
+	/**
+	 * @param paths
+	 * @return
+	 */
+	 static Set<EClass> getCommonClasses(CancellationListener cListener, Map<EClass,List<ModelConnectionPath>> paths){
+		Set<EClass> returnSet=new LinkedHashSet<EClass>(); 
+		
+		Set<EClass> rejected=new LinkedHashSet<EClass>();
+
+		
+		if(paths.size()>0){
+			List<ModelConnectionPath> comparePath=paths.remove(paths.keySet().iterator().next());
+			
+			/*
+			 * check for each possible Path of the first path List
+			 */
+			for(ModelConnectionPath element : comparePath){
+				//we will now try to find each EClass in the path in one of the paths of the other Lists
+				//in case an EClass is found in at least one of the paths of each map value, it will be put to the return sets
+				//This means, that one common elements for the EClasses in the key set of the map was found, sothey can be connected
+				
+				for(EObject pElement : element.pathElements){
+					if(cListener.isCancelled()) return Collections.<EClass>emptySet();
+					
+					if(pElement instanceof EClass){//we do not check the references
+						if(rejected.contains(pElement) || returnSet.contains(pElement)){//did we check this before?
+							continue;
+						} else {
+							for(EClass cPathListClass : paths.keySet()){//check in other lists
+								boolean foundElement=false;
+								for(ModelConnectionPath  cPath : paths.get(cPathListClass)){
+									if(cListener.isCancelled()) return Collections.<EClass>emptySet();
+									if(cPath.pathElements.contains(pElement)){
+										foundElement=true;
+										break;//we only need to find one path per key EClass
+									}
+								}
+								if(!foundElement){//if it fails for one element of the key set we can stop looking further
+									rejected.add((EClass) pElement);
+									break;
+								}
+							}
+							
+							if(!rejected.contains(pElement)){//element can be used as container for every EClass in the key set
+								returnSet.add((EClass) pElement);
+							}
+						}
+					}
+				}
+			}
+
+
+		}	
+			return returnSet;
 	}
 
 	/**
@@ -85,96 +134,101 @@ class ModelConnectionPath {
 	}
 	
 	/**
-	 *(from container class to class to connect, "down")
-	 * @param classToConnect
+	 * @param elementClass
 	 * @param containerClass
 	 * @param directPathsOnly
 	 */
-	void findPathsFromContainerToClassToConnect(EClass classToConnect, EClass containerClass, boolean directPathsOnly){
-		if(classToConnect.equals(containerClass) && pathElements.size()>0){
-			// add copy of path to possiblePaths
-			ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements, classToConnect,targetSectionRegistry,true);
-
-			targetSectionRegistry.addConnection(newSelf, classToConnect, (EClass) pathElements.getFirst());
-			return;			
-		}
+	 static void findPathsFromContainerToClassToConnect(TargetSectionRegistry registry, EClass elementClass, EClass containerClass,
+			int maxPathLength) {
+		//new ModelConnectionPath(registry).findPathsFromContainerToClassToConnect(elementClass, containerClass, maxPathLength);
+		LinkedHashSet<Pair<EClass,LinkedList<EObject>>> pathStack=new LinkedHashSet<Pair<EClass,LinkedList<EObject>>>();
 		
-		// check for inherited types
-		for (EClass c :  targetSectionRegistry.getChildClasses(containerClass)) {
-			ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements,targetSectionRegistry);
-			newSelf.findPathsFromContainerToClassToConnect(classToConnect, c, directPathsOnly);
-		}
+		pathStack.add(new Pair<EClass,LinkedList<EObject>>(containerClass,new LinkedList<EObject>()));
 		
-		if(!directPathsOnly || this.pathElements.size()<1){
-			// detect loop
-			if (pathElements.contains(containerClass)) {
-				return;
+		while(pathStack.size()>0 && !registry.isCancelled()){
+			Pair<EClass,LinkedList<EObject>> next=pathStack.iterator().next();
+			pathStack.remove(next);
+			
+			
+			if(next.getLeft().equals(elementClass) && next.getRight().size()>0){
+				// add copy of path to possiblePaths
+				ModelConnectionPath newSelf = new ModelConnectionPath(next.getRight(), elementClass,registry,true);
 
-			}
-
-			// add class to path if not abstract
-			if (!containerClass.isAbstract()) {
-				pathElements.add(containerClass);
-
-				// continue path finding for references
-				for (EReference cont : containerClass.getEAllContainments()) {
-					ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements, cont,targetSectionRegistry,false);
-					newSelf.findPathsFromContainerToClassToConnect(classToConnect, cont.getEReferenceType(), directPathsOnly);
+				registry.addConnection(newSelf, elementClass, (EClass) next.getRight().getFirst());
+			} else {				
+				// check for inherited types
+				for (EClass c :  registry.getChildClasses(next.getLeft())) {
+					pathStack.add(new Pair<EClass,LinkedList<EObject>>(c,next.getRight()));
 				}
-
-			}
-		}
-	}
-
-	/**
-	 * Finds paths to instances of the provided class.
-	 * (from class to connect to container class, "up")
-	 * @param pathStartClass
-	 */
-	void findPathsToInstances(EClass pathStartClass, boolean directPathsOnly) {
-
-		// check if path to this MM-Class found
-		if (targetSectionRegistry.getTargetClassInstances(pathStartClass).size() > 0
-				&& pathElements.size() > 0) {
-			// add copy of path to possiblePaths
-			ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements, pathStartClass,targetSectionRegistry,false);
-
-			// self.first.~possiblePaths.add(newSelf);
-			targetSectionRegistry.addPath(newSelf, (EClass) this.pathElements.getFirst()); // first
-																				// class
-			return;
-		}
-		
-		// check for inherited types
-		for (EClass c : targetSectionRegistry.getChildClasses(pathStartClass)) {
-			ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements,targetSectionRegistry);
-			newSelf.findPathsToInstances(c,directPathsOnly);
-		}
-		
-		if(!directPathsOnly || this.pathElements.size()<1){
-			// detect loop
-			if (pathElements.contains(pathStartClass)) {
-				return;
-
-			}
-
-			// add class to path if not abstract
-			if (!pathStartClass.isAbstract()) {
-				pathElements.add(pathStartClass);
-
-				// continue path finding for references
-				for (EReference cont : targetSectionRegistry
-						.getClassReferences(pathStartClass)) {
-
-					for (EClass s : targetSectionRegistry.getReferenceSources(cont)) {
-						ModelConnectionPath newSelf = new ModelConnectionPath(this.pathElements, cont,targetSectionRegistry,false);
-						newSelf.findPathsToInstances(s,directPathsOnly);
+				
+				if(maxPathLength < 0 || (next.getRight().size()/2-1) < maxPathLength){
+					// detect loop
+					if (!next.getRight().contains(next.getLeft()) && !next.getLeft().isAbstract()) {
+						// continue path finding for references
+						for (EReference cont : next.getLeft().getEAllContainments()) {
+							LinkedList<EObject> newRight=new LinkedList<EObject>(next.getRight());
+							newRight.add(next.getLeft());
+							newRight.add(cont);
+							pathStack.add(new Pair<EClass,LinkedList<EObject>>(cont.getEReferenceType(),newRight));
+						}
 					}
-				}
-
-			}
+				}			
+			}	
 		}
+		
 	}
+	 
+		/**
+		 * Finds paths to instances of the provided class.
+		 * (from class to connect to container class, "up")
+		 * @param pathStartClass
+		 */
+	 static void findPathsToInstances(TargetSectionRegistry registry, EClass pathStartClass, int maxPathLength) {
+			//new ModelConnectionPath(registry).findPathsFromContainerToClassToConnect(elementClass, containerClass, maxPathLength);
+			LinkedHashSet<Pair<EClass,LinkedList<EObject>>> pathStack=new LinkedHashSet<Pair<EClass,LinkedList<EObject>>>();
+			
+			pathStack.add(new Pair<EClass,LinkedList<EObject>>(pathStartClass,new LinkedList<EObject>()));
+			
+			while(pathStack.size()>0 && !registry.isCancelled()){
+				Pair<EClass,LinkedList<EObject>> next=pathStack.iterator().next();
+				pathStack.remove(next);
+				
+				// check if path to this MM-Class found
+				if (registry.getTargetClassInstances(next.getLeft()).size() > 0
+						&& next.getRight().size() > 0) {
+					// add copy of path to possiblePaths
+					ModelConnectionPath newSelf = new ModelConnectionPath(next.getRight(), next.getLeft(),registry,false);
+
+					// self.first.~possiblePaths.add(newSelf);
+					registry.addPath(newSelf, (EClass) next.getRight().getFirst()); // first  class
+					
+				} else {
+					// check for inherited types
+					for (EClass c : registry.getChildClasses(next.getLeft())) {
+						pathStack.add(new Pair<EClass,LinkedList<EObject>>(c,next.getRight()));
+					}
+					
+					if(maxPathLength < 0 || (next.getRight().size()/2-1) < maxPathLength){
+						// detect loop
+						if (!next.getRight().contains(next.getLeft()) && !next.getLeft().isAbstract()) {
+							// continue path finding for references
+							for (EReference cont : registry.getClassReferences(next.getLeft())) {
+								for (EClass s : registry.getReferenceSources(cont)) {
+									LinkedList<EObject> newRight=new LinkedList<EObject>(next.getRight());
+									newRight.add(next.getLeft());
+									newRight.add(cont);
+									pathStack.add(new Pair<EClass,LinkedList<EObject>>(s,newRight));
+								}
+							}
+
+						}
+					}		
+				}			
+	
+			}
+			
+		}
+
 
 	/**
 	 * Calculate the paths capacity starting from the targetInstance.
@@ -309,7 +363,7 @@ class ModelConnectionPath {
 	@Override
 	public boolean equals(Object obj) {
 		if(obj instanceof ModelConnectionPath){
-			return ((ModelConnectionPath) obj).comparePathElements(pathElements);
+			return ((ModelConnectionPath) obj).pathElements.equals(this.pathElements);
 		}else {
 			return false;
 		}

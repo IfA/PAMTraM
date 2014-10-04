@@ -7,8 +7,6 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -20,7 +18,6 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
 
-import de.mfreund.gentrans.transformation.GenericTransformationRunner;
 import de.mfreund.gentrans.transformation.selectors.PamtramFileSelectorDialog;
 
 
@@ -70,24 +67,10 @@ public class GentransFromXMLSourceHandler extends AbstractHandler {
 		
 		// get the root object of the xml resource
 		EObject root = xmlResource.getContents().get(0).eContents().get(0);
-		final GenericTransformationRunner tr=new GenericTransformationRunner(root,pamtramFilePath,PamtramFileSelectorDialog.getTargetFile());
-
 		
-		Job job=new Job("Gentrans"){
+		Job job= new GenericTransformationJob("GenTrans", root,pamtramFilePath,PamtramFileSelectorDialog.getTargetFile()); 
 
-			@Override
-			protected IStatus run(IProgressMonitor monitor) {
-				try{
-					tr.runTransformation();
-					return org.eclipse.core.runtime.Status.OK_STATUS;
-				} catch (Exception e){
-					 e.printStackTrace(System.out);
-						return org.eclipse.core.runtime.Status.CANCEL_STATUS;//TODO
-				}
-
-			}
-			
-		};
+		job.setUser(true);
 		job.schedule();
 		
 	    return null;

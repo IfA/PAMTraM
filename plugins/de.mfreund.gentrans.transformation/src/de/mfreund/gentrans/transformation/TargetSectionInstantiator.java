@@ -57,7 +57,7 @@ import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunne
  * @version 0.8
  *
  */
-class TargetSectionInstantiator {
+class TargetSectionInstantiator implements CancellationListener{
 	/**
 	 * RoundFunction instance, needed when evaluating ClaculatorMappingHints
 	 */
@@ -90,7 +90,8 @@ class TargetSectionInstantiator {
 	/**
 	 * @return true if transformation was aborted
 	 */
-	public boolean isTransformationAborted() {
+	@Override
+	public boolean isCancelled() {
 		return transformationAborted;
 	}	
 	
@@ -633,7 +634,8 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 										if (fittingVals.keySet().size() == 1) {
 											setReference(ref,fittingVals.values().iterator().next().getEObject(),srcInst.getEObject());
 										} else if (fittingVals.keySet().size() > 1) {// let user decide			
-											// TODO check limited capacity											
+											// TODO check limited capacity	
+											if(transformationAborted) return ;
 											  ItemSelectorDialogRunner dialog=new  ItemSelectorDialogRunner(
 											  "The MappingInstanceSelector '" +
 											  h.getName() + " of Mapping" + mappingName + "(Group: " + group.getName()  
@@ -697,6 +699,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 														.iterator().next();
 											} else if (targetInstancesToConsider.values().size() > 1) {
 												// Dialog
+												if(transformationAborted) return ;
 												  ItemSelectorDialogRunner dialog=new  ItemSelectorDialogRunner(
 												  "The MappingInstanceSelector '" +
 												  h.getName() + " of Mapping" + mappingName + "(Group: " + group.getName()  
@@ -851,6 +854,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 										instances.put(i.toString(), i);
 									}
 									// Dialog
+									if(transformationAborted) return;
 									  ItemSelectorDialogRunner dialog=new  ItemSelectorDialogRunner(
 											  "There was more than one target element found for the NonContainmmentReference '"
 														+ ref.getName() + "' of TargetMMSection "
@@ -906,6 +910,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 								targetInstance = targetInstancesToConsider.values().iterator().next();
 							} else if (targetInstancesToConsider.values().size() > 1) {
 								// Dialog
+								if(transformationAborted) return;
 								  PathAndInstanceSelectorRunner dialog=new  PathAndInstanceSelectorRunner(
 									"There was more than one target element found for the NonContainmmentReference '"
 									+ ref.getName() + "' of TargetMMSection "
@@ -1001,6 +1006,12 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 			source.eSet(ref.getEReference(), newRefs);
 
 		}
+	}
+
+	@Override
+	public void cancel() {
+		this.transformationAborted=true;
+		
 	}
 
 }

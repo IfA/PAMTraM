@@ -65,7 +65,7 @@ import de.mfreund.gentrans.transformation.selectors.ItemSelectorDialogRunner;
  * @author Sascha Steffen
  * @version 0.8
  */
-class SourceSectionMapper {
+class SourceSectionMapper implements CancellationListener {
 	
 	/**
 	 * Registry for source model objects already mapped
@@ -82,7 +82,7 @@ class SourceSectionMapper {
 	 */
 	private Map<Mapping, LinkedList<ModelConnectionHint>> modelConnectionHints;
 	/**
-	 * Registry for MappingHints. Used When instantiating target model sections.
+	 * Registry for MappingHints.
 	 */
 	private Map<Mapping,LinkedList<MappingHintType>> mappingHints;
 	/**
@@ -101,7 +101,7 @@ class SourceSectionMapper {
 	/**
 	 * Map to determine at which point ComplexHints need to be joined
 	 */
-	private Map<Object,SourceSectionClass>   commonContainerClassOfComplexMappings;//TODO Name?
+	private Map<Object,SourceSectionClass>   commonContainerClassOfComplexMappings;
 	/**
 	 * Map Referencing the Classes referenced by the ExpressionVariable that is buried deepest in the source Section,
 	 * sorted by CalculatorMapping.
@@ -156,7 +156,8 @@ class SourceSectionMapper {
 	/**
 	 * @return true when user action was triggered to abort the transformation
 	 */
-	public boolean isTransformationAborted() {
+	@Override
+	public boolean isCancelled() {
 		return transformationAborted;
 	}
 	
@@ -349,9 +350,7 @@ class SourceSectionMapper {
 		 */
 		while(resultSets.size()>0){
 			Map<SourceSectionClass,Set<SourceSectionClass>> nextResultSets=new HashMap<SourceSectionClass,Set<SourceSectionClass>>();
-			for(SourceSectionClass cl : resultSets.keySet()){
-				
-				
+			for(SourceSectionClass cl : resultSets.keySet()){		
 				for(SourceSectionReference ref : cl.getReferences()){
 					boolean breakLoop=false;
 					for(SourceSectionClass childClass : ref.getValuesGeneric()){
@@ -440,7 +439,7 @@ class SourceSectionMapper {
 	 *            from srcModel
 	 * @return list of the srcModels elements in hierarchical order
 	 */
-	static List<EObject> buildContainmentTree(EObject object) {
+	 List<EObject> buildContainmentTree(EObject object) {
 
 		List<EObject> list = new LinkedList<EObject>();
 		return buildContainmentTree(object, list);
@@ -454,9 +453,10 @@ class SourceSectionMapper {
 	 * @return list of the srcModels elements in hierarchical order
 	 */
 	@SuppressWarnings("unchecked")
-	private static List<EObject> buildContainmentTree(EObject object,
+	private List<EObject> buildContainmentTree(EObject object,
 			List<EObject> list) {
-
+		if(transformationAborted) return list;
+		
 		list.add(object);
 
 		for (EReference feature : object.eClass().getEAllContainments()) {
@@ -512,13 +512,12 @@ class SourceSectionMapper {
 		MappingInstanceStorage changedRefsAndHints = new MappingInstanceStorage();
 		changedRefsAndHints.setAssociatedSourceElement(srcSection, srcModelObject);
 
-		// init hintValues --TODO this is absolutely neccessary as of now, maybe
-		// find out why?-> naccessary f.i. in targetSectionMApper for determination of cardinality
 		Map<ComplexAttributeMappingSourceElement,String> complexSourceElementHintValues=new LinkedHashMap<ComplexAttributeMappingSourceElement,String>();
 		Map<ExpressionVariable,String> calcVariableHintValues=new LinkedHashMap<ExpressionVariable,String>();	
 		Map<ComplexAttributeMatcherSourceElement,String> complexAttrMatcherSourceElementHintValues=new LinkedHashMap<ComplexAttributeMatcherSourceElement,String>();
 		Map<ComplexModelConnectionHintSourceElement,String> complexConnectionHintSourceElementHintValues=new LinkedHashMap<ComplexModelConnectionHintSourceElement,String>();
 		
+		// init hintValues
 		for (MappingHintType hint : hints) {
 			changedRefsAndHints.setHintValueList(hint, new LinkedList<Object>());				
 			if( hint instanceof ComplexAttributeMapping 
@@ -563,14 +562,8 @@ class SourceSectionMapper {
 		changedRefsAndHints.addSourceModelObjectMapped(srcModelObject, srcSection);
 
 		// check attributes
-		for (SourceSectionAttribute at : srcSection.getAttributes()) {// look
-																			// for
-																			// attributes
-																			// in
-																			// srcSection
-			
+		for (SourceSectionAttribute at : srcSection.getAttributes()) {// look for attributes in srcSection	
 			// does it exist in src model?
-
 			Object srcAttr = srcModelObject.eGet(at.getAttribute());
 			if (srcAttr != null) {
 				// convert Attribute value to String
@@ -1259,7 +1252,6 @@ class SourceSectionMapper {
 					
 					if(isCommonParent){//sync
 						//add to changedRefsAndHints
-						//TODO if(syncedComplexMappings != null){
 							changedRefsAndHints.getHintValues()
 							.get(h)
 							.addAll(syncedComplexMappings);
@@ -1319,7 +1311,6 @@ class SourceSectionMapper {
 					
 					if(isCommonParent){//sync
 						//add to changedRefsAndHints
-						//TODO if(syncedComplexMappings != null){
 							changedRefsAndHints.getHintValues()
 							.get(h)
 							.addAll(syncedComplexMappings);
@@ -1379,7 +1370,6 @@ class SourceSectionMapper {
 					
 					if(isCommonParent){//sync
 						//add to changedRefsAndHints
-						//TODO if(syncedComplexMappings != null){
 							changedRefsAndHints.getHintValues()
 							.get(h)
 							.addAll(syncedComplexMappings);
@@ -1439,7 +1429,6 @@ class SourceSectionMapper {
 					
 					if(isCommonParent){//sync
 						//add to changedRefsAndHints
-						//TODO if(syncedComplexMappings != null){
 							changedRefsAndHints.getHintValues()
 							.get(h)
 							.addAll(syncedComplexMappings);
@@ -1625,6 +1614,7 @@ class SourceSectionMapper {
 						for(Mapping m: mappingData.keySet()){
 							names.put( m.getName()+  " (" + m.hashCode()+ ")", m);
 						}
+						if(transformationAborted) return null;
 						ItemSelectorDialogRunner dialog= new ItemSelectorDialogRunner("Please select a Mapping for the source element\n'" 
 								+  EObjectTransformationHelper.asString(element) + "'" , 
 											names.keySet(), names.keySet().iterator().next());
@@ -1938,7 +1928,13 @@ class SourceSectionMapper {
 			return true;
 		}
 	}
-	
+
+	@Override
+	public void cancel() {
+		this.transformationAborted=true;
+		
+	}
+
 }
 
 

@@ -3,6 +3,8 @@ package de.mfreund.gentrans.transformation;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -20,53 +22,16 @@ import pamtram.metamodel.TargetSectionClass;
  * @version 0.8
  *
  */
-class TargetSectionRegistry {
-
-	/**
-	 * @return targetClassInstanceRegistry
-	 */
-	public LinkedHashMap<EClass, LinkedList<EObjectTransformationHelper>> getTargetClassInstanceRegistry() {
-		return targetClassInstanceRegistry;
-	}
+class TargetSectionRegistry implements CancellationListener{
 	
 	/**
 	 * Attribute value registry, needed when applying model connection hints
 	 */
 	private AttributeValueRegistry attrValRegistry;
 
-	/**
-	 * @return targetClassInstanceByHintGroupRegistry
-	 */
-	public LinkedHashMap<TargetSectionClass, LinkedHashMap<InstantiableMappingHintGroup, LinkedList<EObjectTransformationHelper>>> getTargetClassInstanceByHintGroupRegistry() {
-		return targetClassInstanceByHintGroupRegistry;
-	}
 
-	/**
-	 * @return childClassesRegistry
-	 */
-	public LinkedHashMap<EClass, LinkedHashSet<EClass>> getChildClassesRegistry() {
-		return childClassesRegistry;
-	}
-
-	/**
-	 * @return possiblePathsRegistry
-	 */
-	public LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>> getPossiblePathsRegistry() {
-		return possiblePathsRegistry;
-	}
-
-	/**
-	 * @return targetClassReferencesRegistry
-	 */
-	public LinkedHashMap<EClass, LinkedHashSet<EReference>> getTargetClassReferencesRegistry() {
-		return targetClassReferencesRegistry;
-	}
-
-	/**
-	 * @return referenceSourcesRegistry
-	 */
-	public LinkedHashMap<EReference, LinkedHashSet<EClass>> getReferenceSourcesRegistry() {
-		return referenceSourcesRegistry;
+	public AttributeValueRegistry getAttrValRegistry() {
+		return attrValRegistry;
 	}
 
 	/**
@@ -92,24 +57,29 @@ class TargetSectionRegistry {
 	private  LinkedHashMap<EClass, LinkedHashMap<EClass,LinkedHashSet<ModelConnectionPath>>> possibleConnectionsRegistry;	
 	
 	/**
-	 * List of classes that contain references to a Class
+	 * List of references to a Class
 	 */
 	private  LinkedHashMap<EClass, LinkedHashSet<EReference>> targetClassReferencesRegistry;
 	/**
 	 * Source classes that are the starting point of a specific reference
 	 */
-	private  LinkedHashMap<EReference, LinkedHashSet<EClass>> referenceSourcesRegistry;
+	private  LinkedHashMap<EReference, LinkedHashSet<EClass>> containmentReferenceSourcesRegistry;
 	/**
 	 * Message output stream
 	 */
 	private MessageConsoleStream consoleStream;
+	/** 
+	 * Possible model containers
+	 */
+	private Set<EClass> modelContainers;
+
 
 	/**
 	 * Constructor
 	 * @param consoleStream
 	 * @param attrValRegistry 
 	 */
-	TargetSectionRegistry(MessageConsoleStream consoleStream, AttributeValueRegistry attrValRegistry) {
+	TargetSectionRegistry(MessageConsoleStream consoleStream, AttributeValueRegistry attrValRegistry, EPackage targetMetaModel) {
 		this.consoleStream=consoleStream;
 		targetClassInstanceRegistry= new LinkedHashMap<EClass, LinkedList<EObjectTransformationHelper>>();
 		targetClassInstanceByHintGroupRegistry = new LinkedHashMap<TargetSectionClass, LinkedHashMap<InstantiableMappingHintGroup, LinkedList<EObjectTransformationHelper>>>();
@@ -117,9 +87,14 @@ class TargetSectionRegistry {
 		possiblePathsRegistry= new LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>>();
 		possibleConnectionsRegistry=new LinkedHashMap<EClass,LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>>>();
 		targetClassReferencesRegistry= new LinkedHashMap<EClass, LinkedHashSet<EReference>>(); // ==refsToThis
-		referenceSourcesRegistry=new LinkedHashMap<EReference, LinkedHashSet<EClass>>(); // ==sources
+		containmentReferenceSourcesRegistry=new LinkedHashMap<EReference, LinkedHashSet<EClass>>(); // ==sources
 		this.attrValRegistry=attrValRegistry;
+		this.setTransFormationCancelled(false);
+		modelContainers=new LinkedHashSet<EClass>();
+		analyseTargetMetaModel(targetMetaModel);
 	}
+	
+	private boolean transFormationCancelled;
 	
 	
 	/**
@@ -254,7 +229,7 @@ class TargetSectionRegistry {
 
 	/**
 	 * @param eClass
-	 * @return Set of classes that contain references to a Class
+	 * @return Set of classes that contain references to eClass
 	 */
 	LinkedHashSet<EReference> getClassReferences(EClass eClass) {
 
@@ -265,10 +240,10 @@ class TargetSectionRegistry {
 
 	/**
 	 * @param ref
-	 * @return Set of classes that are the starting point of a specific reference
+	 * @return Set of classes that are the starting point of a specific containment reference
 	 */
 	LinkedHashSet<EClass> getReferenceSources(EReference ref) {
-		return referenceSourcesRegistry.containsKey(ref) ? referenceSourcesRegistry
+		return containmentReferenceSourcesRegistry.containsKey(ref) ? containmentReferenceSourcesRegistry
 				.get(ref) : new LinkedHashSet<EClass>();
 
 	}
@@ -302,15 +277,14 @@ class TargetSectionRegistry {
 	 * Build various lists that describe structural features of the  target MetaModel
 	 * @param targetMetaModel
 	 */
-	void analyseTargetMetaModel(EPackage targetMetaModel) {
+	private void analyseTargetMetaModel(EPackage targetMetaModel) {
 		// Map targetMetaModel classes
 		
 		consoleStream.println("Mapping targetMetaModel classes");
 		LinkedList<EClass> classesToAnalyse=getClasses(targetMetaModel);
 		
 		// map supertypes
-		consoleStream
-				.println("Mapping targetMetaModel inheritance and containment relationships");
+		consoleStream.println("Mapping targetMetaModel inheritance and containment relationships");
 		for (EClass e : classesToAnalyse) {
 			for (EClass s : e.getEAllSuperTypes()) {
 				childClassesRegistry.get(s).add(e);
@@ -321,14 +295,14 @@ class TargetSectionRegistry {
 		consoleStream.println("Mapping targetMetaModel containment relationships");
 		for (EClass e : classesToAnalyse) {
 			for (EReference c : e.getEAllContainments()) {
-				if (targetClassReferencesRegistry.containsKey(c
-						.getEReferenceType())) {
-					if (!referenceSourcesRegistry.containsKey(c)) {
-						referenceSourcesRegistry.put(c, new LinkedHashSet<EClass>());
+				if (targetClassReferencesRegistry.containsKey(c.getEReferenceType())) {
+					if (!containmentReferenceSourcesRegistry.containsKey(c)) {
+						containmentReferenceSourcesRegistry.put(c, new LinkedHashSet<EClass>());
 					}
-					referenceSourcesRegistry.get(c).add(e);
-					targetClassReferencesRegistry.get(c.getEReferenceType())
-							.add(c);
+					containmentReferenceSourcesRegistry.get(c).add(e);
+					
+					targetClassReferencesRegistry.get(c.getEReferenceType()).add(c);
+					
 				} else {
 					consoleStream.println("Ignoring targetMetaModel reference "
 							+ c.getName() + " of element " + e.getName() + " "
@@ -346,31 +320,38 @@ class TargetSectionRegistry {
 			}
 		}
 
+		//get possible model containers
+		for(EClass possibleContainer : targetClassReferencesRegistry.keySet()){
+			if(targetClassReferencesRegistry.get(possibleContainer).size() < 1 && !possibleContainer.isAbstract()){
+				consoleStream.println("$$$$$$$$$$$$$$ " + possibleContainer);//TODO
+				modelContainers.add(possibleContainer);
+			}
+		}
 	}
 
 	/**
 	 * @param eClass
 	 * @return Possible paths to connect target Model sections, for a specific Class of the target model
 	 */
-	LinkedHashSet<ModelConnectionPath> getPaths(EClass eClass,boolean directPathsOnly) {
+	LinkedHashSet<ModelConnectionPath> getPaths(EClass eClass,int maxPathLength) {
 		if (!possiblePathsRegistry.containsKey(eClass)) {
 			possiblePathsRegistry.put(eClass, new LinkedHashSet<ModelConnectionPath>());
 
-			new ModelConnectionPath(this).findPathsToInstances(eClass,directPathsOnly);
+			 ModelConnectionPath.findPathsToInstances(this,eClass,maxPathLength);
 		}
 
 		return possiblePathsRegistry.get(eClass);
 
 	}
 	
-	LinkedHashSet<ModelConnectionPath> getConnections(EClass elementClass, EClass containerClass, boolean directPathsOnly){
+	LinkedHashSet<ModelConnectionPath> getConnections(EClass elementClass, EClass containerClass, int maxPathLength){
 		if(!possibleConnectionsRegistry.containsKey(elementClass)){
 			possibleConnectionsRegistry.put(elementClass, new LinkedHashMap<EClass,LinkedHashSet<ModelConnectionPath>>());
 		}
 		if(!possibleConnectionsRegistry.get(elementClass).containsKey(containerClass)){
 			possibleConnectionsRegistry.get(elementClass).put(containerClass, new LinkedHashSet<ModelConnectionPath>());
 			
-			new ModelConnectionPath(this).findPathsFromContainerToClassToConnect(elementClass, containerClass, directPathsOnly);
+			ModelConnectionPath.findPathsFromContainerToClassToConnect(this,elementClass, containerClass, maxPathLength);
 		}
 		
 		if( possibleConnectionsRegistry.get(elementClass).containsKey(containerClass)){
@@ -380,4 +361,32 @@ class TargetSectionRegistry {
 		}
 	}
 
+	@Override
+	public void cancel() {
+		this.setTransFormationCancelled(true);
+		
+	}
+
+	@Override
+	public boolean isCancelled() {
+		return transFormationCancelled;
+	}
+
+	public void setTransFormationCancelled(boolean transFormationCancelled) {
+		this.transFormationCancelled = transFormationCancelled;
+	}
+
+	
+	 List<ModelConnectionPath> getModelContainerPaths( EClass elementClass,
+				int maxPathLength) {
+			//new ModelConnectionPath(registry).findPathsFromContainerToClassToConnect(elementClass, containerClass, maxPathLength);
+			List<ModelConnectionPath> paths=new LinkedList<ModelConnectionPath>();
+			
+			for(EClass possibleContainer : modelContainers){
+				if(transFormationCancelled) return paths;
+				paths.addAll(getConnections(elementClass, possibleContainer, maxPathLength));
+			}
+			
+			return paths;
+		}	
 }

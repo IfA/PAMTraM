@@ -363,7 +363,8 @@ class TargetSectionRegistry implements CancellationListener{
 		
 	}
 
-	public boolean isTransFormationCancelled() {
+	@Override
+	public boolean isCancelled() {
 		return transFormationCancelled;
 	}
 

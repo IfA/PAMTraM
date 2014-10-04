@@ -9,4 +9,6 @@ package de.mfreund.gentrans.transformation;
  */
 public interface CancellationListener {
 	public abstract void cancel();
+	
+	public abstract boolean isCancelled();
 }

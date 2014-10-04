@@ -156,7 +156,8 @@ class SourceSectionMapper implements CancellationListener {
 	/**
 	 * @return true when user action was triggered to abort the transformation
 	 */
-	public boolean isTransformationAborted() {
+	@Override
+	public boolean isCancelled() {
 		return transformationAborted;
 	}
 	
@@ -1933,7 +1934,7 @@ class SourceSectionMapper implements CancellationListener {
 		this.transformationAborted=true;
 		
 	}
-	
+
 }
 
 

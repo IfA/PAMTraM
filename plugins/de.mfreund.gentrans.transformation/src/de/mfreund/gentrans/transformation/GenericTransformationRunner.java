@@ -328,7 +328,7 @@ public class GenericTransformationRunner {
 
 			MappingInstanceStorage selectedMapping = sourceSectionMapper
 					.findMapping(contRefsToMap);
-			if(sourceSectionMapper.isTransformationAborted()){
+			if(sourceSectionMapper.isCancelled()){
 				writePamtramMessage("Transformation aborted.");
 				return false;
 			}
@@ -440,7 +440,7 @@ public class GenericTransformationRunner {
 										selMap.getHintValues(),
 										selMap.getInstancesBySection((MappingHintGroup) g)
 							);
-						if(targetSectionInstantiator.isTransformationAborted()){
+						if(targetSectionInstantiator.isCancelled()){
 							writePamtramMessage("Transformation aborted.");
 							return false;
 						}
@@ -471,7 +471,7 @@ public class GenericTransformationRunner {
 										selMap.getHintValues(),
 										selMap.getInstancesBySection(g)
 						);
-						if(targetSectionInstantiator.isTransformationAborted()){
+						if(targetSectionInstantiator.isCancelled()){
 							writePamtramMessage("Transformation aborted.");
 							return false;
 						}
@@ -532,7 +532,7 @@ public class GenericTransformationRunner {
 												g.getName(),
 												((MappingHintGroup) g).getModelConnectionMatcher(),
 												selMap.getModelConnectionHintValues(((MappingHintGroup) g).getModelConnectionMatcher()),maxPathLength);
-										if(targetSectionConnector.isTransformationAborted()){
+										if(targetSectionConnector.isCancelled()){
 											writePamtramMessage("Transformation aborted.");
 											return false;
 										}
@@ -554,7 +554,7 @@ public class GenericTransformationRunner {
 										containerClasses,
 										containerInstances
 										);
-								if(targetSectionConnector.isTransformationAborted()){
+								if(targetSectionConnector.isCancelled()){
 									writePamtramMessage("Transformation aborted.");
 									return false;
 								}
@@ -599,7 +599,7 @@ public class GenericTransformationRunner {
 										containerClasses,										
 										containerInstances
 										);
-								if(targetSectionConnector.isTransformationAborted()){
+								if(targetSectionConnector.isCancelled()){
 									writePamtramMessage("Transformation aborted.");
 									return false;
 								}						
@@ -628,7 +628,7 @@ public class GenericTransformationRunner {
 										containerClasses,										
 										containerInstances
 										);
-								if(targetSectionConnector.isTransformationAborted()){
+								if(targetSectionConnector.isCancelled()){
 									writePamtramMessage("Transformation aborted.");
 									return false;
 								}
@@ -1097,7 +1097,7 @@ public class GenericTransformationRunner {
 
 			MappingInstanceStorage selectedMapping = sourceSectionMapper
 					.findMapping(contRefsToMap);
-			if(sourceSectionMapper.isTransformationAborted()){
+			if(sourceSectionMapper.isCancelled()){
 				writePamtramMessage("Transformation aborted.");
 				return null;
 			}

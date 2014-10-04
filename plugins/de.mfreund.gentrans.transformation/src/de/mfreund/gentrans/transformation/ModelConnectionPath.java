@@ -141,7 +141,7 @@ class ModelConnectionPath {
 		
 		pathStack.add(new Pair<EClass,LinkedList<EObject>>(containerClass,new LinkedList<EObject>()));
 		
-		while(pathStack.size()>0 && !registry.isTransFormationCancelled()){
+		while(pathStack.size()>0 && !registry.isCancelled()){
 			Pair<EClass,LinkedList<EObject>> next=pathStack.iterator().next();
 			pathStack.remove(next);
 			
@@ -185,7 +185,7 @@ class ModelConnectionPath {
 			
 			pathStack.add(new Pair<EClass,LinkedList<EObject>>(pathStartClass,new LinkedList<EObject>()));
 			
-			while(pathStack.size()>0 && !registry.isTransFormationCancelled()){
+			while(pathStack.size()>0 && !registry.isCancelled()){
 				Pair<EClass,LinkedList<EObject>> next=pathStack.iterator().next();
 				pathStack.remove(next);
 				

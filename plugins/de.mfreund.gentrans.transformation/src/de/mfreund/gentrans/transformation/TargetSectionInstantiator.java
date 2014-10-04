@@ -90,7 +90,8 @@ class TargetSectionInstantiator implements CancellationListener{
 	/**
 	 * @return true if transformation was aborted
 	 */
-	public boolean isTransformationAborted() {
+	@Override
+	public boolean isCancelled() {
 		return transformationAborted;
 	}	
 	

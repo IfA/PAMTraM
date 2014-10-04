@@ -68,7 +68,8 @@ class TargetSectionConnector implements CancellationListener{
 	/**
 	 * @return true when the transformation was aborted by the user
 	 */
-	public boolean isTransformationAborted() {
+	@Override
+	public boolean isCancelled() {
 		return transformationAborted;
 	}
 	
@@ -587,15 +588,19 @@ class TargetSectionConnector implements CancellationListener{
 			paths.put(c, new LinkedList<ModelConnectionPath>());
 			paths.get(c).addAll(targetSectionRegistry.getModelContainerPaths(c, maxPathlength));
 			
-			addToTargetModelRoot(unlinkeableElements.get(c));//TODO remove later
 		}
 				
 //		for(ModelConnectionPath p : paths){
 //			consoleStream.println(p.toString());//TODO
 //		}
 		
-		for(EClass common : ModelConnectionPath.getCommonClasses(paths)){
-			consoleStream.println(common.getName());
+		Set<EClass> common =ModelConnectionPath.getCommonClasses(paths);
+		if(transformationAborted) return;
+		
+		if(common.size() < 1){
+			for(EClass c : unlinkeableElements.keySet()){
+				addToTargetModelRoot(unlinkeableElements.get(c));
+			}
 		}
 	}
 

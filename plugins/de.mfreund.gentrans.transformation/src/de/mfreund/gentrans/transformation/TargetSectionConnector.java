@@ -594,7 +594,7 @@ class TargetSectionConnector implements CancellationListener{
 //			consoleStream.println(p.toString());//TODO
 //		}
 		
-		Set<EClass> common =ModelConnectionPath.getCommonClasses(paths);
+		Set<EClass> common =ModelConnectionPath.getCommonClasses(this,paths);
 		if(transformationAborted) return;
 		
 		if(common.size() < 1){

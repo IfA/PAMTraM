@@ -1,6 +1,7 @@
 package de.mfreund.gentrans.transformation;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -63,7 +64,7 @@ class ModelConnectionPath {
 	 * @param paths
 	 * @return
 	 */
-	 static Set<EClass> getCommonClasses(Map<EClass,List<ModelConnectionPath>> paths){
+	 static Set<EClass> getCommonClasses(CancellationListener cListener, Map<EClass,List<ModelConnectionPath>> paths){
 		Set<EClass> returnSet=new LinkedHashSet<EClass>(); 
 		
 		Set<EClass> rejected=new LinkedHashSet<EClass>();
@@ -81,6 +82,8 @@ class ModelConnectionPath {
 				//This means, that one common elements for the EClasses in the key set of the map was found, sothey can be connected
 				
 				for(EObject pElement : element.pathElements){
+					if(cListener.isCancelled()) return Collections.<EClass>emptySet();
+					
 					if(pElement instanceof EClass){//we do not check the references
 						if(rejected.contains(pElement) || returnSet.contains(pElement)){//did we check this before?
 							continue;
@@ -88,6 +91,7 @@ class ModelConnectionPath {
 							for(EClass cPathListClass : paths.keySet()){//check in other lists
 								boolean foundElement=false;
 								for(ModelConnectionPath  cPath : paths.get(cPathListClass)){
+									if(cListener.isCancelled()) return Collections.<EClass>emptySet();
 									if(cPath.pathElements.contains(pElement)){
 										foundElement=true;
 										break;//we only need to find one path per key EClass

@@ -405,6 +405,7 @@ public class GenericTransformationRunner {
 		}
 		
 		if(isCancelled) return false;
+		
 
 
 		// creating target Model second pass (non-containment references)
@@ -504,9 +505,9 @@ public class GenericTransformationRunner {
 			AttributeValueRegistry attrValueRegistry,
 			AttributeValueModifierExecutor attributeValueModifier,
 			LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping, IProgressMonitor monitor) {
-		TargetSectionConnector connectionHelpers = new TargetSectionConnector(
+		TargetSectionConnector targetSectionConnector = new TargetSectionConnector(
 				attrValueRegistry, targetSectionRegistry, attributeValueModifier, targetModel, maxPathLength,consoleStream);
-		objectsToCancel.add(connectionHelpers);
+		objectsToCancel.add(targetSectionConnector);
 		double workUnit=250.0/suitableMappings.size();
 		double accumulatedWork=0;
 		for (Mapping m : suitableMappings) {
@@ -523,7 +524,7 @@ public class GenericTransformationRunner {
 									if (selMap.getInstances((MappingHintGroup) g, section) != null) {
 										if(isCancelled) return false;
 
-										connectionHelpers.linkToTargetModelUsingModelConnectionHint(
+										targetSectionConnector.linkToTargetModelUsingModelConnectionHint(
 												section.getEClass(),
 												new LinkedList<EObjectTransformationHelper>( selMap.getInstances((MappingHintGroup) g,section)),
 												section,
@@ -531,7 +532,7 @@ public class GenericTransformationRunner {
 												g.getName(),
 												((MappingHintGroup) g).getModelConnectionMatcher(),
 												selMap.getModelConnectionHintValues(((MappingHintGroup) g).getModelConnectionMatcher()),maxPathLength);
-										if(connectionHelpers.isTransformationAborted()){
+										if(targetSectionConnector.isTransformationAborted()){
 											writePamtramMessage("Transformation aborted.");
 											return false;
 										}
@@ -546,15 +547,14 @@ public class GenericTransformationRunner {
 								if(section.getContainer() != null){
 									containerClasses.add(section.getContainer().getEClass());
 								}
-								connectionHelpers.linkToTargetModelNoConnectionHint(
-										section.getEClass(),
+								targetSectionConnector.linkToTargetModelNoConnectionHint(
 										rootInstances,
 										section, m.getName(), g.getName(),
 										section.getContainer() != null,
 										containerClasses,
 										containerInstances
 										);
-								if(connectionHelpers.isTransformationAborted()){
+								if(targetSectionConnector.isTransformationAborted()){
 									writePamtramMessage("Transformation aborted.");
 									return false;
 								}
@@ -592,15 +592,14 @@ public class GenericTransformationRunner {
 									}
 								}
 								//link
-								connectionHelpers.linkToTargetModelNoConnectionHint(
-										g.getTargetMMSection().getEClass(),
+								targetSectionConnector.linkToTargetModelNoConnectionHint(
 										rootInstances,
 										g.getTargetMMSection(), m.getName(), g.getName(),
 										true,
 										containerClasses,										
 										containerInstances
 										);
-								if(connectionHelpers.isTransformationAborted()){
+								if(targetSectionConnector.isTransformationAborted()){
 									writePamtramMessage("Transformation aborted.");
 									return false;
 								}						
@@ -622,15 +621,14 @@ public class GenericTransformationRunner {
 						if(rootInstances != null){
 							if(rootInstances.size() > 0){
 								//link
-								connectionHelpers.linkToTargetModelNoConnectionHint(
-										g.getTargetMMSection().getEClass(),
+								targetSectionConnector.linkToTargetModelNoConnectionHint(
 										rootInstances,
 										g.getTargetMMSection(), m.getName(), g.getName(),
 										containerClasses.size() > 0,
 										containerClasses,										
 										containerInstances
 										);
-								if(connectionHelpers.isTransformationAborted()){
+								if(targetSectionConnector.isTransformationAborted()){
 									writePamtramMessage("Transformation aborted.");
 									return false;
 								}
@@ -647,6 +645,10 @@ public class GenericTransformationRunner {
 				accumulatedWork-=Math.floor(accumulatedWork);
 			}
 		}
+		
+		targetSectionConnector.findContainerForUnlinkeables();//TODO
+		
+		
 		return true;
 	}
 

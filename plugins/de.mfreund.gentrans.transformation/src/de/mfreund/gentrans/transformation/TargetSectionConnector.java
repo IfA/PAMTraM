@@ -60,6 +60,10 @@ class TargetSectionConnector implements CancellationListener{
 	 * Maximum length for connection paths maxPathlength<0 == unbounded
 	 */
 	private int maxPathlength;
+	/**
+	 * Unlinkeable elements
+	 */
+	private Map<EClass,List<EObjectTransformationHelper>> unlinkeableElements;
 	
 	/**
 	 * @return true when the transformation was aborted by the user
@@ -83,6 +87,7 @@ class TargetSectionConnector implements CancellationListener{
 		this.transformationAborted=false;
 		this.attributeValuemodifier=attributeValuemodifier;
 		this.maxPathlength=maxPathLength;
+		unlinkeableElements=new LinkedHashMap<EClass,List<EObjectTransformationHelper>>();
 	}
 
 
@@ -387,10 +392,11 @@ class TargetSectionConnector implements CancellationListener{
 	 * @param hasContainer
 	 * @param containerInstances
 	 */
-	void linkToTargetModelNoConnectionHint(EClass classToConnect,
+	void linkToTargetModelNoConnectionHint(
 			List<EObjectTransformationHelper> rootInstances, TargetSectionClass section, String mappingName,
 			String mappingGroupName, boolean hasContainer, Set<EClass> containerClasses  ,LinkedList<EObjectTransformationHelper> containerInstances){
 		ModelConnectionPath modelConnectionPath;
+		EClass classToConnect=section.getEClass();
 		
 		LinkedHashSet<ModelConnectionPath> pathsToConsider=new LinkedHashSet<ModelConnectionPath>();
 		if(hasContainer){
@@ -561,7 +567,35 @@ class TargetSectionConnector implements CancellationListener{
 		} else {
 			consoleStream.println("No suitable path found for target class: "
 					+ classToConnect.getName());
-			addToTargetModelRoot(rootInstances);
+			
+			if(!unlinkeableElements.containsKey(classToConnect)){
+				unlinkeableElements.put(classToConnect, new LinkedList<EObjectTransformationHelper>());
+			}
+			unlinkeableElements.get(classToConnect).addAll(rootInstances);
+		}
+	}
+	
+	/**
+	 * TODO
+	 */
+	void findContainerForUnlinkeables(){
+
+		Map<EClass,List<ModelConnectionPath>> paths=new LinkedHashMap<EClass,List<ModelConnectionPath>>();
+		
+		for(EClass c : unlinkeableElements.keySet()){
+			if(transformationAborted) return;
+			paths.put(c, new LinkedList<ModelConnectionPath>());
+			paths.get(c).addAll(targetSectionRegistry.getModelContainerPaths(c, maxPathlength));
+			
+			addToTargetModelRoot(unlinkeableElements.get(c));//TODO remove later
+		}
+				
+//		for(ModelConnectionPath p : paths){
+//			consoleStream.println(p.toString());//TODO
+//		}
+		
+		for(EClass common : ModelConnectionPath.getCommonClasses(paths)){
+			consoleStream.println(common.getName());
 		}
 	}
 

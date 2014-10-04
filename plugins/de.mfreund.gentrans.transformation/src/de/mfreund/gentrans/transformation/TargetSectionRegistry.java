@@ -3,6 +3,8 @@ package de.mfreund.gentrans.transformation;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -51,7 +53,7 @@ class TargetSectionRegistry implements CancellationListener{
 	private  LinkedHashMap<EClass, LinkedHashMap<EClass,LinkedHashSet<ModelConnectionPath>>> possibleConnectionsRegistry;	
 	
 	/**
-	 * List of classes that contain references to a Class
+	 * List of references to a Class
 	 */
 	private  LinkedHashMap<EClass, LinkedHashSet<EReference>> targetClassReferencesRegistry;
 	/**
@@ -62,6 +64,11 @@ class TargetSectionRegistry implements CancellationListener{
 	 * Message output stream
 	 */
 	private MessageConsoleStream consoleStream;
+	/** 
+	 * Possible model containers
+	 */
+	private Set<EClass> modelContainers;
+
 
 	/**
 	 * Constructor
@@ -79,7 +86,7 @@ class TargetSectionRegistry implements CancellationListener{
 		containmentReferenceSourcesRegistry=new LinkedHashMap<EReference, LinkedHashSet<EClass>>(); // ==sources
 		this.attrValRegistry=attrValRegistry;
 		this.setTransFormationCancelled(false);
-		
+		modelContainers=new LinkedHashSet<EClass>();
 		analyseTargetMetaModel(targetMetaModel);
 	}
 	
@@ -273,8 +280,7 @@ class TargetSectionRegistry implements CancellationListener{
 		LinkedList<EClass> classesToAnalyse=getClasses(targetMetaModel);
 		
 		// map supertypes
-		consoleStream
-				.println("Mapping targetMetaModel inheritance and containment relationships");
+		consoleStream.println("Mapping targetMetaModel inheritance and containment relationships");
 		for (EClass e : classesToAnalyse) {
 			for (EClass s : e.getEAllSuperTypes()) {
 				childClassesRegistry.get(s).add(e);
@@ -285,14 +291,14 @@ class TargetSectionRegistry implements CancellationListener{
 		consoleStream.println("Mapping targetMetaModel containment relationships");
 		for (EClass e : classesToAnalyse) {
 			for (EReference c : e.getEAllContainments()) {
-				if (targetClassReferencesRegistry.containsKey(c
-						.getEReferenceType())) {
+				if (targetClassReferencesRegistry.containsKey(c.getEReferenceType())) {
 					if (!containmentReferenceSourcesRegistry.containsKey(c)) {
 						containmentReferenceSourcesRegistry.put(c, new LinkedHashSet<EClass>());
 					}
 					containmentReferenceSourcesRegistry.get(c).add(e);
-					targetClassReferencesRegistry.get(c.getEReferenceType())
-							.add(c);
+					
+					targetClassReferencesRegistry.get(c.getEReferenceType()).add(c);
+					
 				} else {
 					consoleStream.println("Ignoring targetMetaModel reference "
 							+ c.getName() + " of element " + e.getName() + " "
@@ -310,6 +316,13 @@ class TargetSectionRegistry implements CancellationListener{
 			}
 		}
 
+		//get possible model containers
+		for(EClass possibleContainer : targetClassReferencesRegistry.keySet()){
+			if(targetClassReferencesRegistry.get(possibleContainer).size() < 1 && !possibleContainer.isAbstract()){
+				consoleStream.println("$$$$$$$$$$$$$$ " + possibleContainer);//TODO
+				modelContainers.add(possibleContainer);
+			}
+		}
 	}
 
 	/**
@@ -358,4 +371,17 @@ class TargetSectionRegistry implements CancellationListener{
 		this.transFormationCancelled = transFormationCancelled;
 	}
 
+	
+	 List<ModelConnectionPath> getModelContainerPaths( EClass elementClass,
+				int maxPathLength) {
+			//new ModelConnectionPath(registry).findPathsFromContainerToClassToConnect(elementClass, containerClass, maxPathLength);
+			List<ModelConnectionPath> paths=new LinkedList<ModelConnectionPath>();
+			
+			for(EClass possibleContainer : modelContainers){
+				if(transFormationCancelled) return paths;
+				paths.addAll(getConnections(elementClass, possibleContainer, maxPathLength));
+			}
+			
+			return paths;
+		}	
 }

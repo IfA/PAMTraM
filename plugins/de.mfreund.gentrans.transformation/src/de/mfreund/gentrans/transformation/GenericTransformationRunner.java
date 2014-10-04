@@ -646,10 +646,12 @@ public class GenericTransformationRunner {
 			}
 		}
 		
-		targetSectionConnector.findContainerForUnlinkeables();//TODO
+		targetSectionConnector.findContainerForUnlinkeables();
+		if(targetSectionConnector.isCancelled()){
+			writePamtramMessage("Transformation aborted.");
+			return false;
+		} else return true;
 		
-		
-		return true;
 	}
 
 	/**

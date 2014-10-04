@@ -30,6 +30,10 @@ class TargetSectionRegistry implements CancellationListener{
 	private AttributeValueRegistry attrValRegistry;
 
 
+	public AttributeValueRegistry getAttrValRegistry() {
+		return attrValRegistry;
+	}
+
 	/**
 	 * Map of instantiated EObjects, sorted by TargetSectionClass
 	 */

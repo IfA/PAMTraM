@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.console.MessageConsoleStream;
@@ -565,10 +566,7 @@ class TargetSectionConnector implements CancellationListener{
 				addToTargetModelRoot(rootInstances);
 			}
 
-		} else {
-			consoleStream.println("No suitable path found for target class: "
-					+ classToConnect.getName());
-			
+		} else {			
 			if(!unlinkeableElements.containsKey(classToConnect)){
 				unlinkeableElements.put(classToConnect, new LinkedList<EObjectTransformationHelper>());
 			}
@@ -581,6 +579,19 @@ class TargetSectionConnector implements CancellationListener{
 	 */
 	void findContainerForUnlinkeables(){
 
+		if(unlinkeableElements.keySet().size()==1){
+			if(unlinkeableElements.values().iterator().next().size()==1){//only one element could not be connected => we already have our container
+				addToTargetModelRoot(unlinkeableElements.values().iterator().next().get(0));
+				return;
+			}
+		} else if(unlinkeableElements.keySet().size()<1){
+			return;//nothing left to do
+		}
+		
+		/*
+		 * Now that the "special" case was handled we need to handle all the other cases.
+		 */
+		
 		Map<EClass,List<ModelConnectionPath>> paths=new LinkedHashMap<EClass,List<ModelConnectionPath>>();
 		
 		for(EClass c : unlinkeableElements.keySet()){
@@ -590,17 +601,83 @@ class TargetSectionConnector implements CancellationListener{
 			
 		}
 				
-//		for(ModelConnectionPath p : paths){
-//			consoleStream.println(p.toString());//TODO
-//		}
-		
 		Set<EClass> common =ModelConnectionPath.getCommonClasses(this,paths);
 		if(transformationAborted) return;
 		
 		if(common.size() < 1){
 			for(EClass c : unlinkeableElements.keySet()){
+				consoleStream.println("No suitable path found for target class: "
+						+ c.getName());
 				addToTargetModelRoot(unlinkeableElements.get(c));
 			}
+		} else{
+			EClass containerClass;
+			if(common.size()== 1){
+				containerClass=common.iterator().next();
+			} else {
+				Map<String,EClass> possibleContainers=new LinkedHashMap<String, EClass>();
+				
+				for(EClass c : common){
+					possibleContainers.put(c.getName(), c);
+				}
+				
+				
+				ItemSelectorDialogRunner dialog=new ItemSelectorDialogRunner( 
+						 "There was more than one target model element that could not be connected to a container element. Therefore "
+						+ "a container needs to be created. Please select a fitting container class:",
+						possibleContainers.keySet(), possibleContainers.keySet().iterator().next());
+				Display.getDefault().syncExec(dialog);
+				if(dialog.wasTransformationStopRequested()){
+					this.cancel();
+					return;
+				}
+				containerClass=possibleContainers.get(dialog.getSelection());
+			}
+			
+			EObject containerInstance=containerClass.getEPackage().getEFactoryInstance().create(containerClass);
+			addToTargetModelRoot(new EObjectTransformationHelper(containerInstance, targetSectionRegistry.getAttrValRegistry()));
+			for(EClass c : unlinkeableElements.keySet()){
+				/*
+				 * It gets a bit tricky here.
+				 * If there is more than one common container, we have to choose one.
+				 * Then we need to find all possible connections for each of the elements involved.
+				 * Now we need to choose a connection for each element.
+				 * This would lead to us asking a lot of questions to the user.
+				 * Therefore we will concentrate on using the shortest connection paths.
+				 * All we need to ask the user is which container to use.
+				 */
+				Set<ModelConnectionPath> pathSet=targetSectionRegistry.getConnections(c, containerClass, maxPathlength);
+				if(pathSet.size()<1){
+					addToTargetModelRoot(unlinkeableElements.get(c));//This should not have happened => programming error
+					consoleStream.println("Error. Check container instantiation");
+				} else {
+					
+					//get paths with fitting capacity
+					int neededCapacity=unlinkeableElements.get(c).size();
+					LinkedList<ModelConnectionPath> fittingPaths=new LinkedList<ModelConnectionPath>();
+					for(ModelConnectionPath p : pathSet){
+						if(p.getCapacity(containerInstance)>=neededCapacity){
+							fittingPaths.add(p);
+						}
+					}
+
+					//get shortest path
+					ModelConnectionPath chosenPath=fittingPaths.getFirst();
+					int chosenPathSize=chosenPath.size();
+					for(ModelConnectionPath p : fittingPaths){//get one of the shortest paths
+						int pSize=p.size();
+						if(pSize<chosenPathSize){
+							chosenPath=p;
+							chosenPathSize=pSize;
+						}
+					}
+					
+					//now instantiate path
+					chosenPath.instantiate(containerInstance, unlinkeableElements.get(c));
+				}
+			}
+			
+
 		}
 	}
 

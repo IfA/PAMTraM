@@ -300,11 +300,14 @@
     </metaModelSections>
     <metaModelSections name="State">
       <eClass href="http://gfai.de/stgml.xsd#//State"/>
+      <references xsi:type="metamodel:MetaModelSectionReference" name="transition" value="//@sourceSectionModel/@metaModelSections.5">
+        <eReference href="http://gfai.de/stgml.xsd#//State/transition"/>
+      </references>
       <attributes name="id">
         <attribute href="http://gfai.de/stgml.xsd#//State/id"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections name="Transition" container="//@sourceSectionModel/@metaModelSections.4">
+    <metaModelSections name="Transition" cardinality="ZERO__INFINITY" container="//@sourceSectionModel/@metaModelSections.4">
       <eClass href="http://gfai.de/stgml.xsd#//Transition"/>
       <attributes name="Event">
         <attribute href="http://gfai.de/stgml.xsd#//Transition/event"/>
@@ -1716,7 +1719,13 @@
     </metaModelSections>
     <metaModelSections name="Panel">
       <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/Panel"/>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Panel Name" unique="true">
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedUIComponent">
+        <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Panel/OwnedUIComponent"/>
+        <value name="Gauge" cardinality="ZERO__INFINITY">
+          <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/Gauge"/>
+        </value>
+      </references>
+      <attributes xsi:type="metamodel:ActualAttribute" name="Panel Name" unique="true" value="cardinalityTestValue">
         <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
@@ -4011,7 +4020,7 @@
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="BaseDataType  Double" targetMMSection="//@targetSectionModel/@metaModelSections.2">
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="Name@Double" target="//@targetSectionModel/@metaModelSections.2/@attributes.1" source="//@sourceSectionModel/@metaModelSections.24/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel/@modifierSets.2 //@mappingModel/@modifierSets.18"/>
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="Name@Double (for uniqueness)" target="//@targetSectionModel/@metaModelSections.2/@attributes.1" source="//@sourceSectionModel/@metaModelSections.24/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel/@modifierSets.2 //@mappingModel/@modifierSets.18"/>
         <modelConnectionMatcher xsi:type="mapping:SimpleModelConnectionHint" name="OpcUAItem" source="//@sourceSectionModel/@metaModelSections.24/@references.0/@value.0/@references.0/@value.0/@attributes.1">
           <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2" modifier="//@mappingModel/@modifierSets.17 //@mappingModel/@modifierSets.2"/>
         </modelConnectionMatcher>
@@ -4078,6 +4087,7 @@
     <mapping name="States2Panels" sourceMMSection="//@sourceSectionModel/@metaModelSections.4">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Panel" targetMMSection="//@targetSectionModel/@metaModelSections.7">
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="id2PanelName" target="//@targetSectionModel/@metaModelSections.7/@attributes.0" source="//@sourceSectionModel/@metaModelSections.4/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
+        <mappingHints xsi:type="mapping:CardinalityMapping" name="gauge" source="//@sourceSectionModel/@metaModelSections.5" target="//@targetSectionModel/@metaModelSections.7/@references.0/@value.0"/>
       </mappingHintGroups>
       <importedMappingHintGroups name="InheritedFlows" hintGroup="//@mappingModel/@mapping.0/@mappingHintGroups.1">
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="sourcePanel" affectedReference="//@targetSectionModel/@metaModelSections.9/@references.0">
@@ -4245,7 +4255,6 @@
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="TextLabelRepPosZName(Bool:Output Label)" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.25 //@mappingModel/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="cardinalityErsatz" target="//@targetSectionModel/@metaModelSections.15/@attributes.2" source="//@sourceSectionModel/@metaModelSections.25/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="backGroundColor" affectedReference="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.5/@value.0/@references.1">
           <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.0/@value.0/@references.0/@value.11"/>
         </mappingHints>

@@ -660,20 +660,28 @@ class TargetSectionConnector implements CancellationListener{
 							fittingPaths.add(p);
 						}
 					}
-
-					//get shortest path
-					ModelConnectionPath chosenPath=fittingPaths.getFirst();
-					int chosenPathSize=chosenPath.size();
-					for(ModelConnectionPath p : fittingPaths){//get one of the shortest paths
-						int pSize=p.size();
-						if(pSize<chosenPathSize){
-							chosenPath=p;
-							chosenPathSize=pSize;
-						}
-					}
 					
-					//now instantiate path
-					chosenPath.instantiate(containerInstance, unlinkeableElements.get(c));
+					if(fittingPaths.size() > 0){
+						//get shortest path
+						ModelConnectionPath chosenPath=fittingPaths.getFirst();
+						int chosenPathSize=chosenPath.size();
+						for(ModelConnectionPath p : fittingPaths){//get one of the shortest paths
+							int pSize=p.size();
+							if(pSize<chosenPathSize){
+								chosenPath=p;
+								chosenPathSize=pSize;
+							}
+						}
+						
+						//now instantiate path
+						chosenPath.instantiate(containerInstance, unlinkeableElements.get(c));						
+					} else {
+						consoleStream.println("The chosen container cannot fit the elements of the type '"
+								+c.getName()
+								+"' ,sorry.");
+						addToTargetModelRoot(unlinkeableElements.get(c));
+					}
+
 				}
 			}
 			

@@ -323,7 +323,6 @@ class TargetSectionRegistry implements CancellationListener{
 		//get possible model containers
 		for(EClass possibleContainer : targetClassReferencesRegistry.keySet()){
 			if(targetClassReferencesRegistry.get(possibleContainer).size() < 1 && !possibleContainer.isAbstract()){
-				consoleStream.println("$$$$$$$$$$$$$$ " + possibleContainer);//TODO
 				modelContainers.add(possibleContainer);
 			}
 		}

@@ -508,7 +508,10 @@ public class PamtramEditorMainPage extends SashForm {
 					targetViewer.setSelection(new StructuredSelection(targets));
 					sourceViewer.setSelection(new StructuredSelection(sources));
 					
-				} else if(((TreeItem) e.item).getData() instanceof MappingHintGroupImporter){
+				} else if(((TreeItem) e.item).getData() instanceof ConnectionHintTargetAttribute){
+					ConnectionHintTargetAttribute a=(ConnectionHintTargetAttribute) ((TreeItem) e.item).getData();
+					setSourceTargetViewerSingleItemSelections(a.getTargetAttribute(), null);
+				}else if(((TreeItem) e.item).getData() instanceof MappingHintGroupImporter){
 					MappingHintGroupImporter imp=(MappingHintGroupImporter) ((TreeItem) e.item).getData();
 					TargetSectionClass target=null;
 					SourceSectionClass source=null;

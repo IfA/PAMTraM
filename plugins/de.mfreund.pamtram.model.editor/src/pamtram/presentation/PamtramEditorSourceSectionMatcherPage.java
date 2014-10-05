@@ -1,8 +1,8 @@
 package pamtram.presentation;
 
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Map;
+import java.util.LinkedHashMap;
+import java.util.Set;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -36,11 +36,11 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.ide.ResourceUtil;
 
+import de.mfreund.gentrans.transformation.GenericTransformationRunner;
 import pamtram.MappingModel;
 import pamtram.mapping.MappingType;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.util.EObjectTreeContentProvider;
-import de.mfreund.gentrans.transformation.GenericTransformationRunner;
 
 public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 	
@@ -110,7 +110,7 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 	 * This is the list of matched sections that is determined when the user
 	 * selects a source model.
 	 */
-	protected Map<SourceSectionClass, Collection<EObject>> matchedSections;
+	protected LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections;
 	
 	public PamtramEditorSourceSectionMatcherPage(
 			Composite parent, 
@@ -362,7 +362,7 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 					for (SourceSectionClass c : matchedSections.keySet()) {
 						if(EcoreUtil.equals(sourceSectionClass, c)) {
 							// the matched elements that shall be highlighted
-							Collection<EObject> matchedEObjects = matchedSections.get(c);
+							Set<EObject> matchedEObjects = matchedSections.get(c);
 							
 							if(matchedEObjects == null) {
 								continue;
@@ -411,7 +411,7 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 					for (SourceSectionClass c : matchedSections.keySet()) {
 						if(EcoreUtil.equals(sourceSectionClass, c)) {
 							// the matched elements that shall be highlighted
-							Collection<EObject> matchedEObjects = matchedSections.get(c);
+							Set<EObject> matchedEObjects = matchedSections.get(c);
 							
 							if(matchedEObjects == null) {
 								continue;

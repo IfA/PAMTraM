@@ -14,9 +14,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
+
 /**
+ * Class for handling path finding and instantiation
  * @author Sascha Steffen
- * @version 0.8
+ * @version 0.9
  *
  */
 class ModelConnectionPath {
@@ -33,33 +37,11 @@ class ModelConnectionPath {
 	 * These are connected either by one EReference (containment) or pairs of
 	 * EReferences and EClasses.
 	 */
-	private LinkedList<EObject> pathElements;
+	private final ImmutableList<EObject> pathElements;
 
-	/**
-	 * Constructor
-	 * @param targetSectionRegistry
-	 */
-	private ModelConnectionPath(TargetSectionRegistry targetSectionRegistry) {
-		this.pathElements = new LinkedList<EObject>();
-		this.targetSectionRegistry=targetSectionRegistry;
+	private final EClass pathRootClass;
 
 
-	}
-
-	/**
-	 * Private Constructor to be used when spawning new Paths during path search.Clones the path.
-	 * @param pathElements
-	 * @param targetSectionRegistry
-	 */
-	private ModelConnectionPath(LinkedList<EObject> pathElements,TargetSectionRegistry targetSectionRegistry) {
-
-		this.pathElements = new LinkedList<EObject>();
-		this.pathElements.addAll(pathElements);
-		this.targetSectionRegistry=targetSectionRegistry;
-
-
-	}
-	
 	/**
 	 * @param paths
 	 * @return
@@ -123,12 +105,18 @@ class ModelConnectionPath {
 	 * @param targetSectionRegistry
 	 */
 	private ModelConnectionPath(LinkedList<EObject> pathElements, EObject newElement,TargetSectionRegistry targetSectionRegistry, boolean reverse) {
-
-		this.pathElements = new LinkedList<EObject>();
-		this.pathElements.addAll(pathElements);
-		this.pathElements.add(newElement);
 		if(reverse){
-			this.pathElements=getInvertedPathElementList();
+			pathRootClass=(EClass) pathElements.getFirst();
+			this.pathElements=new ImmutableList.Builder<EObject>()
+					.add(newElement)
+					.addAll(Lists.reverse(pathElements))
+					.build();
+		} else {
+			pathRootClass=(EClass) newElement;
+			this.pathElements=new ImmutableList.Builder<EObject>()
+					.addAll(pathElements)
+					.add(newElement)
+					.build();			
 		}
 		this.targetSectionRegistry=targetSectionRegistry;
 	}
@@ -308,28 +296,12 @@ class ModelConnectionPath {
 		return path;
 	}
 
-	/**
-	 * Used when instantiating a path.
-	 * @return inverted List of path elements
-	 */
-	private LinkedList<EObject> getInvertedPathElementList() {
-		LinkedList<EObject> inverted = new LinkedList<EObject>();
-		ListIterator<EObject> it = pathElements.listIterator(pathElements
-				.size());
-
-		while (it.hasPrevious()) {
-			inverted.add(it.previous());
-
-		}
-
-		return inverted;
-	}
 
 	/**
 	 * @return EClass of the end of the path.
 	 */
-	EClass getRootType() {
-		return (EClass) pathElements.getLast();
+	EClass getPathRootClass() {
+		return pathRootClass;
 
 	}
 
@@ -338,16 +310,7 @@ class ModelConnectionPath {
 	 * @return true if path leads to the specified class
 	 */
 	boolean leadsToRootType(EClass root) {
-		if (pathElements.size() > 0) {
-			if (pathElements.getLast() instanceof EClass) {
-
-				return ((EClass) pathElements.getLast()).equals(root);
-
-			} else
-				return false;
-
-		} else
-			return false;
+		return root.equals(pathRootClass);
 	}
 
 	/**
@@ -386,7 +349,8 @@ class ModelConnectionPath {
 	 * @return unconnected instances
 	 */
 	List<EObjectTransformationHelper> instantiate(EObject refStartInstance, Collection<EObjectTransformationHelper> instancesAtEnd){
-		return instantiateMissingPath(getInvertedPathElementList(), refStartInstance, new LinkedList<EObjectTransformationHelper>(instancesAtEnd));
+		List<EObject> reversedPath=Lists.reverse(this.pathElements);
+		return instantiateMissingPath(reversedPath, refStartInstance, new LinkedList<EObjectTransformationHelper>(instancesAtEnd));
 	}
 	
 	/**
@@ -400,7 +364,7 @@ class ModelConnectionPath {
 	 * @returns unLinkedInstances
 	 */
 	private List<EObjectTransformationHelper> instantiateMissingPath(
-			LinkedList<EObject> invertedPath, EObject refStartInstance,
+			List<EObject> invertedPath, EObject refStartInstance,
 			List<EObjectTransformationHelper> instancesAtEnd) {
 		LinkedList<EObject> pathCopy=new LinkedList<EObject> ();
 		pathCopy.addAll(invertedPath);

@@ -9,6 +9,12 @@ import org.eclipse.ui.console.MessageConsoleStream;
 import pamtram.mapping.AttributeValueModifier;
 import pamtram.mapping.AttributeValueModifierSet;
 
+/**
+ * Helper class to apply {@link AttributeValueModifier}s
+ * @author Sascha Steffen
+ * @version 1.0
+ *
+ */
 public class AttributeValueModifierExecutor {
 
 	public AttributeValueModifierExecutor(MessageConsoleStream consoleStream) {
@@ -28,7 +34,7 @@ public class AttributeValueModifierExecutor {
 	private Set<AttributeValueModifier> modifiersWithErrors;
 	
 	/**
-	 * Method for applying attribute value modifiers to 
+	 * Method for applying attribute value modifiers te a String 
 	 * @param value 
 	 * @param modifierSets
 	 * @return modified String

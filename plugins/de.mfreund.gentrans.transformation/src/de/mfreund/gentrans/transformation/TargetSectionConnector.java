@@ -448,7 +448,7 @@ class TargetSectionConnector implements CancellationListener{
 				} else {
 					onlyOnePath = pathsToConsider.size() == 1
 							&& targetSectionRegistry.getTargetClassInstances(
-									pathsToConsider.iterator().next().getRootType())
+									pathsToConsider.iterator().next().getPathRootClass())
 									.size() == 1;
 				}
 
@@ -459,9 +459,9 @@ class TargetSectionConnector implements CancellationListener{
 					if (hasContainer) {
 						inst = containerInstances.getFirst();
 					} else if(!rootInstances.contains(targetSectionRegistry.getTargetClassInstances(
-								modelConnectionPath.getRootType()).getFirst())){
+								modelConnectionPath.getPathRootClass()).getFirst())){
 						inst = targetSectionRegistry.getTargetClassInstances(
-								modelConnectionPath.getRootType()).getFirst();
+								modelConnectionPath.getPathRootClass()).getFirst();
 					} else {
 						consoleStream
 						.println("Could not find a path that leads to the container specified for targetSection '"
@@ -485,7 +485,7 @@ class TargetSectionConnector implements CancellationListener{
 					for (ModelConnectionPath p : pathsToConsider) {// prepare user selections
 						LinkedHashMap<String, EObjectTransformationHelper> instances = new LinkedHashMap<String, EObjectTransformationHelper>();
 						for (EObjectTransformationHelper inst : targetSectionRegistry.getTargetClassInstances(p
-								.getRootType())) {
+								.getPathRootClass())) {
 							if (!rootInstances.contains(inst) && (!hasContainer
 									|| containerInstances.contains(inst))) {
 
@@ -577,7 +577,7 @@ class TargetSectionConnector implements CancellationListener{
 	/**
 	 * TODO
 	 */
-	void findContainerForUnlinkeables(){
+	void findCommonTargetModelRoot(){
 
 		if(unlinkeableElements.keySet().size()==1){
 			if(unlinkeableElements.values().iterator().next().size()==1){//only one element could not be connected => we already have our container

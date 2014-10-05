@@ -1690,7 +1690,7 @@
       </attributes>
       <attributes xsi:type="metamodel:VirtualAttribute" name="VirtualName" unique="true" value=""/>
     </metaModelSections>
-    <metaModelSections name="UABaseDataType @ Boolean" cardinality="ZERO__INFINITY" container="//@targetSectionModel/@metaModelSections.1">
+    <metaModelSections name="UABaseDataType @ Boolean" cardinality="ZERO__INFINITY">
       <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/opcua/Boolean"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Boolean">
         <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
@@ -1719,12 +1719,6 @@
     </metaModelSections>
     <metaModelSections name="Panel">
       <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/Panel"/>
-      <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedUIComponent">
-        <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Panel/OwnedUIComponent"/>
-        <value name="Gauge" cardinality="ZERO__INFINITY">
-          <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/Gauge"/>
-        </value>
-      </references>
       <attributes xsi:type="metamodel:ActualAttribute" name="Panel Name" unique="true" value="cardinalityTestValue">
         <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
       </attributes>
@@ -4087,7 +4081,6 @@
     <mapping name="States2Panels" sourceMMSection="//@sourceSectionModel/@metaModelSections.4">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Panel" targetMMSection="//@targetSectionModel/@metaModelSections.7">
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="id2PanelName" target="//@targetSectionModel/@metaModelSections.7/@attributes.0" source="//@sourceSectionModel/@metaModelSections.4/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
-        <mappingHints xsi:type="mapping:CardinalityMapping" name="gauge" source="//@sourceSectionModel/@metaModelSections.5" target="//@targetSectionModel/@metaModelSections.7/@references.0/@value.0"/>
       </mappingHintGroups>
       <importedMappingHintGroups name="InheritedFlows" hintGroup="//@mappingModel/@mapping.0/@mappingHintGroups.1">
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="sourcePanel" affectedReference="//@targetSectionModel/@metaModelSections.9/@references.0">

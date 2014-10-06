@@ -59,6 +59,11 @@ import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunne
  */
 class TargetSectionInstantiator implements CancellationListener{
 	/**
+	 *TargetSectionContainmentReferences that point to a EReference with an upporBound of 1 but
+	 *at one point more than one element was supposed to be connected with them
+	 */
+	private Set<TargetSectionContainmentReference> wrongCardinalityContainmentRefs;
+	/**
 	 * used for modifying attribute values
 	 */
 	private AttributeValueModifierExecutor attributeValuemodifier;
@@ -122,6 +127,8 @@ class TargetSectionInstantiator implements CancellationListener{
 		this.consoleStream=consoleStream;
 		this.transformationAborted=false;
 		this.attributeValuemodifier=attributeValuemodifier;
+		this.wrongCardinalityContainmentRefs=new HashSet<TargetSectionContainmentReference>();
+		
 				
 		try{
 			round=new RoundFunction();
@@ -494,6 +501,16 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 						if (!markedForDelete.contains(instance)) {
 
 							if (ref.getEReference().getUpperBound() == 1) {
+								if(childInstances.size()>1 && !wrongCardinalityContainmentRefs.contains(ref)){
+									wrongCardinalityContainmentRefs.add((TargetSectionContainmentReference) ref);
+									consoleStream.println("More than one value was supposed to be connected to the TargetSectionContainmentReference '"
+											+ ref.getName() + "' in the target section '"  +ref.getContainingSection()
+											+ "', instantiated by the Mapping '" + mappingName + "' (Group: '"
+											+ mappingGroup.getName() + "'). "
+											+ "Only the first instance will be added to the model, the rest will be discarded. "		
+											+ "Please check your mapping model."
+											);
+								}
 								instance.getEObject().eSet(ref.getEReference(),
 										childInstances.getFirst().getEObject());
 							} else {
@@ -559,10 +576,11 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 																// of this
 																// section were
 																// created
-			for (TargetSectionReference ref : targetSectionClass.getReferences()) {
-				if (ref instanceof TargetSectionNonContainmentReference) {
+			for (TargetSectionReference refVal : targetSectionClass.getReferences()) {
+				if (refVal instanceof TargetSectionNonContainmentReference) {
+					TargetSectionNonContainmentReference ref=(TargetSectionNonContainmentReference) refVal;
 					LinkedList<TargetSectionClass> refValueClone = new LinkedList<TargetSectionClass>();
-					refValueClone.addAll(((TargetSectionNonContainmentReference) ref).getValue());
+					refValueClone.addAll(ref.getValue());
 					boolean hintFound = false;
 					// search for mapping instance selector
 					for (MappingHint h : hints) {
@@ -641,9 +659,8 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 										}
 										// select targetInst
 										if (fittingVals.keySet().size() == 1) {
-											setReference(ref,fittingVals.values().iterator().next().getEObject(),srcInst.getEObject());
+											addValueToReference(ref,fittingVals.values().iterator().next().getEObject(),srcInst.getEObject());
 										} else if (fittingVals.keySet().size() > 1) {// let user decide			
-											// TODO check limited capacity	
 											if(transformationAborted) return ;
 											  ItemSelectorDialogRunner dialog=new  ItemSelectorDialogRunner(
 											  "The MappingInstanceSelector '" +
@@ -660,7 +677,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 												  this.transformationAborted=true;
 												  return;
 											  }
-											  setReference(ref,fittingVals.get(dialog.getSelection()).getEObject(),srcInst.getEObject());
+											  addValueToReference(ref,fittingVals.get(dialog.getSelection()).getEObject(),srcInst.getEObject());
 										} else {
 											consoleStream.println("The MappigInstanceSelector " + hSel.getName() + " (Mapping: " + mappingName + ", Group: " +
 													group.getName() + " ) has an AttributeMatcher that picked up the value '" + attrVal +"' to be matched to the "
@@ -737,7 +754,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 				
 											if (targetInstance != null) {
 												for (EObjectTransformationHelper inst : instancesToConsider) {// same action for every instance of specific mapping
-													setReference(ref, targetInstance.getEObject(), inst.getEObject());
+													addValueToReference(ref, targetInstance.getEObject(), inst.getEObject());
 												}
 											}
 										}
@@ -771,7 +788,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 					if (!hintFound) { // last chance
 						LinkedHashSet<TargetSectionClass> foundLocalNonContRefTargets=new LinkedHashSet<TargetSectionClass>();
 						LinkedList<TargetSectionClass> refValue=new LinkedList<TargetSectionClass>();
-						refValue.addAll(((TargetSectionNonContainmentReference) ref).getValue());
+						refValue.addAll(ref.getValue());
 												
 						//first check root targetMMSection itself
 						if(refValue.contains(groupTargetSection)){
@@ -856,7 +873,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 							for(EObjectTransformationHelper source : rootBySourceInstance.keySet()){
 								int numRefTargets=targetInstancesByRoot.get(rootBySourceInstance.get(source)).size();
 								if(numRefTargets == 1){
-									setReference(ref, targetInstancesByRoot.get(rootBySourceInstance.get(source)).getFirst().getEObject(), source.getEObject());
+									addValueToReference(ref, targetInstancesByRoot.get(rootBySourceInstance.get(source)).getFirst().getEObject(), source.getEObject());
 								} else if(numRefTargets > 1){
 									Map<String,EObjectTransformationHelper> instances=new LinkedHashMap<String,EObjectTransformationHelper>();
 									for(EObjectTransformationHelper i : targetInstancesByRoot.get(rootBySourceInstance.get(source))){
@@ -878,7 +895,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 										  this.transformationAborted=true;
 										  return;
 									  }
-									setReference(ref, instances.get(dialog.getSelection()).getEObject(), source.getEObject());
+									addValueToReference(ref, instances.get(dialog.getSelection()).getEObject(), source.getEObject());
 
 								} else {
 									consoleStream.println("No suitable refernce target found for non-cont. reference '" + ref.getName()
@@ -943,7 +960,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 							
 							if(targetInstance != null){
 								for(EObjectTransformationHelper inst : instancesBySection.get(targetSectionClass)){
-									setReference(ref, targetInstance.getEObject(), inst.getEObject());
+									addValueToReference(ref, targetInstance.getEObject(), inst.getEObject());
 								}
 							}
 							
@@ -994,12 +1011,15 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 	 * @param target
 	 * @param source
 	 */
-	private void setReference(TargetSectionReference ref, EObject target,
+	private void addValueToReference(TargetSectionNonContainmentReference ref, EObject target,
 			EObject source) {
 		if (ref.getEReference().getUpperBound() == 1) {
 			if (source.eIsSet(ref.getEReference())) {
-				consoleStream.println("Non-Cont Ref. " + ref.getName()
-						+ " already set:\n" + source.toString()); 
+					consoleStream.println("More than one value was supposed to be connected to the TargetSectionNonContainmentReference '"
+							+ ref.getName() + "' in the target section '"  +ref.getContainingSection()		
+							+ "Please check your mapping model."
+							);
+
 			} else {
 				source.eSet(ref.getEReference(), target);
 			}

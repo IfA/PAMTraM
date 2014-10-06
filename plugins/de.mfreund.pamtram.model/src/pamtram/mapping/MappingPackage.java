@@ -1564,13 +1564,22 @@ public interface MappingPackage extends EPackage {
 	int CALCULATOR_MAPPING__VARIABLES = ATTRIBUTE_MAPPING_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Result Modifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALCULATOR_MAPPING__RESULT_MODIFIER = ATTRIBUTE_MAPPING_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Calculator Mapping</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CALCULATOR_MAPPING_FEATURE_COUNT = ATTRIBUTE_MAPPING_FEATURE_COUNT + 2;
+	int CALCULATOR_MAPPING_FEATURE_COUNT = ATTRIBUTE_MAPPING_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get Local Source Elements</em>' operation.
@@ -4047,6 +4056,17 @@ public interface MappingPackage extends EPackage {
 	EReference getCalculatorMapping_Variables();
 
 	/**
+	 * Returns the meta object for the reference list '{@link pamtram.mapping.CalculatorMapping#getResultModifier <em>Result Modifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Result Modifier</em>'.
+	 * @see pamtram.mapping.CalculatorMapping#getResultModifier()
+	 * @see #getCalculatorMapping()
+	 * @generated
+	 */
+	EReference getCalculatorMapping_ResultModifier();
+
+	/**
 	 * Returns the meta object for the '{@link pamtram.mapping.CalculatorMapping#getLocalSourceElements() <em>Get Local Source Elements</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5137,6 +5157,14 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CALCULATOR_MAPPING__VARIABLES = eINSTANCE.getCalculatorMapping_Variables();
+
+		/**
+		 * The meta object literal for the '<em><b>Result Modifier</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CALCULATOR_MAPPING__RESULT_MODIFIER = eINSTANCE.getCalculatorMapping_ResultModifier();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Local Source Elements</b></em>' operation.

@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link pamtram.mapping.CalculatorMapping#getExpression <em>Expression</em>}</li>
  *   <li>{@link pamtram.mapping.CalculatorMapping#getVariables <em>Variables</em>}</li>
+ *   <li>{@link pamtram.mapping.CalculatorMapping#getResultModifier <em>Result Modifier</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,6 +64,22 @@ public interface CalculatorMapping extends AttributeMapping {
 	 * @generated
 	 */
 	EList<CalculatorMappingSourceInterface> getVariables();
+
+	/**
+	 * Returns the value of the '<em><b>Result Modifier</b></em>' reference list.
+	 * The list contents are of type {@link pamtram.mapping.AttributeValueModifierSet}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Result Modifier</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Result Modifier</em>' reference list.
+	 * @see pamtram.mapping.MappingPackage#getCalculatorMapping_ResultModifier()
+	 * @model
+	 * @generated
+	 */
+	EList<AttributeValueModifierSet> getResultModifier();
 
 	/**
 	 * <!-- begin-user-doc -->

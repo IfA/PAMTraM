@@ -12,8 +12,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.CalculatorMapping;
 import pamtram.mapping.CalculatorMappingSourceInterface;
 import pamtram.mapping.ExpressionVariable;
@@ -28,6 +30,7 @@ import pamtram.mapping.MappingPackage;
  * <ul>
  *   <li>{@link pamtram.mapping.impl.CalculatorMappingImpl#getExpression <em>Expression</em>}</li>
  *   <li>{@link pamtram.mapping.impl.CalculatorMappingImpl#getVariables <em>Variables</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.CalculatorMappingImpl#getResultModifier <em>Result Modifier</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,6 +66,16 @@ public class CalculatorMappingImpl extends AttributeMappingImpl implements Calcu
 	 * @ordered
 	 */
 	protected EList<CalculatorMappingSourceInterface> variables;
+
+	/**
+	 * The cached value of the '{@link #getResultModifier() <em>Result Modifier</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResultModifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<AttributeValueModifierSet> resultModifier;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -121,6 +134,18 @@ public class CalculatorMappingImpl extends AttributeMappingImpl implements Calcu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<AttributeValueModifierSet> getResultModifier() {
+		if (resultModifier == null) {
+			resultModifier = new EObjectResolvingEList<AttributeValueModifierSet>(AttributeValueModifierSet.class, this, MappingPackage.CALCULATOR_MAPPING__RESULT_MODIFIER);
+		}
+		return resultModifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<ExpressionVariable> getLocalSourceElements() {
 						EList<ExpressionVariable> elements= new org.eclipse.emf.common.util.BasicEList<ExpressionVariable>();
 						
@@ -159,6 +184,8 @@ public class CalculatorMappingImpl extends AttributeMappingImpl implements Calcu
 				return getExpression();
 			case MappingPackage.CALCULATOR_MAPPING__VARIABLES:
 				return getVariables();
+			case MappingPackage.CALCULATOR_MAPPING__RESULT_MODIFIER:
+				return getResultModifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -179,6 +206,10 @@ public class CalculatorMappingImpl extends AttributeMappingImpl implements Calcu
 				getVariables().clear();
 				getVariables().addAll((Collection<? extends CalculatorMappingSourceInterface>)newValue);
 				return;
+			case MappingPackage.CALCULATOR_MAPPING__RESULT_MODIFIER:
+				getResultModifier().clear();
+				getResultModifier().addAll((Collection<? extends AttributeValueModifierSet>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -197,6 +228,9 @@ public class CalculatorMappingImpl extends AttributeMappingImpl implements Calcu
 			case MappingPackage.CALCULATOR_MAPPING__VARIABLES:
 				getVariables().clear();
 				return;
+			case MappingPackage.CALCULATOR_MAPPING__RESULT_MODIFIER:
+				getResultModifier().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -213,6 +247,8 @@ public class CalculatorMappingImpl extends AttributeMappingImpl implements Calcu
 				return EXPRESSION_EDEFAULT == null ? expression != null : !EXPRESSION_EDEFAULT.equals(expression);
 			case MappingPackage.CALCULATOR_MAPPING__VARIABLES:
 				return variables != null && !variables.isEmpty();
+			case MappingPackage.CALCULATOR_MAPPING__RESULT_MODIFIER:
+				return resultModifier != null && !resultModifier.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

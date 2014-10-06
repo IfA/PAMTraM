@@ -405,6 +405,8 @@
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
           eType="#//mapping/CalculatorMappingSourceInterface" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="resultModifier" upperBound="-1"
+          eType="#//mapping/AttributeValueModifierSet"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ExpressionVariable" eSuperTypes="#//mapping/AttributeMappingSourceElementWithModifiers #//mapping/CalculatorMappingSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingSourceElementType"

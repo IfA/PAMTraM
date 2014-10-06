@@ -1119,6 +1119,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getCalculatorMapping_ResultModifier() {
+		return (EReference)calculatorMappingEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getCalculatorMapping__GetLocalSourceElements() {
 		return calculatorMappingEClass.getEOperations().get(0);
 	}
@@ -1711,6 +1720,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		calculatorMappingEClass = createEClass(CALCULATOR_MAPPING);
 		createEAttribute(calculatorMappingEClass, CALCULATOR_MAPPING__EXPRESSION);
 		createEReference(calculatorMappingEClass, CALCULATOR_MAPPING__VARIABLES);
+		createEReference(calculatorMappingEClass, CALCULATOR_MAPPING__RESULT_MODIFIER);
 		createEOperation(calculatorMappingEClass, CALCULATOR_MAPPING___GET_LOCAL_SOURCE_ELEMENTS);
 
 		expressionVariableEClass = createEClass(EXPRESSION_VARIABLE);
@@ -1997,6 +2007,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEClass(calculatorMappingEClass, CalculatorMapping.class, "CalculatorMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCalculatorMapping_Expression(), ecorePackage.getEString(), "expression", null, 1, 1, CalculatorMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCalculatorMapping_Variables(), this.getCalculatorMappingSourceInterface(), null, "variables", null, 0, -1, CalculatorMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCalculatorMapping_ResultModifier(), this.getAttributeValueModifierSet(), null, "resultModifier", null, 0, -1, CalculatorMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getCalculatorMapping__GetLocalSourceElements(), this.getExpressionVariable(), "getLocalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
 

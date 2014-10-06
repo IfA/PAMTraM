@@ -3,7 +3,6 @@ package de.mfreund.gentrans.transformation;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
@@ -68,10 +67,6 @@ class TargetSectionRegistry implements CancellationListener{
 	 * Message output stream
 	 */
 	private MessageConsoleStream consoleStream;
-	/** 
-	 * Possible model containers
-	 */
-	private Set<EClass> modelContainers;
 
 
 	/**
@@ -90,7 +85,6 @@ class TargetSectionRegistry implements CancellationListener{
 		containmentReferenceSourcesRegistry=new LinkedHashMap<EReference, LinkedHashSet<EClass>>(); // ==sources
 		this.attrValRegistry=attrValRegistry;
 		this.setTransFormationCancelled(false);
-		modelContainers=new LinkedHashSet<EClass>();
 		analyseTargetMetaModel(targetMetaModel);
 	}
 	
@@ -326,13 +320,6 @@ class TargetSectionRegistry implements CancellationListener{
 						targetClassReferencesRegistry.get(e));
 			}
 		}
-
-		//get possible model containers
-		for(EClass possibleContainer : targetClassReferencesRegistry.keySet()){
-			if(targetClassReferencesRegistry.get(possibleContainer).size() < 1 && !possibleContainer.isAbstract()){
-				modelContainers.add(possibleContainer);
-			}
-		}
 	}
 
 	/**
@@ -381,18 +368,4 @@ class TargetSectionRegistry implements CancellationListener{
 	public void setTransFormationCancelled(boolean transFormationCancelled) {
 		this.transFormationCancelled = transFormationCancelled;
 	}
-
-	
-	 List<ModelConnectionPath> getModelContainerPaths( EClass elementClass,
-				int maxPathLength) {
-			//new ModelConnectionPath(registry).findPathsFromContainerToClassToConnect(elementClass, containerClass, maxPathLength);
-			List<ModelConnectionPath> paths=new LinkedList<ModelConnectionPath>();
-			
-			for(EClass possibleContainer : modelContainers){
-				if(transFormationCancelled) return paths;
-				paths.addAll(getConnections(elementClass, possibleContainer, maxPathLength));
-			}
-			
-			return paths;
-		}	
 }

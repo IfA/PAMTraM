@@ -1,13 +1,10 @@
 package de.mfreund.gentrans.transformation;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -60,62 +57,6 @@ class ModelConnectionPath {
 
 	}
 	
-	/**
-	 * @param paths
-	 * @return
-	 */
-	 static Set<EClass> getCommonClasses(CancellationListener cListener, Map<EClass,List<ModelConnectionPath>> paths){
-		Set<EClass> returnSet=new LinkedHashSet<EClass>(); 
-		
-		Set<EClass> rejected=new LinkedHashSet<EClass>();
-
-		
-		if(paths.size()>0){
-			List<ModelConnectionPath> comparePath=paths.remove(paths.keySet().iterator().next());
-			
-			/*
-			 * check for each possible Path of the first path List
-			 */
-			for(ModelConnectionPath element : comparePath){
-				//we will now try to find each EClass in the path in one of the paths of the other Lists
-				//in case an EClass is found in at least one of the paths of each map value, it will be put to the return sets
-				//This means, that one common elements for the EClasses in the key set of the map was found, sothey can be connected
-				
-				for(EObject pElement : element.pathElements){
-					if(cListener.isCancelled()) return Collections.<EClass>emptySet();
-					
-					if(pElement instanceof EClass){//we do not check the references
-						if(rejected.contains(pElement) || returnSet.contains(pElement)){//did we check this before?
-							continue;
-						} else {
-							for(EClass cPathListClass : paths.keySet()){//check in other lists
-								boolean foundElement=false;
-								for(ModelConnectionPath  cPath : paths.get(cPathListClass)){
-									if(cListener.isCancelled()) return Collections.<EClass>emptySet();
-									if(cPath.pathElements.contains(pElement)){
-										foundElement=true;
-										break;//we only need to find one path per key EClass
-									}
-								}
-								if(!foundElement){//if it fails for one element of the key set we can stop looking further
-									rejected.add((EClass) pElement);
-									break;
-								}
-							}
-							
-							if(!rejected.contains(pElement)){//element can be used as container for every EClass in the key set
-								returnSet.add((EClass) pElement);
-							}
-						}
-					}
-				}
-			}
-
-
-		}	
-			return returnSet;
-	}
-
 	/**
 	 * Private Constructor to be used when spawning new Paths during path search. Clones the path and appends new element. 
 	 * @param pathElements

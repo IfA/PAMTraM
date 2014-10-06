@@ -65,7 +65,7 @@ class TargetSectionConnector implements CancellationListener{
 	/**
 	 * Unlinkeable elements
 	 */
-	private Map<EClass,List<EObjectTransformationHelper>> unlinkeableElements;
+	private Map<EClass,Map<TargetSectionClass,List<EObjectTransformationHelper>>> unlinkeableElements;
 	
 	/**
 	 * @return true when the transformation was aborted by the user
@@ -90,7 +90,7 @@ class TargetSectionConnector implements CancellationListener{
 		this.transformationAborted=false;
 		this.attributeValuemodifier=attributeValuemodifier;
 		this.maxPathlength=maxPathLength;
-		unlinkeableElements=new LinkedHashMap<EClass,List<EObjectTransformationHelper>>();
+		unlinkeableElements=new LinkedHashMap<EClass,Map<TargetSectionClass,List<EObjectTransformationHelper>>>();
 	}
 
 
@@ -569,9 +569,12 @@ class TargetSectionConnector implements CancellationListener{
 
 		} else {			
 			if(!unlinkeableElements.containsKey(classToConnect)){
-				unlinkeableElements.put(classToConnect, new LinkedList<EObjectTransformationHelper>());
+				unlinkeableElements.put(classToConnect, new LinkedHashMap<TargetSectionClass,List<EObjectTransformationHelper>>());
 			}
-			unlinkeableElements.get(classToConnect).addAll(rootInstances);
+			if(!unlinkeableElements.get(classToConnect).containsKey(section)){
+				unlinkeableElements.get(classToConnect).put(section, new LinkedList<EObjectTransformationHelper>());
+			}
+			unlinkeableElements.get(classToConnect).get(section).addAll(rootInstances);
 		}
 	}
 	
@@ -582,9 +585,11 @@ class TargetSectionConnector implements CancellationListener{
 	void findCommonTargetModelRoot(){
 
 		if(unlinkeableElements.keySet().size()==1){
-			if(unlinkeableElements.values().iterator().next().size()==1){//only one element could not be connected => we already have our container
-				addToTargetModelRoot(unlinkeableElements.values().iterator().next().get(0));
-				return;
+			if(unlinkeableElements.values().iterator().next().keySet().size()==1){//only one element could not be connected => we already have our container
+				if(unlinkeableElements.values().iterator().next().values().iterator().next().size()==1){
+					addToTargetModelRoot(unlinkeableElements.values().iterator().next().values().iterator().next().get(0));
+					return;
+				}
 			}
 		} else if(unlinkeableElements.keySet().size()<1){
 			return;//nothing left to do
@@ -607,7 +612,6 @@ class TargetSectionConnector implements CancellationListener{
 				}
 				if(!failed){
 					common.add(possibleRoot);
-					consoleStream.println(possibleRoot.toString());//TODO
 				}
 			}
 		}
@@ -619,7 +623,9 @@ class TargetSectionConnector implements CancellationListener{
 			for(EClass c : unlinkeableElements.keySet()){
 				consoleStream.println("No suitable path found for target class: "
 						+ c.getName());
-				addToTargetModelRoot(unlinkeableElements.get(c));
+				for(List<EObjectTransformationHelper> instances : unlinkeableElements.get(c).values()){
+					addToTargetModelRoot(instances);					
+				}
 			}
 		} else{
 			EClass containerClass;
@@ -648,56 +654,72 @@ class TargetSectionConnector implements CancellationListener{
 			EObject containerInstance=containerClass.getEPackage().getEFactoryInstance().create(containerClass);
 			addToTargetModelRoot(new EObjectTransformationHelper(containerInstance, targetSectionRegistry.getAttrValRegistry()));
 			for(EClass c : unlinkeableElements.keySet()){
-				/*
-				 * It gets a bit tricky here.
-				 * If there is more than one common container, we have to choose one.
-				 * Then we need to find all possible connections for each of the elements involved.
-				 * Now we need to choose a connection for each element.
-				 * This would lead to us asking a lot of questions to the user.
-				 * Therefore we will concentrate on using the shortest connection paths.
-				 * All we need to ask the user is which container to use.
-				 */
-				Set<ModelConnectionPath> pathSet=targetSectionRegistry.getConnections(c, containerClass, maxPathlength);
-				if(pathSet.size()<1){
-					addToTargetModelRoot(unlinkeableElements.get(c));//This should not have happened => programming error
-					consoleStream.println("Error. Check container instantiation");
-				} else {
-					
-					//get paths with fitting capacity
-					int neededCapacity=unlinkeableElements.get(c).size();
-					LinkedList<ModelConnectionPath> fittingPaths=new LinkedList<ModelConnectionPath>();
-					for(ModelConnectionPath p : pathSet){
-						if(p.getCapacity(containerInstance)>=neededCapacity){
-							fittingPaths.add(p);
-						}
-					}
-					
-					if(fittingPaths.size() > 0){
-						//get shortest path
-						ModelConnectionPath chosenPath=fittingPaths.getFirst();
-						int chosenPathSize=chosenPath.size();
-						for(ModelConnectionPath p : fittingPaths){//get one of the shortest paths
-							int pSize=p.size();
-							if(pSize<chosenPathSize){
-								chosenPath=p;
-								chosenPathSize=pSize;
+				for(TargetSectionClass tSection : unlinkeableElements.get(c).keySet()){
+					/*
+					 * It gets a bit tricky here.
+					 * If there is more than one common container, we have to choose one.
+					 * Then we need to find all possible connections for each of the elements involved.
+					 * Now we need to choose a connection for each element.
+					 * This would lead to us asking a lot of questions to the user.
+					 * Therefore we will concentrate on using the shortest connection paths.
+					 * All we need to ask the user is which container to use.
+					 */
+					Set<ModelConnectionPath> pathSet=targetSectionRegistry.getConnections(c, containerClass, maxPathlength);
+					if(pathSet.size()<1){
+						addToTargetModelRoot(unlinkeableElements.get(c).get(tSection));//This should not have happened => programming error
+						consoleStream.println("Error. Check container instantiation");
+					} else {
+
+						//get paths with fitting capacity
+						int neededCapacity=unlinkeableElements.get(c).get(tSection).size();
+						Map<String,ModelConnectionPath> fittingPaths=new LinkedHashMap<String,ModelConnectionPath>();
+						for(ModelConnectionPath p : pathSet){
+							if(p.getCapacity(containerInstance)>=neededCapacity){
+								fittingPaths.put(p.toString(),p);
 							}
 						}
-						
-						//now instantiate path
-						chosenPath.instantiate(containerInstance, unlinkeableElements.get(c));						
-					} else {
-						consoleStream.println("The chosen container '"
-								+ containerClass.getName()
-								+ "' cannot fit the elements of the type '"
-								+c.getName()
-								+"', sorry.");
-						addToTargetModelRoot(unlinkeableElements.get(c));
-					}
 
+						if(fittingPaths.size() > 0){
+							//get shortest path
+							ModelConnectionPath chosenPath=fittingPaths.values().iterator().next();
+							int chosenPathSize=chosenPath.size();
+							for(ModelConnectionPath p : fittingPaths.values()){//get one of the shortest paths
+								int pSize=p.size();
+								if(pSize<chosenPathSize){
+									chosenPath=p;
+									chosenPathSize=pSize;
+								}
+							}
+
+							if(fittingPaths.size()>1){
+								ItemSelectorDialogRunner dialog=new ItemSelectorDialogRunner( 									
+										"Please choose one of the possible connections for connecting the "
+												+ "instances of the target section '" + tSection.getName() + "' (EClass: '" + c.getName() + "') " 
+												+ " to the model root element of the type '" + containerClass.getName() +"'.",
+												fittingPaths.keySet(), chosenPath.toString());
+								Display.getDefault().syncExec(dialog);
+								if(dialog.wasTransformationStopRequested()){
+									transformationAborted=true;
+									return;
+								}
+								chosenPath = fittingPaths.get(dialog.getSelection());
+							}
+
+							//now instantiate path
+							chosenPath.instantiate(containerInstance, unlinkeableElements.get(c).get(tSection));						
+						} else {
+							consoleStream.println("The chosen container '"
+									+ containerClass.getName()
+									+ "' cannot fit the elements of the type '"
+									+c.getName()
+									+"', sorry.");
+							addToTargetModelRoot(unlinkeableElements.get(c).get(tSection));
+						}
+
+					}
 				}
 			}
-			
+
 
 		}
 	}

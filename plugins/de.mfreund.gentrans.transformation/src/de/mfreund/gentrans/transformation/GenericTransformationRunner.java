@@ -223,6 +223,9 @@ public class GenericTransformationRunner {
 		 mmPackagesToCheck.add(pamtramModel.getSourceSectionModel().getMetaModelPackage());
 		 mmPackagesToCheck.add(pamtramModel.getTargetSectionModel().getMetaModelPackage());
 		 
+		 /*
+		  * check if metamodels are registered
+		  */
 		 while(mmPackagesToCheck.size()>0){
 			 EPackage pkg=mmPackagesToCheck.removeFirst();
 			 

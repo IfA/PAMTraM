@@ -272,6 +272,13 @@ class TargetSectionRegistry implements CancellationListener{
 		
 		return classes;
 	}
+	
+	/**
+	 * @return
+	 */
+	Set<EClass> getMetaModelClasses(){
+		return childClassesRegistry.keySet();
+	}
 
 	/**
 	 * Build various lists that describe structural features of the  target MetaModel

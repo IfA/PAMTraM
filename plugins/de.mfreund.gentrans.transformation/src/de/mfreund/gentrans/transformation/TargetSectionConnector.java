@@ -1,6 +1,7 @@
 package de.mfreund.gentrans.transformation;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -574,6 +575,7 @@ class TargetSectionConnector implements CancellationListener{
 		}
 	}
 	
+	
 	/**
 	 * TODO
 	 */
@@ -592,16 +594,25 @@ class TargetSectionConnector implements CancellationListener{
 		 * Now that the "special" case was handled we need to handle all the other cases.
 		 */
 		
-		Map<EClass,List<ModelConnectionPath>> paths=new LinkedHashMap<EClass,List<ModelConnectionPath>>();
-		
-		for(EClass c : unlinkeableElements.keySet()){
-			if(transformationAborted) return;
-			paths.put(c, new LinkedList<ModelConnectionPath>());
-			paths.get(c).addAll(targetSectionRegistry.getModelContainerPaths(c, maxPathlength));
-			
+		Set<EClass> common=new HashSet<EClass>();
+		for(EClass possibleRoot : targetSectionRegistry.getMetaModelClasses()){
+			boolean failed=false;
+			if(!possibleRoot.isAbstract()){
+				for(EClass c : unlinkeableElements.keySet()){
+					if(transformationAborted) return;
+					if(targetSectionRegistry.getConnections(c, possibleRoot, maxPathlength).size()<1){
+						failed=true;
+						break;
+					}
+				}
+				if(!failed){
+					common.add(possibleRoot);
+					consoleStream.println(possibleRoot.toString());//TODO
+				}
+			}
 		}
+
 				
-		Set<EClass> common =ModelConnectionPath.getCommonClasses(this,paths);
 		if(transformationAborted) return;
 		
 		if(common.size() < 1){
@@ -676,9 +687,11 @@ class TargetSectionConnector implements CancellationListener{
 						//now instantiate path
 						chosenPath.instantiate(containerInstance, unlinkeableElements.get(c));						
 					} else {
-						consoleStream.println("The chosen container cannot fit the elements of the type '"
+						consoleStream.println("The chosen container '"
+								+ containerClass.getName()
+								+ "' cannot fit the elements of the type '"
 								+c.getName()
-								+"' ,sorry.");
+								+"', sorry.");
 						addToTargetModelRoot(unlinkeableElements.get(c));
 					}
 

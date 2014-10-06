@@ -3,6 +3,7 @@ package de.mfreund.gentrans.transformation;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
@@ -10,6 +11,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.mapping.InstantiableMappingHintGroup;
@@ -246,23 +248,31 @@ class TargetSectionRegistry implements CancellationListener{
 	 * @param pkg
 	 * @return Classes, contained in a MetaModel Package
 	 */
-	private LinkedList<EClass> getClasses(EPackage pkg){
+	private LinkedList<EClass> getClasses(EPackage epackage){
 		LinkedList<EClass> classes=new LinkedList<EClass>();
+		List<EPackage> packagesToScan=new LinkedList<EPackage>();
+		packagesToScan.add(epackage);
 		
-		for(EClassifier c : pkg.getEClassifiers()){
-			if(c instanceof EClass){
-				classes.add((EClass) c);
-				
-				childClassesRegistry.put((EClass) c, new LinkedHashSet<EClass>());
-				targetClassReferencesRegistry.put((EClass) c,
-						new LinkedHashSet<EReference>());
-			}
+		while(!packagesToScan.isEmpty()){
+			EPackage pkg=packagesToScan.remove(0);
+			
+			packagesToScan.addAll(pkg.getESubpackages());
+			
+			EClass docroot=ExtendedMetaData.INSTANCE.getDocumentRoot(pkg);
+			for(EClassifier c : pkg.getEClassifiers()){
+				if(c instanceof EClass){
+					
+					if(docroot!=null){//ignore DocumentRoot Classes created when converting xsd to ecore
+					 if(docroot.equals(c)) continue;
+					}
+					classes.add((EClass) c);
+					
+					childClassesRegistry.put((EClass) c, new LinkedHashSet<EClass>());
+					targetClassReferencesRegistry.put((EClass) c,
+							new LinkedHashSet<EReference>());
+				}
+			}			
 		}
-		
-		for(EPackage p : pkg.getESubpackages()){
-			classes.addAll(getClasses(p));
-		}
-		
 		
 		return classes;
 	}

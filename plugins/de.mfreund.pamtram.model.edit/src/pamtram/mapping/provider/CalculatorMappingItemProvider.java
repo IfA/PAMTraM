@@ -48,6 +48,7 @@ public class CalculatorMappingItemProvider
 			super.getPropertyDescriptors(object);
 
 			addExpressionPropertyDescriptor(object);
+			addResultModifierPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -70,6 +71,28 @@ public class CalculatorMappingItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Result Modifier feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addResultModifierPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_CalculatorMapping_resultModifier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CalculatorMapping_resultModifier_feature", "_UI_CalculatorMapping_type"),
+				 MappingPackage.Literals.CALCULATOR_MAPPING__RESULT_MODIFIER,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

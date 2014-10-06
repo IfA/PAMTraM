@@ -12,6 +12,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
@@ -108,12 +109,20 @@ public class ClassItemProvider
 					
 					packagesToScan.add(((SectionModel)section.eContainer()).getMetaModelPackage());
 					
+					List<EClass> documentRoot=new LinkedList<EClass>();//this should only contain one element but we need to implement this in a generic way...												
+					
 					while(packagesToScan.size()>0){
 						EPackage pkg=packagesToScan.remove(0);
+						EClass docroot=ExtendedMetaData.INSTANCE.getDocumentRoot(pkg);
+						if(docroot!=null){
+						 documentRoot.add(docroot);
+						}
+						
 						packagesToScan.addAll(pkg.getESubpackages());
 						for(EClassifier c : pkg.getEClassifiers()){
 							if(c instanceof EClass){
-								if(!((EClass) c).isAbstract()){
+								EClass cl=(EClass)c;
+								if(!cl.isAbstract() && !documentRoot.contains(cl)){
 									choiceOfValues.add((EClass) c);
 								}
 							}

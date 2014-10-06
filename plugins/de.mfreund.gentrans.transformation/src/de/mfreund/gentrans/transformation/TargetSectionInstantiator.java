@@ -59,6 +59,10 @@ import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunne
  */
 class TargetSectionInstantiator implements CancellationListener{
 	/**
+	 * used for modifying attribute values
+	 */
+	private AttributeValueModifierExecutor attributeValuemodifier;
+	/**
 	 * RoundFunction instance, needed when evaluating ClaculatorMappingHints
 	 */
 	private RoundFunction round;
@@ -110,12 +114,14 @@ class TargetSectionInstantiator implements CancellationListener{
 	TargetSectionInstantiator(TargetSectionRegistry targetSectionRegistry , 
 			AttributeValueRegistry attributeValueRegistry, 
 			Map<GlobalAttribute,String> globalVarValues,
+			AttributeValueModifierExecutor attributeValuemodifier,
 			List<GlobalValue> globalVals,
 			MessageConsoleStream consoleStream) {
 		this.targetSectionRegistry=targetSectionRegistry;
 		this.attributeValueRegistry=attributeValueRegistry;
 		this.consoleStream=consoleStream;
 		this.transformationAborted=false;
+		this.attributeValuemodifier=attributeValuemodifier;
 				
 		try{
 			round=new RoundFunction();
@@ -368,17 +374,20 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 									Map<String,Double> varValues=(Map<String,Double>)attrHintValues.remove(0);
 									vars.putAll(varValues);
 									
-									attrValue = String.valueOf(new ExpressionBuilder(((CalculatorMapping) hintFound).getExpression())
+									attrValue = String.valueOf(new ExpressionBuilder(((CalculatorMapping) hintFound).getExpression())//make calculation
 											.withCustomFunction(round)
 											.withCustomFunction(max)
 											.withCustomFunction(min)
 											.withVariables(vars)
 											.build()
-											.calculate());									
+											.calculate());	
 								} catch(Exception e){//TODO this will lead to a lot of error output if it fails
 									consoleStream.println("Error parsing the expression of CalculatorMapping" + hintFound.getName() + ". Message:\n"
 											+ e.getMessage());
-								}								
+								}
+								if(attrValue!=null){//apply resultModifiers if all went well
+									attrValue=attributeValuemodifier.applyAttributeValueModifiers(attrValue, ((CalculatorMapping) hintFound).getResultModifier());
+								}
 							} else if (hintFound instanceof ComplexAttributeMapping){
 								attrValue="";
 								@SuppressWarnings("unchecked")

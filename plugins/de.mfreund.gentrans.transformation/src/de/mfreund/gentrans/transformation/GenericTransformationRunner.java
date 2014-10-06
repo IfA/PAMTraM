@@ -387,7 +387,7 @@ public class GenericTransformationRunner {
 		writePamtramMessage("Instantiating targetModelSections for selected mappings. First pass");
 		TargetSectionInstantiator targetSectionInstantiator = runInstantiationFirstPass(
 				sourceSectionMapper, targetSectionRegistry, attrValueRegistry,
-				selectedMappings, exportedMappingHints,pamtramModel.getMappingModel().getGlobalValues(),monitor);
+				selectedMappings, exportedMappingHints,pamtramModel.getMappingModel().getGlobalValues(),monitor, attributeValueModifier);
 
 		objectsToCancel.add(targetSectionInstantiator);
 		
@@ -666,6 +666,7 @@ public class GenericTransformationRunner {
 	 * @param exportedMappingHints
 	 * @param globalValues 
 	 * @param monitor 
+	 * @param attributeValuemodifier 
 	 * @return
 	 */
 	private TargetSectionInstantiator runInstantiationFirstPass(
@@ -673,9 +674,9 @@ public class GenericTransformationRunner {
 			TargetSectionRegistry targetSectionRegistry,
 			AttributeValueRegistry attrValueRegistry,
 			LinkedList<MappingInstanceStorage> selectedMappings,
-			Map<MappingHint, LinkedList<Object>> exportedMappingHints, List<GlobalValue> globalValues, IProgressMonitor monitor) {
+			Map<MappingHint, LinkedList<Object>> exportedMappingHints, List<GlobalValue> globalValues, IProgressMonitor monitor, AttributeValueModifierExecutor attributeValuemodifier) {
 		TargetSectionInstantiator targetSectionInstantiator = new TargetSectionInstantiator(
-				targetSectionRegistry, attrValueRegistry,sourceSectionMapper.getGlobalVarValues(),globalValues,consoleStream);	
+				targetSectionRegistry, attrValueRegistry,sourceSectionMapper.getGlobalVarValues(),attributeValuemodifier,globalValues,consoleStream);	
 		double workUnit=250.0/selectedMappings.size();
 		double accumulatedWork=0;
 		for (MappingInstanceStorage selMap : selectedMappings) {

@@ -20,6 +20,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
@@ -38,7 +39,12 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	// combo boxes to select the project, the source file, the pamtram file and the
 	// target file
 	private Combo projectCombo, srcFileCombo, pamtramFileCombo, targetFileCombo;
+	
+	//spinner to set max path length
 	private Spinner pathLengthSpinner;
+	
+	//CheckBox for setting wether user should be askedd only once which mapping tdouse
+	private Button onlyAskOnceForAmbiguousMappings;
 
 	/**
 	 * @wbp.parser.entryPoint
@@ -209,7 +215,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			gd.horizontalSpan = 2;
 			settingsGroup.setLayoutData(gd);
 			
-			GridLayout gl = new GridLayout(3, false);
+			GridLayout gl = new GridLayout(2, false);
 			settingsGroup.setLayout(gl);
 		}
 		
@@ -227,8 +233,17 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		Label pathLengthLabel=new Label(settingsGroup, SWT.NONE);
 		pathLengthLabel.setText("max. length for model connection paths (0 = direct connection only, -1 = unbounded)");
 		
+		//create CHeckBox for ambiguous mappings setting
+		onlyAskOnceForAmbiguousMappings=new Button(settingsGroup,SWT.CHECK);
+		onlyAskOnceForAmbiguousMappings.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				updateLaunchConfigurationDialog();
+			}
+		});
+		onlyAskOnceForAmbiguousMappings.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 2, 1));
+		onlyAskOnceForAmbiguousMappings.setText("Remember choices for ambiguous Mappings");
 		
-
 	}
 
 	@Override
@@ -263,7 +278,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			targetFileCombo.setText(configuration.getAttribute("targetFile", ""));
 			//settings
 			pathLengthSpinner.setSelection(configuration.getAttribute("maxPathLength", -1));
-			
+			onlyAskOnceForAmbiguousMappings.setSelection(configuration.getAttribute("rememberAmbiguousMappingChoice", true));
 		} catch (CoreException e) {
 			setErrorMessage(e.getMessage());
 		}
@@ -279,6 +294,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		configuration.setAttribute("targetFile", targetFileCombo.getText());
 		//settings
 		configuration.setAttribute("maxPathLength", pathLengthSpinner.getSelection());
+		configuration.setAttribute("rememberAmbiguousMappingChoice", onlyAskOnceForAmbiguousMappings.getSelection());
 	}
 
 	@Override
@@ -400,7 +416,10 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			workingCopy.setAttribute("targetFile", "out.xmi");
 			
 			//set the direct paths only setting
-			workingCopy.setAttribute("directPathsOnly", false);
+			workingCopy.setAttribute("maxPathLength", -1);
+			
+			//set the ambiguous Mappings choice
+			workingCopy.setAttribute("rememberAmbiguousMappingChoice", true);
 			
 		} else {
 			return;

@@ -50,6 +50,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		
 		//get the settings
 		int maxPathLength=configuration.getAttribute("maxPathLength", -1);
+		boolean rememberAmbiguousMappingChoice=configuration.getAttribute("rememberAmbiguousMappingChoice", true);
 		
 		// if an xml source file shall be transformed, 
 		// add the file extension to registry 
@@ -81,6 +82,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 
 		GenericTransformationJob job = new GenericTransformationJob("GenTrans", root, pamtramFile, targetFile);
 		job.getGenTransRunner().setMaxPathLength(maxPathLength);
+		job.getGenTransRunner().setOnlyAskOnceOnAmbiguousMappings(rememberAmbiguousMappingChoice);
 
 		job.setUser(true);
 		job.schedule();

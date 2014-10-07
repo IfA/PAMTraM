@@ -17,6 +17,13 @@ import de.mfreund.gentrans.transformation.GenericTransformationRunner;
 public class GenericTransformationJob extends Job {
 	final GenericTransformationRunner genTransRunner;
 	/**
+	 * @return the genTransRunner
+	 */
+	public GenericTransformationRunner getGenTransRunner() {
+		return genTransRunner;
+	}
+
+	/**
 	 * @param jobName
 	 * @param sourceModel
 	 * @param pamtramPath
@@ -24,21 +31,10 @@ public class GenericTransformationJob extends Job {
 	 * @param maxPathlength
 	 */
 	public GenericTransformationJob(String jobName, EObject sourceModel,
-			String pamtramPath, String targetFilePath, int maxPathlength) {
+			String pamtramPath, String targetFilePath) {
 		super(jobName);
-		genTransRunner=new GenericTransformationRunner(sourceModel, pamtramPath, targetFilePath,maxPathlength);
+		genTransRunner=new GenericTransformationRunner(sourceModel, pamtramPath, targetFilePath);
 		setPriority(Job.BUILD);
-	}
-	
-	/**
-	 * @param jobName
-	 * @param sourceModel
-	 * @param pamtramPath
-	 * @param targetFilePath
-	 */
-	public GenericTransformationJob(String jobName , EObject sourceModel,
-			String pamtramPath, String targetFilePath){
-		this(jobName,sourceModel,pamtramPath,targetFilePath,-1);
 	}
 
 	/* (non-Javadoc)

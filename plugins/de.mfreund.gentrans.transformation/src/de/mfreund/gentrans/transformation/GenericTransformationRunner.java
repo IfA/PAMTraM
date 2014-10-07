@@ -70,19 +70,6 @@ import de.congrace.exp4j.ExpressionBuilder;
  * @version 0.9
  */
 public class GenericTransformationRunner {
-
-	/**
-	 * Constructor
-	 * @param sourceModel Root EObject of the source Model
-	 * @param pamtramPath Path to the transformation model
-	 * @param targetFilePath File path to the transformation target
-	 */
-	public GenericTransformationRunner(EObject sourceModel,
-			String pamtramPath, String targetFilePath) {
-		this(sourceModel,pamtramPath,targetFilePath,-1);		
-	}
-	
-	
 	/**
 	 * Constructor
 	 * @param sourceModel Root EObject of the source Model
@@ -91,13 +78,13 @@ public class GenericTransformationRunner {
 	 * @param maxPathLength (-1 == unbounded)
 	 */
 	public GenericTransformationRunner(EObject sourceModel,
-			String pamtramPath, String targetFilePath, int maxPathlength) {
+			String pamtramPath, String targetFilePath) {
 		super();
 		this.isCancelled=false;
 		this.sourceModel = sourceModel;
 		this.pamtramPath = pamtramPath;
 		this.targetFilePath=targetFilePath;
-		this.maxPathLength=maxPathlength;
+		this.maxPathLength=-1;
 		consoleStream=findConsole("de.mfreund.gentrans.transformation_" + this.hashCode()).newMessageStream();
 		this.objectsToCancel=new LinkedList<CancellationListener>();
 		// brings the console view to the front
@@ -139,9 +126,25 @@ public class GenericTransformationRunner {
 	private MessageConsoleStream consoleStream;
 	/**
 	 * Maximum length for connection paths maxPathLength<0 == unbounded
+	 * Standard value = -1
 	 */
 	private int maxPathLength;
 	
+	/**
+	 * @return the maxPathLength
+	 */
+	public int getMaxPathLength() {
+		return maxPathLength;
+	}
+
+
+	/**
+	 * @param maxPathLength the maxPathLength to set
+	 */
+	public void setMaxPathLength(int maxPathLength) {
+		this.maxPathLength = maxPathLength;
+	}
+
 	private boolean isCancelled;
 	
 	

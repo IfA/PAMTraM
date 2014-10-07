@@ -74,8 +74,7 @@ public class GenericTransformationRunner {
 	 * Constructor
 	 * @param sourceModel Root EObject of the source Model
 	 * @param pamtramPath Path to the transformation model
-	 * @param targetFilePath File path to the transformation target
-	 * @param maxPathLength (-1 == unbounded)
+	 * @param targetFilePath File path to the transformation target	
 	 */
 	public GenericTransformationRunner(EObject sourceModel,
 			String pamtramPath, String targetFilePath) {
@@ -85,6 +84,7 @@ public class GenericTransformationRunner {
 		this.pamtramPath = pamtramPath;
 		this.targetFilePath=targetFilePath;
 		this.maxPathLength=-1;
+		this.onlyAskOnceOnAmbiguousMappings=true;
 		consoleStream=findConsole("de.mfreund.gentrans.transformation_" + this.hashCode()).newMessageStream();
 		this.objectsToCancel=new LinkedList<CancellationListener>();
 		// brings the console view to the front
@@ -136,7 +136,29 @@ public class GenericTransformationRunner {
 	public int getMaxPathLength() {
 		return maxPathLength;
 	}
+	
+	/**
+	 * Determines wether the user should be asked every time an ambiguous mapping was deteced, or
+	 * if we should reuse user decisions.
+	 * standard value = true
+	 */
+	private boolean onlyAskOnceOnAmbiguousMappings;
 
+
+	/**
+	 * @return the onlyAskOnceOnAmbiguousMappings
+	 */
+	public boolean isOnlyAskOnceOnAmbiguousMappings() {
+		return onlyAskOnceOnAmbiguousMappings;
+	}
+
+	/**
+	 * @param onlyAskOnceOnAmbiguousMappings the onlyAskOnceOnAmbiguousMappings to set
+	 */
+	public void setOnlyAskOnceOnAmbiguousMappings(
+			boolean onlyAskOnceOnAmbiguousMappings) {
+		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
+	}
 
 	/**
 	 * @param maxPathLength the maxPathLength to set
@@ -333,7 +355,7 @@ public class GenericTransformationRunner {
 			// we currently try to map
 
 			MappingInstanceStorage selectedMapping = sourceSectionMapper
-					.findMapping(contRefsToMap);
+					.findMapping(contRefsToMap, onlyAskOnceOnAmbiguousMappings);
 			if(sourceSectionMapper.isCancelled()){
 				writePamtramMessage("Transformation aborted.");
 				return false;
@@ -1105,7 +1127,7 @@ public class GenericTransformationRunner {
 			// we currently try to map
 
 			MappingInstanceStorage selectedMapping = sourceSectionMapper
-					.findMapping(contRefsToMap);
+					.findMapping(contRefsToMap,onlyAskOnceOnAmbiguousMappings);
 			if(sourceSectionMapper.isCancelled()){
 				writePamtramMessage("Transformation aborted.");
 				return null;

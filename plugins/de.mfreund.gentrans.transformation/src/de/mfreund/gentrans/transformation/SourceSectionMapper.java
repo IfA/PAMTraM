@@ -1557,7 +1557,7 @@ class SourceSectionMapper implements CancellationListener {
 	 * @param contRefObjectsToMap
 	 * @return Hints and used source model elements for the , null if no mapping could be found
 	 */
-	MappingInstanceStorage findMapping(List<EObject> contRefObjectsToMap){		
+	MappingInstanceStorage findMapping(List<EObject> contRefObjectsToMap, boolean onlyAskOnceOnAmbiguousMappings){		
 		long start;//for statistics
 		long time;
 		
@@ -1607,7 +1607,7 @@ class SourceSectionMapper implements CancellationListener {
 					returnVal= mappingData.values().iterator().next();
 					break;
 				default:
-					if(ambiguousMappingSelections.containsKey(mappingData.keySet())){
+					if(onlyAskOnceOnAmbiguousMappings && ambiguousMappingSelections.containsKey(mappingData.keySet())){//only use past choices if this option is set
 						returnVal=mappingData.get(ambiguousMappingSelections.get(mappingData.keySet()));
 					} else {
 						Map<String,Mapping> names=new LinkedHashMap<String,Mapping>();

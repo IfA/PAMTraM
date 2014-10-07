@@ -10,7 +10,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
 import org.eclipse.core.runtime.jobs.IJobChangeListener;
-import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.model.ILaunchConfigurationDelegate;
@@ -80,7 +79,8 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		// get the root object of the xml resource
 		EObject root = sourceResource.getContents().get(0);
 
-		Job job = new GenericTransformationJob("GenTrans", root, pamtramFile, targetFile, maxPathLength); 
+		GenericTransformationJob job = new GenericTransformationJob("GenTrans", root, pamtramFile, targetFile);
+		job.getGenTransRunner().setMaxPathLength(maxPathLength);
 
 		job.setUser(true);
 		job.schedule();

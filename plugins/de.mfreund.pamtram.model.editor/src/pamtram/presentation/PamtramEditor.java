@@ -40,6 +40,7 @@ import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
@@ -1258,7 +1259,7 @@ public class PamtramEditor
 		// prevent errors when loading the model
 		EPackageHelper.checkInvolvedEPackages(
 				((IFileEditorInput) getEditorInput()).getFile(), 
-				getEditingDomain().getResourceSet().getPackageRegistry());
+				EPackage.Registry.INSTANCE);
 
 		// Creates the model from the editor input
 		//

@@ -275,7 +275,9 @@ public class PamtramEditorMainPage extends SashForm {
 					} else if(((TreeItem) e.item).getData() instanceof MappingHintGroupImporter){
 						currentMappingHintGroup=(MappingHintGroupImporter) ((TreeItem) e.item).getData();
 						mapping=(Mapping) currentMappingHintGroup.eContainer();
-						targets.add(((MappingHintGroupImporter)currentMappingHintGroup).getHintGroup().getTargetMMSection());	
+						if(((MappingHintGroupImporter)currentMappingHintGroup).getHintGroup() != null) {
+							targets.add(((MappingHintGroupImporter)currentMappingHintGroup).getHintGroup().getTargetMMSection());	
+						}
 						source=mapping.getSourceMMSection();
 						expanded.add(mapping);
 						expanded.add(currentMappingHintGroup);

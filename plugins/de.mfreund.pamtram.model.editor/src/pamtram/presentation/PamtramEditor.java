@@ -39,7 +39,6 @@ import org.eclipse.emf.common.ui.editor.ProblemEditorPart;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -104,6 +103,7 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
@@ -125,6 +125,7 @@ import pamtram.mapping.provider.MappingItemProviderAdapterFactory;
 import pamtram.metamodel.provider.MetamodelItemProviderAdapterFactory;
 import pamtram.provider.PamtramItemProviderAdapterFactory;
 import pamtram.transformation.provider.TransformationItemProviderAdapterFactory;
+import pamtram.util.EPackageHelper;
 
 
 /**
@@ -1252,6 +1253,13 @@ public class PamtramEditor
 	 */
 	@Override
 	public void createPages() {
+		
+		// try to register the ePackages involved in the pamtram model (if not already done) to 
+		// prevent errors when loading the model
+		EPackageHelper.checkInvolvedEPackages(
+				((IFileEditorInput) getEditorInput()).getFile(), 
+				getEditingDomain().getResourceSet().getPackageRegistry());
+
 		// Creates the model from the editor input
 		//
 		createModel();
@@ -1261,14 +1269,17 @@ public class PamtramEditor
 		if (!getEditingDomain().getResourceSet().getResources().isEmpty()) {
 			
 			// Get the Pamtram instance.
-			EList<Resource> resources = getEditingDomain().getResourceSet().getResources();
-			
-			if(!(resources.get(0).getContents().get(0) instanceof PAMTraM)) {
+			for (Resource resource : getEditingDomain().getResourceSet().getResources()) {
+				if(resource.getContents().get(0) instanceof PAMTraM) {
+					pamtram = (PAMTraM) resource.getContents().get(0);
+					break;
+				}
+			}
+			if(pamtram == null) {
 				MessageDialog.openError(getContainer().getShell(),
 						"Error", "The root element contained in the resource is no PAMTraM instance!");
 				return;
 			}
-			pamtram = (PAMTraM) resources.get(0).getContents().get(0);
 			
 			// Set the Pamtram content adapter.
 			pamtram.eAdapters().add(pamtramContentAdapter);

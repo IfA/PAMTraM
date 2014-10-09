@@ -209,6 +209,10 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 	 */
 	private void doFinish() {
 		
+		final boolean isSourceFileBased = ePackageSpecificationPage.isSourceFileBased();
+		final boolean isTargetFileBased = ePackageSpecificationPage.isTargetFileBased();
+		final String sourceEcorePath = ePackageSpecificationPage.getSourceEcorePath();
+		final String targetEcorePath = ePackageSpecificationPage.getTargetEcorePath();
 		
 		/*
 		 * Create the folders, create a pamtram model and copy the source model
@@ -222,8 +226,14 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 					
 					try {
 						// create the folders inside the project
-						String[] paths = { "Source", "Pamtram", "Target" }; 
-						ResourceHelper.addToProjectStructure(newProject.getProject(), paths);
+						if(isSourceFileBased || isTargetFileBased) {
+							ResourceHelper.addToProjectStructure(
+									newProject.getProject(), new String[]{ "metamodel", "Source", "Pamtram", "Target" });
+						} else {
+							ResourceHelper.addToProjectStructure(
+									newProject.getProject(), new String[]{ "Source", "Pamtram", "Target" });
+							
+						}
 					} catch (CoreException e) {
 						e.printStackTrace();
 						newProject = null;
@@ -238,6 +248,18 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 						ResourceHelper.copyFile(
 								new File(srcFile), "Source", newProject.getProject());
 						
+					}
+					
+					// copy the source ecore model if necessary
+					if(isSourceFileBased) {
+						ResourceHelper.copyFile(new File(sourceEcorePath), 
+								"metamodel", newProject.getProject());
+					}
+					
+					// copy the target ecore model if necessary
+					if(isTargetFileBased) {
+						ResourceHelper.copyFile(new File(targetEcorePath), 
+								"metamodel", newProject.getProject());
 					}
 					
 					progressMonitor.beginTask("Creating PAMTraM instance", 1);

@@ -1,11 +1,13 @@
 package de.mfreund.pamtram.pages;
 
 import java.io.File;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.PackageNotFoundException;
 import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 import org.eclipse.jface.preference.FileFieldEditor;
 import org.eclipse.jface.util.IPropertyChangeListener;
@@ -21,7 +23,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-import pamtram.presentation.pages.PamtramEPackageSpecificationPage;
+import pamtram.presentation.PamtramModelWizard;
 
 
 public class PamtramFileSpecificationPage extends WizardPage {
@@ -114,12 +116,17 @@ public class PamtramFileSpecificationPage extends WizardPage {
 					// Get the namespace Uri
 					nsUri = object.eClass().getEPackage().getNsURI();
 				} catch(Exception e) {
-					e.printStackTrace();
+					if(e.getCause() instanceof PackageNotFoundException && getWizard() instanceof PamtramModelWizard) {
+							// nothing needs to be done
+					} else {
+						e.printStackTrace();						
+					}
 				}
 				
-				// set the source ePackage to be used in the next wizard page
-				((PamtramEPackageSpecificationPage)(getNextPage()))
-						.setSourceEPackage(nsUri);
+				if(getWizard() instanceof PamtramModelWizard) {
+					// set the source ePackage to be used in the next wizard page
+					((PamtramModelWizard) getWizard()).getePackageSpecificationPage().setSourceEPackage(nsUri);
+				}
 				
 				wizContainer.updateButtons();
 			}

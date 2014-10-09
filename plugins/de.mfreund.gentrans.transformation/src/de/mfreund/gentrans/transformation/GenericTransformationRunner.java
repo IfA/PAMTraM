@@ -162,9 +162,10 @@ public class GenericTransformationRunner {
 
 	/**
 	 * @param maxPathLength the maxPathLength to set
+	 * (value must be larger or equal -1)
 	 */
 	public void setMaxPathLength(int maxPathLength) {
-		this.maxPathLength = maxPathLength;
+		this.maxPathLength = maxPathLength >= 0 ? maxPathLength : -1;
 	}
 
 	private boolean isCancelled;

@@ -246,8 +246,7 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 		pamtram.setSourceSectionModel(pamtramFactory.createSourceSectionModel());
 		// set the ePackage of the source section model
 		if(ePackageSpecificationPage.getSourceEPackage() != null) {
-			pamtram.getSourceSectionModel()
-			.setMetaModelPackage(ePackageSpecificationPage.getSourceEPackage());
+			pamtram.getSourceSectionModel().setMetaModelPackage(ePackageSpecificationPage.getSourceEPackage());
 		}
 		// add an  empty class to the source section model
 		SourceSectionClass  sourceClass = metamodelFactory.createSourceSectionClass();
@@ -258,8 +257,7 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 		pamtram.setTargetSectionModel(pamtramFactory.createTargetSectionModel());
 		// set the ePackage of the target section model
 		if(ePackageSpecificationPage.getTargetEPackage() != null) {
-			pamtram.getTargetSectionModel()
-			.setMetaModelPackage(ePackageSpecificationPage.getTargetEPackage());
+			pamtram.getTargetSectionModel().setMetaModelPackage(ePackageSpecificationPage.getTargetEPackage());
 		}
 		// add an empty class to the target section model
 		MappingHintGroup  mappingHintGroup = mappingFactory.createMappingHintGroup();
@@ -833,6 +831,10 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 	 */
 	public IFile getModelFile() {
 		return newFileCreationPage.getModelFile();
+	}
+	
+	public PamtramEPackageSpecificationPage getePackageSpecificationPage() {
+		return ePackageSpecificationPage;
 	}
 
 }

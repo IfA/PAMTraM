@@ -10,6 +10,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -17,6 +18,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
 
+import pamtram.util.EPackageHelper;
 import de.mfreund.gentrans.transformation.selectors.PamtramFileSelectorDialog;
 
 
@@ -35,6 +37,11 @@ public class GenTransFromXMISourceHandler extends AbstractHandler {
 	    	throw new ExecutionException("Selected element is not a resource!");
 	    }
 	    IFile file = (IFile) firstElement;
+	    
+	    // check the ePackages referenced in the pamtram file
+ 		if(!EPackageHelper.checkInvolvedEPackages(file, EPackage.Registry.INSTANCE)) {
+ 			throw new ExecutionException("One or more EPackages could not be loaded correctly.");
+ 		}
 	    
 		// Create a resource set. 
 		ResourceSet resourceSet = new ResourceSetImpl(); 

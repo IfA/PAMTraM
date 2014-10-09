@@ -3,9 +3,12 @@ package de.mfreund.pamtram.launching;
 import java.io.File;
 import java.util.Collections;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
@@ -15,6 +18,7 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.model.ILaunchConfigurationDelegate;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -25,6 +29,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
+import pamtram.util.EPackageHelper;
 import de.mfreund.gentrans.transformation.handler.GenericTransformationJob;
 import de.mfreund.pamtram.util.ResourceHelper;
 
@@ -51,6 +56,16 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		//get the settings
 		int maxPathLength=configuration.getAttribute("maxPathLength", -1);
 		boolean rememberAmbiguousMappingChoice=configuration.getAttribute("rememberAmbiguousMappingChoice", true);
+		
+		// check the ePackages referenced in the pamtram file
+		IWorkspace workspace = ResourcesPlugin.getWorkspace(); 
+		IPath location = Path.fromOSString(pamtramFile); 
+		IFile file = workspace.getRoot().getFileForLocation(location);
+		if(!EPackageHelper.checkInvolvedEPackages(file, EPackage.Registry.INSTANCE)) {
+			MessageDialog.openError(getShell(), "Error loading resource", 
+					"One or more EPackages could not be loaded correctly.");
+			return;
+		}
 		
 		// if an xml source file shall be transformed, 
 		// add the file extension to registry 

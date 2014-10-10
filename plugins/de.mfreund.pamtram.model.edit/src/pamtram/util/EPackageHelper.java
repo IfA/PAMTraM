@@ -62,6 +62,25 @@ public class EPackageHelper {
 			pamtram = (PAMTraM) contents.get(0);
 		}
 		
+		return checkInvolvedEPackages(pamtram, project, registry);
+	}
+	
+	/**
+	 * This determines the various ePackages involved in a PAMTraM model (source, target and context
+	 * packages) and checks if they are already registered. If this is not the case - this may usually
+	 * only happen if the ePackage is only backed by an ecore model and not by generated Java code - 
+	 * this function browses through the ecore models in the 'metamodel' folder of the project (if there
+	 * is any) and manually registers the ePackages if suitable ecore models are found.
+	 * 
+	 * @param pamtram the pamtram model to be checked.
+	 * @param project the project that holds the pamtram model.
+	 * @param registry the registry that the ePackages will be registered to; this could be the registry of a
+	 * 			resource set or the global package registry.
+	 * 
+	 * @return true if all involved packages have been registered, false otherwise or in case of an error.
+	 */
+	public static boolean checkInvolvedEPackages(PAMTraM pamtram, IProject project, Registry registry) {
+		
 		// a list that holds all ePackages that need to be checked
 		ArrayList<EPackage> ePackagesToCheck = new ArrayList<>();
 		ePackagesToCheck.add(pamtram.getSourceSectionModel().getMetaModelPackage());

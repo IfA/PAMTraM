@@ -104,13 +104,13 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
-import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.ide.IGotoMarker;
+import org.eclipse.ui.ide.ResourceUtil;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.MultiPageEditorPart;
 import org.eclipse.ui.views.contentoutline.ContentOutline;
@@ -1254,12 +1254,6 @@ public class PamtramEditor
 	 */
 	@Override
 	public void createPages() {
-		
-		// try to register the ePackages involved in the pamtram model (if not already done) to 
-		// prevent errors when loading the model
-		EPackageHelper.checkInvolvedEPackages(
-				((IFileEditorInput) getEditorInput()).getFile(), 
-				EPackage.Registry.INSTANCE);
 
 		// Creates the model from the editor input
 		//
@@ -1281,6 +1275,10 @@ public class PamtramEditor
 						"Error", "The root element contained in the resource is no PAMTraM instance!");
 				return;
 			}
+			
+			// Try to register missing ePackages.
+			//
+			registerEPackages();
 			
 			// Set the Pamtram content adapter.
 			pamtram.eAdapters().add(pamtramContentAdapter);
@@ -1336,6 +1334,28 @@ public class PamtramEditor
 					 updateProblemIndication();
 				 }
 			 });
+	}
+
+	/**
+	 * This checks if all ePackages involved in the pamtram model are registered. If not, it
+	 * tries to register them by scanning the project's 'metamodel' folder for suitable ecore
+	 * models. Any errors that might occur during this process will not be reflected in the
+	 * diagnostic map and will thus not be reflected in the editor. 
+	 */
+	private void registerEPackages() {
+		
+		// Create a backup of the diagnostic map.
+		Map<Resource, Diagnostic> backup = new HashMap<>(resourceToDiagnosticMap);
+		
+		// try to register the ePackages involved in the pamtram model (if not already done)
+		EPackageHelper.checkInvolvedEPackages(
+				pamtram,
+				ResourceUtil.getFile(getEditorInput()).getProject(),
+				EPackage.Registry.INSTANCE);
+		
+		// Reset the diagnostic map so that errors that occurred during the above operations are
+		// not reflected.
+		resourceToDiagnosticMap = backup;
 	}
 
 	/**

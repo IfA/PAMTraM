@@ -981,7 +981,7 @@
   </sourceSectionModel>
   <targetSectionModel>
     <metaModelPackage href="http://stefan-hennig.de/movisa/platform#/"/>
-    <metaModelSections name="OpcUaItem Sig/FuncInterface" cardinality="ZERO__INFINITY" container="//@targetSectionModel/@metaModelSections.27/@references.1/@value.0/@references.0/@value.0">
+    <metaModelSections name="OpcUaItem Sig/FuncInterface" cardinality="ZERO__INFINITY" container="//@targetSectionModel/@metaModelSections.29/@references.0/@value.0">
       <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/opcua/DataVariable"/>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="IsAccessedVia @ Double">
         <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/ServerDataItem/IsAccessedVia"/>
@@ -1042,7 +1042,7 @@
         <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections name="ChangeViewNavigationFlow" cardinality="ZERO__INFINITY" container="//@targetSectionModel/@metaModelSections.28">
+    <metaModelSections name="ChangeViewNavigationFlow" cardinality="ZERO__INFINITY" container="//@targetSectionModel/@metaModelSections.27">
       <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/ChangeViewNavigationFlow"/>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="navSource" value="//@targetSectionModel/@metaModelSections.6">
         <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/NavigationFlow/Source"/>
@@ -1074,13 +1074,13 @@
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="SignalOnChange" value="//@targetSectionModel/@metaModelSections.5">
         <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/DataItem/SignalOnChange"/>
       </references>
-      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Dimension" value="//@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.1/@value.0 //@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.1/@value.1 //@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.1/@value.2 //@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.1/@value.3">
+      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Dimension" value="//@targetSectionModel/@metaModelSections.28/@references.1/@value.0 //@targetSectionModel/@metaModelSections.28/@references.1/@value.1 //@targetSectionModel/@metaModelSections.28/@references.1/@value.2 //@targetSectionModel/@metaModelSections.28/@references.1/@value.3">
         <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/DataItem/Dimension"/>
       </references>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="DataType" value="//@targetSectionModel/@metaModelSections.26/@references.0/@value.0 //@targetSectionModel/@metaModelSections.26/@references.0/@value.2 //@targetSectionModel/@metaModelSections.26/@references.0/@value.3 //@targetSectionModel/@metaModelSections.26/@references.0/@value.1">
         <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/DataItem/Type"/>
       </references>
-      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="dummyDescription" value="//@targetSectionModel/@metaModelSections.28/@references.2/@value.0/@references.1/@value.0">
+      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="dummyDescription" value="//@targetSectionModel/@metaModelSections.27/@references.2/@value.0/@references.1/@value.0">
         <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/DataItem/Description"/>
       </references>
       <attributes xsi:type="metamodel:ActualAttribute" name="Logging" value="false">
@@ -1268,10 +1268,10 @@
             <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Representation/Color"/>
             <value name="Color">
               <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/Color"/>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="background" value="//@targetSectionModel/@metaModelSections.28/@references.0/@value.0/@references.0/@value.1">
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="background" value="//@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.0/@value.1">
                 <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Color/Background"/>
               </references>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="foreground" value="//@targetSectionModel/@metaModelSections.28/@references.0/@value.0/@references.0/@value.5">
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="foreground" value="//@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.0/@value.5">
                 <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Color/Foreground"/>
               </references>
               <attributes xsi:type="metamodel:ActualAttribute" name="TextLabelRepColorName">
@@ -1283,7 +1283,7 @@
             <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Representation/Border"/>
             <value name="Border">
               <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/Border"/>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="LineColor" value="//@targetSectionModel/@metaModelSections.28/@references.0/@value.0/@references.0/@value.6">
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="LineColor" value="//@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.0/@value.6">
                 <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Border/LineColor"/>
               </references>
               <references xsi:type="metamodel:TargetSectionContainmentReference" name="Padding">
@@ -1324,7 +1324,7 @@
               </attributes>
             </value>
           </references>
-          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Text" value="//@targetSectionModel/@metaModelSections.28/@references.2/@value.0/@references.1/@value.1">
+          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Text" value="//@targetSectionModel/@metaModelSections.27/@references.2/@value.0/@references.1/@value.1">
             <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/TextContainingWidgetRepresentation/Text"/>
           </references>
         </value>
@@ -1356,10 +1356,10 @@
                 <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/RepresentationAnimationRecord/PropertyToAnimate"/>
                 <value name="colorAnimationOn">
                   <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/Color"/>
-                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="background" value="//@targetSectionModel/@metaModelSections.28/@references.0/@value.0/@references.0/@value.0">
+                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="background" value="//@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.0/@value.0">
                     <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Color/Background"/>
                   </references>
-                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="foreground" value="//@targetSectionModel/@metaModelSections.28/@references.0/@value.0/@references.0/@value.5">
+                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="foreground" value="//@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.0/@value.5">
                     <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Color/Foreground"/>
                   </references>
                   <attributes xsi:type="metamodel:ActualAttribute" name="TextLabelColorAnimationOnName">
@@ -1368,10 +1368,10 @@
                 </value>
                 <value name="colorAnimationOff">
                   <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/Color"/>
-                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="background" value="//@targetSectionModel/@metaModelSections.28/@references.0/@value.0/@references.0/@value.1">
+                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="background" value="//@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.0/@value.1">
                     <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Color/Background"/>
                   </references>
-                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="foreground" value="//@targetSectionModel/@metaModelSections.28/@references.0/@value.0/@references.0/@value.5">
+                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="foreground" value="//@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.0/@value.5">
                     <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Color/Foreground"/>
                   </references>
                   <attributes xsi:type="metamodel:ActualAttribute" name="TextLabelColorAnimationOffName">
@@ -1568,10 +1568,10 @@
             <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Representation/Color"/>
             <value name="Color">
               <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/Color"/>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="foreground" value="//@targetSectionModel/@metaModelSections.28/@references.0/@value.0/@references.0/@value.6">
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="foreground" value="//@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.0/@value.6">
                 <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Color/Foreground"/>
               </references>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="background" value="//@targetSectionModel/@metaModelSections.28/@references.0/@value.0/@references.0/@value.10 //@targetSectionModel/@metaModelSections.28/@references.0/@value.0/@references.0/@value.11">
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="background" value="//@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.0/@value.10 //@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.0/@value.11">
                 <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Color/Background"/>
               </references>
               <attributes xsi:type="metamodel:ActualAttribute" name="TextLabelRepColorName" value="">
@@ -1583,7 +1583,7 @@
             <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Representation/Border"/>
             <value name="Border">
               <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/Border"/>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="LineColor" value="//@targetSectionModel/@metaModelSections.28/@references.0/@value.0/@references.0/@value.6">
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="LineColor" value="//@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.0/@value.6">
                 <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Border/LineColor"/>
               </references>
               <references xsi:type="metamodel:TargetSectionContainmentReference" name="Padding">
@@ -1640,7 +1640,7 @@
         <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/TextDefinition/TranslatedTextItem"/>
         <value name="TextItem">
           <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/TextItem"/>
-          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Language" value="//@targetSectionModel/@metaModelSections.28/@references.2/@value.0/@references.0/@value.0">
+          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Language" value="//@targetSectionModel/@metaModelSections.27/@references.2/@value.0/@references.0/@value.0">
             <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/TextItem/Language"/>
           </references>
           <attributes xsi:type="metamodel:ActualAttribute" name="TextDef Label value Value">
@@ -1806,10 +1806,10 @@
             <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Representation/Color"/>
             <value name="Color">
               <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/Color"/>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="background  (Out:Double)" value="//@targetSectionModel/@metaModelSections.28/@references.0/@value.0/@references.0/@value.5">
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="background  (Out:Double)" value="//@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.0/@value.5">
                 <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Color/Background"/>
               </references>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="foreground  (Out:Double)" value="//@targetSectionModel/@metaModelSections.28/@references.0/@value.0/@references.0/@value.6">
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="foreground  (Out:Double)" value="//@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.0/@value.6">
                 <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Color/Foreground"/>
               </references>
               <attributes xsi:type="metamodel:ActualAttribute" name="TextLabelRepColorName (Out:Double)">
@@ -1821,7 +1821,7 @@
             <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Representation/Border"/>
             <value name="Border">
               <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/Border"/>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="LineColor  (Out:Double)" value="//@targetSectionModel/@metaModelSections.28/@references.0/@value.0/@references.0/@value.6">
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="LineColor  (Out:Double)" value="//@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.0/@value.6">
                 <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Border/LineColor"/>
               </references>
               <references xsi:type="metamodel:TargetSectionContainmentReference" name="Padding">
@@ -1862,7 +1862,7 @@
               </attributes>
             </value>
           </references>
-          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Text  (Out:Double)" value="//@targetSectionModel/@metaModelSections.28/@references.2/@value.0/@references.1/@value.1">
+          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Text  (Out:Double)" value="//@targetSectionModel/@metaModelSections.27/@references.2/@value.0/@references.1/@value.1">
             <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/TextContainingWidgetRepresentation/Text"/>
           </references>
         </value>
@@ -2049,7 +2049,7 @@
             <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Representation/Border"/>
             <value name="Border">
               <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/Border"/>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="LineColor  (Out:Double)" value="//@targetSectionModel/@metaModelSections.28/@references.0/@value.0/@references.0/@value.6">
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="LineColor  (Out:Double)" value="//@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.0/@value.6">
                 <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Border/LineColor"/>
               </references>
               <references xsi:type="metamodel:TargetSectionContainmentReference" name="Padding">
@@ -2202,10 +2202,10 @@
             <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Representation/Color"/>
             <value name="Color">
               <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/Color"/>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="background" value="//@targetSectionModel/@metaModelSections.28/@references.0/@value.0/@references.0/@value.5">
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="background" value="//@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.0/@value.5">
                 <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Color/Background"/>
               </references>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="foreground" value="//@targetSectionModel/@metaModelSections.28/@references.0/@value.0/@references.0/@value.6">
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="foreground" value="//@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.0/@value.6">
                 <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Color/Foreground"/>
               </references>
               <attributes xsi:type="metamodel:ActualAttribute" name="TextLabelRepColorName">
@@ -2217,7 +2217,7 @@
             <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Representation/Border"/>
             <value name="Border">
               <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/Border"/>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="LineColor" value="//@targetSectionModel/@metaModelSections.28/@references.0/@value.0/@references.0/@value.6">
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="LineColor" value="//@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.0/@value.6">
                 <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Border/LineColor"/>
               </references>
               <references xsi:type="metamodel:TargetSectionContainmentReference" name="Padding">
@@ -2984,7 +2984,7 @@
               </attributes>
             </value>
           </references>
-          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="imgResource TODO" value="//@targetSectionModel/@metaModelSections.28/@references.1/@value.0/@references.0/@value.2 //@targetSectionModel/@metaModelSections.28/@references.1/@value.0/@references.0/@value.1 //@targetSectionModel/@metaModelSections.28/@references.1/@value.0/@references.0/@value.6 //@targetSectionModel/@metaModelSections.28/@references.1/@value.0/@references.0/@value.12 //@targetSectionModel/@metaModelSections.28/@references.1/@value.0/@references.0/@value.10">
+          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="imgResource TODO" value="//@targetSectionModel/@metaModelSections.27/@references.1/@value.0/@references.0/@value.2 //@targetSectionModel/@metaModelSections.27/@references.1/@value.0/@references.0/@value.1 //@targetSectionModel/@metaModelSections.27/@references.1/@value.0/@references.0/@value.6 //@targetSectionModel/@metaModelSections.27/@references.1/@value.0/@references.0/@value.12 //@targetSectionModel/@metaModelSections.27/@references.1/@value.0/@references.0/@value.10">
             <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/ImageContainingWidgetRepresentation/ImageResource"/>
           </references>
         </value>
@@ -3155,7 +3155,7 @@
         <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections name="FixedImage StationImage" container="//@targetSectionModel/@metaModelSections.28/@references.1/@value.0">
+    <metaModelSections name="FixedImage StationImage" container="//@targetSectionModel/@metaModelSections.27/@references.1/@value.0">
       <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/FixedImage"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name" unique="true" value="">
         <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
@@ -3245,192 +3245,6 @@
         </value>
       </references>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Algorithm Model">
-        <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
-      </attributes>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
-        <attribute href="http://stefan-hennig.de/movisa/platform#//CommentedMovisaModelElement/Comment"/>
-      </attributes>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Author" value="AutoProBe">
-        <attribute href="http://stefan-hennig.de/movisa/platform#//MovisaModel/Author"/>
-      </attributes>
-      <attributes xsi:type="metamodel:ActualAttribute" name="MovisaBuildVersion" value="@(#)&lt;label> (on: &lt;date>)@">
-        <attribute href="http://stefan-hennig.de/movisa/platform#//MovisaModel/MovisaBuildVersion"/>
-      </attributes>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Version" value="1.0">
-        <attribute href="http://stefan-hennig.de/movisa/platform#//MovisaModel/Version"/>
-      </attributes>
-    </metaModelSections>
-    <metaModelSections name="ClientDataModel">
-      <eClass href="http://stefan-hennig.de/movisa/platform#//ClientDataModel"/>
-      <references xsi:type="metamodel:TargetSectionContainmentReference" name="LogicalDataPerspective">
-        <eReference href="http://stefan-hennig.de/movisa/platform#//ClientDataModel/LogicalDataPerspective"/>
-        <value name="LogicalDataPerspective">
-          <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/LogicalDataPerspective"/>
-          <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedDataItem">
-            <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/LogicalDataPerspective/OwnedDataItem"/>
-            <value name="DataItem (dummy)">
-              <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/DataItem"/>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Dimension" value="//@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.1/@value.0">
-                <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/DataItem/Dimension"/>
-              </references>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Type" value="//@targetSectionModel/@metaModelSections.26/@references.0/@value.0">
-                <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/DataItem/Type"/>
-              </references>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="dummyDescription" value="//@targetSectionModel/@metaModelSections.28/@references.2/@value.0/@references.1/@value.0">
-                <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/DataItem/Description"/>
-              </references>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="dummyDataItem">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
-              </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Logging" value="true">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/DataItem/Logging"/>
-              </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="MaxAge" value="0">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/DataItem/MaxAge"/>
-              </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="MaxValue" value="1.0">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/DataItem/MaxValue"/>
-              </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="MinValue" value="0.0">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/DataItem/MinValue"/>
-              </attributes>
-            </value>
-          </references>
-          <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedDimension">
-            <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/LogicalDataPerspective/OwnedDimension"/>
-            <value name="Dimension standardBooleanDimension">
-              <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension"/>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="standardBooleanDimension">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
-              </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Factor" value="1.0">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension/Factor"/>
-              </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="FractionDigits" value="0">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension/FractionDigits"/>
-              </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Unit">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension/Unit"/>
-              </attributes>
-            </value>
-            <value name="Dimension standardDoubleDimension">
-              <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension"/>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="standardDoubleDimension">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
-              </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Factor" value="1.0">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension/Factor"/>
-              </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="FractionDigits" value="2">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension/FractionDigits"/>
-              </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Unit">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension/Unit"/>
-              </attributes>
-            </value>
-            <value name="Dimension standardIntegerDimension">
-              <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension"/>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="standardIntegerDimension">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
-              </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension/Factor"/>
-              </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension/FractionDigits"/>
-              </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Unit">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension/Unit"/>
-              </attributes>
-            </value>
-            <value name="Dimension standardStringDimension">
-              <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension"/>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="standardStringDimension">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
-              </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Factor" value="1.0">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension/Factor"/>
-              </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="FractionDigits" value="0">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension/FractionDigits"/>
-              </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Unit">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension/Unit"/>
-              </attributes>
-            </value>
-          </references>
-          <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedSubscription">
-            <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/LogicalDataPerspective/OwnedSubscription"/>
-            <value name="Subscription &quot;opcUaDataItemSubscription&quot;">
-              <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/Subscription"/>
-              <references xsi:type="metamodel:TargetSectionContainmentReference" name="dummyMonitoredItem">
-                <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/Subscription/OwnedMonitoredItem"/>
-                <value name="dummyItem">
-                  <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/MonitoredItem"/>
-                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="DummyItem" value="//@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.0/@value.0">
-                    <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/MonitoredItem/DataItemToMonitor"/>
-                  </references>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="Dummy_monitored" value="Dummy_monitored">
-                    <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
-                  </attributes>
-                </value>
-              </references>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="opcUaDataItemSubscription">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
-              </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="PublishingInterval" value="500">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/Subscription/PublishingInterval"/>
-              </attributes>
-            </value>
-          </references>
-        </value>
-      </references>
-      <references xsi:type="metamodel:TargetSectionContainmentReference" name="TechnicalDataPerspective">
-        <eReference href="http://stefan-hennig.de/movisa/platform#//ClientDataModel/TechnicalDataPerspective"/>
-        <value name="TechnicalDataPerspective">
-          <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/TechnicalDataPerspective"/>
-          <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedServer">
-            <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/TechnicalDataPerspective/OwnedServer"/>
-            <value name="OpcUaServer">
-              <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/opcua/OpcUaServer"/>
-              <references xsi:type="metamodel:TargetSectionContainmentReference" name="dummyVariable">
-                <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/opcua/OpcUaServer/OwnedUaItem"/>
-                <value name="OpcUaItem Sig/FuncInterface" container="//@targetSectionModel/@metaModelSections.27/@references.1/@value.0/@references.0/@value.0">
-                  <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/opcua/DataVariable"/>
-                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="IsAccessedVia" value="//@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.0/@value.0">
-                    <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/ServerDataItem/IsAccessedVia"/>
-                  </references>
-                  <references xsi:type="metamodel:TargetSectionContainmentReference" name="dataType">
-                    <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/opcua/DataVariable/DataType"/>
-                    <value name="Boolean">
-                      <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/opcua/Boolean"/>
-                      <attributes xsi:type="metamodel:ActualAttribute" name="Name == Boolean" value="Boolean">
-                        <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
-                      </attributes>
-                    </value>
-                  </references>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="BrowseName" value="dummy">
-                    <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/opcua/OpcUaItem/BrowseName"/>
-                  </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="BrowsePath" value="/dummy">
-                    <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/opcua/OpcUaItem/BrowsePath"/>
-                  </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="dummyVariable">
-                    <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
-                  </attributes>
-                </value>
-              </references>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="cirosUaServer">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
-              </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Url" value="http://localhost:5001">
-                <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/Server/Url"/>
-              </attributes>
-            </value>
-          </references>
-        </value>
-      </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Client Data Model">
         <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
       </attributes>
       <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
@@ -3751,7 +3565,7 @@
                 <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/TextDefinition/TranslatedTextItem"/>
                 <value name="TextItem">
                   <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/TextItem"/>
-                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Language" value="//@targetSectionModel/@metaModelSections.28/@references.2/@value.0/@references.0/@value.0">
+                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Language" value="//@targetSectionModel/@metaModelSections.27/@references.2/@value.0/@references.0/@value.0">
                     <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/TextItem/Language"/>
                   </references>
                   <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="someValue">
@@ -3769,7 +3583,7 @@
                 <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/TextDefinition/TranslatedTextItem"/>
                 <value name="TextItem">
                   <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/TextItem"/>
-                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Language" value="//@targetSectionModel/@metaModelSections.28/@references.2/@value.0/@references.0/@value.0">
+                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Language" value="//@targetSectionModel/@metaModelSections.27/@references.2/@value.0/@references.0/@value.0">
                     <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/TextItem/Language"/>
                   </references>
                   <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="0.0">
@@ -3787,7 +3601,7 @@
                 <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/TextDefinition/TranslatedTextItem"/>
                 <value name="TextItem">
                   <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/TextItem"/>
-                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Language" value="//@targetSectionModel/@metaModelSections.28/@references.2/@value.0/@references.0/@value.0">
+                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Language" value="//@targetSectionModel/@metaModelSections.27/@references.2/@value.0/@references.0/@value.0">
                     <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/TextItem/Language"/>
                   </references>
                   <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="Checkbox">
@@ -3806,7 +3620,7 @@
         <eReference href="http://stefan-hennig.de/movisa/platform#//PresentationModel/OwnedNavigationFlow"/>
         <value name="NewViewNavFlow">
           <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/NewViewNavigationFlow"/>
-          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="source" value="//@targetSectionModel/@metaModelSections.28/@references.4/@value.0">
+          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="source" value="//@targetSectionModel/@metaModelSections.27/@references.4/@value.0">
             <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/NavigationFlow/Source"/>
           </references>
           <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="target" value="//@targetSectionModel/@metaModelSections.6">
@@ -3836,15 +3650,178 @@
         <attribute href="http://stefan-hennig.de/movisa/platform#//MovisaModel/Version"/>
       </attributes>
     </metaModelSections>
+    <metaModelSections name="LogicalDataPerspective">
+      <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/LogicalDataPerspective"/>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedDataItem">
+        <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/LogicalDataPerspective/OwnedDataItem"/>
+        <value name="DataItem (dummy)">
+          <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/DataItem"/>
+          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Dimension" value="//@targetSectionModel/@metaModelSections.28/@references.1/@value.0">
+            <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/DataItem/Dimension"/>
+          </references>
+          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Type" value="//@targetSectionModel/@metaModelSections.26/@references.0/@value.0">
+            <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/DataItem/Type"/>
+          </references>
+          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="dummyDescription" value="//@targetSectionModel/@metaModelSections.27/@references.2/@value.0/@references.1/@value.0">
+            <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/DataItem/Description"/>
+          </references>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="dummyDataItem">
+            <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Logging" value="true">
+            <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/DataItem/Logging"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="MaxAge" value="0">
+            <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/DataItem/MaxAge"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="MaxValue" value="1.0">
+            <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/DataItem/MaxValue"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="MinValue" value="0.0">
+            <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/DataItem/MinValue"/>
+          </attributes>
+        </value>
+      </references>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedDimension">
+        <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/LogicalDataPerspective/OwnedDimension"/>
+        <value name="Dimension standardBooleanDimension">
+          <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension"/>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="standardBooleanDimension">
+            <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Factor" value="1.0">
+            <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension/Factor"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="FractionDigits" value="0">
+            <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension/FractionDigits"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Unit">
+            <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension/Unit"/>
+          </attributes>
+        </value>
+        <value name="Dimension standardDoubleDimension">
+          <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension"/>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="standardDoubleDimension">
+            <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Factor" value="1.0">
+            <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension/Factor"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="FractionDigits" value="2">
+            <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension/FractionDigits"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Unit">
+            <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension/Unit"/>
+          </attributes>
+        </value>
+        <value name="Dimension standardIntegerDimension">
+          <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension"/>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="standardIntegerDimension">
+            <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute">
+            <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension/Factor"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute">
+            <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension/FractionDigits"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Unit">
+            <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension/Unit"/>
+          </attributes>
+        </value>
+        <value name="Dimension standardStringDimension">
+          <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension"/>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="standardStringDimension">
+            <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Factor" value="1.0">
+            <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension/Factor"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="FractionDigits" value="0">
+            <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension/FractionDigits"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Unit">
+            <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension/Unit"/>
+          </attributes>
+        </value>
+      </references>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedSubscription">
+        <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/LogicalDataPerspective/OwnedSubscription"/>
+        <value name="Subscription &quot;opcUaDataItemSubscription&quot;">
+          <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/Subscription"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="dummyMonitoredItem">
+            <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/Subscription/OwnedMonitoredItem"/>
+            <value name="dummyItem">
+              <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/MonitoredItem"/>
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="DummyItem" value="//@targetSectionModel/@metaModelSections.28/@references.0/@value.0">
+                <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/MonitoredItem/DataItemToMonitor"/>
+              </references>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Dummy_monitored" value="Dummy_monitored">
+                <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+              </attributes>
+            </value>
+          </references>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="opcUaDataItemSubscription">
+            <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="PublishingInterval" value="500">
+            <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/Subscription/PublishingInterval"/>
+          </attributes>
+        </value>
+      </references>
+    </metaModelSections>
+    <metaModelSections name="TechnicalDataPerspective">
+      <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/TechnicalDataPerspective"/>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedServer">
+        <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/TechnicalDataPerspective/OwnedServer"/>
+        <value name="OpcUaServer">
+          <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/opcua/OpcUaServer"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="dummyVariable">
+            <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/opcua/OpcUaServer/OwnedUaItem"/>
+            <value name="OpcUaItem Sig/FuncInterface" container="//@targetSectionModel/@metaModelSections.29/@references.0/@value.0">
+              <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/opcua/DataVariable"/>
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="IsAccessedVia" value="//@targetSectionModel/@metaModelSections.28/@references.0/@value.0">
+                <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/ServerDataItem/IsAccessedVia"/>
+              </references>
+              <references xsi:type="metamodel:TargetSectionContainmentReference" name="dataType">
+                <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/opcua/DataVariable/DataType"/>
+                <value name="Boolean">
+                  <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/opcua/Boolean"/>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Name == Boolean" value="Boolean">
+                    <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+                  </attributes>
+                </value>
+              </references>
+              <attributes xsi:type="metamodel:ActualAttribute" name="BrowseName" value="dummy">
+                <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/opcua/OpcUaItem/BrowseName"/>
+              </attributes>
+              <attributes xsi:type="metamodel:ActualAttribute" name="BrowsePath" value="/dummy">
+                <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/opcua/OpcUaItem/BrowsePath"/>
+              </attributes>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="dummyVariable">
+                <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+              </attributes>
+            </value>
+          </references>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="cirosUaServer">
+            <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+          </attributes>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Url" value="http://localhost:5001">
+            <attribute href="http://stefan-hennig.de/movisa/platform#//clientdata/Server/Url"/>
+          </attributes>
+        </value>
+      </references>
+    </metaModelSections>
   </targetSectionModel>
   <mappingModel>
     <mapping name="Movisa Template" sourceMMSection="//@sourceSectionModel/@metaModelSections.0">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="PresentationModel" targetMMSection="//@targetSectionModel/@metaModelSections.28">
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="initfialFlowTarget" affectedReference="//@targetSectionModel/@metaModelSections.28/@references.3/@value.0/@references.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="PresentationModel" targetMMSection="//@targetSectionModel/@metaModelSections.27">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="initfialFlowTarget" affectedReference="//@targetSectionModel/@metaModelSections.27/@references.3/@value.0/@references.1">
           <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" name="initial Panel" source="//@sourceSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
         </mappingHints>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Client Data Model" targetMMSection="//@targetSectionModel/@metaModelSections.27"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="LDP" targetMMSection="//@targetSectionModel/@metaModelSections.28"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TDP" targetMMSection="//@targetSectionModel/@metaModelSections.29"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Algorithm Model" targetMMSection="//@targetSectionModel/@metaModelSections.26"/>
       <mappingHintGroups xsi:type="mapping:ExportedMappingHintGroup" name="AbstractNavFlows" targetMMSection="//@targetSectionModel/@metaModelSections.8">
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="NavFlowTrigger" affectedReference="//@targetSectionModel/@metaModelSections.8/@references.2">
@@ -3890,7 +3867,7 @@
           <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.26/@references.0/@value.3"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Dimension" affectedReference="//@targetSectionModel/@metaModelSections.11/@references.1">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.1/@value.3"/>
+          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.28/@references.1/@value.3"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="MonitoredItem String" targetMMSection="//@targetSectionModel/@metaModelSections.12">
@@ -3921,7 +3898,7 @@
           <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.26/@references.0/@value.0"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Dimension" affectedReference="//@targetSectionModel/@metaModelSections.11/@references.1">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.1/@value.0"/>
+          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.28/@references.1/@value.0"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="MonitoredItem Boolean" targetMMSection="//@targetSectionModel/@metaModelSections.12">
@@ -3973,7 +3950,7 @@
           <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.26/@references.0/@value.1"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Dimension" affectedReference="//@targetSectionModel/@metaModelSections.11/@references.1">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.1/@value.2"/>
+          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.28/@references.1/@value.2"/>
         </mappingHints>
       </mappingHintGroups>
     </mapping>
@@ -4004,7 +3981,7 @@
           <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.26/@references.0/@value.2"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Dimension" affectedReference="//@targetSectionModel/@metaModelSections.11/@references.1">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.1/@value.1"/>
+          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.28/@references.1/@value.1"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="MonitoredItem Double" targetMMSection="//@targetSectionModel/@metaModelSections.12">
@@ -4038,7 +4015,7 @@
           <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.26/@references.0/@value.0"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Dimension" affectedReference="//@targetSectionModel/@metaModelSections.11/@references.1">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.1/@value.0"/>
+          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.28/@references.1/@value.0"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal Bool" targetMMSection="//@targetSectionModel/@metaModelSections.5">
@@ -4055,15 +4032,15 @@
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Panel" targetMMSection="//@targetSectionModel/@metaModelSections.6">
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="id2PanelName" target="//@targetSectionModel/@metaModelSections.6/@attributes.0" source="//@sourceSectionModel/@metaModelSections.4/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
       </mappingHintGroups>
-      <importedMappingHintGroups name="InheritedFlows" hintGroup="//@mappingModel/@mapping.0/@mappingHintGroups.3">
+      <importedMappingHintGroups name="InheritedFlows" hintGroup="//@mappingModel/@mapping.0/@mappingHintGroups.4">
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="sourcePanel" affectedReference="//@targetSectionModel/@metaModelSections.8/@references.0">
           <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" source="//@sourceSectionModel/@metaModelSections.4/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappedAttributeValuePrepender" name="Add State id" sourceAttribute="//@sourceSectionModel/@metaModelSections.4/@attributes.0" modifiers="//@mappingModel/@modifierSets.4 //@mappingModel/@modifierSets.2" hintsToExpand="//@mappingModel/@mapping.0/@mappingHintGroups.3/@mappingHints.1"/>
-        <mappingHints xsi:type="mapping:MappedAttributeValuePrepender" name="id" sourceAttribute="//@sourceSectionModel/@metaModelSections.4/@attributes.0" modifiers="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.2" hintsToExpand="//@mappingModel/@mapping.0/@mappingHintGroups.3/@mappingHints.0/@matcher"/>
+        <mappingHints xsi:type="mapping:MappedAttributeValuePrepender" name="Add State id" sourceAttribute="//@sourceSectionModel/@metaModelSections.4/@attributes.0" modifiers="//@mappingModel/@modifierSets.4 //@mappingModel/@modifierSets.2" hintsToExpand="//@mappingModel/@mapping.0/@mappingHintGroups.4/@mappingHints.1"/>
+        <mappingHints xsi:type="mapping:MappedAttributeValuePrepender" name="id" sourceAttribute="//@sourceSectionModel/@metaModelSections.4/@attributes.0" modifiers="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.2" hintsToExpand="//@mappingModel/@mapping.0/@mappingHintGroups.4/@mappingHints.0/@matcher"/>
       </importedMappingHintGroups>
-      <importedMappingHintGroups name="Inherited NavFlowTriggers" hintGroup="//@mappingModel/@mapping.0/@mappingHintGroups.4">
-        <mappingHints xsi:type="mapping:MappedAttributeValuePrepender" name="id" sourceAttribute="//@sourceSectionModel/@metaModelSections.4/@attributes.0" modifiers="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.2" hintsToExpand="//@mappingModel/@mapping.0/@mappingHintGroups.4/@mappingHints.0"/>
+      <importedMappingHintGroups name="Inherited NavFlowTriggers" hintGroup="//@mappingModel/@mapping.0/@mappingHintGroups.5">
+        <mappingHints xsi:type="mapping:MappedAttributeValuePrepender" name="id" sourceAttribute="//@sourceSectionModel/@metaModelSections.4/@attributes.0" modifiers="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.2" hintsToExpand="//@mappingModel/@mapping.0/@mappingHintGroups.5/@mappingHints.0"/>
       </importedMappingHintGroups>
     </mapping>
     <mapping name="Transitions" sourceMMSection="//@sourceSectionModel/@metaModelSections.5">
@@ -4222,7 +4199,7 @@
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.25 //@mappingModel/@modifierSets.2"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="backGroundColor" affectedReference="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.5/@value.0/@references.1">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.28/@references.0/@value.0/@references.0/@value.11"/>
+          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.0/@value.11"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="TextLabelRepBorderName" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.6/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.8/@attributes.5" modifier="//@mappingModel/@modifierSets.31 //@mappingModel/@modifierSets.2"/>
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="Border Padding Name" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.6/@value.0/@references.1/@value.0/@attributes.2">
@@ -4803,7 +4780,7 @@
           <variables xsi:type="mapping:ExternalExpressionVariable" name="h" source="//@sourceSectionModel/@metaModelSections.19/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="imgResource" affectedReference="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.4">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.28/@references.1/@value.0/@references.0/@value.2"/>
+          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.27/@references.1/@value.0/@references.0/@value.2"/>
         </mappingHints>
         <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="Image">
           <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
@@ -4871,7 +4848,7 @@
           <variables xsi:type="mapping:ExternalExpressionVariable" name="h" source="//@sourceSectionModel/@metaModelSections.14/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="imgResource" affectedReference="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.4">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.28/@references.1/@value.0/@references.0/@value.1"/>
+          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.27/@references.1/@value.0/@references.0/@value.1"/>
         </mappingHints>
         <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="Image">
           <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
@@ -4940,7 +4917,7 @@
           <variables xsi:type="mapping:ExternalExpressionVariable" name="h" source="//@sourceSectionModel/@metaModelSections.19/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="imgResource" affectedReference="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.4">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.28/@references.1/@value.0/@references.0/@value.6"/>
+          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.27/@references.1/@value.0/@references.0/@value.6"/>
         </mappingHints>
         <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="Image">
           <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
@@ -5012,7 +4989,7 @@
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.2 //@mappingModel/@modifierSets.30"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="backGroundColor" affectedReference="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.5/@value.0/@references.1">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.28/@references.0/@value.0/@references.0/@value.11"/>
+          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.0/@value.11"/>
         </mappingHints>
         <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="TextLabel Bool:Out">
           <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
@@ -5160,7 +5137,7 @@
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.2 //@mappingModel/@modifierSets.30"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="backGroundColor" affectedReference="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.5/@value.0/@references.1">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.28/@references.0/@value.0/@references.0/@value.10"/>
+          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.27/@references.0/@value.0/@references.0/@value.10"/>
         </mappingHints>
         <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="TextLabel Bool:Out">
           <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
@@ -5229,7 +5206,7 @@
           <variables xsi:type="mapping:ExternalExpressionVariable" name="h" source="//@sourceSectionModel/@metaModelSections.19/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="imgResource" affectedReference="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.4">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.28/@references.1/@value.0/@references.0/@value.10"/>
+          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.27/@references.1/@value.0/@references.0/@value.10"/>
         </mappingHints>
         <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="Image">
           <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>

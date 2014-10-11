@@ -1,5 +1,6 @@
 package de.mfreund.gentrans.transformation;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -58,7 +59,7 @@ import pamtram.metamodel.SourceSectionContainmentReference;
 import pamtram.metamodel.SourceSectionReference;
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
-import de.mfreund.gentrans.transformation.selectors.ItemSelectorDialogRunner;
+import de.mfreund.gentrans.transformation.selectors.NamedElementItemSelectorDialogRunner;
 
 /**
  * Class to map source model Objects to source sections and find values for mapping hints.
@@ -1610,21 +1611,17 @@ class SourceSectionMapper implements CancellationListener {
 					if(onlyAskOnceOnAmbiguousMappings && ambiguousMappingSelections.containsKey(mappingData.keySet())){//only use past choices if this option is set
 						returnVal=mappingData.get(ambiguousMappingSelections.get(mappingData.keySet()));
 					} else {
-						Map<String,Mapping> names=new LinkedHashMap<String,Mapping>();
-						for(Mapping m: mappingData.keySet()){
-							names.put( m.getName()+  " (" + m.hashCode()+ ")", m);
-						}
 						if(transformationAborted) return null;
-						ItemSelectorDialogRunner dialog= new ItemSelectorDialogRunner("Please select a Mapping for the source element\n'" 
+						NamedElementItemSelectorDialogRunner<Mapping> dialog= new NamedElementItemSelectorDialogRunner<Mapping>("Please select a Mapping for the source element\n'" 
 								+  EObjectTransformationHelper.asString(element) + "'" , 
-											names.keySet(), names.keySet().iterator().next());
+											new ArrayList<Mapping>(mappingData.keySet()), 0);
 								Display.getDefault().syncExec(dialog);
 								if(dialog.wasTransformationStopRequested()){
 									transformationAborted=true;
 									return null;
 								}
-								returnVal= mappingData.get(names.get(dialog.getSelection()));
-								ambiguousMappingSelections.put(mappingData.keySet(), names.get(dialog.getSelection()));
+								returnVal= mappingData.get(mappingData.get(dialog.getSelection()));
+								ambiguousMappingSelections.put(mappingData.keySet(), dialog.getSelection());
 					}
 			}	
 			

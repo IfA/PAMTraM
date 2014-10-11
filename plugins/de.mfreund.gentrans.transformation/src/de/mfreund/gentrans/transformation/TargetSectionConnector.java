@@ -21,7 +21,7 @@ import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.SimpleModelConnectionHint;
 import pamtram.metamodel.TargetSectionClass;
-import de.mfreund.gentrans.transformation.selectors.ItemSelectorDialogRunner;
+import de.mfreund.gentrans.transformation.selectors.GenericItemSelectorDialogRunner;
 import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunner;
 
 /**
@@ -219,13 +219,8 @@ class TargetSectionConnector implements CancellationListener{
 				} else if (contInstsByHintVal.get(hintVal).size() > 1) {// let
 																		// user
 																		// decide
-					LinkedHashMap<String, EObjectTransformationHelper> containerDescriptions = new LinkedHashMap<String, EObjectTransformationHelper>();
-					for (EObjectTransformationHelper contInst : contInstsByHintVal.get(hintVal)) {
-						containerDescriptions
-								.put(contInst.toString(), contInst);
-					}
 					if(transformationAborted) return;
-					ItemSelectorDialogRunner dialog=new ItemSelectorDialogRunner("The ModelConnectionHint '"
+					GenericItemSelectorDialogRunner<EObjectTransformationHelper> dialog=new GenericItemSelectorDialogRunner<EObjectTransformationHelper>("The ModelConnectionHint '"
 									+ connectionHint.getName() + " (Mapping :" +mappingName +", Group: " + mappingGroupName + ")" 
 									+ "' points to a non-unique Attribute."
 									+ " Please choose under which elements " 
@@ -234,14 +229,14 @@ class TargetSectionConnector implements CancellationListener{
 											:  "this " + rootInstancesByHintVal.get(hintVal).size() + "element" )
 									+ " should be inserted.\n\n"
 									+ "Attribute value: " + hintVal,
-									containerDescriptions.keySet(), "");
+									new LinkedList<EObjectTransformationHelper>(contInstsByHintVal.get(hintVal)),0);
 					Display.getDefault().syncExec(dialog);
 					if(dialog.wasTransformationStopRequested()){
 						transformationAborted=true;
 						return;
 					}
 					rootInstancesByContainer.put(
-							containerDescriptions.get(dialog.getSelection()),
+							dialog.getSelection(),
 							rootInstancesByHintVal.get(hintVal));
 
 				} else {
@@ -273,14 +268,13 @@ class TargetSectionConnector implements CancellationListener{
 					}
 
 					// sort possible paths by path capacity
-					LinkedHashSet<ModelConnectionPath> pathsToConsider = new LinkedHashSet<ModelConnectionPath>();
+					LinkedList<ModelConnectionPath> pathsToConsider = new LinkedList<ModelConnectionPath>();
 					if (otherPathsNeeded) {
-						pathsToConsider = ModelConnectionPath.findPathsWithMinimumCapacity(targetSectionRegistry.getConnections(classToConnect, container.getEObject().eClass(), maxPathLength),
+						pathsToConsider.addAll(ModelConnectionPath.findPathsWithMinimumCapacity(targetSectionRegistry.getConnections(classToConnect, container.getEObject().eClass(), maxPathLength),
 								container.getEObject(),
-								rootInstancesByContainer.get(container).size());
+								rootInstancesByContainer.get(container).size()));
 
 					} else {
-						pathsToConsider = new LinkedHashSet<ModelConnectionPath>();
 						pathsToConsider.add(standardPaths.get(connectionHint));
 
 					}
@@ -290,22 +284,19 @@ class TargetSectionConnector implements CancellationListener{
 														// from
 						modelConnectionPath = pathsToConsider.iterator().next();
 					} else if (pathsToConsider.size() > 0) {// user decides
-						LinkedHashMap<String, ModelConnectionPath> pathNames = new LinkedHashMap<String, ModelConnectionPath>();
-						ModelConnectionPath standardPath = pathsToConsider.iterator().next();// get
+						ModelConnectionPath standardPath = pathsToConsider.get(0);// get
 																		// shortest
 																		// path
 
 						for (ModelConnectionPath p : pathsToConsider) {// prepare user
 														// selections
-							String name = p.toString();
 
-							pathNames.put(name, p);
 							if (p.size() < standardPath.size())
 								standardPath = p;// save shortest path
 						}
 						int instSize=rootInstancesByContainer.get(container).size();
 						if(transformationAborted) return ;
-						ItemSelectorDialogRunner dialog=new ItemSelectorDialogRunner(instSize 
+						GenericItemSelectorDialogRunner<ModelConnectionPath> dialog=new GenericItemSelectorDialogRunner<ModelConnectionPath>(instSize 
 										+ " Instance" + (instSize > 1 ? "s" : "")  +" of the TargetSection '"
 										+ section.getName()
 										+ "', created by the mapping '"
@@ -319,13 +310,13 @@ class TargetSectionConnector implements CancellationListener{
 										+ "Please choose one of the possible connections to other existing target model elements"
 										+ " below. Your selection will be remembered for the ConnectionHint '"
 										+ connectionHint.getName() + "'.",
-										pathNames.keySet(), standardPath.toString());
+										pathsToConsider, pathsToConsider.indexOf(standardPath));
 						Display.getDefault().syncExec(dialog);
 						if(dialog.wasTransformationStopRequested()){
 							transformationAborted=true;
 							return;
 						}
-						modelConnectionPath = pathNames.get(dialog.getSelection());
+						modelConnectionPath = dialog.getSelection();
 					} else {
 						consoleStream.println("Could not find a path that leads to the container specified by the ModelConnectionHint of " 
 								+ mappingName + "::" + mappingGroupName);
@@ -639,10 +630,10 @@ class TargetSectionConnector implements CancellationListener{
 				}
 				
 				
-				ItemSelectorDialogRunner dialog=new ItemSelectorDialogRunner( 
+				GenericItemSelectorDialogRunner<String> dialog=new GenericItemSelectorDialogRunner<String>( 
 						 "There was more than one target model element that could not be connected to a container element. Therefore "
 						+ "a container needs to be created. Please select a fitting container class:",
-						possibleContainers.keySet(), possibleContainers.keySet().iterator().next());
+						new LinkedList<String>(possibleContainers.keySet()), 0);
 				Display.getDefault().syncExec(dialog);
 				if(dialog.wasTransformationStopRequested()){
 					this.cancel();
@@ -672,18 +663,18 @@ class TargetSectionConnector implements CancellationListener{
 
 						//get paths with fitting capacity
 						int neededCapacity=unlinkeableElements.get(c).get(tSection).size();
-						Map<String,ModelConnectionPath> fittingPaths=new LinkedHashMap<String,ModelConnectionPath>();
+						LinkedList<ModelConnectionPath> fittingPaths=new LinkedList<ModelConnectionPath>();
 						for(ModelConnectionPath p : pathSet){
 							if(p.getCapacity(containerInstance)>=neededCapacity){
-								fittingPaths.put(p.toString(),p);
+								fittingPaths.add(p);
 							}
 						}
 
 						if(fittingPaths.size() > 0){
 							//get shortest path
-							ModelConnectionPath chosenPath=fittingPaths.values().iterator().next();
+							ModelConnectionPath chosenPath=fittingPaths.get(0);
 							int chosenPathSize=chosenPath.size();
-							for(ModelConnectionPath p : fittingPaths.values()){//get one of the shortest paths
+							for(ModelConnectionPath p : fittingPaths){//get one of the shortest paths
 								int pSize=p.size();
 								if(pSize<chosenPathSize){
 									chosenPath=p;
@@ -692,17 +683,17 @@ class TargetSectionConnector implements CancellationListener{
 							}
 
 							if(fittingPaths.size()>1){
-								ItemSelectorDialogRunner dialog=new ItemSelectorDialogRunner( 									
+								GenericItemSelectorDialogRunner<ModelConnectionPath> dialog=new GenericItemSelectorDialogRunner<ModelConnectionPath>( 									
 										"Please choose one of the possible connections for connecting the "
 												+ "instances of the target section '" + tSection.getName() + "' (EClass: '" + c.getName() + "') " 
 												+ " to the model root element of the type '" + containerClass.getName() +"'.",
-												fittingPaths.keySet(), chosenPath.toString());
+												fittingPaths, fittingPaths.indexOf(chosenPath));
 								Display.getDefault().syncExec(dialog);
 								if(dialog.wasTransformationStopRequested()){
 									transformationAborted=true;
 									return;
 								}
-								chosenPath = fittingPaths.get(dialog.getSelection());
+								chosenPath = dialog.getSelection();
 							}
 
 							//now instantiate path

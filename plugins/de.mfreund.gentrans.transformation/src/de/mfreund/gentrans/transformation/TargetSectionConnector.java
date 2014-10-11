@@ -579,6 +579,9 @@ class TargetSectionConnector implements CancellationListener{
 			if(unlinkeableElements.values().iterator().next().keySet().size()==1){//only one element could not be connected => we already have our container
 				if(unlinkeableElements.values().iterator().next().values().iterator().next().size()==1){
 					addToTargetModelRoot(unlinkeableElements.values().iterator().next().values().iterator().next().get(0));
+					consoleStream.println("Root element: The single instance of the target section '" 
+							+ unlinkeableElements.values().iterator().next().keySet().iterator().next().getName()
+							+ "'.");
 					return;
 				}
 			}
@@ -619,9 +622,9 @@ class TargetSectionConnector implements CancellationListener{
 				}
 			}
 		} else{
-			EClass containerClass;
+			EClass rootClass;
 			if(common.size()== 1){
-				containerClass=common.iterator().next();
+				rootClass=common.iterator().next();
 			} else {
 				Map<String,EClass> possibleContainers=new LinkedHashMap<String, EClass>();
 				
@@ -631,19 +634,22 @@ class TargetSectionConnector implements CancellationListener{
 				
 				
 				GenericItemSelectorDialogRunner<String> dialog=new GenericItemSelectorDialogRunner<String>( 
-						 "There was more than one target model element that could not be connected to a container element. Therefore "
-						+ "a container needs to be created. Please select a fitting container class:",
+						 "There was more than one target model element that could not be connected to a root element. Therefore "
+						+ "a model root element needs to be created. Please select a fitting class:",
 						new LinkedList<String>(possibleContainers.keySet()), 0);
 				Display.getDefault().syncExec(dialog);
 				if(dialog.wasTransformationStopRequested()){
 					this.cancel();
 					return;
 				}
-				containerClass=possibleContainers.get(dialog.getSelection());
-			}
+				rootClass=possibleContainers.get(dialog.getSelection());
+							}
 			
-			EObject containerInstance=containerClass.getEPackage().getEFactoryInstance().create(containerClass);
+			
+			EObject containerInstance=rootClass.getEPackage().getEFactoryInstance().create(rootClass);
 			addToTargetModelRoot(new EObjectTransformationHelper(containerInstance, targetSectionRegistry.getAttrValRegistry()));
+			consoleStream.println("Root element: '"+ rootClass.getName() + "' (generated)");
+
 			for(EClass c : unlinkeableElements.keySet()){
 				for(TargetSectionClass tSection : unlinkeableElements.get(c).keySet()){
 					/*
@@ -655,7 +661,7 @@ class TargetSectionConnector implements CancellationListener{
 					 * Therefore we will concentrate on using the shortest connection paths.
 					 * All we need to ask the user is which container to use.
 					 */
-					Set<ModelConnectionPath> pathSet=targetSectionRegistry.getConnections(c, containerClass, maxPathlength);
+					Set<ModelConnectionPath> pathSet=targetSectionRegistry.getConnections(c, rootClass, maxPathlength);
 					if(pathSet.size()<1){
 						addToTargetModelRoot(unlinkeableElements.get(c).get(tSection));//This should not have happened => programming error
 						consoleStream.println("Error. Check container instantiation");
@@ -686,7 +692,7 @@ class TargetSectionConnector implements CancellationListener{
 								GenericItemSelectorDialogRunner<ModelConnectionPath> dialog=new GenericItemSelectorDialogRunner<ModelConnectionPath>( 									
 										"Please choose one of the possible connections for connecting the "
 												+ "instances of the target section '" + tSection.getName() + "' (EClass: '" + c.getName() + "') " 
-												+ " to the model root element of the type '" + containerClass.getName() +"'.",
+												+ " to the model root element of the type '" + rootClass.getName() +"'.",
 												fittingPaths, fittingPaths.indexOf(chosenPath));
 								Display.getDefault().syncExec(dialog);
 								if(dialog.wasTransformationStopRequested()){
@@ -697,10 +703,11 @@ class TargetSectionConnector implements CancellationListener{
 							}
 
 							//now instantiate path
-							chosenPath.instantiate(containerInstance, unlinkeableElements.get(c).get(tSection));						
+							chosenPath.instantiate(containerInstance, unlinkeableElements.get(c).get(tSection));	
+							consoleStream.println("Connected to root: " + tSection.getName() +": " + chosenPath.toString());
 						} else {
 							consoleStream.println("The chosen container '"
-									+ containerClass.getName()
+									+ rootClass.getName()
 									+ "' cannot fit the elements of the type '"
 									+c.getName()
 									+"', sorry.");

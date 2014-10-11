@@ -5,7 +5,8 @@ Bundle-SymbolicName: de.mfreund.gentrans.transformation.selectors;singleton:=tru
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: de.mfreund.gentrans.transformation.selectors.Activator
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.jface
+ org.eclipse.jface,
+ de.mfreund.pamtram.model
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Export-Package: de.mfreund.gentrans.transformation.selectors

@@ -1,8 +1,7 @@
 package de.mfreund.gentrans.transformation.selectors;
 
 
-import java.util.Collection;
-
+import java.util.List;
 
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -12,30 +11,30 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
+import org.eclipse.swt.events.KeyAdapter;
+import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.layout.RowData;
+import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Dialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.layout.RowLayout;
-import org.eclipse.swt.layout.RowData;
-import org.eclipse.swt.events.KeyAdapter;
-import org.eclipse.swt.events.KeyEvent;
 
 public class ItemSelectorDialog extends Dialog{
 
 	protected Object result;
-	protected String selectedItem;
+	protected int selectedItem;
 	protected Shell shlPleaseSelectA;
-	private Collection<String> listItems;
+	private List<String> listItems;
 	private String message;
 	private GridData gd_dialogMessage;
 	private Label dialogMessage;
@@ -55,24 +54,15 @@ public class ItemSelectorDialog extends Dialog{
 	 * @param parent
 	 * @param style
 	 */
-	ItemSelectorDialog(Shell parent, String message, Collection<String> listItems, String standardSelection) {
+	ItemSelectorDialog(Shell parent, String message, List<String> listItems, int standardSelectionIndex) {
 		super(parent, SWT.CLOSE | SWT.MODELESS| SWT.BORDER | SWT.TITLE);
 		setText("SWT Dialog");
 		this.listItems=listItems;
 		this.message=message;
 		this.transformationStopRequested=false;
 		//we need to check if the value standardSelection is part of the selections list 
-		selectedItem=listItems.iterator().next();
-		standardSelectionIndex=0;
-		int ctr=0;
-		for(String item : listItems){
-			if(item.equals(standardSelection)){
-				selectedItem=standardSelection;
-				this.standardSelectionIndex=ctr;
-				break;
-			}
-			ctr++;
-		}
+		this.standardSelectionIndex = standardSelectionIndex>=0 ? standardSelectionIndex : 0;
+		selectedItem=this.standardSelectionIndex;
 	}
 
 	/**
@@ -96,7 +86,7 @@ public class ItemSelectorDialog extends Dialog{
 	 * Get Selection after dialog has finished, returns standardSelection if dialog not run
 	 * @return the selection
 	 */
-	public String getSelection(){
+	public int getSelection(){
 		
 		return selectedItem;
 	}
@@ -150,7 +140,7 @@ public class ItemSelectorDialog extends Dialog{
 		ListViewer listViewer = new ListViewer(grpPossiblePaths, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		listViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 			public void selectionChanged(SelectionChangedEvent event) {
-				selectedItem=listWidget.getSelection()[0];
+				selectedItem=listWidget.getSelectionIndex();
 				listWidget.showSelection();
 			}
 		});
@@ -170,7 +160,8 @@ public class ItemSelectorDialog extends Dialog{
 				}
 			}
 		});
-		listWidget.setItems(this.listItems.toArray(new String[1]));
+
+		listWidget.setItems(listItems.toArray(new String[listItems.size()]));
 		listWidget.setSelection(standardSelectionIndex);
 		listWidget.showSelection();
 
@@ -189,7 +180,7 @@ public class ItemSelectorDialog extends Dialog{
 		abortTransFormationButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				selectedItem=listWidget.getItem(standardSelectionIndex);
+				selectedItem=standardSelectionIndex;
 				transformationStopRequested=true;
 				shlPleaseSelectA.dispose();
 			}
@@ -228,7 +219,7 @@ public class ItemSelectorDialog extends Dialog{
 		btnAbort.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				selectedItem=listWidget.getItem(standardSelectionIndex);
+				selectedItem=standardSelectionIndex;
 				shlPleaseSelectA.dispose();
 			}
 		});

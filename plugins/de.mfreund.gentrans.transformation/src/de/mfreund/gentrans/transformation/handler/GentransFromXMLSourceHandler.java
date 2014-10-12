@@ -20,61 +20,68 @@ import org.eclipse.ui.handlers.HandlerUtil;
 
 import de.mfreund.gentrans.transformation.selectors.PamtramFileSelectorDialog;
 
-
+/**
+ * @author Sascha Steffen
+ * @version 1.0
+ *
+ *          Runs the GenTrans using an XML source
+ *
+ */
 public class GentransFromXMLSourceHandler extends AbstractHandler {
 
-
 	@Override
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-		
+	public Object execute(final ExecutionEvent event) throws ExecutionException {
+
 		// get the active selection
-		ISelection sel = HandlerUtil.getActiveMenuSelection(event);
-	    IStructuredSelection selection = (IStructuredSelection) sel;
+		final ISelection sel = HandlerUtil.getActiveMenuSelection(event);
+		final IStructuredSelection selection = (IStructuredSelection) sel;
 
-	    // get the first element of the active selection
-	    Object firstElement = selection.getFirstElement();
-	    
-	    if(!(firstElement instanceof IFile)) {
-	    	throw new ExecutionException("Selected element is not a resource!");
-	    }
-	    IFile file = (IFile) firstElement;
-	    
+		// get the first element of the active selection
+		final Object firstElement = selection.getFirstElement();
+
+		if (!(firstElement instanceof IFile)) {
+			throw new ExecutionException("Selected element is not a resource!");
+		}
+		final IFile file = (IFile) firstElement;
+
 		// add file extension to registry
-		// TODO check if necessary if standard xml extension is used
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
-		    .put("xml", new GenericXMLResourceFactoryImpl());
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
+				"xml", new GenericXMLResourceFactoryImpl());
 
-		// Create a resource set. 
-		ResourceSet resourceSet = new ResourceSetImpl(); 
+		// Create a resource set.
+		final ResourceSet resourceSet = new ResourceSetImpl();
 
-	    String pamtramFilePath=PamtramFileSelectorDialog.run(file.getLocation().removeLastSegments(1).toOSString());
-	    
-	    // the selected resource (IMPORTANT: needs to be represented as absolute URI with "file://" scheme; 
-		// if other schemes are used, the relative paths to the wprops and other model files are not set correct!)
-		URI resourceUri = URI.createFileURI(new java.io.File(file.getLocation().toString()).toString());
+		final String pamtramFilePath = PamtramFileSelectorDialog.run(file
+				.getLocation().removeLastSegments(1).toOSString());
+
+		// the selected resource (IMPORTANT: needs to be represented as absolute
+		// URI with "file://" scheme;
+		// if other schemes are used, the relative paths to the wprops and other
+		// model files are not set correct!)
+		final URI resourceUri = URI.createFileURI(new java.io.File(file
+				.getLocation().toString()).toString());
 		// the source resource (xmi)
-		
-		Resource xmlResource=null;
+
+		Resource xmlResource = null;
 		try {
 			xmlResource = resourceSet.getResource(resourceUri, true);
 			xmlResource.load(Collections.EMPTY_MAP);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} catch (final IOException e) {
 			e.printStackTrace(System.out);
 			return null;
 		}
-		
-		
+
 		// get the root object of the xml resource
-		EObject root = xmlResource.getContents().get(0).eContents().get(0);
-		
-		Job job= new GenericTransformationJob("GenTrans", root,pamtramFilePath,PamtramFileSelectorDialog.getTargetFile()); 
+		final EObject root = xmlResource.getContents().get(0).eContents()
+				.get(0);
+
+		final Job job = new GenericTransformationJob("GenTrans", root,
+				pamtramFilePath, PamtramFileSelectorDialog.getTargetFile());
 
 		job.setUser(true);
 		job.schedule();
-		
-	    return null;
+
+		return null;
 	}
-	
 
 }

@@ -81,7 +81,7 @@ class EObjectTransformationHelper {
 	 * @throws IllegalArgumentException
 	 */
 	void setAttributeValue(VirtualAttribute attr, String value) {
-		virtualAttributes.put((VirtualAttribute) attr, value);
+		virtualAttributes.put(attr, value);
 
 		attrValRegistry.registerValue(attr, eObject.eClass(),value);
 	}
@@ -93,10 +93,10 @@ class EObjectTransformationHelper {
 	 * @throws IllegalArgumentException
 	 */
 	void setAttributeValue(ActualAttribute attr, String value) throws IllegalArgumentException{
-		eObject.eSet(((ActualAttribute) attr).getAttribute(),
-				((ActualAttribute) attr).getAttribute().getEType()
+		eObject.eSet(attr.getAttribute(),
+				attr.getAttribute().getEType()
 				.getEPackage().getEFactoryInstance()
-				.createFromString(((ActualAttribute) attr).getAttribute().getEAttributeType(), value));
+				.createFromString(attr.getAttribute().getEAttributeType(), value));
 
 
 		attrValRegistry.registerValue(attr, eObject.eClass(),value);

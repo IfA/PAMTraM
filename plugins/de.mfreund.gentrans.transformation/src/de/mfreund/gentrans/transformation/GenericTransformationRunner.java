@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.PartInitException;
@@ -295,7 +296,7 @@ public class GenericTransformationRunner {
 				//			xmiResource.save(Collections.EMPTY_MAP);
 				Map<Object, Object> options = new LinkedHashMap<Object, Object>();
 				options.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
-				options.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.TRUE);
+				options.put(XMLResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.TRUE);
 				targetModel.save(Collections.EMPTY_MAP);
 				long endTime = System.nanoTime();
 				writePamtramMessage("Transformation done. Time: " +  Math.ceil((endTime-startTime)/100000000L)/10.0 + "s");
@@ -347,7 +348,7 @@ public class GenericTransformationRunner {
 
 		int numSrcModelElements = contRefsToMap.size();
 		int lastIterNumSrcElements=numSrcModelElements;
-		double workUnit=250.0/((double)numSrcModelElements);
+		double workUnit=250.0/(numSrcModelElements);
 		double accumulatedWork=0;
 		int unmapped=0;
 		while (contRefsToMap.size() > 0 && !isCancelled) {
@@ -756,7 +757,7 @@ public class GenericTransformationRunner {
 									boolean prepend=h instanceof MappedAttributeValuePrepender || h instanceof ExternalMappedAttributeValuePrepender;//of course this works only because the only other option is the Appender
 									for(MappingHint realHint : g.getHintGroup().getMappingHints()){
 										if(realHint instanceof AttributeMapping){
-											if(((MappedAttributeValueExpander) h).getHintsToExpand().contains((AttributeMapping) realHint)){
+											if(((MappedAttributeValueExpander) h).getHintsToExpand().contains(realHint)){
 												if(realHint instanceof SimpleAttributeMapping){//SimpleAttributeMapping
 													LinkedList<Object> vals=new LinkedList<Object>();
 													if(prepend){

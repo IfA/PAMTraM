@@ -609,7 +609,7 @@ private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPas
 									 */
 									LinkedList<Object> newHintValues = new LinkedList<Object>();
 									if (hintValues.get(h).size() == 1) {
-										Object hintVal = (Object) hintValues.get(h).getFirst();
+										Object hintVal = hintValues.get(h).getFirst();
 										for (int i = 0; i < instancesToConsider.size(); i++) {
 											newHintValues.add(hintVal);
 										}

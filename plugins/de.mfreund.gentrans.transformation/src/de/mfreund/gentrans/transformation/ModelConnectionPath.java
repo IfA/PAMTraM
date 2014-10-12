@@ -385,7 +385,7 @@ class ModelConnectionPath {
 					targetInstL.add(instance);
 					newTarget.clear();//shouldn't be neccesssary because eSet will clear this
 					newTarget.addAll(targetInstL);
-					targetSectionRegistry.addClassInstance((EObject)newTarget.getLast());
+					targetSectionRegistry.addClassInstance(newTarget.getLast());
 					refStartInstance.eSet(ref, newTarget);
 					
 					instancesAtEnd=instantiateMissingPath(pathCopy,instance,instancesAtEnd);

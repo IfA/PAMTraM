@@ -1300,7 +1300,7 @@ class SourceSectionMapper implements CancellationListener {
 
 				// Map to store possible srcModelSections to MMSections
 				// (non-vc))
-				final SrcSectionMappingResultsMap possibleSrcModelElementsNoVC = new SrcSectionMappingResultsMap();
+				final SourceSectionMappingResultsMap possibleSrcModelElementsNoVC = new SourceSectionMappingResultsMap();
 				for (final SourceSectionClass val : classByRefMap.get(ref)) {
 					if (val.getCardinality().equals(CardinalityType.ONE)) {
 						possibleSrcModelElementsNoVC.put(val,
@@ -1309,7 +1309,7 @@ class SourceSectionMapper implements CancellationListener {
 				}
 
 				// Map to store possible srcModelSections to MMSections (vc))
-				final SrcSectionMappingResultsMap possibleSrcModelElementsVC = new SrcSectionMappingResultsMap();
+				final SourceSectionMappingResultsMap possibleSrcModelElementsVC = new SourceSectionMappingResultsMap();
 				for (final SourceSectionClass val : classByRefMap.get(ref)) {
 					if (!val.getCardinality().equals(CardinalityType.ONE)) {
 						possibleSrcModelElementsVC.put(val,

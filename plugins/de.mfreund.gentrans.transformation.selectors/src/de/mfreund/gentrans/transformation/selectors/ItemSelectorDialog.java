@@ -29,26 +29,39 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
+/**
+ * @author Sascha Steffen
+ * @version 1.0
+ *GenTrans-Dialog for selecting from a list of options.
+ */
 public class ItemSelectorDialog extends Dialog{
 
-	protected Object result;
-	protected int selectedItem;
-	protected Shell shlPleaseSelectA;
-	private List<String> listItems;
-	private String message;
-	private GridData gd_dialogMessage;
-	private Label dialogMessage;
-	private GridLayout gridLayout;
-	private org.eclipse.swt.widgets.List listWidget;
-	private int standardSelectionIndex;
-	private boolean transformationStopRequested;
-	private static Point lastSize;
 	private static Point lastLocation;
+	private static Point lastSize;
+	private Button abortTransFormationButton;
+	private Button btnAbort;
+	private Composite composite;
+	private Composite composite_1;
+	private Label dialogMessage;
+	private GridData gd_dialogMessage;
+	private GridLayout gridLayout;
+	private List<String> listItems;
+	private org.eclipse.swt.widgets.List listWidget;
+	private String message;
+	private Button okButton;
 	
-	public boolean isTransformationStopRequested() {
-		return transformationStopRequested;
-	}
+	protected Object result;
 
+	protected int selectedItem;
+
+	protected Shell shlPleaseSelectA;
+	
+	private int standardSelectionIndex;
+	
+
+
+	private boolean transformationStopRequested;
+	
 	/**
 	 * Create the dialog.
 	 * @param parent
@@ -64,35 +77,6 @@ public class ItemSelectorDialog extends Dialog{
 		this.standardSelectionIndex = standardSelectionIndex>=0 ? standardSelectionIndex : 0;
 		selectedItem=this.standardSelectionIndex;
 	}
-
-	/**
-	 * Open the dialog.
-	 * @return the result
-	 */
-	public Object open() {
-		createContents();
-		shlPleaseSelectA.open();
-		shlPleaseSelectA.layout();
-		Display display = getParent().getDisplay();
-		while (!shlPleaseSelectA.isDisposed()) {
-			if (!display.readAndDispatch()) {
-				display.sleep();
-			}
-		}
-		return result;
-	}
-	
-	/**
-	 * Get Selection after dialog has finished, returns standardSelection if dialog not run
-	 * @return the selection
-	 */
-	public int getSelection(){
-		
-		return selectedItem;
-	}
-	
-
-
 	/**
 	 * Create contents of the dialog.
 	 */
@@ -115,15 +99,16 @@ public class ItemSelectorDialog extends Dialog{
 		shlPleaseSelectA.redraw();
 		
 		shlPleaseSelectA.addControlListener(new ControlAdapter(){
+			@Override
+			public void controlMoved(ControlEvent e) {
+				lastLocation=shlPleaseSelectA.getLocation();
+			}
+			@Override
 			public void controlResized(ControlEvent e){
 				gd_dialogMessage.widthHint = shlPleaseSelectA.getClientArea().width -2*gridLayout.marginWidth;
 				shlPleaseSelectA.layout(true);
 				listWidget.showSelection();
 				lastSize=shlPleaseSelectA.getSize();
-			}
-			@Override
-			public void controlMoved(ControlEvent e) {
-				lastLocation=shlPleaseSelectA.getLocation();
 			}
 		});
 		
@@ -139,12 +124,14 @@ public class ItemSelectorDialog extends Dialog{
 		
 		ListViewer listViewer = new ListViewer(grpPossiblePaths, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		listViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				selectedItem=listWidget.getSelectionIndex();
 				listWidget.showSelection();
 			}
 		});
 		listViewer.addDoubleClickListener(new IDoubleClickListener() {
+			@Override
 			public void doubleClick(DoubleClickEvent event) {
 				shlPleaseSelectA.dispose();
 			}
@@ -235,11 +222,35 @@ public class ItemSelectorDialog extends Dialog{
 		
 		okButton.setFocus();
 	}
-	
-	private Composite composite;
-	private Button okButton;
-	private Button btnAbort;
-	private Button abortTransFormationButton;
-	private Composite composite_1;
+	/**
+	 * Get Selection after dialog has finished, returns standardSelection if dialog not run
+	 * @return the selection
+	 */
+	public int getSelection(){
+		
+		return selectedItem;
+	}
+	/**
+	 * @return true if Button "Abort Transformation" was clicked during run()
+	 */
+	public boolean isTransformationStopRequested() {
+		return transformationStopRequested;
+	}
+	/**
+	 * Open the dialog.
+	 * @return the result
+	 */
+	public Object open() {
+		createContents();
+		shlPleaseSelectA.open();
+		shlPleaseSelectA.layout();
+		Display display = getParent().getDisplay();
+		while (!shlPleaseSelectA.isDisposed()) {
+			if (!display.readAndDispatch()) {
+				display.sleep();
+			}
+		}
+		return result;
+	}
 
 }

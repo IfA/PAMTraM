@@ -10,28 +10,27 @@ import pamtram.NamedElement;
 
 /**
  * @author Sascha Steffen 
- * @version 0.9
- * Dialog for selecting NamedElements by their name
+ * @version 1.0
+ * Dialog for selecting NamedElements by their name.
  *
- * @param <type> will be returned by getSelection()
+ * @param <NamedElementSubClass> will be returned by getSelection()
  */
-public class NamedElementItemSelectorDialogRunner<type extends NamedElement> implements Runnable {
-	private type selection;
-	public type getSelection() {
-		return selection;
-	}
-
-	public boolean wasTransformationStopRequested() {
-		return transformationStopRequested;
-	}
-
-	private boolean transformationStopRequested;
-	
+public class NamedElementItemSelectorDialogRunner<NamedElementSubClass extends NamedElement> implements Runnable {
+	private List<NamedElementSubClass> listItems;
 	private String message;
+
+	private NamedElementSubClass selection;
+
 	private int standardSelection;
-	private List<type> listItems;
+	
+	private boolean transformationStopRequested;
+	/**
+	 * @param message
+	 * @param listItems
+	 * @param standardSelection
+	 */
 	public NamedElementItemSelectorDialogRunner(String message,
-									List<type> listItems,
+									List<NamedElementSubClass> listItems,
 									int standardSelection) {
 		transformationStopRequested=false;
 		selection=listItems.get(0);
@@ -39,7 +38,15 @@ public class NamedElementItemSelectorDialogRunner<type extends NamedElement> imp
 		this.listItems=listItems;
 		this.standardSelection=standardSelection;
 	}
-
+	/**
+	 * @return selected <NamedElementSubClass>
+	 */
+	public NamedElementSubClass getSelection() {
+		return selection;
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
 	@Override
 	public void run() {
 		Display display= Display.getDefault();
@@ -52,6 +59,13 @@ public class NamedElementItemSelectorDialogRunner<type extends NamedElement> imp
 		d.open();
 		selection=listItems.get(d.getSelection());		
 		transformationStopRequested=d.isTransformationStopRequested();
+	}
+
+	/**
+	 * @return true if Button "Abort Transformation" was clicked during run()
+	 */
+	public boolean wasTransformationStopRequested() {
+		return transformationStopRequested;
 	}
 
 }

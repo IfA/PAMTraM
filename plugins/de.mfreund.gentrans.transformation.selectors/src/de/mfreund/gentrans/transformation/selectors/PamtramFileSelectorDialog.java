@@ -5,17 +5,33 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
 
+/**
+ * @author Sascha Steffen
+ * @version 1.0
+ *Runs two dialogs for setting a target XMI-file and a PamTraM file
+ */
 public class PamtramFileSelectorDialog {
 	private static String pamtramFile="";
 	private static String targetFile="";
+	/**
+	 * @return PamTraM model file
+	 */
 	public static String getPamtramFile() {
 		return pamtramFile;
 	}
+	/**
+	 * @return  selected  file path for target model (to be generated) as String
+	 */
 	public static String getTargetFile() {
 		return targetFile;
 	}
+	/**
+	 * @param startPath
+	 * @return selected  file path for PamTraM model as String
+	 */
 	public static String run(final String startPath){
 		Display.getDefault().syncExec(new Runnable(){
+			@Override
 			public void run(){
 				Display display= Display.getDefault();
 				Shell shell=new Shell(display);

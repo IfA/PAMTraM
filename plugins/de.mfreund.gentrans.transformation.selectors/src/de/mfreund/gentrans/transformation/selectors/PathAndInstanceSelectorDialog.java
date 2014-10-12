@@ -30,27 +30,29 @@ import org.eclipse.swt.layout.RowData;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 
+/**
+ * @author Sascha Steffen
+ * @version 1.0-
+ * Dialog for choosing a path and an instance during step 3 of the GenTrans.
+ *
+ */
 public class PathAndInstanceSelectorDialog extends Dialog {
 
-	protected Object result;
-	protected String path, instance;
-	protected Shell shlPleaseSelectA;
-	private List<String> paths;
+	private static Point lastLocation;
+	private static Point lastSize;
+	private Label dialogMessage;
+	private GridData gd_dialogMessage;
+	private GridLayout gridLayout;
 	private List<List<String>>  instances;
-	private org.eclipse.swt.widgets.List pathList;
 	private org.eclipse.swt.widgets.List instancesList;
 	private String message;
-	private GridData gd_dialogMessage;
-	private Label dialogMessage;
-	private GridLayout gridLayout;
-	private static Point lastSize;
-	private static Point lastLocation;
+	protected String path, instance;
+	private org.eclipse.swt.widgets.List pathList;
+	private List<String> paths;
+	protected Object result;
+	protected Shell shlPleaseSelectA;
 	
 	private boolean transformationStopRequested;
-	
-	public boolean isTransformationStopRequested() {
-		return transformationStopRequested;
-	}
 	
 	/**
 	 * Create the dialog.
@@ -67,46 +69,7 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 		path=paths.get(0);
 		instance=instances.get(0).get(0);
 	}
-
-	/**
-	 * Open the dialog.
-	 * @return the result
-	 */
-	public Object open() {
-		createContents();
-		shlPleaseSelectA.open();
-		shlPleaseSelectA.layout();
-		Display display = getParent().getDisplay();
-		while (!shlPleaseSelectA.isDisposed()) {
-			if (!display.readAndDispatch()) {
-				display.sleep();
-			}
-		}
-		return result;
-	}
 	
-	/**
-	 * Get selected Path after dialog has finished, return first path in List
-	 *  if dialog aborted / not run
-	 * @return the path
-	 */
-	public String getPath(){
-		
-		return path;
-	}
-	
-	/**
-	 * Get selected Instance after dialog has finished, return first instance in List
-	 * for first path
-	 *  if dialog aborted / not run
-	 * @return selected instance
-	 */
-	public String getInstance(){
-		
-		return instance;
-		
-	}
-
 	/**
 	 * Create contents of the dialog.
 	 */
@@ -128,14 +91,15 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 		dialogMessage.setText(message);
 		
 		shlPleaseSelectA.addControlListener(new ControlAdapter(){
+			@Override
+			public void controlMoved(ControlEvent e) {
+				lastLocation=shlPleaseSelectA.getLocation();
+			}
+			@Override
 			public void controlResized(ControlEvent e){
 				gd_dialogMessage.widthHint = shlPleaseSelectA.getClientArea().width -2*gridLayout.marginWidth;
 				shlPleaseSelectA.layout(true);
 				lastSize=shlPleaseSelectA.getSize();
-			}
-			@Override
-			public void controlMoved(ControlEvent e) {
-				lastLocation=shlPleaseSelectA.getLocation();
 			}
 		});
 		
@@ -286,10 +250,56 @@ public class PathAndInstanceSelectorDialog extends Dialog {
 
 		okButton.setFocus();
 	}
+
+	/**
+	 * Get selected Instance after dialog has finished, return first instance in List
+	 * for first path
+	 *  if dialog aborted / not run
+	 * @return selected instance
+	 */
+	public String getInstance(){
+		
+		return instance;
+		
+	}
+	
+	protected org.eclipse.swt.widgets.List getInstancesList() {
+		return instancesList;
+	}
+	
+	/**
+	 * Get selected Path after dialog has finished, return first path in List
+	 *  if dialog aborted / not run
+	 * @return the path
+	 */
+	public String getPath(){
+		
+		return path;
+	}
+
 	protected org.eclipse.swt.widgets.List getPathList() {
 		return pathList;
 	}
-	protected org.eclipse.swt.widgets.List getInstancesList() {
-		return instancesList;
+	/**
+	 * @return true if corresponding button in dialog was pressed
+	 */
+	public boolean isTransformationStopRequested() {
+		return transformationStopRequested;
+	}
+	/**
+	 * Open the dialog.
+	 * @return the result
+	 */
+	public Object open() {
+		createContents();
+		shlPleaseSelectA.open();
+		shlPleaseSelectA.layout();
+		Display display = getParent().getDisplay();
+		while (!shlPleaseSelectA.isDisposed()) {
+			if (!display.readAndDispatch()) {
+				display.sleep();
+			}
+		}
+		return result;
 	}
 }

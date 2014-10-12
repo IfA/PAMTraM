@@ -11,52 +11,63 @@ import pamtram.mapping.AttributeValueModifierSet;
 
 /**
  * Helper class to apply {@link AttributeValueModifier}s
+ * 
  * @author Sascha Steffen
  * @version 1.0
  *
  */
 public class AttributeValueModifierExecutor {
 
-	public AttributeValueModifierExecutor(MessageConsoleStream consoleStream) {
-		this.consoleStream=consoleStream;
-		this.modifiersWithErrors=new HashSet<AttributeValueModifier>();
-	}
-	
 	/**
 	 * Output stream for messages
 	 */
-	private MessageConsoleStream consoleStream;
+	private final MessageConsoleStream consoleStream;
 
-	
 	/**
-	 * Set that contains all ValueModifiers with errors so we don't need to send a potential error message twice
+	 * Set that contains all ValueModifiers with errors so we don't need to send
+	 * a potential error message twice
 	 */
-	private Set<AttributeValueModifier> modifiersWithErrors;
-	
+	private final Set<AttributeValueModifier> modifiersWithErrors;
+
 	/**
-	 * Method for applying attribute value modifiers te a String 
-	 * @param value 
+	 * @param consoleStream
+	 */
+	public AttributeValueModifierExecutor(
+			final MessageConsoleStream consoleStream) {
+		this.consoleStream = consoleStream;
+		modifiersWithErrors = new HashSet<AttributeValueModifier>();
+	}
+
+	/**
+	 * Method for applying attribute value modifiers te a String
+	 * 
+	 * @param value
 	 * @param modifierSets
 	 * @return modified String
 	 */
-	 String applyAttributeValueModifiers(final String value,
-			EList<AttributeValueModifierSet> modifierSets) {
+	String applyAttributeValueModifiers(final String value,
+			final EList<AttributeValueModifierSet> modifierSets) {
 		String retVal = value;
-		for (AttributeValueModifierSet set : modifierSets) {
-			for (AttributeValueModifier m : set.getModifier()) {
-				if(!modifiersWithErrors.contains(m)){
-					try{
+		for (final AttributeValueModifierSet set : modifierSets) {
+			for (final AttributeValueModifier m : set.getModifier()) {
+				if (!modifiersWithErrors.contains(m)) {
+					try {
 						retVal = m.modify(retVal);
-					/*
-					 * Catch an exception thrown by RegExes that aren't formatted correctly
-					 */
-					} catch(Exception e){
+						/*
+						 * Catch an exception thrown by RegExes that aren't
+						 * formatted correctly
+						 */
+					} catch (final Exception e) {
 						modifiersWithErrors.add(m);
-						consoleStream.println("The AttributeValueModifier '" + m.getName() + "' of the "
-								+ "AttributeValueModifierSet '" + set.getName() 
-								+ "' could not be evaluated. The following error was supplied:\n"
-								+ e.getLocalizedMessage());
-					} 
+						consoleStream
+								.println("The AttributeValueModifier '"
+										+ m.getName()
+										+ "' of the "
+										+ "AttributeValueModifierSet '"
+										+ set.getName()
+										+ "' could not be evaluated. The following error was supplied:\n"
+										+ e.getLocalizedMessage());
+					}
 				}
 			}
 		}

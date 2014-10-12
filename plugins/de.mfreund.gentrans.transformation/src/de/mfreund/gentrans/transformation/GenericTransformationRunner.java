@@ -745,7 +745,7 @@ public class GenericTransformationRunner {
 			}
 		}
 
-		targetSectionConnector.findCommonTargetModelRoot();
+		targetSectionConnector.combineUnlinkedSectionsWithTargetModelRoot();
 		if (targetSectionConnector.isCancelled()) {
 			writePamtramMessage("Transformation aborted.");
 			return false;

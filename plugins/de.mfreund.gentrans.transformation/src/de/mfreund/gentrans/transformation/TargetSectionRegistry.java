@@ -135,8 +135,8 @@ class TargetSectionRegistry implements CancellationListener {
 
 		if (!targetClassInstanceByHintGroupRegistry.containsKey(targetSection)) {
 			targetClassInstanceByHintGroupRegistry
-					.put(targetSection,
-							new LinkedHashMap<InstantiableMappingHintGroup, LinkedList<EObjectTransformationHelper>>());
+			.put(targetSection,
+					new LinkedHashMap<InstantiableMappingHintGroup, LinkedList<EObjectTransformationHelper>>());
 		}
 
 		if (!targetClassInstanceByHintGroupRegistry.get(targetSection)
@@ -146,7 +146,7 @@ class TargetSectionRegistry implements CancellationListener {
 		}
 
 		targetClassInstanceByHintGroupRegistry.get(targetSection).get(group)
-		.add(instance);
+				.add(instance);
 
 	}
 
@@ -159,8 +159,8 @@ class TargetSectionRegistry implements CancellationListener {
 			final EClass elementClass, final EClass containerClass) {
 		if (!possibleConnectionsRegistry.containsKey(elementClass)) {
 			possibleConnectionsRegistry
-					.put(elementClass,
-							new LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>>());
+			.put(elementClass,
+					new LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>>());
 		}
 		if (!possibleConnectionsRegistry.get(elementClass).containsKey(
 				containerClass)) {
@@ -168,7 +168,7 @@ class TargetSectionRegistry implements CancellationListener {
 					new LinkedHashSet<ModelConnectionPath>());
 		}
 		possibleConnectionsRegistry.get(elementClass).get(containerClass)
-				.add(path);
+		.add(path);
 	}
 
 	/**
@@ -202,7 +202,7 @@ class TargetSectionRegistry implements CancellationListener {
 
 		// map supertypes
 		consoleStream
-				.println("Mapping targetMetaModel inheritance and containment relationships");
+		.println("Mapping targetMetaModel inheritance and containment relationships");
 		for (final EClass e : classesToAnalyse) {
 			for (final EClass s : e.getEAllSuperTypes()) {
 				childClassesRegistry.get(s).add(e);
@@ -211,7 +211,7 @@ class TargetSectionRegistry implements CancellationListener {
 
 		// register references that lead to a certain class for each class
 		consoleStream
-				.println("Mapping targetMetaModel containment relationships");
+		.println("Mapping targetMetaModel containment relationships");
 		for (final EClass e : classesToAnalyse) {
 			for (final EReference c : e.getEAllContainments()) {
 				if (targetClassReferencesRegistry.containsKey(c
@@ -223,7 +223,7 @@ class TargetSectionRegistry implements CancellationListener {
 					containmentReferenceSourcesRegistry.get(c).add(e);
 
 					targetClassReferencesRegistry.get(c.getEReferenceType())
-							.add(c);
+					.add(c);
 
 				} else {
 					consoleStream.println("Ignoring targetMetaModel reference "
@@ -245,7 +245,7 @@ class TargetSectionRegistry implements CancellationListener {
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see de.mfreund.gentrans.transformation.CancellationListener#cancel()
 	 */
 	@Override
@@ -321,13 +321,21 @@ class TargetSectionRegistry implements CancellationListener {
 
 	}
 
+	/**
+	 * Returns (and registers) connections between two classes
+	 *
+	 * @param elementClass
+	 * @param containerClass
+	 * @param maxPathLength
+	 * @return
+	 */
 	LinkedHashSet<ModelConnectionPath> getConnections(
 			final EClass elementClass, final EClass containerClass,
 			final int maxPathLength) {
 		if (!possibleConnectionsRegistry.containsKey(elementClass)) {
 			possibleConnectionsRegistry
-					.put(elementClass,
-							new LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>>());
+			.put(elementClass,
+					new LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>>());
 		}
 		if (!possibleConnectionsRegistry.get(elementClass).containsKey(
 				containerClass)) {
@@ -431,7 +439,7 @@ class TargetSectionRegistry implements CancellationListener {
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see
 	 * de.mfreund.gentrans.transformation.CancellationListener#isCancelled()
 	 */

@@ -23,7 +23,7 @@ class EObjectTransformationHelper {
 
 	/**
 	 * Same as toString but without virtual Attributes of course
-	 * 
+	 *
 	 * @param eObject
 	 * @return EObjet as String
 	 */
@@ -43,7 +43,7 @@ class EObjectTransformationHelper {
 
 	/**
 	 * Static helper method for converting an Attribute value to a String
-	 * 
+	 *
 	 * @param eObject
 	 *            Target section object
 	 * @param attr
@@ -83,7 +83,7 @@ class EObjectTransformationHelper {
 
 	/**
 	 * Constructor
-	 * 
+	 *
 	 * @param eObject
 	 *            associated EObject
 	 * @param attrValRegistry
@@ -113,7 +113,7 @@ class EObjectTransformationHelper {
 
 	/**
 	 * Get Value of an Attribute of the Object
-	 * 
+	 *
 	 * @param attr
 	 * @return Attribute value as String
 	 */
@@ -132,13 +132,13 @@ class EObjectTransformationHelper {
 	 *
 	 * @return The targetSection EObject
 	 */
-	public EObject getEObject() {
+	EObject getEObject() {
 		return eObject;
 	}
 
 	/**
 	 * Sets actual values of e TargetSectionAttribute
-	 * 
+	 *
 	 * @param attr
 	 *            Attribute to be set
 	 * @param value
@@ -150,11 +150,11 @@ class EObjectTransformationHelper {
 		eObject.eSet(
 				attr.getAttribute(),
 				attr.getAttribute()
-						.getEType()
-						.getEPackage()
-						.getEFactoryInstance()
-						.createFromString(
-								attr.getAttribute().getEAttributeType(), value));
+				.getEType()
+				.getEPackage()
+				.getEFactoryInstance()
+				.createFromString(
+						attr.getAttribute().getEAttributeType(), value));
 
 		attrValRegistry.registerValue(attr, eObject.eClass(), value);
 
@@ -162,12 +162,12 @@ class EObjectTransformationHelper {
 
 	/**
 	 * Sets values of a TargetSectionAttribute
-	 * 
+	 *
 	 * @param attr
 	 * @param setValue
 	 * @throws IllegalArgumentException
 	 */
-	public void setAttributeValue(final TargetSectionAttribute attr,
+	void setAttributeValue(final TargetSectionAttribute attr,
 			final String setValue) {
 		if (attr instanceof ActualAttribute) {
 			setAttributeValue((ActualAttribute) attr, setValue);
@@ -179,7 +179,7 @@ class EObjectTransformationHelper {
 
 	/**
 	 * Sets virtual values of e TargetSectionAttribute
-	 * 
+	 *
 	 * @param attr
 	 *            Attribute to be set
 	 * @param value
@@ -194,7 +194,7 @@ class EObjectTransformationHelper {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

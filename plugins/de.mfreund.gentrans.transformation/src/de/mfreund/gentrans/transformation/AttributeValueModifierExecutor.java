@@ -11,7 +11,7 @@ import pamtram.mapping.AttributeValueModifierSet;
 
 /**
  * Helper class to apply {@link AttributeValueModifier}s
- * 
+ *
  * @author Sascha Steffen
  * @version 1.0
  *
@@ -32,15 +32,14 @@ public class AttributeValueModifierExecutor {
 	/**
 	 * @param consoleStream
 	 */
-	public AttributeValueModifierExecutor(
-			final MessageConsoleStream consoleStream) {
+	AttributeValueModifierExecutor(final MessageConsoleStream consoleStream) {
 		this.consoleStream = consoleStream;
 		modifiersWithErrors = new HashSet<AttributeValueModifier>();
 	}
 
 	/**
 	 * Method for applying attribute value modifiers te a String
-	 * 
+	 *
 	 * @param value
 	 * @param modifierSets
 	 * @return modified String
@@ -60,13 +59,13 @@ public class AttributeValueModifierExecutor {
 					} catch (final Exception e) {
 						modifiersWithErrors.add(m);
 						consoleStream
-								.println("The AttributeValueModifier '"
-										+ m.getName()
-										+ "' of the "
-										+ "AttributeValueModifierSet '"
-										+ set.getName()
-										+ "' could not be evaluated. The following error was supplied:\n"
-										+ e.getLocalizedMessage());
+						.println("The AttributeValueModifier '"
+								+ m.getName()
+								+ "' of the "
+								+ "AttributeValueModifierSet '"
+								+ set.getName()
+								+ "' could not be evaluated. The following error was supplied:\n"
+								+ e.getLocalizedMessage());
 					}
 				}
 			}

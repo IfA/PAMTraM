@@ -32,7 +32,7 @@ class AttributeValueRegistry {
 	/**
 	 * Constructor
 	 */
-	public AttributeValueRegistry() {
+	AttributeValueRegistry() {
 		actualAttributes = new LinkedHashMap<EClass, LinkedHashMap<EAttribute, LinkedHashSet<String>>>();
 		virtualAttributes = new LinkedHashMap<EClass, LinkedHashMap<VirtualAttribute, LinkedHashSet<String>>>();
 	}
@@ -143,7 +143,7 @@ class AttributeValueRegistry {
 
 	/**
 	 * Registers attribute value of VirtualAttribute
-	 * 
+	 *
 	 * @param attr
 	 * @param value
 	 */
@@ -151,16 +151,16 @@ class AttributeValueRegistry {
 			final String value) {
 		if (!virtualAttributes.containsKey(eClass)) {
 			virtualAttributes
-					.put(eClass,
-							new LinkedHashMap<VirtualAttribute, LinkedHashSet<String>>());
+			.put(eClass,
+					new LinkedHashMap<VirtualAttribute, LinkedHashSet<String>>());
 			virtualAttributes
-					.put(eClass,
-							new LinkedHashMap<VirtualAttribute, LinkedHashSet<String>>());
+			.put(eClass,
+					new LinkedHashMap<VirtualAttribute, LinkedHashSet<String>>());
 		}
 		// add value to registry
 		if (!virtualAttributes.get(eClass).containsKey(attr)) {
 			virtualAttributes.get(eClass)
-					.put(attr, new LinkedHashSet<String>());
+			.put(attr, new LinkedHashSet<String>());
 		}
 		virtualAttributes.get(eClass).get(attr).add(value);
 	}

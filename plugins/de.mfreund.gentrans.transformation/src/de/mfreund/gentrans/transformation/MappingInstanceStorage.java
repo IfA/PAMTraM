@@ -85,7 +85,7 @@ class MappingInstanceStorage {
 	/**
 	 * Constructor
 	 */
-	public MappingInstanceStorage() {
+	MappingInstanceStorage() {
 		sourceModelObjetsMapped = new LinkedHashMap<SourceSectionClass, Set<EObject>>();
 		hintValues = new LinkedHashMap<MappingHintType, LinkedList<Object>>();
 		mapping = null;
@@ -246,20 +246,20 @@ class MappingInstanceStorage {
 		for (final MappingHintType h : unSyncedComplexAttrMappings.keySet()) {
 			if (!this.unSyncedComplexAttrMappings.containsKey(h)) {
 				this.unSyncedComplexAttrMappings
-				.put(h,
-						new HashMap<SourceSectionClass, LinkedList<Map<ComplexAttributeMappingSourceElement, String>>>());
+						.put(h,
+								new HashMap<SourceSectionClass, LinkedList<Map<ComplexAttributeMappingSourceElement, String>>>());
 			}
 
 			for (final SourceSectionClass c : unSyncedComplexAttrMappings
 					.get(h).keySet()) {
 				if (!this.unSyncedComplexAttrMappings.get(h).containsKey(c)) {
 					this.unSyncedComplexAttrMappings
-					.get(h)
-					.put(c,
-							new LinkedList<Map<ComplexAttributeMappingSourceElement, String>>());
+							.get(h)
+							.put(c,
+									new LinkedList<Map<ComplexAttributeMappingSourceElement, String>>());
 				}
 				this.unSyncedComplexAttrMappings.get(h).get(c)
-				.addAll(unSyncedComplexAttrMappings.get(h).get(c));
+						.addAll(unSyncedComplexAttrMappings.get(h).get(c));
 			}
 		}
 
@@ -269,8 +269,8 @@ class MappingInstanceStorage {
 		for (final MappingHintType h : unSyncedCalcMappings.keySet()) {
 			if (!this.unSyncedCalcMappings.containsKey(h)) {
 				this.unSyncedCalcMappings
-				.put(h,
-						new HashMap<SourceSectionClass, LinkedList<Map<ExpressionVariable, String>>>());
+						.put(h,
+								new HashMap<SourceSectionClass, LinkedList<Map<ExpressionVariable, String>>>());
 			}
 
 			for (final SourceSectionClass c : unSyncedCalcMappings.get(h)
@@ -280,7 +280,7 @@ class MappingInstanceStorage {
 							new LinkedList<Map<ExpressionVariable, String>>());
 				}
 				this.unSyncedCalcMappings.get(h).get(c)
-				.addAll(unSyncedCalcMappings.get(h).get(c));
+						.addAll(unSyncedCalcMappings.get(h).get(c));
 			}
 		}
 
@@ -290,20 +290,20 @@ class MappingInstanceStorage {
 		for (final MappingHintType h : unSyncedComplexAttrMatchers.keySet()) {
 			if (!this.unSyncedComplexAttrMatchers.containsKey(h)) {
 				this.unSyncedComplexAttrMatchers
-				.put(h,
-						new HashMap<SourceSectionClass, LinkedList<Map<ComplexAttributeMatcherSourceElement, String>>>());
+						.put(h,
+								new HashMap<SourceSectionClass, LinkedList<Map<ComplexAttributeMatcherSourceElement, String>>>());
 			}
 
 			for (final SourceSectionClass c : unSyncedComplexAttrMatchers
 					.get(h).keySet()) {
 				if (!this.unSyncedComplexAttrMatchers.get(h).containsKey(c)) {
 					this.unSyncedComplexAttrMatchers
-					.get(h)
-					.put(c,
-							new LinkedList<Map<ComplexAttributeMatcherSourceElement, String>>());
+							.get(h)
+							.put(c,
+									new LinkedList<Map<ComplexAttributeMatcherSourceElement, String>>());
 				}
 				this.unSyncedComplexAttrMatchers.get(h).get(c)
-				.addAll(unSyncedComplexAttrMatchers.get(h).get(c));
+						.addAll(unSyncedComplexAttrMatchers.get(h).get(c));
 			}
 		}
 
@@ -314,20 +314,20 @@ class MappingInstanceStorage {
 				.keySet()) {
 			if (!this.unSyncedComplexConnectionHints.containsKey(h)) {
 				this.unSyncedComplexConnectionHints
-				.put(h,
-						new HashMap<SourceSectionClass, LinkedList<Map<ComplexModelConnectionHintSourceElement, String>>>());
+						.put(h,
+								new HashMap<SourceSectionClass, LinkedList<Map<ComplexModelConnectionHintSourceElement, String>>>());
 			}
 
 			for (final SourceSectionClass c : unSyncedComplexConnectionHints
 					.get(h).keySet()) {
 				if (!this.unSyncedComplexConnectionHints.get(h).containsKey(c)) {
 					this.unSyncedComplexConnectionHints
-					.get(h)
-					.put(c,
-							new LinkedList<Map<ComplexModelConnectionHintSourceElement, String>>());
+							.get(h)
+							.put(c,
+									new LinkedList<Map<ComplexModelConnectionHintSourceElement, String>>());
 				}
 				this.unSyncedComplexConnectionHints.get(h).get(c)
-				.addAll(unSyncedComplexConnectionHints.get(h).get(c));
+						.addAll(unSyncedComplexConnectionHints.get(h).get(c));
 			}
 		}
 	}
@@ -354,8 +354,8 @@ class MappingInstanceStorage {
 			final TargetSectionClass section) {
 		if (!instancesBySection.containsKey(grp)) {
 			instancesBySection
-					.put(grp,
-							new LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>());
+			.put(grp,
+					new LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>());
 		}
 
 		if (!instancesBySection.get(grp).containsKey(section)) {
@@ -367,14 +367,14 @@ class MappingInstanceStorage {
 	/**
 	 * @return associated SourceSectionClass
 	 */
-	public SourceSectionClass getAssociatedSourceClass() {
+	SourceSectionClass getAssociatedSourceClass() {
 		return associatedSourceClass;
 	}
 
 	/**
 	 * @return associated source Model element
 	 */
-	public EObject getAssociatedSourceModelElement() {
+	EObject getAssociatedSourceModelElement() {
 		return associatedSourceModelElement;
 	}
 
@@ -383,7 +383,7 @@ class MappingInstanceStorage {
 	 *
 	 * @return hint values
 	 */
-	public LinkedHashMap<MappingHintType, LinkedList<Object>> getHintValues() {
+	LinkedHashMap<MappingHintType, LinkedList<Object>> getHintValues() {
 		return hintValues;
 	}
 
@@ -421,7 +421,7 @@ class MappingInstanceStorage {
 	/**
 	 * @return associated Mapping
 	 */
-	public Mapping getMapping() {
+	Mapping getMapping() {
 		return mapping;
 	}
 
@@ -429,7 +429,7 @@ class MappingInstanceStorage {
 	 * @return hint values for the ModelConnectionHints, created during the
 	 *         mapping of the source section
 	 */
-	public final LinkedHashMap<ModelConnectionHint, LinkedList<Object>> getModelConnectionHintValues() {
+	final LinkedHashMap<ModelConnectionHint, LinkedList<Object>> getModelConnectionHintValues() {
 		return modelConnectionHintValues;
 	}
 
@@ -450,35 +450,35 @@ class MappingInstanceStorage {
 	/**
 	 * @return map of the source model Objects mapped
 	 */
-	public final LinkedHashMap<SourceSectionClass, Set<EObject>> getSourceModelObjectsMapped() {
+	final LinkedHashMap<SourceSectionClass, Set<EObject>> getSourceModelObjectsMapped() {
 		return sourceModelObjetsMapped;
 	}
 
 	/**
 	 * @return
 	 */
-	public Map<MappingHintType, Map<SourceSectionClass, LinkedList<Map<ExpressionVariable, String>>>> getUnSyncedCalcMappings() {
+	Map<MappingHintType, Map<SourceSectionClass, LinkedList<Map<ExpressionVariable, String>>>> getUnSyncedCalcMappings() {
 		return unSyncedCalcMappings;
 	}
 
 	/**
 	 * @return
 	 */
-	public Map<MappingHintType, Map<SourceSectionClass, LinkedList<Map<ComplexAttributeMappingSourceElement, String>>>> getUnSyncedComplexAttrMappings() {
+	Map<MappingHintType, Map<SourceSectionClass, LinkedList<Map<ComplexAttributeMappingSourceElement, String>>>> getUnSyncedComplexAttrMappings() {
 		return unSyncedComplexAttrMappings;
 	}
 
 	/**
 	 * @return
 	 */
-	public Map<MappingHintType, Map<SourceSectionClass, LinkedList<Map<ComplexAttributeMatcherSourceElement, String>>>> getUnSyncedComplexAttrMatchers() {
+	Map<MappingHintType, Map<SourceSectionClass, LinkedList<Map<ComplexAttributeMatcherSourceElement, String>>>> getUnSyncedComplexAttrMatchers() {
 		return unSyncedComplexAttrMatchers;
 	}
 
 	/**
 	 * @return
 	 */
-	public Map<ComplexModelConnectionHint, Map<SourceSectionClass, LinkedList<Map<ComplexModelConnectionHintSourceElement, String>>>> getUnSyncedComplexConnectionHints() {
+	Map<ComplexModelConnectionHint, Map<SourceSectionClass, LinkedList<Map<ComplexModelConnectionHintSourceElement, String>>>> getUnSyncedComplexConnectionHints() {
 		return unSyncedComplexConnectionHints;
 	}
 
@@ -486,7 +486,7 @@ class MappingInstanceStorage {
 	 * @param associatedSourceClass
 	 * @param associatedSourceModelElement
 	 */
-	public void setAssociatedSourceElement(
+	void setAssociatedSourceElement(
 			final SourceSectionClass associatedSourceClass,
 			final EObject associatedSourceModelElement) {
 		this.associatedSourceModelElement = associatedSourceModelElement;
@@ -522,7 +522,7 @@ class MappingInstanceStorage {
 	 *
 	 * @param mapping
 	 */
-	public void setMapping(final Mapping mapping) {
+	void setMapping(final Mapping mapping) {
 		this.mapping = mapping;
 	}
 
@@ -531,7 +531,7 @@ class MappingInstanceStorage {
 	 *
 	 * @param refs
 	 */
-	public void setSourceModelObjectsMapped(
+	void setSourceModelObjectsMapped(
 			final LinkedHashMap<SourceSectionClass, Set<EObject>> refs) {
 		sourceModelObjetsMapped = refs;
 	}

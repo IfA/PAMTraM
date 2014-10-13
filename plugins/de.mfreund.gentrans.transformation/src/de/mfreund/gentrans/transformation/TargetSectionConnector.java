@@ -139,10 +139,10 @@ class TargetSectionConnector implements CancellationListener {
 							.iterator().next().values().iterator().next()
 							.get(0));
 					consoleStream
-					.println("Root element: The single instance of the target section '"
-							+ unlinkeableElements.values().iterator()
-							.next().keySet().iterator().next()
-							.getName() + "'.");
+							.println("Root element: The single instance of the target section '"
+									+ unlinkeableElements.values().iterator()
+											.next().keySet().iterator().next()
+											.getName() + "'.");
 					return;
 				}
 			}
@@ -181,8 +181,8 @@ class TargetSectionConnector implements CancellationListener {
 		if (common.size() < 1) {
 			for (final EClass c : unlinkeableElements.keySet()) {
 				consoleStream
-				.println("No suitable path found for target class: "
-						+ c.getName());
+						.println("No suitable path found for target class: "
+								+ c.getName());
 				for (final List<EObjectTransformationHelper> instances : unlinkeableElements
 						.get(c).values()) {
 					addToTargetModelRoot(instances);
@@ -202,7 +202,7 @@ class TargetSectionConnector implements CancellationListener {
 				final GenericItemSelectorDialogRunner<String> dialog = new GenericItemSelectorDialogRunner<String>(
 						"There was more than one target model element that could not be connected to a root element. Therefore "
 								+ "a model root element needs to be created. Please select a fitting class:",
-						new LinkedList<String>(possibleContainers.keySet()), 0);
+								new LinkedList<String>(possibleContainers.keySet()), 0);
 				Display.getDefault().syncExec(dialog);
 				if (dialog.wasTransformationStopRequested()) {
 					cancel();
@@ -227,10 +227,8 @@ class TargetSectionConnector implements CancellationListener {
 					 * common container, we have to choose one. Then we need to
 					 * find all possible connections for each of the elements
 					 * involved. Now we need to choose a connection for each
-					 * element. This would lead to us asking a lot of questions
-					 * to the user. Therefore we will concentrate on using the
-					 * shortest connection paths. All we need to ask the user is
-					 * which container to use.
+					 * element. This might lead to us asking a lot of questions
+					 * to the user.
 					 */
 					final Set<ModelConnectionPath> pathSet = targetSectionRegistry
 							.getConnections(c, rootClass, maxPathlength);
@@ -239,7 +237,7 @@ class TargetSectionConnector implements CancellationListener {
 								tSection));// This should not have happened =>
 						// programming error
 						consoleStream
-						.println("Error. Check container instantiation");
+								.println("Error. Check container instantiation");
 					} else {
 
 						// get paths with fitting capacity
@@ -278,8 +276,8 @@ class TargetSectionConnector implements CancellationListener {
 												+ "') "
 												+ " to the model root element of the type '"
 												+ rootClass.getName() + "'.",
-												fittingPaths,
-												fittingPaths.indexOf(chosenPath));
+										fittingPaths,
+										fittingPaths.indexOf(chosenPath));
 								Display.getDefault().syncExec(dialog);
 								if (dialog.wasTransformationStopRequested()) {
 									transformationAborted = true;
@@ -371,10 +369,10 @@ class TargetSectionConnector implements CancellationListener {
 
 					if (containerInstances.size() == 0) {
 						consoleStream
-								.println("Instances of the targetSection '"
-										+ section.getName()
-										+ "'specify a container section (either the target section itself or a MappingHintImporter)."
-										+ " Unfortunately no instances of the specified container were created. Therefore the sections will not be linked to the target model.");
+						.println("Instances of the targetSection '"
+								+ section.getName()
+								+ "'specify a container section (either the target section itself or a MappingHintImporter)."
+								+ " Unfortunately no instances of the specified container were created. Therefore the sections will not be linked to the target model.");
 						addToTargetModelRoot(rootInstances);
 						return;
 					}
@@ -401,7 +399,7 @@ class TargetSectionConnector implements CancellationListener {
 					onlyOnePath = pathsToConsider.size() == 1
 							&& targetSectionRegistry.getTargetClassInstances(
 									pathsToConsider.iterator().next()
-									.getPathRootClass()).size() == 1;
+											.getPathRootClass()).size() == 1;
 				}
 
 				if (onlyOnePath) {// only one path to choose from
@@ -413,14 +411,14 @@ class TargetSectionConnector implements CancellationListener {
 					} else if (!rootInstances.contains(targetSectionRegistry
 							.getTargetClassInstances(
 									modelConnectionPath.getPathRootClass())
-									.getFirst())) {
+							.getFirst())) {
 						inst = targetSectionRegistry.getTargetClassInstances(
 								modelConnectionPath.getPathRootClass())
 								.getFirst();
 					} else {
 						consoleStream
-						.println("Could not find a path that leads to the container specified for targetSection '"
-								+ section.getName() + "'");
+								.println("Could not find a path that leads to the container specified for targetSection '"
+										+ section.getName() + "'");
 						addToTargetModelRoot(rootInstances);
 						return;
 					}
@@ -468,8 +466,8 @@ class TargetSectionConnector implements CancellationListener {
 
 					if (instancesByPath.keySet().size() == 0) {
 						consoleStream
-						.println("Could not find a path that leads to the container specified for targetSection '"
-								+ section.getName() + "'");
+								.println("Could not find a path that leads to the container specified for targetSection '"
+										+ section.getName() + "'");
 						addToTargetModelRoot(rootInstances);
 						return;
 					}
@@ -488,18 +486,18 @@ class TargetSectionConnector implements CancellationListener {
 						return;
 					final PathAndInstanceSelectorRunner dialog = new PathAndInstanceSelectorRunner(
 							rootInstances.size()
-									+ " Instance"
-							+ (rootInstances.size() > 1 ? "s" : "")
-							+ " of the TargetSection '"
-									+ section.getName()
-									+ "', created by the mapping '"
-									+ mappingName
-									+ " (Group: "
-									+ mappingGroupName
-									+ ")"
-									+ "', "
-							+ (rootInstances.size() > 1 ? "have"
-									: "has a")
+							+ " Instance"
+									+ (rootInstances.size() > 1 ? "s" : "")
+									+ " of the TargetSection '"
+							+ section.getName()
+							+ "', created by the mapping '"
+							+ mappingName
+							+ " (Group: "
+							+ mappingGroupName
+							+ ")"
+							+ "', "
+									+ (rootInstances.size() > 1 ? "have"
+											: "has a")
 									+ " root element"
 									+ (rootInstances.size() > 1 ? "s" : "")
 									+ " of the type '"
@@ -507,13 +505,13 @@ class TargetSectionConnector implements CancellationListener {
 									+ "'. "
 									+ (rootInstances.size() > 1 ? "Theese need"
 											: "It needs")
-											+ " to be put at a sensible position in the target model. "
-									+ "Please choose one of the possible connections to other existing target model elements"
-									+ " below.", namesAsList, instanceNames);
+									+ " to be put at a sensible position in the target model. "
+											+ "Please choose one of the possible connections to other existing target model elements"
+											+ " below.", namesAsList, instanceNames);
 
 					Display.getDefault().syncExec(dialog); // TODO Maybe add
-															// option to not do
-															// anything
+					// option to not do
+					// anything
 					if (dialog.wasTransformationStopRequested()) {
 						transformationAborted = true;
 						return;
@@ -535,8 +533,8 @@ class TargetSectionConnector implements CancellationListener {
 
 				} else {// no suitable container found
 					consoleStream
-							.println("Could not find a path that leads to the container specified for the target section '"
-									+ section.getName() + "'");
+					.println("Could not find a path that leads to the container specified for the target section '"
+							+ section.getName() + "'");
 					addToTargetModelRoot(rootInstances);
 				}
 
@@ -547,15 +545,15 @@ class TargetSectionConnector implements CancellationListener {
 		} else {
 			if (!unlinkeableElements.containsKey(classToConnect)) {
 				unlinkeableElements
-				.put(classToConnect,
-						new LinkedHashMap<TargetSectionClass, List<EObjectTransformationHelper>>());
+						.put(classToConnect,
+								new LinkedHashMap<TargetSectionClass, List<EObjectTransformationHelper>>());
 			}
 			if (!unlinkeableElements.get(classToConnect).containsKey(section)) {
 				unlinkeableElements.get(classToConnect).put(section,
 						new LinkedList<EObjectTransformationHelper>());
 			}
 			unlinkeableElements.get(classToConnect).get(section)
-			.addAll(rootInstances);
+					.addAll(rootInstances);
 		}
 	}
 
@@ -582,7 +580,7 @@ class TargetSectionConnector implements CancellationListener {
 			final int maxPathLength) {// connectionHint.targetAttribute.~owningClass
 		if (rootInstances.size() < 1)
 			return;// if we don't do this here an ArrayOutOfBoundsException
-					// might occur later
+		// might occur later
 
 		// check for connections
 		int size = 0;
@@ -601,9 +599,9 @@ class TargetSectionConnector implements CancellationListener {
 			for (final ConnectionHintTargetAttribute targetAttr : connectionHint
 					.getTargetAttributes()) {
 				containerInstancesByTargetAttribute
-				.put(targetAttr, targetSectionRegistry
-						.getFlattenedPamtramClassInstances(targetAttr
-								.getTargetAttribute().getOwningClass()));// owningClass
+						.put(targetAttr, targetSectionRegistry
+								.getFlattenedPamtramClassInstances(targetAttr
+										.getTargetAttribute().getOwningClass()));// owningClass
 
 			}
 
@@ -720,13 +718,13 @@ class TargetSectionConnector implements CancellationListener {
 											.size() > 1 ? "theese "
 											+ rootInstancesByHintVal.get(
 													hintVal).size()
-													+ "elements" : "this "
-													+ rootInstancesByHintVal.get(
-															hintVal).size() + "element")
-															+ " should be inserted.\n\n"
-															+ "Attribute value: " + hintVal,
-															new LinkedList<EObjectTransformationHelper>(
-																	contInstsByHintVal.get(hintVal)), 0);
+											+ "elements" : "this "
+											+ rootInstancesByHintVal.get(
+													hintVal).size() + "element")
+									+ " should be inserted.\n\n"
+									+ "Attribute value: " + hintVal,
+							new LinkedList<EObjectTransformationHelper>(
+									contInstsByHintVal.get(hintVal)), 0);
 					Display.getDefault().syncExec(dialog);
 					if (dialog.wasTransformationStopRequested()) {
 						transformationAborted = true;
@@ -737,14 +735,14 @@ class TargetSectionConnector implements CancellationListener {
 
 				} else {
 					consoleStream
-					.println("The ModelConnectionHint '"
-							+ connectionHint.getName()
-							+ " of MappingHintGroup "
-							+ mappingGroupName
-							+ "(Mapping: "
-							+ mappingName
-							+ ") could not find an instance to connect the targetSections.\n"
-							+ contInstsByHintVal.keySet());
+							.println("The ModelConnectionHint '"
+									+ connectionHint.getName()
+									+ " of MappingHintGroup "
+									+ mappingGroupName
+									+ "(Mapping: "
+									+ mappingName
+									+ ") could not find an instance to connect the targetSections.\n"
+									+ contInstsByHintVal.keySet());
 					addToTargetModelRoot(rootInstancesByHintVal.get(hintVal));
 				}
 			}
@@ -777,10 +775,10 @@ class TargetSectionConnector implements CancellationListener {
 								.findPathsWithMinimumCapacity(
 										targetSectionRegistry.getConnections(
 												classToConnect, container
-												.getEObject().eClass(),
+														.getEObject().eClass(),
 												maxPathLength), container
 												.getEObject(),
-												rootInstancesByContainer.get(container)
+										rootInstancesByContainer.get(container)
 												.size()));
 
 					} else {
@@ -811,30 +809,30 @@ class TargetSectionConnector implements CancellationListener {
 							return;
 						final GenericItemSelectorDialogRunner<ModelConnectionPath> dialog = new GenericItemSelectorDialogRunner<ModelConnectionPath>(
 								instSize
-								+ " Instance"
-								+ (instSize > 1 ? "s" : "")
-								+ " of the TargetSection '"
-										+ section.getName()
-										+ "', created by the mapping '"
-										+ mappingName
-										+ " (Group: "
-										+ mappingGroupName
-										+ ")"
-										+ "', "
-								+ (instSize > 1 ? "have" : "has a")
-								+ " root element"
-								+ (instSize > 1 ? "s" : "")
-								+ " of the type '"
-										+ classToConnect.getName()
-										+ "'. "
-								+ (instSize > 1 ? "Theese need"
-										: "It needs")
+										+ " Instance"
+										+ (instSize > 1 ? "s" : "")
+										+ " of the TargetSection '"
+								+ section.getName()
+								+ "', created by the mapping '"
+								+ mappingName
+								+ " (Group: "
+								+ mappingGroupName
+								+ ")"
+								+ "', "
+										+ (instSize > 1 ? "have" : "has a")
+										+ " root element"
+										+ (instSize > 1 ? "s" : "")
+										+ " of the type '"
+								+ classToConnect.getName()
+								+ "'. "
+										+ (instSize > 1 ? "Theese need"
+												: "It needs")
 										+ " to be put at a sensible position in the target model. "
 										+ "Please choose one of the possible connections to other existing target model elements"
 										+ " below. Your selection will be remembered for the ConnectionHint '"
 										+ connectionHint.getName() + "'.",
-										pathsToConsider,
-										pathsToConsider.indexOf(standardPath));
+								pathsToConsider,
+								pathsToConsider.indexOf(standardPath));
 						Display.getDefault().syncExec(dialog);
 						if (dialog.wasTransformationStopRequested()) {
 							transformationAborted = true;
@@ -843,8 +841,8 @@ class TargetSectionConnector implements CancellationListener {
 						modelConnectionPath = dialog.getSelection();
 					} else {
 						consoleStream
-						.println("Could not find a path that leads to the container specified by the ModelConnectionHint of "
-								+ mappingName + "::" + mappingGroupName);
+								.println("Could not find a path that leads to the container specified by the ModelConnectionHint of "
+										+ mappingName + "::" + mappingGroupName);
 						addToTargetModelRoot(rootInstances);
 						addToTargetModelRoot(rootInstancesByContainer
 								.get(container));
@@ -880,8 +878,8 @@ class TargetSectionConnector implements CancellationListener {
 			}
 		} else {
 			consoleStream
-					.println("Could not find a path that leads to the modelConnectionTarget Class specified for '"
-							+ mappingName + "' (" + mappingGroupName + ")");
+			.println("Could not find a path that leads to the modelConnectionTarget Class specified for '"
+					+ mappingName + "' (" + mappingGroupName + ")");
 
 			addToTargetModelRoot(rootInstances);
 		}

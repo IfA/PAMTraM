@@ -208,7 +208,7 @@ public class GenericTransformationRunner {
 							new LinkedList<MappingInstanceStorage>());
 				}
 				selectedMappingsByMapping.get(selectedMapping.getMapping())
-				.add(selectedMapping);
+						.add(selectedMapping);
 
 			} else {
 				unmapped++;
@@ -233,7 +233,7 @@ public class GenericTransformationRunner {
 		 * Now write MappingHint values of Hints of ExportedMappingHintGroups to
 		 * a separate storage, and remove the values from the
 		 * MappingInstanceStorages.
-		 *
+		 * 
 		 * Also add values of GlobalVariables to ComplexAttributeMapping's Hints
 		 */
 		final Map<MappingHint, LinkedList<Object>> exportedMappingHints = handleGlobalVarsAndExportedMappings(
@@ -249,7 +249,7 @@ public class GenericTransformationRunner {
 		writePamtramMessage("Analyzing target metamodel");
 		final TargetSectionRegistry targetSectionRegistry = new TargetSectionRegistry(
 				consoleStream, attrValueRegistry, pamtramModel
-				.getTargetSectionModel().getMetaModelPackage());
+						.getTargetSectionModel().getMetaModelPackage());
 		objectsToCancel.add(targetSectionRegistry);
 
 		/*
@@ -259,7 +259,7 @@ public class GenericTransformationRunner {
 		final TargetSectionInstantiator targetSectionInstantiator = runInstantiationFirstPass(
 				sourceSectionMapper, targetSectionRegistry, attrValueRegistry,
 				selectedMappings, exportedMappingHints, pamtramModel
-				.getMappingModel().getGlobalValues(), monitor,
+						.getMappingModel().getGlobalValues(), monitor,
 				attributeValueModifier);
 
 		objectsToCancel.add(targetSectionInstantiator);
@@ -329,7 +329,7 @@ public class GenericTransformationRunner {
 			final SourceSectionMapper sourceSectionMapper,
 			final LinkedList<MappingInstanceStorage> selectedMappings) {
 		consoleStream
-				.println("Getting hint values of exported hint groups, checking MappingHintImporters, adding global variables to hints");
+		.println("Getting hint values of exported hint groups, checking MappingHintImporters, adding global variables to hints");
 		final Map<MappingHint, LinkedList<Object>> exportedMappingHints = new LinkedHashMap<MappingHint, LinkedList<Object>>();
 		for (final MappingInstanceStorage selMap : selectedMappings) {
 			/*
@@ -366,7 +366,7 @@ public class GenericTransformationRunner {
 								if (sourceSectionMapper.getGlobalVarValues()
 										.containsKey(
 												((GlobalAttributeImporter) i)
-														.getGlobalAttribute())) {
+												.getGlobalAttribute())) {
 									final String gVal = sourceSectionMapper
 											.getGlobalVarValues()
 											.get(((GlobalAttributeImporter) i)
@@ -391,7 +391,7 @@ public class GenericTransformationRunner {
 											.getGlobalVarValues()
 											.containsKey(
 													((GlobalAttributeImporter) i)
-															.getGlobalAttribute())) {
+													.getGlobalAttribute())) {
 										final String gVal = sourceSectionMapper
 												.getGlobalVarValues()
 												.get(((GlobalAttributeImporter) i)
@@ -422,7 +422,7 @@ public class GenericTransformationRunner {
 								if (sourceSectionMapper.getGlobalVarValues()
 										.containsKey(
 												((GlobalAttributeImporter) i)
-														.getGlobalAttribute())) {
+												.getGlobalAttribute())) {
 									final String gVal = sourceSectionMapper
 											.getGlobalVarValues()
 											.get(((GlobalAttributeImporter) i)
@@ -456,7 +456,7 @@ public class GenericTransformationRunner {
 								if (sourceSectionMapper.getGlobalVarValues()
 										.containsKey(
 												((GlobalAttributeImporter) i)
-														.getGlobalAttribute())) {
+												.getGlobalAttribute())) {
 									final String gVal = sourceSectionMapper
 											.getGlobalVarValues()
 											.get(((GlobalAttributeImporter) i)
@@ -481,7 +481,7 @@ public class GenericTransformationRunner {
 											.getGlobalVarValues()
 											.containsKey(
 													((GlobalAttributeImporter) i)
-															.getGlobalAttribute())) {
+													.getGlobalAttribute())) {
 										final String gVal = sourceSectionMapper
 												.getGlobalVarValues()
 												.get(((GlobalAttributeImporter) i)
@@ -508,13 +508,13 @@ public class GenericTransformationRunner {
 				for (final MappingHintType h : g.getMappingHints()) {
 					if (selMap.getHintValues().get(h).size() > 1) {
 						consoleStream
-								.println("The MappingHint "
-										+ h.getName()
-										+ " of the HintImporter "
-										+ g.getName()
-										+ " in Mapping "
-										+ selMap.getMapping().getName()
-										+ " picked up more than one HintValue. This is not allowed.");
+						.println("The MappingHint "
+								+ h.getName()
+								+ " of the HintImporter "
+								+ g.getName()
+								+ " in Mapping "
+								+ selMap.getMapping().getName()
+								+ " picked up more than one HintValue. This is not allowed.");
 						/*
 						 * TODO OCL? (possible? => Even sections with card. type
 						 * of ONE can have more than one hint value if they are
@@ -585,20 +585,20 @@ public class GenericTransformationRunner {
 											return false;
 
 										targetSectionConnector
-										.linkToTargetModelUsingModelConnectionHint(
-												section.getEClass(),
-												new LinkedList<EObjectTransformationHelper>(
-														selMap.getInstances(
-																(MappingHintGroup) g,
-																section)),
-																section,
-																m.getName(),
-																g.getName(),
-																((MappingHintGroup) g)
+												.linkToTargetModelUsingModelConnectionHint(
+														section.getEClass(),
+														new LinkedList<EObjectTransformationHelper>(
+																selMap.getInstances(
+																		(MappingHintGroup) g,
+																		section)),
+														section,
+														m.getName(),
+														g.getName(),
+														((MappingHintGroup) g)
 																.getModelConnectionMatcher(),
-																selMap.getModelConnectionHintValues(((MappingHintGroup) g)
-																		.getModelConnectionMatcher()),
-																		maxPathLength);
+														selMap.getModelConnectionHintValues(((MappingHintGroup) g)
+																.getModelConnectionMatcher()),
+														maxPathLength);
 										if (targetSectionConnector
 												.isCancelled()) {
 											writePamtramMessage("Transformation aborted.");
@@ -628,12 +628,12 @@ public class GenericTransformationRunner {
 											.getEClass());
 								}
 								targetSectionConnector
-								.linkToTargetModelNoConnectionHint(
-										rootInstances, section,
-										m.getName(), g.getName(),
-										section.getContainer() != null,
-										containerClasses,
-										containerInstances);
+										.linkToTargetModelNoConnectionHint(
+												rootInstances, section,
+												m.getName(), g.getName(),
+												section.getContainer() != null,
+												containerClasses,
+												containerInstances);
 								if (targetSectionConnector.isCancelled()) {
 									writePamtramMessage("Transformation aborted.");
 									return false;
@@ -684,12 +684,12 @@ public class GenericTransformationRunner {
 								}
 								// link
 								targetSectionConnector
-								.linkToTargetModelNoConnectionHint(
-										rootInstances,
-										g.getTargetMMSection(),
-										m.getName(), g.getName(), true,
-										containerClasses,
-										containerInstances);
+										.linkToTargetModelNoConnectionHint(
+												rootInstances,
+												g.getTargetMMSection(),
+												m.getName(), g.getName(), true,
+												containerClasses,
+												containerInstances);
 								if (targetSectionConnector.isCancelled()) {
 									writePamtramMessage("Transformation aborted.");
 									return false;
@@ -720,13 +720,13 @@ public class GenericTransformationRunner {
 							if (rootInstances.size() > 0) {
 								// link
 								targetSectionConnector
-								.linkToTargetModelNoConnectionHint(
-										rootInstances,
-										g.getTargetMMSection(),
-										m.getName(), g.getName(),
-										containerClasses.size() > 0,
-										containerClasses,
-										containerInstances);
+										.linkToTargetModelNoConnectionHint(
+												rootInstances,
+												g.getTargetMMSection(),
+												m.getName(), g.getName(),
+												containerClasses.size() > 0,
+												containerClasses,
+												containerInstances);
 								if (targetSectionConnector.isCancelled()) {
 									writePamtramMessage("Transformation aborted.");
 									return false;
@@ -777,7 +777,7 @@ public class GenericTransformationRunner {
 		// if other schemes are used, the relative paths to the wprops and other
 		// model files are not set correct!)
 		final URI pamtramUri = URI.createFileURI(new java.io.File(pamtramPath)
-		.toString());
+				.toString());
 
 		// try to load pamtram model
 		pamtramResource = (XMIResource) resourceSet.getResource(pamtramUri,
@@ -802,9 +802,9 @@ public class GenericTransformationRunner {
 
 		} catch (final Exception e) {
 			MessageDialog
-			.openError(PlatformUI.getWorkbench()
-					.getActiveWorkbenchWindow().getShell(), "Error",
-					"The XMI resource for thhe targetModel output could not be created.");
+					.openError(PlatformUI.getWorkbench()
+							.getActiveWorkbenchWindow().getShell(), "Error",
+							"The XMI resource for thhe targetModel output could not be created.");
 			e.printStackTrace();
 			return null;
 		}
@@ -905,11 +905,11 @@ public class GenericTransformationRunner {
 					if (instancesBySection == null) {
 						if (g.getTargetMMSection().getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
 							consoleStream
-							.println("Error instantiating target section '"
-									+ g.getTargetMMSection().getName()
-									+ "' using mapping rule '"
-									+ selMap.getMapping().getName()
-									+ "'");
+									.println("Error instantiating target section '"
+											+ g.getTargetMMSection().getName()
+											+ "' using mapping rule '"
+											+ selMap.getMapping().getName()
+											+ "'");
 						}
 					} else {
 						for (final TargetSectionClass section : instancesBySection
@@ -945,20 +945,13 @@ public class GenericTransformationRunner {
 								if (selMap.getHintValues().get(h).size() == 1) {
 									final String hintVal = (String) selMap
 											.getHintValues().get(h).getFirst();
+									/*
+									 * of course this works only because the
+									 * only other option is the Appender
+									 */
 									final boolean prepend = h instanceof MappedAttributeValuePrepender
-											|| h instanceof ExternalMappedAttributeValuePrepender;// of
-									// course
-									// this
-									// works
-									// only
-									// because
-									// the
-									// only
-									// other
-									// option
-									// is
-									// the
-									// Appender
+											|| h instanceof ExternalMappedAttributeValuePrepender;
+
 									for (final MappingHint realHint : g
 											.getHintGroup().getMappingHints()) {
 										if (realHint instanceof AttributeMapping) {
@@ -1007,11 +1000,11 @@ public class GenericTransformationRunner {
 																if (prepend) {
 																	map.put(element,
 																			hintVal
-																			+ map.get(element));
+																					+ map.get(element));
 																} else {
 																	map.put(element,
 																			map.get(element)
-																			+ hintVal);
+																					+ hintVal);
 																}
 															}
 														}
@@ -1023,7 +1016,7 @@ public class GenericTransformationRunner {
 														try {
 															final Calculable calc = new ExpressionBuilder(
 																	hintVal)
-															.build();
+																	.build();
 															final double variableVal = calc
 																	.calculate();
 															/*
@@ -1047,21 +1040,21 @@ public class GenericTransformationRunner {
 															}
 														} catch (final Exception e) {
 															consoleStream
-															.println("Couldn't convert variable "
-																	+ ((MappedAttributeValueExpanderType) h)
-																	.getSourceAttribute()
-																	.getName()
-																	+ " of "
-																	+ h.getClass()
-																	.getName()
-																	+ " "
-																	+ h.getName()
-																	+ " from String to double. The problematic source element's attribute value was: "
-																	+ hintVal);
+																	.println("Couldn't convert variable "
+																			+ ((MappedAttributeValueExpanderType) h)
+																					.getSourceAttribute()
+																					.getName()
+																			+ " of "
+																			+ h.getClass()
+																					.getName()
+																			+ " "
+																			+ h.getName()
+																			+ " from String to double. The problematic source element's attribute value was: "
+																			+ hintVal);
 														}
 													}
 												}// TODO add any remaining
-												// hintValue changes here
+													// hintValue changes here
 
 											}
 										} else if (realHint instanceof MappingInstanceSelector) {
@@ -1115,25 +1108,25 @@ public class GenericTransformationRunner {
 																	if (prepend) {
 																		map.put(element,
 																				hintVal
-																				+ map.get(element));
+																						+ map.get(element));
 																	} else {
 																		map.put(element,
 																				map.get(element)
-																				+ hintVal);
+																						+ hintVal);
 																	}
 																}
 															}
 														}
 													}// TODO add any remaining
-													// hitValue changes here
+														// hitValue changes here
 
 												}
 											}
 										}
 									}
 								} // else TODO maybe add something here when we
-								// know how to handle/control cardinality of
-								// ImportedMappingHints
+									// know how to handle/control cardinality of
+									// ImportedMappingHints
 							}
 						}
 						final LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection = targetSectionInstantiator
@@ -1145,12 +1138,12 @@ public class GenericTransformationRunner {
 						if (instancesBySection == null) {
 							if (expGrp.getTargetMMSection().getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
 								consoleStream
-								.println("Error instantiating target section '"
-										+ expGrp.getTargetMMSection()
-										.getName()
-										+ "' using mapping rule '"
-										+ selMap.getMapping().getName()
-										+ "'");
+										.println("Error instantiating target section '"
+												+ expGrp.getTargetMMSection()
+														.getName()
+												+ "' using mapping rule '"
+												+ selMap.getMapping().getName()
+												+ "'");
 							}
 						} else {
 							for (final TargetSectionClass section : instancesBySection
@@ -1195,14 +1188,14 @@ public class GenericTransformationRunner {
 						&& g instanceof MappingHintGroup) {
 					if (selMap.getInstancesBySection((MappingHintGroup) g) != null) {
 						targetSectionInstantiator
-						.instantiateTargetSectionSecondPass(
-								g.getTargetMMSection(),
-								selMap.getMapping().getName(),
-								(MappingHintGroup) g,
-								g.getTargetMMSection(),
-								g.getMappingHints(),
-								selMap.getHintValues(),
-								selMap.getInstancesBySection((MappingHintGroup) g));
+								.instantiateTargetSectionSecondPass(
+										g.getTargetMMSection(),
+										selMap.getMapping().getName(),
+										(MappingHintGroup) g,
+										g.getTargetMMSection(),
+										g.getMappingHints(),
+										selMap.getHintValues(),
+										selMap.getInstancesBySection((MappingHintGroup) g));
 						if (targetSectionInstantiator.isCancelled()) {
 							writePamtramMessage("Transformation aborted.");
 							return false;
@@ -1225,16 +1218,16 @@ public class GenericTransformationRunner {
 							if (h instanceof MappingHint) {
 								hints.add((MappingHint) h);
 							}// TODO else if ...??-> should have already been
-							// done during 1st pass
+								// done during 1st pass
 						}
 
 						targetSectionInstantiator
-						.instantiateTargetSectionSecondPass(expGrp
-								.getTargetMMSection(), selMap
-								.getMapping().getName(), g, expGrp
-								.getTargetMMSection(), hints, selMap
-								.getHintValues(), selMap
-								.getInstancesBySection(g));
+								.instantiateTargetSectionSecondPass(expGrp
+										.getTargetMMSection(), selMap
+										.getMapping().getName(), g, expGrp
+										.getTargetMMSection(), hints, selMap
+										.getHintValues(), selMap
+										.getInstancesBySection(g));
 						if (targetSectionInstantiator.isCancelled()) {
 							writePamtramMessage("Transformation aborted.");
 							return false;
@@ -1275,7 +1268,7 @@ public class GenericTransformationRunner {
 		// if other schemes are used, the relative paths to the wprops and other
 		// model files are not set correct!)
 		final URI pamtramUri = URI.createFileURI(new java.io.File(pamtramPath)
-		.toString());
+				.toString());
 
 		// try to load pamtram model
 		pamtramResource = (XMIResource) resourceSet.getResource(pamtramUri,
@@ -1325,9 +1318,9 @@ public class GenericTransformationRunner {
 
 		} catch (final Exception e) {
 			MessageDialog
-			.openError(PlatformUI.getWorkbench()
-					.getActiveWorkbenchWindow().getShell(), "Error",
-					"The XMI resource for thhe targetModel output could not be created.");
+					.openError(PlatformUI.getWorkbench()
+							.getActiveWorkbenchWindow().getShell(), "Error",
+							"The XMI resource for thhe targetModel output could not be created.");
 			e.printStackTrace();
 			return;
 		}
@@ -1393,8 +1386,8 @@ public class GenericTransformationRunner {
 			public IStatus runInUIThread(final IProgressMonitor monitor) {
 				try {
 					PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-					.getActivePage()
-					.showView("org.eclipse.ui.console.ConsoleView");
+							.getActivePage()
+							.showView("org.eclipse.ui.console.ConsoleView");
 				} catch (final PartInitException e) {
 					e.printStackTrace();
 					return Status.CANCEL_STATUS;

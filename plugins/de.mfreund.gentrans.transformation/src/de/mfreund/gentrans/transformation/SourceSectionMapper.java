@@ -739,29 +739,18 @@ class SourceSectionMapper implements CancellationListener {
 			changedRefsAndHints
 					.setHintValueList(hint, new LinkedList<Object>());
 			if (hint instanceof ComplexAttributeMapping
-					|| hint instanceof CalculatorMapping) {// ComplexAttributeMappings
-				// are handled
-				// differently
-				// because we want
-				// to make them work
-				// across
-				// vc-sections
+					|| hint instanceof CalculatorMapping) {
+				/*
+				 * ComplexAttributeMappings are handled differently because we
+				 * want to make them work across vc-sections
+				 */
 				if (newRefsAndHints.getHintValues().containsKey(hint)) {
 					changedRefsAndHints.getHintValues().get(hint)
-							.addAll(newRefsAndHints.getHintValues().get(hint));// the
-					// cardinality
-					// of
-					// the
-					// existing
-					// hintval
-					// is
-					// either
-					// 0
-					// or
-					// 1
-					// at
-					// this
-					// point
+							.addAll(newRefsAndHints.getHintValues().get(hint));
+					/*
+					 * the cardinality of the existing hintval is either 0 or 1
+					 * at this point
+					 */
 				} else if (hint instanceof ComplexAttributeMapping) {
 					changedRefsAndHints
 							.getHintValues()
@@ -778,7 +767,8 @@ class SourceSectionMapper implements CancellationListener {
 								.getHintValues()
 								.get(hint)
 								.addAll(newRefsAndHints.getHintValues().get(
-										hint));// the cardinality of
+										hint));
+						// the cardinality of
 						// the existing hintval is
 						// either 0 or 1 at this point
 					} else {
@@ -820,205 +810,15 @@ class SourceSectionMapper implements CancellationListener {
 		changedRefsAndHints.addSourceModelObjectMapped(srcModelObject,
 				srcSection);
 
-		// check attributes
-		for (final SourceSectionAttribute at : srcSection.getAttributes()) {// look
-			// for
-			// attributes
-			// in
-			// srcSection
-			// does it exist in src model?
-			final Object srcAttr = srcModelObject.eGet(at.getAttribute());
-			if (srcAttr != null) {
-				// convert Attribute value to String
-				final String srcAttrAsString = at
-						.getAttribute()
-						.getEType()
-						.getEPackage()
-						.getEFactoryInstance()
-						.convertToString(at.getAttribute().getEAttributeType(),
-								srcAttr);
-				/*
-				 * check AttributeValueSpecifications
-				 * 
-				 * Inclusions are OR connected
-				 * 
-				 * Exclusions are NOR connected
-				 */
-				boolean inclusionMatched = false;
-				boolean containsInclusions = false;
-				for (final AttributeValueConstraint constraint : at
-						.getValueConstraint()) {
-					if (constraintsWithErrors.contains(constraint))
-						continue;
-
-					boolean constraintVal;
-					try {
-						constraintVal = constraint
-								.checkConstraint(srcAttrAsString);
-					} catch (final Exception e) {
-						constraintsWithErrors.add(constraint);
-						consoleStream
-								.println("The AttributeValueConstraint '"
-										+ constraint.getName()
-										+ "' of the "
-										+ "Attribute '"
-										+ at.getName()
-										+ " (Class: "
-										+ at.getOwningClass().getName()
-										+ ", Section: "
-										+ at.getContainingSection().getName()
-										+ ")"
-										+ "' could not be evaluated and will be ignored. The following error was supplied:\n"
-										+ e.getLocalizedMessage());
-						continue;
-					}
-					if (!constraintVal
-							&& constraint.getType().equals(
-									AttributeValueConstraintType.EXCLUSION)) {
-						return null;
-					} else if (constraint.getType().equals(
-							AttributeValueConstraintType.INCLUSION)) {
-						containsInclusions = true;
-						if (constraintVal) {
-							inclusionMatched = true;
-						}
-					}
-				}
-
-				if (!inclusionMatched && containsInclusions) {
-					return null;
-				}
-
-				// handle possible attribute mappings
-				for (final MappingHintType hint : hints) {
-					if (hint instanceof SimpleAttributeMapping) {
-						if (((SimpleAttributeMapping) hint).getSource().equals(
-								at)) {
-							final String valCopy = attributeValuemodifier
-									.applyAttributeValueModifiers(
-											srcAttrAsString,
-											((SimpleAttributeMapping) hint)
-													.getModifier());
-							changedRefsAndHints.addHintValue(hint, valCopy);
-						}
-					} else if (hint instanceof MappedAttributeValueExpander) {
-						if (((MappedAttributeValueExpander) hint)
-								.getSourceAttribute().equals(at)) {
-							final String valCopy = attributeValuemodifier
-									.applyAttributeValueModifiers(
-											srcAttrAsString,
-											((MappedAttributeValueExpander) hint)
-													.getModifiers());
-							changedRefsAndHints.addHintValue(hint, valCopy);
-						}
-
-					} else if (hint instanceof ComplexAttributeMapping) {
-						for (final ComplexAttributeMappingSourceElement m : ((ComplexAttributeMapping) hint)
-								.getLocalSourceElements()) {
-							if (m.getSource().equals(at)) {
-								final String valCopy = attributeValuemodifier
-										.applyAttributeValueModifiers(
-												srcAttrAsString,
-												m.getModifier());
-								complexSourceElementHintValues.put(m, valCopy);
-							}
-						}
-					} else if (hint instanceof CalculatorMapping) {
-						for (final ExpressionVariable v : ((CalculatorMapping) hint)
-								.getLocalSourceElements()) {
-							if (v.getSource().equals(at)) {
-								final String valCopy = attributeValuemodifier
-										.applyAttributeValueModifiers(
-												srcAttrAsString,
-												v.getModifier());
-								calcVariableHintValues.put(v, valCopy);
-
-							}
-						}
-					} else if (hint instanceof MappingInstanceSelector) {// handle
-						// MappingInstanceSelector
-						// with
-						// AttributeMatcher
-						if (((MappingInstanceSelector) hint).getMatcher() instanceof SimpleAttributeMatcher) {
-							// handle attribute modifiers
-							final SimpleAttributeMatcher matcher = (SimpleAttributeMatcher) ((MappingInstanceSelector) hint)
-									.getMatcher();
-							if (matcher.getSource().equals(at)) {
-								String valCopy = srcAttrAsString;
-								valCopy = attributeValuemodifier
-										.applyAttributeValueModifiers(valCopy,
-												matcher.getModifier());
-								changedRefsAndHints.addHintValue(hint, valCopy);
-							}
-						} else if (((MappingInstanceSelector) hint)
-								.getMatcher() instanceof ComplexAttributeMatcher) {
-
-							final ComplexAttributeMatcher matcher = (ComplexAttributeMatcher) ((MappingInstanceSelector) hint)
-									.getMatcher();
-							for (final ComplexAttributeMatcherSourceElement e : matcher
-									.getLocalSourceElements()) {
-								if (e.getSource().equals(at)) {
-									String valCopy = srcAttrAsString;
-									valCopy = attributeValuemodifier
-											.applyAttributeValueModifiers(
-													valCopy, e.getModifier());
-									complexAttrMatcherSourceElementHintValues
-											.put(e, valCopy);
-								}
-							}
-						}
-					}
-				}
-
-				// ModelConnectionHint (is being handled in the same way as
-				// MI-Selector with AttrMatcher)
-				for (final ModelConnectionHint hint : connectionHints) {
-					if (hint instanceof SimpleModelConnectionHint) {
-						if (((SimpleModelConnectionHint) hint).getSource()
-								.equals(at)) {
-							final String modifiedVal = attributeValuemodifier
-									.applyAttributeValueModifiers(
-											srcAttrAsString,
-											((SimpleModelConnectionHint) hint)
-													.getModifier());
-							changedRefsAndHints.addModelConnectionHintValue(
-									hint, modifiedVal);
-
-						}
-					} else if (hint instanceof ComplexModelConnectionHint) {
-						for (final ComplexModelConnectionHintSourceElement m : ((ComplexModelConnectionHint) hint)
-								.getLocalSourceElements()) {
-							if (m.getSource().equals(at)) {
-								final String modifiedVal = attributeValuemodifier
-										.applyAttributeValueModifiers(
-												srcAttrAsString,
-												m.getModifier());
-								complexConnectionHintSourceElementHintValues
-										.put(m, modifiedVal);
-							}
-						}
-					}
-				}
-
-				for (final GlobalAttribute gVar : globalVars) {
-					if (gVar.getSource().equals(at)) {
-						final String modifiedVal = attributeValuemodifier
-								.applyAttributeValueModifiers(srcAttrAsString,
-										gVar.getModifier());
-						globalVarValues.put(gVar, modifiedVal);
-					}
-				}
-
-			} else {// attribute not set / null
-				// return null;
-				// Not a problem unless any mappings point here or Constraints
-				// were modelled.
-				// Unset mapping hint values are handled elsewhere.
-				// Here we only need to check for matchers
-				if (at.getValueConstraint().size() > 0) {
-					return null;
-				}
-			}
+		/*
+		 * check Attributes
+		 */
+		if (!handleAttributes(srcModelObject, hints, connectionHints,
+				globalVars, srcSection, changedRefsAndHints,
+				complexSourceElementHintValues, calcVariableHintValues,
+				complexAttrMatcherSourceElementHintValues,
+				complexConnectionHintSourceElementHintValues)) {
+			return null;
 		}
 
 		// now work on ComplexAttributeMappings and CalcMappings
@@ -1930,6 +1730,230 @@ class SourceSectionMapper implements CancellationListener {
 
 		return modelConnectionHints.get(m);
 
+	}
+
+	/**
+	 * @param srcModelObject
+	 * @param hints
+	 * @param connectionHints
+	 * @param globalVars
+	 * @param srcSection
+	 * @param changedRefsAndHints
+	 * @param complexSourceElementHintValues
+	 * @param calcVariableHintValues
+	 * @param complexAttrMatcherSourceElementHintValues
+	 * @param complexConnectionHintSourceElementHintValues
+	 * @return true on success else false
+	 */
+	private boolean handleAttributes(
+			final EObject srcModelObject,
+			final Iterable<MappingHintType> hints,
+			final Iterable<ModelConnectionHint> connectionHints,
+			final Iterable<GlobalAttribute> globalVars,
+			final SourceSectionClass srcSection,
+			final MappingInstanceStorage changedRefsAndHints,
+			final Map<ComplexAttributeMappingSourceElement, String> complexSourceElementHintValues,
+			final Map<ExpressionVariable, String> calcVariableHintValues,
+			final Map<ComplexAttributeMatcherSourceElement, String> complexAttrMatcherSourceElementHintValues,
+			final Map<ComplexModelConnectionHintSourceElement, String> complexConnectionHintSourceElementHintValues) {
+		for (final SourceSectionAttribute at : srcSection.getAttributes()) {
+			/*
+			 * look for attributes in srcSection does it exist in src model?
+			 */
+			final Object srcAttr = srcModelObject.eGet(at.getAttribute());
+			if (srcAttr != null) {
+				// convert Attribute value to String
+				final String srcAttrAsString = at
+						.getAttribute()
+						.getEType()
+						.getEPackage()
+						.getEFactoryInstance()
+						.convertToString(at.getAttribute().getEAttributeType(),
+								srcAttr);
+				/*
+				 * check AttributeValueSpecifications
+				 * 
+				 * Inclusions are OR connected
+				 * 
+				 * Exclusions are NOR connected
+				 */
+				boolean inclusionMatched = false;
+				boolean containsInclusions = false;
+				for (final AttributeValueConstraint constraint : at
+						.getValueConstraint()) {
+					if (constraintsWithErrors.contains(constraint))
+						continue;
+
+					boolean constraintVal;
+					try {
+						constraintVal = constraint
+								.checkConstraint(srcAttrAsString);
+					} catch (final Exception e) {
+						constraintsWithErrors.add(constraint);
+						consoleStream
+								.println("The AttributeValueConstraint '"
+										+ constraint.getName()
+										+ "' of the "
+										+ "Attribute '"
+										+ at.getName()
+										+ " (Class: "
+										+ at.getOwningClass().getName()
+										+ ", Section: "
+										+ at.getContainingSection().getName()
+										+ ")"
+										+ "' could not be evaluated and will be ignored. The following error was supplied:\n"
+										+ e.getLocalizedMessage());
+						continue;
+					}
+					if (!constraintVal
+							&& constraint.getType().equals(
+									AttributeValueConstraintType.EXCLUSION)) {
+						return false;
+					} else if (constraint.getType().equals(
+							AttributeValueConstraintType.INCLUSION)) {
+						containsInclusions = true;
+						if (constraintVal) {
+							inclusionMatched = true;
+						}
+					}
+				}
+
+				if (!inclusionMatched && containsInclusions) {
+					return false;
+				}
+
+				// handle possible attribute mappings
+				for (final MappingHintType hint : hints) {
+					if (hint instanceof SimpleAttributeMapping) {
+						if (((SimpleAttributeMapping) hint).getSource().equals(
+								at)) {
+							final String valCopy = attributeValuemodifier
+									.applyAttributeValueModifiers(
+											srcAttrAsString,
+											((SimpleAttributeMapping) hint)
+													.getModifier());
+							changedRefsAndHints.addHintValue(hint, valCopy);
+						}
+					} else if (hint instanceof MappedAttributeValueExpander) {
+						if (((MappedAttributeValueExpander) hint)
+								.getSourceAttribute().equals(at)) {
+							final String valCopy = attributeValuemodifier
+									.applyAttributeValueModifiers(
+											srcAttrAsString,
+											((MappedAttributeValueExpander) hint)
+													.getModifiers());
+							changedRefsAndHints.addHintValue(hint, valCopy);
+						}
+
+					} else if (hint instanceof ComplexAttributeMapping) {
+						for (final ComplexAttributeMappingSourceElement m : ((ComplexAttributeMapping) hint)
+								.getLocalSourceElements()) {
+							if (m.getSource().equals(at)) {
+								final String valCopy = attributeValuemodifier
+										.applyAttributeValueModifiers(
+												srcAttrAsString,
+												m.getModifier());
+								complexSourceElementHintValues.put(m, valCopy);
+							}
+						}
+					} else if (hint instanceof CalculatorMapping) {
+						for (final ExpressionVariable v : ((CalculatorMapping) hint)
+								.getLocalSourceElements()) {
+							if (v.getSource().equals(at)) {
+								final String valCopy = attributeValuemodifier
+										.applyAttributeValueModifiers(
+												srcAttrAsString,
+												v.getModifier());
+								calcVariableHintValues.put(v, valCopy);
+
+							}
+						}
+					} else if (hint instanceof MappingInstanceSelector) {// handle
+						// MappingInstanceSelector
+						// with
+						// AttributeMatcher
+						if (((MappingInstanceSelector) hint).getMatcher() instanceof SimpleAttributeMatcher) {
+							// handle attribute modifiers
+							final SimpleAttributeMatcher matcher = (SimpleAttributeMatcher) ((MappingInstanceSelector) hint)
+									.getMatcher();
+							if (matcher.getSource().equals(at)) {
+								String valCopy = srcAttrAsString;
+								valCopy = attributeValuemodifier
+										.applyAttributeValueModifiers(valCopy,
+												matcher.getModifier());
+								changedRefsAndHints.addHintValue(hint, valCopy);
+							}
+						} else if (((MappingInstanceSelector) hint)
+								.getMatcher() instanceof ComplexAttributeMatcher) {
+
+							final ComplexAttributeMatcher matcher = (ComplexAttributeMatcher) ((MappingInstanceSelector) hint)
+									.getMatcher();
+							for (final ComplexAttributeMatcherSourceElement e : matcher
+									.getLocalSourceElements()) {
+								if (e.getSource().equals(at)) {
+									String valCopy = srcAttrAsString;
+									valCopy = attributeValuemodifier
+											.applyAttributeValueModifiers(
+													valCopy, e.getModifier());
+									complexAttrMatcherSourceElementHintValues
+											.put(e, valCopy);
+								}
+							}
+						}
+					}
+				}
+
+				// ModelConnectionHint (is being handled in the same way as
+				// MI-Selector with AttrMatcher)
+				for (final ModelConnectionHint hint : connectionHints) {
+					if (hint instanceof SimpleModelConnectionHint) {
+						if (((SimpleModelConnectionHint) hint).getSource()
+								.equals(at)) {
+							final String modifiedVal = attributeValuemodifier
+									.applyAttributeValueModifiers(
+											srcAttrAsString,
+											((SimpleModelConnectionHint) hint)
+													.getModifier());
+							changedRefsAndHints.addModelConnectionHintValue(
+									hint, modifiedVal);
+
+						}
+					} else if (hint instanceof ComplexModelConnectionHint) {
+						for (final ComplexModelConnectionHintSourceElement m : ((ComplexModelConnectionHint) hint)
+								.getLocalSourceElements()) {
+							if (m.getSource().equals(at)) {
+								final String modifiedVal = attributeValuemodifier
+										.applyAttributeValueModifiers(
+												srcAttrAsString,
+												m.getModifier());
+								complexConnectionHintSourceElementHintValues
+										.put(m, modifiedVal);
+							}
+						}
+					}
+				}
+
+				for (final GlobalAttribute gVar : globalVars) {
+					if (gVar.getSource().equals(at)) {
+						final String modifiedVal = attributeValuemodifier
+								.applyAttributeValueModifiers(srcAttrAsString,
+										gVar.getModifier());
+						globalVarValues.put(gVar, modifiedVal);
+					}
+				}
+
+			} else {// attribute not set / null
+				// return null;
+				// Not a problem unless any mappings point here or Constraints
+				// were modelled.
+				// Unset mapping hint values are handled elsewhere.
+				// Here we only need to check for matchers
+				if (at.getValueConstraint().size() > 0) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 	/**

@@ -980,7 +980,7 @@
     </metaModelSections>
   </sourceSectionModel>
   <targetSectionModel>
-    <metaModelPackage href="http://stefan-hennig.de/movisa/platform#/"/>
+    <metaModelPackage href="http://stefan-hennig.de/movisa/"/>
     <metaModelSections name="VisualizationApplicationModel">
       <eClass href="http://stefan-hennig.de/movisa/platform#//VisualizationApplicationModel"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="AlgorithmDomain">

@@ -29,6 +29,17 @@
               <eClass href="http://gfai.de/stgml.xsd#//Transition"/>
               <attributes name="rootStateEvent">
                 <attribute href="http://gfai.de/stgml.xsd#//Transition/event"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="event != &quot;BACK&quot;" type="EXCLUSION" value="BACK"/>
+              </attributes>
+              <attributes name="rootStateTarget">
+                <attribute href="http://gfai.de/stgml.xsd#//Transition/target"/>
+              </attributes>
+            </value>
+            <value name="Transition Rest" cardinality="ZERO__INFINITY">
+              <eClass href="http://gfai.de/stgml.xsd#//Transition"/>
+              <attributes name="rootStateEvent">
+                <attribute href="http://gfai.de/stgml.xsd#//Transition/event"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="event == &quot;BACK&quot;" value="BACK"/>
               </attributes>
               <attributes name="rootStateTarget">
                 <attribute href="http://gfai.de/stgml.xsd#//Transition/target"/>

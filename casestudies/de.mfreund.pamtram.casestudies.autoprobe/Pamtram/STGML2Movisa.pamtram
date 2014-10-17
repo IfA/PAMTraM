@@ -29,9 +29,17 @@
               <eClass href="http://gfai.de/stgml.xsd#//Transition"/>
               <attributes name="rootStateEvent">
                 <attribute href="http://gfai.de/stgml.xsd#//Transition/event"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="event == &quot;BACK&quot;" type="EXCLUSION" value="BACK"/>
               </attributes>
               <attributes name="rootStateTarget">
                 <attribute href="http://gfai.de/stgml.xsd#//Transition/target"/>
+              </attributes>
+            </value>
+            <value name="Transition Rest" cardinality="ZERO__INFINITY">
+              <eClass href="http://gfai.de/stgml.xsd#//Transition"/>
+              <attributes name="rootStateEvent">
+                <attribute href="http://gfai.de/stgml.xsd#//Transition/event"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="event !== &quot;BACK&quot;" value="BACK"/>
               </attributes>
             </value>
           </references>
@@ -980,7 +988,7 @@
     </metaModelSections>
   </sourceSectionModel>
   <targetSectionModel>
-    <metaModelPackage href="http://stefan-hennig.de/movisa/"/>
+    <metaModelPackage href="http://stefan-hennig.de/movisa/platform#/"/>
     <metaModelSections name="VisualizationApplicationModel">
       <eClass href="http://stefan-hennig.de/movisa/platform#//VisualizationApplicationModel"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="AlgorithmDomain">
@@ -3847,7 +3855,7 @@
     </metaModelSections>
   </targetSectionModel>
   <mappingModel>
-    <mapping name="Movisa Template" sourceMMSection="//@sourceSectionModel/@metaModelSections.0">
+    <mapping name="Movisa Template " sourceMMSection="//@sourceSectionModel/@metaModelSections.0">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="VisAppModel" targetMMSection="//@targetSectionModel/@metaModelSections.0">
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="VisAppName" target="//@targetSectionModel/@metaModelSections.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.0/@attributes.0"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="VersionNumber" target="//@targetSectionModel/@metaModelSections.0/@attributes.4" source="//@sourceSectionModel/@metaModelSections.0/@attributes.1"/>

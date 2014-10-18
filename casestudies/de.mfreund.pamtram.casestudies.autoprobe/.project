@@ -9,11 +9,4 @@
 	<natures>
 		<nature>de.mfreund.pamtram.pamtramNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>metamodel/pamtram.ecore</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/de.mfreund.pamtram.model/model/pamtram.ecore</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>

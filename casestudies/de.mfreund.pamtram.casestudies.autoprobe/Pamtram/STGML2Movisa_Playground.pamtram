@@ -2819,7 +2819,7 @@
             <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Interaction/OwnedEffect"/>
             <value name="SendSignal">
               <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/SendSignalEffect"/>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="signal">
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="signal" value="//@targetSectionModel/@metaModelSections.9 //@targetSectionModel/@metaModelSections.10 //@targetSectionModel/@metaModelSections.5">
                 <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/SendSignalEffect/Signal"/>
               </references>
               <attributes xsi:type="metamodel:ActualAttribute" name="SendSignalEffectName">
@@ -4048,18 +4048,14 @@
           <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" source="//@sourceSectionModel/@metaModelSections.4/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappedAttributeValuePrepender" name="Add State id" sourceAttribute="//@sourceSectionModel/@metaModelSections.4/@attributes.0" modifiers="//@mappingModel/@modifierSets.4 //@mappingModel/@modifierSets.2" hintsToExpand="//@mappingModel/@mapping.0/@mappingHintGroups.4/@mappingHints.1"/>
-        <mappingHints xsi:type="mapping:MappedAttributeValuePrepender" name="id" sourceAttribute="//@sourceSectionModel/@metaModelSections.4/@attributes.0" modifiers="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.2" hintsToExpand="//@mappingModel/@mapping.0/@mappingHintGroups.4/@mappingHints.0/@matcher"/>
       </importedMappingHintGroups>
-      <importedMappingHintGroups name="Inherited NavFlowTriggers" hintGroup="//@mappingModel/@mapping.0/@mappingHintGroups.5">
-        <mappingHints xsi:type="mapping:MappedAttributeValuePrepender" name="id" sourceAttribute="//@sourceSectionModel/@metaModelSections.4/@attributes.0" modifiers="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.2" hintsToExpand="//@mappingModel/@mapping.0/@mappingHintGroups.5/@mappingHints.0"/>
-      </importedMappingHintGroups>
+      <importedMappingHintGroups name="Inherited NavFlowTriggers" hintGroup="//@mappingModel/@mapping.0/@mappingHintGroups.5" mappingHints=""/>
     </mapping>
     <mapping name="Transitions" sourceMMSection="//@sourceSectionModel/@metaModelSections.5">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NavFlow" targetMMSection="//@targetSectionModel/@metaModelSections.8">
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="NavFlowTrigger" affectedReference="//@targetSectionModel/@metaModelSections.8/@references.2">
           <matcher xsi:type="mapping:ComplexAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.10/@attributes.0">
-            <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.4/@attributes.0" modifier="//@mappingModel/@modifierSets.2 //@mappingModel/@modifierSets.3"/>
-            <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherSourceElement" name="Target" source="//@sourceSectionModel/@metaModelSections.5/@attributes.1" modifier="//@mappingModel/@modifierSets.2 //@mappingModel/@modifierSets.19"/>
+            <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherSourceElement" name="Event" source="//@sourceSectionModel/@metaModelSections.5/@attributes.0" modifier="//@mappingModel/@modifierSets.2 //@mappingModel/@modifierSets.19"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="FlowName" target="//@targetSectionModel/@metaModelSections.8/@attributes.0">
@@ -4079,14 +4075,8 @@
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TransSignals" targetMMSection="//@targetSectionModel/@metaModelSections.10">
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="SignalName" target="//@targetSectionModel/@metaModelSections.10/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.4/@attributes.0" modifier="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="event" source="//@sourceSectionModel/@metaModelSections.5/@attributes.0" modifier="//@mappingModel/@modifierSets.19 //@mappingModel/@modifierSets.2"/>
         </mappingHints>
-      </mappingHintGroups>
-    </mapping>
-    <mapping name="Events" sourceMMSection="//@sourceSectionModel/@metaModelSections.6">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetMMSection="//@targetSectionModel/@metaModelSections.9">
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="eventName" target="//@targetSectionModel/@metaModelSections.9/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.19 //@mappingModel/@modifierSets.2"/>
       </mappingHintGroups>
     </mapping>
     <mapping name="Output Bool" sourceMMSection="//@sourceSectionModel/@metaModelSections.8">
@@ -4717,7 +4707,6 @@
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="sendSignal" affectedReference="//@targetSectionModel/@metaModelSections.20/@references.1/@value.0/@references.0/@value.0/@references.0">
           <matcher xsi:type="mapping:ComplexAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.10/@attributes.0">
-            <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherExternalSourceElement" name="layer" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.2"/>
             <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherSourceElement" name="send" source="//@sourceSectionModel/@metaModelSections.13/@attributes.6" modifier="//@mappingModel/@modifierSets.19 //@mappingModel/@modifierSets.2"/>
           </matcher>
         </mappingHints>

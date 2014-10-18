@@ -713,15 +713,10 @@ class TargetSectionInstantiator implements CancellationListener {
 			final List<MappingHint> hints,
 			final LinkedHashMap<MappingHintType, LinkedList<Object>> hintValues,
 			final LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection) {
-
-		if (instancesBySection.get(targetSectionClass) != null) {// only go on
-			// if
-			// any
-			// instances
-			// of this
-			// section
-			// were
-			// created
+		/*
+		 * only go on if any instances of this section were created
+		 */
+		if (instancesBySection.get(targetSectionClass) != null) {
 			for (final TargetSectionReference refVal : targetSectionClass
 					.getReferences()) {
 				if (refVal instanceof TargetSectionNonContainmentReference) {
@@ -733,11 +728,10 @@ class TargetSectionInstantiator implements CancellationListener {
 					for (final MappingHint h : hints) {
 						if (h instanceof MappingInstanceSelector) {
 							final MappingInstanceSelector hSel = (MappingInstanceSelector) h;
-							if (hSel.getAffectedReference().equals(ref)) {// hint
-								// for
-								// current
-								// ref
-								// found
+							/*
+							 * hint for current ref found
+							 */
+							if (hSel.getAffectedReference().equals(ref)) {
 								/*
 								 * handle AttributeMatcher
 								 */
@@ -882,7 +876,7 @@ class TargetSectionInstantiator implements CancellationListener {
 													+ ", Group: "
 													+ group.getName()
 													+ " ) has an AttributeMatcher that picked up the value '"
-													+ attrVal
+													+ attrValStr
 													+ "' to be matched to the "
 															+ "TargetAttribute, but no fitting TargetSectionInstance with this value could be found.");
 

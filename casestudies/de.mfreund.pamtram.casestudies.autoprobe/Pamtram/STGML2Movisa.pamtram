@@ -3497,7 +3497,7 @@
             <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Interaction/OwnedEffect"/>
             <value name="SendSignal">
               <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/SendSignalEffect"/>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="signal">
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="signal" value="//@targetSectionModel/@metaModelSections.10">
                 <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/SendSignalEffect/Signal"/>
               </references>
               <attributes xsi:type="metamodel:ActualAttribute" name="SendSignalEffectName">

@@ -197,7 +197,7 @@ class TargetSectionInstantiator implements CancellationListener {
 		}
 
 		consoleStream
-				.println("Parsing GlobalVariables for numbers. Look below for potential errors..");
+		.println("Parsing GlobalVariables for numbers. Look below for potential errors..");
 		// find GlobalAttrs that can be mapped to double
 		globalVarValueDoubles = new HashMap<String, Double>();
 		for (final GlobalAttribute g : globalVarValues.keySet()) {
@@ -241,11 +241,11 @@ class TargetSectionInstantiator implements CancellationListener {
 		if (ref.getEReference().getUpperBound() == 1) {
 			if (source.eIsSet(ref.getEReference())) {
 				consoleStream
-						.println("More than one value was supposed to be connected to the TargetSectionNonContainmentReference '"
-								+ ref.getName()
-								+ "' in the target section '"
-								+ ref.getContainingSection()
-								+ "Please check your mapping model.");
+				.println("More than one value was supposed to be connected to the TargetSectionNonContainmentReference '"
+						+ ref.getName()
+						+ "' in the target section '"
+						+ ref.getContainingSection()
+						+ "Please check your mapping model.");
 
 			} else {
 				source.eSet(ref.getEReference(), target);
@@ -266,7 +266,7 @@ class TargetSectionInstantiator implements CancellationListener {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see de.mfreund.gentrans.transformation.CancellationListener#cancel()
 	 */
 	@Override
@@ -289,6 +289,8 @@ class TargetSectionInstantiator implements CancellationListener {
 	 * @param instBySection
 	 * @param mappingName
 	 * @param sectionAttributeValues
+	 *            These are used to determine if an attribute value was used
+	 *            higher up in the section hierarchy.
 	 * @return
 	 */
 	private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPass(
@@ -415,17 +417,17 @@ class TargetSectionInstantiator implements CancellationListener {
 								break;
 							} else {
 								consoleStream
-										.println("Cardinality mismatch (expected: "
-												+ cardinality
-												+ ", got :"
-												+ hintValues.get(hint).size()
-												+ "): "
-												+ hint.getName()
-												+ " for Mapping "
-												+ mappingName
-												+ " (Group: "
-												+ mappingGroup.getName()
-												+ ") Maybe check Cardinality of Metamodel section?");
+								.println("Cardinality mismatch (expected: "
+										+ cardinality
+										+ ", got :"
+										+ hintValues.get(hint).size()
+										+ "): "
+										+ hint.getName()
+										+ " for Mapping "
+										+ mappingName
+										+ " (Group: "
+										+ mappingGroup.getName()
+										+ ") Maybe check Cardinality of Metamodel section?");
 								return null;
 							}
 						}
@@ -445,28 +447,28 @@ class TargetSectionInstantiator implements CancellationListener {
 								 */
 								@SuppressWarnings("unchecked")
 								final Map<String, Double> varValues = (Map<String, Double>) attrHintValues
-										.remove(0);
+								.remove(0);
 								vars.putAll(varValues);
 
 								attrValue = String
 										.valueOf(new ExpressionBuilder(
 												((CalculatorMapping) hintFound)
-														.getExpression())
-												// make calculation
-												.withCustomFunction(round)
-												.withCustomFunction(max)
-												.withCustomFunction(min)
-												.withVariables(vars).build()
-												.calculate());
+												.getExpression())
+										// make calculation
+										.withCustomFunction(round)
+										.withCustomFunction(max)
+										.withCustomFunction(min)
+										.withVariables(vars).build()
+										.calculate());
 							} catch (final Exception e) {// TODO this will lead
 								// to a lot of error
 								// output if it
 								// fails
 								consoleStream
-										.println("Error parsing the expression of CalculatorMapping"
-												+ hintFound.getName()
-												+ ". Message:\n"
-												+ e.getMessage());
+								.println("Error parsing the expression of CalculatorMapping"
+										+ hintFound.getName()
+										+ ". Message:\n"
+										+ e.getMessage());
 							}
 							if (attrValue != null) {// apply resultModifiers if
 								// all went well
@@ -474,23 +476,23 @@ class TargetSectionInstantiator implements CancellationListener {
 										.applyAttributeValueModifiers(
 												attrValue,
 												((CalculatorMapping) hintFound)
-														.getResultModifier());
+												.getResultModifier());
 							}
 						} else if (hintFound instanceof ComplexAttributeMapping) {
 							attrValue = "";
 							@SuppressWarnings("unchecked")
 							final Map<ComplexAttributeMappingSourceInterface, String> hVal = (Map<ComplexAttributeMappingSourceInterface, String>) attrHintValues
-									.remove(0);
+							.remove(0);
 							for (final ComplexAttributeMappingSourceInterface srcElement : ((ComplexAttributeMapping) hintFound)
 									.getSourceAttributeMappings()) {
 								if (hVal.containsKey(srcElement)) {
 									attrValue += hVal.get(srcElement);
 								} else {
 									consoleStream
-											.println("HintSourceValue not found for element "
-													+ srcElement.getName()
-													+ " in hint "
-													+ hintFound.getName() + ".");
+									.println("HintSourceValue not found for element "
+											+ srcElement.getName()
+											+ " in hint "
+											+ hintFound.getName() + ".");
 								}
 							}
 						} else {
@@ -569,7 +571,7 @@ class TargetSectionInstantiator implements CancellationListener {
 									+ metamodelSection.getName()
 									+ " in target section "
 									+ metamodelSection.getContainingSection()
-											.getName() + ".\n"
+									.getName() + ".\n"
 									+ "The problematic value was: '" + setValue
 									+ "'.");
 						}
@@ -610,21 +612,21 @@ class TargetSectionInstantiator implements CancellationListener {
 							if (ref.getEReference().getUpperBound() == 1) {
 								if (childInstances.size() > 1
 										&& !wrongCardinalityContainmentRefs
-												.contains(ref)) {
+										.contains(ref)) {
 									wrongCardinalityContainmentRefs
-											.add((TargetSectionContainmentReference) ref);
+									.add((TargetSectionContainmentReference) ref);
 									consoleStream
-											.println("More than one value was supposed to be connected to the TargetSectionContainmentReference '"
-													+ ref.getName()
-													+ "' in the target section '"
-													+ ref.getContainingSection()
-													+ "', instantiated by the Mapping '"
-													+ mappingName
-													+ "' (Group: '"
-													+ mappingGroup.getName()
-													+ "'). "
-													+ "Only the first instance will be added to the model, the rest will be discarded. "
-													+ "Please check your mapping model.");
+									.println("More than one value was supposed to be connected to the TargetSectionContainmentReference '"
+											+ ref.getName()
+											+ "' in the target section '"
+											+ ref.getContainingSection()
+											+ "', instantiated by the Mapping '"
+											+ mappingName
+											+ "' (Group: '"
+											+ mappingGroup.getName()
+											+ "'). "
+											+ "Only the first instance will be added to the model, the rest will be discarded. "
+											+ "Please check your mapping model.");
 								}
 								instance.getEObject().eSet(ref.getEReference(),
 										childInstances.getFirst().getEObject());
@@ -663,9 +665,9 @@ class TargetSectionInstantiator implements CancellationListener {
 				CardinalityType.ZERO_INFINITY)) {// <>
 			// pamtram!CardinalityType#ZERO__INFINITY){
 			consoleStream
-					.println("TargetMMSection class '"
-							+ metamodelSection.getName()
-							+ "' has a cardinality of at least 1 specified, but no suitable mappingHint was found.");
+			.println("TargetMMSection class '"
+					+ metamodelSection.getName()
+					+ "' has a cardinality of at least 1 specified, but no suitable mappingHint was found.");
 			return null;
 		} else {
 			/*
@@ -761,8 +763,8 @@ class TargetSectionInstantiator implements CancellationListener {
 									// hintValues
 									final LinkedList<EObjectTransformationHelper> instancesToConsider = new LinkedList<EObjectTransformationHelper>();
 									instancesToConsider
-											.addAll(instancesBySection
-													.get(targetSectionClass));
+									.addAll(instancesBySection
+											.get(targetSectionClass));
 									/*
 									 * Sizes of instances and attributeHints
 									 * must either match, or, in case there was
@@ -783,19 +785,19 @@ class TargetSectionInstantiator implements CancellationListener {
 										// newHintValues.addAll(hintValues.get(h));
 									} else {
 										consoleStream
-												.println("There was a size mismatch while trying to set a non-containment reference, using the Hint "
-														+ h.getName()
-														+ ". There where "
-														+ instancesToConsider
-																.size()
-														+ " instances to be connected but "
-														+ hintValues.get(h)
-																.size()
-														+ " MappingHint values. The output below"
-														+ " shows the hint values and the source instances for the reference:\n"
-														+ hintValues.get(h)
-														+ "\n"
-														+ instancesToConsider);
+										.println("There was a size mismatch while trying to set a non-containment reference, using the Hint "
+												+ h.getName()
+												+ ". There where "
+												+ instancesToConsider
+												.size()
+												+ " instances to be connected but "
+												+ hintValues.get(h)
+												.size()
+												+ " MappingHint values. The output below"
+												+ " shows the hint values and the source instances for the reference:\n"
+												+ hintValues.get(h)
+												+ "\n"
+												+ instancesToConsider);
 									}
 
 									for (final Object attrVal : newHintValues) {
@@ -815,12 +817,12 @@ class TargetSectionInstantiator implements CancellationListener {
 															.get(srcElement);
 												} else {
 													consoleStream
-															.println("HintSourceValue not found "
-																	+ srcElement
-																			.getName()
-																	+ " in hint "
-																	+ h.getName()
-																	+ ".");
+													.println("HintSourceValue not found "
+															+ srcElement
+															.getName()
+															+ " in hint "
+															+ h.getName()
+															+ ".");
 												}
 											}
 										}
@@ -839,14 +841,14 @@ class TargetSectionInstantiator implements CancellationListener {
 												}
 											} else {
 												consoleStream
-														.println("Problemo?");
+												.println("Problemo?");
 											}
 										}
 										// select targetInst
 										if (fittingVals.size() == 1) {
 											addValueToReference(ref,
 													fittingVals.get(0)
-															.getEObject(),
+													.getEObject(),
 													srcInst.getEObject());
 										} else if (fittingVals.size() > 1) {// let
 											// user
@@ -865,8 +867,8 @@ class TargetSectionInstantiator implements CancellationListener {
 															+ ref.getName()
 															+ "' of the following element should point to:\n\n"
 															+ srcInst
-																	.toString(),
-													fittingVals, 0);
+															.toString(),
+															fittingVals, 0);
 											Display.getDefault().syncExec(
 													dialog);
 
@@ -881,16 +883,16 @@ class TargetSectionInstantiator implements CancellationListener {
 													srcInst.getEObject());
 										} else {
 											consoleStream
-													.println("The MappigInstanceSelector "
-															+ hSel.getName()
-															+ " (Mapping: "
-															+ mappingName
-															+ ", Group: "
-															+ group.getName()
-															+ " ) has an AttributeMatcher that picked up the value '"
-															+ attrValStr
-															+ "' to be matched to the "
-															+ "TargetAttribute, but no fitting TargetSectionInstance with this value could be found.");
+											.println("The MappigInstanceSelector "
+													+ hSel.getName()
+													+ " (Mapping: "
+													+ mappingName
+													+ ", Group: "
+													+ group.getName()
+													+ " ) has an AttributeMatcher that picked up the value '"
+													+ attrValStr
+													+ "' to be matched to the "
+													+ "TargetAttribute, but no fitting TargetSectionInstance with this value could be found.");
 
 										}
 									}
@@ -945,7 +947,7 @@ class TargetSectionInstantiator implements CancellationListener {
 																+ "Please choose to which element the Reference '"
 																+ ref.getName()
 																+ "' of the affected elements should point to.",
-														insts, 0);
+																insts, 0);
 												Display.getDefault().syncExec(
 														dialog);
 
@@ -958,20 +960,20 @@ class TargetSectionInstantiator implements CancellationListener {
 														.getSelection();
 											} else {
 												consoleStream
-														.println("The MappingInstanceSelector '"
-																+ h.getName()
-																+ " of Mapping"
-																+ mappingName
-																+ "(Group: "
-																+ group.getName()
-																+ ")' has a Matcher that points to the target class "
-																+ matcherTargetClass
-																		.getName()
-																+ " (Section: "
-																+ matcherTargetClass
-																		.getContainingSection()
-																		.getName()
-																+ "). Sadly, no instances of this Class were created.");
+												.println("The MappingInstanceSelector '"
+														+ h.getName()
+														+ " of Mapping"
+														+ mappingName
+														+ "(Group: "
+														+ group.getName()
+														+ ")' has a Matcher that points to the target class "
+														+ matcherTargetClass
+														.getName()
+														+ " (Section: "
+														+ matcherTargetClass
+														.getContainingSection()
+														.getName()
+														+ "). Sadly, no instances of this Class were created.");
 											}
 
 											if (targetInstance != null) {
@@ -986,7 +988,7 @@ class TargetSectionInstantiator implements CancellationListener {
 													addValueToReference(
 															ref,
 															targetInstance
-																	.getEObject(),
+															.getEObject(),
 															inst.getEObject());
 												}
 											}
@@ -995,7 +997,7 @@ class TargetSectionInstantiator implements CancellationListener {
 								} else {
 									consoleStream.println("Matcher of type "
 											+ hSel.getMatcher().eClass()
-													.getName()
+											.getName()
 											+ " in MappingHint "
 											+ hSel.getName()
 											+ " is not supported.");
@@ -1010,14 +1012,14 @@ class TargetSectionInstantiator implements CancellationListener {
 					/*
 					 * In case no suitable hint could be found we will try the
 					 * following:
-					 *
+					 * 
 					 * 1.only non-cont ref targets to other subsections of this
 					 * targetMMSection are considered, we can resolve the
 					 * reference if only one Instance of the ref Target was
 					 * created in the same mapping instance
-					 *
+					 * 
 					 * if that isn't the case:
-					 *
+					 * 
 					 * 2. consider all available instances of the ref target
 					 */
 					if (!hintFound) { // last chance
@@ -1043,7 +1045,7 @@ class TargetSectionInstantiator implements CancellationListener {
 								 * targetMMSection
 								 */
 								foundLocalNonContRefTargets
-										.add((TargetSectionClass) next);
+								.add((TargetSectionClass) next);
 								refValue.remove(next);
 							}
 
@@ -1075,8 +1077,8 @@ class TargetSectionInstantiator implements CancellationListener {
 
 							for (final EObjectTransformationHelper root : rootInstances) {
 								targetInstancesByRoot
-										.put(root,
-												new LinkedList<EObjectTransformationHelper>());
+								.put(root,
+										new LinkedList<EObjectTransformationHelper>());
 
 								// check if root node itself is a target
 								for (final EObjectTransformationHelper t : targetInstances) {
@@ -1094,7 +1096,7 @@ class TargetSectionInstantiator implements CancellationListener {
 										.getEObject().eAllContents();
 								while (it1.hasNext()
 										&& !(sourceInstances.size() == 0 && targetInstances
-												.size() == 0)) {
+										.size() == 0)) {
 									final EObject next = it1.next();
 
 									boolean found = false;
@@ -1112,7 +1114,7 @@ class TargetSectionInstantiator implements CancellationListener {
 										for (final EObjectTransformationHelper t : targetInstances) {
 											if (t.getEObject().equals(next)) {
 												targetInstancesByRoot.get(root)
-														.add(t);
+												.add(t);
 												targetInstances.remove(t);
 												break;
 											}
@@ -1148,7 +1150,7 @@ class TargetSectionInstantiator implements CancellationListener {
 													+ ") ."
 													+ "Please select a target element for the following source:\n"
 													+ source.toString(),
-											instances, 0);
+													instances, 0);
 									Display.getDefault().syncExec(dialog);
 
 									if (dialog.wasTransformationStopRequested()) {
@@ -1161,17 +1163,17 @@ class TargetSectionInstantiator implements CancellationListener {
 
 								} else {
 									consoleStream
-											.println("No suitable refernce target found for non-cont. reference '"
-													+ ref.getName()
-													+ "' of the following instance of target class "
-													+ targetSectionClass
-															.getName()
-													+ " (Section: "
-													+ targetSectionClass
-															.getContainingSection()
-															.getName()
-													+ ").'\n"
-													+ source.toString());
+									.println("No suitable refernce target found for non-cont. reference '"
+											+ ref.getName()
+											+ "' of the following instance of target class "
+											+ targetSectionClass
+											.getName()
+											+ " (Section: "
+											+ targetSectionClass
+											.getContainingSection()
+											.getName()
+											+ ").'\n"
+											+ source.toString());
 								}
 
 							}
@@ -1227,7 +1229,7 @@ class TargetSectionInstantiator implements CancellationListener {
 												+ group.getName()
 												+ ") ."
 												+ "Please select a target Class and element.",
-										targetSectionChoices, instanceChoices);
+												targetSectionChoices, instanceChoices);
 								Display.getDefault().syncExec(dialog);
 
 								if (dialog.wasTransformationStopRequested()) {
@@ -1238,17 +1240,17 @@ class TargetSectionInstantiator implements CancellationListener {
 										.get(dialog.getInstance());
 							} else {
 								consoleStream
-										.println("No suitable hint targets found for non-cont reference '"
-												+ ref.getName()
-												+ "' of TargetMMSection "
-												+ groupTargetSection.getName()
-												+ "(Section: "
-												+ targetSectionClass.getName()
-												+ ") in Mapping "
-												+ mappingName
-												+ "(Group: "
-												+ group.getName()
-												+ ").");
+								.println("No suitable hint targets found for non-cont reference '"
+										+ ref.getName()
+										+ "' of TargetMMSection "
+										+ groupTargetSection.getName()
+										+ "(Section: "
+										+ targetSectionClass.getName()
+										+ ") in Mapping "
+										+ mappingName
+										+ "(Group: "
+										+ group.getName()
+										+ ").");
 							}
 
 							if (targetInstance != null) {

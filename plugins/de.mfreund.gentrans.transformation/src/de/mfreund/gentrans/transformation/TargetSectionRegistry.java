@@ -325,7 +325,11 @@ class TargetSectionRegistry implements CancellationListener {
 	 * Returns (and registers) connections between two classes
 	 *
 	 * @param elementClass
+	 *            Class of the root element of a target section that needs to be
+	 *            connected
 	 * @param containerClass
+	 *            Class that is modeled to contain the target section to be
+	 *            connected
 	 * @param maxPathLength
 	 * @return
 	 */
@@ -398,6 +402,9 @@ class TargetSectionRegistry implements CancellationListener {
 
 	/**
 	 * @param eClass
+	 *            Class of the root element of a target section that needs to be
+	 *            connected
+	 * @param maxPathLength
 	 * @return Possible paths to connect target Model sections, for a specific
 	 *         Class of the target model
 	 */

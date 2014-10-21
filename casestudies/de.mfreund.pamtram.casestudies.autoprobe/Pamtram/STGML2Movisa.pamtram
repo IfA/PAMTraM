@@ -3137,7 +3137,7 @@
               <attributes xsi:type="metamodel:ActualAttribute" name="RepAlignmentName FunctionButton">
                 <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
               </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Horizontal" value="LEFT">
+              <attributes xsi:type="metamodel:ActualAttribute" name="Horizontal" value="CENTER">
                 <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/Alignment/HorizontalAlignment"/>
               </attributes>
               <attributes xsi:type="metamodel:ActualAttribute" name="Vertical" value="MIDDLE">
@@ -3237,7 +3237,7 @@
                   <attributes xsi:type="metamodel:ActualAttribute" name="repAnimationStateNotAccessibleName">
                     <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
                   </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="accessible" value="false">
+                  <attributes xsi:type="metamodel:ActualAttribute" name="accessible" value="true">
                     <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/State/Accessible"/>
                   </attributes>
                   <attributes xsi:type="metamodel:ActualAttribute" name="valid" value="true">
@@ -3398,7 +3398,7 @@
               <attributes xsi:type="metamodel:ActualAttribute" name="RepAlignmentName NavButton">
                 <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
               </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Horizontal" value="LEFT">
+              <attributes xsi:type="metamodel:ActualAttribute" name="Horizontal" value="CENTER">
                 <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/Alignment/HorizontalAlignment"/>
               </attributes>
               <attributes xsi:type="metamodel:ActualAttribute" name="Vertical" value="MIDDLE">
@@ -4531,7 +4531,7 @@
         </mappingHints>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="ClickTriggerName" target="//@targetSectionModel/@metaModelSections.18/@references.1/@value.0/@references.1/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.11/@attributes.5" modifier="//@mappingModel/@modifierSets.5 //@mappingModel/@modifierSets.2"/>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="ButtonAnimationTriggerSignal" affectedReference="//@targetSectionModel/@metaModelSections.18/@references.2/@value.0/@references.0/@value.0/@references.0">
-          <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" source="//@sourceSectionModel/@metaModelSections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.21 //@mappingModel/@modifierSets.2 //@mappingModel/@modifierSets.46"/>
+          <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" name="valueActivateChannel" source="//@sourceSectionModel/@metaModelSections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.21 //@mappingModel/@modifierSets.2 //@mappingModel/@modifierSets.46"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="rAnimCompName" target="//@targetSectionModel/@metaModelSections.18/@references.2/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.11/@attributes.5" modifier="//@mappingModel/@modifierSets.10 //@mappingModel/@modifierSets.2"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="repAnimationStateAccessibleName" target="//@targetSectionModel/@metaModelSections.18/@references.2/@value.0/@references.0/@value.0/@references.2/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.11/@attributes.5" modifier="//@mappingModel/@modifierSets.8 //@mappingModel/@modifierSets.2"/>
@@ -5350,9 +5350,9 @@
       <modifier xsi:type="mapping:StringAppender" name="_signal" string="_signal"/>
     </modifierSets>
     <globalValues name="doubleLabelYOffset"/>
-    <globalValues name="doubleOutHeightFactor" value="0.5"/>
-    <globalValues name="boolOutHeightFactor" value="0.5"/>
-    <globalValues name="boolInHeightFactor" value="0.5"/>
+    <globalValues name="doubleOutHeightFactor" value="0.8"/>
+    <globalValues name="boolOutHeightFactor" value="0.8"/>
+    <globalValues name="boolInHeightFactor" value="0.8"/>
     <globalValues name="xRes" value="1920.0"/>
     <globalValues name="yRes" value="1080.0"/>
     <globalValues name="variableLabelXOffset" value="50.0"/>

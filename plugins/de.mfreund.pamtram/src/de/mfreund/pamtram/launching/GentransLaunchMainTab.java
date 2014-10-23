@@ -1,13 +1,11 @@
 package de.mfreund.pamtram.launching;
 
-import java.io.File;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.ui.AbstractLaunchConfigurationTab;
@@ -31,6 +29,9 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
+	
+	// the workspace root
+	private final IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
 
 	// the list of projects in the current workspace
 	final private IProject[] projects = 
@@ -81,7 +82,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		
 		// populate the current projects in the workspace to the list
 		for(IProject project : projects) {
-			projectCombo.add(project.getLocation().toOSString());
+			projectCombo.add(project.getName());
 		}
 		
 		// if a project is selected populate the source, pamtram and target file lists
@@ -90,7 +91,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			@Override
 			public void modifyText(ModifyEvent e) {
 				
-				String projectPath = ((Combo)e.widget).getText();
+				String projectName = ((Combo)e.widget).getText();
 				
 				// reset the source and pamtram file combo
 				srcFileCombo.setItems(new String[]{});
@@ -98,7 +99,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 				targetFileCombo.setItems(new String[]{});
 				
 				// check if a valid project has been selected
-				if(projectPath.equals("") || projectCombo.indexOf(projectPath) == -1) {
+				if(projectName.equals("") || projectCombo.indexOf(projectName) == -1) {
 					srcFileCombo.setEnabled(false);
 					pamtramFileCombo.setEnabled(false);
 					targetFileCombo.setEnabled(false);
@@ -106,30 +107,42 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 				}
 				
 				// update the source file combo
-				for(File f : new File(projectPath + Path.SEPARATOR + "Source").listFiles()) {
-					if(f.getName().endsWith(".xmi") || f.getName().endsWith(".xml")) {
-						srcFileCombo.add(f.getName());
+				try {
+					for(IResource r : workspaceRoot.getProject(projectName).getFolder("Source").members()) {
+						if(r.getName().endsWith(".xmi") || r.getName().endsWith(".xml")) {
+							srcFileCombo.add(r.getName());
+						}
 					}
+					srcFileCombo.select(0);
+					srcFileCombo.setEnabled(true);
+				} catch (CoreException e1) {
+					e1.printStackTrace();
 				}
-				srcFileCombo.select(0);
-				srcFileCombo.setEnabled(true);
 				// update the pamtram file combo
-				for(File f : new File(projectPath + Path.SEPARATOR + "Pamtram").listFiles()) {
-					if(f.getName().endsWith(".pamtram")) {
-						pamtramFileCombo.add(f.getName());
+				try {
+					for(IResource r : workspaceRoot.getProject(projectName).getFolder("Pamtram").members()) {
+						if(r.getName().endsWith(".pamtram")) {
+							pamtramFileCombo.add(r.getName());
+						}
 					}
+					pamtramFileCombo.select(0);
+					pamtramFileCombo.setEnabled(true);
+				} catch (CoreException e1) {
+					e1.printStackTrace();
 				}
-				pamtramFileCombo.select(0);
-				pamtramFileCombo.setEnabled(true);
 				// update the target file combo
 				targetFileCombo.add("out.xmi");
-				for(File f : new File(projectPath + Path.SEPARATOR + "Target").listFiles()) {
-					if(f.getName().endsWith(".xmi")) {
-						targetFileCombo.add(f.getName());
+				try {
+					for(IResource r : workspaceRoot.getProject(projectName).getFolder("Target").members()) {
+						if(r.getName().endsWith(".xmi")) {
+							targetFileCombo.add(r.getName());
+						}
 					}
+					targetFileCombo.select(0);
+					targetFileCombo.setEnabled(true);
+				} catch (CoreException e1) {
+					e1.printStackTrace();
 				}
-				targetFileCombo.select(0);
-				targetFileCombo.setEnabled(true);
 				updateLaunchConfigurationDialog();
 			}
 		});
@@ -325,21 +338,25 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	
 	private boolean isProjectComboValid() {
 		// check if the selected project exists
-		return (new File(projectCombo.getText())).exists();
+		boolean ret = false;
+		try{
+			ret = workspaceRoot.getProject(projectCombo.getText()).exists();
+		} catch(Exception e) {
+			return false;
+		}
+		return ret;
 	}
 	
 	// check if the selected source file is valid
 	private boolean isSrcFileComboValid() {
-		return (new File(projectCombo.getText() + Path.SEPARATOR + 
-							"Source" + Path.SEPARATOR + srcFileCombo.getText())).exists() && 
-						(srcFileCombo.getText().endsWith(".xmi") || srcFileCombo.getText().endsWith(".xml"));
+		return (workspaceRoot.getProject(projectCombo.getText()).getFolder("Source").getFile(srcFileCombo.getText()).exists() && 
+						(srcFileCombo.getText().endsWith(".xmi") || srcFileCombo.getText().endsWith(".xml")));
 	}
 	
 	// check if the selected pamtram file is valid
 	private boolean isPamtramFileComboValid() {
-		return (new File(projectCombo.getText() + Path.SEPARATOR + 
-							"Pamtram" + Path.SEPARATOR + pamtramFileCombo.getText())).exists()  && 
-						pamtramFileCombo.getText().endsWith(".pamtram");
+		return (workspaceRoot.getProject(projectCombo.getText()).getFolder("Pamtram").getFile(pamtramFileCombo.getText()).exists() && 
+						pamtramFileCombo.getText().endsWith(".pamtram"));
 	}
 	
 	// check if the selected target file is valid
@@ -383,8 +400,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		// check if the project has the pamtram nature assigned
 		if(project.hasNature("de.mfreund.pamtram.pamtramNature")) {
 			// set the project attribute
-			workingCopy.setAttribute("project", 
-					project.getLocation().toOSString());
+			workingCopy.setAttribute("project", project.getName());
 			
 			// set the srcFile attribute
 			if(srcFile == null) {

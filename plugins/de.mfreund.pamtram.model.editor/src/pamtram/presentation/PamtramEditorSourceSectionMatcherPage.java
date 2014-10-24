@@ -320,16 +320,17 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 		sourceModelViewer.setInput(modelResource.getContents());
 		
 		// the pamtram file
-				String pamtramFile = ResourcesPlugin.getWorkspace().getRoot().getProject(project.getName()).getLocation().toOSString() +
-						Path.SEPARATOR + "Pamtram" + Path.SEPARATOR + editor.getEditorInput().getName();
-				
-				// the target file
-				String targetFile =  ResourcesPlugin.getWorkspace().getRoot().getProject(project.getName()).getLocation().toOSString() +
-						Path.SEPARATOR + "Target" + Path.SEPARATOR + "temp.xmi";
+		String pamtramFile = project.getName() + Path.SEPARATOR + "Pamtram" + Path.SEPARATOR + editor.getEditorInput().getName();
+		
+		// the source file
+		String sourceFile = project.getName() + Path.SEPARATOR + "Source" + Path.SEPARATOR + sourceModelCombo.getText();
+		
+		// the target file
+		String targetFile =  project.getName() + Path.SEPARATOR + "Target" + Path.SEPARATOR + "temp.xmi";
 		
 		// Create a transformation runner and use it to get the matching source sections
 		GenericTransformationRunner tr = 
-				new GenericTransformationRunner(modelResource.getContents().get(0), pamtramFile, targetFile);
+				new GenericTransformationRunner(sourceFile, pamtramFile, targetFile);
 		
 		matchedSections = tr.mapSections();
 		

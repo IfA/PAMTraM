@@ -127,6 +127,7 @@ import pamtram.metamodel.provider.MetamodelItemProviderAdapterFactory;
 import pamtram.provider.PamtramItemProviderAdapterFactory;
 import pamtram.transformation.provider.TransformationItemProviderAdapterFactory;
 import pamtram.util.EPackageHelper;
+import pamtram.util.EPackageHelper.EPackageCheck;
 
 
 /**
@@ -1255,27 +1256,14 @@ public class PamtramEditor
 	@Override
 	public void createPages() {
 
-		// Creates the model from the editor input
+		// Load the Pamtram model from the editor input.
 		//
-		createModel();
+		boolean pamtramFound = 
+				getPamtramFromResourceSet();
 		
 		// Only creates the other pages if there is something that can be edited
 		//
-		if (!getEditingDomain().getResourceSet().getResources().isEmpty()) {
-			
-			// Get the Pamtram instance.
-			for (Resource resource : getEditingDomain().getResourceSet().getResources()) {
-				if(resource.getContents().get(0) instanceof PAMTraM) {
-					pamtram = (PAMTraM) resource.getContents().get(0);
-					break;
-				}
-			}
-			if(pamtram == null) {
-				MessageDialog.openError(getContainer().getShell(),
-						"Error", "The root element contained in the resource is no PAMTraM instance!");
-				return;
-			}
-			
+		if(pamtramFound) {
 			// Try to register missing ePackages.
 			//
 			registerEPackages();
@@ -1337,6 +1325,39 @@ public class PamtramEditor
 	}
 
 	/**
+	 * Tries to load the Pamtram model from the editor input.
+	 * 
+	 * Therefore, 'createModel()' is called at first. After that, the Pamtram instance
+	 * is extracted from the resource and stored in the editor's 'pamtram' field.
+	 * 
+	 * @return true if the pamtram model has been found and stored; false otherwise.
+	 */
+	private boolean getPamtramFromResourceSet() {
+		
+		// Creates the model from the editor input
+		//
+		createModel();
+		
+		if(getEditingDomain().getResourceSet().getResources().isEmpty()) {
+			return false;
+		}
+		
+		// Get the Pamtram instance.
+		for (Resource resource : getEditingDomain().getResourceSet().getResources()) {
+			if(resource.getContents().get(0) instanceof PAMTraM) {
+				pamtram = (PAMTraM) resource.getContents().get(0);
+				break;
+			}
+		}
+		if(pamtram == null) {
+			MessageDialog.openError(getContainer().getShell(),
+					"Error", "The root element contained in the resource is no PAMTraM instance!");
+			return false;
+		}
+		return true;
+	}
+
+	/**
 	 * This checks if all ePackages involved in the pamtram model are registered. If not, it
 	 * tries to register them by scanning the project's 'metamodel' folder for suitable ecore
 	 * models. Any errors that might occur during this process will not be reflected in the
@@ -1348,14 +1369,31 @@ public class PamtramEditor
 		Map<Resource, Diagnostic> backup = new HashMap<>(resourceToDiagnosticMap);
 		
 		// try to register the ePackages involved in the pamtram model (if not already done)
-		EPackageHelper.checkInvolvedEPackages(
+		EPackageCheck result = EPackageHelper.checkInvolvedEPackages(
 				pamtram,
 				ResourceUtil.getFile(getEditorInput()).getProject(),
 				EPackage.Registry.INSTANCE);
 		
-		// Reset the diagnostic map so that errors that occurred during the above operations are
-		// not reflected.
-		resourceToDiagnosticMap = backup;
+		switch (result) {
+			case OK_NOTHING_REGISTERED:
+				return;
+			case OK_PACKAGES_REGISTERED:
+				// if packages have been registered, a new resource set has to be created; otherwise,
+				// proxy resolving does not seem to work correctly; therefore, the editing is re-initialized
+				// and the source model is reloaded
+				initializeEditingDomain();
+				getPamtramFromResourceSet();
+				
+				// Reset the diagnostic map so that errors that occurred during the above operations are
+				// not reflected.
+				resourceToDiagnosticMap = backup;
+				break;
+			case ERROR_METAMODEL_FOLDER_NOT_FOUND:
+			case ERROR_PACKAGE_NOT_FOUND:
+			case ERROR_PAMTRAM_NOT_FOUND:
+			default:
+				break;
+		}
 	}
 
 	/**

@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -18,7 +19,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
@@ -62,6 +62,8 @@ import pamtram.mapping.SimpleAttributeMatcher;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.TargetSectionClass;
+import pamtram.util.EPackageHelper;
+import pamtram.util.EPackageHelper.EPackageCheck;
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
 
@@ -78,9 +80,9 @@ public class GenericTransformationRunner {
 	private final List<CancellationListener> objectsToCancel;
 
 	/**
-	 * Root EObject of the source Model
+	 * File path of the source Model
 	 */
-	private final EObject sourceModel;
+	private final String sourceFilePath;
 
 	/**
 	 * Path to the transformation model
@@ -112,18 +114,18 @@ public class GenericTransformationRunner {
 	/**
 	 * Constructor
 	 *
-	 * @param sourceModel
-	 *            Root EObject of the source Model
+	 * @param sourceFilePath
+	 *            File path of the source Model
 	 * @param pamtramPath
 	 *            Path to the transformation model
 	 * @param targetFilePath
 	 *            File path to the transformation target
 	 */
-	public GenericTransformationRunner(final EObject sourceModel,
+	public GenericTransformationRunner(final String sourceFilePath,
 			final String pamtramPath, final String targetFilePath) {
 		super();
 		isCancelled = false;
-		this.sourceModel = sourceModel;
+		this.sourceFilePath = sourceFilePath;
 		this.pamtramPath = pamtramPath;
 		this.targetFilePath = targetFilePath;
 		maxPathLength = -1;
@@ -153,7 +155,7 @@ public class GenericTransformationRunner {
 	 * @param monitor
 	 * @return true on success
 	 */
-	private boolean executeMappings(final XMIResource targetModel,
+	private boolean executeMappings(final XMIResource targetModel, final EObject sourceModel,
 			final PAMTraM pamtramModel, final List<Mapping> suitableMappings,
 			final IProgressMonitor monitor) {
 		// generate storage objects and generators
@@ -776,8 +778,7 @@ public class GenericTransformationRunner {
 		// URI with "file://" scheme;
 		// if other schemes are used, the relative paths to the wprops and other
 		// model files are not set correct!)
-		final URI pamtramUri = URI.createFileURI(new java.io.File(pamtramPath)
-				.toString());
+		final URI pamtramUri = URI.createPlatformResourceURI(pamtramPath, true);
 
 		// try to load pamtram model
 		pamtramResource = (XMIResource) resourceSet.getResource(pamtramUri,
@@ -825,6 +826,12 @@ public class GenericTransformationRunner {
 		 */
 		writePamtramMessage("Analysing srcModel containment references");
 
+		// try to load source model
+		final URI sourceUri = URI.createPlatformResourceURI(sourceFilePath, true);
+		XMIResource sourceResource = (XMIResource) resourceSet.getResource(sourceUri,
+				true);
+		final EObject sourceModel = sourceResource.getContents().get(0);
+		
 		// list of all unmapped nodes. obtained by iterating over all of the
 		// srcModels containment refs
 		final List<EObject> contRefsToMap = sourceSectionMapper
@@ -1257,62 +1264,59 @@ public class GenericTransformationRunner {
 
 		monitor.beginTask("GenTrans", 1000);
 
-		XMIResource targetModel, pamtramResource;
+		XMIResource sourceResource, targetModel, pamtramResource;
 
 		final XMIResourceFactoryImpl resFactory = new XMIResourceFactoryImpl();
 
 		// Create a resource set.
-		final ResourceSet resourceSet = new ResourceSetImpl();
+		ResourceSet resourceSet = new ResourceSetImpl();
+		
+		// the URI of the source resource
+		final URI sourceUri = URI.createPlatformResourceURI(sourceFilePath, true);
+		
+		// the URI of the pamtram resource
+		final URI pamtramUri = URI.createPlatformResourceURI(pamtramPath, true);
 
-		// the selected resource (IMPORTANT: needs to be represented as absolute
-		// URI with "file://" scheme;
-		// if other schemes are used, the relative paths to the wprops and other
-		// model files are not set correct!)
-		final URI pamtramUri = URI.createFileURI(new java.io.File(pamtramPath)
-				.toString());
-
-		// try to load pamtram model
+		// load the pamtram model
 		pamtramResource = (XMIResource) resourceSet.getResource(pamtramUri,
 				true);
-
-		try {
-			pamtramResource.load(Collections.EMPTY_MAP);
-		} catch (final IOException e1) {
-			e1.printStackTrace();
-		}
-
-		final PAMTraM pamtramModel = (PAMTraM) pamtramResource.getContents()
+		PAMTraM pamtramModel = (PAMTraM) pamtramResource.getContents()
 				.get(0);
-
-		final LinkedList<EPackage> mmPackagesToCheck = new LinkedList<EPackage>();
-		mmPackagesToCheck.add(pamtramModel.getSourceSectionModel()
-				.getMetaModelPackage());
-		mmPackagesToCheck.add(pamtramModel.getTargetSectionModel()
-				.getMetaModelPackage());
-
-		/*
-		 * check if metamodels are registered
-		 */
-		while (mmPackagesToCheck.size() > 0) {
-			final EPackage pkg = mmPackagesToCheck.removeFirst();
-
-			if (pkg.eIsProxy()) {
-				writePamtramMessage("The EPackage with the eProxyURI '"
-						+ EcoreUtil.getURI(pkg)
-						+ "' is not loaded correctly. Aborting");
+		
+		// try to register the ePackages involved in the pamtram model (if not already done)
+		EPackageCheck result = EPackageHelper.checkInvolvedEPackages(
+				pamtramModel,
+				ResourcesPlugin.getWorkspace().getRoot().findMember(sourceFilePath).getProject(),
+				EPackage.Registry.INSTANCE);
+		switch (result) {
+			case ERROR_PACKAGE_NOT_FOUND:
+				writePamtramMessage("One or more EPackages are not loaded correctly. Aborting...");
 				return;
-
-			} else {
-				for (final EPackage p : pkg.getESubpackages()) {
-					mmPackagesToCheck.add(p);
-				}
-			}
+			case ERROR_METAMODEL_FOLDER_NOT_FOUND:
+			case ERROR_PAMTRAM_NOT_FOUND:
+				writePamtramMessage("Internal error during EPackage check. Aborting...");
+				return;
+			case OK_PACKAGES_REGISTERED:
+				// if packages have been registered, a new resource set has to be created; otherwise,
+				// proxy resolving does not seem to work correctly
+				resourceSet = new ResourceSetImpl();
+				pamtramResource = (XMIResource) resourceSet.getResource(pamtramUri,
+						true);
+				pamtramModel = (PAMTraM) pamtramResource.getContents().get(0);
+				break;
+			case OK_NOTHING_REGISTERED:
+			default:
+				break;
 		}
+			
+		// try to load source model
+		sourceResource = (XMIResource) resourceSet.getResource(sourceUri,
+				true);
+
+		final EObject sourceModel = sourceResource.getContents().get(0);
 
 		try {
-			// try to create the xmi resource
-			final URI targetFileUri = URI.createFileURI(new java.io.File(
-					targetFilePath).toString());
+			final URI targetFileUri = URI.createPlatformResourceURI(targetFilePath, true);
 			targetModel = (XMIResource) resFactory
 					.createResource(targetFileUri);
 			targetModel.setEncoding("UTF-8");
@@ -1331,7 +1335,7 @@ public class GenericTransformationRunner {
 		final List<Mapping> suitableMappings = pamtramModel.getMappingModel()
 				.getMapping();// TODO apply contextModel
 
-		if (executeMappings(targetModel, pamtramModel, suitableMappings,
+		if (executeMappings(targetModel, sourceModel, pamtramModel, suitableMappings,
 				monitor) && !isCancelled) {
 			// save targetModel
 			try {

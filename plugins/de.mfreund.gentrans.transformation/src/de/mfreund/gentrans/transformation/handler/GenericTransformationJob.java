@@ -6,7 +6,6 @@ package de.mfreund.gentrans.transformation.handler;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.jobs.Job;
-import org.eclipse.emf.ecore.EObject;
 
 import de.mfreund.gentrans.transformation.GenericTransformationRunner;
 
@@ -23,15 +22,15 @@ public class GenericTransformationJob extends Job {
 
 	/**
 	 * @param jobName
-	 * @param sourceModel
+	 * @param sourceFilePath
 	 * @param pamtramPath
 	 * @param targetFilePath
 	 */
 	public GenericTransformationJob(final String jobName,
-			final EObject sourceModel, final String pamtramPath,
+			final String sourceFilePath, final String pamtramPath,
 			final String targetFilePath) {
 		super(jobName);
-		genTransRunner = new GenericTransformationRunner(sourceModel,
+		genTransRunner = new GenericTransformationRunner(sourceFilePath,
 				pamtramPath, targetFilePath);
 		setPriority(Job.BUILD);
 	}

@@ -1498,7 +1498,7 @@ class SourceSectionMapper implements CancellationListener {
 		for (final Mapping m : mappingsToChooseFrom) {
 			// create result map
 			MappingInstanceStorage res;
-
+			
 			if (m.getSourceMMSection().getEClass()
 					.isSuperTypeOf(element.eClass())) {
 				/*

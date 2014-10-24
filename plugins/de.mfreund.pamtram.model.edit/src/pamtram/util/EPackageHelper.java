@@ -35,9 +35,9 @@ public class EPackageHelper {
 	 * @param registry the registry that the ePackages will be registered to; this could be the registry of a
 	 * 			resource set or the global package registry.
 	 * 
-	 * @return true if all involved packages have been registered, false otherwise or in case of an error.
+	 * @return EPackageCheck
 	 */
-	public static boolean checkInvolvedEPackages(IFile pamtramFile, Registry registry) {
+	public static EPackageCheck checkInvolvedEPackages(IFile pamtramFile, Registry registry) {
 
 		// A resource set used to load the diverse resources
 		ResourceSet resourceSet = new ResourceSetImpl();
@@ -57,7 +57,7 @@ public class EPackageHelper {
 					project.getName() + File.separator + "Pamtram" + File.separator + pamtramFile.getName(), true), true);
 			EList<EObject> contents = pamtramResource.getContents();
 			if(contents == null || contents.isEmpty() || !(contents.get(0) instanceof PAMTraM)) {
-				return false;
+				return EPackageCheck.ERROR_PAMTRAM_NOT_FOUND;
 			}
 			pamtram = (PAMTraM) contents.get(0);
 		}
@@ -77,9 +77,9 @@ public class EPackageHelper {
 	 * @param registry the registry that the ePackages will be registered to; this could be the registry of a
 	 * 			resource set or the global package registry.
 	 * 
-	 * @return true if all involved packages have been registered, false otherwise or in case of an error.
+	 * @return EPackageCheck
 	 */
-	public static boolean checkInvolvedEPackages(PAMTraM pamtram, IProject project, Registry registry) {
+	public static EPackageCheck checkInvolvedEPackages(PAMTraM pamtram, IProject project, Registry registry) {
 		
 		// a list that holds all ePackages that need to be checked
 		ArrayList<EPackage> ePackagesToCheck = new ArrayList<>();
@@ -100,14 +100,14 @@ public class EPackageHelper {
 		
 		// all ePackages are already registered
 		if(nsUrisToRegister.isEmpty()) {
-			return true;
+			return EPackageCheck.OK_NOTHING_REGISTERED;
 		}
 		
 		// try to register the remaining ePackages manually by searching for the metamodels
 		// in the 'metamodel' folder of the project
 		IFolder metamodelFolder = project.getFolder("metamodel");
 		if(!metamodelFolder.exists()) {
-			return false;
+			return EPackageCheck.ERROR_METAMODEL_FOLDER_NOT_FOUND;
 		}
 		try {
 			for(IResource res : metamodelFolder.members()) {
@@ -122,7 +122,7 @@ public class EPackageHelper {
 									nsUrisToRegister.remove(nsUriToRegister);
 								}
 								if(nsUrisToRegister.isEmpty()) {
-									return true;
+									return EPackageCheck.OK_PACKAGES_REGISTERED;
 								}
 							}
 						}
@@ -135,7 +135,7 @@ public class EPackageHelper {
 			e.printStackTrace();
 		}
 		
-		return false;
+		return EPackageCheck.ERROR_PACKAGE_NOT_FOUND;
 	}
 	
 	/**
@@ -210,5 +210,9 @@ public class EPackageHelper {
 			ePackages.addAll(collectEPackages(child));
 		}
 		return ePackages;
+	}
+	
+	public enum EPackageCheck {
+		OK_NOTHING_REGISTERED, OK_PACKAGES_REGISTERED, ERROR_PACKAGE_NOT_FOUND, ERROR_PAMTRAM_NOT_FOUND, ERROR_METAMODEL_FOLDER_NOT_FOUND;
 	}
 }

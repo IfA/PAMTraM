@@ -17,10 +17,12 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.PartInitException;
@@ -1264,7 +1266,8 @@ public class GenericTransformationRunner {
 
 		monitor.beginTask("GenTrans", 1000);
 
-		XMIResource sourceResource, targetModel, pamtramResource;
+		Resource sourceResource;
+		XMIResource targetModel, pamtramResource;
 
 		final XMIResourceFactoryImpl resFactory = new XMIResourceFactoryImpl();
 
@@ -1309,8 +1312,14 @@ public class GenericTransformationRunner {
 				break;
 		}
 			
+		if(sourceFilePath.endsWith(".xml")) {
+			// add file extension to registry
+			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
+					"xml", new GenericXMLResourceFactoryImpl());
+		}
+		
 		// try to load source model
-		sourceResource = (XMIResource) resourceSet.getResource(sourceUri,
+		sourceResource = (Resource) resourceSet.getResource(sourceUri,
 				true);
 
 		final EObject sourceModel = sourceResource.getContents().get(0);

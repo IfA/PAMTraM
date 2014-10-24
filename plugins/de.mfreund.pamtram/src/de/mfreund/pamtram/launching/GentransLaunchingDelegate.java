@@ -1,8 +1,5 @@
 package de.mfreund.pamtram.launching;
 
-import java.io.File;
-import java.util.Collections;
-
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
@@ -13,11 +10,7 @@ import org.eclipse.core.runtime.jobs.IJobChangeListener;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.model.ILaunchConfigurationDelegate;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Shell;
@@ -59,28 +52,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 				.put("xml", new GenericXMLResourceFactoryImpl());
 		}
 		
-		// Create a resource set. 
-		ResourceSet rs = new ResourceSetImpl();
-		
-		// the selected resource (IMPORTANT: needs to be represented as absolute URI with "file://" scheme; 
-		// if other schemes are used, the relative paths to the wprops and other model files are not set correct!)
-		URI sourceUri = URI.createFileURI(new java.io.File(sourceFile).toString());
-
-		Resource sourceResource = null;
-		try {
-			// load the source file
-			sourceResource = rs.getResource(sourceUri, true);
-			sourceResource.load(Collections.EMPTY_MAP);
-		} catch(Exception e) {
-			MessageDialog.openError(getShell(), "Error loading resource", 
-					e.getMessage());
-			return;
-		}
-		
-		// get the root object of the xml resource
-		EObject root = sourceResource.getContents().get(0);
-
-		GenericTransformationJob job = new GenericTransformationJob("GenTrans", root, pamtramFile, targetFile);
+		GenericTransformationJob job = new GenericTransformationJob("GenTrans", sourceFile, pamtramFile, targetFile);
 		job.getGenTransRunner().setMaxPathLength(maxPathLength);
 		job.getGenTransRunner().setOnlyAskOnceOnAmbiguousMappings(rememberAmbiguousMappingChoice);
 
@@ -93,7 +65,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 			public void done(IJobChangeEvent event) {
 				// refresh the project to see the results
 				IProject projectResource = ResourcesPlugin.getWorkspace().getRoot().
-		 			getProject((new File(project)).getName());
+		 			getProject(project);
 				ResourceHelper.refresh(projectResource);
 
 			}
@@ -124,9 +96,6 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 			}
 
 		});
-		
-
-
 		
 	}
 

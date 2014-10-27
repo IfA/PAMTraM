@@ -122,6 +122,7 @@ import org.eclipse.ui.views.properties.PropertySheetPage;
 
 import pamtram.PAMTraM;
 import pamtram.condition.provider.ConditionItemProviderAdapterFactory;
+import pamtram.contentadapter.PamtramContentAdapter;
 import pamtram.mapping.provider.MappingItemProviderAdapterFactory;
 import pamtram.metamodel.provider.MetamodelItemProviderAdapterFactory;
 import pamtram.provider.PamtramItemProviderAdapterFactory;

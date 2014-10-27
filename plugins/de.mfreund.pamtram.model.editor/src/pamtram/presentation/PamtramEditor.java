@@ -445,11 +445,11 @@ public class PamtramEditor
 		};
 		
 	/**
-	 * The singleton content adapter used to perform various changes
+	 * The content adapter used to perform various changes
 	 * automatically when the model changes.
 	 */
 	protected PamtramContentAdapter pamtramContentAdapter = 
-			PamtramContentAdapter.getInstance();
+			new PamtramContentAdapter(this);
 
 	/**
 	 * This listens for workspace changes.
@@ -678,12 +678,11 @@ public class PamtramEditor
 	 * This creates a model editor.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public PamtramEditor() {
 		super();
 		initializeEditingDomain();
-		pamtramContentAdapter.init(this);
 	}
 
 	/**

@@ -13,7 +13,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
-import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
@@ -36,7 +35,15 @@ import org.eclipse.swt.widgets.TableItem;
 import pamtram.MappingModel;
 import pamtram.mapping.AttributeValueModifierSet;
 
-final class AttValModifierSetHandlerAdapter extends EContentAdapter {
+final class AttValModifierSetHandlerAdapter extends PamtramChildContentAdapter {
+	
+	private final AttValModifierSetHandlerAdapter instance;
+	
+	public AttValModifierSetHandlerAdapter(PamtramContentAdapter parentAdapter) {
+		super(parentAdapter);
+		instance = this;
+	}
+
 	@Override
 	public void notifyChanged(Notification n) {
 		super.notifyChanged(n);
@@ -140,13 +147,11 @@ final class AttValModifierSetHandlerAdapter extends EContentAdapter {
 			// remove the child content adapter before executing/undoing/redoing
 			// the command so that it will not be triggered again endlessly
 			private void removeContentAdapter() {
-				PamtramContentAdapter.getInstance().subAdapters.remove(
-						PamtramContentAdapter.getInstance().attValModifierSetHandlerAdapter);
+				parentAdapter.subAdapters.remove(instance);
 			}
 			// re-add the child content adapter after executing/undoing/redoing the command
 			private void addContentAdapter() {
-				PamtramContentAdapter.getInstance().subAdapters.add(
-						PamtramContentAdapter.getInstance().attValModifierSetHandlerAdapter);
+				parentAdapter.subAdapters.add(instance);
 			}
 		};
 		for (EObject item : dialog.getSelectedItems()) {
@@ -154,11 +159,11 @@ final class AttValModifierSetHandlerAdapter extends EContentAdapter {
 			switch (n.getEventType()) {
 				case Notification.ADD:
 					command = new AddCommand(
-							PamtramContentAdapter.getInstance().getEditor().getEditingDomain(), (EList<?>) item.eGet(matches.get(item)), n.getNewValue());
+							parentAdapter.getEditor().getEditingDomain(), (EList<?>) item.eGet(matches.get(item)), n.getNewValue());
 					break;
 				case Notification.REMOVE:
 					command = new RemoveCommand(
-							PamtramContentAdapter.getInstance().getEditor().getEditingDomain(), (EList<?>) item.eGet(matches.get(item)), n.getOldValue());
+							parentAdapter.getEditor().getEditingDomain(), (EList<?>) item.eGet(matches.get(item)), n.getOldValue());
 					break;
 				default:
 					continue;
@@ -169,10 +174,10 @@ final class AttValModifierSetHandlerAdapter extends EContentAdapter {
 		// execute the command in another thread so that the command will be
 		// executed only after the current command has finished (this results
 		// in the correct undo/redo order)
-		PamtramContentAdapter.getInstance().getEditor().getSite().getShell().getDisplay().asyncExec(new Runnable() {
+		parentAdapter.getEditor().getSite().getShell().getDisplay().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				PamtramContentAdapter.getInstance().getEditor().getEditingDomain().getCommandStack().execute(compoundCommand);
+				parentAdapter.getEditor().getEditingDomain().getCommandStack().execute(compoundCommand);
 			}
 		});
 		

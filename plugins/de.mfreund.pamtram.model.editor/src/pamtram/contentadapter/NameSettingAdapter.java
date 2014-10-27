@@ -6,7 +6,6 @@ import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.util.EContentAdapter;
 
 import pamtram.NamedElement;
 import pamtram.PamtramPackage;
@@ -29,7 +28,12 @@ import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.Reference;
 
-final class NameSettingAdapter extends EContentAdapter {
+final class NameSettingAdapter extends PamtramChildContentAdapter {
+	
+	public NameSettingAdapter(PamtramContentAdapter parentAdapter) {
+		super(parentAdapter);
+	}
+
 	@Override
 	public void notifyChanged(Notification n) {
 		super.notifyChanged(n);

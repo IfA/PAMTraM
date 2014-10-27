@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.MoveCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -63,6 +64,7 @@ final class AttValModifierSetHandlerAdapter extends PamtramChildContentAdapter {
 	
 	// An AttributeValueModifierSet has been added/changed/deleted
 	private void handleAttributeValueModifierSetFeatureChangedNotification(Notification n) {
+
 		EReference ref = (EReference) n.getFeature();
 		
 		// the cast to EList should always be safe because multiple AttValModifierSets can always 
@@ -82,8 +84,10 @@ final class AttValModifierSetHandlerAdapter extends PamtramChildContentAdapter {
 			}
 		} else if(n.getEventType() == Notification.REMOVE) {
 			oldSets.add(n.getPosition(), (AttributeValueModifierSet) n.getOldValue());
+		} else if(n.getEventType() == Notification.MOVE) {
+			oldSets.move(n.getPosition(), ((Integer)n.getOldValue()).intValue());
 		} else {
-			//TODO handle other event types like 'add_many', 'remove_many' or 'move'
+			//TODO handle other event types like 'add_many', 'remove_many', ...
 			return;
 		}
 		
@@ -115,7 +119,7 @@ final class AttValModifierSetHandlerAdapter extends PamtramChildContentAdapter {
 		
 		// let the user decide what should be updated automatically
 		final AttributeValueModifierSetAdaptionDialog dialog = 
-				new AttributeValueModifierSetAdaptionDialog(new Shell(), "AttributeValueModifierSet changed", null,
+				new AttributeValueModifierSetAdaptionDialog(parentAdapter.getEditor().getSite().getShell(), "AttributeValueModifierSet changed", null,
 				"The following items contain the same list of AttributeValueModifierSets than"
 						+ " the item you just changed. Please select the ones you want to change as well.", MessageDialog.QUESTION, new String[]{"OK", "Cancel"}, 0, matches);
 		dialog.open();
@@ -164,6 +168,11 @@ final class AttValModifierSetHandlerAdapter extends PamtramChildContentAdapter {
 				case Notification.REMOVE:
 					command = new RemoveCommand(
 							parentAdapter.getEditor().getEditingDomain(), (EList<?>) item.eGet(matches.get(item)), n.getOldValue());
+					break;
+				case Notification.MOVE:
+					command = new MoveCommand(
+							parentAdapter.getEditor().getEditingDomain(), (EList<?>) item.eGet(matches.get(item)), 
+							n.getNewValue(), n.getPosition());
 					break;
 				default:
 					continue;

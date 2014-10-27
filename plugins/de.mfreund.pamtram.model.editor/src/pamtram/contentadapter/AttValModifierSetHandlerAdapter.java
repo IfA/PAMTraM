@@ -36,6 +36,11 @@ import org.eclipse.swt.widgets.TableItem;
 import pamtram.MappingModel;
 import pamtram.mapping.AttributeValueModifierSet;
 
+/*TODO Maybe, this could be better realized by using EMF transaction listeners
+ * or by directly listening on the command stack. That way, we could get one
+ * notification holding all complex changes of a transaction instead of getting multiple
+ * notifications for simple changes.
+ */
 final class AttValModifierSetHandlerAdapter extends PamtramChildContentAdapter {
 	
 	private final AttValModifierSetHandlerAdapter instance;

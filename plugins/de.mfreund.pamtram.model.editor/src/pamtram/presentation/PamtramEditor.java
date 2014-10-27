@@ -444,11 +444,11 @@ public class PamtramEditor
 		};
 		
 	/**
-	 * Adapter used to automatically determine attribute values and reference
-	 * targets when objects are created or changed.
+	 * The singleton content adapter used to perform various changes
+	 * automatically when the model changes.
 	 */
-	protected EContentAdapter pamtramContentAdapter = 
-			new PamtramContentAdapter();
+	protected PamtramContentAdapter pamtramContentAdapter = 
+			PamtramContentAdapter.getInstance();
 
 	/**
 	 * This listens for workspace changes.
@@ -677,11 +677,12 @@ public class PamtramEditor
 	 * This creates a model editor.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public PamtramEditor() {
 		super();
 		initializeEditingDomain();
+		pamtramContentAdapter.init(this);
 	}
 
 	/**

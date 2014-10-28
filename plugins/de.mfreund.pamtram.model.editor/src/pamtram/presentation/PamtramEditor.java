@@ -121,6 +121,7 @@ import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.PropertySheetPage;
 
 import pamtram.PAMTraM;
+import pamtram.commandlistener.PamtramCommandStackListener;
 import pamtram.condition.provider.ConditionItemProviderAdapterFactory;
 import pamtram.contentadapter.PamtramContentAdapter;
 import pamtram.mapping.provider.MappingItemProviderAdapterFactory;
@@ -450,6 +451,12 @@ public class PamtramEditor
 	 */
 	protected PamtramContentAdapter pamtramContentAdapter = 
 			new PamtramContentAdapter(this);
+	
+	/**
+	 * This listens for commands.
+	 */
+	protected PamtramCommandStackListener pamtramCommandStackListener =
+			new PamtramCommandStackListener(this);
 
 	/**
 	 * This listens for workspace changes.
@@ -1271,6 +1278,9 @@ public class PamtramEditor
 			
 			// Set the Pamtram content adapter.
 			pamtram.eAdapters().add(pamtramContentAdapter);
+			
+			// Set the Pamtram command stack listener.
+			getEditingDomain().getCommandStack().addCommandStackListener(pamtramCommandStackListener);
 						
 			// Create a page for the selection tree view.
 			//

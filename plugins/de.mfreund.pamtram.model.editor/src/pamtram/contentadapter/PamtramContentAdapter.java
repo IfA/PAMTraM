@@ -41,7 +41,6 @@ public class PamtramContentAdapter extends EContentAdapter {
 
 		// populate the list of child content adapters
 		subAdapters.add(nameSettingAdapter);
-//		subAdapters.add(attValModifierSetHandlerAdapter);
 		
 	}
 	
@@ -61,14 +60,4 @@ public class PamtramContentAdapter extends EContentAdapter {
 	final NameSettingAdapter nameSettingAdapter = 
 			new NameSettingAdapter(this);
 	
-	/**
-	 * A content adapter that will present a dialog to the user when
-	 * he changes a set of AttributeValueModifierSets referenced by an
-	 * element. The user will be asked if other elements referencing
-	 * a similar set should also be updated automatically.
-	 */
-	final AttValModifierSetHandlerAdapter attValModifierSetHandlerAdapter = 
-			new AttValModifierSetHandlerAdapter(this);
-
-
 }

@@ -41,7 +41,7 @@ public class PamtramCommandStackListener implements CommandStackListener {
 		this.editor = editor;
 		
 		// populate the list of child command stack listeners
-//		
+		subListeners.add(attValModifierSetChangedListener);
 	}
 	
 	@Override
@@ -52,5 +52,8 @@ public class PamtramCommandStackListener implements CommandStackListener {
 			childListener.commandStackChanged(event);
 		}
 	}
+	
+	final AttValModifierSetChangedListener attValModifierSetChangedListener = 
+			new AttValModifierSetChangedListener(this);
 
 }

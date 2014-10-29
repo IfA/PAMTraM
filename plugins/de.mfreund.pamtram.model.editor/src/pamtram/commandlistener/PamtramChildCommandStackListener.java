@@ -1,5 +1,6 @@
 package pamtram.commandlistener;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStackListener;
 
 /**
@@ -11,7 +12,11 @@ import org.eclipse.emf.common.command.CommandStackListener;
  */
 abstract class PamtramChildCommandStackListener implements CommandStackListener {
 
-	PamtramCommandStackListener parentListener;
+	final PamtramCommandStackListener parentListener;
+	
+	Command getMostRecentCommand() {
+		return parentListener.getEditor().getEditingDomain().getCommandStack().getMostRecentCommand();
+	}
 	
 	public PamtramChildCommandStackListener(PamtramCommandStackListener parentListener) {
 		this.parentListener = parentListener;

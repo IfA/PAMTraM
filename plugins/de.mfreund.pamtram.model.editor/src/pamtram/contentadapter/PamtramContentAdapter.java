@@ -41,7 +41,7 @@ public class PamtramContentAdapter extends EContentAdapter {
 
 		// populate the list of child content adapters
 		subAdapters.add(nameSettingAdapter);
-		subAdapters.add(attValModifierSetHandlerAdapter);
+//		subAdapters.add(attValModifierSetHandlerAdapter);
 		
 	}
 	

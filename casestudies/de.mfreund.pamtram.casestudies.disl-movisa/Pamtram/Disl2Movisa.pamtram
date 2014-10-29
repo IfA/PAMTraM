@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:pamtram="http://mfreund.de/pamtram">
   <sourceSectionModel>
     <metaModelPackage href="http://disl#/"/>
     <metaModelSections name="DislRoot">
       <eClass href="http://disl#//Disl"/>
-      <references name="head" xsi:type="metamodel:SourceSectionContainmentReference">
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="head">
         <eReference href="http://disl#//Disl/head"/>
-        <value container="//@sourceSectionModel/@metaModelSections.0" name="Head">
+        <value name="Head" container="//@sourceSectionModel/@metaModelSections.0">
           <eClass href="http://disl#//Head"/>
-          <references name="meta" xsi:type="metamodel:SourceSectionContainmentReference">
+          <references xsi:type="metamodel:SourceSectionContainmentReference" name="meta">
             <eReference href="http://disl#//Head/meta"/>
-            <value cardinality="ONE__INFINITY" container="//@sourceSectionModel/@metaModelSections.0/@references.0/@value.0" name="MetaId">
+            <value name="MetaId" cardinality="ONE__INFINITY" container="//@sourceSectionModel/@metaModelSections.0/@references.0/@value.0">
               <eClass href="http://disl#//Meta"/>
               <attributes name="content">
                 <attribute href="http://disl#//Meta/content"/>
               </attributes>
               <attributes name="name">
                 <attribute href="http://disl#//Meta/name"/>
-                <valueConstraint name="modell-ID" value="modell-ID" xsi:type="metamodel:EqualityMatcher"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="modell-ID" value="modell-ID"/>
               </attributes>
             </value>
-            <value cardinality="ZERO__INFINITY" container="//@sourceSectionModel/@metaModelSections.0/@references.0/@value.0" name="MetaOther">
+            <value name="MetaOther" cardinality="ZERO__INFINITY" container="//@sourceSectionModel/@metaModelSections.0/@references.0/@value.0">
               <eClass href="http://disl#//Meta"/>
             </value>
           </references>
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections cardinality="ONE__INFINITY" container="//@sourceSectionModel/@metaModelSections.0" name="Interface">
+    <metaModelSections name="Interface" cardinality="ONE__INFINITY" container="//@sourceSectionModel/@metaModelSections.0">
       <eClass href="http://disl#//Interface"/>
-      <references name="behavior" xsi:type="metamodel:SourceSectionContainmentReference">
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="behavior">
         <eReference href="http://disl#//Interface/behavior"/>
         <value name="Behavior">
           <eClass href="http://disl#//Behavior"/>
         </value>
       </references>
-      <references name="structure" xsi:type="metamodel:SourceSectionContainmentReference">
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="structure">
         <eReference href="http://disl#//Interface/structure"/>
         <value name="Structure">
           <eClass href="http://disl#//Structure"/>
         </value>
       </references>
-      <references name="style" xsi:type="metamodel:SourceSectionContainmentReference">
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="style">
         <eReference href="http://disl#//Interface/style"/>
         <value name="Style">
           <eClass href="http://disl#//Style"/>
@@ -49,42 +49,37 @@
       </references>
       <attributes name="id">
         <attribute href="http://disl#//Interface/id"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Ende" type="EXCLUSION" value="Ende"/>
       </attributes>
       <attributes name="state">
         <attribute href="http://disl#//Interface/state"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections container="//@sourceSectionModel/@metaModelSections.1/@references.0/@value.0" name="Transition">
+    <metaModelSections name="Transition" container="//@sourceSectionModel/@metaModelSections.1/@references.0/@value.0">
       <eClass href="http://disl#//Transition"/>
-      <references name="ifTrue" xsi:type="metamodel:SourceSectionContainmentReference">
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="ifTrue">
         <eReference href="http://disl#//Transition/ifTrue"/>
         <value name="IfTrue">
           <eClass href="http://disl#//IfTrue"/>
           <attributes name="expression">
             <attribute href="http://disl#//IfTrue/expression"/>
-            <valueConstraint name="expression_Constraint" value="and" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="expression_Constraint" value="and"/>
           </attributes>
           <attributes name="negation">
             <attribute href="http://disl#//IfTrue/negation"/>
-            <valueConstraint name="negation_Constraint" value="no" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="negation_Constraint" value="no"/>
           </attributes>
           <attributes name="ruleId">
             <attribute href="http://disl#//IfTrue/ruleId"/>
           </attributes>
         </value>
       </references>
-      <references name="action" xsi:type="metamodel:SourceSectionContainmentReference">
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="action">
         <eReference href="http://disl#//Transition/action"/>
         <value name="Action">
           <eClass href="http://disl#//Action"/>
-          <references name="interfaceChange" xsi:type="metamodel:SourceSectionContainmentReference">
+          <references xsi:type="metamodel:MetaModelSectionReference" name="interfaceChange" value="//@sourceSectionModel/@metaModelSections.10">
             <eReference href="http://disl#//Action/interfaceChange"/>
-            <value name="InterfaceChange">
-              <eClass href="http://disl#//InterfaceChange"/>
-              <attributes name="interfaceId">
-                <attribute href="http://disl#//InterfaceChange/interfaceId"/>
-              </attributes>
-            </value>
           </references>
         </value>
       </references>
@@ -95,19 +90,19 @@
         <attribute href="http://disl#//Rule/id"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections cardinality="ZERO__INFINITY" container="//@sourceSectionModel/@metaModelSections.1/@references.1/@value.0" name="CommandWidget">
+    <metaModelSections name="CommandWidget" cardinality="ZERO__INFINITY" container="//@sourceSectionModel/@metaModelSections.1/@references.1/@value.0">
       <eClass href="http://disl#//Widget"/>
       <attributes name="genericWidget">
         <attribute href="http://disl#//Widget/genericWidget"/>
-        <valueConstraint name="command" value="command" xsi:type="metamodel:EqualityMatcher"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="command" value="command"/>
       </attributes>
       <attributes name="id">
         <attribute href="http://disl#//Widget/id"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections cardinality="ZERO__INFINITY" name="CommandPart">
+    <metaModelSections name="CommandPart" cardinality="ZERO__INFINITY">
       <eClass href="http://disl#//Part"/>
-      <references name="property" xsi:type="metamodel:SourceSectionContainmentReference">
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="property">
         <eReference href="http://disl#//Part/property"/>
         <value name="PropertyTitle">
           <eClass href="http://disl#//Property"/>
@@ -116,26 +111,26 @@
           </attributes>
           <attributes name="genericWidget">
             <attribute href="http://disl#//Property/genericWidget"/>
-            <valueConstraint name="genericWidget_Constraint" value="command" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="command"/>
           </attributes>
           <attributes name="id">
             <attribute href="http://disl#//Property/id"/>
-            <valueConstraint name="id_Constraint" value="title" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="title"/>
           </attributes>
         </value>
         <value name="PropertyDescription">
           <eClass href="http://disl#//Property"/>
           <attributes name="value">
             <attribute href="http://disl#//Property/value"/>
-            <valueConstraint name="value_Constraint" value="" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="value_Constraint" value=""/>
           </attributes>
           <attributes name="genericWidget">
             <attribute href="http://disl#//Property/genericWidget"/>
-            <valueConstraint name="genericWidget_Constraint" value="command" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="command"/>
           </attributes>
           <attributes name="id">
             <attribute href="http://disl#//Property/id"/>
-            <valueConstraint name="id_Constraint" value="description" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="description"/>
           </attributes>
         </value>
         <value name="PropertyHelp">
@@ -145,11 +140,11 @@
           </attributes>
           <attributes name="genericWidget">
             <attribute href="http://disl#//Property/genericWidget"/>
-            <valueConstraint name="genericWidget_Constraint" value="command" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="command"/>
           </attributes>
           <attributes name="id">
             <attribute href="http://disl#//Property/id"/>
-            <valueConstraint name="id_Constraint" value="help" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="help"/>
           </attributes>
         </value>
         <value name="PropertySelected">
@@ -159,11 +154,11 @@
           </attributes>
           <attributes name="genericWidget">
             <attribute href="http://disl#//Property/genericWidget"/>
-            <valueConstraint name="genericWidget_Constraint" value="command" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="command"/>
           </attributes>
           <attributes name="id">
             <attribute href="http://disl#//Property/id"/>
-            <valueConstraint name="id_Constraint" value="selected" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="selected"/>
           </attributes>
         </value>
         <value name="PropertyOther">
@@ -174,19 +169,19 @@
         <attribute href="http://disl#//Part/genericWidget"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections cardinality="ZERO__INFINITY" container="//@sourceSectionModel/@metaModelSections.1/@references.1/@value.0" name="TextfieldWidget">
+    <metaModelSections name="TextfieldWidget" cardinality="ZERO__INFINITY" container="//@sourceSectionModel/@metaModelSections.1/@references.1/@value.0">
       <eClass href="http://disl#//Widget"/>
       <attributes name="genericWidget">
         <attribute href="http://disl#//Widget/genericWidget"/>
-        <valueConstraint name="textfield" value="textfield" xsi:type="metamodel:EqualityMatcher"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="textfield" value="textfield"/>
       </attributes>
       <attributes name="id">
         <attribute href="http://disl#//Widget/id"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections cardinality="ZERO__INFINITY" container="//@sourceSectionModel/@metaModelSections.1/@references.2/@value.0" name="TextfieldPart">
+    <metaModelSections name="TextfieldPart" cardinality="ZERO__INFINITY" container="//@sourceSectionModel/@metaModelSections.1/@references.2/@value.0">
       <eClass href="http://disl#//Part"/>
-      <references name="property" xsi:type="metamodel:SourceSectionContainmentReference">
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="property">
         <eReference href="http://disl#//Part/property"/>
         <value name="PropertyTitle">
           <eClass href="http://disl#//Property"/>
@@ -195,11 +190,11 @@
           </attributes>
           <attributes name="genericWidget">
             <attribute href="http://disl#//Property/genericWidget"/>
-            <valueConstraint name="genericWidget_Constraint" value="textfield" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="textfield"/>
           </attributes>
           <attributes name="id">
             <attribute href="http://disl#//Property/id"/>
-            <valueConstraint name="id_Constraint" value="title" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="title"/>
           </attributes>
         </value>
         <value name="PropertyDescription">
@@ -209,11 +204,11 @@
           </attributes>
           <attributes name="genericWidget">
             <attribute href="http://disl#//Property/genericWidget"/>
-            <valueConstraint name="genericWidget_Constraint" value="textfield" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="textfield"/>
           </attributes>
           <attributes name="id">
             <attribute href="http://disl#//Property/id"/>
-            <valueConstraint name="id_Constraint" value="description" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="description"/>
           </attributes>
         </value>
         <value name="PropertyVisible">
@@ -223,11 +218,11 @@
           </attributes>
           <attributes name="genericWidget">
             <attribute href="http://disl#//Property/genericWidget"/>
-            <valueConstraint name="genericWidget_Constraint" value="textfield" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="textfield"/>
           </attributes>
           <attributes name="id">
             <attribute href="http://disl#//Property/id"/>
-            <valueConstraint name="id_Constraint" value="visible" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="visible"/>
           </attributes>
         </value>
         <value name="PropertyActivated">
@@ -237,11 +232,11 @@
           </attributes>
           <attributes name="genericWidget">
             <attribute href="http://disl#//Property/genericWidget"/>
-            <valueConstraint name="genericWidget_Constraint" value="textfield" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="textfield"/>
           </attributes>
           <attributes name="id">
             <attribute href="http://disl#//Property/id"/>
-            <valueConstraint name="id_Constraint" value="activated" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="activated"/>
           </attributes>
         </value>
         <value name="PropertyValue">
@@ -251,11 +246,11 @@
           </attributes>
           <attributes name="genericWidget">
             <attribute href="http://disl#//Property/genericWidget"/>
-            <valueConstraint name="genericWidget_Constraint" value="textfield" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="textfield"/>
           </attributes>
           <attributes name="id">
             <attribute href="http://disl#//Property/id"/>
-            <valueConstraint name="id_Constraint" value="value" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="value"/>
           </attributes>
         </value>
         <value name="PropertyOther">
@@ -266,19 +261,19 @@
         <attribute href="http://disl#//Part/genericWidget"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections cardinality="ZERO__INFINITY" container="//@sourceSectionModel/@metaModelSections.1/@references.1/@value.0" name="TextboxWidget">
+    <metaModelSections name="TextboxWidget" cardinality="ZERO__INFINITY" container="//@sourceSectionModel/@metaModelSections.1/@references.1/@value.0">
       <eClass href="http://disl#//Widget"/>
       <attributes name="genericWidget">
         <attribute href="http://disl#//Widget/genericWidget"/>
-        <valueConstraint name="textbox" value="textbox" xsi:type="metamodel:EqualityMatcher"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="textbox" value="textbox"/>
       </attributes>
       <attributes name="id">
         <attribute href="http://disl#//Widget/id"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections cardinality="ZERO__INFINITY" name="TextboxPart">
+    <metaModelSections name="TextboxPart" cardinality="ZERO__INFINITY">
       <eClass href="http://disl#//Part"/>
-      <references name="property" xsi:type="metamodel:SourceSectionContainmentReference">
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="property">
         <eReference href="http://disl#//Part/property"/>
         <value name="PropertyTitle">
           <eClass href="http://disl#//Property"/>
@@ -287,11 +282,11 @@
           </attributes>
           <attributes name="genericWidget">
             <attribute href="http://disl#//Property/genericWidget"/>
-            <valueConstraint name="genericWidget_Constraint" value="textbox" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="textbox"/>
           </attributes>
           <attributes name="id">
             <attribute href="http://disl#//Property/id"/>
-            <valueConstraint name="id_Constraint" value="title" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="title"/>
           </attributes>
         </value>
         <value name="PropertyDescription">
@@ -301,11 +296,11 @@
           </attributes>
           <attributes name="genericWidget">
             <attribute href="http://disl#//Property/genericWidget"/>
-            <valueConstraint name="genericWidget_Constraint" value="textbox" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="textbox"/>
           </attributes>
           <attributes name="id">
             <attribute href="http://disl#//Property/id"/>
-            <valueConstraint name="id_Constraint" value="description" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="description"/>
           </attributes>
         </value>
         <value name="PropertyHelp">
@@ -315,11 +310,11 @@
           </attributes>
           <attributes name="genericWidget">
             <attribute href="http://disl#//Property/genericWidget"/>
-            <valueConstraint name="genericWidget_Constraint" value="textbox" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="textbox"/>
           </attributes>
           <attributes name="id">
             <attribute href="http://disl#//Property/id"/>
-            <valueConstraint name="id_Constraint" value="help" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="help"/>
           </attributes>
         </value>
         <value name="PropertyVisible">
@@ -329,11 +324,11 @@
           </attributes>
           <attributes name="genericWidget">
             <attribute href="http://disl#//Property/genericWidget"/>
-            <valueConstraint name="genericWidget_Constraint" value="textbox" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="textbox"/>
           </attributes>
           <attributes name="id">
             <attribute href="http://disl#//Property/id"/>
-            <valueConstraint name="id_Constraint" value="visible" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="visible"/>
           </attributes>
         </value>
         <value name="PropertyActivated">
@@ -343,11 +338,11 @@
           </attributes>
           <attributes name="genericWidget">
             <attribute href="http://disl#//Property/genericWidget"/>
-            <valueConstraint name="genericWidget_Constraint" value="textbox" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="textbox"/>
           </attributes>
           <attributes name="id">
             <attribute href="http://disl#//Property/id"/>
-            <valueConstraint name="id_Constraint" value="activated" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="activated"/>
           </attributes>
         </value>
         <value name="PropertyModified">
@@ -357,11 +352,11 @@
           </attributes>
           <attributes name="genericWidget">
             <attribute href="http://disl#//Property/genericWidget"/>
-            <valueConstraint name="genericWidget_Constraint" value="textbox" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="genericWidget_Constraint" value="textbox"/>
           </attributes>
           <attributes name="id">
             <attribute href="http://disl#//Property/id"/>
-            <valueConstraint name="id_Constraint" value="modified" xsi:type="metamodel:EqualityMatcher"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" name="id_Constraint" value="modified"/>
           </attributes>
         </value>
         <value name="PropertyOther">
@@ -372,792 +367,907 @@
         <attribute href="http://disl#//Part/genericWidget"/>
       </attributes>
     </metaModelSections>
+    <metaModelSections name="InterfaceChange" container="//@sourceSectionModel/@metaModelSections.2/@references.1/@value.0">
+      <eClass href="http://disl#//InterfaceChange"/>
+      <attributes name="interfaceId">
+        <attribute href="http://disl#//InterfaceChange/interfaceId"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Ende" type="EXCLUSION" value="Ende"/>
+      </attributes>
+    </metaModelSections>
   </sourceSectionModel>
   <targetSectionModel>
-    <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
-    <metaModelSections cardinality="ONE__INFINITY" container="//@targetSectionModel/@metaModelSections.4/@references.1/@value.0" name="Panel">
-      <eClass href="http://stefan-hennig.de/movisa#//presentation/Panel"/>
-      <attributes name="name" value="" xsi:type="metamodel:ActualAttribute">
-        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
-      </attributes>
-    </metaModelSections>
-    <metaModelSections cardinality="ZERO__INFINITY" container="//@targetSectionModel/@metaModelSections.4/@references.0/@value.0/@references.0/@value.3" name="UIComponentSignal">
-      <eClass href="http://stefan-hennig.de/movisa#//algorithm/Signal"/>
-      <attributes name="signalName" unique="true" xsi:type="metamodel:ActualAttribute">
-        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
-      </attributes>
-    </metaModelSections>
-    <metaModelSections container="//@targetSectionModel/@metaModelSections.4/@references.0/@value.0/@references.0/@value.5" name="NavFlowSignal">
-      <eClass href="http://stefan-hennig.de/movisa#//algorithm/Signal"/>
-      <attributes name="signalName" unique="true" xsi:type="metamodel:ActualAttribute">
-        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
-      </attributes>
-    </metaModelSections>
-    <metaModelSections name="ChangeViewNavFlow">
-      <eClass href="http://stefan-hennig.de/movisa#//presentation/ChangeViewNavigationFlow"/>
-      <references name="source" value="//@targetSectionModel/@metaModelSections.0" xsi:type="metamodel:TargetSectionNonContainmentReference">
-        <eReference href="http://stefan-hennig.de/movisa#//presentation/NavigationFlow/Source"/>
-      </references>
-      <references name="target" value="//@targetSectionModel/@metaModelSections.0" xsi:type="metamodel:TargetSectionNonContainmentReference">
-        <eReference href="http://stefan-hennig.de/movisa#//presentation/NavigationFlow/Target"/>
-      </references>
-      <references name="trigger" xsi:type="metamodel:TargetSectionNonContainmentReference">
-        <eReference href="http://stefan-hennig.de/movisa#//presentation/NavigationFlow/Trigger"/>
-      </references>
-      <attributes name="name" value="" xsi:type="metamodel:ActualAttribute">
-        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
-      </attributes>
-    </metaModelSections>
+    <metaModelPackage href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#/"/>
     <metaModelSections name="VisualizationApplicationModel">
-      <eClass href="http://stefan-hennig.de/movisa#//VisualizationApplicationModel"/>
-      <references name="AlgorithmDomain" xsi:type="metamodel:TargetSectionContainmentReference">
-        <eReference href="http://stefan-hennig.de/movisa#//VisualizationApplicationModel/AlgorithmDomain"/>
+      <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//VisualizationApplicationModel"/>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="AlgorithmDomain">
+        <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//VisualizationApplicationModel/AlgorithmDomain"/>
         <value name="AlgorithmModel">
-          <eClass href="http://stefan-hennig.de/movisa#//AlgorithmModel"/>
-          <references name="OwnedElement" xsi:type="metamodel:TargetSectionContainmentReference">
-            <eReference href="http://stefan-hennig.de/movisa#//AlgorithmModel/OwnedElement"/>
+          <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//AlgorithmModel"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedElement">
+            <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//AlgorithmModel/OwnedElement"/>
             <value name="BooleanType">
-              <eClass href="http://stefan-hennig.de/movisa#//algorithm/BooleanType"/>
-              <attributes name="Comment" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//algorithm/BooleanType"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//CommentedMovisaModelElement/Comment"/>
               </attributes>
-              <attributes name="Name" value="Boolean" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Boolean">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
               </attributes>
             </value>
             <value name="StringType">
-              <eClass href="http://stefan-hennig.de/movisa#//algorithm/StringType"/>
-              <attributes name="Comment" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//algorithm/StringType"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//CommentedMovisaModelElement/Comment"/>
               </attributes>
-              <attributes name="Name" value="String" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="String">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
               </attributes>
             </value>
             <value name="IntegerType">
-              <eClass href="http://stefan-hennig.de/movisa#//algorithm/IntegerType"/>
-              <attributes name="Comment" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//algorithm/IntegerType"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//CommentedMovisaModelElement/Comment"/>
               </attributes>
-              <attributes name="Name" value="Integer" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
-              </attributes>
-            </value>
-            <value name="SignalCollection">
-              <eClass href="http://stefan-hennig.de/movisa#//algorithm/SignalCollection"/>
-              <attributes name="Comment" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
-              </attributes>
-              <attributes name="Name" value="UiComponents" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Integer">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
               </attributes>
             </value>
             <value name="SignalCollection">
-              <eClass href="http://stefan-hennig.de/movisa#//algorithm/SignalCollection"/>
-              <attributes name="Comment" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//algorithm/SignalCollection"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//CommentedMovisaModelElement/Comment"/>
               </attributes>
-              <attributes name="Name" value="PanelTransitions" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="UiComponents">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
               </attributes>
             </value>
             <value name="SignalCollection">
-              <eClass href="http://stefan-hennig.de/movisa#//algorithm/SignalCollection"/>
-              <attributes name="Comment" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//algorithm/SignalCollection"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//CommentedMovisaModelElement/Comment"/>
               </attributes>
-              <attributes name="Name" value="NavigationFlowTriggers" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="PanelTransitions">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
+              </attributes>
+            </value>
+            <value name="SignalCollection">
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//algorithm/SignalCollection"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//CommentedMovisaModelElement/Comment"/>
+              </attributes>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="NavigationFlowTriggers">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
+              </attributes>
+            </value>
+            <value name="NavigationClass">
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//algorithm/Class"/>
+              <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedBehavior">
+                <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//algorithm/Class/OwnedBehavior"/>
+                <value name="StateMachine">
+                  <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//algorithm/StateMachine"/>
+                  <references xsi:type="metamodel:TargetSectionContainmentReference" name="StateMachineElement">
+                    <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//algorithm/StateMachine/StateMachineElement"/>
+                    <value name="PseudoState">
+                      <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//algorithm/PseudoState"/>
+                      <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="idle">
+                        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
+                      </attributes>
+                    </value>
+                  </references>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="NavigationStateMachine">
+                    <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
+                  </attributes>
+                </value>
+              </references>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Navigation">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
               </attributes>
             </value>
           </references>
-          <attributes name="Name" value="AlgorithmModel" xsi:type="metamodel:ActualAttribute">
-            <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="AlgorithmModel">
+            <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
           </attributes>
-          <attributes name="Comment" xsi:type="metamodel:ActualAttribute">
-            <attribute href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
+            <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//CommentedMovisaModelElement/Comment"/>
           </attributes>
-          <attributes name="Author" value="disl2movisa.pamtram" xsi:type="metamodel:ActualAttribute">
-            <attribute href="http://stefan-hennig.de/movisa#//MovisaModel/Author"/>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Author" value="disl2movisa.pamtram">
+            <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//MovisaModel/Author"/>
           </attributes>
-          <attributes name="MovisaBuildVersion" value="rev0.6.2-2010-11-24" xsi:type="metamodel:ActualAttribute">
-            <attribute href="http://stefan-hennig.de/movisa#//MovisaModel/MovisaBuildVersion"/>
+          <attributes xsi:type="metamodel:ActualAttribute" name="MovisaBuildVersion" value="rev0.6.2-2010-11-24">
+            <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//MovisaModel/MovisaBuildVersion"/>
           </attributes>
-          <attributes name="Version" value="1.0" xsi:type="metamodel:ActualAttribute">
-            <attribute href="http://stefan-hennig.de/movisa#//MovisaModel/Version"/>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Version" value="1.0">
+            <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//MovisaModel/Version"/>
           </attributes>
         </value>
       </references>
-      <references name="PresentationDomain" xsi:type="metamodel:TargetSectionContainmentReference">
-        <eReference href="http://stefan-hennig.de/movisa#//VisualizationApplicationModel/PresentationDomain"/>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="PresentationDomain">
+        <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//VisualizationApplicationModel/PresentationDomain"/>
         <value name="PresentationModel">
-          <eClass href="http://stefan-hennig.de/movisa#//PresentationModel"/>
-          <references name="OwnedColorDefinition" xsi:type="metamodel:TargetSectionContainmentReference">
-            <eReference href="http://stefan-hennig.de/movisa#//PresentationModel/OwnedColorDefinition"/>
+          <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//PresentationModel"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedColorDefinition">
+            <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//PresentationModel/OwnedColorDefinition"/>
             <value name="ColorDefinition">
-              <eClass href="http://stefan-hennig.de/movisa#//presentation/ColorDefinition"/>
-              <references name="OwnedColorValue" xsi:type="metamodel:TargetSectionContainmentReference">
-                <eReference href="http://stefan-hennig.de/movisa#//presentation/ColorDefinition/OwnedColorValue"/>
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ColorDefinition"/>
+              <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedColorValue">
+                <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ColorDefinition/OwnedColorValue"/>
                 <value name="RGBColor">
-                  <eClass href="http://stefan-hennig.de/movisa#//presentation/RGBColor"/>
-                  <attributes name="Name" value="Geld" xsi:type="metamodel:ActualAttribute">
-                    <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+                  <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/RGBColor"/>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Geld">
+                    <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
                   </attributes>
-                  <attributes name="Transparency" value="1" xsi:type="metamodel:ActualAttribute">
-                    <attribute href="http://stefan-hennig.de/movisa#//presentation/ColorValue/Transparency"/>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Transparency" value="1">
+                    <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ColorValue/Transparency"/>
                   </attributes>
-                  <attributes name="Blue" value="12" xsi:type="metamodel:ActualAttribute">
-                    <attribute href="http://stefan-hennig.de/movisa#//presentation/RGBColor/Blue"/>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Blue" value="12">
+                    <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/RGBColor/Blue"/>
                   </attributes>
-                  <attributes name="Green" value="12" xsi:type="metamodel:ActualAttribute">
-                    <attribute href="http://stefan-hennig.de/movisa#//presentation/RGBColor/Green"/>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Green" value="12">
+                    <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/RGBColor/Green"/>
                   </attributes>
-                  <attributes name="Red" value="255" xsi:type="metamodel:ActualAttribute">
-                    <attribute href="http://stefan-hennig.de/movisa#//presentation/RGBColor/Red"/>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Red" value="255">
+                    <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/RGBColor/Red"/>
                   </attributes>
                 </value>
               </references>
             </value>
           </references>
-          <references name="OwnedMultiLingualTextDefinition" xsi:type="metamodel:TargetSectionContainmentReference">
-            <eReference href="http://stefan-hennig.de/movisa#//PresentationModel/OwnedMultiLingualTextDefinition"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedMultiLingualTextDefinition">
+            <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//PresentationModel/OwnedMultiLingualTextDefinition"/>
             <value name="MultiLingualTextDefinition">
-              <eClass href="http://stefan-hennig.de/movisa#//presentation/MultiLingualTextDefinition"/>
-              <references name="OwnedLanguageDefinition" xsi:type="metamodel:TargetSectionContainmentReference">
-                <eReference href="http://stefan-hennig.de/movisa#//presentation/MultiLingualTextDefinition/OwnedLanguageDefinition"/>
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/MultiLingualTextDefinition"/>
+              <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedLanguageDefinition">
+                <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/MultiLingualTextDefinition/OwnedLanguageDefinition"/>
                 <value name="LanguageDefinition">
-                  <eClass href="http://stefan-hennig.de/movisa#//presentation/LanguageDefinition"/>
-                  <attributes name="Name" value="German" xsi:type="metamodel:ActualAttribute">
-                    <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+                  <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/LanguageDefinition"/>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="German">
+                    <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
                   </attributes>
-                  <attributes name="LocaleId" value="de-DE" xsi:type="metamodel:ActualAttribute">
-                    <attribute href="http://stefan-hennig.de/movisa#//presentation/LanguageDefinition/LocaleId"/>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="LocaleId" value="de-DE">
+                    <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/LanguageDefinition/LocaleId"/>
                   </attributes>
                 </value>
               </references>
             </value>
           </references>
-          <references name="OwnedNavigationRoot" xsi:type="metamodel:TargetSectionContainmentReference">
-            <eReference href="http://stefan-hennig.de/movisa#//PresentationModel/OwnedNavigationRoot"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedNavigationRoot">
+            <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//PresentationModel/OwnedNavigationRoot"/>
             <value name="NavigationRoot">
-              <eClass href="http://stefan-hennig.de/movisa#//presentation/NavigationRoot"/>
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/NavigationRoot"/>
             </value>
           </references>
-          <references name="OwnedNavigationTerminator" xsi:type="metamodel:TargetSectionContainmentReference">
-            <eReference href="http://stefan-hennig.de/movisa#//PresentationModel/OwnedNavigationTerminator"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedNavigationTerminator">
+            <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//PresentationModel/OwnedNavigationTerminator"/>
             <value name="NavigationTerminator">
-              <eClass href="http://stefan-hennig.de/movisa#//presentation/NavigationTerminator"/>
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/NavigationTerminator"/>
             </value>
           </references>
-          <attributes name="Name" value="PresentationModel" xsi:type="metamodel:ActualAttribute">
-            <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="PresentationModel">
+            <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
           </attributes>
-          <attributes name="Comment" xsi:type="metamodel:ActualAttribute">
-            <attribute href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
+            <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//CommentedMovisaModelElement/Comment"/>
           </attributes>
-          <attributes name="Author" value="disl2movisa.pamtram" xsi:type="metamodel:ActualAttribute">
-            <attribute href="http://stefan-hennig.de/movisa#//MovisaModel/Author"/>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Author" value="disl2movisa.pamtram">
+            <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//MovisaModel/Author"/>
           </attributes>
-          <attributes name="MovisaBuildVersion" value="rev0.6.2-2010-11-24" xsi:type="metamodel:ActualAttribute">
-            <attribute href="http://stefan-hennig.de/movisa#//MovisaModel/MovisaBuildVersion"/>
+          <attributes xsi:type="metamodel:ActualAttribute" name="MovisaBuildVersion" value="rev0.6.2-2010-11-24">
+            <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//MovisaModel/MovisaBuildVersion"/>
           </attributes>
-          <attributes name="Version" value="1.0" xsi:type="metamodel:ActualAttribute">
-            <attribute href="http://stefan-hennig.de/movisa#//MovisaModel/Version"/>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Version" value="1.0">
+            <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//MovisaModel/Version"/>
           </attributes>
         </value>
       </references>
-      <attributes name="Name" value="" xsi:type="metamodel:ActualAttribute">
-        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="">
+        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
       </attributes>
-      <attributes name="Author" value="disl2movisa.pamtram" xsi:type="metamodel:ActualAttribute">
-        <attribute href="http://stefan-hennig.de/movisa#//MovisaModel/Author"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="Author" value="disl2movisa.pamtram">
+        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//MovisaModel/Author"/>
       </attributes>
-      <attributes name="MovisaBuildVersion" value="@(#)&lt;label&gt;(on: &lt;date&gt;)@" xsi:type="metamodel:ActualAttribute">
-        <attribute href="http://stefan-hennig.de/movisa#//MovisaModel/MovisaBuildVersion"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="MovisaBuildVersion" value="@(#)&lt;label>(on: &lt;date>)@">
+        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//MovisaModel/MovisaBuildVersion"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections container="//@targetSectionModel/@metaModelSections.0" name="Button">
-      <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>
-      <references name="Interaction" xsi:type="metamodel:TargetSectionContainmentReference">
-        <eReference href="http://stefan-hennig.de/movisa#//presentation/Button/Interaction"/>
+    <metaModelSections name="Panel" cardinality="ONE__INFINITY" container="//@targetSectionModel/@metaModelSections.0/@references.1/@value.0">
+      <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Panel"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="name" value="">
+        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections name="UIComponentSignal" cardinality="ZERO__INFINITY" container="//@targetSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.3">
+      <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//algorithm/Signal"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="signalName" unique="true">
+        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections name="NavFlowSignal" container="//@targetSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.5">
+      <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//algorithm/Signal"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="signalName" unique="true">
+        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections name="PanelTransitionSignal" container="//@targetSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.4">
+      <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//algorithm/Signal"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="signalName" unique="true">
+        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections name="ChangeViewNavFlow" container="//@targetSectionModel/@metaModelSections.0/@references.1/@value.0">
+      <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ChangeViewNavigationFlow"/>
+      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="source" value="//@targetSectionModel/@metaModelSections.1">
+        <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/NavigationFlow/Source"/>
+      </references>
+      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="target" value="//@targetSectionModel/@metaModelSections.1">
+        <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/NavigationFlow/Target"/>
+      </references>
+      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="trigger">
+        <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/NavigationFlow/Trigger"/>
+      </references>
+      <attributes xsi:type="metamodel:ActualAttribute" name="name" value="">
+        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections name="Button" container="//@targetSectionModel/@metaModelSections.1">
+      <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Button"/>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="Interaction">
+        <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Button/Interaction"/>
         <value name="ButtonInteraction">
-          <eClass href="http://stefan-hennig.de/movisa#//presentation/ButtonInteraction"/>
-          <references name="CommonTrigger" xsi:type="metamodel:TargetSectionContainmentReference">
-            <eReference href="http://stefan-hennig.de/movisa#//presentation/Interaction/CommonTrigger"/>
+          <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ButtonInteraction"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="CommonTrigger">
+            <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Interaction/CommonTrigger"/>
             <value name="Click">
-              <eClass href="http://stefan-hennig.de/movisa#//presentation/Click"/>
-              <references name="Effect" value="//@targetSectionModel/@metaModelSections.5/@references.0/@value.0/@references.1/@value.0" xsi:type="metamodel:TargetSectionNonContainmentReference">
-                <eReference href="http://stefan-hennig.de/movisa#//presentation/Trigger/Effect"/>
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Click"/>
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Effect" value="//@targetSectionModel/@metaModelSections.6/@references.0/@value.0/@references.1/@value.0">
+                <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Trigger/Effect"/>
               </references>
-              <attributes name="Name" value="Dialog_1_OK_eBO_1_OKSignalTrigger" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Dialog_1_OK_eBO_1_OKSignalTrigger">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
               </attributes>
             </value>
           </references>
-          <references name="OwnedEffect" xsi:type="metamodel:TargetSectionContainmentReference">
-            <eReference href="http://stefan-hennig.de/movisa#//presentation/Interaction/OwnedEffect"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedEffect">
+            <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Interaction/OwnedEffect"/>
             <value name="SendSignalEffect">
-              <eClass href="http://stefan-hennig.de/movisa#//presentation/SendSignalEffect"/>
-              <references name="Signal" xsi:type="metamodel:TargetSectionNonContainmentReference">
-                <eReference href="http://stefan-hennig.de/movisa#//presentation/SendSignalEffect/Signal"/>
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/SendSignalEffect"/>
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Signal">
+                <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/SendSignalEffect/Signal"/>
               </references>
-              <attributes name="Name" value="triggering_eBO_1_OK_signal" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="triggering_eBO_1_OK_signal">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
               </attributes>
             </value>
           </references>
         </value>
       </references>
-      <references name="Representation" xsi:type="metamodel:TargetSectionContainmentReference">
-        <eReference href="http://stefan-hennig.de/movisa#//presentation/Button/Representation"/>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="Representation">
+        <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Button/Representation"/>
         <value name="ButtonRepresentation">
-          <eClass href="http://stefan-hennig.de/movisa#//presentation/ButtonRepresentation"/>
-          <references name="Position" xsi:type="metamodel:TargetSectionContainmentReference">
-            <eReference href="http://stefan-hennig.de/movisa#//presentation/Representation/Position"/>
+          <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ButtonRepresentation"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="Position">
+            <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Representation/Position"/>
             <value name="Position">
-              <eClass href="http://stefan-hennig.de/movisa#//presentation/Position"/>
-              <references name="X" xsi:type="metamodel:TargetSectionContainmentReference">
-                <eReference href="http://stefan-hennig.de/movisa#//presentation/Position/X"/>
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Position"/>
+              <references xsi:type="metamodel:TargetSectionContainmentReference" name="X">
+                <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Position/X"/>
                 <value name="ScaledProperty">
-                  <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-                  <attributes name="Name" value="Dialog_1_OK_eBO_1_OK_pos_x" xsi:type="metamodel:ActualAttribute">
-                    <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+                  <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty"/>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Dialog_1_OK_eBO_1_OK_pos_x">
+                    <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
                   </attributes>
-                  <attributes name="Unit" value="PIXEL" xsi:type="metamodel:ActualAttribute">
-                    <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Unit"/>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="PIXEL">
+                    <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Unit"/>
                   </attributes>
-                  <attributes name="Value" value="130.0" xsi:type="metamodel:ActualAttribute">
-                    <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="130.0">
+                    <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Value"/>
                   </attributes>
                 </value>
               </references>
-              <references name="Y" xsi:type="metamodel:TargetSectionContainmentReference">
-                <eReference href="http://stefan-hennig.de/movisa#//presentation/Position/Y"/>
+              <references xsi:type="metamodel:TargetSectionContainmentReference" name="Y">
+                <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Position/Y"/>
                 <value name="ScaledProperty">
-                  <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-                  <attributes name="Name" value="Dialog_1_OK_eBO_1_OK_pos_y" xsi:type="metamodel:ActualAttribute">
-                    <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+                  <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty"/>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Dialog_1_OK_eBO_1_OK_pos_y">
+                    <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
                   </attributes>
-                  <attributes name="Unit" value="PIXEL" xsi:type="metamodel:ActualAttribute">
-                    <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Unit"/>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="PIXEL">
+                    <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Unit"/>
                   </attributes>
-                  <attributes name="Value" value="10.0" xsi:type="metamodel:ActualAttribute">
-                    <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="10.0">
+                    <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Value"/>
                   </attributes>
                 </value>
               </references>
-              <references name="Z" xsi:type="metamodel:TargetSectionContainmentReference">
-                <eReference href="http://stefan-hennig.de/movisa#//presentation/Position/Z"/>
+              <references xsi:type="metamodel:TargetSectionContainmentReference" name="Z">
+                <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Position/Z"/>
                 <value name="ScaledProperty">
-                  <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-                  <attributes name="Name" value="Dialog_1_OK_eBO_1_OK_pos_z" xsi:type="metamodel:ActualAttribute">
-                    <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+                  <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty"/>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Dialog_1_OK_eBO_1_OK_pos_z">
+                    <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
                   </attributes>
-                  <attributes name="Unit" value="PIXEL" xsi:type="metamodel:ActualAttribute">
-                    <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Unit"/>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="PIXEL">
+                    <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Unit"/>
                   </attributes>
-                  <attributes name="Value" value="0.0" xsi:type="metamodel:ActualAttribute">
-                    <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="0.0">
+                    <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Value"/>
                   </attributes>
                 </value>
               </references>
-              <attributes name="Name" value="Dialog_1_OK_eBO_1_OK_pos" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Dialog_1_OK_eBO_1_OK_pos">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
               </attributes>
             </value>
           </references>
-          <references name="Size" xsi:type="metamodel:TargetSectionContainmentReference">
-            <eReference href="http://stefan-hennig.de/movisa#//presentation/Representation/Size"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="Size">
+            <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Representation/Size"/>
             <value name="Size">
-              <eClass href="http://stefan-hennig.de/movisa#//presentation/Size"/>
-              <references name="Height" xsi:type="metamodel:TargetSectionContainmentReference">
-                <eReference href="http://stefan-hennig.de/movisa#//presentation/Size/Height"/>
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Size"/>
+              <references xsi:type="metamodel:TargetSectionContainmentReference" name="Height">
+                <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Size/Height"/>
                 <value name="ScaledProperty">
-                  <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-                  <attributes name="Name" value="Dialog_1_OK_eBO_1_OK_height" xsi:type="metamodel:ActualAttribute">
-                    <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+                  <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty"/>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Dialog_1_OK_eBO_1_OK_height">
+                    <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
                   </attributes>
-                  <attributes name="Unit" value="PIXEL" xsi:type="metamodel:ActualAttribute">
-                    <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Unit"/>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="PIXEL">
+                    <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Unit"/>
                   </attributes>
-                  <attributes name="Value" value="40.0" xsi:type="metamodel:ActualAttribute">
-                    <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="40.0">
+                    <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Value"/>
                   </attributes>
                 </value>
               </references>
-              <references name="Width" xsi:type="metamodel:TargetSectionContainmentReference">
-                <eReference href="http://stefan-hennig.de/movisa#//presentation/Size/Width"/>
+              <references xsi:type="metamodel:TargetSectionContainmentReference" name="Width">
+                <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Size/Width"/>
                 <value name="ScaledProperty">
-                  <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-                  <attributes name="Name" value="Dialog_1_OK_eBO_1_OK_width" xsi:type="metamodel:ActualAttribute">
-                    <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+                  <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty"/>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Dialog_1_OK_eBO_1_OK_width">
+                    <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
                   </attributes>
-                  <attributes name="Unit" value="PIXEL" xsi:type="metamodel:ActualAttribute">
-                    <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Unit"/>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="PIXEL">
+                    <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Unit"/>
                   </attributes>
-                  <attributes name="Value" value="100.0" xsi:type="metamodel:ActualAttribute">
-                    <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="100.0">
+                    <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Value"/>
                   </attributes>
                 </value>
               </references>
-              <attributes name="Name" value="Dialog_1_OK_eBO_1_OK_size" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Dialog_1_OK_eBO_1_OK_size">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
               </attributes>
             </value>
           </references>
-          <references name="ToolTipText" xsi:type="metamodel:TargetSectionContainmentReference">
-            <eReference href="http://stefan-hennig.de/movisa#//presentation/Representation/ToolTipText"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="ToolTipText">
+            <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Representation/ToolTipText"/>
             <value name="ToolTipText">
-              <eClass href="http://stefan-hennig.de/movisa#//presentation/ToolTipText"/>
-              <references name="Text" xsi:type="metamodel:TargetSectionNonContainmentReference">
-                <eReference href="http://stefan-hennig.de/movisa#//presentation/ToolTipText/Text"/>
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ToolTipText"/>
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Text">
+                <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ToolTipText/Text"/>
               </references>
-              <attributes name="Name" value="Dialog_1_OK_eBO_1_OK_ttt" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Dialog_1_OK_eBO_1_OK_ttt">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
               </attributes>
             </value>
           </references>
-          <attributes name="TextCanWrap" value="false" xsi:type="metamodel:ActualAttribute">
-            <attribute href="http://stefan-hennig.de/movisa#//presentation/TextContainingWidgetRepresentation/TextCanWrap"/>
+          <attributes xsi:type="metamodel:ActualAttribute" name="TextCanWrap" value="false">
+            <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/TextContainingWidgetRepresentation/TextCanWrap"/>
           </attributes>
-          <attributes name="ToggleButton" value="false" xsi:type="metamodel:ActualAttribute">
-            <attribute href="http://stefan-hennig.de/movisa#//presentation/ButtonRepresentation/ToggleButton"/>
+          <attributes xsi:type="metamodel:ActualAttribute" name="ToggleButton" value="false">
+            <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ButtonRepresentation/ToggleButton"/>
           </attributes>
         </value>
       </references>
-      <attributes name="Name" value="" xsi:type="metamodel:ActualAttribute">
-        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="">
+        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
       </attributes>
-      <attributes name="Comment" xsi:type="metamodel:ActualAttribute">
-        <attribute href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
+        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//CommentedMovisaModelElement/Comment"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections container="//@targetSectionModel/@metaModelSections.0" name="TextLabel">
-      <eClass href="http://stefan-hennig.de/movisa#//presentation/TextLabel"/>
-      <references name="Interaction" xsi:type="metamodel:TargetSectionContainmentReference">
-        <eReference href="http://stefan-hennig.de/movisa#//presentation/TextLabel/Interaction"/>
+    <metaModelSections name="TextLabel" container="//@targetSectionModel/@metaModelSections.1">
+      <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/TextLabel"/>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="Interaction">
+        <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/TextLabel/Interaction"/>
         <value name="TextLabelInteraction">
-          <eClass href="http://stefan-hennig.de/movisa#//presentation/TextLabelInteraction"/>
-          <references name="CommonTrigger" xsi:type="metamodel:TargetSectionContainmentReference">
-            <eReference href="http://stefan-hennig.de/movisa#//presentation/Interaction/CommonTrigger"/>
+          <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/TextLabelInteraction"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="CommonTrigger">
+            <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Interaction/CommonTrigger"/>
             <value name="Click">
-              <eClass href="http://stefan-hennig.de/movisa#//presentation/Click"/>
-              <references name="Effect" value="//@targetSectionModel/@metaModelSections.6/@references.0/@value.0/@references.1/@value.0" xsi:type="metamodel:TargetSectionNonContainmentReference">
-                <eReference href="http://stefan-hennig.de/movisa#//presentation/Trigger/Effect"/>
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Click"/>
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Effect" value="//@targetSectionModel/@metaModelSections.7/@references.0/@value.0/@references.1/@value.0">
+                <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Trigger/Effect"/>
               </references>
-              <attributes name="Name" value="" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
               </attributes>
             </value>
           </references>
-          <references name="OwnedEffect" xsi:type="metamodel:TargetSectionContainmentReference">
-            <eReference href="http://stefan-hennig.de/movisa#//presentation/Interaction/OwnedEffect"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedEffect">
+            <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Interaction/OwnedEffect"/>
             <value name="SendSignalEffect">
-              <eClass href="http://stefan-hennig.de/movisa#//presentation/SendSignalEffect"/>
-              <references name="Signal" xsi:type="metamodel:TargetSectionNonContainmentReference">
-                <eReference href="http://stefan-hennig.de/movisa#//presentation/SendSignalEffect/Signal"/>
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/SendSignalEffect"/>
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Signal">
+                <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/SendSignalEffect/Signal"/>
               </references>
-              <attributes name="Name" value="" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
               </attributes>
             </value>
           </references>
         </value>
       </references>
-      <attributes name="Name" value="" xsi:type="metamodel:ActualAttribute">
-        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="">
+        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
       </attributes>
-      <attributes name="Comment" xsi:type="metamodel:ActualAttribute">
-        <attribute href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
+        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//CommentedMovisaModelElement/Comment"/>
       </attributes>
-      <attributes name="widgetId" xsi:type="metamodel:VirtualAttribute"/>
+      <attributes xsi:type="metamodel:VirtualAttribute" name="widgetId"/>
     </metaModelSections>
     <metaModelSections name="TextLabelRepresentation">
-      <eClass href="http://stefan-hennig.de/movisa#//presentation/TextLabelRepresentation"/>
-      <references name="Position" xsi:type="metamodel:TargetSectionContainmentReference">
-        <eReference href="http://stefan-hennig.de/movisa#//presentation/Representation/Position"/>
+      <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/TextLabelRepresentation"/>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="Position">
+        <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Representation/Position"/>
         <value name="Position">
-          <eClass href="http://stefan-hennig.de/movisa#//presentation/Position"/>
-          <references name="X" xsi:type="metamodel:TargetSectionContainmentReference">
-            <eReference href="http://stefan-hennig.de/movisa#//presentation/Position/X"/>
+          <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Position"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="X">
+            <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Position/X"/>
             <value name="ScaledProperty">
-              <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-              <attributes name="Name" value="Dialog_1_inform2_eBO_3_pos_x" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Dialog_1_inform2_eBO_3_pos_x">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
               </attributes>
-              <attributes name="Unit" value="PIXEL" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Unit"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="PIXEL">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Unit"/>
               </attributes>
-              <attributes name="Value" value="10.0" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="10.0">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Value"/>
               </attributes>
             </value>
           </references>
-          <references name="Y" xsi:type="metamodel:TargetSectionContainmentReference">
-            <eReference href="http://stefan-hennig.de/movisa#//presentation/Position/Y"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="Y">
+            <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Position/Y"/>
             <value name="ScaledProperty">
-              <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-              <attributes name="Name" value="Dialog_1_inform2_eBO_3_pos_y" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Dialog_1_inform2_eBO_3_pos_y">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
               </attributes>
-              <attributes name="Unit" value="PIXEL" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Unit"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="PIXEL">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Unit"/>
               </attributes>
-              <attributes name="Value" value="60.0" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="60.0">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Value"/>
               </attributes>
             </value>
           </references>
-          <references name="Z" xsi:type="metamodel:TargetSectionContainmentReference">
-            <eReference href="http://stefan-hennig.de/movisa#//presentation/Position/Z"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="Z">
+            <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Position/Z"/>
             <value name="ScaledProperty">
-              <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-              <attributes name="Name" value="Dialog_1_inform2_eBO_3_pos_z" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Dialog_1_inform2_eBO_3_pos_z">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
               </attributes>
-              <attributes name="Unit" value="PIXEL" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Unit"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="PIXEL">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Unit"/>
               </attributes>
-              <attributes name="Value" value="0.0" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="0.0">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Value"/>
               </attributes>
             </value>
           </references>
-          <attributes name="Name" value="Dialog_1_inform2_eBO_3_pos" xsi:type="metamodel:ActualAttribute">
-            <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Dialog_1_inform2_eBO_3_pos">
+            <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
           </attributes>
         </value>
       </references>
-      <references name="Size" xsi:type="metamodel:TargetSectionContainmentReference">
-        <eReference href="http://stefan-hennig.de/movisa#//presentation/Representation/Size"/>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="Size">
+        <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Representation/Size"/>
         <value name="Size">
-          <eClass href="http://stefan-hennig.de/movisa#//presentation/Size"/>
-          <references name="Height" xsi:type="metamodel:TargetSectionContainmentReference">
-            <eReference href="http://stefan-hennig.de/movisa#//presentation/Size/Height"/>
+          <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Size"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="Height">
+            <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Size/Height"/>
             <value name="ScaledProperty">
-              <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-              <attributes name="Name" value="Dialog_1_inform2_eBO_3_height" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Dialog_1_inform2_eBO_3_height">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
               </attributes>
-              <attributes name="Unit" value="PIXEL" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Unit"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="PIXEL">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Unit"/>
               </attributes>
-              <attributes name="Value" value="40.0" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="40.0">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Value"/>
               </attributes>
             </value>
           </references>
-          <references name="Width" xsi:type="metamodel:TargetSectionContainmentReference">
-            <eReference href="http://stefan-hennig.de/movisa#//presentation/Size/Width"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="Width">
+            <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Size/Width"/>
             <value name="ScaledProperty">
-              <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-              <attributes name="Name" value="Dialog_1_inform2_eBO_3_width" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Dialog_1_inform2_eBO_3_width">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
               </attributes>
-              <attributes name="Unit" value="PIXEL" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Unit"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="PIXEL">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Unit"/>
               </attributes>
-              <attributes name="Value" value="100.0" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="100.0">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Value"/>
               </attributes>
             </value>
           </references>
-          <attributes name="Name" value="Dialog_1_inform2_eBO_3_size" xsi:type="metamodel:ActualAttribute">
-            <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Dialog_1_inform2_eBO_3_size">
+            <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
           </attributes>
         </value>
       </references>
-      <attributes name="TextCanWrap" value="false" xsi:type="metamodel:ActualAttribute">
-        <attribute href="http://stefan-hennig.de/movisa#//presentation/TextContainingWidgetRepresentation/TextCanWrap"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="TextCanWrap" value="false">
+        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/TextContainingWidgetRepresentation/TextCanWrap"/>
       </attributes>
-      <attributes name="MultiLine" value="false" xsi:type="metamodel:ActualAttribute">
-        <attribute href="http://stefan-hennig.de/movisa#//presentation/TextLabelRepresentation/MultiLine"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="MultiLine" value="false">
+        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/TextLabelRepresentation/MultiLine"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections container="//@targetSectionModel/@metaModelSections.0" name="Input">
-      <eClass href="http://stefan-hennig.de/movisa#//presentation/Input"/>
-      <references name="Interaction" xsi:type="metamodel:TargetSectionContainmentReference">
-        <eReference href="http://stefan-hennig.de/movisa#//presentation/Input/Interaction"/>
+    <metaModelSections name="Input" container="//@targetSectionModel/@metaModelSections.1">
+      <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Input"/>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="Interaction">
+        <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Input/Interaction"/>
         <value name="InputInteraction">
-          <eClass href="http://stefan-hennig.de/movisa#//presentation/InputInteraction"/>
-          <references name="CommonTrigger" xsi:type="metamodel:TargetSectionContainmentReference">
-            <eReference href="http://stefan-hennig.de/movisa#//presentation/Interaction/CommonTrigger"/>
+          <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/InputInteraction"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="CommonTrigger">
+            <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Interaction/CommonTrigger"/>
             <value name="Click">
-              <eClass href="http://stefan-hennig.de/movisa#//presentation/Click"/>
-              <references name="Effect" value="//@targetSectionModel/@metaModelSections.8/@references.0/@value.0/@references.1/@value.0" xsi:type="metamodel:TargetSectionNonContainmentReference">
-                <eReference href="http://stefan-hennig.de/movisa#//presentation/Trigger/Effect"/>
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Click"/>
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Effect" value="//@targetSectionModel/@metaModelSections.9/@references.0/@value.0/@references.1/@value.0">
+                <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Trigger/Effect"/>
               </references>
-              <attributes name="Name" value="Dialog_1_do_eBO_2SignalTrigger" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Dialog_1_do_eBO_2SignalTrigger">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
               </attributes>
             </value>
           </references>
-          <references name="OwnedEffect" xsi:type="metamodel:TargetSectionContainmentReference">
-            <eReference href="http://stefan-hennig.de/movisa#//presentation/Interaction/OwnedEffect"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedEffect">
+            <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Interaction/OwnedEffect"/>
             <value name="SendSignalEffect">
-              <eClass href="http://stefan-hennig.de/movisa#//presentation/SendSignalEffect"/>
-              <references name="Signal" xsi:type="metamodel:TargetSectionNonContainmentReference">
-                <eReference href="http://stefan-hennig.de/movisa#//presentation/SendSignalEffect/Signal"/>
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/SendSignalEffect"/>
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Signal">
+                <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/SendSignalEffect/Signal"/>
               </references>
-              <attributes name="Name" value="triggering_eBO_2_signal" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="triggering_eBO_2_signal">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
               </attributes>
             </value>
           </references>
         </value>
       </references>
-      <attributes name="Name" value="" xsi:type="metamodel:ActualAttribute">
-        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="">
+        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
       </attributes>
-      <attributes name="Comment" xsi:type="metamodel:ActualAttribute">
-        <attribute href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
+        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//CommentedMovisaModelElement/Comment"/>
       </attributes>
-      <attributes name="widgetId" xsi:type="metamodel:VirtualAttribute"/>
+      <attributes xsi:type="metamodel:VirtualAttribute" name="widgetId"/>
     </metaModelSections>
-    <metaModelSections container="//@targetSectionModel/@metaModelSections.8" name="InputRepresentation">
-      <eClass href="http://stefan-hennig.de/movisa#//presentation/InputRepresentation"/>
-      <references name="Position" xsi:type="metamodel:TargetSectionContainmentReference">
-        <eReference href="http://stefan-hennig.de/movisa#//presentation/Representation/Position"/>
+    <metaModelSections name="InputRepresentation" container="//@targetSectionModel/@metaModelSections.9">
+      <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/InputRepresentation"/>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="Position">
+        <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Representation/Position"/>
         <value name="Position">
-          <eClass href="http://stefan-hennig.de/movisa#//presentation/Position"/>
-          <references name="X" xsi:type="metamodel:TargetSectionContainmentReference">
-            <eReference href="http://stefan-hennig.de/movisa#//presentation/Position/X"/>
+          <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Position"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="X">
+            <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Position/X"/>
             <value name="ScaledProperty">
-              <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-              <attributes name="Name" value="Dialog_1_do_eBO_2_pos_x" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Dialog_1_do_eBO_2_pos_x">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
               </attributes>
-              <attributes name="Unit" value="PIXEL" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Unit"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="PIXEL">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Unit"/>
               </attributes>
-              <attributes name="Value" value="250.0" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="250.0">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Value"/>
               </attributes>
             </value>
           </references>
-          <references name="Y" xsi:type="metamodel:TargetSectionContainmentReference">
-            <eReference href="http://stefan-hennig.de/movisa#//presentation/Position/Y"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="Y">
+            <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Position/Y"/>
             <value name="ScaledProperty">
-              <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-              <attributes name="Name" value="Dialog_1_do_eBO_2_pos_y" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Dialog_1_do_eBO_2_pos_y">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
               </attributes>
-              <attributes name="Unit" value="PIXEL" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Unit"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="PIXEL">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Unit"/>
               </attributes>
-              <attributes name="Value" value="10.0" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="10.0">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Value"/>
               </attributes>
             </value>
           </references>
-          <references name="Z" xsi:type="metamodel:TargetSectionContainmentReference">
-            <eReference href="http://stefan-hennig.de/movisa#//presentation/Position/Z"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="Z">
+            <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Position/Z"/>
             <value name="ScaledProperty">
-              <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-              <attributes name="Name" value="Dialog_1_do_eBO_2_pos_z" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Dialog_1_do_eBO_2_pos_z">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
               </attributes>
-              <attributes name="Unit" value="PIXEL" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Unit"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="PIXEL">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Unit"/>
               </attributes>
-              <attributes name="Value" value="0.0" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="0.0">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Value"/>
               </attributes>
             </value>
           </references>
-          <attributes name="Name" value="Dialog_1_do_eBO_2_pos" xsi:type="metamodel:ActualAttribute">
-            <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Dialog_1_do_eBO_2_pos">
+            <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
           </attributes>
         </value>
       </references>
-      <references name="Size" xsi:type="metamodel:TargetSectionContainmentReference">
-        <eReference href="http://stefan-hennig.de/movisa#//presentation/Representation/Size"/>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="Size">
+        <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Representation/Size"/>
         <value name="Size">
-          <eClass href="http://stefan-hennig.de/movisa#//presentation/Size"/>
-          <references name="Height" xsi:type="metamodel:TargetSectionContainmentReference">
-            <eReference href="http://stefan-hennig.de/movisa#//presentation/Size/Height"/>
+          <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Size"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="Height">
+            <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Size/Height"/>
             <value name="ScaledProperty">
-              <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-              <attributes name="Name" value="Dialog_1_do_eBO_2_height" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Dialog_1_do_eBO_2_height">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
               </attributes>
-              <attributes name="Unit" value="PIXEL" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Unit"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="PIXEL">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Unit"/>
               </attributes>
-              <attributes name="Value" value="40.0" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="40.0">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Value"/>
               </attributes>
             </value>
           </references>
-          <references name="Width" xsi:type="metamodel:TargetSectionContainmentReference">
-            <eReference href="http://stefan-hennig.de/movisa#//presentation/Size/Width"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="Width">
+            <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/Size/Width"/>
             <value name="ScaledProperty">
-              <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-              <attributes name="Name" value="Dialog_1_do_eBO_2_width" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Dialog_1_do_eBO_2_width">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
               </attributes>
-              <attributes name="Unit" value="PIXEL" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Unit"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="PIXEL">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Unit"/>
               </attributes>
-              <attributes name="Value" value="100.0" xsi:type="metamodel:ActualAttribute">
-                <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="100.0">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/ScaledProperty/Value"/>
               </attributes>
             </value>
           </references>
-          <attributes name="Name" value="Dialog_1_do_eBO_2_size" xsi:type="metamodel:ActualAttribute">
-            <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Dialog_1_do_eBO_2_size">
+            <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
           </attributes>
         </value>
       </references>
-      <attributes name="TextCanWrap" value="false" xsi:type="metamodel:ActualAttribute">
-        <attribute href="http://stefan-hennig.de/movisa#//presentation/TextContainingWidgetRepresentation/TextCanWrap"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="TextCanWrap" value="false">
+        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/TextContainingWidgetRepresentation/TextCanWrap"/>
       </attributes>
-      <attributes name="MaxLength" value="0" xsi:type="metamodel:ActualAttribute">
-        <attribute href="http://stefan-hennig.de/movisa#//presentation/InputRepresentation/MaxLength"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="MaxLength" value="0">
+        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/InputRepresentation/MaxLength"/>
       </attributes>
-      <attributes name="MultiRow" value="false" xsi:type="metamodel:ActualAttribute">
-        <attribute href="http://stefan-hennig.de/movisa#//presentation/InputRepresentation/MultiRow"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="MultiRow" value="false">
+        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/InputRepresentation/MultiRow"/>
       </attributes>
-      <attributes name="ShowCharactersSimultaneously" value="0" xsi:type="metamodel:ActualAttribute">
-        <attribute href="http://stefan-hennig.de/movisa#//presentation/InputRepresentation/ShowCharactersSimultaneously"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="ShowCharactersSimultaneously" value="0">
+        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/InputRepresentation/ShowCharactersSimultaneously"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections name="State" cardinality="ZERO__INFINITY" container="//@targetSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.6/@references.0/@value.0">
+      <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//algorithm/State"/>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="StateActivityBlock">
+        <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//algorithm/State/StateActivityBlock"/>
+        <value name="StateActivityBlock">
+          <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//algorithm/actions/StateActivityBlock"/>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Name">
+            <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
+          </attributes>
+        </value>
+      </references>
+      <attributes xsi:type="metamodel:ActualAttribute" name="Name">
+        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections name="Transition" container="//@targetSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.6/@references.0/@value.0">
+      <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//algorithm/Transition"/>
+      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Target">
+        <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//algorithm/Transition/Target"/>
+      </references>
+      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Source">
+        <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//algorithm/Transition/Source"/>
+      </references>
+      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Trigger">
+        <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//algorithm/Transition/Trigger"/>
+      </references>
+      <attributes xsi:type="metamodel:ActualAttribute" name="Name">
+        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections name="Reception" container="//@targetSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.6">
+      <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//algorithm/Reception"/>
+      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Signal">
+        <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//algorithm/Reception/Signal"/>
+      </references>
+      <attributes xsi:type="metamodel:ActualAttribute" name="Name">
+        <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
   </targetSectionModel>
   <mappingModel>
     <mapping name="RootMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.0">
-      <mappingHintGroups name="VisAppModelHintGroup" targetMMSection="//@targetSectionModel/@metaModelSections.4" xsi:type="mapping:MappingHintGroup">
-        <mappingHints modifier="//@mappingModel/@modifierSets.0" name="metaModelId2visAppModelName" source="//@sourceSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" target="//@targetSectionModel/@metaModelSections.4/@attributes.0" xsi:type="mapping:SimpleAttributeMapping"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="VisAppModelHintGroup" targetMMSection="//@targetSectionModel/@metaModelSections.0">
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="metaModelId2visAppModelName" target="//@targetSectionModel/@metaModelSections.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.0/@attributes.0"/>
       </mappingHintGroups>
     </mapping>
     <mapping name="InterfaceMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.1">
-      <mappingHintGroups name="PanelHintGroup" targetMMSection="//@targetSectionModel/@metaModelSections.0" xsi:type="mapping:MappingHintGroup">
-        <mappingHints name="id2name" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" target="//@targetSectionModel/@metaModelSections.0/@attributes.0" xsi:type="mapping:SimpleAttributeMapping"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="PanelHintGroup" targetMMSection="//@targetSectionModel/@metaModelSections.1">
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="id2name" target="//@targetSectionModel/@metaModelSections.1/@attributes.0" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0"/>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="PanelTransitionSignal" targetMMSection="//@targetSectionModel/@metaModelSections.4">
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="signalNameMapping" target="//@targetSectionModel/@metaModelSections.4/@attributes.0" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.6"/>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="State" targetMMSection="//@targetSectionModel/@metaModelSections.11">
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.11/@attributes.0" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.8"/>
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.11/@references.0/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.9"/>
       </mappingHintGroups>
     </mapping>
     <mapping name="TransitionMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.2">
-      <mappingHintGroups name="changeViewNavFlowHintGroup" targetMMSection="//@targetSectionModel/@metaModelSections.3" xsi:type="mapping:MappingHintGroup">
-        <mappingHints affectedReference="//@targetSectionModel/@metaModelSections.3/@references.1" name="target" xsi:type="mapping:MappingInstanceSelector">
-          <matcher name="interfaceIdMatcher" source="//@sourceSectionModel/@metaModelSections.2/@references.1/@value.0/@references.0/@value.0/@attributes.0" targetAttribute="//@targetSectionModel/@metaModelSections.0/@attributes.0" xsi:type="mapping:SimpleAttributeMatcher"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="changeViewNavFlowHintGroup" targetMMSection="//@targetSectionModel/@metaModelSections.5">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="target" affectedReference="//@targetSectionModel/@metaModelSections.5/@references.1">
+          <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.0" name="interfaceIdMatcher" source="//@sourceSectionModel/@metaModelSections.10/@attributes.0"/>
         </mappingHints>
-        <mappingHints affectedReference="//@targetSectionModel/@metaModelSections.3/@references.2" name="trigger" xsi:type="mapping:MappingInstanceSelector">
-          <matcher targetAttribute="//@targetSectionModel/@metaModelSections.2/@attributes.0" xsi:type="mapping:ComplexAttributeMatcher">
-            <sourceAttributes modifier="//@mappingModel/@modifierSets.0" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" xsi:type="mapping:ComplexAttributeMatcherExternalSourceElement"/>
-            <sourceAttributes source="//@sourceSectionModel/@metaModelSections.2/@references.1/@value.0/@references.0/@value.0/@attributes.0" xsi:type="mapping:ComplexAttributeMatcherSourceElement"/>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="trigger" affectedReference="//@targetSectionModel/@metaModelSections.5/@references.2">
+          <matcher xsi:type="mapping:ComplexAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.3/@attributes.0">
+            <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0"/>
+            <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherSourceElement" name="interfaceId" source="//@sourceSectionModel/@metaModelSections.10/@attributes.0"/>
           </matcher>
         </mappingHints>
-        <mappingHints affectedReference="//@targetSectionModel/@metaModelSections.3/@references.0" name="source" xsi:type="mapping:MappingInstanceSelector">
-          <matcher targetAttribute="//@targetSectionModel/@metaModelSections.0/@attributes.0" xsi:type="mapping:ComplexAttributeMatcher">
-            <sourceAttributes name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" xsi:type="mapping:ComplexAttributeMatcherExternalSourceElement"/>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="source" affectedReference="//@targetSectionModel/@metaModelSections.5/@references.0">
+          <matcher xsi:type="mapping:ComplexAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.0">
+            <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0"/>
           </matcher>
         </mappingHints>
-        <mappingHints name="name" target="//@targetSectionModel/@metaModelSections.3/@attributes.0" xsi:type="mapping:ComplexAttributeMapping">
-          <sourceAttributeMappings modifier="//@mappingModel/@modifierSets.0" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" xsi:type="mapping:ComplexAttributeMappingExternalSourceElement"/>
-          <sourceAttributeMappings name="interfaceId" source="//@sourceSectionModel/@metaModelSections.2/@references.1/@value.0/@references.0/@value.0/@attributes.0" xsi:type="mapping:ComplexAttributeMappingSourceElement"/>
+        <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="name" target="//@targetSectionModel/@metaModelSections.5/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.0"/>
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="interfaceId" source="//@sourceSectionModel/@metaModelSections.10/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
-      <mappingHintGroups name="signalHintGroup" targetMMSection="//@targetSectionModel/@metaModelSections.2" xsi:type="mapping:MappingHintGroup">
-        <mappingHints target="//@targetSectionModel/@metaModelSections.2/@attributes.0" xsi:type="mapping:ComplexAttributeMapping">
-          <sourceAttributeMappings modifier="//@mappingModel/@modifierSets.0" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" xsi:type="mapping:ComplexAttributeMappingExternalSourceElement"/>
-          <sourceAttributeMappings name="interfaceId" source="//@sourceSectionModel/@metaModelSections.2/@references.1/@value.0/@references.0/@value.0/@attributes.0" xsi:type="mapping:ComplexAttributeMappingSourceElement"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="signalHintGroup" targetMMSection="//@targetSectionModel/@metaModelSections.3">
+        <mappingHints xsi:type="mapping:ComplexAttributeMapping" target="//@targetSectionModel/@metaModelSections.3/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.0"/>
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="interfaceId" source="//@sourceSectionModel/@metaModelSections.10/@attributes.0" modifier="//@mappingModel/@modifierSets.6"/>
         </mappingHints>
       </mappingHintGroups>
     </mapping>
     <mapping name="RuleMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.3"/>
     <mapping name="CommandWidgetMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.4">
-      <mappingHintGroups name="Button" targetMMSection="//@targetSectionModel/@metaModelSections.5" xsi:type="mapping:MappingHintGroup">
-        <mappingHints name="id2name" source="//@sourceSectionModel/@metaModelSections.4/@attributes.1" target="//@targetSectionModel/@metaModelSections.5/@attributes.0" xsi:type="mapping:SimpleAttributeMapping"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetMMSection="//@targetSectionModel/@metaModelSections.6">
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="id2name" target="//@targetSectionModel/@metaModelSections.6/@attributes.0" source="//@sourceSectionModel/@metaModelSections.4/@attributes.1"/>
         <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.0/@attributes.0"/>
-          <sourceElements name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement"/>
+          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups name="SignalHintGroup" targetMMSection="//@targetSectionModel/@metaModelSections.1" xsi:type="mapping:MappingHintGroup">
-        <mappingHints name="id2signalName" source="//@sourceSectionModel/@metaModelSections.4/@attributes.1" target="//@targetSectionModel/@metaModelSections.1/@attributes.0" xsi:type="mapping:SimpleAttributeMapping"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SignalHintGroup" targetMMSection="//@targetSectionModel/@metaModelSections.2">
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="id2signalName" target="//@targetSectionModel/@metaModelSections.2/@attributes.0" source="//@sourceSectionModel/@metaModelSections.4/@attributes.1" modifier="//@mappingModel/@modifierSets.6"/>
       </mappingHintGroups>
     </mapping>
     <mapping name="TextfieldWidgetMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.6">
-      <mappingHintGroups name="TextLabel" targetMMSection="//@targetSectionModel/@metaModelSections.6" xsi:type="mapping:MappingHintGroup">
-        <mappingHints name="NameMapping" target="//@targetSectionModel/@metaModelSections.6/@attributes.0" xsi:type="mapping:ComplexAttributeMapping">
-          <sourceAttributeMappings name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" xsi:type="mapping:ComplexAttributeMappingExternalSourceElement"/>
-          <sourceAttributeMappings name="id" source="//@sourceSectionModel/@metaModelSections.6/@attributes.1" xsi:type="mapping:ComplexAttributeMappingSourceElement"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel" targetMMSection="//@targetSectionModel/@metaModelSections.7">
+        <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.7/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0"/>
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.6/@attributes.1"/>
         </mappingHints>
-        <mappingHints name="widgetIdMapping" target="//@targetSectionModel/@metaModelSections.6/@attributes.2" xsi:type="mapping:ComplexAttributeMapping">
-          <sourceAttributeMappings modifier="//@mappingModel/@modifierSets.1" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" xsi:type="mapping:ComplexAttributeMappingExternalSourceElement"/>
-          <sourceAttributeMappings name="id" source="//@sourceSectionModel/@metaModelSections.6/@attributes.1" xsi:type="mapping:ComplexAttributeMappingSourceElement"/>
+        <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="widgetIdMapping" target="//@targetSectionModel/@metaModelSections.7/@attributes.2">
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.6/@attributes.1"/>
         </mappingHints>
-        <mappingHints modifier="//@mappingModel/@modifierSets.4 //@mappingModel/@modifierSets.6" name="NameMapping" source="//@sourceSectionModel/@metaModelSections.6/@attributes.1" target="//@targetSectionModel/@metaModelSections.6/@references.0/@value.0/@references.1/@value.0/@attributes.0" xsi:type="mapping:SimpleAttributeMapping"/>
-        <mappingHints name="NameMapping" target="//@targetSectionModel/@metaModelSections.6/@references.0/@value.0/@references.0/@value.0/@attributes.0" xsi:type="mapping:ComplexAttributeMapping">
-          <sourceAttributeMappings modifier="//@mappingModel/@modifierSets.1" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" xsi:type="mapping:ComplexAttributeMappingExternalSourceElement"/>
-          <sourceAttributeMappings modifier="//@mappingModel/@modifierSets.5" name="id" source="//@sourceSectionModel/@metaModelSections.6/@attributes.1" xsi:type="mapping:ComplexAttributeMappingSourceElement"/>
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.7/@references.0/@value.0/@references.1/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@attributes.1" modifier="//@mappingModel/@modifierSets.4 //@mappingModel/@modifierSets.6"/>
+        <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.7/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.6/@attributes.1" modifier="//@mappingModel/@modifierSets.5"/>
         </mappingHints>
-        <mappingHints affectedReference="//@targetSectionModel/@metaModelSections.6/@references.0/@value.0/@references.1/@value.0/@references.0" name="Signal" xsi:type="mapping:MappingInstanceSelector">
-          <matcher modifier="//@mappingModel/@modifierSets.7" name="id" source="//@sourceSectionModel/@metaModelSections.6/@attributes.1" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.0" xsi:type="mapping:SimpleAttributeMatcher"/>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Signal" affectedReference="//@targetSectionModel/@metaModelSections.7/@references.0/@value.0/@references.1/@value.0/@references.0">
+          <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.2/@attributes.0" name="id" source="//@sourceSectionModel/@metaModelSections.6/@attributes.1" modifier="//@mappingModel/@modifierSets.7"/>
         </mappingHints>
         <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.0/@attributes.0"/>
-          <sourceElements name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement"/>
+          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups name="SignalHintGroup" targetMMSection="//@targetSectionModel/@metaModelSections.1" xsi:type="mapping:MappingHintGroup">
-        <mappingHints name="id2signalName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.1" target="//@targetSectionModel/@metaModelSections.1/@attributes.0" xsi:type="mapping:SimpleAttributeMapping"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SignalHintGroup" targetMMSection="//@targetSectionModel/@metaModelSections.2">
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="id2signalName" target="//@targetSectionModel/@metaModelSections.2/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@attributes.1" modifier="//@mappingModel/@modifierSets.6"/>
       </mappingHintGroups>
     </mapping>
     <mapping name="TextfieldPartMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.7">
-      <mappingHintGroups name="TextLabelRepresentation" targetMMSection="//@targetSectionModel/@metaModelSections.7" xsi:type="mapping:MappingHintGroup">
-        <mappingHints name="PosNameMapping" target="//@targetSectionModel/@metaModelSections.9/@references.0/@value.0/@attributes.0" xsi:type="mapping:ComplexAttributeMapping">
-          <sourceAttributeMappings modifier="//@mappingModel/@modifierSets.1" name="value" source="//@sourceSectionModel/@metaModelSections.7/@references.0/@value.0/@attributes.0" xsi:type="mapping:ComplexAttributeMappingSourceElement"/>
-          <sourceAttributeMappings modifier="//@mappingModel/@modifierSets.2" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" xsi:type="mapping:ComplexAttributeMappingExternalSourceElement"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabelRepresentation" targetMMSection="//@targetSectionModel/@metaModelSections.8">
+        <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="PosNameMapping" target="//@targetSectionModel/@metaModelSections.10/@references.0/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="value" source="//@sourceSectionModel/@metaModelSections.7/@references.0/@value.0/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints name="SizeNameMapping" target="//@targetSectionModel/@metaModelSections.9/@references.1/@value.0/@attributes.0" xsi:type="mapping:ComplexAttributeMapping">
-          <sourceAttributeMappings modifier="//@mappingModel/@modifierSets.1" name="value" source="//@sourceSectionModel/@metaModelSections.7/@references.0/@value.0/@attributes.0" xsi:type="mapping:ComplexAttributeMappingSourceElement"/>
-          <sourceAttributeMappings modifier="//@mappingModel/@modifierSets.3" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" xsi:type="mapping:ComplexAttributeMappingExternalSourceElement"/>
+        <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="SizeNameMapping" target="//@targetSectionModel/@metaModelSections.10/@references.1/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="value" source="//@sourceSectionModel/@metaModelSections.7/@references.0/@value.0/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.3"/>
         </mappingHints>
         <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.2"/>
-          <sourceElements modifier="//@mappingModel/@modifierSets.1" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement"/>
-          <sourceElements name="genericWidget" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" xsi:type="mapping:ComplexModelConnectionHintSourceElement"/>
+          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.7/@attributes.2"/>
+          <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
+          <sourceElements xsi:type="mapping:ComplexModelConnectionHintSourceElement" name="genericWidget" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
     <mapping name="TextboxWidgetMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.8">
-      <mappingHintGroups name="Input" targetMMSection="//@targetSectionModel/@metaModelSections.8" xsi:type="mapping:MappingHintGroup">
-        <mappingHints name="NameMapping" target="//@targetSectionModel/@metaModelSections.8/@attributes.0" xsi:type="mapping:ComplexAttributeMapping">
-          <sourceAttributeMappings name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" xsi:type="mapping:ComplexAttributeMappingExternalSourceElement"/>
-          <sourceAttributeMappings name="id" source="//@sourceSectionModel/@metaModelSections.8/@attributes.1" xsi:type="mapping:ComplexAttributeMappingSourceElement"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Input" targetMMSection="//@targetSectionModel/@metaModelSections.9">
+        <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.9/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0"/>
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.8/@attributes.1"/>
         </mappingHints>
-        <mappingHints name="widgetIdMapping" source="//@sourceSectionModel/@metaModelSections.8/@attributes.1" target="//@targetSectionModel/@metaModelSections.8/@attributes.2" xsi:type="mapping:SimpleAttributeMapping"/>
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="widgetIdMapping" target="//@targetSectionModel/@metaModelSections.9/@attributes.2" source="//@sourceSectionModel/@metaModelSections.8/@attributes.1"/>
         <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.0/@attributes.0"/>
-          <sourceElements name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement"/>
+          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups name="SignalHintGroup" targetMMSection="//@targetSectionModel/@metaModelSections.1" xsi:type="mapping:MappingHintGroup">
-        <mappingHints name="id2signalName" source="//@sourceSectionModel/@metaModelSections.8/@attributes.1" target="//@targetSectionModel/@metaModelSections.1/@attributes.0" xsi:type="mapping:SimpleAttributeMapping"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SignalHintGroup" targetMMSection="//@targetSectionModel/@metaModelSections.2">
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="id2signalName" target="//@targetSectionModel/@metaModelSections.2/@attributes.0" source="//@sourceSectionModel/@metaModelSections.8/@attributes.1" modifier="//@mappingModel/@modifierSets.6"/>
       </mappingHintGroups>
     </mapping>
-    <modifierSets name="append &quot;-&gt;&quot;">
-      <modifier name="-&gt;" string="-&gt;" xsi:type="mapping:StringAppender"/>
+    <mapping name="InterfaceChangeMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.10">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Transition" targetMMSection="//@targetSectionModel/@metaModelSections.12">
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.12/@attributes.0" source="//@sourceSectionModel/@metaModelSections.10/@attributes.0"/>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Target" affectedReference="//@targetSectionModel/@metaModelSections.12/@references.0">
+          <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.11/@attributes.0" name="interfaceId" source="//@sourceSectionModel/@metaModelSections.10/@attributes.0" modifier="//@mappingModel/@modifierSets.8"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Source" affectedReference="//@targetSectionModel/@metaModelSections.12/@references.1">
+          <matcher xsi:type="mapping:ComplexAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.11/@attributes.0">
+            <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.8"/>
+          </matcher>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger" affectedReference="//@targetSectionModel/@metaModelSections.12/@references.2">
+          <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.4/@attributes.0" name="interfaceId" source="//@sourceSectionModel/@metaModelSections.10/@attributes.0" modifier="//@mappingModel/@modifierSets.6"/>
+        </mappingHints>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Reception" targetMMSection="//@targetSectionModel/@metaModelSections.13">
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.13/@attributes.0" source="//@sourceSectionModel/@metaModelSections.10/@attributes.0" modifier="//@mappingModel/@modifierSets.10"/>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Signal" affectedReference="//@targetSectionModel/@metaModelSections.13/@references.0">
+          <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.4/@attributes.0" name="interfaceId" source="//@sourceSectionModel/@metaModelSections.10/@attributes.0" modifier="//@mappingModel/@modifierSets.6"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mapping>
+    <modifierSets name="append &quot;->&quot;">
+      <modifier xsi:type="mapping:StringAppender" name="->" string="->"/>
     </modifierSets>
     <modifierSets name="append &quot;_&quot;">
-      <modifier name="_" string="_" xsi:type="mapping:StringAppender"/>
+      <modifier xsi:type="mapping:StringAppender" name="_" string="_"/>
     </modifierSets>
     <modifierSets name="append &quot;_pos&quot;">
-      <modifier name="_pos" string="_pos" xsi:type="mapping:StringAppender"/>
+      <modifier xsi:type="mapping:StringAppender" name="_pos" string="_pos"/>
     </modifierSets>
     <modifierSets name="append &quot;_size&quot;">
-      <modifier name="_size" string="_size" xsi:type="mapping:StringAppender"/>
+      <modifier xsi:type="mapping:StringAppender" name="_size" string="_size"/>
     </modifierSets>
     <modifierSets name="prepend &quot;triggering_&quot;">
-      <modifier name="triggering_" string="triggering_" xsi:type="mapping:StringPrepender"/>
+      <modifier xsi:type="mapping:StringPrepender" name="triggering_" string="triggering_"/>
     </modifierSets>
     <modifierSets name="append &quot;SignalTrigger&quot;">
-      <modifier name="SignalTrigger" string="SignalTrigger" xsi:type="mapping:StringAppender"/>
+      <modifier xsi:type="mapping:StringAppender" name="SignalTrigger" string="SignalTrigger"/>
     </modifierSets>
     <modifierSets name="append &quot;_signal&quot;">
-      <modifier name="_signal" string="_signal" xsi:type="mapping:StringAppender"/>
+      <modifier xsi:type="mapping:StringAppender" name="_signal" string="_signal"/>
     </modifierSets>
     <modifierSets name="append &quot;_Changed&quot;">
-      <modifier name="_Changed" string="_Changed" xsi:type="mapping:StringAppender"/>
+      <modifier xsi:type="mapping:StringAppender" name="_Changed" string="_Changed"/>
+    </modifierSets>
+    <modifierSets name="append &quot;_state&quot;">
+      <modifier xsi:type="mapping:StringAppender" name="_state" string="_state"/>
+    </modifierSets>
+    <modifierSets name="append &quot;_activityBlock&quot;">
+      <modifier xsi:type="mapping:StringAppender" name="_activityBlock" string="_activityBlock"/>
+    </modifierSets>
+    <modifierSets name="prepend &quot;reception_&quot; append &quot;_signal&quot;">
+      <modifier xsi:type="mapping:StringPrepender" name="reception_" string="reception_"/>
+      <modifier xsi:type="mapping:StringAppender" name="_signal" string="_signal"/>
     </modifierSets>
   </mappingModel>
 </pamtram:PAMTraM>

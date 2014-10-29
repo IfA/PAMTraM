@@ -542,6 +542,21 @@
               <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/NavigationTerminator"/>
             </value>
           </references>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedNavigationFlow">
+            <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//PresentationModel/OwnedNavigationFlow"/>
+            <value name="NewViewNavigationFlow">
+              <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/NewViewNavigationFlow"/>
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Target">
+                <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/NavigationFlow/Target"/>
+              </references>
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Source" value="//@targetSectionModel/@metaModelSections.0/@references.1/@value.0/@references.2/@value.0">
+                <eReference href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//presentation/NavigationFlow/Source"/>
+              </references>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Start">
+                <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
+              </attributes>
+            </value>
+          </references>
           <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="PresentationModel">
             <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
           </attributes>
@@ -574,6 +589,7 @@
       <attributes xsi:type="metamodel:ActualAttribute" name="name" value="">
         <attribute href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//NamedMovisaModelElement/Name"/>
       </attributes>
+      <attributes xsi:type="metamodel:VirtualAttribute" name="stateType"/>
     </metaModelSections>
     <metaModelSections name="UIComponentSignal" cardinality="ZERO__INFINITY" container="//@targetSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.3">
       <eClass href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/ifanxtcontrolws#//algorithm/Signal"/>
@@ -1098,11 +1114,15 @@
     <mapping name="RootMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.0">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="VisAppModelHintGroup" targetMMSection="//@targetSectionModel/@metaModelSections.0">
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="metaModelId2visAppModelName" target="//@targetSectionModel/@metaModelSections.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.0/@attributes.0"/>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Target" affectedReference="//@targetSectionModel/@metaModelSections.0/@references.1/@value.0/@references.4/@value.0/@references.0">
+          <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.1" name="name" source="//@sourceSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel/@modifierSets.11"/>
+        </mappingHints>
       </mappingHintGroups>
     </mapping>
     <mapping name="InterfaceMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.1">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="PanelHintGroup" targetMMSection="//@targetSectionModel/@metaModelSections.1">
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="id2name" target="//@targetSectionModel/@metaModelSections.1/@attributes.0" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0"/>
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="stateTypeMapping" target="//@targetSectionModel/@metaModelSections.1/@attributes.1" source="//@sourceSectionModel/@metaModelSections.1/@attributes.1"/>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="PanelTransitionSignal" targetMMSection="//@targetSectionModel/@metaModelSections.4">
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="signalNameMapping" target="//@targetSectionModel/@metaModelSections.4/@attributes.0" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.6"/>
@@ -1119,8 +1139,8 @@
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="trigger" affectedReference="//@targetSectionModel/@metaModelSections.5/@references.2">
           <matcher xsi:type="mapping:ComplexAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.3/@attributes.0">
-            <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0"/>
-            <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherSourceElement" name="interfaceId" source="//@sourceSectionModel/@metaModelSections.10/@attributes.0"/>
+            <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.0"/>
+            <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherSourceElement" name="interfaceId" source="//@sourceSectionModel/@metaModelSections.10/@attributes.0" modifier="//@mappingModel/@modifierSets.6"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="source" affectedReference="//@targetSectionModel/@metaModelSections.5/@references.0">
@@ -1268,6 +1288,9 @@
     <modifierSets name="prepend &quot;reception_&quot; append &quot;_signal&quot;">
       <modifier xsi:type="mapping:StringPrepender" name="reception_" string="reception_"/>
       <modifier xsi:type="mapping:StringAppender" name="_signal" string="_signal"/>
+    </modifierSets>
+    <modifierSets name="replace &quot;modell-ID&quot;">
+      <modifier xsi:type="mapping:SubstringReplacer" name="modell-ID_to_start" regex="modell-ID" replacement="start"/>
     </modifierSets>
   </mappingModel>
 </pamtram:PAMTraM>

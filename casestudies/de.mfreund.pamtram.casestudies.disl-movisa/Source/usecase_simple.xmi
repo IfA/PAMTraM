@@ -344,20 +344,6 @@
       </transition>
       <transition>
         <ifTrue
-            ruleId="eBO_5_Changed"/>
-        <action>
-          <statement
-              constant="Dialog_1_eBO_5"
-              assignment="set">
-            <variableContent
-                variableId="callerID"/>
-          </statement>
-          <interfaceChange
-              interfaceId="ConfirmationDialog"/>
-        </action>
-      </transition>
-      <transition>
-        <ifTrue
             ruleId="eBO_5_ConfirmationYes"/>
         <action>
           <interfaceChange
@@ -607,20 +593,6 @@
           </equal>
         </condition>
       </rule>
-      <transition>
-        <ifTrue
-            ruleId="eBO_2_Changed"/>
-        <action>
-          <statement
-              constant="Dialog_2_eBO_2"
-              assignment="set">
-            <variableContent
-                variableId="callerID"/>
-          </statement>
-          <interfaceChange
-              interfaceId="ConfirmationDialog"/>
-        </action>
-      </transition>
       <transition>
         <ifTrue
             ruleId="eBO_2_ConfirmationYes"/>
@@ -894,20 +866,6 @@
       </rule>
       <transition>
         <ifTrue
-            ruleId="eBO_4_Changed"/>
-        <action>
-          <statement
-              constant="Dialog_3_eBO_4"
-              assignment="set">
-            <variableContent
-                variableId="callerID"/>
-          </statement>
-          <interfaceChange
-              interfaceId="ConfirmationDialog"/>
-        </action>
-      </transition>
-      <transition>
-        <ifTrue
             ruleId="eBO_4_ConfirmationYes"/>
         <action>
           <interfaceChange
@@ -924,20 +882,6 @@
             <variableContent
                 variableId="Dialog_3_eBO_4_ConfirmationChanged"/>
           </statement>
-        </action>
-      </transition>
-      <transition>
-        <ifTrue
-            ruleId="eBO_5_Changed"/>
-        <action>
-          <statement
-              constant="Dialog_3_eBO_5"
-              assignment="set">
-            <variableContent
-                variableId="callerID"/>
-          </statement>
-          <interfaceChange
-              interfaceId="ConfirmationDialog"/>
         </action>
       </transition>
       <transition>

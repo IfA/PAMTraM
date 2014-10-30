@@ -1133,36 +1133,6 @@
     </metaModelSections>
     <metaModelSections name="TextLabel" container="//@targetSectionModel/@metaModelSections.1">
       <eClass href="http://stefan-hennig.de/movisa/presentation#//presentation/TextLabel"/>
-      <references xsi:type="metamodel:TargetSectionContainmentReference" name="Interaction">
-        <eReference href="http://stefan-hennig.de/movisa/presentation#//presentation/TextLabel/Interaction"/>
-        <value name="TextLabelInteraction">
-          <eClass href="http://stefan-hennig.de/movisa/presentation#//presentation/TextLabelInteraction"/>
-          <references xsi:type="metamodel:TargetSectionContainmentReference" name="CommonTrigger">
-            <eReference href="http://stefan-hennig.de/movisa/presentation#//presentation/Interaction/CommonTrigger"/>
-            <value name="Click">
-              <eClass href="http://stefan-hennig.de/movisa/presentation#//presentation/Click"/>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Effect" value="//@targetSectionModel/@metaModelSections.9/@references.0/@value.0/@references.1/@value.0">
-                <eReference href="http://stefan-hennig.de/movisa/presentation#//presentation/Trigger/Effect"/>
-              </references>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="">
-                <attribute href="http://stefan-hennig.de/movisa/presentation#//NamedMovisaModelElement/Name"/>
-              </attributes>
-            </value>
-          </references>
-          <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedEffect">
-            <eReference href="http://stefan-hennig.de/movisa/presentation#//presentation/Interaction/OwnedEffect"/>
-            <value name="SendSignalEffect">
-              <eClass href="http://stefan-hennig.de/movisa/presentation#//presentation/SendSignalEffect"/>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Signal">
-                <eReference href="http://stefan-hennig.de/movisa/presentation#//presentation/SendSignalEffect/Signal"/>
-              </references>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="">
-                <attribute href="http://stefan-hennig.de/movisa/presentation#//NamedMovisaModelElement/Name"/>
-              </attributes>
-            </value>
-          </references>
-        </value>
-      </references>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="">
         <attribute href="http://stefan-hennig.de/movisa/presentation#//NamedMovisaModelElement/Name"/>
       </attributes>
@@ -1296,36 +1266,6 @@
     </metaModelSections>
     <metaModelSections name="Input" container="//@targetSectionModel/@metaModelSections.1">
       <eClass href="http://stefan-hennig.de/movisa/presentation#//presentation/Input"/>
-      <references xsi:type="metamodel:TargetSectionContainmentReference" name="Interaction">
-        <eReference href="http://stefan-hennig.de/movisa/presentation#//presentation/Input/Interaction"/>
-        <value name="InputInteraction">
-          <eClass href="http://stefan-hennig.de/movisa/presentation#//presentation/InputInteraction"/>
-          <references xsi:type="metamodel:TargetSectionContainmentReference" name="CommonTrigger">
-            <eReference href="http://stefan-hennig.de/movisa/presentation#//presentation/Interaction/CommonTrigger"/>
-            <value name="Click">
-              <eClass href="http://stefan-hennig.de/movisa/presentation#//presentation/Click"/>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Effect" value="//@targetSectionModel/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0">
-                <eReference href="http://stefan-hennig.de/movisa/presentation#//presentation/Trigger/Effect"/>
-              </references>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Dialog_1_do_eBO_2SignalTrigger">
-                <attribute href="http://stefan-hennig.de/movisa/presentation#//NamedMovisaModelElement/Name"/>
-              </attributes>
-            </value>
-          </references>
-          <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedEffect">
-            <eReference href="http://stefan-hennig.de/movisa/presentation#//presentation/Interaction/OwnedEffect"/>
-            <value name="SendSignalEffect">
-              <eClass href="http://stefan-hennig.de/movisa/presentation#//presentation/SendSignalEffect"/>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Signal">
-                <eReference href="http://stefan-hennig.de/movisa/presentation#//presentation/SendSignalEffect/Signal"/>
-              </references>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="triggering_eBO_2_signal">
-                <attribute href="http://stefan-hennig.de/movisa/presentation#//NamedMovisaModelElement/Name"/>
-              </attributes>
-            </value>
-          </references>
-        </value>
-      </references>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="">
         <attribute href="http://stefan-hennig.de/movisa/presentation#//NamedMovisaModelElement/Name"/>
       </attributes>
@@ -1761,14 +1701,6 @@
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.6/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.9/@references.0/@value.0/@references.1/@value.0/@attributes.0" source="//@sourceSectionModel/@metaModelSections.6/@attributes.1" modifier="//@mappingModel/@modifierSets.5 //@mappingModel/@modifierSets.7"/>
-        <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.9/@references.0/@value.0/@references.0/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
-          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.6/@attributes.1" modifier="//@mappingModel/@modifierSets.6"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Signal" affectedReference="//@targetSectionModel/@metaModelSections.9/@references.0/@value.0/@references.1/@value.0/@references.0">
-          <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.2/@attributes.0" name="id" source="//@sourceSectionModel/@metaModelSections.6/@attributes.1" modifier="//@mappingModel/@modifierSets.7"/>
-        </mappingHints>
         <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint">
           <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.0"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0"/>
@@ -1816,9 +1748,6 @@
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.12/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.8/@attributes.1"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Signal" affectedReference="//@targetSectionModel/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0/@references.0">
-          <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.2/@attributes.0" name="id" source="//@sourceSectionModel/@metaModelSections.8/@attributes.1" modifier="//@mappingModel/@modifierSets.7"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="widgetIdMapping" target="//@targetSectionModel/@metaModelSections.12/@attributes.2">
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>

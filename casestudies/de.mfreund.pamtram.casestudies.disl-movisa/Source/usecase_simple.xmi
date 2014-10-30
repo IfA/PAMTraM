@@ -238,22 +238,6 @@
       </part>
     </style>
     <behavior>
-      <variable
-          value="false"
-          id="Dialog_1_eBO_5_ConfirmationChanged"
-          internal="no"
-          type="boolean"/>
-      <variable
-          value="false"
-          id="Dialog_1_eBO_5_ConfirmationResult"
-          internal="no"
-          type="boolean"/>
-      <variable
-          value=""
-          id="callerID"
-          interface="ConfirmationDialog"
-          internal="no"
-          type="string"/>
       <rule
           id="eBO_1_Changed">
         <condition>
@@ -276,56 +260,6 @@
           </equal>
         </condition>
       </rule>
-      <rule
-          id="eBO_5_Changed">
-        <condition>
-          <equal
-              constant="yes">
-            <propertyContent
-                propertyId="selected"
-                widgetId="eBO_5_OK"/>
-          </equal>
-        </condition>
-      </rule>
-      <rule
-          id="eBO_5_ConfirmationYes">
-        <condition>
-          <op
-              operator="and">
-            <opExpression
-                constant="true"
-                expression="equal">
-              <variableContent
-                  variableId="Dialog_1_eBO_5_ConfirmationResult"/>
-            </opExpression>
-          </op>
-        </condition>
-      </rule>
-      <rule
-          id="eBO_5_ConfirmationNo">
-        <condition>
-          <op
-              operator="and">
-            <opExpression
-                constant="false"
-                expression="equal">
-              <variableContent
-                  variableId="Dialog_1_eBO_5_ConfirmationResult"/>
-            </opExpression>
-          </op>
-        </condition>
-      </rule>
-      <rule
-          id="eBO_6_Changed">
-        <condition>
-          <equal
-              constant="yes">
-            <propertyContent
-                propertyId="selected"
-                widgetId="eBO_6_OK"/>
-          </equal>
-        </condition>
-      </rule>
       <transition>
         <ifTrue
             ruleId="eBO_1_Changed"/>
@@ -340,34 +274,6 @@
         <action>
           <interfaceChange
               interfaceId="Dialog_3"/>
-        </action>
-      </transition>
-      <transition>
-        <ifTrue
-            ruleId="eBO_5_ConfirmationYes"/>
-        <action>
-          <interfaceChange
-              interfaceId="Dialog_1"/>
-        </action>
-      </transition>
-      <transition>
-        <ifTrue
-            ruleId="eBO_5_ConfirmationNo"/>
-        <action>
-          <statement
-              constant="false"
-              assignment="set">
-            <variableContent
-                variableId="Dialog_1_eBO_5_ConfirmationChanged"/>
-          </statement>
-        </action>
-      </transition>
-      <transition>
-        <ifTrue
-            ruleId="eBO_6_Changed"/>
-        <action>
-          <interfaceChange
-              interfaceId="Dialog_1"/>
         </action>
       </transition>
     </behavior>
@@ -385,6 +291,9 @@
       <widget
           genericWidget="textfield"
           id="eBO_6"/>
+      <widget
+          genericWidget="command"
+          id="eBO_7_OK"/>
     </structure>
     <style>
       <part
@@ -476,169 +385,44 @@
             genericWidget="textfield"
             id="value"/>
       </part>
+      <part
+          genericWidget="eBO_7_OK">
+        <property
+            value="OK"
+            genericWidget="command"
+            id="title"/>
+        <property
+            value=""
+            genericWidget="command"
+            id="description"/>
+        <property
+            value=""
+            genericWidget="command"
+            id="help"/>
+        <property
+            value="no"
+            genericWidget="command"
+            id="selected"/>
+      </part>
     </style>
     <behavior>
-      <variable
-          value="false"
-          id="Dialog_2_eBO_2_ConfirmationChanged"
-          internal="no"
-          type="boolean"/>
-      <variable
-          value="false"
-          id="Dialog_2_eBO_2_ConfirmationResult"
-          internal="no"
-          type="boolean"/>
-      <variable
-          value="false"
-          id="Dialog_2_eBO_5_ConfirmationChanged"
-          internal="no"
-          type="boolean"/>
-      <variable
-          value="false"
-          id="Dialog_2_eBO_5_ConfirmationResult"
-          internal="no"
-          type="boolean"/>
-      <variable
-          value=""
-          id="callerID"
-          interface="ConfirmationDialog"
-          internal="no"
-          type="string"/>
       <rule
-          id="eBO_2_Changed">
-        <condition>
-          <equal
-              constant="yes">
-            <propertyContent
-                propertyId="modified"
-                widgetId="eBO_2"/>
-          </equal>
-        </condition>
-      </rule>
-      <rule
-          id="eBO_2_ConfirmationYes">
-        <condition>
-          <op
-              operator="and">
-            <opExpression
-                constant="true"
-                expression="equal">
-              <variableContent
-                  variableId="Dialog_2_eBO_2_ConfirmationResult"/>
-            </opExpression>
-          </op>
-        </condition>
-      </rule>
-      <rule
-          id="eBO_2_ConfirmationNo">
-        <condition>
-          <op
-              operator="and">
-            <opExpression
-                constant="false"
-                expression="equal">
-              <variableContent
-                  variableId="Dialog_2_eBO_2_ConfirmationResult"/>
-            </opExpression>
-          </op>
-        </condition>
-      </rule>
-      <rule
-          id="eBO_5_Changed">
+          id="eBO_7_OK_Changed">
         <condition>
           <equal
               constant="yes">
             <propertyContent
                 propertyId="selected"
-                widgetId="eBO_5_OK"/>
-          </equal>
-        </condition>
-      </rule>
-      <rule
-          id="eBO_5_ConfirmationYes">
-        <condition>
-          <op
-              operator="and">
-            <opExpression
-                constant="true"
-                expression="equal">
-              <variableContent
-                  variableId="Dialog_2_eBO_5_ConfirmationResult"/>
-            </opExpression>
-          </op>
-        </condition>
-      </rule>
-      <rule
-          id="eBO_5_ConfirmationNo">
-        <condition>
-          <op
-              operator="and">
-            <opExpression
-                constant="false"
-                expression="equal">
-              <variableContent
-                  variableId="Dialog_2_eBO_5_ConfirmationResult"/>
-            </opExpression>
-          </op>
-        </condition>
-      </rule>
-      <rule
-          id="eBO_6_Changed">
-        <condition>
-          <equal
-              constant="yes">
-            <propertyContent
-                propertyId="selected"
-                widgetId="eBO_6_OK"/>
+                widgetId="eBO_7_OK"/>
           </equal>
         </condition>
       </rule>
       <transition>
         <ifTrue
-            ruleId="eBO_2_ConfirmationYes"/>
+            ruleId="eBO_7_OK_Changed"/>
         <action>
           <interfaceChange
               interfaceId="Dialog_1"/>
-        </action>
-      </transition>
-      <transition>
-        <ifTrue
-            ruleId="eBO_2_ConfirmationNo"/>
-        <action>
-          <statement
-              constant="false"
-              assignment="set">
-            <variableContent
-                variableId="Dialog_2_eBO_2_ConfirmationChanged"/>
-          </statement>
-        </action>
-      </transition>
-      <transition>
-        <ifTrue
-            ruleId="eBO_5_ConfirmationYes"/>
-        <action>
-          <interfaceChange
-              interfaceId="Dialog_2"/>
-        </action>
-      </transition>
-      <transition>
-        <ifTrue
-            ruleId="eBO_5_ConfirmationNo"/>
-        <action>
-          <statement
-              constant="false"
-              assignment="set">
-            <variableContent
-                variableId="Dialog_2_eBO_5_ConfirmationChanged"/>
-          </statement>
-        </action>
-      </transition>
-      <transition>
-        <ifTrue
-            ruleId="eBO_6_Changed"/>
-        <action>
-          <interfaceChange
-              interfaceId="Dialog_2"/>
         </action>
       </transition>
     </behavior>
@@ -656,6 +440,9 @@
       <widget
           genericWidget="textfield"
           id="eBO_6"/>
+      <widget
+          genericWidget="command"
+          id="eBO_7_OK"/>
     </structure>
     <style>
       <part
@@ -747,169 +534,44 @@
             genericWidget="textfield"
             id="value"/>
       </part>
+      <part
+          genericWidget="eBO_7_OK">
+        <property
+            value="OK"
+            genericWidget="command"
+            id="title"/>
+        <property
+            value=""
+            genericWidget="command"
+            id="description"/>
+        <property
+            value=""
+            genericWidget="command"
+            id="help"/>
+        <property
+            value="no"
+            genericWidget="command"
+            id="selected"/>
+      </part>
     </style>
     <behavior>
-      <variable
-          value="false"
-          id="Dialog_3_eBO_4_ConfirmationChanged"
-          internal="no"
-          type="boolean"/>
-      <variable
-          value="false"
-          id="Dialog_3_eBO_4_ConfirmationResult"
-          internal="no"
-          type="boolean"/>
-      <variable
-          value="false"
-          id="Dialog_3_eBO_5_ConfirmationChanged"
-          internal="no"
-          type="boolean"/>
-      <variable
-          value="false"
-          id="Dialog_3_eBO_5_ConfirmationResult"
-          internal="no"
-          type="boolean"/>
-      <variable
-          value=""
-          id="callerID"
-          interface="ConfirmationDialog"
-          internal="no"
-          type="string"/>
       <rule
-          id="eBO_4_Changed">
-        <condition>
-          <equal
-              constant="yes">
-            <propertyContent
-                propertyId="modified"
-                widgetId="eBO_4"/>
-          </equal>
-        </condition>
-      </rule>
-      <rule
-          id="eBO_4_ConfirmationYes">
-        <condition>
-          <op
-              operator="and">
-            <opExpression
-                constant="true"
-                expression="equal">
-              <variableContent
-                  variableId="Dialog_3_eBO_4_ConfirmationResult"/>
-            </opExpression>
-          </op>
-        </condition>
-      </rule>
-      <rule
-          id="eBO_4_ConfirmationNo">
-        <condition>
-          <op
-              operator="and">
-            <opExpression
-                constant="false"
-                expression="equal">
-              <variableContent
-                  variableId="Dialog_3_eBO_4_ConfirmationResult"/>
-            </opExpression>
-          </op>
-        </condition>
-      </rule>
-      <rule
-          id="eBO_5_Changed">
+          id="eBO_7_OK_Changed">
         <condition>
           <equal
               constant="yes">
             <propertyContent
                 propertyId="selected"
-                widgetId="eBO_5_OK"/>
-          </equal>
-        </condition>
-      </rule>
-      <rule
-          id="eBO_5_ConfirmationYes">
-        <condition>
-          <op
-              operator="and">
-            <opExpression
-                constant="true"
-                expression="equal">
-              <variableContent
-                  variableId="Dialog_3_eBO_5_ConfirmationResult"/>
-            </opExpression>
-          </op>
-        </condition>
-      </rule>
-      <rule
-          id="eBO_5_ConfirmationNo">
-        <condition>
-          <op
-              operator="and">
-            <opExpression
-                constant="false"
-                expression="equal">
-              <variableContent
-                  variableId="Dialog_3_eBO_5_ConfirmationResult"/>
-            </opExpression>
-          </op>
-        </condition>
-      </rule>
-      <rule
-          id="eBO_6_Changed">
-        <condition>
-          <equal
-              constant="yes">
-            <propertyContent
-                propertyId="selected"
-                widgetId="eBO_6_OK"/>
+                widgetId="eBO_7_OK"/>
           </equal>
         </condition>
       </rule>
       <transition>
         <ifTrue
-            ruleId="eBO_4_ConfirmationYes"/>
+            ruleId="eBO_7_OK_Changed"/>
         <action>
           <interfaceChange
               interfaceId="Dialog_1"/>
-        </action>
-      </transition>
-      <transition>
-        <ifTrue
-            ruleId="eBO_4_ConfirmationNo"/>
-        <action>
-          <statement
-              constant="false"
-              assignment="set">
-            <variableContent
-                variableId="Dialog_3_eBO_4_ConfirmationChanged"/>
-          </statement>
-        </action>
-      </transition>
-      <transition>
-        <ifTrue
-            ruleId="eBO_5_ConfirmationYes"/>
-        <action>
-          <interfaceChange
-              interfaceId="Dialog_3"/>
-        </action>
-      </transition>
-      <transition>
-        <ifTrue
-            ruleId="eBO_5_ConfirmationNo"/>
-        <action>
-          <statement
-              constant="false"
-              assignment="set">
-            <variableContent
-                variableId="Dialog_3_eBO_5_ConfirmationChanged"/>
-          </statement>
-        </action>
-      </transition>
-      <transition>
-        <ifTrue
-            ruleId="eBO_6_Changed"/>
-        <action>
-          <interfaceChange
-              interfaceId="Dialog_3"/>
         </action>
       </transition>
     </behavior>

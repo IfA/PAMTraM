@@ -22,7 +22,7 @@
     <structure>
       <widget
           genericWidget="choicegroup"
-          id="eBO_1">
+          id="eBO_1_Select">
         <widget
             genericWidget="variablefield"
             id="eBO_1_0"/>
@@ -35,16 +35,16 @@
       </widget>
       <widget
           genericWidget="choicegroup"
-          id="eBO_3">
+          id="eBO_3_Select">
         <widget
             genericWidget="variablefield"
-            id="eBO_3_0"/>
+            id="eBO_3_Select_0"/>
         <widget
             genericWidget="variablefield"
-            id="eBO_3_1"/>
+            id="eBO_3_Select_1"/>
         <widget
             genericWidget="variablefield"
-            id="eBO_3_2"/>
+            id="eBO_3_Select_2"/>
       </widget>
       <widget
           genericWidget="textfield"
@@ -55,7 +55,7 @@
     </structure>
     <style>
       <part
-          genericWidget="eBO_1">
+          genericWidget="eBO_1_Select">
         <property
             value="Behaelterauswahl"
             genericWidget="choicegroup"
@@ -86,7 +86,7 @@
             id="modified"/>
       </part>
       <part
-          genericWidget="eBO_1_0">
+          genericWidget="eBO_1_Select_0">
         <property
             value="Vorgabewert 0"
             genericWidget="variablefield"
@@ -97,7 +97,7 @@
             id="value"/>
       </part>
       <part
-          genericWidget="eBO_1_1">
+          genericWidget="eBO_1_Select_1">
         <property
             value="Vorgabewert 1"
             genericWidget="variablefield"
@@ -108,7 +108,7 @@
             id="value"/>
       </part>
       <part
-          genericWidget="eBO_1_2">
+          genericWidget="eBO_1_Select_2">
         <property
             value="Vorgabewert 2"
             genericWidget="variablefield"
@@ -119,7 +119,7 @@
             id="value"/>
       </part>
       <part
-          genericWidget="eBO_3">
+          genericWidget="eBO_3_Select">
         <property
             value="Pumpenauswahl"
             genericWidget="choicegroup"
@@ -150,7 +150,7 @@
             id="modified"/>
       </part>
       <part
-          genericWidget="eBO_3_0">
+          genericWidget="eBO_3_Select_0">
         <property
             value="Vorgabewert 0"
             genericWidget="variablefield"
@@ -161,7 +161,7 @@
             id="value"/>
       </part>
       <part
-          genericWidget="eBO_3_1">
+          genericWidget="eBO_3_Select_1">
         <property
             value="Vorgabewert 1"
             genericWidget="variablefield"
@@ -172,7 +172,7 @@
             id="value"/>
       </part>
       <part
-          genericWidget="eBO_3_2">
+          genericWidget="eBO_3_Select_2">
         <property
             value="Vorgabewert 2"
             genericWidget="variablefield"
@@ -239,30 +239,30 @@
     </style>
     <behavior>
       <rule
-          id="eBO_1_Changed">
+          id="eBO_1_Select_Changed">
         <condition>
           <equal
               constant="yes">
             <propertyContent
                 propertyId="selected"
-                widgetId="eBO_1"/>
+                widgetId="eBO_1_Select"/>
           </equal>
         </condition>
       </rule>
       <rule
-          id="eBO_3_Changed">
+          id="eBO_3_Select_Changed">
         <condition>
           <equal
               constant="yes">
             <propertyContent
                 propertyId="selected"
-                widgetId="eBO_3"/>
+                widgetId="eBO_3_Select"/>
           </equal>
         </condition>
       </rule>
       <transition>
         <ifTrue
-            ruleId="eBO_1_Changed"/>
+            ruleId="eBO_1_Select_Changed"/>
         <action>
           <interfaceChange
               interfaceId="Dialog_2"/>
@@ -270,7 +270,7 @@
       </transition>
       <transition>
         <ifTrue
-            ruleId="eBO_3_Changed"/>
+            ruleId="eBO_3_Select_Changed"/>
         <action>
           <interfaceChange
               interfaceId="Dialog_3"/>
@@ -293,7 +293,7 @@
           id="eBO_6"/>
       <widget
           genericWidget="command"
-          id="eBO_7_OK"/>
+          id="eBO_7_Confirm"/>
     </structure>
     <style>
       <part
@@ -386,7 +386,7 @@
             id="value"/>
       </part>
       <part
-          genericWidget="eBO_7_OK">
+          genericWidget="eBO_7_Confirm">
         <property
             value="OK"
             genericWidget="command"
@@ -407,19 +407,19 @@
     </style>
     <behavior>
       <rule
-          id="eBO_7_OK_Changed">
+          id="eBO_7_Confirm_Changed">
         <condition>
           <equal
               constant="yes">
             <propertyContent
                 propertyId="selected"
-                widgetId="eBO_7_OK"/>
+                widgetId="eBO_7_Confirm"/>
           </equal>
         </condition>
       </rule>
       <transition>
         <ifTrue
-            ruleId="eBO_7_OK_Changed"/>
+            ruleId="eBO_7_Confirm_Changed"/>
         <action>
           <interfaceChange
               interfaceId="Dialog_1"/>
@@ -442,7 +442,7 @@
           id="eBO_6"/>
       <widget
           genericWidget="command"
-          id="eBO_7_OK"/>
+          id="eBO_7_Confirm"/>
     </structure>
     <style>
       <part
@@ -535,7 +535,7 @@
             id="value"/>
       </part>
       <part
-          genericWidget="eBO_7_OK">
+          genericWidget="eBO_7_Confirm">
         <property
             value="OK"
             genericWidget="command"
@@ -556,19 +556,19 @@
     </style>
     <behavior>
       <rule
-          id="eBO_7_OK_Changed">
+          id="eBO_7_Confirm_Changed">
         <condition>
           <equal
               constant="yes">
             <propertyContent
                 propertyId="selected"
-                widgetId="eBO_7_OK"/>
+                widgetId="eBO_7_Confirm"/>
           </equal>
         </condition>
       </rule>
       <transition>
         <ifTrue
-            ruleId="eBO_7_OK_Changed"/>
+            ruleId="eBO_7_Confirm_Changed"/>
         <action>
           <interfaceChange
               interfaceId="Dialog_1"/>

@@ -1609,6 +1609,10 @@
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="genericWidget" source="//@sourceSectionModel/@metaModelSections.5/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
         </mappingHints>
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" source="//@sourceSectionModel/@metaModelSections.5/@attributes.0" modifier="//@mappingModel/@modifierSets.15"/>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="ValueMapping" target="//@targetSectionModel/@metaModelSections.7/@references.0/@value.0/@references.0/@value.0/@attributes.2" expression="10+(x-1)*130">
+          <variables xsi:type="mapping:ExpressionVariable" name="x" source="//@sourceSectionModel/@metaModelSections.5/@attributes.0" modifier="//@mappingModel/@modifierSets.15"/>
+        </mappingHints>
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="SizeNameMapping" target="//@targetSectionModel/@metaModelSections.7/@references.1/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="genericWidget" source="//@sourceSectionModel/@metaModelSections.5/@attributes.0" modifier="//@mappingModel/@modifierSets.4"/>
@@ -1680,6 +1684,9 @@
             <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherSourceElement" name="genericWidget" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.13"/>
           </matcher>
         </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="ValueMapping" target="//@targetSectionModel/@metaModelSections.9/@references.0/@value.0/@references.0/@value.0/@attributes.2" expression="10+(x-1)*130">
+          <variables xsi:type="mapping:ExpressionVariable" name="x" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.15"/>
+        </mappingHints>
         <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint">
           <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.8/@attributes.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
@@ -1726,6 +1733,9 @@
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="genericWidget" source="//@sourceSectionModel/@metaModelSections.9/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.4"/>
         </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="ValueMapping" target="//@targetSectionModel/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@attributes.2" expression="10+(x-1)*130">
+          <variables xsi:type="mapping:ExpressionVariable" name="x" source="//@sourceSectionModel/@metaModelSections.9/@attributes.0" modifier="//@mappingModel/@modifierSets.15"/>
+        </mappingHints>
         <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint">
           <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.11/@attributes.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
@@ -1762,6 +1772,9 @@
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="widgetIdMapping" target="//@targetSectionModel/@metaModelSections.14/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="genericWidget" source="//@sourceSectionModel/@metaModelSections.11/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="ValueMapping" target="//@targetSectionModel/@metaModelSections.14/@references.0/@value.0/@references.0/@value.0/@attributes.2" expression="10+(x-1)*130">
+          <variables xsi:type="mapping:ExpressionVariable" name="x" source="//@sourceSectionModel/@metaModelSections.11/@attributes.0" modifier="//@mappingModel/@modifierSets.15"/>
         </mappingHints>
         <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint">
           <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.13/@attributes.2"/>
@@ -1818,6 +1831,9 @@
         <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="SizeNameMapping" target="//@targetSectionModel/@metaModelSections.12/@references.1/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="genericWidget" source="//@sourceSectionModel/@metaModelSections.14/@attributes.0" modifier="//@mappingModel/@modifierSets.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:CalculatorMapping" name="ValueMapping" target="//@targetSectionModel/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@attributes.2" expression="10+(x-1)*130">
+          <variables xsi:type="mapping:ExpressionVariable" name="x" source="//@sourceSectionModel/@metaModelSections.14/@attributes.0" modifier="//@mappingModel/@modifierSets.15"/>
         </mappingHints>
         <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint">
           <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.11/@attributes.2"/>
@@ -1893,6 +1909,9 @@
     </modifierSets>
     <modifierSets name="replace &quot;_([0-9]+)$&quot;">
       <modifier xsi:type="mapping:SubstringReplacer" name="_([0-9]+)$_to_" regex="_([0-9]+)$" replacement=""/>
+    </modifierSets>
+    <modifierSets name="ExtractEBOIncrementingNumber">
+      <modifier xsi:type="mapping:SubstringReplacer" name="replace &quot;eBO_&quot;" regex="eBO_([0-9]).*" replacement="$1"/>
     </modifierSets>
   </mappingModel>
 </pamtram:PAMTraM>

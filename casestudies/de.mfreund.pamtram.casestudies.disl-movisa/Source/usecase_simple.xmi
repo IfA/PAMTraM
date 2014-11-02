@@ -34,24 +34,30 @@
             id="eBO_1_2"/>
       </widget>
       <widget
+          genericWidget="textfield"
+          id="eBO_2"/>
+      <widget
+          genericWidget="command"
+          id="eBO_3_Confirm"/>
+      <widget
           genericWidget="choicegroup"
-          id="eBO_3_Select">
+          id="eBO_4_Select">
         <widget
             genericWidget="variablefield"
-            id="eBO_3_Select_0"/>
+            id="eBO_4_Select_0"/>
         <widget
             genericWidget="variablefield"
-            id="eBO_3_Select_1"/>
+            id="eBO_4_Select_1"/>
         <widget
             genericWidget="variablefield"
-            id="eBO_3_Select_2"/>
+            id="eBO_4_Select_2"/>
       </widget>
       <widget
           genericWidget="textfield"
           id="eBO_5"/>
       <widget
-          genericWidget="textfield"
-          id="eBO_6"/>
+          genericWidget="command"
+          id="eBO_6_Confirm"/>
     </structure>
     <style>
       <part
@@ -119,7 +125,53 @@
             id="value"/>
       </part>
       <part
-          genericWidget="eBO_3_Select">
+          genericWidget="eBO_2">
+        <property
+            value="Ist-Fuellstand"
+            genericWidget="textfield"
+            id="title"/>
+        <property
+            value=""
+            genericWidget="textfield"
+            id="description"/>
+        <property
+            value=""
+            genericWidget="textfield"
+            id="help"/>
+        <property
+            value="yes"
+            genericWidget="textfield"
+            id="visible"/>
+        <property
+            value="yes"
+            genericWidget="textfield"
+            id="activated"/>
+        <property
+            value=""
+            genericWidget="textfield"
+            id="value"/>
+      </part>
+      <part
+          genericWidget="eBO_3_Confirm">
+        <property
+            value="&#xc4;ndern"
+            genericWidget="command"
+            id="title"/>
+        <property
+            value=""
+            genericWidget="command"
+            id="description"/>
+        <property
+            value=""
+            genericWidget="command"
+            id="help"/>
+        <property
+            value="no"
+            genericWidget="command"
+            id="selected"/>
+      </part>
+      <part
+          genericWidget="eBO_4_Select">
         <property
             value="Pumpenauswahl"
             genericWidget="choicegroup"
@@ -150,7 +202,7 @@
             id="modified"/>
       </part>
       <part
-          genericWidget="eBO_3_Select_0">
+          genericWidget="eBO_4_Select_0">
         <property
             value="Vorgabewert 0"
             genericWidget="variablefield"
@@ -161,7 +213,7 @@
             id="value"/>
       </part>
       <part
-          genericWidget="eBO_3_Select_1">
+          genericWidget="eBO_4_Select_1">
         <property
             value="Vorgabewert 1"
             genericWidget="variablefield"
@@ -172,7 +224,7 @@
             id="value"/>
       </part>
       <part
-          genericWidget="eBO_3_Select_2">
+          genericWidget="eBO_4_Select_2">
         <property
             value="Vorgabewert 2"
             genericWidget="variablefield"
@@ -210,7 +262,83 @@
             id="value"/>
       </part>
       <part
-          genericWidget="eBO_6">
+          genericWidget="eBO_6_Confirm">
+        <property
+            value="&#xc4;ndern"
+            genericWidget="command"
+            id="title"/>
+        <property
+            value=""
+            genericWidget="command"
+            id="description"/>
+        <property
+            value=""
+            genericWidget="command"
+            id="help"/>
+        <property
+            value="no"
+            genericWidget="command"
+            id="selected"/>
+      </part>
+    </style>
+    <behavior>
+      <rule
+          id="eBO_3_Confirm_Changed">
+        <condition>
+          <equal
+              constant="yes">
+            <propertyContent
+                propertyId="selected"
+                widgetId="eBO_3_Confirm"/>
+          </equal>
+        </condition>
+      </rule>
+      <rule
+          id="eBO_6_Confirm_Changed">
+        <condition>
+          <equal
+              constant="yes">
+            <propertyContent
+                propertyId="selected"
+                widgetId="eBO_6_Confirm"/>
+          </equal>
+        </condition>
+      </rule>
+      <transition>
+        <ifTrue
+            ruleId="eBO_3_Confirm_Changed"/>
+        <action>
+          <interfaceChange
+              interfaceId="Dialog_2"/>
+        </action>
+      </transition>
+      <transition>
+        <ifTrue
+            ruleId="eBO_6_Confirm_Changed"/>
+        <action>
+          <interfaceChange
+              interfaceId="Dialog_3"/>
+        </action>
+      </transition>
+    </behavior>
+  </interface>
+  <interface
+      id="Dialog_2"
+      state="other">
+    <structure>
+      <widget
+          genericWidget="textfield"
+          id="eBO_1"/>
+      <widget
+          genericWidget="variablebox"
+          id="eBO_2"/>
+      <widget
+          genericWidget="command"
+          id="eBO_3_Confirm"/>
+    </structure>
+    <style>
+      <part
+          genericWidget="eBO_1">
         <property
             value="Ist-Fuellstand"
             genericWidget="textfield"
@@ -236,66 +364,6 @@
             genericWidget="textfield"
             id="value"/>
       </part>
-    </style>
-    <behavior>
-      <rule
-          id="eBO_1_Select_Changed">
-        <condition>
-          <equal
-              constant="yes">
-            <propertyContent
-                propertyId="selected"
-                widgetId="eBO_1_Select"/>
-          </equal>
-        </condition>
-      </rule>
-      <rule
-          id="eBO_3_Select_Changed">
-        <condition>
-          <equal
-              constant="yes">
-            <propertyContent
-                propertyId="selected"
-                widgetId="eBO_3_Select"/>
-          </equal>
-        </condition>
-      </rule>
-      <transition>
-        <ifTrue
-            ruleId="eBO_1_Select_Changed"/>
-        <action>
-          <interfaceChange
-              interfaceId="Dialog_2"/>
-        </action>
-      </transition>
-      <transition>
-        <ifTrue
-            ruleId="eBO_3_Select_Changed"/>
-        <action>
-          <interfaceChange
-              interfaceId="Dialog_3"/>
-        </action>
-      </transition>
-    </behavior>
-  </interface>
-  <interface
-      id="Dialog_2"
-      state="other">
-    <structure>
-      <widget
-          genericWidget="variablebox"
-          id="eBO_2"/>
-      <widget
-          genericWidget="textfield"
-          id="eBO_5"/>
-      <widget
-          genericWidget="textfield"
-          id="eBO_6"/>
-      <widget
-          genericWidget="command"
-          id="eBO_7_Confirm"/>
-    </structure>
-    <style>
       <part
           genericWidget="eBO_2">
         <property
@@ -332,7 +400,64 @@
             id="modified"/>
       </part>
       <part
-          genericWidget="eBO_5">
+          genericWidget="eBO_3_Confirm">
+        <property
+            value="OK"
+            genericWidget="command"
+            id="title"/>
+        <property
+            value=""
+            genericWidget="command"
+            id="description"/>
+        <property
+            value=""
+            genericWidget="command"
+            id="help"/>
+        <property
+            value="no"
+            genericWidget="command"
+            id="selected"/>
+      </part>
+    </style>
+    <behavior>
+      <rule
+          id="eBO_3_Confirm_Changed">
+        <condition>
+          <equal
+              constant="yes">
+            <propertyContent
+                propertyId="selected"
+                widgetId="eBO_3_Confirm"/>
+          </equal>
+        </condition>
+      </rule>
+      <transition>
+        <ifTrue
+            ruleId="eBO_3_Confirm_Changed"/>
+        <action>
+          <interfaceChange
+              interfaceId="Dialog_1"/>
+        </action>
+      </transition>
+    </behavior>
+  </interface>
+  <interface
+      id="Dialog_3"
+      state="other">
+    <structure>
+      <widget
+          genericWidget="textfield"
+          id="eBO_1"/>
+      <widget
+          genericWidget="variablebox"
+          id="eBO_2"/>
+      <widget
+          genericWidget="command"
+          id="eBO_3_Confirm"/>
+    </structure>
+    <style>
+      <part
+          genericWidget="eBO_1">
         <property
             value="Ist-Drehzahl"
             genericWidget="textfield"
@@ -359,94 +484,7 @@
             id="value"/>
       </part>
       <part
-          genericWidget="eBO_6">
-        <property
-            value="Ist-Fuellstand"
-            genericWidget="textfield"
-            id="title"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="description"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="help"/>
-        <property
-            value="yes"
-            genericWidget="textfield"
-            id="visible"/>
-        <property
-            value="yes"
-            genericWidget="textfield"
-            id="activated"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="value"/>
-      </part>
-      <part
-          genericWidget="eBO_7_Confirm">
-        <property
-            value="OK"
-            genericWidget="command"
-            id="title"/>
-        <property
-            value=""
-            genericWidget="command"
-            id="description"/>
-        <property
-            value=""
-            genericWidget="command"
-            id="help"/>
-        <property
-            value="no"
-            genericWidget="command"
-            id="selected"/>
-      </part>
-    </style>
-    <behavior>
-      <rule
-          id="eBO_7_Confirm_Changed">
-        <condition>
-          <equal
-              constant="yes">
-            <propertyContent
-                propertyId="selected"
-                widgetId="eBO_7_Confirm"/>
-          </equal>
-        </condition>
-      </rule>
-      <transition>
-        <ifTrue
-            ruleId="eBO_7_Confirm_Changed"/>
-        <action>
-          <interfaceChange
-              interfaceId="Dialog_1"/>
-        </action>
-      </transition>
-    </behavior>
-  </interface>
-  <interface
-      id="Dialog_3"
-      state="other">
-    <structure>
-      <widget
-          genericWidget="variablebox"
-          id="eBO_4"/>
-      <widget
-          genericWidget="textfield"
-          id="eBO_5"/>
-      <widget
-          genericWidget="textfield"
-          id="eBO_6"/>
-      <widget
-          genericWidget="command"
-          id="eBO_7_Confirm"/>
-    </structure>
-    <style>
-      <part
-          genericWidget="eBO_4">
+          genericWidget="eBO_2">
         <property
             value="Soll-Drehzahl anpassen"
             genericWidget="variablebox"
@@ -481,61 +519,7 @@
             id="modified"/>
       </part>
       <part
-          genericWidget="eBO_5">
-        <property
-            value="Ist-Drehzahl"
-            genericWidget="textfield"
-            id="title"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="description"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="help"/>
-        <property
-            value="yes"
-            genericWidget="textfield"
-            id="visible"/>
-        <property
-            value="yes"
-            genericWidget="textfield"
-            id="activated"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="value"/>
-      </part>
-      <part
-          genericWidget="eBO_6">
-        <property
-            value="Ist-Fuellstand"
-            genericWidget="textfield"
-            id="title"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="description"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="help"/>
-        <property
-            value="yes"
-            genericWidget="textfield"
-            id="visible"/>
-        <property
-            value="yes"
-            genericWidget="textfield"
-            id="activated"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="value"/>
-      </part>
-      <part
-          genericWidget="eBO_7_Confirm">
+          genericWidget="eBO_3_Confirm">
         <property
             value="OK"
             genericWidget="command"
@@ -556,19 +540,19 @@
     </style>
     <behavior>
       <rule
-          id="eBO_7_Confirm_Changed">
+          id="eBO_3_Confirm_Changed">
         <condition>
           <equal
               constant="yes">
             <propertyContent
                 propertyId="selected"
-                widgetId="eBO_7_Confirm"/>
+                widgetId="eBO_3_Confirm"/>
           </equal>
         </condition>
       </rule>
       <transition>
         <ifTrue
-            ruleId="eBO_7_Confirm_Changed"/>
+            ruleId="eBO_3_Confirm_Changed"/>
         <action>
           <interfaceChange
               interfaceId="Dialog_1"/>

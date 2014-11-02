@@ -282,6 +282,54 @@
       </part>
     </style>
     <behavior>
+      <variable
+          value="100"
+          id="Ist-Fuellstand1"
+          internal="no"/>
+      <variable
+          value="100"
+          id="Ist-Fuellstand2"
+          internal="no"/>
+      <variable
+          value="100"
+          id="Ist-Fuellstand3"
+          internal="no"/>
+      <variable
+          value="100"
+          id="Soll-Fuellstand1"
+          internal="no"/>
+      <variable
+          value="100"
+          id="Soll-Fuellstand2"
+          internal="no"/>
+      <variable
+          value="100"
+          id="Soll-Fuellstand3"
+          internal="no"/>
+      <variable
+          value="100"
+          id="Ist-Drehzahl1"
+          internal="no"/>
+      <variable
+          value="100"
+          id="Ist-Drehzahl2"
+          internal="no"/>
+      <variable
+          value="100"
+          id="Ist-Drehzahl3"
+          internal="no"/>
+      <variable
+          value="100"
+          id="Soll-Drehzahl1"
+          internal="no"/>
+      <variable
+          value="100"
+          id="Soll-Drehzahl2"
+          internal="no"/>
+      <variable
+          value="100"
+          id="Soll-Drehzahl3"
+          internal="no"/>
       <rule
           id="eBO_3_Confirm_Changed">
         <condition>

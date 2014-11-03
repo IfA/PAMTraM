@@ -92,7 +92,7 @@
             id="modified"/>
       </part>
       <part
-          genericWidget="eBO_1_Select_0">
+          genericWidget="eBO_1_Select_Option_0">
         <property
             value="Vorgabewert 0"
             genericWidget="variablefield"
@@ -103,7 +103,7 @@
             id="value"/>
       </part>
       <part
-          genericWidget="eBO_1_Select_1">
+          genericWidget="eBO_1_Select_Option_1">
         <property
             value="Vorgabewert 1"
             genericWidget="variablefield"
@@ -114,7 +114,7 @@
             id="value"/>
       </part>
       <part
-          genericWidget="eBO_1_Select_2">
+          genericWidget="eBO_1_Select_Option_2">
         <property
             value="Vorgabewert 2"
             genericWidget="variablefield"
@@ -156,7 +156,7 @@
             id="modified"/>
       </part>
       <part
-          genericWidget="eBO_4_Select_0">
+          genericWidget="eBO_4_Select_Option_0">
         <property
             value="Vorgabewert 0"
             genericWidget="variablefield"
@@ -167,7 +167,7 @@
             id="value"/>
       </part>
       <part
-          genericWidget="eBO_4_Select_1">
+          genericWidget="eBO_4_Select_Option_1">
         <property
             value="Vorgabewert 1"
             genericWidget="variablefield"
@@ -178,7 +178,7 @@
             id="value"/>
       </part>
       <part
-          genericWidget="eBO_4_Select_2">
+          genericWidget="eBO_4_Select_Option_2">
         <property
             value="Vorgabewert 2"
             genericWidget="variablefield"

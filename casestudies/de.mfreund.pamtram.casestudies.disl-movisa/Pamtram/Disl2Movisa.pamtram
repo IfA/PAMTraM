@@ -2660,7 +2660,10 @@
     </mapping>
     <mapping name="InterfaceChangeMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.18">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Transition" targetMMSection="//@targetSectionModel/@metaModelSections.24">
-        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.24/@attributes.0" source="//@sourceSectionModel/@metaModelSections.18/@attributes.0"/>
+        <mappingHints xsi:type="mapping:ComplexAttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.24/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.0"/>
+          <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingSourceElement" name="interfaceId" source="//@sourceSectionModel/@metaModelSections.18/@attributes.0"/>
+        </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Target" affectedReference="//@targetSectionModel/@metaModelSections.24/@references.0">
           <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.23/@attributes.0" name="interfaceId" source="//@sourceSectionModel/@metaModelSections.18/@attributes.0" modifier="//@mappingModel/@modifierSets.9"/>
         </mappingHints>

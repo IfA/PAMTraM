@@ -25,45 +25,45 @@
           id="eBO_1_Select">
         <widget
             genericWidget="variablefield"
-            id="eBO_1_0"/>
+            id="eBO_1_Select_Option_0"/>
         <widget
             genericWidget="variablefield"
-            id="eBO_1_1"/>
+            id="eBO_1_Select_Option_1"/>
         <widget
             genericWidget="variablefield"
-            id="eBO_1_2"/>
+            id="eBO_1_Select_Option_2"/>
       </widget>
-      <widget
-          genericWidget="textfield"
-          id="eBO_2"/>
-      <widget
-          genericWidget="command"
-          id="eBO_3_Confirm"/>
       <widget
           genericWidget="choicegroup"
           id="eBO_4_Select">
         <widget
             genericWidget="variablefield"
-            id="eBO_4_Select_0"/>
+            id="eBO_4_Select_Option_0"/>
         <widget
             genericWidget="variablefield"
-            id="eBO_4_Select_1"/>
+            id="eBO_4_Select_Option_1"/>
         <widget
             genericWidget="variablefield"
-            id="eBO_4_Select_2"/>
+            id="eBO_4_Select_Option_2"/>
       </widget>
       <widget
-          genericWidget="textfield"
-          id="eBO_5"/>
+          genericWidget="command"
+          id="eBO_3_Confirm"/>
       <widget
           genericWidget="command"
           id="eBO_6_Confirm"/>
+      <widget
+          genericWidget="textfield"
+          id="eBO_2"/>
+      <widget
+          genericWidget="textfield"
+          id="eBO_5"/>
     </structure>
     <style>
       <part
           genericWidget="eBO_1_Select">
         <property
-            value="Behaelterauswahl"
+            value="Quell-Behaelter"
             genericWidget="choicegroup"
             id="title"/>
         <property
@@ -125,55 +125,9 @@
             id="value"/>
       </part>
       <part
-          genericWidget="eBO_2">
-        <property
-            value="Ist-Fuellstand"
-            genericWidget="textfield"
-            id="title"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="description"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="help"/>
-        <property
-            value="yes"
-            genericWidget="textfield"
-            id="visible"/>
-        <property
-            value="yes"
-            genericWidget="textfield"
-            id="activated"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="value"/>
-      </part>
-      <part
-          genericWidget="eBO_3_Confirm">
-        <property
-            value="&#xc4;ndern"
-            genericWidget="command"
-            id="title"/>
-        <property
-            value=""
-            genericWidget="command"
-            id="description"/>
-        <property
-            value=""
-            genericWidget="command"
-            id="help"/>
-        <property
-            value="no"
-            genericWidget="command"
-            id="selected"/>
-      </part>
-      <part
           genericWidget="eBO_4_Select">
         <property
-            value="Pumpenauswahl"
+            value="Ziel-Beh&#xe4;lter"
             genericWidget="choicegroup"
             id="title"/>
         <property
@@ -235,6 +189,71 @@
             id="value"/>
       </part>
       <part
+          genericWidget="eBO_3_Confirm">
+        <property
+            value="Start Umpumpen"
+            genericWidget="command"
+            id="title"/>
+        <property
+            value=""
+            genericWidget="command"
+            id="description"/>
+        <property
+            value=""
+            genericWidget="command"
+            id="help"/>
+        <property
+            value="no"
+            genericWidget="command"
+            id="selected"/>
+      </part>
+      <part
+          genericWidget="eBO_6_Confirm">
+        <property
+            value="Stop Umpumpen"
+            genericWidget="command"
+            id="title"/>
+        <property
+            value=""
+            genericWidget="command"
+            id="description"/>
+        <property
+            value=""
+            genericWidget="command"
+            id="help"/>
+        <property
+            value="no"
+            genericWidget="command"
+            id="selected"/>
+      </part>
+      <part
+          genericWidget="eBO_2">
+        <property
+            value="Ist-Fuellstand"
+            genericWidget="textfield"
+            id="title"/>
+        <property
+            value=""
+            genericWidget="textfield"
+            id="description"/>
+        <property
+            value=""
+            genericWidget="textfield"
+            id="help"/>
+        <property
+            value="yes"
+            genericWidget="textfield"
+            id="visible"/>
+        <property
+            value="yes"
+            genericWidget="textfield"
+            id="activated"/>
+        <property
+            value=""
+            genericWidget="textfield"
+            id="value"/>
+      </part>
+      <part
           genericWidget="eBO_5">
         <property
             value="Ist-Drehzahl"
@@ -261,75 +280,21 @@
             genericWidget="textfield"
             id="value"/>
       </part>
-      <part
-          genericWidget="eBO_6_Confirm">
-        <property
-            value="&#xc4;ndern"
-            genericWidget="command"
-            id="title"/>
-        <property
-            value=""
-            genericWidget="command"
-            id="description"/>
-        <property
-            value=""
-            genericWidget="command"
-            id="help"/>
-        <property
-            value="no"
-            genericWidget="command"
-            id="selected"/>
-      </part>
     </style>
     <behavior>
       <variable
-          value="100"
-          id="Ist-Fuellstand1"
+          value="1"
+          id="Behaelter_A_FL"
           internal="no"/>
       <variable
-          value="100"
-          id="Ist-Fuellstand2"
+          value="2"
+          id="Behaelter_B_FL"
           internal="no"/>
       <variable
-          value="100"
-          id="Ist-Fuellstand3"
-          internal="no"/>
-      <variable
-          value="100"
-          id="Soll-Fuellstand1"
-          internal="no"/>
-      <variable
-          value="100"
-          id="Soll-Fuellstand2"
-          internal="no"/>
-      <variable
-          value="100"
-          id="Soll-Fuellstand3"
-          internal="no"/>
-      <variable
-          value="100"
-          id="Ist-Drehzahl1"
-          internal="no"/>
-      <variable
-          value="100"
-          id="Ist-Drehzahl2"
-          internal="no"/>
-      <variable
-          value="100"
-          id="Ist-Drehzahl3"
-          internal="no"/>
-      <variable
-          value="100"
-          id="Soll-Drehzahl1"
-          internal="no"/>
-      <variable
-          value="100"
-          id="Soll-Drehzahl2"
-          internal="no"/>
-      <variable
-          value="100"
-          id="Soll-Drehzahl3"
-          internal="no"/>
+          value="false"
+          id="Start_Umpumpen_FL"
+          internal="no"
+          type="boolean"/>
       <rule
           id="eBO_3_Confirm_Changed">
         <condition>
@@ -338,6 +303,39 @@
             <propertyContent
                 propertyId="selected"
                 widgetId="eBO_3_Confirm"/>
+          </equal>
+        </condition>
+      </rule>
+      <rule
+          id="eBO_1_Select_Option_0_Changed">
+        <condition>
+          <equal
+              constant="yes">
+            <propertyContent
+                propertyId="selected"
+                widgetId="eBO_1_Select_Option_0"/>
+          </equal>
+        </condition>
+      </rule>
+      <rule
+          id="eBO_1_Select_Option_1_Changed">
+        <condition>
+          <equal
+              constant="yes">
+            <propertyContent
+                propertyId="selected"
+                widgetId="eBO_1_Select_Option_1"/>
+          </equal>
+        </condition>
+      </rule>
+      <rule
+          id="eBO_1_Select_Option_2_Changed">
+        <condition>
+          <equal
+              constant="yes">
+            <propertyContent
+                propertyId="selected"
+                widgetId="eBO_1_Select_Option_2"/>
           </equal>
         </condition>
       </rule>
@@ -352,20 +350,133 @@
           </equal>
         </condition>
       </rule>
+      <rule
+          id="eBO_4_Select_Option_0_Changed">
+        <condition>
+          <equal
+              constant="yes">
+            <propertyContent
+                propertyId="selected"
+                widgetId="eBO_4_Select_Option_0"/>
+          </equal>
+        </condition>
+      </rule>
+      <rule
+          id="eBO_4_Select_Option_1_Changed">
+        <condition>
+          <equal
+              constant="yes">
+            <propertyContent
+                propertyId="selected"
+                widgetId="eBO_4_Select_Option_1"/>
+          </equal>
+        </condition>
+      </rule>
+      <rule
+          id="eBO_4_Select_Option_2_Changed">
+        <condition>
+          <equal
+              constant="yes">
+            <propertyContent
+                propertyId="selected"
+                widgetId="eBO_4_Select_Option_2"/>
+          </equal>
+        </condition>
+      </rule>
       <transition>
         <ifTrue
             ruleId="eBO_3_Confirm_Changed"/>
         <action>
-          <interfaceChange
-              interfaceId="Dialog_2"/>
+          <statement
+              constant="true"
+              constant1="boolean">
+            <variableContent
+                variableId="Start_Umpumpen_FL"/>
+          </statement>
+        </action>
+      </transition>
+      <transition>
+        <ifTrue
+            ruleId="eBO_1_Select_Option_0_Changed"/>
+        <action>
+          <statement
+              constant="1"
+              constant1="integer">
+            <variableContent
+                variableId="Behaelter_A_FL"/>
+          </statement>
+        </action>
+      </transition>
+      <transition>
+        <ifTrue
+            ruleId="eBO_1_Select_Option_1_Changed"/>
+        <action>
+          <statement
+              constant="2"
+              constant1="integer">
+            <variableContent
+                variableId="Behaelter_A_FL"/>
+          </statement>
+        </action>
+      </transition>
+      <transition>
+        <ifTrue
+            ruleId="eBO_1_Select_Option_2_Changed"/>
+        <action>
+          <statement
+              constant="3"
+              constant1="integer">
+            <variableContent
+                variableId="Behaelter_A_FL"/>
+          </statement>
         </action>
       </transition>
       <transition>
         <ifTrue
             ruleId="eBO_6_Confirm_Changed"/>
         <action>
-          <interfaceChange
-              interfaceId="Dialog_3"/>
+          <statement
+              constant="false"
+              constant1="boolean">
+            <variableContent
+                variableId="Start_Umpumpen_FL"/>
+          </statement>
+        </action>
+      </transition>
+      <transition>
+        <ifTrue
+            ruleId="eBO_4_Select_Option_0_Changed"/>
+        <action>
+          <statement
+              constant="1"
+              constant1="integer">
+            <variableContent
+                variableId="Behaelter_B_FL"/>
+          </statement>
+        </action>
+      </transition>
+      <transition>
+        <ifTrue
+            ruleId="eBO_4_Select_Option_1_Changed"/>
+        <action>
+          <statement
+              constant="2"
+              constant1="integer">
+            <variableContent
+                variableId="Behaelter_B_FL"/>
+          </statement>
+        </action>
+      </transition>
+      <transition>
+        <ifTrue
+            ruleId="eBO_4_Select_Option_2_Changed"/>
+        <action>
+          <statement
+              constant="3"
+              constant1="integer">
+            <variableContent
+                variableId="Behaelter_B_FL"/>
+          </statement>
         </action>
       </transition>
     </behavior>

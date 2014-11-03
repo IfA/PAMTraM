@@ -1564,8 +1564,8 @@ class SourceSectionMapper implements CancellationListener {
 					transformationAborted = true;
 					return null;
 				}
-				returnVal = mappingData.get(mappingData.get(dialog
-						.getSelection()));
+				returnVal = mappingData.get(dialog
+						.getSelection());
 				ambiguousMappingSelections.put(mappingData.keySet(),
 						dialog.getSelection());
 			}

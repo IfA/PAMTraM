@@ -357,8 +357,8 @@
         <ifTrue ruleId="eBO_2_Input_Changed"/>
         <action>
           <statement>
-            <propertyContent propertyId="eBO_2_Input" widgetId="value"/>
-            <variableContent1 variableId="V1_FL"/>
+            <variableContent variableId="V1_FL"/>
+            <propertyContent1 propertyId="eBO_2_Input" widgetId="value"/>
           </statement>
         </action>
       </transition>
@@ -366,8 +366,8 @@
         <ifTrue ruleId="eBO_5_Input_Changed"/>
         <action>
           <statement>
-            <propertyContent propertyId="eBO_5_Input" widgetId="value"/>
-            <variableContent1 variableId="V2_FL"/>
+            <variableContent variableId="V2_FL"/>
+            <propertyContent1 propertyId="eBO_5_Input" widgetId="value"/>
           </statement>
         </action>
       </transition>
@@ -375,8 +375,8 @@
         <ifTrue ruleId="eBO_7_Input_Changed"/>
         <action>
           <statement>
-            <propertyContent propertyId="eBO_7_Input" widgetId="value"/>
-            <variableContent1 variableId="P3_FL"/>
+            <variableContent variableId="P3_FL"/>
+            <propertyContent1 propertyId="eBO_7_Input" widgetId="value"/>
           </statement>
         </action>
       </transition>

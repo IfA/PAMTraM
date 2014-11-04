@@ -198,8 +198,17 @@
             <eReference href="http://disl#//Action/statement"/>
             <value name="Statement">
               <eClass href="http://disl#//Statement"/>
-              <references xsi:type="metamodel:SourceSectionContainmentReference" name="propertyContent">
-                <eReference href="http://disl#//Statement/propertyContent"/>
+              <references xsi:type="metamodel:SourceSectionContainmentReference" name="variableContent">
+                <eReference href="http://disl#//Statement/variableContent"/>
+                <value name="VariableContent">
+                  <eClass href="http://disl#//VariableContent"/>
+                  <attributes name="variableId">
+                    <attribute href="http://disl#//VariableContent/variableId"/>
+                  </attributes>
+                </value>
+              </references>
+              <references xsi:type="metamodel:SourceSectionContainmentReference" name="propertyContent1">
+                <eReference href="http://disl#//Statement/propertyContent1"/>
                 <value name="PropertyContent">
                   <eClass href="http://disl#//PropertyContent"/>
                   <attributes name="widgetId">
@@ -207,15 +216,6 @@
                   </attributes>
                   <attributes name="propertyId">
                     <attribute href="http://disl#//PropertyContent/propertyId"/>
-                  </attributes>
-                </value>
-              </references>
-              <references xsi:type="metamodel:SourceSectionContainmentReference" name="variableContent1">
-                <eReference href="http://disl#//Statement/variableContent1"/>
-                <value name="VariableContent">
-                  <eClass href="http://disl#//VariableContent"/>
-                  <attributes name="variableId">
-                    <attribute href="http://disl#//VariableContent/variableId"/>
                   </attributes>
                 </value>
               </references>
@@ -2792,9 +2792,120 @@
                   <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/StateActivityBlock"/>
                   <references xsi:type="metamodel:TargetSectionContainmentReference" name="Edge">
                     <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/StateActivityBlock/Edge"/>
+                    <value name="ControlFlow" container="//@targetSectionModel/@metaModelSections.24/@references.0/@value.0">
+                      <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/ControlFlow"/>
+                      <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
+                        <attribute href="http://stefan-hennig.de/movisa/platform#//CommentedMovisaModelElement/Comment"/>
+                      </attributes>
+                      <attributes xsi:type="metamodel:ActualAttribute" name="Name">
+                        <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+                      </attributes>
+                      <attributes xsi:type="metamodel:ActualAttribute" name="Guard">
+                        <attribute href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/ActivityEdge/Guard"/>
+                      </attributes>
+                    </value>
+                    <value name="ObjectFlow" container="//@targetSectionModel/@metaModelSections.24/@references.0/@value.0">
+                      <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/ObjectFlow"/>
+                      <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
+                        <attribute href="http://stefan-hennig.de/movisa/platform#//CommentedMovisaModelElement/Comment"/>
+                      </attributes>
+                      <attributes xsi:type="metamodel:ActualAttribute" name="Name">
+                        <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+                      </attributes>
+                      <attributes xsi:type="metamodel:ActualAttribute" name="Guard">
+                        <attribute href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/ActivityEdge/Guard"/>
+                      </attributes>
+                    </value>
                   </references>
                   <references xsi:type="metamodel:TargetSectionContainmentReference" name="Action">
                     <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/StateActivityBlock/Action"/>
+                    <value name="AcceptEventAction" container="//@targetSectionModel/@metaModelSections.24/@references.0/@value.0">
+                      <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/AcceptEventAction"/>
+                      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="OutgoingControlFlow" value="//@targetSectionModel/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.0/@value.0">
+                        <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/ActivityNode/OutgoingControlFlow"/>
+                      </references>
+                      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Trigger">
+                        <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/AcceptEventAction/Trigger"/>
+                      </references>
+                      <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
+                        <attribute href="http://stefan-hennig.de/movisa/platform#//CommentedMovisaModelElement/Comment"/>
+                      </attributes>
+                      <attributes xsi:type="metamodel:ActualAttribute" name="Name">
+                        <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+                      </attributes>
+                    </value>
+                    <value name="WriteIntegerDataItemAction" container="//@targetSectionModel/@metaModelSections.24/@references.0/@value.0">
+                      <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/WriteDataItemAction"/>
+                      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="IncomingControlFlow" value="//@targetSectionModel/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.0/@value.0">
+                        <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/ActivityNode/IncomingControlFlow"/>
+                      </references>
+                      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="DataItem">
+                        <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/DataItemAction/DataItem"/>
+                      </references>
+                      <references xsi:type="metamodel:TargetSectionContainmentReference" name="Value">
+                        <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/WriteDataItemAction/Value"/>
+                        <value name="InputPin">
+                          <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/InputPin"/>
+                          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Type" value="//@targetSectionModel/@metaModelSections.12">
+                            <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/Pin/Type"/>
+                          </references>
+                          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="IncomingObjectFlow" value="//@targetSectionModel/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.0/@value.1">
+                            <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/InputPin/IncomingObjectFlow"/>
+                          </references>
+                          <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
+                            <attribute href="http://stefan-hennig.de/movisa/platform#//CommentedMovisaModelElement/Comment"/>
+                          </attributes>
+                          <attributes xsi:type="metamodel:ActualAttribute" name="Name">
+                            <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+                          </attributes>
+                          <attributes xsi:type="metamodel:ActualAttribute" name="Multiplicity">
+                            <attribute href="http://stefan-hennig.de/movisa/platform#//algorithm/MultiplicityElement/Multiplicity"/>
+                          </attributes>
+                          <attributes xsi:type="metamodel:ActualAttribute" name="SelectStructuredTypeMember">
+                            <attribute href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/Pin/SelectStructuredTypeMember"/>
+                          </attributes>
+                        </value>
+                      </references>
+                      <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
+                        <attribute href="http://stefan-hennig.de/movisa/platform#//CommentedMovisaModelElement/Comment"/>
+                      </attributes>
+                      <attributes xsi:type="metamodel:ActualAttribute" name="Name">
+                        <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+                      </attributes>
+                    </value>
+                    <value name="ReadInputAction" container="//@targetSectionModel/@metaModelSections.24/@references.0/@value.0">
+                      <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/ReadPresentationModelAction"/>
+                      <references xsi:type="metamodel:TargetSectionContainmentReference" name="Result">
+                        <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/ReadPresentationModelAction/Result"/>
+                        <value name="OutputPin">
+                          <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/OutputPin"/>
+                          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Type" value="//@targetSectionModel/@metaModelSections.12">
+                            <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/Pin/Type"/>
+                          </references>
+                          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="OutgoingObjectFlow" value="//@targetSectionModel/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.0/@value.1">
+                            <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/OutputPin/OutgoingObjectFlow"/>
+                          </references>
+                          <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
+                            <attribute href="http://stefan-hennig.de/movisa/platform#//CommentedMovisaModelElement/Comment"/>
+                          </attributes>
+                          <attributes xsi:type="metamodel:ActualAttribute" name="Name">
+                            <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+                          </attributes>
+                          <attributes xsi:type="metamodel:ActualAttribute" name="Multiplicity">
+                            <attribute href="http://stefan-hennig.de/movisa/platform#//algorithm/MultiplicityElement/Multiplicity"/>
+                          </attributes>
+                          <attributes xsi:type="metamodel:ActualAttribute" name="SelectStructuredTypeMember">
+                            <attribute href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/Pin/SelectStructuredTypeMember"/>
+                          </attributes>
+                        </value>
+                      </references>
+                      <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
+                        <attribute href="http://stefan-hennig.de/movisa/platform#//CommentedMovisaModelElement/Comment"/>
+                      </attributes>
+                      <attributes xsi:type="metamodel:ActualAttribute" name="Name">
+                        <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+                      </attributes>
+                    </value>
                   </references>
                   <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="MainStateSAB">
                     <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
@@ -3470,6 +3581,32 @@
           <matcher xsi:type="mapping:ComplexAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.2/@attributes.0">
             <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
             <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherSourceElement" name="ruleId" source="//@sourceSectionModel/@metaModelSections.5/@references.1/@value.0/@attributes.2" modifier="//@mappingModel/@modifierSets.7"/>
+          </matcher>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.5/@references.1/@value.0/@attributes.2" modifier="//@mappingModel/@modifierSets.18"/>
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.0/@value.1/@attributes.1" source="//@sourceSectionModel/@metaModelSections.5/@references.1/@value.0/@attributes.2" modifier="//@mappingModel/@modifierSets.19"/>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger" affectedReference="//@targetSectionModel/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.0/@references.1">
+          <matcher xsi:type="mapping:ComplexAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.2/@attributes.0">
+            <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
+            <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherSourceElement" name="ruleId" source="//@sourceSectionModel/@metaModelSections.5/@references.1/@value.0/@attributes.2" modifier="//@mappingModel/@modifierSets.7"/>
+          </matcher>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.5/@references.1/@value.0/@attributes.2" modifier="//@mappingModel/@modifierSets.20"/>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="DataItem" affectedReference="//@targetSectionModel/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.1/@references.1">
+          <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.28/@attributes.0" name="variableId" source="//@sourceSectionModel/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Type" affectedReference="//@targetSectionModel/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.1/@references.2/@value.0/@references.0">
+          <matcher xsi:type="mapping:ComplexAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.12/@attributes.2">
+            <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
+            <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherSourceElement" name="widgetId" source="//@sourceSectionModel/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.0"/>
+          </matcher>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.1/@attributes.1" source="//@sourceSectionModel/@metaModelSections.5/@references.1/@value.0/@attributes.2" modifier="//@mappingModel/@modifierSets.20"/>
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.2/@attributes.1" source="//@sourceSectionModel/@metaModelSections.5/@references.1/@value.0/@attributes.2" modifier="//@mappingModel/@modifierSets.20"/>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Type" affectedReference="//@targetSectionModel/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.2/@references.0/@value.0/@references.0">
+          <matcher xsi:type="mapping:ComplexAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.12/@attributes.2">
+            <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
+            <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherSourceElement" name="widgetId" source="//@sourceSectionModel/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.0"/>
           </matcher>
         </mappingHints>
       </mappingHintGroups>

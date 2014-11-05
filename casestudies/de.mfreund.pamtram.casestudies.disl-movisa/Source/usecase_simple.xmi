@@ -21,6 +21,9 @@
       state="start">
     <structure>
       <widget
+          genericWidget="textfield"
+          id="eBO_2"/>
+      <widget
           genericWidget="choicegroup"
           id="eBO_1_Select">
         <widget
@@ -33,6 +36,9 @@
             genericWidget="variablefield"
             id="eBO_1_Select_Option_2"/>
       </widget>
+      <widget
+          genericWidget="textfield"
+          id="eBO_5"/>
       <widget
           genericWidget="choicegroup"
           id="eBO_4_Select">
@@ -53,16 +59,37 @@
           genericWidget="command"
           id="eBO_6_Confirm"/>
       <widget
-          genericWidget="textfield"
-          id="eBO_2"/>
-      <widget
-          genericWidget="textfield"
-          id="eBO_5"/>
-      <widget
           genericWidget="command"
           id="eBO_7_Confirm"/>
     </structure>
     <style>
+      <part
+          genericWidget="eBO_2">
+        <property
+            value="Quell-Beh&#xe4;lter"
+            genericWidget="textfield"
+            id="title"/>
+        <property
+            value=""
+            genericWidget="textfield"
+            id="description"/>
+        <property
+            value=""
+            genericWidget="textfield"
+            id="help"/>
+        <property
+            value="yes"
+            genericWidget="textfield"
+            id="visible"/>
+        <property
+            value="yes"
+            genericWidget="textfield"
+            id="activated"/>
+        <property
+            value=""
+            genericWidget="textfield"
+            id="value"/>
+      </part>
       <part
           genericWidget="eBO_1_Select">
         <property
@@ -125,6 +152,33 @@
         <property
             value="Behaelter_3 "
             genericWidget="variablefield"
+            id="value"/>
+      </part>
+      <part
+          genericWidget="eBO_5">
+        <property
+            value="Ziel-Beh&#xe4;lter"
+            genericWidget="textfield"
+            id="title"/>
+        <property
+            value=""
+            genericWidget="textfield"
+            id="description"/>
+        <property
+            value=""
+            genericWidget="textfield"
+            id="help"/>
+        <property
+            value="yes"
+            genericWidget="textfield"
+            id="visible"/>
+        <property
+            value="yes"
+            genericWidget="textfield"
+            id="activated"/>
+        <property
+            value=""
+            genericWidget="textfield"
             id="value"/>
       </part>
       <part
@@ -228,60 +282,6 @@
             value="no"
             genericWidget="command"
             id="selected"/>
-      </part>
-      <part
-          genericWidget="eBO_2">
-        <property
-            value="Ist-Fuellstand"
-            genericWidget="textfield"
-            id="title"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="description"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="help"/>
-        <property
-            value="yes"
-            genericWidget="textfield"
-            id="visible"/>
-        <property
-            value="yes"
-            genericWidget="textfield"
-            id="activated"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="value"/>
-      </part>
-      <part
-          genericWidget="eBO_5">
-        <property
-            value="Ist-Drehzahl"
-            genericWidget="textfield"
-            id="title"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="description"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="help"/>
-        <property
-            value="yes"
-            genericWidget="textfield"
-            id="visible"/>
-        <property
-            value="yes"
-            genericWidget="textfield"
-            id="activated"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="value"/>
       </part>
       <part
           genericWidget="eBO_7_Confirm">

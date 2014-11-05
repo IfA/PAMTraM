@@ -947,9 +947,9 @@
     </metaModelSections>
   </sourceSectionModel>
   <targetSectionModel>
-    <metaModelPackage href="http://stefan-hennig.de/movisa/clientdata#/"/>
+    <metaModelPackage href="http://stefan-hennig.de/movisa/platform#/"/>
     <metaModelSections name="VisualizationApplicationModel">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//VisualizationApplicationModel"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//VisualizationApplicationModel"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="AlgorithmDomain">
         <eReference href="http://stefan-hennig.de/movisa/platform#//VisualizationApplicationModel/AlgorithmDomain"/>
         <value name="AlgorithmModel">
@@ -1131,6 +1131,24 @@
                     <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
                   </attributes>
                 </value>
+                <value name="DummyInputValueTextDef">
+                  <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/TextDefinition"/>
+                  <references xsi:type="metamodel:TargetSectionContainmentReference" name="TranslatedTextItem">
+                    <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/TextDefinition/TranslatedTextItem"/>
+                    <value name="TextItem">
+                      <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/TextItem"/>
+                      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Language" value="//@targetSectionModel/@metaModelSections.0/@references.1/@value.0/@references.1/@value.0/@references.0/@value.0">
+                        <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/TextItem/Language"/>
+                      </references>
+                      <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="100">
+                        <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/TextItem/Value"/>
+                      </attributes>
+                    </value>
+                  </references>
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="DummyInputValueTextItem">
+                    <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
+                  </attributes>
+                </value>
               </references>
             </value>
           </references>
@@ -1213,32 +1231,32 @@
       </attributes>
     </metaModelSections>
     <metaModelSections name="Panel" cardinality="ONE__INFINITY" container="//@targetSectionModel/@metaModelSections.0/@references.1/@value.0">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//presentation/Panel"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/Panel"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="name" value="">
         <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
       </attributes>
       <attributes xsi:type="metamodel:VirtualAttribute" name="stateType"/>
     </metaModelSections>
     <metaModelSections name="UIComponentSignal" cardinality="ZERO__INFINITY" container="//@targetSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.3">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//algorithm/Signal"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/Signal"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="signalName" unique="true">
         <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
     <metaModelSections name="NavFlowSignal" container="//@targetSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.5">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//algorithm/Signal"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/Signal"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="signalName" unique="true">
         <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
     <metaModelSections name="PanelTransitionSignal" container="//@targetSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.4">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//algorithm/Signal"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/Signal"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="signalName" unique="true">
         <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
     <metaModelSections name="ChangeViewNavFlow" container="//@targetSectionModel/@metaModelSections.0/@references.1/@value.0">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//presentation/ChangeViewNavigationFlow"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/ChangeViewNavigationFlow"/>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="source" value="//@targetSectionModel/@metaModelSections.1">
         <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/NavigationFlow/Source"/>
       </references>
@@ -1253,7 +1271,7 @@
       </attributes>
     </metaModelSections>
     <metaModelSections name="Button" container="//@targetSectionModel/@metaModelSections.1">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//presentation/Button"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/Button"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="">
         <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
       </attributes>
@@ -1263,7 +1281,7 @@
       <attributes xsi:type="metamodel:VirtualAttribute" name="widgetId"/>
     </metaModelSections>
     <metaModelSections name="ButtonRepresentation" container="//@targetSectionModel/@metaModelSections.6">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//presentation/ButtonRepresentation"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/ButtonRepresentation"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="Position">
         <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Representation/Position"/>
         <value name="Position">
@@ -1380,7 +1398,7 @@
       </attributes>
     </metaModelSections>
     <metaModelSections name="ButtonInteraction" container="//@targetSectionModel/@metaModelSections.6">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//presentation/ButtonInteraction"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/ButtonInteraction"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="CommonTrigger">
         <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Interaction/CommonTrigger"/>
         <value name="Click">
@@ -1407,7 +1425,7 @@
       </references>
     </metaModelSections>
     <metaModelSections name="TextLabel" container="//@targetSectionModel/@metaModelSections.1">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//presentation/TextLabel"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/TextLabel"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="">
         <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
       </attributes>
@@ -1417,7 +1435,7 @@
       <attributes xsi:type="metamodel:VirtualAttribute" name="widgetId"/>
     </metaModelSections>
     <metaModelSections name="TextLabelRepresentation">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//presentation/TextLabelRepresentation"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/TextLabelRepresentation"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="Position">
         <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Representation/Position"/>
         <value name="Position">
@@ -1552,7 +1570,7 @@
       </attributes>
     </metaModelSections>
     <metaModelSections name="TextDefinition">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//presentation/TextDefinition"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/TextDefinition"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="TranslatedTextItem">
         <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/TextDefinition/TranslatedTextItem"/>
         <value name="TextItem">
@@ -1570,7 +1588,7 @@
       </attributes>
     </metaModelSections>
     <metaModelSections name="Input" container="//@targetSectionModel/@metaModelSections.1">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//presentation/Input"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/Input"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="">
         <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
       </attributes>
@@ -1580,7 +1598,7 @@
       <attributes xsi:type="metamodel:VirtualAttribute" name="widgetId"/>
     </metaModelSections>
     <metaModelSections name="InputRepresentation" container="//@targetSectionModel/@metaModelSections.12">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//presentation/InputRepresentation"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/InputRepresentation"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="Position">
         <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Representation/Position"/>
         <value name="Position">
@@ -1674,6 +1692,9 @@
           </attributes>
         </value>
       </references>
+      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Text" value="//@targetSectionModel/@metaModelSections.0/@references.1/@value.0/@references.1/@value.0/@references.1/@value.1">
+        <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/TextContainingWidgetRepresentation/Text"/>
+      </references>
       <attributes xsi:type="metamodel:ActualAttribute" name="TextCanWrap" value="false">
         <attribute href="http://stefan-hennig.de/movisa/platform#//presentation/TextContainingWidgetRepresentation/TextCanWrap"/>
       </attributes>
@@ -1688,7 +1709,7 @@
       </attributes>
     </metaModelSections>
     <metaModelSections name="InputInteraction" container="//@targetSectionModel/@metaModelSections.12">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//presentation/InputInteraction"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/InputInteraction"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="CommonTrigger">
         <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Interaction/CommonTrigger"/>
         <value name="Click">
@@ -1715,7 +1736,7 @@
       </references>
     </metaModelSections>
     <metaModelSections name="DropDown" container="//@targetSectionModel/@metaModelSections.1">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//presentation/DropDown"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/DropDown"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="">
         <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
       </attributes>
@@ -1725,7 +1746,7 @@
       <attributes xsi:type="metamodel:VirtualAttribute" name="widgetId"/>
     </metaModelSections>
     <metaModelSections name="DropDownRepresentation" container="//@targetSectionModel/@metaModelSections.15">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//presentation/DropDownRepresentation"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/DropDownRepresentation"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="Position">
         <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Representation/Position"/>
         <value name="Position">
@@ -1822,7 +1843,7 @@
       <attributes xsi:type="metamodel:VirtualAttribute" name="widgetId"/>
     </metaModelSections>
     <metaModelSections name="DropDownOption" container="//@targetSectionModel/@metaModelSections.16">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//presentation/DropDownOption"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/DropDownOption"/>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Label">
         <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/DropDownOption/Label"/>
       </references>
@@ -1831,7 +1852,7 @@
       </attributes>
     </metaModelSections>
     <metaModelSections name="DropDownInteraction" container="//@targetSectionModel/@metaModelSections.15">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//presentation/DropDownInteraction"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/DropDownInteraction"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedEffect">
         <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Interaction/OwnedEffect"/>
         <value name="SendSignalEffect">
@@ -1858,7 +1879,7 @@
       </references>
     </metaModelSections>
     <metaModelSections name="RadioButtonGroup" container="//@targetSectionModel/@metaModelSections.1">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//presentation/RadioButtonGroup"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/RadioButtonGroup"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="">
         <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
       </attributes>
@@ -1868,7 +1889,7 @@
       <attributes xsi:type="metamodel:VirtualAttribute" name="widgetId"/>
     </metaModelSections>
     <metaModelSections name="RadioButtonGroupRepresentation">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//presentation/RadioButtonGroupRepresentation"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/RadioButtonGroupRepresentation"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="Position">
         <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Representation/Position"/>
         <value name="Position">
@@ -1965,13 +1986,13 @@
       <attributes xsi:type="metamodel:VirtualAttribute" name="widgetId"/>
     </metaModelSections>
     <metaModelSections name="RadioButton" container="//@targetSectionModel/@metaModelSections.19">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//presentation/RadioButton"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/RadioButton"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name">
         <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
     <metaModelSections name="RadioButtonRepresentation">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//presentation/RadioButtonRepresentation"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/RadioButtonRepresentation"/>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Text" value="//@targetSectionModel/@metaModelSections.11">
         <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/TextContainingWidgetRepresentation/Text"/>
       </references>
@@ -1983,7 +2004,7 @@
       </attributes>
     </metaModelSections>
     <metaModelSections name="RadioButtonInteraction">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//presentation/RadioButtonInteraction"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//presentation/RadioButtonInteraction"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedEffect">
         <eReference href="http://stefan-hennig.de/movisa/platform#//presentation/Interaction/OwnedEffect"/>
         <value name="SendSignalEffect">
@@ -2010,7 +2031,7 @@
       </references>
     </metaModelSections>
     <metaModelSections name="State" cardinality="ZERO__INFINITY" container="//@targetSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.7/@references.0/@value.0">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//algorithm/State"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/State"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="StateActivityBlock">
         <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/State/StateActivityBlock"/>
         <value name="StateActivityBlock">
@@ -2025,7 +2046,7 @@
       </attributes>
     </metaModelSections>
     <metaModelSections name="Transition" container="//@targetSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.7/@references.0/@value.0">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//algorithm/Transition"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/Transition"/>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Target">
         <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/Transition/Target"/>
       </references>
@@ -2040,7 +2061,7 @@
       </attributes>
     </metaModelSections>
     <metaModelSections name="TransitionWithoutTrigger" container="//@targetSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.7/@references.0/@value.0">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//algorithm/Transition"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/Transition"/>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Target">
         <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/Transition/Target"/>
       </references>
@@ -2052,7 +2073,7 @@
       </attributes>
     </metaModelSections>
     <metaModelSections name="Reception" container="//@targetSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.7">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//algorithm/Reception"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/Reception"/>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Signal">
         <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/Reception/Signal"/>
       </references>
@@ -2061,7 +2082,7 @@
       </attributes>
     </metaModelSections>
     <metaModelSections name="IntegerDataItem">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//clientdata/DataItem"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/DataItem"/>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Dimension" value="//@targetSectionModel/@metaModelSections.31">
         <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/DataItem/Dimension"/>
       </references>
@@ -2088,7 +2109,7 @@
       </attributes>
     </metaModelSections>
     <metaModelSections name="BooleanDataItem">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//clientdata/DataItem"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/DataItem"/>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Dimension" value="//@targetSectionModel/@metaModelSections.31">
         <eReference href="http://stefan-hennig.de/movisa/platform#//clientdata/DataItem/Dimension"/>
       </references>
@@ -2115,7 +2136,7 @@
       </attributes>
     </metaModelSections>
     <metaModelSections name="DataItemChangedSignal" container="//@targetSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.6">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//algorithm/Signal"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/Signal"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
         <attribute href="http://stefan-hennig.de/movisa/platform#//CommentedMovisaModelElement/Comment"/>
       </attributes>
@@ -2124,7 +2145,7 @@
       </attributes>
     </metaModelSections>
     <metaModelSections name="IntegerDimension">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//clientdata/Dimension"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//clientdata/Dimension"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name" unique="true" value="IntegerDimension">
         <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
       </attributes>
@@ -2139,7 +2160,7 @@
       </attributes>
     </metaModelSections>
     <metaModelSections name="ControlFlow" container="//@targetSectionModel/@metaModelSections.24/@references.0/@value.0">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//algorithm/actions/ControlFlow"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/ControlFlow"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
         <attribute href="http://stefan-hennig.de/movisa/platform#//CommentedMovisaModelElement/Comment"/>
       </attributes>
@@ -2151,7 +2172,7 @@
       </attributes>
     </metaModelSections>
     <metaModelSections name="ObjectFlow" container="//@targetSectionModel/@metaModelSections.24/@references.0/@value.0">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//algorithm/actions/ObjectFlow"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/ObjectFlow"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
         <attribute href="http://stefan-hennig.de/movisa/platform#//CommentedMovisaModelElement/Comment"/>
       </attributes>
@@ -2163,7 +2184,7 @@
       </attributes>
     </metaModelSections>
     <metaModelSections name="AcceptEventAction" container="//@targetSectionModel/@metaModelSections.24/@references.0/@value.0">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//algorithm/actions/AcceptEventAction"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/AcceptEventAction"/>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="OutgoingControlFlow" value="//@targetSectionModel/@metaModelSections.32">
         <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/ActivityNode/OutgoingControlFlow"/>
       </references>
@@ -2178,7 +2199,7 @@
       </attributes>
     </metaModelSections>
     <metaModelSections name="WriteBooleanDataItemAction" container="//@targetSectionModel/@metaModelSections.24/@references.0/@value.0">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//algorithm/actions/WriteDataItemAction"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/WriteDataItemAction"/>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="IncomingControlFlow" value="//@targetSectionModel/@metaModelSections.32">
         <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/ActivityNode/IncomingControlFlow"/>
       </references>
@@ -2217,7 +2238,7 @@
       </attributes>
     </metaModelSections>
     <metaModelSections name="WriteIntegerDataItemAction" container="//@targetSectionModel/@metaModelSections.24/@references.0/@value.0">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//algorithm/actions/WriteDataItemAction"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/WriteDataItemAction"/>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="IncomingControlFlow" value="//@targetSectionModel/@metaModelSections.32">
         <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/ActivityNode/IncomingControlFlow"/>
       </references>
@@ -2256,7 +2277,7 @@
       </attributes>
     </metaModelSections>
     <metaModelSections name="BooleanValueSpecificationAction" container="//@targetSectionModel/@metaModelSections.24/@references.0/@value.0">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//algorithm/actions/ValueSpecificationAction"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/ValueSpecificationAction"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="Result">
         <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/ValueSpecificationAction/Result"/>
         <value name="OutputPin">
@@ -2292,7 +2313,7 @@
       </attributes>
     </metaModelSections>
     <metaModelSections name="IntegerValueSpecificationAction" container="//@targetSectionModel/@metaModelSections.24/@references.0/@value.0">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//algorithm/actions/ValueSpecificationAction"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/ValueSpecificationAction"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="Result">
         <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/ValueSpecificationAction/Result"/>
         <value name="OutputPin">
@@ -2328,7 +2349,7 @@
       </attributes>
     </metaModelSections>
     <metaModelSections name="Class->ConstantBooleanValueSpecification">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//algorithm/Class"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/Class"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedBehavior">
         <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/Class/OwnedBehavior"/>
         <value name="StateMachine">
@@ -2535,7 +2556,7 @@
       </attributes>
     </metaModelSections>
     <metaModelSections name="Class->ConstantIntegerValueSpecification">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//algorithm/Class"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/Class"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedBehavior">
         <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/Class/OwnedBehavior"/>
         <value name="StateMachine">
@@ -2742,13 +2763,13 @@
       </attributes>
     </metaModelSections>
     <metaModelSections name="Class->VariableIntegerValueSpecification">
-      <eClass href="http://stefan-hennig.de/movisa/clientdata#//algorithm/Class"/>
+      <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/Class"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedBehavior">
-        <eReference href="http://stefan-hennig.de/movisa/clientdata#//algorithm/Class/OwnedBehavior"/>
+        <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/Class/OwnedBehavior"/>
         <value name="StateMachine">
-          <eClass href="http://stefan-hennig.de/movisa/clientdata#//algorithm/StateMachine"/>
+          <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/StateMachine"/>
           <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedTransition">
-            <eReference href="http://stefan-hennig.de/movisa/clientdata#//algorithm/StateMachine/OwnedTransition"/>
+            <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/StateMachine/OwnedTransition"/>
             <value name="Transition">
               <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/Transition"/>
               <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Source" value="//@targetSectionModel/@metaModelSections.41/@references.0/@value.0/@references.1/@value.0">
@@ -2775,9 +2796,9 @@
             </value>
           </references>
           <references xsi:type="metamodel:TargetSectionContainmentReference" name="StateMachineElement">
-            <eReference href="http://stefan-hennig.de/movisa/clientdata#//algorithm/StateMachine/StateMachineElement"/>
+            <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/StateMachine/StateMachineElement"/>
             <value name="PseudoState">
-              <eClass href="http://stefan-hennig.de/movisa/clientdata#//algorithm/PseudoState"/>
+              <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/PseudoState"/>
               <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Initial">
                 <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
               </attributes>
@@ -2786,13 +2807,13 @@
               </attributes>
             </value>
             <value name="State">
-              <eClass href="http://stefan-hennig.de/movisa/clientdata#//algorithm/State"/>
+              <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/State"/>
               <references xsi:type="metamodel:TargetSectionContainmentReference" name="StateActivityBlock">
-                <eReference href="http://stefan-hennig.de/movisa/clientdata#//algorithm/State/StateActivityBlock"/>
+                <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/State/StateActivityBlock"/>
                 <value name="StateActivityBlock">
-                  <eClass href="http://stefan-hennig.de/movisa/clientdata#//algorithm/actions/StateActivityBlock"/>
+                  <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/StateActivityBlock"/>
                   <references xsi:type="metamodel:TargetSectionContainmentReference" name="Edge">
-                    <eReference href="http://stefan-hennig.de/movisa/clientdata#//algorithm/actions/StateActivityBlock/Edge"/>
+                    <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/StateActivityBlock/Edge"/>
                     <value name="ControlFlow" container="//@targetSectionModel/@metaModelSections.24/@references.0/@value.0">
                       <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/ControlFlow"/>
                       <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
@@ -2813,20 +2834,23 @@
                       <attributes xsi:type="metamodel:ActualAttribute" name="Name">
                         <attribute href="http://stefan-hennig.de/movisa/platform#//NamedMovisaModelElement/Name"/>
                       </attributes>
-                      <attributes xsi:type="metamodel:ActualAttribute" name="Guard">
+                      <attributes xsi:type="metamodel:ActualAttribute" name="Guard" value="#property:value">
                         <attribute href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/ActivityEdge/Guard"/>
                       </attributes>
                     </value>
                   </references>
                   <references xsi:type="metamodel:TargetSectionContainmentReference" name="Action">
-                    <eReference href="http://stefan-hennig.de/movisa/clientdata#//algorithm/actions/StateActivityBlock/Action"/>
+                    <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/StateActivityBlock/Action"/>
                     <value name="AcceptEventAction" container="//@targetSectionModel/@metaModelSections.24/@references.0/@value.0">
-                      <eClass href="http://stefan-hennig.de/movisa/clientdata#//algorithm/actions/AcceptEventAction"/>
+                      <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/AcceptEventAction"/>
                       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="OutgoingControlFlow" value="//@targetSectionModel/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.0/@value.0">
                         <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/ActivityNode/OutgoingControlFlow"/>
                       </references>
                       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Trigger">
                         <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/AcceptEventAction/Trigger"/>
+                      </references>
+                      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Context" value="//@targetSectionModel/@metaModelSections.41">
+                        <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/Action/Context"/>
                       </references>
                       <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
                         <attribute href="http://stefan-hennig.de/movisa/platform#//CommentedMovisaModelElement/Comment"/>
@@ -2836,22 +2860,22 @@
                       </attributes>
                     </value>
                     <value name="WriteIntegerDataItemAction" container="//@targetSectionModel/@metaModelSections.24/@references.0/@value.0">
-                      <eClass href="http://stefan-hennig.de/movisa/clientdata#//algorithm/actions/WriteDataItemAction"/>
+                      <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/WriteDataItemAction"/>
                       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="IncomingControlFlow" value="//@targetSectionModel/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.0/@value.0">
-                        <eReference href="http://stefan-hennig.de/movisa/clientdata#//algorithm/actions/ActivityNode/IncomingControlFlow"/>
+                        <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/ActivityNode/IncomingControlFlow"/>
                       </references>
                       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="DataItem">
-                        <eReference href="http://stefan-hennig.de/movisa/clientdata#//algorithm/actions/DataItemAction/DataItem"/>
+                        <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/DataItemAction/DataItem"/>
                       </references>
                       <references xsi:type="metamodel:TargetSectionContainmentReference" name="Value">
-                        <eReference href="http://stefan-hennig.de/movisa/clientdata#//algorithm/actions/WriteDataItemAction/Value"/>
+                        <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/WriteDataItemAction/Value"/>
                         <value name="InputPin">
-                          <eClass href="http://stefan-hennig.de/movisa/clientdata#//algorithm/actions/InputPin"/>
+                          <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/InputPin"/>
                           <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Type" value="//@targetSectionModel/@metaModelSections.12">
-                            <eReference href="http://stefan-hennig.de/movisa/clientdata#//algorithm/actions/Pin/Type"/>
+                            <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/Pin/Type"/>
                           </references>
                           <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="IncomingObjectFlow" value="//@targetSectionModel/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.0/@value.1">
-                            <eReference href="http://stefan-hennig.de/movisa/clientdata#//algorithm/actions/InputPin/IncomingObjectFlow"/>
+                            <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/InputPin/IncomingObjectFlow"/>
                           </references>
                           <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
                             <attribute href="http://stefan-hennig.de/movisa/platform#//CommentedMovisaModelElement/Comment"/>
@@ -2866,6 +2890,9 @@
                             <attribute href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/Pin/SelectStructuredTypeMember"/>
                           </attributes>
                         </value>
+                      </references>
+                      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Context" value="//@targetSectionModel/@metaModelSections.41">
+                        <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/Action/Context"/>
                       </references>
                       <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
                         <attribute href="http://stefan-hennig.de/movisa/platform#//CommentedMovisaModelElement/Comment"/>
@@ -2875,16 +2902,16 @@
                       </attributes>
                     </value>
                     <value name="ReadInputAction" container="//@targetSectionModel/@metaModelSections.24/@references.0/@value.0">
-                      <eClass href="http://stefan-hennig.de/movisa/clientdata#//algorithm/actions/ReadPresentationModelAction"/>
+                      <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/ReadPresentationModelAction"/>
                       <references xsi:type="metamodel:TargetSectionContainmentReference" name="Result">
-                        <eReference href="http://stefan-hennig.de/movisa/clientdata#//algorithm/actions/ReadPresentationModelAction/Result"/>
+                        <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/ReadPresentationModelAction/Result"/>
                         <value name="OutputPin">
-                          <eClass href="http://stefan-hennig.de/movisa/clientdata#//algorithm/actions/OutputPin"/>
+                          <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/OutputPin"/>
                           <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Type" value="//@targetSectionModel/@metaModelSections.12">
-                            <eReference href="http://stefan-hennig.de/movisa/clientdata#//algorithm/actions/Pin/Type"/>
+                            <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/Pin/Type"/>
                           </references>
                           <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="OutgoingObjectFlow" value="//@targetSectionModel/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.0/@value.1">
-                            <eReference href="http://stefan-hennig.de/movisa/clientdata#//algorithm/actions/OutputPin/OutgoingObjectFlow"/>
+                            <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/OutputPin/OutgoingObjectFlow"/>
                           </references>
                           <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
                             <attribute href="http://stefan-hennig.de/movisa/platform#//CommentedMovisaModelElement/Comment"/>
@@ -2899,6 +2926,9 @@
                             <attribute href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/Pin/SelectStructuredTypeMember"/>
                           </attributes>
                         </value>
+                      </references>
+                      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Context" value="//@targetSectionModel/@metaModelSections.41">
+                        <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/actions/Action/Context"/>
                       </references>
                       <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
                         <attribute href="http://stefan-hennig.de/movisa/platform#//CommentedMovisaModelElement/Comment"/>
@@ -2924,7 +2954,7 @@
         </value>
       </references>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedReception">
-        <eReference href="http://stefan-hennig.de/movisa/clientdata#//algorithm/Class/OwnedReception"/>
+        <eReference href="http://stefan-hennig.de/movisa/platform#//algorithm/Class/OwnedReception"/>
         <value name="Reception">
           <eClass href="http://stefan-hennig.de/movisa/platform#//algorithm/Reception"/>
           <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Signal">
@@ -3603,7 +3633,9 @@
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.1/@attributes.1" source="//@sourceSectionModel/@metaModelSections.5/@references.1/@value.0/@attributes.2" modifier="//@mappingModel/@modifierSets.20"/>
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.1/@references.2/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.5/@references.1/@value.0/@attributes.2" modifier="//@mappingModel/@modifierSets.20"/>
         <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.2/@attributes.1" source="//@sourceSectionModel/@metaModelSections.5/@references.1/@value.0/@attributes.2" modifier="//@mappingModel/@modifierSets.20"/>
+        <mappingHints xsi:type="mapping:SimpleAttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.2/@references.0/@value.0/@attributes.1" source="//@sourceSectionModel/@metaModelSections.5/@references.1/@value.0/@attributes.2" modifier="//@mappingModel/@modifierSets.20"/>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="OutputPinType" affectedReference="//@targetSectionModel/@metaModelSections.41/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.1/@value.2/@references.0/@value.0/@references.0">
           <matcher xsi:type="mapping:ComplexAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.12/@attributes.2">
             <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>

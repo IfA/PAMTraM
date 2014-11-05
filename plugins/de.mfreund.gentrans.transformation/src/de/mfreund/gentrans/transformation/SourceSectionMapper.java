@@ -740,18 +740,7 @@ class SourceSectionMapper implements CancellationListener {
 			.setHintValueList(hint, new LinkedList<Object>());
 			if (hint instanceof ComplexAttributeMapping
 					|| hint instanceof CalculatorMapping) {
-				/*
-				 * ComplexAttributeMappings are handled differently because we
-				 * want to make them work across vc-sections
-				 */
-				if (newRefsAndHints.getHintValues().containsKey(hint)) {
-					changedRefsAndHints.getHintValues().get(hint)
-					.addAll(newRefsAndHints.getHintValues().get(hint));
-					/*
-					 * the cardinality of the existing hintval is either 0 or 1
-					 * at this point
-					 */
-				} else if (hint instanceof ComplexAttributeMapping) {
+				if (hint instanceof ComplexAttributeMapping) {
 					changedRefsAndHints
 					.getHintValues()
 					.get(hint)
@@ -762,21 +751,12 @@ class SourceSectionMapper implements CancellationListener {
 				}
 			} else if (hint instanceof MappingInstanceSelector) {
 				if (((MappingInstanceSelector) hint).getMatcher() instanceof ComplexAttributeMatcher) {
-					if (newRefsAndHints.getHintValues().containsKey(hint)) {
-						changedRefsAndHints
-						.getHintValues()
-						.get(hint)
-						.addAll(newRefsAndHints.getHintValues().get(
-								hint));
-						// the cardinality of
-						// the existing hintval is
-						// either 0 or 1 at this point
-					} else {
-						changedRefsAndHints
-						.getHintValues()
-						.get(hint)
-						.add(new LinkedHashMap<ComplexAttributeMatcherSourceInterface, String>());
-					}
+					
+					changedRefsAndHints
+					.getHintValues()
+					.get(hint)
+					.add(new LinkedHashMap<ComplexAttributeMatcherSourceInterface, String>());
+					
 				}
 			}
 

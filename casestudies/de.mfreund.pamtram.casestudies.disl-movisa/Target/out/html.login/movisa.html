@@ -1,0 +1,142 @@
+<html>
+	<head>
+		<title>[movisa|JS] Prozessvisualisierung_20110303_202702 | disl2movisa.pamtram | </title>
+		<style type="text/css">
+			/* We want all Panels initially to be hidden */
+			body {
+				font-size: 8pt;
+			}
+			.movisaPanel {
+				display: none;
+				height: 100%;
+			}
+			.movisaAlarmControlAckBtn {
+				cursor: pointer;
+				color: blue;
+			}
+		</style>
+		<link type="text/css" rel="stylesheet" href="static-resources/css/ui-smoothness/jquery-ui-1.11.0.min.css"></link>
+		<link type="text/css" rel="stylesheet" href="static-resources/lib/dataTable/css/demo_table.css"></link>
+		<script type="text/javascript" src="static-resources/lib/jQuery.js"></script>
+		<script type="text/javascript" src="static-resources/lib/jQuery.BlockUI.js"></script>
+		<script type="text/javascript" src="static-resources/lib/jQuery.Flot.js"></script>
+		<script type="text/javascript" src="static-resources/lib/jQuery.Include.js"></script>
+		<script type="text/javascript" src="static-resources/lib/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="static-resources/lib/Common.js"></script>
+		<script type="text/javascript" src="static-resources/lib/dataTable/js/jquery.dataTables.js"></script>
+		<script type='text/javascript' src='https://www.google.com/jsapi'></script>
+		<script type="text/javascript">
+			// Load Gauge chart from google
+			google.load('visualization', '1', {packages:['gauge']});
+			var appIsRunning = false;
+			
+			var eventBus;
+			var pmBus;
+			var navigationManager;
+			var keyEffectMap;
+			
+			var amReady = false;
+			var cdmReady = false;
+			var cdmInitialRefresh = false;
+			var pmReady = false;
+			var pmInitializied = false;
+
+			function go() {
+				// executing this function only if certain conditions can be met.
+				if (!(amReady && cdmReady && pmReady) || appIsRunning) return;
+				
+				// indicate the app to be running in order prevent calling this
+				// function again.
+				appIsRunning = true;
+				
+				// Initialize the EventBus as the core of the application
+				eventBus = new EventBus();
+				
+				// Init everything else
+				initCDM();
+				initAM();
+				initPM();
+			}
+		</script>
+		<script type="text/javascript" src="AlgorithmModel.js"></script>
+		<script type="text/javascript" src="ClientDataModel.js"></script>
+		<script type="text/javascript" src="PresentationModel.js"></script>
+		
+	</head>
+	<body onload='go();'>
+		<div id='NavigationRoot' class='movisaPanel'>
+			<a class='anchor' name='NavigationRoot'></a>
+			<h1>Prozessvisualisierung_20110303_202702</h1>
+			<div>Created by <b>disl2movisa.pamtram</b> (Version: )</div>
+		</div>
+		<div id='_CPVWG16d' class='movisaPanel'>
+			<a name='Dialog_1' class='anchor'></a>
+			<div id='Dialog_1_eBO_5_Confirm-container'>
+				<button id='Dialog_1_eBO_5_Confirm'></button>
+			</div>
+			<div id='Dialog_1_eBO_6_Confirm-container'>
+				<button id='Dialog_1_eBO_6_Confirm'></button>
+			</div>
+			<div id='Dialog_1_eBO_7_Confirm-container'>
+				<button id='Dialog_1_eBO_7_Confirm'></button>
+			</div>
+			<div id='Dialog_1_eBO_1-container'>
+				<div id='Dialog_1_eBO_1'></div>
+			</div>
+			<div id='Dialog_1_eBO_3-container'>
+				<div id='Dialog_1_eBO_3'></div>
+			</div>
+			<div id='Dialog_1_eBO_2_Select-container'>
+				<span id='Dialog_1_eBO_2_Select'></span>
+				<div id='Dialog_1_eBO_2_Select_Option_0-container'>
+					<input id='Dialog_1_eBO_2_Select_Option_0' type='radio' name='Dialog_1_eBO_2_Select'/>
+				</div>
+				<div id='Dialog_1_eBO_2_Select_Option_1-container'>
+					<input id='Dialog_1_eBO_2_Select_Option_1' type='radio' name='Dialog_1_eBO_2_Select'/>
+				</div>
+				<div id='Dialog_1_eBO_2_Select_Option_2-container'>
+					<input id='Dialog_1_eBO_2_Select_Option_2' type='radio' name='Dialog_1_eBO_2_Select'/>
+				</div>
+			</div>
+			<div id='Dialog_1_eBO_4_Select-container'>
+				<span id='Dialog_1_eBO_4_Select'></span>
+				<div id='Dialog_1_eBO_4_Select_Option_0-container'>
+					<input id='Dialog_1_eBO_4_Select_Option_0' type='radio' name='Dialog_1_eBO_4_Select'/>
+				</div>
+				<div id='Dialog_1_eBO_4_Select_Option_1-container'>
+					<input id='Dialog_1_eBO_4_Select_Option_1' type='radio' name='Dialog_1_eBO_4_Select'/>
+				</div>
+				<div id='Dialog_1_eBO_4_Select_Option_2-container'>
+					<input id='Dialog_1_eBO_4_Select_Option_2' type='radio' name='Dialog_1_eBO_4_Select'/>
+				</div>
+			</div>
+		</div>
+		<div id='_JAmBMM4a' class='movisaPanel'>
+			<a name='Dialog_2' class='anchor'></a>
+			<div id='Dialog_2_eBO_7_Confirm-container'>
+				<button id='Dialog_2_eBO_7_Confirm'></button>
+			</div>
+			<div id='Dialog_2_eBO_1-container'>
+				<div id='Dialog_2_eBO_1'></div>
+			</div>
+			<div id='Dialog_2_eBO_3-container'>
+				<div id='Dialog_2_eBO_3'></div>
+			</div>
+			<div id='Dialog_2_eBO_5-container'>
+				<div id='Dialog_2_eBO_5'></div>
+			</div>
+			<div id='Dialog_2_eBO_2_Input-container'>
+							</div>
+			<div id='Dialog_2_eBO_4_Input-container'>
+							</div>
+			<div id='Dialog_2_eBO_6_Input-container'>
+							</div>
+		</div>
+		<div id='NavigationTerminator' class='movisaPanel'>
+			<a class='anchor' name='NavigationTerminator'></a>
+			<div>You have left this [movisa|JS] visualization...</div>
+			<h1 style='color:silver;'>Prozessvisualisierung_20110303_202702</h1>
+			<div style='color:silver;'>Created by <b>disl2movisa.pamtram</b> (Version: )</div>
+		</div>
+	</body>
+</html>

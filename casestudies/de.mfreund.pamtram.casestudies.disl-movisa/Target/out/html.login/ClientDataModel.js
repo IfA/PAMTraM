@@ -36,8 +36,8 @@ function initCDM(){
 alarmBus = new AlarmBus();
 processController = new ProcessController();
 //<generated Code>	
-var TP_Behaelter_A_FL = new OpcXmlDaItem("TP_Behaelter_A_FL","int","","Schneider/Behealter_A_FL");
-var TP_Behaelter_B_FL = new OpcXmlDaItem("TP_Behaelter_B_FL","int","","Schneider/Behealter_B_FL");
+var TP_Behaelter_A_FL = new OpcXmlDaItem("TP_Behaelter_A_FL","int","","Schneider/Behaelter_A_FL");
+var TP_Behaelter_B_FL = new OpcXmlDaItem("TP_Behaelter_B_FL","int","","Schneider/Behaelter_B_FL");
 var TP_Start_Umpumpen_FL = new OpcXmlDaItem("TP_Start_Umpumpen_FL","boolean","","Schneider/Start_Umpumpen_FL");
 var TP_Ventil1_Soll = new OpcXmlDaItem("TP_Ventil1_Soll","int","","Schneider/V1_FL");
 var TP_Ventil2_Soll = new OpcXmlDaItem("TP_Ventil2_Soll","int","","Schneider/V2_FL");

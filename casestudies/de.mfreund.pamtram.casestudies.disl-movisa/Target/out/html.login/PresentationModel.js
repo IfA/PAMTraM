@@ -811,7 +811,7 @@ function NavigationManager() {
 	eventBus.subscribe(this, NavigationSignal);
 	eventBus.subscribe(this, Dialog_1_eBO_7_Confirm_Changed_signal);
 	eventBus.subscribe(this, Dialog_2_eBO_7_Confirm_Changed_signal);
-	this.enterPanel('_CPVWG16d');
+	this.enterPanel('_Toe3OZo1');
 }
 extend(NavigationManager, EventSubscriber);
 
@@ -822,15 +822,15 @@ NavigationManager.prototype.handleEvent = function(event) {
 		this.enterLastPanel();
 		return;
 	}
-	if (this.getPanel() === '_CPVWG16d') {
+	if (this.getPanel() === '_Toe3OZo1') {
 		if (event instanceof Dialog_1_eBO_7_Confirm_Changed_signal) {
-			this.enterPanel('_JAmBMM4a');
+			this.enterPanel('_hABm6BzH');
 		}
 		return;
 	}
-	if (this.getPanel() === '_JAmBMM4a') {
+	if (this.getPanel() === '_hABm6BzH') {
 		if (event instanceof Dialog_2_eBO_7_Confirm_Changed_signal) {
-			this.enterPanel('_CPVWG16d');
+			this.enterPanel('_Toe3OZo1');
 		}
 		return;
 	}

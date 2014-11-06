@@ -902,13 +902,13 @@
         <OwnedXmlDaItem
             Name="TP_Behaelter_A_FL"
             IsAccessedVia="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.0"
-            ItemName="Behealter_A_FL"
+            ItemName="Behaelter_A_FL"
             ItemPath="/Schneider"
             ItemType="int"/>
         <OwnedXmlDaItem
             Name="TP_Behaelter_B_FL"
             IsAccessedVia="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.1"
-            ItemName="Behealter_B_FL"
+            ItemName="Behaelter_B_FL"
             ItemPath="/Schneider"
             ItemType="int"/>
         <OwnedXmlDaItem

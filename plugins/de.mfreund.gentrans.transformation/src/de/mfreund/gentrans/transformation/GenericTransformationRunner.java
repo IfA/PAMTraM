@@ -1,6 +1,5 @@
 package de.mfreund.gentrans.transformation;
 
-import java.io.IOException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -85,17 +84,32 @@ public class GenericTransformationRunner {
 	 * File path of the source Model
 	 */
 	private final String sourceFilePath;
-
+	
+	/**
+	 * The source model
+	 */
+	private EObject sourceModel;
+	
 	/**
 	 * Path to the transformation model
 	 */
 	private final String pamtramPath;
+	
+	/**
+	 * The transformation model
+	 */
+	private PAMTraM pamtramModel;
 
 	/**
 	 * File path to the transformation target
 	 */
 	private final String targetFilePath;
-
+	
+	/**
+	 * The target model resource
+	 */
+	private XMIResource targetModel;
+	
 	/**
 	 * Message output stream (Console view)
 	 */
@@ -114,6 +128,38 @@ public class GenericTransformationRunner {
 	private boolean isCancelled;
 
 	/**
+	 * Private constructor that is called from all other constructors.
+	 * 
+	 * @param sourceFilePath
+	 *            File path of the source Model
+	 * @param pamtramPath
+	 *            Path to the transformation model
+	 * @param targetFilePath
+	 *            File path to the transformation target
+	 * @param maxPathLength
+	 * 			  Maximum length of connection paths between target sections.
+	 * @param onlyAskOnceOnAmbiguousMappings
+	 * 			  Whether ambiguities shall only be resolved once or for every instance.
+	 */
+	private GenericTransformationRunner(final String sourceFilePath,
+			final String pamtramPath, final String targetFilePath, int maxPathLength,
+			boolean onlyAskOnceOnAmbiguousMappings) {
+		super();
+		isCancelled = false;
+		this.sourceFilePath = sourceFilePath;
+		this.pamtramPath = pamtramPath;
+		this.targetFilePath = targetFilePath;
+		this.maxPathLength = maxPathLength;
+		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
+		consoleStream = findConsole(
+				"de.mfreund.gentrans.transformation_" + hashCode())
+				.newMessageStream();
+		objectsToCancel = new LinkedList<CancellationListener>();
+		// brings the console view to the front
+		showConsole();
+	}
+	
+	/**
 	 * Constructor
 	 *
 	 * @param sourceFilePath
@@ -125,19 +171,40 @@ public class GenericTransformationRunner {
 	 */
 	public GenericTransformationRunner(final String sourceFilePath,
 			final String pamtramPath, final String targetFilePath) {
-		super();
-		isCancelled = false;
-		this.sourceFilePath = sourceFilePath;
-		this.pamtramPath = pamtramPath;
-		this.targetFilePath = targetFilePath;
-		maxPathLength = -1;
-		onlyAskOnceOnAmbiguousMappings = true;
-		consoleStream = findConsole(
-				"de.mfreund.gentrans.transformation_" + hashCode())
-				.newMessageStream();
-		objectsToCancel = new LinkedList<CancellationListener>();
-		// brings the console view to the front
-		showConsole();
+		this(sourceFilePath, pamtramPath, targetFilePath, -1, true);
+	}
+	
+	/**
+	 * Constructor
+	 *
+	 * @param sourceFilePath
+	 *            File path of the source Model
+	 * @param pamtramModel
+	 *            The transformation model
+	 * @param targetFilePath
+	 *            File path to the transformation target
+	 */
+	public GenericTransformationRunner(final String sourceFilePath,
+			final PAMTraM pamtramModel, final String targetFilePath) {
+		this(sourceFilePath, null, targetFilePath, -1, true);
+		this.pamtramModel = pamtramModel;
+	}
+	
+	/**
+	 * Constructor
+	 *
+	 * @param sourceModel
+	 *            The source Model
+	 * @param pamtramModel
+	 *            The transformation model
+	 * @param targetFilePath
+	 *            File path to the transformation target
+	 */
+	public GenericTransformationRunner(final EObject sourceModel,
+			final PAMTraM pamtramModel, final String targetFilePath) {
+		this(null, null, targetFilePath, -1, true);
+		this.pamtramModel = pamtramModel;
+		this.sourceModel = sourceModel;
 	}
 
 	/**
@@ -769,46 +836,8 @@ public class GenericTransformationRunner {
 	 * @return
 	 */
 	public LinkedHashMap<SourceSectionClass, Set<EObject>> mapSections() {
-		XMIResource targetModel, pamtramResource;
 
-		final XMIResourceFactoryImpl resFactory = new XMIResourceFactoryImpl();
-
-		// Create a resource set.
-		final ResourceSet resourceSet = new ResourceSetImpl();
-
-		// the selected resource (IMPORTANT: needs to be represented as absolute
-		// URI with "file://" scheme;
-		// if other schemes are used, the relative paths to the wprops and other
-		// model files are not set correct!)
-		final URI pamtramUri = URI.createPlatformResourceURI(pamtramPath, true);
-
-		// try to load pamtram model
-		pamtramResource = (XMIResource) resourceSet.getResource(pamtramUri,
-				true);
-
-		try {
-			pamtramResource.load(Collections.EMPTY_MAP);
-		} catch (final IOException e1) {
-			e1.printStackTrace();
-		}
-
-		final PAMTraM pamtramModel = (PAMTraM) pamtramResource.getContents()
-				.get(0);
-
-		try {
-			// try to create the xmi resource
-			final URI targetFileUri = URI.createFileURI(new java.io.File(
-					targetFilePath).toString());
-			targetModel = (XMIResource) resFactory
-					.createResource(targetFileUri);
-			targetModel.setEncoding("UTF-8");
-
-		} catch (final Exception e) {
-			MessageDialog
-					.openError(PlatformUI.getWorkbench()
-							.getActiveWorkbenchWindow().getShell(), "Error",
-							"The XMI resource for thhe targetModel output could not be created.");
-			e.printStackTrace();
+		if(pamtramModel == null || sourceModel == null) {
 			return null;
 		}
 
@@ -828,12 +857,6 @@ public class GenericTransformationRunner {
 		 */
 		writePamtramMessage("Analysing srcModel containment references");
 
-		// try to load source model
-		final URI sourceUri = URI.createPlatformResourceURI(sourceFilePath, true);
-		XMIResource sourceResource = (XMIResource) resourceSet.getResource(sourceUri,
-				true);
-		final EObject sourceModel = sourceResource.getContents().get(0);
-		
 		// list of all unmapped nodes. obtained by iterating over all of the
 		// srcModels containment refs
 		final List<EObject> contRefsToMap = sourceSectionMapper
@@ -1266,76 +1289,19 @@ public class GenericTransformationRunner {
 
 		monitor.beginTask("GenTrans", 1000);
 
-		Resource sourceResource;
-		XMIResource targetModel, pamtramResource;
-
-		final XMIResourceFactoryImpl resFactory = new XMIResourceFactoryImpl();
-
 		// Create a resource set.
 		ResourceSet resourceSet = new ResourceSetImpl();
 		
-		// the URI of the source resource
-		final URI sourceUri = URI.createPlatformResourceURI(sourceFilePath, true);
-		
-		// the URI of the pamtram resource
-		final URI pamtramUri = URI.createPlatformResourceURI(pamtramPath, true);
-
-		// load the pamtram model
-		pamtramResource = (XMIResource) resourceSet.getResource(pamtramUri,
-				true);
-		PAMTraM pamtramModel = (PAMTraM) pamtramResource.getContents()
-				.get(0);
-		
-		// try to register the ePackages involved in the pamtram model (if not already done)
-		EPackageCheck result = EPackageHelper.checkInvolvedEPackages(
-				pamtramModel,
-				ResourcesPlugin.getWorkspace().getRoot().findMember(sourceFilePath).getProject(),
-				EPackage.Registry.INSTANCE);
-		switch (result) {
-			case ERROR_PACKAGE_NOT_FOUND:
-				writePamtramMessage("One or more EPackages are not loaded correctly. Aborting...");
+		// load the mapping model
+		if(pamtramModel == null && !loadPamtram(resourceSet)) {
 				return;
-			case ERROR_METAMODEL_FOLDER_NOT_FOUND:
-			case ERROR_PAMTRAM_NOT_FOUND:
-				writePamtramMessage("Internal error during EPackage check. Aborting...");
-				return;
-			case OK_PACKAGES_REGISTERED:
-				// if packages have been registered, a new resource set has to be created; otherwise,
-				// proxy resolving does not seem to work correctly
-				resourceSet = new ResourceSetImpl();
-				pamtramResource = (XMIResource) resourceSet.getResource(pamtramUri,
-						true);
-				pamtramModel = (PAMTraM) pamtramResource.getContents().get(0);
-				break;
-			case OK_NOTHING_REGISTERED:
-			default:
-				break;
-		}
-			
-		if(sourceFilePath.endsWith(".xml")) {
-			// add file extension to registry
-			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
-					"xml", new GenericXMLResourceFactoryImpl());
 		}
 		
-		// try to load source model
-		sourceResource = (Resource) resourceSet.getResource(sourceUri,
-				true);
-
-		final EObject sourceModel = sourceResource.getContents().get(0);
-
-		try {
-			final URI targetFileUri = URI.createPlatformResourceURI(targetFilePath, true);
-			targetModel = (XMIResource) resFactory
-					.createResource(targetFileUri);
-			targetModel.setEncoding("UTF-8");
-
-		} catch (final Exception e) {
-			MessageDialog
-					.openError(PlatformUI.getWorkbench()
-							.getActiveWorkbenchWindow().getShell(), "Error",
-							"The XMI resource for thhe targetModel output could not be created.");
-			e.printStackTrace();
+		// load the source model
+		loadSourceModel(resourceSet);
+		
+		// create the target model
+		if(!createTargetModel(resourceSet)) {
 			return;
 		}
 
@@ -1369,6 +1335,112 @@ public class GenericTransformationRunner {
 
 		}
 
+	}
+
+	/**
+	 * This loads the pamtram model from an XMI file.
+	 * 
+	 * @param rs The resource set to be used to load the resource.
+	 * @return true if the model has successfully been loaded, false otherwise.
+	 */
+	private boolean loadPamtram(ResourceSet rs) {
+		
+		ResourceSet resourceSet = rs;
+		
+		// the URI of the pamtram resource
+		final URI pamtramUri = URI.createPlatformResourceURI(pamtramPath, true);
+		
+		// load the pamtram model
+		XMIResource pamtramResource = 
+				(XMIResource) resourceSet.getResource(pamtramUri, true);
+		if(!(pamtramResource.getContents().get(0) instanceof PAMTraM)) {
+			writePamtramMessage("The pamtram file does not seem to contain a pamtram instance. Aborting...");
+			return false;
+		}
+		pamtramModel = (PAMTraM) pamtramResource.getContents()
+				.get(0);
+		
+		// try to register the ePackages involved in the pamtram model (if not already done)
+		EPackageCheck result = EPackageHelper.checkInvolvedEPackages(
+				pamtramModel,
+				ResourcesPlugin.getWorkspace().getRoot().findMember(sourceFilePath).getProject(),
+				EPackage.Registry.INSTANCE);
+		switch (result) {
+			case ERROR_PACKAGE_NOT_FOUND:
+				writePamtramMessage("One or more EPackages are not loaded correctly. Aborting...");
+				return false;
+			case ERROR_METAMODEL_FOLDER_NOT_FOUND:
+			case ERROR_PAMTRAM_NOT_FOUND:
+				writePamtramMessage("Internal error during EPackage check. Aborting...");
+				return false;
+			case OK_PACKAGES_REGISTERED:
+				// if packages have been registered, a new resource set has to be created; otherwise,
+				// proxy resolving does not seem to work correctly
+				resourceSet = new ResourceSetImpl();
+				pamtramResource = (XMIResource) resourceSet.getResource(pamtramUri,
+						true);
+				pamtramModel = (PAMTraM) pamtramResource.getContents().get(0);
+				break;
+			case OK_NOTHING_REGISTERED:
+			default:
+				break;
+		}
+		
+		return true;
+	}
+
+	/**
+	 * This loads the source model from an XMI or XML file.
+	 * 
+	 * @param rs The resource set to be used to load the resource.
+	 */
+	private void loadSourceModel(ResourceSet resourceSet) {
+		
+		// the URI of the source resource
+		final URI sourceUri = URI.createPlatformResourceURI(sourceFilePath, true);
+		
+		if(sourceFilePath.endsWith(".xml")) {
+			// add file extension to registry
+			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
+					"xml", new GenericXMLResourceFactoryImpl());
+		}
+		
+		// try to load source model
+		Resource sourceResource = 
+				(Resource) resourceSet.getResource(sourceUri, true);
+
+		sourceModel = sourceResource.getContents().get(0);
+	}
+
+	/**
+	 * This creates the resource to hold the target model created by the
+	 * transformation.
+	 * 
+	 * @param resourceSet The resource set used to create the resource.
+	 * @return true if the resource has successfully been created, false otherwise.
+	 */
+	private boolean createTargetModel(ResourceSet resourceSet) {
+
+		final XMIResourceFactoryImpl resFactory = new XMIResourceFactoryImpl();
+		
+		// the URI of the target resource
+		final URI targetFileUri = URI.createPlatformResourceURI(targetFilePath, true);
+		
+		try {
+			targetModel = (XMIResource) resFactory
+					.createResource(targetFileUri);
+			targetModel.setEncoding("UTF-8");
+
+		} catch (final Exception e) {
+			MessageDialog
+					.openError(PlatformUI.getWorkbench()
+							.getActiveWorkbenchWindow().getShell(), "Error",
+							"The XMI resource for the targetModel output could not be created.");
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
 	}
 
 	/**

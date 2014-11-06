@@ -6,7 +6,6 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
@@ -291,8 +290,7 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 		}
 		 
 		// the selected file
-		String modelFile = ResourcesPlugin.getWorkspace().getRoot().getProject(project.getName()).getLocation().toOSString() +
-				Path.SEPARATOR + "Source" + Path.SEPARATOR + sourceModelCombo.getText();
+		String modelFile = project.getName() + Path.SEPARATOR + "Source" + Path.SEPARATOR + sourceModelCombo.getText();
 		
 		// if an xml source file has been selected, 
 		// add the file extension to registry 
@@ -302,7 +300,7 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 		}
 		
 		// the selected resource as URI
-		URI modelUri = URI.createFileURI(new java.io.File(modelFile).toString());
+		URI modelUri = URI.createPlatformResourceURI(modelFile, true);
 
 		Resource modelResource = null;
 		try {
@@ -319,18 +317,12 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 		// set the contents of the resource as input for the source model viewer
 		sourceModelViewer.setInput(modelResource.getContents());
 		
-		// the pamtram file
-		String pamtramFile = project.getName() + Path.SEPARATOR + "Pamtram" + Path.SEPARATOR + editor.getEditorInput().getName();
-		
-		// the source file
-		String sourceFile = project.getName() + Path.SEPARATOR + "Source" + Path.SEPARATOR + sourceModelCombo.getText();
-		
 		// the target file
 		String targetFile =  project.getName() + Path.SEPARATOR + "Target" + Path.SEPARATOR + "temp.xmi";
 		
 		// Create a transformation runner and use it to get the matching source sections
 		GenericTransformationRunner tr = 
-				new GenericTransformationRunner(sourceFile, pamtramFile, targetFile);
+				new GenericTransformationRunner(modelResource.getContents().get(0), editor.pamtram, targetFile);
 		
 		matchedSections = tr.mapSections();
 		

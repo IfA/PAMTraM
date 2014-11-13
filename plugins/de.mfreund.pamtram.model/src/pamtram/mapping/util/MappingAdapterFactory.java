@@ -154,24 +154,8 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createConnectionHintTargetAttributeAdapter();
 			}
 			@Override
-			public Adapter caseSimpleAttributeMapping(SimpleAttributeMapping object) {
-				return createSimpleAttributeMappingAdapter();
-			}
-			@Override
-			public Adapter caseComplexAttributeMapping(ComplexAttributeMapping object) {
-				return createComplexAttributeMappingAdapter();
-			}
-			@Override
-			public Adapter caseComplexAttributeMappingSourceElement(ComplexAttributeMappingSourceElement object) {
-				return createComplexAttributeMappingSourceElementAdapter();
-			}
-			@Override
-			public Adapter caseCalculatorMapping(CalculatorMapping object) {
-				return createCalculatorMappingAdapter();
-			}
-			@Override
-			public Adapter caseExpressionVariable(ExpressionVariable object) {
-				return createExpressionVariableAdapter();
+			public Adapter caseAttributeMappingSourceElement(AttributeMappingSourceElement object) {
+				return createAttributeMappingSourceElementAdapter();
 			}
 			@Override
 			public Adapter caseAttributeMappingSourceElementType(AttributeMappingSourceElementType object) {
@@ -200,10 +184,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseComplexModelConnectionHintSourceElement(ComplexModelConnectionHintSourceElement object) {
 				return createComplexModelConnectionHintSourceElementAdapter();
-			}
-			@Override
-			public Adapter caseAttributeMappingSourceElementWithModifiers(AttributeMappingSourceElementWithModifiers object) {
-				return createAttributeMappingSourceElementWithModifiersAdapter();
 			}
 			@Override
 			public Adapter caseMappingHintType(MappingHintType object) {
@@ -238,8 +218,8 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createGlobalAttributeImporterAdapter();
 			}
 			@Override
-			public Adapter caseComplexAttributeMappingSourceInterface(ComplexAttributeMappingSourceInterface object) {
-				return createComplexAttributeMappingSourceInterfaceAdapter();
+			public Adapter caseAttributeMappingSourceInterface(AttributeMappingSourceInterface object) {
+				return createAttributeMappingSourceInterfaceAdapter();
 			}
 			@Override
 			public Adapter caseComplexMappingHintSourceInterface(ComplexMappingHintSourceInterface object) {
@@ -258,20 +238,12 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createComplexAttributeMappingExternalSourceElementAdapter();
 			}
 			@Override
-			public Adapter caseCalculatorMappingSourceInterface(CalculatorMappingSourceInterface object) {
-				return createCalculatorMappingSourceInterfaceAdapter();
-			}
-			@Override
 			public Adapter caseExternalAttributeMappingSourceElement(ExternalAttributeMappingSourceElement object) {
 				return createExternalAttributeMappingSourceElementAdapter();
 			}
 			@Override
 			public Adapter caseComplexModelConnectionHintExternalSourceElement(ComplexModelConnectionHintExternalSourceElement object) {
 				return createComplexModelConnectionHintExternalSourceElementAdapter();
-			}
-			@Override
-			public Adapter caseExternalExpressionVariable(ExternalExpressionVariable object) {
-				return createExternalExpressionVariableAdapter();
 			}
 			@Override
 			public Adapter caseComplexAttributeMatcherExternalSourceElement(ComplexAttributeMatcherExternalSourceElement object) {
@@ -638,72 +610,16 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.SimpleAttributeMapping <em>Simple Attribute Mapping</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.AttributeMappingSourceElement <em>Attribute Mapping Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.SimpleAttributeMapping
+	 * @see pamtram.mapping.AttributeMappingSourceElement
 	 * @generated
 	 */
-	public Adapter createSimpleAttributeMappingAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ComplexAttributeMapping <em>Complex Attribute Mapping</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.ComplexAttributeMapping
-	 * @generated
-	 */
-	public Adapter createComplexAttributeMappingAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ComplexAttributeMappingSourceElement <em>Complex Attribute Mapping Source Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.ComplexAttributeMappingSourceElement
-	 * @generated
-	 */
-	public Adapter createComplexAttributeMappingSourceElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.CalculatorMapping <em>Calculator Mapping</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.CalculatorMapping
-	 * @generated
-	 */
-	public Adapter createCalculatorMappingAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ExpressionVariable <em>Expression Variable</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.ExpressionVariable
-	 * @generated
-	 */
-	public Adapter createExpressionVariableAdapter() {
+	public Adapter createAttributeMappingSourceElementAdapter() {
 		return null;
 	}
 
@@ -802,20 +718,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createComplexModelConnectionHintSourceElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.AttributeMappingSourceElementWithModifiers <em>Attribute Mapping Source Element With Modifiers</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.AttributeMappingSourceElementWithModifiers
-	 * @generated
-	 */
-	public Adapter createAttributeMappingSourceElementWithModifiersAdapter() {
 		return null;
 	}
 
@@ -932,16 +834,16 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ComplexAttributeMappingSourceInterface <em>Complex Attribute Mapping Source Interface</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.AttributeMappingSourceInterface <em>Attribute Mapping Source Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.ComplexAttributeMappingSourceInterface
+	 * @see pamtram.mapping.AttributeMappingSourceInterface
 	 * @generated
 	 */
-	public Adapter createComplexAttributeMappingSourceInterfaceAdapter() {
+	public Adapter createAttributeMappingSourceInterfaceAdapter() {
 		return null;
 	}
 
@@ -1002,20 +904,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.CalculatorMappingSourceInterface <em>Calculator Mapping Source Interface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.CalculatorMappingSourceInterface
-	 * @generated
-	 */
-	public Adapter createCalculatorMappingSourceInterfaceAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ExternalAttributeMappingSourceElement <em>External Attribute Mapping Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1040,20 +928,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createComplexModelConnectionHintExternalSourceElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ExternalExpressionVariable <em>External Expression Variable</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.ExternalExpressionVariable
-	 * @generated
-	 */
-	public Adapter createExternalExpressionVariableAdapter() {
 		return null;
 	}
 

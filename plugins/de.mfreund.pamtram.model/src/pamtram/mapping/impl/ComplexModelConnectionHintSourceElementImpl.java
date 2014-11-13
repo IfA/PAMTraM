@@ -5,7 +5,6 @@ package pamtram.mapping.impl;
 import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
 import pamtram.mapping.ComplexMappingHintSourceInterface;
 import pamtram.mapping.ComplexModelConnectionHintSourceElement;
 import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
@@ -21,7 +20,7 @@ import pamtram.metamodel.SourceSectionAttribute;
  *
  * @generated
  */
-public class ComplexModelConnectionHintSourceElementImpl extends AttributeMappingSourceElementWithModifiersImpl implements ComplexModelConnectionHintSourceElement {
+public class ComplexModelConnectionHintSourceElementImpl extends AttributeMappingSourceElementTypeImpl implements ComplexModelConnectionHintSourceElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

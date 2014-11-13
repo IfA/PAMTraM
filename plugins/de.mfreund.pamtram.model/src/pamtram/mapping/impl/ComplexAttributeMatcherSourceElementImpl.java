@@ -5,7 +5,6 @@ package pamtram.mapping.impl;
 import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
 import pamtram.mapping.ComplexAttributeMatcherSourceElement;
 import pamtram.mapping.ComplexAttributeMatcherSourceInterface;
 import pamtram.mapping.ComplexMappingHintSourceInterface;
@@ -21,7 +20,7 @@ import pamtram.metamodel.SourceSectionAttribute;
  *
  * @generated
  */
-public class ComplexAttributeMatcherSourceElementImpl extends AttributeMappingSourceElementWithModifiersImpl implements ComplexAttributeMatcherSourceElement {
+public class ComplexAttributeMatcherSourceElementImpl extends AttributeMappingSourceElementTypeImpl implements ComplexAttributeMatcherSourceElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

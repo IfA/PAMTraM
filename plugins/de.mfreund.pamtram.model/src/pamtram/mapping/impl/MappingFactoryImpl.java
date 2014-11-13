@@ -54,6 +54,7 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case MappingPackage.MAPPING: return createMapping();
+			case MappingPackage.ATTRIBUTE_MAPPING: return createAttributeMapping();
 			case MappingPackage.CARDINALITY_MAPPING: return createCardinalityMapping();
 			case MappingPackage.MAPPING_INSTANCE_SELECTOR: return createMappingInstanceSelector();
 			case MappingPackage.CLASS_MATCHER: return createClassMatcher();
@@ -67,11 +68,7 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER: return createMappingHintGroupImporter();
 			case MappingPackage.EXPORTED_MAPPING_HINT_GROUP: return createExportedMappingHintGroup();
 			case MappingPackage.CONNECTION_HINT_TARGET_ATTRIBUTE: return createConnectionHintTargetAttribute();
-			case MappingPackage.SIMPLE_ATTRIBUTE_MAPPING: return createSimpleAttributeMapping();
-			case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING: return createComplexAttributeMapping();
-			case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_SOURCE_ELEMENT: return createComplexAttributeMappingSourceElement();
-			case MappingPackage.CALCULATOR_MAPPING: return createCalculatorMapping();
-			case MappingPackage.EXPRESSION_VARIABLE: return createExpressionVariable();
+			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT: return createAttributeMappingSourceElement();
 			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER: return createComplexAttributeMatcher();
 			case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER: return createSimpleAttributeMatcher();
 			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT: return createComplexAttributeMatcherSourceElement();
@@ -84,7 +81,6 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER: return createGlobalAttributeImporter();
 			case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT: return createComplexAttributeMappingExternalSourceElement();
 			case MappingPackage.COMPLEX_MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT: return createComplexModelConnectionHintExternalSourceElement();
-			case MappingPackage.EXTERNAL_EXPRESSION_VARIABLE: return createExternalExpressionVariable();
 			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT: return createComplexAttributeMatcherExternalSourceElement();
 			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER: return createExternalMappedAttributeValuePrepender();
 			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER: return createExternalMappedAttributeValueAppender();
@@ -104,6 +100,16 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public Mapping createMapping() {
 		MappingImpl mapping = new MappingImpl();
 		return mapping;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AttributeMapping createAttributeMapping() {
+		AttributeMappingImpl attributeMapping = new AttributeMappingImpl();
+		return attributeMapping;
 	}
 
 	/**
@@ -241,49 +247,9 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SimpleAttributeMapping createSimpleAttributeMapping() {
-		SimpleAttributeMappingImpl simpleAttributeMapping = new SimpleAttributeMappingImpl();
-		return simpleAttributeMapping;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ComplexAttributeMapping createComplexAttributeMapping() {
-		ComplexAttributeMappingImpl complexAttributeMapping = new ComplexAttributeMappingImpl();
-		return complexAttributeMapping;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ComplexAttributeMappingSourceElement createComplexAttributeMappingSourceElement() {
-		ComplexAttributeMappingSourceElementImpl complexAttributeMappingSourceElement = new ComplexAttributeMappingSourceElementImpl();
-		return complexAttributeMappingSourceElement;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CalculatorMapping createCalculatorMapping() {
-		CalculatorMappingImpl calculatorMapping = new CalculatorMappingImpl();
-		return calculatorMapping;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ExpressionVariable createExpressionVariable() {
-		ExpressionVariableImpl expressionVariable = new ExpressionVariableImpl();
-		return expressionVariable;
+	public AttributeMappingSourceElement createAttributeMappingSourceElement() {
+		AttributeMappingSourceElementImpl attributeMappingSourceElement = new AttributeMappingSourceElementImpl();
+		return attributeMappingSourceElement;
 	}
 
 	/**
@@ -404,16 +370,6 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public ComplexModelConnectionHintExternalSourceElement createComplexModelConnectionHintExternalSourceElement() {
 		ComplexModelConnectionHintExternalSourceElementImpl complexModelConnectionHintExternalSourceElement = new ComplexModelConnectionHintExternalSourceElementImpl();
 		return complexModelConnectionHintExternalSourceElement;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ExternalExpressionVariable createExternalExpressionVariable() {
-		ExternalExpressionVariableImpl externalExpressionVariable = new ExternalExpressionVariableImpl();
-		return externalExpressionVariable;
 	}
 
 	/**

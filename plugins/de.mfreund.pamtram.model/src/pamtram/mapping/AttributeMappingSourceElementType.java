@@ -2,6 +2,7 @@
  */
 package pamtram.mapping;
 
+import org.eclipse.emf.common.util.EList;
 import pamtram.NamedElement;
 import pamtram.metamodel.SourceSectionAttribute;
 
@@ -14,6 +15,7 @@ import pamtram.metamodel.SourceSectionAttribute;
  * The following features are supported:
  * <ul>
  *   <li>{@link pamtram.mapping.AttributeMappingSourceElementType#getSource <em>Source</em>}</li>
+ *   <li>{@link pamtram.mapping.AttributeMappingSourceElementType#getModifier <em>Modifier</em>}</li>
  * </ul>
  * </p>
  *
@@ -47,5 +49,21 @@ public interface AttributeMappingSourceElementType extends NamedElement {
 	 * @generated
 	 */
 	void setSource(SourceSectionAttribute value);
+
+	/**
+	 * Returns the value of the '<em><b>Modifier</b></em>' reference list.
+	 * The list contents are of type {@link pamtram.mapping.AttributeValueModifierSet}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Modifier</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Modifier</em>' reference list.
+	 * @see pamtram.mapping.MappingPackage#getAttributeMappingSourceElementType_Modifier()
+	 * @model
+	 * @generated
+	 */
+	EList<AttributeValueModifierSet> getModifier();
 
 } // AttributeMappingSourceElementType

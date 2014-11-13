@@ -2,13 +2,17 @@
  */
 package pamtram.mapping.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.AttributeMappingSourceElementType;
+import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.MappingPackage;
 import pamtram.metamodel.SourceSectionAttribute;
 
@@ -20,6 +24,7 @@ import pamtram.metamodel.SourceSectionAttribute;
  * The following features are implemented:
  * <ul>
  *   <li>{@link pamtram.mapping.impl.AttributeMappingSourceElementTypeImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.AttributeMappingSourceElementTypeImpl#getModifier <em>Modifier</em>}</li>
  * </ul>
  * </p>
  *
@@ -35,6 +40,16 @@ public abstract class AttributeMappingSourceElementTypeImpl extends NamedElement
 	 * @ordered
 	 */
 	protected SourceSectionAttribute source;
+
+	/**
+	 * The cached value of the '{@link #getModifier() <em>Modifier</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getModifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<AttributeValueModifierSet> modifier;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -98,12 +113,26 @@ public abstract class AttributeMappingSourceElementTypeImpl extends NamedElement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<AttributeValueModifierSet> getModifier() {
+		if (modifier == null) {
+			modifier = new EObjectResolvingEList<AttributeValueModifierSet>(AttributeValueModifierSet.class, this, MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER);
+		}
+		return modifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
+			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER:
+				return getModifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -120,6 +149,10 @@ public abstract class AttributeMappingSourceElementTypeImpl extends NamedElement
 			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE:
 				setSource((SourceSectionAttribute)newValue);
 				return;
+			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER:
+				getModifier().clear();
+				getModifier().addAll((Collection<? extends AttributeValueModifierSet>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -135,6 +168,9 @@ public abstract class AttributeMappingSourceElementTypeImpl extends NamedElement
 			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE:
 				setSource((SourceSectionAttribute)null);
 				return;
+			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER:
+				getModifier().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -149,6 +185,8 @@ public abstract class AttributeMappingSourceElementTypeImpl extends NamedElement
 		switch (featureID) {
 			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE:
 				return source != null;
+			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER:
+				return modifier != null && !modifier.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

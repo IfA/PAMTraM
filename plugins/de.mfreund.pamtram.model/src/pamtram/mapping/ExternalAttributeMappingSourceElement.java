@@ -3,6 +3,7 @@
 package pamtram.mapping;
 
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>External Attribute Mapping Source Element</b></em>'.
@@ -13,5 +14,5 @@ package pamtram.mapping;
  * @model abstract="true"
  * @generated
  */
-public interface ExternalAttributeMappingSourceElement extends AttributeMappingSourceElementWithModifiers {
+public interface ExternalAttributeMappingSourceElement extends AttributeMappingSourceElementType {
 } // ExternalAttributeMappingSourceElement

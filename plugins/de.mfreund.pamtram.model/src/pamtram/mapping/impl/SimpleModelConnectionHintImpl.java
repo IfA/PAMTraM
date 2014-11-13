@@ -4,16 +4,13 @@ package pamtram.mapping.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import pamtram.mapping.AttributeMappingSourceElementType;
-import pamtram.mapping.AttributeMappingSourceElementWithModifiers;
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.SimpleModelConnectionHint;
@@ -43,7 +40,6 @@ public class SimpleModelConnectionHintImpl extends ModelConnectionHintImpl imple
 	 * @ordered
 	 */
 	protected SourceSectionAttribute source;
-
 	/**
 	 * The cached value of the '{@link #getModifier() <em>Modifier</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -216,12 +212,7 @@ public class SimpleModelConnectionHintImpl extends ModelConnectionHintImpl imple
 		if (baseClass == AttributeMappingSourceElementType.class) {
 			switch (derivedFeatureID) {
 				case MappingPackage.SIMPLE_MODEL_CONNECTION_HINT__SOURCE: return MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE;
-				default: return -1;
-			}
-		}
-		if (baseClass == AttributeMappingSourceElementWithModifiers.class) {
-			switch (derivedFeatureID) {
-				case MappingPackage.SIMPLE_MODEL_CONNECTION_HINT__MODIFIER: return MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS__MODIFIER;
+				case MappingPackage.SIMPLE_MODEL_CONNECTION_HINT__MODIFIER: return MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER;
 				default: return -1;
 			}
 		}
@@ -238,12 +229,7 @@ public class SimpleModelConnectionHintImpl extends ModelConnectionHintImpl imple
 		if (baseClass == AttributeMappingSourceElementType.class) {
 			switch (baseFeatureID) {
 				case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE: return MappingPackage.SIMPLE_MODEL_CONNECTION_HINT__SOURCE;
-				default: return -1;
-			}
-		}
-		if (baseClass == AttributeMappingSourceElementWithModifiers.class) {
-			switch (baseFeatureID) {
-				case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS__MODIFIER: return MappingPackage.SIMPLE_MODEL_CONNECTION_HINT__MODIFIER;
+				case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER: return MappingPackage.SIMPLE_MODEL_CONNECTION_HINT__MODIFIER;
 				default: return -1;
 			}
 		}

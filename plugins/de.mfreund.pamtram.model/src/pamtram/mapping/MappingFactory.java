@@ -31,6 +31,15 @@ public interface MappingFactory extends EFactory {
 	Mapping createMapping();
 
 	/**
+	 * Returns a new object of class '<em>Attribute Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Attribute Mapping</em>'.
+	 * @generated
+	 */
+	AttributeMapping createAttributeMapping();
+
+	/**
 	 * Returns a new object of class '<em>Cardinality Mapping</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -148,49 +157,13 @@ public interface MappingFactory extends EFactory {
 	ConnectionHintTargetAttribute createConnectionHintTargetAttribute();
 
 	/**
-	 * Returns a new object of class '<em>Simple Attribute Mapping</em>'.
+	 * Returns a new object of class '<em>Attribute Mapping Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Simple Attribute Mapping</em>'.
+	 * @return a new object of class '<em>Attribute Mapping Source Element</em>'.
 	 * @generated
 	 */
-	SimpleAttributeMapping createSimpleAttributeMapping();
-
-	/**
-	 * Returns a new object of class '<em>Complex Attribute Mapping</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Complex Attribute Mapping</em>'.
-	 * @generated
-	 */
-	ComplexAttributeMapping createComplexAttributeMapping();
-
-	/**
-	 * Returns a new object of class '<em>Complex Attribute Mapping Source Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Complex Attribute Mapping Source Element</em>'.
-	 * @generated
-	 */
-	ComplexAttributeMappingSourceElement createComplexAttributeMappingSourceElement();
-
-	/**
-	 * Returns a new object of class '<em>Calculator Mapping</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Calculator Mapping</em>'.
-	 * @generated
-	 */
-	CalculatorMapping createCalculatorMapping();
-
-	/**
-	 * Returns a new object of class '<em>Expression Variable</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Expression Variable</em>'.
-	 * @generated
-	 */
-	ExpressionVariable createExpressionVariable();
+	AttributeMappingSourceElement createAttributeMappingSourceElement();
 
 	/**
 	 * Returns a new object of class '<em>Complex Attribute Matcher</em>'.
@@ -299,15 +272,6 @@ public interface MappingFactory extends EFactory {
 	 * @generated
 	 */
 	ComplexModelConnectionHintExternalSourceElement createComplexModelConnectionHintExternalSourceElement();
-
-	/**
-	 * Returns a new object of class '<em>External Expression Variable</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>External Expression Variable</em>'.
-	 * @generated
-	 */
-	ExternalExpressionVariable createExternalExpressionVariable();
 
 	/**
 	 * Returns a new object of class '<em>Complex Attribute Matcher External Source Element</em>'.

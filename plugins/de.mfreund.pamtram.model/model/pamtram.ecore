@@ -284,8 +284,7 @@
           eType="#//metamodel/SourceSectionClass"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MappingHint" abstract="true" eSuperTypes="#//mapping/MappingHintType"/>
-    <eClassifiers xsi:type="ecore:EClass" name="AttributeMapping" abstract="true"
-        eSuperTypes="#//mapping/MappingHint #//mapping/ExpandableHint">
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeMapping" eSuperTypes="#//mapping/MappingHint #//mapping/ExpandableHint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="sourceAttributeMatchesSection&#xD;&#xA;targetAttributeMatchesSection"/>
       </eAnnotations>
@@ -293,8 +292,20 @@
         <details key="sourceAttributeMatchesSection" value=""/>
         <details key="targetAttributeMatchesSection" value="&#xA;"/>
       </eAnnotations>
+      <eOperations name="getLocalSourceElements" unique="false" upperBound="-1" eType="#//mapping/AttributeMappingSourceElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="&#x9;&#x9;EList&lt;AttributeMappingSourceElement> elements= new org.eclipse.emf.common.util.BasicEList&lt;AttributeMappingSourceElement>();&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;for(AttributeMappingSourceInterface i : this.getSourceAttributeMappings()){&#xD;&#xA;&#x9;&#x9;&#x9;if(i instanceof AttributeMappingSourceElement){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;elements.add((AttributeMappingSourceElement) i);&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;return elements;"/>
+        </eAnnotations>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
           eType="#//metamodel/TargetSectionAttribute"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceAttributeMappings"
+          lowerBound="1" upperBound="-1" eType="#//mapping/AttributeMappingSourceInterface"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="resultModifier" upperBound="-1"
+          eType="#//mapping/AttributeValueModifierSet"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CardinalityMapping" eSuperTypes="#//mapping/MappingHint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -382,37 +393,13 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
           eType="#//mapping/AttributeValueModifierSet"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="SimpleAttributeMapping" eSuperTypes="#//mapping/AttributeMapping #//mapping/AttributeMappingSourceElementWithModifiers"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ComplexAttributeMapping" eSuperTypes="#//mapping/AttributeMapping">
-      <eOperations name="getLocalSourceElements" unique="false" upperBound="-1" eType="#//mapping/ComplexAttributeMappingSourceElement">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="&#x9;&#x9;EList&lt;ComplexAttributeMappingSourceElement> elements= new org.eclipse.emf.common.util.BasicEList&lt;ComplexAttributeMappingSourceElement>();&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;for(ComplexAttributeMappingSourceInterface i : this.getSourceAttributeMappings()){&#xA;&#x9;&#x9;&#x9;if(i instanceof ComplexAttributeMappingSourceElement){&#xA;&#x9;&#x9;&#x9;&#x9;elements.add((ComplexAttributeMappingSourceElement) i);&#xA;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;return elements;"/>
-        </eAnnotations>
-      </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceAttributeMappings"
-          lowerBound="1" upperBound="-1" eType="#//mapping/ComplexAttributeMappingSourceInterface"
-          containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ComplexAttributeMappingSourceElement"
-        eSuperTypes="#//mapping/AttributeMappingSourceElementWithModifiers #//mapping/ComplexAttributeMappingSourceInterface"/>
-    <eClassifiers xsi:type="ecore:EClass" name="CalculatorMapping" eSuperTypes="#//mapping/AttributeMapping">
-      <eOperations name="getLocalSourceElements" unique="false" upperBound="-1" eType="#//mapping/ExpressionVariable">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="&#x9;&#x9;&#x9;&#x9;EList&lt;ExpressionVariable> elements= new org.eclipse.emf.common.util.BasicEList&lt;ExpressionVariable>();&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;for(CalculatorMappingSourceInterface i : this.getVariables()){&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(i instanceof ExpressionVariable){&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;elements.add((ExpressionVariable) i);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;return elements;"/>
-        </eAnnotations>
-      </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
-          eType="#//mapping/CalculatorMappingSourceInterface" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="resultModifier" upperBound="-1"
-          eType="#//mapping/AttributeValueModifierSet"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ExpressionVariable" eSuperTypes="#//mapping/AttributeMappingSourceElementWithModifiers #//mapping/CalculatorMappingSourceInterface"/>
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingSourceElement" eSuperTypes="#//mapping/AttributeMappingSourceElementType #//mapping/AttributeMappingSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingSourceElementType"
         abstract="true" eSuperTypes="#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
           eType="#//metamodel/SourceSectionAttribute"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
+          eType="#//mapping/AttributeValueModifierSet"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexAttributeMatcher" eSuperTypes="#//mapping/AttributeMatcher">
       <eOperations name="getLocalSourceElements" unique="false" upperBound="-1" eType="#//mapping/ComplexAttributeMatcherSourceElement">
@@ -424,10 +411,10 @@
           upperBound="-1" eType="#//mapping/ComplexAttributeMatcherSourceInterface"
           containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="SimpleAttributeMatcher" eSuperTypes="#//mapping/AttributeMatcher #//mapping/AttributeMappingSourceElementWithModifiers"/>
+    <eClassifiers xsi:type="ecore:EClass" name="SimpleAttributeMatcher" eSuperTypes="#//mapping/AttributeMatcher #//mapping/AttributeMappingSourceElementType"/>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexAttributeMatcherSourceElement"
-        eSuperTypes="#//mapping/AttributeMappingSourceElementWithModifiers #//mapping/ComplexAttributeMatcherSourceInterface"/>
-    <eClassifiers xsi:type="ecore:EClass" name="SimpleModelConnectionHint" eSuperTypes="#//mapping/ModelConnectionHint #//mapping/AttributeMappingSourceElementWithModifiers">
+        eSuperTypes="#//mapping/AttributeMappingSourceElementType #//mapping/ComplexAttributeMatcherSourceInterface"/>
+    <eClassifiers xsi:type="ecore:EClass" name="SimpleModelConnectionHint" eSuperTypes="#//mapping/ModelConnectionHint #//mapping/AttributeMappingSourceElementType">
       <eOperations name="getSourceAttributes" unique="false" upperBound="-1" eType="#//metamodel/SourceSectionAttribute">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="body" value="&#x9;&#x9;&#x9;&#x9;EList&lt;SourceSectionAttribute> sources= new org.eclipse.emf.common.util.BasicEList&lt;SourceSectionAttribute>();&#xA;&#x9;&#x9;&#x9;&#x9;sources.add(this.getSource());&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;return sources;"/>
@@ -450,12 +437,7 @@
           containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexModelConnectionHintSourceElement"
-        eSuperTypes="#//mapping/AttributeMappingSourceElementWithModifiers #//mapping/ComplexModelConnectionHintSourceInterface"/>
-    <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingSourceElementWithModifiers"
-        abstract="true" eSuperTypes="#//mapping/AttributeMappingSourceElementType">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
-          eType="#//mapping/AttributeValueModifierSet"/>
-    </eClassifiers>
+        eSuperTypes="#//mapping/AttributeMappingSourceElementType #//mapping/ComplexModelConnectionHintSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="MappingHintType" abstract="true" eSuperTypes="#//NamedElement"/>
     <eClassifiers xsi:type="ecore:EClass" name="HintImporterMappingHint" abstract="true"
         eSuperTypes="#//mapping/MappingHintType"/>
@@ -479,12 +461,12 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
           eType="#//mapping/AttributeValueModifierSet"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="GlobalAttributeImporter" eSuperTypes="#//NamedElement #//mapping/ComplexAttributeMappingSourceInterface #//mapping/ComplexAttributeMatcherSourceInterface #//mapping/ComplexModelConnectionHintSourceInterface">
+    <eClassifiers xsi:type="ecore:EClass" name="GlobalAttributeImporter" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//mapping/ComplexAttributeMatcherSourceInterface #//mapping/ComplexModelConnectionHintSourceInterface">
       <eStructuralFeatures xsi:type="ecore:EReference" name="globalAttribute" lowerBound="1"
           eType="#//mapping/GlobalAttribute"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ComplexAttributeMappingSourceInterface"
-        abstract="true" interface="true" eSuperTypes="#//mapping/ComplexMappingHintSourceInterface"/>
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingSourceInterface" abstract="true"
+        interface="true" eSuperTypes="#//mapping/ComplexMappingHintSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexMappingHintSourceInterface"
         abstract="true" interface="true">
       <eOperations name="getSourceAttribute" lowerBound="1" eType="#//metamodel/SourceSectionAttribute"/>
@@ -495,14 +477,11 @@
     <eClassifiers xsi:type="ecore:EClass" name="ComplexModelConnectionHintSourceInterface"
         abstract="true" interface="true" eSuperTypes="#//mapping/ComplexMappingHintSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexAttributeMappingExternalSourceElement"
-        eSuperTypes="#//mapping/ExternalAttributeMappingSourceElement #//mapping/ComplexAttributeMappingSourceInterface"/>
-    <eClassifiers xsi:type="ecore:EClass" name="CalculatorMappingSourceInterface"
-        abstract="true" interface="true" eSuperTypes="#//mapping/ComplexMappingHintSourceInterface"/>
+        eSuperTypes="#//mapping/ExternalAttributeMappingSourceElement #//mapping/AttributeMappingSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="ExternalAttributeMappingSourceElement"
-        abstract="true" eSuperTypes="#//mapping/AttributeMappingSourceElementWithModifiers"/>
+        abstract="true" eSuperTypes="#//mapping/AttributeMappingSourceElementType"/>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexModelConnectionHintExternalSourceElement"
         eSuperTypes="#//mapping/ExternalAttributeMappingSourceElement #//mapping/ComplexModelConnectionHintSourceInterface"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ExternalExpressionVariable" eSuperTypes="#//mapping/ExternalAttributeMappingSourceElement #//mapping/CalculatorMappingSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexAttributeMatcherExternalSourceElement"
         eSuperTypes="#//mapping/ExternalAttributeMappingSourceElement #//mapping/ComplexAttributeMatcherSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="ExternalMappedAttributeValueExpander"

@@ -13,5 +13,5 @@ package pamtram.mapping;
  * @model
  * @generated
  */
-public interface ComplexAttributeMappingExternalSourceElement extends ExternalAttributeMappingSourceElement, ComplexAttributeMappingSourceInterface {
+public interface ComplexAttributeMappingExternalSourceElement extends ExternalAttributeMappingSourceElement, AttributeMappingSourceInterface {
 } // ComplexAttributeMappingExternalSourceElement

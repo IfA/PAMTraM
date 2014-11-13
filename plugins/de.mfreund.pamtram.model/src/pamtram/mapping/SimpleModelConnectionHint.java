@@ -16,7 +16,7 @@ import pamtram.metamodel.SourceSectionAttribute;
  * @model
  * @generated
  */
-public interface SimpleModelConnectionHint extends ModelConnectionHint, AttributeMappingSourceElementWithModifiers {
+public interface SimpleModelConnectionHint extends ModelConnectionHint, AttributeMappingSourceElementType {
 
 	/**
 	 * <!-- begin-user-doc -->

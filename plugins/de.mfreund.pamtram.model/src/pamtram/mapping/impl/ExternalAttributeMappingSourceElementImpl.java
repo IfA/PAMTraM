@@ -3,7 +3,6 @@
 package pamtram.mapping.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import pamtram.mapping.ExternalAttributeMappingSourceElement;
 import pamtram.mapping.MappingPackage;
 
@@ -16,7 +15,7 @@ import pamtram.mapping.MappingPackage;
  *
  * @generated
  */
-public abstract class ExternalAttributeMappingSourceElementImpl extends AttributeMappingSourceElementWithModifiersImpl implements ExternalAttributeMappingSourceElement {
+public abstract class ExternalAttributeMappingSourceElementImpl extends AttributeMappingSourceElementTypeImpl implements ExternalAttributeMappingSourceElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

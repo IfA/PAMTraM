@@ -4,9 +4,7 @@ package pamtram.presentation;
 
 import java.util.ArrayList;
 import java.util.Collection;
-
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.ui.action.ControlAction;
@@ -34,32 +32,10 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
-
 import pamtram.converter.HintGroupToExportedHintGroupConverter;
-import pamtram.converter.InternalToExternalExpressionVariableConverter;
-import pamtram.converter.InternalToExternalSourceAttrMatcherElementConverter;
-import pamtram.converter.SimpleToComplexAttributeMappingConverter;
-import pamtram.converter.SimpleToComplexAttributeMatcherConverter;
-import pamtram.converter.SimpleToComplexModelConnectionHintConverter;
-import pamtram.converter.SimpleToExternalComplexAttributeMappingConverter;
-import pamtram.converter.SimpleToExternalComplexAttributeMatcherConverter;
-import pamtram.converter.SimpleToExternalComplexModelConnectionHintConverter;
-import pamtram.mapping.ComplexAttributeMapping;
-import pamtram.mapping.ComplexAttributeMappingExternalSourceElement;
-import pamtram.mapping.ComplexAttributeMappingSourceElement;
-import pamtram.mapping.ComplexAttributeMatcher;
-import pamtram.mapping.ComplexAttributeMatcherExternalSourceElement;
-import pamtram.mapping.ComplexAttributeMatcherSourceElement;
-import pamtram.mapping.ComplexModelConnectionHint;
 import pamtram.mapping.ExportedMappingHintGroup;
-import pamtram.mapping.ExpressionVariable;
-import pamtram.mapping.ExternalExpressionVariable;
 import pamtram.mapping.MappingHintGroup;
-import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.SimpleAttributeMapping;
-import pamtram.mapping.SimpleAttributeMatcher;
-import pamtram.mapping.SimpleModelConnectionHint;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.presentation.actions.CutClassAndPasteAsNewSectionAction;
 import pamtram.presentation.actions.GenericConversionCommandAction;
@@ -363,80 +339,80 @@ public class PamtramActionBarContributor
 							MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS,
 							(MappingHintGroup) descriptor,
 							new HintGroupToExportedHintGroupConverter()));
-		} else if(descriptor instanceof pamtram.mapping.SimpleAttributeMapping){
-			actions.add(
-					new GenericConversionCommandAction<SimpleAttributeMapping, ComplexAttributeMapping>(
-							activeEditorPart, 
-							selection, 
-							"Convert to ComplexAttributeMapping",
-							((EObject) descriptor).eContainer() instanceof MappingHintGroupType ? 
-									MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS : 
-									MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
-							(SimpleAttributeMapping) descriptor,
-							new SimpleToComplexAttributeMappingConverter()));
-			actions.add(
-					new GenericConversionCommandAction<SimpleAttributeMapping, ComplexAttributeMapping>(
-							activeEditorPart, 
-							selection, 
-							"Convert to external ComplexAttributeMapping",
-							((EObject) descriptor).eContainer() instanceof MappingHintGroupType ? 
-									MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS : 
-									MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
-							(SimpleAttributeMapping) descriptor,
-							new SimpleToExternalComplexAttributeMappingConverter()));
-		} else if(descriptor instanceof SimpleModelConnectionHint){
-			actions.add(
-					new GenericConversionCommandAction<SimpleModelConnectionHint, ComplexModelConnectionHint>(
-							activeEditorPart, 
-							selection, 
-							"Convert to ComplexModelConnectionHint",
-							MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER,
-							(SimpleModelConnectionHint) descriptor,
-							new SimpleToComplexModelConnectionHintConverter()));
-			actions.add(
-					new GenericConversionCommandAction<SimpleModelConnectionHint, ComplexModelConnectionHint>(
-							activeEditorPart, 
-							selection, 
-							"Convert to external ComplexModelConnectionHint",
-							MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER,
-							(SimpleModelConnectionHint) descriptor,
-							new SimpleToExternalComplexModelConnectionHintConverter()));
-		} else if(descriptor instanceof SimpleAttributeMatcher){
-			actions.add(
-					new GenericConversionCommandAction<SimpleAttributeMatcher, ComplexAttributeMatcher>(
-							activeEditorPart, 
-							selection, 
-							"Convert to ComplexAttributeMatcher",
-							MappingPackage.Literals.MAPPING_INSTANCE_SELECTOR__MATCHER,
-							(SimpleAttributeMatcher) descriptor,
-							new SimpleToComplexAttributeMatcherConverter()));
-		} else if(descriptor instanceof ComplexAttributeMappingSourceElement){
-			actions.add(
-					new GenericConversionCommandAction<ComplexAttributeMappingSourceElement, ComplexAttributeMappingExternalSourceElement>(
-							activeEditorPart, 
-							selection, 
-							"Convert to External Source Element",
-							MappingPackage.Literals.COMPLEX_ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS,
-							(ComplexAttributeMappingSourceElement) descriptor,
-							new SimpleToExternalComplexAttributeMatcherConverter()));
-		} else if(descriptor instanceof ComplexAttributeMatcherSourceElement){
-			actions.add(
-					new GenericConversionCommandAction<ComplexAttributeMatcherSourceElement, ComplexAttributeMatcherExternalSourceElement>(
-							activeEditorPart, 
-							selection, 
-							"Convert to External Source Element",
-							MappingPackage.Literals.COMPLEX_ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES,
-							(ComplexAttributeMatcherSourceElement) descriptor,
-							new InternalToExternalSourceAttrMatcherElementConverter()));
-		} else if(descriptor instanceof ExpressionVariable){
-			actions.add(
-					new GenericConversionCommandAction<ExpressionVariable, ExternalExpressionVariable>(
-							activeEditorPart, 
-							selection, 
-							"Convert to External Expression Variable",
-							MappingPackage.Literals.CALCULATOR_MAPPING__VARIABLES,
-							(ExpressionVariable) descriptor,
-							new InternalToExternalExpressionVariableConverter()));
+//		} else if(descriptor instanceof pamtram.mapping.SimpleAttributeMapping){
+//			actions.add(
+//					new GenericConversionCommandAction<SimpleAttributeMapping, ComplexAttributeMapping>(
+//							activeEditorPart, 
+//							selection, 
+//							"Convert to ComplexAttributeMapping",
+//							((EObject) descriptor).eContainer() instanceof MappingHintGroupType ? 
+//									MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS : 
+//									MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
+//							(SimpleAttributeMapping) descriptor,
+//							new SimpleToComplexAttributeMappingConverter()));
+//			actions.add(
+//					new GenericConversionCommandAction<SimpleAttributeMapping, ComplexAttributeMapping>(
+//							activeEditorPart, 
+//							selection, 
+//							"Convert to external ComplexAttributeMapping",
+//							((EObject) descriptor).eContainer() instanceof MappingHintGroupType ? 
+//									MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS : 
+//									MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
+//							(SimpleAttributeMapping) descriptor,
+//							new SimpleToExternalComplexAttributeMappingConverter()));
+//		} else if(descriptor instanceof SimpleModelConnectionHint){
+//			actions.add(
+//					new GenericConversionCommandAction<SimpleModelConnectionHint, ComplexModelConnectionHint>(
+//							activeEditorPart, 
+//							selection, 
+//							"Convert to ComplexModelConnectionHint",
+//							MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER,
+//							(SimpleModelConnectionHint) descriptor,
+//							new SimpleToComplexModelConnectionHintConverter()));
+//			actions.add(
+//					new GenericConversionCommandAction<SimpleModelConnectionHint, ComplexModelConnectionHint>(
+//							activeEditorPart, 
+//							selection, 
+//							"Convert to external ComplexModelConnectionHint",
+//							MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER,
+//							(SimpleModelConnectionHint) descriptor,
+//							new SimpleToExternalComplexModelConnectionHintConverter()));
+//		} else if(descriptor instanceof SimpleAttributeMatcher){
+//			actions.add(
+//					new GenericConversionCommandAction<SimpleAttributeMatcher, ComplexAttributeMatcher>(
+//							activeEditorPart, 
+//							selection, 
+//							"Convert to ComplexAttributeMatcher",
+//							MappingPackage.Literals.MAPPING_INSTANCE_SELECTOR__MATCHER,
+//							(SimpleAttributeMatcher) descriptor,
+//							new SimpleToComplexAttributeMatcherConverter()));
+//		} else if(descriptor instanceof ComplexAttributeMappingSourceElement){
+//			actions.add(
+//					new GenericConversionCommandAction<ComplexAttributeMappingSourceElement, ComplexAttributeMappingExternalSourceElement>(
+//							activeEditorPart, 
+//							selection, 
+//							"Convert to External Source Element",
+//							MappingPackage.Literals.COMPLEX_ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS,
+//							(ComplexAttributeMappingSourceElement) descriptor,
+//							new SimpleToExternalComplexAttributeMatcherConverter()));
+//		} else if(descriptor instanceof ComplexAttributeMatcherSourceElement){
+//			actions.add(
+//					new GenericConversionCommandAction<ComplexAttributeMatcherSourceElement, ComplexAttributeMatcherExternalSourceElement>(
+//							activeEditorPart, 
+//							selection, 
+//							"Convert to External Source Element",
+//							MappingPackage.Literals.COMPLEX_ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES,
+//							(ComplexAttributeMatcherSourceElement) descriptor,
+//							new InternalToExternalSourceAttrMatcherElementConverter()));
+//		} else if(descriptor instanceof ExpressionVariable){
+//			actions.add(
+//					new GenericConversionCommandAction<ExpressionVariable, ExternalExpressionVariable>(
+//							activeEditorPart, 
+//							selection, 
+//							"Convert to External Expression Variable",
+//							MappingPackage.Literals.CALCULATOR_MAPPING__VARIABLES,
+//							(ExpressionVariable) descriptor,
+//							new InternalToExternalExpressionVariableConverter()));
 		} else if(descriptor instanceof pamtram.metamodel.Class){
 			if(!((MetaModelElement) descriptor).getContainingSection().equals(descriptor)){
 				actions.add(new CutClassAndPasteAsNewSectionAction((pamtram.metamodel.Class) descriptor));				

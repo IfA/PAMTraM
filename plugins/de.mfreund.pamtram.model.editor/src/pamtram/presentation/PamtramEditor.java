@@ -1377,7 +1377,7 @@ public class PamtramEditor
 	private void registerEPackages() {
 		
 		// Create a backup of the diagnostic map.
-		Map<Resource, Diagnostic> backup = new HashMap<>(resourceToDiagnosticMap);
+		Map<Resource, Diagnostic> backup = new HashMap<Resource, Diagnostic>(resourceToDiagnosticMap);
 		
 		// try to register the ePackages involved in the pamtram model (if not already done)
 		EPackageCheck result = EPackageHelper.checkInvolvedEPackages(

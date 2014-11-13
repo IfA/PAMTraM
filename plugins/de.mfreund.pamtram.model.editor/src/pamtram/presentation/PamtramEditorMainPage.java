@@ -26,13 +26,10 @@ import pamtram.MappingModel;
 import pamtram.NamedElement;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceElementType;
+import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
-import pamtram.mapping.CalculatorMapping;
-import pamtram.mapping.CalculatorMappingSourceInterface;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ClassMatcher;
-import pamtram.mapping.ComplexAttributeMapping;
-import pamtram.mapping.ComplexAttributeMappingSourceInterface;
 import pamtram.mapping.ComplexAttributeMatcher;
 import pamtram.mapping.ComplexAttributeMatcherSourceInterface;
 import pamtram.mapping.ComplexModelConnectionHint;
@@ -47,7 +44,6 @@ import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
-import pamtram.mapping.SimpleAttributeMapping;
 import pamtram.mapping.SimpleAttributeMatcher;
 import pamtram.mapping.SimpleModelConnectionHint;
 import pamtram.metamodel.Attribute;
@@ -354,8 +350,6 @@ public class PamtramEditorMainPage extends SashForm {
 					
 					if(mapping.eContainer() instanceof AttributeMapping){
 						target= ((AttributeMapping)mapping.eContainer()).getTarget();
-					} else if (mapping instanceof SimpleAttributeMapping){
-						target=((SimpleAttributeMapping) mapping).getTarget();
 					}
 					
 					Attribute source = mapping.getSource();
@@ -370,31 +364,19 @@ public class PamtramEditorMainPage extends SashForm {
 					setSourceTargetViewerSingleItemSelections(target, source);
 					
 					
-				} else if(((TreeItem) e.item).getData() instanceof ComplexAttributeMapping || ((TreeItem) e.item).getData() instanceof CalculatorMapping) {
+				} else if(((TreeItem) e.item).getData() instanceof AttributeMapping) {
 					AttributeMapping mapping = (AttributeMapping) ((TreeItem) e.item).getData();
 					Attribute target = mapping.getTarget();
 					
 					
 					List<Attribute> sources = new LinkedList<Attribute>();
 					
-					if(mapping instanceof ComplexAttributeMapping){							
-						for(ComplexAttributeMappingSourceInterface c : ((ComplexAttributeMapping) mapping).getSourceAttributeMappings()){
+						for(AttributeMappingSourceInterface c : ((AttributeMapping) mapping).getSourceAttributeMappings()){
 							if(c.getSourceAttribute() != null){
 								sources.add(c.getSourceAttribute());
 							}
 						}
 						
-					} else {
-						
-						for(CalculatorMappingSourceInterface c : ((CalculatorMapping) mapping).getVariables()){
-							if(c.getSourceAttribute() != null){
-								sources.add(c.getSourceAttribute());
-							}
-						}
-					}
-					
-					
-					
 					sourceViewer.setSelection(new StructuredSelection(sources));
 					
 					if(target == null) {

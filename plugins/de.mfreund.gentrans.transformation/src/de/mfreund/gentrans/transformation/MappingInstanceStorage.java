@@ -13,11 +13,10 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 
-import pamtram.mapping.ComplexAttributeMappingSourceElement;
+import pamtram.mapping.AttributeMappingSourceElement;
 import pamtram.mapping.ComplexAttributeMatcherSourceElement;
 import pamtram.mapping.ComplexModelConnectionHint;
 import pamtram.mapping.ComplexModelConnectionHintSourceElement;
-import pamtram.mapping.ExpressionVariable;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintType;
@@ -77,8 +76,7 @@ class MappingInstanceStorage {
 	/**
 	 * unsynced hints used by complexMappingHints
 	 */
-	private final Map<MappingHintType, Map<SourceSectionClass, LinkedList<Map<ComplexAttributeMappingSourceElement, String>>>> unSyncedComplexAttrMappings;
-	private final Map<MappingHintType, Map<SourceSectionClass, LinkedList<Map<ExpressionVariable, String>>>> unSyncedCalcMappings;
+	private final Map<MappingHintType, Map<SourceSectionClass, LinkedList<Map<AttributeMappingSourceElement, String>>>> unSyncedComplexAttrMappings;
 	private final Map<MappingHintType, Map<SourceSectionClass, LinkedList<Map<ComplexAttributeMatcherSourceElement, String>>>> unSyncedComplexAttrMatchers;
 	private final Map<ComplexModelConnectionHint, Map<SourceSectionClass, LinkedList<Map<ComplexModelConnectionHintSourceElement, String>>>> unSyncedComplexConnectionHints;
 
@@ -93,8 +91,7 @@ class MappingInstanceStorage {
 		associatedSourceClass = null;
 		instancesBySection = new LinkedHashMap<InstantiableMappingHintGroup, LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>>();
 		modelConnectionHintValues = new LinkedHashMap<ModelConnectionHint, LinkedList<Object>>();
-		unSyncedComplexAttrMappings = new LinkedHashMap<MappingHintType, Map<SourceSectionClass, LinkedList<Map<ComplexAttributeMappingSourceElement, String>>>>();
-		unSyncedCalcMappings = new HashMap<MappingHintType, Map<SourceSectionClass, LinkedList<Map<ExpressionVariable, String>>>>();
+		unSyncedComplexAttrMappings = new LinkedHashMap<MappingHintType, Map<SourceSectionClass, LinkedList<Map<AttributeMappingSourceElement, String>>>>();
 		unSyncedComplexAttrMatchers = new HashMap<MappingHintType, Map<SourceSectionClass, LinkedList<Map<ComplexAttributeMatcherSourceElement, String>>>>();
 		unSyncedComplexConnectionHints = new HashMap<ComplexModelConnectionHint, Map<SourceSectionClass, LinkedList<Map<ComplexModelConnectionHintSourceElement, String>>>>();
 
@@ -120,7 +117,6 @@ class MappingInstanceStorage {
 
 		// combine unsynced hints
 		addUnSyncedHintValues(newRefsAndHints.getUnSyncedComplexAttrMappings(),
-				newRefsAndHints.getUnSyncedCalcMappings(),
 				newRefsAndHints.getUnSyncedComplexAttrMatchers(),
 				newRefsAndHints.getUnSyncedComplexConnectionHints());
 
@@ -235,8 +231,7 @@ class MappingInstanceStorage {
 	 * @param unSyncedComplexConnectionHints
 	 */
 	void addUnSyncedHintValues(
-			final Map<MappingHintType, Map<SourceSectionClass, LinkedList<Map<ComplexAttributeMappingSourceElement, String>>>> unSyncedComplexAttrMappings,
-			final Map<MappingHintType, Map<SourceSectionClass, LinkedList<Map<ExpressionVariable, String>>>> unSyncedCalcMappings,
+			final Map<MappingHintType, Map<SourceSectionClass, LinkedList<Map<AttributeMappingSourceElement, String>>>> unSyncedComplexAttrMappings,
 			final Map<MappingHintType, Map<SourceSectionClass, LinkedList<Map<ComplexAttributeMatcherSourceElement, String>>>> unSyncedComplexAttrMatchers,
 			final Map<ComplexModelConnectionHint, Map<SourceSectionClass, LinkedList<Map<ComplexModelConnectionHintSourceElement, String>>>> unSyncedComplexConnectionHints) {
 
@@ -247,7 +242,7 @@ class MappingInstanceStorage {
 			if (!this.unSyncedComplexAttrMappings.containsKey(h)) {
 				this.unSyncedComplexAttrMappings
 						.put(h,
-								new HashMap<SourceSectionClass, LinkedList<Map<ComplexAttributeMappingSourceElement, String>>>());
+								new HashMap<SourceSectionClass, LinkedList<Map<AttributeMappingSourceElement, String>>>());
 			}
 
 			for (final SourceSectionClass c : unSyncedComplexAttrMappings
@@ -256,31 +251,10 @@ class MappingInstanceStorage {
 					this.unSyncedComplexAttrMappings
 							.get(h)
 							.put(c,
-									new LinkedList<Map<ComplexAttributeMappingSourceElement, String>>());
+									new LinkedList<Map<AttributeMappingSourceElement, String>>());
 				}
 				this.unSyncedComplexAttrMappings.get(h).get(c)
 						.addAll(unSyncedComplexAttrMappings.get(h).get(c));
-			}
-		}
-
-		/*
-		 * CalcMapping
-		 */
-		for (final MappingHintType h : unSyncedCalcMappings.keySet()) {
-			if (!this.unSyncedCalcMappings.containsKey(h)) {
-				this.unSyncedCalcMappings
-						.put(h,
-								new HashMap<SourceSectionClass, LinkedList<Map<ExpressionVariable, String>>>());
-			}
-
-			for (final SourceSectionClass c : unSyncedCalcMappings.get(h)
-					.keySet()) {
-				if (!this.unSyncedCalcMappings.get(h).containsKey(c)) {
-					this.unSyncedCalcMappings.get(h).put(c,
-							new LinkedList<Map<ExpressionVariable, String>>());
-				}
-				this.unSyncedCalcMappings.get(h).get(c)
-						.addAll(unSyncedCalcMappings.get(h).get(c));
 			}
 		}
 
@@ -457,14 +431,7 @@ class MappingInstanceStorage {
 	/**
 	 * @return
 	 */
-	Map<MappingHintType, Map<SourceSectionClass, LinkedList<Map<ExpressionVariable, String>>>> getUnSyncedCalcMappings() {
-		return unSyncedCalcMappings;
-	}
-
-	/**
-	 * @return
-	 */
-	Map<MappingHintType, Map<SourceSectionClass, LinkedList<Map<ComplexAttributeMappingSourceElement, String>>>> getUnSyncedComplexAttrMappings() {
+	Map<MappingHintType, Map<SourceSectionClass, LinkedList<Map<AttributeMappingSourceElement, String>>>> getUnSyncedComplexAttrMappings() {
 		return unSyncedComplexAttrMappings;
 	}
 

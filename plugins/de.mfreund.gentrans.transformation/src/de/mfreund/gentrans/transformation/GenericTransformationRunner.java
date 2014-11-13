@@ -35,11 +35,8 @@ import org.eclipse.ui.progress.UIJob;
 
 import pamtram.PAMTraM;
 import pamtram.mapping.AttributeMapping;
+import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
-import pamtram.mapping.CalculatorMapping;
-import pamtram.mapping.CalculatorMappingSourceInterface;
-import pamtram.mapping.ComplexAttributeMapping;
-import pamtram.mapping.ComplexAttributeMappingSourceInterface;
 import pamtram.mapping.ComplexAttributeMatcher;
 import pamtram.mapping.ComplexAttributeMatcherSourceInterface;
 import pamtram.mapping.ComplexModelConnectionHint;
@@ -58,7 +55,6 @@ import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingInstanceSelector;
-import pamtram.mapping.SimpleAttributeMapping;
 import pamtram.mapping.SimpleAttributeMatcher;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.SourceSectionClass;
@@ -430,8 +426,8 @@ public class GenericTransformationRunner {
 
 				for (final MappingHint h : g.getMappingHints()) {
 
-					if (h instanceof ComplexAttributeMapping) {
-						for (final ComplexAttributeMappingSourceInterface i : ((ComplexAttributeMapping) h)
+					if (h instanceof AttributeMapping) {
+						for (final AttributeMappingSourceInterface i : ((AttributeMapping) h)
 								.getSourceAttributeMappings()) {
 							if (i instanceof GlobalAttributeImporter) {
 								if (sourceSectionMapper.getGlobalVarValues()
@@ -445,7 +441,7 @@ public class GenericTransformationRunner {
 									for (final Object m : selMap
 											.getHintValues().get(h)) {
 										@SuppressWarnings("unchecked")
-										final Map<ComplexAttributeMappingSourceInterface, String> map = (Map<ComplexAttributeMappingSourceInterface, String>) m;
+										final Map<AttributeMappingSourceInterface, String> map = (Map<AttributeMappingSourceInterface, String>) m;
 										map.put(i, gVal);
 									}
 								}
@@ -520,8 +516,8 @@ public class GenericTransformationRunner {
 					.getImportedMappingHintGroups()) {
 				for (final MappingHintType h : g.getMappingHints()) {
 
-					if (h instanceof ComplexAttributeMapping) {
-						for (final ComplexAttributeMappingSourceInterface i : ((ComplexAttributeMapping) h)
+					if (h instanceof AttributeMapping) {
+						for (final AttributeMappingSourceInterface i : ((AttributeMapping) h)
 								.getSourceAttributeMappings()) {
 							if (i instanceof GlobalAttributeImporter) {
 								if (sourceSectionMapper.getGlobalVarValues()
@@ -535,7 +531,7 @@ public class GenericTransformationRunner {
 									for (final Object m : selMap
 											.getHintValues().get(h)) {
 										@SuppressWarnings("unchecked")
-										final Map<ComplexAttributeMappingSourceInterface, String> map = (Map<ComplexAttributeMappingSourceInterface, String>) m;
+										final Map<AttributeMappingSourceInterface, String> map = (Map<AttributeMappingSourceInterface, String>) m;
 										map.put(i, gVal);
 									}
 								}
@@ -991,100 +987,83 @@ public class GenericTransformationRunner {
 											if (((MappedAttributeValueExpander) h)
 													.getHintsToExpand()
 													.contains(realHint)) {
-												if (realHint instanceof SimpleAttributeMapping) {// SimpleAttributeMapping
-													final LinkedList<Object> vals = new LinkedList<Object>();
-													if (prepend) {
-														for (final Object s : selMap
-																.getHintValues()
-																.get(realHint)) {
-															vals.add(hintVal
-																	+ (String) s);
-														}
-													} else {
-														for (final Object s : selMap
-																.getHintValues()
-																.get(realHint)) {
-															vals.add((String) s
-																	+ hintVal);
-														}
-													}
-													selMap.setHintValueList(
-															realHint, vals);
-												} else if (realHint instanceof ComplexAttributeMapping) {// ComplexAttributeMapping
-													final List<ComplexAttributeMappingSourceInterface> sources = ((ComplexAttributeMapping) realHint)
+												if (realHint instanceof AttributeMapping) {// ComplexAttributeMapping
+													final List<AttributeMappingSourceInterface> sources = ((AttributeMapping) realHint)
 															.getSourceAttributeMappings();
 													if (sources.size() > 0) {
-														ComplexAttributeMappingSourceInterface element;
-														if (prepend) {
-															element = sources
-																	.get(0);
-														} else {
-															element = sources
-																	.get(sources
-																			.size() - 1);
-														}
-
-														for (final Object m : selMap
-																.getHintValues()
-																.get(realHint)) {
-															@SuppressWarnings("unchecked")
-															final Map<ComplexAttributeMappingSourceInterface, String> map = (Map<ComplexAttributeMappingSourceInterface, String>) m;
-															if (map.containsKey(element)) {
-																if (prepend) {
-																	map.put(element,
-																			hintVal
-																					+ map.get(element));
-																} else {
-																	map.put(element,
-																			map.get(element)
-																					+ hintVal);
+														
+														if(((AttributeMapping) realHint).getExpression() != null && !((AttributeMapping) realHint).getExpression().isEmpty()) {
+															try {
+																final Calculable calc = new ExpressionBuilder(
+																		hintVal)
+																		.build();
+																final double variableVal = calc
+																		.calculate();
+																/*
+																 * parseDouble
+																 * doesn't support
+																 * Scientific
+																 * notation, like:
+																 * 0.42e2 == 4200e-2
+																 * == 42,
+																 */
+																final String varName = ((MappedAttributeValueExpanderType) h)
+																		.getSourceAttribute()
+																		.getName();
+																for (final Object m : selMap
+																		.getHintValues()
+																		.get(realHint)) {
+																	@SuppressWarnings("unchecked")
+																	final Map<AttributeMappingSourceInterface, String> map = (Map<AttributeMappingSourceInterface, String>) m;
+																	map.put((AttributeMappingSourceInterface) ((MappedAttributeValueExpanderType) h)
+																			.getSourceAttribute(),
+																			String.valueOf(variableVal));
 																}
+															} catch (final Exception e) {
+																consoleStream
+																		.println("Couldn't convert variable "
+																				+ ((MappedAttributeValueExpanderType) h)
+																						.getSourceAttribute()
+																						.getName()
+																				+ " of "
+																				+ h.getClass()
+																						.getName()
+																				+ " "
+																				+ h.getName()
+																				+ " from String to double. The problematic source element's attribute value was: "
+																				+ hintVal);
 															}
-														}
-													}
-												} else if (realHint instanceof CalculatorMapping) {// CalculatorMapping
-													final List<CalculatorMappingSourceInterface> sources = ((CalculatorMapping) realHint)
-															.getVariables();
-													if (sources.size() > 0) {
-														try {
-															final Calculable calc = new ExpressionBuilder(
-																	hintVal)
-																	.build();
-															final double variableVal = calc
-																	.calculate();
-															/*
-															 * parseDouble
-															 * doesn't support
-															 * Scientific
-															 * notation, like:
-															 * 0.42e2 == 4200e-2
-															 * == 42,
-															 */
-															final String varName = ((MappedAttributeValueExpanderType) h)
-																	.getSourceAttribute()
-																	.getName();
+														} else {
+															
+															AttributeMappingSourceInterface element;
+															if (prepend) {
+																element = sources
+																		.get(0);
+															} else {
+																element = sources
+																		.get(sources
+																				.size() - 1);
+															}
+															
 															for (final Object m : selMap
 																	.getHintValues()
 																	.get(realHint)) {
 																@SuppressWarnings("unchecked")
-																final Map<String, Double> map = (Map<String, Double>) m;
-																map.put(varName,
-																		variableVal);
+																final Map<AttributeMappingSourceInterface, String> map = (Map<AttributeMappingSourceInterface, String>) m;
+																if (map.containsKey(element)) {
+																	if (prepend) {
+																		map.put(element,
+																				hintVal
+																				+ map.get(element));
+																	} else {
+																		map.put(element,
+																				map.get(element)
+																				+ hintVal);
+																	}
+																}
 															}
-														} catch (final Exception e) {
-															consoleStream
-																	.println("Couldn't convert variable "
-																			+ ((MappedAttributeValueExpanderType) h)
-																					.getSourceAttribute()
-																					.getName()
-																			+ " of "
-																			+ h.getClass()
-																					.getName()
-																			+ " "
-																			+ h.getName()
-																			+ " from String to double. The problematic source element's attribute value was: "
-																			+ hintVal);
 														}
+														
 													}
 												}// TODO add any remaining
 													// hintValue changes here

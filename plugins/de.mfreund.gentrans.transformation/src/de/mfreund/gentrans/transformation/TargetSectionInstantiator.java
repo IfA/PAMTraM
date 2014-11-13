@@ -19,12 +19,11 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.mapping.AttributeMapping;
+import pamtram.mapping.AttributeMappingSourceElement;
+import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
-import pamtram.mapping.CalculatorMapping;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ClassMatcher;
-import pamtram.mapping.ComplexAttributeMapping;
-import pamtram.mapping.ComplexAttributeMappingSourceInterface;
 import pamtram.mapping.ComplexAttributeMatcher;
 import pamtram.mapping.ComplexAttributeMatcherSourceInterface;
 import pamtram.mapping.GlobalAttribute;
@@ -437,64 +436,75 @@ class TargetSectionInstantiator implements CancellationListener {
 				for (final EObjectTransformationHelper instance : instances) {
 					String attrValue = null;
 					if (attrHintValues != null) {
-						if (hintFound instanceof CalculatorMapping) {
-							try {
-								final Map<String, Double> vars = new HashMap<String, Double>();
-								vars.putAll(globalVarValueDoubles);
-								/*
-								 * Names of local (CalcMapping) variables will
-								 * overwrite names of global variables
-								 */
-								@SuppressWarnings("unchecked")
-								final Map<String, Double> varValues = (Map<String, Double>) attrHintValues
-								.remove(0);
-								vars.putAll(varValues);
+						if (hintFound instanceof AttributeMapping) {
+							attrValue = "";
+								
+							if(((AttributeMapping) hintFound).getExpression() != null && !((AttributeMapping) hintFound).getExpression().isEmpty()) {
+								try {
+									final Map<String, Double> vars = new HashMap<String, Double>();
+									vars.putAll(globalVarValueDoubles);
+									/*
+									 * Names of local (CalcMapping) variables will
+									 * overwrite names of global variables
+									 */
+									@SuppressWarnings("unchecked")
+									final Map<AttributeMappingSourceElement, String> varValues = (Map<AttributeMappingSourceElement, String>) attrHintValues
+									.remove(0);
+									final Map<String, Double> stringVarValues = new HashMap<String, Double>();
+									for (AttributeMappingSourceInterface s : varValues.keySet()) {
+										stringVarValues.put(s.getName(), Double.valueOf(varValues.get(s)));
+									}
+									
+									vars.putAll(stringVarValues);
 
-								attrValue = String
-										.valueOf(new ExpressionBuilder(
-												((CalculatorMapping) hintFound)
-												.getExpression())
-										// make calculation
-										.withCustomFunction(round)
-										.withCustomFunction(max)
-										.withCustomFunction(min)
-										.withVariables(vars).build()
-										.calculate());
-							} catch (final Exception e) {// TODO this will lead
-								// to a lot of error
-								// output if it
-								// fails
-								consoleStream
-								.println("Error parsing the expression of CalculatorMapping"
-										+ hintFound.getName()
-										+ ". Message:\n"
-										+ e.getMessage());
+									attrValue = String
+											.valueOf(new ExpressionBuilder(
+													((AttributeMapping) hintFound)
+													.getExpression())
+											// make calculation
+											.withCustomFunction(round)
+											.withCustomFunction(max)
+											.withCustomFunction(min)
+											.withVariables(vars).build()
+											.calculate());
+								} catch (final Exception e) {// TODO this will lead
+									// to a lot of error
+									// output if it
+									// fails
+									consoleStream
+									.println("Error parsing the expression of CalculatorMapping"
+											+ hintFound.getName()
+											+ ". Message:\n"
+											+ e.getMessage());
+								}
+							} else {
+								
+								@SuppressWarnings("unchecked")
+								final Map<AttributeMappingSourceInterface, String> hVal = (Map<AttributeMappingSourceInterface, String>) attrHintValues
+								.remove(0);
+								for (final AttributeMappingSourceInterface srcElement : ((AttributeMapping) hintFound)
+										.getSourceAttributeMappings()) {
+									if (hVal.containsKey(srcElement)) {
+										attrValue += hVal.get(srcElement);
+									} else {
+										consoleStream
+										.println("HintSourceValue not found for element "
+												+ srcElement.getName()
+												+ " in hint "
+												+ hintFound.getName() + ".");
+									}
+								}
 							}
+							
 							if (attrValue != null) {// apply resultModifiers if
 								// all went well
 								attrValue = attributeValuemodifier
 										.applyAttributeValueModifiers(
 												attrValue,
-												((CalculatorMapping) hintFound)
+												((AttributeMapping) hintFound)
 												.getResultModifier());
 							}
-						} else if (hintFound instanceof ComplexAttributeMapping) {
-							attrValue = "";
-							@SuppressWarnings("unchecked")
-							final Map<ComplexAttributeMappingSourceInterface, String> hVal = (Map<ComplexAttributeMappingSourceInterface, String>) attrHintValues
-							.remove(0);
-							for (final ComplexAttributeMappingSourceInterface srcElement : ((ComplexAttributeMapping) hintFound)
-									.getSourceAttributeMappings()) {
-								if (hVal.containsKey(srcElement)) {
-									attrValue += hVal.get(srcElement);
-								} else {
-									consoleStream
-									.println("HintSourceValue not found for element "
-											+ srcElement.getName()
-											+ " in hint "
-											+ hintFound.getName() + ".");
-								}
-							}
+							
 						} else {
 							attrValue = (String) attrHintValues.remove(0);
 						}

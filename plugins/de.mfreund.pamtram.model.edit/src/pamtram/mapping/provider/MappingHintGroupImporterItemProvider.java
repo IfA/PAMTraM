@@ -219,27 +219,17 @@ public class MappingHintGroupImporterItemProvider extends NamedElementItemProvid
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
+				 MappingFactory.eINSTANCE.createAttributeMapping()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
 				 MappingFactory.eINSTANCE.createCardinalityMapping()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
 				 MappingFactory.eINSTANCE.createMappingInstanceSelector()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
-				 MappingFactory.eINSTANCE.createSimpleAttributeMapping()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
-				 MappingFactory.eINSTANCE.createComplexAttributeMapping()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
-				 MappingFactory.eINSTANCE.createCalculatorMapping()));
 
 		newChildDescriptors.add
 			(createChildParameter

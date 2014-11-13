@@ -94,6 +94,29 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.AttributeMapping} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AttributeMappingItemProvider attributeMappingItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.AttributeMapping}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAttributeMappingAdapter() {
+		if (attributeMappingItemProvider == null) {
+			attributeMappingItemProvider = new AttributeMappingItemProvider(this);
+		}
+
+		return attributeMappingItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link pamtram.mapping.CardinalityMapping} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -393,118 +416,26 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.SimpleAttributeMapping} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.AttributeMappingSourceElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SimpleAttributeMappingItemProvider simpleAttributeMappingItemProvider;
+	protected AttributeMappingSourceElementItemProvider attributeMappingSourceElementItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.SimpleAttributeMapping}.
+	 * This creates an adapter for a {@link pamtram.mapping.AttributeMappingSourceElement}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createSimpleAttributeMappingAdapter() {
-		if (simpleAttributeMappingItemProvider == null) {
-			simpleAttributeMappingItemProvider = new SimpleAttributeMappingItemProvider(this);
+	public Adapter createAttributeMappingSourceElementAdapter() {
+		if (attributeMappingSourceElementItemProvider == null) {
+			attributeMappingSourceElementItemProvider = new AttributeMappingSourceElementItemProvider(this);
 		}
 
-		return simpleAttributeMappingItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ComplexAttributeMapping} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ComplexAttributeMappingItemProvider complexAttributeMappingItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ComplexAttributeMapping}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createComplexAttributeMappingAdapter() {
-		if (complexAttributeMappingItemProvider == null) {
-			complexAttributeMappingItemProvider = new ComplexAttributeMappingItemProvider(this);
-		}
-
-		return complexAttributeMappingItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ComplexAttributeMappingSourceElement} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ComplexAttributeMappingSourceElementItemProvider complexAttributeMappingSourceElementItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ComplexAttributeMappingSourceElement}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createComplexAttributeMappingSourceElementAdapter() {
-		if (complexAttributeMappingSourceElementItemProvider == null) {
-			complexAttributeMappingSourceElementItemProvider = new ComplexAttributeMappingSourceElementItemProvider(this);
-		}
-
-		return complexAttributeMappingSourceElementItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.CalculatorMapping} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected CalculatorMappingItemProvider calculatorMappingItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.CalculatorMapping}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createCalculatorMappingAdapter() {
-		if (calculatorMappingItemProvider == null) {
-			calculatorMappingItemProvider = new CalculatorMappingItemProvider(this);
-		}
-
-		return calculatorMappingItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ExpressionVariable} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ExpressionVariableItemProvider expressionVariableItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ExpressionVariable}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createExpressionVariableAdapter() {
-		if (expressionVariableItemProvider == null) {
-			expressionVariableItemProvider = new ExpressionVariableItemProvider(this);
-		}
-
-		return expressionVariableItemProvider;
+		return attributeMappingSourceElementItemProvider;
 	}
 
 	/**
@@ -784,29 +715,6 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ExternalExpressionVariable} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ExternalExpressionVariableItemProvider externalExpressionVariableItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ExternalExpressionVariable}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createExternalExpressionVariableAdapter() {
-		if (externalExpressionVariableItemProvider == null) {
-			externalExpressionVariableItemProvider = new ExternalExpressionVariableItemProvider(this);
-		}
-
-		return externalExpressionVariableItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ComplexAttributeMatcherExternalSourceElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1044,6 +952,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	 */
 	public void dispose() {
 		if (mappingItemProvider != null) mappingItemProvider.dispose();
+		if (attributeMappingItemProvider != null) attributeMappingItemProvider.dispose();
 		if (cardinalityMappingItemProvider != null) cardinalityMappingItemProvider.dispose();
 		if (mappingInstanceSelectorItemProvider != null) mappingInstanceSelectorItemProvider.dispose();
 		if (classMatcherItemProvider != null) classMatcherItemProvider.dispose();
@@ -1057,11 +966,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (mappingHintGroupImporterItemProvider != null) mappingHintGroupImporterItemProvider.dispose();
 		if (exportedMappingHintGroupItemProvider != null) exportedMappingHintGroupItemProvider.dispose();
 		if (connectionHintTargetAttributeItemProvider != null) connectionHintTargetAttributeItemProvider.dispose();
-		if (simpleAttributeMappingItemProvider != null) simpleAttributeMappingItemProvider.dispose();
-		if (complexAttributeMappingItemProvider != null) complexAttributeMappingItemProvider.dispose();
-		if (complexAttributeMappingSourceElementItemProvider != null) complexAttributeMappingSourceElementItemProvider.dispose();
-		if (calculatorMappingItemProvider != null) calculatorMappingItemProvider.dispose();
-		if (expressionVariableItemProvider != null) expressionVariableItemProvider.dispose();
+		if (attributeMappingSourceElementItemProvider != null) attributeMappingSourceElementItemProvider.dispose();
 		if (complexAttributeMatcherItemProvider != null) complexAttributeMatcherItemProvider.dispose();
 		if (simpleAttributeMatcherItemProvider != null) simpleAttributeMatcherItemProvider.dispose();
 		if (complexAttributeMatcherSourceElementItemProvider != null) complexAttributeMatcherSourceElementItemProvider.dispose();
@@ -1074,7 +979,6 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (globalAttributeImporterItemProvider != null) globalAttributeImporterItemProvider.dispose();
 		if (complexAttributeMappingExternalSourceElementItemProvider != null) complexAttributeMappingExternalSourceElementItemProvider.dispose();
 		if (complexModelConnectionHintExternalSourceElementItemProvider != null) complexModelConnectionHintExternalSourceElementItemProvider.dispose();
-		if (externalExpressionVariableItemProvider != null) externalExpressionVariableItemProvider.dispose();
 		if (complexAttributeMatcherExternalSourceElementItemProvider != null) complexAttributeMatcherExternalSourceElementItemProvider.dispose();
 		if (externalMappedAttributeValuePrependerItemProvider != null) externalMappedAttributeValuePrependerItemProvider.dispose();
 		if (externalMappedAttributeValueAppenderItemProvider != null) externalMappedAttributeValueAppenderItemProvider.dispose();

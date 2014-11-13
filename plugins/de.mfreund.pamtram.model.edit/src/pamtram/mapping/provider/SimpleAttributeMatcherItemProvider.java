@@ -9,7 +9,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -21,7 +20,6 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import pamtram.PamtramPackage;
 import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.AttributeValueModifierSet;
@@ -180,9 +178,9 @@ public class SimpleAttributeMatcherItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_AttributeMappingSourceElementWithModifiers_modifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeMappingSourceElementWithModifiers_modifier_feature", "_UI_AttributeMappingSourceElementWithModifiers_type"),
-				 MappingPackage.Literals.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS__MODIFIER,
+				 getString("_UI_AttributeMappingSourceElementType_modifier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeMappingSourceElementType_modifier_feature", "_UI_AttributeMappingSourceElementType_type"),
+				 MappingPackage.Literals.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER,
 				 true,
 				 false,
 				 true,
@@ -277,7 +275,7 @@ public class SimpleAttributeMatcherItemProvider
 					operation, collection); 
 		} else {
 			return new BasicDragAndDropAddCommand(domain, (EObject) owner, 
-					MappingPackage.Literals.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS__MODIFIER, values);
+					MappingPackage.Literals.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER, values);
 		}
 	}
 

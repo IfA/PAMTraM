@@ -146,9 +146,9 @@ public class SimpleModelConnectionHintItemProvider extends ModelConnectionHintIt
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_AttributeMappingSourceElementWithModifiers_modifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeMappingSourceElementWithModifiers_modifier_feature", "_UI_AttributeMappingSourceElementWithModifiers_type"),
-				 MappingPackage.Literals.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_WITH_MODIFIERS__MODIFIER,
+				 getString("_UI_AttributeMappingSourceElementType_modifier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeMappingSourceElementType_modifier_feature", "_UI_AttributeMappingSourceElementType_type"),
+				 MappingPackage.Literals.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER,
 				 true,
 				 false,
 				 true,

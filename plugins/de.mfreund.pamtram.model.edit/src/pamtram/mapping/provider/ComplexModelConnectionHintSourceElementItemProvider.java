@@ -18,7 +18,7 @@ import pamtram.mapping.ComplexModelConnectionHintSourceElement;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ComplexModelConnectionHintSourceElementItemProvider extends AttributeMappingSourceElementWithModifiersItemProvider {
+public class ComplexModelConnectionHintSourceElementItemProvider extends AttributeMappingSourceElementTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

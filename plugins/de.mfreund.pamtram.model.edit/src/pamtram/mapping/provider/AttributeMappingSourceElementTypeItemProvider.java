@@ -13,6 +13,8 @@ import java.util.Set;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -21,10 +23,12 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
 import pamtram.mapping.AttributeMappingSourceElementType;
+import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.commands.BasicDragAndDropAddCommand;
 import pamtram.mapping.commands.BasicDragAndDropSetCommand;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.SourceSectionAttribute;
@@ -62,6 +66,7 @@ public class AttributeMappingSourceElementTypeItemProvider
 			super.getPropertyDescriptors(object);
 
 			addSourcePropertyDescriptor(object);
+			addModifierPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -140,6 +145,28 @@ public class AttributeMappingSourceElementTypeItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Modifier feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addModifierPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AttributeMappingSourceElementType_modifier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeMappingSourceElementType_modifier_feature", "_UI_AttributeMappingSourceElementType_type"),
+				 MappingPackage.Literals.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -204,8 +231,25 @@ public class AttributeMappingSourceElementTypeItemProvider
 			}
 		}
 		
-		return super.createDragAndDropCommand(domain, owner, location, operations,
+		EList<AttributeValueModifierSet> values = new BasicEList<AttributeValueModifierSet>();
+		for(Iterator<?> iter = collection.iterator(); iter.hasNext(); ) {
+			Object value = iter.next();
+			if(value instanceof AttributeValueModifierSet) {
+				values.add((AttributeValueModifierSet) value);
+			} else {
+				return super.createDragAndDropCommand(domain, owner, location, operations,
+						operation, collection); 
+			}
+		}
+		
+		if(values.isEmpty()) {
+			return super.createDragAndDropCommand(domain, owner, location, operations,
 					operation, collection); 
+		} else {
+			return new BasicDragAndDropAddCommand(domain, (EObject) owner, 
+					MappingPackage.Literals.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER, values);
+		}
+		
 	}
 
 }

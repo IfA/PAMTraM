@@ -30,7 +30,7 @@ import pamtram.metamodel.SourceSectionContainmentReference;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ExternalAttributeMappingSourceElementItemProvider extends AttributeMappingSourceElementWithModifiersItemProvider {
+public class ExternalAttributeMappingSourceElementItemProvider extends AttributeMappingSourceElementTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

@@ -3,16 +3,12 @@
 package pamtram.mapping.impl;
 
 import java.lang.reflect.InvocationTargetException;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import pamtram.mapping.ComplexMappingHintSourceInterface;
 import pamtram.mapping.ComplexModelConnectionHintExternalSourceElement;
-import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
 import pamtram.mapping.MappingPackage;
-
+import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.metamodel.SourceSectionAttribute;
 
 /**
@@ -44,12 +40,16 @@ public class ComplexModelConnectionHintExternalSourceElementImpl extends Externa
 		return MappingPackage.Literals.COMPLEX_MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT;
 	}
 
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	public SourceSectionAttribute getSourceAttribute() {
-		return this.getSource();
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class ComplexModelConnectionHintExternalSourceElementImpl extends Externa
 				default: return -1;
 			}
 		}
-		if (baseClass == ComplexModelConnectionHintSourceInterface.class) {
+		if (baseClass == ModelConnectionHintSourceInterface.class) {
 			switch (baseOperationID) {
 				default: return -1;
 			}

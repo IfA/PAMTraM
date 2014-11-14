@@ -2,6 +2,8 @@
  */
 package pamtram.mapping;
 
+import pamtram.metamodel.SourceSectionAttribute;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -13,5 +15,5 @@ package pamtram.mapping;
  * @model
  * @generated
  */
-public interface SimpleAttributeMatcher extends AttributeMatcher, AttributeMappingSourceElementType {
+public interface SimpleAttributeMatcher extends AttributeMatcher, AttributeMappingSourceElementType<SourceSectionAttribute> {
 } // SimpleAttributeMatcher

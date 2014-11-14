@@ -124,24 +124,20 @@ public class MappingValidator extends EObjectValidator {
 				return validateExportedMappingHintGroup((ExportedMappingHintGroup)value, diagnostics, context);
 			case MappingPackage.MODEL_CONNECTION_HINT:
 				return validateModelConnectionHint((ModelConnectionHint)value, diagnostics, context);
-			case MappingPackage.CONNECTION_HINT_TARGET_ATTRIBUTE:
-				return validateConnectionHintTargetAttribute((ConnectionHintTargetAttribute)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT:
 				return validateAttributeMappingSourceElement((AttributeMappingSourceElement)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE:
-				return validateAttributeMappingSourceElementType((AttributeMappingSourceElementType)value, diagnostics, context);
+				return validateAttributeMappingSourceElementType((AttributeMappingSourceElementType<?>)value, diagnostics, context);
 			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER:
 				return validateComplexAttributeMatcher((ComplexAttributeMatcher)value, diagnostics, context);
 			case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER:
 				return validateSimpleAttributeMatcher((SimpleAttributeMatcher)value, diagnostics, context);
 			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT:
 				return validateComplexAttributeMatcherSourceElement((ComplexAttributeMatcherSourceElement)value, diagnostics, context);
-			case MappingPackage.SIMPLE_MODEL_CONNECTION_HINT:
-				return validateSimpleModelConnectionHint((SimpleModelConnectionHint)value, diagnostics, context);
-			case MappingPackage.COMPLEX_MODEL_CONNECTION_HINT:
-				return validateComplexModelConnectionHint((ComplexModelConnectionHint)value, diagnostics, context);
-			case MappingPackage.COMPLEX_MODEL_CONNECTION_HINT_SOURCE_ELEMENT:
-				return validateComplexModelConnectionHintSourceElement((ComplexModelConnectionHintSourceElement)value, diagnostics, context);
+			case MappingPackage.MODEL_CONNECTION_HINT_SOURCE_ELEMENT:
+				return validateModelConnectionHintSourceElement((ModelConnectionHintSourceElement)value, diagnostics, context);
+			case MappingPackage.MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE:
+				return validateModelConnectionHintTargetAttribute((ModelConnectionHintTargetAttribute)value, diagnostics, context);
 			case MappingPackage.MAPPING_HINT_TYPE:
 				return validateMappingHintType((MappingHintType)value, diagnostics, context);
 			case MappingPackage.HINT_IMPORTER_MAPPING_HINT:
@@ -164,8 +160,8 @@ public class MappingValidator extends EObjectValidator {
 				return validateComplexMappingHintSourceInterface((ComplexMappingHintSourceInterface)value, diagnostics, context);
 			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER_SOURCE_INTERFACE:
 				return validateComplexAttributeMatcherSourceInterface((ComplexAttributeMatcherSourceInterface)value, diagnostics, context);
-			case MappingPackage.COMPLEX_MODEL_CONNECTION_HINT_SOURCE_INTERFACE:
-				return validateComplexModelConnectionHintSourceInterface((ComplexModelConnectionHintSourceInterface)value, diagnostics, context);
+			case MappingPackage.MODEL_CONNECTION_HINT_SOURCE_INTERFACE:
+				return validateModelConnectionHintSourceInterface((ModelConnectionHintSourceInterface)value, diagnostics, context);
 			case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT:
 				return validateComplexAttributeMappingExternalSourceElement((ComplexAttributeMappingExternalSourceElement)value, diagnostics, context);
 			case MappingPackage.EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT:
@@ -582,15 +578,6 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateConnectionHintTargetAttribute(ConnectionHintTargetAttribute connectionHintTargetAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(connectionHintTargetAttribute, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateAttributeMappingSourceElement(AttributeMappingSourceElement attributeMappingSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(attributeMappingSourceElement, diagnostics, context);
 	}
@@ -600,7 +587,7 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateAttributeMappingSourceElementType(AttributeMappingSourceElementType attributeMappingSourceElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateAttributeMappingSourceElementType(AttributeMappingSourceElementType<?> attributeMappingSourceElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(attributeMappingSourceElementType, diagnostics, context);
 	}
 
@@ -636,8 +623,8 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSimpleModelConnectionHint(SimpleModelConnectionHint simpleModelConnectionHint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(simpleModelConnectionHint, diagnostics, context);
+	public boolean validateModelConnectionHintSourceElement(ModelConnectionHintSourceElement modelConnectionHintSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(modelConnectionHintSourceElement, diagnostics, context);
 	}
 
 	/**
@@ -645,17 +632,8 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateComplexModelConnectionHint(ComplexModelConnectionHint complexModelConnectionHint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(complexModelConnectionHint, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateComplexModelConnectionHintSourceElement(ComplexModelConnectionHintSourceElement complexModelConnectionHintSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(complexModelConnectionHintSourceElement, diagnostics, context);
+	public boolean validateModelConnectionHintTargetAttribute(ModelConnectionHintTargetAttribute modelConnectionHintTargetAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(modelConnectionHintTargetAttribute, diagnostics, context);
 	}
 
 	/**
@@ -762,8 +740,8 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateComplexModelConnectionHintSourceInterface(ComplexModelConnectionHintSourceInterface complexModelConnectionHintSourceInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(complexModelConnectionHintSourceInterface, diagnostics, context);
+	public boolean validateModelConnectionHintSourceInterface(ModelConnectionHintSourceInterface modelConnectionHintSourceInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(modelConnectionHintSourceInterface, diagnostics, context);
 	}
 
 	/**

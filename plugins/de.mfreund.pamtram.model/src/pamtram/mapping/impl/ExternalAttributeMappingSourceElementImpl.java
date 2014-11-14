@@ -5,6 +5,7 @@ package pamtram.mapping.impl;
 import org.eclipse.emf.ecore.EClass;
 import pamtram.mapping.ExternalAttributeMappingSourceElement;
 import pamtram.mapping.MappingPackage;
+import pamtram.metamodel.SourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,7 +16,7 @@ import pamtram.mapping.MappingPackage;
  *
  * @generated
  */
-public abstract class ExternalAttributeMappingSourceElementImpl extends AttributeMappingSourceElementTypeImpl implements ExternalAttributeMappingSourceElement {
+public abstract class ExternalAttributeMappingSourceElementImpl extends AttributeMappingSourceElementTypeImpl<SourceSectionAttribute> implements ExternalAttributeMappingSourceElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -33,6 +34,17 @@ public abstract class ExternalAttributeMappingSourceElementImpl extends Attribut
 	@Override
 	protected EClass eStaticClass() {
 		return MappingPackage.Literals.EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific type known in this context.
+	 * @generated
+	 */
+	@Override
+	public void setSource(SourceSectionAttribute newSource) {
+		super.setSource(newSource);
 	}
 
 } //ExternalAttributeMappingSourceElementImpl

@@ -12,10 +12,10 @@ import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.ComplexAttributeMatcherSourceInterface;
 import pamtram.mapping.ComplexMappingHintSourceInterface;
-import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.metamodel.SourceSectionAttribute;
 
 /**
@@ -193,7 +193,7 @@ public class GlobalAttributeImporterImpl extends NamedElementImpl implements Glo
 				default: return -1;
 			}
 		}
-		if (baseClass == ComplexModelConnectionHintSourceInterface.class) {
+		if (baseClass == ModelConnectionHintSourceInterface.class) {
 			switch (baseOperationID) {
 				default: return -1;
 			}

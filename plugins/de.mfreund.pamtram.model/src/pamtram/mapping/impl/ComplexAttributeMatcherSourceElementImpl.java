@@ -20,7 +20,7 @@ import pamtram.metamodel.SourceSectionAttribute;
  *
  * @generated
  */
-public class ComplexAttributeMatcherSourceElementImpl extends AttributeMappingSourceElementTypeImpl implements ComplexAttributeMatcherSourceElement {
+public class ComplexAttributeMatcherSourceElementImpl extends AttributeMappingSourceElementTypeImpl<SourceSectionAttribute> implements ComplexAttributeMatcherSourceElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -38,6 +38,17 @@ public class ComplexAttributeMatcherSourceElementImpl extends AttributeMappingSo
 	@Override
 	protected EClass eStaticClass() {
 		return MappingPackage.Literals.COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific type known in this context.
+	 * @generated
+	 */
+	@Override
+	public void setSource(SourceSectionAttribute newSource) {
+		super.setSource(newSource);
 	}
 
 	/**

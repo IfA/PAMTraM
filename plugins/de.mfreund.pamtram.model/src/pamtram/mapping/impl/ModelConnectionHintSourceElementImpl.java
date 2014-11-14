@@ -8,29 +8,29 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
-import pamtram.mapping.AttributeMappingSourceElement;
-import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.ComplexMappingHintSourceInterface;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.ModelConnectionHintSourceElement;
+import pamtram.mapping.ModelConnectionHintSourceInterface;
 
 import pamtram.metamodel.SourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Attribute Mapping Source Element</b></em>'.
+ * An implementation of the model object '<em><b>Model Connection Hint Source Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class AttributeMappingSourceElementImpl extends AttributeMappingSourceElementTypeImpl<SourceSectionAttribute> implements AttributeMappingSourceElement {
+public class ModelConnectionHintSourceElementImpl extends AttributeMappingSourceElementTypeImpl<SourceSectionAttribute> implements ModelConnectionHintSourceElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AttributeMappingSourceElementImpl() {
+	protected ModelConnectionHintSourceElementImpl() {
 		super();
 	}
 
@@ -41,7 +41,7 @@ public class AttributeMappingSourceElementImpl extends AttributeMappingSourceEle
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.ATTRIBUTE_MAPPING_SOURCE_ELEMENT;
+		return MappingPackage.Literals.MODEL_CONNECTION_HINT_SOURCE_ELEMENT;
 	}
 
 	/**
@@ -58,9 +58,12 @@ public class AttributeMappingSourceElementImpl extends AttributeMappingSourceEle
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	public SourceSectionAttribute getSourceAttribute() {
-		return this.getSource();
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -72,12 +75,12 @@ public class AttributeMappingSourceElementImpl extends AttributeMappingSourceEle
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == ComplexMappingHintSourceInterface.class) {
 			switch (baseOperationID) {
-				case MappingPackage.COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE;
-				case MappingPackage.COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_NAME: return MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT___GET_NAME;
+				case MappingPackage.COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return MappingPackage.MODEL_CONNECTION_HINT_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE;
+				case MappingPackage.COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_NAME: return MappingPackage.MODEL_CONNECTION_HINT_SOURCE_ELEMENT___GET_NAME;
 				default: return -1;
 			}
 		}
-		if (baseClass == AttributeMappingSourceInterface.class) {
+		if (baseClass == ModelConnectionHintSourceInterface.class) {
 			switch (baseOperationID) {
 				default: return -1;
 			}
@@ -93,10 +96,10 @@ public class AttributeMappingSourceElementImpl extends AttributeMappingSourceEle
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE:
+			case MappingPackage.MODEL_CONNECTION_HINT_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE:
 				return getSourceAttribute();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
-} //AttributeMappingSourceElementImpl
+} //ModelConnectionHintSourceElementImpl

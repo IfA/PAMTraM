@@ -13,5 +13,5 @@ package pamtram.mapping;
  * @model
  * @generated
  */
-public interface ComplexModelConnectionHintExternalSourceElement extends ExternalAttributeMappingSourceElement, ComplexModelConnectionHintSourceInterface {
+public interface ComplexModelConnectionHintExternalSourceElement extends ExternalAttributeMappingSourceElement, ModelConnectionHintSourceInterface {
 } // ComplexModelConnectionHintExternalSourceElement

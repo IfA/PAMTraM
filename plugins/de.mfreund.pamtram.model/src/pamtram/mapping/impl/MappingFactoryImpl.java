@@ -67,14 +67,13 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.INSTANTIABLE_MAPPING_HINT_GROUP: return createInstantiableMappingHintGroup();
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER: return createMappingHintGroupImporter();
 			case MappingPackage.EXPORTED_MAPPING_HINT_GROUP: return createExportedMappingHintGroup();
-			case MappingPackage.CONNECTION_HINT_TARGET_ATTRIBUTE: return createConnectionHintTargetAttribute();
+			case MappingPackage.MODEL_CONNECTION_HINT: return createModelConnectionHint();
 			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT: return createAttributeMappingSourceElement();
 			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER: return createComplexAttributeMatcher();
 			case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER: return createSimpleAttributeMatcher();
 			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT: return createComplexAttributeMatcherSourceElement();
-			case MappingPackage.SIMPLE_MODEL_CONNECTION_HINT: return createSimpleModelConnectionHint();
-			case MappingPackage.COMPLEX_MODEL_CONNECTION_HINT: return createComplexModelConnectionHint();
-			case MappingPackage.COMPLEX_MODEL_CONNECTION_HINT_SOURCE_ELEMENT: return createComplexModelConnectionHintSourceElement();
+			case MappingPackage.MODEL_CONNECTION_HINT_SOURCE_ELEMENT: return createModelConnectionHintSourceElement();
+			case MappingPackage.MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE: return createModelConnectionHintTargetAttribute();
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_PREPENDER: return createMappedAttributeValuePrepender();
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_APPENDER: return createMappedAttributeValueAppender();
 			case MappingPackage.GLOBAL_ATTRIBUTE: return createGlobalAttribute();
@@ -237,9 +236,9 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConnectionHintTargetAttribute createConnectionHintTargetAttribute() {
-		ConnectionHintTargetAttributeImpl connectionHintTargetAttribute = new ConnectionHintTargetAttributeImpl();
-		return connectionHintTargetAttribute;
+	public ModelConnectionHint createModelConnectionHint() {
+		ModelConnectionHintImpl modelConnectionHint = new ModelConnectionHintImpl();
+		return modelConnectionHint;
 	}
 
 	/**
@@ -287,9 +286,9 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SimpleModelConnectionHint createSimpleModelConnectionHint() {
-		SimpleModelConnectionHintImpl simpleModelConnectionHint = new SimpleModelConnectionHintImpl();
-		return simpleModelConnectionHint;
+	public ModelConnectionHintSourceElement createModelConnectionHintSourceElement() {
+		ModelConnectionHintSourceElementImpl modelConnectionHintSourceElement = new ModelConnectionHintSourceElementImpl();
+		return modelConnectionHintSourceElement;
 	}
 
 	/**
@@ -297,19 +296,9 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComplexModelConnectionHint createComplexModelConnectionHint() {
-		ComplexModelConnectionHintImpl complexModelConnectionHint = new ComplexModelConnectionHintImpl();
-		return complexModelConnectionHint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ComplexModelConnectionHintSourceElement createComplexModelConnectionHintSourceElement() {
-		ComplexModelConnectionHintSourceElementImpl complexModelConnectionHintSourceElement = new ComplexModelConnectionHintSourceElementImpl();
-		return complexModelConnectionHintSourceElement;
+	public ModelConnectionHintTargetAttribute createModelConnectionHintTargetAttribute() {
+		ModelConnectionHintTargetAttributeImpl modelConnectionHintTargetAttribute = new ModelConnectionHintTargetAttributeImpl();
+		return modelConnectionHintTargetAttribute;
 	}
 
 	/**

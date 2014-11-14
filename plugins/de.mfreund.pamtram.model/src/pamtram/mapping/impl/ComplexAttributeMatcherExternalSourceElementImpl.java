@@ -44,12 +44,16 @@ public class ComplexAttributeMatcherExternalSourceElementImpl extends ExternalAt
 		return MappingPackage.Literals.COMPLEX_ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT;
 	}
 
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	public SourceSectionAttribute getSourceAttribute() {
-		return this.getSource();
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**

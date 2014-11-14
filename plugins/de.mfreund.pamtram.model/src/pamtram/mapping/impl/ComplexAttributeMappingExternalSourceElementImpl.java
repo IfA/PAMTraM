@@ -47,14 +47,6 @@ public class ComplexAttributeMappingExternalSourceElementImpl extends ExternalAt
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 */
-	public SourceSectionAttribute getSourceAttribute() {
-		return this.getSource();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -86,6 +78,12 @@ public class ComplexAttributeMappingExternalSourceElementImpl extends ExternalAt
 				return getSourceAttribute();
 		}
 		return super.eInvoke(operationID, arguments);
+	}
+
+	@Override
+	public SourceSectionAttribute getSourceAttribute() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 } //ComplexAttributeMappingExternalSourceElementImpl

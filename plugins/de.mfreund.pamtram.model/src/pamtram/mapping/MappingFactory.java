@@ -148,13 +148,13 @@ public interface MappingFactory extends EFactory {
 	ExportedMappingHintGroup createExportedMappingHintGroup();
 
 	/**
-	 * Returns a new object of class '<em>Connection Hint Target Attribute</em>'.
+	 * Returns a new object of class '<em>Model Connection Hint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Connection Hint Target Attribute</em>'.
+	 * @return a new object of class '<em>Model Connection Hint</em>'.
 	 * @generated
 	 */
-	ConnectionHintTargetAttribute createConnectionHintTargetAttribute();
+	ModelConnectionHint createModelConnectionHint();
 
 	/**
 	 * Returns a new object of class '<em>Attribute Mapping Source Element</em>'.
@@ -193,31 +193,22 @@ public interface MappingFactory extends EFactory {
 	ComplexAttributeMatcherSourceElement createComplexAttributeMatcherSourceElement();
 
 	/**
-	 * Returns a new object of class '<em>Simple Model Connection Hint</em>'.
+	 * Returns a new object of class '<em>Model Connection Hint Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Simple Model Connection Hint</em>'.
+	 * @return a new object of class '<em>Model Connection Hint Source Element</em>'.
 	 * @generated
 	 */
-	SimpleModelConnectionHint createSimpleModelConnectionHint();
+	ModelConnectionHintSourceElement createModelConnectionHintSourceElement();
 
 	/**
-	 * Returns a new object of class '<em>Complex Model Connection Hint</em>'.
+	 * Returns a new object of class '<em>Model Connection Hint Target Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Complex Model Connection Hint</em>'.
+	 * @return a new object of class '<em>Model Connection Hint Target Attribute</em>'.
 	 * @generated
 	 */
-	ComplexModelConnectionHint createComplexModelConnectionHint();
-
-	/**
-	 * Returns a new object of class '<em>Complex Model Connection Hint Source Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Complex Model Connection Hint Source Element</em>'.
-	 * @generated
-	 */
-	ComplexModelConnectionHintSourceElement createComplexModelConnectionHintSourceElement();
+	ModelConnectionHintTargetAttribute createModelConnectionHintTargetAttribute();
 
 	/**
 	 * Returns a new object of class '<em>Mapped Attribute Value Prepender</em>'.

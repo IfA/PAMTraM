@@ -196,7 +196,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappingHintType()
 	 * @generated
 	 */
-	int MAPPING_HINT_TYPE = 30;
+	int MAPPING_HINT_TYPE = 28;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1175,13 +1175,22 @@ public interface MappingPackage extends EPackage {
 	int MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_CONNECTION_HINT__SOURCE_ELEMENTS = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Model Connection Hint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int MODEL_CONNECTION_HINT_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Get Source Attributes</em>' operation.
@@ -1193,60 +1202,22 @@ public interface MappingPackage extends EPackage {
 	int MODEL_CONNECTION_HINT___GET_SOURCE_ATTRIBUTES = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Get Local Source Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_CONNECTION_HINT___GET_LOCAL_SOURCE_ELEMENTS = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Model Connection Hint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
-
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ConnectionHintTargetAttributeImpl <em>Connection Hint Target Attribute</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ConnectionHintTargetAttributeImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getConnectionHintTargetAttribute()
-	 * @generated
-	 */
-	int CONNECTION_HINT_TARGET_ATTRIBUTE = 21;
-
-	/**
-	 * The feature id for the '<em><b>Target Attribute</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONNECTION_HINT_TARGET_ATTRIBUTE__TARGET_ATTRIBUTE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONNECTION_HINT_TARGET_ATTRIBUTE__MODIFIER = 1;
-
-	/**
-	 * The number of structural features of the '<em>Connection Hint Target Attribute</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONNECTION_HINT_TARGET_ATTRIBUTE_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Connection Hint Target Attribute</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONNECTION_HINT_TARGET_ATTRIBUTE_OPERATION_COUNT = 0;
+	int MODEL_CONNECTION_HINT_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
 
 
 	/**
@@ -1257,7 +1228,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMappingSourceElementType()
 	 * @generated
 	 */
-	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE = 23;
+	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1312,7 +1283,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMappingSourceElement()
 	 * @generated
 	 */
-	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT = 22;
+	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT = 21;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1385,7 +1356,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexAttributeMatcher()
 	 * @generated
 	 */
-	int COMPLEX_ATTRIBUTE_MATCHER = 24;
+	int COMPLEX_ATTRIBUTE_MATCHER = 23;
 
 	/**
 	 * The feature id for the '<em><b>Target Attribute</b></em>' reference.
@@ -1440,7 +1411,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getSimpleAttributeMatcher()
 	 * @generated
 	 */
-	int SIMPLE_ATTRIBUTE_MATCHER = 25;
+	int SIMPLE_ATTRIBUTE_MATCHER = 24;
 
 	/**
 	 * The feature id for the '<em><b>Target Attribute</b></em>' reference.
@@ -1504,7 +1475,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexAttributeMatcherSourceElement()
 	 * @generated
 	 */
-	int COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT = 26;
+	int COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT = 25;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1534,36 +1505,6 @@ public interface MappingPackage extends EPackage {
 	int COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT__MODIFIER = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.SimpleModelConnectionHintImpl <em>Simple Model Connection Hint</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.SimpleModelConnectionHintImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getSimpleModelConnectionHint()
-	 * @generated
-	 */
-	int SIMPLE_MODEL_CONNECTION_HINT = 27;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ComplexModelConnectionHintImpl <em>Complex Model Connection Hint</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ComplexModelConnectionHintImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexModelConnectionHint()
-	 * @generated
-	 */
-	int COMPLEX_MODEL_CONNECTION_HINT = 28;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ComplexModelConnectionHintSourceElementImpl <em>Complex Model Connection Hint Source Element</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ComplexModelConnectionHintSourceElementImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexModelConnectionHintSourceElement()
-	 * @generated
-	 */
-	int COMPLEX_MODEL_CONNECTION_HINT_SOURCE_ELEMENT = 29;
-
-	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.HintImporterMappingHintImpl <em>Hint Importer Mapping Hint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1571,7 +1512,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getHintImporterMappingHint()
 	 * @generated
 	 */
-	int HINT_IMPORTER_MAPPING_HINT = 31;
+	int HINT_IMPORTER_MAPPING_HINT = 29;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappedAttributeValueExpanderTypeImpl <em>Mapped Attribute Value Expander Type</em>}' class.
@@ -1581,7 +1522,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValueExpanderType()
 	 * @generated
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE = 33;
+	int MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE = 31;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappedAttributeValueExpanderImpl <em>Mapped Attribute Value Expander</em>}' class.
@@ -1591,7 +1532,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValueExpander()
 	 * @generated
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_EXPANDER = 32;
+	int MAPPED_ATTRIBUTE_VALUE_EXPANDER = 30;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappedAttributeValuePrependerImpl <em>Mapped Attribute Value Prepender</em>}' class.
@@ -1601,7 +1542,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValuePrepender()
 	 * @generated
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_PREPENDER = 34;
+	int MAPPED_ATTRIBUTE_VALUE_PREPENDER = 32;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappedAttributeValueAppenderImpl <em>Mapped Attribute Value Appender</em>}' class.
@@ -1611,7 +1552,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValueAppender()
 	 * @generated
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_APPENDER = 35;
+	int MAPPED_ATTRIBUTE_VALUE_APPENDER = 33;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.GlobalAttributeImpl <em>Global Attribute</em>}' class.
@@ -1621,7 +1562,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalAttribute()
 	 * @generated
 	 */
-	int GLOBAL_ATTRIBUTE = 36;
+	int GLOBAL_ATTRIBUTE = 34;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.GlobalAttributeImporterImpl <em>Global Attribute Importer</em>}' class.
@@ -1631,7 +1572,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalAttributeImporter()
 	 * @generated
 	 */
-	int GLOBAL_ATTRIBUTE_IMPORTER = 37;
+	int GLOBAL_ATTRIBUTE_IMPORTER = 35;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.AttributeMappingSourceInterface <em>Attribute Mapping Source Interface</em>}' class.
@@ -1641,7 +1582,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMappingSourceInterface()
 	 * @generated
 	 */
-	int ATTRIBUTE_MAPPING_SOURCE_INTERFACE = 38;
+	int ATTRIBUTE_MAPPING_SOURCE_INTERFACE = 36;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.ComplexMappingHintSourceInterface <em>Complex Mapping Hint Source Interface</em>}' class.
@@ -1651,7 +1592,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexMappingHintSourceInterface()
 	 * @generated
 	 */
-	int COMPLEX_MAPPING_HINT_SOURCE_INTERFACE = 39;
+	int COMPLEX_MAPPING_HINT_SOURCE_INTERFACE = 37;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.ComplexAttributeMatcherSourceInterface <em>Complex Attribute Matcher Source Interface</em>}' class.
@@ -1661,7 +1602,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexAttributeMatcherSourceInterface()
 	 * @generated
 	 */
-	int COMPLEX_ATTRIBUTE_MATCHER_SOURCE_INTERFACE = 40;
+	int COMPLEX_ATTRIBUTE_MATCHER_SOURCE_INTERFACE = 38;
 
 	/**
 	 * The number of structural features of the '<em>Complex Attribute Matcher Source Element</em>' class.
@@ -1700,22 +1641,23 @@ public interface MappingPackage extends EPackage {
 	int COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT_OPERATION_COUNT = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE_OPERATION_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.ModelConnectionHintSourceElementImpl <em>Model Connection Hint Source Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.ModelConnectionHintSourceElementImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHintSourceElement()
+	 * @generated
+	 */
+	int MODEL_CONNECTION_HINT_SOURCE_ELEMENT = 26;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_MODEL_CONNECTION_HINT__NAME = MODEL_CONNECTION_HINT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Target Attributes</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE_MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES = MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES;
+	int MODEL_CONNECTION_HINT_SOURCE_ELEMENT__NAME = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -1724,7 +1666,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_MODEL_CONNECTION_HINT__SOURCE = MODEL_CONNECTION_HINT_FEATURE_COUNT + 0;
+	int MODEL_CONNECTION_HINT_SOURCE_ELEMENT__SOURCE = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
@@ -1733,143 +1675,16 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_MODEL_CONNECTION_HINT__MODIFIER = MODEL_CONNECTION_HINT_FEATURE_COUNT + 1;
+	int MODEL_CONNECTION_HINT_SOURCE_ELEMENT__MODIFIER = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER;
 
 	/**
-	 * The number of structural features of the '<em>Simple Model Connection Hint</em>' class.
+	 * The number of structural features of the '<em>Model Connection Hint Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_MODEL_CONNECTION_HINT_FEATURE_COUNT = MODEL_CONNECTION_HINT_FEATURE_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Get Source Attributes</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE_MODEL_CONNECTION_HINT___GET_SOURCE_ATTRIBUTES = MODEL_CONNECTION_HINT_OPERATION_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Simple Model Connection Hint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE_MODEL_CONNECTION_HINT_OPERATION_COUNT = MODEL_CONNECTION_HINT_OPERATION_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_MODEL_CONNECTION_HINT__NAME = MODEL_CONNECTION_HINT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Target Attributes</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES = MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES;
-
-	/**
-	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_MODEL_CONNECTION_HINT__SOURCE_ELEMENTS = MODEL_CONNECTION_HINT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Complex Model Connection Hint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_MODEL_CONNECTION_HINT_FEATURE_COUNT = MODEL_CONNECTION_HINT_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Get Local Source Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_MODEL_CONNECTION_HINT___GET_LOCAL_SOURCE_ELEMENTS = MODEL_CONNECTION_HINT_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Get Source Attributes</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_MODEL_CONNECTION_HINT___GET_SOURCE_ATTRIBUTES = MODEL_CONNECTION_HINT_OPERATION_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Complex Model Connection Hint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_MODEL_CONNECTION_HINT_OPERATION_COUNT = MODEL_CONNECTION_HINT_OPERATION_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_MODEL_CONNECTION_HINT_SOURCE_ELEMENT__NAME = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_MODEL_CONNECTION_HINT_SOURCE_ELEMENT__SOURCE = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_MODEL_CONNECTION_HINT_SOURCE_ELEMENT__MODIFIER = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.ComplexModelConnectionHintSourceInterface <em>Complex Model Connection Hint Source Interface</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.ComplexModelConnectionHintSourceInterface
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexModelConnectionHintSourceInterface()
-	 * @generated
-	 */
-	int COMPLEX_MODEL_CONNECTION_HINT_SOURCE_INTERFACE = 41;
-
-	/**
-	 * The number of structural features of the '<em>Complex Model Connection Hint Source Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_MODEL_CONNECTION_HINT_SOURCE_ELEMENT_FEATURE_COUNT = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE_FEATURE_COUNT + 0;
+	int MODEL_CONNECTION_HINT_SOURCE_ELEMENT_FEATURE_COUNT = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Source Attribute</em>' operation.
@@ -1878,7 +1693,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_MODEL_CONNECTION_HINT_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE_OPERATION_COUNT + 0;
+	int MODEL_CONNECTION_HINT_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Name</em>' operation.
@@ -1887,16 +1702,71 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_MODEL_CONNECTION_HINT_SOURCE_ELEMENT___GET_NAME = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE_OPERATION_COUNT + 1;
+	int MODEL_CONNECTION_HINT_SOURCE_ELEMENT___GET_NAME = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE_OPERATION_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Complex Model Connection Hint Source Element</em>' class.
+	 * The number of operations of the '<em>Model Connection Hint Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_MODEL_CONNECTION_HINT_SOURCE_ELEMENT_OPERATION_COUNT = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE_OPERATION_COUNT + 2;
+	int MODEL_CONNECTION_HINT_SOURCE_ELEMENT_OPERATION_COUNT = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE_OPERATION_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.ModelConnectionHintTargetAttributeImpl <em>Model Connection Hint Target Attribute</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.ModelConnectionHintTargetAttributeImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHintTargetAttribute()
+	 * @generated
+	 */
+	int MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE = 27;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE__NAME = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE__SOURCE = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE__MODIFIER = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER;
+
+	/**
+	 * The number of structural features of the '<em>Model Connection Hint Target Attribute</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE_FEATURE_COUNT = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Model Connection Hint Target Attribute</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE_OPERATION_COUNT = ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2340,13 +2210,23 @@ public interface MappingPackage extends EPackage {
 	int COMPLEX_ATTRIBUTE_MATCHER_SOURCE_INTERFACE_OPERATION_COUNT = COMPLEX_MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Complex Model Connection Hint Source Interface</em>' class.
+	 * The meta object id for the '{@link pamtram.mapping.ModelConnectionHintSourceInterface <em>Model Connection Hint Source Interface</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.ModelConnectionHintSourceInterface
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHintSourceInterface()
+	 * @generated
+	 */
+	int MODEL_CONNECTION_HINT_SOURCE_INTERFACE = 39;
+
+	/**
+	 * The number of structural features of the '<em>Model Connection Hint Source Interface</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_MODEL_CONNECTION_HINT_SOURCE_INTERFACE_FEATURE_COUNT = COMPLEX_MAPPING_HINT_SOURCE_INTERFACE_FEATURE_COUNT + 0;
+	int MODEL_CONNECTION_HINT_SOURCE_INTERFACE_FEATURE_COUNT = COMPLEX_MAPPING_HINT_SOURCE_INTERFACE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Source Attribute</em>' operation.
@@ -2355,7 +2235,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_MODEL_CONNECTION_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE = COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE;
+	int MODEL_CONNECTION_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE = COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE;
 
 	/**
 	 * The operation id for the '<em>Get Name</em>' operation.
@@ -2364,17 +2244,16 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_MODEL_CONNECTION_HINT_SOURCE_INTERFACE___GET_NAME = COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_NAME;
+	int MODEL_CONNECTION_HINT_SOURCE_INTERFACE___GET_NAME = COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_NAME;
 
 	/**
-	 * The number of operations of the '<em>Complex Model Connection Hint Source Interface</em>' class.
+	 * The number of operations of the '<em>Model Connection Hint Source Interface</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_MODEL_CONNECTION_HINT_SOURCE_INTERFACE_OPERATION_COUNT = COMPLEX_MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT + 0;
-
+	int MODEL_CONNECTION_HINT_SOURCE_INTERFACE_OPERATION_COUNT = COMPLEX_MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.ComplexAttributeMappingExternalSourceElementImpl <em>Complex Attribute Mapping External Source Element</em>}' class.
@@ -2384,7 +2263,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexAttributeMappingExternalSourceElement()
 	 * @generated
 	 */
-	int COMPLEX_ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT = 42;
+	int COMPLEX_ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT = 40;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.ExternalAttributeMappingSourceElementImpl <em>External Attribute Mapping Source Element</em>}' class.
@@ -2394,7 +2273,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalAttributeMappingSourceElement()
 	 * @generated
 	 */
-	int EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT = 43;
+	int EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT = 41;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2512,7 +2391,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexModelConnectionHintExternalSourceElement()
 	 * @generated
 	 */
-	int COMPLEX_MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT = 44;
+	int COMPLEX_MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT = 42;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2585,7 +2464,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexAttributeMatcherExternalSourceElement()
 	 * @generated
 	 */
-	int COMPLEX_ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT = 45;
+	int COMPLEX_ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT = 43;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2658,7 +2537,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalMappedAttributeValueExpander()
 	 * @generated
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 46;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 44;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2722,7 +2601,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalMappedAttributeValuePrepender()
 	 * @generated
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER = 47;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER = 45;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2786,7 +2665,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalMappedAttributeValueAppender()
 	 * @generated
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER = 48;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER = 46;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2850,7 +2729,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExpandableHint()
 	 * @generated
 	 */
-	int EXPANDABLE_HINT = 49;
+	int EXPANDABLE_HINT = 47;
 
 	/**
 	 * The number of structural features of the '<em>Expandable Hint</em>' class.
@@ -2878,7 +2757,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMatchToLowerCaseConverter()
 	 * @generated
 	 */
-	int MATCH_TO_LOWER_CASE_CONVERTER = 50;
+	int MATCH_TO_LOWER_CASE_CONVERTER = 48;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2933,7 +2812,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMatchToUpperCaseConverter()
 	 * @generated
 	 */
-	int MATCH_TO_UPPER_CASE_CONVERTER = 51;
+	int MATCH_TO_UPPER_CASE_CONVERTER = 49;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2988,7 +2867,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalValue()
 	 * @generated
 	 */
-	int GLOBAL_VALUE = 52;
+	int GLOBAL_VALUE = 50;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3554,6 +3433,17 @@ public interface MappingPackage extends EPackage {
 	EReference getModelConnectionHint_TargetAttributes();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.ModelConnectionHint#getSourceElements <em>Source Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Source Elements</em>'.
+	 * @see pamtram.mapping.ModelConnectionHint#getSourceElements()
+	 * @see #getModelConnectionHint()
+	 * @generated
+	 */
+	EReference getModelConnectionHint_SourceElements();
+
+	/**
 	 * Returns the meta object for the '{@link pamtram.mapping.ModelConnectionHint#getSourceAttributes() <em>Get Source Attributes</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3564,36 +3454,14 @@ public interface MappingPackage extends EPackage {
 	EOperation getModelConnectionHint__GetSourceAttributes();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ConnectionHintTargetAttribute <em>Connection Hint Target Attribute</em>}'.
+	 * Returns the meta object for the '{@link pamtram.mapping.ModelConnectionHint#getLocalSourceElements() <em>Get Local Source Elements</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Connection Hint Target Attribute</em>'.
-	 * @see pamtram.mapping.ConnectionHintTargetAttribute
+	 * @return the meta object for the '<em>Get Local Source Elements</em>' operation.
+	 * @see pamtram.mapping.ModelConnectionHint#getLocalSourceElements()
 	 * @generated
 	 */
-	EClass getConnectionHintTargetAttribute();
-
-	/**
-	 * Returns the meta object for the reference '{@link pamtram.mapping.ConnectionHintTargetAttribute#getTargetAttribute <em>Target Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target Attribute</em>'.
-	 * @see pamtram.mapping.ConnectionHintTargetAttribute#getTargetAttribute()
-	 * @see #getConnectionHintTargetAttribute()
-	 * @generated
-	 */
-	EReference getConnectionHintTargetAttribute_TargetAttribute();
-
-	/**
-	 * Returns the meta object for the reference list '{@link pamtram.mapping.ConnectionHintTargetAttribute#getModifier <em>Modifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Modifier</em>'.
-	 * @see pamtram.mapping.ConnectionHintTargetAttribute#getModifier()
-	 * @see #getConnectionHintTargetAttribute()
-	 * @generated
-	 */
-	EReference getConnectionHintTargetAttribute_Modifier();
+	EOperation getModelConnectionHint__GetLocalSourceElements();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.AttributeMappingSourceElement <em>Attribute Mapping Source Element</em>}'.
@@ -3689,75 +3557,24 @@ public interface MappingPackage extends EPackage {
 	EClass getComplexAttributeMatcherSourceElement();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.SimpleModelConnectionHint <em>Simple Model Connection Hint</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.ModelConnectionHintSourceElement <em>Model Connection Hint Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Simple Model Connection Hint</em>'.
-	 * @see pamtram.mapping.SimpleModelConnectionHint
+	 * @return the meta object for class '<em>Model Connection Hint Source Element</em>'.
+	 * @see pamtram.mapping.ModelConnectionHintSourceElement
 	 * @generated
 	 */
-	EClass getSimpleModelConnectionHint();
+	EClass getModelConnectionHintSourceElement();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.SimpleModelConnectionHint#getSourceAttributes() <em>Get Source Attributes</em>}' operation.
+	 * Returns the meta object for class '{@link pamtram.mapping.ModelConnectionHintTargetAttribute <em>Model Connection Hint Target Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Source Attributes</em>' operation.
-	 * @see pamtram.mapping.SimpleModelConnectionHint#getSourceAttributes()
+	 * @return the meta object for class '<em>Model Connection Hint Target Attribute</em>'.
+	 * @see pamtram.mapping.ModelConnectionHintTargetAttribute
 	 * @generated
 	 */
-	EOperation getSimpleModelConnectionHint__GetSourceAttributes();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ComplexModelConnectionHint <em>Complex Model Connection Hint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Complex Model Connection Hint</em>'.
-	 * @see pamtram.mapping.ComplexModelConnectionHint
-	 * @generated
-	 */
-	EClass getComplexModelConnectionHint();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.ComplexModelConnectionHint#getSourceElements <em>Source Elements</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Source Elements</em>'.
-	 * @see pamtram.mapping.ComplexModelConnectionHint#getSourceElements()
-	 * @see #getComplexModelConnectionHint()
-	 * @generated
-	 */
-	EReference getComplexModelConnectionHint_SourceElements();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.ComplexModelConnectionHint#getLocalSourceElements() <em>Get Local Source Elements</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Local Source Elements</em>' operation.
-	 * @see pamtram.mapping.ComplexModelConnectionHint#getLocalSourceElements()
-	 * @generated
-	 */
-	EOperation getComplexModelConnectionHint__GetLocalSourceElements();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.ComplexModelConnectionHint#getSourceAttributes() <em>Get Source Attributes</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Source Attributes</em>' operation.
-	 * @see pamtram.mapping.ComplexModelConnectionHint#getSourceAttributes()
-	 * @generated
-	 */
-	EOperation getComplexModelConnectionHint__GetSourceAttributes();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ComplexModelConnectionHintSourceElement <em>Complex Model Connection Hint Source Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Complex Model Connection Hint Source Element</em>'.
-	 * @see pamtram.mapping.ComplexModelConnectionHintSourceElement
-	 * @generated
-	 */
-	EClass getComplexModelConnectionHintSourceElement();
+	EClass getModelConnectionHintTargetAttribute();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.MappingHintType <em>Hint Type</em>}'.
@@ -3956,14 +3773,14 @@ public interface MappingPackage extends EPackage {
 	EClass getComplexAttributeMatcherSourceInterface();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ComplexModelConnectionHintSourceInterface <em>Complex Model Connection Hint Source Interface</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.ModelConnectionHintSourceInterface <em>Model Connection Hint Source Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Complex Model Connection Hint Source Interface</em>'.
-	 * @see pamtram.mapping.ComplexModelConnectionHintSourceInterface
+	 * @return the meta object for class '<em>Model Connection Hint Source Interface</em>'.
+	 * @see pamtram.mapping.ModelConnectionHintSourceInterface
 	 * @generated
 	 */
-	EClass getComplexModelConnectionHintSourceInterface();
+	EClass getModelConnectionHintSourceInterface();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.ComplexAttributeMappingExternalSourceElement <em>Complex Attribute Mapping External Source Element</em>}'.
@@ -4574,6 +4391,14 @@ public interface MappingPackage extends EPackage {
 		EReference MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES = eINSTANCE.getModelConnectionHint_TargetAttributes();
 
 		/**
+		 * The meta object literal for the '<em><b>Source Elements</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODEL_CONNECTION_HINT__SOURCE_ELEMENTS = eINSTANCE.getModelConnectionHint_SourceElements();
+
+		/**
 		 * The meta object literal for the '<em><b>Get Source Attributes</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4582,30 +4407,12 @@ public interface MappingPackage extends EPackage {
 		EOperation MODEL_CONNECTION_HINT___GET_SOURCE_ATTRIBUTES = eINSTANCE.getModelConnectionHint__GetSourceAttributes();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ConnectionHintTargetAttributeImpl <em>Connection Hint Target Attribute</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.ConnectionHintTargetAttributeImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getConnectionHintTargetAttribute()
-		 * @generated
-		 */
-		EClass CONNECTION_HINT_TARGET_ATTRIBUTE = eINSTANCE.getConnectionHintTargetAttribute();
-
-		/**
-		 * The meta object literal for the '<em><b>Target Attribute</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Get Local Source Elements</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONNECTION_HINT_TARGET_ATTRIBUTE__TARGET_ATTRIBUTE = eINSTANCE.getConnectionHintTargetAttribute_TargetAttribute();
-
-		/**
-		 * The meta object literal for the '<em><b>Modifier</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONNECTION_HINT_TARGET_ATTRIBUTE__MODIFIER = eINSTANCE.getConnectionHintTargetAttribute_Modifier();
+		EOperation MODEL_CONNECTION_HINT___GET_LOCAL_SOURCE_ELEMENTS = eINSTANCE.getModelConnectionHint__GetLocalSourceElements();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.AttributeMappingSourceElementImpl <em>Attribute Mapping Source Element</em>}' class.
@@ -4690,66 +4497,24 @@ public interface MappingPackage extends EPackage {
 		EClass COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT = eINSTANCE.getComplexAttributeMatcherSourceElement();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.SimpleModelConnectionHintImpl <em>Simple Model Connection Hint</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.impl.ModelConnectionHintSourceElementImpl <em>Model Connection Hint Source Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.SimpleModelConnectionHintImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getSimpleModelConnectionHint()
+		 * @see pamtram.mapping.impl.ModelConnectionHintSourceElementImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHintSourceElement()
 		 * @generated
 		 */
-		EClass SIMPLE_MODEL_CONNECTION_HINT = eINSTANCE.getSimpleModelConnectionHint();
+		EClass MODEL_CONNECTION_HINT_SOURCE_ELEMENT = eINSTANCE.getModelConnectionHintSourceElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Get Source Attributes</b></em>' operation.
+		 * The meta object literal for the '{@link pamtram.mapping.impl.ModelConnectionHintTargetAttributeImpl <em>Model Connection Hint Target Attribute</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.impl.ModelConnectionHintTargetAttributeImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHintTargetAttribute()
 		 * @generated
 		 */
-		EOperation SIMPLE_MODEL_CONNECTION_HINT___GET_SOURCE_ATTRIBUTES = eINSTANCE.getSimpleModelConnectionHint__GetSourceAttributes();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ComplexModelConnectionHintImpl <em>Complex Model Connection Hint</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.ComplexModelConnectionHintImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexModelConnectionHint()
-		 * @generated
-		 */
-		EClass COMPLEX_MODEL_CONNECTION_HINT = eINSTANCE.getComplexModelConnectionHint();
-
-		/**
-		 * The meta object literal for the '<em><b>Source Elements</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLEX_MODEL_CONNECTION_HINT__SOURCE_ELEMENTS = eINSTANCE.getComplexModelConnectionHint_SourceElements();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Local Source Elements</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation COMPLEX_MODEL_CONNECTION_HINT___GET_LOCAL_SOURCE_ELEMENTS = eINSTANCE.getComplexModelConnectionHint__GetLocalSourceElements();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Source Attributes</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation COMPLEX_MODEL_CONNECTION_HINT___GET_SOURCE_ATTRIBUTES = eINSTANCE.getComplexModelConnectionHint__GetSourceAttributes();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ComplexModelConnectionHintSourceElementImpl <em>Complex Model Connection Hint Source Element</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.ComplexModelConnectionHintSourceElementImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexModelConnectionHintSourceElement()
-		 * @generated
-		 */
-		EClass COMPLEX_MODEL_CONNECTION_HINT_SOURCE_ELEMENT = eINSTANCE.getComplexModelConnectionHintSourceElement();
+		EClass MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE = eINSTANCE.getModelConnectionHintTargetAttribute();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.MappingHintTypeImpl <em>Hint Type</em>}' class.
@@ -4926,14 +4691,14 @@ public interface MappingPackage extends EPackage {
 		EClass COMPLEX_ATTRIBUTE_MATCHER_SOURCE_INTERFACE = eINSTANCE.getComplexAttributeMatcherSourceInterface();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.ComplexModelConnectionHintSourceInterface <em>Complex Model Connection Hint Source Interface</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.ModelConnectionHintSourceInterface <em>Model Connection Hint Source Interface</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.ComplexModelConnectionHintSourceInterface
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexModelConnectionHintSourceInterface()
+		 * @see pamtram.mapping.ModelConnectionHintSourceInterface
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHintSourceInterface()
 		 * @generated
 		 */
-		EClass COMPLEX_MODEL_CONNECTION_HINT_SOURCE_INTERFACE = eINSTANCE.getComplexModelConnectionHintSourceInterface();
+		EClass MODEL_CONNECTION_HINT_SOURCE_INTERFACE = eINSTANCE.getModelConnectionHintSourceInterface();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.ComplexAttributeMappingExternalSourceElementImpl <em>Complex Attribute Mapping External Source Element</em>}' class.

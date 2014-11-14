@@ -8,13 +8,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.MappingPackage;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.Attribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +29,7 @@ import pamtram.metamodel.SourceSectionAttribute;
  *
  * @generated
  */
-public abstract class AttributeMappingSourceElementTypeImpl extends NamedElementImpl implements AttributeMappingSourceElementType {
+public abstract class AttributeMappingSourceElementTypeImpl<AttributeType extends Attribute> extends NamedElementImpl implements AttributeMappingSourceElementType<AttributeType> {
 	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -39,7 +38,7 @@ public abstract class AttributeMappingSourceElementTypeImpl extends NamedElement
 	 * @generated
 	 * @ordered
 	 */
-	protected SourceSectionAttribute source;
+	protected AttributeType source;
 
 	/**
 	 * The cached value of the '{@link #getModifier() <em>Modifier</em>}' reference list.
@@ -75,10 +74,11 @@ public abstract class AttributeMappingSourceElementTypeImpl extends NamedElement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionAttribute getSource() {
+	@SuppressWarnings("unchecked")
+	public AttributeType getSource() {
 		if (source != null && source.eIsProxy()) {
 			InternalEObject oldSource = (InternalEObject)source;
-			source = (SourceSectionAttribute)eResolveProxy(oldSource);
+			source = (AttributeType)eResolveProxy(oldSource);
 			if (source != oldSource) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE, oldSource, source));
@@ -92,7 +92,7 @@ public abstract class AttributeMappingSourceElementTypeImpl extends NamedElement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionAttribute basicGetSource() {
+	public AttributeType basicGetSource() {
 		return source;
 	}
 
@@ -101,8 +101,8 @@ public abstract class AttributeMappingSourceElementTypeImpl extends NamedElement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSource(SourceSectionAttribute newSource) {
-		SourceSectionAttribute oldSource = source;
+	public void setSource(AttributeType newSource) {
+		AttributeType oldSource = source;
 		source = newSource;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE, oldSource, source));
@@ -147,7 +147,7 @@ public abstract class AttributeMappingSourceElementTypeImpl extends NamedElement
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE:
-				setSource((SourceSectionAttribute)newValue);
+				setSource((AttributeType)newValue);
 				return;
 			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER:
 				getModifier().clear();
@@ -166,7 +166,7 @@ public abstract class AttributeMappingSourceElementTypeImpl extends NamedElement
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE:
-				setSource((SourceSectionAttribute)null);
+				setSource((AttributeType)null);
 				return;
 			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER:
 				getModifier().clear();

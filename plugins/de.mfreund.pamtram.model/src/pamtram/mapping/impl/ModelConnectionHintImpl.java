@@ -11,9 +11,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.impl.NamedElementImpl;
-import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModelConnectionHint;
+import pamtram.mapping.ModelConnectionHintSourceElement;
+import pamtram.mapping.ModelConnectionHintSourceInterface;
+import pamtram.mapping.ModelConnectionHintTargetAttribute;
 import pamtram.metamodel.SourceSectionAttribute;
 
 /**
@@ -24,12 +26,13 @@ import pamtram.metamodel.SourceSectionAttribute;
  * The following features are implemented:
  * <ul>
  *   <li>{@link pamtram.mapping.impl.ModelConnectionHintImpl#getTargetAttributes <em>Target Attributes</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.ModelConnectionHintImpl#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class ModelConnectionHintImpl extends NamedElementImpl implements ModelConnectionHint {
+public class ModelConnectionHintImpl extends NamedElementImpl implements ModelConnectionHint {
 	/**
 	 * The cached value of the '{@link #getTargetAttributes() <em>Target Attributes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -38,7 +41,17 @@ public abstract class ModelConnectionHintImpl extends NamedElementImpl implement
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ConnectionHintTargetAttribute> targetAttributes;
+	protected EList<ModelConnectionHintTargetAttribute> targetAttributes;
+
+	/**
+	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSourceElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ModelConnectionHintSourceInterface> sourceElements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -64,9 +77,9 @@ public abstract class ModelConnectionHintImpl extends NamedElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ConnectionHintTargetAttribute> getTargetAttributes() {
+	public EList<ModelConnectionHintTargetAttribute> getTargetAttributes() {
 		if (targetAttributes == null) {
-			targetAttributes = new EObjectContainmentEList<ConnectionHintTargetAttribute>(ConnectionHintTargetAttribute.class, this, MappingPackage.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES);
+			targetAttributes = new EObjectContainmentEList<ModelConnectionHintTargetAttribute>(ModelConnectionHintTargetAttribute.class, this, MappingPackage.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES);
 		}
 		return targetAttributes;
 	}
@@ -76,10 +89,36 @@ public abstract class ModelConnectionHintImpl extends NamedElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<ModelConnectionHintSourceInterface> getSourceElements() {
+		if (sourceElements == null) {
+			sourceElements = new EObjectContainmentEList<ModelConnectionHintSourceInterface>(ModelConnectionHintSourceInterface.class, this, MappingPackage.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS);
+		}
+		return sourceElements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 */
 	public EList<SourceSectionAttribute> getSourceAttributes() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return this.getSourceAttributes();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ModelConnectionHintSourceElement> getLocalSourceElements() {
+				EList<ModelConnectionHintSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<ModelConnectionHintSourceElement>();
+				
+				for(ModelConnectionHintSourceInterface i : this.getSourceElements()){
+					if(i instanceof ModelConnectionHintSourceElement){
+						elements.add((ModelConnectionHintSourceElement) i);
+					}
+				}
+				
+				return elements;
 	}
 
 	/**
@@ -92,6 +131,8 @@ public abstract class ModelConnectionHintImpl extends NamedElementImpl implement
 		switch (featureID) {
 			case MappingPackage.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES:
 				return ((InternalEList<?>)getTargetAttributes()).basicRemove(otherEnd, msgs);
+			case MappingPackage.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS:
+				return ((InternalEList<?>)getSourceElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -106,6 +147,8 @@ public abstract class ModelConnectionHintImpl extends NamedElementImpl implement
 		switch (featureID) {
 			case MappingPackage.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES:
 				return getTargetAttributes();
+			case MappingPackage.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS:
+				return getSourceElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -121,7 +164,11 @@ public abstract class ModelConnectionHintImpl extends NamedElementImpl implement
 		switch (featureID) {
 			case MappingPackage.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES:
 				getTargetAttributes().clear();
-				getTargetAttributes().addAll((Collection<? extends ConnectionHintTargetAttribute>)newValue);
+				getTargetAttributes().addAll((Collection<? extends ModelConnectionHintTargetAttribute>)newValue);
+				return;
+			case MappingPackage.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS:
+				getSourceElements().clear();
+				getSourceElements().addAll((Collection<? extends ModelConnectionHintSourceInterface>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -138,6 +185,9 @@ public abstract class ModelConnectionHintImpl extends NamedElementImpl implement
 			case MappingPackage.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES:
 				getTargetAttributes().clear();
 				return;
+			case MappingPackage.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS:
+				getSourceElements().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -152,6 +202,8 @@ public abstract class ModelConnectionHintImpl extends NamedElementImpl implement
 		switch (featureID) {
 			case MappingPackage.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES:
 				return targetAttributes != null && !targetAttributes.isEmpty();
+			case MappingPackage.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS:
+				return sourceElements != null && !sourceElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -166,6 +218,8 @@ public abstract class ModelConnectionHintImpl extends NamedElementImpl implement
 		switch (operationID) {
 			case MappingPackage.MODEL_CONNECTION_HINT___GET_SOURCE_ATTRIBUTES:
 				return getSourceAttributes();
+			case MappingPackage.MODEL_CONNECTION_HINT___GET_LOCAL_SOURCE_ELEMENTS:
+				return getLocalSourceElements();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

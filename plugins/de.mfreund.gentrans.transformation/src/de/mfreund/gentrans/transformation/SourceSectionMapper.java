@@ -27,9 +27,6 @@ import pamtram.mapping.ComplexAttributeMatcher;
 import pamtram.mapping.ComplexAttributeMatcherSourceElement;
 import pamtram.mapping.ComplexAttributeMatcherSourceInterface;
 import pamtram.mapping.ComplexMappingHintSourceInterface;
-import pamtram.mapping.ComplexModelConnectionHint;
-import pamtram.mapping.ComplexModelConnectionHintSourceElement;
-import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
 import pamtram.mapping.ExternalAttributeMappingSourceElement;
 import pamtram.mapping.ExternalMappedAttributeValueExpander;
 import pamtram.mapping.GlobalAttribute;
@@ -41,8 +38,9 @@ import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
+import pamtram.mapping.ModelConnectionHintSourceElement;
+import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.mapping.SimpleAttributeMatcher;
-import pamtram.mapping.SimpleModelConnectionHint;
 import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.CardinalityType;
@@ -161,7 +159,7 @@ class SourceSectionMapper implements CancellationListener {
 	 * ComplexModelConnectionHintSourceElement that are buried deepest in the
 	 * source Section, sorted by ComplexAttributeMatcher.
 	 */
-	private final Map<ComplexModelConnectionHint, Set<SourceSectionClass>> deepestComplexConnectionHintSrcElementsByComplexConnectionHint;
+	private final Map<ModelConnectionHint, Set<SourceSectionClass>> deepestComplexConnectionHintSrcElementsByComplexConnectionHint;
 	/**
 	 * Mappings from the PAMTram model
 	 */
@@ -209,7 +207,7 @@ class SourceSectionMapper implements CancellationListener {
 		modelConnectionHints = new LinkedHashMap<Mapping, LinkedList<ModelConnectionHint>>();
 		deepestComplexAttrMappingSrcElementsByCmplxMapping = new LinkedHashMap<AttributeMapping, Set<SourceSectionClass>>();
 		deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher = new LinkedHashMap<ComplexAttributeMatcher, Set<SourceSectionClass>>();
-		deepestComplexConnectionHintSrcElementsByComplexConnectionHint = new LinkedHashMap<ComplexModelConnectionHint, Set<SourceSectionClass>>();
+		deepestComplexConnectionHintSrcElementsByComplexConnectionHint = new LinkedHashMap<ModelConnectionHint, Set<SourceSectionClass>>();
 		globalVarValues = new HashMap<GlobalAttribute, String>();
 		this.mappingsToChooseFrom = mappingsToChooseFrom;
 		this.consoleStream = consoleStream;
@@ -236,9 +234,9 @@ class SourceSectionMapper implements CancellationListener {
 			}
 
 			for (final ModelConnectionHint h : getModelConnectionHints(m)) {
-				if (h instanceof ComplexModelConnectionHint) {
+				if (h instanceof ModelConnectionHint) {
 					buildDeepestCmplxConnectionHintElementsMap(
-							(ComplexModelConnectionHint) h,
+							(ModelConnectionHint) h,
 							m.getSourceMMSection());
 				}
 			}
@@ -299,7 +297,7 @@ class SourceSectionMapper implements CancellationListener {
 	private void buildDeepestCmplxAttrMappingElementsMap(
 			final AttributeMapping m, final SourceSectionClass srcSection) {
 		if (!deepestComplexAttrMappingSrcElementsByCmplxMapping.containsKey(m)) {
-			final Set<AttributeMappingSourceElementType> srcElements = new HashSet<AttributeMappingSourceElementType>();
+			final Set<AttributeMappingSourceElementType<SourceSectionAttribute>> srcElements = new HashSet<>();
 			srcElements.addAll(m.getLocalSourceElements());
 			deepestComplexAttrMappingSrcElementsByCmplxMapping.put(m,
 					new HashSet<SourceSectionClass>());
@@ -319,11 +317,11 @@ class SourceSectionMapper implements CancellationListener {
 	 * @param srcSection
 	 */
 	private void buildDeepestCmplxConnectionHintElementsMap(
-			final ComplexModelConnectionHint m,
+			final ModelConnectionHint m,
 			final SourceSectionClass srcSection) {
 		if (!deepestComplexConnectionHintSrcElementsByComplexConnectionHint
 				.containsKey(m)) {
-			final Set<AttributeMappingSourceElementType> srcElements = new HashSet<AttributeMappingSourceElementType>();
+			final Set<AttributeMappingSourceElementType<SourceSectionAttribute>> srcElements = new HashSet<>();
 			srcElements.addAll(m.getLocalSourceElements());
 			deepestComplexConnectionHintSrcElementsByComplexConnectionHint.put(
 					m, new HashSet<SourceSectionClass>());
@@ -347,7 +345,7 @@ class SourceSectionMapper implements CancellationListener {
 			final ComplexAttributeMatcher m, final SourceSectionClass srcSection) {
 		if (!deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher
 				.containsKey(m)) {
-			final Set<AttributeMappingSourceElementType> srcElements = new HashSet<AttributeMappingSourceElementType>();
+			final Set<AttributeMappingSourceElementType<SourceSectionAttribute>> srcElements = new HashSet<>();
 			srcElements.addAll(m.getLocalSourceElements());
 			deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher.put(m,
 					new HashSet<SourceSectionClass>());
@@ -382,7 +380,7 @@ class SourceSectionMapper implements CancellationListener {
 			final Map<ExternalAttributeMappingSourceElement, String> attrVals,
 			final ComplexMappingHintSourceInterface i) {
 		if (i instanceof ExternalAttributeMappingSourceElement) {
-			String attrVal = getContainerAttributeValue(i.getSourceAttribute(),
+			String attrVal = getContainerAttributeValue(((ExternalAttributeMappingSourceElement) i).getSource(),
 					m.getSourceMMSection().getContainer(), res
 					.getAssociatedSourceModelElement().eContainer());
 			if (attrVal == null) {
@@ -542,14 +540,14 @@ class SourceSectionMapper implements CancellationListener {
 	 * @return Classes that contain the deepest SourceSectionAttributes
 	 */
 	private Set<SourceSectionClass> findDeepestClassesAndCommonContainer(
-			final Set<AttributeMappingSourceElementType> s,
+			final Set<AttributeMappingSourceElementType<SourceSectionAttribute>> s,
 			final SourceSectionClass srcSection, final Object hint) {
 		final Set<SourceSectionClass> resultSet = new HashSet<SourceSectionClass>();
 
 		/*
 		 * fill resultSet with all *potential* candidates
 		 */
-		for (final AttributeMappingSourceElementType t : s) {
+		for (final AttributeMappingSourceElementType<SourceSectionAttribute> t : s) {
 			resultSet.add(t.getSource().getOwningClass());
 		}
 
@@ -697,7 +695,7 @@ class SourceSectionMapper implements CancellationListener {
 
 		final Map<AttributeMappingSourceElement, String> complexSourceElementHintValues = new LinkedHashMap<AttributeMappingSourceElement, String>();
 		final Map<ComplexAttributeMatcherSourceElement, String> complexAttrMatcherSourceElementHintValues = new LinkedHashMap<ComplexAttributeMatcherSourceElement, String>();
-		final Map<ComplexModelConnectionHintSourceElement, String> complexConnectionHintSourceElementHintValues = new LinkedHashMap<ComplexModelConnectionHintSourceElement, String>();
+		final Map<ModelConnectionHintSourceElement, String> complexConnectionHintSourceElementHintValues = new LinkedHashMap<ModelConnectionHintSourceElement, String>();
 
 		// init hintValues
 		for (final MappingHintType hint : hints) {
@@ -724,7 +722,7 @@ class SourceSectionMapper implements CancellationListener {
 		for (final ModelConnectionHint hint : connectionHints) {
 			changedRefsAndHints.setConnectionHintValueList(hint,
 					new LinkedList<Object>());
-			if (hint instanceof ComplexModelConnectionHint) {
+			if (hint instanceof ModelConnectionHint) {
 				if (newRefsAndHints.getModelConnectionHintValues().containsKey(
 						hint)) {
 					changedRefsAndHints
@@ -736,7 +734,7 @@ class SourceSectionMapper implements CancellationListener {
 					changedRefsAndHints
 					.getModelConnectionHintValues()
 					.get(hint)
-					.add(new LinkedHashMap<ComplexModelConnectionHintSourceInterface, String>());
+					.add(new LinkedHashMap<ModelConnectionHintSourceInterface, String>());
 				}
 			}
 		}
@@ -763,7 +761,7 @@ class SourceSectionMapper implements CancellationListener {
 		// now work on ComplexAttributeMappings and CalcMappings
 		final Set<AttributeMapping> complexAttributeMappingsFound = new HashSet<AttributeMapping>();
 		final Set<ComplexAttributeMatcher> complexAttributeMatchersFound = new HashSet<ComplexAttributeMatcher>();
-		final Set<ComplexModelConnectionHint> complexConnectionHintsFound = new HashSet<ComplexModelConnectionHint>();
+		final Set<ModelConnectionHint> complexConnectionHintsFound = new HashSet<ModelConnectionHint>();
 
 		for (final MappingHintType h : hints) {
 			if (h instanceof AttributeMapping) {
@@ -842,11 +840,11 @@ class SourceSectionMapper implements CancellationListener {
 		// handle ComplexModelConnectionHints in the same way as
 		// ComplexAttributeMappings
 		for (final ModelConnectionHint hint : connectionHints) {
-			if (hint instanceof ComplexModelConnectionHint) {
-				final Map<ComplexModelConnectionHintSourceInterface, String> foundValues = new LinkedHashMap<ComplexModelConnectionHintSourceInterface, String>();
+			if (hint instanceof ModelConnectionHint) {
+				final Map<ModelConnectionHintSourceInterface, String> foundValues = new LinkedHashMap<ModelConnectionHintSourceInterface, String>();
 				// append the complex hint value (cardinality either 0 or 1)
 				// with found values in right order
-				for (final ComplexModelConnectionHintSourceElement s : ((ComplexModelConnectionHint) hint)
+				for (final ModelConnectionHintSourceElement s : ((ModelConnectionHint) hint)
 						.getLocalSourceElements()) {
 					if (complexConnectionHintSourceElementHintValues
 							.containsKey(s)) {
@@ -858,9 +856,9 @@ class SourceSectionMapper implements CancellationListener {
 
 				if (foundValues.keySet().size() > 0) {
 					complexConnectionHintsFound
-					.add((ComplexModelConnectionHint) hint);
+					.add((ModelConnectionHint) hint);
 					@SuppressWarnings("unchecked")
-					final Map<ComplexModelConnectionHintSourceInterface, String> oldValues = (Map<ComplexModelConnectionHintSourceInterface, String>) changedRefsAndHints
+					final Map<ModelConnectionHintSourceInterface, String> oldValues = (Map<ModelConnectionHintSourceInterface, String>) changedRefsAndHints
 					.getModelConnectionHintValues().get(hint).remove();
 					foundValues.putAll(oldValues);
 					changedRefsAndHints.getModelConnectionHintValues()
@@ -1323,7 +1321,7 @@ class SourceSectionMapper implements CancellationListener {
 		}
 
 		for (final ModelConnectionHint h : connectionHints) {
-			if (h instanceof ComplexModelConnectionHint) {
+			if (h instanceof ModelConnectionHint) {
 				if (!(complexConnectionHintsFound.contains(h) && deepestComplexConnectionHintSrcElementsByComplexConnectionHint
 						.get(h).contains(srcSection))) {
 					changedRefsAndHints.getModelConnectionHintValues().get(h)
@@ -1334,16 +1332,16 @@ class SourceSectionMapper implements CancellationListener {
 							.getUnSyncedComplexConnectionHints().containsKey(h)) {
 						changedRefsAndHints
 						.getUnSyncedComplexConnectionHints()
-						.put((ComplexModelConnectionHint) h,
-								new HashMap<SourceSectionClass, LinkedList<Map<ComplexModelConnectionHintSourceElement, String>>>());
+						.put((ModelConnectionHint) h,
+								new HashMap<SourceSectionClass, LinkedList<Map<ModelConnectionHintSourceElement, String>>>());
 					}
 					changedRefsAndHints
 					.getUnSyncedComplexConnectionHints()
 					.get(h)
 					.put(srcSection,
-							new LinkedList<Map<ComplexModelConnectionHintSourceElement, String>>());
+							new LinkedList<Map<ModelConnectionHintSourceElement, String>>());
 					@SuppressWarnings("unchecked")
-					final Map<ComplexModelConnectionHintSourceElement, String> val = (Map<ComplexModelConnectionHintSourceElement, String>) changedRefsAndHints
+					final Map<ModelConnectionHintSourceElement, String> val = (Map<ModelConnectionHintSourceElement, String>) changedRefsAndHints
 					.getModelConnectionHintValues().get(h).remove();
 					changedRefsAndHints.getUnSyncedComplexConnectionHints()
 					.get(h).get(srcSection).add(val);
@@ -1636,7 +1634,7 @@ class SourceSectionMapper implements CancellationListener {
 			final MappingInstanceStorage changedRefsAndHints,
 			final Map<AttributeMappingSourceElement, String> complexSourceElementHintValues,
 			final Map<ComplexAttributeMatcherSourceElement, String> complexAttrMatcherSourceElementHintValues,
-			final Map<ComplexModelConnectionHintSourceElement, String> complexConnectionHintSourceElementHintValues) {
+			final Map<ModelConnectionHintSourceElement, String> complexConnectionHintSourceElementHintValues) {
 		for (final SourceSectionAttribute at : srcSection.getAttributes()) {
 			/*
 			 * look for attributes in srcSection does it exist in src model?
@@ -1765,20 +1763,8 @@ class SourceSectionMapper implements CancellationListener {
 				// ModelConnectionHint (is being handled in the same way as
 				// MI-Selector with AttrMatcher)
 				for (final ModelConnectionHint hint : connectionHints) {
-					if (hint instanceof SimpleModelConnectionHint) {
-						if (((SimpleModelConnectionHint) hint).getSource()
-								.equals(at)) {
-							final String modifiedVal = attributeValuemodifier
-									.applyAttributeValueModifiers(
-											srcAttrAsString,
-											((SimpleModelConnectionHint) hint)
-											.getModifier());
-							changedRefsAndHints.addModelConnectionHintValue(
-									hint, modifiedVal);
-
-						}
-					} else if (hint instanceof ComplexModelConnectionHint) {
-						for (final ComplexModelConnectionHintSourceElement m : ((ComplexModelConnectionHint) hint)
+					if (hint instanceof ModelConnectionHint) {
+						for (final ModelConnectionHintSourceElement m : ((ModelConnectionHint) hint)
 								.getLocalSourceElements()) {
 							if (m.getSource().equals(at)) {
 								final String modifiedVal = attributeValuemodifier
@@ -1954,8 +1940,8 @@ class SourceSectionMapper implements CancellationListener {
 			}
 
 			for (final ModelConnectionHint h : getModelConnectionHints(m)) {
-				if (h instanceof ComplexModelConnectionHint) {
-					for (final ComplexModelConnectionHintSourceInterface i : ((ComplexModelConnectionHint) h)
+				if (h instanceof ModelConnectionHint) {
+					for (final ModelConnectionHintSourceInterface i : ((ModelConnectionHint) h)
 							.getSourceElements()) {
 						mappingFailed = checkExternalAttributeMapping(m, res,
 								mappingFailed, attrVals, i);
@@ -1970,15 +1956,15 @@ class SourceSectionMapper implements CancellationListener {
 						if (res.getModelConnectionHintValues().get(h).size() == 0) {
 							res.getModelConnectionHintValues()
 							.get(h)
-							.add(new LinkedHashMap<ComplexModelConnectionHintSourceInterface, String>());
+							.add(new LinkedHashMap<ModelConnectionHintSourceInterface, String>());
 						}
 						for (final Object hVal : res
 								.getModelConnectionHintValues().get(h)) {
 							@SuppressWarnings("unchecked")
-							final Map<ComplexModelConnectionHintSourceInterface, String> map = (Map<ComplexModelConnectionHintSourceInterface, String>) hVal;
+							final Map<ModelConnectionHintSourceInterface, String> map = (Map<ModelConnectionHintSourceInterface, String>) hVal;
 							for (final ExternalAttributeMappingSourceElement e : attrVals
 									.keySet()) {
-								map.put((ComplexModelConnectionHintSourceInterface) e,
+								map.put((ModelConnectionHintSourceInterface) e,
 										attrVals.get(e));
 							}
 						}
@@ -2169,10 +2155,10 @@ class SourceSectionMapper implements CancellationListener {
 				if (changedRefsAndHints.getUnSyncedComplexConnectionHints()
 						.get(h).size() > 1
 						|| isCommonParent) {
-					final Map<SourceSectionClass, LinkedList<Map<ComplexModelConnectionHintSourceElement, String>>> m = changedRefsAndHints
+					final Map<SourceSectionClass, LinkedList<Map<ModelConnectionHintSourceElement, String>>> m = changedRefsAndHints
 							.getUnSyncedComplexConnectionHints().get(h);
 					// list of "synced" hints
-					LinkedList<Map<ComplexModelConnectionHintSourceElement, String>> syncedComplexMappings = null;
+					LinkedList<Map<ModelConnectionHintSourceElement, String>> syncedComplexMappings = null;
 					// find longest list (ideally they are either of the same
 					// length, or there is only one value)
 					SourceSectionClass cl = null;
@@ -2191,10 +2177,10 @@ class SourceSectionMapper implements CancellationListener {
 
 					// combine values
 					for (final SourceSectionClass c : m.keySet()) {
-						final LinkedList<Map<ComplexModelConnectionHintSourceElement, String>> vals = m
+						final LinkedList<Map<ModelConnectionHintSourceElement, String>> vals = m
 								.get(c);
 						if (vals.size() == 1) {
-							for (final Map<ComplexModelConnectionHintSourceElement, String> valMap : syncedComplexMappings) {
+							for (final Map<ModelConnectionHintSourceElement, String> valMap : syncedComplexMappings) {
 								valMap.putAll(vals.getFirst());
 							}
 						} else if (vals.size() > 1) {

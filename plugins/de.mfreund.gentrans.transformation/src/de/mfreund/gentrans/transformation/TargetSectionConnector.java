@@ -15,11 +15,10 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.console.MessageConsoleStream;
 
-import pamtram.mapping.ComplexModelConnectionHint;
-import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
 import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.ModelConnectionHint;
-import pamtram.mapping.SimpleModelConnectionHint;
+import pamtram.mapping.ModelConnectionHintSourceInterface;
+import pamtram.mapping.ModelConnectionHintTargetAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import de.mfreund.gentrans.transformation.selectors.GenericItemSelectorDialogRunner;
 import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunner;
@@ -584,24 +583,24 @@ class TargetSectionConnector implements CancellationListener {
 
 		// check for connections
 		int size = 0;
-		for (final ConnectionHintTargetAttribute attr : connectionHint
+		for (final ModelConnectionHintTargetAttribute attr : connectionHint
 				.getTargetAttributes()) {
 			size += targetSectionRegistry.getConnections(classToConnect,
-					attr.getTargetAttribute().getOwningClass().getEClass(),
+					attr.getSource().getOwningClass().getEClass(),
 					maxPathlength).size();
 		}
 
 		if (size > 0) {
 			// now search for target attributes
 
-			final LinkedHashMap<ConnectionHintTargetAttribute, LinkedList<EObjectTransformationHelper>> containerInstancesByTargetAttribute = new LinkedHashMap<ConnectionHintTargetAttribute, LinkedList<EObjectTransformationHelper>>();
+			final LinkedHashMap<ModelConnectionHintTargetAttribute, LinkedList<EObjectTransformationHelper>> containerInstancesByTargetAttribute = new LinkedHashMap<>();
 
-			for (final ConnectionHintTargetAttribute targetAttr : connectionHint
+			for (final ModelConnectionHintTargetAttribute targetAttr : connectionHint
 					.getTargetAttributes()) {
 				containerInstancesByTargetAttribute
 						.put(targetAttr, targetSectionRegistry
 								.getFlattenedPamtramClassInstances(targetAttr
-										.getTargetAttribute().getOwningClass()));// owningClass
+										.getSource().getOwningClass()));// owningClass
 
 			}
 
@@ -625,13 +624,11 @@ class TargetSectionConnector implements CancellationListener {
 
 			for (final Object hintVal : connectionHintValuesCopy) {
 				String hintValAsString = null;
-				if (connectionHint instanceof SimpleModelConnectionHint) {
-					hintValAsString = (String) hintVal;
-				} else if (connectionHint instanceof ComplexModelConnectionHint) {
+				if (connectionHint instanceof ModelConnectionHint) {
 					hintValAsString = "";
 					@SuppressWarnings("unchecked")
-					final Map<ComplexModelConnectionHintSourceInterface, String> hVal = (Map<ComplexModelConnectionHintSourceInterface, String>) hintVal;
-					for (final ComplexModelConnectionHintSourceInterface srcElement : ((ComplexModelConnectionHint) connectionHint)
+					final Map<ModelConnectionHintSourceInterface, String> hVal = (Map<ModelConnectionHintSourceInterface, String>) hintVal;
+					for (final ModelConnectionHintSourceInterface srcElement : ((ModelConnectionHint) connectionHint)
 							.getSourceElements()) {
 						if (hVal.containsKey(srcElement)) {
 							hintValAsString += hVal.get(srcElement);
@@ -660,7 +657,7 @@ class TargetSectionConnector implements CancellationListener {
 						rootInstances.remove(0));// instances have same
 				// order as hintValues
 
-				for (final ConnectionHintTargetAttribute conAttr : containerInstancesByTargetAttribute
+				for (final ModelConnectionHintTargetAttribute conAttr : containerInstancesByTargetAttribute
 						.keySet()) {
 
 					final String modifiedHintVal = attributeValuemodifier
@@ -676,7 +673,7 @@ class TargetSectionConnector implements CancellationListener {
 						// TODO check type of referenced object
 
 						final String targetValStr = contInst
-								.getAttributeValue(conAttr.getTargetAttribute());
+								.getAttributeValue(conAttr.getSource());
 
 						if (targetValStr != null) {
 							if (modifiedHintVal.equals(targetValStr)) {

@@ -15,12 +15,11 @@ import org.eclipse.emf.ecore.EObject;
 
 import pamtram.mapping.AttributeMappingSourceElement;
 import pamtram.mapping.ComplexAttributeMatcherSourceElement;
-import pamtram.mapping.ComplexModelConnectionHint;
-import pamtram.mapping.ComplexModelConnectionHintSourceElement;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.ModelConnectionHint;
+import pamtram.mapping.ModelConnectionHintSourceElement;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.TargetSectionClass;
 
@@ -78,7 +77,7 @@ class MappingInstanceStorage {
 	 */
 	private final Map<MappingHintType, Map<SourceSectionClass, LinkedList<Map<AttributeMappingSourceElement, String>>>> unSyncedComplexAttrMappings;
 	private final Map<MappingHintType, Map<SourceSectionClass, LinkedList<Map<ComplexAttributeMatcherSourceElement, String>>>> unSyncedComplexAttrMatchers;
-	private final Map<ComplexModelConnectionHint, Map<SourceSectionClass, LinkedList<Map<ComplexModelConnectionHintSourceElement, String>>>> unSyncedComplexConnectionHints;
+	private final Map<ModelConnectionHint, Map<SourceSectionClass, LinkedList<Map<ModelConnectionHintSourceElement, String>>>> unSyncedComplexConnectionHints;
 
 	/**
 	 * Constructor
@@ -93,7 +92,7 @@ class MappingInstanceStorage {
 		modelConnectionHintValues = new LinkedHashMap<ModelConnectionHint, LinkedList<Object>>();
 		unSyncedComplexAttrMappings = new LinkedHashMap<MappingHintType, Map<SourceSectionClass, LinkedList<Map<AttributeMappingSourceElement, String>>>>();
 		unSyncedComplexAttrMatchers = new HashMap<MappingHintType, Map<SourceSectionClass, LinkedList<Map<ComplexAttributeMatcherSourceElement, String>>>>();
-		unSyncedComplexConnectionHints = new HashMap<ComplexModelConnectionHint, Map<SourceSectionClass, LinkedList<Map<ComplexModelConnectionHintSourceElement, String>>>>();
+		unSyncedComplexConnectionHints = new HashMap<ModelConnectionHint, Map<SourceSectionClass, LinkedList<Map<ModelConnectionHintSourceElement, String>>>>();
 
 	}
 
@@ -233,7 +232,7 @@ class MappingInstanceStorage {
 	void addUnSyncedHintValues(
 			final Map<MappingHintType, Map<SourceSectionClass, LinkedList<Map<AttributeMappingSourceElement, String>>>> unSyncedComplexAttrMappings,
 			final Map<MappingHintType, Map<SourceSectionClass, LinkedList<Map<ComplexAttributeMatcherSourceElement, String>>>> unSyncedComplexAttrMatchers,
-			final Map<ComplexModelConnectionHint, Map<SourceSectionClass, LinkedList<Map<ComplexModelConnectionHintSourceElement, String>>>> unSyncedComplexConnectionHints) {
+			final Map<ModelConnectionHint, Map<SourceSectionClass, LinkedList<Map<ModelConnectionHintSourceElement, String>>>> unSyncedComplexConnectionHints) {
 
 		/*
 		 * AttributeMapping
@@ -284,12 +283,12 @@ class MappingInstanceStorage {
 		/*
 		 * ModelConnectionHint
 		 */
-		for (final ComplexModelConnectionHint h : unSyncedComplexConnectionHints
+		for (final ModelConnectionHint h : unSyncedComplexConnectionHints
 				.keySet()) {
 			if (!this.unSyncedComplexConnectionHints.containsKey(h)) {
 				this.unSyncedComplexConnectionHints
 						.put(h,
-								new HashMap<SourceSectionClass, LinkedList<Map<ComplexModelConnectionHintSourceElement, String>>>());
+								new HashMap<SourceSectionClass, LinkedList<Map<ModelConnectionHintSourceElement, String>>>());
 			}
 
 			for (final SourceSectionClass c : unSyncedComplexConnectionHints
@@ -298,7 +297,7 @@ class MappingInstanceStorage {
 					this.unSyncedComplexConnectionHints
 							.get(h)
 							.put(c,
-									new LinkedList<Map<ComplexModelConnectionHintSourceElement, String>>());
+									new LinkedList<Map<ModelConnectionHintSourceElement, String>>());
 				}
 				this.unSyncedComplexConnectionHints.get(h).get(c)
 						.addAll(unSyncedComplexConnectionHints.get(h).get(c));
@@ -445,7 +444,7 @@ class MappingInstanceStorage {
 	/**
 	 * @return
 	 */
-	Map<ComplexModelConnectionHint, Map<SourceSectionClass, LinkedList<Map<ComplexModelConnectionHintSourceElement, String>>>> getUnSyncedComplexConnectionHints() {
+	Map<ModelConnectionHint, Map<SourceSectionClass, LinkedList<Map<ModelConnectionHintSourceElement, String>>>> getUnSyncedComplexConnectionHints() {
 		return unSyncedComplexConnectionHints;
 	}
 

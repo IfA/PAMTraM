@@ -174,7 +174,7 @@ public class AttributeMappingSourceElementTypeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((AttributeMappingSourceElementType)object).getName();
+		String label = ((AttributeMappingSourceElementType<?>)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_AttributeMappingSourceElementType_type") :
 			getString("_UI_AttributeMappingSourceElementType_type") + " " + label;

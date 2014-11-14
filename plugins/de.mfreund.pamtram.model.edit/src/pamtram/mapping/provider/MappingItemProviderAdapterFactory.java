@@ -393,26 +393,26 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ConnectionHintTargetAttribute} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ModelConnectionHint} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ConnectionHintTargetAttributeItemProvider connectionHintTargetAttributeItemProvider;
+	protected ModelConnectionHintItemProvider modelConnectionHintItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ConnectionHintTargetAttribute}.
+	 * This creates an adapter for a {@link pamtram.mapping.ModelConnectionHint}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createConnectionHintTargetAttributeAdapter() {
-		if (connectionHintTargetAttributeItemProvider == null) {
-			connectionHintTargetAttributeItemProvider = new ConnectionHintTargetAttributeItemProvider(this);
+	public Adapter createModelConnectionHintAdapter() {
+		if (modelConnectionHintItemProvider == null) {
+			modelConnectionHintItemProvider = new ModelConnectionHintItemProvider(this);
 		}
 
-		return connectionHintTargetAttributeItemProvider;
+		return modelConnectionHintItemProvider;
 	}
 
 	/**
@@ -508,72 +508,49 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.SimpleModelConnectionHint} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ModelConnectionHintSourceElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SimpleModelConnectionHintItemProvider simpleModelConnectionHintItemProvider;
+	protected ModelConnectionHintSourceElementItemProvider modelConnectionHintSourceElementItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.SimpleModelConnectionHint}.
+	 * This creates an adapter for a {@link pamtram.mapping.ModelConnectionHintSourceElement}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createSimpleModelConnectionHintAdapter() {
-		if (simpleModelConnectionHintItemProvider == null) {
-			simpleModelConnectionHintItemProvider = new SimpleModelConnectionHintItemProvider(this);
+	public Adapter createModelConnectionHintSourceElementAdapter() {
+		if (modelConnectionHintSourceElementItemProvider == null) {
+			modelConnectionHintSourceElementItemProvider = new ModelConnectionHintSourceElementItemProvider(this);
 		}
 
-		return simpleModelConnectionHintItemProvider;
+		return modelConnectionHintSourceElementItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ComplexModelConnectionHint} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ModelConnectionHintTargetAttribute} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ComplexModelConnectionHintItemProvider complexModelConnectionHintItemProvider;
+	protected ModelConnectionHintTargetAttributeItemProvider modelConnectionHintTargetAttributeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ComplexModelConnectionHint}.
+	 * This creates an adapter for a {@link pamtram.mapping.ModelConnectionHintTargetAttribute}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createComplexModelConnectionHintAdapter() {
-		if (complexModelConnectionHintItemProvider == null) {
-			complexModelConnectionHintItemProvider = new ComplexModelConnectionHintItemProvider(this);
+	public Adapter createModelConnectionHintTargetAttributeAdapter() {
+		if (modelConnectionHintTargetAttributeItemProvider == null) {
+			modelConnectionHintTargetAttributeItemProvider = new ModelConnectionHintTargetAttributeItemProvider(this);
 		}
 
-		return complexModelConnectionHintItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ComplexModelConnectionHintSourceElement} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ComplexModelConnectionHintSourceElementItemProvider complexModelConnectionHintSourceElementItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ComplexModelConnectionHintSourceElement}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createComplexModelConnectionHintSourceElementAdapter() {
-		if (complexModelConnectionHintSourceElementItemProvider == null) {
-			complexModelConnectionHintSourceElementItemProvider = new ComplexModelConnectionHintSourceElementItemProvider(this);
-		}
-
-		return complexModelConnectionHintSourceElementItemProvider;
+		return modelConnectionHintTargetAttributeItemProvider;
 	}
 
 	/**
@@ -965,14 +942,13 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (instantiableMappingHintGroupItemProvider != null) instantiableMappingHintGroupItemProvider.dispose();
 		if (mappingHintGroupImporterItemProvider != null) mappingHintGroupImporterItemProvider.dispose();
 		if (exportedMappingHintGroupItemProvider != null) exportedMappingHintGroupItemProvider.dispose();
-		if (connectionHintTargetAttributeItemProvider != null) connectionHintTargetAttributeItemProvider.dispose();
+		if (modelConnectionHintItemProvider != null) modelConnectionHintItemProvider.dispose();
 		if (attributeMappingSourceElementItemProvider != null) attributeMappingSourceElementItemProvider.dispose();
 		if (complexAttributeMatcherItemProvider != null) complexAttributeMatcherItemProvider.dispose();
 		if (simpleAttributeMatcherItemProvider != null) simpleAttributeMatcherItemProvider.dispose();
 		if (complexAttributeMatcherSourceElementItemProvider != null) complexAttributeMatcherSourceElementItemProvider.dispose();
-		if (simpleModelConnectionHintItemProvider != null) simpleModelConnectionHintItemProvider.dispose();
-		if (complexModelConnectionHintItemProvider != null) complexModelConnectionHintItemProvider.dispose();
-		if (complexModelConnectionHintSourceElementItemProvider != null) complexModelConnectionHintSourceElementItemProvider.dispose();
+		if (modelConnectionHintSourceElementItemProvider != null) modelConnectionHintSourceElementItemProvider.dispose();
+		if (modelConnectionHintTargetAttributeItemProvider != null) modelConnectionHintTargetAttributeItemProvider.dispose();
 		if (mappedAttributeValuePrependerItemProvider != null) mappedAttributeValuePrependerItemProvider.dispose();
 		if (mappedAttributeValueAppenderItemProvider != null) mappedAttributeValueAppenderItemProvider.dispose();
 		if (globalAttributeItemProvider != null) globalAttributeItemProvider.dispose();

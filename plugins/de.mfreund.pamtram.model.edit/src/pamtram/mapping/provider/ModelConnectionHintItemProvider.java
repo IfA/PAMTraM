@@ -65,6 +65,7 @@ public class ModelConnectionHintItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(MappingPackage.Literals.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES);
+			childrenFeatures.add(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -109,6 +110,7 @@ public class ModelConnectionHintItemProvider
 
 		switch (notification.getFeatureID(ModelConnectionHint.class)) {
 			case MappingPackage.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES:
+			case MappingPackage.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -129,7 +131,22 @@ public class ModelConnectionHintItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES,
-				 MappingFactory.eINSTANCE.createConnectionHintTargetAttribute()));
+				 MappingFactory.eINSTANCE.createModelConnectionHintTargetAttribute()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS,
+				 MappingFactory.eINSTANCE.createModelConnectionHintSourceElement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS,
+				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS,
+				 MappingFactory.eINSTANCE.createComplexModelConnectionHintExternalSourceElement()));
 	}
 
 	/**

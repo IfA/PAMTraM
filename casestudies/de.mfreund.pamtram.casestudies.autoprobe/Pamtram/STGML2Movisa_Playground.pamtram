@@ -3844,8 +3844,8 @@
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="BaseDataType  String" targetMMSection="//@targetSectionModel/@metaModelSections.4">
         <mappingHints xsi:type="mapping:AttributeMapping" name="Name@String" target="//@targetSectionModel/@metaModelSections.4/@attributes.1"> <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" source="//@sourceSectionModel/@metaModelSections.25/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel/@modifierSets.2 //@mappingModel/@modifierSets.18"/></mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:SimpleModelConnectionHint" name="OpcUAItem" source="//@sourceSectionModel/@metaModelSections.25/@references.0/@value.0/@references.0/@value.0/@attributes.1">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.0/@attributes.2" modifier="//@mappingModel/@modifierSets.17 //@mappingModel/@modifierSets.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint" name="OpcUAItem"> <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement"  source="//@sourceSectionModel/@metaModelSections.25/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.0/@attributes.2" modifier="//@mappingModel/@modifierSets.17 //@mappingModel/@modifierSets.2"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="LPDataItem String" targetMMSection="//@targetSectionModel/@metaModelSections.10">
@@ -3899,9 +3899,9 @@
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="BaseDataType  Bool" targetMMSection="//@targetSectionModel/@metaModelSections.2">
         <mappingHints xsi:type="mapping:AttributeMapping" name="Name@Bool" target="//@targetSectionModel/@metaModelSections.2/@attributes.1"> <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" source="//@sourceSectionModel/@metaModelSections.24/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel/@modifierSets.2 //@mappingModel/@modifierSets.18"/></mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="OpcUAItem">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.0/@attributes.2" modifier="//@mappingModel/@modifierSets.17 //@mappingModel/@modifierSets.2"/>
-          <sourceElements xsi:type="mapping:ComplexModelConnectionHintSourceElement" name="valueBrowsePath (Bool)" source="//@sourceSectionModel/@metaModelSections.24/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint" name="OpcUAItem">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.0/@attributes.2" modifier="//@mappingModel/@modifierSets.17 //@mappingModel/@modifierSets.2"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="valueBrowsePath (Bool)" source="//@sourceSectionModel/@metaModelSections.24/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
@@ -3921,8 +3921,8 @@
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="BaseDataType  Integer" targetMMSection="//@targetSectionModel/@metaModelSections.3">
         <mappingHints xsi:type="mapping:AttributeMapping" name="Name@Integer" target="//@targetSectionModel/@metaModelSections.3/@attributes.1"> <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" source="//@sourceSectionModel/@metaModelSections.22/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel/@modifierSets.2 //@mappingModel/@modifierSets.18"/></mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:SimpleModelConnectionHint" name="OpcUAItem" source="//@sourceSectionModel/@metaModelSections.22/@references.0/@value.0/@references.0/@value.0/@attributes.1">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.0/@attributes.2" modifier="//@mappingModel/@modifierSets.17 //@mappingModel/@modifierSets.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint" name="OpcUAItem"> <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement"  source="//@sourceSectionModel/@metaModelSections.22/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.0/@attributes.2" modifier="//@mappingModel/@modifierSets.17 //@mappingModel/@modifierSets.2"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="MonitoredItem Integer" targetMMSection="//@targetSectionModel/@metaModelSections.11">
@@ -3955,8 +3955,8 @@
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="BaseDataType  Double" targetMMSection="//@targetSectionModel/@metaModelSections.1">
         <mappingHints xsi:type="mapping:AttributeMapping" name="Name@Double (for uniqueness)" target="//@targetSectionModel/@metaModelSections.1/@attributes.1"> <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" source="//@sourceSectionModel/@metaModelSections.23/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel/@modifierSets.2 //@mappingModel/@modifierSets.18"/></mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:SimpleModelConnectionHint" name="OpcUAItem" source="//@sourceSectionModel/@metaModelSections.23/@references.0/@value.0/@references.0/@value.0/@attributes.1">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.0/@attributes.2" modifier="//@mappingModel/@modifierSets.17 //@mappingModel/@modifierSets.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint" name="OpcUAItem"> <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement"  source="//@sourceSectionModel/@metaModelSections.23/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.0/@attributes.2" modifier="//@mappingModel/@modifierSets.17 //@mappingModel/@modifierSets.2"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal Double" targetMMSection="//@targetSectionModel/@metaModelSections.5">
@@ -4013,8 +4013,8 @@
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="BaseDataType  Bool" targetMMSection="//@targetSectionModel/@metaModelSections.2">
         <mappingHints xsi:type="mapping:AttributeMapping" name="activateDataItem Name" target="//@targetSectionModel/@metaModelSections.2/@attributes.1"> <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" source="//@sourceSectionModel/@metaModelSections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.2 //@mappingModel/@modifierSets.18"/></mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:SimpleModelConnectionHint" name="OpcUAItem" source="//@sourceSectionModel/@metaModelSections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.0/@attributes.2" modifier="//@mappingModel/@modifierSets.17 //@mappingModel/@modifierSets.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint" name="OpcUAItem"> <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement"  source="//@sourceSectionModel/@metaModelSections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1"/>
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.0/@attributes.2" modifier="//@mappingModel/@modifierSets.17 //@mappingModel/@modifierSets.2"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
@@ -4124,8 +4124,8 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosZName @Bool:Out" target="//@targetSectionModel/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.25 //@mappingModel/@modifierSets.2"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="TextLabel Bool:Out">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint" name="TextLabel Bool:Out">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -4190,8 +4190,8 @@
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel/@metaModelSections.7/@attributes.5" modifier="//@mappingModel/@modifierSets.2"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="TextLabel Bool:Out">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint" name="TextLabel Bool:Out">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -4260,8 +4260,8 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosZName @Double:Out" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.25 //@mappingModel/@modifierSets.2"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="TextLabel Bool:Out">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint" name="TextLabel Bool:Out">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -4323,8 +4323,8 @@
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel/@metaModelSections.8/@attributes.5" modifier="//@mappingModel/@modifierSets.2"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="TextLabel Bool:Out">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint" name="TextLabel Bool:Out">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -4396,8 +4396,8 @@
             <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherSourceElement" name="label" source="//@sourceSectionModel/@metaModelSections.9/@attributes.5" modifier="//@mappingModel/@modifierSets.2 //@mappingModel/@modifierSets.35"/>
           </matcher>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="TextLabel Bool:In">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint" name="TextLabel Bool:In">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -4470,8 +4470,8 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosZName @Double:Out" target="//@targetSectionModel/@metaModelSections.15/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.25 //@mappingModel/@modifierSets.2"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="TextLabel Bool:Out">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint" name="TextLabel Bool:Out">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -4537,8 +4537,8 @@
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel/@metaModelSections.10/@attributes.5" modifier="//@mappingModel/@modifierSets.2"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="TextLabel Bool:Out">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint" name="TextLabel Bool:Out">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -4604,8 +4604,8 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosZName(Double:Output Label)" target="//@targetSectionModel/@metaModelSections.18/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.25 //@mappingModel/@modifierSets.2"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="FunctionButton">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint" name="FunctionButton">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -4689,8 +4689,8 @@
             <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherSourceElement" name="send" source="//@sourceSectionModel/@metaModelSections.12/@attributes.6" modifier="//@mappingModel/@modifierSets.19 //@mappingModel/@modifierSets.2"/>
           </matcher>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="NavButton">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint" name="NavButton">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="layer" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -4761,8 +4761,8 @@
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="imgResource" affectedReference="//@targetSectionModel/@metaModelSections.20/@references.0/@value.0/@references.4">
           <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.26/@references.1/@value.0/@references.0/@value.2"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="Image">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint" name="Image">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="layer" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -4829,8 +4829,8 @@
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="imgResource" affectedReference="//@targetSectionModel/@metaModelSections.20/@references.0/@value.0/@references.4">
           <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.26/@references.1/@value.0/@references.0/@value.1"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="Image">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint" name="Image">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="layer" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -4898,8 +4898,8 @@
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="imgResource" affectedReference="//@targetSectionModel/@metaModelSections.20/@references.0/@value.0/@references.4">
           <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.26/@references.1/@value.0/@references.0/@value.6"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="Image">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint" name="Image">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -4970,8 +4970,8 @@
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="backGroundColor" affectedReference="//@targetSectionModel/@metaModelSections.13/@references.0/@value.0/@references.5/@value.0/@references.1">
           <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.26/@references.0/@value.0/@references.0/@value.11"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="TextLabel Bool:Out">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint" name="TextLabel Bool:Out">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -5039,8 +5039,8 @@
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="ImageName" affectedReference="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.4">
           <matcher xsi:type="mapping:SimpleAttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.22/@attributes.0" name="ImageName" source="//@sourceSectionModel/@metaModelSections.16/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.40 //@mappingModel/@modifierSets.2"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="Image">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint" name="Image">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -5118,8 +5118,8 @@
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="backGroundColor" affectedReference="//@targetSectionModel/@metaModelSections.13/@references.0/@value.0/@references.5/@value.0/@references.1">
           <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.26/@references.0/@value.0/@references.0/@value.10"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="TextLabel Bool:Out">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint" name="TextLabel Bool:Out">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -5187,8 +5187,8 @@
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="imgResource" affectedReference="//@targetSectionModel/@metaModelSections.20/@references.0/@value.0/@references.4">
           <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.26/@references.1/@value.0/@references.0/@value.10"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint" name="Image">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint" name="Image">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.6/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>

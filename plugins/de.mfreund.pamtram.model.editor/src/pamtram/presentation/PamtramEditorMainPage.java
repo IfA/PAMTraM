@@ -32,8 +32,6 @@ import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ClassMatcher;
 import pamtram.mapping.ComplexAttributeMatcher;
 import pamtram.mapping.ComplexAttributeMatcherSourceInterface;
-import pamtram.mapping.ComplexModelConnectionHint;
-import pamtram.mapping.ComplexModelConnectionHintSourceInterface;
 import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.GlobalAttribute;
@@ -44,8 +42,8 @@ import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
+import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.mapping.SimpleAttributeMatcher;
-import pamtram.mapping.SimpleModelConnectionHint;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.SourceSectionAttribute;
@@ -341,9 +339,7 @@ public class PamtramEditorMainPage extends SashForm {
 					// Update the currently selected mapping.
 					currentMapping = mapping;
 				}  else if(((TreeItem) e.item).getData() instanceof AttributeMappingSourceElementType 
-						&& ! (((TreeItem) e.item).getData()instanceof SimpleAttributeMatcher)
-						&& ! (((TreeItem) e.item).getData()instanceof SimpleModelConnectionHint)
-						) {
+						&& ! (((TreeItem) e.item).getData()instanceof SimpleAttributeMatcher)) {
 					AttributeMappingSourceElementType mapping = (AttributeMappingSourceElementType) ((TreeItem) e.item).getData();
 					
 					Attribute target = null;
@@ -414,17 +410,17 @@ public class PamtramEditorMainPage extends SashForm {
 					
 				} else if(((TreeItem) e.item).getData() instanceof SimpleAttributeMatcher) {
 					
-					AttributeMatcher matcher = (AttributeMatcher) ((TreeItem) e.item).getData();
+					AttributeMatcher matcher = (SimpleAttributeMatcher) ((TreeItem) e.item).getData();
 					
 					
 					TargetSectionAttribute target=matcher.getTargetAttribute();
 					SourceSectionAttribute source=null;
 					
-					if(matcher instanceof SimpleAttributeMatcher){
+//					if(matcher instanceof SimpleAttributeMatcher){
 						source=((SimpleAttributeMatcher) matcher).getSource();
-					} else if(matcher instanceof AttributeMappingSourceElementType){
-						source=((AttributeMappingSourceElementType) matcher).getSource();
-					}
+//					} else if(matcher instanceof AttributeMappingSourceElementType){
+//						source=((AttributeMappingSourceElementType) matcher).getSource();
+//					}
 					
 					// Select the source and target item associated with the selected matcher.
 					setSourceTargetViewerSingleItemSelections(target, source);
@@ -472,10 +468,8 @@ public class PamtramEditorMainPage extends SashForm {
 					
 					LinkedList<Attribute> sources = new LinkedList<Attribute>();
 					
-					if(hint instanceof SimpleModelConnectionHint){
-						sources.add(((SimpleModelConnectionHint) hint).getSource());
-					} else if(hint instanceof ComplexModelConnectionHint){
-						for(ComplexModelConnectionHintSourceInterface sourceElement : ((ComplexModelConnectionHint) hint).getSourceElements() ){
+					if(hint instanceof ModelConnectionHint){
+						for(ModelConnectionHintSourceInterface sourceElement : ((ModelConnectionHint) hint).getSourceElements() ){
 							sources.add(sourceElement.getSourceAttribute());
 						}
 					}
@@ -484,8 +478,8 @@ public class PamtramEditorMainPage extends SashForm {
 					
 					
 					
-					for(ConnectionHintTargetAttribute a : hint.getTargetAttributes()){
-						targets.add(a.getTargetAttribute());
+					for(AttributeMappingSourceElementType a : hint.getTargetAttributes()){
+						targets.add(a.getSource());
 					}
 					
 					// Select the source and target item associated with the selected matcher.

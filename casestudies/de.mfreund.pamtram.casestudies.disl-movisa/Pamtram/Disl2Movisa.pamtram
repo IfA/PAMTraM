@@ -3054,8 +3054,8 @@
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.6/@attributes.1"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.0"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
+          <targetAttributes xsi:type="mapping:ModelConnectionHintTargetAttribute" source="//@targetSectionModel/@metaModelSections.1/@attributes.0"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -3083,10 +3083,10 @@
             <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherSourceElement" name="genericWidget" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.13"/>
           </matcher>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.6/@attributes.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
-          <sourceElements xsi:type="mapping:ComplexModelConnectionHintSourceElement" name="genericWidget" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="genericWidget" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabelTextDefinition" targetMMSection="//@targetSectionModel/@metaModelSections.11">
@@ -3115,10 +3115,10 @@
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="widgetId" source="//@sourceSectionModel/@metaModelSections.8/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel/@modifierSets.6"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.6/@attributes.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.6/@attributes.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
-          <sourceElements xsi:type="mapping:ComplexModelConnectionHintSourceElement" name="widgetId" source="//@sourceSectionModel/@metaModelSections.8/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="widgetId" source="//@sourceSectionModel/@metaModelSections.8/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SignalHintGroup" targetMMSection="//@targetSectionModel/@metaModelSections.2">
@@ -3138,8 +3138,8 @@
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.9/@attributes.1"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.0"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.1/@attributes.0"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -3168,10 +3168,10 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel/@metaModelSections.10/@references.0/@value.0/@references.0/@value.0/@attributes.2" expression="10+(x-1)*130">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel/@metaModelSections.10/@attributes.0" modifier="//@mappingModel/@modifierSets.15"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.9/@attributes.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.9/@attributes.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
-          <sourceElements xsi:type="mapping:ComplexModelConnectionHintSourceElement" name="genericWidget" source="//@sourceSectionModel/@metaModelSections.10/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="genericWidget" source="//@sourceSectionModel/@metaModelSections.10/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabelTextDefinition" targetMMSection="//@targetSectionModel/@metaModelSections.11">
@@ -3194,8 +3194,8 @@
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.11/@attributes.1"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.0"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.1/@attributes.0"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -3218,10 +3218,10 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel/@metaModelSections.13/@references.0/@value.0/@references.0/@value.0/@attributes.2" expression="10+(x-1)*130">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel/@metaModelSections.12/@attributes.0" modifier="//@mappingModel/@modifierSets.15"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.12/@attributes.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.12/@attributes.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
-          <sourceElements xsi:type="mapping:ComplexModelConnectionHintSourceElement" name="genericWidget" source="//@sourceSectionModel/@metaModelSections.12/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="genericWidget" source="//@sourceSectionModel/@metaModelSections.12/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
@@ -3235,8 +3235,8 @@
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.13/@attributes.1"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.0"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.1/@attributes.0"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -3258,10 +3258,10 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@attributes.2" expression="10+(x-1)*130">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel/@metaModelSections.14/@attributes.0" modifier="//@mappingModel/@modifierSets.15"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.15/@attributes.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.15/@attributes.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
-          <sourceElements xsi:type="mapping:ComplexModelConnectionHintSourceElement" name="genericWidget" source="//@sourceSectionModel/@metaModelSections.14/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="genericWidget" source="//@sourceSectionModel/@metaModelSections.14/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
@@ -3276,10 +3276,10 @@
             <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherSourceElement" name="genericWidget" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.13"/>
           </matcher>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.16/@attributes.0"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.16/@attributes.0"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
-          <sourceElements xsi:type="mapping:ComplexModelConnectionHintSourceElement" name="genericWidget" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.14"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="genericWidget" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.14"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefinition" targetMMSection="//@targetSectionModel/@metaModelSections.11">
@@ -3308,10 +3308,10 @@
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="widgetId" source="//@sourceSectionModel/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel/@modifierSets.6"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.15/@attributes.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.15/@attributes.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
-          <sourceElements xsi:type="mapping:ComplexModelConnectionHintSourceElement" name="widgetId" source="//@sourceSectionModel/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel/@modifierSets.21"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="widgetId" source="//@sourceSectionModel/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel/@modifierSets.21"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SignalHintGroup" targetMMSection="//@targetSectionModel/@metaModelSections.2">
@@ -3331,8 +3331,8 @@
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.13/@attributes.1"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.0"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.1/@attributes.0"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -3354,10 +3354,10 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel/@metaModelSections.20/@references.0/@value.0/@references.0/@value.0/@attributes.2" expression="10+(x-1)*130">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel/@metaModelSections.14/@attributes.0" modifier="//@mappingModel/@modifierSets.15"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.19/@attributes.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.19/@attributes.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
-          <sourceElements xsi:type="mapping:ComplexModelConnectionHintSourceElement" name="genericWidget" source="//@sourceSectionModel/@metaModelSections.14/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="genericWidget" source="//@sourceSectionModel/@metaModelSections.14/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
@@ -3367,10 +3367,10 @@
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="genericWidget" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.19/@attributes.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.19/@attributes.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
-          <sourceElements xsi:type="mapping:ComplexModelConnectionHintSourceElement" name="genericWidget" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.14"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="genericWidget" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.14"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefinition" targetMMSection="//@targetSectionModel/@metaModelSections.11">
@@ -3392,10 +3392,10 @@
             <sourceAttributes xsi:type="mapping:ComplexAttributeMatcherSourceElement" name="genericWidget" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.13"/>
           </matcher>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.21/@attributes.0"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.21/@attributes.0"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
-          <sourceElements xsi:type="mapping:ComplexModelConnectionHintSourceElement" name="genericWidget" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="genericWidget" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
@@ -3415,10 +3415,10 @@
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="widgetId" source="//@sourceSectionModel/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel/@modifierSets.6"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.21/@attributes.0"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.21/@attributes.0"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
-          <sourceElements xsi:type="mapping:ComplexModelConnectionHintSourceElement" name="widgetId" source="//@sourceSectionModel/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="widgetId" source="//@sourceSectionModel/@metaModelSections.16/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SignalHintGroup" targetMMSection="//@targetSectionModel/@metaModelSections.2">
@@ -3438,8 +3438,8 @@
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.17/@attributes.1"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.0"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.1/@attributes.0"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
@@ -3457,10 +3457,10 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel/@metaModelSections.13/@references.0/@value.0/@references.0/@value.0/@attributes.2" expression="10+(x-1)*130">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel/@metaModelSections.18/@attributes.0" modifier="//@mappingModel/@modifierSets.15"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.12/@attributes.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.12/@attributes.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
-          <sourceElements xsi:type="mapping:ComplexModelConnectionHintSourceElement" name="genericWidget" source="//@sourceSectionModel/@metaModelSections.18/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="genericWidget" source="//@sourceSectionModel/@metaModelSections.18/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
@@ -3480,10 +3480,10 @@
           <sourceAttributeMappings xsi:type="mapping:ComplexAttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="widgetId" source="//@sourceSectionModel/@metaModelSections.19/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel/@modifierSets.6"/>
         </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ComplexModelConnectionHint">
-          <targetAttributes targetAttribute="//@targetSectionModel/@metaModelSections.12/@attributes.2"/>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.12/@attributes.2"/>
           <sourceElements xsi:type="mapping:ComplexModelConnectionHintExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
-          <sourceElements xsi:type="mapping:ComplexModelConnectionHintSourceElement" name="widgetId" source="//@sourceSectionModel/@metaModelSections.19/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="widgetId" source="//@sourceSectionModel/@metaModelSections.19/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SignalHintGroup" targetMMSection="//@targetSectionModel/@metaModelSections.2">

@@ -1,862 +1,383 @@
 <?xml version="1.0" encoding="ASCII"?>
-<Disl:Disl xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:Disl="http://disl">
+<Disl:Disl xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:Disl="http://disl">
   <head>
-    <meta content="Prozessvisualisierung_20110303_202702"
-        name="modell-ID"/>
-    <meta content="2.0"
-        name="useML_schema_version"/>
-    <meta content="hierarchie"
-        name="struktur"/>
-    <meta content="Prozessvisualisierung"
-        name="bezeichnung"/>
-    <meta content=""
-        name="autoren"/>
-    <meta content="2010-09-29"
-        name="erstellungsdatum"/>
+    <meta content="Prozessvisualisierung_20110303_202702" name="modell-ID"/>
+    <meta content="2.0" name="useML_schema_version"/>
+    <meta content="hierarchie" name="struktur"/>
+    <meta content="Prozessvisualisierung" name="bezeichnung"/>
+    <meta content="" name="autoren"/>
+    <meta content="2010-09-29" name="erstellungsdatum"/>
   </head>
-  <interface
-      id="Dialog_1"
-      state="start">
+  <interface id="Dialog_1" state="start">
     <structure>
-      <widget
-          genericWidget="textfield"
-          id="eBO_1"/>
-      <widget
-          genericWidget="choicegroup"
-          id="eBO_2_Select">
-        <widget
-            genericWidget="variablefield"
-            id="eBO_2_Select_Option_0"/>
-        <widget
-            genericWidget="variablefield"
-            id="eBO_2_Select_Option_1"/>
-        <widget
-            genericWidget="variablefield"
-            id="eBO_2_Select_Option_2"/>
+      <widget genericWidget="textfield" id="eBO_1"/>
+      <widget genericWidget="choicegroup" id="eBO_2_Select">
+        <widget genericWidget="variablefield" id="eBO_2_Select_Option_0"/>
+        <widget genericWidget="variablefield" id="eBO_2_Select_Option_1"/>
+        <widget genericWidget="variablefield" id="eBO_2_Select_Option_2"/>
       </widget>
-      <widget
-          genericWidget="textfield"
-          id="eBO_3"/>
-      <widget
-          genericWidget="choicegroup"
-          id="eBO_4_Select">
-        <widget
-            genericWidget="variablefield"
-            id="eBO_4_Select_Option_0"/>
-        <widget
-            genericWidget="variablefield"
-            id="eBO_4_Select_Option_1"/>
-        <widget
-            genericWidget="variablefield"
-            id="eBO_4_Select_Option_2"/>
+      <widget genericWidget="textfield" id="eBO_3"/>
+      <widget genericWidget="choicegroup" id="eBO_4_Select">
+        <widget genericWidget="variablefield" id="eBO_4_Select_Option_0"/>
+        <widget genericWidget="variablefield" id="eBO_4_Select_Option_1"/>
+        <widget genericWidget="variablefield" id="eBO_4_Select_Option_2"/>
       </widget>
-      <widget
-          genericWidget="command"
-          id="eBO_5_Confirm"/>
-      <widget
-          genericWidget="command"
-          id="eBO_6_Confirm"/>
-      <widget
-          genericWidget="command"
-          id="eBO_7_Confirm"/>
+      <widget genericWidget="command" id="eBO_5_Confirm"/>
+      <widget genericWidget="command" id="eBO_6_Confirm"/>
+      <widget genericWidget="command" id="eBO_7_Confirm"/>
     </structure>
     <style>
-      <part
-          genericWidget="eBO_1">
-        <property
-            value="Quell-Beh&#xe4;lter"
-            genericWidget="textfield"
-            id="title"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="description"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="help"/>
-        <property
-            value="yes"
-            genericWidget="textfield"
-            id="visible"/>
-        <property
-            value="yes"
-            genericWidget="textfield"
-            id="activated"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="value"/>
+      <part genericWidget="eBO_1">
+        <property value="Quell-Beh&#xe4;lter" genericWidget="textfield" id="title"/>
+        <property value="" genericWidget="textfield" id="description"/>
+        <property value="" genericWidget="textfield" id="help"/>
+        <property value="yes" genericWidget="textfield" id="visible"/>
+        <property value="yes" genericWidget="textfield" id="activated"/>
+        <property value="" genericWidget="textfield" id="value"/>
       </part>
-      <part
-          genericWidget="eBO_2_Select">
-        <property
-            value="Quell-Behaelter"
-            genericWidget="choicegroup"
-            id="title"/>
-        <property
-            value=""
-            genericWidget="choicegroup"
-            id="description"/>
-        <property
-            value=""
-            genericWidget="choicegroup"
-            id="help"/>
-        <property
-            value="yes"
-            genericWidget="choicegroup"
-            id="visible"/>
-        <property
-            value="yes"
-            genericWidget="choicegroup"
-            id="activated"/>
-        <property
-            value="exclusive"
-            genericWidget="choicegroup"
-            id="type"/>
-        <property
-            value="no"
-            genericWidget="choicegroup"
-            id="modified"/>
+      <part genericWidget="eBO_2_Select">
+        <property value="Quell-Behaelter" genericWidget="choicegroup" id="title"/>
+        <property value="" genericWidget="choicegroup" id="description"/>
+        <property value="" genericWidget="choicegroup" id="help"/>
+        <property value="yes" genericWidget="choicegroup" id="visible"/>
+        <property value="yes" genericWidget="choicegroup" id="activated"/>
+        <property value="exclusive" genericWidget="choicegroup" id="type"/>
+        <property value="no" genericWidget="choicegroup" id="modified"/>
       </part>
-      <part
-          genericWidget="eBO_2_Select_Option_0">
-        <property
-            value="Vorgabewert 0"
-            genericWidget="variablefield"
-            id="title"/>
-        <property
-            value="Behaelter_1 "
-            genericWidget="variablefield"
-            id="value"/>
+      <part genericWidget="eBO_2_Select_Option_0">
+        <property value="Vorgabewert 0" genericWidget="variablefield" id="title"/>
+        <property value="Behaelter_1 " genericWidget="variablefield" id="value"/>
       </part>
-      <part
-          genericWidget="eBO_2_Select_Option_1">
-        <property
-            value="Vorgabewert 1"
-            genericWidget="variablefield"
-            id="title"/>
-        <property
-            value="Behaelter_2 "
-            genericWidget="variablefield"
-            id="value"/>
+      <part genericWidget="eBO_2_Select_Option_1">
+        <property value="Vorgabewert 1" genericWidget="variablefield" id="title"/>
+        <property value="Behaelter_2 " genericWidget="variablefield" id="value"/>
       </part>
-      <part
-          genericWidget="eBO_2_Select_Option_2">
-        <property
-            value="Vorgabewert 2"
-            genericWidget="variablefield"
-            id="title"/>
-        <property
-            value="Behaelter_3 "
-            genericWidget="variablefield"
-            id="value"/>
+      <part genericWidget="eBO_2_Select_Option_2">
+        <property value="Vorgabewert 2" genericWidget="variablefield" id="title"/>
+        <property value="Behaelter_3 " genericWidget="variablefield" id="value"/>
       </part>
-      <part
-          genericWidget="eBO_3">
-        <property
-            value="Ziel-Beh&#xe4;lter"
-            genericWidget="textfield"
-            id="title"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="description"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="help"/>
-        <property
-            value="yes"
-            genericWidget="textfield"
-            id="visible"/>
-        <property
-            value="yes"
-            genericWidget="textfield"
-            id="activated"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="value"/>
+      <part genericWidget="eBO_3">
+        <property value="Ziel-Beh&#xe4;lter" genericWidget="textfield" id="title"/>
+        <property value="" genericWidget="textfield" id="description"/>
+        <property value="" genericWidget="textfield" id="help"/>
+        <property value="yes" genericWidget="textfield" id="visible"/>
+        <property value="yes" genericWidget="textfield" id="activated"/>
+        <property value="" genericWidget="textfield" id="value"/>
       </part>
-      <part
-          genericWidget="eBO_4_Select">
-        <property
-            value="Ziel-Beh&#xe4;lter"
-            genericWidget="choicegroup"
-            id="title"/>
-        <property
-            value=""
-            genericWidget="choicegroup"
-            id="description"/>
-        <property
-            value=""
-            genericWidget="choicegroup"
-            id="help"/>
-        <property
-            value="yes"
-            genericWidget="choicegroup"
-            id="visible"/>
-        <property
-            value="yes"
-            genericWidget="choicegroup"
-            id="activated"/>
-        <property
-            value="exclusive"
-            genericWidget="choicegroup"
-            id="type"/>
-        <property
-            value="no"
-            genericWidget="choicegroup"
-            id="modified"/>
+      <part genericWidget="eBO_4_Select">
+        <property value="Ziel-Beh&#xe4;lter" genericWidget="choicegroup" id="title"/>
+        <property value="" genericWidget="choicegroup" id="description"/>
+        <property value="" genericWidget="choicegroup" id="help"/>
+        <property value="yes" genericWidget="choicegroup" id="visible"/>
+        <property value="yes" genericWidget="choicegroup" id="activated"/>
+        <property value="exclusive" genericWidget="choicegroup" id="type"/>
+        <property value="no" genericWidget="choicegroup" id="modified"/>
       </part>
-      <part
-          genericWidget="eBO_4_Select_Option_0">
-        <property
-            value="Vorgabewert 0"
-            genericWidget="variablefield"
-            id="title"/>
-        <property
-            value="Pumpe_1 "
-            genericWidget="variablefield"
-            id="value"/>
+      <part genericWidget="eBO_4_Select_Option_0">
+        <property value="Vorgabewert 0" genericWidget="variablefield" id="title"/>
+        <property value="Pumpe_1 " genericWidget="variablefield" id="value"/>
       </part>
-      <part
-          genericWidget="eBO_4_Select_Option_1">
-        <property
-            value="Vorgabewert 1"
-            genericWidget="variablefield"
-            id="title"/>
-        <property
-            value="Pumpe_2 "
-            genericWidget="variablefield"
-            id="value"/>
+      <part genericWidget="eBO_4_Select_Option_1">
+        <property value="Vorgabewert 1" genericWidget="variablefield" id="title"/>
+        <property value="Pumpe_2 " genericWidget="variablefield" id="value"/>
       </part>
-      <part
-          genericWidget="eBO_4_Select_Option_2">
-        <property
-            value="Vorgabewert 2"
-            genericWidget="variablefield"
-            id="title"/>
-        <property
-            value="Pumpe_3 "
-            genericWidget="variablefield"
-            id="value"/>
+      <part genericWidget="eBO_4_Select_Option_2">
+        <property value="Vorgabewert 2" genericWidget="variablefield" id="title"/>
+        <property value="Pumpe_3 " genericWidget="variablefield" id="value"/>
       </part>
-      <part
-          genericWidget="eBO_5_Confirm">
-        <property
-            value="Start Umpumpen"
-            genericWidget="command"
-            id="title"/>
-        <property
-            value=""
-            genericWidget="command"
-            id="description"/>
-        <property
-            value=""
-            genericWidget="command"
-            id="help"/>
-        <property
-            value="no"
-            genericWidget="command"
-            id="selected"/>
+      <part genericWidget="eBO_5_Confirm">
+        <property value="Start Umpumpen" genericWidget="command" id="title"/>
+        <property value="" genericWidget="command" id="description"/>
+        <property value="" genericWidget="command" id="help"/>
+        <property value="no" genericWidget="command" id="selected"/>
       </part>
-      <part
-          genericWidget="eBO_6_Confirm">
-        <property
-            value="Stop Umpumpen"
-            genericWidget="command"
-            id="title"/>
-        <property
-            value=""
-            genericWidget="command"
-            id="description"/>
-        <property
-            value=""
-            genericWidget="command"
-            id="help"/>
-        <property
-            value="no"
-            genericWidget="command"
-            id="selected"/>
+      <part genericWidget="eBO_6_Confirm">
+        <property value="Stop Umpumpen" genericWidget="command" id="title"/>
+        <property value="" genericWidget="command" id="description"/>
+        <property value="" genericWidget="command" id="help"/>
+        <property value="no" genericWidget="command" id="selected"/>
       </part>
-      <part
-          genericWidget="eBO_7_Confirm">
-        <property
-            value="Konfiguration"
-            genericWidget="command"
-            id="title"/>
-        <property
-            value=""
-            genericWidget="command"
-            id="description"/>
-        <property
-            value=""
-            genericWidget="command"
-            id="help"/>
-        <property
-            value="no"
-            genericWidget="command"
-            id="selected"/>
+      <part genericWidget="eBO_7_Confirm">
+        <property value="Konfiguration" genericWidget="command" id="title"/>
+        <property value="" genericWidget="command" id="description"/>
+        <property value="" genericWidget="command" id="help"/>
+        <property value="no" genericWidget="command" id="selected"/>
       </part>
     </style>
     <behavior>
-      <variable
-          value="1"
-          id="Behaelter_A_FL"
-          internal="no"/>
-      <variable
-          value="2"
-          id="Behaelter_B_FL"
-          internal="no"/>
-      <variable
-          value="false"
-          id="Start_Umpumpen_FL"
-          internal="no"
-          type="boolean"/>
-      <rule
-          id="eBO_5_Confirm_Changed">
+      <variable value="1" id="Behaelter_A_FL" internal="no"/>
+      <variable value="2" id="Behaelter_B_FL" internal="no"/>
+      <variable value="false" id="Start_Umpumpen_FL" internal="no" type="boolean"/>
+      <rule id="eBO_5_Confirm_Changed">
         <condition>
-          <equal
-              constant="yes">
-            <propertyContent
-                propertyId="selected"
-                widgetId="eBO_5_Confirm"/>
+          <equal constant="yes">
+            <propertyContent propertyId="selected" widgetId="eBO_5_Confirm"/>
           </equal>
         </condition>
       </rule>
-      <rule
-          id="eBO_2_Select_Option_0_Changed">
+      <rule id="eBO_2_Select_Option_0_Changed">
         <condition>
-          <equal
-              constant="yes">
-            <propertyContent
-                propertyId="selected"
-                widgetId="eBO_2_Select_Option_0"/>
+          <equal constant="yes">
+            <propertyContent propertyId="selected" widgetId="eBO_2_Select_Option_0"/>
           </equal>
         </condition>
       </rule>
-      <rule
-          id="eBO_2_Select_Option_1_Changed">
+      <rule id="eBO_2_Select_Option_1_Changed">
         <condition>
-          <equal
-              constant="yes">
-            <propertyContent
-                propertyId="selected"
-                widgetId="eBO_2_Select_Option_1"/>
+          <equal constant="yes">
+            <propertyContent propertyId="selected" widgetId="eBO_2_Select_Option_1"/>
           </equal>
         </condition>
       </rule>
-      <rule
-          id="eBO_2_Select_Option_2_Changed">
+      <rule id="eBO_2_Select_Option_2_Changed">
         <condition>
-          <equal
-              constant="yes">
-            <propertyContent
-                propertyId="selected"
-                widgetId="eBO_2_Select_Option_2"/>
+          <equal constant="yes">
+            <propertyContent propertyId="selected" widgetId="eBO_2_Select_Option_2"/>
           </equal>
         </condition>
       </rule>
-      <rule
-          id="eBO_6_Confirm_Changed">
+      <rule id="eBO_6_Confirm_Changed">
         <condition>
-          <equal
-              constant="yes">
-            <propertyContent
-                propertyId="selected"
-                widgetId="eBO_6_Confirm"/>
+          <equal constant="yes">
+            <propertyContent propertyId="selected" widgetId="eBO_6_Confirm"/>
           </equal>
         </condition>
       </rule>
-      <rule
-          id="eBO_4_Select_Option_0_Changed">
+      <rule id="eBO_4_Select_Option_0_Changed">
         <condition>
-          <equal
-              constant="yes">
-            <propertyContent
-                propertyId="selected"
-                widgetId="eBO_4_Select_Option_0"/>
+          <equal constant="yes">
+            <propertyContent propertyId="selected" widgetId="eBO_4_Select_Option_0"/>
           </equal>
         </condition>
       </rule>
-      <rule
-          id="eBO_4_Select_Option_1_Changed">
+      <rule id="eBO_4_Select_Option_1_Changed">
         <condition>
-          <equal
-              constant="yes">
-            <propertyContent
-                propertyId="selected"
-                widgetId="eBO_4_Select_Option_1"/>
+          <equal constant="yes">
+            <propertyContent propertyId="selected" widgetId="eBO_4_Select_Option_1"/>
           </equal>
         </condition>
       </rule>
-      <rule
-          id="eBO_4_Select_Option_2_Changed">
+      <rule id="eBO_4_Select_Option_2_Changed">
         <condition>
-          <equal
-              constant="yes">
-            <propertyContent
-                propertyId="selected"
-                widgetId="eBO_4_Select_Option_2"/>
+          <equal constant="yes">
+            <propertyContent propertyId="selected" widgetId="eBO_4_Select_Option_2"/>
           </equal>
         </condition>
       </rule>
-      <rule
-          id="eBO_7_Confirm_Changed">
+      <rule id="eBO_7_Confirm_Changed">
         <condition>
-          <equal
-              constant="yes">
-            <propertyContent
-                propertyId="selected"
-                widgetId="eBO_7_Confirm"/>
+          <equal constant="yes">
+            <propertyContent propertyId="selected" widgetId="eBO_7_Confirm"/>
           </equal>
         </condition>
       </rule>
       <transition>
-        <ifTrue
-            ruleId="eBO_5_Confirm_Changed"/>
+        <ifTrue ruleId="eBO_5_Confirm_Changed"/>
         <action>
-          <statement
-              constant="true"
-              constant1="boolean">
-            <variableContent
-                variableId="Start_Umpumpen_FL"/>
+          <statement constant="true" constant1="boolean">
+            <variableContent variableId="Start_Umpumpen_FL"/>
           </statement>
         </action>
       </transition>
       <transition>
-        <ifTrue
-            ruleId="eBO_2_Select_Option_0_Changed"/>
+        <ifTrue ruleId="eBO_2_Select_Option_0_Changed"/>
         <action>
-          <statement
-              constant="1"
-              constant1="integer">
-            <variableContent
-                variableId="Behaelter_A_FL"/>
+          <statement constant="1" constant1="integer">
+            <variableContent variableId="Behaelter_A_FL"/>
           </statement>
         </action>
       </transition>
       <transition>
-        <ifTrue
-            ruleId="eBO_2_Select_Option_1_Changed"/>
+        <ifTrue ruleId="eBO_2_Select_Option_1_Changed"/>
         <action>
-          <statement
-              constant="2"
-              constant1="integer">
-            <variableContent
-                variableId="Behaelter_A_FL"/>
+          <statement constant="2" constant1="integer">
+            <variableContent variableId="Behaelter_A_FL"/>
           </statement>
         </action>
       </transition>
       <transition>
-        <ifTrue
-            ruleId="eBO_2_Select_Option_2_Changed"/>
+        <ifTrue ruleId="eBO_2_Select_Option_2_Changed"/>
         <action>
-          <statement
-              constant="3"
-              constant1="integer">
-            <variableContent
-                variableId="Behaelter_A_FL"/>
+          <statement constant="3" constant1="integer">
+            <variableContent variableId="Behaelter_A_FL"/>
           </statement>
         </action>
       </transition>
       <transition>
-        <ifTrue
-            ruleId="eBO_6_Confirm_Changed"/>
+        <ifTrue ruleId="eBO_6_Confirm_Changed"/>
         <action>
-          <statement
-              constant="false"
-              constant1="boolean">
-            <variableContent
-                variableId="Start_Umpumpen_FL"/>
+          <statement constant="false" constant1="boolean">
+            <variableContent variableId="Start_Umpumpen_FL"/>
           </statement>
         </action>
       </transition>
       <transition>
-        <ifTrue
-            ruleId="eBO_4_Select_Option_0_Changed"/>
+        <ifTrue ruleId="eBO_4_Select_Option_0_Changed"/>
         <action>
-          <statement
-              constant="1"
-              constant1="integer">
-            <variableContent
-                variableId="Behaelter_B_FL"/>
+          <statement constant="1" constant1="integer">
+            <variableContent variableId="Behaelter_B_FL"/>
           </statement>
         </action>
       </transition>
       <transition>
-        <ifTrue
-            ruleId="eBO_4_Select_Option_1_Changed"/>
+        <ifTrue ruleId="eBO_4_Select_Option_1_Changed"/>
         <action>
-          <statement
-              constant="2"
-              constant1="integer">
-            <variableContent
-                variableId="Behaelter_B_FL"/>
+          <statement constant="2" constant1="integer">
+            <variableContent variableId="Behaelter_B_FL"/>
           </statement>
         </action>
       </transition>
       <transition>
-        <ifTrue
-            ruleId="eBO_4_Select_Option_2_Changed"/>
+        <ifTrue ruleId="eBO_4_Select_Option_2_Changed"/>
         <action>
-          <statement
-              constant="3"
-              constant1="integer">
-            <variableContent
-                variableId="Behaelter_B_FL"/>
+          <statement constant="3" constant1="integer">
+            <variableContent variableId="Behaelter_B_FL"/>
           </statement>
         </action>
       </transition>
       <transition>
-        <ifTrue
-            ruleId="eBO_7_Confirm_Changed"/>
+        <ifTrue ruleId="eBO_7_Confirm_Changed"/>
         <action>
-          <interfaceChange
-              interfaceId="Dialog_2"/>
+          <interfaceChange interfaceId="Dialog_2"/>
         </action>
       </transition>
     </behavior>
   </interface>
-  <interface
-      id="Dialog_2"
-      state="other">
+  <interface id="Dialog_2" state="other">
     <structure>
-      <widget
-          genericWidget="textfield"
-          id="eBO_1"/>
-      <widget
-          genericWidget="variablebox"
-          id="eBO_2_Input"/>
-      <widget
-          genericWidget="textfield"
-          id="eBO_3"/>
-      <widget
-          genericWidget="variablebox"
-          id="eBO_4_Input"/>
-      <widget
-          genericWidget="textfield"
-          id="eBO_5"/>
-      <widget
-          genericWidget="variablebox"
-          id="eBO_6_Input"/>
-      <widget
-          genericWidget="command"
-          id="eBO_7_Confirm"/>
+      <widget genericWidget="textfield" id="eBO_1"/>
+      <widget genericWidget="variablebox" id="eBO_2_Input"/>
+      <widget genericWidget="textfield" id="eBO_3"/>
+      <widget genericWidget="variablebox" id="eBO_4_Input"/>
+      <widget genericWidget="textfield" id="eBO_5"/>
+      <widget genericWidget="variablebox" id="eBO_6_Input"/>
+      <widget genericWidget="command" id="eBO_7_Confirm"/>
     </structure>
     <style>
-      <part
-          genericWidget="eBO_1">
-        <property
-            value="V1"
-            genericWidget="textfield"
-            id="title"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="description"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="help"/>
-        <property
-            value="yes"
-            genericWidget="textfield"
-            id="visible"/>
-        <property
-            value="yes"
-            genericWidget="textfield"
-            id="activated"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="value"/>
+      <part genericWidget="eBO_1">
+        <property value="V1" genericWidget="textfield" id="title"/>
+        <property value="" genericWidget="textfield" id="description"/>
+        <property value="" genericWidget="textfield" id="help"/>
+        <property value="yes" genericWidget="textfield" id="visible"/>
+        <property value="yes" genericWidget="textfield" id="activated"/>
+        <property value="" genericWidget="textfield" id="value"/>
       </part>
-      <part
-          genericWidget="eBO_2_Input">
-        <property
-            value="V1"
-            genericWidget="variablebox"
-            id="title"/>
-        <property
-            value=""
-            genericWidget="variablebox"
-            id="description"/>
-        <property
-            value=""
-            genericWidget="variablebox"
-            id="help"/>
-        <property
-            value="yes"
-            genericWidget="variablebox"
-            id="visible"/>
-        <property
-            value="yes"
-            genericWidget="variablebox"
-            id="activated"/>
-        <property
-            value="yes"
-            genericWidget="variablebox"
-            id="incremental"/>
-        <property
-            value="100"
-            genericWidget="variablebox"
-            id="value"/>
-        <property
-            value="no"
-            genericWidget="variablebox"
-            id="modified"/>
+      <part genericWidget="eBO_2_Input">
+        <property value="V1" genericWidget="variablebox" id="title"/>
+        <property value="" genericWidget="variablebox" id="description"/>
+        <property value="" genericWidget="variablebox" id="help"/>
+        <property value="yes" genericWidget="variablebox" id="visible"/>
+        <property value="yes" genericWidget="variablebox" id="activated"/>
+        <property value="yes" genericWidget="variablebox" id="incremental"/>
+        <property value="100" genericWidget="variablebox" id="value"/>
+        <property value="no" genericWidget="variablebox" id="modified"/>
       </part>
-      <part
-          genericWidget="eBO_3">
-        <property
-            value="V2"
-            genericWidget="textfield"
-            id="title"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="description"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="help"/>
-        <property
-            value="yes"
-            genericWidget="textfield"
-            id="visible"/>
-        <property
-            value="yes"
-            genericWidget="textfield"
-            id="activated"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="value"/>
+      <part genericWidget="eBO_3">
+        <property value="V2" genericWidget="textfield" id="title"/>
+        <property value="" genericWidget="textfield" id="description"/>
+        <property value="" genericWidget="textfield" id="help"/>
+        <property value="yes" genericWidget="textfield" id="visible"/>
+        <property value="yes" genericWidget="textfield" id="activated"/>
+        <property value="" genericWidget="textfield" id="value"/>
       </part>
-      <part
-          genericWidget="eBO_4_Input">
-        <property
-            value="V2"
-            genericWidget="variablebox"
-            id="title"/>
-        <property
-            value=""
-            genericWidget="variablebox"
-            id="description"/>
-        <property
-            value=""
-            genericWidget="variablebox"
-            id="help"/>
-        <property
-            value="yes"
-            genericWidget="variablebox"
-            id="visible"/>
-        <property
-            value="yes"
-            genericWidget="variablebox"
-            id="activated"/>
-        <property
-            value="yes"
-            genericWidget="variablebox"
-            id="incremental"/>
-        <property
-            value="100"
-            genericWidget="variablebox"
-            id="value"/>
-        <property
-            value="no"
-            genericWidget="variablebox"
-            id="modified"/>
+      <part genericWidget="eBO_4_Input">
+        <property value="V2" genericWidget="variablebox" id="title"/>
+        <property value="" genericWidget="variablebox" id="description"/>
+        <property value="" genericWidget="variablebox" id="help"/>
+        <property value="yes" genericWidget="variablebox" id="visible"/>
+        <property value="yes" genericWidget="variablebox" id="activated"/>
+        <property value="yes" genericWidget="variablebox" id="incremental"/>
+        <property value="100" genericWidget="variablebox" id="value"/>
+        <property value="no" genericWidget="variablebox" id="modified"/>
       </part>
-      <part
-          genericWidget="eBO_5">
-        <property
-            value="P3"
-            genericWidget="textfield"
-            id="title"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="description"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="help"/>
-        <property
-            value="yes"
-            genericWidget="textfield"
-            id="visible"/>
-        <property
-            value="yes"
-            genericWidget="textfield"
-            id="activated"/>
-        <property
-            value=""
-            genericWidget="textfield"
-            id="value"/>
+      <part genericWidget="eBO_5">
+        <property value="P3" genericWidget="textfield" id="title"/>
+        <property value="" genericWidget="textfield" id="description"/>
+        <property value="" genericWidget="textfield" id="help"/>
+        <property value="yes" genericWidget="textfield" id="visible"/>
+        <property value="yes" genericWidget="textfield" id="activated"/>
+        <property value="" genericWidget="textfield" id="value"/>
       </part>
-      <part
-          genericWidget="eBO_6_Input">
-        <property
-            value="P3"
-            genericWidget="variablebox"
-            id="title"/>
-        <property
-            value=""
-            genericWidget="variablebox"
-            id="description"/>
-        <property
-            value=""
-            genericWidget="variablebox"
-            id="help"/>
-        <property
-            value="yes"
-            genericWidget="variablebox"
-            id="visible"/>
-        <property
-            value="yes"
-            genericWidget="variablebox"
-            id="activated"/>
-        <property
-            value="yes"
-            genericWidget="variablebox"
-            id="incremental"/>
-        <property
-            value="100"
-            genericWidget="variablebox"
-            id="value"/>
-        <property
-            value="no"
-            genericWidget="variablebox"
-            id="modified"/>
+      <part genericWidget="eBO_6_Input">
+        <property value="P3" genericWidget="variablebox" id="title"/>
+        <property value="" genericWidget="variablebox" id="description"/>
+        <property value="" genericWidget="variablebox" id="help"/>
+        <property value="yes" genericWidget="variablebox" id="visible"/>
+        <property value="yes" genericWidget="variablebox" id="activated"/>
+        <property value="yes" genericWidget="variablebox" id="incremental"/>
+        <property value="100" genericWidget="variablebox" id="value"/>
+        <property value="no" genericWidget="variablebox" id="modified"/>
       </part>
-      <part
-          genericWidget="eBO_7_Confirm">
-        <property
-            value="OK"
-            genericWidget="command"
-            id="title"/>
-        <property
-            value=""
-            genericWidget="command"
-            id="description"/>
-        <property
-            value=""
-            genericWidget="command"
-            id="help"/>
-        <property
-            value="no"
-            genericWidget="command"
-            id="selected"/>
+      <part genericWidget="eBO_7_Confirm">
+        <property value="OK" genericWidget="command" id="title"/>
+        <property value="" genericWidget="command" id="description"/>
+        <property value="" genericWidget="command" id="help"/>
+        <property value="no" genericWidget="command" id="selected"/>
       </part>
     </style>
     <behavior>
-      <variable
-          value="100"
-          id="V1_FL"
-          internal="no"/>
-      <variable
-          value="100"
-          id="V2_FL"
-          internal="no"/>
-      <variable
-          value="100"
-          id="P3_FL"
-          internal="no"/>
-      <rule
-          id="eBO_2_Input_Changed">
+      <variable value="100" id="V1_FL" internal="no"/>
+      <variable value="100" id="V2_FL" internal="no"/>
+      <variable value="100" id="P3_FL" internal="no"/>
+      <rule id="eBO_2_Input_Changed">
         <condition>
-          <equal
-              constant="yes">
-            <propertyContent
-                propertyId="selected"
-                widgetId="eBO_2_Input"/>
+          <equal constant="yes">
+            <propertyContent propertyId="selected" widgetId="eBO_2_Input"/>
           </equal>
         </condition>
       </rule>
-      <rule
-          id="eBO_4_Input_Changed">
+      <rule id="eBO_4_Input_Changed">
         <condition>
-          <equal
-              constant="yes">
-            <propertyContent
-                propertyId="selected"
-                widgetId="eBO_4_Input"/>
+          <equal constant="yes">
+            <propertyContent propertyId="selected" widgetId="eBO_4_Input"/>
           </equal>
         </condition>
       </rule>
-      <rule
-          id="eBO_6_Input_Changed">
+      <rule id="eBO_6_Input_Changed">
         <condition>
-          <equal
-              constant="yes">
-            <propertyContent
-                propertyId="selected"
-                widgetId="eBO_6_Input"/>
+          <equal constant="yes">
+            <propertyContent propertyId="selected" widgetId="eBO_6_Input"/>
           </equal>
         </condition>
       </rule>
-      <rule
-          id="eBO_7_Confirm_Changed">
+      <rule id="eBO_7_Confirm_Changed">
         <condition>
-          <equal
-              constant="yes">
-            <propertyContent
-                propertyId="selected"
-                widgetId="eBO_7_Confirm"/>
+          <equal constant="yes">
+            <propertyContent propertyId="selected" widgetId="eBO_7_Confirm"/>
           </equal>
         </condition>
       </rule>
       <transition>
-        <ifTrue
-            ruleId="eBO_2_Input_Changed"/>
+        <ifTrue ruleId="eBO_2_Input_Changed"/>
         <action>
           <statement>
-            <variableContent
-                variableId="V1_FL"/>
-            <propertyContent1
-                propertyId="value"
-                widgetId="eBO_2_Input"/>
+            <variableContent variableId="V1_FL"/>
+            <propertyContent1 propertyId="value" widgetId="eBO_2_Input"/>
           </statement>
         </action>
       </transition>
       <transition>
-        <ifTrue
-            ruleId="eBO_4_Input_Changed"/>
+        <ifTrue ruleId="eBO_4_Input_Changed"/>
         <action>
           <statement>
-            <variableContent
-                variableId="V2_FL"/>
-            <propertyContent1
-                propertyId="value"
-                widgetId="eBO_4_Input"/>
+            <variableContent variableId="V2_FL"/>
+            <propertyContent1 propertyId="value" widgetId="eBO_4_Input"/>
           </statement>
         </action>
       </transition>
       <transition>
-        <ifTrue
-            ruleId="eBO_6_Input_Changed"/>
+        <ifTrue ruleId="eBO_6_Input_Changed"/>
         <action>
           <statement>
-            <variableContent
-                variableId="P3_FL"/>
-            <propertyContent1
-                propertyId="value"
-                widgetId="eBO_6_Input"/>
+            <variableContent variableId="P3_FL"/>
+            <propertyContent1 propertyId="value" widgetId="eBO_6_Input"/>
           </statement>
         </action>
       </transition>
       <transition>
-        <ifTrue
-            ruleId="eBO_7_Confirm_Changed"/>
+        <ifTrue ruleId="eBO_7_Confirm_Changed"/>
         <action>
-          <interfaceChange
-              interfaceId="Dialog_1"/>
+          <interfaceChange interfaceId="Dialog_1"/>
         </action>
       </transition>
     </behavior>

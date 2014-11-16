@@ -19,7 +19,7 @@ import pamtram.mapping.ModelConnectionHintSourceElement;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ModelConnectionHintSourceElementItemProvider extends AttributeMappingSourceElementTypeItemProvider {
+public class ModelConnectionHintSourceElementItemProvider extends ModifiedAttributeElementTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

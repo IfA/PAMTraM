@@ -15,7 +15,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
 import pamtram.SourceSectionModel;
-import pamtram.mapping.AttributeMappingSourceElementType;
+import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.ExternalAttributeMappingSourceElement;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupImporter;
@@ -30,7 +30,7 @@ import pamtram.metamodel.SourceSectionContainmentReference;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ExternalAttributeMappingSourceElementItemProvider extends AttributeMappingSourceElementTypeItemProvider {
+public class ExternalAttributeMappingSourceElementItemProvider extends ModifiedAttributeElementTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -108,7 +108,7 @@ public class ExternalAttributeMappingSourceElementItemProvider extends Attribute
 				 getResourceLocator(),
 				 getString("_UI_AttributeMappingSourceElementType_source_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeMappingSourceElementType_source_feature", "_UI_AttributeMappingSourceElementType_type"),
-				 MappingPackage.Literals.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE,
+				 MappingPackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE,
 				 true,
 				 false,
 				 true,
@@ -120,7 +120,7 @@ public class ExternalAttributeMappingSourceElementItemProvider extends Attribute
 				public Collection<?> getChoiceOfValues(Object object) {
 
 					//the parent Mapping Hint Group
-					EObject parent=((AttributeMappingSourceElementType) object).eContainer();
+					EObject parent=((AttributeMapping) object).eContainer();
 					// the parent mapping
 					Mapping mapping;
 					while(true){

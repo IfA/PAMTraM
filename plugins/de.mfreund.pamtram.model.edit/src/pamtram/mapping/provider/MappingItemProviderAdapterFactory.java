@@ -929,17 +929,17 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	 */
 	public void dispose() {
 		if (mappingItemProvider != null) mappingItemProvider.dispose();
+		if (instantiableMappingHintGroupItemProvider != null) instantiableMappingHintGroupItemProvider.dispose();
+		if (mappingHintGroupItemProvider != null) mappingHintGroupItemProvider.dispose();
 		if (attributeMappingItemProvider != null) attributeMappingItemProvider.dispose();
 		if (cardinalityMappingItemProvider != null) cardinalityMappingItemProvider.dispose();
 		if (mappingInstanceSelectorItemProvider != null) mappingInstanceSelectorItemProvider.dispose();
 		if (classMatcherItemProvider != null) classMatcherItemProvider.dispose();
+		if (attributeValueModifierSetItemProvider != null) attributeValueModifierSetItemProvider.dispose();
 		if (substringReplacerItemProvider != null) substringReplacerItemProvider.dispose();
 		if (stringAppenderItemProvider != null) stringAppenderItemProvider.dispose();
 		if (uniqueNumberAppenderItemProvider != null) uniqueNumberAppenderItemProvider.dispose();
 		if (stringPrependerItemProvider != null) stringPrependerItemProvider.dispose();
-		if (attributeValueModifierSetItemProvider != null) attributeValueModifierSetItemProvider.dispose();
-		if (mappingHintGroupItemProvider != null) mappingHintGroupItemProvider.dispose();
-		if (instantiableMappingHintGroupItemProvider != null) instantiableMappingHintGroupItemProvider.dispose();
 		if (mappingHintGroupImporterItemProvider != null) mappingHintGroupImporterItemProvider.dispose();
 		if (exportedMappingHintGroupItemProvider != null) exportedMappingHintGroupItemProvider.dispose();
 		if (modelConnectionHintItemProvider != null) modelConnectionHintItemProvider.dispose();

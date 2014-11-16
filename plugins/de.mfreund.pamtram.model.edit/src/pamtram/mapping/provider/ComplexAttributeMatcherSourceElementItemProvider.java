@@ -19,7 +19,7 @@ import pamtram.mapping.ComplexAttributeMatcherSourceElement;
  * @generated
  */
 public class ComplexAttributeMatcherSourceElementItemProvider
-	extends AttributeMappingSourceElementTypeItemProvider {
+	extends ModifiedAttributeElementTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

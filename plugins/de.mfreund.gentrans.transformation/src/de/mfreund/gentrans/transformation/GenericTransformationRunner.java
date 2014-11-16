@@ -1011,6 +1011,7 @@ public class GenericTransformationRunner {
 													selMap.setHintValueList(
 															realHint, vals);
 												} else if (realHint instanceof ComplexAttributeMapping) {// ComplexAttributeMapping
+													final LinkedList<Object> vals = new LinkedList<Object>();
 													final List<ComplexAttributeMappingSourceInterface> sources = ((ComplexAttributeMapping) realHint)
 															.getSourceAttributeMappings();
 													if (sources.size() > 0) {
@@ -1027,20 +1028,34 @@ public class GenericTransformationRunner {
 														for (final Object m : selMap
 																.getHintValues()
 																.get(realHint)) {
+
+															// create a cloned copy of the map holding the source elements and values
+															// of complex attribute mapping that we are expanding
 															@SuppressWarnings("unchecked")
-															final Map<ComplexAttributeMappingSourceInterface, String> map = (Map<ComplexAttributeMappingSourceInterface, String>) m;
-															if (map.containsKey(element)) {
+															final LinkedHashMap<ComplexAttributeMappingSourceInterface, String> clonedMap = 
+																new LinkedHashMap<>((LinkedHashMap<ComplexAttributeMappingSourceInterface, String>)m);
+															
+															// expand either the first or last value source element and let all other
+															// values untouched
+															if (clonedMap.containsKey(element)) {
 																if (prepend) {
-																	map.put(element,
+																	clonedMap.put(element,
 																			hintVal
-																					+ map.get(element));
+																					+ clonedMap.get(element));
 																} else {
-																	map.put(element,
-																			map.get(element)
+																	clonedMap.put(element,
+																			clonedMap.get(element)
 																					+ hintVal);
 																}
 															}
+															
+															// add the new map to the list holding all hint values
+															vals.add(clonedMap);
 														}
+														
+														// update the hint value list for the real hint
+														selMap.setHintValueList(
+																realHint, vals);
 													}
 												} else if (realHint instanceof CalculatorMapping) {// CalculatorMapping
 													final List<CalculatorMappingSourceInterface> sources = ((CalculatorMapping) realHint)

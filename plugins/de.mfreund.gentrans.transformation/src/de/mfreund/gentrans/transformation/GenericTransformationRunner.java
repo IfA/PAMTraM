@@ -987,88 +987,102 @@ public class GenericTransformationRunner {
 											if (((MappedAttributeValueExpander) h)
 													.getHintsToExpand()
 													.contains(realHint)) {
-												if (realHint instanceof AttributeMapping) {// ComplexAttributeMapping
+												if (realHint instanceof AttributeMapping && 
+														((AttributeMapping) realHint).getExpression() == null ||
+														((AttributeMapping) realHint).getExpression().isEmpty()) {// ComplexAttributeMapping
+													
+													final LinkedList<Object> vals = new LinkedList<Object>();
+													final List<AttributeMappingSourceInterface> sources = ((AttributeMapping) realHint)
+															.getSourceAttributeMappings();
+													
+													if (sources.size() > 0) {
+														// determine the one of possibly multiple source elements of the
+														// attribute mapping to be expanded
+														AttributeMappingSourceInterface element;
+														if (prepend) {
+															element = sources
+																	.get(0);
+														} else {
+															element = sources
+																	.get(sources
+																			.size() - 1);
+														}
+
+														for (final Object m : selMap
+																.getHintValues()
+																.get(realHint)) {
+
+															// create a cloned copy of the map holding the source elements and values
+															// of complex attribute mapping that we are expanding
+															@SuppressWarnings("unchecked")
+															final LinkedHashMap<AttributeMappingSourceInterface, String> clonedMap = 
+																new LinkedHashMap<>((LinkedHashMap<AttributeMappingSourceInterface, String>)m);
+															
+															// expand either the first or last value source element and let all other
+															// values untouched
+															if (clonedMap.containsKey(element)) {
+																if (prepend) {
+																	clonedMap.put(element,
+																			hintVal
+																					+ clonedMap.get(element));
+																} else {
+																	clonedMap.put(element,
+																			clonedMap.get(element)
+																					+ hintVal);
+																}
+															}
+															
+															// add the new map to the list holding all hint values
+															vals.add(clonedMap);
+														}
+														
+														// update the hint value list for the real hint
+														selMap.setHintValueList(
+																realHint, vals);
+													}
+												} else if (realHint instanceof AttributeMapping) {// CalculatorMapping
 													final List<AttributeMappingSourceInterface> sources = ((AttributeMapping) realHint)
 															.getSourceAttributeMappings();
 													if (sources.size() > 0) {
-														
-//														if(((AttributeMapping) realHint).getExpression() != null && !((AttributeMapping) realHint).getExpression().isEmpty()) {
-//															try {
-//																final Calculable calc = new ExpressionBuilder(
-//																		hintVal)
-//																		.build();
-//																final double variableVal = calc
-//																		.calculate();
-//																/*
-//																 * parseDouble
-//																 * doesn't support
-//																 * Scientific
-//																 * notation, like:
-//																 * 0.42e2 == 4200e-2
-//																 * == 42,
-//																 */
-//																final String varName = ((MappedAttributeValueExpanderType) h)
-//																		.getSourceAttribute()
-//																		.getName();
-//																for (final Object m : selMap
-//																		.getHintValues()
-//																		.get(realHint)) {
-//																	@SuppressWarnings("unchecked")
-//																	final Map<AttributeMappingSourceInterface, String> map = (Map<AttributeMappingSourceInterface, String>) m;
-//																	map.put((AttributeMappingSourceInterface) ((MappedAttributeValueExpanderType) h)
-//																			.getSourceAttribute(),
-//																			String.valueOf(variableVal));
-//																}
-//															} catch (final Exception e) {
-//																consoleStream
-//																		.println("Couldn't convert variable "
-//																				+ ((MappedAttributeValueExpanderType) h)
-//																						.getSourceAttribute()
-//																						.getName()
-//																				+ " of "
-//																				+ h.getClass()
-//																						.getName()
-//																				+ " "
-//																				+ h.getName()
-//																				+ " from String to double. The problematic source element's attribute value was: "
-//																				+ hintVal);
-//															}
-//														} else {
-														{	
-															AttributeMappingSourceInterface element;
-															if (prepend) {
-																element = sources
-																		.get(0);
-															} else {
-																element = sources
-																		.get(sources
-																				.size() - 1);
-															}
-															System.out
-																	.println(element);
+														try {
+															final Calculable calc = new ExpressionBuilder(
+																	hintVal)
+																	.build();
+															final double variableVal = calc
+																	.calculate();
+															/*
+															 * parseDouble
+															 * doesn't support
+															 * Scientific
+															 * notation, like:
+															 * 0.42e2 == 4200e-2
+															 * == 42,
+															 */
+															final String varName = ((MappedAttributeValueExpanderType) h)
+																	.getSourceAttribute()
+																	.getName();
 															for (final Object m : selMap
 																	.getHintValues()
 																	.get(realHint)) {
 																@SuppressWarnings("unchecked")
-																final Map<AttributeMappingSourceInterface, String> map = (Map<AttributeMappingSourceInterface, String>) m;
-																if (map.containsKey(element)) {
-																	System.err
-																			.println(hintVal);
-																	System.err
-																			.println(map.get(element));
-																	if (prepend) {
-																		map.put(element,
-																				hintVal
-																				+ map.get(element));
-																	} else {
-																		map.put(element,
-																				map.get(element)
-																				+ hintVal);
-																	}
-																}
+																final Map<String, Double> map = (Map<String, Double>) m;
+																map.put(varName,
+																		variableVal);
 															}
+														} catch (final Exception e) {
+															consoleStream
+																	.println("Couldn't convert variable "
+																			+ ((MappedAttributeValueExpanderType) h)
+																					.getSourceAttribute()
+																					.getName()
+																			+ " of "
+																			+ h.getClass()
+																					.getName()
+																			+ " "
+																			+ h.getName()
+																			+ " from String to double. The problematic source element's attribute value was: "
+																			+ hintVal);
 														}
-														
 													}
 												}// TODO add any remaining
 													// hintValue changes here

@@ -20,7 +20,6 @@ import org.eclipse.ui.console.MessageConsoleStream;
 import pamtram.SourceSectionModel;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceElement;
-import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ComplexAttributeMatcher;
@@ -40,6 +39,7 @@ import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.ModelConnectionHintSourceElement;
 import pamtram.mapping.ModelConnectionHintSourceInterface;
+import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.mapping.SimpleAttributeMatcher;
 import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.AttributeValueConstraintType;
@@ -297,7 +297,8 @@ class SourceSectionMapper implements CancellationListener {
 	private void buildDeepestCmplxAttrMappingElementsMap(
 			final AttributeMapping m, final SourceSectionClass srcSection) {
 		if (!deepestComplexAttrMappingSrcElementsByCmplxMapping.containsKey(m)) {
-			final Set<AttributeMappingSourceElementType<SourceSectionAttribute>> srcElements = new HashSet<>();
+			final Set<ModifiedAttributeElementType<SourceSectionAttribute>> srcElements = 
+					new HashSet<>();
 			srcElements.addAll(m.getLocalSourceElements());
 			deepestComplexAttrMappingSrcElementsByCmplxMapping.put(m,
 					new HashSet<SourceSectionClass>());
@@ -321,7 +322,8 @@ class SourceSectionMapper implements CancellationListener {
 			final SourceSectionClass srcSection) {
 		if (!deepestComplexConnectionHintSrcElementsByComplexConnectionHint
 				.containsKey(m)) {
-			final Set<AttributeMappingSourceElementType<SourceSectionAttribute>> srcElements = new HashSet<>();
+			final Set<ModifiedAttributeElementType<SourceSectionAttribute>> srcElements = 
+					new HashSet<>();
 			srcElements.addAll(m.getLocalSourceElements());
 			deepestComplexConnectionHintSrcElementsByComplexConnectionHint.put(
 					m, new HashSet<SourceSectionClass>());
@@ -345,7 +347,8 @@ class SourceSectionMapper implements CancellationListener {
 			final ComplexAttributeMatcher m, final SourceSectionClass srcSection) {
 		if (!deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher
 				.containsKey(m)) {
-			final Set<AttributeMappingSourceElementType<SourceSectionAttribute>> srcElements = new HashSet<>();
+			final Set<ModifiedAttributeElementType<SourceSectionAttribute>> srcElements = 
+					new HashSet<>();
 			srcElements.addAll(m.getLocalSourceElements());
 			deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher.put(m,
 					new HashSet<SourceSectionClass>());
@@ -540,14 +543,14 @@ class SourceSectionMapper implements CancellationListener {
 	 * @return Classes that contain the deepest SourceSectionAttributes
 	 */
 	private Set<SourceSectionClass> findDeepestClassesAndCommonContainer(
-			final Set<AttributeMappingSourceElementType<SourceSectionAttribute>> s,
+			final Set<ModifiedAttributeElementType<SourceSectionAttribute>> s,
 			final SourceSectionClass srcSection, final Object hint) {
 		final Set<SourceSectionClass> resultSet = new HashSet<SourceSectionClass>();
 
 		/*
 		 * fill resultSet with all *potential* candidates
 		 */
-		for (final AttributeMappingSourceElementType<SourceSectionAttribute> t : s) {
+		for (final ModifiedAttributeElementType<SourceSectionAttribute> t : s) {
 			resultSet.add(t.getSource().getOwningClass());
 		}
 

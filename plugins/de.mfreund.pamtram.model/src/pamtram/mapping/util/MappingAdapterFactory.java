@@ -67,12 +67,24 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	protected MappingSwitch<Adapter> modelSwitch =
 		new MappingSwitch<Adapter>() {
 			@Override
+			public Adapter caseMappingType(MappingType object) {
+				return createMappingTypeAdapter();
+			}
+			@Override
 			public Adapter caseMapping(Mapping object) {
 				return createMappingAdapter();
 			}
 			@Override
-			public Adapter caseMappingType(MappingType object) {
-				return createMappingTypeAdapter();
+			public Adapter caseMappingHintGroupType(MappingHintGroupType object) {
+				return createMappingHintGroupTypeAdapter();
+			}
+			@Override
+			public Adapter caseInstantiableMappingHintGroup(InstantiableMappingHintGroup object) {
+				return createInstantiableMappingHintGroupAdapter();
+			}
+			@Override
+			public Adapter caseMappingHintGroup(MappingHintGroup object) {
+				return createMappingHintGroupAdapter();
 			}
 			@Override
 			public Adapter caseMappingHint(MappingHint object) {
@@ -103,6 +115,10 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createClassMatcherAdapter();
 			}
 			@Override
+			public Adapter caseAttributeValueModifierSet(AttributeValueModifierSet object) {
+				return createAttributeValueModifierSetAdapter();
+			}
+			@Override
 			public Adapter caseAttributeValueModifier(AttributeValueModifier object) {
 				return createAttributeValueModifierAdapter();
 			}
@@ -123,20 +139,8 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createStringPrependerAdapter();
 			}
 			@Override
-			public Adapter caseAttributeValueModifierSet(AttributeValueModifierSet object) {
-				return createAttributeValueModifierSetAdapter();
-			}
-			@Override
-			public Adapter caseMappingHintGroup(MappingHintGroup object) {
-				return createMappingHintGroupAdapter();
-			}
-			@Override
-			public Adapter caseMappingHintGroupType(MappingHintGroupType object) {
-				return createMappingHintGroupTypeAdapter();
-			}
-			@Override
-			public Adapter caseInstantiableMappingHintGroup(InstantiableMappingHintGroup object) {
-				return createInstantiableMappingHintGroupAdapter();
+			public <AttributeType extends Attribute> Adapter caseModifiedAttributeElementType(ModifiedAttributeElementType<AttributeType> object) {
+				return createModifiedAttributeElementTypeAdapter();
 			}
 			@Override
 			public Adapter caseMappingHintGroupImporter(MappingHintGroupImporter object) {
@@ -153,10 +157,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseAttributeMappingSourceElement(AttributeMappingSourceElement object) {
 				return createAttributeMappingSourceElementAdapter();
-			}
-			@Override
-			public <AttributeType extends Attribute> Adapter caseAttributeMappingSourceElementType(AttributeMappingSourceElementType<AttributeType> object) {
-				return createAttributeMappingSourceElementTypeAdapter();
 			}
 			@Override
 			public Adapter caseComplexAttributeMatcher(ComplexAttributeMatcher object) {
@@ -491,6 +491,20 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ModifiedAttributeElementType <em>Modified Attribute Element Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.ModifiedAttributeElementType
+	 * @generated
+	 */
+	public Adapter createModifiedAttributeElementTypeAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link pamtram.mapping.AttributeValueModifierSet <em>Attribute Value Modifier Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -599,20 +613,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAttributeMappingSourceElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.AttributeMappingSourceElementType <em>Attribute Mapping Source Element Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.AttributeMappingSourceElementType
-	 * @generated
-	 */
-	public Adapter createAttributeMappingSourceElementTypeAdapter() {
 		return null;
 	}
 

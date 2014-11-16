@@ -11,9 +11,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import pamtram.NamedElement;
 import pamtram.PamtramPackage;
-import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.mapping.SimpleAttributeMatcher;
 import pamtram.metamodel.SourceSectionAttribute;
 
@@ -254,10 +254,10 @@ public class SimpleAttributeMatcherImpl extends AttributeMatcherImpl implements 
 				default: return -1;
 			}
 		}
-		if (baseClass == AttributeMappingSourceElementType.class) {
+		if (baseClass == ModifiedAttributeElementType.class) {
 			switch (derivedFeatureID) {
-				case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__SOURCE: return MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE;
-				case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__MODIFIER: return MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER;
+				case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__SOURCE: return MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
+				case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__MODIFIER: return MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
 				default: return -1;
 			}
 		}
@@ -277,10 +277,10 @@ public class SimpleAttributeMatcherImpl extends AttributeMatcherImpl implements 
 				default: return -1;
 			}
 		}
-		if (baseClass == AttributeMappingSourceElementType.class) {
+		if (baseClass == ModifiedAttributeElementType.class) {
 			switch (baseFeatureID) {
-				case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE: return MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__SOURCE;
-				case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__MODIFIER: return MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__MODIFIER;
+				case MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE: return MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__SOURCE;
+				case MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER: return MappingPackage.SIMPLE_ATTRIBUTE_MATCHER__MODIFIER;
 				default: return -1;
 			}
 		}

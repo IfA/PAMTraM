@@ -15,5 +15,5 @@ import pamtram.metamodel.TargetSectionAttribute;
  * @model
  * @generated
  */
-public interface ModelConnectionHintTargetAttribute extends AttributeMappingSourceElementType<TargetSectionAttribute> {
+public interface ModelConnectionHintTargetAttribute extends ModifiedAttributeElementType<TargetSectionAttribute> {
 } // ModelConnectionHintTargetAttribute

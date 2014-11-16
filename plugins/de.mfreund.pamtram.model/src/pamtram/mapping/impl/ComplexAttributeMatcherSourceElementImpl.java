@@ -20,7 +20,7 @@ import pamtram.metamodel.SourceSectionAttribute;
  *
  * @generated
  */
-public class ComplexAttributeMatcherSourceElementImpl extends AttributeMappingSourceElementTypeImpl<SourceSectionAttribute> implements ComplexAttributeMatcherSourceElement {
+public class ComplexAttributeMatcherSourceElementImpl extends ModifiedAttributeElementTypeImpl<SourceSectionAttribute> implements ComplexAttributeMatcherSourceElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

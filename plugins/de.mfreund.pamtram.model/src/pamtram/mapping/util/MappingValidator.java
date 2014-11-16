@@ -82,10 +82,16 @@ public class MappingValidator extends EObjectValidator {
 	@Override
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID) {
-			case MappingPackage.MAPPING:
-				return validateMapping((Mapping)value, diagnostics, context);
 			case MappingPackage.MAPPING_TYPE:
 				return validateMappingType((MappingType)value, diagnostics, context);
+			case MappingPackage.MAPPING:
+				return validateMapping((Mapping)value, diagnostics, context);
+			case MappingPackage.MAPPING_HINT_GROUP_TYPE:
+				return validateMappingHintGroupType((MappingHintGroupType)value, diagnostics, context);
+			case MappingPackage.INSTANTIABLE_MAPPING_HINT_GROUP:
+				return validateInstantiableMappingHintGroup((InstantiableMappingHintGroup)value, diagnostics, context);
+			case MappingPackage.MAPPING_HINT_GROUP:
+				return validateMappingHintGroup((MappingHintGroup)value, diagnostics, context);
 			case MappingPackage.MAPPING_HINT:
 				return validateMappingHint((MappingHint)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MAPPING:
@@ -100,6 +106,8 @@ public class MappingValidator extends EObjectValidator {
 				return validateAttributeMatcher((AttributeMatcher)value, diagnostics, context);
 			case MappingPackage.CLASS_MATCHER:
 				return validateClassMatcher((ClassMatcher)value, diagnostics, context);
+			case MappingPackage.ATTRIBUTE_VALUE_MODIFIER_SET:
+				return validateAttributeValueModifierSet((AttributeValueModifierSet)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_VALUE_MODIFIER:
 				return validateAttributeValueModifier((AttributeValueModifier)value, diagnostics, context);
 			case MappingPackage.SUBSTRING_REPLACER:
@@ -110,14 +118,8 @@ public class MappingValidator extends EObjectValidator {
 				return validateUniqueNumberAppender((UniqueNumberAppender)value, diagnostics, context);
 			case MappingPackage.STRING_PREPENDER:
 				return validateStringPrepender((StringPrepender)value, diagnostics, context);
-			case MappingPackage.ATTRIBUTE_VALUE_MODIFIER_SET:
-				return validateAttributeValueModifierSet((AttributeValueModifierSet)value, diagnostics, context);
-			case MappingPackage.MAPPING_HINT_GROUP:
-				return validateMappingHintGroup((MappingHintGroup)value, diagnostics, context);
-			case MappingPackage.MAPPING_HINT_GROUP_TYPE:
-				return validateMappingHintGroupType((MappingHintGroupType)value, diagnostics, context);
-			case MappingPackage.INSTANTIABLE_MAPPING_HINT_GROUP:
-				return validateInstantiableMappingHintGroup((InstantiableMappingHintGroup)value, diagnostics, context);
+			case MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE:
+				return validateModifiedAttributeElementType((ModifiedAttributeElementType<?>)value, diagnostics, context);
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER:
 				return validateMappingHintGroupImporter((MappingHintGroupImporter)value, diagnostics, context);
 			case MappingPackage.EXPORTED_MAPPING_HINT_GROUP:
@@ -126,8 +128,6 @@ public class MappingValidator extends EObjectValidator {
 				return validateModelConnectionHint((ModelConnectionHint)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT:
 				return validateAttributeMappingSourceElement((AttributeMappingSourceElement)value, diagnostics, context);
-			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE:
-				return validateAttributeMappingSourceElementType((AttributeMappingSourceElementType<?>)value, diagnostics, context);
 			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER:
 				return validateComplexAttributeMatcher((ComplexAttributeMatcher)value, diagnostics, context);
 			case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER:
@@ -515,6 +515,15 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateModifiedAttributeElementType(ModifiedAttributeElementType<?> modifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(modifiedAttributeElementType, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateAttributeValueModifierSet(AttributeValueModifierSet attributeValueModifierSet, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(attributeValueModifierSet, diagnostics, context);
 	}
@@ -580,15 +589,6 @@ public class MappingValidator extends EObjectValidator {
 	 */
 	public boolean validateAttributeMappingSourceElement(AttributeMappingSourceElement attributeMappingSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(attributeMappingSourceElement, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateAttributeMappingSourceElementType(AttributeMappingSourceElementType<?> attributeMappingSourceElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(attributeMappingSourceElementType, diagnostics, context);
 	}
 
 	/**

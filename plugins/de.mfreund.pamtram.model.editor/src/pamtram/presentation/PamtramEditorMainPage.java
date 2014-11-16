@@ -25,7 +25,6 @@ import org.eclipse.swt.widgets.TreeItem;
 import pamtram.MappingModel;
 import pamtram.NamedElement;
 import pamtram.mapping.AttributeMapping;
-import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.CardinalityMapping;
@@ -43,6 +42,8 @@ import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.ModelConnectionHintSourceInterface;
+import pamtram.mapping.ModelConnectionHintTargetAttribute;
+import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.mapping.SimpleAttributeMatcher;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.NonContainmentReference;
@@ -338,9 +339,11 @@ public class PamtramEditorMainPage extends SashForm {
 					
 					// Update the currently selected mapping.
 					currentMapping = mapping;
-				}  else if(((TreeItem) e.item).getData() instanceof AttributeMappingSourceElementType 
+				}  else if(((TreeItem) e.item).getData() instanceof ModifiedAttributeElementType<?> 
 						&& ! (((TreeItem) e.item).getData()instanceof SimpleAttributeMatcher)) {
-					AttributeMappingSourceElementType mapping = (AttributeMappingSourceElementType) ((TreeItem) e.item).getData();
+					@SuppressWarnings("unchecked")
+					ModifiedAttributeElementType<Attribute> mapping = 
+							(ModifiedAttributeElementType<Attribute>) ((TreeItem) e.item).getData();
 					
 					Attribute target = null;
 					
@@ -478,7 +481,7 @@ public class PamtramEditorMainPage extends SashForm {
 					
 					
 					
-					for(AttributeMappingSourceElementType a : hint.getTargetAttributes()){
+					for(ModelConnectionHintTargetAttribute a : hint.getTargetAttributes()){
 						targets.add(a.getSource());
 					}
 					

@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EcorePackage;
 import pamtram.NamedElement;
 import pamtram.PamtramPackage;
 import pamtram.mapping.AttributeMapping;
-import pamtram.mapping.AttributeMappingSourceElementType;
 import pamtram.mapping.AttributeValueModifier;
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.GlobalAttribute;
@@ -18,6 +17,7 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.mapping.StringAppender;
 import pamtram.mapping.StringPrepender;
 import pamtram.mapping.SubstringReplacer;
@@ -60,7 +60,7 @@ final class NameSettingAdapter extends PamtramChildContentAdapter {
 			handleMappingHintGroupTypeNotification(n);
 		} else if(notifier instanceof AttributeMapping) {
 			handleAttributeMappingNotification(n);
-		} else if(notifier instanceof AttributeMappingSourceElementType) {
+		} else if(notifier instanceof ModifiedAttributeElementType<?>) {
 			handleAttributeMappingSourceElementTypeNotification(n);
 		} else if(notifier instanceof AttributeValueModifier) {
 			handleAttributeValueModifierNotification(n);
@@ -183,13 +183,14 @@ final class NameSettingAdapter extends PamtramChildContentAdapter {
 		}
 		
 		// An Attribute Mapping Source Element Type has issued a notification.
+		@SuppressWarnings("unchecked")
 		private void handleAttributeMappingSourceElementTypeNotification(
 				Notification n) {
 			
 			if(n.getEventType() == Notification.SET) {
 				
-				if(n.getFeature() == MappingPackage.Literals.ATTRIBUTE_MAPPING_SOURCE_ELEMENT_TYPE__SOURCE) {
-					setNameDerived((AttributeMappingSourceElementType) n.getNotifier(), n);
+				if(n.getFeature() == MappingPackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER) {
+					setNameDerived((ModifiedAttributeElementType<Attribute>) n.getNotifier(), n);
 				}
 			}
 		}

@@ -269,6 +269,10 @@
       <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
       <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
     </eAnnotations>
+    <eClassifiers xsi:type="ecore:EClass" name="MappingType" abstract="true" eSuperTypes="#//NamedElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceMMSection" lowerBound="1"
+          eType="#//metamodel/SourceSectionClass"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Mapping" eSuperTypes="#//mapping/MappingType">
       <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//condition/ComplexCondition"
           containment="true"/>
@@ -279,9 +283,17 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="globalVariables" upperBound="-1"
           eType="#//mapping/GlobalAttribute" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="MappingType" abstract="true" eSuperTypes="#//NamedElement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceMMSection" lowerBound="1"
-          eType="#//metamodel/SourceSectionClass"/>
+    <eClassifiers xsi:type="ecore:EClass" name="MappingHintGroupType" abstract="true"
+        eSuperTypes="#//NamedElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="targetMMSection" lowerBound="1"
+          eType="#//metamodel/TargetSectionClass"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="mappingHints" upperBound="-1"
+          eType="#//mapping/MappingHint" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="InstantiableMappingHintGroup" eSuperTypes="#//NamedElement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="MappingHintGroup" eSuperTypes="#//mapping/MappingHintGroupType #//mapping/InstantiableMappingHintGroup">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modelConnectionMatcher"
+          eType="#//mapping/ModelConnectionHint" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MappingHint" abstract="true" eSuperTypes="#//mapping/MappingHintType"/>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeMapping" eSuperTypes="#//mapping/MappingHint #//mapping/ExpandableHint">
@@ -333,6 +345,10 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="targetClass" lowerBound="1"
           eType="#//metamodel/TargetSectionClass"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeValueModifierSet" eSuperTypes="#//NamedElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
+          eType="#//mapping/AttributeValueModifier" containment="true"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeValueModifier" abstract="true"
         eSuperTypes="#//NamedElement">
       <eOperations name="modifyValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
@@ -356,22 +372,17 @@
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           defaultValueLiteral=""/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="AttributeValueModifierSet" eSuperTypes="#//NamedElement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
-          eType="#//mapping/AttributeValueModifier" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="MappingHintGroup" eSuperTypes="#//mapping/MappingHintGroupType #//mapping/InstantiableMappingHintGroup">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="modelConnectionMatcher"
-          eType="#//mapping/ModelConnectionHint" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="MappingHintGroupType" abstract="true"
+    <eClassifiers xsi:type="ecore:EClass" name="ModifiedAttributeElementType" abstract="true"
         eSuperTypes="#//NamedElement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="targetMMSection" lowerBound="1"
-          eType="#//metamodel/TargetSectionClass"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="mappingHints" upperBound="-1"
-          eType="#//mapping/MappingHint" containment="true"/>
+      <eTypeParameters name="AttributeType">
+        <eBounds eClassifier="#//metamodel/Attribute"/>
+      </eTypeParameters>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1">
+        <eGenericType eTypeParameter="#//mapping/ModifiedAttributeElementType/AttributeType"/>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
+          eType="#//mapping/AttributeValueModifierSet"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="InstantiableMappingHintGroup" eSuperTypes="#//NamedElement"/>
     <eClassifiers xsi:type="ecore:EClass" name="MappingHintGroupImporter" eSuperTypes="#//NamedElement #//mapping/InstantiableMappingHintGroup">
       <eStructuralFeatures xsi:type="ecore:EReference" name="hintGroup" lowerBound="1"
           eType="#//mapping/ExportedMappingHintGroup"/>
@@ -394,21 +405,10 @@
           upperBound="-1" eType="#//mapping/ModelConnectionHintSourceInterface" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingSourceElement">
-      <eGenericSuperTypes eClassifier="#//mapping/AttributeMappingSourceElementType">
+      <eGenericSuperTypes eClassifier="#//mapping/ModifiedAttributeElementType">
         <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//mapping/AttributeMappingSourceInterface"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingSourceElementType"
-        abstract="true" eSuperTypes="#//NamedElement">
-      <eTypeParameters name="AttributeType">
-        <eBounds eClassifier="#//metamodel/Attribute"/>
-      </eTypeParameters>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1">
-        <eGenericType eTypeParameter="#//mapping/AttributeMappingSourceElementType/AttributeType"/>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
-          eType="#//mapping/AttributeValueModifierSet"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexAttributeMatcher" eSuperTypes="#//mapping/AttributeMatcher">
       <eOperations name="getLocalSourceElements" unique="false" upperBound="-1" eType="#//mapping/ComplexAttributeMatcherSourceElement">
@@ -422,24 +422,24 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SimpleAttributeMatcher">
       <eGenericSuperTypes eClassifier="#//mapping/AttributeMatcher"/>
-      <eGenericSuperTypes eClassifier="#//mapping/AttributeMappingSourceElementType">
+      <eGenericSuperTypes eClassifier="#//mapping/ModifiedAttributeElementType">
         <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexAttributeMatcherSourceElement">
-      <eGenericSuperTypes eClassifier="#//mapping/AttributeMappingSourceElementType">
+      <eGenericSuperTypes eClassifier="#//mapping/ModifiedAttributeElementType">
         <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//mapping/ComplexAttributeMatcherSourceInterface"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ModelConnectionHintSourceElement">
-      <eGenericSuperTypes eClassifier="#//mapping/AttributeMappingSourceElementType">
+      <eGenericSuperTypes eClassifier="#//mapping/ModifiedAttributeElementType">
         <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//mapping/ModelConnectionHintSourceInterface"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ModelConnectionHintTargetAttribute">
-      <eGenericSuperTypes eClassifier="#//mapping/AttributeMappingSourceElementType">
+      <eGenericSuperTypes eClassifier="#//mapping/ModifiedAttributeElementType">
         <eTypeArguments eClassifier="#//metamodel/TargetSectionAttribute"/>
       </eGenericSuperTypes>
     </eClassifiers>
@@ -485,7 +485,7 @@
         eSuperTypes="#//mapping/ExternalAttributeMappingSourceElement #//mapping/AttributeMappingSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="ExternalAttributeMappingSourceElement"
         abstract="true">
-      <eGenericSuperTypes eClassifier="#//mapping/AttributeMappingSourceElementType">
+      <eGenericSuperTypes eClassifier="#//mapping/ModifiedAttributeElementType">
         <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
       </eGenericSuperTypes>
     </eClassifiers>

@@ -24,7 +24,7 @@ import pamtram.metamodel.SourceSectionAttribute;
  *
  * @generated
  */
-public class AttributeMappingSourceElementImpl extends AttributeMappingSourceElementTypeImpl<SourceSectionAttribute> implements AttributeMappingSourceElement {
+public class AttributeMappingSourceElementImpl extends ModifiedAttributeElementTypeImpl<SourceSectionAttribute> implements AttributeMappingSourceElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

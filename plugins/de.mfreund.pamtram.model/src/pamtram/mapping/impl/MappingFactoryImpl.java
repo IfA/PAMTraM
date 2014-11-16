@@ -54,17 +54,17 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case MappingPackage.MAPPING: return createMapping();
+			case MappingPackage.INSTANTIABLE_MAPPING_HINT_GROUP: return createInstantiableMappingHintGroup();
+			case MappingPackage.MAPPING_HINT_GROUP: return createMappingHintGroup();
 			case MappingPackage.ATTRIBUTE_MAPPING: return createAttributeMapping();
 			case MappingPackage.CARDINALITY_MAPPING: return createCardinalityMapping();
 			case MappingPackage.MAPPING_INSTANCE_SELECTOR: return createMappingInstanceSelector();
 			case MappingPackage.CLASS_MATCHER: return createClassMatcher();
+			case MappingPackage.ATTRIBUTE_VALUE_MODIFIER_SET: return createAttributeValueModifierSet();
 			case MappingPackage.SUBSTRING_REPLACER: return createSubstringReplacer();
 			case MappingPackage.STRING_APPENDER: return createStringAppender();
 			case MappingPackage.UNIQUE_NUMBER_APPENDER: return createUniqueNumberAppender();
 			case MappingPackage.STRING_PREPENDER: return createStringPrepender();
-			case MappingPackage.ATTRIBUTE_VALUE_MODIFIER_SET: return createAttributeValueModifierSet();
-			case MappingPackage.MAPPING_HINT_GROUP: return createMappingHintGroup();
-			case MappingPackage.INSTANTIABLE_MAPPING_HINT_GROUP: return createInstantiableMappingHintGroup();
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER: return createMappingHintGroupImporter();
 			case MappingPackage.EXPORTED_MAPPING_HINT_GROUP: return createExportedMappingHintGroup();
 			case MappingPackage.MODEL_CONNECTION_HINT: return createModelConnectionHint();

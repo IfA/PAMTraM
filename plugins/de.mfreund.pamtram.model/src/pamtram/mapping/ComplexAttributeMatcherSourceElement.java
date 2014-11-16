@@ -15,6 +15,6 @@ import pamtram.metamodel.SourceSectionAttribute;
  * @model
  * @generated
  */
-public interface ComplexAttributeMatcherSourceElement extends AttributeMappingSourceElementType<SourceSectionAttribute>, ComplexAttributeMatcherSourceInterface {
+public interface ComplexAttributeMatcherSourceElement extends ModifiedAttributeElementType<SourceSectionAttribute>, ComplexAttributeMatcherSourceInterface {
 
 } // ComplexAttributeMatcherSourceElement

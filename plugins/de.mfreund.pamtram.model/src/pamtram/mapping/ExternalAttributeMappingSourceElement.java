@@ -16,5 +16,5 @@ import pamtram.metamodel.SourceSectionAttribute;
  * @model abstract="true"
  * @generated
  */
-public interface ExternalAttributeMappingSourceElement extends AttributeMappingSourceElementType<SourceSectionAttribute> {
+public interface ExternalAttributeMappingSourceElement extends ModifiedAttributeElementType<SourceSectionAttribute> {
 } // ExternalAttributeMappingSourceElement

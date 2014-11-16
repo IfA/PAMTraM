@@ -17,7 +17,7 @@ import pamtram.metamodel.TargetSectionAttribute;
  *
  * @generated
  */
-public class ModelConnectionHintTargetAttributeImpl extends AttributeMappingSourceElementTypeImpl<TargetSectionAttribute> implements ModelConnectionHintTargetAttribute {
+public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeElementTypeImpl<TargetSectionAttribute> implements ModelConnectionHintTargetAttribute {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

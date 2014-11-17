@@ -392,7 +392,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case MappingPackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE: {
-				ExternalModifiedAttributeElementType externalModifiedAttributeElementType = (ExternalModifiedAttributeElementType)theEObject;
+				ExternalModifiedAttributeElementType<?> externalModifiedAttributeElementType = (ExternalModifiedAttributeElementType<?>)theEObject;
 				T result = caseExternalModifiedAttributeElementType(externalModifiedAttributeElementType);
 				if (result == null) result = caseModifiedAttributeElementType(externalModifiedAttributeElementType);
 				if (result == null) result = caseNamedElement(externalModifiedAttributeElementType);
@@ -1085,7 +1085,7 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType object) {
+	public <AttributeType extends Attribute> T caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<AttributeType> object) {
 		return null;
 	}
 

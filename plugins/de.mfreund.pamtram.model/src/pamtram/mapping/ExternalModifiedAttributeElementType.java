@@ -2,7 +2,7 @@
  */
 package pamtram.mapping;
 
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.Attribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,5 +14,5 @@ import pamtram.metamodel.SourceSectionAttribute;
  * @model abstract="true"
  * @generated
  */
-public interface ExternalModifiedAttributeElementType extends ModifiedAttributeElementType<SourceSectionAttribute> {
+public interface ExternalModifiedAttributeElementType<AttributeType extends Attribute> extends ModifiedAttributeElementType<AttributeType> {
 } // ExternalModifiedAttributeElementType

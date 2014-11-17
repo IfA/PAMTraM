@@ -3,11 +3,9 @@
 package pamtram.mapping.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.MappingPackage;
-
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.Attribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,7 +16,7 @@ import pamtram.metamodel.SourceSectionAttribute;
  *
  * @generated
  */
-public abstract class ExternalModifiedAttributeElementTypeImpl extends ModifiedAttributeElementTypeImpl<SourceSectionAttribute> implements ExternalModifiedAttributeElementType {
+public abstract class ExternalModifiedAttributeElementTypeImpl<AttributeType extends Attribute> extends ModifiedAttributeElementTypeImpl<AttributeType> implements ExternalModifiedAttributeElementType<AttributeType> {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -36,17 +34,6 @@ public abstract class ExternalModifiedAttributeElementTypeImpl extends ModifiedA
 	@Override
 	protected EClass eStaticClass() {
 		return MappingPackage.Literals.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * This is specialized for the more specific type known in this context.
-	 * @generated
-	 */
-	@Override
-	public void setSource(SourceSectionAttribute newSource) {
-		super.setSource(newSource);
 	}
 
 } //ExternalModifiedAttributeElementTypeImpl

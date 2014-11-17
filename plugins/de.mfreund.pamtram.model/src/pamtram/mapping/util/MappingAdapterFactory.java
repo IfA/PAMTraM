@@ -223,7 +223,7 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createAttributeMappingExternalSourceElementAdapter();
 			}
 			@Override
-			public Adapter caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType object) {
+			public <AttributeType extends Attribute> Adapter caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<AttributeType> object) {
 				return createExternalModifiedAttributeElementTypeAdapter();
 			}
 			@Override

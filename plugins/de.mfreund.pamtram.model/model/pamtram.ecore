@@ -471,18 +471,33 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ModelConnectionHintSourceInterface"
         abstract="true" interface="true" eSuperTypes="#//mapping/MappingHintSourceInterface"/>
-    <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingExternalSourceElement"
-        eSuperTypes="#//mapping/ExternalModifiedAttributeElementType #//mapping/AttributeMappingSourceInterface"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ExternalModifiedAttributeElementType"
-        abstract="true">
-      <eGenericSuperTypes eClassifier="#//mapping/ModifiedAttributeElementType">
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingExternalSourceElement">
+      <eGenericSuperTypes eClassifier="#//mapping/ExternalModifiedAttributeElementType">
         <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
       </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//mapping/AttributeMappingSourceInterface"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ModelConnectionHintExternalSourceElement"
-        eSuperTypes="#//mapping/ExternalModifiedAttributeElementType #//mapping/ModelConnectionHintSourceInterface"/>
-    <eClassifiers xsi:type="ecore:EClass" name="AttributeMatcherExternalSourceElement"
-        eSuperTypes="#//mapping/ExternalModifiedAttributeElementType #//mapping/AttributeMatcherSourceInterface"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ExternalModifiedAttributeElementType"
+        abstract="true">
+      <eTypeParameters name="AttributeType">
+        <eBounds eClassifier="#//metamodel/Attribute"/>
+      </eTypeParameters>
+      <eGenericSuperTypes eClassifier="#//mapping/ModifiedAttributeElementType">
+        <eTypeArguments eTypeParameter="#//mapping/ExternalModifiedAttributeElementType/AttributeType"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ModelConnectionHintExternalSourceElement">
+      <eGenericSuperTypes eClassifier="#//mapping/ExternalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//mapping/ModelConnectionHintSourceInterface"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeMatcherExternalSourceElement">
+      <eGenericSuperTypes eClassifier="#//mapping/ExternalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//mapping/AttributeMatcherSourceInterface"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ExternalMappedAttributeValueExpander"
         abstract="true" eSuperTypes="#//mapping/MappedAttributeValueExpander"/>
     <eClassifiers xsi:type="ecore:EClass" name="ExternalMappedAttributeValuePrepender"

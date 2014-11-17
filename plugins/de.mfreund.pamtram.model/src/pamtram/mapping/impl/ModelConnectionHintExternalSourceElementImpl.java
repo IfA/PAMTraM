@@ -20,7 +20,7 @@ import pamtram.metamodel.SourceSectionAttribute;
  *
  * @generated
  */
-public class ModelConnectionHintExternalSourceElementImpl extends ExternalModifiedAttributeElementTypeImpl implements ModelConnectionHintExternalSourceElement {
+public class ModelConnectionHintExternalSourceElementImpl extends ExternalModifiedAttributeElementTypeImpl<SourceSectionAttribute> implements ModelConnectionHintExternalSourceElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

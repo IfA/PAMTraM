@@ -1574,10 +1574,13 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		// Create type parameters
 		ETypeParameter modifiedAttributeElementTypeEClass_AttributeType = addETypeParameter(modifiedAttributeElementTypeEClass, "AttributeType");
+		ETypeParameter externalModifiedAttributeElementTypeEClass_AttributeType = addETypeParameter(externalModifiedAttributeElementTypeEClass, "AttributeType");
 
 		// Set bounds for type parameters
 		EGenericType g1 = createEGenericType(theMetamodelPackage.getAttribute());
 		modifiedAttributeElementTypeEClass_AttributeType.getEBounds().add(g1);
+		g1 = createEGenericType(theMetamodelPackage.getAttribute());
+		externalModifiedAttributeElementTypeEClass_AttributeType.getEBounds().add(g1);
 
 		// Add supertypes to classes
 		mappingTypeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
@@ -1641,16 +1644,28 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		globalAttributeImporterEClass.getESuperTypes().add(this.getModelConnectionHintSourceInterface());
 		attributeMappingSourceInterfaceEClass.getESuperTypes().add(this.getMappingHintSourceInterface());
 		modelConnectionHintSourceInterfaceEClass.getESuperTypes().add(this.getMappingHintSourceInterface());
-		attributeMappingExternalSourceElementEClass.getESuperTypes().add(this.getExternalModifiedAttributeElementType());
-		attributeMappingExternalSourceElementEClass.getESuperTypes().add(this.getAttributeMappingSourceInterface());
-		g1 = createEGenericType(this.getModifiedAttributeElementType());
+		g1 = createEGenericType(this.getExternalModifiedAttributeElementType());
 		g2 = createEGenericType(theMetamodelPackage.getSourceSectionAttribute());
 		g1.getETypeArguments().add(g2);
+		attributeMappingExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getAttributeMappingSourceInterface());
+		attributeMappingExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getModifiedAttributeElementType());
+		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_AttributeType);
+		g1.getETypeArguments().add(g2);
 		externalModifiedAttributeElementTypeEClass.getEGenericSuperTypes().add(g1);
-		modelConnectionHintExternalSourceElementEClass.getESuperTypes().add(this.getExternalModifiedAttributeElementType());
-		modelConnectionHintExternalSourceElementEClass.getESuperTypes().add(this.getModelConnectionHintSourceInterface());
-		attributeMatcherExternalSourceElementEClass.getESuperTypes().add(this.getExternalModifiedAttributeElementType());
-		attributeMatcherExternalSourceElementEClass.getESuperTypes().add(this.getAttributeMatcherSourceInterface());
+		g1 = createEGenericType(this.getExternalModifiedAttributeElementType());
+		g2 = createEGenericType(theMetamodelPackage.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		modelConnectionHintExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getModelConnectionHintSourceInterface());
+		modelConnectionHintExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getExternalModifiedAttributeElementType());
+		g2 = createEGenericType(theMetamodelPackage.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		attributeMatcherExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getAttributeMatcherSourceInterface());
+		attributeMatcherExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
 		externalMappedAttributeValueExpanderEClass.getESuperTypes().add(this.getMappedAttributeValueExpander());
 		externalMappedAttributeValuePrependerEClass.getESuperTypes().add(this.getExternalMappedAttributeValueExpander());
 		externalMappedAttributeValueAppenderEClass.getESuperTypes().add(this.getExternalMappedAttributeValueExpander());

@@ -471,7 +471,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ModelConnectionHintSourceInterface"
         abstract="true" interface="true" eSuperTypes="#//mapping/ComplexMappingHintSourceInterface"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ComplexAttributeMappingExternalSourceElement"
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingExternalSourceElement"
         eSuperTypes="#//mapping/ExternalAttributeMappingSourceElement #//mapping/AttributeMappingSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="ExternalAttributeMappingSourceElement"
         abstract="true">
@@ -479,9 +479,9 @@
         <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
       </eGenericSuperTypes>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ComplexModelConnectionHintExternalSourceElement"
+    <eClassifiers xsi:type="ecore:EClass" name="ModelConnectionHintExternalSourceElement"
         eSuperTypes="#//mapping/ExternalAttributeMappingSourceElement #//mapping/ModelConnectionHintSourceInterface"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ComplexAttributeMatcherExternalSourceElement"
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeMatcherExternalSourceElement"
         eSuperTypes="#//mapping/ExternalAttributeMappingSourceElement #//mapping/AttributeMatcherSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="ExternalMappedAttributeValueExpander"
         abstract="true" eSuperTypes="#//mapping/MappedAttributeValueExpander"/>

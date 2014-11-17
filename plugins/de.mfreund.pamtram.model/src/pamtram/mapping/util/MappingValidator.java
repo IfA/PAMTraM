@@ -158,14 +158,14 @@ public class MappingValidator extends EObjectValidator {
 				return validateComplexMappingHintSourceInterface((ComplexMappingHintSourceInterface)value, diagnostics, context);
 			case MappingPackage.MODEL_CONNECTION_HINT_SOURCE_INTERFACE:
 				return validateModelConnectionHintSourceInterface((ModelConnectionHintSourceInterface)value, diagnostics, context);
-			case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT:
-				return validateComplexAttributeMappingExternalSourceElement((ComplexAttributeMappingExternalSourceElement)value, diagnostics, context);
+			case MappingPackage.ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT:
+				return validateAttributeMappingExternalSourceElement((AttributeMappingExternalSourceElement)value, diagnostics, context);
 			case MappingPackage.EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT:
 				return validateExternalAttributeMappingSourceElement((ExternalAttributeMappingSourceElement)value, diagnostics, context);
-			case MappingPackage.COMPLEX_MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT:
-				return validateComplexModelConnectionHintExternalSourceElement((ComplexModelConnectionHintExternalSourceElement)value, diagnostics, context);
-			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT:
-				return validateComplexAttributeMatcherExternalSourceElement((ComplexAttributeMatcherExternalSourceElement)value, diagnostics, context);
+			case MappingPackage.MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT:
+				return validateModelConnectionHintExternalSourceElement((ModelConnectionHintExternalSourceElement)value, diagnostics, context);
+			case MappingPackage.ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT:
+				return validateAttributeMatcherExternalSourceElement((AttributeMatcherExternalSourceElement)value, diagnostics, context);
 			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER:
 				return validateExternalMappedAttributeValueExpander((ExternalMappedAttributeValueExpander)value, diagnostics, context);
 			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER:
@@ -727,8 +727,8 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateComplexAttributeMappingExternalSourceElement(ComplexAttributeMappingExternalSourceElement complexAttributeMappingExternalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(complexAttributeMappingExternalSourceElement, diagnostics, context);
+	public boolean validateAttributeMappingExternalSourceElement(AttributeMappingExternalSourceElement attributeMappingExternalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(attributeMappingExternalSourceElement, diagnostics, context);
 	}
 
 	/**
@@ -745,8 +745,8 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateComplexModelConnectionHintExternalSourceElement(ComplexModelConnectionHintExternalSourceElement complexModelConnectionHintExternalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(complexModelConnectionHintExternalSourceElement, diagnostics, context);
+	public boolean validateModelConnectionHintExternalSourceElement(ModelConnectionHintExternalSourceElement modelConnectionHintExternalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(modelConnectionHintExternalSourceElement, diagnostics, context);
 	}
 
 	/**
@@ -754,8 +754,8 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateComplexAttributeMatcherExternalSourceElement(ComplexAttributeMatcherExternalSourceElement complexAttributeMatcherExternalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(complexAttributeMatcherExternalSourceElement, diagnostics, context);
+	public boolean validateAttributeMatcherExternalSourceElement(AttributeMatcherExternalSourceElement attributeMatcherExternalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(attributeMatcherExternalSourceElement, diagnostics, context);
 	}
 
 	/**

@@ -77,9 +77,9 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_APPENDER: return createMappedAttributeValueAppender();
 			case MappingPackage.GLOBAL_ATTRIBUTE: return createGlobalAttribute();
 			case MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER: return createGlobalAttributeImporter();
-			case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT: return createComplexAttributeMappingExternalSourceElement();
-			case MappingPackage.COMPLEX_MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT: return createComplexModelConnectionHintExternalSourceElement();
-			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT: return createComplexAttributeMatcherExternalSourceElement();
+			case MappingPackage.ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT: return createAttributeMappingExternalSourceElement();
+			case MappingPackage.MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT: return createModelConnectionHintExternalSourceElement();
+			case MappingPackage.ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT: return createAttributeMatcherExternalSourceElement();
 			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER: return createExternalMappedAttributeValuePrepender();
 			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER: return createExternalMappedAttributeValueAppender();
 			case MappingPackage.MATCH_TO_LOWER_CASE_CONVERTER: return createMatchToLowerCaseConverter();
@@ -335,9 +335,9 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComplexAttributeMappingExternalSourceElement createComplexAttributeMappingExternalSourceElement() {
-		ComplexAttributeMappingExternalSourceElementImpl complexAttributeMappingExternalSourceElement = new ComplexAttributeMappingExternalSourceElementImpl();
-		return complexAttributeMappingExternalSourceElement;
+	public AttributeMappingExternalSourceElement createAttributeMappingExternalSourceElement() {
+		AttributeMappingExternalSourceElementImpl attributeMappingExternalSourceElement = new AttributeMappingExternalSourceElementImpl();
+		return attributeMappingExternalSourceElement;
 	}
 
 	/**
@@ -345,9 +345,9 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComplexModelConnectionHintExternalSourceElement createComplexModelConnectionHintExternalSourceElement() {
-		ComplexModelConnectionHintExternalSourceElementImpl complexModelConnectionHintExternalSourceElement = new ComplexModelConnectionHintExternalSourceElementImpl();
-		return complexModelConnectionHintExternalSourceElement;
+	public ModelConnectionHintExternalSourceElement createModelConnectionHintExternalSourceElement() {
+		ModelConnectionHintExternalSourceElementImpl modelConnectionHintExternalSourceElement = new ModelConnectionHintExternalSourceElementImpl();
+		return modelConnectionHintExternalSourceElement;
 	}
 
 	/**
@@ -355,9 +355,9 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComplexAttributeMatcherExternalSourceElement createComplexAttributeMatcherExternalSourceElement() {
-		ComplexAttributeMatcherExternalSourceElementImpl complexAttributeMatcherExternalSourceElement = new ComplexAttributeMatcherExternalSourceElementImpl();
-		return complexAttributeMatcherExternalSourceElement;
+	public AttributeMatcherExternalSourceElement createAttributeMatcherExternalSourceElement() {
+		AttributeMatcherExternalSourceElementImpl attributeMatcherExternalSourceElement = new AttributeMatcherExternalSourceElementImpl();
+		return attributeMatcherExternalSourceElement;
 	}
 
 	/**

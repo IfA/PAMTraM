@@ -238,31 +238,31 @@ public interface MappingFactory extends EFactory {
 	GlobalAttributeImporter createGlobalAttributeImporter();
 
 	/**
-	 * Returns a new object of class '<em>Complex Attribute Mapping External Source Element</em>'.
+	 * Returns a new object of class '<em>Attribute Mapping External Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Complex Attribute Mapping External Source Element</em>'.
+	 * @return a new object of class '<em>Attribute Mapping External Source Element</em>'.
 	 * @generated
 	 */
-	ComplexAttributeMappingExternalSourceElement createComplexAttributeMappingExternalSourceElement();
+	AttributeMappingExternalSourceElement createAttributeMappingExternalSourceElement();
 
 	/**
-	 * Returns a new object of class '<em>Complex Model Connection Hint External Source Element</em>'.
+	 * Returns a new object of class '<em>Model Connection Hint External Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Complex Model Connection Hint External Source Element</em>'.
+	 * @return a new object of class '<em>Model Connection Hint External Source Element</em>'.
 	 * @generated
 	 */
-	ComplexModelConnectionHintExternalSourceElement createComplexModelConnectionHintExternalSourceElement();
+	ModelConnectionHintExternalSourceElement createModelConnectionHintExternalSourceElement();
 
 	/**
-	 * Returns a new object of class '<em>Complex Attribute Matcher External Source Element</em>'.
+	 * Returns a new object of class '<em>Attribute Matcher External Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Complex Attribute Matcher External Source Element</em>'.
+	 * @return a new object of class '<em>Attribute Matcher External Source Element</em>'.
 	 * @generated
 	 */
-	ComplexAttributeMatcherExternalSourceElement createComplexAttributeMatcherExternalSourceElement();
+	AttributeMatcherExternalSourceElement createAttributeMatcherExternalSourceElement();
 
 	/**
 	 * Returns a new object of class '<em>External Mapped Attribute Value Prepender</em>'.

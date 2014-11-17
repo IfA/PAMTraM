@@ -8,29 +8,29 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
-import pamtram.mapping.AttributeMappingSourceInterface;
-import pamtram.mapping.ComplexAttributeMappingExternalSourceElement;
 import pamtram.mapping.ComplexMappingHintSourceInterface;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.ModelConnectionHintExternalSourceElement;
+import pamtram.mapping.ModelConnectionHintSourceInterface;
 
 import pamtram.metamodel.SourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Complex Attribute Mapping External Source Element</b></em>'.
+ * An implementation of the model object '<em><b>Model Connection Hint External Source Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class ComplexAttributeMappingExternalSourceElementImpl extends ExternalAttributeMappingSourceElementImpl implements ComplexAttributeMappingExternalSourceElement {
+public class ModelConnectionHintExternalSourceElementImpl extends ExternalAttributeMappingSourceElementImpl implements ModelConnectionHintExternalSourceElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ComplexAttributeMappingExternalSourceElementImpl() {
+	protected ModelConnectionHintExternalSourceElementImpl() {
 		super();
 	}
 
@@ -41,7 +41,15 @@ public class ComplexAttributeMappingExternalSourceElementImpl extends ExternalAt
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.COMPLEX_ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT;
+		return MappingPackage.Literals.MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 */
+	public SourceSectionAttribute getSourceAttribute() {
+		return this.getSource();
 	}
 
 	/**
@@ -53,12 +61,12 @@ public class ComplexAttributeMappingExternalSourceElementImpl extends ExternalAt
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == ComplexMappingHintSourceInterface.class) {
 			switch (baseOperationID) {
-				case MappingPackage.COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE;
-				case MappingPackage.COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_NAME: return MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT___GET_NAME;
+				case MappingPackage.COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return MappingPackage.MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE;
+				case MappingPackage.COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_NAME: return MappingPackage.MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT___GET_NAME;
 				default: return -1;
 			}
 		}
-		if (baseClass == AttributeMappingSourceInterface.class) {
+		if (baseClass == ModelConnectionHintSourceInterface.class) {
 			switch (baseOperationID) {
 				default: return -1;
 			}
@@ -74,16 +82,10 @@ public class ComplexAttributeMappingExternalSourceElementImpl extends ExternalAt
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE:
+			case MappingPackage.MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE:
 				return getSourceAttribute();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
-	@Override
-	public SourceSectionAttribute getSourceAttribute() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-} //ComplexAttributeMappingExternalSourceElementImpl
+} //ModelConnectionHintExternalSourceElementImpl

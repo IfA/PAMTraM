@@ -219,20 +219,20 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createModelConnectionHintSourceInterfaceAdapter();
 			}
 			@Override
-			public Adapter caseComplexAttributeMappingExternalSourceElement(ComplexAttributeMappingExternalSourceElement object) {
-				return createComplexAttributeMappingExternalSourceElementAdapter();
+			public Adapter caseAttributeMappingExternalSourceElement(AttributeMappingExternalSourceElement object) {
+				return createAttributeMappingExternalSourceElementAdapter();
 			}
 			@Override
 			public Adapter caseExternalAttributeMappingSourceElement(ExternalAttributeMappingSourceElement object) {
 				return createExternalAttributeMappingSourceElementAdapter();
 			}
 			@Override
-			public Adapter caseComplexModelConnectionHintExternalSourceElement(ComplexModelConnectionHintExternalSourceElement object) {
-				return createComplexModelConnectionHintExternalSourceElementAdapter();
+			public Adapter caseModelConnectionHintExternalSourceElement(ModelConnectionHintExternalSourceElement object) {
+				return createModelConnectionHintExternalSourceElementAdapter();
 			}
 			@Override
-			public Adapter caseComplexAttributeMatcherExternalSourceElement(ComplexAttributeMatcherExternalSourceElement object) {
-				return createComplexAttributeMatcherExternalSourceElementAdapter();
+			public Adapter caseAttributeMatcherExternalSourceElement(AttributeMatcherExternalSourceElement object) {
+				return createAttributeMatcherExternalSourceElementAdapter();
 			}
 			@Override
 			public Adapter caseExternalMappedAttributeValueExpander(ExternalMappedAttributeValueExpander object) {
@@ -819,16 +819,16 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ComplexAttributeMappingExternalSourceElement <em>Complex Attribute Mapping External Source Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.AttributeMappingExternalSourceElement <em>Attribute Mapping External Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.ComplexAttributeMappingExternalSourceElement
+	 * @see pamtram.mapping.AttributeMappingExternalSourceElement
 	 * @generated
 	 */
-	public Adapter createComplexAttributeMappingExternalSourceElementAdapter() {
+	public Adapter createAttributeMappingExternalSourceElementAdapter() {
 		return null;
 	}
 
@@ -847,30 +847,30 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ComplexModelConnectionHintExternalSourceElement <em>Complex Model Connection Hint External Source Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ModelConnectionHintExternalSourceElement <em>Model Connection Hint External Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.ComplexModelConnectionHintExternalSourceElement
+	 * @see pamtram.mapping.ModelConnectionHintExternalSourceElement
 	 * @generated
 	 */
-	public Adapter createComplexModelConnectionHintExternalSourceElementAdapter() {
+	public Adapter createModelConnectionHintExternalSourceElementAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ComplexAttributeMatcherExternalSourceElement <em>Complex Attribute Matcher External Source Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.AttributeMatcherExternalSourceElement <em>Attribute Matcher External Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.ComplexAttributeMatcherExternalSourceElement
+	 * @see pamtram.mapping.AttributeMatcherExternalSourceElement
 	 * @generated
 	 */
-	public Adapter createComplexAttributeMatcherExternalSourceElementAdapter() {
+	public Adapter createAttributeMatcherExternalSourceElementAdapter() {
 		return null;
 	}
 

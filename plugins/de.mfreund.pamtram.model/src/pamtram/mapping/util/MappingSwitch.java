@@ -380,14 +380,14 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.COMPLEX_ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT: {
-				ComplexAttributeMappingExternalSourceElement complexAttributeMappingExternalSourceElement = (ComplexAttributeMappingExternalSourceElement)theEObject;
-				T result = caseComplexAttributeMappingExternalSourceElement(complexAttributeMappingExternalSourceElement);
-				if (result == null) result = caseExternalAttributeMappingSourceElement(complexAttributeMappingExternalSourceElement);
-				if (result == null) result = caseAttributeMappingSourceInterface(complexAttributeMappingExternalSourceElement);
-				if (result == null) result = caseModifiedAttributeElementType(complexAttributeMappingExternalSourceElement);
-				if (result == null) result = caseComplexMappingHintSourceInterface(complexAttributeMappingExternalSourceElement);
-				if (result == null) result = caseNamedElement(complexAttributeMappingExternalSourceElement);
+			case MappingPackage.ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT: {
+				AttributeMappingExternalSourceElement attributeMappingExternalSourceElement = (AttributeMappingExternalSourceElement)theEObject;
+				T result = caseAttributeMappingExternalSourceElement(attributeMappingExternalSourceElement);
+				if (result == null) result = caseExternalAttributeMappingSourceElement(attributeMappingExternalSourceElement);
+				if (result == null) result = caseAttributeMappingSourceInterface(attributeMappingExternalSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(attributeMappingExternalSourceElement);
+				if (result == null) result = caseComplexMappingHintSourceInterface(attributeMappingExternalSourceElement);
+				if (result == null) result = caseNamedElement(attributeMappingExternalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -399,25 +399,25 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.COMPLEX_MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT: {
-				ComplexModelConnectionHintExternalSourceElement complexModelConnectionHintExternalSourceElement = (ComplexModelConnectionHintExternalSourceElement)theEObject;
-				T result = caseComplexModelConnectionHintExternalSourceElement(complexModelConnectionHintExternalSourceElement);
-				if (result == null) result = caseExternalAttributeMappingSourceElement(complexModelConnectionHintExternalSourceElement);
-				if (result == null) result = caseModelConnectionHintSourceInterface(complexModelConnectionHintExternalSourceElement);
-				if (result == null) result = caseModifiedAttributeElementType(complexModelConnectionHintExternalSourceElement);
-				if (result == null) result = caseComplexMappingHintSourceInterface(complexModelConnectionHintExternalSourceElement);
-				if (result == null) result = caseNamedElement(complexModelConnectionHintExternalSourceElement);
+			case MappingPackage.MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT: {
+				ModelConnectionHintExternalSourceElement modelConnectionHintExternalSourceElement = (ModelConnectionHintExternalSourceElement)theEObject;
+				T result = caseModelConnectionHintExternalSourceElement(modelConnectionHintExternalSourceElement);
+				if (result == null) result = caseExternalAttributeMappingSourceElement(modelConnectionHintExternalSourceElement);
+				if (result == null) result = caseModelConnectionHintSourceInterface(modelConnectionHintExternalSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(modelConnectionHintExternalSourceElement);
+				if (result == null) result = caseComplexMappingHintSourceInterface(modelConnectionHintExternalSourceElement);
+				if (result == null) result = caseNamedElement(modelConnectionHintExternalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT: {
-				ComplexAttributeMatcherExternalSourceElement complexAttributeMatcherExternalSourceElement = (ComplexAttributeMatcherExternalSourceElement)theEObject;
-				T result = caseComplexAttributeMatcherExternalSourceElement(complexAttributeMatcherExternalSourceElement);
-				if (result == null) result = caseExternalAttributeMappingSourceElement(complexAttributeMatcherExternalSourceElement);
-				if (result == null) result = caseAttributeMatcherSourceInterface(complexAttributeMatcherExternalSourceElement);
-				if (result == null) result = caseModifiedAttributeElementType(complexAttributeMatcherExternalSourceElement);
-				if (result == null) result = caseComplexMappingHintSourceInterface(complexAttributeMatcherExternalSourceElement);
-				if (result == null) result = caseNamedElement(complexAttributeMatcherExternalSourceElement);
+			case MappingPackage.ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT: {
+				AttributeMatcherExternalSourceElement attributeMatcherExternalSourceElement = (AttributeMatcherExternalSourceElement)theEObject;
+				T result = caseAttributeMatcherExternalSourceElement(attributeMatcherExternalSourceElement);
+				if (result == null) result = caseExternalAttributeMappingSourceElement(attributeMatcherExternalSourceElement);
+				if (result == null) result = caseAttributeMatcherSourceInterface(attributeMatcherExternalSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(attributeMatcherExternalSourceElement);
+				if (result == null) result = caseComplexMappingHintSourceInterface(attributeMatcherExternalSourceElement);
+				if (result == null) result = caseNamedElement(attributeMatcherExternalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1060,17 +1060,17 @@ public class MappingSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Complex Attribute Mapping External Source Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Attribute Mapping External Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Complex Attribute Mapping External Source Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Attribute Mapping External Source Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseComplexAttributeMappingExternalSourceElement(ComplexAttributeMappingExternalSourceElement object) {
+	public T caseAttributeMappingExternalSourceElement(AttributeMappingExternalSourceElement object) {
 		return null;
 	}
 
@@ -1090,32 +1090,32 @@ public class MappingSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Complex Model Connection Hint External Source Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Connection Hint External Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Complex Model Connection Hint External Source Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Connection Hint External Source Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseComplexModelConnectionHintExternalSourceElement(ComplexModelConnectionHintExternalSourceElement object) {
+	public T caseModelConnectionHintExternalSourceElement(ModelConnectionHintExternalSourceElement object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Complex Attribute Matcher External Source Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Attribute Matcher External Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Complex Attribute Matcher External Source Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Attribute Matcher External Source Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseComplexAttributeMatcherExternalSourceElement(ComplexAttributeMatcherExternalSourceElement object) {
+	public T caseAttributeMatcherExternalSourceElement(AttributeMatcherExternalSourceElement object) {
 		return null;
 	}
 

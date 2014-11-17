@@ -211,8 +211,8 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createAttributeMappingSourceInterfaceAdapter();
 			}
 			@Override
-			public Adapter caseComplexMappingHintSourceInterface(ComplexMappingHintSourceInterface object) {
-				return createComplexMappingHintSourceInterfaceAdapter();
+			public Adapter caseMappingHintSourceInterface(MappingHintSourceInterface object) {
+				return createMappingHintSourceInterfaceAdapter();
 			}
 			@Override
 			public Adapter caseModelConnectionHintSourceInterface(ModelConnectionHintSourceInterface object) {
@@ -791,16 +791,16 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ComplexMappingHintSourceInterface <em>Complex Mapping Hint Source Interface</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.MappingHintSourceInterface <em>Hint Source Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.ComplexMappingHintSourceInterface
+	 * @see pamtram.mapping.MappingHintSourceInterface
 	 * @generated
 	 */
-	public Adapter createComplexMappingHintSourceInterfaceAdapter() {
+	public Adapter createMappingHintSourceInterfaceAdapter() {
 		return null;
 	}
 

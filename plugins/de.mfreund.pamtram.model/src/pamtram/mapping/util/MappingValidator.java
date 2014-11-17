@@ -154,8 +154,8 @@ public class MappingValidator extends EObjectValidator {
 				return validateGlobalAttributeImporter((GlobalAttributeImporter)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_INTERFACE:
 				return validateAttributeMappingSourceInterface((AttributeMappingSourceInterface)value, diagnostics, context);
-			case MappingPackage.COMPLEX_MAPPING_HINT_SOURCE_INTERFACE:
-				return validateComplexMappingHintSourceInterface((ComplexMappingHintSourceInterface)value, diagnostics, context);
+			case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE:
+				return validateMappingHintSourceInterface((MappingHintSourceInterface)value, diagnostics, context);
 			case MappingPackage.MODEL_CONNECTION_HINT_SOURCE_INTERFACE:
 				return validateModelConnectionHintSourceInterface((ModelConnectionHintSourceInterface)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT:
@@ -709,8 +709,8 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateComplexMappingHintSourceInterface(ComplexMappingHintSourceInterface complexMappingHintSourceInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(complexMappingHintSourceInterface, diagnostics, context);
+	public boolean validateMappingHintSourceInterface(MappingHintSourceInterface mappingHintSourceInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(mappingHintSourceInterface, diagnostics, context);
 	}
 
 	/**

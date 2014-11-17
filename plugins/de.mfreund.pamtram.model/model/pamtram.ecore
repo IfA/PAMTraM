@@ -354,7 +354,7 @@
       <eGenericSuperTypes eClassifier="#//mapping/AttributeMatcherSourceInterface"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeMatcherSourceInterface" abstract="true"
-        interface="true" eSuperTypes="#//mapping/ComplexMappingHintSourceInterface"/>
+        interface="true" eSuperTypes="#//mapping/MappingHintSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="ClassMatcher" eSuperTypes="#//mapping/Matcher">
       <eStructuralFeatures xsi:type="ecore:EReference" name="targetClass" lowerBound="1"
           eType="#//metamodel/TargetSectionClass"/>
@@ -463,14 +463,14 @@
           eType="#//mapping/GlobalAttribute"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingSourceInterface" abstract="true"
-        interface="true" eSuperTypes="#//mapping/ComplexMappingHintSourceInterface"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ComplexMappingHintSourceInterface"
-        abstract="true" interface="true">
+        interface="true" eSuperTypes="#//mapping/MappingHintSourceInterface"/>
+    <eClassifiers xsi:type="ecore:EClass" name="MappingHintSourceInterface" abstract="true"
+        interface="true">
       <eOperations name="getSourceAttribute" lowerBound="1" eType="#//metamodel/SourceSectionAttribute"/>
       <eOperations name="getName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ModelConnectionHintSourceInterface"
-        abstract="true" interface="true" eSuperTypes="#//mapping/ComplexMappingHintSourceInterface"/>
+        abstract="true" interface="true" eSuperTypes="#//mapping/MappingHintSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingExternalSourceElement"
         eSuperTypes="#//mapping/ExternalModifiedAttributeElementType #//mapping/AttributeMappingSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="ExternalModifiedAttributeElementType"

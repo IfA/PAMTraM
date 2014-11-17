@@ -11,9 +11,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcherSourceInterface;
-import pamtram.mapping.ComplexMappingHintSourceInterface;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
+import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.metamodel.SourceSectionAttribute;
@@ -176,10 +176,10 @@ public class GlobalAttributeImporterImpl extends NamedElementImpl implements Glo
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-		if (baseClass == ComplexMappingHintSourceInterface.class) {
+		if (baseClass == MappingHintSourceInterface.class) {
 			switch (baseOperationID) {
-				case MappingPackage.COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER___GET_SOURCE_ATTRIBUTE;
-				case MappingPackage.COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_NAME: return MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER___GET_NAME;
+				case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER___GET_SOURCE_ATTRIBUTE;
+				case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE___GET_NAME: return MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER___GET_NAME;
 				default: return -1;
 			}
 		}

@@ -27,7 +27,6 @@ import pamtram.mapping.AttributeValueModifier;
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ClassMatcher;
-import pamtram.mapping.ComplexMappingHintSourceInterface;
 import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.ExternalMappedAttributeValueAppender;
@@ -49,6 +48,7 @@ import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
+import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.MappingPackage;
@@ -336,7 +336,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass complexMappingHintSourceInterfaceEClass = null;
+	private EClass mappingHintSourceInterfaceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1213,8 +1213,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getComplexMappingHintSourceInterface() {
-		return complexMappingHintSourceInterfaceEClass;
+	public EClass getMappingHintSourceInterface() {
+		return mappingHintSourceInterfaceEClass;
 	}
 
 	/**
@@ -1222,8 +1222,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getComplexMappingHintSourceInterface__GetSourceAttribute() {
-		return complexMappingHintSourceInterfaceEClass.getEOperations().get(0);
+	public EOperation getMappingHintSourceInterface__GetSourceAttribute() {
+		return mappingHintSourceInterfaceEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -1231,8 +1231,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getComplexMappingHintSourceInterface__GetName() {
-		return complexMappingHintSourceInterfaceEClass.getEOperations().get(1);
+	public EOperation getMappingHintSourceInterface__GetName() {
+		return mappingHintSourceInterfaceEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -1512,9 +1512,9 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		attributeMappingSourceInterfaceEClass = createEClass(ATTRIBUTE_MAPPING_SOURCE_INTERFACE);
 
-		complexMappingHintSourceInterfaceEClass = createEClass(COMPLEX_MAPPING_HINT_SOURCE_INTERFACE);
-		createEOperation(complexMappingHintSourceInterfaceEClass, COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE);
-		createEOperation(complexMappingHintSourceInterfaceEClass, COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_NAME);
+		mappingHintSourceInterfaceEClass = createEClass(MAPPING_HINT_SOURCE_INTERFACE);
+		createEOperation(mappingHintSourceInterfaceEClass, MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE);
+		createEOperation(mappingHintSourceInterfaceEClass, MAPPING_HINT_SOURCE_INTERFACE___GET_NAME);
 
 		modelConnectionHintSourceInterfaceEClass = createEClass(MODEL_CONNECTION_HINT_SOURCE_INTERFACE);
 
@@ -1599,7 +1599,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		attributeMatcherSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getAttributeMatcherSourceInterface());
 		attributeMatcherSourceElementEClass.getEGenericSuperTypes().add(g1);
-		attributeMatcherSourceInterfaceEClass.getESuperTypes().add(this.getComplexMappingHintSourceInterface());
+		attributeMatcherSourceInterfaceEClass.getESuperTypes().add(this.getMappingHintSourceInterface());
 		classMatcherEClass.getESuperTypes().add(this.getMatcher());
 		attributeValueModifierSetEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		attributeValueModifierEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
@@ -1639,8 +1639,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		globalAttributeImporterEClass.getESuperTypes().add(this.getAttributeMappingSourceInterface());
 		globalAttributeImporterEClass.getESuperTypes().add(this.getAttributeMatcherSourceInterface());
 		globalAttributeImporterEClass.getESuperTypes().add(this.getModelConnectionHintSourceInterface());
-		attributeMappingSourceInterfaceEClass.getESuperTypes().add(this.getComplexMappingHintSourceInterface());
-		modelConnectionHintSourceInterfaceEClass.getESuperTypes().add(this.getComplexMappingHintSourceInterface());
+		attributeMappingSourceInterfaceEClass.getESuperTypes().add(this.getMappingHintSourceInterface());
+		modelConnectionHintSourceInterfaceEClass.getESuperTypes().add(this.getMappingHintSourceInterface());
 		attributeMappingExternalSourceElementEClass.getESuperTypes().add(this.getExternalModifiedAttributeElementType());
 		attributeMappingExternalSourceElementEClass.getESuperTypes().add(this.getAttributeMappingSourceInterface());
 		g1 = createEGenericType(this.getModifiedAttributeElementType());
@@ -1780,11 +1780,11 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		initEClass(attributeMappingSourceInterfaceEClass, AttributeMappingSourceInterface.class, "AttributeMappingSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(complexMappingHintSourceInterfaceEClass, ComplexMappingHintSourceInterface.class, "ComplexMappingHintSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(mappingHintSourceInterfaceEClass, MappingHintSourceInterface.class, "MappingHintSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEOperation(getComplexMappingHintSourceInterface__GetSourceAttribute(), theMetamodelPackage.getSourceSectionAttribute(), "getSourceAttribute", 1, 1, IS_UNIQUE, IS_ORDERED);
+		initEOperation(getMappingHintSourceInterface__GetSourceAttribute(), theMetamodelPackage.getSourceSectionAttribute(), "getSourceAttribute", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEOperation(getComplexMappingHintSourceInterface__GetName(), ecorePackage.getEString(), "getName", 1, 1, IS_UNIQUE, IS_ORDERED);
+		initEOperation(getMappingHintSourceInterface__GetName(), ecorePackage.getEString(), "getName", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(modelConnectionHintSourceInterfaceEClass, ModelConnectionHintSourceInterface.class, "ModelConnectionHintSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

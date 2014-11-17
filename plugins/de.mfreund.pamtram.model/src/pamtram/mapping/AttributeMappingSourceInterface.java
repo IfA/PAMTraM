@@ -13,5 +13,5 @@ package pamtram.mapping;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface AttributeMappingSourceInterface extends ComplexMappingHintSourceInterface {
+public interface AttributeMappingSourceInterface extends MappingHintSourceInterface {
 } // AttributeMappingSourceInterface

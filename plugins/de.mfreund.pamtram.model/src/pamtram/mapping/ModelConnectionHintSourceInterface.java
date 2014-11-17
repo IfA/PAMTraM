@@ -13,5 +13,5 @@ package pamtram.mapping;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface ModelConnectionHintSourceInterface extends ComplexMappingHintSourceInterface {
+public interface ModelConnectionHintSourceInterface extends MappingHintSourceInterface {
 } // ModelConnectionHintSourceInterface

@@ -27,10 +27,9 @@ import pamtram.NamedElement;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
+import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ClassMatcher;
-import pamtram.mapping.ComplexAttributeMatcher;
-import pamtram.mapping.ComplexAttributeMatcherSourceInterface;
 import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.GlobalAttribute;
@@ -44,7 +43,6 @@ import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.mapping.ModelConnectionHintTargetAttribute;
 import pamtram.mapping.ModifiedAttributeElementType;
-import pamtram.mapping.SimpleAttributeMatcher;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.SourceSectionAttribute;
@@ -339,8 +337,7 @@ public class PamtramEditorMainPage extends SashForm {
 					
 					// Update the currently selected mapping.
 					currentMapping = mapping;
-				}  else if(((TreeItem) e.item).getData() instanceof ModifiedAttributeElementType<?> 
-						&& ! (((TreeItem) e.item).getData()instanceof SimpleAttributeMatcher)) {
+				}  else if(((TreeItem) e.item).getData() instanceof ModifiedAttributeElementType<?>) {
 					@SuppressWarnings("unchecked")
 					ModifiedAttributeElementType<Attribute> mapping = 
 							(ModifiedAttributeElementType<Attribute>) ((TreeItem) e.item).getData();
@@ -411,31 +408,14 @@ public class PamtramEditorMainPage extends SashForm {
 					}
 					sourceViewer.setSelection(new StructuredSelection());
 					
-				} else if(((TreeItem) e.item).getData() instanceof SimpleAttributeMatcher) {
-					
-					AttributeMatcher matcher = (SimpleAttributeMatcher) ((TreeItem) e.item).getData();
-					
-					
-					TargetSectionAttribute target=matcher.getTargetAttribute();
-					SourceSectionAttribute source=null;
-					
-//					if(matcher instanceof SimpleAttributeMatcher){
-						source=((SimpleAttributeMatcher) matcher).getSource();
-//					} else if(matcher instanceof AttributeMappingSourceElementType){
-//						source=((AttributeMappingSourceElementType) matcher).getSource();
-//					}
-					
-					// Select the source and target item associated with the selected matcher.
-					setSourceTargetViewerSingleItemSelections(target, source);
-					
-				} else if(((TreeItem) e.item).getData() instanceof ComplexAttributeMatcher){
-					ComplexAttributeMatcher matcher= (ComplexAttributeMatcher) ((TreeItem) e.item).getData();
+				} else if(((TreeItem) e.item).getData() instanceof AttributeMatcher){
+					AttributeMatcher matcher= (AttributeMatcher) ((TreeItem) e.item).getData();
 					
 					TargetSectionAttribute target= matcher.getTargetAttribute();
 					
 					List<SourceSectionAttribute> sources= new LinkedList<SourceSectionAttribute> ();
 					
-					for(ComplexAttributeMatcherSourceInterface srcElement : matcher.getSourceAttributes()){
+					for(AttributeMatcherSourceInterface srcElement : matcher.getSourceAttributes()){
 						if(srcElement.getSourceAttribute() != null){
 							sources.add(srcElement.getSourceAttribute());
 						}

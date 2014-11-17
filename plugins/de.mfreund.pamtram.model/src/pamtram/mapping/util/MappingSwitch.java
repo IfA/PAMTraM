@@ -383,7 +383,7 @@ public class MappingSwitch<T> extends Switch<T> {
 			case MappingPackage.ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT: {
 				AttributeMappingExternalSourceElement attributeMappingExternalSourceElement = (AttributeMappingExternalSourceElement)theEObject;
 				T result = caseAttributeMappingExternalSourceElement(attributeMappingExternalSourceElement);
-				if (result == null) result = caseExternalAttributeMappingSourceElement(attributeMappingExternalSourceElement);
+				if (result == null) result = caseExternalModifiedAttributeElementType(attributeMappingExternalSourceElement);
 				if (result == null) result = caseAttributeMappingSourceInterface(attributeMappingExternalSourceElement);
 				if (result == null) result = caseModifiedAttributeElementType(attributeMappingExternalSourceElement);
 				if (result == null) result = caseComplexMappingHintSourceInterface(attributeMappingExternalSourceElement);
@@ -391,18 +391,18 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT: {
-				ExternalAttributeMappingSourceElement externalAttributeMappingSourceElement = (ExternalAttributeMappingSourceElement)theEObject;
-				T result = caseExternalAttributeMappingSourceElement(externalAttributeMappingSourceElement);
-				if (result == null) result = caseModifiedAttributeElementType(externalAttributeMappingSourceElement);
-				if (result == null) result = caseNamedElement(externalAttributeMappingSourceElement);
+			case MappingPackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE: {
+				ExternalModifiedAttributeElementType externalModifiedAttributeElementType = (ExternalModifiedAttributeElementType)theEObject;
+				T result = caseExternalModifiedAttributeElementType(externalModifiedAttributeElementType);
+				if (result == null) result = caseModifiedAttributeElementType(externalModifiedAttributeElementType);
+				if (result == null) result = caseNamedElement(externalModifiedAttributeElementType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case MappingPackage.MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT: {
 				ModelConnectionHintExternalSourceElement modelConnectionHintExternalSourceElement = (ModelConnectionHintExternalSourceElement)theEObject;
 				T result = caseModelConnectionHintExternalSourceElement(modelConnectionHintExternalSourceElement);
-				if (result == null) result = caseExternalAttributeMappingSourceElement(modelConnectionHintExternalSourceElement);
+				if (result == null) result = caseExternalModifiedAttributeElementType(modelConnectionHintExternalSourceElement);
 				if (result == null) result = caseModelConnectionHintSourceInterface(modelConnectionHintExternalSourceElement);
 				if (result == null) result = caseModifiedAttributeElementType(modelConnectionHintExternalSourceElement);
 				if (result == null) result = caseComplexMappingHintSourceInterface(modelConnectionHintExternalSourceElement);
@@ -413,7 +413,7 @@ public class MappingSwitch<T> extends Switch<T> {
 			case MappingPackage.ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT: {
 				AttributeMatcherExternalSourceElement attributeMatcherExternalSourceElement = (AttributeMatcherExternalSourceElement)theEObject;
 				T result = caseAttributeMatcherExternalSourceElement(attributeMatcherExternalSourceElement);
-				if (result == null) result = caseExternalAttributeMappingSourceElement(attributeMatcherExternalSourceElement);
+				if (result == null) result = caseExternalModifiedAttributeElementType(attributeMatcherExternalSourceElement);
 				if (result == null) result = caseAttributeMatcherSourceInterface(attributeMatcherExternalSourceElement);
 				if (result == null) result = caseModifiedAttributeElementType(attributeMatcherExternalSourceElement);
 				if (result == null) result = caseComplexMappingHintSourceInterface(attributeMatcherExternalSourceElement);
@@ -1075,17 +1075,17 @@ public class MappingSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>External Attribute Mapping Source Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>External Modified Attribute Element Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>External Attribute Mapping Source Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>External Modified Attribute Element Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseExternalAttributeMappingSourceElement(ExternalAttributeMappingSourceElement object) {
+	public T caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType object) {
 		return null;
 	}
 

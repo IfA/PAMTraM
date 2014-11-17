@@ -2151,14 +2151,14 @@ public interface MappingPackage extends EPackage {
 	int MODEL_CONNECTION_HINT_SOURCE_INTERFACE_OPERATION_COUNT = COMPLEX_MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ExternalAttributeMappingSourceElementImpl <em>External Attribute Mapping Source Element</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.impl.ExternalModifiedAttributeElementTypeImpl <em>External Modified Attribute Element Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ExternalAttributeMappingSourceElementImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalAttributeMappingSourceElement()
+	 * @see pamtram.mapping.impl.ExternalModifiedAttributeElementTypeImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalModifiedAttributeElementType()
 	 * @generated
 	 */
-	int EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT = 39;
+	int EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE = 39;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2167,7 +2167,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT__NAME = MODIFIED_ATTRIBUTE_ELEMENT_TYPE__NAME;
+	int EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__NAME = MODIFIED_ATTRIBUTE_ELEMENT_TYPE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -2176,7 +2176,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT__SOURCE = MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
+	int EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE = MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
@@ -2185,25 +2185,25 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT__MODIFIER = MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
+	int EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER = MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
 
 	/**
-	 * The number of structural features of the '<em>External Attribute Mapping Source Element</em>' class.
+	 * The number of structural features of the '<em>External Modified Attribute Element Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT_FEATURE_COUNT = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
+	int EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>External Attribute Mapping Source Element</em>' class.
+	 * The number of operations of the '<em>External Modified Attribute Element Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT_OPERATION_COUNT = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
+	int EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeMappingExternalSourceElementImpl <em>Attribute Mapping External Source Element</em>}' class.
@@ -2222,7 +2222,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT__NAME = EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT__NAME;
+	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT__NAME = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -2231,7 +2231,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT__SOURCE = EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT__SOURCE;
+	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT__SOURCE = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
@@ -2240,7 +2240,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT__MODIFIER = EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT__MODIFIER;
+	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT__MODIFIER = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
 
 	/**
 	 * The number of structural features of the '<em>Attribute Mapping External Source Element</em>' class.
@@ -2249,7 +2249,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT_FEATURE_COUNT = EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT_FEATURE_COUNT + 0;
+	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT_FEATURE_COUNT = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Source Attribute</em>' operation.
@@ -2258,7 +2258,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE = EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT_OPERATION_COUNT + 0;
+	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Name</em>' operation.
@@ -2267,7 +2267,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT___GET_NAME = EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT_OPERATION_COUNT + 1;
+	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT___GET_NAME = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Attribute Mapping External Source Element</em>' class.
@@ -2276,7 +2276,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT_OPERATION_COUNT = EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT_OPERATION_COUNT + 2;
+	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT_OPERATION_COUNT = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.ModelConnectionHintExternalSourceElementImpl <em>Model Connection Hint External Source Element</em>}' class.
@@ -2295,7 +2295,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT__NAME = EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT__NAME;
+	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT__NAME = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -2304,7 +2304,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT__SOURCE = EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT__SOURCE;
+	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT__SOURCE = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
@@ -2313,7 +2313,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT__MODIFIER = EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT__MODIFIER;
+	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT__MODIFIER = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
 
 	/**
 	 * The number of structural features of the '<em>Model Connection Hint External Source Element</em>' class.
@@ -2322,7 +2322,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT_FEATURE_COUNT = EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT_FEATURE_COUNT + 0;
+	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT_FEATURE_COUNT = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Source Attribute</em>' operation.
@@ -2331,7 +2331,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE = EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT_OPERATION_COUNT + 0;
+	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Name</em>' operation.
@@ -2340,7 +2340,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT___GET_NAME = EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT_OPERATION_COUNT + 1;
+	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT___GET_NAME = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Model Connection Hint External Source Element</em>' class.
@@ -2349,7 +2349,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT_OPERATION_COUNT = EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT_OPERATION_COUNT + 2;
+	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT_OPERATION_COUNT = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeMatcherExternalSourceElementImpl <em>Attribute Matcher External Source Element</em>}' class.
@@ -2368,7 +2368,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT__NAME = EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT__NAME;
+	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT__NAME = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -2377,7 +2377,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT__SOURCE = EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT__SOURCE;
+	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT__SOURCE = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
@@ -2386,7 +2386,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT__MODIFIER = EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT__MODIFIER;
+	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT__MODIFIER = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
 
 	/**
 	 * The number of structural features of the '<em>Attribute Matcher External Source Element</em>' class.
@@ -2395,7 +2395,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT_FEATURE_COUNT = EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT_FEATURE_COUNT + 0;
+	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT_FEATURE_COUNT = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Source Attribute</em>' operation.
@@ -2404,7 +2404,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE = EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT_OPERATION_COUNT + 0;
+	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Name</em>' operation.
@@ -2413,7 +2413,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT___GET_NAME = EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT_OPERATION_COUNT + 1;
+	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT___GET_NAME = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Attribute Matcher External Source Element</em>' class.
@@ -2422,7 +2422,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT_OPERATION_COUNT = EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT_OPERATION_COUNT + 2;
+	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT_OPERATION_COUNT = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.ExternalMappedAttributeValueExpanderImpl <em>External Mapped Attribute Value Expander</em>}' class.
@@ -3668,14 +3668,14 @@ public interface MappingPackage extends EPackage {
 	EClass getAttributeMappingExternalSourceElement();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ExternalAttributeMappingSourceElement <em>External Attribute Mapping Source Element</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.ExternalModifiedAttributeElementType <em>External Modified Attribute Element Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>External Attribute Mapping Source Element</em>'.
-	 * @see pamtram.mapping.ExternalAttributeMappingSourceElement
+	 * @return the meta object for class '<em>External Modified Attribute Element Type</em>'.
+	 * @see pamtram.mapping.ExternalModifiedAttributeElementType
 	 * @generated
 	 */
-	EClass getExternalAttributeMappingSourceElement();
+	EClass getExternalModifiedAttributeElementType();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.ModelConnectionHintExternalSourceElement <em>Model Connection Hint External Source Element</em>}'.
@@ -4566,14 +4566,14 @@ public interface MappingPackage extends EPackage {
 		EClass ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT = eINSTANCE.getAttributeMappingExternalSourceElement();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ExternalAttributeMappingSourceElementImpl <em>External Attribute Mapping Source Element</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.impl.ExternalModifiedAttributeElementTypeImpl <em>External Modified Attribute Element Type</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.ExternalAttributeMappingSourceElementImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalAttributeMappingSourceElement()
+		 * @see pamtram.mapping.impl.ExternalModifiedAttributeElementTypeImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalModifiedAttributeElementType()
 		 * @generated
 		 */
-		EClass EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT = eINSTANCE.getExternalAttributeMappingSourceElement();
+		EClass EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE = eINSTANCE.getExternalModifiedAttributeElementType();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.ModelConnectionHintExternalSourceElementImpl <em>Model Connection Hint External Source Element</em>}' class.

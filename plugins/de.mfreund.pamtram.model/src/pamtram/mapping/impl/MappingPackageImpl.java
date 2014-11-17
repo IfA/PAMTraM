@@ -30,10 +30,10 @@ import pamtram.mapping.ClassMatcher;
 import pamtram.mapping.ComplexMappingHintSourceInterface;
 import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.ExportedMappingHintGroup;
-import pamtram.mapping.ExternalAttributeMappingSourceElement;
 import pamtram.mapping.ExternalMappedAttributeValueAppender;
 import pamtram.mapping.ExternalMappedAttributeValueExpander;
 import pamtram.mapping.ExternalMappedAttributeValuePrepender;
+import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.GlobalValue;
@@ -357,7 +357,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass externalAttributeMappingSourceElementEClass = null;
+	private EClass externalModifiedAttributeElementTypeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1258,8 +1258,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExternalAttributeMappingSourceElement() {
-		return externalAttributeMappingSourceElementEClass;
+	public EClass getExternalModifiedAttributeElementType() {
+		return externalModifiedAttributeElementTypeEClass;
 	}
 
 	/**
@@ -1520,7 +1520,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		attributeMappingExternalSourceElementEClass = createEClass(ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT);
 
-		externalAttributeMappingSourceElementEClass = createEClass(EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT);
+		externalModifiedAttributeElementTypeEClass = createEClass(EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE);
 
 		modelConnectionHintExternalSourceElementEClass = createEClass(MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT);
 
@@ -1641,15 +1641,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		globalAttributeImporterEClass.getESuperTypes().add(this.getModelConnectionHintSourceInterface());
 		attributeMappingSourceInterfaceEClass.getESuperTypes().add(this.getComplexMappingHintSourceInterface());
 		modelConnectionHintSourceInterfaceEClass.getESuperTypes().add(this.getComplexMappingHintSourceInterface());
-		attributeMappingExternalSourceElementEClass.getESuperTypes().add(this.getExternalAttributeMappingSourceElement());
+		attributeMappingExternalSourceElementEClass.getESuperTypes().add(this.getExternalModifiedAttributeElementType());
 		attributeMappingExternalSourceElementEClass.getESuperTypes().add(this.getAttributeMappingSourceInterface());
 		g1 = createEGenericType(this.getModifiedAttributeElementType());
 		g2 = createEGenericType(theMetamodelPackage.getSourceSectionAttribute());
 		g1.getETypeArguments().add(g2);
-		externalAttributeMappingSourceElementEClass.getEGenericSuperTypes().add(g1);
-		modelConnectionHintExternalSourceElementEClass.getESuperTypes().add(this.getExternalAttributeMappingSourceElement());
+		externalModifiedAttributeElementTypeEClass.getEGenericSuperTypes().add(g1);
+		modelConnectionHintExternalSourceElementEClass.getESuperTypes().add(this.getExternalModifiedAttributeElementType());
 		modelConnectionHintExternalSourceElementEClass.getESuperTypes().add(this.getModelConnectionHintSourceInterface());
-		attributeMatcherExternalSourceElementEClass.getESuperTypes().add(this.getExternalAttributeMappingSourceElement());
+		attributeMatcherExternalSourceElementEClass.getESuperTypes().add(this.getExternalModifiedAttributeElementType());
 		attributeMatcherExternalSourceElementEClass.getESuperTypes().add(this.getAttributeMatcherSourceInterface());
 		externalMappedAttributeValueExpanderEClass.getESuperTypes().add(this.getMappedAttributeValueExpander());
 		externalMappedAttributeValuePrependerEClass.getESuperTypes().add(this.getExternalMappedAttributeValueExpander());
@@ -1790,7 +1790,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		initEClass(attributeMappingExternalSourceElementEClass, AttributeMappingExternalSourceElement.class, "AttributeMappingExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(externalAttributeMappingSourceElementEClass, ExternalAttributeMappingSourceElement.class, "ExternalAttributeMappingSourceElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(externalModifiedAttributeElementTypeEClass, ExternalModifiedAttributeElementType.class, "ExternalModifiedAttributeElementType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(modelConnectionHintExternalSourceElementEClass, ModelConnectionHintExternalSourceElement.class, "ModelConnectionHintExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

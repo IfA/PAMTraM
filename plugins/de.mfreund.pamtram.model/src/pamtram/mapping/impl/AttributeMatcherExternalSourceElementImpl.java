@@ -24,7 +24,7 @@ import pamtram.metamodel.SourceSectionAttribute;
  *
  * @generated
  */
-public class AttributeMatcherExternalSourceElementImpl extends ExternalAttributeMappingSourceElementImpl implements AttributeMatcherExternalSourceElement {
+public class AttributeMatcherExternalSourceElementImpl extends ExternalModifiedAttributeElementTypeImpl implements AttributeMatcherExternalSourceElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

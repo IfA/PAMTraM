@@ -160,8 +160,8 @@ public class MappingValidator extends EObjectValidator {
 				return validateModelConnectionHintSourceInterface((ModelConnectionHintSourceInterface)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT:
 				return validateAttributeMappingExternalSourceElement((AttributeMappingExternalSourceElement)value, diagnostics, context);
-			case MappingPackage.EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT:
-				return validateExternalAttributeMappingSourceElement((ExternalAttributeMappingSourceElement)value, diagnostics, context);
+			case MappingPackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE:
+				return validateExternalModifiedAttributeElementType((ExternalModifiedAttributeElementType)value, diagnostics, context);
 			case MappingPackage.MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT:
 				return validateModelConnectionHintExternalSourceElement((ModelConnectionHintExternalSourceElement)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT:
@@ -736,8 +736,8 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateExternalAttributeMappingSourceElement(ExternalAttributeMappingSourceElement externalAttributeMappingSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(externalAttributeMappingSourceElement, diagnostics, context);
+	public boolean validateExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType externalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(externalModifiedAttributeElementType, diagnostics, context);
 	}
 
 	/**

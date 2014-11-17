@@ -223,8 +223,8 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createAttributeMappingExternalSourceElementAdapter();
 			}
 			@Override
-			public Adapter caseExternalAttributeMappingSourceElement(ExternalAttributeMappingSourceElement object) {
-				return createExternalAttributeMappingSourceElementAdapter();
+			public Adapter caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType object) {
+				return createExternalModifiedAttributeElementTypeAdapter();
 			}
 			@Override
 			public Adapter caseModelConnectionHintExternalSourceElement(ModelConnectionHintExternalSourceElement object) {
@@ -833,16 +833,16 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ExternalAttributeMappingSourceElement <em>External Attribute Mapping Source Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ExternalModifiedAttributeElementType <em>External Modified Attribute Element Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.ExternalAttributeMappingSourceElement
+	 * @see pamtram.mapping.ExternalModifiedAttributeElementType
 	 * @generated
 	 */
-	public Adapter createExternalAttributeMappingSourceElementAdapter() {
+	public Adapter createExternalModifiedAttributeElementTypeAdapter() {
 		return null;
 	}
 

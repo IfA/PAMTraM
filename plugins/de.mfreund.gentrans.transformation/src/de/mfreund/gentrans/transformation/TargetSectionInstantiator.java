@@ -22,10 +22,9 @@ import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceElement;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
+import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ClassMatcher;
-import pamtram.mapping.ComplexAttributeMatcher;
-import pamtram.mapping.ComplexAttributeMatcherSourceInterface;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalValue;
 import pamtram.mapping.InstantiableMappingHintGroup;
@@ -34,7 +33,6 @@ import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
-import pamtram.mapping.SimpleAttributeMatcher;
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.TargetSectionAttribute;
@@ -813,13 +811,11 @@ class TargetSectionInstantiator implements CancellationListener {
 									for (final Object attrVal : newHintValues) {
 										String attrValStr = null;
 
-										if (hSel.getMatcher() instanceof SimpleAttributeMatcher) {
-											attrValStr = (String) attrVal;
-										} else if (hSel.getMatcher() instanceof ComplexAttributeMatcher) {
+										if (hSel.getMatcher() instanceof AttributeMatcher) {
 											attrValStr = "";
 											@SuppressWarnings("unchecked")
-											final Map<ComplexAttributeMatcherSourceInterface, String> hVal = (Map<ComplexAttributeMatcherSourceInterface, String>) attrVal;
-											for (final ComplexAttributeMatcherSourceInterface srcElement : ((ComplexAttributeMatcher) hSel
+											final Map<AttributeMatcherSourceInterface, String> hVal = (Map<AttributeMatcherSourceInterface, String>) attrVal;
+											for (final AttributeMatcherSourceInterface srcElement : ((AttributeMatcher) hSel
 													.getMatcher())
 													.getSourceAttributes()) {
 												if (hVal.containsKey(srcElement)) {

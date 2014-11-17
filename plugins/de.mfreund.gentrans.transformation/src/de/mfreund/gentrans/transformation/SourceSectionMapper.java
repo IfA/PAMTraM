@@ -21,10 +21,10 @@ import pamtram.SourceSectionModel;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceElement;
 import pamtram.mapping.AttributeMappingSourceInterface;
+import pamtram.mapping.AttributeMatcher;
+import pamtram.mapping.AttributeMatcherSourceElement;
+import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.CardinalityMapping;
-import pamtram.mapping.ComplexAttributeMatcher;
-import pamtram.mapping.ComplexAttributeMatcherSourceElement;
-import pamtram.mapping.ComplexAttributeMatcherSourceInterface;
 import pamtram.mapping.ComplexMappingHintSourceInterface;
 import pamtram.mapping.ExternalAttributeMappingSourceElement;
 import pamtram.mapping.ExternalMappedAttributeValueExpander;
@@ -40,7 +40,6 @@ import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.ModelConnectionHintSourceElement;
 import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.mapping.ModifiedAttributeElementType;
-import pamtram.mapping.SimpleAttributeMatcher;
 import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.CardinalityType;
@@ -153,7 +152,7 @@ class SourceSectionMapper implements CancellationListener {
 	 * ComplexAttributeMatcherSourceElement that are buried deepest in the
 	 * source Section, sorted by ComplexAttributeMatcher.
 	 */
-	private final Map<ComplexAttributeMatcher, Set<SourceSectionClass>> deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher;
+	private final Map<AttributeMatcher, Set<SourceSectionClass>> deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher;
 	/**
 	 * Map Referencing the Classes referenced by the
 	 * ComplexModelConnectionHintSourceElement that are buried deepest in the
@@ -206,7 +205,7 @@ class SourceSectionMapper implements CancellationListener {
 		mappingHints = new LinkedHashMap<Mapping, LinkedList<MappingHintType>>();
 		modelConnectionHints = new LinkedHashMap<Mapping, LinkedList<ModelConnectionHint>>();
 		deepestComplexAttrMappingSrcElementsByCmplxMapping = new LinkedHashMap<AttributeMapping, Set<SourceSectionClass>>();
-		deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher = new LinkedHashMap<ComplexAttributeMatcher, Set<SourceSectionClass>>();
+		deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher = new LinkedHashMap<AttributeMatcher, Set<SourceSectionClass>>();
 		deepestComplexConnectionHintSrcElementsByComplexConnectionHint = new LinkedHashMap<ModelConnectionHint, Set<SourceSectionClass>>();
 		globalVarValues = new HashMap<GlobalAttribute, String>();
 		this.mappingsToChooseFrom = mappingsToChooseFrom;
@@ -225,9 +224,9 @@ class SourceSectionMapper implements CancellationListener {
 					buildDeepestCmplxAttrMappingElementsMap(
 							(AttributeMapping) h, m.getSourceMMSection());
 				} else if (h instanceof MappingInstanceSelector) {
-					if (((MappingInstanceSelector) h).getMatcher() instanceof ComplexAttributeMatcher) {
+					if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
 						buildDeepestComplexAttrMatcherSrcElements(
-								(ComplexAttributeMatcher) ((MappingInstanceSelector) h)
+								(AttributeMatcher) ((MappingInstanceSelector) h)
 								.getMatcher(), m.getSourceMMSection());
 					}
 				}
@@ -344,7 +343,7 @@ class SourceSectionMapper implements CancellationListener {
 	 * @param srcSection
 	 */
 	private void buildDeepestComplexAttrMatcherSrcElements(
-			final ComplexAttributeMatcher m, final SourceSectionClass srcSection) {
+			final AttributeMatcher m, final SourceSectionClass srcSection) {
 		if (!deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher
 				.containsKey(m)) {
 			final Set<ModifiedAttributeElementType<SourceSectionAttribute>> srcElements = 
@@ -697,7 +696,7 @@ class SourceSectionMapper implements CancellationListener {
 				srcModelObject);
 
 		final Map<AttributeMappingSourceElement, String> complexSourceElementHintValues = new LinkedHashMap<AttributeMappingSourceElement, String>();
-		final Map<ComplexAttributeMatcherSourceElement, String> complexAttrMatcherSourceElementHintValues = new LinkedHashMap<ComplexAttributeMatcherSourceElement, String>();
+		final Map<AttributeMatcherSourceElement, String> complexAttrMatcherSourceElementHintValues = new LinkedHashMap<AttributeMatcherSourceElement, String>();
 		final Map<ModelConnectionHintSourceElement, String> complexConnectionHintSourceElementHintValues = new LinkedHashMap<ModelConnectionHintSourceElement, String>();
 
 		// init hintValues
@@ -710,12 +709,12 @@ class SourceSectionMapper implements CancellationListener {
 					.get(hint)
 					.add(new LinkedHashMap<AttributeMappingSourceInterface, String>());
 			} else if (hint instanceof MappingInstanceSelector) {
-				if (((MappingInstanceSelector) hint).getMatcher() instanceof ComplexAttributeMatcher) {
+				if (((MappingInstanceSelector) hint).getMatcher() instanceof AttributeMatcher) {
 					
 					changedRefsAndHints
 					.getHintValues()
 					.get(hint)
-					.add(new LinkedHashMap<ComplexAttributeMatcherSourceInterface, String>());
+					.add(new LinkedHashMap<AttributeMatcherSourceInterface, String>());
 					
 				}
 			}
@@ -763,7 +762,7 @@ class SourceSectionMapper implements CancellationListener {
 
 		// now work on ComplexAttributeMappings and CalcMappings
 		final Set<AttributeMapping> complexAttributeMappingsFound = new HashSet<AttributeMapping>();
-		final Set<ComplexAttributeMatcher> complexAttributeMatchersFound = new HashSet<ComplexAttributeMatcher>();
+		final Set<AttributeMatcher> complexAttributeMatchersFound = new HashSet<AttributeMatcher>();
 		final Set<ModelConnectionHint> complexConnectionHintsFound = new HashSet<ModelConnectionHint>();
 
 		for (final MappingHintType h : hints) {
@@ -811,13 +810,13 @@ class SourceSectionMapper implements CancellationListener {
 					changedRefsAndHints.getHintValues().get(h).add(foundValues);
 				}
 			} else if (h instanceof MappingInstanceSelector) {
-				if (((MappingInstanceSelector) h).getMatcher() instanceof ComplexAttributeMatcher) {
-					final ComplexAttributeMatcher m = (ComplexAttributeMatcher) ((MappingInstanceSelector) h)
+				if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
+					final AttributeMatcher m = (AttributeMatcher) ((MappingInstanceSelector) h)
 							.getMatcher();
-					final Map<ComplexAttributeMatcherSourceInterface, String> foundValues = new LinkedHashMap<ComplexAttributeMatcherSourceInterface, String>();
+					final Map<AttributeMatcherSourceInterface, String> foundValues = new LinkedHashMap<AttributeMatcherSourceInterface, String>();
 					// append the complex hint value (cardinality either 0 or 1)
 					// with found values in right order
-					for (final ComplexAttributeMatcherSourceElement s : m
+					for (final AttributeMatcherSourceElement s : m
 							.getLocalSourceElements()) {
 						if (complexAttrMatcherSourceElementHintValues
 								.containsKey(s)) {
@@ -830,7 +829,7 @@ class SourceSectionMapper implements CancellationListener {
 					if (foundValues.keySet().size() > 0) {
 						complexAttributeMatchersFound.add(m);
 						@SuppressWarnings("unchecked")
-						final Map<ComplexAttributeMatcherSourceInterface, String> oldValues = (Map<ComplexAttributeMatcherSourceInterface, String>) changedRefsAndHints
+						final Map<AttributeMatcherSourceInterface, String> oldValues = (Map<AttributeMatcherSourceInterface, String>) changedRefsAndHints
 						.getHintValues().get(h).remove();
 						foundValues.putAll(oldValues);
 						changedRefsAndHints.getHintValues().get(h)
@@ -1287,7 +1286,7 @@ class SourceSectionMapper implements CancellationListener {
 					.get(srcSection).add(val);
 				}
 			} else if (h instanceof MappingInstanceSelector) {
-				if (((MappingInstanceSelector) h).getMatcher() instanceof ComplexAttributeMatcher) {
+				if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
 					if (!(complexAttributeMatchersFound
 							.contains(((MappingInstanceSelector) h)
 									.getMatcher()) && deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher
@@ -1306,15 +1305,15 @@ class SourceSectionMapper implements CancellationListener {
 							changedRefsAndHints
 							.getUnSyncedComplexAttrMatchers()
 							.put(h,
-									new HashMap<SourceSectionClass, LinkedList<Map<ComplexAttributeMatcherSourceElement, String>>>());
+									new HashMap<SourceSectionClass, LinkedList<Map<AttributeMatcherSourceElement, String>>>());
 						}
 						changedRefsAndHints
 						.getUnSyncedComplexAttrMatchers()
 						.get(h)
 						.put(srcSection,
-								new LinkedList<Map<ComplexAttributeMatcherSourceElement, String>>());
+								new LinkedList<Map<AttributeMatcherSourceElement, String>>());
 						@SuppressWarnings("unchecked")
-						final Map<ComplexAttributeMatcherSourceElement, String> val = (Map<ComplexAttributeMatcherSourceElement, String>) changedRefsAndHints
+						final Map<AttributeMatcherSourceElement, String> val = (Map<AttributeMatcherSourceElement, String>) changedRefsAndHints
 						.getHintValues().get(h).remove();
 						changedRefsAndHints.getUnSyncedComplexAttrMatchers()
 						.get(h).get(srcSection).add(val);
@@ -1636,7 +1635,7 @@ class SourceSectionMapper implements CancellationListener {
 			final SourceSectionClass srcSection,
 			final MappingInstanceStorage changedRefsAndHints,
 			final Map<AttributeMappingSourceElement, String> complexSourceElementHintValues,
-			final Map<ComplexAttributeMatcherSourceElement, String> complexAttrMatcherSourceElementHintValues,
+			final Map<AttributeMatcherSourceElement, String> complexAttrMatcherSourceElementHintValues,
 			final Map<ModelConnectionHintSourceElement, String> complexConnectionHintSourceElementHintValues) {
 		for (final SourceSectionAttribute at : srcSection.getAttributes()) {
 			/*
@@ -1732,23 +1731,12 @@ class SourceSectionMapper implements CancellationListener {
 						// MappingInstanceSelector
 						// with
 						// AttributeMatcher
-						if (((MappingInstanceSelector) hint).getMatcher() instanceof SimpleAttributeMatcher) {
-							// handle attribute modifiers
-							final SimpleAttributeMatcher matcher = (SimpleAttributeMatcher) ((MappingInstanceSelector) hint)
-									.getMatcher();
-							if (matcher.getSource().equals(at)) {
-								String valCopy = srcAttrAsString;
-								valCopy = attributeValuemodifier
-										.applyAttributeValueModifiers(valCopy,
-												matcher.getModifier());
-								changedRefsAndHints.addHintValue(hint, valCopy);
-							}
-						} else if (((MappingInstanceSelector) hint)
-								.getMatcher() instanceof ComplexAttributeMatcher) {
+						if (((MappingInstanceSelector) hint)
+								.getMatcher() instanceof AttributeMatcher) {
 
-							final ComplexAttributeMatcher matcher = (ComplexAttributeMatcher) ((MappingInstanceSelector) hint)
+							final AttributeMatcher matcher = (AttributeMatcher) ((MappingInstanceSelector) hint)
 									.getMatcher();
-							for (final ComplexAttributeMatcherSourceElement e : matcher
+							for (final AttributeMatcherSourceElement e : matcher
 									.getLocalSourceElements()) {
 								if (e.getSource().equals(at)) {
 									String valCopy = srcAttrAsString;
@@ -1904,10 +1892,10 @@ class SourceSectionMapper implements CancellationListener {
 
 				} else if (h instanceof MappingInstanceSelector) {
 					if (((MappingInstanceSelector) h).getMatcher() != null) {
-						if (((MappingInstanceSelector) h).getMatcher() instanceof ComplexAttributeMatcher) {
-							final ComplexAttributeMatcher matcher = (ComplexAttributeMatcher) ((MappingInstanceSelector) h)
+						if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
+							final AttributeMatcher matcher = (AttributeMatcher) ((MappingInstanceSelector) h)
 									.getMatcher();
-							for (final ComplexAttributeMatcherSourceInterface i : matcher
+							for (final AttributeMatcherSourceInterface i : matcher
 									.getSourceAttributes()) {
 								mappingFailed = checkExternalAttributeMapping(
 										m, res, mappingFailed, attrVals, i);
@@ -1922,15 +1910,15 @@ class SourceSectionMapper implements CancellationListener {
 								if (res.getHintValues().get(h).size() == 0) {
 									res.getHintValues()
 									.get(h)
-									.add(new LinkedHashMap<ComplexAttributeMatcherSourceInterface, String>());
+									.add(new LinkedHashMap<AttributeMatcherSourceInterface, String>());
 								}
 								for (final Object hVal : res.getHintValues()
 										.get(h)) {
 									@SuppressWarnings("unchecked")
-									final Map<ComplexAttributeMatcherSourceInterface, String> map = (Map<ComplexAttributeMatcherSourceInterface, String>) hVal;
+									final Map<AttributeMatcherSourceInterface, String> map = (Map<AttributeMatcherSourceInterface, String>) hVal;
 									for (final ExternalAttributeMappingSourceElement e : attrVals
 											.keySet()) {
-										map.put((ComplexAttributeMatcherSourceInterface) e,
+										map.put((AttributeMatcherSourceInterface) e,
 												attrVals.get(e));
 									}
 								}
@@ -2080,10 +2068,10 @@ class SourceSectionMapper implements CancellationListener {
 				if (changedRefsAndHints.getUnSyncedComplexAttrMatchers().get(h)
 						.size() > 1
 						|| isCommonParent) {
-					final Map<SourceSectionClass, LinkedList<Map<ComplexAttributeMatcherSourceElement, String>>> m = changedRefsAndHints
+					final Map<SourceSectionClass, LinkedList<Map<AttributeMatcherSourceElement, String>>> m = changedRefsAndHints
 							.getUnSyncedComplexAttrMatchers().get(h);
 					// list of "synced" hints
-					LinkedList<Map<ComplexAttributeMatcherSourceElement, String>> syncedComplexMappings = null;
+					LinkedList<Map<AttributeMatcherSourceElement, String>> syncedComplexMappings = null;
 					// find longest list (ideally they are either of the same
 					// length, or there is only one value)
 					SourceSectionClass cl = null;
@@ -2102,10 +2090,10 @@ class SourceSectionMapper implements CancellationListener {
 
 					// combine values
 					for (final SourceSectionClass c : m.keySet()) {
-						final LinkedList<Map<ComplexAttributeMatcherSourceElement, String>> vals = m
+						final LinkedList<Map<AttributeMatcherSourceElement, String>> vals = m
 								.get(c);
 						if (vals.size() == 1) {
-							for (final Map<ComplexAttributeMatcherSourceElement, String> valMap : syncedComplexMappings) {
+							for (final Map<AttributeMatcherSourceElement, String> valMap : syncedComplexMappings) {
 								valMap.putAll(vals.getFirst());
 							}
 						} else if (vals.size() > 1) {

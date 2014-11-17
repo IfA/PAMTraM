@@ -37,8 +37,7 @@ import pamtram.PAMTraM;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
-import pamtram.mapping.ComplexAttributeMatcher;
-import pamtram.mapping.ComplexAttributeMatcherSourceInterface;
+import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.ExternalMappedAttributeValuePrepender;
 import pamtram.mapping.GlobalAttributeImporter;
@@ -55,7 +54,6 @@ import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.ModelConnectionHintSourceInterface;
-import pamtram.mapping.SimpleAttributeMatcher;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.TargetSectionClass;
@@ -448,10 +446,10 @@ public class GenericTransformationRunner {
 							}
 						}
 					} else if (h instanceof MappingInstanceSelector) {
-						if (((MappingInstanceSelector) h).getMatcher() instanceof ComplexAttributeMatcher) {
-							final ComplexAttributeMatcher m = (ComplexAttributeMatcher) ((MappingInstanceSelector) h)
+						if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
+							final AttributeMatcher m = (AttributeMatcher) ((MappingInstanceSelector) h)
 									.getMatcher();
-							for (final ComplexAttributeMatcherSourceInterface i : m
+							for (final AttributeMatcherSourceInterface i : m
 									.getSourceAttributes()) {
 								if (i instanceof GlobalAttributeImporter) {
 									if (sourceSectionMapper
@@ -466,7 +464,7 @@ public class GenericTransformationRunner {
 										for (final Object o : selMap
 												.getHintValues().get(h)) {
 											@SuppressWarnings("unchecked")
-											final Map<ComplexAttributeMatcherSourceInterface, String> map = (Map<ComplexAttributeMatcherSourceInterface, String>) o;
+											final Map<AttributeMatcherSourceInterface, String> map = (Map<AttributeMatcherSourceInterface, String>) o;
 											map.put(i, gVal);
 										}
 									}
@@ -538,10 +536,10 @@ public class GenericTransformationRunner {
 							}
 						}
 					} else if (h instanceof MappingInstanceSelector) {
-						if (((MappingInstanceSelector) h).getMatcher() instanceof ComplexAttributeMatcher) {
-							final ComplexAttributeMatcher m = (ComplexAttributeMatcher) ((MappingInstanceSelector) h)
+						if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
+							final AttributeMatcher m = (AttributeMatcher) ((MappingInstanceSelector) h)
 									.getMatcher();
-							for (final ComplexAttributeMatcherSourceInterface i : m
+							for (final AttributeMatcherSourceInterface i : m
 									.getSourceAttributes()) {
 								if (i instanceof GlobalAttributeImporter) {
 									if (sourceSectionMapper
@@ -556,7 +554,7 @@ public class GenericTransformationRunner {
 										for (final Object o : selMap
 												.getHintValues().get(h)) {
 											@SuppressWarnings("unchecked")
-											final Map<ComplexAttributeMatcherSourceInterface, String> map = (Map<ComplexAttributeMatcherSourceInterface, String>) o;
+											final Map<AttributeMatcherSourceInterface, String> map = (Map<AttributeMatcherSourceInterface, String>) o;
 											map.put(i, gVal);
 										}
 									}
@@ -1097,30 +1095,11 @@ public class GenericTransformationRunner {
 												if (((MappedAttributeValueExpander) h)
 														.getHintsToExpand()
 														.contains(matcher)) {
-													if (matcher instanceof SimpleAttributeMatcher) {// SimpleAttributeMatcher
-														final LinkedList<Object> vals = new LinkedList<Object>();
-														if (prepend) {
-															for (final Object s : selMap
-																	.getHintValues()
-																	.get(realHint)) {
-																vals.add(hintVal
-																		+ (String) s);
-															}
-														} else {
-															for (final Object s : selMap
-																	.getHintValues()
-																	.get(realHint)) {
-																vals.add((String) s
-																		+ hintVal);
-															}
-														}
-														selMap.setHintValueList(
-																realHint, vals);
-													} else if (matcher instanceof ComplexAttributeMatcher) {// ComplexAttributeMatcher
-														final List<ComplexAttributeMatcherSourceInterface> sources = ((ComplexAttributeMatcher) matcher)
+													if (matcher instanceof AttributeMatcher) {// ComplexAttributeMatcher
+														final List<AttributeMatcherSourceInterface> sources = ((AttributeMatcher) matcher)
 																.getSourceAttributes();
 														if (sources.size() > 0) {
-															ComplexAttributeMatcherSourceInterface element;
+															AttributeMatcherSourceInterface element;
 															if (prepend) {
 																element = sources
 																		.get(0);
@@ -1134,7 +1113,7 @@ public class GenericTransformationRunner {
 																	.getHintValues()
 																	.get(realHint)) {
 																@SuppressWarnings("unchecked")
-																final Map<ComplexAttributeMatcherSourceInterface, String> map = (Map<ComplexAttributeMatcherSourceInterface, String>) m;
+																final Map<AttributeMatcherSourceInterface, String> map = (Map<AttributeMatcherSourceInterface, String>) m;
 																if (map.containsKey(element)) {
 																	if (prepend) {
 																		map.put(element,

@@ -11,22 +11,22 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
-import pamtram.mapping.AttributeMatcherExternalSourceElement;
+import pamtram.mapping.ExternalModifiedAttributeElementType;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.AttributeMatcherExternalSourceElement} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.ExternalModifiedAttributeElementType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AttributeMatcherExternalSourceElementItemProvider extends ExternalModifiedAttributeElementTypeItemProvider {
+public class ExternalModifiedAttributeElementTypeItemProvider extends ModifiedAttributeElementTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttributeMatcherExternalSourceElementItemProvider(AdapterFactory adapterFactory) {
+	public ExternalModifiedAttributeElementTypeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -46,17 +46,6 @@ public class AttributeMatcherExternalSourceElementItemProvider extends ExternalM
 	}
 
 	/**
-	 * This returns AttributeMatcherExternalSourceElement.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/AttributeMatcherExternalSourceElement"));
-	}
-
-	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,10 +53,10 @@ public class AttributeMatcherExternalSourceElementItemProvider extends ExternalM
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((AttributeMatcherExternalSourceElement)object).getName();
+		String label = ((ExternalModifiedAttributeElementType)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_AttributeMatcherExternalSourceElement_type") :
-			getString("_UI_AttributeMatcherExternalSourceElement_type") + " " + label;
+			getString("_UI_ExternalModifiedAttributeElementType_type") :
+			getString("_UI_ExternalModifiedAttributeElementType_type") + " " + label;
 	}
 	
 

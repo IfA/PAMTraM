@@ -163,6 +163,52 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.AttributeMatcher} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AttributeMatcherItemProvider attributeMatcherItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.AttributeMatcher}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAttributeMatcherAdapter() {
+		if (attributeMatcherItemProvider == null) {
+			attributeMatcherItemProvider = new AttributeMatcherItemProvider(this);
+		}
+
+		return attributeMatcherItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.AttributeMatcherSourceElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AttributeMatcherSourceElementItemProvider attributeMatcherSourceElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.AttributeMatcherSourceElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAttributeMatcherSourceElementAdapter() {
+		if (attributeMatcherSourceElementItemProvider == null) {
+			attributeMatcherSourceElementItemProvider = new AttributeMatcherSourceElementItemProvider(this);
+		}
+
+		return attributeMatcherSourceElementItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ClassMatcher} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -436,75 +482,6 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		}
 
 		return attributeMappingSourceElementItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ComplexAttributeMatcher} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ComplexAttributeMatcherItemProvider complexAttributeMatcherItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ComplexAttributeMatcher}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createComplexAttributeMatcherAdapter() {
-		if (complexAttributeMatcherItemProvider == null) {
-			complexAttributeMatcherItemProvider = new ComplexAttributeMatcherItemProvider(this);
-		}
-
-		return complexAttributeMatcherItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.SimpleAttributeMatcher} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SimpleAttributeMatcherItemProvider simpleAttributeMatcherItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.SimpleAttributeMatcher}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createSimpleAttributeMatcherAdapter() {
-		if (simpleAttributeMatcherItemProvider == null) {
-			simpleAttributeMatcherItemProvider = new SimpleAttributeMatcherItemProvider(this);
-		}
-
-		return simpleAttributeMatcherItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ComplexAttributeMatcherSourceElement} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ComplexAttributeMatcherSourceElementItemProvider complexAttributeMatcherSourceElementItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ComplexAttributeMatcherSourceElement}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createComplexAttributeMatcherSourceElementAdapter() {
-		if (complexAttributeMatcherSourceElementItemProvider == null) {
-			complexAttributeMatcherSourceElementItemProvider = new ComplexAttributeMatcherSourceElementItemProvider(this);
-		}
-
-		return complexAttributeMatcherSourceElementItemProvider;
 	}
 
 	/**
@@ -934,6 +911,8 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (attributeMappingItemProvider != null) attributeMappingItemProvider.dispose();
 		if (cardinalityMappingItemProvider != null) cardinalityMappingItemProvider.dispose();
 		if (mappingInstanceSelectorItemProvider != null) mappingInstanceSelectorItemProvider.dispose();
+		if (attributeMatcherItemProvider != null) attributeMatcherItemProvider.dispose();
+		if (attributeMatcherSourceElementItemProvider != null) attributeMatcherSourceElementItemProvider.dispose();
 		if (classMatcherItemProvider != null) classMatcherItemProvider.dispose();
 		if (attributeValueModifierSetItemProvider != null) attributeValueModifierSetItemProvider.dispose();
 		if (substringReplacerItemProvider != null) substringReplacerItemProvider.dispose();
@@ -944,9 +923,6 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (exportedMappingHintGroupItemProvider != null) exportedMappingHintGroupItemProvider.dispose();
 		if (modelConnectionHintItemProvider != null) modelConnectionHintItemProvider.dispose();
 		if (attributeMappingSourceElementItemProvider != null) attributeMappingSourceElementItemProvider.dispose();
-		if (complexAttributeMatcherItemProvider != null) complexAttributeMatcherItemProvider.dispose();
-		if (simpleAttributeMatcherItemProvider != null) simpleAttributeMatcherItemProvider.dispose();
-		if (complexAttributeMatcherSourceElementItemProvider != null) complexAttributeMatcherSourceElementItemProvider.dispose();
 		if (modelConnectionHintSourceElementItemProvider != null) modelConnectionHintSourceElementItemProvider.dispose();
 		if (modelConnectionHintTargetAttributeItemProvider != null) modelConnectionHintTargetAttributeItemProvider.dispose();
 		if (mappedAttributeValuePrependerItemProvider != null) mappedAttributeValuePrependerItemProvider.dispose();

@@ -3,17 +3,17 @@ package pamtram.converter;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
+import pamtram.mapping.AttributeMatcherSourceElement;
 import pamtram.mapping.ComplexAttributeMatcherExternalSourceElement;
-import pamtram.mapping.ComplexAttributeMatcherSourceElement;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.commands.GenericConvertCommand.IConverter;
 
 public class InternalToExternalSourceAttrMatcherElementConverter
 		implements
-		IConverter<ComplexAttributeMatcherSourceElement, ComplexAttributeMatcherExternalSourceElement> {
+		IConverter<AttributeMatcherSourceElement, ComplexAttributeMatcherExternalSourceElement> {
 	@Override
 	public ComplexAttributeMatcherExternalSourceElement convert(
-			ComplexAttributeMatcherSourceElement source) {
+			AttributeMatcherSourceElement source) {
 		
 		EPackage ePackage = source.eClass().getEPackage();
 		ComplexAttributeMatcherExternalSourceElement target =

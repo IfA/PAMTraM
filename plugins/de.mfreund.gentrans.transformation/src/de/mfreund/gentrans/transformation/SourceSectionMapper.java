@@ -25,7 +25,7 @@ import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.AttributeMatcherSourceElement;
 import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.CardinalityMapping;
-import pamtram.mapping.ComplexMappingHintSourceInterface;
+import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.ExternalMappedAttributeValueExpander;
 import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.GlobalAttribute;
@@ -380,7 +380,7 @@ class SourceSectionMapper implements CancellationListener {
 	private boolean checkExternalAttributeMapping(final Mapping m,
 			final MappingInstanceStorage res, boolean mappingFailed,
 			final Map<ExternalModifiedAttributeElementType, String> attrVals,
-			final ComplexMappingHintSourceInterface i) {
+			final MappingHintSourceInterface i) {
 		if (i instanceof ExternalModifiedAttributeElementType) {
 			String attrVal = getContainerAttributeValue(((ExternalModifiedAttributeElementType) i).getSource(),
 					m.getSourceMMSection().getContainer(), res

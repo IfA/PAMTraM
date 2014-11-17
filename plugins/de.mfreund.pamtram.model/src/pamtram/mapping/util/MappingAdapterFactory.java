@@ -111,6 +111,14 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createAttributeMatcherAdapter();
 			}
 			@Override
+			public Adapter caseAttributeMatcherSourceElement(AttributeMatcherSourceElement object) {
+				return createAttributeMatcherSourceElementAdapter();
+			}
+			@Override
+			public Adapter caseAttributeMatcherSourceInterface(AttributeMatcherSourceInterface object) {
+				return createAttributeMatcherSourceInterfaceAdapter();
+			}
+			@Override
 			public Adapter caseClassMatcher(ClassMatcher object) {
 				return createClassMatcherAdapter();
 			}
@@ -159,18 +167,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createAttributeMappingSourceElementAdapter();
 			}
 			@Override
-			public Adapter caseComplexAttributeMatcher(ComplexAttributeMatcher object) {
-				return createComplexAttributeMatcherAdapter();
-			}
-			@Override
-			public Adapter caseSimpleAttributeMatcher(SimpleAttributeMatcher object) {
-				return createSimpleAttributeMatcherAdapter();
-			}
-			@Override
-			public Adapter caseComplexAttributeMatcherSourceElement(ComplexAttributeMatcherSourceElement object) {
-				return createComplexAttributeMatcherSourceElementAdapter();
-			}
-			@Override
 			public Adapter caseModelConnectionHintSourceElement(ModelConnectionHintSourceElement object) {
 				return createModelConnectionHintSourceElementAdapter();
 			}
@@ -217,10 +213,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseComplexMappingHintSourceInterface(ComplexMappingHintSourceInterface object) {
 				return createComplexMappingHintSourceInterfaceAdapter();
-			}
-			@Override
-			public Adapter caseComplexAttributeMatcherSourceInterface(ComplexAttributeMatcherSourceInterface object) {
-				return createComplexAttributeMatcherSourceInterfaceAdapter();
 			}
 			@Override
 			public Adapter caseModelConnectionHintSourceInterface(ModelConnectionHintSourceInterface object) {
@@ -403,6 +395,34 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAttributeMatcherAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.AttributeMatcherSourceElement <em>Attribute Matcher Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.AttributeMatcherSourceElement
+	 * @generated
+	 */
+	public Adapter createAttributeMatcherSourceElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.AttributeMatcherSourceInterface <em>Attribute Matcher Source Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.AttributeMatcherSourceInterface
+	 * @generated
+	 */
+	public Adapter createAttributeMatcherSourceInterfaceAdapter() {
 		return null;
 	}
 
@@ -617,48 +637,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ComplexAttributeMatcher <em>Complex Attribute Matcher</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.ComplexAttributeMatcher
-	 * @generated
-	 */
-	public Adapter createComplexAttributeMatcherAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.SimpleAttributeMatcher <em>Simple Attribute Matcher</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.SimpleAttributeMatcher
-	 * @generated
-	 */
-	public Adapter createSimpleAttributeMatcherAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ComplexAttributeMatcherSourceElement <em>Complex Attribute Matcher Source Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.ComplexAttributeMatcherSourceElement
-	 * @generated
-	 */
-	public Adapter createComplexAttributeMatcherSourceElementAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ModelConnectionHintSourceElement <em>Model Connection Hint Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -823,20 +801,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createComplexMappingHintSourceInterfaceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ComplexAttributeMatcherSourceInterface <em>Complex Attribute Matcher Source Interface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.ComplexAttributeMatcherSourceInterface
-	 * @generated
-	 */
-	public Adapter createComplexAttributeMatcherSourceInterfaceAdapter() {
 		return null;
 	}
 

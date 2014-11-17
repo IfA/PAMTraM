@@ -59,6 +59,8 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.ATTRIBUTE_MAPPING: return createAttributeMapping();
 			case MappingPackage.CARDINALITY_MAPPING: return createCardinalityMapping();
 			case MappingPackage.MAPPING_INSTANCE_SELECTOR: return createMappingInstanceSelector();
+			case MappingPackage.ATTRIBUTE_MATCHER: return createAttributeMatcher();
+			case MappingPackage.ATTRIBUTE_MATCHER_SOURCE_ELEMENT: return createAttributeMatcherSourceElement();
 			case MappingPackage.CLASS_MATCHER: return createClassMatcher();
 			case MappingPackage.ATTRIBUTE_VALUE_MODIFIER_SET: return createAttributeValueModifierSet();
 			case MappingPackage.SUBSTRING_REPLACER: return createSubstringReplacer();
@@ -69,9 +71,6 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.EXPORTED_MAPPING_HINT_GROUP: return createExportedMappingHintGroup();
 			case MappingPackage.MODEL_CONNECTION_HINT: return createModelConnectionHint();
 			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT: return createAttributeMappingSourceElement();
-			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER: return createComplexAttributeMatcher();
-			case MappingPackage.SIMPLE_ATTRIBUTE_MATCHER: return createSimpleAttributeMatcher();
-			case MappingPackage.COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT: return createComplexAttributeMatcherSourceElement();
 			case MappingPackage.MODEL_CONNECTION_HINT_SOURCE_ELEMENT: return createModelConnectionHintSourceElement();
 			case MappingPackage.MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE: return createModelConnectionHintTargetAttribute();
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_PREPENDER: return createMappedAttributeValuePrepender();
@@ -129,6 +128,26 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public MappingInstanceSelector createMappingInstanceSelector() {
 		MappingInstanceSelectorImpl mappingInstanceSelector = new MappingInstanceSelectorImpl();
 		return mappingInstanceSelector;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AttributeMatcher createAttributeMatcher() {
+		AttributeMatcherImpl attributeMatcher = new AttributeMatcherImpl();
+		return attributeMatcher;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AttributeMatcherSourceElement createAttributeMatcherSourceElement() {
+		AttributeMatcherSourceElementImpl attributeMatcherSourceElement = new AttributeMatcherSourceElementImpl();
+		return attributeMatcherSourceElement;
 	}
 
 	/**
@@ -249,36 +268,6 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public AttributeMappingSourceElement createAttributeMappingSourceElement() {
 		AttributeMappingSourceElementImpl attributeMappingSourceElement = new AttributeMappingSourceElementImpl();
 		return attributeMappingSourceElement;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ComplexAttributeMatcher createComplexAttributeMatcher() {
-		ComplexAttributeMatcherImpl complexAttributeMatcher = new ComplexAttributeMatcherImpl();
-		return complexAttributeMatcher;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SimpleAttributeMatcher createSimpleAttributeMatcher() {
-		SimpleAttributeMatcherImpl simpleAttributeMatcher = new SimpleAttributeMatcherImpl();
-		return simpleAttributeMatcher;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ComplexAttributeMatcherSourceElement createComplexAttributeMatcherSourceElement() {
-		ComplexAttributeMatcherSourceElementImpl complexAttributeMatcherSourceElement = new ComplexAttributeMatcherSourceElementImpl();
-		return complexAttributeMatcherSourceElement;
 	}
 
 	/**

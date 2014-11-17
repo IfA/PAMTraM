@@ -196,7 +196,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappingHintType()
 	 * @generated
 	 */
-	int MAPPING_HINT_TYPE = 28;
+	int MAPPING_HINT_TYPE = 27;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappingHintImpl <em>Hint</em>}' class.
@@ -266,7 +266,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getClassMatcher()
 	 * @generated
 	 */
-	int CLASS_MATCHER = 11;
+	int CLASS_MATCHER = 13;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeValueModifierImpl <em>Attribute Value Modifier</em>}' class.
@@ -276,7 +276,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeValueModifier()
 	 * @generated
 	 */
-	int ATTRIBUTE_VALUE_MODIFIER = 13;
+	int ATTRIBUTE_VALUE_MODIFIER = 15;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.SubstringReplacerImpl <em>Substring Replacer</em>}' class.
@@ -286,7 +286,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getSubstringReplacer()
 	 * @generated
 	 */
-	int SUBSTRING_REPLACER = 14;
+	int SUBSTRING_REPLACER = 16;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.StringAppenderImpl <em>String Appender</em>}' class.
@@ -296,7 +296,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getStringAppender()
 	 * @generated
 	 */
-	int STRING_APPENDER = 15;
+	int STRING_APPENDER = 17;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.UniqueNumberAppenderImpl <em>Unique Number Appender</em>}' class.
@@ -306,7 +306,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getUniqueNumberAppender()
 	 * @generated
 	 */
-	int UNIQUE_NUMBER_APPENDER = 16;
+	int UNIQUE_NUMBER_APPENDER = 18;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.StringPrependerImpl <em>String Prepender</em>}' class.
@@ -316,7 +316,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getStringPrepender()
 	 * @generated
 	 */
-	int STRING_PREPENDER = 17;
+	int STRING_PREPENDER = 19;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.ModifiedAttributeElementTypeImpl <em>Modified Attribute Element Type</em>}' class.
@@ -326,7 +326,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getModifiedAttributeElementType()
 	 * @generated
 	 */
-	int MODIFIED_ATTRIBUTE_ELEMENT_TYPE = 18;
+	int MODIFIED_ATTRIBUTE_ELEMENT_TYPE = 20;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeValueModifierSetImpl <em>Attribute Value Modifier Set</em>}' class.
@@ -336,7 +336,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeValueModifierSet()
 	 * @generated
 	 */
-	int ATTRIBUTE_VALUE_MODIFIER_SET = 12;
+	int ATTRIBUTE_VALUE_MODIFIER_SET = 14;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappingHintGroupTypeImpl <em>Hint Group Type</em>}' class.
@@ -738,13 +738,31 @@ public interface MappingPackage extends EPackage {
 	int ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE = MATCHER_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Source Attributes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES = MATCHER_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Attribute Matcher</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MATCHER_FEATURE_COUNT = MATCHER_FEATURE_COUNT + 1;
+	int ATTRIBUTE_MATCHER_FEATURE_COUNT = MATCHER_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Get Local Source Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MATCHER___GET_LOCAL_SOURCE_ELEMENTS = MATCHER_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Attribute Matcher</em>' class.
@@ -753,7 +771,357 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MATCHER_OPERATION_COUNT = MATCHER_OPERATION_COUNT + 0;
+	int ATTRIBUTE_MATCHER_OPERATION_COUNT = MATCHER_OPERATION_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODIFIED_ATTRIBUTE_ELEMENT_TYPE__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Modified Attribute Element Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Modified Attribute Element Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeMatcherSourceElementImpl <em>Attribute Matcher Source Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.AttributeMatcherSourceElementImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMatcherSourceElement()
+	 * @generated
+	 */
+	int ATTRIBUTE_MATCHER_SOURCE_ELEMENT = 11;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MATCHER_SOURCE_ELEMENT__NAME = MODIFIED_ATTRIBUTE_ELEMENT_TYPE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MATCHER_SOURCE_ELEMENT__SOURCE = MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MATCHER_SOURCE_ELEMENT__MODIFIER = MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
+
+	/**
+	 * The number of structural features of the '<em>Attribute Matcher Source Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MATCHER_SOURCE_ELEMENT_FEATURE_COUNT = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Source Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MATCHER_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MATCHER_SOURCE_ELEMENT___GET_NAME = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Attribute Matcher Source Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MATCHER_SOURCE_ELEMENT_OPERATION_COUNT = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.MappingHintGroupImporterImpl <em>Hint Group Importer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.MappingHintGroupImporterImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappingHintGroupImporter()
+	 * @generated
+	 */
+	int MAPPING_HINT_GROUP_IMPORTER = 21;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.ExportedMappingHintGroupImpl <em>Exported Mapping Hint Group</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.ExportedMappingHintGroupImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getExportedMappingHintGroup()
+	 * @generated
+	 */
+	int EXPORTED_MAPPING_HINT_GROUP = 22;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.ModelConnectionHintImpl <em>Model Connection Hint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.ModelConnectionHintImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHint()
+	 * @generated
+	 */
+	int MODEL_CONNECTION_HINT = 23;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeMappingSourceElementImpl <em>Attribute Mapping Source Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.AttributeMappingSourceElementImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMappingSourceElement()
+	 * @generated
+	 */
+	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT = 24;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.HintImporterMappingHintImpl <em>Hint Importer Mapping Hint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.HintImporterMappingHintImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getHintImporterMappingHint()
+	 * @generated
+	 */
+	int HINT_IMPORTER_MAPPING_HINT = 28;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.MappedAttributeValueExpanderTypeImpl <em>Mapped Attribute Value Expander Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.MappedAttributeValueExpanderTypeImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValueExpanderType()
+	 * @generated
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE = 30;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.MappedAttributeValueExpanderImpl <em>Mapped Attribute Value Expander</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.MappedAttributeValueExpanderImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValueExpander()
+	 * @generated
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_EXPANDER = 29;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.MappedAttributeValuePrependerImpl <em>Mapped Attribute Value Prepender</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.MappedAttributeValuePrependerImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValuePrepender()
+	 * @generated
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_PREPENDER = 31;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.MappedAttributeValueAppenderImpl <em>Mapped Attribute Value Appender</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.MappedAttributeValueAppenderImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValueAppender()
+	 * @generated
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_APPENDER = 32;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.GlobalAttributeImpl <em>Global Attribute</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.GlobalAttributeImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalAttribute()
+	 * @generated
+	 */
+	int GLOBAL_ATTRIBUTE = 33;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.GlobalAttributeImporterImpl <em>Global Attribute Importer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.GlobalAttributeImporterImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalAttributeImporter()
+	 * @generated
+	 */
+	int GLOBAL_ATTRIBUTE_IMPORTER = 34;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.AttributeMappingSourceInterface <em>Attribute Mapping Source Interface</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.AttributeMappingSourceInterface
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMappingSourceInterface()
+	 * @generated
+	 */
+	int ATTRIBUTE_MAPPING_SOURCE_INTERFACE = 35;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.ComplexMappingHintSourceInterface <em>Complex Mapping Hint Source Interface</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.ComplexMappingHintSourceInterface
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexMappingHintSourceInterface()
+	 * @generated
+	 */
+	int COMPLEX_MAPPING_HINT_SOURCE_INTERFACE = 36;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.ModelConnectionHintSourceElementImpl <em>Model Connection Hint Source Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.ModelConnectionHintSourceElementImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHintSourceElement()
+	 * @generated
+	 */
+	int MODEL_CONNECTION_HINT_SOURCE_ELEMENT = 25;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.ModelConnectionHintTargetAttributeImpl <em>Model Connection Hint Target Attribute</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.ModelConnectionHintTargetAttributeImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHintTargetAttribute()
+	 * @generated
+	 */
+	int MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE = 26;
+
+	/**
+	 * The number of structural features of the '<em>Complex Mapping Hint Source Interface</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_MAPPING_HINT_SOURCE_INTERFACE_FEATURE_COUNT = 0;
+
+	/**
+	 * The operation id for the '<em>Get Source Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE = 0;
+
+	/**
+	 * The operation id for the '<em>Get Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_NAME = 1;
+
+	/**
+	 * The number of operations of the '<em>Complex Mapping Hint Source Interface</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.AttributeMatcherSourceInterface <em>Attribute Matcher Source Interface</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.AttributeMatcherSourceInterface
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMatcherSourceInterface()
+	 * @generated
+	 */
+	int ATTRIBUTE_MATCHER_SOURCE_INTERFACE = 12;
+
+	/**
+	 * The number of structural features of the '<em>Attribute Matcher Source Interface</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MATCHER_SOURCE_INTERFACE_FEATURE_COUNT = COMPLEX_MAPPING_HINT_SOURCE_INTERFACE_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Source Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MATCHER_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE = COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE;
+
+	/**
+	 * The operation id for the '<em>Get Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MATCHER_SOURCE_INTERFACE___GET_NAME = COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_NAME;
+
+	/**
+	 * The number of operations of the '<em>Attribute Matcher Source Interface</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MATCHER_SOURCE_INTERFACE_OPERATION_COUNT = COMPLEX_MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Target Class</b></em>' reference.
@@ -1041,61 +1409,6 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODIFIED_ATTRIBUTE_ELEMENT_TYPE__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Modified Attribute Element Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Modified Attribute Element Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.MappingHintGroupImporterImpl <em>Hint Group Importer</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.MappingHintGroupImporterImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappingHintGroupImporter()
-	 * @generated
-	 */
-	int MAPPING_HINT_GROUP_IMPORTER = 19;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
 	int MAPPING_HINT_GROUP_IMPORTER__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
 
 	/**
@@ -1144,16 +1457,6 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT_GROUP_IMPORTER_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ExportedMappingHintGroupImpl <em>Exported Mapping Hint Group</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ExportedMappingHintGroupImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getExportedMappingHintGroup()
-	 * @generated
-	 */
-	int EXPORTED_MAPPING_HINT_GROUP = 20;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1197,16 +1500,6 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXPORTED_MAPPING_HINT_GROUP_OPERATION_COUNT = MAPPING_HINT_GROUP_TYPE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ModelConnectionHintImpl <em>Model Connection Hint</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ModelConnectionHintImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHint()
-	 * @generated
-	 */
-	int MODEL_CONNECTION_HINT = 21;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1270,17 +1563,6 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_CONNECTION_HINT_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
-
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeMappingSourceElementImpl <em>Attribute Mapping Source Element</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.AttributeMappingSourceElementImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMappingSourceElement()
-	 * @generated
-	 */
-	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1346,308 +1628,6 @@ public interface MappingPackage extends EPackage {
 	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT_OPERATION_COUNT = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ComplexAttributeMatcherImpl <em>Complex Attribute Matcher</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ComplexAttributeMatcherImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexAttributeMatcher()
-	 * @generated
-	 */
-	int COMPLEX_ATTRIBUTE_MATCHER = 23;
-
-	/**
-	 * The feature id for the '<em><b>Target Attribute</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE = ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE;
-
-	/**
-	 * The feature id for the '<em><b>Source Attributes</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES = ATTRIBUTE_MATCHER_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Complex Attribute Matcher</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_ATTRIBUTE_MATCHER_FEATURE_COUNT = ATTRIBUTE_MATCHER_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Get Local Source Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_ATTRIBUTE_MATCHER___GET_LOCAL_SOURCE_ELEMENTS = ATTRIBUTE_MATCHER_OPERATION_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Complex Attribute Matcher</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_ATTRIBUTE_MATCHER_OPERATION_COUNT = ATTRIBUTE_MATCHER_OPERATION_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.SimpleAttributeMatcherImpl <em>Simple Attribute Matcher</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.SimpleAttributeMatcherImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getSimpleAttributeMatcher()
-	 * @generated
-	 */
-	int SIMPLE_ATTRIBUTE_MATCHER = 24;
-
-	/**
-	 * The feature id for the '<em><b>Target Attribute</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE_ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE = ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE_ATTRIBUTE_MATCHER__NAME = ATTRIBUTE_MATCHER_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE_ATTRIBUTE_MATCHER__SOURCE = ATTRIBUTE_MATCHER_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE_ATTRIBUTE_MATCHER__MODIFIER = ATTRIBUTE_MATCHER_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Simple Attribute Matcher</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE_ATTRIBUTE_MATCHER_FEATURE_COUNT = ATTRIBUTE_MATCHER_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of operations of the '<em>Simple Attribute Matcher</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE_ATTRIBUTE_MATCHER_OPERATION_COUNT = ATTRIBUTE_MATCHER_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ComplexAttributeMatcherSourceElementImpl <em>Complex Attribute Matcher Source Element</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ComplexAttributeMatcherSourceElementImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexAttributeMatcherSourceElement()
-	 * @generated
-	 */
-	int COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT = 25;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT__NAME = MODIFIED_ATTRIBUTE_ELEMENT_TYPE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT__SOURCE = MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT__MODIFIER = MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.HintImporterMappingHintImpl <em>Hint Importer Mapping Hint</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.HintImporterMappingHintImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getHintImporterMappingHint()
-	 * @generated
-	 */
-	int HINT_IMPORTER_MAPPING_HINT = 29;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.MappedAttributeValueExpanderTypeImpl <em>Mapped Attribute Value Expander Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.MappedAttributeValueExpanderTypeImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValueExpanderType()
-	 * @generated
-	 */
-	int MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE = 31;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.MappedAttributeValueExpanderImpl <em>Mapped Attribute Value Expander</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.MappedAttributeValueExpanderImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValueExpander()
-	 * @generated
-	 */
-	int MAPPED_ATTRIBUTE_VALUE_EXPANDER = 30;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.MappedAttributeValuePrependerImpl <em>Mapped Attribute Value Prepender</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.MappedAttributeValuePrependerImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValuePrepender()
-	 * @generated
-	 */
-	int MAPPED_ATTRIBUTE_VALUE_PREPENDER = 32;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.MappedAttributeValueAppenderImpl <em>Mapped Attribute Value Appender</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.MappedAttributeValueAppenderImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValueAppender()
-	 * @generated
-	 */
-	int MAPPED_ATTRIBUTE_VALUE_APPENDER = 33;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.GlobalAttributeImpl <em>Global Attribute</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.GlobalAttributeImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalAttribute()
-	 * @generated
-	 */
-	int GLOBAL_ATTRIBUTE = 34;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.GlobalAttributeImporterImpl <em>Global Attribute Importer</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.GlobalAttributeImporterImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalAttributeImporter()
-	 * @generated
-	 */
-	int GLOBAL_ATTRIBUTE_IMPORTER = 35;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.AttributeMappingSourceInterface <em>Attribute Mapping Source Interface</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.AttributeMappingSourceInterface
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMappingSourceInterface()
-	 * @generated
-	 */
-	int ATTRIBUTE_MAPPING_SOURCE_INTERFACE = 36;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.ComplexMappingHintSourceInterface <em>Complex Mapping Hint Source Interface</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.ComplexMappingHintSourceInterface
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexMappingHintSourceInterface()
-	 * @generated
-	 */
-	int COMPLEX_MAPPING_HINT_SOURCE_INTERFACE = 37;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.ComplexAttributeMatcherSourceInterface <em>Complex Attribute Matcher Source Interface</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.ComplexAttributeMatcherSourceInterface
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexAttributeMatcherSourceInterface()
-	 * @generated
-	 */
-	int COMPLEX_ATTRIBUTE_MATCHER_SOURCE_INTERFACE = 38;
-
-	/**
-	 * The number of structural features of the '<em>Complex Attribute Matcher Source Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT_FEATURE_COUNT = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Get Source Attribute</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Get Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT___GET_NAME = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Complex Attribute Matcher Source Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT_OPERATION_COUNT = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 2;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ModelConnectionHintSourceElementImpl <em>Model Connection Hint Source Element</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ModelConnectionHintSourceElementImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHintSourceElement()
-	 * @generated
-	 */
-	int MODEL_CONNECTION_HINT_SOURCE_ELEMENT = 26;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1709,16 +1689,6 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_CONNECTION_HINT_SOURCE_ELEMENT_OPERATION_COUNT = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 2;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ModelConnectionHintTargetAttributeImpl <em>Model Connection Hint Target Attribute</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ModelConnectionHintTargetAttributeImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHintTargetAttribute()
-	 * @generated
-	 */
-	int MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE = 27;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2099,42 +2069,6 @@ public interface MappingPackage extends EPackage {
 	int GLOBAL_ATTRIBUTE_IMPORTER_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
-	 * The number of structural features of the '<em>Complex Mapping Hint Source Interface</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_MAPPING_HINT_SOURCE_INTERFACE_FEATURE_COUNT = 0;
-
-	/**
-	 * The operation id for the '<em>Get Source Attribute</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE = 0;
-
-	/**
-	 * The operation id for the '<em>Get Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_NAME = 1;
-
-	/**
-	 * The number of operations of the '<em>Complex Mapping Hint Source Interface</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT = 2;
-
-	/**
 	 * The number of structural features of the '<em>Attribute Mapping Source Interface</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2171,42 +2105,6 @@ public interface MappingPackage extends EPackage {
 	int ATTRIBUTE_MAPPING_SOURCE_INTERFACE_OPERATION_COUNT = COMPLEX_MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Complex Attribute Matcher Source Interface</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_ATTRIBUTE_MATCHER_SOURCE_INTERFACE_FEATURE_COUNT = COMPLEX_MAPPING_HINT_SOURCE_INTERFACE_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Get Source Attribute</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_ATTRIBUTE_MATCHER_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE = COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE;
-
-	/**
-	 * The operation id for the '<em>Get Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_ATTRIBUTE_MATCHER_SOURCE_INTERFACE___GET_NAME = COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_NAME;
-
-	/**
-	 * The number of operations of the '<em>Complex Attribute Matcher Source Interface</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_ATTRIBUTE_MATCHER_SOURCE_INTERFACE_OPERATION_COUNT = COMPLEX_MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link pamtram.mapping.ModelConnectionHintSourceInterface <em>Model Connection Hint Source Interface</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2214,7 +2112,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHintSourceInterface()
 	 * @generated
 	 */
-	int MODEL_CONNECTION_HINT_SOURCE_INTERFACE = 39;
+	int MODEL_CONNECTION_HINT_SOURCE_INTERFACE = 37;
 
 	/**
 	 * The number of structural features of the '<em>Model Connection Hint Source Interface</em>' class.
@@ -2260,7 +2158,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexAttributeMappingExternalSourceElement()
 	 * @generated
 	 */
-	int COMPLEX_ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT = 40;
+	int COMPLEX_ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT = 38;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.ExternalAttributeMappingSourceElementImpl <em>External Attribute Mapping Source Element</em>}' class.
@@ -2270,7 +2168,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalAttributeMappingSourceElement()
 	 * @generated
 	 */
-	int EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT = 41;
+	int EXTERNAL_ATTRIBUTE_MAPPING_SOURCE_ELEMENT = 39;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2388,7 +2286,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexModelConnectionHintExternalSourceElement()
 	 * @generated
 	 */
-	int COMPLEX_MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT = 42;
+	int COMPLEX_MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT = 40;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2461,7 +2359,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexAttributeMatcherExternalSourceElement()
 	 * @generated
 	 */
-	int COMPLEX_ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT = 43;
+	int COMPLEX_ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT = 41;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2534,7 +2432,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalMappedAttributeValueExpander()
 	 * @generated
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 44;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 42;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2598,7 +2496,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalMappedAttributeValuePrepender()
 	 * @generated
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER = 45;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER = 43;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2662,7 +2560,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalMappedAttributeValueAppender()
 	 * @generated
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER = 46;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER = 44;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2726,7 +2624,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExpandableHint()
 	 * @generated
 	 */
-	int EXPANDABLE_HINT = 47;
+	int EXPANDABLE_HINT = 45;
 
 	/**
 	 * The number of structural features of the '<em>Expandable Hint</em>' class.
@@ -2754,7 +2652,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMatchToLowerCaseConverter()
 	 * @generated
 	 */
-	int MATCH_TO_LOWER_CASE_CONVERTER = 48;
+	int MATCH_TO_LOWER_CASE_CONVERTER = 46;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2809,7 +2707,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMatchToUpperCaseConverter()
 	 * @generated
 	 */
-	int MATCH_TO_UPPER_CASE_CONVERTER = 49;
+	int MATCH_TO_UPPER_CASE_CONVERTER = 47;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2864,7 +2762,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalValue()
 	 * @generated
 	 */
-	int GLOBAL_VALUE = 50;
+	int GLOBAL_VALUE = 48;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3145,6 +3043,47 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getAttributeMatcher_TargetAttribute();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.AttributeMatcher#getSourceAttributes <em>Source Attributes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Source Attributes</em>'.
+	 * @see pamtram.mapping.AttributeMatcher#getSourceAttributes()
+	 * @see #getAttributeMatcher()
+	 * @generated
+	 */
+	EReference getAttributeMatcher_SourceAttributes();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.AttributeMatcher#getLocalSourceElements() <em>Get Local Source Elements</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Local Source Elements</em>' operation.
+	 * @see pamtram.mapping.AttributeMatcher#getLocalSourceElements()
+	 * @generated
+	 */
+	EOperation getAttributeMatcher__GetLocalSourceElements();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.AttributeMatcherSourceElement <em>Attribute Matcher Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Attribute Matcher Source Element</em>'.
+	 * @see pamtram.mapping.AttributeMatcherSourceElement
+	 * @generated
+	 */
+	EClass getAttributeMatcherSourceElement();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.AttributeMatcherSourceInterface <em>Attribute Matcher Source Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Attribute Matcher Source Interface</em>'.
+	 * @see pamtram.mapping.AttributeMatcherSourceInterface
+	 * @generated
+	 */
+	EClass getAttributeMatcherSourceInterface();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.ClassMatcher <em>Class Matcher</em>}'.
@@ -3503,57 +3442,6 @@ public interface MappingPackage extends EPackage {
 	EClass getAttributeMappingSourceElement();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ComplexAttributeMatcher <em>Complex Attribute Matcher</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Complex Attribute Matcher</em>'.
-	 * @see pamtram.mapping.ComplexAttributeMatcher
-	 * @generated
-	 */
-	EClass getComplexAttributeMatcher();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.ComplexAttributeMatcher#getSourceAttributes <em>Source Attributes</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Source Attributes</em>'.
-	 * @see pamtram.mapping.ComplexAttributeMatcher#getSourceAttributes()
-	 * @see #getComplexAttributeMatcher()
-	 * @generated
-	 */
-	EReference getComplexAttributeMatcher_SourceAttributes();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.ComplexAttributeMatcher#getLocalSourceElements() <em>Get Local Source Elements</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Local Source Elements</em>' operation.
-	 * @see pamtram.mapping.ComplexAttributeMatcher#getLocalSourceElements()
-	 * @generated
-	 */
-	EOperation getComplexAttributeMatcher__GetLocalSourceElements();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.SimpleAttributeMatcher <em>Simple Attribute Matcher</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Simple Attribute Matcher</em>'.
-	 * @see pamtram.mapping.SimpleAttributeMatcher
-	 * @generated
-	 */
-	EClass getSimpleAttributeMatcher();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ComplexAttributeMatcherSourceElement <em>Complex Attribute Matcher Source Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Complex Attribute Matcher Source Element</em>'.
-	 * @see pamtram.mapping.ComplexAttributeMatcherSourceElement
-	 * @generated
-	 */
-	EClass getComplexAttributeMatcherSourceElement();
-
-	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.ModelConnectionHintSourceElement <em>Model Connection Hint Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3758,16 +3646,6 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getComplexMappingHintSourceInterface__GetName();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ComplexAttributeMatcherSourceInterface <em>Complex Attribute Matcher Source Interface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Complex Attribute Matcher Source Interface</em>'.
-	 * @see pamtram.mapping.ComplexAttributeMatcherSourceInterface
-	 * @generated
-	 */
-	EClass getComplexAttributeMatcherSourceInterface();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.ModelConnectionHintSourceInterface <em>Model Connection Hint Source Interface</em>}'.
@@ -4146,6 +4024,42 @@ public interface MappingPackage extends EPackage {
 		EReference ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE = eINSTANCE.getAttributeMatcher_TargetAttribute();
 
 		/**
+		 * The meta object literal for the '<em><b>Source Attributes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES = eINSTANCE.getAttributeMatcher_SourceAttributes();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Local Source Elements</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ATTRIBUTE_MATCHER___GET_LOCAL_SOURCE_ELEMENTS = eINSTANCE.getAttributeMatcher__GetLocalSourceElements();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.impl.AttributeMatcherSourceElementImpl <em>Attribute Matcher Source Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.impl.AttributeMatcherSourceElementImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMatcherSourceElement()
+		 * @generated
+		 */
+		EClass ATTRIBUTE_MATCHER_SOURCE_ELEMENT = eINSTANCE.getAttributeMatcherSourceElement();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.AttributeMatcherSourceInterface <em>Attribute Matcher Source Interface</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.AttributeMatcherSourceInterface
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMatcherSourceInterface()
+		 * @generated
+		 */
+		EClass ATTRIBUTE_MATCHER_SOURCE_INTERFACE = eINSTANCE.getAttributeMatcherSourceInterface();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.ClassMatcherImpl <em>Class Matcher</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4448,52 +4362,6 @@ public interface MappingPackage extends EPackage {
 		EClass ATTRIBUTE_MAPPING_SOURCE_ELEMENT = eINSTANCE.getAttributeMappingSourceElement();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ComplexAttributeMatcherImpl <em>Complex Attribute Matcher</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.ComplexAttributeMatcherImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexAttributeMatcher()
-		 * @generated
-		 */
-		EClass COMPLEX_ATTRIBUTE_MATCHER = eINSTANCE.getComplexAttributeMatcher();
-
-		/**
-		 * The meta object literal for the '<em><b>Source Attributes</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLEX_ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES = eINSTANCE.getComplexAttributeMatcher_SourceAttributes();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Local Source Elements</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation COMPLEX_ATTRIBUTE_MATCHER___GET_LOCAL_SOURCE_ELEMENTS = eINSTANCE.getComplexAttributeMatcher__GetLocalSourceElements();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.SimpleAttributeMatcherImpl <em>Simple Attribute Matcher</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.SimpleAttributeMatcherImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getSimpleAttributeMatcher()
-		 * @generated
-		 */
-		EClass SIMPLE_ATTRIBUTE_MATCHER = eINSTANCE.getSimpleAttributeMatcher();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ComplexAttributeMatcherSourceElementImpl <em>Complex Attribute Matcher Source Element</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.ComplexAttributeMatcherSourceElementImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexAttributeMatcherSourceElement()
-		 * @generated
-		 */
-		EClass COMPLEX_ATTRIBUTE_MATCHER_SOURCE_ELEMENT = eINSTANCE.getComplexAttributeMatcherSourceElement();
-
-		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.ModelConnectionHintSourceElementImpl <em>Model Connection Hint Source Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4676,16 +4544,6 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation COMPLEX_MAPPING_HINT_SOURCE_INTERFACE___GET_NAME = eINSTANCE.getComplexMappingHintSourceInterface__GetName();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.mapping.ComplexAttributeMatcherSourceInterface <em>Complex Attribute Matcher Source Interface</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.ComplexAttributeMatcherSourceInterface
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getComplexAttributeMatcherSourceInterface()
-		 * @generated
-		 */
-		EClass COMPLEX_ATTRIBUTE_MATCHER_SOURCE_INTERFACE = eINSTANCE.getComplexAttributeMatcherSourceInterface();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.ModelConnectionHintSourceInterface <em>Model Connection Hint Source Interface</em>}' class.

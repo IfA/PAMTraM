@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.AttributeMappingSourceInterface;
-import pamtram.mapping.ComplexAttributeMatcherSourceInterface;
+import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.ComplexMappingHintSourceInterface;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
@@ -188,7 +188,7 @@ public class GlobalAttributeImporterImpl extends NamedElementImpl implements Glo
 				default: return -1;
 			}
 		}
-		if (baseClass == ComplexAttributeMatcherSourceInterface.class) {
+		if (baseClass == AttributeMatcherSourceInterface.class) {
 			switch (baseOperationID) {
 				default: return -1;
 			}

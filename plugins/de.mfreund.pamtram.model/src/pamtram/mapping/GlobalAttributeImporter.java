@@ -20,7 +20,7 @@ import pamtram.NamedElement;
  * @model
  * @generated
  */
-public interface GlobalAttributeImporter extends NamedElement, AttributeMappingSourceInterface, ComplexAttributeMatcherSourceInterface, ModelConnectionHintSourceInterface {
+public interface GlobalAttributeImporter extends NamedElement, AttributeMappingSourceInterface, AttributeMatcherSourceInterface, ModelConnectionHintSourceInterface {
 	/**
 	 * Returns the value of the '<em><b>Global Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->

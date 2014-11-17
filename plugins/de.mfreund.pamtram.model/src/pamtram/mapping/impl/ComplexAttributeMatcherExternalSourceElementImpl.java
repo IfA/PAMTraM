@@ -3,16 +3,12 @@
 package pamtram.mapping.impl;
 
 import java.lang.reflect.InvocationTargetException;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
+import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.ComplexAttributeMatcherExternalSourceElement;
-import pamtram.mapping.ComplexAttributeMatcherSourceInterface;
 import pamtram.mapping.ComplexMappingHintSourceInterface;
 import pamtram.mapping.MappingPackage;
-
 import pamtram.metamodel.SourceSectionAttribute;
 
 /**
@@ -70,7 +66,7 @@ public class ComplexAttributeMatcherExternalSourceElementImpl extends ExternalAt
 				default: return -1;
 			}
 		}
-		if (baseClass == ComplexAttributeMatcherSourceInterface.class) {
+		if (baseClass == AttributeMatcherSourceInterface.class) {
 			switch (baseOperationID) {
 				default: return -1;
 			}

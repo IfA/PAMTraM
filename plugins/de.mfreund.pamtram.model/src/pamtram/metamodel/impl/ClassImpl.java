@@ -203,6 +203,26 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isContainerForGeneric(final pamtram.metamodel.Class containedClass) {
+		pamtram.metamodel.Class container = containedClass.getContainerGeneric();
+				
+		// this means that we have reached the top level container for the 'containedClass'
+		if(container == null) {
+			return false;
+		// this is the container
+		} else if(this.equals(container)) {
+			return true;
+		// this was not the container, so iterate up in the containment hierarchy
+		} else {
+			return isContainerForGeneric(containedClass.getContainerGeneric());
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -281,6 +301,8 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 				return getAttributesGeneric();
 			case MetamodelPackage.CLASS___GET_CONTAINER_GENERIC:
 				return getContainerGeneric();
+			case MetamodelPackage.CLASS___IS_CONTAINER_FOR_GENERIC__CLASS:
+				return isContainerForGeneric((pamtram.metamodel.Class)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

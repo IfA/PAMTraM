@@ -108,4 +108,13 @@ public interface Class extends MetaModelElement {
 	 */
 	Class getContainerGeneric();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" containedClassRequired="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='pamtram.metamodel.Class container = containedClass.getContainerGeneric();\r\n\t\t\r\n// this means that we have reached the top level container for the \'containedClass\'\r\nif(container == null) {\r\n\treturn false;\r\n// this is the container\r\n} else if(this.equals(container)) {\r\n\treturn true;\r\n// this was not the container, so iterate up in the containment hierarchy\r\n} else {\r\n\treturn isContainerForGeneric(containedClass.getContainerGeneric());\r\n}'"
+	 * @generated
+	 */
+	boolean isContainerForGeneric(Class containedClass);
+
 } // Class

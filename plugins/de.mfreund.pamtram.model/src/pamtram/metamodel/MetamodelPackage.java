@@ -190,13 +190,22 @@ public interface MetamodelPackage extends EPackage {
 	int CLASS___GET_CONTAINER_GENERIC = META_MODEL_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Is Container For Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS___IS_CONTAINER_FOR_GENERIC__CLASS = META_MODEL_ELEMENT_OPERATION_COUNT + 3;
+
+	/**
 	 * The number of operations of the '<em>Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_OPERATION_COUNT = META_MODEL_ELEMENT_OPERATION_COUNT + 3;
+	int CLASS_OPERATION_COUNT = META_MODEL_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link pamtram.metamodel.impl.SourceSectionClassImpl <em>Source Section Class</em>}' class.
@@ -317,6 +326,15 @@ public interface MetamodelPackage extends EPackage {
 	int SOURCE_SECTION_CLASS___GET_CONTAINER_GENERIC = CLASS___GET_CONTAINER_GENERIC;
 
 	/**
+	 * The operation id for the '<em>Is Container For Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_CLASS___IS_CONTAINER_FOR_GENERIC__CLASS = CLASS___IS_CONTAINER_FOR_GENERIC__CLASS;
+
+	/**
 	 * The number of operations of the '<em>Source Section Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -433,6 +451,15 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int TARGET_SECTION_CLASS___GET_CONTAINER_GENERIC = CLASS___GET_CONTAINER_GENERIC;
+
+	/**
+	 * The operation id for the '<em>Is Container For Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CLASS___IS_CONTAINER_FOR_GENERIC__CLASS = CLASS___IS_CONTAINER_FOR_GENERIC__CLASS;
 
 	/**
 	 * The number of operations of the '<em>Target Section Class</em>' class.
@@ -2027,6 +2054,16 @@ public interface MetamodelPackage extends EPackage {
 	EOperation getClass__GetContainerGeneric();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.metamodel.Class#isContainerForGeneric(pamtram.metamodel.Class) <em>Is Container For Generic</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Container For Generic</em>' operation.
+	 * @see pamtram.metamodel.Class#isContainerForGeneric(pamtram.metamodel.Class)
+	 * @generated
+	 */
+	EOperation getClass__IsContainerForGeneric__Class();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.SourceSectionClass <em>Source Section Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2660,6 +2697,14 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation CLASS___GET_CONTAINER_GENERIC = eINSTANCE.getClass__GetContainerGeneric();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Container For Generic</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CLASS___IS_CONTAINER_FOR_GENERIC__CLASS = eINSTANCE.getClass__IsContainerForGeneric__Class();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.SourceSectionClassImpl <em>Source Section Class</em>}' class.

@@ -77,6 +77,12 @@
           <details key="body" value="pamtram.metamodel.Class ret;&#xD;&#xA;if(this instanceof SourceSectionClass){&#xD;&#xA;&#x9;ret = ((SourceSectionClass)this).getContainer();&#xD;&#xA;} else if(this instanceof TargetSectionClass){&#xD;&#xA;&#x9;ret = ((TargetSectionClass)this).getContainer();&#xD;&#xA;} else {&#xD;&#xA;&#x9;return null;&#xD;&#xA;}&#xD;&#xA;if(ret == null &amp;&amp; this.eContainer() instanceof Reference &amp;&amp;&#xD;&#xA;&#x9;&#x9;!(this.eContainer() instanceof SectionModel)) {&#xD;&#xA;&#x9;ret = (pamtram.metamodel.Class) this.eContainer().eContainer();&#xD;&#xA;}&#xD;&#xA;return ret;"/>
         </eAnnotations>
       </eOperations>
+      <eOperations name="isContainerForGeneric" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="pamtram.metamodel.Class container = containedClass.getContainerGeneric();&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;// this means that we have reached the top level container for the 'containedClass'&#xD;&#xA;if(container == null) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;// this is the container&#xD;&#xA;} else if(this.equals(container)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;// this was not the container, so iterate up in the containment hierarchy&#xD;&#xA;} else {&#xD;&#xA;&#x9;return isContainerForGeneric(containedClass.getContainerGeneric());&#xD;&#xA;}"/>
+        </eAnnotations>
+        <eParameters name="containedClass" lowerBound="1" eType="#//metamodel/Class"/>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="eClass" lowerBound="1"
           eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="cardinality" lowerBound="1"

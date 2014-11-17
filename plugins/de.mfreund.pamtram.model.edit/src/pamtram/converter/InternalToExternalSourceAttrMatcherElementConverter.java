@@ -3,21 +3,21 @@ package pamtram.converter;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
+import pamtram.mapping.AttributeMatcherExternalSourceElement;
 import pamtram.mapping.AttributeMatcherSourceElement;
-import pamtram.mapping.ComplexAttributeMatcherExternalSourceElement;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.commands.GenericConvertCommand.IConverter;
 
 public class InternalToExternalSourceAttrMatcherElementConverter
 		implements
-		IConverter<AttributeMatcherSourceElement, ComplexAttributeMatcherExternalSourceElement> {
+		IConverter<AttributeMatcherSourceElement, AttributeMatcherExternalSourceElement> {
 	@Override
-	public ComplexAttributeMatcherExternalSourceElement convert(
+	public AttributeMatcherExternalSourceElement convert(
 			AttributeMatcherSourceElement source) {
 		
 		EPackage ePackage = source.eClass().getEPackage();
-		ComplexAttributeMatcherExternalSourceElement target =
-				(ComplexAttributeMatcherExternalSourceElement) ePackage.getEFactoryInstance().create((EClass) ePackage.getEClassifier("ComplexAttributeMatcherExternalSourceElement"));
+		AttributeMatcherExternalSourceElement target =
+				(AttributeMatcherExternalSourceElement) ePackage.getEFactoryInstance().create((EClass) ePackage.getEClassifier("ComplexAttributeMatcherExternalSourceElement"));
 		
 		if(source.getName() != null){
 			target.setName(source.getName());
@@ -29,7 +29,7 @@ public class InternalToExternalSourceAttrMatcherElementConverter
 		
 		
 		if(source.getModifier() != null){
-			target.eSet(target.eClass().getEStructuralFeature(MappingPackage.COMPLEX_ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT__MODIFIER), source.getModifier());
+			target.eSet(target.eClass().getEStructuralFeature(MappingPackage.ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT__MODIFIER), source.getModifier());
 		}
 		
 		return target;

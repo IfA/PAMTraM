@@ -623,72 +623,72 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ComplexAttributeMappingExternalSourceElement} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.AttributeMappingExternalSourceElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ComplexAttributeMappingExternalSourceElementItemProvider complexAttributeMappingExternalSourceElementItemProvider;
+	protected AttributeMappingExternalSourceElementItemProvider attributeMappingExternalSourceElementItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ComplexAttributeMappingExternalSourceElement}.
+	 * This creates an adapter for a {@link pamtram.mapping.AttributeMappingExternalSourceElement}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createComplexAttributeMappingExternalSourceElementAdapter() {
-		if (complexAttributeMappingExternalSourceElementItemProvider == null) {
-			complexAttributeMappingExternalSourceElementItemProvider = new ComplexAttributeMappingExternalSourceElementItemProvider(this);
+	public Adapter createAttributeMappingExternalSourceElementAdapter() {
+		if (attributeMappingExternalSourceElementItemProvider == null) {
+			attributeMappingExternalSourceElementItemProvider = new AttributeMappingExternalSourceElementItemProvider(this);
 		}
 
-		return complexAttributeMappingExternalSourceElementItemProvider;
+		return attributeMappingExternalSourceElementItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ComplexModelConnectionHintExternalSourceElement} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ModelConnectionHintExternalSourceElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ComplexModelConnectionHintExternalSourceElementItemProvider complexModelConnectionHintExternalSourceElementItemProvider;
+	protected ModelConnectionHintExternalSourceElementItemProvider modelConnectionHintExternalSourceElementItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ComplexModelConnectionHintExternalSourceElement}.
+	 * This creates an adapter for a {@link pamtram.mapping.ModelConnectionHintExternalSourceElement}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createComplexModelConnectionHintExternalSourceElementAdapter() {
-		if (complexModelConnectionHintExternalSourceElementItemProvider == null) {
-			complexModelConnectionHintExternalSourceElementItemProvider = new ComplexModelConnectionHintExternalSourceElementItemProvider(this);
+	public Adapter createModelConnectionHintExternalSourceElementAdapter() {
+		if (modelConnectionHintExternalSourceElementItemProvider == null) {
+			modelConnectionHintExternalSourceElementItemProvider = new ModelConnectionHintExternalSourceElementItemProvider(this);
 		}
 
-		return complexModelConnectionHintExternalSourceElementItemProvider;
+		return modelConnectionHintExternalSourceElementItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ComplexAttributeMatcherExternalSourceElement} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.AttributeMatcherExternalSourceElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ComplexAttributeMatcherExternalSourceElementItemProvider complexAttributeMatcherExternalSourceElementItemProvider;
+	protected AttributeMatcherExternalSourceElementItemProvider attributeMatcherExternalSourceElementItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ComplexAttributeMatcherExternalSourceElement}.
+	 * This creates an adapter for a {@link pamtram.mapping.AttributeMatcherExternalSourceElement}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createComplexAttributeMatcherExternalSourceElementAdapter() {
-		if (complexAttributeMatcherExternalSourceElementItemProvider == null) {
-			complexAttributeMatcherExternalSourceElementItemProvider = new ComplexAttributeMatcherExternalSourceElementItemProvider(this);
+	public Adapter createAttributeMatcherExternalSourceElementAdapter() {
+		if (attributeMatcherExternalSourceElementItemProvider == null) {
+			attributeMatcherExternalSourceElementItemProvider = new AttributeMatcherExternalSourceElementItemProvider(this);
 		}
 
-		return complexAttributeMatcherExternalSourceElementItemProvider;
+		return attributeMatcherExternalSourceElementItemProvider;
 	}
 
 	/**
@@ -929,9 +929,9 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (mappedAttributeValueAppenderItemProvider != null) mappedAttributeValueAppenderItemProvider.dispose();
 		if (globalAttributeItemProvider != null) globalAttributeItemProvider.dispose();
 		if (globalAttributeImporterItemProvider != null) globalAttributeImporterItemProvider.dispose();
-		if (complexAttributeMappingExternalSourceElementItemProvider != null) complexAttributeMappingExternalSourceElementItemProvider.dispose();
-		if (complexModelConnectionHintExternalSourceElementItemProvider != null) complexModelConnectionHintExternalSourceElementItemProvider.dispose();
-		if (complexAttributeMatcherExternalSourceElementItemProvider != null) complexAttributeMatcherExternalSourceElementItemProvider.dispose();
+		if (attributeMappingExternalSourceElementItemProvider != null) attributeMappingExternalSourceElementItemProvider.dispose();
+		if (modelConnectionHintExternalSourceElementItemProvider != null) modelConnectionHintExternalSourceElementItemProvider.dispose();
+		if (attributeMatcherExternalSourceElementItemProvider != null) attributeMatcherExternalSourceElementItemProvider.dispose();
 		if (externalMappedAttributeValuePrependerItemProvider != null) externalMappedAttributeValuePrependerItemProvider.dispose();
 		if (externalMappedAttributeValueAppenderItemProvider != null) externalMappedAttributeValueAppenderItemProvider.dispose();
 		if (matchToLowerCaseConverterItemProvider != null) matchToLowerCaseConverterItemProvider.dispose();

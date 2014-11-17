@@ -288,7 +288,7 @@ public class AttributeMappingItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS,
-				 MappingFactory.eINSTANCE.createComplexAttributeMappingExternalSourceElement()));
+				 MappingFactory.eINSTANCE.createAttributeMappingExternalSourceElement()));
 	}
 	
 	@Override

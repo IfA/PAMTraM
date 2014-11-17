@@ -146,7 +146,7 @@ public class ModelConnectionHintItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS,
-				 MappingFactory.eINSTANCE.createComplexModelConnectionHintExternalSourceElement()));
+				 MappingFactory.eINSTANCE.createModelConnectionHintExternalSourceElement()));
 	}
 
 	/**

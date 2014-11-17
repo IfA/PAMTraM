@@ -195,7 +195,7 @@ public class AttributeMatcherItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES,
-				 MappingFactory.eINSTANCE.createComplexAttributeMatcherExternalSourceElement()));
+				 MappingFactory.eINSTANCE.createAttributeMatcherExternalSourceElement()));
 	}
 	
 	@Override

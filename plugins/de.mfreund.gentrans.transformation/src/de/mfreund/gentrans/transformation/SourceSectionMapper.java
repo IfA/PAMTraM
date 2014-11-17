@@ -26,8 +26,8 @@ import pamtram.mapping.AttributeMatcherSourceElement;
 import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ComplexMappingHintSourceInterface;
-import pamtram.mapping.ExternalAttributeMappingSourceElement;
 import pamtram.mapping.ExternalMappedAttributeValueExpander;
+import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.Mapping;
@@ -379,19 +379,19 @@ class SourceSectionMapper implements CancellationListener {
 	 */
 	private boolean checkExternalAttributeMapping(final Mapping m,
 			final MappingInstanceStorage res, boolean mappingFailed,
-			final Map<ExternalAttributeMappingSourceElement, String> attrVals,
+			final Map<ExternalModifiedAttributeElementType, String> attrVals,
 			final ComplexMappingHintSourceInterface i) {
-		if (i instanceof ExternalAttributeMappingSourceElement) {
-			String attrVal = getContainerAttributeValue(((ExternalAttributeMappingSourceElement) i).getSource(),
+		if (i instanceof ExternalModifiedAttributeElementType) {
+			String attrVal = getContainerAttributeValue(((ExternalModifiedAttributeElementType) i).getSource(),
 					m.getSourceMMSection().getContainer(), res
 					.getAssociatedSourceModelElement().eContainer());
 			if (attrVal == null) {
 				mappingFailed = true;
 			} else {
 				attrVal = attributeValuemodifier.applyAttributeValueModifiers(
-						attrVal, ((ExternalAttributeMappingSourceElement) i)
+						attrVal, ((ExternalModifiedAttributeElementType) i)
 						.getModifier());
-				attrVals.put((ExternalAttributeMappingSourceElement) i, attrVal);
+				attrVals.put((ExternalModifiedAttributeElementType) i, attrVal);
 			}
 		}
 		return mappingFailed;
@@ -1804,7 +1804,7 @@ class SourceSectionMapper implements CancellationListener {
 	private boolean handleExternalAttributeMappings(final Mapping m,
 			final MappingInstanceStorage res, boolean mappingFailed) {
 		if (m.getSourceMMSection().getContainer() != null) {
-			final Map<ExternalAttributeMappingSourceElement, String> attrVals = new HashMap<ExternalAttributeMappingSourceElement, String>();
+			final Map<ExternalModifiedAttributeElementType, String> attrVals = new HashMap<ExternalModifiedAttributeElementType, String>();
 			for (final MappingHintType h : getHints(m)) {
 				if (h instanceof AttributeMapping) {
 					for (final AttributeMappingSourceInterface i : ((AttributeMapping) h)
@@ -1829,7 +1829,7 @@ class SourceSectionMapper implements CancellationListener {
 						
 						if(((AttributeMapping) h).getExpression() != null && !((AttributeMapping) h).getExpression().isEmpty()) {
 							final Map<AttributeMappingSourceInterface, String> newVals = new HashMap<AttributeMappingSourceInterface, String>();
-							for (final ExternalAttributeMappingSourceElement e : attrVals
+							for (final ExternalModifiedAttributeElementType e : attrVals
 									.keySet()) {
 								try {
 									final Calculable calc = new ExpressionBuilder(
@@ -1860,7 +1860,7 @@ class SourceSectionMapper implements CancellationListener {
 							for (final Object hVal : res.getHintValues().get(h)) {
 								@SuppressWarnings("unchecked")
 								final Map<AttributeMappingSourceInterface, String> map = (Map<AttributeMappingSourceInterface, String>) hVal;
-								for (final ExternalAttributeMappingSourceElement e : attrVals
+								for (final ExternalModifiedAttributeElementType e : attrVals
 										.keySet()) {
 									map.put((AttributeMappingSourceInterface) e,
 											attrVals.get(e));
@@ -1916,7 +1916,7 @@ class SourceSectionMapper implements CancellationListener {
 										.get(h)) {
 									@SuppressWarnings("unchecked")
 									final Map<AttributeMatcherSourceInterface, String> map = (Map<AttributeMatcherSourceInterface, String>) hVal;
-									for (final ExternalAttributeMappingSourceElement e : attrVals
+									for (final ExternalModifiedAttributeElementType e : attrVals
 											.keySet()) {
 										map.put((AttributeMatcherSourceInterface) e,
 												attrVals.get(e));
@@ -1953,7 +1953,7 @@ class SourceSectionMapper implements CancellationListener {
 								.getModelConnectionHintValues().get(h)) {
 							@SuppressWarnings("unchecked")
 							final Map<ModelConnectionHintSourceInterface, String> map = (Map<ModelConnectionHintSourceInterface, String>) hVal;
-							for (final ExternalAttributeMappingSourceElement e : attrVals
+							for (final ExternalModifiedAttributeElementType e : attrVals
 									.keySet()) {
 								map.put((ModelConnectionHintSourceInterface) e,
 										attrVals.get(e));

@@ -46,10 +46,8 @@ import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.SourceSectionAttribute;
-import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.TargetSectionAttribute;
-import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 
 public class PamtramEditorMainPage extends SashForm {
@@ -266,7 +264,7 @@ public class PamtramEditorMainPage extends SashForm {
 						}
 						
 					} else if(((TreeItem) e.item).getData() instanceof MappingHintGroupImporter){
-						currentMappingHintGroup=(MappingHintGroupImporter) ((TreeItem) e.item).getData();
+						currentMappingHintGroup = (NamedElement) ((TreeItem) e.item).getData();
 						mapping=(Mapping) currentMappingHintGroup.eContainer();
 						if(((MappingHintGroupImporter)currentMappingHintGroup).getHintGroup() != null) {
 							targets.add(((MappingHintGroupImporter)currentMappingHintGroup).getHintGroup().getTargetMMSection());	
@@ -274,6 +272,7 @@ public class PamtramEditorMainPage extends SashForm {
 						source=mapping.getSourceMMSection();
 						expanded.add(mapping);
 						expanded.add(currentMappingHintGroup);
+						
 					} else if(((TreeItem) e.item).getData() instanceof GlobalAttribute){
 						GlobalAttribute g=(GlobalAttribute)(((TreeItem) e.item).getData());
 						mapping=(Mapping) g.eContainer();
@@ -450,16 +449,11 @@ public class PamtramEditorMainPage extends SashForm {
 					ModelConnectionHint hint = (ModelConnectionHint) ((TreeItem) e.item).getData();
 					
 					LinkedList<Attribute> sources = new LinkedList<Attribute>();
-					
-					if(hint instanceof ModelConnectionHint){
-						for(ModelConnectionHintSourceInterface sourceElement : ((ModelConnectionHint) hint).getSourceElements() ){
-							sources.add(sourceElement.getSourceAttribute());
-						}
-					}
-					
 					LinkedList<Attribute> targets = new LinkedList<Attribute>();
 					
-					
+					for(ModelConnectionHintSourceInterface sourceElement : ((ModelConnectionHint) hint).getSourceElements() ){
+						sources.add(sourceElement.getSourceAttribute());
+					}
 					
 					for(ModelConnectionHintTargetAttribute a : hint.getTargetAttributes()){
 						targets.add(a.getSource());
@@ -472,16 +466,6 @@ public class PamtramEditorMainPage extends SashForm {
 				} else if(((TreeItem) e.item).getData() instanceof ConnectionHintTargetAttribute){
 					ConnectionHintTargetAttribute a=(ConnectionHintTargetAttribute) ((TreeItem) e.item).getData();
 					setSourceTargetViewerSingleItemSelections(a.getTargetAttribute(), null);
-				}else if(((TreeItem) e.item).getData() instanceof MappingHintGroupImporter){
-					MappingHintGroupImporter imp=(MappingHintGroupImporter) ((TreeItem) e.item).getData();
-					TargetSectionClass target=null;
-					SourceSectionClass source=null;
-					if(imp.getHintGroup() != null){
-						target=imp.getHintGroup().getTargetMMSection();
-						
-						source=((Mapping)imp.getHintGroup().eContainer()).getSourceMMSection();
-					}
-					setSourceTargetViewerSingleItemSelections(target, source);
 				} else if(((TreeItem)e.item).getData() instanceof MappedAttributeValueExpander){
 					MappedAttributeValueExpander exp = (MappedAttributeValueExpander)((TreeItem)e.item).getData();
 					

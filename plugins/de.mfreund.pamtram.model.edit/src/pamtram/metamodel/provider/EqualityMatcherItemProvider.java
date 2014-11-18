@@ -10,6 +10,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
+import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.EqualityMatcher;
 
 /**
@@ -49,24 +50,30 @@ public class EqualityMatcherItemProvider
 	 * This returns EqualityMatcher.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/EqualityMatcher"));
+		AttributeValueConstraintType constraintType = ((EqualityMatcher) object).getType();
+		if(constraintType.equals(AttributeValueConstraintType.INCLUSION)) {
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/EqualityMatcher_Inclusion"));			
+		} else if(constraintType.equals(AttributeValueConstraintType.EXCLUSION)) {
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/EqualityMatcher_Exclusion"));			
+		} else {
+			return null;
+		}
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((EqualityMatcher)object).getName();
+		String value = ((EqualityMatcher)object).getValue();
 		return label == null || label.length() == 0 ?
-			getString("_UI_EqualityMatcher_type") :
+			(value == null ? "" : value) :
 			getString("_UI_EqualityMatcher_type") + " " + label;
 	}
 

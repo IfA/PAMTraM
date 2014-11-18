@@ -6,11 +6,14 @@ package pamtram.metamodel.provider;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+
+import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.MetamodelPackage;
 
@@ -98,7 +101,17 @@ public class ActualAttributeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return super.getText(object);
+		String label = ((Attribute)object).getName();
+		String ret = (label == null || label.length() == 0 ?
+			"" :
+			label);
+		
+		String value = ((ActualAttribute)object).getValue();
+		if(value != null && !value.equals("")) {
+			ret += " (\"" + value + "\")";
+		}
+		
+		return ret;
 	}
 
 	/**

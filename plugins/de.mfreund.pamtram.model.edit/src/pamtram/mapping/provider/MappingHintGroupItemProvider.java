@@ -15,6 +15,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.ModelConnectionHint;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.MappingHintGroup} object.
@@ -131,13 +132,51 @@ public class MappingHintGroupItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptorsGen(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER,
 				 MappingFactory.eINSTANCE.createModelConnectionHint()));
+	}
+	
+	/**
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 */
+	@Override
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+
+		super.collectNewChildDescriptors(newChildDescriptors, object);
+		
+		newChildDescriptors.add
+		(createChildParameter
+				(MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER,
+						MappingFactory.eINSTANCE.createModelConnectionHintWithSourceAndTarget()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER,
+				 MappingFactory.eINSTANCE.createModelConnectionHint()));
+		
+	}
+	
+	@Override
+	public String getCreateChildText(Object owner, Object feature,
+			Object child, Collection<?> selection) {
+		
+		// provide labels for the custom child descriptors
+		if(child instanceof ModelConnectionHint) {
+			ModelConnectionHint modelConnectionHint = (ModelConnectionHint) child;
+			if(!modelConnectionHint.getSourceElements().isEmpty() &&
+					!modelConnectionHint.getTargetAttributes().isEmpty()) {
+				return super.getCreateChildText(owner, feature, child, selection) + " (incl. Source and Target Attribute)";
+			}
+		} 
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }

@@ -17,8 +17,12 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import pamtram.mapping.AttributeMapping;
+import pamtram.mapping.AttributeMatcher;
+import pamtram.mapping.ClassMatcher;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHintGroupType;
+import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.commands.BasicDragAndDropSetCommand;
 import pamtram.metamodel.TargetSectionClass;
@@ -151,8 +155,7 @@ public class MappingHintGroupTypeItemProvider extends NamedElementItemProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptorsGen(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -169,6 +172,70 @@ public class MappingHintGroupTypeItemProvider extends NamedElementItemProvider {
 			(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS,
 				 MappingFactory.eINSTANCE.createMappingInstanceSelector()));
+	}
+	
+	/**
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 */
+	@Override
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+		
+		super.collectNewChildDescriptors(newChildDescriptors, object);
+		
+		newChildDescriptors.add(
+				(createChildParameter
+						(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS,
+								MappingFactory.eINSTANCE.createAttributeMappingWithSource())));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS,
+				 MappingFactory.eINSTANCE.createAttributeMapping()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS,
+				 MappingFactory.eINSTANCE.createCardinalityMapping()));
+		
+		newChildDescriptors.add
+		(createChildParameter
+				(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS,
+						MappingFactory.eINSTANCE.createMappingInstanceSelectorWithClassMatcher()));
+		
+		newChildDescriptors.add
+		(createChildParameter
+				(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS,
+						MappingFactory.eINSTANCE.createMappingInstanceSelectorWithAttributeMatcher()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS,
+				 MappingFactory.eINSTANCE.createMappingInstanceSelector()));
+		
+	}
+	
+	@Override
+	public String getCreateChildText(Object owner, Object feature,
+			Object child, Collection<?> selection) {
+		
+		// provide labels for the custom child descriptors
+		if(child instanceof AttributeMapping) {
+			AttributeMapping attributeMapping = (AttributeMapping) child;
+			if(!attributeMapping.getSourceAttributeMappings().isEmpty()) {
+				return super.getCreateChildText(owner, feature, child, selection) + " (incl. Source Attribute)";
+			}
+		} else if(child instanceof MappingInstanceSelector) {
+			MappingInstanceSelector mappingInstanceSelector = (MappingInstanceSelector) child;
+			if(mappingInstanceSelector.getMatcher() instanceof ClassMatcher) {
+				return super.getCreateChildText(owner, feature, child, selection) + " (incl. Class Matcher)";
+			} else if(mappingInstanceSelector.getMatcher() instanceof AttributeMatcher) {
+				return super.getCreateChildText(owner, feature, child, selection) + " (incl. Attribute Matcher)";
+			}
+		} 
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

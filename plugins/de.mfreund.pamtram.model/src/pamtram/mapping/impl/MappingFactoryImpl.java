@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
 import pamtram.mapping.*;
 
 /**
@@ -109,6 +110,15 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 		AttributeMappingImpl attributeMapping = new AttributeMappingImpl();
 		return attributeMapping;
 	}
+	
+	/**
+	 */
+	public AttributeMapping createAttributeMappingWithSource() {
+		AttributeMapping attributeMapping = createAttributeMapping();
+		attributeMapping.getSourceAttributeMappings().add(
+				new AttributeMappingSourceElementImpl());
+		return attributeMapping;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -129,6 +139,22 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 		MappingInstanceSelectorImpl mappingInstanceSelector = new MappingInstanceSelectorImpl();
 		return mappingInstanceSelector;
 	}
+	
+	/**
+	 */
+	@Override
+	public MappingInstanceSelector createMappingInstanceSelectorWithClassMatcher() {
+		MappingInstanceSelector mappingInstanceSelector = createMappingInstanceSelector();
+		mappingInstanceSelector.setMatcher(createClassMatcher());
+		return mappingInstanceSelector;
+	}
+	
+	@Override
+	public MappingInstanceSelector createMappingInstanceSelectorWithAttributeMatcher() {
+		MappingInstanceSelector mappingInstanceSelector = createMappingInstanceSelector();
+		mappingInstanceSelector.setMatcher(createAttributeMatcherWithSource());
+		return mappingInstanceSelector;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -137,6 +163,16 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 */
 	public AttributeMatcher createAttributeMatcher() {
 		AttributeMatcherImpl attributeMatcher = new AttributeMatcherImpl();
+		return attributeMatcher;
+	}
+	
+	/**
+	 */
+	@Override
+	public AttributeMatcher createAttributeMatcherWithSource() {
+		AttributeMatcher attributeMatcher = createAttributeMatcher();
+		attributeMatcher.getSourceAttributes().add(
+				new AttributeMatcherSourceElementImpl());
 		return attributeMatcher;
 	}
 
@@ -257,6 +293,17 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 */
 	public ModelConnectionHint createModelConnectionHint() {
 		ModelConnectionHintImpl modelConnectionHint = new ModelConnectionHintImpl();
+		return modelConnectionHint;
+	}
+	
+	/**
+	 */
+	public ModelConnectionHint createModelConnectionHintWithSourceAndTarget() {
+		ModelConnectionHint modelConnectionHint = createModelConnectionHint();
+		modelConnectionHint.getTargetAttributes().add(
+				new ModelConnectionHintTargetAttributeImpl());
+		modelConnectionHint.getSourceElements().add(
+				new ModelConnectionHintSourceElementImpl());
 		return modelConnectionHint;
 	}
 

@@ -38,6 +38,13 @@ public interface MappingFactory extends EFactory {
 	 * @generated
 	 */
 	AttributeMapping createAttributeMapping();
+	
+	/**
+	 * Returns a new object of class '<em>Attribute Mapping</em>' that
+	 * already contains a source element.
+	 * @return a new object of class '<em>Attribute Mapping</em>'.
+	 */
+	AttributeMapping createAttributeMappingWithSource();
 
 	/**
 	 * Returns a new object of class '<em>Cardinality Mapping</em>'.
@@ -56,6 +63,20 @@ public interface MappingFactory extends EFactory {
 	 * @generated
 	 */
 	MappingInstanceSelector createMappingInstanceSelector();
+	
+	/**
+	 * Returns a new object of class '<em>Instance Selector</em>' that
+	 * already contains a class matcher.
+	 * @return a new object of class '<em>Instance Selector</em>'.
+	 */
+	MappingInstanceSelector createMappingInstanceSelectorWithClassMatcher();
+	
+	/**
+	 * Returns a new object of class '<em>Instance Selector</em>' that
+	 * already contains an attribute matcher.
+	 * @return a new object of class '<em>Instance Selector</em>'.
+	 */
+	MappingInstanceSelector createMappingInstanceSelectorWithAttributeMatcher();
 
 	/**
 	 * Returns a new object of class '<em>Attribute Matcher</em>'.
@@ -65,6 +86,15 @@ public interface MappingFactory extends EFactory {
 	 * @generated
 	 */
 	AttributeMatcher createAttributeMatcher();
+	
+	/**
+	 * Returns a new object of class '<em>Attribute Matcher</em>' that
+	 * already contains a source element.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Attribute Matcher</em>'.
+	 */
+	AttributeMatcher createAttributeMatcherWithSource();
 
 	/**
 	 * Returns a new object of class '<em>Attribute Matcher Source Element</em>'.
@@ -173,6 +203,13 @@ public interface MappingFactory extends EFactory {
 	 * @generated
 	 */
 	ModelConnectionHint createModelConnectionHint();
+	
+	/**
+	 * Returns a new object of class '<em>Model Connection Hint</em>' that
+	 * already contains a source element and a target attribute.
+	 * @return a new object of class '<em>Model Connection Hint</em>'.
+	 */
+	ModelConnectionHint createModelConnectionHintWithSourceAndTarget();
 
 	/**
 	 * Returns a new object of class '<em>Attribute Mapping Source Element</em>'.

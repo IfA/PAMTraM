@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.PamtramPackage;
 import pamtram.TargetSectionModel;
+import pamtram.metamodel.LibraryElement;
 import pamtram.metamodel.TargetSectionClass;
 
 /**
@@ -23,6 +24,7 @@ import pamtram.metamodel.TargetSectionClass;
  * The following features are implemented:
  * <ul>
  *   <li>{@link pamtram.impl.TargetSectionModelImpl#getMetaModelSections <em>Meta Model Sections</em>}</li>
+ *   <li>{@link pamtram.impl.TargetSectionModelImpl#getLibraryElements <em>Library Elements</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,6 +40,16 @@ public class TargetSectionModelImpl extends SectionModelImpl implements TargetSe
 	 * @ordered
 	 */
 	protected EList<TargetSectionClass> metaModelSections;
+
+	/**
+	 * The cached value of the '{@link #getLibraryElements() <em>Library Elements</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLibraryElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<LibraryElement> libraryElements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -75,11 +87,25 @@ public class TargetSectionModelImpl extends SectionModelImpl implements TargetSe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<LibraryElement> getLibraryElements() {
+		if (libraryElements == null) {
+			libraryElements = new EObjectContainmentEList<LibraryElement>(LibraryElement.class, this, PamtramPackage.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS);
+		}
+		return libraryElements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case PamtramPackage.TARGET_SECTION_MODEL__META_MODEL_SECTIONS:
 				return ((InternalEList<?>)getMetaModelSections()).basicRemove(otherEnd, msgs);
+			case PamtramPackage.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS:
+				return ((InternalEList<?>)getLibraryElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -94,6 +120,8 @@ public class TargetSectionModelImpl extends SectionModelImpl implements TargetSe
 		switch (featureID) {
 			case PamtramPackage.TARGET_SECTION_MODEL__META_MODEL_SECTIONS:
 				return getMetaModelSections();
+			case PamtramPackage.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS:
+				return getLibraryElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -111,6 +139,10 @@ public class TargetSectionModelImpl extends SectionModelImpl implements TargetSe
 				getMetaModelSections().clear();
 				getMetaModelSections().addAll((Collection<? extends TargetSectionClass>)newValue);
 				return;
+			case PamtramPackage.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS:
+				getLibraryElements().clear();
+				getLibraryElements().addAll((Collection<? extends LibraryElement>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -126,6 +158,9 @@ public class TargetSectionModelImpl extends SectionModelImpl implements TargetSe
 			case PamtramPackage.TARGET_SECTION_MODEL__META_MODEL_SECTIONS:
 				getMetaModelSections().clear();
 				return;
+			case PamtramPackage.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS:
+				getLibraryElements().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -140,6 +175,8 @@ public class TargetSectionModelImpl extends SectionModelImpl implements TargetSe
 		switch (featureID) {
 			case PamtramPackage.TARGET_SECTION_MODEL__META_MODEL_SECTIONS:
 				return metaModelSections != null && !metaModelSections.isEmpty();
+			case PamtramPackage.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS:
+				return libraryElements != null && !libraryElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

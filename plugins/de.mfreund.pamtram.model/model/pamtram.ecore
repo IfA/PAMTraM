@@ -27,6 +27,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="TargetSectionModel" eSuperTypes="#//SectionModel">
     <eStructuralFeatures xsi:type="ecore:EReference" name="metaModelSections" upperBound="-1"
         eType="#//metamodel/TargetSectionClass" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="libraryElements" upperBound="-1"
+        eType="#//metamodel/LibraryElement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MappingModel">
     <eStructuralFeatures xsi:type="ecore:EReference" name="mapping" lowerBound="1"
@@ -104,6 +106,7 @@
           eType="#//metamodel/TargetSectionAttribute" containment="true" eOpposite="#//metamodel/TargetSectionAttribute/owningClass"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//metamodel/TargetSectionClass"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="LibraryElement" eSuperTypes="#//metamodel/TargetSectionClass"/>
     <eClassifiers xsi:type="ecore:EClass" name="Reference" abstract="true" eSuperTypes="#//metamodel/MetaModelElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="eReferenceMatchesParentEClass"/>

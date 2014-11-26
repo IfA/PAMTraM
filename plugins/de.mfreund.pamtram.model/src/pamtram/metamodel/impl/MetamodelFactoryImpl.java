@@ -14,6 +14,7 @@ import pamtram.metamodel.BeginningMatcher;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.EndingMatcher;
 import pamtram.metamodel.EqualityMatcher;
+import pamtram.metamodel.LibraryElement;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
@@ -73,6 +74,7 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 		switch (eClass.getClassifierID()) {
 			case MetamodelPackage.SOURCE_SECTION_CLASS: return createSourceSectionClass();
 			case MetamodelPackage.TARGET_SECTION_CLASS: return createTargetSectionClass();
+			case MetamodelPackage.LIBRARY_ELEMENT: return createLibraryElement();
 			case MetamodelPackage.TARGET_SECTION_CONTAINMENT_REFERENCE: return createTargetSectionContainmentReference();
 			case MetamodelPackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE: return createTargetSectionNonContainmentReference();
 			case MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE: return createSourceSectionContainmentReference();
@@ -142,6 +144,16 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	public TargetSectionClass createTargetSectionClass() {
 		TargetSectionClassImpl targetSectionClass = new TargetSectionClassImpl();
 		return targetSectionClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LibraryElement createLibraryElement() {
+		LibraryElementImpl libraryElement = new LibraryElementImpl();
+		return libraryElement;
 	}
 
 	/**

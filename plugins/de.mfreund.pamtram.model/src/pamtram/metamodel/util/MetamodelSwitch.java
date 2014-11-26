@@ -14,6 +14,7 @@ import pamtram.metamodel.CaseSensitiveConstraint;
 import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.EndingMatcher;
 import pamtram.metamodel.EqualityMatcher;
+import pamtram.metamodel.LibraryElement;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
@@ -119,6 +120,16 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				if (result == null) result = caseClass(targetSectionClass);
 				if (result == null) result = caseMetaModelElement(targetSectionClass);
 				if (result == null) result = caseNamedElement(targetSectionClass);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MetamodelPackage.LIBRARY_ELEMENT: {
+				LibraryElement libraryElement = (LibraryElement)theEObject;
+				T result = caseLibraryElement(libraryElement);
+				if (result == null) result = caseTargetSectionClass(libraryElement);
+				if (result == null) result = caseClass(libraryElement);
+				if (result == null) result = caseMetaModelElement(libraryElement);
+				if (result == null) result = caseNamedElement(libraryElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -375,6 +386,21 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTargetSectionClass(TargetSectionClass object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Library Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Library Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLibraryElement(LibraryElement object) {
 		return null;
 	}
 

@@ -15,6 +15,7 @@ import pamtram.metamodel.CaseSensitiveConstraint;
 import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.EndingMatcher;
 import pamtram.metamodel.EqualityMatcher;
+import pamtram.metamodel.LibraryElement;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
@@ -104,6 +105,10 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseTargetSectionClass(TargetSectionClass object) {
 				return createTargetSectionClassAdapter();
+			}
+			@Override
+			public Adapter caseLibraryElement(LibraryElement object) {
+				return createLibraryElementAdapter();
 			}
 			@Override
 			public Adapter caseReference(Reference object) {
@@ -266,6 +271,20 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTargetSectionClassAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.LibraryElement <em>Library Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.metamodel.LibraryElement
+	 * @generated
+	 */
+	public Adapter createLibraryElementAdapter() {
 		return null;
 	}
 

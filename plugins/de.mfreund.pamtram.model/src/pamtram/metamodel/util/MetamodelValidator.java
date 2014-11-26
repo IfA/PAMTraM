@@ -18,6 +18,7 @@ import pamtram.metamodel.CaseSensitiveConstraint;
 import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.EndingMatcher;
 import pamtram.metamodel.EqualityMatcher;
+import pamtram.metamodel.LibraryElement;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
@@ -116,6 +117,8 @@ public class MetamodelValidator extends EObjectValidator {
 				return validateSourceSectionClass((SourceSectionClass)value, diagnostics, context);
 			case MetamodelPackage.TARGET_SECTION_CLASS:
 				return validateTargetSectionClass((TargetSectionClass)value, diagnostics, context);
+			case MetamodelPackage.LIBRARY_ELEMENT:
+				return validateLibraryElement((LibraryElement)value, diagnostics, context);
 			case MetamodelPackage.REFERENCE:
 				return validateReference((Reference)value, diagnostics, context);
 			case MetamodelPackage.CONTAINMENT_REFERENCE:
@@ -291,6 +294,26 @@ public class MetamodelValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(targetSectionClass, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_eClassMatchesParentEReference(targetSectionClass, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_variableCardinalityIsValid(targetSectionClass, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateLibraryElement(LibraryElement libraryElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(libraryElement, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(libraryElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(libraryElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(libraryElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(libraryElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(libraryElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(libraryElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(libraryElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(libraryElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateClass_eClassMatchesParentEReference(libraryElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateClass_variableCardinalityIsValid(libraryElement, diagnostics, context);
 		return result;
 	}
 

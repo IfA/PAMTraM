@@ -40,6 +40,15 @@ public interface MetamodelFactory extends EFactory {
 	TargetSectionClass createTargetSectionClass();
 
 	/**
+	 * Returns a new object of class '<em>Library Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Library Element</em>'.
+	 * @generated
+	 */
+	LibraryElement createLibraryElement();
+
+	/**
 	 * Returns a new object of class '<em>Target Section Containment Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

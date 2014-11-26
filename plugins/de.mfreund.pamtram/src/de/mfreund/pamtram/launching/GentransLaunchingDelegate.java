@@ -12,12 +12,6 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.model.ILaunchConfigurationDelegate;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI;
-
 import de.mfreund.gentrans.transformation.handler.GenericTransformationJob;
 import de.mfreund.pamtram.util.ResourceHelper;
 
@@ -28,9 +22,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 			ILaunch launch, IProgressMonitor monitor) throws CoreException {
 		
 		// validate the launch configuration
-		if(!validateLaunchConfig(configuration)) {
-			return;
-		}
+		validateLaunchConfig(configuration);
 		
 		// get the associated files from the launch configuration
 		final String project = configuration.getAttribute("project", "");
@@ -104,50 +96,25 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 	 * have meaningful values.
 	 * 
 	 * @param configuration the launch configuration to validate
-	 * @return true if the launch configuration is valid, false otherwise
+	 * @throws CoreException If the validation fails.
 	 */
-	private boolean validateLaunchConfig(ILaunchConfiguration configuration) {
-		try {
-			if(configuration.getAttribute("project", "").equals("")) {
-				MessageDialog.openError(getShell(), "Error", 
-						"No project has been specified!");
-				return false;
-			}
-			
-			if(configuration.getAttribute("srcFile", "").equals("")) {
-				MessageDialog.openError(getShell(), "Error", 
-						"No source file has been specified!");
-				return false;
-			}
-		
-			if(configuration.getAttribute("pamtramFile", "").equals("")) {
-				MessageDialog.openError(getShell(), "Error", 
-						"No pamtram file has been specified!");
-				return false;
-			}
-			
-			if(configuration.getAttribute("targetFile", "").equals("")) {
-				MessageDialog.openError(getShell(), "Error", 
-						"No target file has been specified!");
-				return false;
-			}
-		} catch (CoreException e) {
-			MessageDialog.openError(getShell(), "Error", 
-					e.getMessage());
-			return false;
+	private void validateLaunchConfig(ILaunchConfiguration configuration) throws CoreException {
+		if(configuration.getAttribute("project", "").equals("")) {
+			throw new RuntimeException("No project has been specified!");
 		}
-		return true;
+		
+		if(configuration.getAttribute("srcFile", "").equals("")) {
+			throw new RuntimeException("No source file has been specified!");
+		}
+	
+		if(configuration.getAttribute("pamtramFile", "").equals("")) {
+			throw new RuntimeException("No pamtram file has been specified!");
+		}
+		
+		if(configuration.getAttribute("targetFile", "").equals("")) {
+			throw new RuntimeException("No target file has been specified!");
+		}
+		
 	}
 
-	/**
-	 * Returns the current shell or creates a new one.
-	 * 
-	 * @return the current shell
-	 */
-	private Shell getShell() {
-		IWorkbench workbench = PlatformUI.getWorkbench(); 
-		IWorkbenchWindow window = workbench.getActiveWorkbenchWindow(); 
-		return (window != null && window.getShell() != null) 
-				? window.getShell() : new Shell(); 
-	}
 }

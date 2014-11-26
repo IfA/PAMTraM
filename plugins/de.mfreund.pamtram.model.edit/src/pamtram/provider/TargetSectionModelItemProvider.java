@@ -62,6 +62,7 @@ public class TargetSectionModelItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(PamtramPackage.Literals.TARGET_SECTION_MODEL__META_MODEL_SECTIONS);
+			childrenFeatures.add(PamtramPackage.Literals.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -114,6 +115,7 @@ public class TargetSectionModelItemProvider
 
 		switch (notification.getFeatureID(TargetSectionModel.class)) {
 			case PamtramPackage.TARGET_SECTION_MODEL__META_MODEL_SECTIONS:
+			case PamtramPackage.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -135,6 +137,39 @@ public class TargetSectionModelItemProvider
 			(createChildParameter
 				(PamtramPackage.Literals.TARGET_SECTION_MODEL__META_MODEL_SECTIONS,
 				 MetamodelFactory.eINSTANCE.createTargetSectionClass()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(PamtramPackage.Literals.TARGET_SECTION_MODEL__META_MODEL_SECTIONS,
+				 MetamodelFactory.eINSTANCE.createLibraryElement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(PamtramPackage.Literals.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS,
+				 MetamodelFactory.eINSTANCE.createLibraryElement()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == PamtramPackage.Literals.TARGET_SECTION_MODEL__META_MODEL_SECTIONS ||
+			childFeature == PamtramPackage.Literals.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS;
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }

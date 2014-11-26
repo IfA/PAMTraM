@@ -8,7 +8,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
@@ -16,14 +15,12 @@ import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
-
 import pamtram.MappingModel;
 import pamtram.NamedElement;
+import pamtram.TargetSectionModel;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
@@ -49,6 +46,7 @@ import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
+import pamtram.presentation.widgets.TreeViewerGroup;
 
 public class PamtramEditorMainPage extends SashForm {
 	
@@ -103,6 +101,16 @@ public class PamtramEditorMainPage extends SashForm {
 	 * This is the the viewer for the target meta model sections.
 	 */
 	protected TreeViewer targetViewer;
+	
+	/**
+	 * This is the group for the library element tree viewer.
+	 */
+	protected Group libTargetGroup;
+
+	/**
+	 * This is the the viewer for the library element meta model sections.
+	 */
+	protected TreeViewer libTargetViewer;
 
 	public PamtramEditorMainPage(
 			Composite parent, 
@@ -131,23 +139,12 @@ public class PamtramEditorMainPage extends SashForm {
 	
 	private void createSourceViewer() {
 		
-		// Create a group for the source section tree viewer.
-		sourceGroup = new Group(this, SWT.NONE);
-		sourceGroup.setText("Source Sections");
-		sourceGroup.setLayoutData(
-				new GridData(SWT.FILL, SWT.FILL, true, true));
-		sourceGroup.setLayout(new GridLayout(1, true));
+		// Create the viewer for the source sections.
+		//
+		sourceViewer = new TreeViewerGroup(this, adapterFactory, "Source Sections").getTreeViewer();
 		
-		// Create the source tree viewer.
-		Tree sourceTree = new Tree(sourceGroup, SWT.MULTI);
-		sourceViewer = new TreeViewer(sourceTree);
-		sourceTree.setLayoutData(
-				new GridData(SWT.FILL, SWT.FILL, true, true));
-		
-		sourceViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-		sourceViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 		sourceViewer.setInput(editor.pamtram.getSourceSectionModel());
-		sourceTree.addSelectionListener(new SelectionListener() {
+		sourceViewer.getTree().addSelectionListener(new SelectionListener() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				editor.setCurrentViewer(sourceViewer);
@@ -201,20 +198,9 @@ public class PamtramEditorMainPage extends SashForm {
 			mappingSash.setLayoutData(data);
 		}
 		
-		// Create a group for the mapping tree viewer.
-		mappingGroup = new Group(mappingSash, SWT.NONE);
-		mappingGroup.setText("Mappings");
-		mappingGroup.setLayoutData(
-				new GridData(SWT.FILL, SWT.FILL, true, true));
-		mappingGroup.setLayout(new GridLayout(1, true));
-		
-		// Create the mapping tree viewer.
-		Tree mappingTree = new Tree(mappingGroup, SWT.MULTI);
-		mappingViewer = new TreeViewer(mappingTree);
-		mappingTree.setLayoutData(
-				new GridData(SWT.FILL, SWT.FILL, true, true));
-		
-		editor.setCurrentViewer(mappingViewer);
+		// Create the viewer for the source sections.
+		//
+		mappingViewer = new TreeViewerGroup(mappingSash, adapterFactory, "Mappings").getTreeViewer();
 		
 		mappingViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory) {
 			/* extend the content provider in a way that no attribute value modifier sets 
@@ -228,9 +214,8 @@ public class PamtramEditorMainPage extends SashForm {
 				return super.getElements(object);
 			}
 		});
-		mappingViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 		mappingViewer.setInput(editor.pamtram.getMappingModel());
-		mappingTree.addSelectionListener(new SelectionListener() {
+		mappingViewer.getTree().addSelectionListener(new SelectionListener() {
 			
 			private Mapping currentMapping;
 			private NamedElement currentMappingHintGroup;
@@ -509,18 +494,11 @@ public class PamtramEditorMainPage extends SashForm {
 		
 		new AdapterFactoryTreeEditor(mappingViewer.getTree(), adapterFactory);
 		
-		// Create a group for the attribute value modifier viewer.
-		attValModGroup = new Group(mappingSash, SWT.NONE);
-		attValModGroup.setText("Modifier Sets and Global Values");
-		attValModGroup.setLayoutData(
-				new GridData(SWT.FILL, SWT.FILL, true, true));
-		attValModGroup.setLayout(new GridLayout(1, true));
+		editor.setCurrentViewer(mappingViewer);
 		
-		// Create the mapping tree viewer.
-		Tree attValModtree = new Tree(attValModGroup, SWT.MULTI);
-		globalElementsViewer = new TreeViewer(attValModtree);
-		attValModtree.setLayoutData(
-				new GridData(SWT.FILL, SWT.FILL, true, true));
+		// Create the viewer for the attribute value modifier sets.
+		//
+		globalElementsViewer = new TreeViewerGroup(mappingSash, adapterFactory, "Modifier Sets and Global Values").getTreeViewer();
 		
 		globalElementsViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory){
 			/* extend the content provider in a way that no mappings but only attribute value
@@ -537,10 +515,9 @@ public class PamtramEditorMainPage extends SashForm {
 				return super.getElements(object);
 			}
 		});
-		globalElementsViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 		globalElementsViewer.setInput(editor.pamtram.getMappingModel());
 		
-		attValModtree.addSelectionListener(new SelectionListener() {
+		globalElementsViewer.getTree().addSelectionListener(new SelectionListener() {
 			
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -560,23 +537,36 @@ public class PamtramEditorMainPage extends SashForm {
 	
 	private void createTargetViewer() {
 		
-		// Create a group for the target tree viewer.
-		targetGroup = new Group(this, SWT.NONE);
-		targetGroup.setText("Target Sections");
-		targetGroup.setLayoutData(
-				new GridData(SWT.FILL, SWT.FILL, true, true));
-		targetGroup.setLayout(new GridLayout(1, true));
+		// Create a sash form to host the target section and the library element view
+		SashForm targetSash = new SashForm(this, SWT.NONE | SWT.VERTICAL);
+		{
+			GridData data = new GridData();
+			data.verticalAlignment = GridData.FILL;
+			data.grabExcessVerticalSpace = true;
+			data.horizontalAlignment = GridData.FILL;
+			targetSash.setLayoutData(data);
+		}
 		
-		// Create the target tree viewer.
-		Tree targetTree = new Tree(targetGroup, SWT.MULTI);
-		targetViewer = new TreeViewer(targetTree);
-		targetTree.setLayoutData(
-				new GridData(SWT.FILL, SWT.FILL, true, true));
 		
-		targetViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-		targetViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+		// Create the viewer for the target sections.
+		//
+		targetViewer = new TreeViewerGroup(
+				targetSash, adapterFactory, "Target Sections").getTreeViewer();
+		
+		targetViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory) {
+			/* extend the content provider in a way that no library elements 
+			 * but only classic target section are returned as children of a mapping model
+			 */
+			@Override
+			public Object[] getElements(Object object) {
+				if(object instanceof TargetSectionModel) {
+					return ((TargetSectionModel) object).getMetaModelSections().toArray();
+				}
+				return super.getElements(object);
+			}
+		});
 		targetViewer.setInput(editor.pamtram.getTargetSectionModel());
-		targetTree.addSelectionListener(new SelectionListener() {
+		targetViewer.getTree().addSelectionListener(new SelectionListener() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				editor.setCurrentViewer(targetViewer);
@@ -613,6 +603,29 @@ public class PamtramEditorMainPage extends SashForm {
 		new AdapterFactoryTreeEditor(targetViewer.getTree(), adapterFactory);
 	
 		editor.createContextMenuFor(targetViewer);
+		
+		// Create the viewer for the library element target sections.
+		//
+		libTargetViewer = new TreeViewerGroup(
+				targetSash, adapterFactory, "Library Element Target Sections").getTreeViewer();
+		
+		libTargetViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory) {
+			/* extend the content provider in a way that only library elements 
+			 * but no classic target section are returned as children of a mapping model
+			 */
+			@Override
+			public Object[] getElements(Object object) {
+				if(object instanceof TargetSectionModel) {
+					return ((TargetSectionModel) object).getLibraryElements().toArray();
+				}
+				return super.getElements(object);
+			}
+		});
+		libTargetViewer.setInput(editor.pamtram.getTargetSectionModel());
+		
+		new AdapterFactoryTreeEditor(libTargetViewer.getTree(), adapterFactory);
+	
+		editor.createContextMenuFor(libTargetViewer);
 		
 	}
 	

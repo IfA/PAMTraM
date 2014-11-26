@@ -6,3 +6,8 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Vendor: mfreund
 Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.debug.ui,
+ org.eclipse.jface,
+ de.mfreund.pamtram.model.editor,
+ org.eclipse.equinox.registry,
+ de.mfreund.pamtram

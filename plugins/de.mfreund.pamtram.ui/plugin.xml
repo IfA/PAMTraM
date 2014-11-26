@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+  <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="de.mfreund.pamtram.category"
+            name="PAMTraM">
+      </category>
+      <wizard
+            category="de.mfreund.pamtram.category"
+            class="de.mfreund.pamtram.wizards.NewPAMTraMProjectWizard"
+            finalPerspective="de.mfreund.pamtram.pamtramPerspective"
+            icon="icons/project.png"
+            id="de.mfreund.pamtram.newProjectWizard"
+            name="PAMTraM Project"
+            project="true">
+      </wizard>
+   </extension>
+	<extension
+         point="org.eclipse.ui.decorators">
+      <decorator
+            adaptable="true"
+            icon="icons/sourceFolder.png"
+            id="de.mfreund.pamtram.decorators.SourceFolderDecorator"
+            label="Source Folder Decorator"
+            state="true">
+         <enablement>
+         <and>
+            <objectState
+                  name="name"
+                  value="Source">
+            </objectState>
+            <objectClass
+                  name="org.eclipse.core.resources.IFolder">
+            </objectClass>
+            <objectState
+                  name="projectNature"
+                  value="de.mfreund.pamtram.pamtramNature">
+            </objectState>
+         </and>
+         </enablement>
+      </decorator>
+      <decorator
+            adaptable="true"
+            icon="icons/mappingFolder.png"
+            id="de.mfreund.pamtram.decorators.PamtramFolderDecorator"
+            label="Pamtram Folder Decorator"
+            state="true">
+         <enablement>
+         <and>
+            <objectState
+                  name="name"
+                  value="Pamtram">
+            </objectState>
+            <objectClass
+                  name="org.eclipse.core.resources.IFolder">
+            </objectClass>
+            <objectState
+                  name="projectNature"
+                  value="de.mfreund.pamtram.pamtramNature">
+            </objectState>
+         </and>
+         </enablement>
+      </decorator>
+      <decorator
+            adaptable="true"
+            icon="icons/targetFolder.png"
+            id="de.mfreund.pamtram.decorators.TargetFolderDecorator"
+            label="Target Folder Decorator"
+            state="true">
+         <enablement>
+         <and>
+            <objectState
+                  name="name"
+                  value="Target">
+            </objectState>
+            <objectClass
+                  name="org.eclipse.core.resources.IFolder">
+            </objectClass>
+            <objectState
+                  name="projectNature"
+                  value="de.mfreund.pamtram.pamtramNature">
+            </objectState>
+         </and>
+         </enablement>
+      </decorator>
+   </extension>
+   <extension point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+    <launchConfigurationTypeImage
+        icon="icons/project.png"
+        configTypeID="de.mfreund.pamtram.launchConfigurationType.gentrans"
+        id="de.mfreund.pamtram.launchConfigurationTypeImage.gentrans">
+    </launchConfigurationTypeImage>
+</extension>
+<extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="de.mfreund.pamtram.ui.launching.GentransLaunchConfigurationTabGroup"
+            id="de.mfreund.pamtram.launching.GentransLaunchConfigurationTabGroup"
+            type="de.mfreund.pamtram.launchConfigurationType.gentrans">
+      </launchConfigurationTabGroup>
+   </extension>
+   <extension point="org.eclipse.debug.ui.launchShortcuts">
+    <shortcut
+          class="de.mfreund.pamtram.ui.launching.GentransLaunchShortcut"
+          description="Launch a GenTrans transformation"
+          icon="icons/project.png"
+          id="de.mfreund.pamtram.GentransLaunchShortcut"
+          label="GenTrans"
+          modes="run">
+    <description
+     description="Performs a GenTrans transformation"
+     mode="run">
+    </description>
+  <contextualLaunch>
+  	<enablement>
+  	<with variable="selection">
+  	<iterate>
+          <test property="org.eclipse.core.resources.projectNature" value="de.mfreund.pamtram.pamtramNature" />
+      </iterate>
+     </with>
+  </enablement>
+  </contextualLaunch>
+  <configurationType
+    id="de.mfreund.pamtram.launchConfigurationType.gentrans">
+  </configurationType>
+  </shortcut>
+</extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="de.mfreund.pamtram.ui.PamtramPerspectiveFactory"
+            id="de.mfreund.pamtram.pamtramPerspective"
+            name="PAMTraM">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="de.mfreund.pamtram.pamtramPerspective">
+         <actionSet
+               id="org.eclipse.debug.ui.launchActionSet">
+         </actionSet>
+      </perspectiveExtension>
+   </extension>
+     <extension
+         point="org.eclipse.ui.ide.projectNatureImages">
+      <image
+            icon="icons/project.png"
+            id="de.mfreund.pamtram.pamtramNatureImage"
+            natureId="de.mfreund.pamtram.pamtramNature">
+      </image>
+   </extension>
+</plugin>

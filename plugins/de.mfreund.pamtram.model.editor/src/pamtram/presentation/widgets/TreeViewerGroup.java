@@ -7,6 +7,7 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
@@ -19,6 +20,9 @@ import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.Tree;
 
+import pamtram.presentation.PamtramEditorPlugin;
+import de.mfreund.pamtram.util.BundleContentHelper;
+
 /**
  * A class that represents an SWT group containing a tree viewer and 
  * optionally a tool bar.
@@ -27,6 +31,8 @@ import org.eclipse.swt.widgets.Tree;
  *
  */
 public class TreeViewerGroup {
+	
+	private final String bundleID = PamtramEditorPlugin.getPlugin().getSymbolicName();
 	
 	/**
 	 * This is the adapter factory used to create content and
@@ -81,7 +87,7 @@ public class TreeViewerGroup {
 			String groupText) {
 		this.parent = parent;
 		this.adapterFactory = adapterFactory;
-		createLayout(groupText, null, null);
+		createLayout(groupText, null, null, false);
 	}
 	
 	/**
@@ -94,20 +100,22 @@ public class TreeViewerGroup {
 	 * 	widgets.
 	 * @param images A list of images used as icons for the items of the tool bar.
 	 * @param listeners A list of SelectionListeners used for the items of the tool bar.
+	 * @param displayCollapseAll If to include a 'collapseAll' button in the tool bar.
 	 */
 	public TreeViewerGroup(Composite parent, ComposedAdapterFactory adapterFactory,
-			String groupText, ArrayList<Image> images, ArrayList<SelectionListener> listeners) {
+			String groupText, ArrayList<Image> images, ArrayList<SelectionListener> listeners,
+			boolean displayCollapseAll) {
 		
 		this.parent = parent;
 		this.adapterFactory = adapterFactory;
-		createLayout(groupText, images, listeners);
+		createLayout(groupText, images, listeners, displayCollapseAll);
 	}
 
 	/**
 	 * This creates the layout of the composite.
 	 */
 	private void createLayout(String groupText, ArrayList<Image> images, 
-			ArrayList<SelectionListener> listeners) {
+			ArrayList<SelectionListener> listeners, boolean displayCollapseAll) {
 		
 		// The group to hold all other widgets.
 		group = new Group(parent, SWT.NONE);
@@ -117,7 +125,7 @@ public class TreeViewerGroup {
 		group.setLayout(new GridLayout(1, true));
 		
 		// If necessary, create the tool bar.
-		createToolbar(images, listeners);
+		createToolbar(images, listeners, displayCollapseAll);
 		
 		// Create the tree viewer.
 		tree = new Tree(group, SWT.MULTI);
@@ -134,11 +142,12 @@ public class TreeViewerGroup {
 	 * 
 	 * @param images The images used for the tool items.
 	 * @param listeners The listeners used for the tool items.
+	 * @param displayCollapseAll If to include a 'collapseAll' button in the tool bar.
 	 */
 	private void createToolbar(ArrayList<Image> images,
-			ArrayList<SelectionListener> listeners) {
+			ArrayList<SelectionListener> listeners, boolean displayCollapseAll) {
 		
-		if(images == null && listeners == null) {
+		if(images == null && listeners == null && !displayCollapseAll) {
 			// nothing to be done
 			return;
 		}
@@ -148,7 +157,7 @@ public class TreeViewerGroup {
 					+ " the number of listeners provided!");
 		}
 		
-		if(images.isEmpty() && listeners.isEmpty()) {
+		if(images.isEmpty() && listeners.isEmpty() && !displayCollapseAll) {
 			// nothing to be done
 			return;
 		}
@@ -160,6 +169,22 @@ public class TreeViewerGroup {
 		// This separator will be resized in order to get right alignment.
 		final ToolItem separator = new ToolItem(toolbar, SWT.SEPARATOR);
 	    separator.setWidth(0);
+	    
+	    // Add the 'collapseAll' tool bar item
+	    if(displayCollapseAll) {
+	    	ToolItem item = new ToolItem(toolbar, SWT.PUSH | SWT.TRAIL);
+	    	item.setImage(BundleContentHelper.getBundleImage(bundleID, "icons/collapse_all.gif"));
+			item.addSelectionListener(new SelectionListener() {
+				
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					treeViewer.collapseAll();
+				}
+				
+				@Override
+				public void widgetDefaultSelected(SelectionEvent e) {}
+			});
+	    }
 		
 	    // Add the various toobar items
 		for (int i=0; i<images.size(); i++) {

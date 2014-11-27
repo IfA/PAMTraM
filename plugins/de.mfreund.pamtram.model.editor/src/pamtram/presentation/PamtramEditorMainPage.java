@@ -161,7 +161,8 @@ public class PamtramEditorMainPage extends SashForm {
 		images.add(BundleContentHelper.getBundleImage(bundleID, "icons/add_obj.gif"));
 		listeners.add(new AddObjectSelectedListener(ObjectType.SOURCE_SECTION));
 		
-		sourceViewer = new TreeViewerGroup(this, adapterFactory, "Source Sections", images, listeners).getTreeViewer();
+		sourceViewer = new TreeViewerGroup(
+				this, adapterFactory, "Source Sections", images, listeners, true).getTreeViewer();
 		
 		sourceViewer.setInput(editor.pamtram.getSourceSectionModel());
 		sourceViewer.getTree().addSelectionListener(new SelectionListener() {
@@ -227,7 +228,8 @@ public class PamtramEditorMainPage extends SashForm {
 		images.add(BundleContentHelper.getBundleImage(bundleID, "icons/add_obj.gif"));
 		listeners.add(new AddObjectSelectedListener(ObjectType.MAPPING));
 		
-		mappingViewer = new TreeViewerGroup(mappingSash, adapterFactory, "Mappings", images, listeners).getTreeViewer();
+		mappingViewer = new TreeViewerGroup(
+				mappingSash, adapterFactory, "Mappings", images, listeners, true).getTreeViewer();
 		
 		mappingViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory) {
 			/* extend the content provider in a way that no attribute value modifier sets 
@@ -535,7 +537,8 @@ public class PamtramEditorMainPage extends SashForm {
 		images2.add(BundleContentHelper.getBundleImage(bundleID, "icons/add_obj.gif"));
 		listeners2.add(new AddObjectSelectedListener(ObjectType.GLOBAL_VALUE));
 		
-		globalElementsViewer = new TreeViewerGroup(mappingSash, adapterFactory, "Modifier Sets and Global Values", images2, listeners2).getTreeViewer();
+		globalElementsViewer = new TreeViewerGroup(
+				mappingSash, adapterFactory, "Modifier Sets and Global Values", images2, listeners2, true).getTreeViewer();
 		
 		globalElementsViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory){
 			/* extend the content provider in a way that no mappings but only attribute value
@@ -595,7 +598,7 @@ public class PamtramEditorMainPage extends SashForm {
 		listeners.add(new AddObjectSelectedListener(ObjectType.TARGET_SECTION));
 		
 		targetViewer = new TreeViewerGroup(
-				targetSash, adapterFactory, "Target Sections", images, listeners).getTreeViewer();
+				targetSash, adapterFactory, "Target Sections", images, listeners, true).getTreeViewer();
 		
 		targetViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory) {
 			/* extend the content provider in a way that no library elements 
@@ -658,7 +661,7 @@ public class PamtramEditorMainPage extends SashForm {
 		listeners2.add(new AddObjectSelectedListener(ObjectType.LIBRARY_TARGET_SECTION));
 		
 		libTargetViewer = new TreeViewerGroup(
-				targetSash, adapterFactory, "Library Element Target Sections", images2, listeners2).getTreeViewer();
+				targetSash, adapterFactory, "Library Element Target Sections", images2, listeners2, true).getTreeViewer();
 		
 		libTargetViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory) {
 			/* extend the content provider in a way that only library elements 

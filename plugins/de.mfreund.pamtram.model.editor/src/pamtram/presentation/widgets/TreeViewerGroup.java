@@ -7,27 +7,19 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.FontData;
-import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Listener;
-import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
-import org.eclipse.swt.widgets.Tree;
-import org.mihalis.opal.promptSupport.PromptSupport;
-
+import org.eclipse.ui.dialogs.FilteredTree;
+import org.eclipse.ui.dialogs.PatternFilter;
 import pamtram.presentation.PamtramEditorPlugin;
 import de.mfreund.pamtram.util.BundleContentHelper;
 
@@ -38,11 +30,9 @@ import de.mfreund.pamtram.util.BundleContentHelper;
  * @author mfreund
  *
  */
-public class TreeViewerGroup {
+public class TreeViewerGroup extends FilteredTree{
 	
 	private final String bundleID = PamtramEditorPlugin.getPlugin().getSymbolicName();
-	
-	private final int fontSize = 9;
 	
 	/**
 	 * This is the adapter factory used to create content and
@@ -56,35 +46,13 @@ public class TreeViewerGroup {
 	private Group group;
 	
 	/**
-	 * This is the tree that is displayed in the tree viewer.
-	 */
-	private Tree tree;
-	
-	/**
-	 * This is the tree viewer that displays the tree.
-	 */
-	private TreeViewer treeViewer;
-	
-	/**
-	 * This returns the tree viewer of this composite.
-	 * @return the tree viewer.
-	 */
-	public TreeViewer getTreeViewer() {
-		return treeViewer;
-	}
-
-	/**
-	 * This is the parent composite holding all widgets created
-	 * by this object.
-	 */
-	private Composite parent;
-	
-	/**
 	 * This is the tool bar.
 	 */
 	private ToolBar toolbar;
 
 	private ToolItem separator;
+
+	private String groupText;
 	
 	/**
 	 * Use this constructor if you do not want to add a tool bar to the viewer.
@@ -97,9 +65,11 @@ public class TreeViewerGroup {
 	 */
 	public TreeViewerGroup(Composite parent, ComposedAdapterFactory adapterFactory,
 			String groupText) {
+		super(parent, true);
 		this.parent = parent;
+		this.groupText = groupText;
 		this.adapterFactory = adapterFactory;
-		createLayout(groupText, null, null, false, false);
+		this.init(SWT.MULTI, new PatternFilter());
 	}
 	
 	/**
@@ -118,48 +88,115 @@ public class TreeViewerGroup {
 	public TreeViewerGroup(Composite parent, ComposedAdapterFactory adapterFactory,
 			String groupText, ArrayList<Image> images, ArrayList<SelectionListener> listeners,
 			boolean displayCollapseAll, boolean displaySearch) {
-		
+		super(parent, true);
 		this.parent = parent;
+		this.groupText = groupText;
 		this.adapterFactory = adapterFactory;
-		createLayout(groupText, images, listeners, displayCollapseAll, displaySearch);
+		this.init(SWT.MULTI, new PatternFilter());
 	}
-
+	
 	/**
-	 * This creates the layout of the composite.
+	 * Create the filtered tree's controls. This is copied from the 
+	 * standard 'FilteredTree' - changes are only introduced in the
+	 * layout of the filter composite. 
+	 * 
+	 * @param parent
+	 * @param treeStyle
 	 */
-	private void createLayout(String groupText, ArrayList<Image> images, 
-			ArrayList<SelectionListener> listeners, boolean displayCollapseAll,
-			boolean displaySearch) {
+	protected void createControl(Composite parent, int treeStyle) {
 		
-		// The group to hold all other widgets.
-		group = new Group(parent, SWT.NONE);
-		group.setText(groupText);
+		// Set the layout for the main composite
+		if (parent.getLayout() instanceof GridLayout) {
+			setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		}
+		GridLayout layout = new GridLayout();
+		layout.marginHeight = 0;
+		layout.marginWidth = 0;
+		setLayout(layout);
+
+		// The group to hold everything else.
+		group = new Group(this, SWT.NONE);
+		group.setText(this.groupText);
 		group.setLayoutData(
 				new GridData(SWT.FILL, SWT.FILL, true, true));
 		group.setLayout(new GridLayout(1, true));
 		
-		// If necessary, create the tool bar.
-		createToolbar(images, listeners, displayCollapseAll, displaySearch);
+		if (showFilterControls) {
+			
+			// This composite hosts two children: the filter composite and the
+			// tool bar composite.
+			filterComposite= new Composite(group, SWT.NONE);
+			filterComposite.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING,
+					true, false));
+
+			GridLayout filterLayout= new GridLayout(2, false);
+			filterLayout.marginHeight= 0;
+			filterLayout.marginWidth= 0;
+			filterComposite.setLayout(filterLayout);
+
+			// create filter controls that will take up all of the horizontal space
+			// except the one that is taken by the tool bar
+			Composite filterBoxComposite = new Composite(filterComposite, SWT.BORDER);
+			filterBoxComposite.setBackground(getDisplay().getSystemColor(SWT.COLOR_LIST_BACKGROUND));
+			filterBoxComposite.setLayoutData(
+					new GridData(SWT.FILL, SWT.BEGINNING, true, false));
+			GridLayout filterBoxLayout = new GridLayout(2, false);
+			filterBoxLayout.marginHeight = 0;
+			filterBoxLayout.marginWidth = 0;
+			filterBoxComposite.setLayout(filterLayout);
+			filterBoxComposite.setFont(parent.getFont());
+			createFilterControls(filterBoxComposite);
+			
+			// create additional controls besides the filter controls
+			Composite toolbarComposite = new Composite(filterComposite, SWT.NONE);
+			toolbarComposite.setLayoutData(
+					new GridData(SWT.BEGINNING, SWT.BEGINNING, false, false));
+			GridLayout toolbarLayout = new GridLayout(1, false);
+			toolbarLayout.marginHeight = 0;
+			toolbarLayout.marginWidth = 0;
+			toolbarComposite.setLayout(toolbarLayout);
+			createToolbar(toolbarComposite, new ArrayList<Image>(), new ArrayList<SelectionListener>(), 
+					true, false);
+			
+		}
+
+		treeComposite = new Composite(group, SWT.NONE);
+		GridLayout treeCompositeLayout = new GridLayout();
+		treeCompositeLayout.marginHeight = 0;
+		treeCompositeLayout.marginWidth = 0;
+		treeComposite.setLayout(treeCompositeLayout);
+		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
+		treeComposite.setLayoutData(data);
+		createTreeControl(treeComposite, treeStyle);
 		
-		// Create the tree viewer.
-		tree = new Tree(group, SWT.MULTI);
-		treeViewer = new TreeViewer(tree);
+	}
+	
+	/**
+	 * Override the standard method so that default label and content providers
+	 * based on the adapter factory are created.
+	 * 
+	 * @param parent
+	 * @param style
+	 * @return
+	 */
+	@Override
+	protected TreeViewer doCreateTreeViewer(Composite parent, int style) {
+		TreeViewer treeViewer = super.doCreateTreeViewer(parent, style);
 		treeViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 		treeViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-		tree.setLayoutData(
-				new GridData(SWT.FILL, SWT.FILL, true, true));
-		
+		return treeViewer;
 	}
 
 	/**
 	 * This creates a tool bar if necessary.
 	 * 
+	 * @param parent The parent composite.
 	 * @param images The images used for the tool items.
 	 * @param listeners The listeners used for the tool items.
 	 * @param displayCollapseAll If to include a 'collapseAll' button in the tool bar.
 	 * @param displaySearch If to include a search/filter box.
 	 */
-	private void createToolbar(ArrayList<Image> images,
+	private void createToolbar(Composite parent, ArrayList<Image> images,
 			ArrayList<SelectionListener> listeners, boolean displayCollapseAll,
 			boolean displaySearch) {
 		
@@ -179,49 +216,8 @@ public class TreeViewerGroup {
 		}
 		
 		// Create the button area
-		toolbar = new ToolBar(group, SWT.NONE);
+		toolbar = new ToolBar(parent, SWT.NONE);
 		toolbar.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-		
-		
-		// Add the search/filter box
-		if(displaySearch) {
-			
-			// Create the search text box
-			ToolItem searchItem = new ToolItem(toolbar, SWT.NONE); 
-			final Text search = new Text(toolbar, 
-					SWT.CANCEL | SWT.SEARCH | SWT.ICON_CANCEL | SWT.ICON_SEARCH);
-			setFontSize(search, fontSize);
-			PromptSupport.setPrompt("Search...", search);
-			search.pack();
-			searchItem.setControl(search);
-			searchItem.setWidth(search.computeSize(SWT.DEFAULT, SWT.DEFAULT).x);
-			
-			// Add a listener that performs the search
-			search.addKeyListener(new KeyListener() {
-				
-				@Override
-				public void keyReleased(KeyEvent e) {}
-				
-				@Override
-				public void keyPressed(KeyEvent e) {
-					if(e.keyCode == SWT.ESC) {
-						search.setText("");
-					}
-					System.out.println(search.getText());
-				}
-			});
-
-			// Create a 'dummy item' with a transparent image that is used to control
-			// the height of the tool bar: Manual resizing does not seem to work because
-			// the height of a tool bar is determined by the height of the first image
-			// added to it. If we do not include the search box, we do not need this
-			// as the images will adjust themself.
-			ToolItem dummyItem = new ToolItem(toolbar, SWT.NONE);
-			int dummyHeight = search.getLineHeight();
-			dummyItem.setImage(
-					resize(BundleContentHelper.getBundleImage(bundleID, "icons/transparent.png"),
-							dummyHeight, dummyHeight));
-		}
 		
 		separator = new ToolItem(toolbar, SWT.SEPARATOR);
 	    separator.setWidth(0);
@@ -234,7 +230,7 @@ public class TreeViewerGroup {
 				
 				@Override
 				public void widgetSelected(SelectionEvent e) {
-					treeViewer.collapseAll();
+					getViewer().collapseAll();
 				}
 				
 				@Override
@@ -280,36 +276,4 @@ public class TreeViewerGroup {
 		return itemSize;
 	}
 	
-	/**
-	 * Resizes an image.
-	 * From http://aniszczyk.org/2007/08/09/resizing-images-using-swt/
-	 * @param image
-	 * @param width
-	 * @param height
-	 * @return
-	 */
-	private Image resize(Image image, int width, int height) {
-		Image scaled = new Image(Display.getDefault(), width, height);
-		GC gc = new GC(scaled);
-		gc.setAntialias(SWT.ON);
-		gc.setInterpolation(SWT.HIGH);
-		gc.drawImage(image, 0, 0, 
-		image.getBounds().width, image.getBounds().height, 
-		0, 0, width, height);
-		gc.dispose();
-		image.dispose(); // don't forget about me!
-		return scaled;
-	}
-	
-	/**
-	 * Sets the font size of a text box.
-	 * 
-	 * @param text
-	 * @param fontSize
-	 */
-	private void setFontSize(Text text, int fontSize) {
-		FontData[] fontData = text.getFont().getFontData();
-		fontData[0].setHeight(fontSize);
-		text.setFont(new Font(toolbar.getDisplay(), fontData));
-	}
 }

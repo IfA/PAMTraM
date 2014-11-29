@@ -143,7 +143,6 @@ public class PamtramEditorMainPage extends SashForm {
 			data.horizontalAlignment = GridData.FILL;
 			this.setLayoutData(data);
 		}
-		
 		createSourceViewer();
 		createMappingViewer();
 		createTargetViewer();
@@ -162,8 +161,7 @@ public class PamtramEditorMainPage extends SashForm {
 		listeners.add(new AddObjectSelectedListener(ObjectType.SOURCE_SECTION));
 		
 		sourceViewer = new TreeViewerGroup(
-				this, adapterFactory, "Source Sections", images, listeners, true, true).getTreeViewer();
-		
+				this, adapterFactory, "Source Sections", images, listeners, true, false).getViewer();
 		sourceViewer.setInput(editor.pamtram.getSourceSectionModel());
 		sourceViewer.getTree().addSelectionListener(new SelectionListener() {
 			@Override
@@ -200,11 +198,8 @@ public class PamtramEditorMainPage extends SashForm {
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
 		});
-		
 		new AdapterFactoryTreeEditor(sourceViewer.getTree(), adapterFactory);
-		
 		editor.createContextMenuFor(sourceViewer);
-		
 	}
 
 	private void createMappingViewer() {
@@ -229,7 +224,7 @@ public class PamtramEditorMainPage extends SashForm {
 		listeners.add(new AddObjectSelectedListener(ObjectType.MAPPING));
 		
 		mappingViewer = new TreeViewerGroup(
-				mappingSash, adapterFactory, "Mappings", images, listeners, true, true).getTreeViewer();
+				mappingSash, adapterFactory, "Mappings", images, listeners, true, false).getViewer();
 		
 		mappingViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory) {
 			/* extend the content provider in a way that no attribute value modifier sets 
@@ -538,7 +533,7 @@ public class PamtramEditorMainPage extends SashForm {
 		listeners2.add(new AddObjectSelectedListener(ObjectType.GLOBAL_VALUE));
 		
 		globalElementsViewer = new TreeViewerGroup(
-				mappingSash, adapterFactory, "Modifier Sets and Global Values", images2, listeners2, true, true).getTreeViewer();
+				mappingSash, adapterFactory, "Modifier Sets and Global Values", images2, listeners2, true, false).getViewer();
 		
 		globalElementsViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory){
 			/* extend the content provider in a way that no mappings but only attribute value
@@ -598,7 +593,7 @@ public class PamtramEditorMainPage extends SashForm {
 		listeners.add(new AddObjectSelectedListener(ObjectType.TARGET_SECTION));
 		
 		targetViewer = new TreeViewerGroup(
-				targetSash, adapterFactory, "Target Sections", images, listeners, true, true).getTreeViewer();
+				targetSash, adapterFactory, "Target Sections", images, listeners, true, false).getViewer();
 		
 		targetViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory) {
 			/* extend the content provider in a way that no library elements 
@@ -661,7 +656,7 @@ public class PamtramEditorMainPage extends SashForm {
 		listeners2.add(new AddObjectSelectedListener(ObjectType.LIBRARY_TARGET_SECTION));
 		
 		libTargetViewer = new TreeViewerGroup(
-				targetSash, adapterFactory, "Library Element Target Sections", images2, listeners2, true, true).getTreeViewer();
+				targetSash, adapterFactory, "Library Element Target Sections", images2, listeners2, true, false).getViewer();
 		
 		libTargetViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory) {
 			/* extend the content provider in a way that only library elements 

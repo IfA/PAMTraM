@@ -140,7 +140,7 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 		
 		// Create the viewer for the source sections.
 		//
-		sourceViewer = new TreeViewerGroup(this, adapterFactory, "Source Sections").getTreeViewer();
+		sourceViewer = new TreeViewerGroup(this, adapterFactory, "Source Sections").getViewer();
 		
 		sourceViewer.setInput(editor.pamtram.getSourceSectionModel());
 		sourceTreeSelectionListener = new SelectionListener() {
@@ -165,7 +165,7 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 		
 		// Create the viewer for the source sections.
 		//
-		mappingViewer = new TreeViewerGroup(this, adapterFactory, "Mappings").getTreeViewer();
+		mappingViewer = new TreeViewerGroup(this, adapterFactory, "Mappings").getViewer();
 		
 		mappingViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory) {
 			/* extend the content provider in a way that no attribute value modifier sets 

@@ -111,7 +111,7 @@ final class NameSettingAdapter extends PamtramChildContentAdapter {
 		    			// the created containment reference
 		    			ContainmentReference ref = (ContainmentReference) n.getNewValue();
 		    			
-		    			if(! c.getEClass().getEAllContainments().isEmpty()) {
+		    			if(c.getEClass() != null && ! c.getEClass().getEAllContainments().isEmpty()) {
 		    				// set the first containment reference type of the class as default value for 
 		    				// the eReference reference
 		    				ref.setEReference(c.getEClass().getEAllContainments().get(0));

@@ -4,25 +4,21 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.TreeItem;
 
-import de.mfreund.pamtram.util.BundleContentHelper;
 import pamtram.MappingModel;
 import pamtram.NamedElement;
 import pamtram.TargetSectionModel;
@@ -45,12 +41,6 @@ import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.mapping.ModelConnectionHintTargetAttribute;
 import pamtram.mapping.ModifiedAttributeElementType;
-import pamtram.mapping.commands.CreateAttValModifierSetCommand;
-import pamtram.mapping.commands.CreateGlobalValueCommand;
-import pamtram.mapping.commands.CreateLibraryTargetSectionCommand;
-import pamtram.mapping.commands.CreateMappingCommand;
-import pamtram.mapping.commands.CreateSourceSectionCommand;
-import pamtram.mapping.commands.CreateTargetSectionCommand;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.SourceSectionAttribute;
@@ -61,6 +51,7 @@ import pamtram.presentation.widgets.TreeViewerGroup;
 
 public class PamtramEditorMainPage extends SashForm {
 	
+	@SuppressWarnings("unused")
 	private final String bundleID = PamtramEditorPlugin.getPlugin().getSymbolicName();
 	
 	/**
@@ -154,14 +145,10 @@ public class PamtramEditorMainPage extends SashForm {
 		// Create the viewer for the source sections.
 		//
 		
-		ArrayList<Image> images = new ArrayList<>();
-		ArrayList<SelectionListener> listeners = new ArrayList<>();
-		
-		images.add(BundleContentHelper.getBundleImage(bundleID, "icons/add_obj.gif"));
-		listeners.add(new AddObjectSelectedListener(ObjectType.SOURCE_SECTION));
-		
 		sourceViewer = new TreeViewerGroup(
-				this, adapterFactory, "Source Sections", images, listeners, true, false).getViewer();
+				this, adapterFactory, editor.getEditingDomain(),
+				"Source Sections", null, null, true, true
+			).getViewer();
 		sourceViewer.setInput(editor.pamtram.getSourceSectionModel());
 		sourceViewer.getTree().addSelectionListener(new SelectionListener() {
 			@Override
@@ -217,14 +204,10 @@ public class PamtramEditorMainPage extends SashForm {
 		// Create the viewer for the source sections.
 		//
 
-		ArrayList<Image> images = new ArrayList<>();
-		ArrayList<SelectionListener> listeners = new ArrayList<>();
-		
-		images.add(BundleContentHelper.getBundleImage(bundleID, "icons/add_obj.gif"));
-		listeners.add(new AddObjectSelectedListener(ObjectType.MAPPING));
-		
 		mappingViewer = new TreeViewerGroup(
-				mappingSash, adapterFactory, "Mappings", images, listeners, true, false).getViewer();
+				mappingSash, adapterFactory, editor.getEditingDomain(),
+				"Mappings", null, null, true, true
+			).getViewer();
 		
 		mappingViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory) {
 			/* extend the content provider in a way that no attribute value modifier sets 
@@ -523,17 +506,10 @@ public class PamtramEditorMainPage extends SashForm {
 		// Create the viewer for the attribute value modifier sets.
 		//
 		
-
-		ArrayList<Image> images2 = new ArrayList<>();
-		ArrayList<SelectionListener> listeners2 = new ArrayList<>();
-		
-		images2.add(BundleContentHelper.getBundleImage(bundleID, "icons/add_obj.gif"));
-		listeners2.add(new AddObjectSelectedListener(ObjectType.MODIFIER_SET));
-		images2.add(BundleContentHelper.getBundleImage(bundleID, "icons/add_obj.gif"));
-		listeners2.add(new AddObjectSelectedListener(ObjectType.GLOBAL_VALUE));
-		
 		globalElementsViewer = new TreeViewerGroup(
-				mappingSash, adapterFactory, "Modifier Sets and Global Values", images2, listeners2, true, false).getViewer();
+				mappingSash, adapterFactory, editor.getEditingDomain(), 
+				"Modifier Sets and Global Values", null, null, true, true
+			).getViewer();
 		
 		globalElementsViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory){
 			/* extend the content provider in a way that no mappings but only attribute value
@@ -586,14 +562,10 @@ public class PamtramEditorMainPage extends SashForm {
 		// Create the viewer for the target sections.
 		//
 		
-		ArrayList<Image> images = new ArrayList<>();
-		ArrayList<SelectionListener> listeners = new ArrayList<>();
-		
-		images.add(BundleContentHelper.getBundleImage(bundleID, "icons/add_obj.gif"));
-		listeners.add(new AddObjectSelectedListener(ObjectType.TARGET_SECTION));
-		
 		targetViewer = new TreeViewerGroup(
-				targetSash, adapterFactory, "Target Sections", images, listeners, true, false).getViewer();
+				targetSash, adapterFactory, editor.getEditingDomain(),
+				"Target Sections", null, null, true, true
+			).getViewer();
 		
 		targetViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory) {
 			/* extend the content provider in a way that no library elements 
@@ -649,14 +621,10 @@ public class PamtramEditorMainPage extends SashForm {
 		// Create the viewer for the library element target sections.
 		//
 		
-		ArrayList<Image> images2 = new ArrayList<>();
-		ArrayList<SelectionListener> listeners2 = new ArrayList<>();
-		
-		images2.add(BundleContentHelper.getBundleImage(bundleID, "icons/add_obj.gif"));
-		listeners2.add(new AddObjectSelectedListener(ObjectType.LIBRARY_TARGET_SECTION));
-		
 		libTargetViewer = new TreeViewerGroup(
-				targetSash, adapterFactory, "Library Element Target Sections", images2, listeners2, true, false).getViewer();
+				targetSash, adapterFactory, editor.getEditingDomain(), 
+				"Library Element Target Sections", null, null, true, true
+			).getViewer();
 		
 		libTargetViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory) {
 			/* extend the content provider in a way that only library elements 
@@ -678,82 +646,4 @@ public class PamtramEditorMainPage extends SashForm {
 		
 	}
 	
-	/**
-	 * This represents a convenience selection listener that allows to create an object, add it to the
-	 * pamtram model, select the newly created object in the editor and set the focus to the viewer that
-	 * shows the object upon selection of something. 
-	 * 
-	 * @author mfreund
-	 */
-	private class AddObjectSelectedListener implements SelectionListener {
-
-		final ObjectType objectType;
-		
-		/**
-		 * 
-		 * @param objectType The type of the object to be created upon selection.
-		 */
-		private AddObjectSelectedListener(ObjectType objectType) {
-			this.objectType = objectType;
-		}
-		
-		@Override
-		public void widgetSelected(SelectionEvent e) {
-			Command command;
-			Viewer viewer;
-
-			// Determine the command to be executed upon selection and the viewer to be focused after
-			// execution of the command based on the object type.
-			switch (objectType) {
-				case SOURCE_SECTION:
-					command = new CreateSourceSectionCommand(editor.getEditingDomain(), editor.pamtram);
-					viewer = sourceViewer;
-					break;
-				case MAPPING:
-					command = new CreateMappingCommand(editor.getEditingDomain(), editor.pamtram);
-					viewer = mappingViewer;
-					break;
-				case MODIFIER_SET:
-					command = new CreateAttValModifierSetCommand(editor.getEditingDomain(), editor.pamtram);
-					viewer = globalElementsViewer;
-					break;
-				case GLOBAL_VALUE:
-					command = new CreateGlobalValueCommand(editor.getEditingDomain(), editor.pamtram);
-					viewer = globalElementsViewer;
-					break;
-				case TARGET_SECTION:
-					command = new CreateTargetSectionCommand(editor.getEditingDomain(), editor.pamtram);
-					viewer = targetViewer;
-					break;
-				case LIBRARY_TARGET_SECTION:
-					command = new CreateLibraryTargetSectionCommand(editor.getEditingDomain(), editor.pamtram);
-					viewer = libTargetViewer;
-					break;
-				default:
-					return;
-			}
-			
-			// execute the command
-			editor.getEditingDomain().getCommandStack().execute(command);
-			
-			// focus the viewer and set the selection
-			editor.setCurrentViewer(viewer);
-			viewer.getControl().setFocus();
-			editor.setSelection(new StructuredSelection(command.getResult().toArray()));
-		}
-
-		@Override
-		public void widgetDefaultSelected(SelectionEvent e) {
-		}
-		
-	}
-	
-	/**
-	 * This represents the object types that are represented in the various viewers of this page.
-	 * 
-	 * @author mfreund
-	 */
-	private enum ObjectType {
-		SOURCE_SECTION, MAPPING, MODIFIER_SET, GLOBAL_VALUE, TARGET_SECTION, LIBRARY_TARGET_SECTION;
-	}
 }

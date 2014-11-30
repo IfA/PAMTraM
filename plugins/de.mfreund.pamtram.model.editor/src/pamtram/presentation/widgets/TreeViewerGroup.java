@@ -13,9 +13,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.ui.dialogs.FilteredTree;
@@ -24,7 +22,7 @@ import pamtram.presentation.PamtramEditorPlugin;
 import de.mfreund.pamtram.util.BundleContentHelper;
 
 /**
- * A class that represents an SWT group containing a tree viewer and 
+ * A class that represents an SWT group containing a filtered tree viewer and 
  * optionally a tool bar.
  * 
  * @author mfreund
@@ -50,9 +48,42 @@ public class TreeViewerGroup extends FilteredTree{
 	 */
 	private ToolBar toolbar;
 
-	private ToolItem separator;
-
+	/**
+	 * This is the label of the group containing all other widgets.
+	 */
 	private String groupText;
+
+	/**
+	 * This is the list of additional images to display in the tool bar
+	 * (besides standard icons like 'collapseAll').
+	 */
+	private ArrayList<Image> toolbarImages;
+	
+	/**
+	 * A setter for the tool bar images that checks for 'null' parameter.
+	 * 
+	 * @param toolbarImages (may be 'null')
+	 */
+	private void setToolbarImages(ArrayList<Image> toolbarImages) {
+		this.toolbarImages = 
+				(toolbarImages != null ? toolbarImages : new ArrayList<Image>()); 
+	}
+
+	/**
+	 * This is the list of additional listeners that are invoked when the
+	 * user selects one of the additional images in the tool bar.
+	 */
+	private ArrayList<SelectionListener> toolbarListeners;
+	
+	/**
+	 * A setter for the tool bar listeners that checks for 'null' parameter.
+	 * 
+	 * @param toolbarListeners (may be 'null')
+	 */
+	private void setToolbarListeners(ArrayList<SelectionListener> toolbarListeners) {
+		this.toolbarListeners = 
+				(toolbarListeners != null ? toolbarListeners : new ArrayList<SelectionListener>()); 
+	}
 	
 	/**
 	 * Use this constructor if you do not want to add a tool bar to the viewer.
@@ -68,6 +99,8 @@ public class TreeViewerGroup extends FilteredTree{
 		super(parent, true);
 		this.parent = parent;
 		this.groupText = groupText;
+		this.setToolbarImages(null);
+		this.setToolbarListeners(null);
 		this.adapterFactory = adapterFactory;
 		this.init(SWT.MULTI, new PatternFilter());
 	}
@@ -91,6 +124,8 @@ public class TreeViewerGroup extends FilteredTree{
 		super(parent, true);
 		this.parent = parent;
 		this.groupText = groupText;
+		this.setToolbarImages(images);
+		this.setToolbarListeners(listeners);
 		this.adapterFactory = adapterFactory;
 		this.init(SWT.MULTI, new PatternFilter());
 	}
@@ -147,7 +182,7 @@ public class TreeViewerGroup extends FilteredTree{
 			filterBoxComposite.setFont(parent.getFont());
 			createFilterControls(filterBoxComposite);
 			
-			// create additional controls besides the filter controls
+			// create a toolbar besides the filter controls
 			Composite toolbarComposite = new Composite(filterComposite, SWT.NONE);
 			toolbarComposite.setLayoutData(
 					new GridData(SWT.BEGINNING, SWT.BEGINNING, false, false));
@@ -155,8 +190,7 @@ public class TreeViewerGroup extends FilteredTree{
 			toolbarLayout.marginHeight = 0;
 			toolbarLayout.marginWidth = 0;
 			toolbarComposite.setLayout(toolbarLayout);
-			createToolbar(toolbarComposite, new ArrayList<Image>(), new ArrayList<SelectionListener>(), 
-					true, false);
+			createToolbar(toolbarComposite, toolbarImages, toolbarListeners, true, false);
 			
 		}
 
@@ -218,9 +252,6 @@ public class TreeViewerGroup extends FilteredTree{
 		// Create the button area
 		toolbar = new ToolBar(parent, SWT.NONE);
 		toolbar.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-		
-		separator = new ToolItem(toolbar, SWT.SEPARATOR);
-	    separator.setWidth(0);
 	    
 	    // Add the 'collapseAll' tool bar item
 	    if(displayCollapseAll) {
@@ -247,33 +278,6 @@ public class TreeViewerGroup extends FilteredTree{
 		
 		toolbar.pack();
 
-		// This handles the right alignment of the tool bar items on resize 
-		final int toolbarItemSize = computeToolbarItemWidth();
-		toolbar.addListener(SWT.Resize, new Listener() {
-			@Override
-		    public void handleEvent(Event event) {
-	            final int separatorWidth = toolbar.getSize().x - toolbarItemSize ;
-	            separator.setWidth(separatorWidth);
-	        }
-	    });
 	}
 
-	/**
-	 * Computes the size of the items in the tool bar.
-	 * @return
-	 */
-	private int computeToolbarItemWidth() {
-		int itemSize = 0;
-		
-		for(int i=0; i<toolbar.getItemCount(); i++) {
-			// do not include the size of the separator used for right alignment
-			if(toolbar.getItems()[i].equals(separator)) {
-				continue;
-			}
-			itemSize += toolbar.getItems()[i].getWidth();
-		}
-		
-		return itemSize;
-	}
-	
 }

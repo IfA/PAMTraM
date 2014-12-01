@@ -133,11 +133,6 @@ public class TargetSectionContainmentReferenceItemProvider
 			(createChildParameter
 				(MetamodelPackage.Literals.TARGET_SECTION_CONTAINMENT_REFERENCE__VALUE,
 				 MetamodelFactory.eINSTANCE.createTargetSectionClass()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MetamodelPackage.Literals.TARGET_SECTION_CONTAINMENT_REFERENCE__VALUE,
-				 MetamodelFactory.eINSTANCE.createLibraryElement()));
 	}
 
 }

@@ -3,6 +3,7 @@ package de.mfreund.pamtram.wizards;
 import java.io.IOException;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.edit.command.CreateChildCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.wizard.Wizard;
@@ -57,6 +58,8 @@ public class ImportLibraryElementWizard extends Wizard {
 	
 	@Override
 	public boolean performFinish() {
+		
+		CompoundCommand compoundCommand = new CompoundCommand();
 
 		// now, we import the selected library elements to the pamtram model
 		for (LibraryFileEntry entry : one.getLibEntriesToImport()) {
@@ -66,14 +69,14 @@ public class ImportLibraryElementWizard extends Wizard {
 				LibraryElement libElement = 
 						LibraryHelper.convertToLibraryElement(one.getLibraryFile(), entry.getKey());
 				
-				// second, import it to the pamtram model via a command
+				// second, create a command to import it to the pamtram model 
 				Command command = new CreateChildCommand(
 						editingDomain, 
 						pamtram.getTargetSectionModel(), 
 						PamtramPackage.Literals.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS, 
 						libElement, 
 						null);
-				editingDomain.getCommandStack().execute(command);
+				compoundCommand.append(command);
 				
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -81,6 +84,8 @@ public class ImportLibraryElementWizard extends Wizard {
 			}
 		}
 		
+		// execute the command to import all library items at once
+		editingDomain.getCommandStack().execute(compoundCommand);
 		
 		return true;
 	}

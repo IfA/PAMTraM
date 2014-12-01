@@ -1,6 +1,5 @@
 package pamtram.presentation;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,6 +10,7 @@ import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.events.SelectionEvent;
@@ -18,11 +18,13 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.TreeItem;
 
 import de.mfreund.pamtram.util.BundleContentHelper;
 import de.mfreund.pamtram.util.SelectionListener2;
+import de.mfreund.pamtram.wizards.ImportLibraryElementWizard;
 import pamtram.MappingModel;
 import pamtram.NamedElement;
 import pamtram.TargetSectionModel;
@@ -635,7 +637,12 @@ public class PamtramEditorMainPage extends SashForm {
 						@Override
 						public void widgetSelected(SelectionEvent e) {
 							System.out.println("importing");
-							// parseFile(Path file)
+							// create the wizard
+							WizardDialog wizardDialog = new WizardDialog(
+									new Shell(), 
+									new ImportLibraryElementWizard());
+							wizardDialog.create();
+							wizardDialog.open();
 						}
 					});
 				};

@@ -152,7 +152,7 @@ public class TreeViewerGroup extends FilteredTree{
 	 * @param images A list of images used as icons for the items of the tool bar.
 	 * @param listeners A list of SelectionListeners used for the items of the tool bar.
 	 * @param displayCollapseAll If to include a 'collapseAll' button in the tool bar.
-	 * @param displaySearch If to include a search/filter box.
+	 * @param displayAdd If to include an 'add' button in the tool bar.
 	 */
 	public TreeViewerGroup(Composite parent, ComposedAdapterFactory adapterFactory, 
 			EditingDomain editingDomain, String groupText, ArrayList<Image> images, 

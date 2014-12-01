@@ -6,21 +6,7 @@
 
 <plugin>
 
-   <extension point="org.eclipse.ui.newWizards">
-      <!-- @generated pamtram -->
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
-      <wizard
-            id="pamtram.presentation.PamtramModelWizardID"
-            name="%_UI_PamtramModelWizard_label"
-            class="pamtram.presentation.PamtramModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
-            icon="icons/full/obj16/PamtramModelFile.gif">
-         <description>%_UI_PamtramModelWizard_description</description>
-         <selection class="org.eclipse.core.resources.IResource"/>
-      </wizard>
-   </extension>
+  
 
    <extension point="org.eclipse.ui.editors">
       <!-- @generated pamtram -->

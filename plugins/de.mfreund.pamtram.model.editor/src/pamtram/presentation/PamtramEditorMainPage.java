@@ -1,5 +1,6 @@
 package pamtram.presentation;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,8 +18,11 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.TreeItem;
 
+import de.mfreund.pamtram.util.BundleContentHelper;
+import de.mfreund.pamtram.util.SelectionListener2;
 import pamtram.MappingModel;
 import pamtram.NamedElement;
 import pamtram.TargetSectionModel;
@@ -51,7 +55,6 @@ import pamtram.presentation.widgets.TreeViewerGroup;
 
 public class PamtramEditorMainPage extends SashForm {
 	
-	@SuppressWarnings("unused")
 	private final String bundleID = PamtramEditorPlugin.getPlugin().getSymbolicName();
 	
 	/**
@@ -623,8 +626,20 @@ public class PamtramEditorMainPage extends SashForm {
 		
 		libTargetViewer = new TreeViewerGroup(
 				targetSash, adapterFactory, editor.getEditingDomain(), 
-				"Library Element Target Sections", null, null, true, true
-			).getViewer();
+				"Library Element Target Sections", null, null, true, false){
+				protected void createAdditionalToolbarItems(org.eclipse.swt.widgets.ToolBar toolbar) {
+					ToolItem item = new ToolItem(toolbar, SWT.PUSH);
+					item.setImage(BundleContentHelper.getBundleImage(bundleID, "icons/import_wiz.gif"));
+					item.addSelectionListener(new SelectionListener2() {
+
+						@Override
+						public void widgetSelected(SelectionEvent e) {
+							System.out.println("importing");
+							// parseFile(Path file)
+						}
+					});
+				};
+			}.getViewer();
 		
 		libTargetViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory) {
 			/* extend the content provider in a way that only library elements 

@@ -12,7 +12,6 @@ Export-Package: pamtram.condition.presentation,
  pamtram.mapping.presentation,
  pamtram.metamodel.presentation,
  pamtram.presentation,
- pamtram.presentation.pages,
  pamtram.transformation.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
@@ -26,6 +25,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.swt,
  org.eclipse.ui.forms,
- de.mfreund.pamtram,
- org.mihalis.opal;bundle-version="1.0.1"
+ de.mfreund.pamtram
 Bundle-ActivationPolicy: lazy

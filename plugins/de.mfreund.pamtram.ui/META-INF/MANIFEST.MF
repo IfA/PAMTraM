@@ -3,11 +3,13 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Pamtram UI
 Bundle-SymbolicName: de.mfreund.pamtram.ui;singleton:=true
 Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: .
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Vendor: mfreund
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipse.debug.ui,
- org.eclipse.jface,
+Require-Bundle: org.eclipse.core.runtime,
  de.mfreund.pamtram.model.editor,
- org.eclipse.equinox.registry,
+ de.mfreund.pamtram,
+ org.eclipse.debug.ui,
  de.mfreund.pamtram
+Bundle-Activator: de.mfreund.pamtram.ui.PamtramUIPlugin$Implementation

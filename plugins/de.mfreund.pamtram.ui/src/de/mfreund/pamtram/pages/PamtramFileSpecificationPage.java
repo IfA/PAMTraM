@@ -23,9 +23,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-import pamtram.presentation.PamtramModelWizard;
-
-
 public class PamtramFileSpecificationPage extends WizardPage {
 	
 	private IWizardContainer wizContainer;
@@ -37,6 +34,15 @@ public class PamtramFileSpecificationPage extends WizardPage {
 
 	private String srcFile = "";
 	private FileFieldEditor srcFileFieldEditor;
+	private String nsUri = "";
+	
+	/**
+	 * This returns the namespace URI of the source file.
+	 * @return The namespace URI of the source file.
+	 */
+	public String getNsUri() {
+		return nsUri;
+	}
 
 	public PamtramFileSpecificationPage(String pageName) {
 		super(pageName);
@@ -90,7 +96,6 @@ public class PamtramFileSpecificationPage extends WizardPage {
 				
 				srcFile = srcFileFieldEditor.getStringValue();
 				
-				String nsUri = "";
 				try {
 					Resource resource;
 					EObject object = null;
@@ -116,16 +121,11 @@ public class PamtramFileSpecificationPage extends WizardPage {
 					// Get the namespace Uri
 					nsUri = object.eClass().getEPackage().getNsURI();
 				} catch(Exception e) {
-					if(e.getCause() instanceof PackageNotFoundException && getWizard() instanceof PamtramModelWizard) {
+					if(e.getCause() instanceof PackageNotFoundException) {
 							// nothing needs to be done
 					} else {
 						e.printStackTrace();						
 					}
-				}
-				
-				if(getWizard() instanceof PamtramModelWizard) {
-					// set the source ePackage to be used in the next wizard page
-					((PamtramModelWizard) getWizard()).getePackageSpecificationPage().setSourceEPackage(nsUri);
 				}
 				
 				wizContainer.updateButtons();

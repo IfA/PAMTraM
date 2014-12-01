@@ -31,8 +31,6 @@ import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
 
 import de.mfreund.pamtram.pages.PamtramFileSpecificationPage;
 import de.mfreund.pamtram.util.ResourceHelper;
-import pamtram.presentation.PamtramModelWizard;
-import pamtram.presentation.pages.PamtramEPackageSpecificationPage;
 
 public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExecutableExtension{
 
@@ -87,12 +85,20 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 		mainPage.setDescription("This creates a new PAMTraM Project that consists of a PAMTraM model.");
 		this.addPage(mainPage);
 		
-		fileSpecPage = new PamtramFileSpecificationPage("Whatever2");
+		fileSpecPage = new PamtramFileSpecificationPage("Whatever2") {
+			@Override
+			public void setVisible(boolean visible) {
+				super.setVisible(visible);
+				if(!visible) {
+					ePackageSpecificationPage.setSourceEPackage(fileSpecPage.getNsUri());
+				}
+			}
+		};
 		fileSpecPage.setTitle("Pamtram specification");
 		fileSpecPage.setDescription("Specify the name of the PAMTraM file and the source file (optional).");
 		this.addPage(fileSpecPage);
 
-		ePackageSpecificationPage = new PamtramEPackageSpecificationPage("Whatever3");
+		ePackageSpecificationPage = new de.mfreund.pamtram.pages.PamtramEPackageSpecificationPage("Whatever3");
 		ePackageSpecificationPage.setTitle("ePackage specification");
 		ePackageSpecificationPage.setDescription("Specify the ePackages of the source and target sections.");
 		this.addPage(ePackageSpecificationPage);

@@ -640,7 +640,7 @@ public class PamtramEditorMainPage extends SashForm {
 							// create the wizard
 							WizardDialog wizardDialog = new WizardDialog(
 									new Shell(), 
-									new ImportLibraryElementWizard());
+									new ImportLibraryElementWizard(editor.pamtram, editor.getEditingDomain()));
 							wizardDialog.create();
 							wizardDialog.open();
 						}

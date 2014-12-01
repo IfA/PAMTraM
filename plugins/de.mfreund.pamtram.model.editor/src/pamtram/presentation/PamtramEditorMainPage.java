@@ -661,6 +661,39 @@ public class PamtramEditorMainPage extends SashForm {
 			}
 		});
 		libTargetViewer.setInput(editor.pamtram.getTargetSectionModel());
+		libTargetViewer.getTree().addSelectionListener(new SelectionListener() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				editor.setCurrentViewer(libTargetViewer);
+				
+				// if a non containment reference has been selected while holding down the
+				// control key, jump to the referenced class 
+				if(((TreeItem) e.item).getData() instanceof MetaModelSectionReference) {
+					
+					MetaModelSectionReference reference = (MetaModelSectionReference) ((TreeItem) e.item).getData();
+					
+					EList<pamtram.metamodel.SourceSectionClass> referencedElements = reference.getValue();
+					
+					if(reference != null && e.stateMask == SWT.CTRL) {
+						libTargetViewer.setSelection(
+								new StructuredSelection(referencedElements.toArray()));
+					}
+				} else 	if(((TreeItem) e.item).getData() instanceof TargetSectionNonContainmentReference) {
+					
+					TargetSectionNonContainmentReference reference = (TargetSectionNonContainmentReference) ((TreeItem) e.item).getData();
+					
+					EList<pamtram.metamodel.TargetSectionClass> referencedElements = reference.getValue();
+					
+					if(reference != null && e.stateMask == SWT.CTRL) {
+						libTargetViewer.setSelection(
+								new StructuredSelection(referencedElements.toArray()));
+					}
+				}
+			}
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+		});
 		
 		new AdapterFactoryTreeEditor(libTargetViewer.getTree(), adapterFactory);
 	

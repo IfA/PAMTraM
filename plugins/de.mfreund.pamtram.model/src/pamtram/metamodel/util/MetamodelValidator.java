@@ -303,18 +303,7 @@ public class MetamodelValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateLibraryElement(LibraryElement libraryElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(libraryElement, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(libraryElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(libraryElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(libraryElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(libraryElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(libraryElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(libraryElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(libraryElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(libraryElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateClass_eClassMatchesParentEReference(libraryElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateClass_variableCardinalityIsValid(libraryElement, diagnostics, context);
-		return result;
+		return validate_EveryDefaultConstraint(libraryElement, diagnostics, context);
 	}
 
 	/**

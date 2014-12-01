@@ -481,58 +481,40 @@ public interface MetamodelPackage extends EPackage {
 	int LIBRARY_ELEMENT = 4;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Target Section Classes</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_ELEMENT__NAME = TARGET_SECTION_CLASS__NAME;
+	int LIBRARY_ELEMENT__TARGET_SECTION_CLASSES = 0;
 
 	/**
-	 * The feature id for the '<em><b>EClass</b></em>' reference.
+	 * The feature id for the '<em><b>Library File</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_ELEMENT__ECLASS = TARGET_SECTION_CLASS__ECLASS;
+	int LIBRARY_ELEMENT__LIBRARY_FILE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Cardinality</b></em>' attribute.
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_ELEMENT__CARDINALITY = TARGET_SECTION_CLASS__CARDINALITY;
+	int LIBRARY_ELEMENT__PATH = 2;
 
 	/**
-	 * The feature id for the '<em><b>References</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Version</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_ELEMENT__REFERENCES = TARGET_SECTION_CLASS__REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY_ELEMENT__ATTRIBUTES = TARGET_SECTION_CLASS__ATTRIBUTES;
-
-	/**
-	 * The feature id for the '<em><b>Container</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY_ELEMENT__CONTAINER = TARGET_SECTION_CLASS__CONTAINER;
+	int LIBRARY_ELEMENT__VERSION = 3;
 
 	/**
 	 * The number of structural features of the '<em>Library Element</em>' class.
@@ -541,52 +523,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_ELEMENT_FEATURE_COUNT = TARGET_SECTION_CLASS_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Get Containing Section</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY_ELEMENT___GET_CONTAINING_SECTION = TARGET_SECTION_CLASS___GET_CONTAINING_SECTION;
-
-	/**
-	 * The operation id for the '<em>Get References Generic</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY_ELEMENT___GET_REFERENCES_GENERIC = TARGET_SECTION_CLASS___GET_REFERENCES_GENERIC;
-
-	/**
-	 * The operation id for the '<em>Get Attributes Generic</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY_ELEMENT___GET_ATTRIBUTES_GENERIC = TARGET_SECTION_CLASS___GET_ATTRIBUTES_GENERIC;
-
-	/**
-	 * The operation id for the '<em>Get Container Generic</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY_ELEMENT___GET_CONTAINER_GENERIC = TARGET_SECTION_CLASS___GET_CONTAINER_GENERIC;
-
-	/**
-	 * The operation id for the '<em>Is Container For Generic</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY_ELEMENT___IS_CONTAINER_FOR_GENERIC__CLASS = TARGET_SECTION_CLASS___IS_CONTAINER_FOR_GENERIC__CLASS;
+	int LIBRARY_ELEMENT_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Library Element</em>' class.
@@ -595,7 +532,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_ELEMENT_OPERATION_COUNT = TARGET_SECTION_CLASS_OPERATION_COUNT + 0;
+	int LIBRARY_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.metamodel.impl.ReferenceImpl <em>Reference</em>}' class.
@@ -2298,6 +2235,50 @@ public interface MetamodelPackage extends EPackage {
 	EClass getLibraryElement();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.LibraryElement#getTargetSectionClasses <em>Target Section Classes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Target Section Classes</em>'.
+	 * @see pamtram.metamodel.LibraryElement#getTargetSectionClasses()
+	 * @see #getLibraryElement()
+	 * @generated
+	 */
+	EReference getLibraryElement_TargetSectionClasses();
+
+	/**
+	 * Returns the meta object for the attribute '{@link pamtram.metamodel.LibraryElement#getLibraryFile <em>Library File</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Library File</em>'.
+	 * @see pamtram.metamodel.LibraryElement#getLibraryFile()
+	 * @see #getLibraryElement()
+	 * @generated
+	 */
+	EAttribute getLibraryElement_LibraryFile();
+
+	/**
+	 * Returns the meta object for the attribute '{@link pamtram.metamodel.LibraryElement#getPath <em>Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Path</em>'.
+	 * @see pamtram.metamodel.LibraryElement#getPath()
+	 * @see #getLibraryElement()
+	 * @generated
+	 */
+	EAttribute getLibraryElement_Path();
+
+	/**
+	 * Returns the meta object for the attribute '{@link pamtram.metamodel.LibraryElement#getVersion <em>Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Version</em>'.
+	 * @see pamtram.metamodel.LibraryElement#getVersion()
+	 * @see #getLibraryElement()
+	 * @generated
+	 */
+	EAttribute getLibraryElement_Version();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.Reference <em>Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2928,6 +2909,38 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass LIBRARY_ELEMENT = eINSTANCE.getLibraryElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Section Classes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LIBRARY_ELEMENT__TARGET_SECTION_CLASSES = eINSTANCE.getLibraryElement_TargetSectionClasses();
+
+		/**
+		 * The meta object literal for the '<em><b>Library File</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LIBRARY_ELEMENT__LIBRARY_FILE = eINSTANCE.getLibraryElement_LibraryFile();
+
+		/**
+		 * The meta object literal for the '<em><b>Path</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LIBRARY_ELEMENT__PATH = eINSTANCE.getLibraryElement_Path();
+
+		/**
+		 * The meta object literal for the '<em><b>Version</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LIBRARY_ELEMENT__VERSION = eINSTANCE.getLibraryElement_Version();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.ReferenceImpl <em>Reference</em>}' class.

@@ -126,10 +126,6 @@ public class MetamodelSwitch<T> extends Switch<T> {
 			case MetamodelPackage.LIBRARY_ELEMENT: {
 				LibraryElement libraryElement = (LibraryElement)theEObject;
 				T result = caseLibraryElement(libraryElement);
-				if (result == null) result = caseTargetSectionClass(libraryElement);
-				if (result == null) result = caseClass(libraryElement);
-				if (result == null) result = caseMetaModelElement(libraryElement);
-				if (result == null) result = caseNamedElement(libraryElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

@@ -512,6 +512,42 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getLibraryElement_TargetSectionClasses() {
+		return (EReference)libraryElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLibraryElement_LibraryFile() {
+		return (EAttribute)libraryElementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLibraryElement_Path() {
+		return (EAttribute)libraryElementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLibraryElement_Version() {
+		return (EAttribute)libraryElementEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getReference() {
 		return referenceEClass;
 	}
@@ -945,6 +981,10 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEReference(targetSectionClassEClass, TARGET_SECTION_CLASS__CONTAINER);
 
 		libraryElementEClass = createEClass(LIBRARY_ELEMENT);
+		createEReference(libraryElementEClass, LIBRARY_ELEMENT__TARGET_SECTION_CLASSES);
+		createEAttribute(libraryElementEClass, LIBRARY_ELEMENT__LIBRARY_FILE);
+		createEAttribute(libraryElementEClass, LIBRARY_ELEMENT__PATH);
+		createEAttribute(libraryElementEClass, LIBRARY_ELEMENT__VERSION);
 
 		referenceEClass = createEClass(REFERENCE);
 		createEReference(referenceEClass, REFERENCE__EREFERENCE);
@@ -1048,7 +1088,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		classEClass.getESuperTypes().add(this.getMetaModelElement());
 		sourceSectionClassEClass.getESuperTypes().add(this.getClass_());
 		targetSectionClassEClass.getESuperTypes().add(this.getClass_());
-		libraryElementEClass.getESuperTypes().add(this.getTargetSectionClass());
 		referenceEClass.getESuperTypes().add(this.getMetaModelElement());
 		containmentReferenceEClass.getESuperTypes().add(this.getReference());
 		nonContainmentReferenceEClass.getESuperTypes().add(this.getReference());
@@ -1104,6 +1143,10 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEReference(getTargetSectionClass_Container(), this.getTargetSectionClass(), null, "container", null, 0, 1, TargetSectionClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(libraryElementEClass, LibraryElement.class, "LibraryElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getLibraryElement_TargetSectionClasses(), this.getTargetSectionClass(), null, "targetSectionClasses", null, 1, -1, LibraryElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLibraryElement_LibraryFile(), ecorePackage.getEString(), "libraryFile", null, 1, 1, LibraryElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLibraryElement_Path(), ecorePackage.getEString(), "path", null, 1, 1, LibraryElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLibraryElement_Version(), ecorePackage.getEString(), "version", null, 1, 1, LibraryElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(referenceEClass, Reference.class, "Reference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getReference_EReference(), ecorePackage.getEReference(), null, "eReference", null, 1, 1, Reference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

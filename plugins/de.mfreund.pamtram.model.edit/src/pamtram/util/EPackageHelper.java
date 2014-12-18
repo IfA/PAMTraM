@@ -203,7 +203,7 @@ public class EPackageHelper {
 	 * @param ePackage the root ePackage
 	 * @return a set of sub-ePackages including the root ePackage itself
 	 */
-	private static HashSet<EPackage> collectEPackages(EPackage ePackage) {
+	public static HashSet<EPackage> collectEPackages(EPackage ePackage) {
 		HashSet<EPackage> ePackages = new HashSet<>();
 		ePackages.add(ePackage);
 		for (EPackage child : ePackage.getESubpackages()) {

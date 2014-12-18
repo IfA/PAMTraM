@@ -414,7 +414,9 @@ public class PamtramActionBarContributor
 //							(ExpressionVariable) descriptor,
 //							new InternalToExternalExpressionVariableConverter()));
 		} else if(descriptor instanceof pamtram.metamodel.Class){
-			if(!((MetaModelElement) descriptor).getContainingSection().equals(descriptor)){
+			// the section may be 'null' if the class is not part of a target section but of a library element
+			pamtram.metamodel.Class section = ((MetaModelElement) descriptor).getContainingSection();
+			if(section != null && !section.equals(descriptor)){
 				actions.add(new CutClassAndPasteAsNewSectionAction((pamtram.metamodel.Class) descriptor));				
 			}
 		}

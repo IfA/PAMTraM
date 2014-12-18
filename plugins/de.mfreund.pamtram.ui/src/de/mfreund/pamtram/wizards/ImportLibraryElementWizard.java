@@ -13,7 +13,7 @@ import pamtram.PamtramPackage;
 import pamtram.metamodel.LibraryElement;
 import pamtram.util.LibraryHelper;
 import de.mfreund.pamtram.pages.ImportLibraryElementWizardMainPage;
-import de.tud.et.ifa.agtele.movisa.library.utilities.interfaces.LibraryFileEntry;
+import de.tud.et.ifa.agtele.genlibrary.util.interfaces.LibraryFileEntry;
 
 /**
  * This wizard allows to import one or multiple library elements from a 
@@ -67,7 +67,8 @@ public class ImportLibraryElementWizard extends Wizard {
 				
 				// first, create the library element
 				LibraryElement libElement = 
-						LibraryHelper.convertToLibraryElement(one.getLibraryFile(), entry.getKey());
+						LibraryHelper.convertToLibraryElement(one.getLibraryFile(), entry.getKey(), 
+								pamtram.getTargetSectionModel().getMetaModelPackage());
 				
 				// second, create a command to import it to the pamtram model 
 				Command command = new CreateChildCommand(

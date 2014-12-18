@@ -19,9 +19,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
-import de.tud.et.ifa.agtele.movisa.library.utilities.impl.FileParserImpl;
-import de.tud.et.ifa.agtele.movisa.library.utilities.interfaces.FileParser;
-import de.tud.et.ifa.agtele.movisa.library.utilities.interfaces.LibraryFileEntry;
+import de.tud.et.ifa.agtele.genlibrary.util.impl.FileParserImpl;
+import de.tud.et.ifa.agtele.genlibrary.util.interfaces.FileParser;
+import de.tud.et.ifa.agtele.genlibrary.util.interfaces.LibraryFileEntry;
 
 /**
  * This page allows to specify (1) a library (represented by a Zip file) and

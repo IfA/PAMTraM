@@ -10,7 +10,7 @@ import org.eclipse.jface.wizard.Wizard;
 
 import pamtram.PAMTraM;
 import pamtram.PamtramPackage;
-import pamtram.metamodel.LibraryElement;
+import pamtram.metamodel.LibraryEntry;
 import pamtram.util.LibraryHelper;
 import de.mfreund.pamtram.pages.ImportLibraryElementWizardMainPage;
 import de.tud.et.ifa.agtele.genlibrary.util.interfaces.LibraryFileEntry;
@@ -66,7 +66,7 @@ public class ImportLibraryElementWizard extends Wizard {
 			try {
 				
 				// first, create the library element
-				LibraryElement libElement = 
+				LibraryEntry libElement = 
 						LibraryHelper.convertToLibraryElement(one.getLibraryFile(), entry.getKey(), 
 								pamtram.getTargetSectionModel().getMetaModelPackage());
 				

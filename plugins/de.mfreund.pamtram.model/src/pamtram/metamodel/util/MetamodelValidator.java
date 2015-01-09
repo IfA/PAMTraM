@@ -18,7 +18,7 @@ import pamtram.metamodel.CaseSensitiveConstraint;
 import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.EndingMatcher;
 import pamtram.metamodel.EqualityMatcher;
-import pamtram.metamodel.LibraryElement;
+import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
@@ -117,8 +117,8 @@ public class MetamodelValidator extends EObjectValidator {
 				return validateSourceSectionClass((SourceSectionClass)value, diagnostics, context);
 			case MetamodelPackage.TARGET_SECTION_CLASS:
 				return validateTargetSectionClass((TargetSectionClass)value, diagnostics, context);
-			case MetamodelPackage.LIBRARY_ELEMENT:
-				return validateLibraryElement((LibraryElement)value, diagnostics, context);
+			case MetamodelPackage.LIBRARY_ENTRY:
+				return validateLibraryEntry((LibraryEntry)value, diagnostics, context);
 			case MetamodelPackage.REFERENCE:
 				return validateReference((Reference)value, diagnostics, context);
 			case MetamodelPackage.CONTAINMENT_REFERENCE:
@@ -302,8 +302,8 @@ public class MetamodelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLibraryElement(LibraryElement libraryElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(libraryElement, diagnostics, context);
+	public boolean validateLibraryEntry(LibraryEntry libraryEntry, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(libraryEntry, diagnostics, context);
 	}
 
 	/**

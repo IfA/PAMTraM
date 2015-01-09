@@ -3,17 +3,15 @@
 package pamtram.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import pamtram.PamtramPackage;
 import pamtram.TargetSectionModel;
-import pamtram.metamodel.LibraryElement;
+import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.TargetSectionClass;
 
 /**
@@ -49,7 +47,7 @@ public class TargetSectionModelImpl extends SectionModelImpl implements TargetSe
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<LibraryElement> libraryElements;
+	protected EList<LibraryEntry> libraryElements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -87,9 +85,9 @@ public class TargetSectionModelImpl extends SectionModelImpl implements TargetSe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<LibraryElement> getLibraryElements() {
+	public EList<LibraryEntry> getLibraryElements() {
 		if (libraryElements == null) {
-			libraryElements = new EObjectContainmentEList<LibraryElement>(LibraryElement.class, this, PamtramPackage.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS);
+			libraryElements = new EObjectContainmentEList<LibraryEntry>(LibraryEntry.class, this, PamtramPackage.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS);
 		}
 		return libraryElements;
 	}
@@ -141,7 +139,7 @@ public class TargetSectionModelImpl extends SectionModelImpl implements TargetSe
 				return;
 			case PamtramPackage.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS:
 				getLibraryElements().clear();
-				getLibraryElements().addAll((Collection<? extends LibraryElement>)newValue);
+				getLibraryElements().addAll((Collection<? extends LibraryEntry>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

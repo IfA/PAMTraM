@@ -5,44 +5,48 @@ package pamtram.metamodel.impl;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import pamtram.metamodel.LibraryElement;
+import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.TargetSectionClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Library Element</b></em>'.
+ * An implementation of the model object '<em><b>Library Entry</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link pamtram.metamodel.impl.LibraryElementImpl#getTargetSectionClasses <em>Target Section Classes</em>}</li>
- *   <li>{@link pamtram.metamodel.impl.LibraryElementImpl#getLibraryFile <em>Library File</em>}</li>
- *   <li>{@link pamtram.metamodel.impl.LibraryElementImpl#getPath <em>Path</em>}</li>
- *   <li>{@link pamtram.metamodel.impl.LibraryElementImpl#getVersion <em>Version</em>}</li>
+ *   <li>{@link pamtram.metamodel.impl.LibraryEntryImpl#getMetaData <em>Meta Data</em>}</li>
+ *   <li>{@link pamtram.metamodel.impl.LibraryEntryImpl#getLibraryFile <em>Library File</em>}</li>
+ *   <li>{@link pamtram.metamodel.impl.LibraryEntryImpl#getPath <em>Path</em>}</li>
+ *   <li>{@link pamtram.metamodel.impl.LibraryEntryImpl#getVersion <em>Version</em>}</li>
+ *   <li>{@link pamtram.metamodel.impl.LibraryEntryImpl#getLibraryItem <em>Library Item</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class LibraryElementImpl extends MinimalEObjectImpl.Container implements LibraryElement {
+public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements LibraryEntry {
 	/**
-	 * The cached value of the '{@link #getTargetSectionClasses() <em>Target Section Classes</em>}' containment reference list.
+	 * The cached value of the '{@link #getMetaData() <em>Meta Data</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTargetSectionClasses()
+	 * @see #getMetaData()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TargetSectionClass> targetSectionClasses;
+	protected EList<TargetSectionClass> metaData;
+
 	/**
 	 * The default value of the '{@link #getLibraryFile() <em>Library File</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -52,6 +56,7 @@ public class LibraryElementImpl extends MinimalEObjectImpl.Container implements 
 	 * @ordered
 	 */
 	protected static final String LIBRARY_FILE_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getLibraryFile() <em>Library File</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -61,6 +66,7 @@ public class LibraryElementImpl extends MinimalEObjectImpl.Container implements 
 	 * @ordered
 	 */
 	protected String libraryFile = LIBRARY_FILE_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getPath() <em>Path</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -70,6 +76,7 @@ public class LibraryElementImpl extends MinimalEObjectImpl.Container implements 
 	 * @ordered
 	 */
 	protected static final String PATH_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getPath() <em>Path</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -79,6 +86,7 @@ public class LibraryElementImpl extends MinimalEObjectImpl.Container implements 
 	 * @ordered
 	 */
 	protected String path = PATH_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getVersion() <em>Version</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -88,6 +96,7 @@ public class LibraryElementImpl extends MinimalEObjectImpl.Container implements 
 	 * @ordered
 	 */
 	protected static final String VERSION_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getVersion() <em>Version</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -99,11 +108,21 @@ public class LibraryElementImpl extends MinimalEObjectImpl.Container implements 
 	protected String version = VERSION_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getLibraryItem() <em>Library Item</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLibraryItem()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<TargetSectionClass> libraryItem;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LibraryElementImpl() {
+	protected LibraryEntryImpl() {
 		super();
 	}
 
@@ -114,7 +133,7 @@ public class LibraryElementImpl extends MinimalEObjectImpl.Container implements 
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetamodelPackage.Literals.LIBRARY_ELEMENT;
+		return MetamodelPackage.Literals.LIBRARY_ENTRY;
 	}
 
 	/**
@@ -122,11 +141,11 @@ public class LibraryElementImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TargetSectionClass> getTargetSectionClasses() {
-		if (targetSectionClasses == null) {
-			targetSectionClasses = new EObjectContainmentEList<TargetSectionClass>(TargetSectionClass.class, this, MetamodelPackage.LIBRARY_ELEMENT__TARGET_SECTION_CLASSES);
+	public EList<TargetSectionClass> getMetaData() {
+		if (metaData == null) {
+			metaData = new EObjectContainmentEList<TargetSectionClass>(TargetSectionClass.class, this, MetamodelPackage.LIBRARY_ENTRY__META_DATA);
 		}
-		return targetSectionClasses;
+		return metaData;
 	}
 
 	/**
@@ -147,7 +166,7 @@ public class LibraryElementImpl extends MinimalEObjectImpl.Container implements 
 		String oldLibraryFile = libraryFile;
 		libraryFile = newLibraryFile;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.LIBRARY_ELEMENT__LIBRARY_FILE, oldLibraryFile, libraryFile));
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.LIBRARY_ENTRY__LIBRARY_FILE, oldLibraryFile, libraryFile));
 	}
 
 	/**
@@ -168,7 +187,7 @@ public class LibraryElementImpl extends MinimalEObjectImpl.Container implements 
 		String oldPath = path;
 		path = newPath;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.LIBRARY_ELEMENT__PATH, oldPath, path));
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.LIBRARY_ENTRY__PATH, oldPath, path));
 	}
 
 	/**
@@ -189,7 +208,19 @@ public class LibraryElementImpl extends MinimalEObjectImpl.Container implements 
 		String oldVersion = version;
 		version = newVersion;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.LIBRARY_ELEMENT__VERSION, oldVersion, version));
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.LIBRARY_ENTRY__VERSION, oldVersion, version));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<TargetSectionClass> getLibraryItem() {
+		if (libraryItem == null) {
+			libraryItem = new EObjectContainmentEList<TargetSectionClass>(TargetSectionClass.class, this, MetamodelPackage.LIBRARY_ENTRY__LIBRARY_ITEM);
+		}
+		return libraryItem;
 	}
 
 	/**
@@ -200,8 +231,10 @@ public class LibraryElementImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MetamodelPackage.LIBRARY_ELEMENT__TARGET_SECTION_CLASSES:
-				return ((InternalEList<?>)getTargetSectionClasses()).basicRemove(otherEnd, msgs);
+			case MetamodelPackage.LIBRARY_ENTRY__META_DATA:
+				return ((InternalEList<?>)getMetaData()).basicRemove(otherEnd, msgs);
+			case MetamodelPackage.LIBRARY_ENTRY__LIBRARY_ITEM:
+				return ((InternalEList<?>)getLibraryItem()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -214,14 +247,16 @@ public class LibraryElementImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.LIBRARY_ELEMENT__TARGET_SECTION_CLASSES:
-				return getTargetSectionClasses();
-			case MetamodelPackage.LIBRARY_ELEMENT__LIBRARY_FILE:
+			case MetamodelPackage.LIBRARY_ENTRY__META_DATA:
+				return getMetaData();
+			case MetamodelPackage.LIBRARY_ENTRY__LIBRARY_FILE:
 				return getLibraryFile();
-			case MetamodelPackage.LIBRARY_ELEMENT__PATH:
+			case MetamodelPackage.LIBRARY_ENTRY__PATH:
 				return getPath();
-			case MetamodelPackage.LIBRARY_ELEMENT__VERSION:
+			case MetamodelPackage.LIBRARY_ENTRY__VERSION:
 				return getVersion();
+			case MetamodelPackage.LIBRARY_ENTRY__LIBRARY_ITEM:
+				return getLibraryItem();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -235,18 +270,22 @@ public class LibraryElementImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.LIBRARY_ELEMENT__TARGET_SECTION_CLASSES:
-				getTargetSectionClasses().clear();
-				getTargetSectionClasses().addAll((Collection<? extends TargetSectionClass>)newValue);
+			case MetamodelPackage.LIBRARY_ENTRY__META_DATA:
+				getMetaData().clear();
+				getMetaData().addAll((Collection<? extends TargetSectionClass>)newValue);
 				return;
-			case MetamodelPackage.LIBRARY_ELEMENT__LIBRARY_FILE:
+			case MetamodelPackage.LIBRARY_ENTRY__LIBRARY_FILE:
 				setLibraryFile((String)newValue);
 				return;
-			case MetamodelPackage.LIBRARY_ELEMENT__PATH:
+			case MetamodelPackage.LIBRARY_ENTRY__PATH:
 				setPath((String)newValue);
 				return;
-			case MetamodelPackage.LIBRARY_ELEMENT__VERSION:
+			case MetamodelPackage.LIBRARY_ENTRY__VERSION:
 				setVersion((String)newValue);
+				return;
+			case MetamodelPackage.LIBRARY_ENTRY__LIBRARY_ITEM:
+				getLibraryItem().clear();
+				getLibraryItem().addAll((Collection<? extends TargetSectionClass>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -260,17 +299,20 @@ public class LibraryElementImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.LIBRARY_ELEMENT__TARGET_SECTION_CLASSES:
-				getTargetSectionClasses().clear();
+			case MetamodelPackage.LIBRARY_ENTRY__META_DATA:
+				getMetaData().clear();
 				return;
-			case MetamodelPackage.LIBRARY_ELEMENT__LIBRARY_FILE:
+			case MetamodelPackage.LIBRARY_ENTRY__LIBRARY_FILE:
 				setLibraryFile(LIBRARY_FILE_EDEFAULT);
 				return;
-			case MetamodelPackage.LIBRARY_ELEMENT__PATH:
+			case MetamodelPackage.LIBRARY_ENTRY__PATH:
 				setPath(PATH_EDEFAULT);
 				return;
-			case MetamodelPackage.LIBRARY_ELEMENT__VERSION:
+			case MetamodelPackage.LIBRARY_ENTRY__VERSION:
 				setVersion(VERSION_EDEFAULT);
+				return;
+			case MetamodelPackage.LIBRARY_ENTRY__LIBRARY_ITEM:
+				getLibraryItem().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -284,14 +326,16 @@ public class LibraryElementImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.LIBRARY_ELEMENT__TARGET_SECTION_CLASSES:
-				return targetSectionClasses != null && !targetSectionClasses.isEmpty();
-			case MetamodelPackage.LIBRARY_ELEMENT__LIBRARY_FILE:
+			case MetamodelPackage.LIBRARY_ENTRY__META_DATA:
+				return metaData != null && !metaData.isEmpty();
+			case MetamodelPackage.LIBRARY_ENTRY__LIBRARY_FILE:
 				return LIBRARY_FILE_EDEFAULT == null ? libraryFile != null : !LIBRARY_FILE_EDEFAULT.equals(libraryFile);
-			case MetamodelPackage.LIBRARY_ELEMENT__PATH:
+			case MetamodelPackage.LIBRARY_ENTRY__PATH:
 				return PATH_EDEFAULT == null ? path != null : !PATH_EDEFAULT.equals(path);
-			case MetamodelPackage.LIBRARY_ELEMENT__VERSION:
+			case MetamodelPackage.LIBRARY_ENTRY__VERSION:
 				return VERSION_EDEFAULT == null ? version != null : !VERSION_EDEFAULT.equals(version);
+			case MetamodelPackage.LIBRARY_ENTRY__LIBRARY_ITEM:
+				return libraryItem != null && !libraryItem.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -316,4 +360,4 @@ public class LibraryElementImpl extends MinimalEObjectImpl.Container implements 
 		return result.toString();
 	}
 
-} //LibraryElementImpl
+} //LibraryEntryImpl

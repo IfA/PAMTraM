@@ -26,7 +26,7 @@ import pamtram.metamodel.CaseSensitiveConstraint;
 import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.EndingMatcher;
 import pamtram.metamodel.EqualityMatcher;
-import pamtram.metamodel.LibraryElement;
+import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelFactory;
@@ -89,7 +89,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass libraryElementEClass = null;
+	private EClass libraryEntryEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -503,8 +503,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getLibraryElement() {
-		return libraryElementEClass;
+	public EClass getLibraryEntry() {
+		return libraryEntryEClass;
 	}
 
 	/**
@@ -512,8 +512,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLibraryElement_TargetSectionClasses() {
-		return (EReference)libraryElementEClass.getEStructuralFeatures().get(0);
+	public EReference getLibraryEntry_MetaData() {
+		return (EReference)libraryEntryEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -521,8 +521,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLibraryElement_LibraryFile() {
-		return (EAttribute)libraryElementEClass.getEStructuralFeatures().get(1);
+	public EAttribute getLibraryEntry_LibraryFile() {
+		return (EAttribute)libraryEntryEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -530,8 +530,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLibraryElement_Path() {
-		return (EAttribute)libraryElementEClass.getEStructuralFeatures().get(2);
+	public EAttribute getLibraryEntry_Path() {
+		return (EAttribute)libraryEntryEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -539,8 +539,17 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLibraryElement_Version() {
-		return (EAttribute)libraryElementEClass.getEStructuralFeatures().get(3);
+	public EAttribute getLibraryEntry_Version() {
+		return (EAttribute)libraryEntryEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLibraryEntry_LibraryItem() {
+		return (EReference)libraryEntryEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -980,11 +989,12 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEReference(targetSectionClassEClass, TARGET_SECTION_CLASS__ATTRIBUTES);
 		createEReference(targetSectionClassEClass, TARGET_SECTION_CLASS__CONTAINER);
 
-		libraryElementEClass = createEClass(LIBRARY_ELEMENT);
-		createEReference(libraryElementEClass, LIBRARY_ELEMENT__TARGET_SECTION_CLASSES);
-		createEAttribute(libraryElementEClass, LIBRARY_ELEMENT__LIBRARY_FILE);
-		createEAttribute(libraryElementEClass, LIBRARY_ELEMENT__PATH);
-		createEAttribute(libraryElementEClass, LIBRARY_ELEMENT__VERSION);
+		libraryEntryEClass = createEClass(LIBRARY_ENTRY);
+		createEReference(libraryEntryEClass, LIBRARY_ENTRY__META_DATA);
+		createEAttribute(libraryEntryEClass, LIBRARY_ENTRY__LIBRARY_FILE);
+		createEAttribute(libraryEntryEClass, LIBRARY_ENTRY__PATH);
+		createEAttribute(libraryEntryEClass, LIBRARY_ENTRY__VERSION);
+		createEReference(libraryEntryEClass, LIBRARY_ENTRY__LIBRARY_ITEM);
 
 		referenceEClass = createEClass(REFERENCE);
 		createEReference(referenceEClass, REFERENCE__EREFERENCE);
@@ -1142,11 +1152,12 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEReference(getTargetSectionClass_Attributes(), this.getTargetSectionAttribute(), this.getTargetSectionAttribute_OwningClass(), "attributes", null, 0, -1, TargetSectionClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTargetSectionClass_Container(), this.getTargetSectionClass(), null, "container", null, 0, 1, TargetSectionClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(libraryElementEClass, LibraryElement.class, "LibraryElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLibraryElement_TargetSectionClasses(), this.getTargetSectionClass(), null, "targetSectionClasses", null, 1, -1, LibraryElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLibraryElement_LibraryFile(), ecorePackage.getEString(), "libraryFile", null, 1, 1, LibraryElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLibraryElement_Path(), ecorePackage.getEString(), "path", null, 1, 1, LibraryElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLibraryElement_Version(), ecorePackage.getEString(), "version", null, 1, 1, LibraryElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(libraryEntryEClass, LibraryEntry.class, "LibraryEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getLibraryEntry_MetaData(), this.getTargetSectionClass(), null, "metaData", null, 1, -1, LibraryEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLibraryEntry_LibraryFile(), ecorePackage.getEString(), "libraryFile", null, 1, 1, LibraryEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLibraryEntry_Path(), ecorePackage.getEString(), "path", null, 1, 1, LibraryEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLibraryEntry_Version(), ecorePackage.getEString(), "version", null, 1, 1, LibraryEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLibraryEntry_LibraryItem(), this.getTargetSectionClass(), null, "libraryItem", null, 1, -1, LibraryEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(referenceEClass, Reference.class, "Reference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getReference_EReference(), ecorePackage.getEReference(), null, "eReference", null, 1, 1, Reference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

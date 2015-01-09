@@ -471,23 +471,23 @@ public interface MetamodelPackage extends EPackage {
 	int TARGET_SECTION_CLASS_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.metamodel.impl.LibraryElementImpl <em>Library Element</em>}' class.
+	 * The meta object id for the '{@link pamtram.metamodel.impl.LibraryEntryImpl <em>Library Entry</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.metamodel.impl.LibraryElementImpl
-	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getLibraryElement()
+	 * @see pamtram.metamodel.impl.LibraryEntryImpl
+	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getLibraryEntry()
 	 * @generated
 	 */
-	int LIBRARY_ELEMENT = 4;
+	int LIBRARY_ENTRY = 4;
 
 	/**
-	 * The feature id for the '<em><b>Target Section Classes</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Meta Data</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_ELEMENT__TARGET_SECTION_CLASSES = 0;
+	int LIBRARY_ENTRY__META_DATA = 0;
 
 	/**
 	 * The feature id for the '<em><b>Library File</b></em>' attribute.
@@ -496,7 +496,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_ELEMENT__LIBRARY_FILE = 1;
+	int LIBRARY_ENTRY__LIBRARY_FILE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Path</b></em>' attribute.
@@ -505,7 +505,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_ELEMENT__PATH = 2;
+	int LIBRARY_ENTRY__PATH = 2;
 
 	/**
 	 * The feature id for the '<em><b>Version</b></em>' attribute.
@@ -514,25 +514,34 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_ELEMENT__VERSION = 3;
+	int LIBRARY_ENTRY__VERSION = 3;
 
 	/**
-	 * The number of structural features of the '<em>Library Element</em>' class.
+	 * The feature id for the '<em><b>Library Item</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_ELEMENT_FEATURE_COUNT = 4;
+	int LIBRARY_ENTRY__LIBRARY_ITEM = 4;
 
 	/**
-	 * The number of operations of the '<em>Library Element</em>' class.
+	 * The number of structural features of the '<em>Library Entry</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_ELEMENT_OPERATION_COUNT = 0;
+	int LIBRARY_ENTRY_FEATURE_COUNT = 5;
+
+	/**
+	 * The number of operations of the '<em>Library Entry</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY_ENTRY_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.metamodel.impl.ReferenceImpl <em>Reference</em>}' class.
@@ -2225,58 +2234,69 @@ public interface MetamodelPackage extends EPackage {
 	EReference getTargetSectionClass_Container();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.metamodel.LibraryElement <em>Library Element</em>}'.
+	 * Returns the meta object for class '{@link pamtram.metamodel.LibraryEntry <em>Library Entry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Library Element</em>'.
-	 * @see pamtram.metamodel.LibraryElement
+	 * @return the meta object for class '<em>Library Entry</em>'.
+	 * @see pamtram.metamodel.LibraryEntry
 	 * @generated
 	 */
-	EClass getLibraryElement();
+	EClass getLibraryEntry();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.LibraryElement#getTargetSectionClasses <em>Target Section Classes</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.LibraryEntry#getMetaData <em>Meta Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Target Section Classes</em>'.
-	 * @see pamtram.metamodel.LibraryElement#getTargetSectionClasses()
-	 * @see #getLibraryElement()
+	 * @return the meta object for the containment reference list '<em>Meta Data</em>'.
+	 * @see pamtram.metamodel.LibraryEntry#getMetaData()
+	 * @see #getLibraryEntry()
 	 * @generated
 	 */
-	EReference getLibraryElement_TargetSectionClasses();
+	EReference getLibraryEntry_MetaData();
 
 	/**
-	 * Returns the meta object for the attribute '{@link pamtram.metamodel.LibraryElement#getLibraryFile <em>Library File</em>}'.
+	 * Returns the meta object for the attribute '{@link pamtram.metamodel.LibraryEntry#getLibraryFile <em>Library File</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Library File</em>'.
-	 * @see pamtram.metamodel.LibraryElement#getLibraryFile()
-	 * @see #getLibraryElement()
+	 * @see pamtram.metamodel.LibraryEntry#getLibraryFile()
+	 * @see #getLibraryEntry()
 	 * @generated
 	 */
-	EAttribute getLibraryElement_LibraryFile();
+	EAttribute getLibraryEntry_LibraryFile();
 
 	/**
-	 * Returns the meta object for the attribute '{@link pamtram.metamodel.LibraryElement#getPath <em>Path</em>}'.
+	 * Returns the meta object for the attribute '{@link pamtram.metamodel.LibraryEntry#getPath <em>Path</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Path</em>'.
-	 * @see pamtram.metamodel.LibraryElement#getPath()
-	 * @see #getLibraryElement()
+	 * @see pamtram.metamodel.LibraryEntry#getPath()
+	 * @see #getLibraryEntry()
 	 * @generated
 	 */
-	EAttribute getLibraryElement_Path();
+	EAttribute getLibraryEntry_Path();
 
 	/**
-	 * Returns the meta object for the attribute '{@link pamtram.metamodel.LibraryElement#getVersion <em>Version</em>}'.
+	 * Returns the meta object for the attribute '{@link pamtram.metamodel.LibraryEntry#getVersion <em>Version</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Version</em>'.
-	 * @see pamtram.metamodel.LibraryElement#getVersion()
-	 * @see #getLibraryElement()
+	 * @see pamtram.metamodel.LibraryEntry#getVersion()
+	 * @see #getLibraryEntry()
 	 * @generated
 	 */
-	EAttribute getLibraryElement_Version();
+	EAttribute getLibraryEntry_Version();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.LibraryEntry#getLibraryItem <em>Library Item</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Library Item</em>'.
+	 * @see pamtram.metamodel.LibraryEntry#getLibraryItem()
+	 * @see #getLibraryEntry()
+	 * @generated
+	 */
+	EReference getLibraryEntry_LibraryItem();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.Reference <em>Reference</em>}'.
@@ -2901,22 +2921,22 @@ public interface MetamodelPackage extends EPackage {
 		EReference TARGET_SECTION_CLASS__CONTAINER = eINSTANCE.getTargetSectionClass_Container();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.metamodel.impl.LibraryElementImpl <em>Library Element</em>}' class.
+		 * The meta object literal for the '{@link pamtram.metamodel.impl.LibraryEntryImpl <em>Library Entry</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.metamodel.impl.LibraryElementImpl
-		 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getLibraryElement()
+		 * @see pamtram.metamodel.impl.LibraryEntryImpl
+		 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getLibraryEntry()
 		 * @generated
 		 */
-		EClass LIBRARY_ELEMENT = eINSTANCE.getLibraryElement();
+		EClass LIBRARY_ENTRY = eINSTANCE.getLibraryEntry();
 
 		/**
-		 * The meta object literal for the '<em><b>Target Section Classes</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Meta Data</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LIBRARY_ELEMENT__TARGET_SECTION_CLASSES = eINSTANCE.getLibraryElement_TargetSectionClasses();
+		EReference LIBRARY_ENTRY__META_DATA = eINSTANCE.getLibraryEntry_MetaData();
 
 		/**
 		 * The meta object literal for the '<em><b>Library File</b></em>' attribute feature.
@@ -2924,7 +2944,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LIBRARY_ELEMENT__LIBRARY_FILE = eINSTANCE.getLibraryElement_LibraryFile();
+		EAttribute LIBRARY_ENTRY__LIBRARY_FILE = eINSTANCE.getLibraryEntry_LibraryFile();
 
 		/**
 		 * The meta object literal for the '<em><b>Path</b></em>' attribute feature.
@@ -2932,7 +2952,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LIBRARY_ELEMENT__PATH = eINSTANCE.getLibraryElement_Path();
+		EAttribute LIBRARY_ENTRY__PATH = eINSTANCE.getLibraryEntry_Path();
 
 		/**
 		 * The meta object literal for the '<em><b>Version</b></em>' attribute feature.
@@ -2940,7 +2960,15 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LIBRARY_ELEMENT__VERSION = eINSTANCE.getLibraryElement_Version();
+		EAttribute LIBRARY_ENTRY__VERSION = eINSTANCE.getLibraryEntry_Version();
+
+		/**
+		 * The meta object literal for the '<em><b>Library Item</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LIBRARY_ENTRY__LIBRARY_ITEM = eINSTANCE.getLibraryEntry_LibraryItem();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.ReferenceImpl <em>Reference</em>}' class.

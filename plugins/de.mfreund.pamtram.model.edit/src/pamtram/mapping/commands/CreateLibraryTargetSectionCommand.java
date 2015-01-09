@@ -13,7 +13,7 @@ public class CreateLibraryTargetSectionCommand extends CreateChildCommand {
 		super(editingDomain, 
 				pamtram.getTargetSectionModel(),
 				PamtramPackage.Literals.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS, 
-				MetamodelPackageImpl.eINSTANCE.getEFactoryInstance().create(MetamodelPackageImpl.Literals.LIBRARY_ELEMENT), 
+				MetamodelPackageImpl.eINSTANCE.getEFactoryInstance().create(MetamodelPackageImpl.Literals.LIBRARY_ENTRY), 
 				null);
 	}
 }

@@ -117,26 +117,26 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.LibraryElement} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.LibraryEntry} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LibraryElementItemProvider libraryElementItemProvider;
+	protected LibraryEntryItemProvider libraryEntryItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.metamodel.LibraryElement}.
+	 * This creates an adapter for a {@link pamtram.metamodel.LibraryEntry}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createLibraryElementAdapter() {
-		if (libraryElementItemProvider == null) {
-			libraryElementItemProvider = new LibraryElementItemProvider(this);
+	public Adapter createLibraryEntryAdapter() {
+		if (libraryEntryItemProvider == null) {
+			libraryEntryItemProvider = new LibraryEntryItemProvider(this);
 		}
 
-		return libraryElementItemProvider;
+		return libraryEntryItemProvider;
 	}
 
 	/**
@@ -516,7 +516,7 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	public void dispose() {
 		if (sourceSectionClassItemProvider != null) sourceSectionClassItemProvider.dispose();
 		if (targetSectionClassItemProvider != null) targetSectionClassItemProvider.dispose();
-		if (libraryElementItemProvider != null) libraryElementItemProvider.dispose();
+		if (libraryEntryItemProvider != null) libraryEntryItemProvider.dispose();
 		if (targetSectionContainmentReferenceItemProvider != null) targetSectionContainmentReferenceItemProvider.dispose();
 		if (targetSectionNonContainmentReferenceItemProvider != null) targetSectionNonContainmentReferenceItemProvider.dispose();
 		if (sourceSectionContainmentReferenceItemProvider != null) sourceSectionContainmentReferenceItemProvider.dispose();

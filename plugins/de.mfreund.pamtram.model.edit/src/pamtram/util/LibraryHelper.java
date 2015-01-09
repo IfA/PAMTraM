@@ -18,15 +18,19 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.CardinalityType;
-import pamtram.metamodel.LibraryElement;
+import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.MetaModelElement;
+import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionContainmentReference;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 import pamtram.metamodel.impl.MetamodelFactoryImpl;
-import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry;
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractAttributeMapper;
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryItem;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.MetaData;
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.impl.GenLibraryFactoryImpl;
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.impl.GenLibraryPackageImpl;
 import de.tud.et.ifa.agtele.genlibrary.util.impl.FileParserImpl;
 import de.tud.et.ifa.agtele.genlibrary.util.interfaces.LibraryFileEntry;
 
@@ -51,11 +55,11 @@ public class LibraryHelper {
 	 * @param path The path of the library entry inside the library (e.g. 'my.path').
 	 * @param targetEPackage The target ePackage of the pamtram model into that the generated library
 	 * element shall be inserted later on.
-	 * @return The generated LibraryElement.
+	 * @return The generated LibraryEntry.
 	 * @throws IOException If something goes wrong during loading the libraryFile or the XMI file inside
 	 * the library file representing the LibraryEntry. 
 	 */
-	public static LibraryElement convertToLibraryElement(String libraryFile, String path,
+	public static LibraryEntry convertToLibraryElement(String libraryFile, String path,
 			EPackage targetEPackage) throws IOException {
 		
 		//TODO maybe use a factory pattern for this?
@@ -101,7 +105,8 @@ public class LibraryHelper {
 	 * @throws IOException If something goes wrong during loading the libraryFile or the XMI file inside
 	 * the library file representing the LibraryEntry. 
 	 */
-	public static LibraryEntry getLibraryEntry(LibraryFileEntry entry) throws IOException {
+	public static de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry 
+			getLibraryEntry(LibraryFileEntry entry) throws IOException {
 		
 		if(entry == null) {
 			return null;
@@ -114,8 +119,8 @@ public class LibraryHelper {
 		
 		// get the library entry from the resource contents and return it
 		if(!(resource.getContents() == null) && !resource.getContents().isEmpty() &&
-				resource.getContents().get(0) instanceof LibraryEntry) {
-			return (LibraryEntry) resource.getContents().get(0);
+				resource.getContents().get(0) instanceof de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry) {
+			return (de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry) resource.getContents().get(0);
 		}
 		
 		return null;
@@ -156,12 +161,12 @@ public class LibraryHelper {
 		/**
 		 * This is the LibraryEntry that the LibraryFileEntry is associated with.
 		 */
-		private LibraryEntry libEntry;
+		private de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry libEntry;
 		
 		/**
-		 * This is the generated LibraryElement.
+		 * This is the generated LibraryEntry.
 		 */
-		private LibraryElement libElement;
+		private LibraryEntry pamtramLibEntry;
 		
 		/**
 		 * This map keeps track of the metamodel elements that have been created for the
@@ -195,27 +200,49 @@ public class LibraryHelper {
 		 * @return The generated LibraryElement.
 		 * @throws IOException 
 		 */
-		public LibraryElement convert() throws IOException {
+		public LibraryEntry convert() throws IOException {
 			
 			// first, determine the LibraryFileEntry and LibraryEntry to be converted
 			libFileEntry = getLibraryFileEntry(libraryFile, path);
 			libEntry = getLibraryEntry(libFileEntry);
 			
 			// create the LibraryElement to be returned
-			libElement = MetamodelFactoryImpl.eINSTANCE.createLibraryElement();
+			pamtramLibEntry = MetamodelFactoryImpl.eINSTANCE.createLibraryEntry();
 			
 			// set the path, version, etc.
-			libElement.setVersion(libEntry.getVersion());
-			libElement.setPath(libFileEntry.getKey());
-			libElement.setLibraryFile(libraryFile);
+			pamtramLibEntry.setVersion(libEntry.getVersion() != null ? libEntry.getVersion() : "");
+			pamtramLibEntry.setPath(libFileEntry.getKey());
+			pamtramLibEntry.setLibraryFile(libraryFile);
+			
+//			if(libEntry.getMetaData() == null) {
+//				return pamtramLibEntry;
+//			}
+//			
+//			for (AbstractAttributeMapper<EObject> attMapper : libEntry.getMetaData().getAttributeMappers()) {
+//				
+//				TargetSectionClass target = MetamodelFactoryImpl.eINSTANCE.createTargetSectionClass();
+//				target.setEClass(attMapper.eClass());
+//				
+//				TargetSectionNonContainmentReference source = MetamodelFactoryImpl.eINSTANCE.createTargetSectionNonContainmentReference();
+//				source.setEReference(GenLibraryPackageImpl.eINSTANCE.getAbstractAttributeMapper_Source());
+//				source.getValue().add(attMapper.getSource());
+//				target.getReferences().add(source);
+//				
+//				ActualAttribute attribute = MetamodelFactoryImpl.eINSTANCE.createActualAttribute();
+//				attribute.setAttribute(attMapper.getAttribute());
+//				target.getAttributes().add(attribute);
+//				
+//				pamtramLibEntry.getParameters().add(target);
+//				
+//			}
 			
 			// now, iterate over the contents of the LibraryEntry
-			populateLibraryElement(libElement, libEntry);
+			populateLibraryElement(pamtramLibEntry, libEntry);
 			
 			// finally, try to set the non-containment references
 			findNonContainmentReferenceTargets();
 			
-			return libElement;
+			return pamtramLibEntry;
 		}
 		
 		/**
@@ -232,12 +259,20 @@ public class LibraryHelper {
 			
 			// do not iterate through the metadata of a LibraryItem so that no elements are generated for it
 			if(currentObject instanceof MetaData) {
-				return;
+//				return;
 			}
 			
+			
 			// only generate metamodel elements for elements that do belong to the target namespace
-			if(targetEPackages.contains(currentObject.eClass().getEPackage())) {
-				
+			if(currentObject instanceof de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry || 
+					currentObject instanceof LibraryItem || currentObject instanceof MetaData) {
+				// browse deeper in the containment hierarchy
+				for (EObject child : currentObject.eContents()) {
+					populateLibraryElement(currentObject, child);
+				}
+			}
+//			else if(targetEPackages.contains(currentObject.eClass().getEPackage())) {
+			else {
 				// first generate a target section class for the element itself and
 				// attach it to the parentObject
 				TargetSectionClass tClass = 
@@ -246,8 +281,10 @@ public class LibraryHelper {
 				tClass.setName(currentObject.eClass().getName());
 				tClass.setCardinality(CardinalityType.ONE);
 				libEntries2metaModelElementsMap.put(currentObject, tClass);
-				if(parentObject instanceof LibraryElement) {
-					((LibraryElement) parentObject).getTargetSectionClasses().add(tClass);
+				if(parentObject instanceof LibraryItem) {
+					pamtramLibEntry.getLibraryItem().add(tClass);
+				} else if(parentObject instanceof MetaData) {
+					pamtramLibEntry.getMetaData().add(tClass);
 				} else if(parentObject instanceof TargetSectionContainmentReference) {
 					((TargetSectionContainmentReference) parentObject).getValue().add(tClass);
 				} else {
@@ -311,11 +348,11 @@ public class LibraryHelper {
 						}
 					}
 				}
-			} else {
-				// browse deeper in the containment hierarchy
-				for (EObject child : currentObject.eContents()) {
-					populateLibraryElement(parentObject, child);
-				}
+//			} else {
+//				// browse deeper in the containment hierarchy
+//				for (EObject child : currentObject.eContents()) {
+//					populateLibraryElement(parentObject, child);
+//				}
 			}
 			
 		}

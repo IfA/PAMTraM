@@ -4,9 +4,15 @@ Bundle-Name: Pamtram UI
 Bundle-SymbolicName: de.mfreund.pamtram.ui;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Activator: de.mfreund.pamtram.ui.PamtramUIPlugin$Implementation
 Bundle-Vendor: mfreund
-Bundle-ActivationPolicy: lazy
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: de.mfreund.pamtram.pages,
+ de.mfreund.pamtram.ui,
+ de.mfreund.pamtram.ui.launching,
+ de.mfreund.pamtram.ui.util,
+ de.mfreund.pamtram.wizards
 Require-Bundle: org.eclipse.core.runtime,
  de.mfreund.pamtram,
  org.eclipse.debug.ui,
@@ -20,5 +26,4 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui.ide;bundle-version="3.10.1",
  org.eclipse.emf.ecore.xmi;bundle-version="2.10.1",
  org.eclipse.emf.edit.ui;bundle-version="2.10.1"
-Bundle-Activator: de.mfreund.pamtram.ui.PamtramUIPlugin$Implementation
-Export-Package: de.mfreund.pamtram.wizards
+Bundle-ActivationPolicy: lazy

@@ -68,6 +68,7 @@ public class LibraryEntryItemProvider
 			addLibraryFilePropertyDescriptor(object);
 			addPathPropertyDescriptor(object);
 			addVersionPropertyDescriptor(object);
+			addOriginalLibraryEntryPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -139,6 +140,28 @@ public class LibraryEntryItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Original Library Entry feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOriginalLibraryEntryPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LibraryEntry_originalLibraryEntry_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LibraryEntry_originalLibraryEntry_feature", "_UI_LibraryEntry_type"),
+				 MetamodelPackage.Literals.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -150,8 +173,7 @@ public class LibraryEntryItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MetamodelPackage.Literals.LIBRARY_ENTRY__META_DATA);
-			childrenFeatures.add(MetamodelPackage.Literals.LIBRARY_ENTRY__LIBRARY_ITEM);
+			childrenFeatures.add(MetamodelPackage.Literals.LIBRARY_ENTRY__PARAMETERS);
 		}
 		return childrenFeatures;
 	}
@@ -212,8 +234,7 @@ public class LibraryEntryItemProvider
 			case MetamodelPackage.LIBRARY_ENTRY__VERSION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case MetamodelPackage.LIBRARY_ENTRY__META_DATA:
-			case MetamodelPackage.LIBRARY_ENTRY__LIBRARY_ITEM:
+			case MetamodelPackage.LIBRARY_ENTRY__PARAMETERS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -233,36 +254,18 @@ public class LibraryEntryItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MetamodelPackage.Literals.LIBRARY_ENTRY__META_DATA,
-				 MetamodelFactory.eINSTANCE.createTargetSectionClass()));
+				(MetamodelPackage.Literals.LIBRARY_ENTRY__PARAMETERS,
+				 MetamodelFactory.eINSTANCE.createAttributeParameter()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MetamodelPackage.Literals.LIBRARY_ENTRY__LIBRARY_ITEM,
-				 MetamodelFactory.eINSTANCE.createTargetSectionClass()));
-	}
+				(MetamodelPackage.Literals.LIBRARY_ENTRY__PARAMETERS,
+				 MetamodelFactory.eINSTANCE.createContainerParameter()));
 
-	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-		Object childFeature = feature;
-		Object childObject = child;
-
-		boolean qualify =
-			childFeature == MetamodelPackage.Literals.LIBRARY_ENTRY__META_DATA ||
-			childFeature == MetamodelPackage.Literals.LIBRARY_ENTRY__LIBRARY_ITEM;
-
-		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
-		return super.getCreateChildText(owner, feature, child, selection);
+		newChildDescriptors.add
+			(createChildParameter
+				(MetamodelPackage.Literals.LIBRARY_ENTRY__PARAMETERS,
+				 MetamodelFactory.eINSTANCE.createExternalReferenceParameter()));
 	}
 
 	/**

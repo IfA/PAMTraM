@@ -117,6 +117,75 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.AttributeParameter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AttributeParameterItemProvider attributeParameterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.metamodel.AttributeParameter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAttributeParameterAdapter() {
+		if (attributeParameterItemProvider == null) {
+			attributeParameterItemProvider = new AttributeParameterItemProvider(this);
+		}
+
+		return attributeParameterItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.ContainerParameter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ContainerParameterItemProvider containerParameterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.metamodel.ContainerParameter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createContainerParameterAdapter() {
+		if (containerParameterItemProvider == null) {
+			containerParameterItemProvider = new ContainerParameterItemProvider(this);
+		}
+
+		return containerParameterItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.ExternalReferenceParameter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExternalReferenceParameterItemProvider externalReferenceParameterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.metamodel.ExternalReferenceParameter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createExternalReferenceParameterAdapter() {
+		if (externalReferenceParameterItemProvider == null) {
+			externalReferenceParameterItemProvider = new ExternalReferenceParameterItemProvider(this);
+		}
+
+		return externalReferenceParameterItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.LibraryEntry} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -516,6 +585,9 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	public void dispose() {
 		if (sourceSectionClassItemProvider != null) sourceSectionClassItemProvider.dispose();
 		if (targetSectionClassItemProvider != null) targetSectionClassItemProvider.dispose();
+		if (attributeParameterItemProvider != null) attributeParameterItemProvider.dispose();
+		if (containerParameterItemProvider != null) containerParameterItemProvider.dispose();
+		if (externalReferenceParameterItemProvider != null) externalReferenceParameterItemProvider.dispose();
 		if (libraryEntryItemProvider != null) libraryEntryItemProvider.dispose();
 		if (targetSectionContainmentReferenceItemProvider != null) targetSectionContainmentReferenceItemProvider.dispose();
 		if (targetSectionNonContainmentReferenceItemProvider != null) targetSectionNonContainmentReferenceItemProvider.dispose();

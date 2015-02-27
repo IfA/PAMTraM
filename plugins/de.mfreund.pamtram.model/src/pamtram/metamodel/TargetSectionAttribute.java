@@ -36,7 +36,7 @@ public interface TargetSectionAttribute extends Attribute {
 	 * @return the value of the '<em>Owning Class</em>' container reference.
 	 * @see pamtram.metamodel.MetamodelPackage#getTargetSectionAttribute_OwningClass()
 	 * @see pamtram.metamodel.TargetSectionClass#getAttributes
-	 * @model opposite="attributes" required="true" transient="false" changeable="false"
+	 * @model opposite="attributes" transient="false" changeable="false"
 	 * @generated
 	 */
 	TargetSectionClass getOwningClass();

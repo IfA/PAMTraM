@@ -40,6 +40,33 @@ public interface MetamodelFactory extends EFactory {
 	TargetSectionClass createTargetSectionClass();
 
 	/**
+	 * Returns a new object of class '<em>Attribute Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Attribute Parameter</em>'.
+	 * @generated
+	 */
+	AttributeParameter createAttributeParameter();
+
+	/**
+	 * Returns a new object of class '<em>Container Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Container Parameter</em>'.
+	 * @generated
+	 */
+	ContainerParameter createContainerParameter();
+
+	/**
+	 * Returns a new object of class '<em>External Reference Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>External Reference Parameter</em>'.
+	 * @generated
+	 */
+	ExternalReferenceParameter createExternalReferenceParameter();
+
+	/**
 	 * Returns a new object of class '<em>Library Entry</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

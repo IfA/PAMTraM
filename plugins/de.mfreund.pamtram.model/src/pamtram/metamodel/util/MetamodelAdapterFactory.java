@@ -9,13 +9,17 @@ import org.eclipse.emf.ecore.EObject;
 import pamtram.NamedElement;
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.Attribute;
+import pamtram.metamodel.AttributeParameter;
 import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.BeginningMatcher;
 import pamtram.metamodel.CaseSensitiveConstraint;
+import pamtram.metamodel.ContainerParameter;
 import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.EndingMatcher;
 import pamtram.metamodel.EqualityMatcher;
+import pamtram.metamodel.ExternalReferenceParameter;
 import pamtram.metamodel.LibraryEntry;
+import pamtram.metamodel.LibraryParameter;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
@@ -105,6 +109,22 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseTargetSectionClass(TargetSectionClass object) {
 				return createTargetSectionClassAdapter();
+			}
+			@Override
+			public Adapter caseLibraryParameter(LibraryParameter object) {
+				return createLibraryParameterAdapter();
+			}
+			@Override
+			public Adapter caseAttributeParameter(AttributeParameter object) {
+				return createAttributeParameterAdapter();
+			}
+			@Override
+			public Adapter caseContainerParameter(ContainerParameter object) {
+				return createContainerParameterAdapter();
+			}
+			@Override
+			public Adapter caseExternalReferenceParameter(ExternalReferenceParameter object) {
+				return createExternalReferenceParameterAdapter();
 			}
 			@Override
 			public Adapter caseLibraryEntry(LibraryEntry object) {
@@ -271,6 +291,62 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTargetSectionClassAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.LibraryParameter <em>Library Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.metamodel.LibraryParameter
+	 * @generated
+	 */
+	public Adapter createLibraryParameterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.AttributeParameter <em>Attribute Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.metamodel.AttributeParameter
+	 * @generated
+	 */
+	public Adapter createAttributeParameterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.ContainerParameter <em>Container Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.metamodel.ContainerParameter
+	 * @generated
+	 */
+	public Adapter createContainerParameterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.metamodel.ExternalReferenceParameter <em>External Reference Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.metamodel.ExternalReferenceParameter
+	 * @generated
+	 */
+	public Adapter createExternalReferenceParameterAdapter() {
 		return null;
 	}
 

@@ -34,7 +34,7 @@ public interface TargetSectionReference extends Reference {
 	 * @return the value of the '<em>Owning Class</em>' container reference.
 	 * @see pamtram.metamodel.MetamodelPackage#getTargetSectionReference_OwningClass()
 	 * @see pamtram.metamodel.TargetSectionClass#getReferences
-	 * @model opposite="references" required="true" transient="false" changeable="false"
+	 * @model opposite="references" transient="false" changeable="false"
 	 * @generated
 	 */
 	TargetSectionClass getOwningClass();

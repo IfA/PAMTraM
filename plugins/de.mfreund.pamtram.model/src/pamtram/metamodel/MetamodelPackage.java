@@ -471,6 +471,181 @@ public interface MetamodelPackage extends EPackage {
 	int TARGET_SECTION_CLASS_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link pamtram.metamodel.impl.LibraryParameterImpl <em>Library Parameter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.metamodel.impl.LibraryParameterImpl
+	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getLibraryParameter()
+	 * @generated
+	 */
+	int LIBRARY_PARAMETER = 4;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY_PARAMETER__SOURCE = 0;
+
+	/**
+	 * The number of structural features of the '<em>Library Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY_PARAMETER_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Library Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY_PARAMETER_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.metamodel.impl.AttributeParameterImpl <em>Attribute Parameter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.metamodel.impl.AttributeParameterImpl
+	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getAttributeParameter()
+	 * @generated
+	 */
+	int ATTRIBUTE_PARAMETER = 5;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_PARAMETER__SOURCE = LIBRARY_PARAMETER__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_PARAMETER__ATTRIBUTE = LIBRARY_PARAMETER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Attribute Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_PARAMETER_FEATURE_COUNT = LIBRARY_PARAMETER_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Attribute Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_PARAMETER_OPERATION_COUNT = LIBRARY_PARAMETER_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.metamodel.impl.ContainerParameterImpl <em>Container Parameter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.metamodel.impl.ContainerParameterImpl
+	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getContainerParameter()
+	 * @generated
+	 */
+	int CONTAINER_PARAMETER = 6;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINER_PARAMETER__SOURCE = LIBRARY_PARAMETER__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Class</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINER_PARAMETER__CLASS = LIBRARY_PARAMETER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Container Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINER_PARAMETER_FEATURE_COUNT = LIBRARY_PARAMETER_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Container Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINER_PARAMETER_OPERATION_COUNT = LIBRARY_PARAMETER_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.metamodel.impl.ExternalReferenceParameterImpl <em>External Reference Parameter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.metamodel.impl.ExternalReferenceParameterImpl
+	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getExternalReferenceParameter()
+	 * @generated
+	 */
+	int EXTERNAL_REFERENCE_PARAMETER = 7;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_REFERENCE_PARAMETER__SOURCE = LIBRARY_PARAMETER__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_REFERENCE_PARAMETER__REFERENCE = LIBRARY_PARAMETER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>External Reference Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_REFERENCE_PARAMETER_FEATURE_COUNT = LIBRARY_PARAMETER_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>External Reference Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_REFERENCE_PARAMETER_OPERATION_COUNT = LIBRARY_PARAMETER_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link pamtram.metamodel.impl.LibraryEntryImpl <em>Library Entry</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -478,16 +653,16 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getLibraryEntry()
 	 * @generated
 	 */
-	int LIBRARY_ENTRY = 4;
+	int LIBRARY_ENTRY = 8;
 
 	/**
-	 * The feature id for the '<em><b>Meta Data</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_ENTRY__META_DATA = 0;
+	int LIBRARY_ENTRY__PARAMETERS = 0;
 
 	/**
 	 * The feature id for the '<em><b>Library File</b></em>' attribute.
@@ -517,13 +692,13 @@ public interface MetamodelPackage extends EPackage {
 	int LIBRARY_ENTRY__VERSION = 3;
 
 	/**
-	 * The feature id for the '<em><b>Library Item</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Original Library Entry</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_ENTRY__LIBRARY_ITEM = 4;
+	int LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY = 4;
 
 	/**
 	 * The number of structural features of the '<em>Library Entry</em>' class.
@@ -551,7 +726,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getReference()
 	 * @generated
 	 */
-	int REFERENCE = 5;
+	int REFERENCE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -606,7 +781,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getContainmentReference()
 	 * @generated
 	 */
-	int CONTAINMENT_REFERENCE = 6;
+	int CONTAINMENT_REFERENCE = 10;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -661,7 +836,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getNonContainmentReference()
 	 * @generated
 	 */
-	int NON_CONTAINMENT_REFERENCE = 7;
+	int NON_CONTAINMENT_REFERENCE = 11;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -716,7 +891,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getSourceSectionReference()
 	 * @generated
 	 */
-	int SOURCE_SECTION_REFERENCE = 8;
+	int SOURCE_SECTION_REFERENCE = 12;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -789,7 +964,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getTargetSectionReference()
 	 * @generated
 	 */
-	int TARGET_SECTION_REFERENCE = 9;
+	int TARGET_SECTION_REFERENCE = 13;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -862,7 +1037,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getTargetSectionContainmentReference()
 	 * @generated
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE = 10;
+	int TARGET_SECTION_CONTAINMENT_REFERENCE = 14;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -944,7 +1119,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getTargetSectionNonContainmentReference()
 	 * @generated
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE = 11;
+	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE = 15;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1026,7 +1201,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getSourceSectionContainmentReference()
 	 * @generated
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE = 12;
+	int SOURCE_SECTION_CONTAINMENT_REFERENCE = 16;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1108,7 +1283,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getMetaModelSectionReference()
 	 * @generated
 	 */
-	int META_MODEL_SECTION_REFERENCE = 13;
+	int META_MODEL_SECTION_REFERENCE = 17;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1190,7 +1365,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getAttribute()
 	 * @generated
 	 */
-	int ATTRIBUTE = 14;
+	int ATTRIBUTE = 18;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1237,7 +1412,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getSourceSectionAttribute()
 	 * @generated
 	 */
-	int SOURCE_SECTION_ATTRIBUTE = 15;
+	int SOURCE_SECTION_ATTRIBUTE = 19;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1310,7 +1485,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getTargetSectionAttribute()
 	 * @generated
 	 */
-	int TARGET_SECTION_ATTRIBUTE = 16;
+	int TARGET_SECTION_ATTRIBUTE = 20;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1383,7 +1558,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getActualAttribute()
 	 * @generated
 	 */
-	int ACTUAL_ATTRIBUTE = 17;
+	int ACTUAL_ATTRIBUTE = 21;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1465,7 +1640,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getVirtualAttribute()
 	 * @generated
 	 */
-	int VIRTUAL_ATTRIBUTE = 18;
+	int VIRTUAL_ATTRIBUTE = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1538,7 +1713,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getAttributeValueConstraint()
 	 * @generated
 	 */
-	int ATTRIBUTE_VALUE_CONSTRAINT = 20;
+	int ATTRIBUTE_VALUE_CONSTRAINT = 24;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1602,7 +1777,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getCaseSensitiveConstraint()
 	 * @generated
 	 */
-	int CASE_SENSITIVE_CONSTRAINT = 25;
+	int CASE_SENSITIVE_CONSTRAINT = 29;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1675,7 +1850,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getEqualityMatcher()
 	 * @generated
 	 */
-	int EQUALITY_MATCHER = 19;
+	int EQUALITY_MATCHER = 23;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1748,7 +1923,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getSubstringMatcher()
 	 * @generated
 	 */
-	int SUBSTRING_MATCHER = 21;
+	int SUBSTRING_MATCHER = 25;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1821,7 +1996,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getBeginningMatcher()
 	 * @generated
 	 */
-	int BEGINNING_MATCHER = 22;
+	int BEGINNING_MATCHER = 26;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1894,7 +2069,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getEndingMatcher()
 	 * @generated
 	 */
-	int ENDING_MATCHER = 23;
+	int ENDING_MATCHER = 27;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1967,7 +2142,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getRegExMatcher()
 	 * @generated
 	 */
-	int REG_EX_MATCHER = 24;
+	int REG_EX_MATCHER = 28;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2031,7 +2206,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getAttributeValueConstraintType()
 	 * @generated
 	 */
-	int ATTRIBUTE_VALUE_CONSTRAINT_TYPE = 26;
+	int ATTRIBUTE_VALUE_CONSTRAINT_TYPE = 30;
 
 	/**
 	 * The meta object id for the '{@link pamtram.metamodel.CardinalityType <em>Cardinality Type</em>}' enum.
@@ -2041,7 +2216,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getCardinalityType()
 	 * @generated
 	 */
-	int CARDINALITY_TYPE = 27;
+	int CARDINALITY_TYPE = 31;
 
 
 	/**
@@ -2234,6 +2409,90 @@ public interface MetamodelPackage extends EPackage {
 	EReference getTargetSectionClass_Container();
 
 	/**
+	 * Returns the meta object for class '{@link pamtram.metamodel.LibraryParameter <em>Library Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Library Parameter</em>'.
+	 * @see pamtram.metamodel.LibraryParameter
+	 * @generated
+	 */
+	EClass getLibraryParameter();
+
+	/**
+	 * Returns the meta object for the reference '{@link pamtram.metamodel.LibraryParameter#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Source</em>'.
+	 * @see pamtram.metamodel.LibraryParameter#getSource()
+	 * @see #getLibraryParameter()
+	 * @generated
+	 */
+	EReference getLibraryParameter_Source();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.metamodel.AttributeParameter <em>Attribute Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Attribute Parameter</em>'.
+	 * @see pamtram.metamodel.AttributeParameter
+	 * @generated
+	 */
+	EClass getAttributeParameter();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link pamtram.metamodel.AttributeParameter#getAttribute <em>Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Attribute</em>'.
+	 * @see pamtram.metamodel.AttributeParameter#getAttribute()
+	 * @see #getAttributeParameter()
+	 * @generated
+	 */
+	EReference getAttributeParameter_Attribute();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.metamodel.ContainerParameter <em>Container Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Container Parameter</em>'.
+	 * @see pamtram.metamodel.ContainerParameter
+	 * @generated
+	 */
+	EClass getContainerParameter();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link pamtram.metamodel.ContainerParameter#getClass_ <em>Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Class</em>'.
+	 * @see pamtram.metamodel.ContainerParameter#getClass_()
+	 * @see #getContainerParameter()
+	 * @generated
+	 */
+	EReference getContainerParameter_Class();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.metamodel.ExternalReferenceParameter <em>External Reference Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>External Reference Parameter</em>'.
+	 * @see pamtram.metamodel.ExternalReferenceParameter
+	 * @generated
+	 */
+	EClass getExternalReferenceParameter();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link pamtram.metamodel.ExternalReferenceParameter#getReference <em>Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Reference</em>'.
+	 * @see pamtram.metamodel.ExternalReferenceParameter#getReference()
+	 * @see #getExternalReferenceParameter()
+	 * @generated
+	 */
+	EReference getExternalReferenceParameter_Reference();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.LibraryEntry <em>Library Entry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2244,15 +2503,15 @@ public interface MetamodelPackage extends EPackage {
 	EClass getLibraryEntry();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.LibraryEntry#getMetaData <em>Meta Data</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.LibraryEntry#getParameters <em>Parameters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Meta Data</em>'.
-	 * @see pamtram.metamodel.LibraryEntry#getMetaData()
+	 * @return the meta object for the containment reference list '<em>Parameters</em>'.
+	 * @see pamtram.metamodel.LibraryEntry#getParameters()
 	 * @see #getLibraryEntry()
 	 * @generated
 	 */
-	EReference getLibraryEntry_MetaData();
+	EReference getLibraryEntry_Parameters();
 
 	/**
 	 * Returns the meta object for the attribute '{@link pamtram.metamodel.LibraryEntry#getLibraryFile <em>Library File</em>}'.
@@ -2288,15 +2547,15 @@ public interface MetamodelPackage extends EPackage {
 	EAttribute getLibraryEntry_Version();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.LibraryEntry#getLibraryItem <em>Library Item</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.metamodel.LibraryEntry#getOriginalLibraryEntry <em>Original Library Entry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Library Item</em>'.
-	 * @see pamtram.metamodel.LibraryEntry#getLibraryItem()
+	 * @return the meta object for the reference '<em>Original Library Entry</em>'.
+	 * @see pamtram.metamodel.LibraryEntry#getOriginalLibraryEntry()
 	 * @see #getLibraryEntry()
 	 * @generated
 	 */
-	EReference getLibraryEntry_LibraryItem();
+	EReference getLibraryEntry_OriginalLibraryEntry();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.Reference <em>Reference</em>}'.
@@ -2921,6 +3180,78 @@ public interface MetamodelPackage extends EPackage {
 		EReference TARGET_SECTION_CLASS__CONTAINER = eINSTANCE.getTargetSectionClass_Container();
 
 		/**
+		 * The meta object literal for the '{@link pamtram.metamodel.impl.LibraryParameterImpl <em>Library Parameter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.metamodel.impl.LibraryParameterImpl
+		 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getLibraryParameter()
+		 * @generated
+		 */
+		EClass LIBRARY_PARAMETER = eINSTANCE.getLibraryParameter();
+
+		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LIBRARY_PARAMETER__SOURCE = eINSTANCE.getLibraryParameter_Source();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.metamodel.impl.AttributeParameterImpl <em>Attribute Parameter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.metamodel.impl.AttributeParameterImpl
+		 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getAttributeParameter()
+		 * @generated
+		 */
+		EClass ATTRIBUTE_PARAMETER = eINSTANCE.getAttributeParameter();
+
+		/**
+		 * The meta object literal for the '<em><b>Attribute</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ATTRIBUTE_PARAMETER__ATTRIBUTE = eINSTANCE.getAttributeParameter_Attribute();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.metamodel.impl.ContainerParameterImpl <em>Container Parameter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.metamodel.impl.ContainerParameterImpl
+		 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getContainerParameter()
+		 * @generated
+		 */
+		EClass CONTAINER_PARAMETER = eINSTANCE.getContainerParameter();
+
+		/**
+		 * The meta object literal for the '<em><b>Class</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONTAINER_PARAMETER__CLASS = eINSTANCE.getContainerParameter_Class();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.metamodel.impl.ExternalReferenceParameterImpl <em>External Reference Parameter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.metamodel.impl.ExternalReferenceParameterImpl
+		 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getExternalReferenceParameter()
+		 * @generated
+		 */
+		EClass EXTERNAL_REFERENCE_PARAMETER = eINSTANCE.getExternalReferenceParameter();
+
+		/**
+		 * The meta object literal for the '<em><b>Reference</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTERNAL_REFERENCE_PARAMETER__REFERENCE = eINSTANCE.getExternalReferenceParameter_Reference();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.LibraryEntryImpl <em>Library Entry</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2931,12 +3262,12 @@ public interface MetamodelPackage extends EPackage {
 		EClass LIBRARY_ENTRY = eINSTANCE.getLibraryEntry();
 
 		/**
-		 * The meta object literal for the '<em><b>Meta Data</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Parameters</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LIBRARY_ENTRY__META_DATA = eINSTANCE.getLibraryEntry_MetaData();
+		EReference LIBRARY_ENTRY__PARAMETERS = eINSTANCE.getLibraryEntry_Parameters();
 
 		/**
 		 * The meta object literal for the '<em><b>Library File</b></em>' attribute feature.
@@ -2963,12 +3294,12 @@ public interface MetamodelPackage extends EPackage {
 		EAttribute LIBRARY_ENTRY__VERSION = eINSTANCE.getLibraryEntry_Version();
 
 		/**
-		 * The meta object literal for the '<em><b>Library Item</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Original Library Entry</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LIBRARY_ENTRY__LIBRARY_ITEM = eINSTANCE.getLibraryEntry_LibraryItem();
+		EReference LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY = eINSTANCE.getLibraryEntry_OriginalLibraryEntry();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.ReferenceImpl <em>Reference</em>}' class.

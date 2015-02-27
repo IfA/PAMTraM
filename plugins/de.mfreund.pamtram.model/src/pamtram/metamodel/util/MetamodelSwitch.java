@@ -8,13 +8,17 @@ import org.eclipse.emf.ecore.util.Switch;
 import pamtram.NamedElement;
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.Attribute;
+import pamtram.metamodel.AttributeParameter;
 import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.BeginningMatcher;
 import pamtram.metamodel.CaseSensitiveConstraint;
+import pamtram.metamodel.ContainerParameter;
 import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.EndingMatcher;
 import pamtram.metamodel.EqualityMatcher;
+import pamtram.metamodel.ExternalReferenceParameter;
 import pamtram.metamodel.LibraryEntry;
+import pamtram.metamodel.LibraryParameter;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
@@ -120,6 +124,33 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				if (result == null) result = caseClass(targetSectionClass);
 				if (result == null) result = caseMetaModelElement(targetSectionClass);
 				if (result == null) result = caseNamedElement(targetSectionClass);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MetamodelPackage.LIBRARY_PARAMETER: {
+				LibraryParameter libraryParameter = (LibraryParameter)theEObject;
+				T result = caseLibraryParameter(libraryParameter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MetamodelPackage.ATTRIBUTE_PARAMETER: {
+				AttributeParameter attributeParameter = (AttributeParameter)theEObject;
+				T result = caseAttributeParameter(attributeParameter);
+				if (result == null) result = caseLibraryParameter(attributeParameter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MetamodelPackage.CONTAINER_PARAMETER: {
+				ContainerParameter containerParameter = (ContainerParameter)theEObject;
+				T result = caseContainerParameter(containerParameter);
+				if (result == null) result = caseLibraryParameter(containerParameter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MetamodelPackage.EXTERNAL_REFERENCE_PARAMETER: {
+				ExternalReferenceParameter externalReferenceParameter = (ExternalReferenceParameter)theEObject;
+				T result = caseExternalReferenceParameter(externalReferenceParameter);
+				if (result == null) result = caseLibraryParameter(externalReferenceParameter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -382,6 +413,66 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTargetSectionClass(TargetSectionClass object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Library Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Library Parameter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLibraryParameter(LibraryParameter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Attribute Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Attribute Parameter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAttributeParameter(AttributeParameter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Container Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Container Parameter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseContainerParameter(ContainerParameter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>External Reference Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>External Reference Parameter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExternalReferenceParameter(ExternalReferenceParameter object) {
 		return null;
 	}
 

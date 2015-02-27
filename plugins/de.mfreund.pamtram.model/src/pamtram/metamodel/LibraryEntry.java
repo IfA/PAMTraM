@@ -13,11 +13,11 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link pamtram.metamodel.LibraryEntry#getMetaData <em>Meta Data</em>}</li>
+ *   <li>{@link pamtram.metamodel.LibraryEntry#getParameters <em>Parameters</em>}</li>
  *   <li>{@link pamtram.metamodel.LibraryEntry#getLibraryFile <em>Library File</em>}</li>
  *   <li>{@link pamtram.metamodel.LibraryEntry#getPath <em>Path</em>}</li>
  *   <li>{@link pamtram.metamodel.LibraryEntry#getVersion <em>Version</em>}</li>
- *   <li>{@link pamtram.metamodel.LibraryEntry#getLibraryItem <em>Library Item</em>}</li>
+ *   <li>{@link pamtram.metamodel.LibraryEntry#getOriginalLibraryEntry <em>Original Library Entry</em>}</li>
  * </ul>
  * </p>
  *
@@ -27,20 +27,20 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface LibraryEntry extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Meta Data</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.metamodel.TargetSectionClass}.
+	 * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
+	 * The list contents are of type {@link pamtram.metamodel.LibraryParameter}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Meta Data</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Parameters</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Meta Data</em>' containment reference list.
-	 * @see pamtram.metamodel.MetamodelPackage#getLibraryEntry_MetaData()
+	 * @return the value of the '<em>Parameters</em>' containment reference list.
+	 * @see pamtram.metamodel.MetamodelPackage#getLibraryEntry_Parameters()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<TargetSectionClass> getMetaData();
+	EList<LibraryParameter> getParameters();
 
 	/**
 	 * Returns the value of the '<em><b>Library File</b></em>' attribute.
@@ -121,19 +121,29 @@ public interface LibraryEntry extends EObject {
 	void setVersion(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Library Item</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.metamodel.TargetSectionClass}.
+	 * Returns the value of the '<em><b>Original Library Entry</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Library Item</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Original Library Entry</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Library Item</em>' containment reference list.
-	 * @see pamtram.metamodel.MetamodelPackage#getLibraryEntry_LibraryItem()
-	 * @model containment="true" required="true"
+	 * @return the value of the '<em>Original Library Entry</em>' reference.
+	 * @see #setOriginalLibraryEntry(EObject)
+	 * @see pamtram.metamodel.MetamodelPackage#getLibraryEntry_OriginalLibraryEntry()
+	 * @model required="true"
 	 * @generated
 	 */
-	EList<TargetSectionClass> getLibraryItem();
+	EObject getOriginalLibraryEntry();
+
+	/**
+	 * Sets the value of the '{@link pamtram.metamodel.LibraryEntry#getOriginalLibraryEntry <em>Original Library Entry</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Original Library Entry</em>' reference.
+	 * @see #getOriginalLibraryEntry()
+	 * @generated
+	 */
+	void setOriginalLibraryEntry(EObject value);
 
 } // LibraryEntry

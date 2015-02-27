@@ -9,11 +9,14 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import pamtram.metamodel.ActualAttribute;
+import pamtram.metamodel.AttributeParameter;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.BeginningMatcher;
 import pamtram.metamodel.CardinalityType;
+import pamtram.metamodel.ContainerParameter;
 import pamtram.metamodel.EndingMatcher;
 import pamtram.metamodel.EqualityMatcher;
+import pamtram.metamodel.ExternalReferenceParameter;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelFactory;
@@ -74,6 +77,9 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 		switch (eClass.getClassifierID()) {
 			case MetamodelPackage.SOURCE_SECTION_CLASS: return createSourceSectionClass();
 			case MetamodelPackage.TARGET_SECTION_CLASS: return createTargetSectionClass();
+			case MetamodelPackage.ATTRIBUTE_PARAMETER: return createAttributeParameter();
+			case MetamodelPackage.CONTAINER_PARAMETER: return createContainerParameter();
+			case MetamodelPackage.EXTERNAL_REFERENCE_PARAMETER: return createExternalReferenceParameter();
 			case MetamodelPackage.LIBRARY_ENTRY: return createLibraryEntry();
 			case MetamodelPackage.TARGET_SECTION_CONTAINMENT_REFERENCE: return createTargetSectionContainmentReference();
 			case MetamodelPackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE: return createTargetSectionNonContainmentReference();
@@ -144,6 +150,36 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	public TargetSectionClass createTargetSectionClass() {
 		TargetSectionClassImpl targetSectionClass = new TargetSectionClassImpl();
 		return targetSectionClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AttributeParameter createAttributeParameter() {
+		AttributeParameterImpl attributeParameter = new AttributeParameterImpl();
+		return attributeParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ContainerParameter createContainerParameter() {
+		ContainerParameterImpl containerParameter = new ContainerParameterImpl();
+		return containerParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExternalReferenceParameter createExternalReferenceParameter() {
+		ExternalReferenceParameterImpl externalReferenceParameter = new ExternalReferenceParameterImpl();
+		return externalReferenceParameter;
 	}
 
 	/**

@@ -106,17 +106,33 @@
           eType="#//metamodel/TargetSectionAttribute" containment="true" eOpposite="#//metamodel/TargetSectionAttribute/owningClass"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//metamodel/TargetSectionClass"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="LibraryParameter" abstract="true">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+          eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeParameter" eSuperTypes="#//metamodel/LibraryParameter">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
+          eType="#//metamodel/ActualAttribute" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ContainerParameter" eSuperTypes="#//metamodel/LibraryParameter">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="class" lowerBound="1"
+          eType="#//metamodel/TargetSectionClass" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ExternalReferenceParameter" eSuperTypes="#//metamodel/LibraryParameter">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="reference" lowerBound="1"
+          eType="#//metamodel/TargetSectionNonContainmentReference" containment="true"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="LibraryEntry">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="metaData" lowerBound="1"
-          upperBound="-1" eType="#//metamodel/TargetSectionClass" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" lowerBound="1"
+          upperBound="-1" eType="#//metamodel/LibraryParameter" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="libraryFile" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="libraryItem" lowerBound="1"
-          upperBound="-1" eType="#//metamodel/TargetSectionClass" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="originalLibraryEntry"
+          lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Reference" abstract="true" eSuperTypes="#//metamodel/MetaModelElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -163,8 +179,8 @@
           <details key="body" value="EList&lt;TargetSectionClass> secs= new org.eclipse.emf.common.util.BasicEList&lt;TargetSectionClass>();&#xA;if(this instanceof TargetSectionContainmentReference){&#xA; secs.addAll(((TargetSectionContainmentReference) this).getValue());&#xA;&#xA;} else if(this instanceof TargetSectionNonContainmentReference){&#xA; secs.addAll(((TargetSectionNonContainmentReference) this).getValue());&#xA;}&#xA;return secs;"/>
         </eAnnotations>
       </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="owningClass" lowerBound="1"
-          eType="#//metamodel/TargetSectionClass" changeable="false" eOpposite="#//metamodel/TargetSectionClass/references"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="owningClass" eType="#//metamodel/TargetSectionClass"
+          changeable="false" eOpposite="#//metamodel/TargetSectionClass/references"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TargetSectionContainmentReference"
         eSuperTypes="#//metamodel/ContainmentReference #//metamodel/TargetSectionReference">
@@ -196,8 +212,8 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TargetSectionAttribute" abstract="true"
         eSuperTypes="#//metamodel/Attribute">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="owningClass" lowerBound="1"
-          eType="#//metamodel/TargetSectionClass" changeable="false" eOpposite="#//metamodel/TargetSectionClass/attributes"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="owningClass" eType="#//metamodel/TargetSectionClass"
+          changeable="false" eOpposite="#//metamodel/TargetSectionClass/attributes"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="unique" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           defaultValueLiteral="false"/>

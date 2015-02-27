@@ -10,15 +10,19 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.Attribute;
+import pamtram.metamodel.AttributeParameter;
 import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.BeginningMatcher;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.CaseSensitiveConstraint;
+import pamtram.metamodel.ContainerParameter;
 import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.EndingMatcher;
 import pamtram.metamodel.EqualityMatcher;
+import pamtram.metamodel.ExternalReferenceParameter;
 import pamtram.metamodel.LibraryEntry;
+import pamtram.metamodel.LibraryParameter;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
@@ -117,6 +121,14 @@ public class MetamodelValidator extends EObjectValidator {
 				return validateSourceSectionClass((SourceSectionClass)value, diagnostics, context);
 			case MetamodelPackage.TARGET_SECTION_CLASS:
 				return validateTargetSectionClass((TargetSectionClass)value, diagnostics, context);
+			case MetamodelPackage.LIBRARY_PARAMETER:
+				return validateLibraryParameter((LibraryParameter)value, diagnostics, context);
+			case MetamodelPackage.ATTRIBUTE_PARAMETER:
+				return validateAttributeParameter((AttributeParameter)value, diagnostics, context);
+			case MetamodelPackage.CONTAINER_PARAMETER:
+				return validateContainerParameter((ContainerParameter)value, diagnostics, context);
+			case MetamodelPackage.EXTERNAL_REFERENCE_PARAMETER:
+				return validateExternalReferenceParameter((ExternalReferenceParameter)value, diagnostics, context);
 			case MetamodelPackage.LIBRARY_ENTRY:
 				return validateLibraryEntry((LibraryEntry)value, diagnostics, context);
 			case MetamodelPackage.REFERENCE:
@@ -295,6 +307,42 @@ public class MetamodelValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateClass_eClassMatchesParentEReference(targetSectionClass, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_variableCardinalityIsValid(targetSectionClass, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateLibraryParameter(LibraryParameter libraryParameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(libraryParameter, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateAttributeParameter(AttributeParameter attributeParameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(attributeParameter, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateContainerParameter(ContainerParameter containerParameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(containerParameter, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateExternalReferenceParameter(ExternalReferenceParameter externalReferenceParameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(externalReferenceParameter, diagnostics, context);
 	}
 
 	/**

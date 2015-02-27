@@ -15,6 +15,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.Attribute;
+import pamtram.metamodel.AttributeParameter;
 import pamtram.metamodel.MetamodelPackage;
 
 /**
@@ -73,13 +74,17 @@ public class ActualAttributeItemProvider
 
 				@Override
 				public Collection<?> getChoiceOfValues(Object object) {
+					ActualAttribute att = (ActualAttribute) object;
 
-					pamtram.metamodel.Class owner=((pamtram.metamodel.Class)((Attribute) object).eContainer());
-					if(owner.getEClass() != null){
-						return owner.getEClass().getEAllAttributes();
-					} else {
-						return new ArrayList<Object>();
-					}					
+					// in case of a 'normal' TargetSectionClass, the attribute of this class can be chosen
+					if(att.getOwningClass() != null) {
+						return att.getOwningClass().getEClass().getEAllAttributes();
+					// in case of an AttributeParameter, the attribute of its source can be chosen
+					} else if(att.eContainer() instanceof AttributeParameter && 
+							((AttributeParameter) att.eContainer()).getSource() != null) {
+						return ((AttributeParameter) att.eContainer()).getSource().eClass().getEAllAttributes();
+					}
+					return new ArrayList<Object>();
 				}
 		});
 	}

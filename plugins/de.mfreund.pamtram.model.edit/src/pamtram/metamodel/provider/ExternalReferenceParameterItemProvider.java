@@ -99,7 +99,10 @@ public class ExternalReferenceParameterItemProvider extends LibraryParameterItem
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ExternalReferenceParameter_type");
+		String label = ((ExternalReferenceParameter)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ExternalReferenceParameter_type") :
+			getString("_UI_ExternalReferenceParameter_type") + " " + label;
 	}
 	
 

@@ -99,7 +99,10 @@ public class ContainerParameterItemProvider extends LibraryParameterItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ContainerParameter_type");
+		String label = ((ContainerParameter)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ContainerParameter_type") :
+			getString("_UI_ContainerParameter_type") + " " + label;
 	}
 	
 

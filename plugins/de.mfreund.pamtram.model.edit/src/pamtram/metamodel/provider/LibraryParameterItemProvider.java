@@ -5,23 +5,14 @@ package pamtram.metamodel.provider;
 
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-
+import pamtram.metamodel.LibraryParameter;
 import pamtram.metamodel.MetamodelPackage;
-
+import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 
 /**
@@ -31,13 +22,7 @@ import pamtram.provider.PamtramEditPlugin;
  * @generated
  */
 public class LibraryParameterItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -94,7 +79,10 @@ public class LibraryParameterItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_LibraryParameter_type");
+		String label = ((LibraryParameter)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_LibraryParameter_type") :
+			getString("_UI_LibraryParameter_type") + " " + label;
 	}
 	
 

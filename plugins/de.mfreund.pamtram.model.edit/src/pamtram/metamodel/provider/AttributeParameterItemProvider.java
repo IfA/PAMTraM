@@ -99,7 +99,10 @@ public class AttributeParameterItemProvider extends LibraryParameterItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_AttributeParameter_type");
+		String label = ((AttributeParameter)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_AttributeParameter_type") :
+			getString("_UI_AttributeParameter_type") + " " + label;
 	}
 	
 

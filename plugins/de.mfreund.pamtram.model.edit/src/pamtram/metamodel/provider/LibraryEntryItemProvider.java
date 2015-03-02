@@ -210,7 +210,7 @@ public class LibraryEntryItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((LibraryEntry)object).getLibraryFile();
+		String label = ((LibraryEntry)object).getPath();
 		return label == null || label.length() == 0 ?
 			getString("_UI_LibraryEntry_type") :
 			getString("_UI_LibraryEntry_type") + " " + label;

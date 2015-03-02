@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
@@ -23,7 +22,6 @@ import pamtram.metamodel.ContainerParameter;
 import pamtram.metamodel.ExternalReferenceParameter;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.LibraryParameter;
-import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 import pamtram.metamodel.impl.MetamodelFactoryImpl;
@@ -220,6 +218,7 @@ public class LibraryHelper {
 			for (AbstractAttributeParameter<EObject> attParameter : libEntry.getParameterDescription().getAttributeParameters()) {
 				
 				AttributeParameter param = MetamodelFactoryImpl.eINSTANCE.createAttributeParameter();
+				param.setName(attParameter.eClass().getName());
 				param.setSource(attParameter.getSource());
 				
 				ActualAttribute attribute = MetamodelFactoryImpl.eINSTANCE.createActualAttribute();
@@ -238,6 +237,7 @@ public class LibraryHelper {
 			for (AbstractContainerParameter<EObject, EObject> contParameter : libEntry.getParameterDescription().getContainerParameters()) {
 				
 				ContainerParameter param = MetamodelFactoryImpl.eINSTANCE.createContainerParameter();
+				param.setName(contParameter.eClass().getName());
 				param.setSource(contParameter.getSource());
 				
 				TargetSectionClass clazz = MetamodelFactoryImpl.eINSTANCE.createTargetSectionClass();
@@ -264,7 +264,7 @@ public class LibraryHelper {
 				// create a paramter for every setting
 				for (Setting setting : crossReferences) {
 					ExternalReferenceParameter param = MetamodelFactoryImpl.eINSTANCE.createExternalReferenceParameter();
-					
+					param.setName(extRefParameter.eClass().getName());
 					param.setSource(setting.getEObject());
 					
 					TargetSectionNonContainmentReference ref = MetamodelFactoryImpl.eINSTANCE.createTargetSectionNonContainmentReference();

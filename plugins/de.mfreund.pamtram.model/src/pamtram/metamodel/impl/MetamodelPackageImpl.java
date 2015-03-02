@@ -1214,6 +1214,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		classEClass.getESuperTypes().add(this.getMetaModelElement());
 		sourceSectionClassEClass.getESuperTypes().add(this.getClass_());
 		targetSectionClassEClass.getESuperTypes().add(this.getClass_());
+		libraryParameterEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		attributeParameterEClass.getESuperTypes().add(this.getLibraryParameter());
 		containerParameterEClass.getESuperTypes().add(this.getLibraryParameter());
 		externalReferenceParameterEClass.getESuperTypes().add(this.getLibraryParameter());

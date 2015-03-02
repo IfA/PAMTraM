@@ -3,6 +3,7 @@
 package pamtram.metamodel;
 
 import org.eclipse.emf.ecore.EObject;
+import pamtram.NamedElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface LibraryParameter extends EObject {
+public interface LibraryParameter extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->

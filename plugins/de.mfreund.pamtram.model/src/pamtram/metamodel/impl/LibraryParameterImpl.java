@@ -3,14 +3,11 @@
 package pamtram.metamodel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
+import pamtram.impl.NamedElementImpl;
 import pamtram.metamodel.LibraryParameter;
 import pamtram.metamodel.MetamodelPackage;
 
@@ -27,7 +24,7 @@ import pamtram.metamodel.MetamodelPackage;
  *
  * @generated
  */
-public abstract class LibraryParameterImpl extends MinimalEObjectImpl.Container implements LibraryParameter {
+public abstract class LibraryParameterImpl extends NamedElementImpl implements LibraryParameter {
 	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->

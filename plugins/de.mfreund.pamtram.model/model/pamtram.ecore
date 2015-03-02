@@ -106,7 +106,8 @@
           eType="#//metamodel/TargetSectionAttribute" containment="true" eOpposite="#//metamodel/TargetSectionAttribute/owningClass"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//metamodel/TargetSectionClass"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="LibraryParameter" abstract="true">
+    <eClassifiers xsi:type="ecore:EClass" name="LibraryParameter" abstract="true"
+        eSuperTypes="#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
           eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     </eClassifiers>

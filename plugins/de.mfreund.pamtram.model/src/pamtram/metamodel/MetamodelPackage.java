@@ -481,13 +481,22 @@ public interface MetamodelPackage extends EPackage {
 	int LIBRARY_PARAMETER = 4;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY_PARAMETER__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_PARAMETER__SOURCE = 0;
+	int LIBRARY_PARAMETER__SOURCE = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Library Parameter</em>' class.
@@ -496,7 +505,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_PARAMETER_FEATURE_COUNT = 1;
+	int LIBRARY_PARAMETER_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Library Parameter</em>' class.
@@ -505,7 +514,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_PARAMETER_OPERATION_COUNT = 0;
+	int LIBRARY_PARAMETER_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.metamodel.impl.AttributeParameterImpl <em>Attribute Parameter</em>}' class.
@@ -516,6 +525,15 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	int ATTRIBUTE_PARAMETER = 5;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_PARAMETER__NAME = LIBRARY_PARAMETER__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -564,6 +582,15 @@ public interface MetamodelPackage extends EPackage {
 	int CONTAINER_PARAMETER = 6;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINER_PARAMETER__NAME = LIBRARY_PARAMETER__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -608,6 +635,15 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	int EXTERNAL_REFERENCE_PARAMETER = 7;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_REFERENCE_PARAMETER__NAME = LIBRARY_PARAMETER__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.

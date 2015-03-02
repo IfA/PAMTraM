@@ -130,6 +130,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 			case MetamodelPackage.LIBRARY_PARAMETER: {
 				LibraryParameter libraryParameter = (LibraryParameter)theEObject;
 				T result = caseLibraryParameter(libraryParameter);
+				if (result == null) result = caseNamedElement(libraryParameter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -137,6 +138,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				AttributeParameter attributeParameter = (AttributeParameter)theEObject;
 				T result = caseAttributeParameter(attributeParameter);
 				if (result == null) result = caseLibraryParameter(attributeParameter);
+				if (result == null) result = caseNamedElement(attributeParameter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -144,6 +146,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				ContainerParameter containerParameter = (ContainerParameter)theEObject;
 				T result = caseContainerParameter(containerParameter);
 				if (result == null) result = caseLibraryParameter(containerParameter);
+				if (result == null) result = caseNamedElement(containerParameter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -151,6 +154,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				ExternalReferenceParameter externalReferenceParameter = (ExternalReferenceParameter)theEObject;
 				T result = caseExternalReferenceParameter(externalReferenceParameter);
 				if (result == null) result = caseLibraryParameter(externalReferenceParameter);
+				if (result == null) result = caseNamedElement(externalReferenceParameter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

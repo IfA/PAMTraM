@@ -73,7 +73,27 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/TargetSectionClass/container"/>
       </genClasses>
-      <genClasses ecoreClass="pamtram.ecore#//metamodel/LibraryElement"/>
+      <genClasses image="false" ecoreClass="pamtram.ecore#//metamodel/LibraryParameter">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/LibraryParameter/source"/>
+      </genClasses>
+      <genClasses ecoreClass="pamtram.ecore#//metamodel/AttributeParameter">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/AttributeParameter/attribute"/>
+      </genClasses>
+      <genClasses ecoreClass="pamtram.ecore#//metamodel/ContainerParameter">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/ContainerParameter/class"/>
+      </genClasses>
+      <genClasses ecoreClass="pamtram.ecore#//metamodel/ExternalReferenceParameter">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/ExternalReferenceParameter/reference"/>
+      </genClasses>
+      <genClasses ecoreClass="pamtram.ecore#//metamodel/LibraryEntry" labelFeature="#//pamtram/metamodel/LibraryEntry/path">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/LibraryEntry/parameters"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//metamodel/LibraryEntry/libraryFile"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//metamodel/LibraryEntry/path"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//metamodel/LibraryEntry/version"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/LibraryEntry/originalLibraryEntry"/>
+      </genClasses>
       <genClasses image="false" ecoreClass="pamtram.ecore#//metamodel/Reference">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/Reference/eReference"/>

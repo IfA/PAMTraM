@@ -48,6 +48,7 @@ import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.mapping.ModelConnectionHintTargetAttribute;
 import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.metamodel.Attribute;
+import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.MetaModelSectionReference;
@@ -658,6 +659,18 @@ public class PamtramEditorMainPage extends SashForm {
 					return ((TargetSectionModel) object).getLibraryElements().toArray();
 				}
 				return super.getElements(object);
+			}
+			@Override
+			public Object[] getChildren(Object object) {
+				Object[] children = super.getChildren(object);
+				if(object instanceof LibraryEntry) {
+					Object[] newChildren = new Object[children.length+1];
+					// add the LibraryItem to the children
+					newChildren[0] = ((LibraryEntry) object).getOriginalLibraryEntry().eAllContents().next();
+					System.arraycopy(children, 0, newChildren, 1, children.length);
+					return newChildren;
+				}
+				return children;
 			}
 		});
 		libTargetViewer.setInput(editor.pamtram.getTargetSectionModel());

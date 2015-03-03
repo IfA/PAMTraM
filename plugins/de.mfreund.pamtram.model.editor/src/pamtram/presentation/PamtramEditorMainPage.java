@@ -22,9 +22,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.TreeItem;
 
-import de.mfreund.pamtram.util.BundleContentHelper;
-import de.mfreund.pamtram.util.SelectionListener2;
-import de.mfreund.pamtram.wizards.ImportLibraryElementWizard;
 import pamtram.MappingModel;
 import pamtram.NamedElement;
 import pamtram.TargetSectionModel;
@@ -49,12 +46,15 @@ import pamtram.mapping.ModelConnectionHintTargetAttribute;
 import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.LibraryEntry;
+import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.SourceSectionAttribute;
-import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 import pamtram.presentation.widgets.TreeViewerGroup;
+import de.mfreund.pamtram.util.BundleContentHelper;
+import de.mfreund.pamtram.util.SelectionListener2;
+import de.mfreund.pamtram.wizards.ImportLibraryElementWizard;
 
 public class PamtramEditorMainPage extends SashForm {
 	
@@ -364,7 +364,7 @@ public class PamtramEditorMainPage extends SashForm {
 					
 					List<Attribute> sources = new LinkedList<Attribute>();
 					
-						for(AttributeMappingSourceInterface c : ((AttributeMapping) mapping).getSourceAttributeMappings()){
+						for(AttributeMappingSourceInterface c : mapping.getSourceAttributeMappings()){
 							if(c.getSourceAttribute() != null){
 								sources.add(c.getSourceAttribute());
 							}
@@ -449,7 +449,7 @@ public class PamtramEditorMainPage extends SashForm {
 					LinkedList<Attribute> sources = new LinkedList<Attribute>();
 					LinkedList<Attribute> targets = new LinkedList<Attribute>();
 					
-					for(ModelConnectionHintSourceInterface sourceElement : ((ModelConnectionHint) hint).getSourceElements() ){
+					for(ModelConnectionHintSourceInterface sourceElement : hint.getSourceElements() ){
 						sources.add(sourceElement.getSourceAttribute());
 					}
 					
@@ -630,6 +630,7 @@ public class PamtramEditorMainPage extends SashForm {
 		libTargetViewer = new TreeViewerGroup(
 				targetSash, adapterFactory, editor.getEditingDomain(), 
 				"Library Element Target Sections", null, null, true, false){
+				@Override
 				protected void createAdditionalToolbarItems(org.eclipse.swt.widgets.ToolBar toolbar) {
 					ToolItem item = new ToolItem(toolbar, SWT.PUSH);
 					item.setImage(BundleContentHelper.getBundleImage(bundleID, "icons/import_wiz.gif"));
@@ -666,7 +667,7 @@ public class PamtramEditorMainPage extends SashForm {
 				if(object instanceof LibraryEntry) {
 					Object[] newChildren = new Object[children.length+1];
 					// add the LibraryItem to the children
-					newChildren[0] = ((LibraryEntry) object).getOriginalLibraryEntry().eAllContents().next();
+					newChildren[0] = ((LibraryEntry) object).getOriginalLibraryEntry().getLibraryItem();
 					System.arraycopy(children, 0, newChildren, 1, children.length);
 					return newChildren;
 				}

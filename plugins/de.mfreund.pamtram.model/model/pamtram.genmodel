@@ -3,8 +3,9 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.mfreund.pamtram.model/src" modelPluginID="de.mfreund.pamtram.model"
     modelName="Pamtram" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    usedGenPackages="../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.genmodel#//genlibrary"
     operationReflection="true" importOrganizing="true">
-  <foreignModel>file:/E:/Projects/de.mfreund.gentrans/de.mfreund.gentrans.test/metamodel/pamtram.ecore</foreignModel>
+  <foreignModel>pamtram.ecore</foreignModel>
   <genPackages prefix="Pamtram" disposableProviderFactory="true" generateModelWizard="false"
       ecorePackage="pamtram.ecore#/">
     <genClasses image="false" ecoreClass="pamtram.ecore#//NamedElement">
@@ -35,8 +36,8 @@
     <genClasses ecoreClass="pamtram.ecore#//TransformationModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//TransformationModel/transformation"/>
     </genClasses>
-    <nestedGenPackages prefix="Metamodel" disposableProviderFactory="true" multipleEditorPages="false"
-        generateModelWizard="false" ecorePackage="pamtram.ecore#//metamodel">
+    <nestedGenPackages prefix="Metamodel" basePackage="pamtram" disposableProviderFactory="true"
+        multipleEditorPages="false" generateModelWizard="false" ecorePackage="pamtram.ecore#//metamodel">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="pamtram.ecore#//metamodel/AttributeValueConstraintType">
         <genEnumLiterals ecoreEnumLiteral="pamtram.ecore#//metamodel/AttributeValueConstraintType/INCLUSION"/>
         <genEnumLiterals ecoreEnumLiteral="pamtram.ecore#//metamodel/AttributeValueConstraintType/EXCLUSION"/>
@@ -155,8 +156,8 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//metamodel/CaseSensitiveConstraint/caseSensitive"/>
       </genClasses>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Condition" disposableProviderFactory="true" multipleEditorPages="false"
-        generateModelWizard="false" ecorePackage="pamtram.ecore#//condition">
+    <nestedGenPackages prefix="Condition" basePackage="pamtram" disposableProviderFactory="true"
+        multipleEditorPages="false" generateModelWizard="false" ecorePackage="pamtram.ecore#//condition">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="pamtram.ecore#//condition/ComparatorEnum">
         <genEnumLiterals ecoreEnumLiteral="pamtram.ecore#//condition/ComparatorEnum/EQ"/>
         <genEnumLiterals ecoreEnumLiteral="pamtram.ecore#//condition/ComparatorEnum/GT"/>
@@ -181,8 +182,8 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//condition/Not/condition"/>
       </genClasses>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Transformation" disposableProviderFactory="true" multipleEditorPages="false"
-        generateModelWizard="false" ecorePackage="pamtram.ecore#//transformation">
+    <nestedGenPackages prefix="Transformation" basePackage="pamtram" disposableProviderFactory="true"
+        multipleEditorPages="false" generateModelWizard="false" ecorePackage="pamtram.ecore#//transformation">
       <genClasses ecoreClass="pamtram.ecore#//transformation/Transformation">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//transformation/Transformation/transformationMapping"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//transformation/Transformation/name"/>
@@ -195,8 +196,8 @@
             ecoreFeature="ecore:EReference pamtram.ecore#//transformation/TransformationMapping/targetMElement"/>
       </genClasses>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Mapping" disposableProviderFactory="true" multipleEditorPages="false"
-        generateModelWizard="false" ecorePackage="pamtram.ecore#//mapping">
+    <nestedGenPackages prefix="Mapping" basePackage="pamtram" disposableProviderFactory="true"
+        multipleEditorPages="false" generateModelWizard="false" ecorePackage="pamtram.ecore#//mapping">
       <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/MappingType">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingType/sourceMMSection"/>

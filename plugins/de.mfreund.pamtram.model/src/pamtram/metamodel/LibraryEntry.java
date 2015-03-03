@@ -129,12 +129,12 @@ public interface LibraryEntry extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Original Library Entry</em>' reference.
-	 * @see #setOriginalLibraryEntry(EObject)
+	 * @see #setOriginalLibraryEntry(de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry)
 	 * @see pamtram.metamodel.MetamodelPackage#getLibraryEntry_OriginalLibraryEntry()
 	 * @model required="true"
 	 * @generated
 	 */
-	EObject getOriginalLibraryEntry();
+	de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry getOriginalLibraryEntry();
 
 	/**
 	 * Sets the value of the '{@link pamtram.metamodel.LibraryEntry#getOriginalLibraryEntry <em>Original Library Entry</em>}' reference.
@@ -144,6 +144,6 @@ public interface LibraryEntry extends EObject {
 	 * @see #getOriginalLibraryEntry()
 	 * @generated
 	 */
-	void setOriginalLibraryEntry(EObject value);
+	void setOriginalLibraryEntry(de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry value);
 
 } // LibraryEntry

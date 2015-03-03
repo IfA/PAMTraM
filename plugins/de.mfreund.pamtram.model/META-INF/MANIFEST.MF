@@ -23,5 +23,6 @@ Export-Package: pamtram,
  pamtram.transformation.util,
  pamtram.util
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport
+ org.eclipse.emf.ecore;visibility:=reexport,
+ de.tud.et.ifa.agtele.genlibrary;bundle-version="1.0.9";visibility:=reexport
 Bundle-ActivationPolicy: lazy

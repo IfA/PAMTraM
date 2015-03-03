@@ -7,7 +7,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -113,7 +112,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * @generated
 	 * @ordered
 	 */
-	protected EObject originalLibraryEntry;
+	protected de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry originalLibraryEntry;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -214,10 +213,10 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObject getOriginalLibraryEntry() {
+	public de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry getOriginalLibraryEntry() {
 		if (originalLibraryEntry != null && originalLibraryEntry.eIsProxy()) {
 			InternalEObject oldOriginalLibraryEntry = (InternalEObject)originalLibraryEntry;
-			originalLibraryEntry = eResolveProxy(oldOriginalLibraryEntry);
+			originalLibraryEntry = (de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry)eResolveProxy(oldOriginalLibraryEntry);
 			if (originalLibraryEntry != oldOriginalLibraryEntry) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY, oldOriginalLibraryEntry, originalLibraryEntry));
@@ -231,7 +230,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObject basicGetOriginalLibraryEntry() {
+	public de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry basicGetOriginalLibraryEntry() {
 		return originalLibraryEntry;
 	}
 
@@ -240,8 +239,8 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOriginalLibraryEntry(EObject newOriginalLibraryEntry) {
-		EObject oldOriginalLibraryEntry = originalLibraryEntry;
+	public void setOriginalLibraryEntry(de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry newOriginalLibraryEntry) {
+		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry oldOriginalLibraryEntry = originalLibraryEntry;
 		originalLibraryEntry = newOriginalLibraryEntry;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY, oldOriginalLibraryEntry, originalLibraryEntry));
@@ -307,7 +306,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 				setVersion((String)newValue);
 				return;
 			case MetamodelPackage.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY:
-				setOriginalLibraryEntry((EObject)newValue);
+				setOriginalLibraryEntry((de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -334,7 +333,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 				setVersion(VERSION_EDEFAULT);
 				return;
 			case MetamodelPackage.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY:
-				setOriginalLibraryEntry((EObject)null);
+				setOriginalLibraryEntry((de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry)null);
 				return;
 		}
 		super.eUnset(featureID);

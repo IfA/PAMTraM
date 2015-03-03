@@ -2,6 +2,7 @@
  */
 package pamtram.presentation;
 
+import de.tud.et.ifa.agtele.genlibrary.provider.GenLibraryEditPlugin;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -38,6 +39,7 @@ public final class PamtramEditorPlugin extends EMFPlugin {
 	public PamtramEditorPlugin() {
 		super
 			(new ResourceLocator [] {
+				GenLibraryEditPlugin.INSTANCE,
 			});
 	}
 

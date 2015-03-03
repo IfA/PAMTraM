@@ -112,6 +112,7 @@ import org.eclipse.ui.views.properties.PropertySheetPage;
 import pamtram.condition.provider.ConditionItemProviderAdapterFactory;
 import pamtram.mapping.provider.MappingItemProviderAdapterFactory;
 import pamtram.metamodel.provider.MetamodelItemProviderAdapterFactory;
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.GenLibraryItemProviderAdapterFactory;
 import pamtram.presentation.PamtramEditorPlugin;
 import pamtram.provider.PamtramItemProviderAdapterFactory;
 import pamtram.transformation.provider.TransformationItemProviderAdapterFactory;
@@ -614,6 +615,7 @@ public class MetamodelEditor
 		adapterFactory.addAdapterFactory(new ConditionItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new TransformationItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new MappingItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new GenLibraryItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are executed.

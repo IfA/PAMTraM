@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link pamtram.metamodel.LibraryEntry#getParameters <em>Parameters</em>}</li>
  *   <li>{@link pamtram.metamodel.LibraryEntry#getLibraryFile <em>Library File</em>}</li>
  *   <li>{@link pamtram.metamodel.LibraryEntry#getPath <em>Path</em>}</li>
- *   <li>{@link pamtram.metamodel.LibraryEntry#getVersion <em>Version</em>}</li>
  *   <li>{@link pamtram.metamodel.LibraryEntry#getOriginalLibraryEntry <em>Original Library Entry</em>}</li>
  * </ul>
  * </p>
@@ -93,32 +92,6 @@ public interface LibraryEntry extends EObject {
 	 * @generated
 	 */
 	void setPath(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Version</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Version</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Version</em>' attribute.
-	 * @see #setVersion(String)
-	 * @see pamtram.metamodel.MetamodelPackage#getLibraryEntry_Version()
-	 * @model required="true"
-	 * @generated
-	 */
-	String getVersion();
-
-	/**
-	 * Sets the value of the '{@link pamtram.metamodel.LibraryEntry#getVersion <em>Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Version</em>' attribute.
-	 * @see #getVersion()
-	 * @generated
-	 */
-	void setVersion(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Original Library Entry</b></em>' reference.

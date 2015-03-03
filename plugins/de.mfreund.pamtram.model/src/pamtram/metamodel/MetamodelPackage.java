@@ -719,22 +719,13 @@ public interface MetamodelPackage extends EPackage {
 	int LIBRARY_ENTRY__PATH = 2;
 
 	/**
-	 * The feature id for the '<em><b>Version</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY_ENTRY__VERSION = 3;
-
-	/**
 	 * The feature id for the '<em><b>Original Library Entry</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY = 4;
+	int LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY = 3;
 
 	/**
 	 * The number of structural features of the '<em>Library Entry</em>' class.
@@ -743,7 +734,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_ENTRY_FEATURE_COUNT = 5;
+	int LIBRARY_ENTRY_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Library Entry</em>' class.
@@ -2572,17 +2563,6 @@ public interface MetamodelPackage extends EPackage {
 	EAttribute getLibraryEntry_Path();
 
 	/**
-	 * Returns the meta object for the attribute '{@link pamtram.metamodel.LibraryEntry#getVersion <em>Version</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Version</em>'.
-	 * @see pamtram.metamodel.LibraryEntry#getVersion()
-	 * @see #getLibraryEntry()
-	 * @generated
-	 */
-	EAttribute getLibraryEntry_Version();
-
-	/**
 	 * Returns the meta object for the reference '{@link pamtram.metamodel.LibraryEntry#getOriginalLibraryEntry <em>Original Library Entry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3320,14 +3300,6 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LIBRARY_ENTRY__PATH = eINSTANCE.getLibraryEntry_Path();
-
-		/**
-		 * The meta object literal for the '<em><b>Version</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute LIBRARY_ENTRY__VERSION = eINSTANCE.getLibraryEntry_Version();
 
 		/**
 		 * The meta object literal for the '<em><b>Original Library Entry</b></em>' reference feature.

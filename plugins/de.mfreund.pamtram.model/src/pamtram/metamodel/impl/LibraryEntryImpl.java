@@ -3,6 +3,7 @@
 package pamtram.metamodel.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -12,6 +13,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.LibraryParameter;
 import pamtram.metamodel.MetamodelPackage;
@@ -26,7 +28,6 @@ import pamtram.metamodel.MetamodelPackage;
  *   <li>{@link pamtram.metamodel.impl.LibraryEntryImpl#getParameters <em>Parameters</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.LibraryEntryImpl#getLibraryFile <em>Library File</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.LibraryEntryImpl#getPath <em>Path</em>}</li>
- *   <li>{@link pamtram.metamodel.impl.LibraryEntryImpl#getVersion <em>Version</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.LibraryEntryImpl#getOriginalLibraryEntry <em>Original Library Entry</em>}</li>
  * </ul>
  * </p>
@@ -85,26 +86,6 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	protected String path = PATH_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getVersion() <em>Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getVersion()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String VERSION_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getVersion() <em>Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getVersion()
-	 * @generated
-	 * @ordered
-	 */
-	protected String version = VERSION_EDEFAULT;
-
-	/**
 	 * The cached value of the '{@link #getOriginalLibraryEntry() <em>Original Library Entry</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -138,6 +119,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<LibraryParameter> getParameters() {
 		if (parameters == null) {
 			parameters = new EObjectContainmentEList<LibraryParameter>(LibraryParameter.class, this, MetamodelPackage.LIBRARY_ENTRY__PARAMETERS);
@@ -150,6 +132,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLibraryFile() {
 		return libraryFile;
 	}
@@ -159,6 +142,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLibraryFile(String newLibraryFile) {
 		String oldLibraryFile = libraryFile;
 		libraryFile = newLibraryFile;
@@ -171,6 +155,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getPath() {
 		return path;
 	}
@@ -180,6 +165,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPath(String newPath) {
 		String oldPath = path;
 		path = newPath;
@@ -192,27 +178,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getVersion() {
-		return version;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setVersion(String newVersion) {
-		String oldVersion = version;
-		version = newVersion;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.LIBRARY_ENTRY__VERSION, oldVersion, version));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+	@Override
 	public de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry getOriginalLibraryEntry() {
 		if (originalLibraryEntry != null && originalLibraryEntry.eIsProxy()) {
 			InternalEObject oldOriginalLibraryEntry = (InternalEObject)originalLibraryEntry;
@@ -239,6 +205,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOriginalLibraryEntry(de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry newOriginalLibraryEntry) {
 		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry oldOriginalLibraryEntry = originalLibraryEntry;
 		originalLibraryEntry = newOriginalLibraryEntry;
@@ -274,8 +241,6 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 				return getLibraryFile();
 			case MetamodelPackage.LIBRARY_ENTRY__PATH:
 				return getPath();
-			case MetamodelPackage.LIBRARY_ENTRY__VERSION:
-				return getVersion();
 			case MetamodelPackage.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY:
 				if (resolve) return getOriginalLibraryEntry();
 				return basicGetOriginalLibraryEntry();
@@ -302,9 +267,6 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 			case MetamodelPackage.LIBRARY_ENTRY__PATH:
 				setPath((String)newValue);
 				return;
-			case MetamodelPackage.LIBRARY_ENTRY__VERSION:
-				setVersion((String)newValue);
-				return;
 			case MetamodelPackage.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY:
 				setOriginalLibraryEntry((de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry)newValue);
 				return;
@@ -329,9 +291,6 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 			case MetamodelPackage.LIBRARY_ENTRY__PATH:
 				setPath(PATH_EDEFAULT);
 				return;
-			case MetamodelPackage.LIBRARY_ENTRY__VERSION:
-				setVersion(VERSION_EDEFAULT);
-				return;
 			case MetamodelPackage.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY:
 				setOriginalLibraryEntry((de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry)null);
 				return;
@@ -353,8 +312,6 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 				return LIBRARY_FILE_EDEFAULT == null ? libraryFile != null : !LIBRARY_FILE_EDEFAULT.equals(libraryFile);
 			case MetamodelPackage.LIBRARY_ENTRY__PATH:
 				return PATH_EDEFAULT == null ? path != null : !PATH_EDEFAULT.equals(path);
-			case MetamodelPackage.LIBRARY_ENTRY__VERSION:
-				return VERSION_EDEFAULT == null ? version != null : !VERSION_EDEFAULT.equals(version);
 			case MetamodelPackage.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY:
 				return originalLibraryEntry != null;
 		}
@@ -375,8 +332,6 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 		result.append(libraryFile);
 		result.append(", path: ");
 		result.append(path);
-		result.append(", version: ");
-		result.append(version);
 		result.append(')');
 		return result.toString();
 	}

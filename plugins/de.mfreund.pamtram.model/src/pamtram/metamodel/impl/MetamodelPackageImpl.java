@@ -647,17 +647,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLibraryEntry_Version() {
-		return (EAttribute)libraryEntryEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getLibraryEntry_OriginalLibraryEntry() {
-		return (EReference)libraryEntryEClass.getEStructuralFeatures().get(4);
+		return (EReference)libraryEntryEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1113,7 +1104,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEReference(libraryEntryEClass, LIBRARY_ENTRY__PARAMETERS);
 		createEAttribute(libraryEntryEClass, LIBRARY_ENTRY__LIBRARY_FILE);
 		createEAttribute(libraryEntryEClass, LIBRARY_ENTRY__PATH);
-		createEAttribute(libraryEntryEClass, LIBRARY_ENTRY__VERSION);
 		createEReference(libraryEntryEClass, LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY);
 
 		referenceEClass = createEClass(REFERENCE);
@@ -1293,7 +1283,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEReference(getLibraryEntry_Parameters(), this.getLibraryParameter(), null, "parameters", null, 1, -1, LibraryEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLibraryEntry_LibraryFile(), ecorePackage.getEString(), "libraryFile", null, 1, 1, LibraryEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLibraryEntry_Path(), ecorePackage.getEString(), "path", null, 1, 1, LibraryEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLibraryEntry_Version(), ecorePackage.getEString(), "version", null, 1, 1, LibraryEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLibraryEntry_OriginalLibraryEntry(), theGenLibraryPackage.getLibraryEntry(), null, "originalLibraryEntry", null, 1, 1, LibraryEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(referenceEClass, Reference.class, "Reference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

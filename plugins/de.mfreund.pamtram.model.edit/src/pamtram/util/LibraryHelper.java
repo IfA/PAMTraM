@@ -201,8 +201,7 @@ public class LibraryHelper {
 			// create the LibraryElement to be returned
 			pamtramLibEntry = MetamodelFactoryImpl.eINSTANCE.createLibraryEntry();
 			
-			// set the path, version, etc.
-			pamtramLibEntry.setVersion(libEntry.getVersion() != null ? libEntry.getVersion() : "");
+			// set the path, etc.
 			pamtramLibEntry.setPath(libFileEntry.getKey());
 			pamtramLibEntry.setLibraryFile(libraryFile);
 			

@@ -111,7 +111,7 @@ public class LibraryHelper {
 		InputStream inputStream = entry.getXMIFileAsInputStream();
 		Resource resource = new XMIResourceImpl();
 		resource.load(inputStream, null);
-		
+		inputStream.close();
 		// get the library entry from the resource contents and return it
 		if(!(resource.getContents() == null) && !resource.getContents().isEmpty() &&
 				resource.getContents().get(0) instanceof de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry) {

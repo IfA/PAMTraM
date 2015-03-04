@@ -137,11 +137,6 @@ public class TargetSectionModelItemProvider
 			(createChildParameter
 				(PamtramPackage.Literals.TARGET_SECTION_MODEL__META_MODEL_SECTIONS,
 				 MetamodelFactory.eINSTANCE.createTargetSectionClass()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS,
-				 MetamodelFactory.eINSTANCE.createLibraryEntry()));
 	}
 
 }

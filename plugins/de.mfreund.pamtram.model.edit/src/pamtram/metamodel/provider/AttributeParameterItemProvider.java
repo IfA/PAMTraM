@@ -5,15 +5,12 @@ package pamtram.metamodel.provider;
 
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import pamtram.metamodel.AttributeParameter;
-import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
 
 /**
@@ -133,11 +130,6 @@ public class AttributeParameterItemProvider extends LibraryParameterItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MetamodelPackage.Literals.ATTRIBUTE_PARAMETER__ATTRIBUTE,
-				 MetamodelFactory.eINSTANCE.createActualAttribute()));
 	}
 
 }

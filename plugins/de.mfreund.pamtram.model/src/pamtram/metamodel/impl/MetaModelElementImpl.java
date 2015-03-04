@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import pamtram.SectionModel;
 import pamtram.impl.NamedElementImpl;
+import pamtram.metamodel.ContainerParameter;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.MetamodelPackage;
 
@@ -47,10 +48,11 @@ public abstract class MetaModelElementImpl extends NamedElementImpl implements M
 	 * the element itself if this already is the Section).
 	 * Thereby, a section is characterized by the following two conditions:
 	 * 1. The Section is an element of type 'pamtram.metamodel.Class'
-	 * 2. The parent element of the Section is of type 'SectionModel'
+	 * 2. The parent element of the Section is of type 'SectionModel' or of type 'ContainerParameter'
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public pamtram.metamodel.Class getContainingSection() {
 		MetaModelElement element = this;
 				
@@ -60,7 +62,7 @@ public abstract class MetaModelElementImpl extends NamedElementImpl implements M
 		}
 		
 		if(element instanceof pamtram.metamodel.Class &&
-				element.eContainer() instanceof SectionModel) {
+				(element.eContainer() instanceof SectionModel || element.eContainer() instanceof ContainerParameter)) {
 			// we have found the section
 			return (pamtram.metamodel.Class) element;
 		} else {

@@ -288,7 +288,9 @@ public class PamtramEditorMainPage extends SashForm {
 						if(mapping != null){
 							expanded.add(mapping);
 							for(MappingHintGroupType group : mapping.getMappingHintGroups()){
-								targets.add(group.getTargetMMSection());
+								if(group.getTargetMMSection() != null) {
+									targets.add(group.getTargetMMSection());
+								}
 							}
 						}
 						

@@ -3,16 +3,22 @@
 package pamtram.metamodel.provider;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.command.CommandParameter;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.DelegatingWrapperItemProvider;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -28,7 +34,6 @@ import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.provider.PamtramEditPlugin;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.GenLibraryPackage;
-import de.tud.et.ifa.agtele.genlibrary.provider.GenLibraryEditPlugin;
 
 /**
  * This is the item provider adapter for a {@link pamtram.metamodel.LibraryEntry} object.
@@ -44,6 +49,13 @@ public class LibraryEntryItemProvider
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
+	
+	/**
+	 * This keeps track of the children to be displayed.
+	 * For this to work, the 'stateful' instead of the 'singleton' pattern needs to be specified in the GenModel.
+	 */
+	protected List<Object> children = null;
+	
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -71,8 +83,8 @@ public class LibraryEntryItemProvider
 	}
 	
 	/**
-	 * This adds the property descriptors for the version and author properties of the
-	 * {@link LibraryEntry#getOriginalLibraryEntry()}.
+	 * This adds the property descriptors for the version, author and description properties of the
+	 * {@link LibraryEntry#getOriginalLibraryEntry()} to the standard property descriptors.
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
@@ -216,7 +228,23 @@ public class LibraryEntryItemProvider
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/LibraryEntry"));
 	}
-
+	
+	/**
+	 * Do not allow the parameters as direct children but instead allow the virtual '<em><b>ParameterDescription</b></em>'.
+	 */
+	@Override
+	public Collection<?> getChildren(Object object) {
+		if(children == null) {
+			LibraryEntry libraryEntry = (LibraryEntry) object;
+			children = new ArrayList<>();
+			// add an ItemProvider for the virtual ParameterDescription
+			children.add(new ParameterDescriptionItemProvider(adapterFactory, libraryEntry));
+			// add an ItemProvider for the LibraryEntry (for some reason, the 'wrap(...)' method needs to be used
+			children.add(wrap(libraryEntry, MetamodelPackage.Literals.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY, libraryEntry.getOriginalLibraryEntry(), CommandParameter.NO_INDEX));
+		}
+		return children;
+	}
+	
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -237,18 +265,19 @@ public class LibraryEntryItemProvider
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
+		/*
+		 * Do not handle notifications that affect the virtual ParameterDescription.
+		 */
 		switch (notification.getFeatureID(LibraryEntry.class)) {
 			case MetamodelPackage.LIBRARY_ENTRY__LIBRARY_FILE:
 			case MetamodelPackage.LIBRARY_ENTRY__PATH:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case MetamodelPackage.LIBRARY_ENTRY__PARAMETERS:
 			case MetamodelPackage.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -280,13 +309,6 @@ public class LibraryEntryItemProvider
 	}
 	
 	/**
-	 * Return the resource locator for the {@link LibraryEntry#getOriginalLibraryEntry()} item provider's resources.
-	 */
-	public ResourceLocator getGenLibraryResourceLocator() {
-		return GenLibraryEditPlugin.INSTANCE;
-	}
-
-	/**
 	 * Wrapping is needed because we want to display the target of the non-containment reference 
 	 * {@link LibraryEntry#getOriginalLibraryEntry()} as child.
 	 */
@@ -314,6 +336,33 @@ public class LibraryEntryItemProvider
 		}
 	}
 	
+	/**
+	 * This returns the {@link ParameterDescriptionItemProvider}s for this {@link LibraryEntry}
+	 * @return The {@link ParameterDescriptionItemProvider}s for this {@link LibraryEntry}
+	 */
+	public Object getParameters() {
+		return children.get(0);
+	}
 	
+	@Override
+	public void dispose() {
+		super.dispose();
+		/*
+		 * Also dispose the ParameterDescriptionItemProvider
+		 */
+		if(children != null) {
+			((IDisposable) children.get(0)).dispose();
+		}
+	}
+	
+	/**
+	 * This returns an {@link UnexecutableCommand} as we do not want to allow any manual adding, removing, etc.
+	 */
+	@Override
+	public Command createCommand(Object object, EditingDomain domain,
+			Class<? extends Command> commandClass,
+			CommandParameter commandParameter) {
+		return UnexecutableCommand.INSTANCE;
+	}
 
 }

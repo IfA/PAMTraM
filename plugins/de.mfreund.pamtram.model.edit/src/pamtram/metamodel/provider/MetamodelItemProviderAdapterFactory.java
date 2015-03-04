@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.Disposable;
 import org.eclipse.emf.edit.provider.IChangeNotifier;
 import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -47,6 +48,14 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
+
+	/**
+	 * This keeps track of all the item providers created, so that they can be {@link #dispose disposed}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected Disposable disposable = new Disposable();
 
 	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
@@ -186,14 +195,6 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.LibraryEntry} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected LibraryEntryItemProvider libraryEntryItemProvider;
-
-	/**
 	 * This creates an adapter for a {@link pamtram.metamodel.LibraryEntry}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -201,11 +202,7 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	 */
 	@Override
 	public Adapter createLibraryEntryAdapter() {
-		if (libraryEntryItemProvider == null) {
-			libraryEntryItemProvider = new LibraryEntryItemProvider(this);
-		}
-
-		return libraryEntryItemProvider;
+		return new LibraryEntryItemProvider(this);
 	}
 
 	/**
@@ -543,6 +540,20 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	}
 
 	/**
+	 * Associates an adapter with a notifier via the base implementation, then records it to ensure it will be disposed.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void associate(Adapter adapter, Notifier target) {
+		super.associate(adapter, target);
+		if (adapter != null) {
+			disposable.add(adapter);
+		}
+	}
+
+	/**
 	 * This adds a listener.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -583,24 +594,7 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	 * @generated
 	 */
 	public void dispose() {
-		if (sourceSectionClassItemProvider != null) sourceSectionClassItemProvider.dispose();
-		if (targetSectionClassItemProvider != null) targetSectionClassItemProvider.dispose();
-		if (attributeParameterItemProvider != null) attributeParameterItemProvider.dispose();
-		if (containerParameterItemProvider != null) containerParameterItemProvider.dispose();
-		if (externalReferenceParameterItemProvider != null) externalReferenceParameterItemProvider.dispose();
-		if (libraryEntryItemProvider != null) libraryEntryItemProvider.dispose();
-		if (targetSectionContainmentReferenceItemProvider != null) targetSectionContainmentReferenceItemProvider.dispose();
-		if (targetSectionNonContainmentReferenceItemProvider != null) targetSectionNonContainmentReferenceItemProvider.dispose();
-		if (sourceSectionContainmentReferenceItemProvider != null) sourceSectionContainmentReferenceItemProvider.dispose();
-		if (metaModelSectionReferenceItemProvider != null) metaModelSectionReferenceItemProvider.dispose();
-		if (sourceSectionAttributeItemProvider != null) sourceSectionAttributeItemProvider.dispose();
-		if (actualAttributeItemProvider != null) actualAttributeItemProvider.dispose();
-		if (virtualAttributeItemProvider != null) virtualAttributeItemProvider.dispose();
-		if (equalityMatcherItemProvider != null) equalityMatcherItemProvider.dispose();
-		if (substringMatcherItemProvider != null) substringMatcherItemProvider.dispose();
-		if (beginningMatcherItemProvider != null) beginningMatcherItemProvider.dispose();
-		if (endingMatcherItemProvider != null) endingMatcherItemProvider.dispose();
-		if (regExMatcherItemProvider != null) regExMatcherItemProvider.dispose();
+		disposable.dispose();
 	}
 
 }

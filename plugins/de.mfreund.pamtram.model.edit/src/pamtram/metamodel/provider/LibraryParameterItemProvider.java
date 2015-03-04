@@ -5,11 +5,14 @@ package pamtram.metamodel.provider;
 
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+
 import pamtram.metamodel.LibraryParameter;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.provider.NamedElementItemProvider;
@@ -121,5 +124,17 @@ public class LibraryParameterItemProvider
 	public ResourceLocator getResourceLocator() {
 		return PamtramEditPlugin.INSTANCE;
 	}
+	
+	/**
+	 * Return the virtual {@link ParameterDescriptionItemProvider} instead of the {@link LibraryEntryItemProvider} as parent.
+	 */
+	@Override
+	public Object getParent(Object object) {
+		Object libraryEntry = super.getParent(object);
+		LibraryEntryItemProvider libraryEntryItemProvider = 
+				(LibraryEntryItemProvider) adapterFactory.adapt(libraryEntry, IEditingDomainItemProvider.class);
+		return libraryEntryItemProvider != null ? libraryEntryItemProvider.getParameters() : null;
+	}
+
 
 }

@@ -87,7 +87,8 @@
       <genClasses ecoreClass="pamtram.ecore#//metamodel/ExternalReferenceParameter">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/ExternalReferenceParameter/reference"/>
       </genClasses>
-      <genClasses ecoreClass="pamtram.ecore#//metamodel/LibraryEntry" labelFeature="#//pamtram/metamodel/LibraryEntry/path">
+      <genClasses provider="Stateful" ecoreClass="pamtram.ecore#//metamodel/LibraryEntry"
+          labelFeature="#//pamtram/metamodel/LibraryEntry/path">
         <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/LibraryEntry/parameters"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//metamodel/LibraryEntry/libraryFile"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//metamodel/LibraryEntry/path"/>

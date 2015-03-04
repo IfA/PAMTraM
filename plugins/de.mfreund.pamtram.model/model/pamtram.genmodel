@@ -26,7 +26,7 @@
     </genClasses>
     <genClasses ecoreClass="pamtram.ecore#//TargetSectionModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//TargetSectionModel/metaModelSections"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//TargetSectionModel/libraryElements"/>
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//TargetSectionModel/libraryElements"/>
     </genClasses>
     <genClasses ecoreClass="pamtram.ecore#//MappingModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//MappingModel/mapping"/>
@@ -79,13 +79,13 @@
             ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/LibraryParameter/source"/>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//metamodel/AttributeParameter">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/AttributeParameter/attribute"/>
+        <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/AttributeParameter/attribute"/>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//metamodel/ContainerParameter">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/ContainerParameter/class"/>
+        <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/ContainerParameter/class"/>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//metamodel/ExternalReferenceParameter">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/ExternalReferenceParameter/reference"/>
+        <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/ExternalReferenceParameter/reference"/>
       </genClasses>
       <genClasses provider="Stateful" ecoreClass="pamtram.ecore#//metamodel/LibraryEntry"
           labelFeature="#//pamtram/metamodel/LibraryEntry/path">

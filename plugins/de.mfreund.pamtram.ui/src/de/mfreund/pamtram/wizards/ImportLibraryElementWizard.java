@@ -4,12 +4,11 @@ import java.io.IOException;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.edit.command.CreateChildCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.wizard.Wizard;
 
 import pamtram.PAMTraM;
-import pamtram.PamtramPackage;
+import pamtram.mapping.commands.CreateLibraryEntryCommand;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.util.LibraryHelper;
 import de.mfreund.pamtram.pages.ImportLibraryElementWizardMainPage;
@@ -75,12 +74,10 @@ public class ImportLibraryElementWizard extends Wizard {
 								editingDomain.getResourceSet());
 				
 				// second, create a command to import it to the pamtram model 
-				Command command = new CreateChildCommand(
+				Command command = new CreateLibraryEntryCommand(
 						editingDomain, 
 						pamtram.getTargetSectionModel(), 
-						PamtramPackage.Literals.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS, 
-						libElement, 
-						null);
+						libElement, pamtram.eResource().getURI().trimSegments(1).appendSegment("lib").appendSegment(entry.getKey()).appendSegment("data.xmi"));
 				compoundCommand.append(command);
 				
 			} catch (IOException e) {
@@ -94,5 +91,5 @@ public class ImportLibraryElementWizard extends Wizard {
 		
 		return true;
 	}
-
+	
 }

@@ -31,8 +31,10 @@ import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.ui.MarkerHelper;
 import org.eclipse.emf.common.ui.ViewerPane;
 import org.eclipse.emf.common.ui.editor.ProblemEditorPart;
@@ -130,6 +132,7 @@ import pamtram.provider.PamtramItemProviderAdapterFactory;
 import pamtram.transformation.provider.TransformationItemProviderAdapterFactory;
 import pamtram.util.EPackageHelper;
 import pamtram.util.EPackageHelper.EPackageCheck;
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.GenLibraryItemProviderAdapterFactory;
 
 
@@ -461,6 +464,30 @@ public class PamtramEditor
 			new PamtramContentAdapter(this);
 	
 	/**
+	 * This adapter keeps track of the {@link Resource}s in the resource set that represent {@link LibraryEntry}s.
+	 */
+	protected Adapter libraryResourceAdapter =
+			new AdapterImpl() {
+				@Override
+				public boolean isAdapterForType(Object type) {
+					return (type instanceof Resource);
+				}
+				@Override
+				public void notifyChanged(Notification msg) {
+					super.notifyChanged(msg);
+					if(msg.getEventType() == Notification.ADD) {
+						if(msg.getNewValue() instanceof Resource && !((Resource) msg.getNewValue()).equals(pamtram.eResource())) {
+							libraryResources.add((Resource) msg.getNewValue());						
+							editingDomain.getResourceToReadOnlyMap().put((Resource) msg.getNewValue(), Boolean.TRUE);
+						}
+					} else if(msg.getEventType() == Notification.REMOVE) {
+						libraryResources.remove(msg.getOldValue());
+						editingDomain.getResourceToReadOnlyMap().remove(msg.getOldValue());
+					}
+				}
+			};
+	
+	/**
 	 * This listens for commands.
 	 */
 	protected PamtramCommandStackListener pamtramCommandStackListener =
@@ -548,7 +575,15 @@ public class PamtramEditor
 			}
 		};
 
+	/**
+	 * This is the {@link PAMTraM} instance that this editor works on.
+	 */
 	protected PAMTraM pamtram;
+	
+	/**
+	 * This is a list of {@link Resource}s that represent {@link de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry}s in the {@link PAMTraM}
+	 */
+	protected ArrayList<Resource> libraryResources = new ArrayList<>();
 
 	/**
 	 * Handles activation of the editor or it's associated views.
@@ -556,7 +591,7 @@ public class PamtramEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void handleActivate() {
+	protected void handleActivateGen() {
 		// Recompute the read only state.
 		//
 		if (editingDomain.getResourceToReadOnlyMap() != null) {
@@ -584,6 +619,25 @@ public class PamtramEditor
 			savedResources.clear();
 		}
 	}
+	
+	/**
+	 * Handles activation of the editor or it's associated views.
+	 * <!-- begin-user-doc -->
+	 * Add all the library element resources to the read-only map. 
+	 * <!-- end-user-doc -->
+	 */
+	protected void handleActivate() {
+		handleActivateGen();
+		
+		if(pamtram == null || pamtram.getTargetSectionModel() == null) {
+			return;
+		}
+
+		// mark all known resource that represent library entries as read-only
+		for (Resource resource : libraryResources) {
+			editingDomain.getResourceToReadOnlyMap().put(resource, Boolean.TRUE);
+		}
+	}	
 
 	/**
 	 * Handles what to do with changed resources on activation.
@@ -1300,6 +1354,9 @@ public class PamtramEditor
 			// Set the Pamtram content adapter.
 			pamtram.eAdapters().add(pamtramContentAdapter);
 			
+			// Set the library resource adapter.
+			editingDomain.getResourceSet().eAdapters().add(libraryResourceAdapter);
+			
 			// Set the Pamtram command stack listener.
 			getEditingDomain().getCommandStack().addCommandStackListener(pamtramCommandStackListener);
 						
@@ -2001,6 +2058,9 @@ public class PamtramEditor
 		
 		// Dispose the Pamtram content adapter.
 		pamtram.eAdapters().remove(pamtramContentAdapter);
+		
+		// Dispose the library resource adapter.
+		editingDomain.getResourceSet().eAdapters().remove(libraryResourceAdapter);
 		
 		// Dispose the problem indication adapter.
 		editingDomain.getResourceSet().eAdapters().remove(

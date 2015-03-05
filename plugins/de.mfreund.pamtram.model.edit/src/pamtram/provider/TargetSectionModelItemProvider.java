@@ -6,15 +6,21 @@ package pamtram.provider;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.PamtramPackage;
 import pamtram.TargetSectionModel;
+import pamtram.mapping.commands.DeleteLibraryEntryCommand;
 import pamtram.metamodel.MetamodelFactory;
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry;
 
 /**
  * This is the item provider adapter for a {@link pamtram.TargetSectionModel} object.
@@ -137,6 +143,31 @@ public class TargetSectionModelItemProvider
 			(createChildParameter
 				(PamtramPackage.Literals.TARGET_SECTION_MODEL__META_MODEL_SECTIONS,
 				 MetamodelFactory.eINSTANCE.createTargetSectionClass()));
+	}
+	
+	/**
+	 * If one or more library entries are to be deleted, this does not use the default command but instead
+	 * the custom {@link DeleteLibraryEntryCommand} that also removes the resource that holds the 
+	 * original {@link LibraryEntry}.
+	 */
+	@Override
+	protected Command createRemoveCommand(EditingDomain domain, EObject owner,
+			EStructuralFeature feature, Collection<?> collection) {
+		if(feature.equals(PamtramPackage.Literals.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS)) {
+			// we need a compound command in case multiple entries are to be deleted
+			CompoundCommand compoundCommand = new CompoundCommand();
+			for (Object object : collection) {
+				if(!(object instanceof pamtram.metamodel.LibraryEntry)) {
+					throw new RuntimeException("Internal Error! This can only delete LibraryEntries...");
+				} else {
+					// create a DeleteLibraryEntryCommand for every entry to be deleted
+					compoundCommand.append(new DeleteLibraryEntryCommand(domain, ((TargetSectionModel) owner), ((pamtram.metamodel.LibraryEntry) object)));
+				}
+			}
+			return compoundCommand;
+		} else {
+			return super.createRemoveCommand(domain, owner, feature, collection);
+		}
 	}
 
 }

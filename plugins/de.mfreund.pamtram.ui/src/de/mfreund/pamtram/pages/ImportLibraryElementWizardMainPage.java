@@ -13,12 +13,16 @@ import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
+import pamtram.metamodel.LibraryEntry;
+import de.mfreund.pamtram.util.SelectionListener2;
 import de.tud.et.ifa.agtele.genlibrary.util.impl.FileParserImpl;
 import de.tud.et.ifa.agtele.genlibrary.util.interfaces.FileParser;
 import de.tud.et.ifa.agtele.genlibrary.util.interfaces.LibraryFileEntry;
@@ -61,7 +65,16 @@ public class ImportLibraryElementWizardMainPage extends WizardPage {
 	 */
 	private List<LibraryFileEntry> libEntriesToImport = new ArrayList<>();
 
-
+	/**
+	 * This is the {@link FileFieldEditor} that contains the list of {@link LibraryEntry}s.
+	 */
+	private FileFieldEditor libraryFileFieldEditor;
+	
+	/**
+	 * This is the listener that reacts to changes in the {@link #libraryFileFieldEditor}
+	 */
+	private IPropertyChangeListener libraryFileFieldListener;
+	
 	/**
 	 * This returns the list of library entries that shall be imported from the
 	 * library.
@@ -81,6 +94,26 @@ public class ImportLibraryElementWizardMainPage extends WizardPage {
 	 */
 	private org.eclipse.swt.widgets.List list;
 	
+	/**
+	 * This is the check box that controls automatic generation of mappings.
+	 */
+	private Button createMappingButton;
+
+	/**
+	 * This is the listener that listens on the {@link #createMappingButton}.
+	 */
+	private SelectionListener2 createMappingButtonListener;
+	
+	private boolean createMappings = true;
+	
+	public boolean isCreateMappings() {
+		return createMappings;
+	}
+
+	public void setCreateMappings(boolean createMappings) {
+		this.createMappings = createMappings;
+	}
+
 	public ImportLibraryElementWizardMainPage() {
 		super("Import Library Elements");
 		this.setMessage("Please specify the library elements to import...");
@@ -96,13 +129,13 @@ public class ImportLibraryElementWizardMainPage extends WizardPage {
 		container.setLayoutData (new GridData (GridData.HORIZONTAL_ALIGN_FILL));
 		
 		// create a file selector for the source file
-		FileFieldEditor libraryFileFieldEditor = 
+		libraryFileFieldEditor = 
 				new FileFieldEditor("libFileSelect", "", container);
 		libraryFileFieldEditor.setLabelText("Library File:");
 		// set the allowed file extensions
 		libraryFileFieldEditor.setFileExtensions(new String[]{"*.zip", "*.jar"});
-		// set a listener that updates the buttons
-		libraryFileFieldEditor.setPropertyChangeListener(new IPropertyChangeListener() {
+		// create the listener that updates the buttons
+		libraryFileFieldListener = new IPropertyChangeListener() {
 
 			@Override
 			public void propertyChange(PropertyChangeEvent event) {
@@ -135,7 +168,7 @@ public class ImportLibraryElementWizardMainPage extends WizardPage {
 					getContainer().updateButtons();
 				}
 			}
-		});
+		};
 		
 		// create the list that will display the library entries
 		list = new org.eclipse.swt.widgets.List (container, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL);
@@ -149,13 +182,28 @@ public class ImportLibraryElementWizardMainPage extends WizardPage {
 				
 				String[] selection = list.getSelection();
 				libEntriesToImport = new ArrayList<>();
-				for (int i=0; i<selection.length; i++) {
-					libEntriesToImport.add(libEntryMap.get(selection[i]));
+				for (String element : selection) {
+					libEntriesToImport.add(libEntryMap.get(element));
 				}
 				
 				getContainer().updateButtons();
 			}
 		});
+		
+		// create the check box that enables automatic generation of mappings for library entries
+		createMappingButton = new Button(container, SWT.CHECK);
+		createMappingButton.setSelection(true);
+		GridDataFactory.swtDefaults().span(3, 1).align(GridData.FILL, GridData.BEGINNING);
+		createMappingButton.setText("Create Mapping(s)");
+		createMappingButton.setToolTipText("If activated, a mapping will be automatically created for every selected library entry...");
+		
+		// create the listener for the check box
+		createMappingButtonListener = new SelectionListener2() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				setCreateMappings(createMappingButton.getSelection());
+			}
+		};
 		
 		setControl(container);
 		setPageComplete(false);
@@ -179,6 +227,20 @@ public class ImportLibraryElementWizardMainPage extends WizardPage {
 			list.add(libraryFileEntry);
 		}
 		list.setEnabled(true);
+	}
+	
+	@Override
+	public void setVisible(boolean visible) {
+		super.setVisible(visible);
+		if(visible) {
+			// add necessary listeners
+			libraryFileFieldEditor.setPropertyChangeListener(libraryFileFieldListener);
+			createMappingButton.addSelectionListener(createMappingButtonListener);
+		} else {
+			// remove all listeners
+			libraryFileFieldEditor.setPropertyChangeListener(null);
+			createMappingButton.removeSelectionListener(createMappingButtonListener);
+		}
 	}
 	
 	@Override

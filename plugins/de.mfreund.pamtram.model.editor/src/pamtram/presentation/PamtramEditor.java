@@ -469,10 +469,6 @@ public class PamtramEditor
 	protected Adapter libraryResourceAdapter =
 			new AdapterImpl() {
 				@Override
-				public boolean isAdapterForType(Object type) {
-					return (type instanceof Resource);
-				}
-				@Override
 				public void notifyChanged(Notification msg) {
 					super.notifyChanged(msg);
 					if(msg.getEventType() == Notification.ADD) {

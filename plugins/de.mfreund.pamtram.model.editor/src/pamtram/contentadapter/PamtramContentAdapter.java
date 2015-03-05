@@ -1,8 +1,10 @@
 package pamtram.contentadapter;
 
 import java.util.ArrayList;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.util.EContentAdapter;
+
 import pamtram.presentation.PamtramEditor;
 
 /**
@@ -41,6 +43,7 @@ public class PamtramContentAdapter extends EContentAdapter {
 
 		// populate the list of child content adapters
 		subAdapters.add(nameSettingAdapter);
+		subAdapters.add(libResourceHandlerAdapter);
 		
 	}
 	
@@ -60,4 +63,9 @@ public class PamtramContentAdapter extends EContentAdapter {
 	final NameSettingAdapter nameSettingAdapter = 
 			new NameSettingAdapter(this);
 	
+	/**
+	 * A content adapter that listens to added or removed library entries.
+	 */
+	final LibraryEntryRemovalHandlerAdapter libResourceHandlerAdapter = 
+			new LibraryEntryRemovalHandlerAdapter(this);
 }

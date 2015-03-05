@@ -41,6 +41,7 @@ import org.eclipse.emf.common.ui.editor.ProblemEditorPart;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -493,7 +494,7 @@ public class PamtramEditor
 	 * This listens for workspace changes.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected IResourceChangeListener resourceChangeListener =
 		new IResourceChangeListener() {
@@ -540,16 +541,34 @@ public class PamtramEditor
 					delta.accept(visitor);
 
 					if (!visitor.getRemovedResources().isEmpty()) {
-						getSite().getShell().getDisplay().asyncExec
+						boolean exit = false;
+						EList<pamtram.metamodel.LibraryEntry> libEntries = pamtram.getTargetSectionModel().getLibraryElements();
+						for (Resource resource : visitor.getRemovedResources()) {
+							if(resource.getURI().lastSegment().equals("data.xmi")) {
+								String path = resource.getURI().trimSegments(1).lastSegment();
+								for (pamtram.metamodel.LibraryEntry libraryEntry : libEntries) {
+									if(libraryEntry.getPath().equals(path)) {
+										exit = true;
+										break;
+									}
+								}
+							} else {
+								exit = true;
+								break;
+							}
+						}
+						if(exit) {
+							getSite().getShell().getDisplay().asyncExec
 							(new Runnable() {
-								 @Override
+								@Override
 								public void run() {
-									 removedResources.addAll(visitor.getRemovedResources());
-									 if (!isDirty()) {
-										 getSite().getPage().closeEditor(PamtramEditor.this, false);
-									 }
-								 }
-							 });
+									removedResources.addAll(visitor.getRemovedResources());
+									if (!isDirty()) {
+										getSite().getPage().closeEditor(PamtramEditor.this, false);
+									}
+								}
+							});							
+						}
 					}
 
 					if (!visitor.getChangedResources().isEmpty()) {

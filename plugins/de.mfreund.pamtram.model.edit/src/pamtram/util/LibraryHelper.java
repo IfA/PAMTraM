@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
@@ -50,16 +51,17 @@ public class LibraryHelper {
 	 * @param targetEPackage The target ePackage of the pamtram model into that the generated library
 	 * element shall be inserted later on.
 	 * @param uri The URI where the resource created for the library element shall be stored.
+	 * @param resourceSet The resource set to be used to.
 	 * @return The generated LibraryEntry.
 	 * @throws IOException If something goes wrong during loading the libraryFile or the XMI file inside
 	 * the library file representing the LibraryEntry. 
 	 */
 	public static LibraryEntry convertToLibraryElement(String libraryFile, String path,
-			EPackage targetEPackage, URI uri) throws IOException {
+			EPackage targetEPackage, URI uri, ResourceSet resourceSet) throws IOException {
 		
 		//TODO maybe use a factory pattern for this?
 		LibraryElementConverter converter =
-				(new LibraryHelper()).new LibraryElementConverter(libraryFile, path, targetEPackage, uri);
+				(new LibraryHelper()).new LibraryElementConverter(libraryFile, path, targetEPackage, uri, resourceSet);
 		
 		return converter.convert();
 	}
@@ -107,6 +109,8 @@ public class LibraryHelper {
 			return null;
 		}
 		
+		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry libEntry = null;
+		
 		// try to load the resource
 		InputStream inputStream = entry.getXMIFileAsInputStream();
 		Resource resource = new XMIResourceImpl();
@@ -115,10 +119,10 @@ public class LibraryHelper {
 		// get the library entry from the resource contents and return it
 		if(!(resource.getContents() == null) && !resource.getContents().isEmpty() &&
 				resource.getContents().get(0) instanceof de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry) {
-			return (de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry) resource.getContents().get(0);
+			libEntry =  (de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry) resource.getContents().get(0);
 		}
 		
-		return null;
+		return libEntry;
 	}
 	
 	/**
@@ -167,6 +171,11 @@ public class LibraryHelper {
 		 * The URI where the resource created for the library element shall be stored.
 		 */
 		private URI uri;
+
+		/**
+		 * The resource set to be used to create the new resource.
+		 */
+		private ResourceSet resourceSet;
 		
 		/**
 		 * This constructs an instance of the LibraryElementConverter.
@@ -176,13 +185,15 @@ public class LibraryHelper {
 		 * @param targetEPackage The target ePackage of the pamtram model into that the generated library
 		 * element shall be inserted later on.
 		 * @param uri The URI where the resource created for the library element shall be stored.
+		 * @param resourceSet The resource set to be used.
 		 */
 		public LibraryElementConverter(String libraryFile, String path,
-			EPackage targetEPackage, URI uri) {
+			EPackage targetEPackage, URI uri, ResourceSet resourceSet) {
 			this.libraryFile = libraryFile;
 			this.path = path;
 			this.targetEPackages = EPackageHelper.collectEPackages(targetEPackage);
 			this.uri = uri;
+			this.resourceSet = resourceSet;
 		}
 		
 		/**
@@ -196,7 +207,7 @@ public class LibraryHelper {
 			libFileEntry = getLibraryFileEntry(libraryFile, path);
 			libEntry = getLibraryEntry(libFileEntry);
 			
-			storeLibraryEntry(libEntry, uri.appendSegment(path).appendSegment("data.xmi"));
+			storeLibraryEntry(libEntry, uri.appendSegment(path).appendSegment("data.xmi"), resourceSet);
 			
 			// create the LibraryElement to be returned
 			pamtramLibEntry = MetamodelFactoryImpl.eINSTANCE.createLibraryEntry();
@@ -279,14 +290,15 @@ public class LibraryHelper {
 			return pamtramLibEntry;
 		}
 		
-		private void storeLibraryEntry(de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry libEntry, URI uri) throws IOException {
+		private void storeLibraryEntry(de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry libEntry, URI uri, ResourceSet resourceSet) throws IOException {
 			
 			if(libEntry == null) {
 				return;
 			}
 		
 			// create a resource and add the library entry
-			Resource resource = new XMIResourceImpl(uri);
+//			Resource resource = new XMIResourceImpl(uri);
+			Resource resource = resourceSet.createResource(uri);
 			resource.getContents().add(libEntry);
 			
 			// try to save the resource

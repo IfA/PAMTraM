@@ -125,6 +125,21 @@ public class LibraryHelper {
 		return libEntry;
 	}
 	
+	public static void storeLibraryEntry(de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry libEntry, URI uri, ResourceSet resourceSet) throws IOException {
+				
+				if(libEntry == null) {
+					return;
+				}
+			
+				// create a resource and add the library entry
+	//			Resource resource = new XMIResourceImpl(uri);
+				Resource resource = resourceSet.createResource(uri);
+				resource.getContents().add(libEntry);
+				
+				// try to save the resource
+				resource.save(null);
+			}
+
 	/**
 	 * This is an internal class that is used by the 'convertToLibraryElement()' functions to 
 	 * generate a LibraryElement.
@@ -207,7 +222,7 @@ public class LibraryHelper {
 			libFileEntry = getLibraryFileEntry(libraryFile, path);
 			libEntry = getLibraryEntry(libFileEntry);
 			
-			storeLibraryEntry(libEntry, uri.appendSegment(path).appendSegment("data.xmi"), resourceSet);
+//			storeLibraryEntry(libEntry, uri.appendSegment(path).appendSegment("data.xmi"), resourceSet);
 			
 			// create the LibraryElement to be returned
 			pamtramLibEntry = MetamodelFactoryImpl.eINSTANCE.createLibraryEntry();
@@ -288,21 +303,6 @@ public class LibraryHelper {
 			}
 			
 			return pamtramLibEntry;
-		}
-		
-		private void storeLibraryEntry(de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry libEntry, URI uri, ResourceSet resourceSet) throws IOException {
-			
-			if(libEntry == null) {
-				return;
-			}
-		
-			// create a resource and add the library entry
-//			Resource resource = new XMIResourceImpl(uri);
-			Resource resource = resourceSet.createResource(uri);
-			resource.getContents().add(libEntry);
-			
-			// try to save the resource
-			resource.save(null);
 		}
 	}
 	

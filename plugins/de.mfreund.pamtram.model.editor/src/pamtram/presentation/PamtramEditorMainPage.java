@@ -639,7 +639,6 @@ public class PamtramEditorMainPage extends SashForm {
 
 						@Override
 						public void widgetSelected(SelectionEvent e) {
-							System.out.println("importing");
 							// create the wizard
 							WizardDialog wizardDialog = new WizardDialog(
 									new Shell(), 

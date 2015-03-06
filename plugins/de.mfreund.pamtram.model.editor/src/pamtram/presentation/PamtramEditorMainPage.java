@@ -1,5 +1,6 @@
 package pamtram.presentation;
 
+import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -23,7 +24,6 @@ import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.TreeItem;
 
 import pamtram.MappingModel;
-import pamtram.NamedElement;
 import pamtram.TargetSectionModel;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceInterface;
@@ -45,10 +45,12 @@ import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.mapping.ModelConnectionHintTargetAttribute;
 import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.metamodel.Attribute;
+import pamtram.metamodel.ContainerParameter;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.TargetSectionAttribute;
+import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 import pamtram.presentation.widgets.TreeViewerGroup;
 import de.mfreund.pamtram.util.BundleContentHelper;
@@ -227,69 +229,122 @@ public class PamtramEditorMainPage extends SashForm {
 			}
 		});
 		mappingViewer.setInput(editor.pamtram.getMappingModel());
-		mappingViewer.getTree().addSelectionListener(new SelectionListener() {
+		mappingViewer.getTree().addSelectionListener(new SelectionListener2() {
 			
+			/**
+			 * This keeps track of the mapping that is currently selected. It is used to
+			 * determine if the 'expanded' state of a mapping is to be reset (in case
+			 * a elements from a different mapping are selected).
+			 */
 			private Mapping currentMapping;
-			private NamedElement currentMappingHintGroup;
 			
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				editor.setCurrentViewer(mappingViewer);
 				
-				if(((TreeItem) e.item).getData() instanceof Mapping
-						||
-						((TreeItem) e.item).getData() instanceof MappingHintGroupType
-						|| ((TreeItem) e.item).getData() instanceof MappingHintGroupImporter
-						|| ((TreeItem) e.item).getData() instanceof GlobalAttribute
+				TreeItem item = (TreeItem) e.item;
+				
+				if(item.getData() instanceof Mapping
+						|| item.getData() instanceof MappingHintGroupType
+						|| item.getData() instanceof MappingHintGroupImporter
+						|| item.getData() instanceof GlobalAttribute
 						) {
 					
-					LinkedList<Object> expanded=new LinkedList<Object>();
-					Mapping mapping=null;
-					Object source=null;
-					LinkedList<pamtram.metamodel.Class> targets=new LinkedList<pamtram.metamodel.Class>();
+					/*
+					 * This keeps track of the elements to be expanded in the mapping viewer. 
+					 */
+					LinkedList<Object> expanded = new LinkedList<Object>();
 					
+					/*
+					 * This keeps track of the (parent) mapping of the currently selected element.
+					 */
+					Mapping mapping = null;
 					
-					if(((TreeItem) e.item).getData() instanceof MappingHintGroupType){
-						
-						if ((MappingHintGroupType) ((TreeItem) e.item).getData() != null){
-							currentMappingHintGroup=(MappingHintGroupType) ((TreeItem) e.item).getData();
-							mapping=(Mapping) currentMappingHintGroup.eContainer();
-							targets.add(((MappingHintGroupType)currentMappingHintGroup).getTargetMMSection());		
-							source=mapping.getSourceMMSection();
-							expanded.add(mapping);
-							expanded.add(currentMappingHintGroup);
+					/*
+					 * This keeps track of the element in the source viewer that corresponds to the currently selected element.
+					 */
+					Object source = null;
+					
+					/*
+					 * This keeps track of the elements in the target viewer that correspond to the currently selected element.
+					 */
+					LinkedList<pamtram.metamodel.Class> targets = new LinkedList<>();
+					
+					/*
+					 * This keeps track of the elements in the library target viewer that correspond to the currently selected element.
+					 */
+					ArrayList<Object> libraryTargets = new ArrayList<>();
+					
+					/*
+					 * If a MappingHintGroup is selected, expand the hint group itself and the parent Mapping.
+					 * Additionally, select corresponding source and target sections.
+					 */
+					if(item.getData() instanceof MappingHintGroupType){
+						MappingHintGroupType hintGroup = (MappingHintGroupType) item.getData();
+						mapping = (Mapping) hintGroup.eContainer();
+						source = mapping.getSourceMMSection();
+						TargetSectionClass target = hintGroup.getTargetMMSection(); 
+						if(target.eContainer() instanceof TargetSectionModel) {
+							targets.add(target);	
+						} else if(target.eContainer() instanceof ContainerParameter) {
+							libraryTargets.add(target);
 						}
-						
-					} else if(((TreeItem) e.item).getData() instanceof MappingHintGroupImporter){
-						currentMappingHintGroup = (NamedElement) ((TreeItem) e.item).getData();
-						mapping=(Mapping) currentMappingHintGroup.eContainer();
-						if(((MappingHintGroupImporter)currentMappingHintGroup).getHintGroup() != null) {
-							targets.add(((MappingHintGroupImporter)currentMappingHintGroup).getHintGroup().getTargetMMSection());	
-						}
-						source=mapping.getSourceMMSection();
 						expanded.add(mapping);
-						expanded.add(currentMappingHintGroup);
+						expanded.add(hintGroup);
 						
-					} else if(((TreeItem) e.item).getData() instanceof GlobalAttribute){
-						GlobalAttribute g=(GlobalAttribute)(((TreeItem) e.item).getData());
-						mapping=(Mapping) g.eContainer();
+					/*
+					 * If a MappingHintGroup is selected, expand the importer itself and the parent mapping.
+					 * Additionally, select corresponding source and target sections of the importer/of the 
+					 * imported hint group.
+					 */
+					} else if(item.getData() instanceof MappingHintGroupImporter){
+						MappingHintGroupImporter hintGroupImporter = (MappingHintGroupImporter) item.getData();
+						mapping = (Mapping) hintGroupImporter.eContainer();
+						source = mapping.getSourceMMSection();
+						if(hintGroupImporter.getHintGroup() != null) {
+							TargetSectionClass target = hintGroupImporter.getHintGroup().getTargetMMSection(); 
+							if(target.eContainer() instanceof TargetSectionModel) {
+								targets.add(target);	
+							} else if(target.eContainer() instanceof ContainerParameter) {
+								libraryTargets.add(target);
+							}
+						}
+						expanded.add(mapping);
+						expanded.add(hintGroupImporter);
+						
+					/*
+					 * If a GlobalAttribute is selected, expand the attribute itself and the parent mapping.
+					 * Additionally, select the corresponding source attribute.
+					 */
+					} else if(item.getData() instanceof GlobalAttribute){
+						GlobalAttribute g = (GlobalAttribute) (item.getData());
+						mapping = (Mapping) g.eContainer();
 						if(g.getSource() != null){
-							expanded.add(g.getSource());
-							source=g.getSource();
+							source = g.getSource();
 						} else{
-							source=mapping.getSourceMMSection();								
+							source = mapping.getSourceMMSection();								
 						}
-						
 						expanded.add(mapping);
+						expanded.add(g);
+						
+					/*
+					 * If a Mapping is selected, expand the mapping itself.
+					 * Additionally, select the source of the mapping and the targets of the hint groups.
+					 */
 					} else {
-						mapping = (Mapping) ((TreeItem) e.item).getData();
+						mapping = (Mapping) item.getData();
 						source = mapping.getSourceMMSection();
 						
 						if(mapping != null){
 							expanded.add(mapping);
 							for(MappingHintGroupType group : mapping.getMappingHintGroups()){
 								if(group.getTargetMMSection() != null) {
-									targets.add(group.getTargetMMSection());
+									TargetSectionClass target = group.getTargetMMSection(); 
+									if(target.eContainer() instanceof TargetSectionModel) {
+										targets.add(target);	
+									} else if(target.eContainer() instanceof ContainerParameter) {
+										libraryTargets.add(target);
+									}
 								}
 							}
 						}
@@ -332,86 +387,107 @@ public class PamtramEditorMainPage extends SashForm {
 									targets.toArray());
 						}
 					}
-					
+					if(libraryTargets.isEmpty()) {
+						libTargetViewer.setSelection(
+								new StructuredSelection());
+						if(mapping != currentMapping) {
+							libTargetViewer.setExpandedElements(
+									new Object[]{});
+						}
+					} else {
+						libTargetViewer.setSelection(
+								new StructuredSelection(libraryTargets));
+						if(mapping != currentMapping) {
+							libTargetViewer.setExpandedElements(
+									libraryTargets.toArray());
+							/* this second selection is a quirk that is necessary because of the virtual 'ParameterDescription'
+							 * that prevents the expansion to work at the first try 
+							 */
+							libTargetViewer.setSelection(
+									new StructuredSelection(libraryTargets));
+						}
+					}
 					// Update the currently selected mapping.
 					currentMapping = mapping;
-				}  else if(((TreeItem) e.item).getData() instanceof ModifiedAttributeElementType<?>) {
+					
+				/*
+				 * If a ModifiedAttributeElementType is selected, select the source attribute that
+				 * it represents and the target attribute of a possible parent AttributeMapping.
+				 */
+				}  else if(item.getData() instanceof ModifiedAttributeElementType<?>) {
 					@SuppressWarnings("unchecked")
-					ModifiedAttributeElementType<Attribute> mapping = 
-							(ModifiedAttributeElementType<Attribute>) ((TreeItem) e.item).getData();
+					ModifiedAttributeElementType<Attribute> modifiedAttribute = 
+							(ModifiedAttributeElementType<Attribute>) item.getData();
 					
 					Attribute target = null;
-					
-					if(mapping.eContainer() instanceof AttributeMapping){
-						target= ((AttributeMapping)mapping.eContainer()).getTarget();
+					if(modifiedAttribute.eContainer() instanceof AttributeMapping){
+						target = ((AttributeMapping) modifiedAttribute.eContainer()).getTarget();
 					}
 					
-					Attribute source = mapping.getSource();
+					Attribute source = modifiedAttribute.getSource();
 					
-					setSourceTargetViewerSingleItemSelections(target,
-							source);
-				}  else if(((TreeItem) e.item).getData() instanceof GlobalAttributeImporter){
-					GlobalAttributeImporter mapping = (GlobalAttributeImporter) ((TreeItem) e.item).getData();
-					Attribute target = ((AttributeMapping)mapping.eContainer()).getTarget();
-					Attribute source=mapping.getSourceAttribute();
+					setSourceTargetViewerSelections(source, target);
 					
-					setSourceTargetViewerSingleItemSelections(target, source);
+				/*
+				 * If a GlobalAttributeImporter is selected, select the source attribute that
+				 * it imports and the target attribute of a possible parent AttributeMapping.
+				 */
+				}  else if(item.getData() instanceof GlobalAttributeImporter){
+					GlobalAttributeImporter importer = (GlobalAttributeImporter) item.getData();
+					Attribute target = ((AttributeMapping) importer.eContainer()).getTarget();
+					Attribute source = importer.getSourceAttribute();
 					
+					setSourceTargetViewerSelections(source, target);
 					
-				} else if(((TreeItem) e.item).getData() instanceof AttributeMapping) {
-					AttributeMapping mapping = (AttributeMapping) ((TreeItem) e.item).getData();
+				/*
+				 * If an AttributeMapping is selected, select all source attributes and the 
+				 * target attribute.
+				 */
+				} else if(item.getData() instanceof AttributeMapping) {
+					AttributeMapping mapping = (AttributeMapping) item.getData();
 					Attribute target = mapping.getTarget();
 					
-					
 					List<Attribute> sources = new LinkedList<Attribute>();
-					
-						for(AttributeMappingSourceInterface c : mapping.getSourceAttributeMappings()){
-							if(c.getSourceAttribute() != null){
-								sources.add(c.getSourceAttribute());
-							}
+					for(AttributeMappingSourceInterface c : mapping.getSourceAttributeMappings()){
+						if(c.getSourceAttribute() != null){
+							sources.add(c.getSourceAttribute());
 						}
-						
-					sourceViewer.setSelection(new StructuredSelection(sources));
-					
-					if(target == null) {
-						targetViewer.setSelection(
-								new StructuredSelection());
-					} else {
-						targetViewer.setSelection(
-								new StructuredSelection(target));
 					}
+						
+					setSourceTargetViewerSelections(sources, target);
 					
-				} else if(((TreeItem) e.item).getData() instanceof CardinalityMapping) {
+				/*
+				 * If a CardinalityMapping is selected, select its source and target classes.
+				 */
+				} else if(item.getData() instanceof CardinalityMapping) {
 					
-					CardinalityMapping mapping = (CardinalityMapping) ((TreeItem) e.item).getData();
+					CardinalityMapping mapping = (CardinalityMapping) item.getData();
 					
 					pamtram.metamodel.Class source = mapping.getSource();
 					pamtram.metamodel.Class target = mapping.getTarget();
 					
-					// Select the source and target item associated with the selected mapping.
-					setSourceTargetViewerSingleItemSelections(target, source);
-				} else if(((TreeItem) e.item).getData() instanceof MappingInstanceSelector) {
+					setSourceTargetViewerSelections(source, target);
 					
-					MappingInstanceSelector selector = (MappingInstanceSelector) ((TreeItem) e.item).getData();
+				/*
+				 * If a MappingInstanceSelector is selected, select the target reference that it points to.	
+				 */
+				} else if(item.getData() instanceof MappingInstanceSelector) {
+					
+					MappingInstanceSelector selector = (MappingInstanceSelector) item.getData();
 					
 					NonContainmentReference reference = selector.getAffectedReference();
 					
-					// Select the reference associated with the selected Mapping Instance Selector.
-					if(reference == null) {
-						targetViewer.setSelection(
-								new StructuredSelection());
-					} else {
-						targetViewer.setSelection(
-								new StructuredSelection(reference));
-					}
-					sourceViewer.setSelection(new StructuredSelection());
+					setSourceTargetViewerSelections(null, reference);
 					
-				} else if(((TreeItem) e.item).getData() instanceof AttributeMatcher){
-					AttributeMatcher matcher= (AttributeMatcher) ((TreeItem) e.item).getData();
+				/*
+				 * If an AttributeMatcher is selected, select its source and target attributes.
+				 */
+				} else if(item.getData() instanceof AttributeMatcher){
+					AttributeMatcher matcher= (AttributeMatcher) item.getData();
 					
 					TargetSectionAttribute target= matcher.getTargetAttribute();
 					
-					List<SourceSectionAttribute> sources= new LinkedList<SourceSectionAttribute> ();
+					List<SourceSectionAttribute> sources= new LinkedList<SourceSectionAttribute>();
 					
 					for(AttributeMatcherSourceInterface srcElement : matcher.getSourceAttributes()){
 						if(srcElement.getSourceAttribute() != null){
@@ -419,36 +495,29 @@ public class PamtramEditorMainPage extends SashForm {
 						}
 					}
 					
-					sourceViewer.setSelection(new StructuredSelection(sources));
+					setSourceTargetViewerSelections(sources, target);
+				
+				/*
+				 * If a ClassMatcher is selected, select the source and target classes associated with it.
+				 */
+				} else if(item.getData() instanceof ClassMatcher) {
 					
-					if(target == null){
-						targetViewer.setSelection(new StructuredSelection());
-					} else {
-						targetViewer.setSelection(new StructuredSelection(target));
-					}
-					
-				} else if(((TreeItem) e.item).getData() instanceof ClassMatcher) {
-					
-					ClassMatcher matcher = (ClassMatcher) ((TreeItem) e.item).getData();
+					ClassMatcher matcher = (ClassMatcher) item.getData();
 					
 					pamtram.metamodel.Class target = matcher.getTargetClass();
 					
-					// Select the source and target item associated with the selected matcher.
-					if(target == null) {
-						targetViewer.setSelection(
-								new StructuredSelection());
-					} else {
-						targetViewer.setSelection(
-								new StructuredSelection(target));
-					}
-					sourceViewer.setSelection(new StructuredSelection());
+					setSourceTargetViewerSelections(null, target);
 					
-				} else if(((TreeItem) e.item).getData() instanceof ModelConnectionHint) {
+				/*
+				 * If a ModelConnectionHint is selected, Select the source and target item 
+				 * associated with the selected matcher.
+				 */
+				} else if(item.getData() instanceof ModelConnectionHint) {
 					
-					ModelConnectionHint hint = (ModelConnectionHint) ((TreeItem) e.item).getData();
+					ModelConnectionHint hint = (ModelConnectionHint) item.getData();
 					
-					LinkedList<Attribute> sources = new LinkedList<Attribute>();
-					LinkedList<Attribute> targets = new LinkedList<Attribute>();
+					ArrayList<Attribute> sources = new ArrayList<>();
+					ArrayList<Attribute> targets = new ArrayList<>();
 					
 					for(ModelConnectionHintSourceInterface sourceElement : hint.getSourceElements() ){
 						sources.add(sourceElement.getSourceAttribute());
@@ -458,19 +527,24 @@ public class PamtramEditorMainPage extends SashForm {
 						targets.add(a.getSource());
 					}
 					
-					// Select the source and target item associated with the selected matcher.
-					targetViewer.setSelection(new StructuredSelection(targets));
-					sourceViewer.setSelection(new StructuredSelection(sources));
+					setSourceTargetViewerSelections(sources, targets);
 					
-				} else if(((TreeItem) e.item).getData() instanceof ConnectionHintTargetAttribute){
-					ConnectionHintTargetAttribute a=(ConnectionHintTargetAttribute) ((TreeItem) e.item).getData();
-					setSourceTargetViewerSingleItemSelections(a.getTargetAttribute(), null);
+				/*
+				 * If a ConnectionHintTargetAttribute is selected, select its specified 
+				 * target attribute.
+				 */
+				} else if(item.getData() instanceof ConnectionHintTargetAttribute){
+					ConnectionHintTargetAttribute a = (ConnectionHintTargetAttribute) item.getData();
+					setSourceTargetViewerSelections(null, a.getTargetAttribute());
+					
+				/*
+				 * If a MappedAttributeValueExpander is selected, select ist source attribute and
+				 * the targets of all associated expandable hints.
+				 */
 				} else if(((TreeItem)e.item).getData() instanceof MappedAttributeValueExpander){
-					MappedAttributeValueExpander exp = (MappedAttributeValueExpander)((TreeItem)e.item).getData();
+					MappedAttributeValueExpander exp = (MappedAttributeValueExpander) item.getData();
 					
-					setSourceTargetViewerSingleItemSelections(null, exp.getSourceAttribute());
-					
-					List<TargetSectionAttribute> attr = new LinkedList<TargetSectionAttribute>();
+					List<TargetSectionAttribute> attr = new ArrayList<TargetSectionAttribute>();
 					for(ExpandableHint m : exp.getHintsToExpand()){
 						if(m instanceof AttributeMapping){
 							attr.add(((AttributeMapping) m).getTarget());
@@ -478,30 +552,57 @@ public class PamtramEditorMainPage extends SashForm {
 							attr.add(((AttributeMatcher) m).getTargetAttribute());
 						}
 					}
-					targetViewer.setSelection(new StructuredSelection(attr));
+
+					setSourceTargetViewerSelections(exp.getSourceAttribute(), attr);
 					
 				}
 			}
-			private void setSourceTargetViewerSingleItemSelections(
-					Object target, Object source) {
-				// Select the source and target item associated with  the selected mapping.
+			
+			/**
+			 * This is a convenience method to select elements in the source viewer and in the target/library target {@link TreeViewer}.
+			 * The method automatically determines if the target element(s) is/are located in the target viewer or in the library target viewer
+			 * and performs the appropriate selection.
+			 * 
+			 * @param source The object(s) to be selected in the source viewer (or null if nothing is to be selected).
+			 * 					This may be a single object or an {@link AbstractCollection} of objects.
+			 * @param target The object(s) to be selected in the target (or library target) viewer (or null if nothing is to be selected).
+			 * 					This may be a single object or an {@link AbstractCollection} of objects.
+			 */
+			private void setSourceTargetViewerSelections(
+					Object source, Object target) {
 				if(source == null) {
 					sourceViewer.setSelection(
 							new StructuredSelection());
 				} else {
-					sourceViewer.setSelection(
-							new StructuredSelection(source));
+					if(source instanceof AbstractCollection<?>) {
+						sourceViewer.setSelection(
+								new StructuredSelection(((AbstractCollection<?>) source).toArray()));
+					} else {
+						sourceViewer.setSelection(
+								new StructuredSelection(source));						
+					}
 				}
 				if(target == null) {
 					targetViewer.setSelection(
 							new StructuredSelection());
+					libTargetViewer.setSelection(
+							new StructuredSelection());
 				} else {
-					targetViewer.setSelection(
-							new StructuredSelection(target));
+					/* as the target(s) may either be located in target sections or in a library entries,
+					 * we simply set the selection in both viewers (knowing that only one will succeed)  
+					 */
+					if(target instanceof AbstractCollection<?>) {
+						targetViewer.setSelection(
+								new StructuredSelection(((AbstractCollection<?>) target).toArray()));
+						libTargetViewer.setSelection(
+								new StructuredSelection(((AbstractCollection<?>) target).toArray()));
+					} else {
+						targetViewer.setSelection(
+								new StructuredSelection(target));
+						libTargetViewer.setSelection(
+								new StructuredSelection(target));
+					}
 				}
-			}
-			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
 			}
 			
 		});

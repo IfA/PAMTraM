@@ -82,7 +82,6 @@ public class CreateLibraryEntryCommand extends CreateChildCommand {
 			// delete the resource (and thus remove it from the resource set)
 			new ResourceSetImpl().getResources().add(resource);
 			resource.delete(null);
-			System.out.println(domain.getResourceSet().getResources());
 			// now check if we need to delete an empty directory
 			if(parent.isDirectory() && parent.listFiles().length == 0) {
 				parent.delete();

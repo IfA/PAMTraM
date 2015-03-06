@@ -1,20 +1,28 @@
 package de.mfreund.pamtram.wizards;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.edit.command.CreateChildCommand;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.wizard.Wizard;
 
 import pamtram.PAMTraM;
 import pamtram.PamtramPackage;
+import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingFactory;
+import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
+import pamtram.mapping.MappingInstanceSelector;
+import pamtram.mapping.MappingPackage;
 import pamtram.mapping.commands.CreateLibraryEntryCommand;
+import pamtram.metamodel.AttributeParameter;
 import pamtram.metamodel.ContainerParameter;
+import pamtram.metamodel.ExternalReferenceParameter;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.LibraryParameter;
 import pamtram.util.LibraryHelper;
@@ -90,16 +98,38 @@ public class ImportLibraryElementWizard extends Wizard {
 				if(one.isCreateMappings()) {
 					// first, create a mapping that points to the library entry
 					Mapping mapping = MappingFactory.eINSTANCE.createMapping();
+					ArrayList<MappingHintGroup> mappingHintGroups = new ArrayList<>();
+					ArrayList<MappingHint> mappingHints = new ArrayList<>();
 					for (LibraryParameter parameter : libElement.getParameters()) {
 						// create a mapping hint group for every container parameter
 						if((parameter instanceof ContainerParameter)) {
 							MappingHintGroup hintGroup = MappingFactory.eINSTANCE.createMappingHintGroup();
-							hintGroup.setTargetMMSection(((ContainerParameter) parameter).getClass_());
-							hintGroup.setName(((ContainerParameter) parameter).getClass_().getName());
-							mapping.getMappingHintGroups().add(hintGroup);
+							mappingHintGroups.add(hintGroup);
+							// add the mapping hint group to the mapping
+							compoundCommand.append(
+									new CreateChildCommand(editingDomain, mapping, MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS, hintGroup, null));
+							// set the target metamodel section of the hint group
+							compoundCommand.append(
+									new SetCommand(editingDomain, hintGroup, MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__TARGET_MM_SECTION, ((ContainerParameter) parameter).getClass_()));
+						} else if(parameter instanceof ExternalReferenceParameter) {
+							MappingInstanceSelector selector = MappingFactory.eINSTANCE.createMappingInstanceSelector();
+							mappingHints.add(selector);
+							// set the affected reference of the mapping instance selector
+							selector.setAffectedReference(((ExternalReferenceParameter) parameter).getReference());
+						} else if(parameter instanceof AttributeParameter) {
+							AttributeMapping attMapping = MappingFactory.eINSTANCE.createAttributeMapping();
+							mappingHints.add(attMapping);
+							// set the target attribute of the attribute mapping
+							attMapping.setTarget(((AttributeParameter) parameter).getAttribute());
 						}
-						//TODO handle the other parameters
 					}
+					// now, we add all mapping hints to the first hint group
+					//TODO if there are multiple groups, choose the right one for each hint
+					for (MappingHint mappingHint : mappingHints) {
+						compoundCommand.append(
+								new CreateChildCommand(editingDomain, mappingHintGroups.get(0), MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS, mappingHint, null));
+					}
+					
 					// second, create a command to import it to the pamtram model
 					Command createMappingCommand = new CreateChildCommand(
 							editingDomain, 

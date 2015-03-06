@@ -52,7 +52,7 @@
         eSuperTypes="#//NamedElement">
       <eOperations name="getContainingSection" lowerBound="1" eType="#//metamodel/Class">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="MetaModelElement element = this;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;// move upwards in the hierarchy&#xD;&#xA;while(element.eContainer() instanceof MetaModelElement) {&#xD;&#xA;&#x9;element = (MetaModelElement) element.eContainer();&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;if(element instanceof pamtram.metamodel.Class &amp;&amp;&#xD;&#xA;&#x9;&#x9;element.eContainer() instanceof SectionModel) {&#xD;&#xA;&#x9;// we have found the section&#xD;&#xA;&#x9;return (pamtram.metamodel.Class) element;&#xD;&#xA;} else {&#xD;&#xA;&#x9;// something went wrong&#xD;&#xA;&#x9;return null;&#xD;&#xA;}"/>
+          <details key="body" value="&#x9;&#x9;MetaModelElement element = this;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;// move upwards in the hierarchy&#xD;&#xA;&#x9;&#x9;while(element.eContainer() instanceof MetaModelElement) {&#xD;&#xA;&#x9;&#x9;&#x9;element = (MetaModelElement) element.eContainer();&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;if(element instanceof pamtram.metamodel.Class &amp;&amp;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;(element.eContainer() instanceof SectionModel || element.eContainer() instanceof ContainerParameter)) {&#xD;&#xA;&#x9;&#x9;&#x9;// we have found the section&#xD;&#xA;&#x9;&#x9;&#x9;return (pamtram.metamodel.Class) element;&#xD;&#xA;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;// something went wrong&#xD;&#xA;&#x9;&#x9;&#x9;return null;&#xD;&#xA;&#x9;&#x9;}"/>
         </eAnnotations>
       </eOperations>
     </eClassifiers>

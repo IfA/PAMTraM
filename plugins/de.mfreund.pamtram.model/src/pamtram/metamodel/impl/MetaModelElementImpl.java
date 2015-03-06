@@ -9,9 +9,15 @@ import org.eclipse.emf.ecore.EClass;
 
 import pamtram.SectionModel;
 import pamtram.impl.NamedElementImpl;
+import pamtram.metamodel.AttributeParameter;
 import pamtram.metamodel.ContainerParameter;
+import pamtram.metamodel.ExternalReferenceParameter;
+import pamtram.metamodel.LibraryEntry;
+import pamtram.metamodel.LibraryParameter;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.TargetSectionAttribute;
+import pamtram.metamodel.TargetSectionNonContainmentReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -65,6 +71,16 @@ public abstract class MetaModelElementImpl extends NamedElementImpl implements M
 				(element.eContainer() instanceof SectionModel || element.eContainer() instanceof ContainerParameter)) {
 			// we have found the section
 			return (pamtram.metamodel.Class) element;
+		} else if((element instanceof TargetSectionAttribute && element.eContainer() instanceof AttributeParameter) || 
+				(element instanceof TargetSectionNonContainmentReference) && element instanceof ExternalReferenceParameter) {
+			LibraryEntry libEntry = (LibraryEntry) element.eContainer().eContainer();
+			for (LibraryParameter param : libEntry.getParameters()) {
+				//TODO if multiple container parameters exist, there might need to be additional logic
+				if(param instanceof ContainerParameter) {
+					return ((ContainerParameter) param).getClass_();
+				}
+			}
+			return null;
 		} else {
 			// something went wrong
 			return null;

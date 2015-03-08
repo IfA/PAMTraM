@@ -166,4 +166,12 @@
             natureId="de.mfreund.pamtram.pamtramNature">
       </image>
    </extension>
+     <extension
+           point="org.eclipse.ui.preferencePages">
+        <page
+              class="de.mfreund.pamtram.ui.preference.MainPreferencePage"
+              id="de.mfreund.pamtram.ui.mainpreferencepage"
+              name="PAMTraM">
+        </page>
+     </extension>
 </plugin>

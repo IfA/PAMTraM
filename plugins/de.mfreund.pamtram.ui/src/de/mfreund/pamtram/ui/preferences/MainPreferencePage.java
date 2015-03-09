@@ -1,4 +1,4 @@
-package de.mfreund.pamtram.ui.preference;
+package de.mfreund.pamtram.ui.preferences;
 
 import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;

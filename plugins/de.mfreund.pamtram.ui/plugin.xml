@@ -169,7 +169,7 @@
      <extension
            point="org.eclipse.ui.preferencePages">
         <page
-              class="de.mfreund.pamtram.ui.preference.MainPreferencePage"
+              class="de.mfreund.pamtram.ui.preferences.MainPreferencePage"
               id="de.mfreund.pamtram.ui.mainpreferencepage"
               name="PAMTraM">
         </page>

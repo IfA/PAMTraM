@@ -6,6 +6,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
+import de.mfreund.pamtram.preferences.PreferenceSupplier;
 import de.mfreund.pamtram.ui.PamtramUIPlugin;
 
 /**
@@ -26,8 +27,10 @@ public class MainPreferencePage extends FieldEditorPreferencePage implements
 
 	@Override
 	public void init(IWorkbench workbench) {
-		 setPreferenceStore(PamtramUIPlugin.getPlugin().getPreferenceStore());
-		 setDescription("General PAMTraM settings:");
+		// set the PreferenceStore where the preferences are to be stored
+		setPreferenceStore(PamtramUIPlugin.getPlugin().getPreferenceStore());
+		
+		setDescription("General PAMTraM settings:");
 	}
 
 	@Override
@@ -37,7 +40,7 @@ public class MainPreferencePage extends FieldEditorPreferencePage implements
 		 * a field to control the auto-setting/updating of element names based on
 		 * relevant structural features
 		 */
-		addField(new BooleanFieldEditor("AUTO-SET-NAMES",
+		addField(new BooleanFieldEditor(PreferenceSupplier.PREF_AUTO_SET_NAMES,
 		        "Automatically set/update element names", getFieldEditorParent()));
 
 	}

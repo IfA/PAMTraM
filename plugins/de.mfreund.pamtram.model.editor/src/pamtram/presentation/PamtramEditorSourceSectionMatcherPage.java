@@ -35,12 +35,12 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.ide.ResourceUtil;
 
-import de.mfreund.gentrans.transformation.GenericTransformationRunner;
 import pamtram.MappingModel;
 import pamtram.mapping.MappingType;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.presentation.widgets.TreeViewerGroup;
 import pamtram.util.EObjectTreeContentProvider;
+import de.mfreund.gentrans.transformation.GenericTransformationRunner;
 
 public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 	
@@ -263,6 +263,9 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 	/**
 	 * This updates the source model file shown in the source model
 	 * tree based on the current selection in the source model combo.
+	 * 
+	 * TODO There should be no direct dependency to the gentrans plug-in/the GenericTransformationRunner. 
+	 * This should be solved by an extension point.
 	 */
 	protected void updateSourceModel() {
 		

@@ -19,10 +19,9 @@ Export-Package: pamtram.condition.provider,
 Require-Bundle: org.eclipse.core.runtime,
  de.mfreund.pamtram.model;visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
+ de.tud.et.ifa.agtele.genlibrary;visibility:=reexport,
  org.eclipse.swt,
  org.eclipse.core.resources,
- de.tud.et.ifa.agtele.genlibrary;visibility:=reexport,
  de.tud.et.ifa.agtele.genlibrary.edit;visibility:=reexport,
- org.eclipse.emf.ecore.xmi,
- org.eclipse.emf.ecore
+ org.eclipse.emf.ecore.xmi
 Bundle-ActivationPolicy: lazy

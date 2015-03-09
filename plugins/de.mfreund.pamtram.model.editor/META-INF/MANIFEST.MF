@@ -20,12 +20,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
  de.tud.et.ifa.agtele.genlibrary.edit;visibility:=reexport,
- de.mfreund.pamtram.model,
- de.mfreund.pamtram.model.editor,
  de.mfreund.gentrans.transformation,
- org.eclipse.emf.ecore,
- org.eclipse.swt,
- org.eclipse.ui.forms,
  de.mfreund.pamtram,
  de.mfreund.pamtram.ui
 Bundle-ActivationPolicy: lazy

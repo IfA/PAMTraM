@@ -10,20 +10,18 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.mfreund.pamtram.pages,
  de.mfreund.pamtram.ui,
- de.mfreund.pamtram.ui.launching,
  de.mfreund.pamtram.ui.util,
  de.mfreund.pamtram.wizards
 Require-Bundle: org.eclipse.core.runtime,
- de.mfreund.pamtram,
  org.eclipse.debug.ui,
- de.mfreund.pamtram,
  de.tud.et.ifa.agtele.genlibrary,
  org.eclipse.jface,
  org.eclipse.ui.workbench,
  de.mfreund.pamtram.model;bundle-version="1.0.0",
- de.mfreund.pamtram.model.edit;bundle-version="1.0.0",
  org.eclipse.ui;bundle-version="3.106.0",
  org.eclipse.ui.ide;bundle-version="3.10.1",
  org.eclipse.emf.ecore.xmi;bundle-version="2.10.1",
- org.eclipse.emf.edit.ui;bundle-version="2.10.1"
+ org.eclipse.emf.edit.ui;bundle-version="2.10.1",
+ de.mfreund.pamtram.model.edit;bundle-version="1.0.0",
+ de.mfreund.pamtram;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy

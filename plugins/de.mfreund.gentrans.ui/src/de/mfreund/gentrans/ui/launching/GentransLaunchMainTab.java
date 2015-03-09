@@ -315,6 +315,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		return "Main";
 	}
 
+	@Override
 	public boolean isValid(ILaunchConfiguration launchConfig) {
 	    setErrorMessage(null);
 	    if(!isProjectComboValid()) {

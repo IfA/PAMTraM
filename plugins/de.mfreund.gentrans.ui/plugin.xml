@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+    <launchConfigurationTypeImage
+        icon="icons/project.png"
+        configTypeID="de.mfreund.gentrans.launchConfigurationType.gentrans"
+        id="de.mfreund.gentrans.launchConfigurationTypeImage.gentrans">
+    </launchConfigurationTypeImage>
+</extension>
+
+<extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="de.mfreund.gentrans.ui.launching.GentransLaunchConfigurationTabGroup"
+            id="de.mfreund.gentrans.launching.GentransLaunchConfigurationTabGroup"
+            type="de.mfreund.gentrans.launchConfigurationType.gentrans">
+      </launchConfigurationTabGroup>
+   </extension>
+   <extension point="org.eclipse.debug.ui.launchShortcuts">
+    <shortcut
+          class="de.mfreund.gentrans.ui.launching.GentransLaunchShortcut"
+          description="Launch a GenTrans transformation"
+          icon="icons/project.png"
+          id="de.mfreund.gentrans.GentransLaunchShortcut"
+          label="GenTrans"
+          modes="run">
+    <description
+     description="Performs a GenTrans transformation"
+     mode="run">
+    </description>
+  <contextualLaunch>
+  	<enablement>
+  	<with variable="selection">
+  	<iterate>
+          <test property="org.eclipse.core.resources.projectNature" value="de.mfreund.pamtram.pamtramNature" />
+      </iterate>
+     </with>
+  </enablement>
+  </contextualLaunch>
+  <configurationType
+    id="de.mfreund.gentrans.launchConfigurationType.gentrans">
+  </configurationType>
+  </shortcut>
+</extension>
+
+</plugin>

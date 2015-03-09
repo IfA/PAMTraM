@@ -3,6 +3,10 @@ package de.mfreund.pamtram.preferences;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.core.runtime.preferences.IScopeContext;
+import org.eclipse.core.runtime.preferences.InstanceScope;
+
 /**
  * This class is responsible for the definition of preferences for the PAMTraM plug-ins and default 
  * values for these preferences.
@@ -17,6 +21,20 @@ public class PreferenceSupplier {
 	 */
 	public static final String PREF_AUTO_SET_NAMES = "AUTO-SET-NAMES";
 	public static final boolean DEFAULT_AUTO_SET_NAMES = true;
+	/*
+	 * More preferences can be defined here...
+	 */
+	// public static final ...
+	// public static final ...
+	
+	/*
+	 * The scope to be used for the preferences.
+	 */
+	public static final IScopeContext SCOPE_CONTEXT = InstanceScope.INSTANCE;
+	/*
+	 * The preference node where the preferences are stored.
+	 */
+	public static final String PREFERENCE_NODE = "de.mfreund.pamtram.ui";
 	
 	/**
 	 * This returns a map of preferences and default values for the PAMTraM plug-ins.
@@ -29,5 +47,22 @@ public class PreferenceSupplier {
 		entries.put(PREF_AUTO_SET_NAMES, Boolean.toString(DEFAULT_AUTO_SET_NAMES));
 		
 		return entries;
+	}
+	
+	/**
+	 * This returns the preferences for the PAMTraM plug-ins.
+	 * 
+	 * @return The preferences.
+	 */
+	public static IEclipsePreferences getPreferences() {
+		
+		return SCOPE_CONTEXT.getNode(PREFERENCE_NODE);
+	}
+	
+	/**
+	 * This is a convenience method to get the current value of the '<em><b>AUTO-SET-NAMES</b></em>' preference.
+	 */
+	public static boolean isAutoSetNames() {
+		return PreferenceSupplier.getPreferences().getBoolean(PREF_AUTO_SET_NAMES, DEFAULT_AUTO_SET_NAMES);
 	}
 }

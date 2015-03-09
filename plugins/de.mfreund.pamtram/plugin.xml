@@ -13,14 +13,7 @@
    </extension>
  
    
-   <extension point = "org.eclipse.debug.core.launchConfigurationTypes">
-	   <launchConfigurationType
-	   	   id="de.mfreund.pamtram.launchConfigurationType.gentrans"
-		   name="Launch GenTrans Transformation"
-		   delegate="de.mfreund.pamtram.launching.GentransLaunchingDelegate"
-		   modes= "run">
-	   </launchConfigurationType>
-	</extension>
+   
 	
    
 </plugin>

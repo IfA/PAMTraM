@@ -1,9 +1,13 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Gentrans
-Bundle-SymbolicName: de.mfreund.gentrans
+Bundle-SymbolicName: de.mfreund.gentrans;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: de.mfreund.gentrans.Activator
-Require-Bundle: org.eclipse.core.runtime
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.debug.core,
+ org.eclipse.emf.ecore.xmi,
+ de.mfreund.gentrans.transformation,
+ de.mfreund.pamtram
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy

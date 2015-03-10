@@ -92,7 +92,7 @@ public class ImportLibraryElementWizard extends Wizard {
 				Command createLibraryEntryCommand = new CreateLibraryEntryCommand(
 						editingDomain, 
 						pamtram.getTargetSectionModel(), 
-						libElement, pamtram.eResource().getURI().trimSegments(1).appendSegment("lib").appendSegment(entry.getKey()).appendSegment("data.xmi"));
+						libElement, pamtram.eResource().getURI().trimSegments(1).appendSegment("lib").appendSegment("target").appendSegment(entry.getKey()).appendSegment("data.xmi"));
 				compoundCommand.append(createLibraryEntryCommand);					
 				
 				if(one.isCreateMappings()) {

@@ -60,31 +60,31 @@ public abstract class MetaModelElementImpl extends NamedElementImpl implements M
 	 */
 	@Override
 	public pamtram.metamodel.Class getContainingSection() {
-		MetaModelElement element = this;
-				
-		// move upwards in the hierarchy
-		while(element.eContainer() instanceof MetaModelElement) {
-			element = (MetaModelElement) element.eContainer();
-		}
-		
-		if(element instanceof pamtram.metamodel.Class &&
-				(element.eContainer() instanceof SectionModel || element.eContainer() instanceof ContainerParameter)) {
-			// we have found the section
-			return (pamtram.metamodel.Class) element;
-		} else if((element instanceof TargetSectionAttribute && element.eContainer() instanceof AttributeParameter) || 
-				(element instanceof TargetSectionNonContainmentReference) && element instanceof ExternalReferenceParameter) {
-			LibraryEntry libEntry = (LibraryEntry) element.eContainer().eContainer();
-			for (LibraryParameter param : libEntry.getParameters()) {
-				//TODO if multiple container parameters exist, there might need to be additional logic
-				if(param instanceof ContainerParameter) {
-					return ((ContainerParameter) param).getClass_();
+				MetaModelElement element = this;
+						
+				// move upwards in the hierarchy
+				while(element.eContainer() instanceof MetaModelElement) {
+					element = (MetaModelElement) element.eContainer();
 				}
-			}
-			return null;
-		} else {
-			// something went wrong
-			return null;
-		}
+				
+				if(element instanceof pamtram.metamodel.Class &&
+						(element.eContainer() instanceof SectionModel || element.eContainer() instanceof ContainerParameter)) {
+					// we have found the section
+					return (pamtram.metamodel.Class) element;
+				} else if((element instanceof TargetSectionAttribute && element.eContainer() instanceof AttributeParameter) || 
+						(element instanceof TargetSectionNonContainmentReference) && element instanceof ExternalReferenceParameter) {
+					LibraryEntry libEntry = (LibraryEntry) element.eContainer().eContainer();
+					for (LibraryParameter param : libEntry.getParameters()) {
+						//TODO if multiple container parameters exist, there might need to be additional logic
+						if(param instanceof ContainerParameter) {
+							return ((ContainerParameter) param).getClass_();
+						}
+					}
+					return null;
+				} else {
+					// something went wrong
+					return null;
+				}
 	}
 
 	/**

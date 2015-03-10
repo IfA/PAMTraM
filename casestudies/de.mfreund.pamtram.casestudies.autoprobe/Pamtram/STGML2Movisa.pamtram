@@ -43,6 +43,32 @@
               </attributes>
             </value>
           </references>
+          <references xsi:type="metamodel:MetaModelSectionReference" name="state" value="//@sourceSectionModel/@metaModelSections.4">
+            <eReference href="http://gfai.de/stgml.xsd#//State/state"/>
+          </references>
+          <references xsi:type="metamodel:SourceSectionContainmentReference" name="loginState">
+            <eReference href="http://gfai.de/stgml.xsd#//State/state"/>
+            <value name="LoginState" cardinality="ZERO__INFINITY">
+              <eClass href="http://gfai.de/stgml.xsd#//State"/>
+              <references xsi:type="metamodel:SourceSectionContainmentReference" name="transition">
+                <eReference href="http://gfai.de/stgml.xsd#//State/transition"/>
+                <value name="initial Transition">
+                  <eClass href="http://gfai.de/stgml.xsd#//Transition"/>
+                  <attributes name="target (mainPanelName)">
+                    <attribute href="http://gfai.de/stgml.xsd#//Transition/target"/>
+                  </attributes>
+                  <attributes name="event">
+                    <attribute href="http://gfai.de/stgml.xsd#//Transition/event"/>
+                    <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Login" value="Login"/>
+                  </attributes>
+                </value>
+              </references>
+              <attributes name="id">
+                <attribute href="http://gfai.de/stgml.xsd#//State/id"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="LOGIN" value="LOGIN"/>
+              </attributes>
+            </value>
+          </references>
         </value>
       </references>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="configuration">
@@ -306,13 +332,14 @@
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="FunctionInterface" value="FunctionInterface"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections name="State">
+    <metaModelSections name="State" cardinality="ZERO__INFINITY">
       <eClass href="http://gfai.de/stgml.xsd#//State"/>
       <references xsi:type="metamodel:MetaModelSectionReference" name="transition" value="//@sourceSectionModel/@metaModelSections.5">
         <eReference href="http://gfai.de/stgml.xsd#//State/transition"/>
       </references>
       <attributes name="id">
         <attribute href="http://gfai.de/stgml.xsd#//State/id"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="LOGIN" type="EXCLUSION" value="LOGIN"/>
       </attributes>
     </metaModelSections>
     <metaModelSections name="Transition" cardinality="ZERO__INFINITY" container="//@sourceSectionModel/@metaModelSections.4">
@@ -3787,7 +3814,7 @@
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="initfialFlowTarget" affectedReference="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.3/@value.0/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.7/@attributes.0">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="initial Panel" source="//@sourceSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="initial Panel" source="//@sourceSectionModel/@metaModelSections.0/@references.0/@value.0/@references.3/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
           </matcher>
         </mappingHints>
       </mappingHintGroups>

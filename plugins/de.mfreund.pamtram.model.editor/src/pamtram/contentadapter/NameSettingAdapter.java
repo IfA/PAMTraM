@@ -9,25 +9,17 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 import pamtram.NamedElement;
 import pamtram.PamtramPackage;
-import pamtram.mapping.AttributeMapping;
-import pamtram.mapping.AttributeValueModifier;
-import pamtram.mapping.AttributeValueModifierSet;
-import pamtram.mapping.GlobalAttribute;
-import pamtram.mapping.Mapping;
-import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.MappingInstanceSelector;
-import pamtram.mapping.MappingPackage;
-import pamtram.mapping.ModifiedAttributeElementType;
-import pamtram.mapping.StringAppender;
-import pamtram.mapping.StringPrepender;
-import pamtram.mapping.SubstringReplacer;
-import pamtram.metamodel.Attribute;
-import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.Class;
 import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.Reference;
 
+/**
+ * This will probably be handled by the generated model code in the future.
+ * 
+ * @author mfreund
+ */
+@Deprecated
 final class NameSettingAdapter extends PamtramChildContentAdapter {
 	
 	public NameSettingAdapter(PamtramContentAdapter parentAdapter) {
@@ -50,24 +42,6 @@ final class NameSettingAdapter extends PamtramChildContentAdapter {
 			handleReferenceNotification(n);
 		} else if(notifier instanceof pamtram.metamodel.Class) {
 			handleClassNotification(n);
-		} else if(notifier instanceof Attribute) {
-			handleAttributeNotification(n);
-		} else if(notifier instanceof AttributeValueConstraint) {
-			handleAttributeValueConstraintNotification(n);
-		} else if(notifier instanceof Mapping) {
-			handleMappingNotification(n);
-		} else if(notifier instanceof MappingHintGroupType) {
-			handleMappingHintGroupTypeNotification(n);
-		} else if(notifier instanceof AttributeMapping) {
-			handleAttributeMappingNotification(n);
-		} else if(notifier instanceof ModifiedAttributeElementType<?>) {
-			handleAttributeMappingSourceElementTypeNotification(n);
-		} else if(notifier instanceof AttributeValueModifier) {
-			handleAttributeValueModifierNotification(n);
-		} else if(notifier instanceof GlobalAttribute) {
-			handleGlobalAttributeNotification(n);
-		} else if(notifier instanceof MappingInstanceSelector) {
-			handleMappingInstanceSelectorNotification(n);
 		}
 		
 	}
@@ -91,10 +65,7 @@ final class NameSettingAdapter extends PamtramChildContentAdapter {
 								setEClass(ref.getEReference().getEReferenceType());
 					}
 				}
-		    } else if (n.getFeature() == MetamodelPackage.Literals.REFERENCE__EREFERENCE) {
-		    	// if the name of the reference has not been changed by the user, set it based on its eReference
-		    	setNameDerived(ref, n);
-		    }
+		    } 
 		}
 		
 		// A Class has issued a notification.
@@ -118,142 +89,7 @@ final class NameSettingAdapter extends PamtramChildContentAdapter {
 		    			}
 		    		}
 		    	}
-			} else if(n.getEventType() == Notification.SET) {
-				
-			    if (n.getFeature() == MetamodelPackage.Literals.CLASS__ECLASS) {
-			    	setNameDerived((pamtram.metamodel.Class) n.getNotifier(), n);
-			    }
 			}
-		}
-		
-		// An Attribute has issued a notification.
-		private void handleAttributeNotification(Notification n) {
-			
-			if(n.getEventType() == Notification.SET) {
-			
-				if (n.getFeature() == MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE ||
-						n.getFeature() == MetamodelPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE) {
-					setNameDerived((Attribute) n.getNotifier(), n);
-			    }
-			}
-		}
-		
-		// An Attribute Value Constraint has issued a notification.
-		private void handleAttributeValueConstraintNotification(Notification n) {
-		
-			if(n.getEventType() == Notification.SET) {
-				
-				if(n.getFeature() == MetamodelPackage.Literals.ATTRIBUTE_VALUE_CONSTRAINT__VALUE) {
-					setNameDerived((AttributeValueConstraint) n.getNotifier(), n);
-				}
-			}
-		}
-		
-		// A Mapping has issued a notification.
-		private void handleMappingNotification(Notification n) {
-			
-			if(n.getEventType() == Notification.SET) {
-				
-				if(n.getFeature() == MappingPackage.Literals.MAPPING_TYPE__SOURCE_MM_SECTION) {
-					setNameDerived((Mapping) n.getNotifier(), n, "", "Mapping");
-				}
-			}
-		}
-		
-		// A Mapping Hint Group or an Exported Mapping Hint Group has issued a notification.
-		private void handleMappingHintGroupTypeNotification(Notification n) {
-			
-			if(n.getEventType() == Notification.SET) {
-				
-				if(n.getFeature() == MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__TARGET_MM_SECTION) {
-					setNameDerived((MappingHintGroupType) n.getNotifier(), n);
-				}
-			}
-		}
-		
-		// An Attribute Mapping has issued a notification.
-		private void handleAttributeMappingNotification(Notification n) {
-			
-			if(n.getEventType() == Notification.SET) {
-				
-				if(n.getFeature() == MappingPackage.Literals.ATTRIBUTE_MAPPING__TARGET) {
-					setNameDerived((AttributeMapping) n.getNotifier(), n, "", "Mapping");
-				}
-			}
-		}
-		
-		// An Attribute Mapping Source Element Type has issued a notification.
-		@SuppressWarnings("unchecked")
-		private void handleAttributeMappingSourceElementTypeNotification(
-				Notification n) {
-			
-			if(n.getEventType() == Notification.SET) {
-				
-				if(n.getFeature() == MappingPackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER) {
-					setNameDerived((ModifiedAttributeElementType<Attribute>) n.getNotifier(), n);
-				}
-			}
-		}
-		
-		// An Attribute Value Modifier has issued a notification.
-		private void handleAttributeValueModifierNotification(Notification n) {
-		
-			// the notifying attribute value modifier
-			AttributeValueModifier mod = (AttributeValueModifier) n.getNotifier();
-			
-			// the parent attribute value modifier set
-			AttributeValueModifierSet set = (AttributeValueModifierSet) mod.eContainer();
-			
-			if(n.getEventType() == Notification.SET) {
-				
-				if(mod instanceof SubstringReplacer) {
-					SubstringReplacer rep = (SubstringReplacer) mod;
-					if(n.getFeature() == MappingPackage.Literals.SUBSTRING_REPLACER__REGEX) {
-						String appendString = "_to_" + (rep.getReplacement() != null ? rep.getReplacement() : "");
-						setNameDerived(mod, n, "", appendString);
-						if(set.getModifier().size() == 1) {
-							setNameDerived(set, n, "replace \"", "\"");
-						}
-					} else if(n.getFeature() == MappingPackage.Literals.SUBSTRING_REPLACER__REPLACEMENT) {
-						String preprendString = (rep.getRegex() != null ? rep.getRegex() : "") + "_to_";
-						setNameDerived(rep, n, preprendString, "");
-					}
-				} else if(mod instanceof StringPrepender && n.getFeature() == MappingPackage.Literals.STRING_PREPENDER__STRING) {
-					setNameDerived(mod, n);
-					if(set.getModifier().size() == 1) {
-						setNameDerived(set, n, "prepend \"", "\"");
-					}
-				} else if(mod instanceof StringAppender && n.getFeature() == MappingPackage.Literals.STRING_APPENDER__STRING) {
-					setNameDerived(mod, n);
-					if(set.getModifier().size() == 1) {
-						setNameDerived(set, n, "append \"", "\"");
-					}
-				}
-			}
-		
-		}
-		
-		// A Global Attribute has issued a notification.
-		private void handleGlobalAttributeNotification(Notification n) {
-		
-			if(n.getEventType() == Notification.SET) {
-		
-				if(n.getFeature() == MappingPackage.Literals.GLOBAL_ATTRIBUTE__SOURCE) {
-					setNameDerived((GlobalAttribute) n.getNotifier(), n);
-				}
-			}
-		}
-		
-		// A Mapping Instance Selector has issued a notification.
-		private void handleMappingInstanceSelectorNotification(Notification n) {
-
-			if(n.getEventType() == Notification.SET) {
-				
-				if(n.getFeature() == MappingPackage.Literals.MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE) {
-					setNameDerived((MappingInstanceSelector) n.getNotifier(), n);
-				}
-			}
-			
 		}
 		
 		/**

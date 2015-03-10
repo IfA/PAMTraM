@@ -3775,6 +3775,39 @@
         <attribute href="http://stefan-hennig.de/movisa#//presentation/ImageResource/Url"/>
       </attributes>
     </metaModelSections>
+    <libraryElements libraryFile="D:\git-repos\autoprobe\de.tud.et.ifa.agtele.autoprobe.resources\lib\Matflow.zip" path="Matflow">
+      <parameters xsi:type="metamodel:AttributeParameter" name="WidthParameter">
+        <source href="lib/target/Matflow/data.xmi#//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Size/@Width"/>
+        <attribute name="Value">
+          <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
+        </attribute>
+      </parameters>
+      <parameters xsi:type="metamodel:AttributeParameter" name="HeightParameter">
+        <source href="lib/target/Matflow/data.xmi#//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Size/@Height"/>
+        <attribute name="Value">
+          <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
+        </attribute>
+      </parameters>
+      <parameters xsi:type="metamodel:AttributeParameter" name="XParameter">
+        <source href="lib/target/Matflow/data.xmi#//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Position/@X"/>
+        <attribute name="Value">
+          <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
+        </attribute>
+      </parameters>
+      <parameters xsi:type="metamodel:AttributeParameter" name="YParameter">
+        <source href="lib/target/Matflow/data.xmi#//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Position/@Y"/>
+        <attribute name="Value">
+          <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
+        </attribute>
+      </parameters>
+      <parameters xsi:type="metamodel:ContainerParameter" name="UIComponentContainerParameter">
+        <source href="lib/target/Matflow/data.xmi#//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent"/>
+        <class name="SimpleContainer">
+          <eClass href="http://stefan-hennig.de/movisa#//presentation/SimpleContainer"/>
+        </class>
+      </parameters>
+      <originalLibraryEntry href="lib/target/Matflow/data.xmi#/"/>
+    </libraryElements>
   </targetSectionModel>
   <mappingModel>
     <mapping name="Movisa Template " sourceMMSection="//@sourceSectionModel/@metaModelSections.0">
@@ -5489,6 +5522,14 @@
           <targetAttributes source="//@targetSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.6/@attributes.0"/>
         </modelConnectionMatcher>
+      </mappingHintGroups>
+    </mapping>
+    <mapping>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" targetMMSection="//@targetSectionModel/@libraryElements.0/@parameters.4/@class">
+        <mappingHints xsi:type="mapping:AttributeMapping" target="//@targetSectionModel/@libraryElements.0/@parameters.0/@attribute"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" target="//@targetSectionModel/@libraryElements.0/@parameters.1/@attribute"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" target="//@targetSectionModel/@libraryElements.0/@parameters.2/@attribute"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" target="//@targetSectionModel/@libraryElements.0/@parameters.3/@attribute"/>
       </mappingHintGroups>
     </mapping>
     <modifierSets name="append uniqueNumber">

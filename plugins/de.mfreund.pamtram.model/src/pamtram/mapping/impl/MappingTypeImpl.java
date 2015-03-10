@@ -60,6 +60,7 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SourceSectionClass getSourceMMSection() {
 		if (sourceMMSection != null && sourceMMSection.eIsProxy()) {
 			InternalEObject oldSourceMMSection = (InternalEObject)sourceMMSection;
@@ -86,11 +87,21 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSourceMMSection(SourceSectionClass newSourceMMSection) {
+	public void setSourceMMSectionGen(SourceSectionClass newSourceMMSection) {
 		SourceSectionClass oldSourceMMSection = sourceMMSection;
 		sourceMMSection = newSourceMMSection;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_TYPE__SOURCE_MM_SECTION, oldSourceMMSection, sourceMMSection));
+	}
+	
+	/**
+	 * Before setting the {@link newSourceMMSection}, update the name.
+	 */
+	@Override
+	public void setSourceMMSection(SourceSectionClass newSourceMMSection) {
+		setNameDerived(sourceMMSection, newSourceMMSection, null, "Mapping");
+		setSourceMMSectionGen(newSourceMMSection);
+		
 	}
 
 	/**

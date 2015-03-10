@@ -67,6 +67,7 @@ public class StringAppenderImpl extends AttributeValueModifierImpl implements St
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getString() {
 		return string;
 	}
@@ -76,11 +77,20 @@ public class StringAppenderImpl extends AttributeValueModifierImpl implements St
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setString(String newString) {
+	public void setStringGen(String newString) {
 		String oldString = string;
 		string = newString;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.STRING_APPENDER__STRING, oldString, string));
+	}
+	
+	/**
+	 * Before setting the {@link newString}, update the name
+	 */
+	@Override
+	public void setString(String newString) {
+		setNameDerived(string, newString, "", "");
+		setStringGen(newString);
 	}
 
 	/**

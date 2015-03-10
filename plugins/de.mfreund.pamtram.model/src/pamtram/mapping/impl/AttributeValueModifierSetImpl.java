@@ -64,6 +64,7 @@ public class AttributeValueModifierSetImpl extends NamedElementImpl implements A
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<AttributeValueModifier> getModifier() {
 		if (modifier == null) {
 			modifier = new EObjectContainmentEList<AttributeValueModifier>(AttributeValueModifier.class, this, MappingPackage.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER);
@@ -101,11 +102,12 @@ public class AttributeValueModifierSetImpl extends NamedElementImpl implements A
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * TODO update the name of the AttributeValueModifierSet based on the modifiers it contains
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
+	@SuppressWarnings("unchecked")
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MappingPackage.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER:

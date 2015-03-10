@@ -93,6 +93,7 @@ public abstract class AttributeValueConstraintImpl extends NamedElementImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public AttributeValueConstraintType getType() {
 		return type;
 	}
@@ -102,6 +103,7 @@ public abstract class AttributeValueConstraintImpl extends NamedElementImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(AttributeValueConstraintType newType) {
 		AttributeValueConstraintType oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
@@ -114,6 +116,7 @@ public abstract class AttributeValueConstraintImpl extends NamedElementImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getValue() {
 		return value;
 	}
@@ -123,17 +126,27 @@ public abstract class AttributeValueConstraintImpl extends NamedElementImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValue(String newValue) {
+	public void setValueGen(String newValue) {
 		String oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT__VALUE, oldValue, value));
+	}
+	
+	/**
+	 * Before setting the {@link newValue}, update the name.
+	 */
+	@Override
+	public void setValue(String newValue) {
+		setNameDerived(value, newValue, null, null);
+		setValueGen(newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	public boolean checkConstraint(String attrValue) {
 		// Needs to be overriden by SubClasses
 		throw new UnsupportedOperationException();

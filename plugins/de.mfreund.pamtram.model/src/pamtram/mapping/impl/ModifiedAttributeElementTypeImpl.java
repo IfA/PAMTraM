@@ -5,22 +5,16 @@ package pamtram.mapping.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import pamtram.impl.NamedElementImpl;
-
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiedAttributeElementType;
-
 import pamtram.metamodel.Attribute;
 
 /**
@@ -82,6 +76,7 @@ public abstract class ModifiedAttributeElementTypeImpl<AttributeType extends Att
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public AttributeType getSource() {
 		if (source != null && source.eIsProxy()) {
@@ -109,6 +104,7 @@ public abstract class ModifiedAttributeElementTypeImpl<AttributeType extends Att
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSource(AttributeType newSource) {
 		AttributeType oldSource = source;
 		source = newSource;
@@ -121,6 +117,7 @@ public abstract class ModifiedAttributeElementTypeImpl<AttributeType extends Att
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<AttributeValueModifierSet> getModifier() {
 		if (modifier == null) {
 			modifier = new EObjectResolvingEList<AttributeValueModifierSet>(AttributeValueModifierSet.class, this, MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER);
@@ -130,6 +127,7 @@ public abstract class ModifiedAttributeElementTypeImpl<AttributeType extends Att
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * TODO update the name of the ModifiedAttributeElementType based on the modifiers it contains
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */

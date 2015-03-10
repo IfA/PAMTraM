@@ -78,6 +78,7 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TargetSectionClass getTargetMMSection() {
 		if (targetMMSection != null && targetMMSection.eIsProxy()) {
 			InternalEObject oldTargetMMSection = (InternalEObject)targetMMSection;
@@ -104,11 +105,20 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTargetMMSection(TargetSectionClass newTargetMMSection) {
+	public void setTargetMMSectionGen(TargetSectionClass newTargetMMSection) {
 		TargetSectionClass oldTargetMMSection = targetMMSection;
 		targetMMSection = newTargetMMSection;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP_TYPE__TARGET_MM_SECTION, oldTargetMMSection, targetMMSection));
+	}
+	
+	/**
+	 * Before setting the {@link newTargetMMSection}, update the name.
+	 */
+	@Override
+	public void setTargetMMSection(TargetSectionClass newTargetMMSection) {
+		setNameDerived(targetMMSection, newTargetMMSection, null, null);
+		setTargetMMSectionGen(newTargetMMSection);
 	}
 
 	/**
@@ -116,6 +126,7 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<MappingHint> getMappingHints() {
 		if (mappingHints == null) {
 			mappingHints = new EObjectContainmentEList<MappingHint>(MappingHint.class, this, MappingPackage.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS);

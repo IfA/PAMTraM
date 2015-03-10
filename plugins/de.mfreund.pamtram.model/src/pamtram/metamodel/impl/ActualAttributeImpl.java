@@ -59,6 +59,7 @@ public class ActualAttributeImpl extends TargetSectionAttributeImpl implements A
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAttribute() {
 		if (attribute != null && attribute.eIsProxy()) {
 			InternalEObject oldAttribute = (InternalEObject)attribute;
@@ -85,11 +86,20 @@ public class ActualAttributeImpl extends TargetSectionAttributeImpl implements A
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAttribute(EAttribute newAttribute) {
+	public void setAttributeGen(EAttribute newAttribute) {
 		EAttribute oldAttribute = attribute;
 		attribute = newAttribute;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.ACTUAL_ATTRIBUTE__ATTRIBUTE, oldAttribute, attribute));
+	}
+	
+	/**
+	 * Before setting the {@link newEAttribute}, update the name.
+	 */
+	@Override
+	public void setAttribute(EAttribute newAttribute) {
+		setNameDerived(attribute, newAttribute, null, null);
+		setAttributeGen(newAttribute);
 	}
 
 	/**

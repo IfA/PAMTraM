@@ -59,6 +59,7 @@ public abstract class ReferenceImpl extends MetaModelElementImpl implements Refe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getEReference() {
 		if (eReference != null && eReference.eIsProxy()) {
 			InternalEObject oldEReference = (InternalEObject)eReference;
@@ -85,11 +86,20 @@ public abstract class ReferenceImpl extends MetaModelElementImpl implements Refe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEReference(EReference newEReference) {
+	public void setEReferenceGen(EReference newEReference) {
 		EReference oldEReference = eReference;
 		eReference = newEReference;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.REFERENCE__EREFERENCE, oldEReference, eReference));
+	}
+	
+	/**
+	 * Before setting the {@link newEReference}, update the name.
+	 */
+	@Override
+	public void setEReference(EReference newEReference) {
+		setNameDerived(eReference, newEReference, null, null);
+		setEReferenceGen(newEReference);
 	}
 
 	/**

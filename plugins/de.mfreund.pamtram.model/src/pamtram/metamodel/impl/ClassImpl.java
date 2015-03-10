@@ -87,6 +87,7 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getEClass() {
 		if (eClass != null && eClass.eIsProxy()) {
 			InternalEObject oldEClass = (InternalEObject)eClass;
@@ -113,11 +114,20 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEClass(EClass newEClass) {
+	public void setEClassGen(EClass newEClass) {
 		EClass oldEClass = eClass;
 		eClass = newEClass;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.CLASS__ECLASS, oldEClass, eClass));
+	}
+	
+	/**
+	 * Before setting the {@link newEClass}, update the name.
+	 */
+	@Override
+	public void setEClass(EClass newEClass) {
+		setNameDerived(eClass, newEClass, null, null);
+		setEClassGen(newEClass);
 	}
 
 	/**
@@ -125,6 +135,7 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CardinalityType getCardinality() {
 		return cardinality;
 	}
@@ -134,6 +145,7 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCardinality(CardinalityType newCardinality) {
 		CardinalityType oldCardinality = cardinality;
 		cardinality = newCardinality == null ? CARDINALITY_EDEFAULT : newCardinality;
@@ -146,6 +158,7 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Reference> getReferencesGeneric() {
 		EList<Reference> refs= new org.eclipse.emf.common.util.BasicEList<Reference>();
 		if(this instanceof SourceSectionClass){
@@ -162,6 +175,7 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Attribute> getAttributesGeneric() {
 		EList<Attribute> attrs= new org.eclipse.emf.common.util.BasicEList<Attribute>();
 		if(this instanceof SourceSectionClass){
@@ -182,6 +196,7 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public pamtram.metamodel.Class getContainerGeneric() {
 		pamtram.metamodel.Class ret;
 		if(this instanceof SourceSectionClass){
@@ -203,6 +218,7 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isContainerForGeneric(final pamtram.metamodel.Class containedClass) {
 		pamtram.metamodel.Class container = containedClass.getContainerGeneric();
 				

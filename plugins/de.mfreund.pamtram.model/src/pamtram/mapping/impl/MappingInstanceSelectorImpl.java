@@ -72,6 +72,7 @@ public class MappingInstanceSelectorImpl extends MappingHintImpl implements Mapp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TargetSectionNonContainmentReference getAffectedReference() {
 		if (affectedReference != null && affectedReference.eIsProxy()) {
 			InternalEObject oldAffectedReference = (InternalEObject)affectedReference;
@@ -98,11 +99,20 @@ public class MappingInstanceSelectorImpl extends MappingHintImpl implements Mapp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAffectedReference(TargetSectionNonContainmentReference newAffectedReference) {
+	public void setAffectedReferenceGen(TargetSectionNonContainmentReference newAffectedReference) {
 		TargetSectionNonContainmentReference oldAffectedReference = affectedReference;
 		affectedReference = newAffectedReference;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE, oldAffectedReference, affectedReference));
+	}
+	
+	/**
+	 * Before setting the {@link newAffectedReference}, update the name
+	 */
+	@Override
+	public void setAffectedReference(TargetSectionNonContainmentReference newAffectedReference) {
+		setNameDerived(affectedReference, newAffectedReference, null, null);
+		setAffectedReferenceGen(newAffectedReference);
 	}
 
 	/**
@@ -110,6 +120,7 @@ public class MappingInstanceSelectorImpl extends MappingHintImpl implements Mapp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Matcher getMatcher() {
 		return matcher;
 	}
@@ -134,6 +145,7 @@ public class MappingInstanceSelectorImpl extends MappingHintImpl implements Mapp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMatcher(Matcher newMatcher) {
 		if (newMatcher != matcher) {
 			NotificationChain msgs = null;

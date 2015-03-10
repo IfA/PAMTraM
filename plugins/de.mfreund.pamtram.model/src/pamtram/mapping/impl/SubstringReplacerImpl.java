@@ -88,6 +88,7 @@ public class SubstringReplacerImpl extends AttributeValueModifierImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getRegex() {
 		return regex;
 	}
@@ -97,7 +98,7 @@ public class SubstringReplacerImpl extends AttributeValueModifierImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRegex(String newRegex) {
+	public void setRegexGen(String newRegex) {
 		String oldRegex = regex;
 		regex = newRegex;
 		if (eNotificationRequired())
@@ -105,10 +106,21 @@ public class SubstringReplacerImpl extends AttributeValueModifierImpl implements
 	}
 
 	/**
+	 * Before setting the {@link newRegex}, update the name
+	 */
+	@Override
+	public void setRegex(String newRegex) {
+		String appendString = "_to_" + (replacement != null ? replacement : "");
+		setNameDerived(regex == null ? "" : regex, newRegex == null ? "" : newRegex, null, appendString);
+		setRegexGen(newRegex);
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getReplacement() {
 		return replacement;
 	}
@@ -118,11 +130,21 @@ public class SubstringReplacerImpl extends AttributeValueModifierImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReplacement(String newReplacement) {
+	public void setReplacementGen(String newReplacement) {
 		String oldReplacement = replacement;
 		replacement = newReplacement;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.SUBSTRING_REPLACER__REPLACEMENT, oldReplacement, replacement));
+	}
+	
+	/**
+	 * Before setting the {@link newReplacement}, update the name
+	 */
+	@Override
+	public void setReplacement(String newReplacement) {
+		String preprendString = (getRegex() != null ? getRegex() : "") + "_to_";
+		setNameDerived(replacement == null ? "" : replacement, newReplacement == null ? "" : newReplacement, preprendString, null);
+		setReplacementGen(newReplacement);
 	}
 
 	/**
@@ -216,7 +238,6 @@ public class SubstringReplacerImpl extends AttributeValueModifierImpl implements
 
 		return value.replaceAll(this.regex == null ? "" : this.regex, this.replacement == null ? "" : this.replacement);
 	}
-	
 	
 
 } //SubstringReplacerImpl

@@ -75,6 +75,7 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SourceSectionAttribute getSource() {
 		if (source != null && source.eIsProxy()) {
 			InternalEObject oldSource = (InternalEObject)source;
@@ -101,11 +102,20 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSource(SourceSectionAttribute newSource) {
+	public void setSourceGen(SourceSectionAttribute newSource) {
 		SourceSectionAttribute oldSource = source;
 		source = newSource;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.GLOBAL_ATTRIBUTE__SOURCE, oldSource, source));
+	}
+	
+	/**
+	 * Before setting the {@link newSource}, update the name
+	 */
+	@Override
+	public void setSource(SourceSectionAttribute newSource) {
+		setNameDerived(source, newSource, null, null);
+		setSourceGen(newSource);
 	}
 
 	/**
@@ -113,6 +123,7 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<AttributeValueModifierSet> getModifier() {
 		if (modifier == null) {
 			modifier = new EObjectResolvingEList<AttributeValueModifierSet>(AttributeValueModifierSet.class, this, MappingPackage.GLOBAL_ATTRIBUTE__MODIFIER);

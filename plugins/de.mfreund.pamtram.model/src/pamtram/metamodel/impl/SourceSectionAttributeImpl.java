@@ -79,6 +79,7 @@ public class SourceSectionAttributeImpl extends AttributeImpl implements SourceS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SourceSectionClass getOwningClass() {
 		if (eContainerFeatureID() != MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__OWNING_CLASS) return null;
 		return (SourceSectionClass)eInternalContainer();
@@ -89,6 +90,7 @@ public class SourceSectionAttributeImpl extends AttributeImpl implements SourceS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAttribute() {
 		if (attribute != null && attribute.eIsProxy()) {
 			InternalEObject oldAttribute = (InternalEObject)attribute;
@@ -115,11 +117,20 @@ public class SourceSectionAttributeImpl extends AttributeImpl implements SourceS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAttribute(EAttribute newAttribute) {
+	public void setAttributeGen(EAttribute newAttribute) {
 		EAttribute oldAttribute = attribute;
 		attribute = newAttribute;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE, oldAttribute, attribute));
+	}
+	
+	/**
+	 * Before setting the {@link newEAttribute}, update the name.
+	 */
+	@Override
+	public void setAttribute(EAttribute newAttribute) {
+		setNameDerived(attribute, newAttribute, null, null);
+		setAttributeGen(newAttribute);
 	}
 
 	/**
@@ -127,6 +138,7 @@ public class SourceSectionAttributeImpl extends AttributeImpl implements SourceS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<AttributeValueConstraint> getValueConstraint() {
 		if (valueConstraint == null) {
 			valueConstraint = new EObjectContainmentEList<AttributeValueConstraint>(AttributeValueConstraint.class, this, MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT);

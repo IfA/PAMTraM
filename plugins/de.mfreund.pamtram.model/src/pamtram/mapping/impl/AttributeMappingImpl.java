@@ -4,16 +4,17 @@ package pamtram.mapping.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceElement;
 import pamtram.mapping.AttributeMappingSourceInterface;
@@ -109,6 +110,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TargetSectionAttribute getTarget() {
 		if (target != null && target.eIsProxy()) {
 			InternalEObject oldTarget = (InternalEObject)target;
@@ -135,11 +137,20 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTarget(TargetSectionAttribute newTarget) {
+	public void setTargetGen(TargetSectionAttribute newTarget) {
 		TargetSectionAttribute oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.ATTRIBUTE_MAPPING__TARGET, oldTarget, target));
+	}
+	
+	/**
+	 * Before setting the {@link newSourceMMSection}, update the name
+	 */
+	@Override
+	public void setTarget(TargetSectionAttribute newTarget) {
+		setNameDerived(target, newTarget, null, "Mapping");
+		setTargetGen(newTarget);
 	}
 
 	/**
@@ -147,6 +158,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<AttributeMappingSourceInterface> getSourceAttributeMappings() {
 		if (sourceAttributeMappings == null) {
 			sourceAttributeMappings = new EObjectContainmentEList<AttributeMappingSourceInterface>(AttributeMappingSourceInterface.class, this, MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS);
@@ -159,6 +171,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getExpression() {
 		return expression;
 	}
@@ -168,6 +181,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExpression(String newExpression) {
 		String oldExpression = expression;
 		expression = newExpression;
@@ -180,6 +194,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<AttributeValueModifierSet> getResultModifier() {
 		if (resultModifier == null) {
 			resultModifier = new EObjectResolvingEList<AttributeValueModifierSet>(AttributeValueModifierSet.class, this, MappingPackage.ATTRIBUTE_MAPPING__RESULT_MODIFIER);
@@ -192,6 +207,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<AttributeMappingSourceElement> getLocalSourceElements() {
 				EList<AttributeMappingSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<AttributeMappingSourceElement>();
 				

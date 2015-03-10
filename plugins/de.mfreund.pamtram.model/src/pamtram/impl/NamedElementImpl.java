@@ -181,7 +181,7 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 
 		// check if the old name has been changed/set by the user
 		String oldNamedElementString = (oldNamedElement == null ? "" : prefixString + oldNamedElement.getName() + suffixString);
-		boolean oldNameIsCustom = !oldNamedElementString.equals(getName());
+		boolean oldNameIsCustom = !oldNamedElementString.equals(getName() == null ? "" : getName());
 		if(oldNameIsCustom) {
 			// if this is the case, do not change the value
 			return;
@@ -214,7 +214,7 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 
 		// check if the old name has been changed/set by the user
 		String oldNamedElementString = (oldNamedElement == null ? "" : prefixString + oldNamedElement.getName() + suffixString);
-		boolean oldNameIsCustom = !oldNamedElementString.equals(getName());
+		boolean oldNameIsCustom = !oldNamedElementString.equals(getName() == null ? "" : getName());
 		if(oldNameIsCustom) {
 			// if this is the case, do not change the value
 			return;
@@ -247,7 +247,7 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 
 		// check if the old name has been changed/set by the user
 		String oldValueBasedString = (oldString == null ? "" : prefixString + oldString + suffixString);
-		boolean oldNameIsCustom = !oldValueBasedString.equals(getName());
+		boolean oldNameIsCustom = !oldValueBasedString.equals(getName() == null ? "" : getName());
 		if(oldNameIsCustom) {
 			// if this is the case, do not change the value
 			return;

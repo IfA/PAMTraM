@@ -4,11 +4,13 @@ package pamtram.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import pamtram.NamedElement;
 import pamtram.PamtramPackage;
+import de.mfreund.pamtram.preferences.PreferenceSupplier;
 
 /**
  * <!-- begin-user-doc -->
@@ -68,6 +70,7 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -77,6 +80,7 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -156,6 +160,105 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 		result.append(name);
 		result.append(')');
 		return result.toString();
+	}
+	
+	/**
+	 * This sets the {@link NamedElement#Name} feature of the element based on
+	 * the '<em><b>name</b></em>' of an {@link ENamedElement} while prepending/appending a prefix and a suffix.
+	 * This functionality is however only performed if the '<em><b>auto-set-names</b></em>'
+	 * preference is enabled.
+	 */
+	@Override
+	public void setNameDerived(ENamedElement oldNamedElement,
+			ENamedElement newNamedElement, String prefix, String suffix) {
+		
+		if(oldNamedElement == newNamedElement || !PreferenceSupplier.isAutoSetNames()) {
+			return;
+		}
+		
+		String prefixString = (prefix == null ? "" : prefix);
+		String suffixString = (suffix == null ? "" : suffix);
+
+		// check if the old name has been changed/set by the user
+		String oldNamedElementString = (oldNamedElement == null ? "" : prefixString + oldNamedElement.getName() + suffixString);
+		boolean oldNameIsCustom = !oldNamedElementString.equals(getName());
+		if(oldNameIsCustom) {
+			// if this is the case, do not change the value
+			return;
+		}
+		
+		// this is the new name
+		String newNamedElementString = (newNamedElement == null ? "" : prefixString + newNamedElement.getName() + suffixString);
+		
+		if(!oldNamedElementString.equals(newNamedElementString)) {
+			setName(newNamedElementString);
+		}
+	}
+	
+	/**
+	 * This sets the {@link NamedElement#Name} feature of the element based on
+	 * the '<em><b>name</b></em>' of an {@link NamedElement} while prepending/appending a prefix and a suffix.
+	 * This functionality is however only performed if the '<em><b>auto-set-names</b></em>'
+	 * preference is enabled.
+	 */
+	@Override
+	public void setNameDerived(NamedElement oldNamedElement,
+			NamedElement newNamedElement, String prefix, String suffix) {
+		
+		if(oldNamedElement == newNamedElement || !PreferenceSupplier.isAutoSetNames()) {
+			return;
+		}
+		
+		String prefixString = (prefix == null ? "" : prefix);
+		String suffixString = (suffix == null ? "" : suffix);
+
+		// check if the old name has been changed/set by the user
+		String oldNamedElementString = (oldNamedElement == null ? "" : prefixString + oldNamedElement.getName() + suffixString);
+		boolean oldNameIsCustom = !oldNamedElementString.equals(getName());
+		if(oldNameIsCustom) {
+			// if this is the case, do not change the value
+			return;
+		}
+		
+		// this is the new name
+		String newNamedElementString = (newNamedElement == null ? "" : prefixString + newNamedElement.getName() + suffixString);
+		
+		if(!oldNamedElementString.equals(newNamedElementString)) {
+			setName(newNamedElementString);
+		}
+	}
+	
+	/**
+	 * This sets the {@link NamedElement#Name} feature of the element based on
+	 * another {@link String} while prepending/appending a prefix and a suffix.
+	 * This functionality is however only performed if the '<em><b>auto-set-names</b></em>'
+	 * preference is enabled.
+	 */
+	@Override
+	public void setNameDerived(String oldString, String newString,
+			String prefix, String suffix) {
+		
+		if(oldString == newString || !PreferenceSupplier.isAutoSetNames()) {
+			return;
+		}
+		
+		String prefixString = (prefix == null ? "" : prefix);
+		String suffixString = (suffix == null ? "" : suffix);
+
+		// check if the old name has been changed/set by the user
+		String oldValueBasedString = (oldString == null ? "" : prefixString + oldString + suffixString);
+		boolean oldNameIsCustom = !oldValueBasedString.equals(getName());
+		if(oldNameIsCustom) {
+			// if this is the case, do not change the value
+			return;
+		}
+		
+		// this is the new name
+		String newValueBasedString = (newString == null ? "" : prefixString + newString + suffixString);
+		
+		if(!oldValueBasedString.equals(newValueBasedString)) {
+			setName(newValueBasedString);
+		}
 	}
 
 } //NamedElementImpl

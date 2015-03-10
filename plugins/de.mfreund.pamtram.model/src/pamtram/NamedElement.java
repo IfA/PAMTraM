@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Named Element</b></em>'.
+ * @extends IFeatureBasedNameSetter
  * <!-- end-user-doc -->
  *
  * <p>
@@ -20,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface NamedElement extends EObject {
+public interface NamedElement extends EObject, IDerivedNameSetter {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

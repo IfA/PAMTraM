@@ -6,10 +6,12 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 
 import pamtram.SectionModel;
 import pamtram.impl.NamedElementImpl;
 import pamtram.metamodel.AttributeParameter;
+import pamtram.metamodel.Class;
 import pamtram.metamodel.ContainerParameter;
 import pamtram.metamodel.ExternalReferenceParameter;
 import pamtram.metamodel.LibraryEntry;
@@ -93,10 +95,32 @@ public abstract class MetaModelElementImpl extends NamedElementImpl implements M
 	 * @generated
 	 */
 	@Override
+	public SectionModel getContainingSectionModel() {
+		Class section = this.getContainingSection();
+		
+		EObject container = section.eContainer();
+		while(!(container instanceof SectionModel)) {
+			// we have reached the root element
+			if(container == null) {
+				return null;
+			}
+			container = container.eContainer();
+		}
+		return (SectionModel) container;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case MetamodelPackage.META_MODEL_ELEMENT___GET_CONTAINING_SECTION:
 				return getContainingSection();
+			case MetamodelPackage.META_MODEL_ELEMENT___GET_CONTAINING_SECTION_MODEL:
+				return getContainingSectionModel();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

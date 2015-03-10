@@ -395,6 +395,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getMetaModelElement__GetContainingSectionModel() {
+		return metaModelElementEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getClass_() {
 		return classEClass;
 	}
@@ -1068,6 +1077,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		// Create classes and their features
 		metaModelElementEClass = createEClass(META_MODEL_ELEMENT);
 		createEOperation(metaModelElementEClass, META_MODEL_ELEMENT___GET_CONTAINING_SECTION);
+		createEOperation(metaModelElementEClass, META_MODEL_ELEMENT___GET_CONTAINING_SECTION_MODEL);
 
 		classEClass = createEClass(CLASS);
 		createEReference(classEClass, CLASS__ECLASS);
@@ -1242,6 +1252,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEClass(metaModelElementEClass, MetaModelElement.class, "MetaModelElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEOperation(getMetaModelElement__GetContainingSection(), this.getClass_(), "getContainingSection", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getMetaModelElement__GetContainingSectionModel(), thePamtramPackage.getSectionModel(), "getContainingSectionModel", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(classEClass, pamtram.metamodel.Class.class, "Class", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getClass_EClass(), ecorePackage.getEClass(), null, "eClass", null, 1, 1, pamtram.metamodel.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

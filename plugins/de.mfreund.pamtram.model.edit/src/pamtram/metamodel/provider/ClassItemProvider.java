@@ -19,6 +19,8 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.SectionModel;
+import pamtram.metamodel.Class;
+import pamtram.metamodel.ContainerParameter;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.Reference;
 
@@ -102,12 +104,24 @@ public class ClassItemProvider
 				@Override
 				public Collection<?> getChoiceOfValues(Object object) {
 					
-					pamtram.metamodel.Class section=((pamtram.metamodel.Class) object).getContainingSection();
+					Class section = ((pamtram.metamodel.Class) object).getContainingSection();
+					SectionModel sectionModel = section.getContainingSectionModel();
 					
 					List<EClass> choiceOfValues = new LinkedList<EClass>();
+					
+					/*
+					 * If we have a container parameter with a specified source, we do not need to scan package contents.
+					 * Instead, the user may only select the eClass of the specified source element. 
+					 */
+					if(section.eContainer() instanceof ContainerParameter &&
+							((ContainerParameter) section.eContainer()).getSource() != null) {
+						choiceOfValues.add(((ContainerParameter) section.eContainer()).getSource().eClass());
+						return choiceOfValues;
+					}
+					
 					List<EPackage> packagesToScan=new LinkedList<EPackage>();
 					
-					packagesToScan.add(((SectionModel)section.eContainer()).getMetaModelPackage());
+					packagesToScan.add(sectionModel.getMetaModelPackage());
 					
 					List<EClass> documentRoot=new LinkedList<EClass>();//this should only contain one element but we need to implement this in a generic way...												
 					
@@ -129,11 +143,9 @@ public class ClassItemProvider
 						}
 					}
 					
-					
-					
-					if(section.equals(object)){
+					if(section.equals(object)){ // top level-section
 						return choiceOfValues;
-					}else { //not a top-level section
+					} else { //not a top-level section
 						List<EClass> newChoiceOfValues = new LinkedList<EClass>();
 						pamtram.metamodel.Reference ref=(Reference) ((pamtram.metamodel.Class)object).eContainer();
 						if(ref.getEReference() != null){

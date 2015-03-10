@@ -1120,10 +1120,10 @@
                   <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="standardIntegerDimension">
                     <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
                   </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute">
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Factor" value="1.0">
                     <attribute href="http://stefan-hennig.de/movisa#//clientdata/Dimension/Factor"/>
                   </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute">
+                  <attributes xsi:type="metamodel:ActualAttribute" name="FractionDigits" value="0">
                     <attribute href="http://stefan-hennig.de/movisa#//clientdata/Dimension/FractionDigits"/>
                   </attributes>
                   <attributes xsi:type="metamodel:ActualAttribute" name="Unit">

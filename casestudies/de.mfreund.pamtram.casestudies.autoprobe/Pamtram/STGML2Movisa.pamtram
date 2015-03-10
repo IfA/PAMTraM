@@ -355,6 +355,7 @@
       <eClass href="http://gfai.de/stgml.xsd#//Layer"/>
       <attributes name="layerName">
         <attribute href="http://gfai.de/stgml.xsd#//Layer/name"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="LOGIN" type="EXCLUSION" value="LOGIN"/>
       </attributes>
     </metaModelSections>
     <metaModelSections name="viObject Output Bool" container="//@sourceSectionModel/@metaModelSections.6">

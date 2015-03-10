@@ -3,6 +3,7 @@
 package pamtram.metamodel;
 
 import pamtram.NamedElement;
+import pamtram.SectionModel;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,4 +25,13 @@ public interface MetaModelElement extends NamedElement {
 	 * @generated
 	 */
 	pamtram.metamodel.Class getContainingSection();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='Class section = this.getContainingSection();\r\n\r\nEObject container = section.eContainer();\r\nwhile(!(container instanceof SectionModel)) {\r\n\t// we have reached the root element\r\n\tif(container == null) {\r\n\t\treturn null;\r\n\t}\r\n\tcontainer = container.eContainer();\r\n}\r\nreturn (SectionModel) container;'"
+	 * @generated
+	 */
+	SectionModel getContainingSectionModel();
 } // MetaModelElement

@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation;
+package de.mfreund.gentrans.transformation.library;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -80,7 +80,6 @@ public class LibraryEntryInstantiator {
 	 * @return <em>true</em> if everything went well, <em>false</em> otherwise.
 	 */
 	public boolean instantiate(EObject targetModel) {
-		
 		
 		
 		return true;

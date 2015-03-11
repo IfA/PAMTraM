@@ -48,6 +48,7 @@ import de.congrace.exp4j.InvalidCustomFunctionException;
 import de.mfreund.gentrans.transformation.CalculatorFunctions.MaxFunction;
 import de.mfreund.gentrans.transformation.CalculatorFunctions.MinFunction;
 import de.mfreund.gentrans.transformation.CalculatorFunctions.RoundFunction;
+import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
 import de.mfreund.gentrans.transformation.selectors.GenericItemSelectorDialogRunner;
 import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunner;
 

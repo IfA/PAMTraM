@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import pamtram.SectionModel;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.CardinalityType;
+import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.SourceSectionClass;
@@ -236,6 +237,18 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Returns <em>true</em> if the class is a top-level element of a section
+	 * or of a {@link LibraryEntry}.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSection() {
+		return this.equals(this.getContainingSection());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -319,6 +332,8 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 				return getContainerGeneric();
 			case MetamodelPackage.CLASS___IS_CONTAINER_FOR_GENERIC__CLASS:
 				return isContainerForGeneric((pamtram.metamodel.Class)arguments.get(0));
+			case MetamodelPackage.CLASS___IS_SECTION:
+				return isSection();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -34,4 +34,13 @@ public interface MetaModelElement extends NamedElement {
 	 * @generated
 	 */
 	SectionModel getContainingSectionModel();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (this.getContainingSection().eContainer() instanceof ContainerParameter);'"
+	 * @generated
+	 */
+	boolean isLibraryEntry();
 } // MetaModelElement

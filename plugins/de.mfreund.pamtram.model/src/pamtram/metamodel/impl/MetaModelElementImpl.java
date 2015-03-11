@@ -111,6 +111,18 @@ public abstract class MetaModelElementImpl extends NamedElementImpl implements M
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Returns <em>true</em> if the meta-model element is part of a {@link LibraryEntry}, <em>false</em> if
+	 * it is part of a normal section.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isLibraryEntry() {
+		return (this.getContainingSection().eContainer() instanceof ContainerParameter);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -121,6 +133,8 @@ public abstract class MetaModelElementImpl extends NamedElementImpl implements M
 				return getContainingSection();
 			case MetamodelPackage.META_MODEL_ELEMENT___GET_CONTAINING_SECTION_MODEL:
 				return getContainingSectionModel();
+			case MetamodelPackage.META_MODEL_ELEMENT___IS_LIBRARY_ENTRY:
+				return isLibraryEntry();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

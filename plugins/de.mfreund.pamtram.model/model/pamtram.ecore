@@ -60,6 +60,11 @@
           <details key="body" value="Class section = this.getContainingSection();&#xD;&#xA;&#xD;&#xA;EObject container = section.eContainer();&#xD;&#xA;while(!(container instanceof SectionModel)) {&#xD;&#xA;&#x9;// we have reached the root element&#xD;&#xA;&#x9;if(container == null) {&#xD;&#xA;&#x9;&#x9;return null;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;container = container.eContainer();&#xD;&#xA;}&#xD;&#xA;return (SectionModel) container;"/>
         </eAnnotations>
       </eOperations>
+      <eOperations name="isLibraryEntry" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="return (this.getContainingSection().eContainer() instanceof ContainerParameter);"/>
+        </eAnnotations>
+      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Class" abstract="true" eSuperTypes="#//metamodel/MetaModelElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -89,6 +94,11 @@
           <details key="body" value="pamtram.metamodel.Class container = containedClass.getContainerGeneric();&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;// this means that we have reached the top level container for the 'containedClass'&#xD;&#xA;if(container == null) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;// this is the container&#xD;&#xA;} else if(this.equals(container)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;// this was not the container, so iterate up in the containment hierarchy&#xD;&#xA;} else {&#xD;&#xA;&#x9;return isContainerForGeneric(containedClass.getContainerGeneric());&#xD;&#xA;}"/>
         </eAnnotations>
         <eParameters name="containedClass" lowerBound="1" eType="#//metamodel/Class"/>
+      </eOperations>
+      <eOperations name="isSection" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="return this.equals(this.getContainingSection());"/>
+        </eAnnotations>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="eClass" lowerBound="1"
           eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>

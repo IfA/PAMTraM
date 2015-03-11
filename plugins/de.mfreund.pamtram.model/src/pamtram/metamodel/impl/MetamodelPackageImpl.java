@@ -404,6 +404,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getMetaModelElement__IsLibraryEntry() {
+		return metaModelElementEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getClass_() {
 		return classEClass;
 	}
@@ -460,6 +469,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 */
 	public EOperation getClass__IsContainerForGeneric__Class() {
 		return classEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getClass__IsSection() {
+		return classEClass.getEOperations().get(4);
 	}
 
 	/**
@@ -1078,6 +1096,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		metaModelElementEClass = createEClass(META_MODEL_ELEMENT);
 		createEOperation(metaModelElementEClass, META_MODEL_ELEMENT___GET_CONTAINING_SECTION);
 		createEOperation(metaModelElementEClass, META_MODEL_ELEMENT___GET_CONTAINING_SECTION_MODEL);
+		createEOperation(metaModelElementEClass, META_MODEL_ELEMENT___IS_LIBRARY_ENTRY);
 
 		classEClass = createEClass(CLASS);
 		createEReference(classEClass, CLASS__ECLASS);
@@ -1086,6 +1105,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEOperation(classEClass, CLASS___GET_ATTRIBUTES_GENERIC);
 		createEOperation(classEClass, CLASS___GET_CONTAINER_GENERIC);
 		createEOperation(classEClass, CLASS___IS_CONTAINER_FOR_GENERIC__CLASS);
+		createEOperation(classEClass, CLASS___IS_SECTION);
 
 		sourceSectionClassEClass = createEClass(SOURCE_SECTION_CLASS);
 		createEReference(sourceSectionClassEClass, SOURCE_SECTION_CLASS__REFERENCES);
@@ -1255,6 +1275,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		initEOperation(getMetaModelElement__GetContainingSectionModel(), thePamtramPackage.getSectionModel(), "getContainingSectionModel", 1, 1, IS_UNIQUE, IS_ORDERED);
 
+		initEOperation(getMetaModelElement__IsLibraryEntry(), ecorePackage.getEBoolean(), "isLibraryEntry", 1, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(classEClass, pamtram.metamodel.Class.class, "Class", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getClass_EClass(), ecorePackage.getEClass(), null, "eClass", null, 1, 1, pamtram.metamodel.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getClass_Cardinality(), this.getCardinalityType(), "cardinality", "ONE", 1, 1, pamtram.metamodel.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1267,6 +1289,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		EOperation op = initEOperation(getClass__IsContainerForGeneric__Class(), ecorePackage.getEBoolean(), "isContainerForGeneric", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getClass_(), "containedClass", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getClass__IsSection(), ecorePackage.getEBoolean(), "isSection", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(sourceSectionClassEClass, SourceSectionClass.class, "SourceSectionClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSourceSectionClass_References(), this.getSourceSectionReference(), this.getSourceSectionReference_OwningClass(), "references", null, 0, -1, SourceSectionClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

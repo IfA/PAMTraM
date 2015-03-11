@@ -1,5 +1,6 @@
 package de.mfreund.gentrans.transformation;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -35,6 +36,7 @@ import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.CardinalityType;
+import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionContainmentReference;
@@ -159,6 +161,12 @@ class TargetSectionInstantiator implements CancellationListener {
 	 * Registry for values of global Variables that can be mapped to double
 	 */
 	private final Map<String, Double> globalVarValueDoubles;
+	
+	/**
+	 * List of {@link LibraryEntryInstantiator}s that are to be used at the end of the
+	 * transformation.
+	 */
+	private ArrayList<LibraryEntryInstantiator> libEntryInstantiators = new ArrayList<>(); 
 
 	/**
 	 * @param targetSectionRegistry
@@ -706,6 +714,18 @@ class TargetSectionInstantiator implements CancellationListener {
 			final String mappingName) {
 		final LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instBySection = new LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>();
 
+		/*
+		 * If the target section is a library entry, we save it for instantiation at the end of 
+		 * the transformation. Therefore, a new 'LibraryEntryInstantiator is created.
+		 */
+		if(metamodelSection.isLibraryEntry()) {
+			LibraryEntry libEntry = (LibraryEntry) metamodelSection.eContainer().eContainer();
+			libEntryInstantiators.add(
+					new LibraryEntryInstantiator(
+							libEntry, mappingGroup, mappingHints, hintValues, conHintValues));
+			return new LinkedHashMap<>();
+		}
+		
 		if (instantiateTargetSectionFirstPass(metamodelSection, mappingGroup,
 				mappingHints, hintValues, conHintValues, instBySection,
 				mappingName,
@@ -1311,6 +1331,35 @@ class TargetSectionInstantiator implements CancellationListener {
 			}
 
 		}
+	}
+	
+	/**
+	 * instantiate library entry-based target section
+	 *
+	 * @param libraryEntry The {@link LibraryEntry} to be instantiated.
+	 * @param mappingGroup The {@link MappingHintGroup} to be used.
+	 * @param mappingHints A list of {@link MappingHint}s to be used.
+	 * @param hintValues
+	 * @param conHintValues
+	 * @param instBySection
+	 * @param mappingName
+	 * @param sectionAttributeValues
+	 *            These are used to determine if an attribute value was used
+	 *            higher up in the section hierarchy.
+	 * @return
+	 */
+	LinkedList<EObjectTransformationHelper> instantiateLibraryEntry(
+			final LibraryEntry libraryEntry,
+			final InstantiableMappingHintGroup mappingGroup,
+			final List<MappingHint> mappingHints,
+			final Map<MappingHintType, LinkedList<Object>> hintValues,
+			final Map<ModelConnectionHint, LinkedList<Object>> conHintValues,
+			final Map<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instBySection,
+			final String mappingName,
+			final Map<EClass, Map<EAttribute, Set<String>>> sectionAttributeValues) {
+		// TODO		
+		return null;
+	
 	}
 
 	/**

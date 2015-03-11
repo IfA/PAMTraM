@@ -25,7 +25,6 @@ import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.AttributeMatcherSourceElement;
 import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.CardinalityMapping;
-import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.ExternalMappedAttributeValueExpander;
 import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.GlobalAttribute;
@@ -34,6 +33,7 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
+import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
@@ -235,7 +235,7 @@ class SourceSectionMapper implements CancellationListener {
 			for (final ModelConnectionHint h : getModelConnectionHints(m)) {
 				if (h instanceof ModelConnectionHint) {
 					buildDeepestCmplxConnectionHintElementsMap(
-							(ModelConnectionHint) h,
+							h,
 							m.getSourceMMSection());
 				}
 			}
@@ -658,7 +658,7 @@ class SourceSectionMapper implements CancellationListener {
 	}
 
 	/**
-	 * Method for finding a suitable Mapping for a srcModelObject
+	 * Method for finding a suitable Mapping for a srcModelObject (this checks if a mapping is applicable).
 	 *
 	 * @param srcModelObject
 	 *            Element of the srcModel to be transformed
@@ -667,9 +667,9 @@ class SourceSectionMapper implements CancellationListener {
 	 *            can be mapped (needed for non-cont refs)
 	 * @param hints
 	 * @param connectionHints
+	 * @param globalVars
 	 * @param srcSection
 	 * @param newRefsAndHints
-	 * @param srcInstanceMap
 	 */
 	private MappingInstanceStorage findMapping(final EObject srcModelObject,
 			final boolean usedOkay, final Iterable<MappingHintType> hints,
@@ -847,7 +847,7 @@ class SourceSectionMapper implements CancellationListener {
 				final Map<ModelConnectionHintSourceInterface, String> foundValues = new LinkedHashMap<ModelConnectionHintSourceInterface, String>();
 				// append the complex hint value (cardinality either 0 or 1)
 				// with found values in right order
-				for (final ModelConnectionHintSourceElement s : ((ModelConnectionHint) hint)
+				for (final ModelConnectionHintSourceElement s : hint
 						.getLocalSourceElements()) {
 					if (complexConnectionHintSourceElementHintValues
 							.containsKey(s)) {
@@ -859,7 +859,7 @@ class SourceSectionMapper implements CancellationListener {
 
 				if (foundValues.keySet().size() > 0) {
 					complexConnectionHintsFound
-					.add((ModelConnectionHint) hint);
+					.add(hint);
 					@SuppressWarnings("unchecked")
 					final Map<ModelConnectionHintSourceInterface, String> oldValues = (Map<ModelConnectionHintSourceInterface, String>) changedRefsAndHints
 					.getModelConnectionHintValues().get(hint).remove();
@@ -1335,7 +1335,7 @@ class SourceSectionMapper implements CancellationListener {
 							.getUnSyncedComplexConnectionHints().containsKey(h)) {
 						changedRefsAndHints
 						.getUnSyncedComplexConnectionHints()
-						.put((ModelConnectionHint) h,
+						.put(h,
 								new HashMap<SourceSectionClass, LinkedList<Map<ModelConnectionHintSourceElement, String>>>());
 					}
 					changedRefsAndHints
@@ -1756,7 +1756,7 @@ class SourceSectionMapper implements CancellationListener {
 				// MI-Selector with AttrMatcher)
 				for (final ModelConnectionHint hint : connectionHints) {
 					if (hint instanceof ModelConnectionHint) {
-						for (final ModelConnectionHintSourceElement m : ((ModelConnectionHint) hint)
+						for (final ModelConnectionHintSourceElement m : hint
 								.getLocalSourceElements()) {
 							if (m.getSource().equals(at)) {
 								final String modifiedVal = attributeValuemodifier
@@ -1933,7 +1933,7 @@ class SourceSectionMapper implements CancellationListener {
 
 			for (final ModelConnectionHint h : getModelConnectionHints(m)) {
 				if (h instanceof ModelConnectionHint) {
-					for (final ModelConnectionHintSourceInterface i : ((ModelConnectionHint) h)
+					for (final ModelConnectionHintSourceInterface i : h
 							.getSourceElements()) {
 						mappingFailed = checkExternalAttributeMapping(m, res,
 								mappingFailed, attrVals, i);

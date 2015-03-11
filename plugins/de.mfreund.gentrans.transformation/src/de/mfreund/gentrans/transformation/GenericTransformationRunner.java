@@ -212,6 +212,9 @@ public class GenericTransformationRunner {
 	}
 
 	/**
+	 * This performs the actual execution of the transformation. In the course of this method,
+	 * the four main steps of the transformation get executed.
+	 * 
 	 * @param targetModel
 	 * @param pamtramModel
 	 * @param suitableMappings
@@ -479,7 +482,7 @@ public class GenericTransformationRunner {
 				 */
 				if (g instanceof MappingHintGroup) {
 					if (((MappingHintGroup) g).getModelConnectionMatcher() instanceof ModelConnectionHint) {
-						final ModelConnectionHint h = (ModelConnectionHint) ((MappingHintGroup) g)
+						final ModelConnectionHint h = ((MappingHintGroup) g)
 								.getModelConnectionMatcher();
 						for (final ModelConnectionHintSourceInterface i : h
 								.getSourceElements()) {
@@ -919,7 +922,7 @@ public class GenericTransformationRunner {
 			for (final MappingHintGroupType g : selMap.getMapping()
 					.getMappingHintGroups()) {
 				if (g.getTargetMMSection() != null
-						&& g instanceof MappingHintGroup) {
+						&& g instanceof MappingHintGroup && !g.getTargetMMSection().isLibraryEntry()) {
 
 					final LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection = targetSectionInstantiator
 							.instantiateTargetSectionFirstPass(
@@ -1096,7 +1099,7 @@ public class GenericTransformationRunner {
 														.getHintsToExpand()
 														.contains(matcher)) {
 													if (matcher instanceof AttributeMatcher) {// ComplexAttributeMatcher
-														final List<AttributeMatcherSourceInterface> sources = ((AttributeMatcher) matcher)
+														final List<AttributeMatcherSourceInterface> sources = matcher
 																.getSourceAttributes();
 														if (sources.size() > 0) {
 															AttributeMatcherSourceInterface element;
@@ -1384,7 +1387,7 @@ public class GenericTransformationRunner {
 		
 		// try to load source model
 		Resource sourceResource = 
-				(Resource) resourceSet.getResource(sourceUri, true);
+				resourceSet.getResource(sourceUri, true);
 
 		sourceModel = sourceResource.getContents().get(0);
 	}

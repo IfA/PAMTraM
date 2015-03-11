@@ -1334,31 +1334,27 @@ class TargetSectionInstantiator implements CancellationListener {
 	}
 	
 	/**
-	 * instantiate library entry-based target section
+	 * Instantiate all library entry-based target sections that have been collected
+	 * during {@link #instantiateTargetSectionFirstPass}.
 	 *
-	 * @param libraryEntry The {@link LibraryEntry} to be instantiated.
-	 * @param mappingGroup The {@link MappingHintGroup} to be used.
-	 * @param mappingHints A list of {@link MappingHint}s to be used.
-	 * @param hintValues
-	 * @param conHintValues
-	 * @param instBySection
-	 * @param mappingName
-	 * @param sectionAttributeValues
-	 *            These are used to determine if an attribute value was used
-	 *            higher up in the section hierarchy.
-	 * @return
+	 * @param targetModel The coherent target model into that the library entries are to be
+	 * 			instantiated.
+	 * @return <em>true</em> if everything went well, <em>false</em> otherwise.
 	 */
-	LinkedList<EObjectTransformationHelper> instantiateLibraryEntry(
-			final LibraryEntry libraryEntry,
-			final InstantiableMappingHintGroup mappingGroup,
-			final List<MappingHint> mappingHints,
-			final Map<MappingHintType, LinkedList<Object>> hintValues,
-			final Map<ModelConnectionHint, LinkedList<Object>> conHintValues,
-			final Map<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instBySection,
-			final String mappingName,
-			final Map<EClass, Map<EAttribute, Set<String>>> sectionAttributeValues) {
-		// TODO		
-		return null;
+	boolean instantiateLibraryEntries(
+			EObject targetModel) {
+		
+		boolean successful = true;
+		/*
+		 * Iterate over all stored instantiators and instantiate the associated library entry
+		 * in the given target model.
+		 */
+		for (LibraryEntryInstantiator libraryEntryInstantiator : libEntryInstantiators) {
+			if(!libraryEntryInstantiator.instantiate(targetModel)) {
+				successful = false;
+			}
+		}
+		return successful;
 	
 	}
 

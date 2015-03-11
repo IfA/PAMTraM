@@ -77,8 +77,12 @@ public class LibraryEntryInstantiator {
 	 * This instantiates the {@link #libraryEntry} in a given target model.
 	 * 
 	 * @param targetModel The target model in which the {@link #libraryEntry} shall be instantiated.
+	 * @return <em>true</em> if everything went well, <em>false</em> otherwise.
 	 */
-	public void instantiate(EObject targetModel) {
-		//TODO
+	public boolean instantiate(EObject targetModel) {
+		
+		
+		
+		return true;
 	}
 }

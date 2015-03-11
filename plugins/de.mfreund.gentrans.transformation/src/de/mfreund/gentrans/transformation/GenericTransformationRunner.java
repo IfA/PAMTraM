@@ -336,7 +336,9 @@ public class GenericTransformationRunner {
 		if (isCancelled)
 			return false;
 
-		// creating missing links/containers for target model
+		/*
+		 * creating missing links/containers for target model (joining)
+		 */
 		writePamtramMessage("Linking targetModelSections");
 		monitor.subTask("Linking targetModelSections");
 
@@ -349,11 +351,23 @@ public class GenericTransformationRunner {
 		if (isCancelled)
 			return false;
 
-		// creating target Model second pass (non-containment references)
+		/*
+		 * creating target Model second pass (non-containment references -> linking)
+		 */
 		writePamtramMessage("Instantiating targetModelSections for selected mappings. Second pass");
 		monitor.subTask("Instantiating targetModelSections for selected mappings. Second pass");
-		return runInstantiationSecondPass(selectedMappings,
-				targetSectionInstantiator, monitor);
+		if(!runInstantiationSecondPass(selectedMappings,
+				targetSectionInstantiator, monitor)) {
+			return false;
+		}
+		
+		/*
+		 * Finally, instantiate the collected library entries in the target model. 
+		 */
+		writePamtramMessage("Instantiating libraryEntries for selected mappings.");
+		monitor.subTask("Instantiating libraryEntries for selected mappings.");
+		targetSectionInstantiator.instantiateLibraryEntries(targetModel.getContents().get(0));
+		return true;
 	}
 
 	/**

@@ -83,7 +83,7 @@ public class LibraryEntryInstantiator {
 	 */
 	public boolean instantiate(GenLibraryManager manager, EObject targetModel) {
 		
-		
+		//TODO instantiate the library entry
 		return true;
 	}
 }

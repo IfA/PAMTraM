@@ -37,5 +37,11 @@ public class GenLibraryManager {
 	/**
 	 * This constructs an instance.
 	 */
-	public GenLibraryManager() {}
+	public GenLibraryManager() {
+		/*TODO we need to somehow aquire an instance of the movisa library context without
+		 * actually knowing about movisa; this probably needs to be done via an extension
+		 * point in the genlibrary plugin
+		 */
+		//getLibraryPlugin().init(librarycontext, parser);
+	}
 }

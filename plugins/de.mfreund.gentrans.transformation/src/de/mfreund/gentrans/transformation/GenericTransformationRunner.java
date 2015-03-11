@@ -55,6 +55,7 @@ import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.metamodel.CardinalityType;
+import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.util.EPackageHelper;
@@ -891,7 +892,10 @@ public class GenericTransformationRunner {
 	}
 
 	/**
-	 * Instantiates the containment Refs of the target sections
+	 * This performs the first step of the transformation:
+	 * The target sections (excluding those that are defined by {@link LibraryEntry}s)
+	 * are instantiated (only containment references and attributes but no non-containment
+	 * references).
 	 *
 	 * @param sourceSectionMapper
 	 * @param targetSectionRegistry
@@ -912,25 +916,45 @@ public class GenericTransformationRunner {
 			final List<GlobalValue> globalValues,
 			final IProgressMonitor monitor,
 			final AttributeValueModifierExecutor attributeValuemodifier) {
+		
+		/*
+		 * This is used to create new target sections.
+		 */
 		final TargetSectionInstantiator targetSectionInstantiator = new TargetSectionInstantiator(
 				targetSectionRegistry, attrValueRegistry,
 				sourceSectionMapper.getGlobalVarValues(),
 				attributeValuemodifier, globalValues, consoleStream);
+		
+		/*
+		 * Used to update the monitor.
+		 */
 		final double workUnit = 250.0 / selectedMappings.size();
 		double accumulatedWork = 0;
+		
+		/*
+		 * Iterate over all selected mappings
+		 */
 		for (final MappingInstanceStorage selMap : selectedMappings) {
+			
+			/*
+			 * Iterate over all mapping hint group (except empty ones)
+			 */
 			for (final MappingHintGroupType g : selMap.getMapping()
 					.getMappingHintGroups()) {
 				if (g.getTargetMMSection() != null
-						&& g instanceof MappingHintGroup && !g.getTargetMMSection().isLibraryEntry()) {
+						&& g instanceof MappingHintGroup) {
 
-					final LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection = targetSectionInstantiator
-							.instantiateTargetSectionFirstPass(
+					/*
+					 * Instantiate the target section.
+					 */
+					final LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection = 
+							targetSectionInstantiator.instantiateTargetSectionFirstPass(
 									g.getTargetMMSection(),
 									(MappingHintGroup) g, g.getMappingHints(),
 									selMap.getHintValues(),
 									selMap.getModelConnectionHintValues(),
 									selMap.getMapping().getName());
+					
 					if (instancesBySection == null) {
 						if (g.getTargetMMSection().getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
 							consoleStream
@@ -943,6 +967,9 @@ public class GenericTransformationRunner {
 					} else {
 						for (final TargetSectionClass section : instancesBySection
 								.keySet()) {
+							/*
+							 * Store the created instance(s).
+							 */
 							selMap.addInstances((MappingHintGroup) g, section,
 									instancesBySection.get(section));
 						}

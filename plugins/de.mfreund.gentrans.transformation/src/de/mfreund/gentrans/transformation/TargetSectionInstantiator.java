@@ -48,9 +48,11 @@ import de.congrace.exp4j.InvalidCustomFunctionException;
 import de.mfreund.gentrans.transformation.CalculatorFunctions.MaxFunction;
 import de.mfreund.gentrans.transformation.CalculatorFunctions.MinFunction;
 import de.mfreund.gentrans.transformation.CalculatorFunctions.RoundFunction;
+import de.mfreund.gentrans.transformation.library.GenLibraryManager;
 import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
 import de.mfreund.gentrans.transformation.selectors.GenericItemSelectorDialogRunner;
 import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunner;
+import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPlugin;
 
 /**
  * Class for instantiating target model sections using the hints supplied by
@@ -1337,13 +1339,14 @@ class TargetSectionInstantiator implements CancellationListener {
 	/**
 	 * Instantiate all library entry-based target sections that have been collected
 	 * during {@link #instantiateTargetSectionFirstPass}.
-	 *
+	 * 
+	 * @param manager The {@link GenLibraryManager} that proxies calls to the {@link LibraryPlugin}. 
 	 * @param targetModel The coherent target model into that the library entries are to be
 	 * 			instantiated.
 	 * @return <em>true</em> if everything went well, <em>false</em> otherwise.
 	 */
 	boolean instantiateLibraryEntries(
-			EObject targetModel) {
+			GenLibraryManager manager, EObject targetModel) {
 		
 		boolean successful = true;
 		/*
@@ -1351,7 +1354,7 @@ class TargetSectionInstantiator implements CancellationListener {
 		 * in the given target model.
 		 */
 		for (LibraryEntryInstantiator libraryEntryInstantiator : libEntryInstantiators) {
-			if(!libraryEntryInstantiator.instantiate(targetModel)) {
+			if(!libraryEntryInstantiator.instantiate(manager, targetModel)) {
 				successful = false;
 			}
 		}

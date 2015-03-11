@@ -11,6 +11,7 @@ import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.metamodel.LibraryEntry;
+import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPlugin;
 
 /**
  * This class is used to instantiate library entries.
@@ -76,10 +77,11 @@ public class LibraryEntryInstantiator {
 	/**
 	 * This instantiates the {@link #libraryEntry} in a given target model.
 	 * 
+	 * @param manager The {@link GenLibraryManager} that proxies calls to the {@link LibraryPlugin}.  
 	 * @param targetModel The target model in which the {@link #libraryEntry} shall be instantiated.
 	 * @return <em>true</em> if everything went well, <em>false</em> otherwise.
 	 */
-	public boolean instantiate(EObject targetModel) {
+	public boolean instantiate(GenLibraryManager manager, EObject targetModel) {
 		
 		
 		return true;

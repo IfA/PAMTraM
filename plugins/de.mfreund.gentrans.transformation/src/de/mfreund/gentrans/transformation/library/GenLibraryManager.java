@@ -12,7 +12,7 @@ import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPlugin;
  * 
  * @author mfreund
  */
-class GenLibraryManager {
+public class GenLibraryManager {
 	
 	/**
 	 * This holds the single instance of the {@link LibraryPlugin} that is used for

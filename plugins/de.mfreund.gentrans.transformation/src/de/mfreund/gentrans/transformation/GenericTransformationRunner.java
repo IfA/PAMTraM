@@ -62,6 +62,7 @@ import pamtram.util.EPackageHelper;
 import pamtram.util.EPackageHelper.EPackageCheck;
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
+import de.mfreund.gentrans.transformation.library.GenLibraryManager;
 
 /**
  * Main Class for running the generic transformation for a PAMTraM model.
@@ -366,8 +367,8 @@ public class GenericTransformationRunner {
 		 */
 		writePamtramMessage("Instantiating libraryEntries for selected mappings.");
 		monitor.subTask("Instantiating libraryEntries for selected mappings.");
-		targetSectionInstantiator.instantiateLibraryEntries(targetModel.getContents().get(0));
-		return true;
+		return runInstantiationLibraryEntries(
+				targetSectionInstantiator, targetModel.getContents().get(0));
 	}
 
 	/**
@@ -1298,6 +1299,22 @@ public class GenericTransformationRunner {
 		}
 
 		return true;
+	}
+
+	/**
+	 * This performs the final step of the transformation:
+	 * The stored library entries are finally instantiated in the target model.
+	 * 
+	 * @param targetSectionInstantiator The {@link TargetSectionInstantiator} that holds the
+	 * 			{@link LibraryEntry}s to be instantiated.
+	 * @param targetModel The targetModel in which the library entries are to be instantiated.
+	 * @return <em>true</em> if everything went well, <em>false</em> otherwise.
+	 */
+	private boolean runInstantiationLibraryEntries(
+			final TargetSectionInstantiator targetSectionInstantiator, EObject targetModel) {
+		
+		GenLibraryManager manager = new GenLibraryManager();
+		return targetSectionInstantiator.instantiateLibraryEntries(manager, targetModel);
 	}
 
 	/**

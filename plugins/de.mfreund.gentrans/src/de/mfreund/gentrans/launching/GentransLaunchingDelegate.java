@@ -5,6 +5,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
 import org.eclipse.core.runtime.jobs.IJobChangeListener;
 import org.eclipse.debug.core.ILaunch;
@@ -12,11 +13,22 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.model.ILaunchConfigurationDelegate;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
+import org.osgi.framework.Bundle;
 
 import de.mfreund.gentrans.transformation.handler.GenericTransformationJob;
 import de.mfreund.pamtram.util.ResourceHelper;
 
 public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
+
+	/**
+	 * This keeps track of the class that is to be used as target library context.
+	 */
+	private Class<?> targetLibContextClass;
+	
+	/**
+	 * This keeps track of the class that is to be used as target library parser.
+	 */
+	private Class<?> targetLibParserClass;
 
 	@Override
 	public void launch(ILaunchConfiguration configuration, String mode,
@@ -45,7 +57,8 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 				.put("xml", new GenericXMLResourceFactoryImpl());
 		}
 		
-		GenericTransformationJob job = new GenericTransformationJob("GenTrans", sourceFile, pamtramFile, targetFile);
+		GenericTransformationJob job = new GenericTransformationJob(
+				"GenTrans", sourceFile, pamtramFile, targetFile, targetLibContextClass, targetLibParserClass);
 		job.getGenTransRunner().setMaxPathLength(maxPathLength);
 		job.getGenTransRunner().setOnlyAskOnceOnAmbiguousMappings(rememberAmbiguousMappingChoice);
 
@@ -100,6 +113,10 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 	 * @throws CoreException If the validation fails.
 	 */
 	private void validateLaunchConfig(ILaunchConfiguration configuration) throws CoreException {
+		
+		/*
+		 * Validate the settings in the 'Main' tab
+		 */
 		if(configuration.getAttribute("project", "").equals("")) {
 			throw new RuntimeException("No project has been specified!");
 		}
@@ -114,6 +131,39 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		
 		if(configuration.getAttribute("targetFile", "").equals("")) {
 			throw new RuntimeException("No target file has been specified!");
+		}
+		
+		/*
+		 * Validate the settings in the 'Library' tab
+		 */
+		String targetLibBundle = configuration.getAttribute("targetLibBundle", "");
+		Bundle bundle;
+		targetLibContextClass = null;
+		targetLibParserClass = null;
+		if(!targetLibBundle.isEmpty()) {
+			if((bundle = Platform.getBundle(targetLibBundle)) == null) {
+				throw new RuntimeException("Bundle '" + targetLibBundle + "' cannot be resolved!" );
+			}
+			String targetLibContext = configuration.getAttribute("targetLibContext", "");
+			if(targetLibContext.isEmpty()) {
+				throw new RuntimeException("No target library context has been specified!");
+			} else {
+				try {
+					targetLibContextClass = bundle.loadClass(targetLibContext);
+				} catch (Exception e) {
+					throw new RuntimeException("The target library context could not be resolved!");
+				}
+			}
+			String targetLibParser = configuration.getAttribute("targetLibParser", "");
+			if(targetLibParser.isEmpty()) {
+				throw new RuntimeException("No target library parser has been specified!");
+			} else {
+				try {
+					targetLibParserClass = bundle.loadClass(targetLibParser);
+				} catch (Exception e) {
+					throw new RuntimeException("The target library parser could not be resolved!");
+				}
+			}
 		}
 		
 	}

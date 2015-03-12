@@ -111,7 +111,7 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 				return createTargetSectionClassAdapter();
 			}
 			@Override
-			public Adapter caseLibraryParameter(LibraryParameter object) {
+			public <ParameterType> Adapter caseLibraryParameter(LibraryParameter<ParameterType> object) {
 				return createLibraryParameterAdapter();
 			}
 			@Override

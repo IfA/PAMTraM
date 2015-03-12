@@ -14,6 +14,7 @@ import pamtram.NamedElement;
  * The following features are supported:
  * <ul>
  *   <li>{@link pamtram.metamodel.LibraryParameter#getSource <em>Source</em>}</li>
+ *   <li>{@link pamtram.metamodel.LibraryParameter#getOriginalParameter <em>Original Parameter</em>}</li>
  * </ul>
  * </p>
  *
@@ -21,7 +22,7 @@ import pamtram.NamedElement;
  * @model abstract="true"
  * @generated
  */
-public interface LibraryParameter extends NamedElement {
+public interface LibraryParameter<ParameterType> extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -47,5 +48,31 @@ public interface LibraryParameter extends NamedElement {
 	 * @generated
 	 */
 	void setSource(EObject value);
+
+	/**
+	 * Returns the value of the '<em><b>Original Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Original Parameter</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Original Parameter</em>' reference.
+	 * @see #setOriginalParameter(Object)
+	 * @see pamtram.metamodel.MetamodelPackage#getLibraryParameter_OriginalParameter()
+	 * @model kind="reference" required="true"
+	 * @generated
+	 */
+	ParameterType getOriginalParameter();
+
+	/**
+	 * Sets the value of the '{@link pamtram.metamodel.LibraryParameter#getOriginalParameter <em>Original Parameter</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Original Parameter</em>' reference.
+	 * @see #getOriginalParameter()
+	 * @generated
+	 */
+	void setOriginalParameter(ParameterType value);
 
 } // LibraryParameter

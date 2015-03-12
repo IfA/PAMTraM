@@ -2,6 +2,7 @@
  */
 package pamtram.metamodel.impl;
 
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractContainerParameter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -27,7 +28,7 @@ import pamtram.metamodel.TargetSectionClass;
  *
  * @generated
  */
-public class ContainerParameterImpl extends LibraryParameterImpl implements ContainerParameter {
+public class ContainerParameterImpl extends LibraryParameterImpl<AbstractContainerParameter<?, ?>> implements ContainerParameter {
 	/**
 	 * The cached value of the '{@link #getClass_() <em>Class</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -55,6 +56,17 @@ public class ContainerParameterImpl extends LibraryParameterImpl implements Cont
 	@Override
 	protected EClass eStaticClass() {
 		return MetamodelPackage.Literals.CONTAINER_PARAMETER;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific type known in this context.
+	 * @generated
+	 */
+	@Override
+	public void setOriginalParameter(AbstractContainerParameter<?, ?> newOriginalParameter) {
+		super.setOriginalParameter(newOriginalParameter);
 	}
 
 	/**

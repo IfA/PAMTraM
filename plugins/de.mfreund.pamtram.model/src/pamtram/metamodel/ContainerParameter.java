@@ -2,6 +2,8 @@
  */
 package pamtram.metamodel;
 
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractContainerParameter;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -19,7 +21,7 @@ package pamtram.metamodel;
  * @model
  * @generated
  */
-public interface ContainerParameter extends LibraryParameter {
+public interface ContainerParameter extends LibraryParameter<AbstractContainerParameter<?, ?>> {
 	/**
 	 * Returns the value of the '<em><b>Class</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

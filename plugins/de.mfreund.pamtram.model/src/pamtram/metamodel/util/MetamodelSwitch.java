@@ -128,7 +128,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case MetamodelPackage.LIBRARY_PARAMETER: {
-				LibraryParameter libraryParameter = (LibraryParameter)theEObject;
+				LibraryParameter<?> libraryParameter = (LibraryParameter<?>)theEObject;
 				T result = caseLibraryParameter(libraryParameter);
 				if (result == null) result = caseNamedElement(libraryParameter);
 				if (result == null) result = defaultCase(theEObject);
@@ -431,7 +431,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseLibraryParameter(LibraryParameter object) {
+	public <ParameterType> T caseLibraryParameter(LibraryParameter<ParameterType> object) {
 		return null;
 	}
 

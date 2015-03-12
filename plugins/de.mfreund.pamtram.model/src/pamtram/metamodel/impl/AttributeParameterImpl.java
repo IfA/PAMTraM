@@ -2,6 +2,7 @@
  */
 package pamtram.metamodel.impl;
 
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractAttributeParameter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -27,7 +28,7 @@ import pamtram.metamodel.MetamodelPackage;
  *
  * @generated
  */
-public class AttributeParameterImpl extends LibraryParameterImpl implements AttributeParameter {
+public class AttributeParameterImpl extends LibraryParameterImpl<AbstractAttributeParameter<?>> implements AttributeParameter {
 	/**
 	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -55,6 +56,17 @@ public class AttributeParameterImpl extends LibraryParameterImpl implements Attr
 	@Override
 	protected EClass eStaticClass() {
 		return MetamodelPackage.Literals.ATTRIBUTE_PARAMETER;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific type known in this context.
+	 * @generated
+	 */
+	@Override
+	public void setOriginalParameter(AbstractAttributeParameter<?> newOriginalParameter) {
+		super.setOriginalParameter(newOriginalParameter);
 	}
 
 	/**

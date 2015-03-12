@@ -123,20 +123,41 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="LibraryParameter" abstract="true"
         eSuperTypes="#//NamedElement">
+      <eTypeParameters name="ParameterType"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
           eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="originalParameter" lowerBound="1">
+        <eGenericType eTypeParameter="#//metamodel/LibraryParameter/ParameterType"/>
+      </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="AttributeParameter" eSuperTypes="#//metamodel/LibraryParameter">
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeParameter">
       <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
           eType="#//metamodel/ActualAttribute" containment="true"/>
+      <eGenericSuperTypes eClassifier="#//metamodel/LibraryParameter">
+        <eTypeArguments eClassifier="ecore:EClass platform:/plugin/de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//AbstractAttributeParameter">
+          <eTypeArguments/>
+        </eTypeArguments>
+      </eGenericSuperTypes>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ContainerParameter" eSuperTypes="#//metamodel/LibraryParameter">
+    <eClassifiers xsi:type="ecore:EClass" name="ContainerParameter">
       <eStructuralFeatures xsi:type="ecore:EReference" name="class" lowerBound="1"
           eType="#//metamodel/TargetSectionClass" containment="true"/>
+      <eGenericSuperTypes eClassifier="#//metamodel/LibraryParameter">
+        <eTypeArguments eClassifier="ecore:EClass platform:/plugin/de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//AbstractContainerParameter">
+          <eTypeArguments/>
+          <eTypeArguments/>
+        </eTypeArguments>
+      </eGenericSuperTypes>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ExternalReferenceParameter" eSuperTypes="#//metamodel/LibraryParameter">
+    <eClassifiers xsi:type="ecore:EClass" name="ExternalReferenceParameter">
       <eStructuralFeatures xsi:type="ecore:EReference" name="reference" lowerBound="1"
           eType="#//metamodel/TargetSectionNonContainmentReference" containment="true"/>
+      <eGenericSuperTypes eClassifier="#//metamodel/LibraryParameter">
+        <eTypeArguments eClassifier="ecore:EClass platform:/plugin/de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//AbstractExternalReferenceParameter">
+          <eTypeArguments/>
+          <eTypeArguments/>
+        </eTypeArguments>
+      </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="LibraryEntry">
       <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" lowerBound="1"

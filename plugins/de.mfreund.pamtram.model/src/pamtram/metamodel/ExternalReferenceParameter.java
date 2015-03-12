@@ -2,6 +2,8 @@
  */
 package pamtram.metamodel;
 
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -19,7 +21,7 @@ package pamtram.metamodel;
  * @model
  * @generated
  */
-public interface ExternalReferenceParameter extends LibraryParameter {
+public interface ExternalReferenceParameter extends LibraryParameter<AbstractExternalReferenceParameter<?, ?>> {
 	/**
 	 * Returns the value of the '<em><b>Reference</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

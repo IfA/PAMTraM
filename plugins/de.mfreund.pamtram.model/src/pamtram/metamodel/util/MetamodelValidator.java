@@ -122,7 +122,7 @@ public class MetamodelValidator extends EObjectValidator {
 			case MetamodelPackage.TARGET_SECTION_CLASS:
 				return validateTargetSectionClass((TargetSectionClass)value, diagnostics, context);
 			case MetamodelPackage.LIBRARY_PARAMETER:
-				return validateLibraryParameter((LibraryParameter)value, diagnostics, context);
+				return validateLibraryParameter((LibraryParameter<?>)value, diagnostics, context);
 			case MetamodelPackage.ATTRIBUTE_PARAMETER:
 				return validateAttributeParameter((AttributeParameter)value, diagnostics, context);
 			case MetamodelPackage.CONTAINER_PARAMETER:
@@ -314,7 +314,7 @@ public class MetamodelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLibraryParameter(LibraryParameter libraryParameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateLibraryParameter(LibraryParameter<?> libraryParameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(libraryParameter, diagnostics, context);
 	}
 

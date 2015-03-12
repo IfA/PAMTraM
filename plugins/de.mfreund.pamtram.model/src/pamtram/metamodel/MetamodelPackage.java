@@ -598,13 +598,22 @@ public interface MetamodelPackage extends EPackage {
 	int LIBRARY_PARAMETER__SOURCE = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Original Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY_PARAMETER__ORIGINAL_PARAMETER = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Library Parameter</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_PARAMETER_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int LIBRARY_PARAMETER_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Library Parameter</em>' class.
@@ -642,6 +651,15 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_PARAMETER__SOURCE = LIBRARY_PARAMETER__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Original Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_PARAMETER__ORIGINAL_PARAMETER = LIBRARY_PARAMETER__ORIGINAL_PARAMETER;
 
 	/**
 	 * The feature id for the '<em><b>Attribute</b></em>' containment reference.
@@ -699,6 +717,15 @@ public interface MetamodelPackage extends EPackage {
 	int CONTAINER_PARAMETER__SOURCE = LIBRARY_PARAMETER__SOURCE;
 
 	/**
+	 * The feature id for the '<em><b>Original Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINER_PARAMETER__ORIGINAL_PARAMETER = LIBRARY_PARAMETER__ORIGINAL_PARAMETER;
+
+	/**
 	 * The feature id for the '<em><b>Class</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -752,6 +779,15 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTERNAL_REFERENCE_PARAMETER__SOURCE = LIBRARY_PARAMETER__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Original Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_REFERENCE_PARAMETER__ORIGINAL_PARAMETER = LIBRARY_PARAMETER__ORIGINAL_PARAMETER;
 
 	/**
 	 * The feature id for the '<em><b>Reference</b></em>' containment reference.
@@ -2838,6 +2874,17 @@ public interface MetamodelPackage extends EPackage {
 	EReference getLibraryParameter_Source();
 
 	/**
+	 * Returns the meta object for the reference '{@link pamtram.metamodel.LibraryParameter#getOriginalParameter <em>Original Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Original Parameter</em>'.
+	 * @see pamtram.metamodel.LibraryParameter#getOriginalParameter()
+	 * @see #getLibraryParameter()
+	 * @generated
+	 */
+	EReference getLibraryParameter_OriginalParameter();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.AttributeParameter <em>Attribute Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3617,6 +3664,14 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference LIBRARY_PARAMETER__SOURCE = eINSTANCE.getLibraryParameter_Source();
+
+		/**
+		 * The meta object literal for the '<em><b>Original Parameter</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LIBRARY_PARAMETER__ORIGINAL_PARAMETER = eINSTANCE.getLibraryParameter_OriginalParameter();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.AttributeParameterImpl <em>Attribute Parameter</em>}' class.

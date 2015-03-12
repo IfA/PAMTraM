@@ -6,9 +6,11 @@ import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.GenLibraryPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import pamtram.PamtramPackage;
@@ -584,6 +586,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getLibraryParameter_OriginalParameter() {
+		return (EReference)libraryParameterEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getAttributeParameter() {
 		return attributeParameterEClass;
 	}
@@ -1120,6 +1131,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		libraryParameterEClass = createEClass(LIBRARY_PARAMETER);
 		createEReference(libraryParameterEClass, LIBRARY_PARAMETER__SOURCE);
+		createEReference(libraryParameterEClass, LIBRARY_PARAMETER__ORIGINAL_PARAMETER);
 
 		attributeParameterEClass = createEClass(ATTRIBUTE_PARAMETER);
 		createEReference(attributeParameterEClass, ATTRIBUTE_PARAMETER__ATTRIBUTE);
@@ -1231,6 +1243,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		GenLibraryPackage theGenLibraryPackage = (GenLibraryPackage)EPackage.Registry.INSTANCE.getEPackage(GenLibraryPackage.eNS_URI);
 
 		// Create type parameters
+		ETypeParameter libraryParameterEClass_ParameterType = addETypeParameter(libraryParameterEClass, "ParameterType");
 
 		// Set bounds for type parameters
 
@@ -1240,9 +1253,28 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		sourceSectionClassEClass.getESuperTypes().add(this.getClass_());
 		targetSectionClassEClass.getESuperTypes().add(this.getClass_());
 		libraryParameterEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
-		attributeParameterEClass.getESuperTypes().add(this.getLibraryParameter());
-		containerParameterEClass.getESuperTypes().add(this.getLibraryParameter());
-		externalReferenceParameterEClass.getESuperTypes().add(this.getLibraryParameter());
+		EGenericType g1 = createEGenericType(this.getLibraryParameter());
+		EGenericType g2 = createEGenericType(theGenLibraryPackage.getAbstractAttributeParameter());
+		g1.getETypeArguments().add(g2);
+		EGenericType g3 = createEGenericType();
+		g2.getETypeArguments().add(g3);
+		attributeParameterEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getLibraryParameter());
+		g2 = createEGenericType(theGenLibraryPackage.getAbstractContainerParameter());
+		g1.getETypeArguments().add(g2);
+		g3 = createEGenericType();
+		g2.getETypeArguments().add(g3);
+		g3 = createEGenericType();
+		g2.getETypeArguments().add(g3);
+		containerParameterEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getLibraryParameter());
+		g2 = createEGenericType(theGenLibraryPackage.getAbstractExternalReferenceParameter());
+		g1.getETypeArguments().add(g2);
+		g3 = createEGenericType();
+		g2.getETypeArguments().add(g3);
+		g3 = createEGenericType();
+		g2.getETypeArguments().add(g3);
+		externalReferenceParameterEClass.getEGenericSuperTypes().add(g1);
 		referenceEClass.getESuperTypes().add(this.getMetaModelElement());
 		containmentReferenceEClass.getESuperTypes().add(this.getReference());
 		nonContainmentReferenceEClass.getESuperTypes().add(this.getReference());
@@ -1305,6 +1337,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		initEClass(libraryParameterEClass, LibraryParameter.class, "LibraryParameter", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLibraryParameter_Source(), ecorePackage.getEObject(), null, "source", null, 1, 1, LibraryParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		g1 = createEGenericType(libraryParameterEClass_ParameterType);
+		initEReference(getLibraryParameter_OriginalParameter(), g1, null, "originalParameter", null, 1, 1, LibraryParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(attributeParameterEClass, AttributeParameter.class, "AttributeParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAttributeParameter_Attribute(), this.getActualAttribute(), null, "attribute", null, 1, 1, AttributeParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -19,12 +19,13 @@ import pamtram.metamodel.MetamodelPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link pamtram.metamodel.impl.LibraryParameterImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link pamtram.metamodel.impl.LibraryParameterImpl#getOriginalParameter <em>Original Parameter</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class LibraryParameterImpl extends NamedElementImpl implements LibraryParameter {
+public abstract class LibraryParameterImpl<ParameterType> extends NamedElementImpl implements LibraryParameter<ParameterType> {
 	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -34,6 +35,16 @@ public abstract class LibraryParameterImpl extends NamedElementImpl implements L
 	 * @ordered
 	 */
 	protected EObject source;
+
+	/**
+	 * The cached value of the '{@link #getOriginalParameter() <em>Original Parameter</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOriginalParameter()
+	 * @generated
+	 * @ordered
+	 */
+	protected ParameterType originalParameter;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -97,12 +108,54 @@ public abstract class LibraryParameterImpl extends NamedElementImpl implements L
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+	public ParameterType getOriginalParameter() {
+		if (originalParameter != null && ((EObject)originalParameter).eIsProxy()) {
+			InternalEObject oldOriginalParameter = (InternalEObject)originalParameter;
+			originalParameter = (ParameterType)eResolveProxy(oldOriginalParameter);
+			if (originalParameter != oldOriginalParameter) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.LIBRARY_PARAMETER__ORIGINAL_PARAMETER, oldOriginalParameter, originalParameter));
+			}
+		}
+		return originalParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ParameterType basicGetOriginalParameter() {
+		return originalParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOriginalParameter(ParameterType newOriginalParameter) {
+		ParameterType oldOriginalParameter = originalParameter;
+		originalParameter = newOriginalParameter;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.LIBRARY_PARAMETER__ORIGINAL_PARAMETER, oldOriginalParameter, originalParameter));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case MetamodelPackage.LIBRARY_PARAMETER__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
+			case MetamodelPackage.LIBRARY_PARAMETER__ORIGINAL_PARAMETER:
+				if (resolve) return getOriginalParameter();
+				return basicGetOriginalParameter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -112,11 +165,15 @@ public abstract class LibraryParameterImpl extends NamedElementImpl implements L
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MetamodelPackage.LIBRARY_PARAMETER__SOURCE:
 				setSource((EObject)newValue);
+				return;
+			case MetamodelPackage.LIBRARY_PARAMETER__ORIGINAL_PARAMETER:
+				setOriginalParameter((ParameterType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -133,6 +190,9 @@ public abstract class LibraryParameterImpl extends NamedElementImpl implements L
 			case MetamodelPackage.LIBRARY_PARAMETER__SOURCE:
 				setSource((EObject)null);
 				return;
+			case MetamodelPackage.LIBRARY_PARAMETER__ORIGINAL_PARAMETER:
+				setOriginalParameter((ParameterType)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -147,6 +207,8 @@ public abstract class LibraryParameterImpl extends NamedElementImpl implements L
 		switch (featureID) {
 			case MetamodelPackage.LIBRARY_PARAMETER__SOURCE:
 				return source != null;
+			case MetamodelPackage.LIBRARY_PARAMETER__ORIGINAL_PARAMETER:
+				return originalParameter != null;
 		}
 		return super.eIsSet(featureID);
 	}

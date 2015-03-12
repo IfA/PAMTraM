@@ -2,6 +2,7 @@
  */
 package pamtram.metamodel.impl;
 
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -27,7 +28,7 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
  *
  * @generated
  */
-public class ExternalReferenceParameterImpl extends LibraryParameterImpl implements ExternalReferenceParameter {
+public class ExternalReferenceParameterImpl extends LibraryParameterImpl<AbstractExternalReferenceParameter<?, ?>> implements ExternalReferenceParameter {
 	/**
 	 * The cached value of the '{@link #getReference() <em>Reference</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -55,6 +56,17 @@ public class ExternalReferenceParameterImpl extends LibraryParameterImpl impleme
 	@Override
 	protected EClass eStaticClass() {
 		return MetamodelPackage.Literals.EXTERNAL_REFERENCE_PARAMETER;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific type known in this context.
+	 * @generated
+	 */
+	@Override
+	public void setOriginalParameter(AbstractExternalReferenceParameter<?, ?> newOriginalParameter) {
+		super.setOriginalParameter(newOriginalParameter);
 	}
 
 	/**

@@ -2,6 +2,8 @@
  */
 package pamtram.metamodel;
 
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractAttributeParameter;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -19,7 +21,7 @@ package pamtram.metamodel;
  * @model
  * @generated
  */
-public interface AttributeParameter extends LibraryParameter {
+public interface AttributeParameter extends LibraryParameter<AbstractAttributeParameter<?>> {
 	/**
 	 * Returns the value of the '<em><b>Attribute</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

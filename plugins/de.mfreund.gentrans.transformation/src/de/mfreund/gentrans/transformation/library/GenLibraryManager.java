@@ -1,5 +1,8 @@
 package de.mfreund.gentrans.transformation.library;
 
+import org.eclipse.emf.ecore.EObject;
+
+import pamtram.metamodel.LibraryEntry;
 import de.tud.et.ifa.agtele.genlibrary.processor.impl.LibraryPluginImpl;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryContext;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPathParser;
@@ -50,5 +53,25 @@ public class GenLibraryManager {
 		LibraryContext context = (LibraryContext) targetLibContextClass.newInstance();
 		LibraryPathParser parser = (LibraryPathParser) targetLibParserClass.newInstance();
 		getLibraryPlugin().init(context, parser);
+	}
+	
+	/**
+	 * This inserts the given library item into the given target model while
+	 * taking the given Parameters into account. This is done by calling the
+	 * function {@link LibraryPlugin#insertIntoTargetModel(EObject, LibraryEntry, String)}.
+	 * 
+	 * @param targetModel
+	 *            The target model into that the given library item shall be
+	 *            inserted.
+	 * @param libraryEntry
+	 *            The {@link LibraryEntry} to be inserted
+	 *            into the target model.
+	 */
+	public void insertIntoTargetModel(EObject targetModel, LibraryEntry libraryEntry) {
+		
+		getLibraryPlugin().insertIntoTargetModel(
+				targetModel, 
+				libraryEntry.getOriginalLibraryEntry(), 
+				libraryEntry.getPath());
 	}
 }

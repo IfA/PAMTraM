@@ -7,7 +7,7 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Named Element</b></em>'.
- * @extends IFeatureBasedNameSetter
+ * @extends IDerivedNameSetter
  * <!-- end-user-doc -->
  *
  * <p>

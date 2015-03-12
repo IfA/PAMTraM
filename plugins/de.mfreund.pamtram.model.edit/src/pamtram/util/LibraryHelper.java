@@ -243,6 +243,7 @@ public class LibraryHelper {
 			for (AbstractAttributeParameter<EObject> attParameter : libEntry.getParameterDescription().getAttributeParameters()) {
 				
 				AttributeParameter param = MetamodelFactoryImpl.eINSTANCE.createAttributeParameter();
+				param.setOriginalParameter(attParameter);
 				param.setName(attParameter.eClass().getName());
 				param.setSource(attParameter.getSource());
 				
@@ -262,6 +263,7 @@ public class LibraryHelper {
 			for (AbstractContainerParameter<EObject, EObject> contParameter : libEntry.getParameterDescription().getContainerParameters()) {
 				
 				ContainerParameter param = MetamodelFactoryImpl.eINSTANCE.createContainerParameter();
+				param.setOriginalParameter(contParameter);
 				param.setName(contParameter.eClass().getName());
 				param.setSource(contParameter.getSource());
 				
@@ -289,6 +291,7 @@ public class LibraryHelper {
 				// create a paramter for every setting
 				for (Setting setting : crossReferences) {
 					ExternalReferenceParameter param = MetamodelFactoryImpl.eINSTANCE.createExternalReferenceParameter();
+					param.setOriginalParameter(extRefParameter);
 					param.setName(extRefParameter.eClass().getName());
 					param.setSource(setting.getEObject());
 					

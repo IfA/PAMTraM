@@ -93,6 +93,11 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 				
 				String projectName = ((Combo)e.widget).getText();
 				
+				// save the selected values in the other combo boxes
+				String oldSrcFile = srcFileCombo.getText();
+				String oldPamtramFile = pamtramFileCombo.getText();
+				String oldTargetFile = targetFileCombo.getText();
+				
 				// reset the source and pamtram file combo
 				srcFileCombo.setItems(new String[]{});
 				pamtramFileCombo.setItems(new String[]{});
@@ -113,7 +118,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 							srcFileCombo.add(r.getName());
 						}
 					}
-					srcFileCombo.select(0);
+					int index = srcFileCombo.indexOf(oldSrcFile);
+					srcFileCombo.select((index != -1 ? index : 0));
 					srcFileCombo.setEnabled(true);
 				} catch (CoreException e1) {
 					e1.printStackTrace();
@@ -125,7 +131,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 							pamtramFileCombo.add(r.getName());
 						}
 					}
-					pamtramFileCombo.select(0);
+					int index = pamtramFileCombo.indexOf(oldPamtramFile);
+					pamtramFileCombo.select((index != -1 ? index : 0));
 					pamtramFileCombo.setEnabled(true);
 				} catch (CoreException e1) {
 					e1.printStackTrace();
@@ -138,7 +145,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 							targetFileCombo.add(r.getName());
 						}
 					}
-					targetFileCombo.select(0);
+					int index = targetFileCombo.indexOf(oldTargetFile);
+					targetFileCombo.select((index != -1 ? index : 0));
 					targetFileCombo.setEnabled(true);
 				} catch (CoreException e1) {
 					e1.printStackTrace();

@@ -62,7 +62,6 @@ import pamtram.util.EPackageHelper;
 import pamtram.util.EPackageHelper.EPackageCheck;
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
-import de.mfreund.gentrans.transformation.library.GenLibraryManager;
 
 /**
  * Main Class for running the generic transformation for a PAMTraM model.
@@ -122,6 +121,16 @@ public class GenericTransformationRunner {
 	 */
 	private boolean onlyAskOnceOnAmbiguousMappings;
 	private boolean isCancelled;
+	
+	/**
+	 * This keeps track of the class that is to be used as target library context.
+	 */
+	private Class<?> targetLibContextClass;
+	
+	/**
+	 * This keeps track of the class that is to be used as target library parser.
+	 */
+	private Class<?> targetLibParserClass;
 
 	/**
 	 * Private constructor that is called from all other constructors.
@@ -136,10 +145,14 @@ public class GenericTransformationRunner {
 	 * 			  Maximum length of connection paths between target sections.
 	 * @param onlyAskOnceOnAmbiguousMappings
 	 * 			  Whether ambiguities shall only be resolved once or for every instance.
+	 * @param targetLibContextClass
+	 * 			  The target library context to be used to instantiate library entries
+	 * @param targetLibParserClass
+	 * 			  The target library path parser to be used
 	 */
 	private GenericTransformationRunner(final String sourceFilePath,
 			final String pamtramPath, final String targetFilePath, int maxPathLength,
-			boolean onlyAskOnceOnAmbiguousMappings) {
+			boolean onlyAskOnceOnAmbiguousMappings, Class<?> targetLibContextClass, Class<?> targetLibParserClass) {
 		super();
 		isCancelled = false;
 		this.sourceFilePath = sourceFilePath;
@@ -147,6 +160,8 @@ public class GenericTransformationRunner {
 		this.targetFilePath = targetFilePath;
 		this.maxPathLength = maxPathLength;
 		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
+		this.targetLibContextClass = targetLibContextClass;
+		this.targetLibParserClass = targetLibParserClass;
 		consoleStream = findConsole(
 				"de.mfreund.gentrans.transformation_" + hashCode())
 				.newMessageStream();
@@ -164,10 +179,14 @@ public class GenericTransformationRunner {
 	 *            Path to the transformation model
 	 * @param targetFilePath
 	 *            File path to the transformation target
+	 * @param targetLibContextClass
+	 * 			  The target library context to be used to instantiate library entries
+	 * @param targetLibParserClass
+	 * 			  The target library path parser to be used
 	 */
 	public GenericTransformationRunner(final String sourceFilePath,
-			final String pamtramPath, final String targetFilePath) {
-		this(sourceFilePath, pamtramPath, targetFilePath, -1, true);
+			final String pamtramPath, final String targetFilePath, Class<?> targetLibContextClass, Class<?> targetLibParserClass) {
+		this(sourceFilePath, pamtramPath, targetFilePath, -1, true, targetLibParserClass, targetLibParserClass);
 	}
 	
 	/**
@@ -179,10 +198,14 @@ public class GenericTransformationRunner {
 	 *            The transformation model
 	 * @param targetFilePath
 	 *            File path to the transformation target
+	 * @param targetLibContextClass
+	 * 			  The target library context to be used to instantiate library entries
+	 * @param targetLibParserClass
+	 * 			  The target library path parser to be used
 	 */
 	public GenericTransformationRunner(final String sourceFilePath,
-			final PAMTraM pamtramModel, final String targetFilePath) {
-		this(sourceFilePath, null, targetFilePath, -1, true);
+			final PAMTraM pamtramModel, final String targetFilePath, Class<?> targetLibContextClass, Class<?> targetLibParserClass) {
+		this(sourceFilePath, null, targetFilePath, -1, true, targetLibParserClass, targetLibParserClass);
 		this.pamtramModel = pamtramModel;
 	}
 	
@@ -195,10 +218,14 @@ public class GenericTransformationRunner {
 	 *            The transformation model
 	 * @param targetFilePath
 	 *            File path to the transformation target
+	 * @param targetLibContextClass
+	 * 			  The target library context to be used to instantiate library entries
+	 * @param targetLibParserClass
+	 * 			  The target library path parser to be used
 	 */
 	public GenericTransformationRunner(final EObject sourceModel,
-			final PAMTraM pamtramModel, final String targetFilePath) {
-		this(null, null, targetFilePath, -1, true);
+			final PAMTraM pamtramModel, final String targetFilePath, Class<?> targetLibContextClass, Class<?> targetLibParserClass) {
+		this(null, null, targetFilePath, -1, true, targetLibParserClass, targetLibParserClass);
 		this.pamtramModel = pamtramModel;
 		this.sourceModel = sourceModel;
 	}
@@ -1313,8 +1340,7 @@ public class GenericTransformationRunner {
 	private boolean runInstantiationLibraryEntries(
 			final TargetSectionInstantiator targetSectionInstantiator, EObject targetModel) {
 		
-		GenLibraryManager manager = new GenLibraryManager();
-		return targetSectionInstantiator.instantiateLibraryEntries(manager, targetModel);
+		return targetSectionInstantiator.instantiateLibraryEntries(targetModel, targetLibContextClass, targetLibParserClass);
 	}
 
 	/**

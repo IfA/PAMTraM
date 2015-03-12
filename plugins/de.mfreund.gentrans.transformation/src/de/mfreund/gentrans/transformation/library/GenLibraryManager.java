@@ -2,6 +2,7 @@ package de.mfreund.gentrans.transformation.library;
 
 import de.tud.et.ifa.agtele.genlibrary.processor.impl.LibraryPluginImpl;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryContext;
+import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPathParser;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPlugin;
 
 /**
@@ -36,12 +37,18 @@ public class GenLibraryManager {
 
 	/**
 	 * This constructs an instance.
+	 * @param targetLibParserClass 
+	 * @param targetLibContextClass 
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
 	 */
-	public GenLibraryManager() {
-		/*TODO we need to somehow aquire an instance of the movisa library context without
-		 * actually knowing about movisa; this probably needs to be done via an extension
-		 * point in the genlibrary plugin
+	public GenLibraryManager(Class<?> targetLibContextClass, Class<?> targetLibParserClass) throws InstantiationException, IllegalAccessException {
+		/*TODO it would be desirable to somehow aquire an instance of the concrete library context and parser without
+		 * actually knowing about the concrete language and without the user having to specify the bundle and class names; 
+		 * this probably should be done via an extension point in the genlibrary plugin
 		 */
-		//getLibraryPlugin().init(librarycontext, parser);
+		LibraryContext context = (LibraryContext) targetLibContextClass.newInstance();
+		LibraryPathParser parser = (LibraryPathParser) targetLibParserClass.newInstance();
+		getLibraryPlugin().init(context, parser);
 	}
 }

@@ -52,7 +52,6 @@ import de.mfreund.gentrans.transformation.library.GenLibraryManager;
 import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
 import de.mfreund.gentrans.transformation.selectors.GenericItemSelectorDialogRunner;
 import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunner;
-import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPlugin;
 
 /**
  * Class for instantiating target model sections using the hints supplied by
@@ -1340,13 +1339,38 @@ class TargetSectionInstantiator implements CancellationListener {
 	 * Instantiate all library entry-based target sections that have been collected
 	 * during {@link #instantiateTargetSectionFirstPass}.
 	 * 
-	 * @param manager The {@link GenLibraryManager} that proxies calls to the {@link LibraryPlugin}. 
 	 * @param targetModel The coherent target model into that the library entries are to be
 	 * 			instantiated.
+	 * @param targetLibContextClass
+	 * 			  The target library context to be used to instantiate library entries
+	 * @param targetLibParserClass
+	 * 			  The target library path parser to be used
 	 * @return <em>true</em> if everything went well, <em>false</em> otherwise.
 	 */
 	boolean instantiateLibraryEntries(
-			GenLibraryManager manager, EObject targetModel) {
+			EObject targetModel, Class<?> targetLibContextClass, Class<?> targetLibParserClass) {
+		
+		if(libEntryInstantiators.isEmpty()) { // nothing to be done
+			return true;
+		}
+		
+		if(targetLibContextClass == null || targetLibParserClass == null) {
+			consoleStream.println("Could not instantiate library entries as no target"
+					+ " library context/parser class has been specified!");
+			return false;
+		}
+		
+		/*
+		 * Create a GenLibraryManager that proxies calls to the LibraryPlugin. 
+		 */
+		GenLibraryManager manager;
+		try {
+			manager = new GenLibraryManager(targetLibContextClass, targetLibParserClass);
+		} catch (InstantiationException | IllegalAccessException e) {
+			e.printStackTrace();
+			consoleStream.println("Error while instantiatiating library context/parser!");
+			return false;
+		}
 		
 		boolean successful = true;
 		/*

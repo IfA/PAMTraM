@@ -25,13 +25,15 @@ public class GenericTransformationJob extends Job {
 	 * @param sourceFilePath
 	 * @param pamtramPath
 	 * @param targetFilePath
+	 * @param targetLibParserClass 
+	 * @param targetLibContextClass 
 	 */
 	public GenericTransformationJob(final String jobName,
 			final String sourceFilePath, final String pamtramPath,
-			final String targetFilePath) {
+			final String targetFilePath, Class<?> targetLibContextClass, Class<?> targetLibParserClass) {
 		super(jobName);
 		genTransRunner = new GenericTransformationRunner(sourceFilePath,
-				pamtramPath, targetFilePath);
+				pamtramPath, targetFilePath, targetLibContextClass, targetLibParserClass);
 		setPriority(Job.BUILD);
 	}
 

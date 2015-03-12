@@ -1,17 +1,21 @@
 package de.mfreund.gentrans.ui.launching;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.ui.AbstractLaunchConfigurationTab;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
+import org.osgi.framework.Bundle;
 
 public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 
@@ -54,13 +58,13 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 		// create a text field for the specification of the bundle that represents the specific target library 
 		targetBundleText = new Text(targetGroup, SWT.NONE);
 		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(targetBundleText);
-//		targetBundleText.addModifyListener(new ModifyListener() {
-//			
-//			@Override
-//			public void modifyText(ModifyEvent e) {
-//				updateLaunchConfigurationDialog();
-//			}
-//		});
+		targetBundleText.addModifyListener(new ModifyListener() {
+			
+			@Override
+			public void modifyText(ModifyEvent e) {
+				updateLaunchConfigurationDialog();
+			}
+		});
 		
 		// create a label for the specification of the concrete library context of the specific target library
 		Label targetLibContextLabel = new Label(targetGroup, SWT.NONE);
@@ -70,13 +74,13 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 		// create a text field for the specification of the concrete library context of the specific target library
 		targetLibContextText = new Text(targetGroup, SWT.NONE);
 		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(targetLibContextText);
-//		targetLibContextText.addModifyListener(new ModifyListener() {
-//			
-//			@Override
-//			public void modifyText(ModifyEvent e) {
-//				updateLaunchConfigurationDialog();
-//			}
-//		});
+		targetLibContextText.addModifyListener(new ModifyListener() {
+			
+			@Override
+			public void modifyText(ModifyEvent e) {
+				updateLaunchConfigurationDialog();
+			}
+		});
 		
 		// create a label for the specification of the concrete library path parser of the specific target library
 		Label targetLibParserLabel = new Label(targetGroup, SWT.NONE);
@@ -86,13 +90,13 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 		// create a text field for the specification of the concrete library path parser of the specific target library 
 		targetLibParserText = new Text(targetGroup, SWT.NONE);
 		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(targetLibParserText);
-//		targetLibParserText.addModifyListener(new ModifyListener() {
-//			
-//			@Override
-//			public void modifyText(ModifyEvent e) {
-//				updateLaunchConfigurationDialog();
-//			}
-//		});
+		targetLibParserText.addModifyListener(new ModifyListener() {
+			
+			@Override
+			public void modifyText(ModifyEvent e) {
+				updateLaunchConfigurationDialog();
+			}
+		});
 	}
 
 	@Override
@@ -137,8 +141,45 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 	
 	@Override
 	public boolean isValid(ILaunchConfiguration launchConfig) {
-		//TODO
-		return super.isValid(launchConfig);
+		setErrorMessage(null);
+		try {
+			String targetLibBundle = launchConfig.getAttribute("targetLibBundle", "");
+			Bundle bundle;
+			if(!targetLibBundle.isEmpty()) {
+				if((bundle = Platform.getBundle(targetLibBundle)) == null) {
+					setErrorMessage("Bundle '" + targetLibBundle + "' cannot be resolved!" );
+					return false;
+				}
+				String targetLibContext = launchConfig.getAttribute("targetLibContext", "");
+				if(targetLibContext.isEmpty()) {
+					setErrorMessage("No target library context has been specified!");
+					return false;
+				} else {
+					try {
+						bundle.loadClass(targetLibContext);
+					} catch (Exception e) {
+						setErrorMessage("The target library context could not be resolved!");
+						return false;
+					}
+				}
+				String targetLibParser = launchConfig.getAttribute("targetLibParser", "");
+				if(targetLibParser.isEmpty()) {
+					setErrorMessage("No target library parser has been specified!");
+					return false;
+				} else {
+					try {
+						bundle.loadClass(targetLibParser);
+					} catch (Exception e) {
+						setErrorMessage("The target library parser could not be resolved!");
+						return false;
+					}
+				}
+			}
+		} catch(Exception e) {
+			setErrorMessage(e.getMessage());
+			return false;
+		}
+		return true;
 	}
 
 }

@@ -16,6 +16,7 @@ public class GentransLaunchConfigurationTabGroup extends
 	public void createTabs(ILaunchConfigurationDialog dialog, String mode) {
 		ILaunchConfigurationTab[] tabs = new ILaunchConfigurationTab[] {
 			new GentransLaunchMainTab(),
+			new GentransLaunchLibraryTab(),
 			new CommonTab()
 		};
 		setTabs(tabs);

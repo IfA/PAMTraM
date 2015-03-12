@@ -55,6 +55,11 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 				mainTab.setDefaults(workingCopy);
 				mainTab.dispose();
 				
+				// set default for gentrans library settings
+				GentransLaunchLibraryTab libraryTab = new GentransLaunchLibraryTab();
+				libraryTab.setDefaults(workingCopy);
+				libraryTab.dispose();
+				
 				// save the working copy
 				configToLaunch = workingCopy.doSave();
 			

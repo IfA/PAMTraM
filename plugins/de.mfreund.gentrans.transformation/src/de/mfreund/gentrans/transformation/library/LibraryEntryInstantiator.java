@@ -1,16 +1,22 @@
 package de.mfreund.gentrans.transformation.library;
 
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.ModelConnectionHint;
+import pamtram.metamodel.AttributeParameter;
 import pamtram.metamodel.LibraryEntry;
+import pamtram.metamodel.LibraryParameter;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPlugin;
 
 /**
@@ -82,6 +88,32 @@ public class LibraryEntryInstantiator {
 	 * @return <em>true</em> if everything went well, <em>false</em> otherwise.
 	 */
 	public boolean instantiate(GenLibraryManager manager, EObject targetModel) {
+		
+		/*
+		 * Now, we prepare the parameters.
+		 */
+		for (LibraryParameter<?> param : libraryEntry.getParameters()) {
+			if(param instanceof AttributeParameter) {
+				AttributeParameter attParam = ((AttributeParameter) param);
+				
+				// find the AttributeMapping for this AttributeParameter
+				Collection<Setting> refs = EcoreUtil.UsageCrossReferencer.find(attParam.getAttribute(), mappingHints);
+				if(refs.size() != 1) {
+					return false;
+				}
+				EObject ref = refs.iterator().next().getEObject();
+				if(!(ref instanceof AttributeMapping)) {
+					return false;
+				}
+				AttributeMapping attMapping = (AttributeMapping) ref;
+				
+				LinkedList<Object> hints = hintValues.get(attMapping);
+				
+				Object hintValue = hintValues.get(attParam.getAttribute());
+				System.out.println(hintValue);
+//				attParam.getOriginalParameter().setNewValue();
+			}
+		}
 		
 		manager.insertIntoTargetModel(targetModel, libraryEntry);
 

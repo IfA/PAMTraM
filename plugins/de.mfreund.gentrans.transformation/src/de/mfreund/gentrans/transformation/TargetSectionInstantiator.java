@@ -20,8 +20,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.mapping.AttributeMapping;
-import pamtram.mapping.AttributeMappingSourceElement;
-import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.CardinalityMapping;
@@ -44,10 +42,6 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
 import pamtram.metamodel.TargetSectionReference;
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
-import de.congrace.exp4j.InvalidCustomFunctionException;
-import de.mfreund.gentrans.transformation.CalculatorFunctions.MaxFunction;
-import de.mfreund.gentrans.transformation.CalculatorFunctions.MinFunction;
-import de.mfreund.gentrans.transformation.CalculatorFunctions.RoundFunction;
 import de.mfreund.gentrans.transformation.library.GenLibraryManager;
 import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
 import de.mfreund.gentrans.transformation.selectors.GenericItemSelectorDialogRunner;
@@ -125,22 +119,22 @@ class TargetSectionInstantiator implements CancellationListener {
 	 * connected with them
 	 */
 	private final Set<TargetSectionContainmentReference> wrongCardinalityContainmentRefs;
-	/**
-	 * used for modifying attribute values
-	 */
-	private final AttributeValueModifierExecutor attributeValuemodifier;
-	/**
-	 * RoundFunction instance, needed when evaluating ClaculatorMappingHints
-	 */
-	private RoundFunction round;
-	/**
-	 * MaxFunction instance, needed when evaluating ClaculatorMappingHints
-	 */
-	private MaxFunction max;
-	/**
-	 * MinFunction instance, needed when evaluating ClaculatorMappingHints
-	 */
-	private MinFunction min;
+//	/**
+//	 * used for modifying attribute values
+//	 */
+//	private final AttributeValueModifierExecutor attributeValuemodifier;
+//	/**
+//	 * RoundFunction instance, needed when evaluating ClaculatorMappingHints
+//	 */
+//	private RoundFunction round;
+//	/**
+//	 * MaxFunction instance, needed when evaluating ClaculatorMappingHints
+//	 */
+//	private MaxFunction max;
+//	/**
+//	 * MinFunction instance, needed when evaluating ClaculatorMappingHints
+//	 */
+//	private MinFunction min;
 	/**
 	 * target section registry used when instantiating classes
 	 */
@@ -168,7 +162,8 @@ class TargetSectionInstantiator implements CancellationListener {
 	 * List of {@link LibraryEntryInstantiator}s that are to be used at the end of the
 	 * transformation.
 	 */
-	private ArrayList<LibraryEntryInstantiator> libEntryInstantiators = new ArrayList<>(); 
+	private ArrayList<LibraryEntryInstantiator> libEntryInstantiators = new ArrayList<>();
+	private AttributeValueCalculator calculator; 
 
 	/**
 	 * @param targetSectionRegistry
@@ -192,16 +187,16 @@ class TargetSectionInstantiator implements CancellationListener {
 		this.attributeValueRegistry = attributeValueRegistry;
 		this.consoleStream = consoleStream;
 		transformationAborted = false;
-		this.attributeValuemodifier = attributeValuemodifier;
+//		this.attributeValuemodifier = attributeValuemodifier;
 		wrongCardinalityContainmentRefs = new HashSet<TargetSectionContainmentReference>();
 
-		try {
-			round = new RoundFunction();
-			max = new MaxFunction();
-			min = new MinFunction();
-		} catch (final InvalidCustomFunctionException e) {
-			consoleStream.println("This will never happen.");
-		}
+//		try {
+//			round = new RoundFunction();
+//			max = new MaxFunction();
+//			min = new MinFunction();
+//		} catch (final InvalidCustomFunctionException e) {
+//			consoleStream.println("This will never happen.");
+//		}
 
 		consoleStream
 		.println("Parsing GlobalVariables for numbers. Look below for potential errors..");
@@ -232,6 +227,9 @@ class TargetSectionInstantiator implements CancellationListener {
 				globalVarValueDoubles.put(val.getName(), val.getValue());
 			}
 		}
+		
+		calculator = new AttributeValueCalculator(globalVarValueDoubles, attributeValuemodifier, consoleStream);
+		
 		consoleStream.println("...parsing done!");
 	}
 
@@ -442,87 +440,8 @@ class TargetSectionInstantiator implements CancellationListener {
 				}
 				// create attribute values
 				for (final EObjectTransformationHelper instance : instances) {
-					String attrValue = null;
-					if (attrHintValues != null) {
-						if (hintFound instanceof AttributeMapping) {
-							attrValue = "";
-								
-							if(((AttributeMapping) hintFound).getExpression() != null && !((AttributeMapping) hintFound).getExpression().isEmpty()) {
-								try {
-									final Map<String, Double> vars = new HashMap<String, Double>();
-									vars.putAll(globalVarValueDoubles);
-									/*
-									 * Names of local (CalcMapping) variables will
-									 * overwrite names of global variables
-									 */
-									@SuppressWarnings("unchecked")
-									final Map<AttributeMappingSourceElement, String> varValues = (Map<AttributeMappingSourceElement, String>) attrHintValues
-									.remove(0);
-									final Map<String, Double> stringVarValues = new HashMap<String, Double>();
-									for (AttributeMappingSourceInterface s : varValues.keySet()) {
-										stringVarValues.put(s.getName(), Double.valueOf(varValues.get(s)));
-									}
-									
-									vars.putAll(stringVarValues);
-
-									attrValue = String
-											.valueOf(new ExpressionBuilder(
-													((AttributeMapping) hintFound)
-													.getExpression())
-											// make calculation
-											.withCustomFunction(round)
-											.withCustomFunction(max)
-											.withCustomFunction(min)
-											.withVariables(vars).build()
-											.calculate());
-								} catch (final Exception e) {// TODO this will lead
-									// to a lot of error
-									// output if it
-									// fails
-									consoleStream
-									.println("Error parsing the expression of CalculatorMapping"
-											+ hintFound.getName()
-											+ ". Message:\n"
-											+ e.getMessage());
-								}
-							} else {
-								
-								@SuppressWarnings("unchecked")
-								final Map<AttributeMappingSourceInterface, String> hVal = (Map<AttributeMappingSourceInterface, String>) attrHintValues
-								.remove(0);
-								for (final AttributeMappingSourceInterface srcElement : ((AttributeMapping) hintFound)
-										.getSourceAttributeMappings()) {
-									if (hVal.containsKey(srcElement)) {
-										attrValue += hVal.get(srcElement);
-									} else {
-										consoleStream
-										.println("HintSourceValue not found for element "
-												+ srcElement.getName()
-												+ " in hint "
-												+ hintFound.getName() + ".");
-									}
-								}
-							}
-							
-							if (attrValue != null) {// apply resultModifiers if
-								// all went well
-								attrValue = attributeValuemodifier
-										.applyAttributeValueModifiers(
-												attrValue,
-												((AttributeMapping) hintFound)
-												.getResultModifier());
-							}
-							
-						} else {
-							attrValue = (String) attrHintValues.remove(0);
-						}
-					}
-					// only use value of target section if no hint value
-					// present
-					if (attr.getValue() != null && attrValue == null
-							&& !attr.getValue().equals("")) {
-						attrValue = attr.getValue();
-					}
+					String attrValue = calculator.calculateAttributeValue(attr, hintFound,
+							attrHintValues);
 
 					// Check if value is unique and was already used, mark
 					// instance for deletion if necessary
@@ -694,6 +613,8 @@ class TargetSectionInstantiator implements CancellationListener {
 			return new LinkedList<EObjectTransformationHelper>();
 		}
 	}
+
+	
 
 	/**
 	 * instantiate targetModelSection (first pass: attributes and containment

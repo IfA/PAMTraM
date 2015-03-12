@@ -186,7 +186,7 @@ public class GenericTransformationRunner {
 	 */
 	public GenericTransformationRunner(final String sourceFilePath,
 			final String pamtramPath, final String targetFilePath, Class<?> targetLibContextClass, Class<?> targetLibParserClass) {
-		this(sourceFilePath, pamtramPath, targetFilePath, -1, true, targetLibParserClass, targetLibParserClass);
+		this(sourceFilePath, pamtramPath, targetFilePath, -1, true, targetLibContextClass, targetLibParserClass);
 	}
 	
 	/**
@@ -205,7 +205,7 @@ public class GenericTransformationRunner {
 	 */
 	public GenericTransformationRunner(final String sourceFilePath,
 			final PAMTraM pamtramModel, final String targetFilePath, Class<?> targetLibContextClass, Class<?> targetLibParserClass) {
-		this(sourceFilePath, null, targetFilePath, -1, true, targetLibParserClass, targetLibParserClass);
+		this(sourceFilePath, null, targetFilePath, -1, true, targetLibContextClass, targetLibParserClass);
 		this.pamtramModel = pamtramModel;
 	}
 	
@@ -225,7 +225,7 @@ public class GenericTransformationRunner {
 	 */
 	public GenericTransformationRunner(final EObject sourceModel,
 			final PAMTraM pamtramModel, final String targetFilePath, Class<?> targetLibContextClass, Class<?> targetLibParserClass) {
-		this(null, null, targetFilePath, -1, true, targetLibParserClass, targetLibParserClass);
+		this(null, null, targetFilePath, -1, true, targetLibContextClass, targetLibParserClass);
 		this.pamtramModel = pamtramModel;
 		this.sourceModel = sourceModel;
 	}

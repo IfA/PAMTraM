@@ -48,6 +48,7 @@ public class LibraryParameterItemProvider
 			super.getPropertyDescriptors(object);
 
 			addSourcePropertyDescriptor(object);
+			addOriginalParameterPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -75,6 +76,28 @@ public class LibraryParameterItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Original Parameter feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOriginalParameterPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LibraryParameter_originalParameter_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LibraryParameter_originalParameter_feature", "_UI_LibraryParameter_type"),
+				 MetamodelPackage.Literals.LIBRARY_PARAMETER__ORIGINAL_PARAMETER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -82,7 +105,7 @@ public class LibraryParameterItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((LibraryParameter)object).getName();
+		String label = ((LibraryParameter<?>)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_LibraryParameter_type") :
 			getString("_UI_LibraryParameter_type") + " " + label;

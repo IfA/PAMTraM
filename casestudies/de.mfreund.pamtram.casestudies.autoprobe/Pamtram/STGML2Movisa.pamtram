@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:pamtram="http://mfreund.de/pamtram">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:movisalib="http://www.et.tu-dresden.de/ifa/agtele/genlib/movisalib" xmlns:pamtram="http://mfreund.de/pamtram">
   <sourceSectionModel>
     <metaModelPackage href="http://gfai.de/stgml.xsd#/"/>
     <metaModelSections name="sourceContainer">
@@ -3818,30 +3818,35 @@
     <libraryElements libraryFile="D:\git-repos\autoprobe\de.tud.et.ifa.agtele.autoprobe.resources\lib\Matflow.zip" path="Matflow">
       <parameters xsi:type="metamodel:AttributeParameter" name="WidthParameter">
         <source href="lib/target/Matflow/data.xmi#//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Size/@Width"/>
+        <originalParameter xsi:type="movisalib:WidthParameter" href="lib/target/Matflow/data.xmi#//@parameterDescription/@widthParameter"/>
         <attribute name="Value">
           <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
         </attribute>
       </parameters>
       <parameters xsi:type="metamodel:AttributeParameter" name="HeightParameter">
         <source href="lib/target/Matflow/data.xmi#//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Size/@Height"/>
+        <originalParameter xsi:type="movisalib:HeightParameter" href="lib/target/Matflow/data.xmi#//@parameterDescription/@heightParameter"/>
         <attribute name="Value">
           <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
         </attribute>
       </parameters>
       <parameters xsi:type="metamodel:AttributeParameter" name="XParameter">
         <source href="lib/target/Matflow/data.xmi#//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Position/@X"/>
+        <originalParameter xsi:type="movisalib:XParameter" href="lib/target/Matflow/data.xmi#//@parameterDescription/@xParameter"/>
         <attribute name="Value">
           <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
         </attribute>
       </parameters>
       <parameters xsi:type="metamodel:AttributeParameter" name="YParameter">
         <source href="lib/target/Matflow/data.xmi#//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Position/@Y"/>
+        <originalParameter xsi:type="movisalib:YParameter" href="lib/target/Matflow/data.xmi#//@parameterDescription/@yParameter"/>
         <attribute name="Value">
           <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
         </attribute>
       </parameters>
       <parameters xsi:type="metamodel:ContainerParameter" name="UIComponentContainerParameter">
         <source href="lib/target/Matflow/data.xmi#//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent"/>
+        <originalParameter xsi:type="movisalib:UIComponentContainerParameter" href="lib/target/Matflow/data.xmi#//@parameterDescription/@Containers.0"/>
         <class name="SimpleContainer">
           <eClass href="http://stefan-hennig.de/movisa#//presentation/SimpleContainer"/>
         </class>

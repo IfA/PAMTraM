@@ -15,7 +15,8 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.console.MessageConsoleStream;
 
-import pamtram.mapping.ConnectionHintTargetAttribute;
+import pamtram.mapping.Mapping;
+import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.mapping.ModelConnectionHintTargetAttribute;
@@ -29,7 +30,7 @@ import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunne
  * @author Sascha Steffen
  * @version 1.0
  */
-class TargetSectionConnector implements CancellationListener {
+public class TargetSectionConnector implements CancellationListener {
 	/**
 	 * Paths previously selected by the user.
 	 */
@@ -229,7 +230,7 @@ class TargetSectionConnector implements CancellationListener {
 					 * element. This might lead to us asking a lot of questions
 					 * to the user.
 					 */
-					final Set<ModelConnectionPath> pathSet = targetSectionRegistry
+					final LinkedList<ModelConnectionPath> pathSet = targetSectionRegistry
 							.getConnections(c, rootClass, maxPathlength);
 					if (pathSet.size() < 1) {
 						addToTargetModelRoot(unlinkeableElements.get(c).get(
@@ -325,24 +326,37 @@ class TargetSectionConnector implements CancellationListener {
 	 * If hasContaienr is set true the rootInstances will be connected to one of
 	 * the instances in containerInstances.
 	 *
-	 * @param classToConnect
-	 * @param rootInstances
-	 * @param section
-	 * @param mappingName
-	 * @param mappingGroupName
-	 * @param hasContainer
-	 * @param containerInstances
+	 * @param rootInstances A list of {@link EObjectTransformationHelper}.
+	 * @param section The {@link TargetSectionClass} (root of the target section) that shall be connected.
+	 * @param mappingName The name of the {@link Mapping} that is used.
+	 * @param mappingGroupName The name of the {@link MappingHintGroup} that is used.
+	 * @param hasContainer If the section has a specified container. TODO this can be determined automatically
+	 * @param containerClasses A list of {@link EClass} that may be used as container (this needs to be empty if '<em>hasContainer</em>' is <em>false</em>.
+	 * @param containerInstances A list of container elements that may be used as container (this needs to be all instances if '<em>hasContainer</em>' is <em>false</em>.
 	 */
-	void linkToTargetModelNoConnectionHint(
+	public void linkToTargetModelNoConnectionHint(
 			final List<EObjectTransformationHelper> rootInstances,
 			final TargetSectionClass section, final String mappingName,
 			final String mappingGroupName, final boolean hasContainer,
 			final Set<EClass> containerClasses,
 			final LinkedList<EObjectTransformationHelper> containerInstances) {
+		
+		// if we don't do this here, an ArrayOutOfBoundsException might occur later
+		if (rootInstances == null || rootInstances.isEmpty()) {
+			return;
+		}
+		
+		/*
+		 * This represents the final ModelConnectionPath that will be instantiated at the end.
+		 */
 		ModelConnectionPath modelConnectionPath;
+		
 		final EClass classToConnect = section.getEClass();
 
-		LinkedHashSet<ModelConnectionPath> pathsToConsider = new LinkedHashSet<ModelConnectionPath>();
+		/*
+		 * A set of ModelConnectionPaths that are possible and thus have to be considered by the selection algorithms.
+		 */
+		LinkedList<ModelConnectionPath> pathsToConsider = new LinkedList<ModelConnectionPath>();
 		if (hasContainer) {
 			for (final EClass c : containerClasses) {
 				pathsToConsider.addAll(targetSectionRegistry.getConnections(
@@ -353,198 +367,12 @@ class TargetSectionConnector implements CancellationListener {
 					classToConnect, maxPathlength));
 		}
 
-		if (pathsToConsider.size() > 0) {
-			pathsToConsider = ModelConnectionPath.findPathsWithMinimumCapacity(
-					pathsToConsider, null, rootInstances.size());
-			/*
-			 * only go on with paths that could theoretically fit all of the
-			 * elements
-			 */
-
-			if (pathsToConsider.size() > 0) {
-				// handle container
-				boolean onlyOnePath;
-				if (hasContainer) {
-
-					if (containerInstances.size() == 0) {
-						consoleStream
-						.println("Instances of the targetSection '"
-								+ section.getName()
-								+ "'specify a container section (either the target section itself or a MappingHintImporter)."
-								+ " Unfortunately no instances of the specified container were created. Therefore the sections will not be linked to the target model.");
-						addToTargetModelRoot(rootInstances);
-						return;
-					}
-
-					for (final ModelConnectionPath p : new LinkedList<ModelConnectionPath>(
-							pathsToConsider)) {
-						boolean found = false;
-						for (final EClass c : containerClasses) {
-							if (p.leadsToRootType(c)) {
-								found = true;
-								break;
-							}
-						}
-
-						if (!found) {
-							pathsToConsider.remove(p);// narrow down possible
-							// paths
-						}
-					}
-
-					onlyOnePath = pathsToConsider.size() == 1
-							&& containerInstances.size() == 1;
-				} else {
-					onlyOnePath = pathsToConsider.size() == 1
-							&& targetSectionRegistry.getTargetClassInstances(
-									pathsToConsider.iterator().next()
-											.getPathRootClass()).size() == 1;
-				}
-
-				if (onlyOnePath) {// only one path to choose from
-					modelConnectionPath = pathsToConsider.iterator().next();
-					// select instance of path end to associate elements to
-					EObjectTransformationHelper inst;
-					if (hasContainer) {
-						inst = containerInstances.getFirst();
-					} else if (!rootInstances.contains(targetSectionRegistry
-							.getTargetClassInstances(
-									modelConnectionPath.getPathRootClass())
-							.getFirst())) {
-						inst = targetSectionRegistry.getTargetClassInstances(
-								modelConnectionPath.getPathRootClass())
-								.getFirst();
-					} else {
-						consoleStream
-								.println("Could not find a path that leads to the container specified for targetSection '"
-										+ section.getName() + "'");
-						addToTargetModelRoot(rootInstances);
-						return;
-					}
-
-					consoleStream.println("Path found: " + section.getName()
-							+ "(" + mappingName + "::" + mappingGroupName
-							+ "): " + modelConnectionPath.toString());
-
-					/*
-					 * Try to instantiate Paths and add failed elements to
-					 * target model root
-					 */
-					addToTargetModelRoot(modelConnectionPath.instantiate(
-							inst.getEObject(), rootInstances));
-
-				} else if (pathsToConsider.size() > 0) {// user decides
-					final LinkedHashMap<String, ModelConnectionPath> pathNames = new LinkedHashMap<String, ModelConnectionPath>();
-					final LinkedHashMap<String, LinkedHashMap<String, EObjectTransformationHelper>> instancesByPath = new LinkedHashMap<String, LinkedHashMap<String, EObjectTransformationHelper>>();
-					ModelConnectionPath standardPath = pathsToConsider
-							.iterator().next();// get shortest path
-					for (final ModelConnectionPath p : pathsToConsider) {// prepare
-						// user
-						// selections
-						final LinkedHashMap<String, EObjectTransformationHelper> instances = new LinkedHashMap<String, EObjectTransformationHelper>();
-						for (final EObjectTransformationHelper inst : targetSectionRegistry
-								.getTargetClassInstances(p.getPathRootClass())) {
-							if (!rootInstances.contains(inst)
-									&& (!hasContainer || containerInstances
-											.contains(inst))) {
-
-								instances.put(inst.toString(), inst);
-							}
-
-						}
-
-						if (instances.size() > 0) {
-							instancesByPath.put(p.toString(), instances);
-							pathNames.put(p.toString(), p);
-							if (p.size() < standardPath.size()) {
-								standardPath = p;// save standard path
-							}
-						}
-
-					}
-
-					if (instancesByPath.keySet().size() == 0) {
-						consoleStream
-								.println("Could not find a path that leads to the container specified for targetSection '"
-										+ section.getName() + "'");
-						addToTargetModelRoot(rootInstances);
-						return;
-					}
-
-					final LinkedList<String> namesAsList = new LinkedList<String>();
-					namesAsList.addAll(pathNames.keySet());
-					final List<List<String>> instanceNames = new LinkedList<List<String>>();
-
-					for (final String k : namesAsList) {
-						final LinkedList<String> instNamesAsList = new LinkedList<String>();
-						instNamesAsList.addAll(instancesByPath.get(k).keySet());
-
-						instanceNames.add(instNamesAsList);
-					}
-					if (transformationAborted)
-						return;
-					final PathAndInstanceSelectorRunner dialog = new PathAndInstanceSelectorRunner(
-							rootInstances.size()
-							+ " Instance"
-									+ (rootInstances.size() > 1 ? "s" : "")
-									+ " of the TargetSection '"
-							+ section.getName()
-							+ "', created by the mapping '"
-							+ mappingName
-							+ " (Group: "
-							+ mappingGroupName
-							+ ")"
-							+ "', "
-									+ (rootInstances.size() > 1 ? "have"
-											: "has a")
-									+ " root element"
-									+ (rootInstances.size() > 1 ? "s" : "")
-									+ " of the type '"
-									+ classToConnect.getName()
-									+ "'. "
-									+ (rootInstances.size() > 1 ? "Theese need"
-											: "It needs")
-									+ " to be put at a sensible position in the target model. "
-											+ "Please choose one of the possible connections to other existing target model elements"
-											+ " below.", namesAsList, instanceNames);
-
-					Display.getDefault().syncExec(dialog); // TODO Maybe add
-					// option to not do
-					// anything
-					if (dialog.wasTransformationStopRequested()) {
-						transformationAborted = true;
-						return;
-					}
-					// now ask user
-					modelConnectionPath = pathNames.get(dialog.getPath());
-					// select instance of path end to associate elements to
-					final EObjectTransformationHelper inst = instancesByPath
-							.get(dialog.getPath()).get(dialog.getInstance());
-					consoleStream.println(section.getName() + "(" + mappingName
-							+ "): " + modelConnectionPath.toString());
-
-					/*
-					 * Try to instantiate Paths and add failed elements to
-					 * target model root
-					 */
-					addToTargetModelRoot(modelConnectionPath.instantiate(
-							inst.getEObject(), rootInstances));
-
-				} else {// no suitable container found
-					consoleStream
-					.println("Could not find a path that leads to the container specified for the target section '"
-							+ section.getName() + "'");
-					addToTargetModelRoot(rootInstances);
-				}
-
-			} else {// TODO handle limited capacity
-				addToTargetModelRoot(rootInstances);
-			}
-
-		} else {
+		/*
+		 * If no paths have been found, register the related elements as 'unlinkable' and return.
+		 */
+		if(pathsToConsider.isEmpty()) {
 			if (!unlinkeableElements.containsKey(classToConnect)) {
-				unlinkeableElements
-						.put(classToConnect,
+				unlinkeableElements.put(classToConnect,
 								new LinkedHashMap<TargetSectionClass, List<EObjectTransformationHelper>>());
 			}
 			if (!unlinkeableElements.get(classToConnect).containsKey(section)) {
@@ -553,7 +381,202 @@ class TargetSectionConnector implements CancellationListener {
 			}
 			unlinkeableElements.get(classToConnect).get(section)
 					.addAll(rootInstances);
+			return;
 		}
+		
+		/*
+		 * Reduce the found paths to those that provide the necessary capacity.
+		 */
+		pathsToConsider = ModelConnectionPath.findPathsWithMinimumCapacity(
+				pathsToConsider, null, rootInstances.size());
+		
+		/*
+		 * Only go on with paths that could theoretically fit all of the
+		 * elements
+		 */
+		if(pathsToConsider.isEmpty()) {
+			// TODO handle limited capacity
+			addToTargetModelRoot(rootInstances);
+			return;
+		}
+		
+		
+		// handle container
+		boolean onlyOnePath;
+		if (hasContainer) {
+
+			if (containerInstances.size() == 0) {
+				consoleStream
+				.println("Instances of the targetSection '"
+						+ section.getName()
+						+ "'specify a container section (either the target section itself or a MappingHintImporter)."
+						+ " Unfortunately no instances of the specified container were created. Therefore the sections will not be linked to the target model.");
+				addToTargetModelRoot(rootInstances);
+				return;
+			}
+
+			for (final ModelConnectionPath p : new LinkedList<ModelConnectionPath>(
+					pathsToConsider)) {
+				boolean found = false;
+				for (final EClass c : containerClasses) {
+					if (p.leadsToRootType(c)) {
+						found = true;
+						break;
+					}
+				}
+
+				if (!found) {
+					pathsToConsider.remove(p);// narrow down possible
+					// paths
+				}
+			}
+
+			onlyOnePath = pathsToConsider.size() == 1
+					&& containerInstances.size() == 1;
+		} else {
+			onlyOnePath = pathsToConsider.size() == 1
+					&& targetSectionRegistry.getTargetClassInstances(
+							pathsToConsider.iterator().next()
+									.getPathRootClass()).size() == 1;
+		}
+
+		if (onlyOnePath) {// only one path to choose from
+			modelConnectionPath = pathsToConsider.iterator().next();
+			// select instance of path end to associate elements to
+			EObjectTransformationHelper inst;
+			if (hasContainer) {
+				inst = containerInstances.getFirst();
+			} else if (!rootInstances.contains(targetSectionRegistry
+					.getTargetClassInstances(
+							modelConnectionPath.getPathRootClass())
+					.getFirst())) {
+				inst = targetSectionRegistry.getTargetClassInstances(
+						modelConnectionPath.getPathRootClass())
+						.getFirst();
+			} else {
+				consoleStream
+						.println("Could not find a path that leads to the container specified for targetSection '"
+								+ section.getName() + "'");
+				addToTargetModelRoot(rootInstances);
+				return;
+			}
+
+			consoleStream.println("Path found: " + section.getName()
+					+ "(" + mappingName + "::" + mappingGroupName
+					+ "): " + modelConnectionPath.toString());
+
+			/*
+			 * Try to instantiate Paths and add failed elements to
+			 * target model root
+			 */
+			addToTargetModelRoot(modelConnectionPath.instantiate(
+					inst.getEObject(), rootInstances));
+
+		} else if (pathsToConsider.size() > 0) {// user decides
+			final LinkedHashMap<String, ModelConnectionPath> pathNames = new LinkedHashMap<String, ModelConnectionPath>();
+			final LinkedHashMap<String, LinkedHashMap<String, EObjectTransformationHelper>> instancesByPath = new LinkedHashMap<String, LinkedHashMap<String, EObjectTransformationHelper>>();
+			ModelConnectionPath standardPath = pathsToConsider
+					.iterator().next();// get shortest path
+			for (final ModelConnectionPath p : pathsToConsider) {// prepare
+				// user
+				// selections
+				final LinkedHashMap<String, EObjectTransformationHelper> instances = new LinkedHashMap<String, EObjectTransformationHelper>();
+				for (final EObjectTransformationHelper inst : targetSectionRegistry
+						.getTargetClassInstances(p.getPathRootClass())) {
+					if (!rootInstances.contains(inst)
+							&& (!hasContainer || containerInstances
+									.contains(inst))) {
+
+						instances.put(inst.toString(), inst);
+					}
+
+				}
+
+				if (instances.size() > 0) {
+					instancesByPath.put(p.toString(), instances);
+					pathNames.put(p.toString(), p);
+					if (p.size() < standardPath.size()) {
+						standardPath = p;// save standard path
+					}
+				}
+
+			}
+
+			if (instancesByPath.keySet().size() == 0) {
+				consoleStream
+						.println("Could not find a path that leads to the container specified for targetSection '"
+								+ section.getName() + "'");
+				addToTargetModelRoot(rootInstances);
+				return;
+			}
+
+			final LinkedList<String> namesAsList = new LinkedList<String>();
+			namesAsList.addAll(pathNames.keySet());
+			final List<List<String>> instanceNames = new LinkedList<List<String>>();
+
+			for (final String k : namesAsList) {
+				final LinkedList<String> instNamesAsList = new LinkedList<String>();
+				instNamesAsList.addAll(instancesByPath.get(k).keySet());
+
+				instanceNames.add(instNamesAsList);
+			}
+			if (transformationAborted)
+				return;
+			final PathAndInstanceSelectorRunner dialog = new PathAndInstanceSelectorRunner(
+					rootInstances.size()
+					+ " Instance"
+							+ (rootInstances.size() > 1 ? "s" : "")
+							+ " of the TargetSection '"
+					+ section.getName()
+					+ "', created by the mapping '"
+					+ mappingName
+					+ " (Group: "
+					+ mappingGroupName
+					+ ")"
+					+ "', "
+							+ (rootInstances.size() > 1 ? "have"
+									: "has a")
+							+ " root element"
+							+ (rootInstances.size() > 1 ? "s" : "")
+							+ " of the type '"
+							+ classToConnect.getName()
+							+ "'. "
+							+ (rootInstances.size() > 1 ? "Theese need"
+									: "It needs")
+							+ " to be put at a sensible position in the target model. "
+									+ "Please choose one of the possible connections to other existing target model elements"
+									+ " below.", namesAsList, instanceNames);
+
+			Display.getDefault().syncExec(dialog); // TODO Maybe add
+			// option to not do
+			// anything
+			if (dialog.wasTransformationStopRequested()) {
+				transformationAborted = true;
+				return;
+			}
+			// now ask user
+			modelConnectionPath = pathNames.get(dialog.getPath());
+			// select instance of path end to associate elements to
+			final EObjectTransformationHelper inst = instancesByPath
+					.get(dialog.getPath()).get(dialog.getInstance());
+			consoleStream.println(section.getName() + "(" + mappingName
+					+ "): " + modelConnectionPath.toString());
+
+			/*
+			 * Try to instantiate Paths and add failed elements to
+			 * target model root
+			 */
+			addToTargetModelRoot(modelConnectionPath.instantiate(
+					inst.getEObject(), rootInstances));
+
+		} else {// no suitable container found
+			consoleStream
+			.println("Could not find a path that leads to the container specified for the target section '"
+					+ section.getName() + "'");
+			addToTargetModelRoot(rootInstances);
+		}
+
+
 	}
 
 	/**
@@ -562,24 +585,27 @@ class TargetSectionConnector implements CancellationListener {
 	 * <p>
 	 * This method is used for connecting sections using model connection hints.
 	 *
-	 * @param classToConnect
-	 * @param rootInstances
-	 * @param section
-	 * @param mappingName
-	 * @param mappingGroupName
-	 * @param connectionHint
-	 * @param connectionHintValues
+	 * @param classToConnect 
+	 * @param rootInstances A list of {@link EObjectTransformationHelper}.
+	 * @param section The {@link TargetSectionClass} (root of the target section) that shall be connected.
+	 * @param mappingName The name of the {@link Mapping} that is used.
+	 * @param mappingGroupName The name of the {@link MappingHintGroup} that is used.
+	 * @param connectionHint The {@link ModelConnectionHint} to be used to connect the section.
+	 * @param connectionHintValues A list of values that are to be used by the given {@link ModelConnectionHint}.
+	 * @param maxPathLength The maximum path length to be used.
 	 */
-	void linkToTargetModelUsingModelConnectionHint(final EClass classToConnect,
+	public void linkToTargetModelUsingModelConnectionHint(final EClass classToConnect,
 			final List<EObjectTransformationHelper> rootInstances,
 			final TargetSectionClass section, final String mappingName,
 			final String mappingGroupName,
 			final ModelConnectionHint connectionHint,
 			final LinkedList<Object> connectionHintValues,
 			final int maxPathLength) {// connectionHint.targetAttribute.~owningClass
-		if (rootInstances.size() < 1)
-			return;// if we don't do this here an ArrayOutOfBoundsException
-		// might occur later
+		
+		// if we don't do this here, an ArrayOutOfBoundsException might occur later
+		if (rootInstances == null || rootInstances.isEmpty()) {
+			return;
+		}
 
 		// check for connections
 		int size = 0;
@@ -589,296 +615,310 @@ class TargetSectionConnector implements CancellationListener {
 					attr.getSource().getOwningClass().getEClass(),
 					maxPathlength).size();
 		}
-
-		if (size > 0) {
-			// now search for target attributes
-
-			final LinkedHashMap<ModelConnectionHintTargetAttribute, LinkedList<EObjectTransformationHelper>> containerInstancesByTargetAttribute = new LinkedHashMap<>();
-
-			for (final ModelConnectionHintTargetAttribute targetAttr : connectionHint
-					.getTargetAttributes()) {
-				containerInstancesByTargetAttribute
-						.put(targetAttr, targetSectionRegistry
-								.getFlattenedPamtramClassInstances(targetAttr
-										.getSource().getOwningClass()));// owningClass
-
-			}
-
-			// find container Instance for each element
-
-			final LinkedHashMap<String, LinkedHashSet<EObjectTransformationHelper>> contInstsByHintVal = new LinkedHashMap<String, LinkedHashSet<EObjectTransformationHelper>>();
-			final LinkedHashMap<String, LinkedHashSet<EObjectTransformationHelper>> rootInstancesByHintVal = new LinkedHashMap<String, LinkedHashSet<EObjectTransformationHelper>>();
-			LinkedList<Object> connectionHintValuesCopy;
-
-			// again, we need to handle the special case, when there is only one
-			// hintValue
-			if (connectionHintValues.size() == 1) {
-				connectionHintValuesCopy = new LinkedList<Object>();
-				for (int i = 0; i < rootInstances.size(); i++) {
-					connectionHintValuesCopy.add(connectionHintValues
-							.getFirst());
-				}
-			} else {
-				connectionHintValuesCopy = connectionHintValues;
-			}
-
-			for (final Object hintVal : connectionHintValuesCopy) {
-				String hintValAsString = null;
-				if (connectionHint instanceof ModelConnectionHint) {
-					hintValAsString = "";
-					@SuppressWarnings("unchecked")
-					final Map<ModelConnectionHintSourceInterface, String> hVal = (Map<ModelConnectionHintSourceInterface, String>) hintVal;
-					for (final ModelConnectionHintSourceInterface srcElement : ((ModelConnectionHint) connectionHint)
-							.getSourceElements()) {
-						if (hVal.containsKey(srcElement)) {
-							hintValAsString += hVal.get(srcElement);
-						} else {
-							consoleStream.println("HintSourceValue not found "
-									+ srcElement.getName()
-									+ " in ComplexModelConnectionHint "
-									+ connectionHint.getName() + "(Mapping: "
-									+ mappingName + ", Group: "
-									+ mappingGroupName + ").");
-						}
-					}
-				}
-
-				if (!contInstsByHintVal.containsKey(hintValAsString)) {
-					contInstsByHintVal.put(hintValAsString,
-							new LinkedHashSet<EObjectTransformationHelper>());
-				}
-
-				if (!rootInstancesByHintVal.containsKey(hintValAsString)) {
-					rootInstancesByHintVal.put(hintValAsString,
-							new LinkedHashSet<EObjectTransformationHelper>());
-				}
-
-				rootInstancesByHintVal.get(hintValAsString).add(
-						rootInstances.remove(0));// instances have same
-				// order as hintValues
-
-				for (final ModelConnectionHintTargetAttribute conAttr : containerInstancesByTargetAttribute
-						.keySet()) {
-
-					final String modifiedHintVal = attributeValuemodifier
-							.applyAttributeValueModifiers(hintValAsString,
-									conAttr.getModifier());
-
-					for (final EObjectTransformationHelper contInst : containerInstancesByTargetAttribute
-							.get(conAttr)) {// now find a
-						// fitting
-						// instance
-						// get Attribute value
-						// TODO check limited capacity
-						// TODO check type of referenced object
-
-						final String targetValStr = contInst
-								.getAttributeValue(conAttr.getSource());
-
-						if (targetValStr != null) {
-							if (modifiedHintVal.equals(targetValStr)) {
-								contInstsByHintVal.get(hintValAsString).add(
-										contInst);
-							}
-						} else {
-							consoleStream.println("Problemo?");
-						}
-
-					}
-				}
-
-			}
-
-			// now select targetInst
-			final LinkedHashMap<EObjectTransformationHelper, LinkedHashSet<EObjectTransformationHelper>> rootInstancesByContainer = new LinkedHashMap<EObjectTransformationHelper, LinkedHashSet<EObjectTransformationHelper>>();
-			for (final String hintVal : rootInstancesByHintVal.keySet()) {
-				if (contInstsByHintVal.get(hintVal).size() == 1) {
-					rootInstancesByContainer.put(contInstsByHintVal
-							.get(hintVal).iterator().next(),
-							rootInstancesByHintVal.get(hintVal));
-				} else if (contInstsByHintVal.get(hintVal).size() > 1) {// let
-					// user
-					// decide
-					if (transformationAborted)
-						return;
-					final GenericItemSelectorDialogRunner<EObjectTransformationHelper> dialog = new GenericItemSelectorDialogRunner<EObjectTransformationHelper>(
-							"The ModelConnectionHint '"
-									+ connectionHint.getName()
-									+ " (Mapping :"
-									+ mappingName
-									+ ", Group: "
-									+ mappingGroupName
-									+ ")"
-									+ "' points to a non-unique Attribute."
-									+ " Please choose under which elements "
-									+ (rootInstancesByHintVal.get(hintVal)
-											.size() > 1 ? "theese "
-											+ rootInstancesByHintVal.get(
-													hintVal).size()
-											+ "elements" : "this "
-											+ rootInstancesByHintVal.get(
-													hintVal).size() + "element")
-									+ " should be inserted.\n\n"
-									+ "Attribute value: " + hintVal,
-							new LinkedList<EObjectTransformationHelper>(
-									contInstsByHintVal.get(hintVal)), 0);
-					Display.getDefault().syncExec(dialog);
-					if (dialog.wasTransformationStopRequested()) {
-						transformationAborted = true;
-						return;
-					}
-					rootInstancesByContainer.put(dialog.getSelection(),
-							rootInstancesByHintVal.get(hintVal));
-
-				} else {
-					consoleStream
-							.println("The ModelConnectionHint '"
-									+ connectionHint.getName()
-									+ " of MappingHintGroup "
-									+ mappingGroupName
-									+ "(Mapping: "
-									+ mappingName
-									+ ") could not find an instance to connect the targetSections.\n"
-									+ contInstsByHintVal.keySet());
-					addToTargetModelRoot(rootInstancesByHintVal.get(hintVal));
-				}
-			}
-
-			if (rootInstancesByContainer.keySet().size() > 0) {// only go on if
-				// any of the
-				// instances
-				// could be
-				// matched
-				for (final EObjectTransformationHelper container : rootInstancesByContainer
-						.keySet()) {
-					boolean otherPathsNeeded = false;
-
-					if (!standardPaths.containsKey(connectionHint)) {
-						otherPathsNeeded = true;
-					} else {
-						final int capacity = standardPaths.get(connectionHint)
-								.getCapacity(container.getEObject());
-						if (!(capacity >= rootInstancesByContainer.get(
-								container).size() || capacity == -1)) {
-							standardPaths.remove(connectionHint);
-							otherPathsNeeded = true;
-						}
-					}
-
-					// sort possible paths by path capacity
-					final LinkedList<ModelConnectionPath> pathsToConsider = new LinkedList<ModelConnectionPath>();
-					if (otherPathsNeeded) {
-						pathsToConsider.addAll(ModelConnectionPath
-								.findPathsWithMinimumCapacity(
-										targetSectionRegistry.getConnections(
-												classToConnect, container
-														.getEObject().eClass(),
-												maxPathLength), container
-												.getEObject(),
-										rootInstancesByContainer.get(container)
-												.size()));
-
-					} else {
-						pathsToConsider.add(standardPaths.get(connectionHint));
-
-					}
-
-					ModelConnectionPath modelConnectionPath;
-					if (pathsToConsider.size() == 1) {// only one path to choose
-						// from
-						modelConnectionPath = pathsToConsider.iterator().next();
-					} else if (pathsToConsider.size() > 0) {// user decides
-						ModelConnectionPath standardPath = pathsToConsider
-								.get(0);// get
-						// shortest
-						// path
-
-						for (final ModelConnectionPath p : pathsToConsider) {// prepare
-							// user
-							// selections
-
-							if (p.size() < standardPath.size())
-								standardPath = p;// save shortest path
-						}
-						final int instSize = rootInstancesByContainer.get(
-								container).size();
-						if (transformationAborted)
-							return;
-						final GenericItemSelectorDialogRunner<ModelConnectionPath> dialog = new GenericItemSelectorDialogRunner<ModelConnectionPath>(
-								instSize
-										+ " Instance"
-										+ (instSize > 1 ? "s" : "")
-										+ " of the TargetSection '"
-								+ section.getName()
-								+ "', created by the mapping '"
-								+ mappingName
-								+ " (Group: "
-								+ mappingGroupName
-								+ ")"
-								+ "', "
-										+ (instSize > 1 ? "have" : "has a")
-										+ " root element"
-										+ (instSize > 1 ? "s" : "")
-										+ " of the type '"
-								+ classToConnect.getName()
-								+ "'. "
-										+ (instSize > 1 ? "Theese need"
-												: "It needs")
-										+ " to be put at a sensible position in the target model. "
-										+ "Please choose one of the possible connections to other existing target model elements"
-										+ " below. Your selection will be remembered for the ConnectionHint '"
-										+ connectionHint.getName() + "'.",
-								pathsToConsider,
-								pathsToConsider.indexOf(standardPath));
-						Display.getDefault().syncExec(dialog);
-						if (dialog.wasTransformationStopRequested()) {
-							transformationAborted = true;
-							return;
-						}
-						modelConnectionPath = dialog.getSelection();
-					} else {
-						consoleStream
-								.println("Could not find a path that leads to the container specified by the ModelConnectionHint of "
-										+ mappingName + "::" + mappingGroupName);
-						addToTargetModelRoot(rootInstances);
-						addToTargetModelRoot(rootInstancesByContainer
-								.get(container));
-						continue;
-					}
-
-					if (!standardPaths.containsKey(connectionHint)) {
-						standardPaths.put(connectionHint, modelConnectionPath);
-						consoleStream.println("Path found: "
-								+ section.getName() + "(" + mappingName + "::"
-								+ mappingGroupName + "): "
-								+ modelConnectionPath.toString());
-					}
-
-					// now instantiate path(s))
-					if (rootInstancesByContainer.get(container).contains(
-							container)) {// we will allow objects that reference
-						// themselves as container
-						addToTargetModelRoot(container); // because this was
-						// explicitly
-						// specified by tho
-						// ModelConnectionHint
-					}
-					/*
-					 * Try to instantiate Paths and add failed elements to
-					 * target model root
-					 */
-					addToTargetModelRoot(modelConnectionPath.instantiate(
-							container.getEObject(),
-							rootInstancesByContainer.get(container)));
-
-				}
-			}
-		} else {
+		
+		if(size == 0) {
 			consoleStream
 			.println("Could not find a path that leads to the modelConnectionTarget Class specified for '"
 					+ mappingName + "' (" + mappingGroupName + ")");
-
+	
 			addToTargetModelRoot(rootInstances);
+			return;
+		}
+
+		
+		// now search for target attributes
+
+		final LinkedHashMap<ModelConnectionHintTargetAttribute, LinkedList<EObjectTransformationHelper>> containerInstancesByTargetAttribute = new LinkedHashMap<>();
+
+		for (final ModelConnectionHintTargetAttribute targetAttr : connectionHint
+				.getTargetAttributes()) {
+			containerInstancesByTargetAttribute
+					.put(targetAttr, targetSectionRegistry
+							.getFlattenedPamtramClassInstances(targetAttr
+									.getSource().getOwningClass()));// owningClass
+
+		}
+
+		// find container Instance for each element
+
+		final LinkedHashMap<String, LinkedHashSet<EObjectTransformationHelper>> contInstsByHintVal = new LinkedHashMap<String, LinkedHashSet<EObjectTransformationHelper>>();
+		final LinkedHashMap<String, LinkedHashSet<EObjectTransformationHelper>> rootInstancesByHintVal = new LinkedHashMap<String, LinkedHashSet<EObjectTransformationHelper>>();
+		LinkedList<Object> connectionHintValuesCopy;
+
+		// again, we need to handle the special case, when there is only one
+		// hintValue
+		if (connectionHintValues.size() == 1) {
+			connectionHintValuesCopy = new LinkedList<Object>();
+			for (int i = 0; i < rootInstances.size(); i++) {
+				connectionHintValuesCopy.add(connectionHintValues
+						.getFirst());
+			}
+		} else {
+			connectionHintValuesCopy = connectionHintValues;
+		}
+
+		for (final Object hintVal : connectionHintValuesCopy) {
+			String hintValAsString = null;
+			if (connectionHint instanceof ModelConnectionHint) {
+				hintValAsString = "";
+				@SuppressWarnings("unchecked")
+				final Map<ModelConnectionHintSourceInterface, String> hVal = (Map<ModelConnectionHintSourceInterface, String>) hintVal;
+				for (final ModelConnectionHintSourceInterface srcElement : connectionHint
+						.getSourceElements()) {
+					if (hVal.containsKey(srcElement)) {
+						hintValAsString += hVal.get(srcElement);
+					} else {
+						consoleStream.println("HintSourceValue not found "
+								+ srcElement.getName()
+								+ " in ComplexModelConnectionHint "
+								+ connectionHint.getName() + "(Mapping: "
+								+ mappingName + ", Group: "
+								+ mappingGroupName + ").");
+					}
+				}
+			}
+
+			if (!contInstsByHintVal.containsKey(hintValAsString)) {
+				contInstsByHintVal.put(hintValAsString,
+						new LinkedHashSet<EObjectTransformationHelper>());
+			}
+
+			if (!rootInstancesByHintVal.containsKey(hintValAsString)) {
+				rootInstancesByHintVal.put(hintValAsString,
+						new LinkedHashSet<EObjectTransformationHelper>());
+			}
+
+			rootInstancesByHintVal.get(hintValAsString).add(
+					rootInstances.remove(0));// instances have same
+			// order as hintValues
+
+			for (final ModelConnectionHintTargetAttribute conAttr : containerInstancesByTargetAttribute
+					.keySet()) {
+
+				final String modifiedHintVal = attributeValuemodifier
+						.applyAttributeValueModifiers(hintValAsString,
+								conAttr.getModifier());
+
+				for (final EObjectTransformationHelper contInst : containerInstancesByTargetAttribute
+						.get(conAttr)) {// now find a
+					// fitting
+					// instance
+					// get Attribute value
+					// TODO check limited capacity
+					// TODO check type of referenced object
+
+					final String targetValStr = contInst
+							.getAttributeValue(conAttr.getSource());
+
+					if (targetValStr != null) {
+						if (modifiedHintVal.equals(targetValStr)) {
+							contInstsByHintVal.get(hintValAsString).add(
+									contInst);
+						}
+					} else {
+						consoleStream.println("Problemo?");
+					}
+
+				}
+			}
+
+		}
+
+		// now select targetInst
+		final LinkedHashMap<EObjectTransformationHelper, LinkedHashSet<EObjectTransformationHelper>> rootInstancesByContainer = new LinkedHashMap<EObjectTransformationHelper, LinkedHashSet<EObjectTransformationHelper>>();
+		for (final String hintVal : rootInstancesByHintVal.keySet()) {
+			if (contInstsByHintVal.get(hintVal).size() == 1) {
+				rootInstancesByContainer.put(contInstsByHintVal
+						.get(hintVal).iterator().next(),
+						rootInstancesByHintVal.get(hintVal));
+			} else if (contInstsByHintVal.get(hintVal).size() > 1) {// let
+				// user
+				// decide
+				if (transformationAborted)
+					return;
+				final GenericItemSelectorDialogRunner<EObjectTransformationHelper> dialog = new GenericItemSelectorDialogRunner<EObjectTransformationHelper>(
+						"The ModelConnectionHint '"
+								+ connectionHint.getName()
+								+ " (Mapping :"
+								+ mappingName
+								+ ", Group: "
+								+ mappingGroupName
+								+ ")"
+								+ "' points to a non-unique Attribute."
+								+ " Please choose under which elements "
+								+ (rootInstancesByHintVal.get(hintVal)
+										.size() > 1 ? "theese "
+										+ rootInstancesByHintVal.get(
+												hintVal).size()
+										+ "elements" : "this "
+										+ rootInstancesByHintVal.get(
+												hintVal).size() + "element")
+								+ " should be inserted.\n\n"
+								+ "Attribute value: " + hintVal,
+						new LinkedList<EObjectTransformationHelper>(
+								contInstsByHintVal.get(hintVal)), 0);
+				Display.getDefault().syncExec(dialog);
+				if (dialog.wasTransformationStopRequested()) {
+					transformationAborted = true;
+					return;
+				}
+				rootInstancesByContainer.put(dialog.getSelection(),
+						rootInstancesByHintVal.get(hintVal));
+
+			} else {
+				consoleStream
+						.println("The ModelConnectionHint '"
+								+ connectionHint.getName()
+								+ " of MappingHintGroup "
+								+ mappingGroupName
+								+ "(Mapping: "
+								+ mappingName
+								+ ") could not find an instance to connect the targetSections.\n"
+								+ contInstsByHintVal.keySet());
+				addToTargetModelRoot(rootInstancesByHintVal.get(hintVal));
+			}
+		}
+		
+		// only go on if any of the instances could be matched
+		if(rootInstancesByContainer.keySet().isEmpty())	 {
+			return;
+		}
+
+		for (final EObjectTransformationHelper container : rootInstancesByContainer
+				.keySet()) {
+			
+			/*
+			 * Check if there already is a standard path for the given connection hint that
+			 * satisfies the minimum capacity.
+			 */
+			boolean otherPathsNeeded = false;
+			if (!standardPaths.containsKey(connectionHint)) {
+				otherPathsNeeded = true;
+			} else {
+				final int capacity = standardPaths.get(connectionHint)
+						.getCapacity(container.getEObject());
+				if (!(capacity >= rootInstancesByContainer.get(
+						container).size() || capacity == -1)) {
+					standardPaths.remove(connectionHint);
+					otherPathsNeeded = true;
+				}
+			}
+
+			/*
+			 * A set of ModelConnectionPaths that are possible and thus have to be considered by the selection algorithms.
+			 */
+			LinkedList<ModelConnectionPath> pathsToConsider = new LinkedList<ModelConnectionPath>();
+			if (otherPathsNeeded) {
+				/*
+				 * Find all possible paths to concider that satisfy the minimum capacity.
+				 */
+				pathsToConsider = ModelConnectionPath.findPathsWithMinimumCapacity(
+								targetSectionRegistry.getConnections(
+										classToConnect, 
+										container.getEObject().eClass(),maxPathLength
+									), 
+								container.getEObject(),
+								rootInstancesByContainer.get(container).size()
+					);
+
+			} else {
+				/*
+				 * 
+				 */
+				pathsToConsider.add(standardPaths.get(connectionHint));
+			}
+
+			ModelConnectionPath modelConnectionPath = null;
+			if (pathsToConsider.size() == 1) {// only one path to choose
+				// from
+				modelConnectionPath = pathsToConsider.iterator().next();
+			} else if (pathsToConsider.size() > 0) {// user decides
+				ModelConnectionPath standardPath = pathsToConsider
+						.get(0);// get
+				// shortest
+				// path
+
+				for (final ModelConnectionPath p : pathsToConsider) {// prepare
+					// user
+					// selections
+
+					if (p.size() < standardPath.size())
+						standardPath = p;// save shortest path
+				}
+				final int instSize = rootInstancesByContainer.get(
+						container).size();
+				if (transformationAborted) {
+					return;
+				}
+				final GenericItemSelectorDialogRunner<ModelConnectionPath> dialog = new GenericItemSelectorDialogRunner<ModelConnectionPath>(
+						instSize
+								+ " Instance"
+								+ (instSize > 1 ? "s" : "")
+								+ " of the TargetSection '"
+						+ section.getName()
+						+ "', created by the mapping '"
+						+ mappingName
+						+ " (Group: "
+						+ mappingGroupName
+						+ ")"
+						+ "', "
+								+ (instSize > 1 ? "have" : "has a")
+								+ " root element"
+								+ (instSize > 1 ? "s" : "")
+								+ " of the type '"
+						+ classToConnect.getName()
+						+ "'. "
+								+ (instSize > 1 ? "Theese need"
+										: "It needs")
+								+ " to be put at a sensible position in the target model. "
+								+ "Please choose one of the possible connections to other existing target model elements"
+								+ " below. Your selection will be remembered for the ConnectionHint '"
+								+ connectionHint.getName() + "'.",
+						pathsToConsider,
+						pathsToConsider.indexOf(standardPath));
+				Display.getDefault().syncExec(dialog);
+				if (dialog.wasTransformationStopRequested()) {
+					transformationAborted = true;
+					return;
+				}
+				modelConnectionPath = dialog.getSelection();
+			} else {
+				consoleStream
+						.println("Could not find a path that leads to the container specified by the ModelConnectionHint of "
+								+ mappingName + "::" + mappingGroupName);
+				addToTargetModelRoot(rootInstances);
+				addToTargetModelRoot(rootInstancesByContainer
+						.get(container));
+			}
+			if(modelConnectionPath == null) {
+				continue;
+			}
+
+			if (!standardPaths.containsKey(connectionHint)) {
+				standardPaths.put(connectionHint, modelConnectionPath);
+				consoleStream.println("Path found: "
+						+ section.getName() + "(" + mappingName + "::"
+						+ mappingGroupName + "): "
+						+ modelConnectionPath.toString());
+			}
+
+			// now instantiate path(s))
+			if (rootInstancesByContainer.get(container).contains(
+					container)) {// we will allow objects that reference
+				// themselves as container
+				addToTargetModelRoot(container); // because this was
+				// explicitly
+				// specified by tho
+				// ModelConnectionHint
+			}
+			/*
+			 * Try to instantiate Paths and add failed elements to
+			 * target model root
+			 */
+			addToTargetModelRoot(modelConnectionPath.instantiate(
+					container.getEObject(),
+					rootInstancesByContainer.get(container)));
+
 		}
 	}
 

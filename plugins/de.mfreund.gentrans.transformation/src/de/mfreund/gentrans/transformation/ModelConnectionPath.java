@@ -153,15 +153,15 @@ final class ModelConnectionPath {
 	/**
 	 * Return possible paths that can connect a minimum number of elements
 	 *
-	 * @param startInstance
-	 *            may be null
-	 * @param minimumCapacity
-	 * @return possible paths
+	 * @param paths The {@link ModelConnectionPath}s that shall be checked for minimum capacity.
+	 * @param startInstance An optional {@link EObject} that shall be the starting point of the path (may be <em>null</em>).
+	 * @param minimumCapacity The minimumCapacity that has to be satisfied by the paths.
+	 * @return The subset of the given paths that satisfies the minimumCapacity.
 	 */
-	static LinkedHashSet<ModelConnectionPath> findPathsWithMinimumCapacity(
-			final LinkedHashSet<ModelConnectionPath> paths,
+	static LinkedList<ModelConnectionPath> findPathsWithMinimumCapacity(
+			final LinkedList<ModelConnectionPath> paths,
 			final EObject startInstance, final int minimumCapacity) {
-		final LinkedHashSet<ModelConnectionPath> pathsToConsider = new LinkedHashSet<ModelConnectionPath>();
+		final LinkedList<ModelConnectionPath> pathsToConsider = new LinkedList<ModelConnectionPath>();
 		for (final ModelConnectionPath p : paths) {
 			if (startInstance != null) {
 				if (!p.leadsToRootType(startInstance.eClass())) {

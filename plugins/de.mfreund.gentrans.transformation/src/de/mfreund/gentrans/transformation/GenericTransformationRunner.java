@@ -141,16 +141,8 @@ public class GenericTransformationRunner {
 	 * This is the Getter for the {@link #targetSectionInstantiator}.
 	 * @return The {@link #targetSectionInstantiator} used by the transformation runner.
 	 */
-	TargetSectionInstantiator getTargetSectionInstantiator() {
+	public TargetSectionInstantiator getTargetSectionInstantiator() {
 		return targetSectionInstantiator;
-	}
-	
-	/**
-	 * This is the Getter for the {@link #targetSectionConnector}.
-	 * @return The {@link #targetSectionConnector} used by the transformation runner.
-	 */
-	TargetSectionConnector getTargetSectionConnector() {
-		return targetSectionConnector;
 	}
 	
 	/**
@@ -158,6 +150,27 @@ public class GenericTransformationRunner {
 	 * have been created with the help of the {@link #targetSectionInstantiator}.
 	 */
 	private TargetSectionConnector targetSectionConnector;
+
+	/**
+	 * This is the Getter for the {@link #targetSectionConnector}.
+	 * @return The {@link #targetSectionConnector} used by the transformation runner.
+	 */
+	public TargetSectionConnector getTargetSectionConnector() {
+		return targetSectionConnector;
+	}
+	
+	/**
+	 * This is the {@link TargetSectionRegistry} that registers target sections.
+	 */
+	private TargetSectionRegistry targetSectionRegistry;
+	
+	/**
+	 * This is the Getter for the {@link #targetSectionRegistry}.
+	 * @return The {@link #targetSectionRegistry} used by the transformation runner.
+	 */
+	public TargetSectionRegistry getTargetSectionRegistry() {
+		return targetSectionRegistry;
+	}
 
 	/**
 	 * Private constructor that is called from all other constructors.
@@ -371,7 +384,7 @@ public class GenericTransformationRunner {
 		 */
 		monitor.subTask("Instantiating targetModelSections for selected mappings. First pass");
 		writePamtramMessage("Analyzing target metamodel");
-		final TargetSectionRegistry targetSectionRegistry = new TargetSectionRegistry(
+		targetSectionRegistry = new TargetSectionRegistry(
 				consoleStream, attrValueRegistry, pamtramModel
 						.getTargetSectionModel().getMetaModelPackage());
 		objectsToCancel.add(targetSectionRegistry);
@@ -380,7 +393,7 @@ public class GenericTransformationRunner {
 		 * Instantiate all Target-Sections (containment refs and attributes)
 		 */
 		writePamtramMessage("Instantiating targetModelSections for selected mappings. First pass");
-		final TargetSectionInstantiator targetSectionInstantiator = runInstantiationFirstPass(
+		runInstantiationFirstPass(
 				sourceSectionMapper, targetSectionRegistry, attrValueRegistry,
 				selectedMappings, exportedMappingHints, pamtramModel
 						.getMappingModel().getGlobalValues(), monitor,
@@ -982,9 +995,8 @@ public class GenericTransformationRunner {
 	 * @param globalValues
 	 * @param monitor
 	 * @param attributeValuemodifier
-	 * @return
 	 */
-	private TargetSectionInstantiator runInstantiationFirstPass(
+	private void runInstantiationFirstPass(
 			final SourceSectionMapper sourceSectionMapper,
 			final TargetSectionRegistry targetSectionRegistry,
 			final AttributeValueRegistry attrValueRegistry,
@@ -1000,7 +1012,7 @@ public class GenericTransformationRunner {
 		targetSectionInstantiator = new TargetSectionInstantiator(
 				targetSectionRegistry, attrValueRegistry,
 				sourceSectionMapper.getGlobalVarValues(),
-				attributeValuemodifier, globalValues, consoleStream);
+				attributeValuemodifier, globalValues, consoleStream, this);
 		
 		/*
 		 * Used to update the monitor.
@@ -1280,7 +1292,6 @@ public class GenericTransformationRunner {
 				accumulatedWork -= Math.floor(accumulatedWork);
 			}
 		}
-		return targetSectionInstantiator;
 	}
 
 	/**

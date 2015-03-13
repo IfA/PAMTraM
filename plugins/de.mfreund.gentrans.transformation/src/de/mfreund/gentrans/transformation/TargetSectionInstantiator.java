@@ -163,7 +163,16 @@ class TargetSectionInstantiator implements CancellationListener {
 	 * transformation.
 	 */
 	private ArrayList<LibraryEntryInstantiator> libEntryInstantiators = new ArrayList<>();
+	
+	/**
+	 * An instance of {@link AttributeValueCalculator} that is used to calculate attribute values.
+	 */
 	private AttributeValueCalculator calculator; 
+	
+	/**
+	 * The parent {@link GenericTransformationRunner}.
+	 */
+	private final GenericTransformationRunner transformationRunner;
 
 	/**
 	 * @param targetSectionRegistry
@@ -172,9 +181,11 @@ class TargetSectionInstantiator implements CancellationListener {
 	 *            used when setting attribute values
 	 * @param globalVarValues
 	 *            Registry for values of global Variables
+	 * @param attributeValuemodifier An instance of the {@link AttributeValueModifierExecutor}.
+	 * @param globalVals A list of {@link GlobalValue}s.
 	 * @param consoleStream
 	 *            used to write console output
-	 * @param globalVals
+	 * @param transformationRunner The parent {@link GenericTransformationRunner}.
 	 */
 	TargetSectionInstantiator(
 			final TargetSectionRegistry targetSectionRegistry,
@@ -182,10 +193,12 @@ class TargetSectionInstantiator implements CancellationListener {
 			final Map<GlobalAttribute, String> globalVarValues,
 			final AttributeValueModifierExecutor attributeValuemodifier,
 			final List<GlobalValue> globalVals,
-			final MessageConsoleStream consoleStream) {
+			final MessageConsoleStream consoleStream,
+			final GenericTransformationRunner transformationRunner) {
 		this.targetSectionRegistry = targetSectionRegistry;
 		this.attributeValueRegistry = attributeValueRegistry;
 		this.consoleStream = consoleStream;
+		this.transformationRunner = transformationRunner;
 		transformationAborted = false;
 //		this.attributeValuemodifier = attributeValuemodifier;
 		wrongCardinalityContainmentRefs = new HashSet<TargetSectionContainmentReference>();
@@ -1299,7 +1312,10 @@ class TargetSectionInstantiator implements CancellationListener {
 		 * in the given target model.
 		 */
 		for (LibraryEntryInstantiator libraryEntryInstantiator : libEntryInstantiators) {
-			if(!libraryEntryInstantiator.instantiate(manager, targetModel)) {
+			if(!libraryEntryInstantiator.instantiate(
+					manager, targetModel, calculator, 
+					transformationRunner.getTargetSectionConnector(),
+					transformationRunner.getTargetSectionRegistry())) {
 				successful = false;
 			}
 		}

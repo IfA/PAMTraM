@@ -19,7 +19,7 @@ import pamtram.metamodel.VirtualAttribute;
  * @author Sascha Steffen
  * @version 1.0
  */
-class EObjectTransformationHelper {
+public class EObjectTransformationHelper {
 
 	/**
 	 * Same as toString but without virtual Attributes of course
@@ -89,7 +89,7 @@ class EObjectTransformationHelper {
 	 * @param attrValRegistry
 	 *            AttributeValueRegistry
 	 */
-	EObjectTransformationHelper(final EObject eObject,
+	public EObjectTransformationHelper(final EObject eObject,
 			final AttributeValueRegistry attrValRegistry) {
 		this.eObject = eObject;
 		this.attrValRegistry = attrValRegistry;

@@ -25,7 +25,7 @@ import pamtram.metamodel.TargetSectionClass;
  * @version 1.0
  *
  */
-class TargetSectionRegistry implements CancellationListener {
+public class TargetSectionRegistry implements CancellationListener {
 
 	/**
 	 * Attribute value registry, needed when applying model connection hints
@@ -324,7 +324,7 @@ class TargetSectionRegistry implements CancellationListener {
 	/**
 	 * Returns (and registers) connections between two classes
 	 *
-	 * @param elementClass
+	 * @param eClass
 	 *            Class of the root element of a target section that needs to be
 	 *            connected
 	 * @param containerClass
@@ -333,27 +333,29 @@ class TargetSectionRegistry implements CancellationListener {
 	 * @param maxPathLength
 	 * @return
 	 */
-	LinkedHashSet<ModelConnectionPath> getConnections(
-			final EClass elementClass, final EClass containerClass,
+	LinkedList<ModelConnectionPath> getConnections(
+			final EClass eClass, final EClass containerClass,
 			final int maxPathLength) {
-		if (!possibleConnectionsRegistry.containsKey(elementClass)) {
-			possibleConnectionsRegistry
-			.put(elementClass,
+		
+		if (!possibleConnectionsRegistry.containsKey(eClass)) {
+			possibleConnectionsRegistry.put(eClass,
 					new LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>>());
 		}
-		if (!possibleConnectionsRegistry.get(elementClass).containsKey(
+		if (!possibleConnectionsRegistry.get(eClass).containsKey(
 				containerClass)) {
-			possibleConnectionsRegistry.get(elementClass).put(containerClass,
+			possibleConnectionsRegistry.get(eClass).put(containerClass,
 					new LinkedHashSet<ModelConnectionPath>());
 
 			ModelConnectionPath.findPathsFromContainerToClassToConnect(this,
-					elementClass, containerClass, maxPathLength);
+					eClass, containerClass, maxPathLength);
 		}
 
-		if (possibleConnectionsRegistry.get(elementClass).containsKey(
+		if (possibleConnectionsRegistry.get(eClass).containsKey(
 				containerClass)) {
-			return possibleConnectionsRegistry.get(elementClass).get(
-					containerClass);
+			LinkedList<ModelConnectionPath> result = new LinkedList<ModelConnectionPath>();
+			result.addAll(possibleConnectionsRegistry.get(eClass).get(
+					containerClass));
+			return result;
 		} else {
 			return null;
 		}
@@ -363,7 +365,7 @@ class TargetSectionRegistry implements CancellationListener {
 	 * @param c
 	 * @return instances of a specific MappingHintgroup
 	 */
-	LinkedList<EObjectTransformationHelper> getFlattenedPamtramClassInstances(
+	public LinkedList<EObjectTransformationHelper> getFlattenedPamtramClassInstances(
 			final TargetSectionClass c) {
 		final LinkedList<EObjectTransformationHelper> flat = new LinkedList<EObjectTransformationHelper>();
 		if (!targetClassInstanceByHintGroupRegistry.containsKey(c)) {
@@ -382,7 +384,7 @@ class TargetSectionRegistry implements CancellationListener {
 	/**
 	 * @return all the MetaModelClasse we don't ignore
 	 */
-	Set<EClass> getMetaModelClasses() {
+	public Set<EClass> getMetaModelClasses() {
 		return childClassesRegistry.keySet();
 	}
 
@@ -390,7 +392,7 @@ class TargetSectionRegistry implements CancellationListener {
 	 * @param c
 	 * @return instance map of all MappingHintGroups
 	 */
-	LinkedHashMap<InstantiableMappingHintGroup, LinkedList<EObjectTransformationHelper>> getPamtramClassInstances(
+	public LinkedHashMap<InstantiableMappingHintGroup, LinkedList<EObjectTransformationHelper>> getPamtramClassInstances(
 			final TargetSectionClass c) {
 		if (!targetClassInstanceByHintGroupRegistry.containsKey(c)) {
 			return new LinkedHashMap<InstantiableMappingHintGroup, LinkedList<EObjectTransformationHelper>>();
@@ -401,6 +403,8 @@ class TargetSectionRegistry implements CancellationListener {
 	}
 
 	/**
+	 * Returns (and registers) paths between a class and any other class in the target meta-model.
+	 * 
 	 * @param eClass
 	 *            Class of the root element of a target section that needs to be
 	 *            connected
@@ -408,8 +412,9 @@ class TargetSectionRegistry implements CancellationListener {
 	 * @return Possible paths to connect target Model sections, for a specific
 	 *         Class of the target model
 	 */
-	LinkedHashSet<ModelConnectionPath> getPaths(final EClass eClass,
+	public LinkedHashSet<ModelConnectionPath> getPaths(final EClass eClass,
 			final int maxPathLength) {
+		
 		if (!possiblePathsRegistry.containsKey(eClass)) {
 			possiblePathsRegistry.put(eClass,
 					new LinkedHashSet<ModelConnectionPath>());
@@ -427,7 +432,7 @@ class TargetSectionRegistry implements CancellationListener {
 	 * @return Set of classes that are the starting point of a specific
 	 *         containment reference
 	 */
-	LinkedHashSet<EClass> getReferenceSources(final EReference ref) {
+	public LinkedHashSet<EClass> getReferenceSources(final EReference ref) {
 		return containmentReferenceSourcesRegistry.containsKey(ref) ? containmentReferenceSourcesRegistry
 				.get(ref) : new LinkedHashSet<EClass>();
 
@@ -437,7 +442,7 @@ class TargetSectionRegistry implements CancellationListener {
 	 * @param eClass
 	 * @return All instances of the specified metamodel Class
 	 */
-	LinkedList<EObjectTransformationHelper> getTargetClassInstances(
+	public LinkedList<EObjectTransformationHelper> getTargetClassInstances(
 			final EClass eClass) {
 
 		return targetClassInstanceRegistry.containsKey(eClass) ? targetClassInstanceRegistry

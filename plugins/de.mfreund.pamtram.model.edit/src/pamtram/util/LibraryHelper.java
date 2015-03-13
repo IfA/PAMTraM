@@ -4,10 +4,13 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -19,16 +22,20 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.AttributeParameter;
+import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.ContainerParameter;
 import pamtram.metamodel.ExternalReferenceParameter;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.LibraryParameter;
+import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.TargetSectionClass;
+import pamtram.metamodel.TargetSectionContainmentReference;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 import pamtram.metamodel.impl.MetamodelFactoryImpl;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractAttributeParameter;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractContainerParameter;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryItem;
 import de.tud.et.ifa.agtele.genlibrary.util.impl.FileParserImpl;
 import de.tud.et.ifa.agtele.genlibrary.util.interfaces.LibraryFileEntry;
 
@@ -39,6 +46,155 @@ import de.tud.et.ifa.agtele.genlibrary.util.interfaces.LibraryFileEntry;
  * @author mfreund
  */
 public class LibraryHelper {
+	
+	/**
+	 * This creates a target section (represented by its root {@link TargetSectionClass} from a given {@link LibraryEntry}. 
+	 * @param libEntry The {@link LibraryEntry} to be converted.
+	 * @return The created targetsection.
+	 */
+	public static TargetSectionClass convertToTargetSection(LibraryEntry libEntry) {
+		
+		if(libEntry.getOriginalLibraryEntry().getParameterDescription().getContainerParameters().size() != 1) {
+			return null;
+		}
+		return (new LibraryHelper()).new MetamodelSectionConverter().convert(libEntry);
+		
+	}
+	
+	private class MetamodelSectionConverter {
+		
+		public TargetSectionClass convert(LibraryEntry libEntry) {
+			
+			LibraryItem libItem = libEntry.getOriginalLibraryEntry().getLibraryItem();
+			
+			EObject root = libEntry.getOriginalLibraryEntry().getParameterDescription().getContainerParameters().get(0).getSource();
+			
+			// now, iterate over the contents of the LibraryEntry
+			TargetSectionClass section = populateSection(null, root);
+			
+			// finally, try to set the non-containment references
+			findNonContainmentReferenceTargets();
+			
+			return section;
+		}
+		
+		/**
+		 * This map keeps track of the metamodel elements that have been created for the
+		 * library entries.
+		 */
+		private HashMap<EObject, MetaModelElement> libEntries2metaModelElementsMap = new HashMap<>();
+		
+		/**
+		 * This map keeps track of the non-containment references for that target values have to be found after
+		 * iterating through the containment tree.
+		 */
+		private HashMap<TargetSectionNonContainmentReference, EObject> nonContainmentTargetMap = new HashMap<>();
+		
+		/**
+		 * This function is recursively called to iterate through the LibraryEntry and generate the
+		 * corresponding LibraryElement. Targets of non-containment references thereby have to be set
+		 * manually afterwards by calling 'findNonContainmentReferenceTargets()'.
+		 * @param parentObject The object that shall serve as the container for newly created elements.
+		 * At the beginning, this will be the LibraryElement itself, later on this will be a 
+		 * TargetSectionContainmentReference.
+		 * @param currentObject A pointer to the part of the LibraryElement that we are currently
+		 * browsing through.
+		 * @return 
+		 */
+		private TargetSectionClass populateSection(EObject parentObject, EObject currentObject) {
+			
+			// first generate a target section class for the element itself and
+			// attach it to the parentObject
+			TargetSectionClass tClass = 
+					MetamodelFactoryImpl.eINSTANCE.createTargetSectionClass();
+			tClass.setEClass(currentObject.eClass());
+			tClass.setName(currentObject.eClass().getName());
+			tClass.setCardinality(CardinalityType.ONE);
+			libEntries2metaModelElementsMap.put(currentObject, tClass);
+			if(parentObject instanceof TargetSectionContainmentReference) {
+				((TargetSectionContainmentReference) parentObject).getValue().add(tClass);
+			}
+			
+			// second, generate a target section attribute for every attribute
+			for (EAttribute att : currentObject.eClass().getEAllAttributes()) {
+				if(currentObject.eGet(att) != null) {
+					ActualAttribute tAttribute = 
+							MetamodelFactoryImpl.eINSTANCE.createActualAttribute();
+					tAttribute.setAttribute(att);
+					tAttribute.setName(att.getName());
+					// pimp the name of the surrounding Class
+					if(att.getName().equalsIgnoreCase("name")) {
+						tClass.setName(tClass.getName() + " " + currentObject.eGet(att)); 
+					}
+					tAttribute.setUnique(false);
+					tAttribute.setValue(String.valueOf(currentObject.eGet(att)));
+					tClass.getAttributes().add(tAttribute);
+				}
+			}
+			
+			// now, iterate through all containment references
+			for (EReference ref : currentObject.eClass().getEAllContainments()) {
+				if(currentObject.eGet(ref) != null) {
+					TargetSectionContainmentReference tReference = 
+							MetamodelFactoryImpl.eINSTANCE.createTargetSectionContainmentReference();
+					tReference.setEReference(ref);
+					tReference.setName(ref.getName());
+					tClass.getReferences().add(tReference);
+					
+					// browse deeper in the containment hierarchy
+					if(!ref.isMany()) {
+						populateSection(tReference, (EObject) currentObject.eGet(ref));
+					} else {
+						for (Object child : (EList<?>) currentObject.eGet(ref)) {
+							populateSection(tReference, (EObject) child);
+						}
+					}
+				}
+			}
+			// at last, we can try to set the non-containment references because all objects should
+			// already have been created (we iterated through the containment references first!)
+			for (EReference ref : currentObject.eClass().getEAllReferences()) {
+				if(ref.isContainment() || currentObject.eGet(ref) == null) {
+					continue;
+				}
+				
+				TargetSectionNonContainmentReference tReference = 
+						MetamodelFactoryImpl.eINSTANCE.createTargetSectionNonContainmentReference();
+				tReference.setEReference(ref);
+				tReference.setName(ref.getName());
+				tClass.getReferences().add(tReference);
+				// try to set the target of the reference
+				if(!ref.isMany()) {
+					nonContainmentTargetMap.put(tReference, (EObject) currentObject.eGet(ref));
+				} else {
+					for (Object child : (EList<?>) currentObject.eGet(ref)) {
+						nonContainmentTargetMap.put(tReference, (EObject) child);
+					}
+				}
+			}
+			
+			return tClass;
+			
+		}
+		
+		/**
+		 * This iterates over the nonContainmentTargetMap and tries to set the
+		 * target value for each non containment reference.
+		 */
+		private void findNonContainmentReferenceTargets() {
+			
+			for (TargetSectionNonContainmentReference ref : nonContainmentTargetMap.keySet()) {
+				EObject target = 
+						libEntries2metaModelElementsMap.get(nonContainmentTargetMap.get(ref));
+				if(target != null && target instanceof TargetSectionClass) {
+					ref.getValue().add((TargetSectionClass) target);
+				} else {
+					System.out.println("No target found for non-containment reference " + ref.getName());
+				}
+			}
+		}
+	}
+	
 
 	/**
 	 * This method converts a LibraryEntry represented by a given path to the library file and a 

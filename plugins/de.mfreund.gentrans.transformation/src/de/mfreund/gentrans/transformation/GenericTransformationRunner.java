@@ -133,6 +133,33 @@ public class GenericTransformationRunner {
 	private Class<?> targetLibParserClass;
 
 	/**
+	 * This is the {@link TargetSectionInstantiator} that can be used to create new target sections.
+	 */
+	private TargetSectionInstantiator targetSectionInstantiator;
+	
+	/**
+	 * This is the Getter for the {@link #targetSectionInstantiator}.
+	 * @return The {@link #targetSectionInstantiator} used by the transformation runner.
+	 */
+	TargetSectionInstantiator getTargetSectionInstantiator() {
+		return targetSectionInstantiator;
+	}
+	
+	/**
+	 * This is the Getter for the {@link #targetSectionConnector}.
+	 * @return The {@link #targetSectionConnector} used by the transformation runner.
+	 */
+	TargetSectionConnector getTargetSectionConnector() {
+		return targetSectionConnector;
+	}
+	
+	/**
+	 * This is the {@link TargetSectionConnector} that can be used to connect target sections that
+	 * have been created with the help of the {@link #targetSectionInstantiator}.
+	 */
+	private TargetSectionConnector targetSectionConnector;
+
+	/**
 	 * Private constructor that is called from all other constructors.
 	 * 
 	 * @param sourceFilePath
@@ -664,13 +691,21 @@ public class GenericTransformationRunner {
 			final AttributeValueModifierExecutor attributeValueModifier,
 			final LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping,
 			final IProgressMonitor monitor) {
-		final TargetSectionConnector targetSectionConnector = new TargetSectionConnector(
+		
+		/*
+		 * Initialize the TargetSectionConnector
+		 */
+		targetSectionConnector = new TargetSectionConnector(
 				attrValueRegistry, targetSectionRegistry,
 				attributeValueModifier, targetModel, maxPathLength,
 				consoleStream);
 		objectsToCancel.add(targetSectionConnector);
 		final double workUnit = 250.0 / suitableMappings.size();
 		double accumulatedWork = 0;
+		
+		/*
+		 * Connect all target sections
+		 */
 		for (final Mapping m : suitableMappings) {
 			for (final MappingHintGroupType g : m.getMappingHintGroups()) {
 
@@ -960,9 +995,9 @@ public class GenericTransformationRunner {
 			final AttributeValueModifierExecutor attributeValuemodifier) {
 		
 		/*
-		 * This is used to create new target sections.
+		 * Initialize the TargetSectionInstantiator
 		 */
-		final TargetSectionInstantiator targetSectionInstantiator = new TargetSectionInstantiator(
+		targetSectionInstantiator = new TargetSectionInstantiator(
 				targetSectionRegistry, attrValueRegistry,
 				sourceSectionMapper.getGlobalVarValues(),
 				attributeValuemodifier, globalValues, consoleStream);

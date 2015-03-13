@@ -34,7 +34,6 @@ import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.CardinalityType;
-import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionContainmentReference;
@@ -173,7 +172,7 @@ class TargetSectionInstantiator implements CancellationListener {
 	 * The parent {@link GenericTransformationRunner}.
 	 */
 	private final GenericTransformationRunner transformationRunner;
-
+	
 	/**
 	 * @param targetSectionRegistry
 	 *            target section registry used when instantiating classes
@@ -648,21 +647,12 @@ class TargetSectionInstantiator implements CancellationListener {
 			final Map<MappingHintType, LinkedList<Object>> hintValues,
 			final Map<ModelConnectionHint, LinkedList<Object>> conHintValues,
 			final String mappingName) {
-		final LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instBySection = new LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>();
-
-		/*
-		 * If the target section is a library entry, we save it for instantiation at the end of 
-		 * the transformation. Therefore, a new 'LibraryEntryInstantiator is created.
-		 */
-		if(metamodelSection.isLibraryEntry()) {
-			LibraryEntry libEntry = (LibraryEntry) metamodelSection.eContainer().eContainer();
-			libEntryInstantiators.add(
-					new LibraryEntryInstantiator(
-							libEntry, mappingGroup, mappingHints, hintValues, conHintValues));
-			return new LinkedHashMap<>();
-		}
 		
-		if (instantiateTargetSectionFirstPass(metamodelSection, mappingGroup,
+		final LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instBySection = new LinkedHashMap<>();
+
+		TargetSectionClass sectionToInstantiate = metamodelSection;
+		
+		if (instantiateTargetSectionFirstPass(sectionToInstantiate, mappingGroup,
 				mappingHints, hintValues, conHintValues, instBySection,
 				mappingName,
 				new HashMap<EClass, Map<EAttribute, Set<String>>>()) != null) {

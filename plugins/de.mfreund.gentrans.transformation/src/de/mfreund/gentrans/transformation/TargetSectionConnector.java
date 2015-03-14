@@ -586,7 +586,7 @@ public class TargetSectionConnector implements CancellationListener {
 	 * This method is used for connecting sections using model connection hints.
 	 *
 	 * @param classToConnect 
-	 * @param rootInstances A list of {@link EObjectTransformationHelper} that represent the instances (root elements of the target sections) to be connected.
+	 * @param rootInstances A list of {@link EObjectTransformationHelper}.
 	 * @param section The {@link TargetSectionClass} (root of the target section) that shall be connected.
 	 * @param mappingName The name of the {@link Mapping} that is used.
 	 * @param mappingGroupName The name of the {@link MappingHintGroup} that is used.
@@ -607,11 +607,7 @@ public class TargetSectionConnector implements CancellationListener {
 			return;
 		}
 
-		/*
-		 * As there may be different ModelConnectionHintTargetAttributes specified,
-		 * we have to check for every attribute if it can be used as connection. If at least one
-		 * poassible connection has been found, we move on.
-		 */
+		// check for connections
 		int size = 0;
 		for (final ModelConnectionHintTargetAttribute attr : connectionHint
 				.getTargetAttributes()) {
@@ -625,7 +621,6 @@ public class TargetSectionConnector implements CancellationListener {
 			.println("Could not find a path that leads to the modelConnectionTarget Class specified for '"
 					+ mappingName + "' (" + mappingGroupName + ")");
 	
-			// simply add the instances to the target model root as no connection path could be determined
 			addToTargetModelRoot(rootInstances);
 			return;
 		}
@@ -635,10 +630,6 @@ public class TargetSectionConnector implements CancellationListener {
 
 		final LinkedHashMap<ModelConnectionHintTargetAttribute, LinkedList<EObjectTransformationHelper>> containerInstancesByTargetAttribute = new LinkedHashMap<>();
 
-		/*
-		 * For every ModelConnectionHintTargetAttribute, store the possible container instances (the elements holding 
-		 * the attribute) in the map 'containerInstancesByTargetAttribute' for later use. 
-		 */
 		for (final ModelConnectionHintTargetAttribute targetAttr : connectionHint
 				.getTargetAttributes()) {
 			containerInstancesByTargetAttribute
@@ -650,15 +641,12 @@ public class TargetSectionConnector implements CancellationListener {
 
 		// find container Instance for each element
 
-		final LinkedHashMap<String, LinkedHashSet<EObjectTransformationHelper>> contInstsByHintVal = new LinkedHashMap<>();
-		final LinkedHashMap<String, LinkedHashSet<EObjectTransformationHelper>> rootInstancesByHintVal = new LinkedHashMap<>();
+		final LinkedHashMap<String, LinkedHashSet<EObjectTransformationHelper>> contInstsByHintVal = new LinkedHashMap<String, LinkedHashSet<EObjectTransformationHelper>>();
+		final LinkedHashMap<String, LinkedHashSet<EObjectTransformationHelper>> rootInstancesByHintVal = new LinkedHashMap<String, LinkedHashSet<EObjectTransformationHelper>>();
 		LinkedList<Object> connectionHintValuesCopy;
 
-		/*
-		 * Again, we need to handle the special case, when there is only one hintValue found: In this case,
-		 * this hint value is used for every instance. Otherwise, there is exactly one hint value per instance.
-		 * 		
-		 */
+		// again, we need to handle the special case, when there is only one
+		// hintValue
 		if (connectionHintValues.size() == 1) {
 			connectionHintValuesCopy = new LinkedList<Object>();
 			for (int i = 0; i < rootInstances.size(); i++) {
@@ -669,27 +657,24 @@ public class TargetSectionConnector implements CancellationListener {
 			connectionHintValuesCopy = connectionHintValues;
 		}
 
-		/*
-		 * For every hint value (and thus every instance), ...
-		 */
 		for (final Object hintVal : connectionHintValuesCopy) {
-			
-			/*
-			 * Calculate a string representation of the hint value.
-			 */
-			String hintValAsString = "";
-			@SuppressWarnings("unchecked")
-			final Map<ModelConnectionHintSourceInterface, String> hVal = (Map<ModelConnectionHintSourceInterface, String>) hintVal;
-			for (final ModelConnectionHintSourceInterface srcElement : connectionHint.getSourceElements()) {
-				if (hVal.containsKey(srcElement)) {
-					hintValAsString += hVal.get(srcElement);
-				} else {
-					consoleStream.println("HintSourceValue not found "
-							+ srcElement.getName()
-							+ " in ComplexModelConnectionHint "
-							+ connectionHint.getName() + "(Mapping: "
-							+ mappingName + ", Group: "
-							+ mappingGroupName + ").");
+			String hintValAsString = null;
+			if (connectionHint instanceof ModelConnectionHint) {
+				hintValAsString = "";
+				@SuppressWarnings("unchecked")
+				final Map<ModelConnectionHintSourceInterface, String> hVal = (Map<ModelConnectionHintSourceInterface, String>) hintVal;
+				for (final ModelConnectionHintSourceInterface srcElement : connectionHint
+						.getSourceElements()) {
+					if (hVal.containsKey(srcElement)) {
+						hintValAsString += hVal.get(srcElement);
+					} else {
+						consoleStream.println("HintSourceValue not found "
+								+ srcElement.getName()
+								+ " in ComplexModelConnectionHint "
+								+ connectionHint.getName() + "(Mapping: "
+								+ mappingName + ", Group: "
+								+ mappingGroupName + ").");
+					}
 				}
 			}
 
@@ -707,14 +692,12 @@ public class TargetSectionConnector implements CancellationListener {
 					rootInstances.remove(0));// instances have same
 			// order as hintValues
 
-			/*
-			 * 
-			 */
 			for (final ModelConnectionHintTargetAttribute conAttr : containerInstancesByTargetAttribute
 					.keySet()) {
 
-				final String modifiedHintVal = attributeValuemodifier.applyAttributeValueModifiers(
-						hintValAsString,conAttr.getModifier());
+				final String modifiedHintVal = attributeValuemodifier
+						.applyAttributeValueModifiers(hintValAsString,
+								conAttr.getModifier());
 
 				for (final EObjectTransformationHelper contInst : containerInstancesByTargetAttribute
 						.get(conAttr)) {// now find a
@@ -742,7 +725,7 @@ public class TargetSectionConnector implements CancellationListener {
 		}
 
 		// now select targetInst
-		final LinkedHashMap<EObjectTransformationHelper, LinkedHashSet<EObjectTransformationHelper>> rootInstancesByContainer = new LinkedHashMap<>();
+		final LinkedHashMap<EObjectTransformationHelper, LinkedHashSet<EObjectTransformationHelper>> rootInstancesByContainer = new LinkedHashMap<EObjectTransformationHelper, LinkedHashSet<EObjectTransformationHelper>>();
 		for (final String hintVal : rootInstancesByHintVal.keySet()) {
 			if (contInstsByHintVal.get(hintVal).size() == 1) {
 				rootInstancesByContainer.put(contInstsByHintVal

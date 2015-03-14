@@ -1,9 +1,7 @@
 package de.mfreund.gentrans.transformation;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -14,7 +12,6 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -63,7 +60,6 @@ import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.util.EPackageHelper;
 import pamtram.util.EPackageHelper.EPackageCheck;
-import pamtram.util.LibraryHelper;
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
 
@@ -175,11 +171,6 @@ public class GenericTransformationRunner {
 	public TargetSectionRegistry getTargetSectionRegistry() {
 		return targetSectionRegistry;
 	}
-	
-	/**
-	 * This keeps track of the target sections that have been created for library entries;
-	 */
-	private HashMap<LibraryEntry, TargetSectionClass> libEntry2TargetSectionMap = new HashMap<>();
 
 	/**
 	 * Private constructor that is called from all other constructors.
@@ -310,32 +301,6 @@ public class GenericTransformationRunner {
 		final AttributeValueRegistry attrValueRegistry = new AttributeValueRegistry();
 
 		objectsToCancel.add(sourceSectionMapper);
-		
-
-		/*
-		 * For each mapping hint group that refers to a library entry, exchange the target section.
-		 */
-		Iterator<Mapping> iter = suitableMappings.iterator();
-		while(iter.hasNext()) {
-			EList<MappingHintGroupType> hintGroups = iter.next().getMappingHintGroups();
-			for (MappingHintGroupType hintGroup : hintGroups) {
-				/*
-				 * If the target section is a library entry, create a converted target section.
-				 */
-				if(hintGroup.getTargetMMSection().isLibraryEntry()) {
-					LibraryEntry libEntry = (LibraryEntry) hintGroup.getTargetMMSection().eContainer().eContainer();
-//					libEntryInstantiators.add(
-//							new LibraryEntryInstantiator(
-//									libEntry, mappingGroup, mappingHints, hintValues, conHintValues));
-					TargetSectionClass sectionToInstantiate = LibraryHelper.convertToTargetSection(libEntry);
-					
-					libEntry2TargetSectionMap.put(libEntry, sectionToInstantiate);
-					
-					hintGroup.setTargetMMSection(sectionToInstantiate);
-					
-				}
-			}
-		}
 
 		/*
 		 * create a list of all the containment references in the source model

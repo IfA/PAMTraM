@@ -141,4 +141,21 @@
               class="de.mfreund.pamtram.ui.preferences.PreferenceInitializer">
         </initializer>
      </extension>
+     <extension
+     point = "org.eclipse.ui.propertyPages">
+        <page
+              class="de.mfreund.pamtram.ui.properties.PropertiesPage"
+              id="de.mfreund.pamtram.ui.properties.PropertiesPage"
+              name="PAMTraM"
+              selectionFilter="single">
+           <enabledWhen>
+            <adapt type="org.eclipse.core.resources.IProject">
+                    <test
+                          property="org.eclipse.core.resources.projectNature"
+                          value="de.mfreund.pamtram.pamtramNature">
+                    </test>
+                    </adapt>
+           </enabledWhen>
+        </page>
+  </extension>
 </plugin>

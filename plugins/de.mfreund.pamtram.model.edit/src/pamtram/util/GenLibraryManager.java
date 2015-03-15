@@ -58,6 +58,21 @@ public class GenLibraryManager {
 	}
 	
 	/**
+	 * This returns the {@link de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry} for a given classpath.
+	 * If <em>useHigher</em> is set to '<em><b>true</b></em>', a more abstract library entry will be returned if
+	 * no entry can be determined for the given path.
+	 * 
+	 * @param libPath The path to the library to be used to retrieve the LibraryEntry.
+	 * @param classPath The classPath that is used to retrieve the LibraryEntry.
+	 * @param useHigher Whether a more abstract LibraryEntry may be used.
+	 * @return The retrieved LibraryEntry.
+	 */
+	public de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry getLibraryEntry(String libPath, String classPath, boolean useHigher) {
+		getLibraryPlugin().setLibPath(libPath);
+		return getLibraryPlugin().getElement(classPath, useHigher);
+	}
+	
+	/**
 	 * This inserts the given library item into the given target model while
 	 * taking the given Parameters into account. This is done by calling the
 	 * function {@link LibraryPlugin#insertIntoTargetModel(EObject, LibraryEntry, String)}.

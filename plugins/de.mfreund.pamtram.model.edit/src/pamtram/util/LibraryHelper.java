@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
@@ -19,6 +20,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+import org.osgi.framework.Bundle;
 
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.AttributeParameter;
@@ -347,6 +349,11 @@ public class LibraryHelper {
 		 * The resource set to be used to create the new resource.
 		 */
 		private ResourceSet resourceSet;
+
+		/**
+		 * This is the GenLibraryManager that proxies calls to the 'genlibrary' plug-in.
+		 */
+		private GenLibraryManager manager;
 		
 		/**
 		 * This constructs an instance of the LibraryElementConverter.
@@ -365,6 +372,19 @@ public class LibraryHelper {
 			this.targetEPackages = EPackageHelper.collectEPackages(targetEPackage);
 			this.uri = uri;
 			this.resourceSet = resourceSet;
+			
+			//TODO this should be saved in the config/entered by the user
+			String targetLibBundle = "de.tud.et.ifa.agtele.genlibrary.movisalibrary";
+			String targetLibContext = "de.tud.et.ifa.agtele.genlibrary.movisalibrary.processor.impl.MovisaLibraryContext";
+			
+			Bundle bundle = Platform.getBundle(targetLibBundle);
+			Class<?> targetLibContextClass;
+			try {
+				targetLibContextClass = bundle.loadClass(targetLibContext);
+				this.manager = new GenLibraryManager(targetLibContextClass, null);
+			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		/**
@@ -375,8 +395,9 @@ public class LibraryHelper {
 		public LibraryEntry convert() throws IOException {
 			
 			// first, determine the LibraryFileEntry and LibraryEntry to be converted
-			libFileEntry = getLibraryFileEntry(libraryFile, path);
-			libEntry = getLibraryEntry(libFileEntry);
+//			libFileEntry = getLibraryFileEntry(libraryFile, path);
+//			libEntry = getLibraryEntry(libFileEntry);
+			libEntry = manager.getLibraryEntry((new File(libraryFile)).getParent(), path, false);
 			
 //			storeLibraryEntry(libEntry, uri.appendSegment(path).appendSegment("data.xmi"), resourceSet);
 			
@@ -384,7 +405,8 @@ public class LibraryHelper {
 			pamtramLibEntry = MetamodelFactoryImpl.eINSTANCE.createLibraryEntry();
 			
 			// set the path, etc.
-			pamtramLibEntry.setPath(libFileEntry.getKey());
+//			pamtramLibEntry.setPath(libFileEntry.getKey());
+			pamtramLibEntry.setPath(path);
 			pamtramLibEntry.setLibraryFile(libraryFile);
 			
 			pamtramLibEntry.setOriginalLibraryEntry(libEntry);

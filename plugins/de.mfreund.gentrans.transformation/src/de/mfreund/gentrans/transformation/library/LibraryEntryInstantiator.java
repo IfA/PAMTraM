@@ -19,6 +19,7 @@ import pamtram.metamodel.AttributeParameter;
 import pamtram.metamodel.ContainerParameter;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.LibraryParameter;
+import pamtram.util.GenLibraryManager;
 import de.mfreund.gentrans.transformation.AttributeValueCalculator;
 import de.mfreund.gentrans.transformation.EObjectTransformationHelper;
 import de.mfreund.gentrans.transformation.TargetSectionConnector;

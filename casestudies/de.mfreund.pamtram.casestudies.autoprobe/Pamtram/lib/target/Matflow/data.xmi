@@ -44,7 +44,13 @@
     </AlgorithmModel>
   </LibraryItem>
   <parameterDescription xsi:type="movisalib:MovisaParameterDescription" ID="">
-    <resourceParameters Name="html.login_Boundary.js" newPath="res/html.login"/>
+    <resourceParameters Name="_files/default/img/BufferPlace_occupied_product.png"/>
+    <resourceParameters Name="_files/default/img/BufferPlace_occupied_product_transparent.png"/>
+    <resourceParameters Name="_files/default/products.json"/>
+    <resourceParameters Name="_files/html.login/img/ui-bg_gloss-wave_green.png"/>
+    <resourceParameters Name="_files/html.login/img/ui-bg_highlight-soft_75_darkgreen_1x100.png"/>
+    <resourceParameters Name="_files/html.login/img/ui-bg_highlight-soft_75_green_1x100.png"/>
+    <resourceParameters Name="_files/html.login/MatflowBoundary.js"/>
     <Containers source="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent"/>
     <widthParameter source="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Size/@Width"/>
     <heightParameter source="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Size/@Height"/>

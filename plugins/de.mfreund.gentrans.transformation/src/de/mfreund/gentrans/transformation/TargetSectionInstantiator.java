@@ -651,15 +651,15 @@ class TargetSectionInstantiator implements CancellationListener {
 		final LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instBySection = new LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>();
 
 		/*
-		 * If the target section is a library entry, we save it for instantiation at the end of 
-		 * the transformation. Therefore, a new 'LibraryEntryInstantiator is created.
+		 * If the target section is a library entry, we create a new 'LibraryEntryInstantiator'
+		 * that will insert the real library entry at the end.
 		 */
 		if(metamodelSection.isLibraryEntry()) {
 			LibraryEntry libEntry = (LibraryEntry) metamodelSection.eContainer().eContainer();
 			libEntryInstantiators.add(
 					new LibraryEntryInstantiator(
 							libEntry, mappingGroup, mappingHints, hintValues, conHintValues));
-			return new LinkedHashMap<>();
+//			return new LinkedHashMap<>();
 		}
 		
 		if (instantiateTargetSectionFirstPass(metamodelSection, mappingGroup,

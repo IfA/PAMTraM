@@ -117,7 +117,7 @@ public class EObjectTransformationHelper {
 	 * @param attr
 	 * @return Attribute value as String
 	 */
-	String getAttributeValue(final TargetSectionAttribute attr) {
+	public String getAttributeValue(final TargetSectionAttribute attr) {
 		if (attr instanceof VirtualAttribute) {
 			return virtualAttributes.get(attr);
 		} else if (attr instanceof ActualAttribute) {
@@ -132,7 +132,7 @@ public class EObjectTransformationHelper {
 	 *
 	 * @return The targetSection EObject
 	 */
-	EObject getEObject() {
+	public EObject getEObject() {
 		return eObject;
 	}
 

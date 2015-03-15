@@ -1,5 +1,7 @@
 package de.mfreund.gentrans.transformation.library;
 
+import java.io.File;
+
 import org.eclipse.emf.ecore.EObject;
 
 import pamtram.metamodel.LibraryEntry;
@@ -69,6 +71,7 @@ public class GenLibraryManager {
 	 */
 	public void insertIntoTargetModel(EObject targetModel, LibraryEntry libraryEntry) {
 		
+		getLibraryPlugin().setLibPath(new File(libraryEntry.getLibraryFile()).getParent());
 		getLibraryPlugin().insertIntoTargetModel(
 				targetModel, 
 				libraryEntry.getOriginalLibraryEntry(), 

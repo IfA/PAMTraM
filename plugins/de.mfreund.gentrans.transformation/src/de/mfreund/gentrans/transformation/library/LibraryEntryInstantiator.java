@@ -23,6 +23,7 @@ import de.mfreund.gentrans.transformation.AttributeValueCalculator;
 import de.mfreund.gentrans.transformation.EObjectTransformationHelper;
 import de.mfreund.gentrans.transformation.TargetSectionConnector;
 import de.mfreund.gentrans.transformation.TargetSectionRegistry;
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractContainerParameter;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPlugin;
 
 /**
@@ -96,6 +97,7 @@ public class LibraryEntryInstantiator {
 	 * @param targetSectionRegistry The {@link TargetSectionRegistry} that has registered the target sections.
 	 * @return <em>true</em> if everything went well, <em>false</em> otherwise.
 	 */
+	@SuppressWarnings("unchecked")
 	public boolean instantiate(GenLibraryManager manager, EObject targetModel, AttributeValueCalculator calculator, TargetSectionConnector targetSectionConnector,
 			TargetSectionRegistry targetSectionRegistry) {
 		
@@ -124,6 +126,7 @@ public class LibraryEntryInstantiator {
 				// set the calculated value
 				attParam.getOriginalParameter().setNewValue(value);
 			} else if(param instanceof ContainerParameter) {
+				
 				ContainerParameter contParam = (ContainerParameter) param;
 				
 				// find the ModelConnectionHint for this ContainerParameter
@@ -133,11 +136,16 @@ public class LibraryEntryInstantiator {
 				if(!((MappingHintGroup) mappingGroup).getTargetMMSection().equals(contParam.getClass_())) {
 					return false;
 				}
+				
 				ModelConnectionHint connHint = ((MappingHintGroup) mappingGroup).getModelConnectionMatcher();
-
-				//TODO check if this works
+				
 				LinkedList<EObjectTransformationHelper> rootInstances = targetSectionRegistry.getPamtramClassInstances(contParam.getClass_()).get(mappingGroup);
 				
+				EObjectTransformationHelper section = rootInstances.removeFirst();
+				((AbstractContainerParameter<EObject, EObject>) (contParam.getOriginalParameter())).setContainer(section.getEObject().eContainer());
+				EcoreUtil.delete(section.getEObject());
+				targetSectionRegistry.getPamtramClassInstances(contParam.getClass_()).put(mappingGroup, rootInstances);
+//				
 //				if(connHint == null) {
 //					LinkedList<EObjectTransformationHelper> containerInstances = targetSectionRegistry.getFlattenedPamtramClassInstances(contParam.getClass_().getContainer());
 //					containerInstances.removeAll(rootInstances);
@@ -171,7 +179,7 @@ public class LibraryEntryInstantiator {
 			}
 		}
 		
-//		manager.insertIntoTargetModel(targetModel, libraryEntry);
+		manager.insertIntoTargetModel(targetModel, libraryEntry);
 
 		return true;
 	}

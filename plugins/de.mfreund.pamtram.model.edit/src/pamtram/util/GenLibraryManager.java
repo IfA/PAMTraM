@@ -53,7 +53,7 @@ public class GenLibraryManager {
 		 * this probably should be done via an extension point in the genlibrary plugin
 		 */
 		LibraryContext context = (LibraryContext) targetLibContextClass.newInstance();
-		LibraryPathParser parser = (LibraryPathParser) targetLibParserClass.newInstance();
+		LibraryPathParser parser = targetLibParserClass != null ? (LibraryPathParser) targetLibParserClass.newInstance() : null;
 		getLibraryPlugin().init(context, parser);
 	}
 	

@@ -1288,9 +1288,9 @@ class TargetSectionInstantiator implements CancellationListener {
 			return true;
 		}
 		
-		if(targetLibContextClass == null || targetLibParserClass == null) {
+		if(targetLibContextClass == null) {
 			consoleStream.println("Could not instantiate library entries as no target"
-					+ " library context/parser class has been specified!");
+					+ " library context class has been specified!");
 			return false;
 		}
 		

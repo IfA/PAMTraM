@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
@@ -20,7 +19,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
-import org.osgi.framework.Bundle;
 
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.AttributeParameter;
@@ -34,6 +32,7 @@ import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionContainmentReference;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 import pamtram.metamodel.impl.MetamodelFactoryImpl;
+import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractAttributeParameter;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractContainerParameter;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
@@ -204,7 +203,7 @@ public class LibraryHelper {
 	 * for every {@link AbstractAttributeParameter}, {@link AbstractContainerParameter} and 
 	 * {@link AbstractExternalReferenceParameter} that it encounters. 
 	 * 
-	 * @param libraryFile The path to a library file (Zip or Jar).
+	 * @param libraryContextDescriptor The descriptor for the library context to be used during the conversion.
 	 * @param path The path of the library entry inside the library (e.g. 'my.path').
 	 * @param targetEPackage The target ePackage of the pamtram model into that the generated library
 	 * element shall be inserted later on.
@@ -214,12 +213,17 @@ public class LibraryHelper {
 	 * @throws IOException If something goes wrong during loading the libraryFile or the XMI file inside
 	 * the library file representing the LibraryEntry. 
 	 */
-	public static LibraryEntry convertToLibraryElement(String libraryFile, String path,
+	public static LibraryEntry convertToLibraryElement(LibraryContextDescriptor libraryContextDescriptor, String path,
 			EPackage targetEPackage, URI uri, ResourceSet resourceSet) throws IOException {
 		
 		//TODO maybe use a factory pattern for this?
-		LibraryElementConverter converter =
-				(new LibraryHelper()).new LibraryElementConverter(libraryFile, path, targetEPackage, uri, resourceSet);
+		LibraryElementConverter converter;
+		try {
+			converter = (new LibraryHelper()).new LibraryElementConverter(libraryContextDescriptor, path, targetEPackage, uri, resourceSet);
+		} catch (InstantiationException | IllegalAccessException e) {
+			e.printStackTrace();
+			return null;
+		}
 		
 		return converter.convert();
 	}
@@ -308,10 +312,10 @@ public class LibraryHelper {
 	private class LibraryElementConverter {
 		
 		/**
-		 * This is the path to the library file that the converter works on.
+		 * This is the library context descriptor used for the conversion.
 		 */
-		final private String libraryFile;
-		
+		private LibraryContextDescriptor libraryContextDescriptor;
+
 		/**
 		 * This is the path inside a library file pointing to a library file element
 		 * that shall be converted.
@@ -354,37 +358,28 @@ public class LibraryHelper {
 		 * This is the GenLibraryManager that proxies calls to the 'genlibrary' plug-in.
 		 */
 		private GenLibraryManager manager;
-		
+
 		/**
 		 * This constructs an instance of the LibraryElementConverter.
 		 * 
-		 * @param libraryFile The path to a library file (Zip or Jar).
+		 * @param libraryContextDescriptor The descriptor for the library context to be used during the conversion.
 		 * @param path The path of the library entry inside the library (e.g. 'my.path').
 		 * @param targetEPackage The target ePackage of the pamtram model into that the generated library
 		 * element shall be inserted later on.
 		 * @param uri The URI where the resource created for the library element shall be stored.
 		 * @param resourceSet The resource set to be used.
+		 * @throws IllegalAccessException 
+		 * @throws InstantiationException 
 		 */
-		public LibraryElementConverter(String libraryFile, String path,
-			EPackage targetEPackage, URI uri, ResourceSet resourceSet) {
-			this.libraryFile = libraryFile;
+		public LibraryElementConverter(LibraryContextDescriptor libraryContextDescriptor, String path,
+			EPackage targetEPackage, URI uri, ResourceSet resourceSet) throws InstantiationException, IllegalAccessException {
+			this.libraryContextDescriptor = libraryContextDescriptor;
 			this.path = path;
 			this.targetEPackages = EPackageHelper.collectEPackages(targetEPackage);
 			this.uri = uri;
 			this.resourceSet = resourceSet;
 			
-			//TODO this should be saved in the config/entered by the user
-			String targetLibBundle = "de.tud.et.ifa.agtele.genlibrary.movisalibrary";
-			String targetLibContext = "de.tud.et.ifa.agtele.genlibrary.movisalibrary.processor.impl.MovisaLibraryContext";
-			
-			Bundle bundle = Platform.getBundle(targetLibBundle);
-			Class<?> targetLibContextClass;
-			try {
-				targetLibContextClass = bundle.loadClass(targetLibContext);
-				this.manager = new GenLibraryManager(targetLibContextClass, null);
-			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-				e.printStackTrace();
-			}
+			this.manager = new GenLibraryManager(libraryContextDescriptor);
 		}
 		
 		/**
@@ -397,7 +392,7 @@ public class LibraryHelper {
 			// first, determine the LibraryFileEntry and LibraryEntry to be converted
 //			libFileEntry = getLibraryFileEntry(libraryFile, path);
 //			libEntry = getLibraryEntry(libFileEntry);
-			libEntry = manager.getLibraryEntry((new File(libraryFile)).getParent(), path, false);
+			libEntry = manager.getLibraryEntry(path, false);
 			
 //			storeLibraryEntry(libEntry, uri.appendSegment(path).appendSegment("data.xmi"), resourceSet);
 			
@@ -407,7 +402,7 @@ public class LibraryHelper {
 			// set the path, etc.
 //			pamtramLibEntry.setPath(libFileEntry.getKey());
 			pamtramLibEntry.setPath(path);
-			pamtramLibEntry.setLibraryFile(libraryFile);
+//			pamtramLibEntry.setLibraryFile(libraryFile);
 			
 			pamtramLibEntry.setOriginalLibraryEntry(libEntry);
 			

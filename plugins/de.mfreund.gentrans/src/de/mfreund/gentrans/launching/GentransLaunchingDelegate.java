@@ -155,15 +155,15 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 				}
 			}
 			String targetLibParser = configuration.getAttribute("targetLibParser", "");
-			if(targetLibParser.isEmpty()) {
-				throw new RuntimeException("No target library parser has been specified!");
-			} else {
+			if(!targetLibParser.isEmpty()) {
 				try {
 					targetLibParserClass = bundle.loadClass(targetLibParser);
 				} catch (Exception e) {
 					throw new RuntimeException("The target library parser could not be resolved!");
 				}
 			}
+		} else {
+			throw new RuntimeException("No target library bundle has been specified!");
 		}
 		
 	}

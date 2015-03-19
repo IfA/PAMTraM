@@ -8,6 +8,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.jobs.Job;
 
 import de.mfreund.gentrans.transformation.GenericTransformationRunner;
+import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 
 /**
  * @author Sascha Steffen
@@ -25,15 +26,14 @@ public class GenericTransformationJob extends Job {
 	 * @param sourceFilePath
 	 * @param pamtramPath
 	 * @param targetFilePath
-	 * @param targetLibParserClass 
-	 * @param targetLibContextClass 
+	 * @param targetLibraryContextDescriptor
 	 */
 	public GenericTransformationJob(final String jobName,
 			final String sourceFilePath, final String pamtramPath,
-			final String targetFilePath, Class<?> targetLibContextClass, Class<?> targetLibParserClass) {
+			final String targetFilePath, final LibraryContextDescriptor targetLibraryContextDescriptor) {
 		super(jobName);
 		genTransRunner = new GenericTransformationRunner(sourceFilePath,
-				pamtramPath, targetFilePath, targetLibContextClass, targetLibParserClass);
+				pamtramPath, targetFilePath, targetLibraryContextDescriptor);
 		setPriority(Job.BUILD);
 	}
 

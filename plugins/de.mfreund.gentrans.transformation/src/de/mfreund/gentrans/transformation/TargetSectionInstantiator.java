@@ -46,6 +46,7 @@ import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
 import de.mfreund.gentrans.transformation.selectors.GenericItemSelectorDialogRunner;
 import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunner;
+import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 
 /**
  * Class for instantiating target model sections using the hints supplied by
@@ -1275,20 +1276,18 @@ class TargetSectionInstantiator implements CancellationListener {
 	 * 
 	 * @param targetModel The coherent target model into that the library entries are to be
 	 * 			instantiated.
-	 * @param targetLibContextClass
-	 * 			  The target library context to be used to instantiate library entries
-	 * @param targetLibParserClass
-	 * 			  The target library path parser to be used
+	 * @param targetLibraryContextDescriptor
+	 * 			  The descriptor for the target library context to be used during the transformation.
 	 * @return <em>true</em> if everything went well, <em>false</em> otherwise.
 	 */
 	boolean instantiateLibraryEntries(
-			EObject targetModel, Class<?> targetLibContextClass, Class<?> targetLibParserClass) {
+			EObject targetModel, LibraryContextDescriptor targetLibraryContextDescriptor) {
 		
 		if(libEntryInstantiators.isEmpty()) { // nothing to be done
 			return true;
 		}
 		
-		if(targetLibContextClass == null) {
+		if(targetLibraryContextDescriptor.getLibraryContextClass() == null) {
 			consoleStream.println("Could not instantiate library entries as no target"
 					+ " library context class has been specified!");
 			return false;
@@ -1299,7 +1298,8 @@ class TargetSectionInstantiator implements CancellationListener {
 		 */
 		GenLibraryManager manager;
 		try {
-			manager = new GenLibraryManager(targetLibContextClass, targetLibParserClass);
+			manager = new GenLibraryManager(
+					targetLibraryContextDescriptor);
 		} catch (InstantiationException | IllegalAccessException e) {
 			e.printStackTrace();
 			consoleStream.println("Error while instantiatiating library context/parser!");

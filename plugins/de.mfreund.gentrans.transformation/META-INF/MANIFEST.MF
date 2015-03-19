@@ -23,4 +23,5 @@ Import-Package: de.mfreund.gentrans.transformation.selectors,
 Bundle-ClassPath: lib/exp4j-0.3.11.jar,
  .
 Export-Package: de.mfreund.gentrans.transformation,
- de.mfreund.gentrans.transformation.handler
+ de.mfreund.gentrans.transformation.handler,
+ de.mfreund.gentrans.transformation.library

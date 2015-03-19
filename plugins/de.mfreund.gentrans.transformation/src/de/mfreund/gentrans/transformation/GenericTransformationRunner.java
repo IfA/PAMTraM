@@ -62,6 +62,7 @@ import pamtram.util.EPackageHelper;
 import pamtram.util.EPackageHelper.EPackageCheck;
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
+import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 
 /**
  * Main Class for running the generic transformation for a PAMTraM model.
@@ -123,15 +124,10 @@ public class GenericTransformationRunner {
 	private boolean isCancelled;
 	
 	/**
-	 * This keeps track of the class that is to be used as target library context.
+	 * This keeps track of the descriptor for the target library context to be used during the transformation.
 	 */
-	private Class<?> targetLibContextClass;
+	private LibraryContextDescriptor targetLibraryContextDescriptor;
 	
-	/**
-	 * This keeps track of the class that is to be used as target library parser.
-	 */
-	private Class<?> targetLibParserClass;
-
 	/**
 	 * This is the {@link TargetSectionInstantiator} that can be used to create new target sections.
 	 */
@@ -185,14 +181,12 @@ public class GenericTransformationRunner {
 	 * 			  Maximum length of connection paths between target sections.
 	 * @param onlyAskOnceOnAmbiguousMappings
 	 * 			  Whether ambiguities shall only be resolved once or for every instance.
-	 * @param targetLibContextClass
-	 * 			  The target library context to be used to instantiate library entries
-	 * @param targetLibParserClass
-	 * 			  The target library path parser to be used
+	 * @param targetLibraryContextDescriptor
+	 * 			  The descriptor for the target library context to be used during the transformation.
 	 */
 	private GenericTransformationRunner(final String sourceFilePath,
 			final String pamtramPath, final String targetFilePath, int maxPathLength,
-			boolean onlyAskOnceOnAmbiguousMappings, Class<?> targetLibContextClass, Class<?> targetLibParserClass) {
+			boolean onlyAskOnceOnAmbiguousMappings, LibraryContextDescriptor targetLibraryContextDescriptor) {
 		super();
 		isCancelled = false;
 		this.sourceFilePath = sourceFilePath;
@@ -200,8 +194,7 @@ public class GenericTransformationRunner {
 		this.targetFilePath = targetFilePath;
 		this.maxPathLength = maxPathLength;
 		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
-		this.targetLibContextClass = targetLibContextClass;
-		this.targetLibParserClass = targetLibParserClass;
+		this.targetLibraryContextDescriptor = targetLibraryContextDescriptor;
 		consoleStream = findConsole(
 				"de.mfreund.gentrans.transformation_" + hashCode())
 				.newMessageStream();
@@ -219,14 +212,12 @@ public class GenericTransformationRunner {
 	 *            Path to the transformation model
 	 * @param targetFilePath
 	 *            File path to the transformation target
-	 * @param targetLibContextClass
-	 * 			  The target library context to be used to instantiate library entries
-	 * @param targetLibParserClass
-	 * 			  The target library path parser to be used
+	 * @param targetLibraryContextDescriptor
+	 * 			  The descriptor for the target library context to be used during the transformation.
 	 */
 	public GenericTransformationRunner(final String sourceFilePath,
-			final String pamtramPath, final String targetFilePath, Class<?> targetLibContextClass, Class<?> targetLibParserClass) {
-		this(sourceFilePath, pamtramPath, targetFilePath, -1, true, targetLibContextClass, targetLibParserClass);
+			final String pamtramPath, final String targetFilePath, LibraryContextDescriptor targetLibraryContextDescriptor) {
+		this(sourceFilePath, pamtramPath, targetFilePath, -1, true, targetLibraryContextDescriptor);
 	}
 	
 	/**
@@ -238,14 +229,12 @@ public class GenericTransformationRunner {
 	 *            The transformation model
 	 * @param targetFilePath
 	 *            File path to the transformation target
-	 * @param targetLibContextClass
-	 * 			  The target library context to be used to instantiate library entries
-	 * @param targetLibParserClass
-	 * 			  The target library path parser to be used
+	 * @param targetLibraryContextDescriptor
+	 * 			  The descriptor for the target library context to be used during the transformation.
 	 */
 	public GenericTransformationRunner(final String sourceFilePath,
-			final PAMTraM pamtramModel, final String targetFilePath, Class<?> targetLibContextClass, Class<?> targetLibParserClass) {
-		this(sourceFilePath, null, targetFilePath, -1, true, targetLibContextClass, targetLibParserClass);
+			final PAMTraM pamtramModel, final String targetFilePath, LibraryContextDescriptor targetLibraryContextDescriptor) {
+		this(sourceFilePath, null, targetFilePath, -1, true, targetLibraryContextDescriptor);
 		this.pamtramModel = pamtramModel;
 	}
 	
@@ -258,14 +247,12 @@ public class GenericTransformationRunner {
 	 *            The transformation model
 	 * @param targetFilePath
 	 *            File path to the transformation target
-	 * @param targetLibContextClass
-	 * 			  The target library context to be used to instantiate library entries
-	 * @param targetLibParserClass
-	 * 			  The target library path parser to be used
+	 * @param targetLibraryContextDescriptor
+	 * 			  The descriptor for the target library context to be used during the transformation.
 	 */
 	public GenericTransformationRunner(final EObject sourceModel,
-			final PAMTraM pamtramModel, final String targetFilePath, Class<?> targetLibContextClass, Class<?> targetLibParserClass) {
-		this(null, null, targetFilePath, -1, true, targetLibContextClass, targetLibParserClass);
+			final PAMTraM pamtramModel, final String targetFilePath, LibraryContextDescriptor targetLibraryContextDescriptor) {
+		this(null, null, targetFilePath, -1, true, targetLibraryContextDescriptor);
 		this.pamtramModel = pamtramModel;
 		this.sourceModel = sourceModel;
 	}
@@ -1386,7 +1373,7 @@ public class GenericTransformationRunner {
 	private boolean runInstantiationLibraryEntries(
 			final TargetSectionInstantiator targetSectionInstantiator, EObject targetModel) {
 		
-		return targetSectionInstantiator.instantiateLibraryEntries(targetModel, targetLibContextClass, targetLibParserClass);
+		return targetSectionInstantiator.instantiateLibraryEntries(targetModel, targetLibraryContextDescriptor);
 	}
 
 	/**

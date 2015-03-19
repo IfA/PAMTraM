@@ -171,15 +171,12 @@ public class PropertiesPage extends PropertyPage implements
 		IResource resource = (IResource) getElement();
 
 		try {
-			String targetBundle = resource.getPersistentProperty(
-					new QualifiedName(PropertySupplier.PROPERTY_QUALIFIER, PropertySupplier.PROP_LIBRARY_TARGET_BUNDLE));
-			targetBundleText.setText(targetBundle != null ? targetBundle : PropertySupplier.DEFAULT_LIBRARY_TARGET_BUNDLE);
-			String targetLibContext = resource.getPersistentProperty(
-					new QualifiedName(PropertySupplier.PROPERTY_QUALIFIER, PropertySupplier.PROP_LIBRARY_TARGET_CONTEXT));
-			targetLibContextText.setText(targetLibContext != null ? targetLibContext : PropertySupplier.DEFAULT_LIBRARY_TARGET_CONTEXT);
-			String targetLibParser = resource.getPersistentProperty(
-					new QualifiedName(PropertySupplier.PROPERTY_QUALIFIER, PropertySupplier.PROP_LIBRARY_TARGET_PARSER));
-			targetLibParserText.setText(targetLibParser != null ? targetLibParser : PropertySupplier.DEFAULT_LIBRARY_TARGET_PARSER); 
+			targetBundleText.setText(
+					PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_TARGET_BUNDLE, resource));
+			targetLibContextText.setText(
+					PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_TARGET_CONTEXT, resource));
+			targetLibParserText.setText(
+					PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_TARGET_PARSER, resource));
 		} catch (CoreException e) {
 			e.printStackTrace();
 			return false;

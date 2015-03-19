@@ -1,5 +1,7 @@
 package de.mfreund.gentrans.launching;
 
+import java.io.File;
+
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
@@ -17,6 +19,8 @@ import org.osgi.framework.Bundle;
 
 import de.mfreund.gentrans.transformation.handler.GenericTransformationJob;
 import de.mfreund.pamtram.util.ResourceHelper;
+import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryContext;
+import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPathParser;
 
 public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 
@@ -136,6 +140,15 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		/*
 		 * Validate the settings in the 'Library' tab
 		 */
+		String targetLibPath = configuration.getAttribute("targetLibPath", "");
+		if(targetLibPath.isEmpty()) {
+			throw new RuntimeException("No target library path has been specified!");
+		} else if(!(new File(targetLibPath)).exists()) {
+			throw new RuntimeException("Target library path does not exist!");
+		} else if(!(new File(targetLibPath)).isDirectory()) {
+			throw new RuntimeException("Target library path does not represent a folder!");
+		}
+		
 		String targetLibBundle = configuration.getAttribute("targetLibBundle", "");
 		Bundle bundle;
 		targetLibContextClass = null;
@@ -153,6 +166,11 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 				} catch (Exception e) {
 					throw new RuntimeException("The target library context could not be resolved!");
 				}
+				try {
+					targetLibContextClass.asSubclass(LibraryContext.class);
+				} catch (ClassCastException e) {
+					throw new RuntimeException("The target library context class is no sub-class of 'LibraryContext'!");
+				}
 			}
 			String targetLibParser = configuration.getAttribute("targetLibParser", "");
 			if(!targetLibParser.isEmpty()) {
@@ -160,6 +178,11 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 					targetLibParserClass = bundle.loadClass(targetLibParser);
 				} catch (Exception e) {
 					throw new RuntimeException("The target library parser could not be resolved!");
+				}
+				try {
+					targetLibParserClass.asSubclass(LibraryPathParser.class);
+				} catch (ClassCastException e) {
+					throw new RuntimeException("The target library parser class is no sub-class of 'LibraryPathParser'!");
 				}
 			}
 		} else {

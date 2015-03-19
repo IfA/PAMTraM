@@ -19,6 +19,7 @@ import org.osgi.framework.Bundle;
 
 import de.mfreund.gentrans.transformation.handler.GenericTransformationJob;
 import de.mfreund.pamtram.util.ResourceHelper;
+import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryContext;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPathParser;
 
@@ -61,8 +62,12 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 				.put("xml", new GenericXMLResourceFactoryImpl());
 		}
 		
+		@SuppressWarnings("unchecked") // should not fail due to validation in 'validateLaunchConfig(...)'
+		LibraryContextDescriptor targetLibraryContextDescriptor = 
+				new LibraryContextDescriptor(configuration.getAttribute("targetLibPath", ""), (Class<LibraryContext>) targetLibContextClass, (Class<LibraryPathParser>) targetLibParserClass);
+		
 		GenericTransformationJob job = new GenericTransformationJob(
-				"GenTrans", sourceFile, pamtramFile, targetFile, targetLibContextClass, targetLibParserClass);
+				"GenTrans", sourceFile, pamtramFile, targetFile, targetLibraryContextDescriptor);
 		job.getGenTransRunner().setMaxPathLength(maxPathLength);
 		job.getGenTransRunner().setOnlyAskOnceOnAmbiguousMappings(rememberAmbiguousMappingChoice);
 

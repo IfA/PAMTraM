@@ -3,6 +3,10 @@ package de.mfreund.pamtram.wizards;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.edit.command.CreateChildCommand;
@@ -27,6 +31,8 @@ import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.LibraryParameter;
 import pamtram.util.LibraryHelper;
 import de.mfreund.pamtram.pages.ImportLibraryElementWizardMainPage;
+import de.mfreund.pamtram.properties.PropertySupplier;
+import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 import de.tud.et.ifa.agtele.genlibrary.util.interfaces.LibraryFileEntry;
 
 /**
@@ -79,10 +85,22 @@ public class ImportLibraryElementWizard extends Wizard {
 		for (LibraryFileEntry entry : one.getLibEntriesToImport()) {
 			try {
 				
+				// determine the project for the pamtram instance
+				IWorkspace workspace = ResourcesPlugin.getWorkspace(); 
+				IProject project = 
+						workspace.getRoot().getProject(pamtram.eResource().getURI().trimSegments(2).lastSegment());
+				
+				LibraryContextDescriptor targetLibraryContextDescriptor = 
+						new LibraryContextDescriptor(
+								PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_TARGET_PATH, project), 
+								PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_TARGET_BUNDLE, project),
+								PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_TARGET_CONTEXT, project),
+								PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_TARGET_PARSER, project));
+				
 				// first, create the library element
 				LibraryEntry libElement = 
 						LibraryHelper.convertToLibraryElement(
-								one.getLibraryFile(), 
+								targetLibraryContextDescriptor, 
 								entry.getKey(), 
 								pamtram.getTargetSectionModel().getMetaModelPackage(), 
 								pamtram.eResource().getURI().trimSegments(1).appendSegment("lib"),
@@ -140,7 +158,7 @@ public class ImportLibraryElementWizard extends Wizard {
 					compoundCommand.append(createMappingCommand);
 				}
 				
-			} catch (IOException e) {
+			} catch (IOException | ClassNotFoundException | RuntimeException | CoreException e) {
 				e.printStackTrace();
 				return false;
 			}

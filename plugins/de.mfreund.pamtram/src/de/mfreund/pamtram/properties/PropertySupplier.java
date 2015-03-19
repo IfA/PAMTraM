@@ -14,6 +14,13 @@ import org.eclipse.core.runtime.QualifiedName;
 public class PropertySupplier {
 
 	/**
+	 * This property is used to specify the path to the folder that contains the target library 
+	 * to be used for this project.
+	 */
+	public static final String PROP_LIBRARY_TARGET_PATH = "LIBRARY-TARGET-PATH";
+	public static final String DEFAULT_LIBRARY_TARGET_PATH = "";
+	
+	/**
 	 * This property is used to specify the bundle (plug-in) that holds the LibraryContext
 	 * and LibraryPathParser that is used to instantiate target library entries.
 	 */
@@ -65,6 +72,9 @@ public class PropertySupplier {
 		
 		// return the default value if necessary
 		switch (propertyName) {
+		case PROP_LIBRARY_TARGET_PATH:
+			propertyValue = DEFAULT_LIBRARY_TARGET_PATH;
+			break;
 		case PROP_LIBRARY_TARGET_BUNDLE:
 			propertyValue = DEFAULT_LIBRARY_TARGET_BUNDLE;
 			break;

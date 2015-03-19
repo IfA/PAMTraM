@@ -2,6 +2,7 @@ package de.mfreund.pamtram.ui.properties;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.QualifiedName;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -15,6 +16,9 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbenchPropertyPage;
 import org.eclipse.ui.dialogs.PropertyPage;
+import org.osgi.framework.Bundle;
+
+import de.mfreund.pamtram.properties.PropertySupplier;
 
 public class PropertiesPage extends PropertyPage implements
 		IWorkbenchPropertyPage {
@@ -64,12 +68,13 @@ public class PropertiesPage extends PropertyPage implements
 		
 		// create a text field for the specification of the bundle that represents the specific target library 
 		targetBundleText = new Text(targetGroup, SWT.NONE);
+		targetBundleText.setMessage("Bundle identifier of the plug-in hosting the concrete LibraryContext and PathParser");
 		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(targetBundleText);
 		targetBundleText.addModifyListener(new ModifyListener() {
 			
 			@Override
 			public void modifyText(ModifyEvent e) {
-//				updateLaunchConfigurationDialog();
+				isValid();
 			}
 		});
 		
@@ -80,12 +85,13 @@ public class PropertiesPage extends PropertyPage implements
 		
 		// create a text field for the specification of the concrete library context of the specific target library
 		targetLibContextText = new Text(targetGroup, SWT.NONE);
+		targetLibContextText.setMessage("Fully qualified name of the concrete LibraryContext");
 		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(targetLibContextText);
 		targetLibContextText.addModifyListener(new ModifyListener() {
 			
 			@Override
 			public void modifyText(ModifyEvent e) {
-//				updateLaunchConfigurationDialog();
+				isValid();
 			}
 		});
 		
@@ -96,12 +102,13 @@ public class PropertiesPage extends PropertyPage implements
 		
 		// create a text field for the specification of the concrete library path parser of the specific target library 
 		targetLibParserText = new Text(targetGroup, SWT.NONE);
+		targetLibParserText.setMessage("Fully qualified name of the concrete PathParser (Leave empty to use default parser...)");
 		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(targetLibParserText);
 		targetLibParserText.addModifyListener(new ModifyListener() {
 			
 			@Override
 			public void modifyText(ModifyEvent e) {
-//				updateLaunchConfigurationDialog();
+				isValid();
 			}
 		});
 		
@@ -113,7 +120,12 @@ public class PropertiesPage extends PropertyPage implements
 	
 	@Override
 	public boolean performOk() {
-		return super.performOk() && storeValues();
+		boolean isValid = isValid();
+		if(isValid) {
+			return super.performOk() && storeValues();
+		} else {
+			return false;			
+		}
 	}
 	
 	/**
@@ -124,13 +136,13 @@ public class PropertiesPage extends PropertyPage implements
 		IResource resource = (IResource) getElement();
 		try {
 			resource.setPersistentProperty(
-					new QualifiedName("de.mfreund.gentrans.ui", "targetBundle"), 
+					new QualifiedName(PropertySupplier.PROPERTY_QUALIFIER, PropertySupplier.PROP_LIBRARY_TARGET_BUNDLE), 
 					targetBundleText.getText());
 			resource.setPersistentProperty(
-					new QualifiedName("de.mfreund.gentrans.ui", "targetLibContext"), 
+					new QualifiedName(PropertySupplier.PROPERTY_QUALIFIER, PropertySupplier.PROP_LIBRARY_TARGET_CONTEXT), 
 					targetLibContextText.getText());
 			resource.setPersistentProperty(
-					new QualifiedName("de.mfreund.gentrans.ui", "targetLibParser"), 
+					new QualifiedName(PropertySupplier.PROPERTY_QUALIFIER, PropertySupplier.PROP_LIBRARY_TARGET_PARSER), 
 					targetLibParserText.getText());
 		} catch (CoreException e) {
 			e.printStackTrace();
@@ -139,24 +151,85 @@ public class PropertiesPage extends PropertyPage implements
 		return true;
 	}
 
+	@Override
+	protected void performDefaults() {
+		super.performDefaults();
+		
+		/*
+		 * Initialize the text fields with the default values.
+		 */
+		targetBundleText.setText(PropertySupplier.DEFAULT_LIBRARY_TARGET_BUNDLE);
+		targetLibContextText.setText(PropertySupplier.DEFAULT_LIBRARY_TARGET_CONTEXT);
+		targetLibParserText.setText(PropertySupplier.DEFAULT_LIBRARY_TARGET_PARSER); 
+	}
+	
 	/**
 	 * This initializes the properties page from the persisted properties.
 	 * @return <em>True</em> if everything went well, <em>false</em> otherwise.
 	 */
 	private boolean initializeValues() {
 		IResource resource = (IResource) getElement();
+
 		try {
 			String targetBundle = resource.getPersistentProperty(
-					new QualifiedName("de.mfreund.gentrans.ui", "targetBundle"));
-			targetBundleText.setText(targetBundle != null ? targetBundle : "");
+					new QualifiedName(PropertySupplier.PROPERTY_QUALIFIER, PropertySupplier.PROP_LIBRARY_TARGET_BUNDLE));
+			targetBundleText.setText(targetBundle != null ? targetBundle : PropertySupplier.DEFAULT_LIBRARY_TARGET_BUNDLE);
 			String targetLibContext = resource.getPersistentProperty(
-					new QualifiedName("de.mfreund.gentrans.ui", "targetLibContext"));
-			targetLibContextText.setText(targetLibContext != null ? targetLibContext : "");
+					new QualifiedName(PropertySupplier.PROPERTY_QUALIFIER, PropertySupplier.PROP_LIBRARY_TARGET_CONTEXT));
+			targetLibContextText.setText(targetLibContext != null ? targetLibContext : PropertySupplier.DEFAULT_LIBRARY_TARGET_CONTEXT);
 			String targetLibParser = resource.getPersistentProperty(
-					new QualifiedName("de.mfreund.gentrans.ui", "targetLibParser"));
-			targetLibParserText.setText(targetLibParser != null ? targetLibParser : ""); 
+					new QualifiedName(PropertySupplier.PROPERTY_QUALIFIER, PropertySupplier.PROP_LIBRARY_TARGET_PARSER));
+			targetLibParserText.setText(targetLibParser != null ? targetLibParser : PropertySupplier.DEFAULT_LIBRARY_TARGET_PARSER); 
 		} catch (CoreException e) {
 			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * This validates the properties page.
+	 * @return <em>True</em> if everything went well, <em>false</em> otherwise.
+	 */
+	@Override
+	public boolean isValid() {
+		
+		setErrorMessage(null);
+		try {
+			String targetLibBundle = targetBundleText.getText();
+			Bundle bundle;
+			if(!targetLibBundle.isEmpty()) {
+				if((bundle = Platform.getBundle(targetLibBundle)) == null) {
+					setErrorMessage("Bundle '" + targetLibBundle + "' cannot be resolved!" );
+					return false;
+				}
+				String targetLibContext = targetLibContextText.getText();
+				if(targetLibContext.isEmpty()) {
+					setErrorMessage("No target library context has been specified!");
+					return false;
+				} else {
+					try {
+						bundle.loadClass(targetLibContext);
+					} catch (NoClassDefFoundError e) {
+						setErrorMessage("The target library context could not be resolved!");
+						return false;
+					}
+				}
+				String targetLibParser = targetLibParserText.getText();
+				if(!targetLibParser.isEmpty()) {
+					try {
+						bundle.loadClass(targetLibParser);
+					} catch (NoClassDefFoundError e) {
+						setErrorMessage("The target library parser could not be resolved!");
+						return false;
+					}
+				}
+			} else {
+				setErrorMessage("No target library bundle has been specified!");
+				return false;
+			}
+		} catch(Exception e) {
+			setErrorMessage(e.getMessage());
 			return false;
 		}
 		return true;

@@ -1,5 +1,7 @@
 package de.mfreund.gentrans.ui.launching;
 
+import java.io.File;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
@@ -27,6 +29,11 @@ import de.mfreund.pamtram.properties.PropertySupplier;
 
 public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 
+	/**
+	 * A text field to specify the full path to the folder that holds the target library.
+	 */
+	private Text targetPathText;
+	
 	/**
 	 * A text field to specify the bundle that represents the specific target library.
 	 */
@@ -57,6 +64,23 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 		targetGroup.setText("Target");
 		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).span(2, 1).applyTo(targetGroup);
 		GridLayoutFactory.swtDefaults().numColumns(2).applyTo(targetGroup);
+		
+		// create a label for the specification of the path to the folder that holds the target library 
+		Label targetPathLabel = new Label(targetGroup, SWT.NONE);
+		targetPathLabel.setText("Library folder path:");
+		GridDataFactory.swtDefaults().applyTo(targetPathLabel);
+		
+		// create a text field for the specification of the path to the folder that holds the target library
+		targetPathText = new Text(targetGroup, SWT.NONE);
+		targetPathText.setMessage("Full path to the folder that holds the target library");
+		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(targetPathText);
+		targetPathText.addModifyListener(new ModifyListener() {
+			
+			@Override
+			public void modifyText(ModifyEvent e) {
+				updateLaunchConfigurationDialog();
+			}
+		});
 		
 		// create a label for the specification of the bundle that represents the specific target library 
 		Label targetBundleLabel = new Label(targetGroup, SWT.NONE);
@@ -135,6 +159,8 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 	@Override
 	public void initializeFrom(ILaunchConfiguration configuration) {
 		try {
+			// set the target lib path
+			targetPathText.setText(configuration.getAttribute("targetLibPath", ""));
 			// set the target bundle
 			targetBundleText.setText(configuration.getAttribute("targetLibBundle", ""));
 			// set the target context class
@@ -148,6 +174,8 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 
 	@Override
 	public void performApply(ILaunchConfigurationWorkingCopy configuration) {
+		// set the target lib path
+		configuration.setAttribute("targetLibPath", targetPathText.getText());
 		// set the target bundle
 		configuration.setAttribute("targetLibBundle", targetBundleText.getText());
 		// set the target context class
@@ -164,6 +192,17 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 	@Override
 	public boolean isValid(ILaunchConfiguration launchConfig) {
 		setErrorMessage(null);
+		String targetLibPath = targetPathText.getText();
+		if(targetLibPath.isEmpty()) {
+			setErrorMessage("No target library path has been specified!");
+			return false;
+		} else if(!(new File(targetLibPath)).exists()) {
+			setErrorMessage("Target library path does not exist!");
+			return false;
+		} else if(!(new File(targetLibPath)).isDirectory()) {
+			setErrorMessage("Target library path does not represent a folder!");
+			return false;
+		}
 		try {
 			String targetLibBundle = launchConfig.getAttribute("targetLibBundle", "");
 			Bundle bundle;
@@ -227,6 +266,11 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 		
 		// check if the project has the pamtram nature assigned
 		if(project.hasNature("de.mfreund.pamtram.pamtramNature")) {
+			
+			// set the target lib path
+			workingCopy.setAttribute(
+					"targetLibPath",
+					PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_TARGET_PATH, project));
 			
 			// set the target bundle
 			workingCopy.setAttribute(

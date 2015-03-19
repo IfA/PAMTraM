@@ -1,5 +1,7 @@
 package de.mfreund.pamtram.ui.properties;
 
+import java.io.File;
+
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Platform;
@@ -24,6 +26,11 @@ public class PropertiesPage extends PropertyPage implements
 		IWorkbenchPropertyPage {
 
 	/**
+	 * A text field to specify the full path to the folder that holds the target library.
+	 */
+	private Text targetPathText;
+
+	/**
 	 * A text field to specify the bundle that represents the specific target library.
 	 */
 	private Text targetBundleText;
@@ -37,7 +44,7 @@ public class PropertiesPage extends PropertyPage implements
 	 * A text field to specify the concrete library path parser of the specific target library.
 	 */
 	private Text targetLibParserText;
-	
+
 	public PropertiesPage() {
 		super();
 	}
@@ -60,6 +67,23 @@ public class PropertiesPage extends PropertyPage implements
 		targetGroup.setText("Target");
 		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).span(2, 1).applyTo(targetGroup);
 		GridLayoutFactory.swtDefaults().numColumns(2).applyTo(targetGroup);
+		
+		// create a label for the specification of the path to the folder that holds the target library 
+		Label targetPathLabel = new Label(targetGroup, SWT.NONE);
+		targetPathLabel.setText("Library folder path:");
+		GridDataFactory.swtDefaults().applyTo(targetPathLabel);
+		
+		// create a text field for the specification of the path to the folder that holds the target library
+		targetPathText = new Text(targetGroup, SWT.NONE);
+		targetPathText.setMessage("Full path to the folder that holds the target library");
+		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(targetPathText);
+		targetPathText.addModifyListener(new ModifyListener() {
+			
+			@Override
+			public void modifyText(ModifyEvent e) {
+				isValid();
+			}
+		});
 		
 		// create a label for the specification of the bundle that represents the specific target library 
 		Label targetBundleLabel = new Label(targetGroup, SWT.NONE);
@@ -136,6 +160,9 @@ public class PropertiesPage extends PropertyPage implements
 		IResource resource = (IResource) getElement();
 		try {
 			resource.setPersistentProperty(
+					new QualifiedName(PropertySupplier.PROPERTY_QUALIFIER, PropertySupplier.PROP_LIBRARY_TARGET_PATH),
+					targetPathText.getText());
+			resource.setPersistentProperty(
 					new QualifiedName(PropertySupplier.PROPERTY_QUALIFIER, PropertySupplier.PROP_LIBRARY_TARGET_BUNDLE), 
 					targetBundleText.getText());
 			resource.setPersistentProperty(
@@ -158,6 +185,7 @@ public class PropertiesPage extends PropertyPage implements
 		/*
 		 * Initialize the text fields with the default values.
 		 */
+		targetPathText.setText(PropertySupplier.DEFAULT_LIBRARY_TARGET_PATH);
 		targetBundleText.setText(PropertySupplier.DEFAULT_LIBRARY_TARGET_BUNDLE);
 		targetLibContextText.setText(PropertySupplier.DEFAULT_LIBRARY_TARGET_CONTEXT);
 		targetLibParserText.setText(PropertySupplier.DEFAULT_LIBRARY_TARGET_PARSER); 
@@ -171,6 +199,8 @@ public class PropertiesPage extends PropertyPage implements
 		IResource resource = (IResource) getElement();
 
 		try {
+			targetPathText.setText(
+					PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_TARGET_PATH, resource));
 			targetBundleText.setText(
 					PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_TARGET_BUNDLE, resource));
 			targetLibContextText.setText(
@@ -192,7 +222,19 @@ public class PropertiesPage extends PropertyPage implements
 	public boolean isValid() {
 		
 		setErrorMessage(null);
+		String targetLibPath = targetPathText.getText();
+		if(targetLibPath.isEmpty()) {
+			setErrorMessage("No target library path has been specified!");
+			return false;
+		} else if(!(new File(targetLibPath)).exists()) {
+			setErrorMessage("Target library path does not exist!");
+			return false;
+		} else if(!(new File(targetLibPath)).isDirectory()) {
+			setErrorMessage("Target library path does not represent a folder!");
+			return false;
+		}
 		try {
+			
 			String targetLibBundle = targetBundleText.getText();
 			Bundle bundle;
 			if(!targetLibBundle.isEmpty()) {

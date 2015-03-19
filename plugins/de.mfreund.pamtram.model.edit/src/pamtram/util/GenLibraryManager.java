@@ -5,6 +5,7 @@ import java.io.File;
 import org.eclipse.emf.ecore.EObject;
 
 import pamtram.metamodel.LibraryEntry;
+import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 import de.tud.et.ifa.agtele.genlibrary.processor.impl.LibraryPluginImpl;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryContext;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPathParser;
@@ -42,23 +43,35 @@ public class GenLibraryManager {
 
 	/**
 	 * This constructs an instance.
-	 * @param targetLibParserClass 
-	 * @param targetLibContextClass 
+	 * @param libraryContextDescriptor The {@link LibraryContextDescriptor} to be used by this manager. 
 	 * @throws IllegalAccessException 
 	 * @throws InstantiationException 
 	 */
-	public GenLibraryManager(Class<?> targetLibContextClass, Class<?> targetLibParserClass) throws InstantiationException, IllegalAccessException {
-		/*TODO it would be desirable to somehow aquire an instance of the concrete library context and parser without
-		 * actually knowing about the concrete language and without the user having to specify the bundle and class names; 
-		 * this probably should be done via an extension point in the genlibrary plugin
-		 */
-		LibraryContext context = (LibraryContext) targetLibContextClass.newInstance();
-		LibraryPathParser parser = targetLibParserClass != null ? (LibraryPathParser) targetLibParserClass.newInstance() : null;
-		getLibraryPlugin().init(context, parser);
+	public GenLibraryManager(LibraryContextDescriptor libraryContextDescriptor) throws InstantiationException, IllegalAccessException {
+		LibraryContext context = libraryContextDescriptor.getLibraryContextClass().newInstance();
+		LibraryPathParser parser = 
+				libraryContextDescriptor.getLibraryPathParserClass() != null ? libraryContextDescriptor.getLibraryPathParserClass().newInstance() : null;
+		getLibraryPlugin().init(libraryContextDescriptor.getLibraryPath(), context, parser);
 	}
 	
 	/**
 	 * This returns the {@link de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry} for a given classpath.
+	 * If <em>useHigher</em> is set to '<em><b>true</b></em>', a more abstract library entry will be returned if
+	 * no entry can be determined for the given path.
+	 * 
+	 * @param classPath The classPath that is used to retrieve the LibraryEntry.
+	 * @param useHigher Whether a more abstract LibraryEntry may be used.
+	 * @return The retrieved LibraryEntry.
+	 */
+	public de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry getLibraryEntry(String classPath, boolean useHigher) {
+		return getLibraryPlugin().getElement(classPath, useHigher);
+	}
+	
+	/**
+	 * This returns the {@link de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry} for a given classpath.
+	 * Before the entry is retrieved, a new library path is set in the target library.</br></br>
+	 * <b>Attention: This has side-effects
+	 * for subsequent calls to {@link #getLibraryEntry(String, boolean)} because the library path is permanently changed!</b></br></br>
 	 * If <em>useHigher</em> is set to '<em><b>true</b></em>', a more abstract library entry will be returned if
 	 * no entry can be determined for the given path.
 	 * 

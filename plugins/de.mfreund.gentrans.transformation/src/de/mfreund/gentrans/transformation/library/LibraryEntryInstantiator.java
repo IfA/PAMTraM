@@ -10,10 +10,13 @@ import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import pamtram.mapping.AttributeMapping;
+import pamtram.mapping.AttributeMatcher;
+import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintType;
+import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.metamodel.AttributeParameter;
 import pamtram.metamodel.ContainerParameter;
@@ -26,6 +29,7 @@ import de.mfreund.gentrans.transformation.EObjectTransformationHelper;
 import de.mfreund.gentrans.transformation.TargetSectionConnector;
 import de.mfreund.gentrans.transformation.TargetSectionRegistry;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractContainerParameter;
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPlugin;
 
 /**
@@ -154,41 +158,81 @@ public class LibraryEntryInstantiator {
 				EObjectTransformationHelper section = rootInstances.removeFirst();
 				((AbstractContainerParameter<EObject, EObject>) (contParam.getOriginalParameter())).setContainer(section.getEObject().eContainer());
 				EcoreUtil.delete(section.getEObject());
-				targetSectionRegistry.getPamtramClassInstances(contParam.getClass_()).put(mappingGroup, rootInstances);
-//				
-//				if(connHint == null) {
-//					LinkedList<EObjectTransformationHelper> containerInstances = targetSectionRegistry.getFlattenedPamtramClassInstances(contParam.getClass_().getContainer());
-//					containerInstances.removeAll(rootInstances);
-//					final Set<EClass> containerClasses = new HashSet<EClass>();
-//					if (contParam.getClass_().getContainer() != null) {
-//						containerClasses.add(contParam.getClass_().getContainer()
-//								.getEClass());
-//					}
-//					//TODO we do not need to link but only get the container instance
-//					targetSectionConnector.linkToTargetModelNoConnectionHint(
-//							rootInstances, 
-//							contParam.getClass_(), 
-//							((Mapping) mappingGroup.eContainer()).getName(), 
-//							mappingGroup.getName(), 
-//							contParam.getClass_().getContainer() != null, 
-//							containerClasses, 
-//							containerInstances);
-//				} else {
-//					targetSectionConnector.linkToTargetModelUsingModelConnectionHint(
-//							contParam.getClass_().eClass(), 
-//							rootInstances, 
-//							contParam.getClass_(), 
-//							((Mapping) mappingGroup.eContainer()).getName(), 
-//							mappingGroup.getName(), 
-//							connHint, 
-//							conHintValues.get(connHint), 
-//							0); //TODO this can be determined by the target section connector
-//				}
-				
+				targetSectionRegistry.getPamtramClassInstances(contParam.getClass_()).put(mappingGroup, rootInstances);				
 				
 			} else if (param instanceof ExternalReferenceParameter) {
-				// TODO support this
-				return false;
+				
+				ExternalReferenceParameter extRefParam = (ExternalReferenceParameter) param;
+				
+				// find the MappingInstanceSelector for this ExternalReferenceParameter
+				Collection<Setting> refs = EcoreUtil.UsageCrossReferencer.find(extRefParam.getReference(), mappingHints);
+				if(refs.size() != 1) {
+					return false;
+				}
+				EObject ref = refs.iterator().next().getEObject();
+				if(!(ref instanceof MappingInstanceSelector)) {
+					return false;
+				}
+				MappingInstanceSelector selector = (MappingInstanceSelector) ref;
+
+				/*
+				 * handle AttributeMatcher
+				 */
+				if (selector.getMatcher() instanceof AttributeMatcher) {
+					final AttributeMatcher matcher = (AttributeMatcher) selector
+							.getMatcher();
+					// now search for target attributes
+					final LinkedList<EObjectTransformationHelper> targetInstances = targetSectionRegistry
+							.getFlattenedPamtramClassInstances(matcher
+									.getTargetAttribute()
+									.getOwningClass());
+
+					for (final Object attrVal : hintValues.get(selector)) {
+						String attrValStr = null;
+
+						attrValStr = "";
+						final Map<AttributeMatcherSourceInterface, String> hVal = (Map<AttributeMatcherSourceInterface, String>) attrVal;
+						for (final AttributeMatcherSourceInterface srcElement : ((AttributeMatcher) selector
+								.getMatcher())
+								.getSourceAttributes()) {
+							if (hVal.containsKey(srcElement)) {
+								attrValStr += hVal
+										.get(srcElement);
+							} else {
+//									consoleStream
+								System.out.println("HintSourceValue not found "
+										+ srcElement
+										.getName()
+										+ " in hint "
+										+ selector.getName()
+										+ ".");
+							}
+						}
+						
+						boolean found = false;
+						for (final EObjectTransformationHelper targetInst : targetInstances) {
+							// get Attribute value
+							final String targetValStr = targetInst
+									.getAttributeValue(matcher
+											.getTargetAttribute());
+							if (targetValStr != null) {
+								if (targetValStr.equals(attrValStr)) {
+									// set the target eObject of the parameter
+									((AbstractExternalReferenceParameter<EObject, EObject>) extRefParam.getOriginalParameter()).setTarget(targetInst.getEObject());
+									found = true;
+									break;
+								}
+							} else {
+								return false;
+							}
+						}
+						if(!found) {
+							return false;
+						}
+					}
+
+				}
+				
 			}
 		}
 		

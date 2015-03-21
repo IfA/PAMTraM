@@ -17,6 +17,7 @@ import pamtram.mapping.MappingHintType;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.metamodel.AttributeParameter;
 import pamtram.metamodel.ContainerParameter;
+import pamtram.metamodel.ExternalReferenceParameter;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.LibraryParameter;
 import pamtram.util.GenLibraryManager;
@@ -41,6 +42,14 @@ public class LibraryEntryInstantiator {
 	 * The {@link LibraryEntry} to be instantiated.
 	 */
 	final private LibraryEntry libraryEntry;
+	
+	/**
+	 * This is the public getter for the {@link #libraryEntry}.
+	 * @return The {@link #libraryEntry}.
+	 */
+	public LibraryEntry getLibraryEntry() {
+		return libraryEntry;
+	}
 	
 	/**
 	 * The {@link InstantiableMappingHintGroup} associated with the library entry.
@@ -177,6 +186,9 @@ public class LibraryEntryInstantiator {
 //				}
 				
 				
+			} else if (param instanceof ExternalReferenceParameter) {
+				// TODO support this
+				return false;
 			}
 		}
 		

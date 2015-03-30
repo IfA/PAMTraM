@@ -54,6 +54,12 @@ public class LibraryEntryInstantiator {
 	public LibraryEntry getLibraryEntry() {
 		return libraryEntry;
 	}
+
+	/**
+	 * This is the {@link EObjectTransformationHelper} that wraps the concrete root instance
+	 * that has been created during the transformation for this {@link #libraryEntry.
+	 */
+	private EObjectTransformationHelper transformationHelper;
 	
 	/**
 	 * The {@link InstantiableMappingHintGroup} associated with the library entry.
@@ -81,6 +87,8 @@ public class LibraryEntryInstantiator {
 	 * This creates an instance.
 	 * 
 	 * @param libraryEntry The {@link LibraryEntry} to be instantiated.
+	 * @param transformationHelper The {@link EObjectTransformationHelper} that wraps one root instance
+	 * 			that has been created during the transformation for this {@link #libraryEntry}.
 	 * @param mappingGroupThe {@link InstantiableMappingHintGroup} associated with the library entry.
 	 * @param mappingHints A list of {@link MappingHint}s that are part of the {@link #mappingGroup}.
 	 * @param hintValues  A map of {@link MappingHintType}s and associated {@link Object}s that represent 
@@ -90,11 +98,13 @@ public class LibraryEntryInstantiator {
 	 */
 	public LibraryEntryInstantiator(
 			LibraryEntry libraryEntry, 
+			EObjectTransformationHelper transformationHelper, 
 			InstantiableMappingHintGroup mappingGroup,
 			List<MappingHint> mappingHints,
 			Map<MappingHintType, LinkedList<Object>> hintValues,
 			Map<ModelConnectionHint, LinkedList<Object>> conHintValues) {
 		this.libraryEntry = libraryEntry;
+		this.transformationHelper = transformationHelper;
 		this.mappingGroup = mappingGroup;
 		this.mappingHints = mappingHints;
 		this.hintValues = hintValues;
@@ -124,6 +134,11 @@ public class LibraryEntryInstantiator {
 				
 				// find the AttributeMapping for this AttributeParameter
 				Collection<Setting> refs = EcoreUtil.UsageCrossReferencer.find(attParam.getAttribute(), mappingHints);
+				/*
+				 * The number of relevant AttributeMappings should always be 1. Even if multiple instances of this library
+				 * entry are to be instantiated, only AttributeMappings that are relevant for this concrete instance
+				 * are passed to this LibraryEntryInstantiator.
+				 */
 				if(refs.size() != 1) {
 					return false;
 				}
@@ -143,7 +158,6 @@ public class LibraryEntryInstantiator {
 				
 				ContainerParameter contParam = (ContainerParameter) param;
 				
-				// find the ModelConnectionHint for this ContainerParameter
 				if(!(mappingGroup instanceof MappingHintGroup)) {
 					return false;
 				}
@@ -151,13 +165,16 @@ public class LibraryEntryInstantiator {
 					return false;
 				}
 				
-				ModelConnectionHint connHint = ((MappingHintGroup) mappingGroup).getModelConnectionMatcher();
-				
+				/*
+				 * As the root instance of the LibraryEntry has already been instantiated by the 
+				 * transformation algorithm, we do not have to determine the the container. Instead, we just
+				 * delete the created root instance (represented by the 'transformationHelpder) and use its 
+				 * container as parameter for the library entry.
+				 */
 				LinkedList<EObjectTransformationHelper> rootInstances = targetSectionRegistry.getPamtramClassInstances(contParam.getClass_()).get(mappingGroup);
-				
-				EObjectTransformationHelper section = rootInstances.removeFirst();
-				((AbstractContainerParameter<EObject, EObject>) (contParam.getOriginalParameter())).setContainer(section.getEObject().eContainer());
-				EcoreUtil.delete(section.getEObject());
+				rootInstances.remove(transformationHelper);
+				((AbstractContainerParameter<EObject, EObject>) (contParam.getOriginalParameter())).setContainer(transformationHelper.getEObject().eContainer());
+				EcoreUtil.delete(transformationHelper.getEObject());
 				targetSectionRegistry.getPamtramClassInstances(contParam.getClass_()).put(mappingGroup, rootInstances);				
 				
 			} else if (param instanceof ExternalReferenceParameter) {
@@ -236,6 +253,9 @@ public class LibraryEntryInstantiator {
 			}
 		}
 		
+		/*
+		 * Finally, insert the library entry into the target model as all parameters have been filled out
+		 */
 		manager.insertIntoTargetModel(targetModel, libraryEntry);
 
 		return true;

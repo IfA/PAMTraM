@@ -394,11 +394,26 @@ class TargetSectionInstantiator implements CancellationListener {
 			// instantiate self(s)
 			final LinkedList<EObjectTransformationHelper> instances = new LinkedList<EObjectTransformationHelper>();
 			for (int i = 0; i < cardinality; i++) {
+				
+				// create the eObject
 				final EObject inst = metamodelSection.getEClass().getEPackage()
 						.getEFactoryInstance()
 						.create(metamodelSection.getEClass());
-				instances.add(new EObjectTransformationHelper(inst,
-						attributeValueRegistry));
+				// create an EObjectTransformationHelper that wraps the eObject and more stuff
+				EObjectTransformationHelper instTransformationHelper = new EObjectTransformationHelper(inst,
+						attributeValueRegistry); 
+				instances.add(instTransformationHelper);
+				
+				/*
+				 * If the target section is a library entry, we create a new 'LibraryEntryInstantiator'
+				 * that will insert the real library entry at the end.
+				 */
+				if(metamodelSection.isLibraryEntry()) {
+					LibraryEntry libEntry = (LibraryEntry) metamodelSection.eContainer().eContainer();
+					libEntryInstantiators.add(
+							new LibraryEntryInstantiator(
+									libEntry, instTransformationHelper, mappingGroup, mappingHints, hintValues, conHintValues));
+				}
 
 			}
 
@@ -649,20 +664,12 @@ class TargetSectionInstantiator implements CancellationListener {
 			final Map<MappingHintType, LinkedList<Object>> hintValues,
 			final Map<ModelConnectionHint, LinkedList<Object>> conHintValues,
 			final String mappingName) {
-		final LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instBySection = new LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>();
-
-		/*
-		 * If the target section is a library entry, we create a new 'LibraryEntryInstantiator'
-		 * that will insert the real library entry at the end.
-		 */
-		if(metamodelSection.isLibraryEntry()) {
-			LibraryEntry libEntry = (LibraryEntry) metamodelSection.eContainer().eContainer();
-			libEntryInstantiators.add(
-					new LibraryEntryInstantiator(
-							libEntry, mappingGroup, mappingHints, hintValues, conHintValues));
-//			return new LinkedHashMap<>();
-		}
 		
+		final LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instBySection = new LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>();
+		
+		/*
+		 * Now, perform the first-run instantiation.
+		 */
 		if (instantiateTargetSectionFirstPass(metamodelSection, mappingGroup,
 				mappingHints, hintValues, conHintValues, instBySection,
 				mappingName,

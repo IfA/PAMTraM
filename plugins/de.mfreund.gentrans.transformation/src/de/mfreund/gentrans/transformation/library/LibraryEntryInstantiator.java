@@ -8,6 +8,7 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMatcher;
@@ -82,6 +83,11 @@ public class LibraryEntryInstantiator {
 	 * hint values to be used during the instantiation.
 	 */
 	final private Map<ModelConnectionHint, LinkedList<Object>> conHintValues;
+
+	/**
+	 * The {@link MessageConsoleStream} that is used to print messages.
+	 */
+	private MessageConsoleStream consoleStream;
 	
 	/**
 	 * This creates an instance.
@@ -95,6 +101,7 @@ public class LibraryEntryInstantiator {
 	 * 			hint values to be used during the instantiation.
 	 * @param conHintValues A map of {@link ModelConnectionHint}s and associated {@link Object}s that represent
 	 * 			hint values to be used during the instantiation.
+	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print messages. 
 	 */
 	public LibraryEntryInstantiator(
 			LibraryEntry libraryEntry, 
@@ -102,13 +109,14 @@ public class LibraryEntryInstantiator {
 			InstantiableMappingHintGroup mappingGroup,
 			List<MappingHint> mappingHints,
 			Map<MappingHintType, LinkedList<Object>> hintValues,
-			Map<ModelConnectionHint, LinkedList<Object>> conHintValues) {
+			Map<ModelConnectionHint, LinkedList<Object>> conHintValues, final MessageConsoleStream consoleStream) {
 		this.libraryEntry = libraryEntry;
 		this.transformationHelper = transformationHelper;
 		this.mappingGroup = mappingGroup;
 		this.mappingHints = mappingHints;
 		this.hintValues = hintValues;
 		this.conHintValues = conHintValues;
+		this.consoleStream = consoleStream;
 	}
 	
 	/**
@@ -216,8 +224,7 @@ public class LibraryEntryInstantiator {
 								attrValStr += hVal
 										.get(srcElement);
 							} else {
-//									consoleStream
-								System.out.println("HintSourceValue not found "
+									consoleStream.println("HintSourceValue not found "
 										+ srcElement
 										.getName()
 										+ " in hint "

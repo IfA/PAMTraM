@@ -412,7 +412,7 @@ class TargetSectionInstantiator implements CancellationListener {
 					LibraryEntry libEntry = (LibraryEntry) metamodelSection.eContainer().eContainer();
 					libEntryInstantiators.add(
 							new LibraryEntryInstantiator(
-									libEntry, instTransformationHelper, mappingGroup, mappingHints, hintValues, conHintValues));
+									libEntry, instTransformationHelper, mappingGroup, mappingHints, hintValues, conHintValues, consoleStream));
 				}
 
 			}

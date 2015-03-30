@@ -206,6 +206,13 @@ public class LibraryEntryInstantiator {
 				if (selector.getMatcher() instanceof AttributeMatcher) {
 					final AttributeMatcher matcher = (AttributeMatcher) selector
 							.getMatcher();
+					
+					/*
+					 * The following has been copied and adapted from the 
+					 * 'TargetSectionInstantiator.instantiateTargetSectionSecondPass()'
+					 * method. Maybe, this could be improved/reused in a better way.
+					 */
+					
 					// now search for target attributes
 					final LinkedList<EObjectTransformationHelper> targetInstances = targetSectionRegistry
 							.getFlattenedPamtramClassInstances(matcher
@@ -255,6 +262,9 @@ public class LibraryEntryInstantiator {
 						}
 					}
 
+				} else {
+					consoleStream.println("Unsupported matcher type '" + selector.getMatcher().getClass().getName() + "'!");
+					return false;
 				}
 				
 			}

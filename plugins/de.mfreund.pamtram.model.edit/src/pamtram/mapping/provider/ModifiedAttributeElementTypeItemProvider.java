@@ -27,10 +27,12 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.ModelConnectionHintTargetAttribute;
 import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.mapping.commands.BasicDragAndDropAddCommand;
 import pamtram.mapping.commands.BasicDragAndDropSetCommand;
 import pamtram.metamodel.Attribute;
+import pamtram.metamodel.Class;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.provider.NamedElementItemProvider;
@@ -109,19 +111,37 @@ public class ModifiedAttributeElementTypeItemProvider extends NamedElementItemPr
 						}
 					}
 
+					/*
+					 * If we operate on an ModelConnectionHintTarget, we need to scan the container of the target section.
+					 * Otherwise, we need to scan the source section for suitable attributes.
+					 */
+					Class relevantClass = null;
+					if(object instanceof ModelConnectionHintTargetAttribute) {
+						if(parent instanceof MappingHintGroupType && ((MappingHintGroupType) parent).getTargetMMSection() != null) {
+							relevantClass = ((MappingHintGroupType) parent).getTargetMMSection().getContainer();
+							
+							// If no container has been specified, we allow for the default values.
+							if(relevantClass == null) {
+								return super.getChoiceOfValues(object);
+							}
+						}
+					} else {
+						relevantClass = mapping.getSourceMMSection();
+					}
 					
-					// the source section
-					SourceSectionClass source = mapping.getSourceMMSection();
+					if(relevantClass == null) {
+						return new ArrayList<Object>();						
+					}
 
 					List<Object> choiceOfValues = new ArrayList<Object>();
 					
 					// iterate over all elements and return the attributes as possible options
-					Set<SourceSectionClass> scanned=new HashSet<SourceSectionClass>();
-					List<SourceSectionClass> sectionsToScan=new ArrayList<SourceSectionClass>();
-					sectionsToScan.add(source);
+					Set<Class> scanned=new HashSet<>();
+					List<Class> sectionsToScan=new ArrayList<>();
+					sectionsToScan.add(relevantClass);
 					
 					while(sectionsToScan.size() > 0){
-						SourceSectionClass classToScan=sectionsToScan.remove(0);
+						Class classToScan=sectionsToScan.remove(0);
 						scanned.add(classToScan);
 						
 						Iterator<EObject> it = classToScan.eAllContents();
@@ -232,8 +252,7 @@ public class ModifiedAttributeElementTypeItemProvider extends NamedElementItemPr
 		}
 		
 		EList<AttributeValueModifierSet> values = new BasicEList<AttributeValueModifierSet>();
-		for(Iterator<?> iter = collection.iterator(); iter.hasNext(); ) {
-			Object value = iter.next();
+		for (Object value : collection) {
 			if(value instanceof AttributeValueModifierSet) {
 				values.add((AttributeValueModifierSet) value);
 			} else {

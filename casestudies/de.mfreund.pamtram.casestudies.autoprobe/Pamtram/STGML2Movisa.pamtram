@@ -5548,17 +5548,18 @@
     </mapping>
     <mapping name="AlertInterfaceMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.15">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SimpleContainer" targetMMSection="//@targetSectionModel/@libraryElements.1/@parameters.4/@class">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel/@libraryElements.1/@parameters.0/@attribute">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" source="//@sourceSectionModel/@metaModelSections.15/@attributes.3"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="WidthMapping" target="//@targetSectionModel/@libraryElements.1/@parameters.0/@attribute" expression="round(w/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="w" source="//@sourceSectionModel/@metaModelSections.15/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel/@libraryElements.1/@parameters.1/@attribute">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" source="//@sourceSectionModel/@metaModelSections.15/@attributes.4"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="HeightMapping" target="//@targetSectionModel/@libraryElements.1/@parameters.1/@attribute" expression="round(h/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="h" source="//@sourceSectionModel/@metaModelSections.15/@attributes.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel/@libraryElements.1/@parameters.2/@attribute">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" source="//@sourceSectionModel/@metaModelSections.15/@attributes.1"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="XMapping" target="//@targetSectionModel/@libraryElements.1/@parameters.2/@attribute" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel/@metaModelSections.15/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel/@libraryElements.1/@parameters.3/@attribute">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" source="//@sourceSectionModel/@metaModelSections.15/@attributes.2"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="YMapping" target="//@targetSectionModel/@libraryElements.1/@parameters.3/@attribute" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="y" source="//@sourceSectionModel/@metaModelSections.15/@attributes.2"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="h" source="//@sourceSectionModel/@metaModelSections.15/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.1/@parameters.5/@reference">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
@@ -5690,17 +5691,18 @@
         </modelConnectionMatcher>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Matflow LibItem" targetMMSection="//@targetSectionModel/@libraryElements.0/@parameters.4/@class">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel/@libraryElements.0/@parameters.0/@attribute" expression="">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" source="//@sourceSectionModel/@metaModelSections.14/@attributes.3"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="WidthMapping" target="//@targetSectionModel/@libraryElements.0/@parameters.0/@attribute" expression="round(w/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="w" source="//@sourceSectionModel/@metaModelSections.14/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel/@libraryElements.0/@parameters.1/@attribute">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" source="//@sourceSectionModel/@metaModelSections.14/@attributes.4"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="HeightMapping" target="//@targetSectionModel/@libraryElements.0/@parameters.1/@attribute" expression="round(h/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel/@metaModelSections.14/@attributes.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel/@libraryElements.0/@parameters.2/@attribute">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" source="//@sourceSectionModel/@metaModelSections.14/@attributes.1"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="XMapping" target="//@targetSectionModel/@libraryElements.0/@parameters.2/@attribute" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel/@metaModelSections.14/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel/@libraryElements.0/@parameters.3/@attribute">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" source="//@sourceSectionModel/@metaModelSections.14/@attributes.2"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="YMapping" target="//@targetSectionModel/@libraryElements.0/@parameters.3/@attribute" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModel/@metaModelSections.14/@attributes.2"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel/@metaModelSections.14/@attributes.4"/>
         </mappingHints>
         <modelConnectionMatcher name="matflowLibItemConnectionHint">
           <targetAttributes source="//@targetSectionModel/@metaModelSections.7/@attributes.0"/>

@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project default="feature_export" name="build">
-	<target name="feature_export">
-		<pde.exportFeatures destination="G:\staff\matthias\projects\pamtram\update-site" exportSource="false" exportType="directory" features="de.mfreund.pamtram.feature" useJARFormat="true"/>
-	</target>
-</project>

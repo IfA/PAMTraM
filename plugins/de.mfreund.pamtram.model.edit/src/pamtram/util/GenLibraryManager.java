@@ -1,6 +1,7 @@
 package pamtram.util;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import pamtram.metamodel.LibraryEntry;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
@@ -97,9 +98,18 @@ public class GenLibraryManager {
 	 */
 	public void insertIntoTargetModel(EObject targetModel, LibraryEntry libraryEntry) {
 		
+		/*
+		 * We need to create a self-contained copy of the library entry and pass it to the
+		 * LibraryPlugin. Otherwise, the same instance (just with new parameters values) 
+		 * might be inserted multiple times in case of cardinalities > 1 if the caller would
+		 * not handle this by himself. This would lead to strange behavior. 
+		 */
+		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry originalLibraryEntry = 
+				EcoreUtil.copy(libraryEntry.getOriginalLibraryEntry());
+				
 		getLibraryPlugin().insertIntoTargetModel(
 				targetModel, 
-				libraryEntry.getOriginalLibraryEntry(), 
+				originalLibraryEntry, 
 				libraryEntry.getPath());
 	}
 }

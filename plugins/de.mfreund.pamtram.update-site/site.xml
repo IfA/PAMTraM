@@ -3,7 +3,7 @@
    <description name="PAMTraM Update Site" url="https://eats3.et.tu-dresden.de/git/staff/matthias/pamtram/de.mfreund.pamtram.update-site.git/de.mfreund.pamtram.update-site">
       This is the update site for the various PAMTraM plug-ins.
    </description>
-   <feature url="features/de.mfreund.pamtram.feature_1.0.0.201504051618.jar" id="de.mfreund.pamtram.feature" version="1.0.0.201504051618">
+   <feature url="features/de.mfreund.pamtram.feature_1.1.0.201504061045.jar" id="de.mfreund.pamtram.feature" version="1.1.0.201504061045">
       <category name="de.mfreund.pamtram.category.pamtram"/>
    </feature>
    <category-def name="de.mfreund.pamtram.category.pamtram" label="PAMTraM"/>

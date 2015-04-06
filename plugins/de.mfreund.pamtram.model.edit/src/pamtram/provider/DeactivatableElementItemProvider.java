@@ -1,45 +1,51 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.provider;
 
 
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
+import org.eclipse.emf.common.util.ResourceLocator;
+
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import pamtram.DeactivatableElement;
 import pamtram.PamtramPackage;
-import pamtram.mapping.MappingPackage;
-import pamtram.mapping.MappingType;
-import pamtram.mapping.commands.BasicDragAndDropSetCommand;
-import pamtram.metamodel.SourceSectionClass;
-import pamtram.provider.NamedElementItemProvider;
-import pamtram.provider.PamtramEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.MappingType} object.
+ * This is the item provider adapter for a {@link pamtram.DeactivatableElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MappingTypeItemProvider
-	extends NamedElementItemProvider {
+public class DeactivatableElementItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MappingTypeItemProvider(AdapterFactory adapterFactory) {
+	public DeactivatableElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -55,7 +61,6 @@ public class MappingTypeItemProvider
 			super.getPropertyDescriptors(object);
 
 			addDeactivatedPropertyDescriptor(object);
-			addSourceMMSectionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -83,28 +88,6 @@ public class MappingTypeItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Source MM Section feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSourceMMSectionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MappingType_sourceMMSection_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MappingType_sourceMMSection_feature", "_UI_MappingType_type"),
-				 MappingPackage.Literals.MAPPING_TYPE__SOURCE_MM_SECTION,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -112,11 +95,10 @@ public class MappingTypeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((MappingType)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_MappingType_type") :
-			getString("_UI_MappingType_type") + " " + label;
+		DeactivatableElement deactivatableElement = (DeactivatableElement)object;
+		return getString("_UI_DeactivatableElement_type") + " " + deactivatableElement.isDeactivated();
 	}
+	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -129,8 +111,8 @@ public class MappingTypeItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(MappingType.class)) {
-			case MappingPackage.MAPPING_TYPE__DEACTIVATED:
+		switch (notification.getFeatureID(DeactivatableElement.class)) {
+			case PamtramPackage.DEACTIVATABLE_ELEMENT__DEACTIVATED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -160,21 +142,4 @@ public class MappingTypeItemProvider
 		return PamtramEditPlugin.INSTANCE;
 	}
 
-
-	@Override
-	protected Command createDragAndDropCommand(EditingDomain domain,
-			Object owner, float location, int operations, int operation,
-			Collection<?> collection) {
-		
-		if(collection.size() == 1) {
-			Object value = collection.iterator().next();
-			if(value instanceof SourceSectionClass && value == ((SourceSectionClass) value).getContainingSection()) {
-				return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
-						MappingPackage.Literals.MAPPING_TYPE__SOURCE_MM_SECTION, value, 0);
-			}
-		}
-		
-		return super.createDragAndDropCommand(domain, owner, location, operations,
-				operation, collection);
-	}
 }

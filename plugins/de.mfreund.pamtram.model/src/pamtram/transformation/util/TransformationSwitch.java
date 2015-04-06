@@ -5,8 +5,10 @@ package pamtram.transformation.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import pamtram.DeactivatableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.MappingType;
+import pamtram.transformation.*;
 import pamtram.transformation.Transformation;
 import pamtram.transformation.TransformationMapping;
 import pamtram.transformation.TransformationPackage;
@@ -79,6 +81,7 @@ public class TransformationSwitch<T> extends Switch<T> {
 				T result = caseTransformationMapping(transformationMapping);
 				if (result == null) result = caseMappingType(transformationMapping);
 				if (result == null) result = caseNamedElement(transformationMapping);
+				if (result == null) result = caseDeactivatableElement(transformationMapping);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -128,6 +131,21 @@ public class TransformationSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNamedElement(NamedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Deactivatable Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Deactivatable Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDeactivatableElement(DeactivatableElement object) {
 		return null;
 	}
 

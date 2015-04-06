@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
+import pamtram.DeactivatableElement;
 import pamtram.NamedElement;
 
 import pamtram.mapping.*;
@@ -74,6 +75,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				MappingType mappingType = (MappingType)theEObject;
 				T result = caseMappingType(mappingType);
 				if (result == null) result = caseNamedElement(mappingType);
+				if (result == null) result = caseDeactivatableElement(mappingType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -82,6 +84,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				T result = caseMapping(mapping);
 				if (result == null) result = caseMappingType(mapping);
 				if (result == null) result = caseNamedElement(mapping);
+				if (result == null) result = caseDeactivatableElement(mapping);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -96,6 +99,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				InstantiableMappingHintGroup instantiableMappingHintGroup = (InstantiableMappingHintGroup)theEObject;
 				T result = caseInstantiableMappingHintGroup(instantiableMappingHintGroup);
 				if (result == null) result = caseNamedElement(instantiableMappingHintGroup);
+				if (result == null) result = caseDeactivatableElement(instantiableMappingHintGroup);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -105,6 +109,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMappingHintGroupType(mappingHintGroup);
 				if (result == null) result = caseInstantiableMappingHintGroup(mappingHintGroup);
 				if (result == null) result = caseNamedElement(mappingHintGroup);
+				if (result == null) result = caseDeactivatableElement(mappingHintGroup);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -240,6 +245,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				T result = caseMappingHintGroupImporter(mappingHintGroupImporter);
 				if (result == null) result = caseInstantiableMappingHintGroup(mappingHintGroupImporter);
 				if (result == null) result = caseNamedElement(mappingHintGroupImporter);
+				if (result == null) result = caseDeactivatableElement(mappingHintGroupImporter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1236,6 +1242,21 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNamedElement(NamedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Deactivatable Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Deactivatable Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDeactivatableElement(DeactivatableElement object) {
 		return null;
 	}
 

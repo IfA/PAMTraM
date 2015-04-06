@@ -2,6 +2,7 @@
  */
 package pamtram.mapping;
 
+import pamtram.DeactivatableElement;
 import pamtram.NamedElement;
 import pamtram.metamodel.SourceSectionClass;
 
@@ -21,7 +22,7 @@ import pamtram.metamodel.SourceSectionClass;
  * @model abstract="true"
  * @generated
  */
-public interface MappingType extends NamedElement {
+public interface MappingType extends NamedElement, DeactivatableElement {
 	/**
 	 * Returns the value of the '<em><b>Source MM Section</b></em>' reference.
 	 * <!-- begin-user-doc -->

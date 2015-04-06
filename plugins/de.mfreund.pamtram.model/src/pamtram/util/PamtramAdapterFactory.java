@@ -6,6 +6,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import pamtram.*;
 import pamtram.MappingModel;
 import pamtram.NamedElement;
 import pamtram.PAMTraM;
@@ -76,6 +77,10 @@ public class PamtramAdapterFactory extends AdapterFactoryImpl {
 				return createNamedElementAdapter();
 			}
 			@Override
+			public Adapter caseDeactivatableElement(DeactivatableElement object) {
+				return createDeactivatableElementAdapter();
+			}
+			@Override
 			public Adapter casePAMTraM(PAMTraM object) {
 				return createPAMTraMAdapter();
 			}
@@ -130,6 +135,20 @@ public class PamtramAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNamedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.DeactivatableElement <em>Deactivatable Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.DeactivatableElement
+	 * @generated
+	 */
+	public Adapter createDeactivatableElementAdapter() {
 		return null;
 	}
 

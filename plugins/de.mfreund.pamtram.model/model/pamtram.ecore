@@ -4,6 +4,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DeactivatableElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deactivated" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PAMTraM">
     <eStructuralFeatures xsi:type="ecore:EReference" name="contextMetaModelPackage"
         upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
@@ -340,7 +344,7 @@
       <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
       <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
     </eAnnotations>
-    <eClassifiers xsi:type="ecore:EClass" name="MappingType" abstract="true" eSuperTypes="#//NamedElement">
+    <eClassifiers xsi:type="ecore:EClass" name="MappingType" abstract="true" eSuperTypes="#//NamedElement #//DeactivatableElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceMMSection" lowerBound="1"
           eType="#//metamodel/SourceSectionClass"/>
     </eClassifiers>
@@ -361,7 +365,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="mappingHints" upperBound="-1"
           eType="#//mapping/MappingHint" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="InstantiableMappingHintGroup" eSuperTypes="#//NamedElement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="InstantiableMappingHintGroup" eSuperTypes="#//NamedElement #//DeactivatableElement"/>
     <eClassifiers xsi:type="ecore:EClass" name="MappingHintGroup" eSuperTypes="#//mapping/MappingHintGroupType #//mapping/InstantiableMappingHintGroup">
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelConnectionMatcher"
           eType="#//mapping/ModelConnectionHint" containment="true"/>

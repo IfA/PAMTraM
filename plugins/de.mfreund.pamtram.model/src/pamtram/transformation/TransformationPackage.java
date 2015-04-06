@@ -133,6 +133,15 @@ public interface TransformationPackage extends EPackage {
 	int TRANSFORMATION_MAPPING__NAME = MappingPackage.MAPPING_TYPE__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Deactivated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSFORMATION_MAPPING__DEACTIVATED = MappingPackage.MAPPING_TYPE__DEACTIVATED;
+
+	/**
 	 * The feature id for the '<em><b>Source MM Section</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

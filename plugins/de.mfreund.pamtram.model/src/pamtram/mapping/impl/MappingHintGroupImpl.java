@@ -8,6 +8,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import pamtram.DeactivatableElement;
+import pamtram.PamtramPackage;
+import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModelConnectionHint;
@@ -19,6 +22,7 @@ import pamtram.mapping.ModelConnectionHint;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link pamtram.mapping.impl.MappingHintGroupImpl#isDeactivated <em>Deactivated</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImpl#getModelConnectionMatcher <em>Model Connection Matcher</em>}</li>
  * </ul>
  * </p>
@@ -26,6 +30,24 @@ import pamtram.mapping.ModelConnectionHint;
  * @generated
  */
 public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements MappingHintGroup {
+	/**
+	 * The default value of the '{@link #isDeactivated() <em>Deactivated</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDeactivated()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean DEACTIVATED_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isDeactivated() <em>Deactivated</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDeactivated()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean deactivated = DEACTIVATED_EDEFAULT;
 	/**
 	 * The cached value of the '{@link #getModelConnectionMatcher() <em>Model Connection Matcher</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -53,6 +75,27 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	@Override
 	protected EClass eStaticClass() {
 		return MappingPackage.Literals.MAPPING_HINT_GROUP;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isDeactivated() {
+		return deactivated;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDeactivated(boolean newDeactivated) {
+		boolean oldDeactivated = deactivated;
+		deactivated = newDeactivated;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP__DEACTIVATED, oldDeactivated, deactivated));
 	}
 
 	/**
@@ -120,6 +163,8 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case MappingPackage.MAPPING_HINT_GROUP__DEACTIVATED:
+				return isDeactivated();
 			case MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER:
 				return getModelConnectionMatcher();
 		}
@@ -134,6 +179,9 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case MappingPackage.MAPPING_HINT_GROUP__DEACTIVATED:
+				setDeactivated((Boolean)newValue);
+				return;
 			case MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER:
 				setModelConnectionMatcher((ModelConnectionHint)newValue);
 				return;
@@ -149,6 +197,9 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case MappingPackage.MAPPING_HINT_GROUP__DEACTIVATED:
+				setDeactivated(DEACTIVATED_EDEFAULT);
+				return;
 			case MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER:
 				setModelConnectionMatcher((ModelConnectionHint)null);
 				return;
@@ -164,10 +215,70 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case MappingPackage.MAPPING_HINT_GROUP__DEACTIVATED:
+				return deactivated != DEACTIVATED_EDEFAULT;
 			case MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER:
 				return modelConnectionMatcher != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == DeactivatableElement.class) {
+			switch (derivedFeatureID) {
+				case MappingPackage.MAPPING_HINT_GROUP__DEACTIVATED: return PamtramPackage.DEACTIVATABLE_ELEMENT__DEACTIVATED;
+				default: return -1;
+			}
+		}
+		if (baseClass == InstantiableMappingHintGroup.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == DeactivatableElement.class) {
+			switch (baseFeatureID) {
+				case PamtramPackage.DEACTIVATABLE_ELEMENT__DEACTIVATED: return MappingPackage.MAPPING_HINT_GROUP__DEACTIVATED;
+				default: return -1;
+			}
+		}
+		if (baseClass == InstantiableMappingHintGroup.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (deactivated: ");
+		result.append(deactivated);
+		result.append(')');
+		return result.toString();
 	}
 
 } //MappingHintGroupImpl

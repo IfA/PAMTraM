@@ -13,8 +13,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import pamtram.DeactivatableElement;
+import pamtram.PamtramPackage;
 import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.ExportedMappingHintGroup;
+import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingPackage;
@@ -27,6 +30,7 @@ import pamtram.metamodel.TargetSectionClass;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link pamtram.mapping.impl.MappingHintGroupImporterImpl#isDeactivated <em>Deactivated</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImporterImpl#getHintGroup <em>Hint Group</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImporterImpl#getContainer <em>Container</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImporterImpl#getMappingHints <em>Mapping Hints</em>}</li>
@@ -36,6 +40,26 @@ import pamtram.metamodel.TargetSectionClass;
  * @generated
  */
 public class MappingHintGroupImporterImpl extends NamedElementImpl implements MappingHintGroupImporter {
+	/**
+	 * The default value of the '{@link #isDeactivated() <em>Deactivated</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDeactivated()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean DEACTIVATED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isDeactivated() <em>Deactivated</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDeactivated()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean deactivated = DEACTIVATED_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getHintGroup() <em>Hint Group</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -92,6 +116,27 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	@Override
 	protected EClass eStaticClass() {
 		return MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isDeactivated() {
+		return deactivated;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDeactivated(boolean newDeactivated) {
+		boolean oldDeactivated = deactivated;
+		deactivated = newDeactivated;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED, oldDeactivated, deactivated));
 	}
 
 	/**
@@ -247,6 +292,8 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED:
+				return isDeactivated();
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP:
 				if (resolve) return getHintGroup();
 				return basicGetHintGroup();
@@ -268,6 +315,9 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED:
+				setDeactivated((Boolean)newValue);
+				return;
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP:
 				setHintGroup((ExportedMappingHintGroup)newValue);
 				return;
@@ -290,6 +340,9 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED:
+				setDeactivated(DEACTIVATED_EDEFAULT);
+				return;
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP:
 				setHintGroup((ExportedMappingHintGroup)null);
 				return;
@@ -311,6 +364,8 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED:
+				return deactivated != DEACTIVATED_EDEFAULT;
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP:
 				return hintGroup != null;
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONTAINER:
@@ -319,6 +374,64 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 				return isSetMappingHints();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == DeactivatableElement.class) {
+			switch (derivedFeatureID) {
+				case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED: return PamtramPackage.DEACTIVATABLE_ELEMENT__DEACTIVATED;
+				default: return -1;
+			}
+		}
+		if (baseClass == InstantiableMappingHintGroup.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == DeactivatableElement.class) {
+			switch (baseFeatureID) {
+				case PamtramPackage.DEACTIVATABLE_ELEMENT__DEACTIVATED: return MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED;
+				default: return -1;
+			}
+		}
+		if (baseClass == InstantiableMappingHintGroup.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (deactivated: ");
+		result.append(deactivated);
+		result.append(')');
+		return result.toString();
 	}
 
 } //MappingHintGroupImporterImpl

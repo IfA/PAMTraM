@@ -2,6 +2,7 @@
  */
 package pamtram.mapping;
 
+import pamtram.DeactivatableElement;
 import pamtram.NamedElement;
 
 /**
@@ -14,5 +15,5 @@ import pamtram.NamedElement;
  * @model
  * @generated
  */
-public interface InstantiableMappingHintGroup extends NamedElement {
+public interface InstantiableMappingHintGroup extends NamedElement, DeactivatableElement {
 } // InstantiableMappingHintGroup

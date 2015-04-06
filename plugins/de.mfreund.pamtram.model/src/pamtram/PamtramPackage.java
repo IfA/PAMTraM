@@ -94,6 +94,43 @@ public interface PamtramPackage extends EPackage {
 	int NAMED_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link pamtram.impl.DeactivatableElementImpl <em>Deactivatable Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.impl.DeactivatableElementImpl
+	 * @see pamtram.impl.PamtramPackageImpl#getDeactivatableElement()
+	 * @generated
+	 */
+	int DEACTIVATABLE_ELEMENT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Deactivated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEACTIVATABLE_ELEMENT__DEACTIVATED = 0;
+
+	/**
+	 * The number of structural features of the '<em>Deactivatable Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEACTIVATABLE_ELEMENT_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Deactivatable Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEACTIVATABLE_ELEMENT_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link pamtram.impl.PAMTraMImpl <em>PAM Tra M</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -101,7 +138,7 @@ public interface PamtramPackage extends EPackage {
 	 * @see pamtram.impl.PamtramPackageImpl#getPAMTraM()
 	 * @generated
 	 */
-	int PAM_TRA_M = 1;
+	int PAM_TRA_M = 2;
 
 	/**
 	 * The feature id for the '<em><b>Context Meta Model Package</b></em>' reference list.
@@ -174,7 +211,7 @@ public interface PamtramPackage extends EPackage {
 	 * @see pamtram.impl.PamtramPackageImpl#getSectionModel()
 	 * @generated
 	 */
-	int SECTION_MODEL = 2;
+	int SECTION_MODEL = 3;
 
 	/**
 	 * The feature id for the '<em><b>Meta Model Package</b></em>' reference.
@@ -211,7 +248,7 @@ public interface PamtramPackage extends EPackage {
 	 * @see pamtram.impl.PamtramPackageImpl#getSourceSectionModel()
 	 * @generated
 	 */
-	int SOURCE_SECTION_MODEL = 3;
+	int SOURCE_SECTION_MODEL = 4;
 
 	/**
 	 * The feature id for the '<em><b>Meta Model Package</b></em>' reference.
@@ -257,7 +294,7 @@ public interface PamtramPackage extends EPackage {
 	 * @see pamtram.impl.PamtramPackageImpl#getTargetSectionModel()
 	 * @generated
 	 */
-	int TARGET_SECTION_MODEL = 4;
+	int TARGET_SECTION_MODEL = 5;
 
 	/**
 	 * The feature id for the '<em><b>Meta Model Package</b></em>' reference.
@@ -312,7 +349,7 @@ public interface PamtramPackage extends EPackage {
 	 * @see pamtram.impl.PamtramPackageImpl#getMappingModel()
 	 * @generated
 	 */
-	int MAPPING_MODEL = 5;
+	int MAPPING_MODEL = 6;
 
 	/**
 	 * The feature id for the '<em><b>Mapping</b></em>' containment reference list.
@@ -367,7 +404,7 @@ public interface PamtramPackage extends EPackage {
 	 * @see pamtram.impl.PamtramPackageImpl#getTransformationModel()
 	 * @generated
 	 */
-	int TRANSFORMATION_MODEL = 6;
+	int TRANSFORMATION_MODEL = 7;
 
 	/**
 	 * The feature id for the '<em><b>Transformation</b></em>' containment reference list.
@@ -417,6 +454,27 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getNamedElement_Name();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.DeactivatableElement <em>Deactivatable Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Deactivatable Element</em>'.
+	 * @see pamtram.DeactivatableElement
+	 * @generated
+	 */
+	EClass getDeactivatableElement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link pamtram.DeactivatableElement#isDeactivated <em>Deactivated</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Deactivated</em>'.
+	 * @see pamtram.DeactivatableElement#isDeactivated()
+	 * @see #getDeactivatableElement()
+	 * @generated
+	 */
+	EAttribute getDeactivatableElement_Deactivated();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.PAMTraM <em>PAM Tra M</em>}'.
@@ -661,6 +719,24 @@ public interface PamtramPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute NAMED_ELEMENT__NAME = eINSTANCE.getNamedElement_Name();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.impl.DeactivatableElementImpl <em>Deactivatable Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.impl.DeactivatableElementImpl
+		 * @see pamtram.impl.PamtramPackageImpl#getDeactivatableElement()
+		 * @generated
+		 */
+		EClass DEACTIVATABLE_ELEMENT = eINSTANCE.getDeactivatableElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Deactivated</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DEACTIVATABLE_ELEMENT__DEACTIVATED = eINSTANCE.getDeactivatableElement_Deactivated();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.impl.PAMTraMImpl <em>PAM Tra M</em>}' class.

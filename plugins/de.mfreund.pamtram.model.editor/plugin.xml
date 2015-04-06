@@ -73,6 +73,22 @@ null
             contributorClass="pamtram.transformation.presentation.TransformationActionBarContributor">
       </editor>
    </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="pamtram.handlers.DeactivationCommandHandler"
+            id="de.mfreund.pamtram.commands.DeactivationCommand"
+            name="Deactivate">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            class="pamtram.contributions.DeactivateMenuContribution"
+            locationURI="popup:pamtram.presentation.PamtramEditorID">
+      </menuContribution>
+   </extension>
 
 null
 </plugin>

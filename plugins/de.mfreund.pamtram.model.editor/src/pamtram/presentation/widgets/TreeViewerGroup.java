@@ -177,6 +177,7 @@ public class TreeViewerGroup extends FilteredTree{
 	 * @param parent
 	 * @param treeStyle
 	 */
+	@Override
 	protected void createControl(Composite parent, int treeStyle) {
 		
 		// Set the layout for the main composite
@@ -348,6 +349,7 @@ public class TreeViewerGroup extends FilteredTree{
 			menuManager.createContextMenu(dropdown.getParent());
 		}
 		
+		@Override
 		public void widgetSelected(SelectionEvent event) {
 			if (event.detail == SWT.ARROW) {
 		    	ToolItem item = (ToolItem) event.widget;

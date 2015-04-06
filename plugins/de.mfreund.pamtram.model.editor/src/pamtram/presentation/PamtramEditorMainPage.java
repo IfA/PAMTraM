@@ -25,6 +25,7 @@ import org.eclipse.swt.widgets.TreeItem;
 
 import pamtram.MappingModel;
 import pamtram.TargetSectionModel;
+import pamtram.contentadapter.DeactivationListenerAdapter;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
@@ -215,7 +216,17 @@ public class PamtramEditorMainPage extends SashForm {
 				mappingSash, adapterFactory, editor.getEditingDomain(),
 				"Mappings", null, null, true, true
 			).getViewer();
-		
+		/*
+		 * We add a special content adapter that will refresh the viewer when an element
+		 * gets (de-)activated. Otherwise, the updates to the label and its colors are
+		 * not reflected properly.
+		 */
+		editor.getPamtramContentAdapter().addSubAdapter(
+				new DeactivationListenerAdapter(editor.getPamtramContentAdapter(), mappingViewer));
+		/*
+		 * Use a special label and content provider.
+		 */
+		mappingViewer.setLabelProvider(new MappingViewerLabelProvider(adapterFactory));
 		mappingViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory) {
 			/* extend the content provider in a way that no attribute value modifier sets 
 			 * but only mappings are returned as children of a mapping model

@@ -61,4 +61,21 @@ public class PamtramContentAdapter extends EContentAdapter {
 	 */
 	final NameSettingAdapter nameSettingAdapter = 
 			new NameSettingAdapter(this);
+	
+	/**
+	 * This adds a new {@link PamtramChildContentAdapter} that will get notified.
+	 * @param subAdapter The {@link PamtramChildContentAdapter} to be added.
+	 */
+	public void addSubAdapter(PamtramChildContentAdapter subAdapter) {
+		subAdapters.add(subAdapter);
+	}
+	
+	/**
+	 * This removes an existing {@link PamtramChildContentAdapter} so that it will
+	 * not be notified any more.
+	 * @param subAdapter The {@link PamtramChildContentAdapter} to be removed.
+	 */
+	public void removeSubAdapter(PamtramChildContentAdapter subAdapter) {
+		subAdapters.remove(subAdapter);
+	}
 }

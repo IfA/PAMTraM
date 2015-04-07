@@ -1,0 +1,52 @@
+<project name="MyProject" default="cleanup" basedir=".">
+    <description>
+		This updates the contents of the update site on the web server.
+    </description>
+	
+	<!-- the folder that shall contain the update site -->
+	<property name="update-site-url" location="G:\staff\matthias\projects\pamtram\updates"/>
+	
+	<!-- whether to delete the local update site files at the end -->
+	<property name="delete-local" value="true" />
+	
+	<!-- ================================= 
+	          target: dir.check              
+	         ================================= -->
+	<target name="dir.check">
+		<!-- check if the folder representing the update site exists -->
+		<condition property="dir.exists">
+			<available file="${update-site-url}" type="dir"/>
+		</condition>
+	</target>
+
+	<!-- ================================= 
+	          target: publish              
+	         ================================= -->
+	<target name="publish" depends="dir.check" if="dir.exists">
+
+		<echo>Publishing to update site...</echo>
+		
+		<!-- copy the 'features' and 'plugins' folder as well as 'artifacts.jar' and 'content.jar'
+			to the specified directory representing the update site -->
+		<copy todir="${update-site-url}">
+			<fileset refid="update-site" />
+		</copy>
+	</target>
+	
+	<!-- ================================= 
+          target: cleanup              
+         ================================= -->
+    <target name="cleanup" depends="publish" if="${delete-local}">
+    	<delete>
+    		<fileset refid="update-site" />
+		</delete>
+    </target>
+	
+	<!-- this fileset represents all the file making up the update site -->
+	<fileset dir="${basedir}" id="update-site">
+		<include name="features/*" />
+		<include name="plugins/*" />
+		<include name="artifacts.jar" />
+		<include name="content.jar" />
+	</fileset>
+</project>

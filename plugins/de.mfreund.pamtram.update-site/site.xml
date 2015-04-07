@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <description name="PAMTraM Update Site" url="https://eats3.et.tu-dresden.de/git/staff/matthias/pamtram/de.mfreund.pamtram.update-site.git/de.mfreund.pamtram.update-site">
+   <description name="PAMTraM Update Site" url="https://eats3.et.tu-dresden.de/git/staff/matthias/pamtram/updates">
       This is the update site for the various PAMTraM plug-ins.
    </description>
    <feature url="features/de.mfreund.pamtram.feature_1.1.0.201504061045.jar" id="de.mfreund.pamtram.feature" version="1.1.0.201504061045">

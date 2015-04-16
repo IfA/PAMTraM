@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ASCII"?>
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:pamtram="http://mfreund.de/pamtram">
+  <sourceSectionModel>
+    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/"/>
+    <metaModelSections name="source"/>
+  </sourceSectionModel>
+  <targetSectionModel>
+    <metaModelPackage href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/opcxmlda#/"/>
+    <metaModelSections name="target"/>
+  </targetSectionModel>
+  <mappingModel>
+    <mapping sourceMMSection="//@sourceSectionModel/@metaModelSections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" targetMMSection="//@targetSectionModel/@metaModelSections.0"/>
+    </mapping>
+  </mappingModel>
+</pamtram:PAMTraM>

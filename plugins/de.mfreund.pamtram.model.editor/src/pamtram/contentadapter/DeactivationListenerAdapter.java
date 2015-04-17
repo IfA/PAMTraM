@@ -40,7 +40,9 @@ public class DeactivationListenerAdapter extends PamtramChildContentAdapter {
 			/*
 			 * Refresh the given viewer.
 			 */
-			viewer.refresh();
+			if(viewer != null) {
+				viewer.refresh();
+			}
 		}
 	}
 }

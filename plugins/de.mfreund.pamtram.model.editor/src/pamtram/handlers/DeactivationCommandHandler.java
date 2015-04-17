@@ -82,7 +82,7 @@ public class DeactivationCommandHandler extends AbstractHandler {
         }
         
         // Finally, execute the command.
-		compoundCommand.execute();
+        domain.getCommandStack().execute(compoundCommand);
 		return null;
 	}
 

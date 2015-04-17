@@ -2,9 +2,11 @@
  */
 package pamtram.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -88,6 +90,7 @@ public class MappingModelImpl extends MinimalEObjectImpl.Container implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Mapping> getMapping() {
 		if (mapping == null) {
 			mapping = new EObjectContainmentEList<Mapping>(Mapping.class, this, PamtramPackage.MAPPING_MODEL__MAPPING);
@@ -100,6 +103,7 @@ public class MappingModelImpl extends MinimalEObjectImpl.Container implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<AttributeValueModifierSet> getModifierSets() {
 		if (modifierSets == null) {
 			modifierSets = new EObjectContainmentEList<AttributeValueModifierSet>(AttributeValueModifierSet.class, this, PamtramPackage.MAPPING_MODEL__MODIFIER_SETS);
@@ -112,11 +116,31 @@ public class MappingModelImpl extends MinimalEObjectImpl.Container implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GlobalValue> getGlobalValues() {
 		if (globalValues == null) {
 			globalValues = new EObjectContainmentEList<GlobalValue>(GlobalValue.class, this, PamtramPackage.MAPPING_MODEL__GLOBAL_VALUES);
 		}
 		return globalValues;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * This returns the active mappings (the subset of the defined mappings ({@link #mapping}) 
+	 * for that {@link Mapping#isDeactivated()} returns '<em>false</em>').
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Mapping> getActiveMappings() {
+		EList<Mapping> mappings = getMapping();
+		EList<Mapping> activeMappings = new BasicEList<>();
+		for (Mapping mapping : mappings) {
+			if(!mapping.isDeactivated()) {
+				activeMappings.add(mapping);
+			}
+		}
+		return activeMappings;
 	}
 
 	/**
@@ -217,6 +241,20 @@ public class MappingModelImpl extends MinimalEObjectImpl.Container implements Ma
 				return globalValues != null && !globalValues.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case PamtramPackage.MAPPING_MODEL___GET_ACTIVE_MAPPINGS:
+				return getActiveMappings();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //MappingModelImpl

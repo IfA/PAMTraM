@@ -35,6 +35,11 @@
         eType="#//metamodel/LibraryEntry" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MappingModel">
+    <eOperations name="getActiveMappings" upperBound="-1" eType="#//mapping/Mapping">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="EList&lt;Mapping> mappings = getMapping();&#xD;&#xA;EList&lt;Mapping> activeMappings = new BasicEList&lt;>();&#xD;&#xA;for (Mapping mapping : mappings) {&#xD;&#xA;&#x9;if(!mapping.isDeactivated()) {&#xD;&#xA;&#x9;&#x9;activeMappings.add(mapping);&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;return activeMappings;"/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mapping" lowerBound="1"
         upperBound="-1" eType="#//mapping/Mapping" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="modifierSets" upperBound="-1"
@@ -349,6 +354,11 @@
           eType="#//metamodel/SourceSectionClass"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Mapping" eSuperTypes="#//mapping/MappingType">
+      <eOperations name="getActiveMappingHintGroups" upperBound="-1" eType="#//mapping/MappingHintGroupType">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="EList&lt;MappingHintGroupType> hintGroups = getMappingHintGroups();&#xD;&#xA;EList&lt;MappingHintGroupType> activeHintGroups = new BasicEList&lt;>();&#xD;&#xA;for (MappingHintGroupType hintGroup : hintGroups) {&#xD;&#xA;&#x9;if(hintGroup instanceof InstantiableMappingHintGroup &amp;&amp; &#xD;&#xA;&#x9;&#x9;&#x9;!((InstantiableMappingHintGroup) hintGroup).isDeactivated()) {&#xD;&#xA;&#x9;&#x9;activeHintGroups.add(hintGroup);&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;return activeHintGroups;"/>
+        </eAnnotations>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//condition/ComplexCondition"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="mappingHintGroups" upperBound="-1"

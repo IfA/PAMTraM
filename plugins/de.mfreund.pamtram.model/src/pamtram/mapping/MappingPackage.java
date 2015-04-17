@@ -198,13 +198,22 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_FEATURE_COUNT = MAPPING_TYPE_FEATURE_COUNT + 4;
 
 	/**
+	 * The operation id for the '<em>Get Active Mapping Hint Groups</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING___GET_ACTIVE_MAPPING_HINT_GROUPS = MAPPING_TYPE_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Mapping</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_OPERATION_COUNT = MAPPING_TYPE_OPERATION_COUNT + 0;
+	int MAPPING_OPERATION_COUNT = MAPPING_TYPE_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappingHintTypeImpl <em>Hint Type</em>}' class.
@@ -2900,6 +2909,16 @@ public interface MappingPackage extends EPackage {
 	EReference getMapping_GlobalVariables();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.Mapping#getActiveMappingHintGroups() <em>Get Active Mapping Hint Groups</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Active Mapping Hint Groups</em>' operation.
+	 * @see pamtram.mapping.Mapping#getActiveMappingHintGroups()
+	 * @generated
+	 */
+	EOperation getMapping__GetActiveMappingHintGroups();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.MappingType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3909,6 +3928,14 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MAPPING__GLOBAL_VARIABLES = eINSTANCE.getMapping_GlobalVariables();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Active Mapping Hint Groups</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MAPPING___GET_ACTIVE_MAPPING_HINT_GROUPS = eINSTANCE.getMapping__GetActiveMappingHintGroups();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.MappingTypeImpl <em>Type</em>}' class.

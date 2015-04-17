@@ -4,6 +4,7 @@ package pamtram;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -388,13 +389,22 @@ public interface PamtramPackage extends EPackage {
 	int MAPPING_MODEL_FEATURE_COUNT = 3;
 
 	/**
+	 * The operation id for the '<em>Get Active Mappings</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_MODEL___GET_ACTIVE_MAPPINGS = 0;
+
+	/**
 	 * The number of operations of the '<em>Mapping Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_MODEL_OPERATION_COUNT = 0;
+	int MAPPING_MODEL_OPERATION_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.impl.TransformationModelImpl <em>Transformation Model</em>}' class.
@@ -659,6 +669,16 @@ public interface PamtramPackage extends EPackage {
 	EReference getMappingModel_GlobalValues();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.MappingModel#getActiveMappings() <em>Get Active Mappings</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Active Mappings</em>' operation.
+	 * @see pamtram.MappingModel#getActiveMappings()
+	 * @generated
+	 */
+	EOperation getMappingModel__GetActiveMappings();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.TransformationModel <em>Transformation Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -883,6 +903,14 @@ public interface PamtramPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MAPPING_MODEL__GLOBAL_VALUES = eINSTANCE.getMappingModel_GlobalValues();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Active Mappings</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MAPPING_MODEL___GET_ACTIVE_MAPPINGS = eINSTANCE.getMappingModel__GetActiveMappings();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.impl.TransformationModelImpl <em>Transformation Model</em>}' class.

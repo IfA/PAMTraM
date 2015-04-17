@@ -2,17 +2,22 @@
  */
 package pamtram.mapping.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import pamtram.condition.ComplexCondition;
 import pamtram.mapping.GlobalAttribute;
+import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
@@ -99,6 +104,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ComplexCondition getCondition() {
 		return condition;
 	}
@@ -123,6 +129,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCondition(ComplexCondition newCondition) {
 		if (newCondition != condition) {
 			NotificationChain msgs = null;
@@ -142,6 +149,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<MappingHintGroupType> getMappingHintGroups() {
 		if (mappingHintGroups == null) {
 			mappingHintGroups = new EObjectContainmentEList<MappingHintGroupType>(MappingHintGroupType.class, this, MappingPackage.MAPPING__MAPPING_HINT_GROUPS);
@@ -154,6 +162,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<MappingHintGroupImporter> getImportedMappingHintGroups() {
 		if (importedMappingHintGroups == null) {
 			importedMappingHintGroups = new EObjectContainmentEList<MappingHintGroupImporter>(MappingHintGroupImporter.class, this, MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS);
@@ -166,11 +175,34 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GlobalAttribute> getGlobalVariables() {
 		if (globalVariables == null) {
 			globalVariables = new EObjectContainmentEList<GlobalAttribute>(GlobalAttribute.class, this, MappingPackage.MAPPING__GLOBAL_VARIABLES);
 		}
 		return globalVariables;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * This returns the active mappingHintGroups (the subset of the defined {@link #mappingHintGroups} 
+	 * for that {@link InstantiableMappingHintGroup#isDeactivated()}) returns '<em>false</em>'.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<MappingHintGroupType> getActiveMappingHintGroups() {
+		EList<MappingHintGroupType> hintGroups = getMappingHintGroups();
+		EList<MappingHintGroupType> activeHintGroups = new BasicEList<>();
+		for (MappingHintGroupType hintGroup : hintGroups) {
+			if(hintGroup instanceof InstantiableMappingHintGroup && 
+					((InstantiableMappingHintGroup) hintGroup).isDeactivated()) {
+				// skip this one
+			} else {
+				activeHintGroups.add(hintGroup);
+			}
+		}
+		return activeHintGroups;
 	}
 
 	/**
@@ -283,6 +315,20 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 				return globalVariables != null && !globalVariables.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case MappingPackage.MAPPING___GET_ACTIVE_MAPPING_HINT_GROUPS:
+				return getActiveMappingHintGroups();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //MappingImpl

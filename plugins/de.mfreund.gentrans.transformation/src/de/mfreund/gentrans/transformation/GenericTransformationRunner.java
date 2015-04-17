@@ -474,7 +474,7 @@ public class GenericTransformationRunner {
 			 * import hint values
 			 */
 			for (final MappingHintGroupType g : selMap.getMapping()
-					.getMappingHintGroups()) {
+					.getActiveMappingHintGroups()) {
 				if (g instanceof ExportedMappingHintGroup) {
 					for (final MappingHint h : g.getMappingHints()) {
 						if (!exportedMappingHints.containsKey(h)) {
@@ -707,7 +707,7 @@ public class GenericTransformationRunner {
 		 * Connect all target sections
 		 */
 		for (final Mapping m : suitableMappings) {
-			for (final MappingHintGroupType g : m.getMappingHintGroups()) {
+			for (final MappingHintGroupType g : m.getActiveMappingHintGroups()) {
 
 				if (g.getTargetMMSection() != null
 						&& g instanceof MappingHintGroup) {// targetSection
@@ -813,7 +813,7 @@ public class GenericTransformationRunner {
 								// get container instances created by this
 								// mapping instance
 								for (final MappingHintGroupType group : m
-										.getMappingHintGroups()) {
+										.getActiveMappingHintGroups()) {
 									if (isCancelled)
 										return false;
 
@@ -916,10 +916,10 @@ public class GenericTransformationRunner {
 			return null;
 		}
 
-		// find and resolve ambiguous mappings as far as possible without user
+		// find active mappings and resolve ambiguities as far as possible without user
 		// input
 		final List<Mapping> suitableMappings = pamtramModel.getMappingModel()
-				.getMapping();// TODO apply context Model
+				.getActiveMappings();// TODO apply context Model
 
 		// generate storage objects and generators
 		final AttributeValueModifierExecutor attributeValueModifier = new AttributeValueModifierExecutor(
@@ -1013,10 +1013,10 @@ public class GenericTransformationRunner {
 		for (final MappingInstanceStorage selMap : selectedMappings) {
 			
 			/*
-			 * Iterate over all mapping hint group (except empty ones)
+			 * Iterate over all mapping hint group (except inactive and empty ones)
 			 */
 			for (final MappingHintGroupType g : selMap.getMapping()
-					.getMappingHintGroups()) {
+					.getActiveMappingHintGroups()) {
 				if (g.getTargetMMSection() != null
 						&& g instanceof MappingHintGroup) {
 
@@ -1295,7 +1295,7 @@ public class GenericTransformationRunner {
 		double accumulatedWork = 0;
 		for (final MappingInstanceStorage selMap : selectedMappings) {
 			for (final MappingHintGroupType g : selMap.getMapping()
-					.getMappingHintGroups()) {
+					.getActiveMappingHintGroups()) {
 				if (isCancelled)
 					return false;
 
@@ -1402,10 +1402,10 @@ public class GenericTransformationRunner {
 			return;
 		}
 
-		// find and resolve ambiguous mappings as far as possible without user
+		// find active mappings and resolve ambiguities as far as possible without user
 		// input
 		final List<Mapping> suitableMappings = pamtramModel.getMappingModel()
-				.getMapping();// TODO apply contextModel
+				.getActiveMappings();// TODO apply contextModel
 
 		if (executeMappings(targetModel, sourceModel, pamtramModel, suitableMappings,
 				monitor) && !isCancelled) {

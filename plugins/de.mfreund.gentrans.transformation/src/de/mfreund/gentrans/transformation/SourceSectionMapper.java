@@ -1566,7 +1566,7 @@ class SourceSectionMapper implements CancellationListener {
 	private List<MappingHintType> getHints(final Mapping m) {
 		if (!mappingHints.containsKey(m)) {
 			mappingHints.put(m, new LinkedList<MappingHintType>());
-			for (final MappingHintGroupType g : m.getMappingHintGroups()) {
+			for (final MappingHintGroupType g : m.getActiveMappingHintGroups()) {
 				if (g.getMappingHints() != null) {
 					mappingHints.get(m).addAll(g.getMappingHints());
 				}
@@ -1600,7 +1600,7 @@ class SourceSectionMapper implements CancellationListener {
 	private List<ModelConnectionHint> getModelConnectionHints(final Mapping m) {
 		if (!modelConnectionHints.containsKey(m)) {
 			modelConnectionHints.put(m, new LinkedList<ModelConnectionHint>());
-			for (final MappingHintGroupType g : m.getMappingHintGroups()) {
+			for (final MappingHintGroupType g : m.getActiveMappingHintGroups()) {
 				if (g instanceof MappingHintGroup) {
 					if (((MappingHintGroup) g).getModelConnectionMatcher() != null) {
 						modelConnectionHints.get(m).add(

@@ -49,6 +49,12 @@ public class PamtramContentAdapter extends EContentAdapter {
 	@Override
 	public void notifyChanged(Notification notification) {
 		
+		if(notification.getEventType() == Notification.REMOVING_ADAPTER &&
+				notification.getOldValue().equals(this)) {
+			// this adapter is being disposed, so do not forward this notification
+			return;
+		}
+		
 		// notify every child adapter
 		for (EContentAdapter eContentAdapter : subAdapters) {
 			eContentAdapter.notifyChanged(notification);

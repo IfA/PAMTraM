@@ -124,6 +124,13 @@ public class PamtramEditorMainPage extends SashForm {
 	 */
 	protected TreeViewer libTargetViewer;
 
+	/**
+	 * This is a special content adapter that will refresh the viewer when an element
+	 * gets (de-)activated. Otherwise, the updates to the label and its colors are
+	 * not reflected properly.
+	 */
+	protected DeactivationListenerAdapter deactivationListener;
+
 	public PamtramEditorMainPage(
 			Composite parent, 
 			int style, 
@@ -221,8 +228,8 @@ public class PamtramEditorMainPage extends SashForm {
 		 * gets (de-)activated. Otherwise, the updates to the label and its colors are
 		 * not reflected properly.
 		 */
-		editor.getPamtramContentAdapter().addSubAdapter(
-				new DeactivationListenerAdapter(editor.getPamtramContentAdapter(), mappingViewer));
+		deactivationListener = new DeactivationListenerAdapter(editor.getPamtramContentAdapter(), mappingViewer);
+		editor.getPamtramContentAdapter().addSubAdapter(deactivationListener);
 		/*
 		 * Use a special label and content provider.
 		 */

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AbstractUserInterfaceModel xmlns="http://www.w3.org/2013/mbui-aui">
+	<AbstractInteractionUnit id="fshskd">		
+		<EventSupport>
+			<DataSelectionSupport/>
+		</EventSupport>
+		<PresentationSupport>
+			<DataSelectionSupport/>
+		</PresentationSupport>
+	</AbstractInteractionUnit>
+</AbstractUserInterfaceModel>

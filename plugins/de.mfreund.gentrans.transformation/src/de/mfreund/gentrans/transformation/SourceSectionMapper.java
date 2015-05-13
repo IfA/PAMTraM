@@ -1,6 +1,7 @@
 package de.mfreund.gentrans.transformation;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -1640,6 +1641,7 @@ class SourceSectionMapper implements CancellationListener {
 	 * {@link ModelConnectionHintSourceElement ModelConnectionHintSourceElements} will be stored.
 	 * @return '<em></b>true</b></em>' if all attributes are present, '<em><b>false</b></em>' otherwise
 	 */
+	@SuppressWarnings("unchecked")
 	private boolean handleAttributes(
 			final EObject srcModelObject,
 			final Iterable<MappingHintType> hints,
@@ -1650,12 +1652,39 @@ class SourceSectionMapper implements CancellationListener {
 			final Map<AttributeMappingSourceElement, String> complexSourceElementHintValues,
 			final Map<AttributeMatcherSourceElement, String> complexAttrMatcherSourceElementHintValues,
 			final Map<ModelConnectionHintSourceElement, String> complexConnectionHintSourceElementHintValues) {
+		
 		for (final SourceSectionAttribute at : srcSection.getAttributes()) {
 			/*
 			 * look for attributes in srcSection does it exist in src model?
 			 */
 			final Object srcAttr = srcModelObject.eGet(at.getAttribute());
-			if (srcAttr != null) {
+			
+			if (srcAttr == null) {// attribute not set / null
+				// Not a problem unless any mappings point here or Constraints
+				// were modeled.
+				// Unset mapping hint values are handled elsewhere.
+				// Here we only need to check for matchers
+				if (at.getValueConstraint().size() > 0) {
+					return false;
+				}
+			}
+			
+			/*
+			 * As attributes may have a cardinality greater than 1, too, we have to handle
+			 * every attribute value separately.
+			 */
+			ArrayList<Object> srcAttrValues = new ArrayList<>();
+			if(srcAttr instanceof Collection<?>) {
+				srcAttrValues.addAll((Collection<Object>) srcAttr);
+			} else {
+				srcAttrValues.add(srcAttr);
+			}
+			
+			/*
+			 * First, we check if all the constraints are satisfied for every attribute value.
+			 */
+			for (Object srcAttrValue : srcAttrValues) {
+				
 				// convert Attribute value to String
 				final String srcAttrAsString = at
 						.getAttribute()
@@ -1663,7 +1692,7 @@ class SourceSectionMapper implements CancellationListener {
 						.getEPackage()
 						.getEFactoryInstance()
 						.convertToString(at.getAttribute().getEAttributeType(),
-								srcAttr);
+								srcAttrValue);
 				/*
 				 * check AttributeValueSpecifications
 				 *
@@ -1715,6 +1744,24 @@ class SourceSectionMapper implements CancellationListener {
 				if (!inclusionMatched && containsInclusions) {
 					return false;
 				}
+			}
+			
+			/*
+			 * Second, we iterate once again and calculate all the hint values based
+			 * on the attributes.
+			 * Note: We have to iterate two times to prevent side effects if the check for
+			 * constraints (see above) fails at anything but the first value.
+			 */
+			for (Object srcAttrValue : srcAttrValues) {
+				
+				// convert Attribute value to String
+				final String srcAttrAsString = at
+						.getAttribute()
+						.getEType()
+						.getEPackage()
+						.getEFactoryInstance()
+						.convertToString(at.getAttribute().getEAttributeType(),
+								srcAttrValue);
 
 				// handle possible attribute mappings
 				for (final MappingHintType hint : hints) {
@@ -1791,16 +1838,7 @@ class SourceSectionMapper implements CancellationListener {
 					}
 				}
 
-			} else {// attribute not set / null
-				// return null;
-				// Not a problem unless any mappings point here or Constraints
-				// were modelled.
-				// Unset mapping hint values are handled elsewhere.
-				// Here we only need to check for matchers
-				if (at.getValueConstraint().size() > 0) {
-					return false;
-				}
-			}
+			} 
 		}
 		return true;
 	}

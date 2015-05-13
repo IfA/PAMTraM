@@ -86,7 +86,7 @@ public class AttributeValueCalculator {
 	 * @return The calculated attribute value or <em>null</em> if no value could be calculated.
 	 */
 	public String calculateAttributeValue(final TargetSectionAttribute attr,
-			MappingHint hint, LinkedList<Object> attrHintValues) {
+			MappingHint hint, LinkedList<Object> attrHintValues, int i) {
 		String attrValue = null;
 		if (attrHintValues != null) {
 			if (hint instanceof AttributeMapping) {
@@ -101,11 +101,15 @@ public class AttributeValueCalculator {
 						 * overwrite names of global variables
 						 */
 						@SuppressWarnings("unchecked")
-						final Map<AttributeMappingSourceElement, String> varValues = (Map<AttributeMappingSourceElement, String>) attrHintValues
-						.remove(0);
+						final Map<AttributeMappingSourceElement, AttributeValueRepresentation> varValues = 
+								(Map<AttributeMappingSourceElement, AttributeValueRepresentation>) attrHintValues.remove(0);
 						final Map<String, Double> stringVarValues = new HashMap<String, Double>();
 						for (AttributeMappingSourceInterface s : varValues.keySet()) {
-							stringVarValues.put(s.getName(), Double.valueOf(varValues.get(s)));
+							if(varValues.get(s).isMany()) {
+								stringVarValues.put(s.getName(), Double.valueOf(varValues.get(s).getValues().get(i)));
+							} else {
+								stringVarValues.put(s.getName(), Double.valueOf(varValues.get(s).getValue()));
+							}
 						}
 						
 						vars.putAll(stringVarValues);
@@ -133,12 +137,16 @@ public class AttributeValueCalculator {
 				} else {
 					
 					@SuppressWarnings("unchecked")
-					final Map<AttributeMappingSourceInterface, String> hVal = (Map<AttributeMappingSourceInterface, String>) attrHintValues
-					.remove(0);
+					final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> hVal = 
+							(Map<AttributeMappingSourceInterface, AttributeValueRepresentation>) attrHintValues.remove(0);
 					for (final AttributeMappingSourceInterface srcElement : ((AttributeMapping) hint)
 							.getSourceAttributeMappings()) {
 						if (hVal.containsKey(srcElement)) {
-							attrValue += hVal.get(srcElement);
+							if(hVal.get(srcElement).isMany()) {
+								attrValue += hVal.get(srcElement).getValues().get(i);
+							} else {
+								attrValue += hVal.get(srcElement).getValue();
+							}
 						} else {
 							consoleStream
 							.println("HintSourceValue not found for element "

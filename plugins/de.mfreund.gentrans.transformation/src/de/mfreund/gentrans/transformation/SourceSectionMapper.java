@@ -818,7 +818,6 @@ class SourceSectionMapper implements CancellationListener {
 					
 				if (foundValues.keySet().size() > 0) {
 					complexAttributeMappingsFound.add((AttributeMapping) h);
-					System.out.println(foundValues);
 					@SuppressWarnings("unchecked")
 					final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> oldValues = 
 							(Map<AttributeMappingSourceInterface, AttributeValueRepresentation>) changedRefsAndHints.getHintValues().get(h).remove();

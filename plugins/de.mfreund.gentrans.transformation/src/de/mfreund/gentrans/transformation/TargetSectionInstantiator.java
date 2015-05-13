@@ -326,13 +326,33 @@ class TargetSectionInstantiator implements CancellationListener {
 
 		boolean attrMappingExists = false;
 		int cardHintValue = 0;
-
 		/*
 		 * check for CardinalityHint
 		 */
 		for (final MappingHint h : mappingHints) {
 			if (h instanceof AttributeMapping) {
 				attrMappingExists = true;
+				/*
+				 * Calculate the cardinality in case there are multi-valued attributes
+				 */
+				if(hintValues.containsKey(h)) {
+					for (Object x : hintValues.get(h)) {
+						@SuppressWarnings("unchecked")
+						final HashMap<AttributeMatcherSourceInterface, AttributeValueRepresentation> val = 
+								(HashMap<AttributeMatcherSourceInterface, AttributeValueRepresentation>) x;
+						for(AttributeValueRepresentation rep : val.values()) {
+							if(rep.isMany()) {
+								if(cardinality == 1) {
+									cardinality = rep.getValues().size();
+								} else if(cardinality != rep.getValues().size()) {
+									throw new RuntimeException("There are different multi-valued attributes with" +
+											" different cardinalities!");
+								}
+							}
+						}						
+					}
+					
+				}
 			} else if (h instanceof CardinalityMapping) {
 				if (((CardinalityMapping) h).getTarget().equals(
 						metamodelSection)) {
@@ -425,8 +445,8 @@ class TargetSectionInstantiator implements CancellationListener {
 			 * we don't need to reference the EObjects, since their order
 			 * doesn't change while we are using this
 			 */
-			final Map<TargetSectionAttribute, List<String>> attributeValues = new HashMap<TargetSectionAttribute, List<String>>();
-			final LinkedList<EObjectTransformationHelper> markedForDelete = new LinkedList<EObjectTransformationHelper>();
+			final Map<TargetSectionAttribute, List<String>> attributeValues = new HashMap<>();
+			final LinkedList<EObjectTransformationHelper> markedForDelete = new LinkedList<>();
 			for (final TargetSectionAttribute attr : metamodelSection
 					.getAttributes()) {
 				attributeValues.put(attr, new LinkedList<String>());
@@ -468,9 +488,11 @@ class TargetSectionInstantiator implements CancellationListener {
 					}
 				}
 				// create attribute values
-				for (final EObjectTransformationHelper instance : instances) {
+				for(int i=0; i<instances.size(); i++) {
+					EObjectTransformationHelper instance = instances.get(i);
+					
 					String attrValue = calculator.calculateAttributeValue(attr, hintFound,
-							attrHintValues);
+							attrHintValues, i);
 
 					// Check if value is unique and was already used, mark
 					// instance for deletion if necessary

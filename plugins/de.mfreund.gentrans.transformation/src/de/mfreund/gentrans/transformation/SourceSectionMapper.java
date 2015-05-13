@@ -697,7 +697,7 @@ class SourceSectionMapper implements CancellationListener {
 		changedRefsAndHints.setAssociatedSourceElement(srcSection,
 				srcModelObject);
 
-		final Map<AttributeMappingSourceElement, String> complexSourceElementHintValues = new LinkedHashMap<AttributeMappingSourceElement, String>();
+		final Map<AttributeMappingSourceElement, AttributeValueRepresentation> complexSourceElementHintValues = new LinkedHashMap<>();
 		final Map<AttributeMatcherSourceElement, String> complexAttrMatcherSourceElementHintValues = new LinkedHashMap<AttributeMatcherSourceElement, String>();
 		final Map<ModelConnectionHintSourceElement, String> complexConnectionHintSourceElementHintValues = new LinkedHashMap<ModelConnectionHintSourceElement, String>();
 
@@ -769,48 +769,64 @@ class SourceSectionMapper implements CancellationListener {
 
 		for (final MappingHintType h : hints) {
 			if (h instanceof AttributeMapping) {
-				final Map<AttributeMappingSourceInterface, String> foundValues = new LinkedHashMap<AttributeMappingSourceInterface, String>();
+				
+					
+				final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> foundValues = 
+						new LinkedHashMap<AttributeMappingSourceInterface, AttributeValueRepresentation>();
+				
 				// append the complex hint value (cardinality either 0 or 1)
 				// with found values in right order
 				for (final AttributeMappingSourceElement s : ((AttributeMapping) h)
 						.getLocalSourceElements()) {
 					if (complexSourceElementHintValues.containsKey(s)) {
+													
 						if(((AttributeMapping) h).getExpression() != null && !((AttributeMapping) h).getExpression().isEmpty()) {
-							try {
-								final Calculable calc = new ExpressionBuilder(
-										complexSourceElementHintValues.get(s)).build();
-								final double variableVal = calc.calculate();// parseDouble
-								/*
-								 * doesn't support Scientific notation, like: 0.42e2
-								 * == 4200e-2 == 42,
-								 */
-								foundValues.put(s,
-										String.valueOf(variableVal));
-							} catch (final Exception e) {
-								consoleStream
-								.println("Couldn't convert variable "
-										+ s.getName()
-										+ " of CalculatorMapping "
-										+ h.getName()
-										+ " from String to double. The problematic source element's attribute value was: "
-										+ complexSourceElementHintValues.get(s));
+							AttributeValueRepresentation calculatedValue = null;
+							
+							for (String value : complexSourceElementHintValues.get(s).getValues()) {
+								try {
+									
+									final Calculable calc = new ExpressionBuilder(value).build();
+									final double variableVal = calc.calculate();// parseDouble
+									/*
+									 * doesn't support Scientific notation, like: 0.42e2
+									 * == 4200e-2 == 42,
+									 */
+									if(calculatedValue == null) {
+										calculatedValue = new AttributeValueRepresentation(String.valueOf(variableVal));
+									} else {
+										calculatedValue.addValue(String.valueOf(variableVal));
+									}
+								} catch (final Exception e) {
+									consoleStream
+									.println("Couldn't convert variable "
+											+ s.getName()
+											+ " of CalculatorMapping "
+											+ h.getName()
+											+ " from String to double. The problematic source element's attribute value was: "
+											+ value);
+								}
+							
 							}
+							foundValues.put(s, calculatedValue);
 						} else {
-							foundValues.put(s,
-									complexSourceElementHintValues.get(s));
+							foundValues.put(s, complexSourceElementHintValues.get(s));
 						}
 					}
+					
 				}
-
+					
 				if (foundValues.keySet().size() > 0) {
-					complexAttributeMappingsFound
-					.add((AttributeMapping) h);
+					complexAttributeMappingsFound.add((AttributeMapping) h);
+					System.out.println(foundValues);
 					@SuppressWarnings("unchecked")
-					final Map<AttributeMappingSourceInterface, String> oldValues = (Map<AttributeMappingSourceInterface, String>) changedRefsAndHints
-					.getHintValues().get(h).remove();
+					final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> oldValues = 
+							(Map<AttributeMappingSourceInterface, AttributeValueRepresentation>) changedRefsAndHints.getHintValues().get(h).remove();
 					foundValues.putAll(oldValues);
 					changedRefsAndHints.getHintValues().get(h).add(foundValues);
 				}
+				
+				
 			} else if (h instanceof MappingInstanceSelector) {
 				if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
 					final AttributeMatcher m = (AttributeMatcher) ((MappingInstanceSelector) h)
@@ -1649,7 +1665,7 @@ class SourceSectionMapper implements CancellationListener {
 			final Iterable<GlobalAttribute> globalVars,
 			final SourceSectionClass srcSection,
 			final MappingInstanceStorage changedRefsAndHints,
-			final Map<AttributeMappingSourceElement, String> complexSourceElementHintValues,
+			final Map<AttributeMappingSourceElement, AttributeValueRepresentation> complexSourceElementHintValues,
 			final Map<AttributeMatcherSourceElement, String> complexAttrMatcherSourceElementHintValues,
 			final Map<ModelConnectionHintSourceElement, String> complexConnectionHintSourceElementHintValues) {
 		
@@ -1766,8 +1782,15 @@ class SourceSectionMapper implements CancellationListener {
 				// handle possible attribute mappings
 				for (final MappingHintType hint : hints) {
 					if (hint instanceof MappedAttributeValueExpander) {
+						
 						if (((MappedAttributeValueExpander) hint)
 								.getSourceAttribute().equals(at)) {
+							
+							if(at.getAttribute().isMany()) {
+								//TODO implement this?
+								throw new RuntimeException("MappedAttributeValueExpanders based on multi-valued attributes are not yet supported!");
+							}
+							
 							final String valCopy = attributeValuemodifier
 									.applyAttributeValueModifiers(
 											srcAttrAsString,
@@ -1777,17 +1800,26 @@ class SourceSectionMapper implements CancellationListener {
 						}
 
 					} else if (hint instanceof AttributeMapping) {
+						
 						for (final AttributeMappingSourceElement m : ((AttributeMapping) hint)
 								.getLocalSourceElements()) {
 							if (m.getSource().equals(at)) {
+
 								final String valCopy = attributeValuemodifier
 										.applyAttributeValueModifiers(
 												srcAttrAsString,
 												m.getModifier());
-								complexSourceElementHintValues.put(m, valCopy);
+								
+								// create a new AttributeValueRepresentation or update the existing one
+								if(complexSourceElementHintValues.get(m) == null) {
+									complexSourceElementHintValues.put(m, new AttributeValueRepresentation(valCopy));
+								} else {
+									complexSourceElementHintValues.get(m).addValue(valCopy);
+								}
 							}
 						}
 					} else if (hint instanceof MappingInstanceSelector) {// handle
+						
 						// MappingInstanceSelector
 						// with
 						// AttributeMatcher
@@ -1799,6 +1831,12 @@ class SourceSectionMapper implements CancellationListener {
 							for (final AttributeMatcherSourceElement e : matcher
 									.getLocalSourceElements()) {
 								if (e.getSource().equals(at)) {
+									
+									if(at.getAttribute().isMany()) {
+										//TODO implement this?
+										throw new RuntimeException("AttributeMatchers based on multi-valued attributes are not yet supported!");
+									}
+									
 									String valCopy = srcAttrAsString;
 									valCopy = attributeValuemodifier
 											.applyAttributeValueModifiers(
@@ -1818,6 +1856,12 @@ class SourceSectionMapper implements CancellationListener {
 						for (final ModelConnectionHintSourceElement m : hint
 								.getLocalSourceElements()) {
 							if (m.getSource().equals(at)) {
+								
+								if(at.getAttribute().isMany()) {
+									//TODO implement this?
+									throw new RuntimeException("ModelConnectionHints based on multi-valued attributes are not yet supported!");
+								}
+								
 								final String modifiedVal = attributeValuemodifier
 										.applyAttributeValueModifiers(
 												srcAttrAsString,

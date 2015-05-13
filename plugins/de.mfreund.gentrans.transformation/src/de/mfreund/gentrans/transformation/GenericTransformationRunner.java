@@ -1418,6 +1418,7 @@ public class GenericTransformationRunner {
 		} catch (RuntimeException e) {
 			consoleStream.println(e.getMessage());
 			consoleStream.println("Aborting...");
+			throw e;
 		}
 		
 		if (successful && !isCancelled) {

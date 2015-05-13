@@ -19,22 +19,23 @@ public class AttributeValueRepresentation {
 	 * {@link EAttribute#isMany()} returns '<em><b>false</em></b>', this lsit
 	 * will only contain one value.
 	 */
-	private ArrayList<String> attributeValues;
+	private ArrayList<String> attributeValues = new ArrayList<>();
 	
 	/**
 	 * This constructs an instance for a single given value.
 	 * 
-	 * @param value The value to be stored.
+	 * @param value The value to be stored. If '<em><b>null</em></b>' is passed as value,
+	 * an empty string will be stored.
 	 */
 	public AttributeValueRepresentation(String value) {
-		attributeValues.add(value);
+		attributeValues.add(value != null ? value : "");
 	}
 	
 	/**
 	 * This adds a value to the list of values that the
 	 * attribute represents.
 	 * 
-	 * @param value The value to be added.
+	 * @param value The value to be added. This must not be '<em><b>null</em></b>'.
 	 */
 	public void addValue(String value) {
 		attributeValues.add(value);

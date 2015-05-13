@@ -1407,8 +1407,20 @@ public class GenericTransformationRunner {
 		final List<Mapping> suitableMappings = pamtramModel.getMappingModel()
 				.getActiveMappings();// TODO apply contextModel
 
-		if (executeMappings(targetModel, sourceModel, pamtramModel, suitableMappings,
-				monitor) && !isCancelled) {
+		boolean successful = false;
+		try {
+			/*
+			 * try to execute all active mappings (this includes the 4 resp. 5 main steps of
+			 * the transformation
+			 */
+			successful = executeMappings(targetModel, sourceModel, pamtramModel, suitableMappings,
+					monitor); 			
+		} catch (RuntimeException e) {
+			consoleStream.println(e.getMessage());
+			consoleStream.println("Aborting...");
+		}
+		
+		if (successful && !isCancelled) {
 			// save targetModel
 			try {
 				// try to save the xmi resource

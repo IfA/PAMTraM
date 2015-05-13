@@ -1616,17 +1616,29 @@ class SourceSectionMapper implements CancellationListener {
 	}
 
 	/**
-	 * @param srcModelObject
-	 * @param hints
-	 * @param connectionHints
-	 * @param globalVars
-	 * @param srcSection
-	 * @param changedRefsAndHints
-	 * @param complexSourceElementHintValues
-	 * @param calcVariableHintValues
-	 * @param complexAttrMatcherSourceElementHintValues
-	 * @param complexConnectionHintSourceElementHintValues
-	 * @return true on success else false
+	 * This checks if all {@link SourceSectionAttribute Attributes} that have been defined for a given 
+	 * {@link SourceSectionClass} can be mapped for the given '<em>srcModelObject</em>'. Therefore, 
+	 * all the {@link AttributeValueConstraint AttributeValueConstraints} are checked.
+	 * <br />
+	 * <b>Note:</b> The hint values that are determined from the attribute values are calculated during 
+	 * above process as well.
+	 * 
+	 * @param srcModelObject The object to be checked.
+	 * @param hints A list of {@link MappingHintType MappingHints} that are associated with the mapping 
+	 * that is currently evaluated.
+	 * @param connectionHints A list of {@link ModelConnectionHint ModelConnectionHints} that are 
+	 * associated with the mapping that is currently evaluated.
+	 * @param globalVars A list of {@link GlobalAttribute GlobalAttributes}.
+	 * @param srcSection The {@link SourceSectionClass} for which the attributes shall be checked.
+	 * @param changedRefsAndHints The {@link MappingInstanceStorage} where calculated hint values 
+	 * will be stored.
+	 * @param complexSourceElementHintValues A {@link Map} where hint values for all found 
+	 * {@link AttributeMappingSourceElement AttributeMappingSourceElements} will be stored.
+	 * @param complexAttrMatcherSourceElementHintValues A {@link Map} where hint values for all found 
+	 * {@link AttributeMatcherSourceElement AttributeMatcherSourceElements} will be stored.
+	 * @param complexConnectionHintSourceElementHintValues A {@link Map} where hint values for all found 
+	 * {@link ModelConnectionHintSourceElement ModelConnectionHintSourceElements} will be stored.
+	 * @return '<em></b>true</b></em>' if all attributes are present, '<em><b>false</b></em>' otherwise
 	 */
 	private boolean handleAttributes(
 			final EObject srcModelObject,

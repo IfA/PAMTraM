@@ -301,11 +301,13 @@ public class PamtramEditorMainPage extends SashForm {
 						MappingHintGroupType hintGroup = (MappingHintGroupType) item.getData();
 						mapping = (Mapping) hintGroup.eContainer();
 						source = mapping.getSourceMMSection();
-						TargetSectionClass target = hintGroup.getTargetMMSection(); 
-						if(target.eContainer() instanceof TargetSectionModel) {
-							targets.add(target);	
-						} else if(target.eContainer() instanceof ContainerParameter) {
-							libraryTargets.add(target);
+						TargetSectionClass target = hintGroup.getTargetMMSection();
+						if(target != null) {
+							if(target.eContainer() instanceof TargetSectionModel) {
+								targets.add(target);	
+							} else if(target.eContainer() instanceof ContainerParameter) {
+								libraryTargets.add(target);
+							}							
 						}
 						expanded.add(mapping);
 						expanded.add(hintGroup);
@@ -321,10 +323,12 @@ public class PamtramEditorMainPage extends SashForm {
 						source = mapping.getSourceMMSection();
 						if(hintGroupImporter.getHintGroup() != null) {
 							TargetSectionClass target = hintGroupImporter.getHintGroup().getTargetMMSection(); 
-							if(target.eContainer() instanceof TargetSectionModel) {
-								targets.add(target);	
-							} else if(target.eContainer() instanceof ContainerParameter) {
-								libraryTargets.add(target);
+							if(target != null) {
+								if(target.eContainer() instanceof TargetSectionModel) {
+									targets.add(target);	
+								} else if(target.eContainer() instanceof ContainerParameter) {
+									libraryTargets.add(target);
+								}								
 							}
 						}
 						expanded.add(mapping);
@@ -357,7 +361,7 @@ public class PamtramEditorMainPage extends SashForm {
 							expanded.add(mapping);
 							for(MappingHintGroupType group : mapping.getMappingHintGroups()){
 								if(group.getTargetMMSection() != null) {
-									TargetSectionClass target = group.getTargetMMSection(); 
+									TargetSectionClass target = group.getTargetMMSection();
 									if(target.eContainer() instanceof TargetSectionModel) {
 										targets.add(target);	
 									} else if(target.eContainer() instanceof ContainerParameter) {

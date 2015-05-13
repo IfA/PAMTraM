@@ -245,7 +245,8 @@ public class TargetSectionConnector implements CancellationListener {
 								.get(tSection).size();
 						final LinkedList<ModelConnectionPath> fittingPaths = new LinkedList<ModelConnectionPath>();
 						for (final ModelConnectionPath p : pathSet) {
-							if (p.getCapacity(containerInstance) >= neededCapacity) {
+							int capacity = p.getCapacity(containerInstance);
+							if (capacity == -1 || capacity >= neededCapacity) {
 								fittingPaths.add(p);
 							}
 						}

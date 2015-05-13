@@ -267,7 +267,7 @@ final class ModelConnectionPath {
 	 * calculated.
 	 *
 	 * @param targetInstance
-	 * @return path capacity
+	 * @return capacity of the path ('<em>-1</em>' is returned for paths with unbounded capacity)
 	 */
 	int getCapacity(final EObject targetInstance) {
 		boolean use = false; // gets toggled every loop, to help us separate

@@ -3,6 +3,7 @@
  */
 package de.mfreund.gentrans.transformation;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -147,14 +148,21 @@ public class EObjectTransformationHelper {
 	 */
 	void setAttributeValue(final ActualAttribute attr, final String value)
 			throws IllegalArgumentException {
-		eObject.eSet(
-				attr.getAttribute(),
-				attr.getAttribute()
+		
+		Object valueObject = attr.getAttribute()
 				.getEType()
 				.getEPackage()
 				.getEFactoryInstance()
 				.createFromString(
-						attr.getAttribute().getEAttributeType(), value));
+						attr.getAttribute().getEAttributeType(), value);
+		
+		if(attr.getAttribute().isMany()) {
+			ArrayList<Object> valueObjectList = new ArrayList<>();
+			valueObjectList.add(valueObject);
+			eObject.eSet(attr.getAttribute(), valueObjectList);
+		} else {
+			eObject.eSet(attr.getAttribute(), valueObject);
+		}
 
 		attrValRegistry.registerValue(attr, eObject.eClass(), value);
 

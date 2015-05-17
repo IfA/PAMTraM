@@ -761,7 +761,7 @@ class SourceSectionMapper implements CancellationListener {
 				complexConnectionHintSourceElementHintValues)) {
 			return null;
 		}
-
+		
 		// now work on ComplexAttributeMappings and CalcMappings
 		final Set<AttributeMapping> complexAttributeMappingsFound = new HashSet<AttributeMapping>();
 		final Set<AttributeMatcher> complexAttributeMatchersFound = new HashSet<AttributeMatcher>();
@@ -772,7 +772,7 @@ class SourceSectionMapper implements CancellationListener {
 				
 					
 				final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> foundValues = 
-						new LinkedHashMap<AttributeMappingSourceInterface, AttributeValueRepresentation>();
+						new LinkedHashMap<>();
 				
 				// append the complex hint value (cardinality either 0 or 1)
 				// with found values in right order
@@ -1393,7 +1393,8 @@ class SourceSectionMapper implements CancellationListener {
 		// we will now
 		// try to map
 		// start = System.nanoTime();
-		final Map<Mapping, MappingInstanceStorage> mappingData = new LinkedHashMap<Mapping, MappingInstanceStorage>();
+		final Map<Mapping, MappingInstanceStorage> mappingData = 
+				new LinkedHashMap<>();
 		// find mapping rules that are applicable to a srcMM element
 		for (final Mapping m : mappingsToChooseFrom) {
 			// create result map
@@ -1808,7 +1809,6 @@ class SourceSectionMapper implements CancellationListener {
 										.applyAttributeValueModifiers(
 												srcAttrAsString,
 												m.getModifier());
-								
 								// create a new AttributeValueRepresentation or update the existing one
 								if(complexSourceElementHintValues.get(m) == null) {
 									complexSourceElementHintValues.put(m, new AttributeValueRepresentation(valCopy));
@@ -1840,8 +1840,7 @@ class SourceSectionMapper implements CancellationListener {
 									valCopy = attributeValuemodifier
 											.applyAttributeValueModifiers(
 													valCopy, e.getModifier());
-									complexAttrMatcherSourceElementHintValues
-									.put(e, valCopy);
+									complexAttrMatcherSourceElementHintValues.put(e, valCopy);
 								}
 							}
 						}
@@ -1918,11 +1917,12 @@ class SourceSectionMapper implements CancellationListener {
 						if (res.getHintValues().get(h).size() == 0) {
 							res.getHintValues()
 							.get(h)
-							.add(new LinkedHashMap<AttributeMappingSourceInterface, String>());
+							.add(new LinkedHashMap<AttributeMappingSourceInterface, AttributeValueRepresentation>());
 						}
 						
 						if(((AttributeMapping) h).getExpression() != null && !((AttributeMapping) h).getExpression().isEmpty()) {
-							final Map<AttributeMappingSourceInterface, String> newVals = new HashMap<>();
+							
+							final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> newVals = new HashMap<>();
 							for (final ExternalModifiedAttributeElementType<SourceSectionAttribute> e : attrVals
 									.keySet()) {
 								try {
@@ -1934,7 +1934,7 @@ class SourceSectionMapper implements CancellationListener {
 									 * 0.42e2 == 4200e-2 == 42,
 									 */
 									newVals.put((AttributeMappingSourceInterface) e,
-											String.valueOf(variableVal));
+											new AttributeValueRepresentation(String.valueOf(variableVal)));
 								} catch (final Exception execption) {
 									consoleStream
 									.println("Couldn't convert variable "
@@ -1947,17 +1947,19 @@ class SourceSectionMapper implements CancellationListener {
 							}
 							for (final Object hVal : res.getHintValues().get(h)) {
 								@SuppressWarnings("unchecked")
-								final Map<AttributeMappingSourceInterface, String> map = (Map<AttributeMappingSourceInterface, String>) hVal;
+								final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> map = 
+										(Map<AttributeMappingSourceInterface, AttributeValueRepresentation>) hVal;
 								map.putAll(newVals);
 							}
 						} else {
 							for (final Object hVal : res.getHintValues().get(h)) {
 								@SuppressWarnings("unchecked")
-								final Map<AttributeMappingSourceInterface, String> map = (Map<AttributeMappingSourceInterface, String>) hVal;
+								final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> map = 
+										(Map<AttributeMappingSourceInterface, AttributeValueRepresentation>) hVal;
 								for (final ExternalModifiedAttributeElementType<SourceSectionAttribute> e : attrVals
 										.keySet()) {
 									map.put((AttributeMappingSourceInterface) e,
-											attrVals.get(e));
+											new AttributeValueRepresentation(attrVals.get(e)));
 								}
 							}
 						}

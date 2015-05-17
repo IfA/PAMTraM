@@ -983,6 +983,7 @@ public class GenericTransformationRunner {
 	 * @param monitor
 	 * @param attributeValuemodifier
 	 */
+	@SuppressWarnings("unchecked")
 	private void runInstantiationFirstPass(
 			final SourceSectionMapper sourceSectionMapper,
 			final TargetSectionRegistry targetSectionRegistry,
@@ -1115,25 +1116,34 @@ public class GenericTransformationRunner {
 														for (final Object m : selMap
 																.getHintValues()
 																.get(realHint)) {
-
-															// create a cloned copy of the map holding the source elements and values
-															// of complex attribute mapping that we are expanding
-															@SuppressWarnings("unchecked")
-															final LinkedHashMap<AttributeMappingSourceInterface, String> clonedMap = 
-																new LinkedHashMap<>((LinkedHashMap<AttributeMappingSourceInterface, String>)m);
+															
+															final LinkedHashMap<AttributeMappingSourceInterface, AttributeValueRepresentation> originalMap = 
+																	(LinkedHashMap<AttributeMappingSourceInterface, AttributeValueRepresentation>) m;
+															
+															/*
+															 *  create a deep-cloned copy of the map holding the source elements and values 
+															 *  of complex attribute mapping that we are expanding; this is necessary because the map will
+															 *  change in the course of this function but the changes shall not be propagated to future
+															 *  calls of this function
+															 */
+															
+															final LinkedHashMap<AttributeMappingSourceInterface, AttributeValueRepresentation> clonedMap = 
+																new LinkedHashMap<>();
+															for (AttributeMappingSourceInterface key : originalMap.keySet()) {
+																clonedMap.put(key, 
+																		(AttributeValueRepresentation) originalMap.get(key).clone());
+															}
 															
 															// expand either the first or last value source element and let all other
 															// values untouched
 															if (clonedMap.containsKey(element)) {
+																AttributeValueRepresentation rep = clonedMap.get(element);
 																if (prepend) {
-																	clonedMap.put(element,
-																			hintVal
-																					+ clonedMap.get(element));
+																	rep.addPrefix(hintVal);
 																} else {
-																	clonedMap.put(element,
-																			clonedMap.get(element)
-																					+ hintVal);
+																	rep.addSuffix(hintVal);
 																}
+																clonedMap.put(element, rep);
 															}
 															
 															// add the new map to the list holding all hint values
@@ -1168,7 +1178,6 @@ public class GenericTransformationRunner {
 															for (final Object m : selMap
 																	.getHintValues()
 																	.get(realHint)) {
-																@SuppressWarnings("unchecked")
 																final Map<String, Double> map = (Map<String, Double>) m;
 																map.put(varName,
 																		variableVal);

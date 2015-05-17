@@ -100,4 +100,17 @@ public class AttributeValueRepresentation {
 			attributeValues.set(i, attributeValues.get(i) + suffix);
 		}
 	}
+	
+	@Override
+	protected Object clone() {
+		/*
+		 * Create a new instance and copy every attribute value separately.
+		 */
+		AttributeValueRepresentation clone = 
+				new AttributeValueRepresentation(getValues().get(0));
+		for(int i=1; i < getValues().size(); i++) {
+			clone.addValue(getValues().get(i));
+		}
+		return clone;
+	}
 }

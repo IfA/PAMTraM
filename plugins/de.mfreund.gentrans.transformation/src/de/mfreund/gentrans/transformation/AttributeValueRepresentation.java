@@ -76,4 +76,28 @@ public class AttributeValueRepresentation {
 	public ArrayList<String> getValues() {
 		return attributeValues;
 	}
+	
+	/**
+	 * This adds a prefix to every value that this {@link AttributeValueRepresentation}
+	 * currently represents.
+	 * 
+	 * @param prefix The prefix to add.
+	 */
+	public void addPrefix(String prefix) {
+		for(int i=0; i<attributeValues.size(); i++) {
+			attributeValues.set(i, prefix + attributeValues.get(i));
+		}
+	}
+	
+	/**
+	 * This adds a suffix to every value that this {@link AttributeValueRepresentation}
+	 * currently represents.
+	 * 
+	 * @param suffix The suffix to add.
+	 */
+	public void addSuffix(String suffix) {
+		for(int i=0; i<attributeValues.size(); i++) {
+			attributeValues.set(i, attributeValues.get(i) + suffix);
+		}
+	}
 }

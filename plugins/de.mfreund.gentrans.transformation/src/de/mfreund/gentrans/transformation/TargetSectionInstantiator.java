@@ -323,7 +323,6 @@ class TargetSectionInstantiator implements CancellationListener {
 			final Map<EClass, Map<EAttribute, Set<String>>> sectionAttributeValues) {
 
 		int cardinality = 1;
-
 		boolean attrMappingExists = false;
 		int cardHintValue = 0;
 		/*
@@ -332,27 +331,6 @@ class TargetSectionInstantiator implements CancellationListener {
 		for (final MappingHint h : mappingHints) {
 			if (h instanceof AttributeMapping) {
 				attrMappingExists = true;
-				/*
-				 * Calculate the cardinality in case there are multi-valued attributes
-				 */
-				if(hintValues.containsKey(h)) {
-					for (Object x : hintValues.get(h)) {
-						@SuppressWarnings("unchecked")
-						final HashMap<AttributeMatcherSourceInterface, AttributeValueRepresentation> val = 
-								(HashMap<AttributeMatcherSourceInterface, AttributeValueRepresentation>) x;
-						for(AttributeValueRepresentation rep : val.values()) {
-							if(rep.isMany()) {
-								if(cardinality == 1) {
-									cardinality = rep.getValues().size();
-								} else if(cardinality != rep.getValues().size()) {
-									throw new RuntimeException("There are different multi-valued attributes with" +
-											" different cardinalities!");
-								}
-							}
-						}						
-					}
-					
-				}
 			} else if (h instanceof CardinalityMapping) {
 				if (((CardinalityMapping) h).getTarget().equals(
 						metamodelSection)) {
@@ -390,7 +368,40 @@ class TargetSectionInstantiator implements CancellationListener {
 			final MappingHint hint = searchAttributeMapping(metamodelSection,
 					mappingHints, hintValues, null);
 			if (hint != null) {// there was an AttributeHint....
-				final int hintCardinality = hintValues.get(hint).size();
+				int hintCardinality = hintValues.get(hint).size();
+				
+				/*
+				 * Now, we have to check if there are multi-valued attributes that also try
+				 * to determine the cardinality.
+				 */
+				int multiValuedAttributeCardinality = 1;
+				
+				for (Object x : hintValues.get(hint)) {
+					@SuppressWarnings("unchecked")
+					final HashMap<AttributeMatcherSourceInterface, AttributeValueRepresentation> val = 
+							(HashMap<AttributeMatcherSourceInterface, AttributeValueRepresentation>) x;
+					for(AttributeValueRepresentation rep : val.values()) {
+						if(rep.isMany()) {
+							if(multiValuedAttributeCardinality == 1) {
+								multiValuedAttributeCardinality = rep.getValues().size();
+							} else if(multiValuedAttributeCardinality != rep.getValues().size()) {
+								throw new RuntimeException("There are different multi-valued attributes with" +
+										" different cardinalities!");
+							}
+						}
+					}						
+				}
+				
+				/*
+				 * Check if there are contradictory cardinalities...
+				 */
+				if(hintCardinality > 1 && multiValuedAttributeCardinality > 1) {
+					throw new RuntimeException("Failed to determine an unambiguous cardinality for hint " +
+							hint.getName());
+				} else if(multiValuedAttributeCardinality > 1) {
+					hintCardinality = multiValuedAttributeCardinality;
+				}
+				
 				if (hintCardinality > cardinality) {
 					cardinality = hintCardinality;
 				}
@@ -490,7 +501,6 @@ class TargetSectionInstantiator implements CancellationListener {
 				// create attribute values
 				for(int i=0; i<instances.size(); i++) {
 					EObjectTransformationHelper instance = instances.get(i);
-					
 					String attrValue = calculator.calculateAttributeValue(attr, hintFound,
 							attrHintValues, i);
 

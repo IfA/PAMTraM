@@ -104,14 +104,23 @@ public abstract class ModifiedAttributeElementTypeImpl<AttributeType extends Att
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setSource(AttributeType newSource) {
+	public void setSourceGen(AttributeType newSource) {
 		AttributeType oldSource = source;
 		source = newSource;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE, oldSource, source));
 	}
-
+	
+	/**
+	 * Before setting the {@link newSource}, update the name.
+	 */
+	@Override
+	public void setSource(AttributeType newSource) {
+		
+		setNameDerived(source, newSource, null, null);
+		setSourceGen(newSource);
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

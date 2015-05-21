@@ -1,16 +1,226 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:pamtram="http://mfreund.de/pamtram">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:pamtram="http://mfreund.de/pamtram">
   <sourceSectionModel>
-    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/"/>
-    <metaModelSections name="source"/>
+    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
+    <metaModelSections name="Root">
+      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractUserInterfaceModel"/>
+    </metaModelSections>
+    <metaModelSections name="Confirmation">
+      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
+      <attributes name="role">
+        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="confirmation" value="confirmation"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections name="sequentialComposition">
+      <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
+      <attributes name="compositionRole">
+        <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="sequential" value="sequential"/>
+      </attributes>
+      <attributes name="id">
+        <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/id"/>
+      </attributes>
+      <attributes name="associatedWith">
+        <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/associatedWith"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections name="parallelComposition">
+      <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
+      <attributes name="compositionRole">
+        <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="parallel" value="parallel"/>
+      </attributes>
+      <attributes name="id">
+        <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/id"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections name="AbstractInteractionUnit" container="//@sourceSectionModel/@metaModelSections.4">
+      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="aggregatedIn">
+        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/aggregatedIn"/>
+        <value name="Composition">
+          <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
+        </value>
+      </references>
+      <attributes name="id">
+        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
+      </attributes>
+    </metaModelSections>
   </sourceSectionModel>
   <targetSectionModel>
-    <metaModelPackage href="http://stefan-hennig.de/movisa/clientdata/perspective/technical/opcxmlda#/"/>
-    <metaModelSections name="target"/>
+    <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
+    <metaModelSections name="VisualizationApplicationModel">
+      <eClass href="http://stefan-hennig.de/movisa#//VisualizationApplicationModel"/>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="AlgorithmDomain">
+        <eReference href="http://stefan-hennig.de/movisa#//VisualizationApplicationModel/AlgorithmDomain"/>
+        <value name="AlgorithmModel">
+          <eClass href="http://stefan-hennig.de/movisa#//AlgorithmModel"/>
+        </value>
+      </references>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="ClientDataDomain">
+        <eReference href="http://stefan-hennig.de/movisa#//VisualizationApplicationModel/ClientDataDomain"/>
+        <value name="ClientDataModel">
+          <eClass href="http://stefan-hennig.de/movisa#//ClientDataModel"/>
+        </value>
+      </references>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="PresentationDomain">
+        <eReference href="http://stefan-hennig.de/movisa#//VisualizationApplicationModel/PresentationDomain"/>
+        <value name="PresentationModel">
+          <eClass href="http://stefan-hennig.de/movisa#//PresentationModel"/>
+        </value>
+      </references>
+    </metaModelSections>
+    <metaModelSections name="Button" container="//@targetSectionModel/@metaModelSections.2">
+      <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="Interaction">
+        <eReference href="http://stefan-hennig.de/movisa#//presentation/Button/Interaction"/>
+        <value name="ButtonInteraction">
+          <eClass href="http://stefan-hennig.de/movisa#//presentation/ButtonInteraction"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="CommonTrigger">
+            <eReference href="http://stefan-hennig.de/movisa#//presentation/Interaction/CommonTrigger"/>
+            <value name="Click">
+              <eClass href="http://stefan-hennig.de/movisa#//presentation/Click"/>
+            </value>
+          </references>
+        </value>
+      </references>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="Representation">
+        <eReference href="http://stefan-hennig.de/movisa#//presentation/Button/Representation"/>
+        <value name="ButtonRepresentation">
+          <eClass href="http://stefan-hennig.de/movisa#//presentation/ButtonRepresentation"/>
+          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Text">
+            <eReference href="http://stefan-hennig.de/movisa#//presentation/TextContainingWidgetRepresentation/Text"/>
+          </references>
+        </value>
+      </references>
+      <attributes xsi:type="metamodel:ActualAttribute" name="Name">
+        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections name="NavigationSource" container="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0">
+      <eClass href="http://stefan-hennig.de/movisa#//presentation/NavigationSource"/>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedUIComponent">
+        <eReference href="http://stefan-hennig.de/movisa#//presentation/Panel/OwnedUIComponent"/>
+        <value name="Button">
+          <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="Representation">
+            <eReference href="http://stefan-hennig.de/movisa#//presentation/Button/Representation"/>
+            <value name="ButtonRepresentation">
+              <eClass href="http://stefan-hennig.de/movisa#//presentation/ButtonRepresentation"/>
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Text">
+                <eReference href="http://stefan-hennig.de/movisa#//presentation/TextContainingWidgetRepresentation/Text"/>
+              </references>
+            </value>
+          </references>
+          <attributes xsi:type="metamodel:ActualAttribute" name="Comment" value="next">
+            <attribute href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
+          </attributes>
+        </value>
+      </references>
+      <attributes xsi:type="metamodel:ActualAttribute" name="Name" unique="true">
+        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections name="Panel" cardinality="ZERO__INFINITY" container="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0">
+      <eClass href="http://stefan-hennig.de/movisa#//presentation/Panel"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="Name">
+        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections name="ChangeViewNavigationFlow" container="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0">
+      <eClass href="http://stefan-hennig.de/movisa#//presentation/ChangeViewNavigationFlow"/>
+      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Source" value="//@targetSectionModel/@metaModelSections.3">
+        <eReference href="http://stefan-hennig.de/movisa#//presentation/NavigationFlow/Source"/>
+      </references>
+      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Target" value="//@targetSectionModel/@metaModelSections.3">
+        <eReference href="http://stefan-hennig.de/movisa#//presentation/NavigationFlow/Target"/>
+      </references>
+      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Trigger">
+        <eReference href="http://stefan-hennig.de/movisa#//presentation/NavigationFlow/Trigger"/>
+      </references>
+    </metaModelSections>
+    <metaModelSections name="NavigationButton" container="//@targetSectionModel/@metaModelSections.3">
+      <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="Representation">
+        <eReference href="http://stefan-hennig.de/movisa#//presentation/Button/Representation"/>
+      </references>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="Interaction">
+        <eReference href="http://stefan-hennig.de/movisa#//presentation/Button/Interaction"/>
+        <value name="ButtonInteraction">
+          <eClass href="http://stefan-hennig.de/movisa#//presentation/ButtonInteraction"/>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="CommonTrigger">
+            <eReference href="http://stefan-hennig.de/movisa#//presentation/Interaction/CommonTrigger"/>
+            <value name="Click">
+              <eClass href="http://stefan-hennig.de/movisa#//presentation/Click"/>
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Effect" value="//@targetSectionModel/@metaModelSections.5/@references.1/@value.0/@references.1/@value.0">
+                <eReference href="http://stefan-hennig.de/movisa#//presentation/Trigger/Effect"/>
+              </references>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name">
+                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+              </attributes>
+            </value>
+          </references>
+          <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedEffect">
+            <eReference href="http://stefan-hennig.de/movisa#//presentation/Interaction/OwnedEffect"/>
+            <value name="SendSignalEffect">
+              <eClass href="http://stefan-hennig.de/movisa#//presentation/SendSignalEffect"/>
+            </value>
+          </references>
+        </value>
+      </references>
+      <attributes xsi:type="metamodel:ActualAttribute" name="Name">
+        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+      </attributes>
+    </metaModelSections>
   </targetSectionModel>
   <mappingModel>
-    <mapping sourceMMSection="//@sourceSectionModel/@metaModelSections.0">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" targetMMSection="//@targetSectionModel/@metaModelSections.0"/>
+    <mapping name="RootMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="VisualizationApplicationModel" targetMMSection="//@targetSectionModel/@metaModelSections.0"/>
     </mapping>
+    <mapping name="ConfirmationButtonMapping" deactivated="true" sourceMMSection="//@sourceSectionModel/@metaModelSections.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetMMSection="//@targetSectionModel/@metaModelSections.1"/>
+    </mapping>
+    <mapping name="sequentialCompositionMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.2">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Panel" targetMMSection="//@targetSectionModel/@metaModelSections.3">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.3/@attributes.0" expression="">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" source="//@sourceSectionModel/@metaModelSections.2/@attributes.2" modifier="//@mappingModel/@modifierSets.0"/>
+        </mappingHints>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NavigationButton" targetMMSection="//@targetSectionModel/@metaModelSections.5" deactivated="true">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.5/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" source="//@sourceSectionModel/@metaModelSections.2/@attributes.2" modifier="//@mappingModel/@modifierSets.0 //@mappingModel/@modifierSets.1"/>
+        </mappingHints>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ChangeViewNavigationFlow" targetMMSection="//@targetSectionModel/@metaModelSections.4">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Source" affectedReference="//@targetSectionModel/@metaModelSections.4/@references.0">
+          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.3/@attributes.0">
+            <sourceAttributes xsi:type="mapping:AttributeMatcherExternalSourceElement" source="//@sourceSectionModel/@metaModelSections.2/@attributes.2" modifier="//@mappingModel/@modifierSets.0"/>
+          </matcher>
+        </mappingHints>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ChangeViewNavigationFlow" targetMMSection="//@targetSectionModel/@metaModelSections.4">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Target" affectedReference="//@targetSectionModel/@metaModelSections.4/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.3/@attributes.0">
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" source="//@sourceSectionModel/@metaModelSections.2/@attributes.2" modifier="//@mappingModel/@modifierSets.0"/>
+          </matcher>
+        </mappingHints>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" deactivated="true">
+        <modelConnectionMatcher>
+          <targetAttributes source="//@targetSectionModel/@metaModelSections.3/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" source="//@sourceSectionModel/@metaModelSections.2/@attributes.2"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+    </mapping>
+    <modifierSets name="getNumber">
+      <modifier xsi:type="mapping:SubstringReplacer" name="getNumber" regex="[^0-9]+" replacement=""/>
+    </modifierSets>
+    <modifierSets name="prependButton">
+      <modifier xsi:type="mapping:StringPrepender" name="NextButton"/>
+    </modifierSets>
+    <modifierSets name="add one">
+      <modifier xsi:type="mapping:SubstringReplacer" regex=":%s/$/\*/g" replacement=""/>
+    </modifierSets>
   </mappingModel>
 </pamtram:PAMTraM>

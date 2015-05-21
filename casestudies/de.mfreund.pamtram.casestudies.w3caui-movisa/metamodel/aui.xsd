@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns:uic="http://www.w3.org/2013/mbui-uiCommons"
-  elementFormDefault="qualified">
+  elementFormDefault="qualified"
+  targetNamespace="http://www.w3.org/2013/mbui-aui"
+  xmlns="http://www.w3.org/2013/mbui-aui">
     <!-- importing the uiCommons package -->
     <xs:import namespace="http://www.w3.org/2013/mbui-uiCommons" 
     schemaLocation="./uiCommons.xsd"/>

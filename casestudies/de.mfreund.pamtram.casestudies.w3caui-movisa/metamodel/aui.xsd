@@ -1,31 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-  xmlns:uic="http://www.w3.org/2013/mbui-uiCommons"
-  elementFormDefault="qualified">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns:uic="http://www.w3.org/2013/mbui-uiCommons" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
     <!-- importing the uiCommons package -->
-    <xs:import namespace="http://www.w3.org/2013/mbui-uiCommons" 
-    schemaLocation="./uiCommons.xsd"/>
+    <xs:import namespace="http://www.w3.org/2013/mbui-uiCommons" schemaLocation="./uiCommons.xsd"/>
     
     <!-- the root element -->
     
-    <xs:element name="abstractUserInterfaceModel"
-      type="AbstractUserInterfaceModel"/>
+    <xs:element name="abstractUserInterfaceModel" type="AbstractUserInterfaceModel"/>
     
     <!-- AbstractUserInterfaceModel -->
     <xs:complexType name="AbstractUserInterfaceModel">
         <xs:sequence>
             <!-- list of the abstract interaction units in the AUI -->
-            <xs:element name="abstractInteractionUnit"
-              type="AbstractInteractionUnit" minOccurs="1"
-              maxOccurs="unbounded"/>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="abstractInteractionUnit" type="AbstractInteractionUnit"/>
         </xs:sequence>
     </xs:complexType>
     
     <!-- AbstractInteractionUnit -->
     <xs:complexType name="AbstractInteractionUnit">
         <xs:sequence>
-            <xs:element name="aggregatedIn"
-              type="Composition" minOccurs="1" maxOccurs="1"/>
+            <xs:element maxOccurs="1" minOccurs="1" name="aggregatedIn" type="Composition"/>
             <xs:element name="eventSupport" type="EventSupport"/>
             <xs:element name="presentationSupport" type="PresentationSupport"/>
         </xs:sequence>
@@ -36,14 +29,13 @@
         <xs:attribute name="frequency" type="xs:float"/>
         <xs:attribute name="repetitionFactor" type="xs:int"/>
         <xs:attribute name="domainReference" type="xs:string"/>
-        <xs:attribute name="compound" type="xs:boolean" default="false"/>
+        <xs:attribute default="false" name="compound" type="xs:boolean"/>
     </xs:complexType>
      
     <!-- Composition -->
     <xs:complexType name="Composition">
         <xs:sequence>
-            <xs:element name="associatedWith"
-              type="xs:IDREF" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="associatedWith" type="xs:IDREF"/>
         </xs:sequence>
         <xs:attribute name="id" type="xs:ID"/>
         <xs:attribute name="compositionRole" type="xs:string"/>
@@ -79,9 +71,9 @@
     
     <xs:simpleType name="enumDataType">
         <xs:restriction base="xs:string">
-            <xs:enumeration value="in" id="enumDataType_in"/>
-            <xs:enumeration value="out" id="enumDataType_out"/>
-            <xs:enumeration value="in_out" id="enumDataType_in_out"/>
+            <xs:enumeration id="enumDataType_in" value="in"/>
+            <xs:enumeration id="enumDataType_out" value="out"/>
+            <xs:enumeration id="enumDataType_in_out" value="in_out"/>
         </xs:restriction>
     </xs:simpleType>
     
@@ -112,7 +104,7 @@
     
     <!-- EventSupport -->
     <xs:complexType name="EventSupport">
-        <xs:choice minOccurs="1" maxOccurs="unbounded">
+        <xs:choice maxOccurs="unbounded" minOccurs="1">
             <xs:element name="triggerSupport" type="TriggerSupport"/>
             <xs:element name="dataSelectionSupport" type="DataSelectionSupport"/>
             <xs:element name="dataInputOutputSupport" type="DataInputOutputSupport"/>
@@ -121,7 +113,7 @@
     
     <!--PresentationSupport -->
     <xs:complexType name="PresentationSupport">
-        <xs:choice minOccurs="1" maxOccurs="unbounded">
+        <xs:choice maxOccurs="unbounded" minOccurs="1">
             <xs:element name="dataSelectionSupport" type="DataSelectionSupport"/>
             <xs:element name="DataInputOutputSupport" type="DataInputOutputSupport"/>
         </xs:choice>

@@ -1,3 +1,59 @@
 <?xml version="1.0" encoding="ASCII"?>
-<aui:AbstractUserInterfaceModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aui="http://www.w3.org/2013/mbui-aui"></aui:AbstractUserInterfaceModel>
+<aui:AbstractUserInterfaceModel
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:aui="http://www.w3.org/2013/mbui-aui">
+  <abstractInteractionUnit
+      id="aui1"
+      role="confirmation">
+    <aggregatedIn
+        compositionRationale=""
+        compositionRole="sequential"
+        id="aui1comp">
+      <associatedWith>aui2</associatedWith>
+      <associatedWith>aui3</associatedWith>
+      <associatedWith>aui4</associatedWith>
+    </aggregatedIn>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aui2"
+      role="confirmation">
+    <aggregatedIn
+        compositionRole="parallel"
+        id="aui2comp">
+      <associatedWith>aui5</associatedWith>
+      <associatedWith>aui6</associatedWith>
+      <associatedWith>aui7</associatedWith>
+      <associatedWith>aui8</associatedWith>
+    </aggregatedIn>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aiu3"
+      name="">
+    <aggregatedIn/>
+    <presentationSupport>
+      <dataSelectionSupport/>
+    </presentationSupport>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aiu4">
+    <aggregatedIn/>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aiu5">
+    <aggregatedIn/>
+    <presentationSupport/>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aiu6">
+    <aggregatedIn/>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aiu7">
+    <aggregatedIn/>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aiu8">
+    <aggregatedIn/>
+  </abstractInteractionUnit>
+</aui:AbstractUserInterfaceModel>

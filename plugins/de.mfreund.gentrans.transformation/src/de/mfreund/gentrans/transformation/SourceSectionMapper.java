@@ -1925,6 +1925,13 @@ class SourceSectionMapper implements CancellationListener {
 							final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> newVals = new HashMap<>();
 							for (final ExternalModifiedAttributeElementType<SourceSectionAttribute> e : attrVals
 									.keySet()) {
+								
+								if(e.getSource().getAttribute().isMany()) {
+									//TODO implement this?
+									throw new RuntimeException("AttributeMappings with external source attributes that are "
+											+ "based on multi-valued attributes are not yet supported!");
+								}
+								
 								try {
 									final Calculable calc = new ExpressionBuilder(
 											attrVals.get(e)).build();
@@ -1968,6 +1975,12 @@ class SourceSectionMapper implements CancellationListener {
 						attrVals.clear();
 					}
 				} else if (h instanceof ExternalMappedAttributeValueExpander) {
+					
+					if(((ExternalMappedAttributeValueExpander) h).getSourceAttribute().getAttribute().isMany()) {
+						//TODO implement this?
+						throw new RuntimeException("ExternalMappedAttributeValueExpanders based on multi-valued attributes are not yet supported!");
+					}
+					
 					String attrVal = getContainerAttributeValue(
 							((ExternalMappedAttributeValueExpander) h)
 							.getSourceAttribute(),
@@ -1993,6 +2006,12 @@ class SourceSectionMapper implements CancellationListener {
 									.getMatcher();
 							for (final AttributeMatcherSourceInterface i : matcher
 									.getSourceAttributes()) {
+								
+								if(i.getSourceAttribute().getAttribute().isMany()) {
+									//TODO implement this?
+									throw new RuntimeException("AttributeMatchers based on multi-valued attributes are not yet supported!");
+								}
+								
 								mappingFailed = checkExternalAttributeMapping(
 										m, res, mappingFailed, attrVals, i);
 								if (mappingFailed) {
@@ -2030,6 +2049,12 @@ class SourceSectionMapper implements CancellationListener {
 				if (h instanceof ModelConnectionHint) {
 					for (final ModelConnectionHintSourceInterface i : h
 							.getSourceElements()) {
+						
+						if(i.getSourceAttribute().getAttribute().isMany()) {
+							//TODO implement this?
+							throw new RuntimeException("ModelConnectionHints based on multi-valued attributes are not yet supported!");
+						}
+						
 						mappingFailed = checkExternalAttributeMapping(m, res,
 								mappingFailed, attrVals, i);
 						if (mappingFailed) {

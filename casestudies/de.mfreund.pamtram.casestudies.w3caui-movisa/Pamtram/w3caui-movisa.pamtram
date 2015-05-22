@@ -195,21 +195,21 @@
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ChangeViewNavigationFlow" targetMMSection="//@targetSectionModel/@metaModelSections.4">
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Source" affectedReference="//@targetSectionModel/@metaModelSections.4/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.3/@attributes.0">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherExternalSourceElement" source="//@sourceSectionModel/@metaModelSections.2/@attributes.2" modifier="//@mappingModel/@modifierSets.0"/>
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="associatedWith" source="//@sourceSectionModel/@metaModelSections.2/@attributes.2"/>
           </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ChangeViewNavigationFlow" targetMMSection="//@targetSectionModel/@metaModelSections.4" deactivated="true">
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Target" affectedReference="//@targetSectionModel/@metaModelSections.4/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.3/@attributes.0">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" source="//@sourceSectionModel/@metaModelSections.2/@attributes.2" modifier="//@mappingModel/@modifierSets.0"/>
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="associatedWith" source="//@sourceSectionModel/@metaModelSections.2/@attributes.2" modifier="//@mappingModel/@modifierSets.0"/>
           </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" deactivated="true">
         <modelConnectionMatcher>
-          <targetAttributes source="//@targetSectionModel/@metaModelSections.3/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" source="//@sourceSectionModel/@metaModelSections.2/@attributes.2"/>
+          <targetAttributes name="Name" source="//@targetSectionModel/@metaModelSections.3/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="associatedWith" source="//@sourceSectionModel/@metaModelSections.2/@attributes.2"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>

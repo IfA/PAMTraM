@@ -2,9 +2,6 @@
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore">
   <ecore:EPackage name="w3caui" nsURI="http://www.w3.org/2013/mbui-aui" nsPrefix="aui">
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="qualified" value="false"/>
-    </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="AbstractInteractionUnit">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="name" value="AbstractInteractionUnit"/>
@@ -39,14 +36,12 @@
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="compound"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="domainReference" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="domainReference"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="frequency" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Float"
@@ -54,7 +49,6 @@
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="frequency"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//ID"
@@ -62,14 +56,12 @@
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="id"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="name"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="repetitionFactor" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"
@@ -77,21 +69,18 @@
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="repetitionFactor"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="role" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="role"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="state"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
@@ -128,14 +117,12 @@
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="compositionRationale"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="compositionRole" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="compositionRole"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//ID"
@@ -143,7 +130,6 @@
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="id"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
@@ -164,14 +150,12 @@
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="filterProperty"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="filterType" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="filterType"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
@@ -184,7 +168,6 @@
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="dataFormat"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataLength" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"
@@ -192,7 +175,6 @@
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="dataLength"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataType" eType="#/0/EnumDataType"
@@ -200,14 +182,12 @@
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="dataType"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="defaultValue"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//ID"
@@ -215,14 +195,12 @@
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="id"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="iOFacet" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="IOFacet"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDynamic" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
@@ -230,7 +208,6 @@
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="isDynamic"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isRelevant" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
@@ -238,7 +215,6 @@
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="isRelevant"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxCardinality" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"
@@ -246,7 +222,6 @@
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="maxCardinality"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="minCardinality" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"
@@ -254,21 +229,18 @@
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="minCardinality"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="patternMatching" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="patternMatching"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="range" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="range"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
@@ -281,7 +253,6 @@
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="end"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//ID"
@@ -289,7 +260,6 @@
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="id"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isContinuous" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
@@ -297,7 +267,6 @@
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="isContinuous"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isExandable" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
@@ -305,7 +274,6 @@
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="isExandable"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isRating" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
@@ -313,7 +281,6 @@
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="isRating"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isSecret" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
@@ -321,21 +288,18 @@
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="isSecret"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="selectionStep" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="selectionStep"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="start" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="start"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
@@ -348,7 +312,6 @@
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="deselected"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
@@ -423,7 +386,7 @@
           <details key="kind" value="element"/>
           <details key="name" value="triggerSupport"/>
           <details key="namespace" value="##targetNamespace"/>
-          <details key="group" value="group:0"/>
+          <details key="group" value="#group:0"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="dataSelectionSupport"
@@ -433,7 +396,7 @@
           <details key="kind" value="element"/>
           <details key="name" value="dataSelectionSupport"/>
           <details key="namespace" value="##targetNamespace"/>
-          <details key="group" value="group:0"/>
+          <details key="group" value="#group:0"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="dataInputOutputSupport"
@@ -443,7 +406,7 @@
           <details key="kind" value="element"/>
           <details key="name" value="dataInputOutputSupport"/>
           <details key="namespace" value="##targetNamespace"/>
-          <details key="group" value="group:0"/>
+          <details key="group" value="#group:0"/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
@@ -478,7 +441,7 @@
           <details key="kind" value="element"/>
           <details key="name" value="dataSelectionSupport"/>
           <details key="namespace" value="##targetNamespace"/>
-          <details key="group" value="group:0"/>
+          <details key="group" value="#group:0"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="dataInputOutputSupport"
@@ -488,7 +451,7 @@
           <details key="kind" value="element"/>
           <details key="name" value="DataInputOutputSupport"/>
           <details key="namespace" value="##targetNamespace"/>
-          <details key="group" value="group:0"/>
+          <details key="group" value="#group:0"/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
@@ -501,7 +464,6 @@
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="selected"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
@@ -522,21 +484,18 @@
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="requiresConfirmation"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="triggerExpression" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="triggerExpression"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="triggerType" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="kind" value="attribute"/>
           <details key="name" value="triggerType"/>
-          <details key="namespace" value="##targetNamespace"/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>

@@ -31,9 +31,6 @@
       id="aiu3"
       name="">
     <aggregatedIn/>
-    <presentationSupport>
-      <dataSelectionSupport/>
-    </presentationSupport>
   </abstractInteractionUnit>
   <abstractInteractionUnit
       id="aiu4">
@@ -42,7 +39,12 @@
   <abstractInteractionUnit
       id="aiu5">
     <aggregatedIn/>
-    <presentationSupport/>
+    <eventSupport>
+      <dataSelectionSupport
+          end="1"
+          selectionStep="1"
+          start="7"/>
+    </eventSupport>
   </abstractInteractionUnit>
   <abstractInteractionUnit
       id="aiu6">

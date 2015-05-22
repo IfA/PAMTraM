@@ -184,7 +184,7 @@
     <mapping name="sequentialCompositionMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.2">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Panel" targetMMSection="//@targetSectionModel/@metaModelSections.3">
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.3/@attributes.0" expression="">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" source="//@sourceSectionModel/@metaModelSections.2/@attributes.2" modifier="//@mappingModel/@modifierSets.0"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" source="//@sourceSectionModel/@metaModelSections.2/@attributes.2" modifier="//@mappingModel/@modifierSets.2"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NavigationButton" targetMMSection="//@targetSectionModel/@metaModelSections.5" deactivated="true">
@@ -199,7 +199,7 @@
           </matcher>
         </mappingHints>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ChangeViewNavigationFlow" targetMMSection="//@targetSectionModel/@metaModelSections.4">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ChangeViewNavigationFlow" targetMMSection="//@targetSectionModel/@metaModelSections.4" deactivated="true">
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Target" affectedReference="//@targetSectionModel/@metaModelSections.4/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.3/@attributes.0">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" source="//@sourceSectionModel/@metaModelSections.2/@attributes.2" modifier="//@mappingModel/@modifierSets.0"/>
@@ -220,7 +220,7 @@
       <modifier xsi:type="mapping:StringPrepender" name="NextButton"/>
     </modifierSets>
     <modifierSets name="add one">
-      <modifier xsi:type="mapping:SubstringReplacer" regex=":%s/$/\*/g" replacement=""/>
+      <modifier xsi:type="mapping:UniqueNumberAppender" name=""/>
     </modifierSets>
   </mappingModel>
 </pamtram:PAMTraM>

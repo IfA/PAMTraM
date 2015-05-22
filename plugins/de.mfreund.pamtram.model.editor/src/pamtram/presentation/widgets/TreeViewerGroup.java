@@ -3,6 +3,7 @@ package pamtram.presentation.widgets;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.eclipse.emf.common.ui.viewer.ColumnViewerInformationControlToolTipSupport;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.CreateChildCommand;
@@ -12,6 +13,8 @@ import org.eclipse.emf.edit.ui.action.CreateChildAction;
 import org.eclipse.emf.edit.ui.action.CreateSiblingAction;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.edit.ui.provider.DecoratingColumLabelProvider;
+import org.eclipse.emf.edit.ui.provider.DiagnosticDecorator;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
@@ -257,8 +260,13 @@ public class TreeViewerGroup extends FilteredTree{
 	@Override
 	protected TreeViewer doCreateTreeViewer(Composite parent, int style) {
 		TreeViewer treeViewer = super.doCreateTreeViewer(parent, style);
-		treeViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+		treeViewer.setLabelProvider(new DecoratingColumLabelProvider(
+				new AdapterFactoryLabelProvider(adapterFactory), 
+				new DiagnosticDecorator(editingDomain, treeViewer, PamtramEditorPlugin.getPlugin().getDialogSettings())));
 		treeViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
+		new ColumnViewerInformationControlToolTipSupport(
+				treeViewer, 
+				new DiagnosticDecorator.EditingDomainLocationListener(editingDomain, treeViewer));
 		return treeViewer;
 	}
 

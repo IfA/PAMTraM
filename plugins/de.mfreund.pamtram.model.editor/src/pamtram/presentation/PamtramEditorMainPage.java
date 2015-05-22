@@ -9,6 +9,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.emf.edit.ui.provider.DecoratingColumLabelProvider;
+import org.eclipse.emf.edit.ui.provider.DiagnosticDecorator;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.wizard.WizardDialog;
@@ -233,7 +235,13 @@ public class PamtramEditorMainPage extends SashForm {
 		/*
 		 * Use a special label and content provider.
 		 */
-		mappingViewer.setLabelProvider(new MappingViewerLabelProvider(adapterFactory));
+		if(mappingViewer.getLabelProvider() instanceof DecoratingColumLabelProvider) {
+			mappingViewer.setLabelProvider(new DecoratingColumLabelProvider(
+					new MappingViewerLabelProvider(adapterFactory), 
+					new DiagnosticDecorator(editor.getEditingDomain(), mappingViewer, PamtramEditorPlugin.getPlugin().getDialogSettings())));
+		} else {
+			mappingViewer.setLabelProvider(new MappingViewerLabelProvider(adapterFactory));
+		}
 		mappingViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory) {
 			/* extend the content provider in a way that no attribute value modifier sets 
 			 * but only mappings are returned as children of a mapping model

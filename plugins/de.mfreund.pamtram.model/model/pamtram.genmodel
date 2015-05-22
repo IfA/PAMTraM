@@ -4,12 +4,15 @@
     modelName="Pamtram" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
     usedGenPackages="../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.genmodel#//genlibrary"
-    operationReflection="true" importOrganizing="true">
+    operationReflection="true" importOrganizing="true" decoration="Live">
   <foreignModel>pamtram.ecore</foreignModel>
   <genPackages prefix="Pamtram" disposableProviderFactory="true" generateModelWizard="false"
       ecorePackage="pamtram.ecore#/">
     <genClasses image="false" ecoreClass="pamtram.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//NamedElement/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="pamtram.ecore#//DeactivatableElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//DeactivatableElement/deactivated"/>
     </genClasses>
     <genClasses ecoreClass="pamtram.ecore#//PAMTraM">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/contextMetaModelPackage"/>
@@ -32,6 +35,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//MappingModel/mapping"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//MappingModel/modifierSets"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//MappingModel/globalValues"/>
+      <genOperations ecoreOperation="pamtram.ecore#//MappingModel/getActiveMappings"/>
     </genClasses>
     <genClasses ecoreClass="pamtram.ecore#//TransformationModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//TransformationModel/transformation"/>
@@ -49,6 +53,8 @@
       </genEnums>
       <genClasses image="false" ecoreClass="pamtram.ecore#//metamodel/MetaModelElement">
         <genOperations ecoreOperation="pamtram.ecore#//metamodel/MetaModelElement/getContainingSection"/>
+        <genOperations ecoreOperation="pamtram.ecore#//metamodel/MetaModelElement/getContainingSectionModel"/>
+        <genOperations ecoreOperation="pamtram.ecore#//metamodel/MetaModelElement/isLibraryEntry"/>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//metamodel/Class">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -60,6 +66,7 @@
         <genOperations ecoreOperation="pamtram.ecore#//metamodel/Class/isContainerForGeneric">
           <genParameters ecoreParameter="pamtram.ecore#//metamodel/Class/isContainerForGeneric/containedClass"/>
         </genOperations>
+        <genOperations ecoreOperation="pamtram.ecore#//metamodel/Class/isSection"/>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//metamodel/SourceSectionClass">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/SourceSectionClass/references"/>
@@ -75,8 +82,11 @@
             ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/TargetSectionClass/container"/>
       </genClasses>
       <genClasses image="false" ecoreClass="pamtram.ecore#//metamodel/LibraryParameter">
+        <genTypeParameters ecoreTypeParameter="pamtram.ecore#//metamodel/LibraryParameter/ParameterType"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/LibraryParameter/source"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/LibraryParameter/originalParameter"/>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//metamodel/AttributeParameter">
         <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/AttributeParameter/attribute"/>
@@ -206,6 +216,7 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/Mapping/mappingHintGroups"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/Mapping/importedMappingHintGroups"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/Mapping/globalVariables"/>
+        <genOperations ecoreOperation="pamtram.ecore#//mapping/Mapping/getActiveMappingHintGroups"/>
       </genClasses>
       <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/MappingHintGroupType">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"

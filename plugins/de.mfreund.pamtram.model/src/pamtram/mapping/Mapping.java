@@ -104,7 +104,7 @@ public interface Mapping extends MappingType {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<MappingHintGroupType> hintGroups = getMappingHintGroups();\r\nEList<MappingHintGroupType> activeHintGroups = new BasicEList<>();\r\nfor (MappingHintGroupType hintGroup : hintGroups) {\r\n\tif(hintGroup instanceof InstantiableMappingHintGroup && \r\n\t\t\t!((InstantiableMappingHintGroup) hintGroup).isDeactivated()) {\r\n\t\tactiveHintGroups.add(hintGroup);\r\n\t}\r\n}\r\nreturn activeHintGroups;'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<MappingHintGroupType> hintGroups = getMappingHintGroups();\r\nEList<MappingHintGroupType> activeHintGroups = new BasicEList<>();\r\nfor (MappingHintGroupType hintGroup : hintGroups) {\r\n\tif(hintGroup instanceof InstantiableMappingHintGroup && \r\n\t\t\t((InstantiableMappingHintGroup) hintGroup).isDeactivated()) {\r\n\t\t// skip this one\r\n\t} else {\r\n\t\tactiveHintGroups.add(hintGroup);\r\n\t}\r\n}\r\nreturn activeHintGroups;'"
 	 * @generated
 	 */
 	EList<MappingHintGroupType> getActiveMappingHintGroups();

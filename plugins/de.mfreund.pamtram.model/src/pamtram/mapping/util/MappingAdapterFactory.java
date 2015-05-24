@@ -92,6 +92,14 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createMappingHintAdapter();
 			}
 			@Override
+			public Adapter caseExpressionHint(ExpressionHint object) {
+				return createExpressionHintAdapter();
+			}
+			@Override
+			public Adapter caseModifiableHint(ModifiableHint object) {
+				return createModifiableHintAdapter();
+			}
+			@Override
 			public Adapter caseAttributeMapping(AttributeMapping object) {
 				return createAttributeMappingAdapter();
 			}
@@ -330,6 +338,34 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMappingHintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ExpressionHint <em>Expression Hint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.ExpressionHint
+	 * @generated
+	 */
+	public Adapter createExpressionHintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ModifiableHint <em>Modifiable Hint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.ModifiableHint
+	 * @generated
+	 */
+	public Adapter createModifiableHintAdapter() {
 		return null;
 	}
 

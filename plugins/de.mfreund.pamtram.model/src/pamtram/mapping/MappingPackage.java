@@ -223,7 +223,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappingHintType()
 	 * @generated
 	 */
-	int MAPPING_HINT_TYPE = 27;
+	int MAPPING_HINT_TYPE = 29;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappingHintImpl <em>Hint</em>}' class.
@@ -243,7 +243,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMapping()
 	 * @generated
 	 */
-	int ATTRIBUTE_MAPPING = 6;
+	int ATTRIBUTE_MAPPING = 8;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.CardinalityMappingImpl <em>Cardinality Mapping</em>}' class.
@@ -253,7 +253,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getCardinalityMapping()
 	 * @generated
 	 */
-	int CARDINALITY_MAPPING = 7;
+	int CARDINALITY_MAPPING = 9;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappingInstanceSelectorImpl <em>Instance Selector</em>}' class.
@@ -263,7 +263,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappingInstanceSelector()
 	 * @generated
 	 */
-	int MAPPING_INSTANCE_SELECTOR = 8;
+	int MAPPING_INSTANCE_SELECTOR = 10;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MatcherImpl <em>Matcher</em>}' class.
@@ -273,7 +273,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMatcher()
 	 * @generated
 	 */
-	int MATCHER = 9;
+	int MATCHER = 11;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeMatcherImpl <em>Attribute Matcher</em>}' class.
@@ -283,7 +283,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMatcher()
 	 * @generated
 	 */
-	int ATTRIBUTE_MATCHER = 10;
+	int ATTRIBUTE_MATCHER = 12;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.ClassMatcherImpl <em>Class Matcher</em>}' class.
@@ -293,7 +293,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getClassMatcher()
 	 * @generated
 	 */
-	int CLASS_MATCHER = 13;
+	int CLASS_MATCHER = 15;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeValueModifierImpl <em>Attribute Value Modifier</em>}' class.
@@ -303,7 +303,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeValueModifier()
 	 * @generated
 	 */
-	int ATTRIBUTE_VALUE_MODIFIER = 15;
+	int ATTRIBUTE_VALUE_MODIFIER = 17;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.SubstringReplacerImpl <em>Substring Replacer</em>}' class.
@@ -313,7 +313,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getSubstringReplacer()
 	 * @generated
 	 */
-	int SUBSTRING_REPLACER = 16;
+	int SUBSTRING_REPLACER = 18;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.StringAppenderImpl <em>String Appender</em>}' class.
@@ -323,7 +323,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getStringAppender()
 	 * @generated
 	 */
-	int STRING_APPENDER = 17;
+	int STRING_APPENDER = 19;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.UniqueNumberAppenderImpl <em>Unique Number Appender</em>}' class.
@@ -333,7 +333,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getUniqueNumberAppender()
 	 * @generated
 	 */
-	int UNIQUE_NUMBER_APPENDER = 18;
+	int UNIQUE_NUMBER_APPENDER = 20;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.StringPrependerImpl <em>String Prepender</em>}' class.
@@ -343,7 +343,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getStringPrepender()
 	 * @generated
 	 */
-	int STRING_PREPENDER = 19;
+	int STRING_PREPENDER = 21;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.ModifiedAttributeElementTypeImpl <em>Modified Attribute Element Type</em>}' class.
@@ -353,7 +353,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getModifiedAttributeElementType()
 	 * @generated
 	 */
-	int MODIFIED_ATTRIBUTE_ELEMENT_TYPE = 20;
+	int MODIFIED_ATTRIBUTE_ELEMENT_TYPE = 22;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeValueModifierSetImpl <em>Attribute Value Modifier Set</em>}' class.
@@ -363,7 +363,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeValueModifierSet()
 	 * @generated
 	 */
-	int ATTRIBUTE_VALUE_MODIFIER_SET = 14;
+	int ATTRIBUTE_VALUE_MODIFIER_SET = 16;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappingHintGroupTypeImpl <em>Hint Group Type</em>}' class.
@@ -594,6 +594,80 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT_OPERATION_COUNT = MAPPING_HINT_TYPE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.ExpressionHintImpl <em>Expression Hint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.ExpressionHintImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getExpressionHint()
+	 * @generated
+	 */
+	int EXPRESSION_HINT = 6;
+
+	/**
+	 * The feature id for the '<em><b>Expression</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_HINT__EXPRESSION = 0;
+
+	/**
+	 * The number of structural features of the '<em>Expression Hint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_HINT_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Expression Hint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_HINT_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.ModifiableHintImpl <em>Modifiable Hint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.ModifiableHintImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getModifiableHint()
+	 * @generated
+	 */
+	int MODIFIABLE_HINT = 7;
+
+	/**
+	 * The feature id for the '<em><b>Result Modifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODIFIABLE_HINT__RESULT_MODIFIER = 0;
+
+	/**
+	 * The number of structural features of the '<em>Modifiable Hint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODIFIABLE_HINT_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Modifiable Hint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODIFIABLE_HINT_OPERATION_COUNT = 0;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -603,31 +677,13 @@ public interface MappingPackage extends EPackage {
 	int ATTRIBUTE_MAPPING__NAME = MAPPING_HINT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MAPPING__TARGET = MAPPING_HINT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Source Attribute Mappings</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS = MAPPING_HINT_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING__EXPRESSION = MAPPING_HINT_FEATURE_COUNT + 2;
+	int ATTRIBUTE_MAPPING__EXPRESSION = MAPPING_HINT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Result Modifier</b></em>' reference list.
@@ -636,7 +692,25 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING__RESULT_MODIFIER = MAPPING_HINT_FEATURE_COUNT + 3;
+	int ATTRIBUTE_MAPPING__RESULT_MODIFIER = MAPPING_HINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING__TARGET = MAPPING_HINT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Source Attribute Mappings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS = MAPPING_HINT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Attribute Mapping</em>' class.
@@ -774,13 +848,31 @@ public interface MappingPackage extends EPackage {
 	int MATCHER_OPERATION_COUNT = 0;
 
 	/**
+	 * The feature id for the '<em><b>Expression</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MATCHER__EXPRESSION = MATCHER_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Result Modifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MATCHER__RESULT_MODIFIER = MATCHER_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Target Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE = MATCHER_FEATURE_COUNT + 0;
+	int ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE = MATCHER_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Source Attributes</b></em>' containment reference list.
@@ -789,7 +881,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES = MATCHER_FEATURE_COUNT + 1;
+	int ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES = MATCHER_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Attribute Matcher</em>' class.
@@ -798,7 +890,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MATCHER_FEATURE_COUNT = MATCHER_FEATURE_COUNT + 2;
+	int ATTRIBUTE_MATCHER_FEATURE_COUNT = MATCHER_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Get Local Source Elements</em>' operation.
@@ -871,7 +963,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMatcherSourceElement()
 	 * @generated
 	 */
-	int ATTRIBUTE_MATCHER_SOURCE_ELEMENT = 11;
+	int ATTRIBUTE_MATCHER_SOURCE_ELEMENT = 13;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -944,7 +1036,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappingHintSourceInterface()
 	 * @generated
 	 */
-	int MAPPING_HINT_SOURCE_INTERFACE = 36;
+	int MAPPING_HINT_SOURCE_INTERFACE = 38;
 
 	/**
 	 * The number of structural features of the '<em>Hint Source Interface</em>' class.
@@ -990,7 +1082,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappingHintGroupImporter()
 	 * @generated
 	 */
-	int MAPPING_HINT_GROUP_IMPORTER = 21;
+	int MAPPING_HINT_GROUP_IMPORTER = 23;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.ExportedMappingHintGroupImpl <em>Exported Mapping Hint Group</em>}' class.
@@ -1000,7 +1092,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExportedMappingHintGroup()
 	 * @generated
 	 */
-	int EXPORTED_MAPPING_HINT_GROUP = 22;
+	int EXPORTED_MAPPING_HINT_GROUP = 24;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.ModelConnectionHintImpl <em>Model Connection Hint</em>}' class.
@@ -1010,7 +1102,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHint()
 	 * @generated
 	 */
-	int MODEL_CONNECTION_HINT = 23;
+	int MODEL_CONNECTION_HINT = 25;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeMappingSourceElementImpl <em>Attribute Mapping Source Element</em>}' class.
@@ -1020,7 +1112,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMappingSourceElement()
 	 * @generated
 	 */
-	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT = 24;
+	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT = 26;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.HintImporterMappingHintImpl <em>Hint Importer Mapping Hint</em>}' class.
@@ -1030,7 +1122,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getHintImporterMappingHint()
 	 * @generated
 	 */
-	int HINT_IMPORTER_MAPPING_HINT = 28;
+	int HINT_IMPORTER_MAPPING_HINT = 30;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappedAttributeValueExpanderTypeImpl <em>Mapped Attribute Value Expander Type</em>}' class.
@@ -1040,7 +1132,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValueExpanderType()
 	 * @generated
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE = 30;
+	int MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE = 32;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappedAttributeValueExpanderImpl <em>Mapped Attribute Value Expander</em>}' class.
@@ -1050,7 +1142,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValueExpander()
 	 * @generated
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_EXPANDER = 29;
+	int MAPPED_ATTRIBUTE_VALUE_EXPANDER = 31;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappedAttributeValuePrependerImpl <em>Mapped Attribute Value Prepender</em>}' class.
@@ -1060,7 +1152,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValuePrepender()
 	 * @generated
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_PREPENDER = 31;
+	int MAPPED_ATTRIBUTE_VALUE_PREPENDER = 33;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappedAttributeValueAppenderImpl <em>Mapped Attribute Value Appender</em>}' class.
@@ -1070,7 +1162,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValueAppender()
 	 * @generated
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_APPENDER = 32;
+	int MAPPED_ATTRIBUTE_VALUE_APPENDER = 34;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.GlobalAttributeImpl <em>Global Attribute</em>}' class.
@@ -1080,7 +1172,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalAttribute()
 	 * @generated
 	 */
-	int GLOBAL_ATTRIBUTE = 33;
+	int GLOBAL_ATTRIBUTE = 35;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.GlobalAttributeImporterImpl <em>Global Attribute Importer</em>}' class.
@@ -1090,7 +1182,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalAttributeImporter()
 	 * @generated
 	 */
-	int GLOBAL_ATTRIBUTE_IMPORTER = 34;
+	int GLOBAL_ATTRIBUTE_IMPORTER = 36;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.AttributeMappingSourceInterface <em>Attribute Mapping Source Interface</em>}' class.
@@ -1100,7 +1192,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMappingSourceInterface()
 	 * @generated
 	 */
-	int ATTRIBUTE_MAPPING_SOURCE_INTERFACE = 35;
+	int ATTRIBUTE_MAPPING_SOURCE_INTERFACE = 37;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.ModelConnectionHintSourceElementImpl <em>Model Connection Hint Source Element</em>}' class.
@@ -1110,7 +1202,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHintSourceElement()
 	 * @generated
 	 */
-	int MODEL_CONNECTION_HINT_SOURCE_ELEMENT = 25;
+	int MODEL_CONNECTION_HINT_SOURCE_ELEMENT = 27;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.ModelConnectionHintTargetAttributeImpl <em>Model Connection Hint Target Attribute</em>}' class.
@@ -1120,7 +1212,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHintTargetAttribute()
 	 * @generated
 	 */
-	int MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE = 26;
+	int MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE = 28;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.AttributeMatcherSourceInterface <em>Attribute Matcher Source Interface</em>}' class.
@@ -1130,7 +1222,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMatcherSourceInterface()
 	 * @generated
 	 */
-	int ATTRIBUTE_MATCHER_SOURCE_INTERFACE = 12;
+	int ATTRIBUTE_MATCHER_SOURCE_INTERFACE = 14;
 
 	/**
 	 * The number of structural features of the '<em>Attribute Matcher Source Interface</em>' class.
@@ -2166,7 +2258,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHintSourceInterface()
 	 * @generated
 	 */
-	int MODEL_CONNECTION_HINT_SOURCE_INTERFACE = 37;
+	int MODEL_CONNECTION_HINT_SOURCE_INTERFACE = 39;
 
 	/**
 	 * The number of structural features of the '<em>Model Connection Hint Source Interface</em>' class.
@@ -2212,7 +2304,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalModifiedAttributeElementType()
 	 * @generated
 	 */
-	int EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE = 39;
+	int EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE = 41;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2267,7 +2359,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMappingExternalSourceElement()
 	 * @generated
 	 */
-	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT = 38;
+	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT = 40;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2340,7 +2432,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHintExternalSourceElement()
 	 * @generated
 	 */
-	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT = 40;
+	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT = 42;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2413,7 +2505,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMatcherExternalSourceElement()
 	 * @generated
 	 */
-	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT = 41;
+	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT = 43;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2486,7 +2578,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalMappedAttributeValueExpander()
 	 * @generated
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 42;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 44;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2550,7 +2642,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalMappedAttributeValuePrepender()
 	 * @generated
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER = 43;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER = 45;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2614,7 +2706,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalMappedAttributeValueAppender()
 	 * @generated
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER = 44;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER = 46;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2678,7 +2770,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExpandableHint()
 	 * @generated
 	 */
-	int EXPANDABLE_HINT = 45;
+	int EXPANDABLE_HINT = 47;
 
 	/**
 	 * The number of structural features of the '<em>Expandable Hint</em>' class.
@@ -2706,7 +2798,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMatchToLowerCaseConverter()
 	 * @generated
 	 */
-	int MATCH_TO_LOWER_CASE_CONVERTER = 46;
+	int MATCH_TO_LOWER_CASE_CONVERTER = 48;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2761,7 +2853,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMatchToUpperCaseConverter()
 	 * @generated
 	 */
-	int MATCH_TO_UPPER_CASE_CONVERTER = 47;
+	int MATCH_TO_UPPER_CASE_CONVERTER = 49;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2816,7 +2908,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalValue()
 	 * @generated
 	 */
-	int GLOBAL_VALUE = 48;
+	int GLOBAL_VALUE = 50;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2950,6 +3042,48 @@ public interface MappingPackage extends EPackage {
 	EClass getMappingHint();
 
 	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.ExpressionHint <em>Expression Hint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Expression Hint</em>'.
+	 * @see pamtram.mapping.ExpressionHint
+	 * @generated
+	 */
+	EClass getExpressionHint();
+
+	/**
+	 * Returns the meta object for the attribute '{@link pamtram.mapping.ExpressionHint#getExpression <em>Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Expression</em>'.
+	 * @see pamtram.mapping.ExpressionHint#getExpression()
+	 * @see #getExpressionHint()
+	 * @generated
+	 */
+	EAttribute getExpressionHint_Expression();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.ModifiableHint <em>Modifiable Hint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Modifiable Hint</em>'.
+	 * @see pamtram.mapping.ModifiableHint
+	 * @generated
+	 */
+	EClass getModifiableHint();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.mapping.ModifiableHint#getResultModifier <em>Result Modifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Result Modifier</em>'.
+	 * @see pamtram.mapping.ModifiableHint#getResultModifier()
+	 * @see #getModifiableHint()
+	 * @generated
+	 */
+	EReference getModifiableHint_ResultModifier();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.AttributeMapping <em>Attribute Mapping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2980,28 +3114,6 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getAttributeMapping_SourceAttributeMappings();
-
-	/**
-	 * Returns the meta object for the attribute '{@link pamtram.mapping.AttributeMapping#getExpression <em>Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Expression</em>'.
-	 * @see pamtram.mapping.AttributeMapping#getExpression()
-	 * @see #getAttributeMapping()
-	 * @generated
-	 */
-	EAttribute getAttributeMapping_Expression();
-
-	/**
-	 * Returns the meta object for the reference list '{@link pamtram.mapping.AttributeMapping#getResultModifier <em>Result Modifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Result Modifier</em>'.
-	 * @see pamtram.mapping.AttributeMapping#getResultModifier()
-	 * @see #getAttributeMapping()
-	 * @generated
-	 */
-	EReference getAttributeMapping_ResultModifier();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.mapping.AttributeMapping#getLocalSourceElements() <em>Get Local Source Elements</em>}' operation.
@@ -3966,6 +4078,42 @@ public interface MappingPackage extends EPackage {
 		EClass MAPPING_HINT = eINSTANCE.getMappingHint();
 
 		/**
+		 * The meta object literal for the '{@link pamtram.mapping.impl.ExpressionHintImpl <em>Expression Hint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.impl.ExpressionHintImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getExpressionHint()
+		 * @generated
+		 */
+		EClass EXPRESSION_HINT = eINSTANCE.getExpressionHint();
+
+		/**
+		 * The meta object literal for the '<em><b>Expression</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXPRESSION_HINT__EXPRESSION = eINSTANCE.getExpressionHint_Expression();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.impl.ModifiableHintImpl <em>Modifiable Hint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.impl.ModifiableHintImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getModifiableHint()
+		 * @generated
+		 */
+		EClass MODIFIABLE_HINT = eINSTANCE.getModifiableHint();
+
+		/**
+		 * The meta object literal for the '<em><b>Result Modifier</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODIFIABLE_HINT__RESULT_MODIFIER = eINSTANCE.getModifiableHint_ResultModifier();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.AttributeMappingImpl <em>Attribute Mapping</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3990,22 +4138,6 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS = eINSTANCE.getAttributeMapping_SourceAttributeMappings();
-
-		/**
-		 * The meta object literal for the '<em><b>Expression</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ATTRIBUTE_MAPPING__EXPRESSION = eINSTANCE.getAttributeMapping_Expression();
-
-		/**
-		 * The meta object literal for the '<em><b>Result Modifier</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ATTRIBUTE_MAPPING__RESULT_MODIFIER = eINSTANCE.getAttributeMapping_ResultModifier();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Local Source Elements</b></em>' operation.

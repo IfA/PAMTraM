@@ -15,8 +15,6 @@ import pamtram.metamodel.TargetSectionAttribute;
  * <ul>
  *   <li>{@link pamtram.mapping.AttributeMapping#getTarget <em>Target</em>}</li>
  *   <li>{@link pamtram.mapping.AttributeMapping#getSourceAttributeMappings <em>Source Attribute Mappings</em>}</li>
- *   <li>{@link pamtram.mapping.AttributeMapping#getExpression <em>Expression</em>}</li>
- *   <li>{@link pamtram.mapping.AttributeMapping#getResultModifier <em>Result Modifier</em>}</li>
  * </ul>
  * </p>
  *
@@ -25,7 +23,7 @@ import pamtram.metamodel.TargetSectionAttribute;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL sourceAttributeMatchesSection='' targetAttributeMatchesSection='\n'"
  * @generated
  */
-public interface AttributeMapping extends MappingHint, ExpandableHint {
+public interface AttributeMapping extends MappingHint, ExpressionHint, ModifiableHint, ExpandableHint {
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -67,48 +65,6 @@ public interface AttributeMapping extends MappingHint, ExpandableHint {
 	 * @generated
 	 */
 	EList<AttributeMappingSourceInterface> getSourceAttributeMappings();
-
-	/**
-	 * Returns the value of the '<em><b>Expression</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Expression</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Expression</em>' attribute.
-	 * @see #setExpression(String)
-	 * @see pamtram.mapping.MappingPackage#getAttributeMapping_Expression()
-	 * @model required="true"
-	 * @generated
-	 */
-	String getExpression();
-
-	/**
-	 * Sets the value of the '{@link pamtram.mapping.AttributeMapping#getExpression <em>Expression</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Expression</em>' attribute.
-	 * @see #getExpression()
-	 * @generated
-	 */
-	void setExpression(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Result Modifier</b></em>' reference list.
-	 * The list contents are of type {@link pamtram.mapping.AttributeValueModifierSet}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Result Modifier</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Result Modifier</em>' reference list.
-	 * @see pamtram.mapping.MappingPackage#getAttributeMapping_ResultModifier()
-	 * @model
-	 * @generated
-	 */
-	EList<AttributeValueModifierSet> getResultModifier();
 
 	/**
 	 * <!-- begin-user-doc -->

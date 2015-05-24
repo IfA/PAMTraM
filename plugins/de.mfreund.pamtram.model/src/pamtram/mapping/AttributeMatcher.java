@@ -22,7 +22,7 @@ import pamtram.metamodel.TargetSectionAttribute;
  * @model
  * @generated
  */
-public interface AttributeMatcher extends Matcher, ExpandableHint {
+public interface AttributeMatcher extends Matcher, ExpressionHint, ModifiableHint, ExpandableHint {
 	/**
 	 * Returns the value of the '<em><b>Target Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->

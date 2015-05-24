@@ -381,7 +381,15 @@
           eType="#//mapping/ModelConnectionHint" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MappingHint" abstract="true" eSuperTypes="#//mapping/MappingHintType"/>
-    <eClassifiers xsi:type="ecore:EClass" name="AttributeMapping" eSuperTypes="#//mapping/MappingHint #//mapping/ExpandableHint">
+    <eClassifiers xsi:type="ecore:EClass" name="ExpressionHint" abstract="true">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ModifiableHint" abstract="true">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="resultModifier" upperBound="-1"
+          eType="#//mapping/AttributeValueModifierSet"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeMapping" eSuperTypes="#//mapping/MappingHint #//mapping/ExpressionHint #//mapping/ModifiableHint #//mapping/ExpandableHint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="sourceAttributeMatchesSection&#xD;&#xA;targetAttributeMatchesSection"/>
       </eAnnotations>
@@ -399,10 +407,6 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceAttributeMappings"
           lowerBound="1" upperBound="-1" eType="#//mapping/AttributeMappingSourceInterface"
           containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="resultModifier" upperBound="-1"
-          eType="#//mapping/AttributeValueModifierSet"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CardinalityMapping" eSuperTypes="#//mapping/MappingHint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -421,7 +425,7 @@
           eType="#//mapping/Matcher" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Matcher" abstract="true"/>
-    <eClassifiers xsi:type="ecore:EClass" name="AttributeMatcher" eSuperTypes="#//mapping/Matcher #//mapping/ExpandableHint">
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeMatcher" eSuperTypes="#//mapping/Matcher #//mapping/ExpressionHint #//mapping/ModifiableHint #//mapping/ExpandableHint">
       <eOperations name="getLocalSourceElements" unique="false" upperBound="-1" eType="#//mapping/AttributeMatcherSourceElement">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="body" value="EList&lt;AttributeMatcherSourceElement> elements= new org.eclipse.emf.common.util.BasicEList&lt;AttributeMatcherSourceElement>();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;for(AttributeMatcherSourceInterface i : this.getSourceAttributes()){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(i instanceof AttributeMatcherSourceElement){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;elements.add((AttributeMatcherSourceElement) i);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;return elements;"/>

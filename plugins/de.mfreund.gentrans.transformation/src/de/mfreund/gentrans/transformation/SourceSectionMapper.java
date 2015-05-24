@@ -381,7 +381,7 @@ class SourceSectionMapper implements CancellationListener {
 	@SuppressWarnings("unchecked")
 	private boolean checkExternalAttributeMapping(final Mapping m,
 			final MappingInstanceStorage res, boolean mappingFailed,
-			final Map<ExternalModifiedAttributeElementType<SourceSectionAttribute>, String> attrVals,
+			final Map<ExternalModifiedAttributeElementType<SourceSectionAttribute>, AttributeValueRepresentation> attrVals,
 			final MappingHintSourceInterface i) {
 		if (i instanceof ExternalModifiedAttributeElementType) {
 			String attrVal = getContainerAttributeValue(((ExternalModifiedAttributeElementType<SourceSectionAttribute>) i).getSource(),
@@ -393,7 +393,7 @@ class SourceSectionMapper implements CancellationListener {
 				attrVal = attributeValuemodifier.applyAttributeValueModifiers(
 						attrVal, ((ExternalModifiedAttributeElementType<SourceSectionAttribute>) i)
 						.getModifier());
-				attrVals.put((ExternalModifiedAttributeElementType<SourceSectionAttribute>) i, attrVal);
+				attrVals.put((ExternalModifiedAttributeElementType<SourceSectionAttribute>) i, new AttributeValueRepresentation(attrVal));
 			}
 		}
 		return mappingFailed;
@@ -1902,7 +1902,7 @@ class SourceSectionMapper implements CancellationListener {
 	private boolean handleExternalAttributeMappings(final Mapping m,
 			final MappingInstanceStorage res, boolean mappingFailed) {
 		if (m.getSourceMMSection().getContainer() != null) {
-			final Map<ExternalModifiedAttributeElementType<SourceSectionAttribute>, String> attrVals = new HashMap<>();
+			final Map<ExternalModifiedAttributeElementType<SourceSectionAttribute>, AttributeValueRepresentation> attrVals = new HashMap<>();
 			for (final MappingHintType h : getHints(m)) {
 				if (h instanceof AttributeMapping) {
 					for (final AttributeMappingSourceInterface i : ((AttributeMapping) h)
@@ -1939,7 +1939,7 @@ class SourceSectionMapper implements CancellationListener {
 								
 								try {
 									final Calculable calc = new ExpressionBuilder(
-											attrVals.get(e)).build();
+											attrVals.get(e).getValue()).build();
 									final double variableVal = calc.calculate();// parseDouble
 									/*
 									 * doesn't support Scientific notation, like:
@@ -1954,7 +1954,7 @@ class SourceSectionMapper implements CancellationListener {
 											+ " of CalculatorMapping "
 											+ h.getName()
 													+ " from String to double. The problematic source element's attribute value was: "
-											+ attrVals.get(e));
+											+ attrVals.get(e).getValue());
 								}
 							}
 							for (final Object hVal : res.getHintValues().get(h)) {
@@ -1971,7 +1971,7 @@ class SourceSectionMapper implements CancellationListener {
 								for (final ExternalModifiedAttributeElementType<SourceSectionAttribute> e : attrVals
 										.keySet()) {
 									map.put((AttributeMappingSourceInterface) e,
-											new AttributeValueRepresentation(attrVals.get(e)));
+											new AttributeValueRepresentation(attrVals.get(e).getValue()));
 								}
 							}
 						}
@@ -2035,7 +2035,7 @@ class SourceSectionMapper implements CancellationListener {
 								for (final Object hVal : res.getHintValues()
 										.get(h)) {
 									@SuppressWarnings("unchecked")
-									final Map<AttributeMatcherSourceInterface, String> map = (Map<AttributeMatcherSourceInterface, String>) hVal;
+									final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> map = (Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>) hVal;
 									for (final ExternalModifiedAttributeElementType<SourceSectionAttribute> e : attrVals
 											.keySet()) {
 										map.put((AttributeMatcherSourceInterface) e,
@@ -2082,7 +2082,7 @@ class SourceSectionMapper implements CancellationListener {
 							for (final ExternalModifiedAttributeElementType<SourceSectionAttribute> e : attrVals
 									.keySet()) {
 								map.put((ModelConnectionHintSourceInterface) e,
-										attrVals.get(e));
+										attrVals.get(e).getValue());
 							}
 						}
 						// last action: reset attrval list

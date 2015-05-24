@@ -14,6 +14,7 @@ import org.eclipse.emf.edit.ui.action.CreateSiblingAction;
 import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
 import org.eclipse.emf.edit.ui.action.LoadResourceAction;
 import org.eclipse.emf.edit.ui.action.ValidateAction;
+import org.eclipse.emf.edit.ui.provider.DiagnosticDecorator;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IAction;
@@ -165,6 +166,7 @@ public class PamtramActionBarContributor
 		super(ADDITIONS_LAST_STYLE);
 		loadResourceAction = new LoadResourceAction();
 		validateAction = new ValidateAction();
+		liveValidationAction = new DiagnosticDecorator.LiveValidator.LiveValidationAction(PamtramEditorPlugin.getPlugin().getDialogSettings());
 		controlAction = new ControlAction();
 	}
 
@@ -403,10 +405,10 @@ public class PamtramActionBarContributor
 	protected void depopulateManager(IContributionManager manager, Collection<? extends IAction> actions) {
 		if (actions != null) {
 			IContributionItem[] items = manager.getItems();
-			for (IContributionItem item : items) {
+			for (int i = 0; i < items.length; i++) {
 				// Look into SubContributionItems
 				//
-				IContributionItem contributionItem = item;
+				IContributionItem contributionItem = items[i];
 				while (contributionItem instanceof SubContributionItem) {
 					contributionItem = ((SubContributionItem)contributionItem).getInnerItem();
 				}

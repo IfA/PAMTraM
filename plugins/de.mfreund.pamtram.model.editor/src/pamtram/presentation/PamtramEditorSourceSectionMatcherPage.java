@@ -8,6 +8,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -299,15 +300,27 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 			return;
 		}
 		
+		EList<EObject> contents = modelResource.getContents();
+		
+		/* 
+		 * If an xml source file has been selected,  we have to omit the 'document root' element and 
+		 * instead determine the actual contents. Passing the load option 'XMLResource.OPTION_SUPPRESS_DOCUMENT_ROOT'
+		 * somehow does not seem to work. 
+		 */
+		if((contents.get(0)).eClass().getName().equals("DocumentRoot")) {
+			contents = (contents.get(0)).eContents();
+		}
+		
+		
 		// set the contents of the resource as input for the source model viewer
-		sourceModelViewer.setInput(modelResource.getContents());
+		sourceModelViewer.setInput(contents);
 		
 		// the target file
 		String targetFile =  project.getName() + Path.SEPARATOR + "Target" + Path.SEPARATOR + "temp.xmi";
 		
 		// Create a transformation runner and use it to get the matching source sections
 		GenericTransformationRunner tr = 
-				new GenericTransformationRunner(modelResource.getContents().get(0), editor.pamtram, targetFile, null);
+				new GenericTransformationRunner(contents.get(0), editor.pamtram, targetFile, null);
 		
 		matchedSections = tr.mapSections();
 		

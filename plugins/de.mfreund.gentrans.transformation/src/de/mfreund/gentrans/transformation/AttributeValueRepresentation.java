@@ -109,12 +109,15 @@ public class AttributeValueRepresentation {
 	/**
 	 * This returns the 'next' value of the list of values. Which value is the 'next' one
 	 * to return is determined by an internal counter that is incremented automatically.
-	 * 
-	 * @throws IndexOutOfBoundsException if every value has already been retrieved once.
 	 */
 	public String getNextValue() {
-		String ret =  attributeValues.get(pointer);
-		pointer++;
+		String ret = attributeValues.get(pointer);
+		
+		// Reset the pointer if all values have already been retrieved.
+		// TODO check if this may happen or if we should throw an exception
+		if(++pointer == attributeValues.size()) {
+			pointer = 0;
+		}
 		return ret;
 	}
 	

@@ -26,6 +26,7 @@ import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.LibraryParameter;
 import pamtram.util.GenLibraryManager;
 import de.mfreund.gentrans.transformation.AttributeValueCalculator;
+import de.mfreund.gentrans.transformation.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.EObjectTransformationHelper;
 import de.mfreund.gentrans.transformation.TargetSectionConnector;
 import de.mfreund.gentrans.transformation.TargetSectionRegistry;
@@ -223,13 +224,14 @@ public class LibraryEntryInstantiator {
 						String attrValStr = null;
 
 						attrValStr = "";
-						final Map<AttributeMatcherSourceInterface, String> hVal = (Map<AttributeMatcherSourceInterface, String>) attrVal;
+						final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> hVal = 
+								(Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>) attrVal;
 						for (final AttributeMatcherSourceInterface srcElement : ((AttributeMatcher) selector
 								.getMatcher())
 								.getSourceAttributes()) {
 							if (hVal.containsKey(srcElement)) {
 								attrValStr += hVal
-										.get(srcElement);
+										.get(srcElement).getNextValue();
 							} else {
 									consoleStream.println("HintSourceValue not found "
 										+ srcElement

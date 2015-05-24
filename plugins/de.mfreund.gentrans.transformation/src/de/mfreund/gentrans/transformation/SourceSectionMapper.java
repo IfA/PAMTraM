@@ -51,7 +51,6 @@ import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
 import pamtram.metamodel.SourceSectionReference;
-import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.selectors.NamedElementItemSelectorDialogRunner;
 
@@ -785,26 +784,22 @@ class SourceSectionMapper implements CancellationListener {
 							
 							for (String value : complexSourceElementHintValues.get(s).getValues()) {
 								try {
-									
-									final Calculable calc = new ExpressionBuilder(value).build();
-									final double variableVal = calc.calculate();// parseDouble
 									/*
-									 * doesn't support Scientific notation, like: 0.42e2
-									 * == 4200e-2 == 42,
+									 * Use 'ExpressionBuilder' to parse a 'double' from the 'string' representation
+									 * of the attribute value. The simpler way 'Double.parseDouble(value)' would not
+									 * support scientific notations like '0.42e2' or '4200e-2'.
 									 */
+									final double variableVal = new ExpressionBuilder(value).build().calculate();
+									
 									if(calculatedValue == null) {
 										calculatedValue = new AttributeValueRepresentation(String.valueOf(variableVal));
 									} else {
 										calculatedValue.addValue(String.valueOf(variableVal));
 									}
 								} catch (final Exception e) {
-									consoleStream
-									.println("Couldn't convert variable "
-											+ s.getName()
-											+ " of CalculatorMapping "
-											+ h.getName()
-											+ " from String to double. The problematic source element's attribute value was: "
-											+ value);
+									consoleStream.println("Couldn't convert variable " + s.getName() 
+											+ " of CalculatorMapping " + h.getName() + " from String to double. "
+											+ "The problematic source element's attribute value was: " + value);
 								}
 							
 							}
@@ -1938,23 +1933,19 @@ class SourceSectionMapper implements CancellationListener {
 								}
 								
 								try {
-									final Calculable calc = new ExpressionBuilder(
-											attrVals.get(e)).build();
-									final double variableVal = calc.calculate();// parseDouble
 									/*
-									 * doesn't support Scientific notation, like:
-									 * 0.42e2 == 4200e-2 == 42,
+									 * Use 'ExpressionBuilder' to parse a 'double' from the 'string' representation
+									 * of the attribute value. The simpler way 'Double.parseDouble(value)' would not
+									 * support scientific notations like '0.42e2' or '4200e-2'.
 									 */
+									final double variableVal = new ExpressionBuilder(attrVals.get(e)).build().calculate();
+
 									newVals.put((AttributeMappingSourceInterface) e,
 											new AttributeValueRepresentation(String.valueOf(variableVal)));
 								} catch (final Exception execption) {
-									consoleStream
-									.println("Couldn't convert variable "
-											+ e.getName()
-											+ " of CalculatorMapping "
-											+ h.getName()
-													+ " from String to double. The problematic source element's attribute value was: "
-											+ attrVals.get(e));
+									consoleStream.println("Couldn't convert variable " + e.getName()
+											+ " of CalculatorMapping " + h.getName() + " from String to double. "
+											+ "The problematic source element's attribute value was: " + attrVals.get(e));
 								}
 							}
 							for (final Object hVal : res.getHintValues().get(h)) {

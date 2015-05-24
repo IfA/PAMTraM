@@ -22,6 +22,11 @@ public class AttributeValueRepresentation {
 	private ArrayList<String> attributeValues = new ArrayList<>();
 	
 	/**
+	 * This pointer is used by {@link #getNextValue()} to determine the 'next' value to return.
+	 */
+	private int pointer = 0;
+	
+	/**
 	 * This constructs an instance for a single given value.
 	 * 
 	 * @param value The value to be stored. If '<em><b>null</em></b>' is passed as value,
@@ -99,6 +104,18 @@ public class AttributeValueRepresentation {
 		for(int i=0; i<attributeValues.size(); i++) {
 			attributeValues.set(i, attributeValues.get(i) + suffix);
 		}
+	}
+	
+	/**
+	 * This returns the 'next' value of the list of values. Which value is the 'next' one
+	 * to return is determined by an internal counter that is incremented automatically.
+	 * 
+	 * @throws IndexOutOfBoundsException if every value has already been retrieved once.
+	 */
+	public String getNextValue() {
+		String ret =  attributeValues.get(pointer);
+		pointer++;
+		return ret;
 	}
 	
 	@Override

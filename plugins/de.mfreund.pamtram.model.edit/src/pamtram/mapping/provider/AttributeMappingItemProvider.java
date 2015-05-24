@@ -61,9 +61,9 @@ public class AttributeMappingItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addTargetPropertyDescriptor(object);
 			addExpressionPropertyDescriptor(object);
 			addResultModifierPropertyDescriptor(object);
+			addTargetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -154,9 +154,9 @@ public class AttributeMappingItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_AttributeMapping_expression_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeMapping_expression_feature", "_UI_AttributeMapping_type"),
-				 MappingPackage.Literals.ATTRIBUTE_MAPPING__EXPRESSION,
+				 getString("_UI_ExpressionHint_expression_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExpressionHint_expression_feature", "_UI_ExpressionHint_type"),
+				 MappingPackage.Literals.EXPRESSION_HINT__EXPRESSION,
 				 true,
 				 false,
 				 false,
@@ -176,9 +176,9 @@ public class AttributeMappingItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_AttributeMapping_resultModifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeMapping_resultModifier_feature", "_UI_AttributeMapping_type"),
-				 MappingPackage.Literals.ATTRIBUTE_MAPPING__RESULT_MODIFIER,
+				 getString("_UI_ModifiableHint_resultModifier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
+				 MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
 				 true,
 				 false,
 				 true,
@@ -307,8 +307,7 @@ public class AttributeMappingItemProvider
 		}
 		
 		EList<AttributeValueModifierSet> values = new BasicEList<AttributeValueModifierSet>();
-		for(Iterator<?> iter = collection.iterator(); iter.hasNext(); ) {
-			Object value = iter.next();
+		for (Object value : collection) {
 			if(value instanceof AttributeValueModifierSet) {
 				values.add((AttributeValueModifierSet) value);
 			} else {
@@ -322,7 +321,7 @@ public class AttributeMappingItemProvider
 					operation, collection); 
 		} else {
 			return new BasicDragAndDropAddCommand(domain, (EObject) owner, 
-					MappingPackage.Literals.ATTRIBUTE_MAPPING__RESULT_MODIFIER, values);
+					MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER, values);
 		}
 	}
 

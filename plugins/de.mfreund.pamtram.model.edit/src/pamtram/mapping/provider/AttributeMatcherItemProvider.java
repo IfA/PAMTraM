@@ -55,9 +55,55 @@ public class AttributeMatcherItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addExpressionPropertyDescriptor(object);
+			addResultModifierPropertyDescriptor(object);
 			addTargetAttributePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Expression feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addExpressionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ExpressionHint_expression_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExpressionHint_expression_feature", "_UI_ExpressionHint_type"),
+				 MappingPackage.Literals.EXPRESSION_HINT__EXPRESSION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Result Modifier feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addResultModifierPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ModifiableHint_resultModifier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
+				 MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -149,7 +195,10 @@ public class AttributeMatcherItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_AttributeMatcher_type");
+		String label = ((AttributeMatcher)object).getExpression();
+		return label == null || label.length() == 0 ?
+			getString("_UI_AttributeMatcher_type") :
+			getString("_UI_AttributeMatcher_type") + " " + label;
 	}
 
 	/**
@@ -164,6 +213,9 @@ public class AttributeMatcherItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(AttributeMatcher.class)) {
+			case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

@@ -383,8 +383,11 @@ class SourceSectionMapper implements CancellationListener {
 			final MappingInstanceStorage res, boolean mappingFailed,
 			final Map<ExternalModifiedAttributeElementType<SourceSectionAttribute>, AttributeValueRepresentation> attrVals,
 			final MappingHintSourceInterface i) {
+		
 		if (i instanceof ExternalModifiedAttributeElementType) {
-			String attrVal = getContainerAttributeValue(((ExternalModifiedAttributeElementType<SourceSectionAttribute>) i).getSource(),
+			ExternalModifiedAttributeElementType<SourceSectionAttribute> externalModifiedAttributeElement = 
+					((ExternalModifiedAttributeElementType<SourceSectionAttribute>) i);
+			String attrVal = getContainerAttributeValue(externalModifiedAttributeElement.getSource(),
 					m.getSourceMMSection().getContainer(), res
 					.getAssociatedSourceModelElement().eContainer());
 			if (attrVal == null) {
@@ -393,7 +396,9 @@ class SourceSectionMapper implements CancellationListener {
 				attrVal = attributeValuemodifier.applyAttributeValueModifiers(
 						attrVal, ((ExternalModifiedAttributeElementType<SourceSectionAttribute>) i)
 						.getModifier());
-				attrVals.put((ExternalModifiedAttributeElementType<SourceSectionAttribute>) i, new AttributeValueRepresentation(attrVal));
+				attrVals.put(
+						(ExternalModifiedAttributeElementType<SourceSectionAttribute>) i, 
+						new AttributeValueRepresentation(externalModifiedAttributeElement.getSource(), attrVal));
 			}
 		}
 		return mappingFailed;
@@ -793,7 +798,7 @@ class SourceSectionMapper implements CancellationListener {
 									 * == 4200e-2 == 42,
 									 */
 									if(calculatedValue == null) {
-										calculatedValue = new AttributeValueRepresentation(String.valueOf(variableVal));
+										calculatedValue = new AttributeValueRepresentation(s.getSource(), String.valueOf(variableVal));
 									} else {
 										calculatedValue.addValue(String.valueOf(variableVal));
 									}
@@ -1811,7 +1816,7 @@ class SourceSectionMapper implements CancellationListener {
 												m.getModifier());
 								// create a new AttributeValueRepresentation or update the existing one
 								if(complexSourceElementHintValues.get(m) == null) {
-									complexSourceElementHintValues.put(m, new AttributeValueRepresentation(valCopy));
+									complexSourceElementHintValues.put(m, new AttributeValueRepresentation(m.getSource(), valCopy));
 								} else {
 									complexSourceElementHintValues.get(m).addValue(valCopy);
 								}
@@ -1842,7 +1847,7 @@ class SourceSectionMapper implements CancellationListener {
 													e.getModifier());
 									// create a new AttributeValueRepresentation or update the existing one
 									if(complexAttrMatcherSourceElementHintValues.get(e) == null) {
-										complexAttrMatcherSourceElementHintValues.put(e, new AttributeValueRepresentation(valCopy));
+										complexAttrMatcherSourceElementHintValues.put(e, new AttributeValueRepresentation(e.getSource(), valCopy));
 									} else {
 										complexAttrMatcherSourceElementHintValues.get(e).addValue(valCopy);
 									}
@@ -1946,7 +1951,7 @@ class SourceSectionMapper implements CancellationListener {
 									 * 0.42e2 == 4200e-2 == 42,
 									 */
 									newVals.put((AttributeMappingSourceInterface) e,
-											new AttributeValueRepresentation(String.valueOf(variableVal)));
+											new AttributeValueRepresentation(e.getSource(), String.valueOf(variableVal)));
 								} catch (final Exception execption) {
 									consoleStream
 									.println("Couldn't convert variable "
@@ -1971,7 +1976,7 @@ class SourceSectionMapper implements CancellationListener {
 								for (final ExternalModifiedAttributeElementType<SourceSectionAttribute> e : attrVals
 										.keySet()) {
 									map.put((AttributeMappingSourceInterface) e,
-											new AttributeValueRepresentation(attrVals.get(e).getValue()));
+											new AttributeValueRepresentation(e.getSource(), attrVals.get(e).getValue()));
 								}
 							}
 						}

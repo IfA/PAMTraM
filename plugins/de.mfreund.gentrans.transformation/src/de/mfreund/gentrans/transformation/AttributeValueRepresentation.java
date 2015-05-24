@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import org.eclipse.emf.ecore.EAttribute;
 
+import pamtram.metamodel.SourceSectionAttribute;
+
 /**
  * This represents the (possibly multi-valued) value of an {@link EAttribute}.
  * This class should be used to represent the value(s) of an attribute independent
@@ -13,6 +15,11 @@ import org.eclipse.emf.ecore.EAttribute;
  *
  */
 public class AttributeValueRepresentation {
+	
+	/**
+	 * This is the {@link SourceSectionAttribute} that this represents.
+	 */
+	private SourceSectionAttribute attribute;
 	
 	/**
 	 * This represents the values of the attribute. In case where
@@ -32,8 +39,9 @@ public class AttributeValueRepresentation {
 	 * @param value The value to be stored. If '<em><b>null</em></b>' is passed as value,
 	 * an empty string will be stored.
 	 */
-	public AttributeValueRepresentation(String value) {
-		attributeValues.add(value != null ? value : "");
+	public AttributeValueRepresentation(SourceSectionAttribute attribute, String value) {
+		this.attribute = attribute;
+		this.attributeValues.add(value != null ? value : "");
 	}
 	
 	/**
@@ -115,9 +123,9 @@ public class AttributeValueRepresentation {
 		
 		// Reset the pointer if all values have already been retrieved.
 		// TODO check if this may happen or if we should throw an exception
-		if(++pointer == attributeValues.size()) {
-			pointer = 0;
-		}
+//		if(++pointer == attributeValues.size()) {
+//			pointer = 0;
+//		}
 		return ret;
 	}
 	
@@ -127,7 +135,7 @@ public class AttributeValueRepresentation {
 		 * Create a new instance and copy every attribute value separately.
 		 */
 		AttributeValueRepresentation clone = 
-				new AttributeValueRepresentation(getValues().get(0));
+				new AttributeValueRepresentation(attribute, getValues().get(0));
 		for(int i=1; i < getValues().size(); i++) {
 			clone.addValue(getValues().get(i));
 		}

@@ -7,9 +7,12 @@ import java.util.Map;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.mapping.AttributeMapping;
-import pamtram.mapping.AttributeMappingSourceElement;
 import pamtram.mapping.AttributeMappingSourceInterface;
+import pamtram.mapping.AttributeMatcher;
+import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.MappingHint;
+import pamtram.mapping.MappingInstanceSelector;
+import pamtram.mapping.ModifiableHint;
 import pamtram.metamodel.TargetSectionAttribute;
 import de.congrace.exp4j.ExpressionBuilder;
 import de.congrace.exp4j.InvalidCustomFunctionException;
@@ -79,103 +82,151 @@ public class AttributeValueCalculator {
 	 * This calculates the value of a {@link TargetSectionAttribute} for a given
 	 * {@link MappingHint} and a list of hint values.
 	 * 
-	 * @param attr The {@link TargetSectionAttribute} for which the target value is calculated.
+	 * @param attr The {@link TargetSectionAttribute} for which the target value is calculated or <em>null</em> if
+	 * 		the given hint is a {@link MappingInstanceSelector}.
 	 * @param hint A {@link MappingHint} to be used for the calculation (typically, this should be
-	 * 		either an {@link AttributeMappingu} or <em>null</em> if no hint has been found.
-	 * @param attrHintValues A list of hint values to be used in the calculation.
+	 * 		either an {@link AttributeMapping}, a {@link MappingInstanceSelector} with {@link AttributeMatcher}, or 
+	 * 		<em>null</em> if no hint has been found.
+	 * @param attrHintValueList A list of hint values to be used in the calculation. Each entry of the list represents
+	 * 		the hint values for one instance that is created.
 	 * @return The calculated attribute value or <em>null</em> if no value could be calculated.
 	 */
 	public String calculateAttributeValue(final TargetSectionAttribute attr,
-			MappingHint hint, LinkedList<Object> attrHintValues, int i) {
+			MappingHint hint, LinkedList<Object> attrHintValueList) {
 		String attrValue = null;
-		if (attrHintValues != null) {
+		if (attrHintValueList != null) {
+			
+			// this is the map of hint values that we will use for this calculation
+			@SuppressWarnings("unchecked")
+			Map<?, AttributeValueRepresentation> attrHintValues = 
+					(Map<?, AttributeValueRepresentation>) attrHintValueList.removeFirst(); 
+			
+			// determine the value of the 'expression' attribute
+			String expression = "";
 			if (hint instanceof AttributeMapping) {
-				attrValue = "";
-					
-				if(((AttributeMapping) hint).getExpression() != null && !((AttributeMapping) hint).getExpression().isEmpty()) {
-					try {
-						final Map<String, Double> vars = new HashMap<String, Double>();
-						vars.putAll(globalVarValueDoubles);
-						/*
-						 * Names of local (CalcMapping) variables will
-						 * overwrite names of global variables
-						 */
-						@SuppressWarnings("unchecked")
-						final Map<AttributeMappingSourceElement, AttributeValueRepresentation> varValues = 
-								(Map<AttributeMappingSourceElement, AttributeValueRepresentation>) attrHintValues.remove(0);
-						final Map<String, Double> stringVarValues = new HashMap<String, Double>();
-						for (AttributeMappingSourceInterface s : varValues.keySet()) {
-							if(varValues.get(s).isMany()) {
-								stringVarValues.put(s.getName(), Double.valueOf(varValues.get(s).getValues().get(i)));
-							} else {
-								stringVarValues.put(s.getName(), Double.valueOf(varValues.get(s).getValue()));
-							}
-						}
-						
-						vars.putAll(stringVarValues);
-
-						attrValue = String
-								.valueOf(new ExpressionBuilder(
-										((AttributeMapping) hint)
-										.getExpression())
-								// make calculation
-								.withCustomFunction(round)
-								.withCustomFunction(max)
-								.withCustomFunction(min)
-								.withVariables(vars).build()
-								.calculate());
-					} catch (final Exception e) {// TODO this will lead
-						// to a lot of error
-						// output if it
-						// fails
-						consoleStream
-						.println("Error parsing the expression of CalculatorMapping"
-								+ hint.getName()
-								+ ". Message:\n"
-								+ e.getMessage());
-					}
-				} else {
-					
-					@SuppressWarnings("unchecked")
-					final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> hVal = 
-							(Map<AttributeMappingSourceInterface, AttributeValueRepresentation>) attrHintValues.remove(0);
-					for (final AttributeMappingSourceInterface srcElement : ((AttributeMapping) hint)
-							.getSourceAttributeMappings()) {
-						if (hVal.containsKey(srcElement)) {
-							if(hVal.get(srcElement).isMany()) {
-								attrValue += hVal.get(srcElement).getValues().get(i);
-							} else {
-								attrValue += hVal.get(srcElement).getValue();
-							}
-						} else {
-							consoleStream
-							.println("HintSourceValue not found for element "
-									+ srcElement.getName()
-									+ " in hint "
-									+ hint.getName() + ".");
-						}
-					}
-				}
-				
-				if (attrValue != null) {// apply resultModifiers if
-					// all went well
-					attrValue = attributeValuemodifier
-							.applyAttributeValueModifiers(
-									attrValue,
-									((AttributeMapping) hint)
-									.getResultModifier());
-				}
-				
-			} else {
-				attrValue = (String) attrHintValues.remove(0);
+				expression = ((AttributeMapping) hint).getExpression();
+			} else if(hint instanceof MappingInstanceSelector && ((MappingInstanceSelector) hint).getMatcher() instanceof AttributeMatcher) {
+				expression = ((AttributeMatcher) ((MappingInstanceSelector) hint).getMatcher()).getExpression();
 			}
+			
+			// calculate the value based on the hint values and a possible expression
+			if(expression.isEmpty()) {
+				attrValue = calculateAttributeValueWithoutExpression(hint, attrHintValues);
+			} else {
+				attrValue = calculateAttributeValueWithExpression(hint, attrHintValues, expression);
+			}
+					
+			// apply resultModifiers if everything went well
+			if (attrValue != null) {
+				ModifiableHint modifiableHint = null;
+				if(hint instanceof AttributeMapping) {
+					modifiableHint = (AttributeMapping) hint;
+				} else if(hint instanceof MappingInstanceSelector) {
+					modifiableHint = (AttributeMatcher) ((MappingInstanceSelector) hint).getMatcher();
+				}
+				attrValue = attributeValuemodifier.applyAttributeValueModifiers(
+						attrValue, modifiableHint.getResultModifier());
+			}
+
 		}
 		// only use value of target section if no hint value
 		// present
-		if (attr.getValue() != null && attrValue == null
+		if (attr != null && attr.getValue() != null && attrValue == null
 				&& !attr.getValue().equals("")) {
 			attrValue = attr.getValue();
 		}
+		return attrValue;
+	}
+	
+	/**
+	 * This calculates an attribute value based on a list of given hint values.
+	 ** @param hint A {@link MappingHint} to be used for the calculation (typically, this should be
+	 * 		either an {@link AttributeMapping}, a {@link MappingInstanceSelector} with {@link AttributeMatcher}, or 
+	 * 		<em>null</em> if no hint has been found.
+	 * @param attrHintValues A list of hint values to be used in the calculation.
+	 * @return The calculated attribute value or <em>null</em> if no value could be calculated.
+	 */
+	private String calculateAttributeValueWithoutExpression(MappingHint hint, Map<?, AttributeValueRepresentation> attrHintValues) {
+		
+		String attrValue = "";
+		
+		if(hint instanceof AttributeMapping) {
+			for (final AttributeMappingSourceInterface srcElement : 
+					((AttributeMapping) hint).getSourceAttributeMappings()) {
+				if (attrHintValues.containsKey(srcElement)) {
+					attrValue += attrHintValues.get(srcElement).getNextValue();
+				} else {
+					consoleStream.println("HintSourceValue not found for element " + srcElement.getName()
+							+ " in hint " + hint.getName() + ".");
+				}
+			}
+		} else if(hint instanceof MappingInstanceSelector) {
+			for (final AttributeMatcherSourceInterface srcElement : 
+						((AttributeMatcher) ((MappingInstanceSelector) hint).getMatcher()).getSourceAttributes()) {
+				if (attrHintValues.containsKey(srcElement)) {
+					attrValue += attrHintValues.get(srcElement).getNextValue();
+				} else {
+					consoleStream.println("HintSourceValue not found for element " + srcElement.getName()
+							+ " in hint " + hint.getName() + ".");
+				}
+			}
+		}
+		
+		return attrValue;
+	}
+	
+	/**
+	 * This calculates an attribute value based on a list of given hint values and an expression.
+	 ** @param hint A {@link MappingHint} to be used for the calculation (typically, this should be
+	 * 		either an {@link AttributeMapping}, a {@link MappingInstanceSelector} with {@link AttributeMatcher}, or 
+	 * 		<em>null</em> if no hint has been found.
+	 * @param attrHintValues A list of hint values to be used in the calculation.
+	 * @param expression An expression to be used to calculate the hint values.
+	 * @return The calculated attribute value or <em>null</em> if no value could be calculated.
+	 */
+	private String calculateAttributeValueWithExpression(MappingHint hint, Map<?, AttributeValueRepresentation> attrHintValues, String expression) {
+		
+		String attrValue = "";
+		
+		try {
+			final Map<String, Double> vars = new HashMap<String, Double>();
+			vars.putAll(globalVarValueDoubles);
+			/*
+			 * Names of local (CalcMapping) variables will
+			 * overwrite names of global variables
+			 */
+			final Map<String, Double> stringVarValues = new HashMap<String, Double>();
+			if(hint instanceof AttributeMapping) {
+				@SuppressWarnings("unchecked")
+				final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> varValues = 
+				(Map<AttributeMappingSourceInterface, AttributeValueRepresentation>) attrHintValues;
+				for (AttributeMappingSourceInterface s : varValues.keySet()) {
+					stringVarValues.put(s.getName(), Double.valueOf(varValues.get(s).getNextValue()));
+				}
+			} else if(hint instanceof MappingInstanceSelector) {
+				@SuppressWarnings("unchecked")
+				final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> varValues = 
+				(Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>) attrHintValues;
+				for (AttributeMatcherSourceInterface s : varValues.keySet()) {
+					stringVarValues.put(s.getName(), Double.valueOf(varValues.get(s).getNextValue()));
+				}
+			}
+			
+			vars.putAll(stringVarValues);
+
+			// make calculation
+			attrValue = String.valueOf(new ExpressionBuilder(expression)
+					.withCustomFunction(round)
+					.withCustomFunction(max)
+					.withCustomFunction(min)
+					.withVariables(vars).build()
+					.calculate());
+		} catch (final Exception e) {
+			// TODO this will lead to a lot of error output if it fails
+			consoleStream.println("Error parsing the expression of CalculatorMapping" + hint.getName()
+					+ ". Message:\n" + e.getMessage());
+		}
+		
 		return attrValue;
 	}
 }

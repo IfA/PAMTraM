@@ -123,9 +123,9 @@ public class AttributeValueRepresentation {
 		
 		// Reset the pointer if all values have already been retrieved.
 		// TODO check if this may happen or if we should throw an exception
-//		if(++pointer == attributeValues.size()) {
-//			pointer = 0;
-//		}
+		if(++pointer == attributeValues.size()) {
+			pointer = 0;
+		}
 		return ret;
 	}
 	

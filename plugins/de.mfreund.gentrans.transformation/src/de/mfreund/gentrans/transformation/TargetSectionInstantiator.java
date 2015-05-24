@@ -810,14 +810,14 @@ class TargetSectionInstantiator implements CancellationListener {
 										if (hSel.getMatcher() instanceof AttributeMatcher) {
 											attrValStr = "";
 											@SuppressWarnings("unchecked")
-											final Map<AttributeMatcherSourceInterface, String> hVal = 
-													(Map<AttributeMatcherSourceInterface, String>) attrVal;
+											final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> hVal = 
+													(Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>) attrVal;
 											for (final AttributeMatcherSourceInterface srcElement : ((AttributeMatcher) hSel
 													.getMatcher())
 													.getSourceAttributes()) {
 												if (hVal.containsKey(srcElement)) {
 													attrValStr += hVal
-															.get(srcElement);
+															.get(srcElement).getNextValue();
 												} else {
 													consoleStream
 													.println("HintSourceValue not found "

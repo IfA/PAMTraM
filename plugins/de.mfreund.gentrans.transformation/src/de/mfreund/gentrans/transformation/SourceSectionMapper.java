@@ -698,7 +698,7 @@ class SourceSectionMapper implements CancellationListener {
 				srcModelObject);
 
 		final Map<AttributeMappingSourceElement, AttributeValueRepresentation> complexSourceElementHintValues = new LinkedHashMap<>();
-		final Map<AttributeMatcherSourceElement, String> complexAttrMatcherSourceElementHintValues = new LinkedHashMap<AttributeMatcherSourceElement, String>();
+		final Map<AttributeMatcherSourceElement, AttributeValueRepresentation> complexAttrMatcherSourceElementHintValues = new LinkedHashMap<>();
 		final Map<ModelConnectionHintSourceElement, String> complexConnectionHintSourceElementHintValues = new LinkedHashMap<ModelConnectionHintSourceElement, String>();
 
 		// init hintValues
@@ -830,7 +830,7 @@ class SourceSectionMapper implements CancellationListener {
 				if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
 					final AttributeMatcher m = (AttributeMatcher) ((MappingInstanceSelector) h)
 							.getMatcher();
-					final Map<AttributeMatcherSourceInterface, String> foundValues = new LinkedHashMap<AttributeMatcherSourceInterface, String>();
+					final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> foundValues = new LinkedHashMap<>();
 					// append the complex hint value (cardinality either 0 or 1)
 					// with found values in right order
 					for (final AttributeMatcherSourceElement s : m
@@ -846,8 +846,8 @@ class SourceSectionMapper implements CancellationListener {
 					if (foundValues.keySet().size() > 0) {
 						complexAttributeMatchersFound.add(m);
 						@SuppressWarnings("unchecked")
-						final Map<AttributeMatcherSourceInterface, String> oldValues = (Map<AttributeMatcherSourceInterface, String>) changedRefsAndHints
-						.getHintValues().get(h).remove();
+						final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> oldValues = 
+								(Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>) changedRefsAndHints.getHintValues().get(h).remove();
 						foundValues.putAll(oldValues);
 						changedRefsAndHints.getHintValues().get(h)
 						.add(foundValues);
@@ -1666,7 +1666,7 @@ class SourceSectionMapper implements CancellationListener {
 			final SourceSectionClass srcSection,
 			final MappingInstanceStorage changedRefsAndHints,
 			final Map<AttributeMappingSourceElement, AttributeValueRepresentation> complexSourceElementHintValues,
-			final Map<AttributeMatcherSourceElement, String> complexAttrMatcherSourceElementHintValues,
+			final Map<AttributeMatcherSourceElement, AttributeValueRepresentation> complexAttrMatcherSourceElementHintValues,
 			final Map<ModelConnectionHintSourceElement, String> complexConnectionHintSourceElementHintValues) {
 		
 		for (final SourceSectionAttribute at : srcSection.getAttributes()) {
@@ -1831,16 +1831,21 @@ class SourceSectionMapper implements CancellationListener {
 									.getLocalSourceElements()) {
 								if (e.getSource().equals(at)) {
 									
-									if(at.getAttribute().isMany()) {
-										//TODO implement this?
-										throw new RuntimeException("AttributeMatchers based on multi-valued attributes are not yet supported!");
-									}
+//									if(at.getAttribute().isMany()) {
+//										//TODO implement this?
+//										throw new RuntimeException("AttributeMatchers based on multi-valued attributes are not yet supported!");
+//									}
 									
-									String valCopy = srcAttrAsString;
-									valCopy = attributeValuemodifier
+									final String valCopy = attributeValuemodifier
 											.applyAttributeValueModifiers(
-													valCopy, e.getModifier());
-									complexAttrMatcherSourceElementHintValues.put(e, valCopy);
+													srcAttrAsString, 
+													e.getModifier());
+									// create a new AttributeValueRepresentation or update the existing one
+									if(complexAttrMatcherSourceElementHintValues.get(e) == null) {
+										complexAttrMatcherSourceElementHintValues.put(e, new AttributeValueRepresentation(valCopy));
+									} else {
+										complexAttrMatcherSourceElementHintValues.get(e).addValue(valCopy);
+									}
 								}
 							}
 						}

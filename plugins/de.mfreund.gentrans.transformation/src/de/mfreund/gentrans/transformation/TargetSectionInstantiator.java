@@ -502,7 +502,7 @@ class TargetSectionInstantiator implements CancellationListener {
 				for(int i=0; i<instances.size(); i++) {
 					EObjectTransformationHelper instance = instances.get(i);
 					String attrValue = calculator.calculateAttributeValue(attr, hintFound,
-							attrHintValues, i);
+							attrHintValues);
 
 					// Check if value is unique and was already used, mark
 					// instance for deletion if necessary
@@ -804,30 +804,14 @@ class TargetSectionInstantiator implements CancellationListener {
 												+ instancesToConsider);
 									}
 
-									for (final Object attrVal : newHintValues) {
+									final int numberOfInstancesToCreate = newHintValues.size();
+									for (int i=0; i<numberOfInstancesToCreate; i++) {
+										System.out.println(i);
 										String attrValStr = null;
-
+										System.out.println(i);
 										if (hSel.getMatcher() instanceof AttributeMatcher) {
-											attrValStr = "";
-											@SuppressWarnings("unchecked")
-											final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> hVal = 
-													(Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>) attrVal;
-											for (final AttributeMatcherSourceInterface srcElement : ((AttributeMatcher) hSel
-													.getMatcher())
-													.getSourceAttributes()) {
-												if (hVal.containsKey(srcElement)) {
-													attrValStr += hVal
-															.get(srcElement).getNextValue();
-												} else {
-													consoleStream
-													.println("HintSourceValue not found "
-															+ srcElement
-															.getName()
-															+ " in hint "
-															+ h.getName()
-															+ ".");
-												}
-											}
+											attrValStr = calculator.calculateAttributeValue(null, hSel,
+													newHintValues);
 										}
 										final EObjectTransformationHelper srcInst = instancesToConsider
 												.remove(0);

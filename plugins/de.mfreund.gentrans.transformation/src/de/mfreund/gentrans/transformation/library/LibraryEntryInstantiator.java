@@ -159,7 +159,7 @@ public class LibraryEntryInstantiator {
 				
 				// calculate the attribute value using the given hint values and the AttributeMapping
 				LinkedList<Object> hints = hintValues.get(attMapping);
-				String value = calculator.calculateAttributeValue(attParam.getAttribute(), attMapping, hints, 0);
+				String value = calculator.calculateAttributeValue(attParam.getAttribute(), attMapping, hints);
 				
 				// set the calculated value
 				attParam.getOriginalParameter().setNewValue(value);

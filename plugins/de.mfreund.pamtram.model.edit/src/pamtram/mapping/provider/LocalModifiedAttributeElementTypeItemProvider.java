@@ -11,22 +11,22 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
-import pamtram.mapping.ModelConnectionHintSourceElement;
+import pamtram.mapping.LocalModifiedAttributeElementType;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.ModelConnectionHintSourceElement} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.LocalModifiedAttributeElementType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ModelConnectionHintSourceElementItemProvider extends LocalModifiedAttributeElementTypeItemProvider {
+public class LocalModifiedAttributeElementTypeItemProvider extends ModifiedAttributeElementTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelConnectionHintSourceElementItemProvider(AdapterFactory adapterFactory) {
+	public LocalModifiedAttributeElementTypeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -46,17 +46,6 @@ public class ModelConnectionHintSourceElementItemProvider extends LocalModifiedA
 	}
 
 	/**
-	 * This returns ModelConnectionHintSourceElement.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelConnectionHintSourceElement"));
-	}
-
-	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,10 +53,10 @@ public class ModelConnectionHintSourceElementItemProvider extends LocalModifiedA
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ModelConnectionHintSourceElement)object).getName();
+		String label = ((LocalModifiedAttributeElementType<?>)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ModelConnectionHintSourceElement_type") :
-			getString("_UI_ModelConnectionHintSourceElement_type") + " " + label;
+			getString("_UI_LocalModifiedAttributeElementType_type") :
+			getString("_UI_LocalModifiedAttributeElementType_type") + " " + label;
 	}
 	
 

@@ -29,7 +29,7 @@ import pamtram.metamodel.SourceSectionAttribute;
  * <!-- end-user-doc -->
  * @generated
  */
-public class AttributeMatcherSourceElementItemProvider extends ModifiedAttributeElementTypeItemProvider {
+public class AttributeMatcherSourceElementItemProvider extends LocalModifiedAttributeElementTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

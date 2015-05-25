@@ -19,7 +19,7 @@ import pamtram.mapping.AttributeMappingSourceElement;
  * <!-- end-user-doc -->
  * @generated
  */
-public class AttributeMappingSourceElementItemProvider extends ModifiedAttributeElementTypeItemProvider {
+public class AttributeMappingSourceElementItemProvider extends LocalModifiedAttributeElementTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

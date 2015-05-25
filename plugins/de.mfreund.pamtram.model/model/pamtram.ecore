@@ -81,7 +81,7 @@
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="eClassMatchesParentEReference" value="if self&lt;>self.getContainingSection() then self.oclContainer().oclAsType(pamtram::metamodel::Reference).eReference.oclAsType(ecore::EReference).eReferenceType.isSuperTypeOf(self.eClass.oclAsType(ecore::EClass)) else true endif"/>
-        <details key="cardinalityIsValid" value="if metamodel::Reference.oclAsType(ecore::EClass).isSuperTypeOf(self.oclAsType(ecore::EObject).eContainer().eClass()) then not ((self.cardinality &lt;> 0) and (self.oclAsType(ecore::EObject).eContainer().oclAsType(metamodel::Reference).eReference.oclAsType(ecore::EReference).upperBound &lt;= 1)) else true endif"/>
+        <details key="cardinalityIsValid" value="if self&lt;>self.getContainingSection() then not ((self.cardinality &lt;> pamtram::metamodel::CardinalityType::ONE) and (self.oclContainer().oclAsType(pamtram::metamodel::Reference).eReference.oclAsType(ecore::EReference).upperBound &lt;= 1)) else true endif"/>
       </eAnnotations>
       <eOperations name="getReferencesGeneric" upperBound="-1" eType="#//metamodel/Reference">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

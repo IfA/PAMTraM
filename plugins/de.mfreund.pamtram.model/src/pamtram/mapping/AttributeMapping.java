@@ -19,8 +19,8 @@ import pamtram.metamodel.TargetSectionAttribute;
  * </p>
  *
  * @see pamtram.mapping.MappingPackage#getAttributeMapping()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='sourceAttributeMatchesSection\r\ntargetAttributeMatchesSection'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL sourceAttributeMatchesSection='self.getLocalSourceElements()->forAll(e|e.source.getContainingSection() = self.oclContainer().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)' targetAttributeMatchesSection='self.target.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='sourceAttributeMatchesSection\r\ntargetAttributeMatchesSection\r\nexternalSourceAttributeMatchesContainerSection'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL sourceAttributeMatchesSection='self.getLocalSourceElements()->forAll(e|e.source.getContainingSection() = self.oclContainer().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)' externalSourceAttributeMatchesContainerSection='self.getLocalSourceElements()->forAll(e|e.source.getContainingSection() = self.oclContainer().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)' targetAttributeMatchesSection='self.target.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection'"
  * @generated
  */
 public interface AttributeMapping extends MappingHint, ExpressionHint, ModifiableHint, ExpandableHint {
@@ -74,5 +74,14 @@ public interface AttributeMapping extends MappingHint, ExpressionHint, Modifiabl
 	 * @generated
 	 */
 	EList<AttributeMappingSourceElement> getLocalSourceElements();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" unique="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<AttributeMappingExternalSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<AttributeMappingExternalSourceElement>();\r\n\r\nfor(AttributeMappingSourceInterface i : this.getSourceAttributeMappings()){\r\n\tif(i instanceof AttributeMappingExternalSourceElement){\r\n\t\telements.add((AttributeMappingExternalSourceElement) i);\r\n\t}\r\n}\r\n\r\nreturn elements;'"
+	 * @generated
+	 */
+	EList<AttributeMappingExternalSourceElement> getExternalSourceElements();
 
 } // AttributeMapping

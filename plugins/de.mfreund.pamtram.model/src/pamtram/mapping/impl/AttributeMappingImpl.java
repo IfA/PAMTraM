@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.mapping.AttributeMapping;
+import pamtram.mapping.AttributeMappingExternalSourceElement;
 import pamtram.mapping.AttributeMappingSourceElement;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeValueModifierSet;
@@ -230,6 +231,24 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	 * @generated
 	 */
 	@Override
+	public EList<AttributeMappingExternalSourceElement> getExternalSourceElements() {
+		EList<AttributeMappingExternalSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<AttributeMappingExternalSourceElement>();
+		
+		for(AttributeMappingSourceInterface i : this.getSourceAttributeMappings()){
+			if(i instanceof AttributeMappingExternalSourceElement){
+				elements.add((AttributeMappingExternalSourceElement) i);
+			}
+		}
+		
+		return elements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS:
@@ -394,6 +413,8 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 		switch (operationID) {
 			case MappingPackage.ATTRIBUTE_MAPPING___GET_LOCAL_SOURCE_ELEMENTS:
 				return getLocalSourceElements();
+			case MappingPackage.ATTRIBUTE_MAPPING___GET_EXTERNAL_SOURCE_ELEMENTS:
+				return getExternalSourceElements();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

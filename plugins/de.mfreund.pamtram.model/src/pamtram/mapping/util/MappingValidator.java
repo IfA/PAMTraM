@@ -251,6 +251,7 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(attributeMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validateAttributeMapping_sourceAttributeMatchesSection(attributeMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validateAttributeMapping_targetAttributeMatchesSection(attributeMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateAttributeMapping_externalSourceAttributeMatchesContainerSection(attributeMapping, diagnostics, context);
 		return result;
 	}
 
@@ -307,6 +308,35 @@ public class MappingValidator extends EObjectValidator {
 				 "http://www.eclipse.org/emf/2002/Ecore/OCL",
 				 "targetAttributeMatchesSection",
 				 ATTRIBUTE_MAPPING__TARGET_ATTRIBUTE_MATCHES_SECTION__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
+	}
+
+	/**
+	 * The cached validation expression for the externalSourceAttributeMatchesContainerSection constraint of '<em>Attribute Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String ATTRIBUTE_MAPPING__EXTERNAL_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__EEXPRESSION = "self.getLocalSourceElements()->forAll(e|e.source.getContainingSection() = self.oclContainer().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)";
+
+	/**
+	 * Validates the externalSourceAttributeMatchesContainerSection constraint of '<em>Attribute Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateAttributeMapping_externalSourceAttributeMatchesContainerSection(AttributeMapping attributeMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(MappingPackage.Literals.ATTRIBUTE_MAPPING,
+				 attributeMapping,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL",
+				 "externalSourceAttributeMatchesContainerSection",
+				 ATTRIBUTE_MAPPING__EXTERNAL_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__EEXPRESSION,
 				 Diagnostic.ERROR,
 				 DIAGNOSTIC_SOURCE,
 				 0);

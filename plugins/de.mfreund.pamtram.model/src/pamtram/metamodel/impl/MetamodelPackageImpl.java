@@ -1502,7 +1502,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		  (referenceEClass, 
 		   source, 
 		   new String[] {
-			 "eReferenceMatchesParentEClass", "self.oclContainer().oclAsType(pamtram::metamodel::Class).eClass.oclAsType(ecore::EClass).eAllReferences->includes(self.eReference)"
+			 "eReferenceMatchesParentEClass", "if self.isLibraryEntry() then true else self.oclContainer().oclAsType(pamtram::metamodel::Class).eClass.oclAsType(ecore::EClass).eAllReferences->includes(self.eReference) endif"
 		   });	
 		addAnnotation
 		  (containmentReferenceEClass, 

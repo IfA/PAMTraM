@@ -378,7 +378,7 @@ public class MetamodelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String REFERENCE__EREFERENCE_MATCHES_PARENT_ECLASS__EEXPRESSION = "self.oclContainer().oclAsType(pamtram::metamodel::Class).eClass.oclAsType(ecore::EClass).eAllReferences->includes(self.eReference)";
+	protected static final String REFERENCE__EREFERENCE_MATCHES_PARENT_ECLASS__EEXPRESSION = "if self.isLibraryEntry() then true else self.oclContainer().oclAsType(pamtram::metamodel::Class).eClass.oclAsType(ecore::EClass).eAllReferences->includes(self.eReference) endif";
 
 	/**
 	 * Validates the eReferenceMatchesParentEClass constraint of '<em>Reference</em>'.

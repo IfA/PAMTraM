@@ -1954,7 +1954,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		   source, 
 		   new String[] {
 			 "sourceAttributeMatchesSection", "self.getLocalSourceElements()->forAll(e|e.source.getContainingSection() = self.oclContainer().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)",
-			 "externalSourceAttributeMatchesContainerSection", "self.getLocalSourceElements()->forAll(e|e.source.getContainingSection() = self.oclContainer().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)",
+			 "externalSourceAttributeMatchesContainerSection", "self.getExternalSourceElements()->forAll(e|e.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection().isContainerForGeneric(self.oclContainer().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection))",
 			 "targetAttributeMatchesSection", "self.target.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection"
 		   });	
 		addAnnotation

@@ -400,7 +400,7 @@
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="sourceAttributeMatchesSection" value="self.getLocalSourceElements()->forAll(e|e.source.getContainingSection() = self.oclContainer().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)"/>
-        <details key="externalSourceAttributeMatchesContainerSection" value="self.getLocalSourceElements()->forAll(e|e.source.getContainingSection() = self.oclContainer().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)"/>
+        <details key="externalSourceAttributeMatchesContainerSection" value="self.getExternalSourceElements()->forAll(e|e.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection().isContainerForGeneric(self.oclContainer().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection))"/>
         <details key="targetAttributeMatchesSection" value="self.target.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection"/>
       </eAnnotations>
       <eOperations name="getLocalSourceElements" unique="false" upperBound="-1" eType="#//mapping/AttributeMappingSourceElement">

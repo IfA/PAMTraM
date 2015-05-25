@@ -319,7 +319,7 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String ATTRIBUTE_MAPPING__EXTERNAL_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__EEXPRESSION = "self.getLocalSourceElements()->forAll(e|e.source.getContainingSection() = self.oclContainer().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)";
+	protected static final String ATTRIBUTE_MAPPING__EXTERNAL_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__EEXPRESSION = "self.getExternalSourceElements()->forAll(e|e.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection().isContainerForGeneric(self.oclContainer().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection))";
 
 	/**
 	 * Validates the externalSourceAttributeMatchesContainerSection constraint of '<em>Attribute Mapping</em>'.

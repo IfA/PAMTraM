@@ -170,7 +170,11 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="LibraryEntry">
       <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" lowerBound="1"
-          upperBound="-1" eType="#//metamodel/LibraryParameter" containment="true"/>
+          upperBound="-1" containment="true">
+        <eGenericType eClassifier="#//metamodel/LibraryParameter">
+          <eTypeArguments/>
+        </eGenericType>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="libraryFile" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" lowerBound="1"

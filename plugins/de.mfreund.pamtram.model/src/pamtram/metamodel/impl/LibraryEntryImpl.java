@@ -43,7 +43,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<LibraryParameter> parameters;
+	protected EList<LibraryParameter<?>> parameters;
 
 	/**
 	 * The default value of the '{@link #getLibraryFile() <em>Library File</em>}' attribute.
@@ -120,9 +120,9 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * @generated
 	 */
 	@Override
-	public EList<LibraryParameter> getParameters() {
+	public EList<LibraryParameter<?>> getParameters() {
 		if (parameters == null) {
-			parameters = new EObjectContainmentEList<LibraryParameter>(LibraryParameter.class, this, MetamodelPackage.LIBRARY_ENTRY__PARAMETERS);
+			parameters = new EObjectContainmentEList<LibraryParameter<?>>(LibraryParameter.class, this, MetamodelPackage.LIBRARY_ENTRY__PARAMETERS);
 		}
 		return parameters;
 	}
@@ -259,7 +259,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 		switch (featureID) {
 			case MetamodelPackage.LIBRARY_ENTRY__PARAMETERS:
 				getParameters().clear();
-				getParameters().addAll((Collection<? extends LibraryParameter>)newValue);
+				getParameters().addAll((Collection<? extends LibraryParameter<?>>)newValue);
 				return;
 			case MetamodelPackage.LIBRARY_ENTRY__LIBRARY_FILE:
 				setLibraryFile((String)newValue);

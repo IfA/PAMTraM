@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface LibraryEntry extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.metamodel.LibraryParameter}.
+	 * The list contents are of type {@link pamtram.metamodel.LibraryParameter}&lt;?>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parameters</em>' containment reference list isn't clear,
@@ -39,7 +39,7 @@ public interface LibraryEntry extends EObject {
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<LibraryParameter> getParameters();
+	EList<LibraryParameter<?>> getParameters();
 
 	/**
 	 * Returns the value of the '<em><b>Library File</b></em>' attribute.

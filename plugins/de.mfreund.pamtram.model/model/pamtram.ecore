@@ -187,7 +187,7 @@
         <details key="constraints" value="eReferenceMatchesParentEClass"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-        <details key="eReferenceMatchesParentEClass" value="self.oclAsType(ecore::EObject).eContainer().oclAsType(metamodel::Class).eClass.oclAsType(ecore::&#xD;&#xA;EClass).eAllReferences->includes(self.eReference)"/>
+        <details key="eReferenceMatchesParentEClass" value="self.oclContainer().oclAsType(pamtram::metamodel::Class).eClass.oclAsType(ecore::EClass).eAllReferences->includes(self.eReference)"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="eReference" lowerBound="1"
           eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>

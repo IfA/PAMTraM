@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EReference;
  * @see pamtram.metamodel.MetamodelPackage#getReference()
  * @model abstract="true"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='eReferenceMatchesParentEClass'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL eReferenceMatchesParentEClass='self.oclAsType(ecore::EObject).eContainer().oclAsType(metamodel::Class).eClass.oclAsType(ecore::\r\nEClass).eAllReferences->includes(self.eReference)'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL eReferenceMatchesParentEClass='self.oclContainer().oclAsType(pamtram::metamodel::Class).eClass.oclAsType(ecore::EClass).eAllReferences->includes(self.eReference)'"
  * @generated
  */
 public interface Reference extends MetaModelElement {

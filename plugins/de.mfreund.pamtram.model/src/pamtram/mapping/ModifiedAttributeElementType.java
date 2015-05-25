@@ -68,4 +68,13 @@ public interface ModifiedAttributeElementType<AttributeType extends Attribute> e
 	 */
 	EList<AttributeValueModifierSet> getModifier();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" unique="false" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EObject ret = this.eContainer;\r\nwhile(!(ret instanceof MappingHintGroupType || ret instanceof InstantiableMappingHintGroup)) {\r\n\tret = ret.eContainer();\r\n\tif(ret instanceof PAMTraM) {\r\n\t\t// something went wrong\r\n\t\treturn null;\r\n\t}\r\n}\r\nreturn (NamedElement) ret;'"
+	 * @generated
+	 */
+	NamedElement getMappingHintGroup();
+
 } // ModifiedAttributeElementType

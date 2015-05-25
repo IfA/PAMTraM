@@ -20,7 +20,7 @@ import pamtram.metamodel.SourceSectionAttribute;
  *
  * @generated
  */
-public class AttributeMatcherSourceElementImpl extends ModifiedAttributeElementTypeImpl<SourceSectionAttribute> implements AttributeMatcherSourceElement {
+public class AttributeMatcherSourceElementImpl extends LocalModifiedAttributeElementTypeImpl<SourceSectionAttribute> implements AttributeMatcherSourceElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -38,17 +38,6 @@ public class AttributeMatcherSourceElementImpl extends ModifiedAttributeElementT
 	@Override
 	protected EClass eStaticClass() {
 		return MappingPackage.Literals.ATTRIBUTE_MATCHER_SOURCE_ELEMENT;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * This is specialized for the more specific type known in this context.
-	 * @generated
-	 */
-	@Override
-	public void setSource(SourceSectionAttribute newSource) {
-		super.setSource(newSource);
 	}
 
 	/**

@@ -160,6 +160,10 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createModifiedAttributeElementTypeAdapter();
 			}
 			@Override
+			public <AttributeType extends Attribute> Adapter caseLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<AttributeType> object) {
+				return createLocalModifiedAttributeElementTypeAdapter();
+			}
+			@Override
 			public Adapter caseMappingHintGroupImporter(MappingHintGroupImporter object) {
 				return createMappingHintGroupImporterAdapter();
 			}
@@ -562,6 +566,20 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createModifiedAttributeElementTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.LocalModifiedAttributeElementType <em>Local Modified Attribute Element Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.LocalModifiedAttributeElementType
+	 * @generated
+	 */
+	public Adapter createLocalModifiedAttributeElementTypeAdapter() {
 		return null;
 	}
 

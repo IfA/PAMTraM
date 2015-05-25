@@ -2,17 +2,23 @@
  */
 package pamtram.mapping.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import pamtram.NamedElement;
+import pamtram.PAMTraM;
 import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.InstantiableMappingHintGroup;
+import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.metamodel.Attribute;
@@ -136,6 +142,27 @@ public abstract class ModifiedAttributeElementTypeImpl<AttributeType extends Att
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * This iterates upward in the containment hierarchy until an element
+	 * that is of type {@link MappingHintGroupType} or {@link InstantiableMappingHintGroup}
+	 * is found. This element is returned.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NamedElement getMappingHintGroup() {
+		EObject ret = this.eContainer;
+		while(!(ret instanceof MappingHintGroupType || ret instanceof InstantiableMappingHintGroup)) {
+			ret = ret.eContainer();
+			if(ret instanceof PAMTraM) {
+				// something went wrong
+				return null;
+			}
+		}
+		return (NamedElement) ret;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * TODO update the name of the ModifiedAttributeElementType based on the modifiers it contains
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -204,6 +231,20 @@ public abstract class ModifiedAttributeElementTypeImpl<AttributeType extends Att
 				return modifier != null && !modifier.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP:
+				return getMappingHintGroup();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //ModifiedAttributeElementTypeImpl

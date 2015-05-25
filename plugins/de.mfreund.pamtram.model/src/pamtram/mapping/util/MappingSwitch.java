@@ -182,10 +182,11 @@ public class MappingSwitch<T> extends Switch<T> {
 			case MappingPackage.ATTRIBUTE_MATCHER_SOURCE_ELEMENT: {
 				AttributeMatcherSourceElement attributeMatcherSourceElement = (AttributeMatcherSourceElement)theEObject;
 				T result = caseAttributeMatcherSourceElement(attributeMatcherSourceElement);
-				if (result == null) result = caseModifiedAttributeElementType(attributeMatcherSourceElement);
+				if (result == null) result = caseLocalModifiedAttributeElementType(attributeMatcherSourceElement);
 				if (result == null) result = caseAttributeMatcherSourceInterface(attributeMatcherSourceElement);
-				if (result == null) result = caseNamedElement(attributeMatcherSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(attributeMatcherSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(attributeMatcherSourceElement);
+				if (result == null) result = caseNamedElement(attributeMatcherSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -256,6 +257,14 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MappingPackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE: {
+				LocalModifiedAttributeElementType<?> localModifiedAttributeElementType = (LocalModifiedAttributeElementType<?>)theEObject;
+				T result = caseLocalModifiedAttributeElementType(localModifiedAttributeElementType);
+				if (result == null) result = caseModifiedAttributeElementType(localModifiedAttributeElementType);
+				if (result == null) result = caseNamedElement(localModifiedAttributeElementType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER: {
 				MappingHintGroupImporter mappingHintGroupImporter = (MappingHintGroupImporter)theEObject;
 				T result = caseMappingHintGroupImporter(mappingHintGroupImporter);
@@ -283,20 +292,22 @@ public class MappingSwitch<T> extends Switch<T> {
 			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT: {
 				AttributeMappingSourceElement attributeMappingSourceElement = (AttributeMappingSourceElement)theEObject;
 				T result = caseAttributeMappingSourceElement(attributeMappingSourceElement);
-				if (result == null) result = caseModifiedAttributeElementType(attributeMappingSourceElement);
+				if (result == null) result = caseLocalModifiedAttributeElementType(attributeMappingSourceElement);
 				if (result == null) result = caseAttributeMappingSourceInterface(attributeMappingSourceElement);
-				if (result == null) result = caseNamedElement(attributeMappingSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(attributeMappingSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(attributeMappingSourceElement);
+				if (result == null) result = caseNamedElement(attributeMappingSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case MappingPackage.MODEL_CONNECTION_HINT_SOURCE_ELEMENT: {
 				ModelConnectionHintSourceElement modelConnectionHintSourceElement = (ModelConnectionHintSourceElement)theEObject;
 				T result = caseModelConnectionHintSourceElement(modelConnectionHintSourceElement);
-				if (result == null) result = caseModifiedAttributeElementType(modelConnectionHintSourceElement);
+				if (result == null) result = caseLocalModifiedAttributeElementType(modelConnectionHintSourceElement);
 				if (result == null) result = caseModelConnectionHintSourceInterface(modelConnectionHintSourceElement);
-				if (result == null) result = caseNamedElement(modelConnectionHintSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(modelConnectionHintSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(modelConnectionHintSourceElement);
+				if (result == null) result = caseNamedElement(modelConnectionHintSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -793,6 +804,21 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public <AttributeType extends Attribute> T caseModifiedAttributeElementType(ModifiedAttributeElementType<AttributeType> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Local Modified Attribute Element Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Local Modified Attribute Element Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <AttributeType extends Attribute> T caseLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<AttributeType> object) {
 		return null;
 	}
 

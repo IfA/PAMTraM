@@ -40,6 +40,7 @@ import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.GlobalValue;
 import pamtram.mapping.HintImporterMappingHint;
 import pamtram.mapping.InstantiableMappingHintGroup;
+import pamtram.mapping.LocalModifiedAttributeElementType;
 import pamtram.mapping.MappedAttributeValueAppender;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappedAttributeValueExpanderType;
@@ -214,6 +215,13 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * @generated
 	 */
 	private EClass modifiedAttributeElementTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass localModifiedAttributeElementTypeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -945,6 +953,24 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getModifiedAttributeElementType__GetMappingHintGroup() {
+		return modifiedAttributeElementTypeEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getLocalModifiedAttributeElementType() {
+		return localModifiedAttributeElementTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getAttributeValueModifierSet() {
 		return attributeValueModifierSetEClass;
 	}
@@ -1530,6 +1556,9 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		modifiedAttributeElementTypeEClass = createEClass(MODIFIED_ATTRIBUTE_ELEMENT_TYPE);
 		createEReference(modifiedAttributeElementTypeEClass, MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE);
 		createEReference(modifiedAttributeElementTypeEClass, MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER);
+		createEOperation(modifiedAttributeElementTypeEClass, MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP);
+
+		localModifiedAttributeElementTypeEClass = createEClass(LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE);
 
 		mappingHintGroupImporterEClass = createEClass(MAPPING_HINT_GROUP_IMPORTER);
 		createEReference(mappingHintGroupImporterEClass, MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP);
@@ -1636,11 +1665,14 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		// Create type parameters
 		ETypeParameter modifiedAttributeElementTypeEClass_AttributeType = addETypeParameter(modifiedAttributeElementTypeEClass, "AttributeType");
+		ETypeParameter localModifiedAttributeElementTypeEClass_AttributeType = addETypeParameter(localModifiedAttributeElementTypeEClass, "AttributeType");
 		ETypeParameter externalModifiedAttributeElementTypeEClass_AttributeType = addETypeParameter(externalModifiedAttributeElementTypeEClass, "AttributeType");
 
 		// Set bounds for type parameters
 		EGenericType g1 = createEGenericType(theMetamodelPackage.getAttribute());
 		modifiedAttributeElementTypeEClass_AttributeType.getEBounds().add(g1);
+		g1 = createEGenericType(theMetamodelPackage.getAttribute());
+		localModifiedAttributeElementTypeEClass_AttributeType.getEBounds().add(g1);
 		g1 = createEGenericType(theMetamodelPackage.getAttribute());
 		externalModifiedAttributeElementTypeEClass_AttributeType.getEBounds().add(g1);
 
@@ -1664,7 +1696,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		attributeMatcherEClass.getESuperTypes().add(this.getExpressionHint());
 		attributeMatcherEClass.getESuperTypes().add(this.getModifiableHint());
 		attributeMatcherEClass.getESuperTypes().add(this.getExpandableHint());
-		g1 = createEGenericType(this.getModifiedAttributeElementType());
+		g1 = createEGenericType(this.getLocalModifiedAttributeElementType());
 		EGenericType g2 = createEGenericType(theMetamodelPackage.getSourceSectionAttribute());
 		g1.getETypeArguments().add(g2);
 		attributeMatcherSourceElementEClass.getEGenericSuperTypes().add(g1);
@@ -1679,17 +1711,21 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		uniqueNumberAppenderEClass.getESuperTypes().add(this.getAttributeValueModifier());
 		stringPrependerEClass.getESuperTypes().add(this.getAttributeValueModifier());
 		modifiedAttributeElementTypeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
+		g1 = createEGenericType(this.getModifiedAttributeElementType());
+		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_AttributeType);
+		g1.getETypeArguments().add(g2);
+		localModifiedAttributeElementTypeEClass.getEGenericSuperTypes().add(g1);
 		mappingHintGroupImporterEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		mappingHintGroupImporterEClass.getESuperTypes().add(this.getInstantiableMappingHintGroup());
 		exportedMappingHintGroupEClass.getESuperTypes().add(this.getMappingHintGroupType());
 		modelConnectionHintEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
-		g1 = createEGenericType(this.getModifiedAttributeElementType());
+		g1 = createEGenericType(this.getLocalModifiedAttributeElementType());
 		g2 = createEGenericType(theMetamodelPackage.getSourceSectionAttribute());
 		g1.getETypeArguments().add(g2);
 		attributeMappingSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getAttributeMappingSourceInterface());
 		attributeMappingSourceElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getModifiedAttributeElementType());
+		g1 = createEGenericType(this.getLocalModifiedAttributeElementType());
 		g2 = createEGenericType(theMetamodelPackage.getSourceSectionAttribute());
 		g1.getETypeArguments().add(g2);
 		modelConnectionHintSourceElementEClass.getEGenericSuperTypes().add(g1);
@@ -1826,6 +1862,10 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEReference(getModifiedAttributeElementType_Source(), g1, null, "source", null, 1, 1, ModifiedAttributeElementType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModifiedAttributeElementType_Modifier(), this.getAttributeValueModifierSet(), null, "modifier", null, 0, -1, ModifiedAttributeElementType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEOperation(getModifiedAttributeElementType__GetMappingHintGroup(), thePamtramPackage.getNamedElement(), "getMappingHintGroup", 1, 1, !IS_UNIQUE, IS_ORDERED);
+
+		initEClass(localModifiedAttributeElementTypeEClass, LocalModifiedAttributeElementType.class, "LocalModifiedAttributeElementType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(mappingHintGroupImporterEClass, MappingHintGroupImporter.class, "MappingHintGroupImporter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMappingHintGroupImporter_HintGroup(), this.getExportedMappingHintGroup(), null, "hintGroup", null, 1, 1, MappingHintGroupImporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMappingHintGroupImporter_Container(), theMetamodelPackage.getTargetSectionClass(), null, "container", null, 0, 1, MappingHintGroupImporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1931,13 +1971,25 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (attributeMappingEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "sourceAttributeMatchesSection\r\ntargetAttributeMatchesSection\r\nexternalSourceAttributeMatchesContainerSection"
+			 "constraints", "targetAttributeMatchesSection"
 		   });	
 		addAnnotation
 		  (cardinalityMappingEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "sourceClassMatchesSection\r\nsourceClassIsVariableCardinality\r\ntargetClassMatchesSection\r\ntargetClassIsVariableCardinality"
+		   });	
+		addAnnotation
+		  (localModifiedAttributeElementTypeEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "sourceAttributeMatchesSection"
+		   });	
+		addAnnotation
+		  (externalModifiedAttributeElementTypeEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "sourceAttributeMatchesContainerSection"
 		   });
 	}
 
@@ -1953,14 +2005,24 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (attributeMappingEClass, 
 		   source, 
 		   new String[] {
-			 "sourceAttributeMatchesSection", "self.getLocalSourceElements()->forAll(e|e.source.getContainingSection() = self.oclContainer().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)",
-			 "externalSourceAttributeMatchesContainerSection", "self.getExternalSourceElements()->forAll(e|e.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection().isContainerForGeneric(self.oclContainer().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection))",
 			 "targetAttributeMatchesSection", "self.target.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection"
 		   });	
 		addAnnotation
 		  (cardinalityMappingEClass, 
 		   source, 
 		   new String[] {
+		   });	
+		addAnnotation
+		  (localModifiedAttributeElementTypeEClass, 
+		   source, 
+		   new String[] {
+			 "sourceAttributeMatchesSection", "self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection() = self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection"
+		   });	
+		addAnnotation
+		  (externalModifiedAttributeElementTypeEClass, 
+		   source, 
+		   new String[] {
+			 "sourceAttributeMatchesContainerSection", "self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection().isContainerForGeneric(self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)"
 		   });
 	}
 

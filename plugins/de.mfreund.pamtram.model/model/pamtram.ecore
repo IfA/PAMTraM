@@ -396,11 +396,9 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeMapping" eSuperTypes="#//mapping/MappingHint #//mapping/ExpressionHint #//mapping/ModifiableHint #//mapping/ExpandableHint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="sourceAttributeMatchesSection&#xD;&#xA;targetAttributeMatchesSection&#xD;&#xA;externalSourceAttributeMatchesContainerSection"/>
+        <details key="constraints" value="targetAttributeMatchesSection"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-        <details key="sourceAttributeMatchesSection" value="self.getLocalSourceElements()->forAll(e|e.source.getContainingSection() = self.oclContainer().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)"/>
-        <details key="externalSourceAttributeMatchesContainerSection" value="self.getExternalSourceElements()->forAll(e|e.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection().isContainerForGeneric(self.oclContainer().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection))"/>
         <details key="targetAttributeMatchesSection" value="self.target.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection"/>
       </eAnnotations>
       <eOperations name="getLocalSourceElements" unique="false" upperBound="-1" eType="#//mapping/AttributeMappingSourceElement">
@@ -449,7 +447,7 @@
           upperBound="-1" eType="#//mapping/AttributeMatcherSourceInterface" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeMatcherSourceElement">
-      <eGenericSuperTypes eClassifier="#//mapping/ModifiedAttributeElementType">
+      <eGenericSuperTypes eClassifier="#//mapping/LocalModifiedAttributeElementType">
         <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//mapping/AttributeMatcherSourceInterface"/>
@@ -492,11 +490,31 @@
       <eTypeParameters name="AttributeType">
         <eBounds eClassifier="#//metamodel/Attribute"/>
       </eTypeParameters>
+      <eOperations name="getMappingHintGroup" unique="false" lowerBound="1" eType="#//NamedElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="EObject ret = this.eContainer;&#xD;&#xA;while(!(ret instanceof MappingHintGroupType || ret instanceof InstantiableMappingHintGroup)) {&#xD;&#xA;&#x9;ret = ret.eContainer();&#xD;&#xA;&#x9;if(ret instanceof PAMTraM) {&#xD;&#xA;&#x9;&#x9;// something went wrong&#xD;&#xA;&#x9;&#x9;return null;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;return (NamedElement) ret;"/>
+        </eAnnotations>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1">
         <eGenericType eTypeParameter="#//mapping/ModifiedAttributeElementType/AttributeType"/>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
           eType="#//mapping/AttributeValueModifierSet"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="LocalModifiedAttributeElementType"
+        abstract="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="sourceAttributeMatchesSection"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="sourceAttributeMatchesSection" value="self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection() = self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection"/>
+      </eAnnotations>
+      <eTypeParameters name="AttributeType">
+        <eBounds eClassifier="#//metamodel/Attribute"/>
+      </eTypeParameters>
+      <eGenericSuperTypes eClassifier="#//mapping/ModifiedAttributeElementType">
+        <eTypeArguments eTypeParameter="#//mapping/LocalModifiedAttributeElementType/AttributeType"/>
+      </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MappingHintGroupImporter" eSuperTypes="#//NamedElement #//mapping/InstantiableMappingHintGroup">
       <eStructuralFeatures xsi:type="ecore:EReference" name="hintGroup" lowerBound="1"
@@ -520,13 +538,13 @@
           upperBound="-1" eType="#//mapping/ModelConnectionHintSourceInterface" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingSourceElement">
-      <eGenericSuperTypes eClassifier="#//mapping/ModifiedAttributeElementType">
+      <eGenericSuperTypes eClassifier="#//mapping/LocalModifiedAttributeElementType">
         <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//mapping/AttributeMappingSourceInterface"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ModelConnectionHintSourceElement">
-      <eGenericSuperTypes eClassifier="#//mapping/ModifiedAttributeElementType">
+      <eGenericSuperTypes eClassifier="#//mapping/LocalModifiedAttributeElementType">
         <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//mapping/ModelConnectionHintSourceInterface"/>
@@ -580,6 +598,12 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ExternalModifiedAttributeElementType"
         abstract="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="sourceAttributeMatchesContainerSection"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="sourceAttributeMatchesContainerSection" value="self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection().isContainerForGeneric(self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)"/>
+      </eAnnotations>
       <eTypeParameters name="AttributeType">
         <eBounds eClassifier="#//metamodel/Attribute"/>
       </eTypeParameters>

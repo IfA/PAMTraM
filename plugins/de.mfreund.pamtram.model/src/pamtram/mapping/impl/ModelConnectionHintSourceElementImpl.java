@@ -20,7 +20,7 @@ import pamtram.metamodel.SourceSectionAttribute;
  *
  * @generated
  */
-public class ModelConnectionHintSourceElementImpl extends ModifiedAttributeElementTypeImpl<SourceSectionAttribute> implements ModelConnectionHintSourceElement {
+public class ModelConnectionHintSourceElementImpl extends LocalModifiedAttributeElementTypeImpl<SourceSectionAttribute> implements ModelConnectionHintSourceElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -38,17 +38,6 @@ public class ModelConnectionHintSourceElementImpl extends ModifiedAttributeEleme
 	@Override
 	protected EClass eStaticClass() {
 		return MappingPackage.Literals.MODEL_CONNECTION_HINT_SOURCE_ELEMENT;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * This is specialized for the more specific type known in this context.
-	 * @generated
-	 */
-	@Override
-	public void setSource(SourceSectionAttribute newSource) {
-		super.setSource(newSource);
 	}
 
 	/**

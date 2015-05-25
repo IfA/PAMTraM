@@ -15,5 +15,5 @@ import pamtram.metamodel.SourceSectionAttribute;
  * @model
  * @generated
  */
-public interface ModelConnectionHintSourceElement extends ModifiedAttributeElementType<SourceSectionAttribute>, ModelConnectionHintSourceInterface {
+public interface ModelConnectionHintSourceElement extends LocalModifiedAttributeElementType<SourceSectionAttribute>, ModelConnectionHintSourceInterface {
 } // ModelConnectionHintSourceElement

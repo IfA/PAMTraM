@@ -14,5 +14,5 @@ import pamtram.metamodel.SourceSectionAttribute;
  * @model
  * @generated
  */
-public interface AttributeMatcherSourceElement extends ModifiedAttributeElementType<SourceSectionAttribute>, AttributeMatcherSourceInterface {
+public interface AttributeMatcherSourceElement extends LocalModifiedAttributeElementType<SourceSectionAttribute>, AttributeMatcherSourceInterface {
 } // AttributeMatcherSourceElement

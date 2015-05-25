@@ -244,13 +244,22 @@ public interface MetamodelPackage extends EPackage {
 	int CLASS___IS_SECTION = META_MODEL_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
+	 * The operation id for the '<em>Is Contained In Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS___IS_CONTAINED_IN_GENERIC__CLASS = META_MODEL_ELEMENT_OPERATION_COUNT + 5;
+
+	/**
 	 * The number of operations of the '<em>Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_OPERATION_COUNT = META_MODEL_ELEMENT_OPERATION_COUNT + 5;
+	int CLASS_OPERATION_COUNT = META_MODEL_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link pamtram.metamodel.impl.SourceSectionClassImpl <em>Source Section Class</em>}' class.
@@ -407,6 +416,15 @@ public interface MetamodelPackage extends EPackage {
 	int SOURCE_SECTION_CLASS___IS_SECTION = CLASS___IS_SECTION;
 
 	/**
+	 * The operation id for the '<em>Is Contained In Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_CLASS___IS_CONTAINED_IN_GENERIC__CLASS = CLASS___IS_CONTAINED_IN_GENERIC__CLASS;
+
+	/**
 	 * The number of operations of the '<em>Source Section Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -559,6 +577,15 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int TARGET_SECTION_CLASS___IS_SECTION = CLASS___IS_SECTION;
+
+	/**
+	 * The operation id for the '<em>Is Contained In Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CLASS___IS_CONTAINED_IN_GENERIC__CLASS = CLASS___IS_CONTAINED_IN_GENERIC__CLASS;
 
 	/**
 	 * The number of operations of the '<em>Target Section Class</em>' class.
@@ -2756,6 +2783,16 @@ public interface MetamodelPackage extends EPackage {
 	EOperation getClass__IsSection();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.metamodel.Class#isContainedInGeneric(pamtram.metamodel.Class) <em>Is Contained In Generic</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Contained In Generic</em>' operation.
+	 * @see pamtram.metamodel.Class#isContainedInGeneric(pamtram.metamodel.Class)
+	 * @generated
+	 */
+	EOperation getClass__IsContainedInGeneric__Class();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.SourceSectionClass <em>Source Section Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3570,6 +3607,14 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation CLASS___IS_SECTION = eINSTANCE.getClass__IsSection();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Contained In Generic</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CLASS___IS_CONTAINED_IN_GENERIC__CLASS = eINSTANCE.getClass__IsContainedInGeneric__Class();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.SourceSectionClassImpl <em>Source Section Class</em>}' class.

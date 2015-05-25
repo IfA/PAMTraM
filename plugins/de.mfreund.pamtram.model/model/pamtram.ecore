@@ -109,6 +109,12 @@
           <details key="body" value="return this.equals(this.getContainingSection());"/>
         </eAnnotations>
       </eOperations>
+      <eOperations name="isContainedInGeneric" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="EList&lt;pamtram.metamodel.Class> containedClasses = new BasicEList&lt;>();&#xD;&#xA;&#xD;&#xA;// collect all classes that are referenced by containment references&#xD;&#xA;for (Reference ref : containerClass.getReferencesGeneric()) {&#xD;&#xA;&#x9;if(!(ref.getEReference().isContainment())) {&#xD;&#xA;&#x9;&#x9;continue;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;if(ref instanceof SourceSectionReference) {&#xD;&#xA;&#x9;&#x9;containedClasses.addAll(((SourceSectionReference) ref).getValuesGeneric());&#xD;&#xA;&#x9;} else if(ref instanceof TargetSectionReference) {&#xD;&#xA;&#x9;&#x9;containedClasses.addAll(((TargetSectionReference) ref).getValuesGeneric());&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;// recursively iterate over all contained classes&#xD;&#xA;boolean found = false;&#xD;&#xA;for (pamtram.metamodel.Class containedClass : containedClasses) {&#xD;&#xA;&#x9;if(containedClass.equals(this) || isContainedInGeneric(containedClass)) {&#xD;&#xA;&#x9;&#x9;found = true;&#xD;&#xA;&#x9;&#x9;break;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;return found;"/>
+        </eAnnotations>
+        <eParameters name="containerClass" lowerBound="1" eType="#//metamodel/Class"/>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="eClass" lowerBound="1"
           eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="cardinality" lowerBound="1"
@@ -504,10 +510,10 @@
     <eClassifiers xsi:type="ecore:EClass" name="LocalModifiedAttributeElementType"
         abstract="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="sourceAttributeMatchesSection"/>
+        <details key="constraints" value="sourceAttributeMatchesSectionOrContainedSection"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-        <details key="sourceAttributeMatchesSection" value="self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection() = self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection"/>
+        <details key="sourceAttributeMatchesSectionOrContainedSection" value="self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection() = self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection or self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection().isContainedInGeneric(self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)"/>
       </eAnnotations>
       <eTypeParameters name="AttributeType">
         <eBounds eClassifier="#//metamodel/Attribute"/>

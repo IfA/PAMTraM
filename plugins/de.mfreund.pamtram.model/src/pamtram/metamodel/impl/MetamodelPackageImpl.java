@@ -487,6 +487,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getClass__IsContainedInGeneric__Class() {
+		return classEClass.getEOperations().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSourceSectionClass() {
 		return sourceSectionClassEClass;
 	}
@@ -1117,6 +1126,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEOperation(classEClass, CLASS___GET_CONTAINER_GENERIC);
 		createEOperation(classEClass, CLASS___IS_CONTAINER_FOR_GENERIC__CLASS);
 		createEOperation(classEClass, CLASS___IS_SECTION);
+		createEOperation(classEClass, CLASS___IS_CONTAINED_IN_GENERIC__CLASS);
 
 		sourceSectionClassEClass = createEClass(SOURCE_SECTION_CLASS);
 		createEReference(sourceSectionClassEClass, SOURCE_SECTION_CLASS__REFERENCES);
@@ -1323,6 +1333,9 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		addEParameter(op, this.getClass_(), "containedClass", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getClass__IsSection(), ecorePackage.getEBoolean(), "isSection", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getClass__IsContainedInGeneric__Class(), ecorePackage.getEBoolean(), "isContainedInGeneric", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getClass_(), "containerClass", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(sourceSectionClassEClass, SourceSectionClass.class, "SourceSectionClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSourceSectionClass_References(), this.getSourceSectionReference(), this.getSourceSectionReference_OwningClass(), "references", null, 0, -1, SourceSectionClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

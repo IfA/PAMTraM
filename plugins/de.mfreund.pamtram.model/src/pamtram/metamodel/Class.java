@@ -126,4 +126,13 @@ public interface Class extends MetaModelElement {
 	 */
 	boolean isSection();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" containerClassRequired="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<pamtram.metamodel.Class> containedClasses = new BasicEList<>();\r\n\r\n// collect all classes that are referenced by containment references\r\nfor (Reference ref : containerClass.getReferencesGeneric()) {\r\n\tif(!(ref.getEReference().isContainment())) {\r\n\t\tcontinue;\r\n\t}\r\n\tif(ref instanceof SourceSectionReference) {\r\n\t\tcontainedClasses.addAll(((SourceSectionReference) ref).getValuesGeneric());\r\n\t} else if(ref instanceof TargetSectionReference) {\r\n\t\tcontainedClasses.addAll(((TargetSectionReference) ref).getValuesGeneric());\r\n\t}\r\n}\r\n\r\n// recursively iterate over all contained classes\r\nboolean found = false;\r\nfor (pamtram.metamodel.Class containedClass : containedClasses) {\r\n\tif(containedClass.equals(this) || isContainedInGeneric(containedClass)) {\r\n\t\tfound = true;\r\n\t\tbreak;\r\n\t}\r\n}\r\nreturn found;'"
+	 * @generated
+	 */
+	boolean isContainedInGeneric(Class containerClass);
+
 } // Class

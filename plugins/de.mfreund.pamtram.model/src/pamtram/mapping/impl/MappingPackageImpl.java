@@ -1983,7 +1983,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (localModifiedAttributeElementTypeEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "sourceAttributeMatchesSection"
+			 "constraints", "sourceAttributeMatchesSectionOrContainedSection"
 		   });	
 		addAnnotation
 		  (externalModifiedAttributeElementTypeEClass, 
@@ -2016,7 +2016,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (localModifiedAttributeElementTypeEClass, 
 		   source, 
 		   new String[] {
-			 "sourceAttributeMatchesSection", "self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection() = self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection"
+			 "sourceAttributeMatchesSectionOrContainedSection", "self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection() = self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection or self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection().isContainedInGeneric(self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)"
 		   });	
 		addAnnotation
 		  (externalModifiedAttributeElementTypeEClass, 

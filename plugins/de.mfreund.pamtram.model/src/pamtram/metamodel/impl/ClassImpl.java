@@ -5,6 +5,7 @@ package pamtram.metamodel.impl;
 import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -14,10 +15,13 @@ import pamtram.SectionModel;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.LibraryEntry;
+import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.SourceSectionReference;
 import pamtram.metamodel.TargetSectionClass;
+import pamtram.metamodel.TargetSectionReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -249,6 +253,44 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * This recursively iterates through all Classes that are contained in the 
+	 * given {@link #containerClass} (via a {@link Reference} for that 
+	 * Reference.getEReference().isContainment() returns <em>true</em>) and checks 
+	 * if any of these classes matches this class.<br /><br />
+	 * Note: This also check containments across {@link MetaModelSectionReference
+	 * MetaModelSectionReferences}.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isContainedInGeneric(final pamtram.metamodel.Class containerClass) {
+		EList<pamtram.metamodel.Class> containedClasses = new BasicEList<>();
+		
+		// collect all classes that are referenced by containment references
+		for (Reference ref : containerClass.getReferencesGeneric()) {
+			if(!(ref.getEReference().isContainment())) {
+				continue;
+			}
+			if(ref instanceof SourceSectionReference) {
+				containedClasses.addAll(((SourceSectionReference) ref).getValuesGeneric());
+			} else if(ref instanceof TargetSectionReference) {
+				containedClasses.addAll(((TargetSectionReference) ref).getValuesGeneric());
+			}
+		}
+		
+		// recursively iterate over all contained classes
+		boolean found = false;
+		for (pamtram.metamodel.Class containedClass : containedClasses) {
+			if(containedClass.equals(this) || isContainedInGeneric(containedClass)) {
+				found = true;
+				break;
+			}
+		}
+		return found;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -334,6 +376,8 @@ public abstract class ClassImpl extends MetaModelElementImpl implements pamtram.
 				return isContainerForGeneric((pamtram.metamodel.Class)arguments.get(0));
 			case MetamodelPackage.CLASS___IS_SECTION:
 				return isSection();
+			case MetamodelPackage.CLASS___IS_CONTAINED_IN_GENERIC__CLASS:
+				return isContainedInGeneric((pamtram.metamodel.Class)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

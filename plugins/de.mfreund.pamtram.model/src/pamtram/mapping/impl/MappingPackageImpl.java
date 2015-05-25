@@ -1941,8 +1941,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (attributeMappingEClass, 
 		   source, 
 		   new String[] {
-			 "sourceAttributeMatchesSection", "",
-			 "targetAttributeMatchesSection", "\n"
+			 "sourceAttributeMatchesSection", "self.getLocalSourceElements()->forAll(e|e.source.getContainingSection() = self.oclContainer().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)",
+			 "targetAttributeMatchesSection", "self.target.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection"
 		   });	
 		addAnnotation
 		  (cardinalityMappingEClass, 

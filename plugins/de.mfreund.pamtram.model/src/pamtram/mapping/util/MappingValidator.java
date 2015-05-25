@@ -260,7 +260,7 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MATCHES_SECTION__EEXPRESSION = "";
+	protected static final String ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MATCHES_SECTION__EEXPRESSION = "self.getLocalSourceElements()->forAll(e|e.source.getContainingSection() = self.oclContainer().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)";
 
 	/**
 	 * Validates the sourceAttributeMatchesSection constraint of '<em>Attribute Mapping</em>'.
@@ -289,8 +289,7 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String ATTRIBUTE_MAPPING__TARGET_ATTRIBUTE_MATCHES_SECTION__EEXPRESSION = "\n" +
-		"";
+	protected static final String ATTRIBUTE_MAPPING__TARGET_ATTRIBUTE_MATCHES_SECTION__EEXPRESSION = "self.target.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection";
 
 	/**
 	 * Validates the targetAttributeMatchesSection constraint of '<em>Attribute Mapping</em>'.

@@ -20,7 +20,7 @@ import pamtram.metamodel.TargetSectionAttribute;
  *
  * @see pamtram.mapping.MappingPackage#getAttributeMapping()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='sourceAttributeMatchesSection\r\ntargetAttributeMatchesSection'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL sourceAttributeMatchesSection='' targetAttributeMatchesSection='\n'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL sourceAttributeMatchesSection='self.getLocalSourceElements()->forAll(e|e.source.getContainingSection() = self.oclContainer().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)' targetAttributeMatchesSection='self.target.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection'"
  * @generated
  */
 public interface AttributeMapping extends MappingHint, ExpressionHint, ModifiableHint, ExpandableHint {

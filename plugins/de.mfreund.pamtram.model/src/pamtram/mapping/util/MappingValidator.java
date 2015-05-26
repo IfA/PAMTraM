@@ -3,21 +3,75 @@
 package pamtram.mapping.util;
 
 import java.util.Map;
+
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.util.EObjectValidator;
-import pamtram.mapping.*;
+import org.eclipse.ocl.examples.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
+
+import pamtram.mapping.AttributeMapping;
+import pamtram.mapping.AttributeMappingExternalSourceElement;
+import pamtram.mapping.AttributeMappingSourceElement;
+import pamtram.mapping.AttributeMappingSourceInterface;
+import pamtram.mapping.AttributeMatcher;
+import pamtram.mapping.AttributeMatcherExternalSourceElement;
+import pamtram.mapping.AttributeMatcherSourceElement;
+import pamtram.mapping.AttributeMatcherSourceInterface;
+import pamtram.mapping.AttributeValueModifier;
+import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.CardinalityMapping;
+import pamtram.mapping.ClassMatcher;
+import pamtram.mapping.ExpandableHint;
+import pamtram.mapping.ExportedMappingHintGroup;
+import pamtram.mapping.ExpressionHint;
+import pamtram.mapping.ExternalMappedAttributeValueAppender;
+import pamtram.mapping.ExternalMappedAttributeValueExpander;
+import pamtram.mapping.ExternalMappedAttributeValuePrepender;
+import pamtram.mapping.ExternalModifiedAttributeElementType;
+import pamtram.mapping.GlobalAttribute;
+import pamtram.mapping.GlobalAttributeImporter;
+import pamtram.mapping.GlobalValue;
+import pamtram.mapping.HintImporterMappingHint;
+import pamtram.mapping.InstantiableMappingHintGroup;
+import pamtram.mapping.LocalModifiedAttributeElementType;
+import pamtram.mapping.MappedAttributeValueAppender;
+import pamtram.mapping.MappedAttributeValueExpander;
+import pamtram.mapping.MappedAttributeValueExpanderType;
+import pamtram.mapping.MappedAttributeValuePrepender;
+import pamtram.mapping.Mapping;
+import pamtram.mapping.MappingHint;
+import pamtram.mapping.MappingHintGroup;
+import pamtram.mapping.MappingHintGroupImporter;
+import pamtram.mapping.MappingHintGroupType;
+import pamtram.mapping.MappingHintSourceInterface;
+import pamtram.mapping.MappingHintType;
+import pamtram.mapping.MappingInstanceSelector;
+import pamtram.mapping.MappingPackage;
+import pamtram.mapping.MappingType;
+import pamtram.mapping.MatchToLowerCaseConverter;
+import pamtram.mapping.MatchToUpperCaseConverter;
+import pamtram.mapping.Matcher;
+import pamtram.mapping.ModelConnectionHint;
+import pamtram.mapping.ModelConnectionHintExternalSourceElement;
+import pamtram.mapping.ModelConnectionHintSourceElement;
+import pamtram.mapping.ModelConnectionHintSourceInterface;
+import pamtram.mapping.ModelConnectionHintTargetAttribute;
+import pamtram.mapping.ModifiableHint;
+import pamtram.mapping.ModifiedAttributeElementType;
+import pamtram.mapping.StringAppender;
+import pamtram.mapping.StringPrepender;
+import pamtram.mapping.SubstringReplacer;
+import pamtram.mapping.UniqueNumberAppender;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Validator</b> for the model.
  * <!-- end-user-doc -->
  * @see pamtram.mapping.MappingPackage
- * @generated
+ * @generated NOT
  */
-public class MappingValidator extends EObjectValidator {
+public class MappingValidator extends OCLinEcoreEObjectValidator {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->

@@ -3,11 +3,13 @@
 package pamtram.metamodel.util;
 
 import java.util.Map;
+
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.ocl.examples.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
+
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.AttributeParameter;
@@ -46,9 +48,9 @@ import pamtram.metamodel.VirtualAttribute;
  * The <b>Validator</b> for the model.
  * <!-- end-user-doc -->
  * @see pamtram.metamodel.MetamodelPackage
- * @generated
+ * @generated NOT
  */
-public class MetamodelValidator extends EObjectValidator {
+public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->

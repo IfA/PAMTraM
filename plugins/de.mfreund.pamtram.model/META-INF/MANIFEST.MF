@@ -25,5 +25,6 @@ Export-Package: pamtram,
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  de.tud.et.ifa.agtele.genlibrary;bundle-version="1.0.9";visibility:=reexport,
- de.mfreund.pamtram;bundle-version="1.0.0"
+ de.mfreund.pamtram;bundle-version="1.0.0",
+ org.eclipse.ocl.examples.xtext.oclinecore;bundle-version="3.4.2"
 Bundle-ActivationPolicy: lazy

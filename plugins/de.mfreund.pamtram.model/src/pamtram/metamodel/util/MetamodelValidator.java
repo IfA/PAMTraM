@@ -613,7 +613,37 @@ public class MetamodelValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(metaModelSectionReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(metaModelSectionReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validateReference_eReferenceMatchesParentEClass(metaModelSectionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateMetaModelSectionReference_valuesMatchReferenceType(metaModelSectionReference, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * The cached validation expression for the valuesMatchReferenceType constraint of '<em>Meta Model Section Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String META_MODEL_SECTION_REFERENCE__VALUES_MATCH_REFERENCE_TYPE__EEXPRESSION = "self.value->forAll(c : SourceSectionClass | self.eReference.eReferenceType.isSuperTypeOf(c.eClass))";
+
+	/**
+	 * Validates the valuesMatchReferenceType constraint of '<em>Meta Model Section Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMetaModelSectionReference_valuesMatchReferenceType(MetaModelSectionReference metaModelSectionReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(MetamodelPackage.Literals.META_MODEL_SECTION_REFERENCE,
+				 metaModelSectionReference,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL",
+				 "valuesMatchReferenceType",
+				 META_MODEL_SECTION_REFERENCE__VALUES_MATCH_REFERENCE_TYPE__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**

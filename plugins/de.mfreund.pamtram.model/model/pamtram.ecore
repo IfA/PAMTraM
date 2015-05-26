@@ -252,6 +252,12 @@
           eType="#//metamodel/SourceSectionClass" containment="true" eOpposite="#//metamodel/SourceSectionClass/owningContainmentReference"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MetaModelSectionReference" eSuperTypes="#//metamodel/SourceSectionReference">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="valuesMatchReferenceType"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="valuesMatchReferenceType" value="self.value->forAll(c : SourceSectionClass | self.eReference.eReferenceType.isSuperTypeOf(c.eClass))"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="value" upperBound="-1"
           eType="#//metamodel/SourceSectionClass"/>
     </eClassifiers>

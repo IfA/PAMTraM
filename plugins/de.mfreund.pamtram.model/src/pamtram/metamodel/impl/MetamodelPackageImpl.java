@@ -1493,6 +1493,12 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		   source, 
 		   new String[] {
 			 "constraints", "eReferenceIsNonContainment"
+		   });	
+		addAnnotation
+		  (metaModelSectionReferenceEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "valuesMatchReferenceType"
 		   });
 	}
 
@@ -1528,6 +1534,12 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		   source, 
 		   new String[] {
 			 "eReferenceIsNonContainment", "self.eReference.containment=false"
+		   });	
+		addAnnotation
+		  (metaModelSectionReferenceEClass, 
+		   source, 
+		   new String[] {
+			 "valuesMatchReferenceType", "self.value->forAll(c : SourceSectionClass | self.eReference.eReferenceType.isSuperTypeOf(c.eClass))"
 		   });
 	}
 

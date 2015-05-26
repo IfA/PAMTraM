@@ -1499,6 +1499,18 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		   source, 
 		   new String[] {
 			 "constraints", "valuesMatchReferenceType"
+		   });	
+		addAnnotation
+		  (sourceSectionAttributeEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "attributeMatchesParentEClass"
+		   });	
+		addAnnotation
+		  (actualAttributeEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "attributeMatchesParentEClass"
 		   });
 	}
 
@@ -1540,6 +1552,18 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		   source, 
 		   new String[] {
 			 "valuesMatchReferenceType", "self.value->forAll(c : SourceSectionClass | self.eReference.eReferenceType.isSuperTypeOf(c.eClass))"
+		   });	
+		addAnnotation
+		  (sourceSectionAttributeEClass, 
+		   source, 
+		   new String[] {
+			 "attributeMatchesParentEClass", "self.oclContainer().oclAsType(pamtram::metamodel::Class).eClass.eAllAttributes->includes(self.attribute)"
+		   });	
+		addAnnotation
+		  (actualAttributeEClass, 
+		   source, 
+		   new String[] {
+			 "attributeMatchesParentEClass", "self.oclContainer().oclAsType(pamtram::metamodel::Class).eClass.eAllAttributes->includes(self.attribute)"
 		   });
 	}
 

@@ -263,6 +263,12 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Attribute" abstract="true" eSuperTypes="#//metamodel/MetaModelElement"/>
     <eClassifiers xsi:type="ecore:EClass" name="SourceSectionAttribute" eSuperTypes="#//metamodel/Attribute">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="attributeMatchesParentEClass"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="attributeMatchesParentEClass" value="self.oclContainer().oclAsType(pamtram::metamodel::Class).eClass.eAllAttributes->includes(self.attribute)"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="owningClass" lowerBound="1"
           eType="#//metamodel/SourceSectionClass" changeable="false" eOpposite="#//metamodel/SourceSectionClass/attributes"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
@@ -280,6 +286,12 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ActualAttribute" eSuperTypes="#//metamodel/TargetSectionAttribute">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="attributeMatchesParentEClass"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="attributeMatchesParentEClass" value="self.oclContainer().oclAsType(pamtram::metamodel::Class).eClass.eAllAttributes->includes(self.attribute)"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
           eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
     </eClassifiers>

@@ -661,7 +661,46 @@ public class MetamodelValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSourceSectionAttribute(SourceSectionAttribute sourceSectionAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(sourceSectionAttribute, diagnostics, context);
+		if (!validate_NoCircularContainment(sourceSectionAttribute, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(sourceSectionAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(sourceSectionAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(sourceSectionAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(sourceSectionAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(sourceSectionAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(sourceSectionAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(sourceSectionAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(sourceSectionAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSourceSectionAttribute_attributeMatchesParentEClass(sourceSectionAttribute, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * The cached validation expression for the attributeMatchesParentEClass constraint of '<em>Source Section Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE_MATCHES_PARENT_ECLASS__EEXPRESSION = "self.oclContainer().oclAsType(pamtram::metamodel::Class).eClass.eAllAttributes->includes(self.attribute)";
+
+	/**
+	 * Validates the attributeMatchesParentEClass constraint of '<em>Source Section Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSourceSectionAttribute_attributeMatchesParentEClass(SourceSectionAttribute sourceSectionAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE,
+				 sourceSectionAttribute,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL",
+				 "attributeMatchesParentEClass",
+				 SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE_MATCHES_PARENT_ECLASS__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**
@@ -679,7 +718,46 @@ public class MetamodelValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateActualAttribute(ActualAttribute actualAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(actualAttribute, diagnostics, context);
+		if (!validate_NoCircularContainment(actualAttribute, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(actualAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(actualAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(actualAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(actualAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(actualAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(actualAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(actualAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(actualAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validateActualAttribute_attributeMatchesParentEClass(actualAttribute, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * The cached validation expression for the attributeMatchesParentEClass constraint of '<em>Actual Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String ACTUAL_ATTRIBUTE__ATTRIBUTE_MATCHES_PARENT_ECLASS__EEXPRESSION = "self.oclContainer().oclAsType(pamtram::metamodel::Class).eClass.eAllAttributes->includes(self.attribute)";
+
+	/**
+	 * Validates the attributeMatchesParentEClass constraint of '<em>Actual Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateActualAttribute_attributeMatchesParentEClass(ActualAttribute actualAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(MetamodelPackage.Literals.ACTUAL_ATTRIBUTE,
+				 actualAttribute,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL",
+				 "attributeMatchesParentEClass",
+				 ACTUAL_ATTRIBUTE__ATTRIBUTE_MATCHES_PARENT_ECLASS__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**

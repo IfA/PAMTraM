@@ -17,7 +17,8 @@ import org.eclipse.emf.ecore.EAttribute;
  * </p>
  *
  * @see pamtram.metamodel.MetamodelPackage#getActualAttribute()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='attributeMatchesParentEClass'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL attributeMatchesParentEClass='self.oclContainer().oclAsType(pamtram::metamodel::Class).eClass.eAllAttributes->includes(self.attribute)'"
  * @generated
  */
 public interface ActualAttribute extends TargetSectionAttribute {

@@ -2004,6 +2004,12 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 			 "constraints", "sourceMatchesPossibleContainerType"
 		   });	
 		addAnnotation
+		  (globalAttributeEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "sourceAttributeHasUpperBoundOne"
+		   });	
+		addAnnotation
 		  (externalModifiedAttributeElementTypeEClass, 
 		   source, 
 		   new String[] {
@@ -2054,6 +2060,12 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		   source, 
 		   new String[] {
 			 "sourceMatchesPossibleContainerType", "self.source.oclContainer().oclAsType(pamtram::metamodel::Class).eClass.eAllContainments->exists(r : ecore::EReference | r.eReferenceType.isSuperTypeOf(self.oclContainer().oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection.eClass))"
+		   });	
+		addAnnotation
+		  (globalAttributeEClass, 
+		   source, 
+		   new String[] {
+			 "sourceAttributeHasUpperBoundOne", "self.source.attribute.upperBound = 1"
 		   });	
 		addAnnotation
 		  (externalModifiedAttributeElementTypeEClass, 

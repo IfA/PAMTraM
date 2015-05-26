@@ -22,7 +22,8 @@ import pamtram.metamodel.SourceSectionAttribute;
  * </p>
  *
  * @see pamtram.mapping.MappingPackage#getGlobalAttribute()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='sourceAttributeHasUpperBoundOne'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL sourceAttributeHasUpperBoundOne='self.source.attribute.upperBound = 1'"
  * @generated
  */
 public interface GlobalAttribute extends NamedElement {

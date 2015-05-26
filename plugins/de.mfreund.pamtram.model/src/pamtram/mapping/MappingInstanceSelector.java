@@ -18,7 +18,8 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
  * </p>
  *
  * @see pamtram.mapping.MappingPackage#getMappingInstanceSelector()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='affectedReferenceIsNonContainment'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL affectedReferenceIsNonContainment='not self.affectedReference.eReference.oclAsType(ecore::EReference).containment'"
  * @generated
  */
 public interface MappingInstanceSelector extends MappingHint {

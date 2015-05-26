@@ -1980,6 +1980,12 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 			 "constraints", "sourceClassMatchesSection\r\nsourceClassIsVariableCardinality\r\ntargetClassMatchesSection\r\ntargetClassIsVariableCardinality"
 		   });	
 		addAnnotation
+		  (mappingInstanceSelectorEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "affectedReferenceIsNonContainment"
+		   });	
+		addAnnotation
 		  (localModifiedAttributeElementTypeEClass, 
 		   source, 
 		   new String[] {
@@ -2011,6 +2017,12 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (cardinalityMappingEClass, 
 		   source, 
 		   new String[] {
+		   });	
+		addAnnotation
+		  (mappingInstanceSelectorEClass, 
+		   source, 
+		   new String[] {
+			 "affectedReferenceIsNonContainment", "not self.affectedReference.eReference.oclAsType(ecore::EReference).containment"
 		   });	
 		addAnnotation
 		  (localModifiedAttributeElementTypeEClass, 

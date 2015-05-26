@@ -424,7 +424,46 @@ public class MappingValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMappingInstanceSelector(MappingInstanceSelector mappingInstanceSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(mappingInstanceSelector, diagnostics, context);
+		if (!validate_NoCircularContainment(mappingInstanceSelector, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(mappingInstanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(mappingInstanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(mappingInstanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(mappingInstanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(mappingInstanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(mappingInstanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mappingInstanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappingInstanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validateMappingInstanceSelector_affectedReferenceIsNonContainment(mappingInstanceSelector, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * The cached validation expression for the affectedReferenceIsNonContainment constraint of '<em>Instance Selector</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE_IS_NON_CONTAINMENT__EEXPRESSION = "not self.affectedReference.eReference.oclAsType(ecore::EReference).containment";
+
+	/**
+	 * Validates the affectedReferenceIsNonContainment constraint of '<em>Instance Selector</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMappingInstanceSelector_affectedReferenceIsNonContainment(MappingInstanceSelector mappingInstanceSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(MappingPackage.Literals.MAPPING_INSTANCE_SELECTOR,
+				 mappingInstanceSelector,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL",
+				 "affectedReferenceIsNonContainment",
+				 MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE_IS_NON_CONTAINMENT__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**

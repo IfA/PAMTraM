@@ -435,6 +435,12 @@
           eType="#//metamodel/TargetSectionClass"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MappingInstanceSelector" eSuperTypes="#//mapping/MappingHint">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="affectedReferenceIsNonContainment"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="affectedReferenceIsNonContainment" value="not self.affectedReference.eReference.oclAsType(ecore::EReference).containment"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="affectedReference" lowerBound="1"
           eType="#//metamodel/TargetSectionNonContainmentReference"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="matcher" lowerBound="1"

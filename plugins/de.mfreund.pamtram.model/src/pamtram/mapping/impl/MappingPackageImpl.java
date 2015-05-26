@@ -1986,6 +1986,12 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 			 "constraints", "affectedReferenceIsNonContainment\r\naffectedReferenceMatchesSection"
 		   });	
 		addAnnotation
+		  (attributeMatcherEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "targetMatchesAffectedReferenceType"
+		   });	
+		addAnnotation
 		  (localModifiedAttributeElementTypeEClass, 
 		   source, 
 		   new String[] {
@@ -2024,6 +2030,12 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		   new String[] {
 			 "affectedReferenceIsNonContainment", "not self.affectedReference.eReference.oclAsType(ecore::EReference).containment",
 			 "affectedReferenceMatchesSection", "if self.oclContainer().oclIsKindOf(pamtram::mapping::MappingHintGroupType) then self.affectedReference.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection else self.affectedReference.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupImporter).hintGroup.targetMMSection endif"
+		   });	
+		addAnnotation
+		  (attributeMatcherEClass, 
+		   source, 
+		   new String[] {
+			 "targetMatchesAffectedReferenceType", "self.oclContainer().oclAsType(pamtram::mapping::MappingInstanceSelector).affectedReference.eReference.oclAsType(ecore::EReference).eReferenceType.oclAsType(ecore::EClass).isSuperTypeOf(self.targetAttribute.oclContainer().oclAsType(pamtram::metamodel::Class).eClass)"
 		   });	
 		addAnnotation
 		  (localModifiedAttributeElementTypeEClass, 

@@ -19,7 +19,8 @@ import pamtram.metamodel.TargetSectionAttribute;
  * </p>
  *
  * @see pamtram.mapping.MappingPackage#getAttributeMatcher()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='targetMatchesAffectedReferenceType'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL targetMatchesAffectedReferenceType='self.oclContainer().oclAsType(pamtram::mapping::MappingInstanceSelector).affectedReference.eReference.oclAsType(ecore::EReference).eReferenceType.oclAsType(ecore::EClass).isSuperTypeOf(self.targetAttribute.oclContainer().oclAsType(pamtram::metamodel::Class).eClass)'"
  * @generated
  */
 public interface AttributeMatcher extends Matcher, ExpressionHint, ModifiableHint, ExpandableHint {

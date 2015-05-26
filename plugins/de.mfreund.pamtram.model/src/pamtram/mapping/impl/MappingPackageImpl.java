@@ -1998,6 +1998,12 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 			 "constraints", "sourceAttributeMatchesSectionOrContainedSection"
 		   });	
 		addAnnotation
+		  (modelConnectionHintTargetAttributeEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "sourceMatchesPossibleContainerType"
+		   });	
+		addAnnotation
 		  (externalModifiedAttributeElementTypeEClass, 
 		   source, 
 		   new String[] {
@@ -2042,6 +2048,12 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		   source, 
 		   new String[] {
 			 "sourceAttributeMatchesSectionOrContainedSection", "self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection() = self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection or self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection().isContainedInGeneric(self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)"
+		   });	
+		addAnnotation
+		  (modelConnectionHintTargetAttributeEClass, 
+		   source, 
+		   new String[] {
+			 "sourceMatchesPossibleContainerType", "self.source.oclContainer().oclAsType(pamtram::metamodel::Class).eClass.eAllContainments->exists(r : ecore::EReference | r.eReferenceType.isSuperTypeOf(self.oclContainer().oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection.eClass))"
 		   });	
 		addAnnotation
 		  (externalModifiedAttributeElementTypeEClass, 

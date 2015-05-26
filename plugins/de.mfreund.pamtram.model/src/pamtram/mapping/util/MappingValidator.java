@@ -799,7 +799,46 @@ public class MappingValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateModelConnectionHintTargetAttribute(ModelConnectionHintTargetAttribute modelConnectionHintTargetAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(modelConnectionHintTargetAttribute, diagnostics, context);
+		if (!validate_NoCircularContainment(modelConnectionHintTargetAttribute, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(modelConnectionHintTargetAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(modelConnectionHintTargetAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(modelConnectionHintTargetAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(modelConnectionHintTargetAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(modelConnectionHintTargetAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(modelConnectionHintTargetAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(modelConnectionHintTargetAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(modelConnectionHintTargetAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validateModelConnectionHintTargetAttribute_sourceMatchesPossibleContainerType(modelConnectionHintTargetAttribute, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * The cached validation expression for the sourceMatchesPossibleContainerType constraint of '<em>Model Connection Hint Target Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE__SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__EEXPRESSION = "self.source.oclContainer().oclAsType(pamtram::metamodel::Class).eClass.eAllContainments->exists(r : ecore::EReference | r.eReferenceType.isSuperTypeOf(self.oclContainer().oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection.eClass))";
+
+	/**
+	 * Validates the sourceMatchesPossibleContainerType constraint of '<em>Model Connection Hint Target Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateModelConnectionHintTargetAttribute_sourceMatchesPossibleContainerType(ModelConnectionHintTargetAttribute modelConnectionHintTargetAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(MappingPackage.Literals.MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE,
+				 modelConnectionHintTargetAttribute,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL",
+				 "sourceMatchesPossibleContainerType",
+				 MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE__SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**

@@ -1983,7 +1983,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (mappingInstanceSelectorEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "affectedReferenceIsNonContainment"
+			 "constraints", "affectedReferenceIsNonContainment\r\naffectedReferenceMatchesSection"
 		   });	
 		addAnnotation
 		  (localModifiedAttributeElementTypeEClass, 
@@ -2022,7 +2022,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (mappingInstanceSelectorEClass, 
 		   source, 
 		   new String[] {
-			 "affectedReferenceIsNonContainment", "not self.affectedReference.eReference.oclAsType(ecore::EReference).containment"
+			 "affectedReferenceIsNonContainment", "not self.affectedReference.eReference.oclAsType(ecore::EReference).containment",
+			 "affectedReferenceMatchesSection", "if self.oclContainer().oclIsKindOf(pamtram::mapping::MappingHintGroupType) then self.affectedReference.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection else self.affectedReference.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupImporter).hintGroup.targetMMSection endif"
 		   });	
 		addAnnotation
 		  (localModifiedAttributeElementTypeEClass, 

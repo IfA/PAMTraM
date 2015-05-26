@@ -434,6 +434,7 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mappingInstanceSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappingInstanceSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMappingInstanceSelector_affectedReferenceIsNonContainment(mappingInstanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validateMappingInstanceSelector_affectedReferenceMatchesSection(mappingInstanceSelector, diagnostics, context);
 		return result;
 	}
 
@@ -461,6 +462,35 @@ public class MappingValidator extends EObjectValidator {
 				 "http://www.eclipse.org/emf/2002/Ecore/OCL",
 				 "affectedReferenceIsNonContainment",
 				 MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE_IS_NON_CONTAINMENT__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
+	}
+
+	/**
+	 * The cached validation expression for the affectedReferenceMatchesSection constraint of '<em>Instance Selector</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE_MATCHES_SECTION__EEXPRESSION = "if self.oclContainer().oclIsKindOf(pamtram::mapping::MappingHintGroupType) then self.affectedReference.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection else self.affectedReference.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupImporter).hintGroup.targetMMSection endif";
+
+	/**
+	 * Validates the affectedReferenceMatchesSection constraint of '<em>Instance Selector</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMappingInstanceSelector_affectedReferenceMatchesSection(MappingInstanceSelector mappingInstanceSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(MappingPackage.Literals.MAPPING_INSTANCE_SELECTOR,
+				 mappingInstanceSelector,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL",
+				 "affectedReferenceMatchesSection",
+				 MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE_MATCHES_SECTION__EEXPRESSION,
 				 Diagnostic.ERROR,
 				 DIAGNOSTIC_SOURCE,
 				 0);

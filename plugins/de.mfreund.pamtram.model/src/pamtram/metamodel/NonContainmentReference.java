@@ -12,7 +12,7 @@ package pamtram.metamodel;
  * @see pamtram.metamodel.MetamodelPackage#getNonContainmentReference()
  * @model abstract="true"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='eReferenceIsNonContainment'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL eReferenceIsNonContainment='self.eReference.containment=false'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot eReferenceIsNonContainment='self.eReference.containment=false'"
  * @generated
  */
 public interface NonContainmentReference extends Reference {

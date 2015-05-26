@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EClass;
  * @see pamtram.metamodel.MetamodelPackage#getClass_()
  * @model abstract="true"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='eClassMatchesParentEReference\r\nvariableCardinalityIsValid'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL eClassMatchesParentEReference='if self<>self.getContainingSection() then self.oclContainer().oclAsType(pamtram::metamodel::Reference).eReference.oclAsType(ecore::EReference).eReferenceType.isSuperTypeOf(self.eClass.oclAsType(ecore::EClass)) else true endif' cardinalityIsValid='if self<>self.getContainingSection() then not ((self.cardinality <> pamtram::metamodel::CardinalityType::ONE) and (self.oclContainer().oclAsType(pamtram::metamodel::Reference).eReference.oclAsType(ecore::EReference).upperBound <= 1)) else true endif'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot eClassMatchesParentEReference='if self<>self.getContainingSection() then self.oclContainer().oclAsType(pamtram::metamodel::Reference).eReference.oclAsType(ecore::EReference).eReferenceType.isSuperTypeOf(self.eClass.oclAsType(ecore::EClass)) else true endif' cardinalityIsValid='if self<>self.getContainingSection() then not ((self.cardinality <> pamtram::metamodel::CardinalityType::ONE) and (self.oclContainer().oclAsType(pamtram::metamodel::Reference).eReference.oclAsType(ecore::EReference).upperBound <= 1)) else true endif'"
  * @generated
  */
 public interface Class extends MetaModelElement {

@@ -18,7 +18,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see pamtram.metamodel.MetamodelPackage#getMetaModelSectionReference()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='valuesMatchReferenceType'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL valuesMatchReferenceType='self.value->forAll(c : SourceSectionClass | self.eReference.eReferenceType.isSuperTypeOf(c.eClass))'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot valuesMatchReferenceType='self.value->forAll(c : SourceSectionClass | self.eReference.eReferenceType.isSuperTypeOf(c.eClass))'"
  * @generated
  */
 public interface MetaModelSectionReference extends SourceSectionReference {

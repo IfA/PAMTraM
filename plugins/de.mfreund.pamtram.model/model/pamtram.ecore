@@ -53,9 +53,9 @@
   </eClassifiers>
   <eSubpackages name="metamodel" nsURI="http://mfreund.de/pamtram/metamodel" nsPrefix="metamodel">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
-      <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
-      <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+      <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+      <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+      <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="MetaModelElement" abstract="true"
         eSuperTypes="#//NamedElement">
@@ -79,7 +79,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="eClassMatchesParentEReference&#xD;&#xA;variableCardinalityIsValid"/>
       </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="eClassMatchesParentEReference" value="if self&lt;>self.getContainingSection() then self.oclContainer().oclAsType(pamtram::metamodel::Reference).eReference.oclAsType(ecore::EReference).eReferenceType.isSuperTypeOf(self.eClass.oclAsType(ecore::EClass)) else true endif"/>
         <details key="cardinalityIsValid" value="if self&lt;>self.getContainingSection() then not ((self.cardinality &lt;> pamtram::metamodel::CardinalityType::ONE) and (self.oclContainer().oclAsType(pamtram::metamodel::Reference).eReference.oclAsType(ecore::EReference).upperBound &lt;= 1)) else true endif"/>
       </eAnnotations>
@@ -192,7 +192,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="eReferenceMatchesParentEClass"/>
       </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="eReferenceMatchesParentEClass" value="if self.isLibraryEntry() then true else self.oclContainer().oclAsType(pamtram::metamodel::Class).eClass.oclAsType(ecore::EClass).eAllReferences->includes(self.eReference) endif"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="eReference" lowerBound="1"
@@ -203,7 +203,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="eReferenceIsContainment"/>
       </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="eReferenceIsContainment" value="self.eReference.containment=true"/>
       </eAnnotations>
     </eClassifiers>
@@ -212,7 +212,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="eReferenceIsNonContainment"/>
       </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="eReferenceIsNonContainment" value="self.eReference.containment=false"/>
       </eAnnotations>
     </eClassifiers>
@@ -255,7 +255,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="valuesMatchReferenceType"/>
       </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="valuesMatchReferenceType" value="self.value->forAll(c : SourceSectionClass | self.eReference.eReferenceType.isSuperTypeOf(c.eClass))"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="value" upperBound="-1"
@@ -266,7 +266,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="attributeMatchesParentEClass"/>
       </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="attributeMatchesParentEClass" value="self.oclContainer().oclAsType(pamtram::metamodel::Class).eClass.eAllAttributes->includes(self.attribute)"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="owningClass" lowerBound="1"
@@ -289,7 +289,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="attributeMatchesParentEClass"/>
       </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="attributeMatchesParentEClass" value="self.oclContainer().oclAsType(pamtram::metamodel::Class).eClass.eAllAttributes->includes(self.attribute)"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
@@ -373,9 +373,9 @@
   </eSubpackages>
   <eSubpackages name="mapping" nsURI="http://mfreund.de/pamtram/mapping" nsPrefix="mapping">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
-      <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
-      <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+      <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+      <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+      <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="MappingType" abstract="true" eSuperTypes="#//NamedElement #//DeactivatableElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceMMSection" lowerBound="1"
@@ -422,7 +422,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="targetAttributeMatchesSection"/>
       </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="targetAttributeMatchesSection" value="self.target.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection"/>
       </eAnnotations>
       <eOperations name="getLocalSourceElements" unique="false" upperBound="-1" eType="#//mapping/AttributeMappingSourceElement">
@@ -446,7 +446,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="sourceClassMatchesSection&#xD;&#xA;sourceClassIsVariableCardinality&#xD;&#xA;targetClassMatchesSection&#xD;&#xA;targetClassIsVariableCardinality"/>
       </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
           eType="#//metamodel/SourceSectionClass"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
@@ -456,7 +456,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="affectedReferenceIsNonContainment&#xD;&#xA;affectedReferenceMatchesSection"/>
       </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="affectedReferenceIsNonContainment" value="not self.affectedReference.eReference.oclAsType(ecore::EReference).containment"/>
         <details key="affectedReferenceMatchesSection" value="if self.oclContainer().oclIsKindOf(pamtram::mapping::MappingHintGroupType) then self.affectedReference.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection else self.affectedReference.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupImporter).hintGroup.targetMMSection endif"/>
       </eAnnotations>
@@ -470,7 +470,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="targetMatchesAffectedReferenceType"/>
       </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="targetMatchesAffectedReferenceType" value="self.oclContainer().oclAsType(pamtram::mapping::MappingInstanceSelector).affectedReference.eReference.oclAsType(ecore::EReference).eReferenceType.oclAsType(ecore::EClass).isSuperTypeOf(self.targetAttribute.oclContainer().oclAsType(pamtram::metamodel::Class).eClass)"/>
       </eAnnotations>
       <eOperations name="getLocalSourceElements" unique="false" upperBound="-1" eType="#//mapping/AttributeMatcherSourceElement">
@@ -543,7 +543,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="sourceAttributeMatchesSectionOrContainedSection"/>
       </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="sourceAttributeMatchesSectionOrContainedSection" value="self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection() = self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection or self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection().isContainedInGeneric(self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)"/>
       </eAnnotations>
       <eTypeParameters name="AttributeType">
@@ -590,7 +590,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="sourceMatchesPossibleContainerType"/>
       </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="sourceMatchesPossibleContainerType" value="self.source.oclContainer().oclAsType(pamtram::metamodel::Class).eClass.eAllContainments->exists(r : ecore::EReference | r.eReferenceType.isSuperTypeOf(self.oclContainer().oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection.eClass))"/>
       </eAnnotations>
       <eGenericSuperTypes eClassifier="#//mapping/ModifiedAttributeElementType">
@@ -618,7 +618,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="sourceAttributeHasUpperBoundOne"/>
       </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="sourceAttributeHasUpperBoundOne" value="self.source.attribute.upperBound = 1"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
@@ -650,7 +650,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="sourceAttributeMatchesContainerSection"/>
       </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="sourceAttributeMatchesContainerSection" value="self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection().isContainerForGeneric(self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)"/>
       </eAnnotations>
       <eTypeParameters name="AttributeType">

@@ -13,7 +13,7 @@ import pamtram.metamodel.Attribute;
  * @see pamtram.mapping.MappingPackage#getLocalModifiedAttributeElementType()
  * @model abstract="true"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='sourceAttributeMatchesSectionOrContainedSection'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL sourceAttributeMatchesSectionOrContainedSection='self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection() = self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection or self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection().isContainedInGeneric(self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot sourceAttributeMatchesSectionOrContainedSection='self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection() = self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection or self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection().isContainedInGeneric(self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)'"
  * @generated
  */
 public interface LocalModifiedAttributeElementType<AttributeType extends Attribute> extends ModifiedAttributeElementType<AttributeType> {

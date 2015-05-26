@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EAttribute;
  *
  * @see pamtram.metamodel.MetamodelPackage#getSourceSectionAttribute()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='attributeMatchesParentEClass'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL attributeMatchesParentEClass='self.oclContainer().oclAsType(pamtram::metamodel::Class).eClass.eAllAttributes->includes(self.attribute)'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot attributeMatchesParentEClass='self.oclContainer().oclAsType(pamtram::metamodel::Class).eClass.eAllAttributes->includes(self.attribute)'"
  * @generated
  */
 public interface SourceSectionAttribute extends Attribute {

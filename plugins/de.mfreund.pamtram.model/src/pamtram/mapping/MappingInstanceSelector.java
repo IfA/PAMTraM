@@ -19,7 +19,7 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
  *
  * @see pamtram.mapping.MappingPackage#getMappingInstanceSelector()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='affectedReferenceIsNonContainment\r\naffectedReferenceMatchesSection'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL affectedReferenceIsNonContainment='not self.affectedReference.eReference.oclAsType(ecore::EReference).containment' affectedReferenceMatchesSection='if self.oclContainer().oclIsKindOf(pamtram::mapping::MappingHintGroupType) then self.affectedReference.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection else self.affectedReference.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupImporter).hintGroup.targetMMSection endif'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot affectedReferenceIsNonContainment='not self.affectedReference.eReference.oclAsType(ecore::EReference).containment' affectedReferenceMatchesSection='if self.oclContainer().oclIsKindOf(pamtram::mapping::MappingHintGroupType) then self.affectedReference.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection else self.affectedReference.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupImporter).hintGroup.targetMMSection endif'"
  * @generated
  */
 public interface MappingInstanceSelector extends MappingHint {

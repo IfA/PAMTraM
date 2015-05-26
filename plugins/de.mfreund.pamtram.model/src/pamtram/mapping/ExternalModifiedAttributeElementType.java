@@ -13,7 +13,7 @@ import pamtram.metamodel.Attribute;
  * @see pamtram.mapping.MappingPackage#getExternalModifiedAttributeElementType()
  * @model abstract="true"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='sourceAttributeMatchesContainerSection'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL sourceAttributeMatchesContainerSection='self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection().isContainerForGeneric(self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot sourceAttributeMatchesContainerSection='self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection().isContainerForGeneric(self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)'"
  * @generated
  */
 public interface ExternalModifiedAttributeElementType<AttributeType extends Attribute> extends ModifiedAttributeElementType<AttributeType> {

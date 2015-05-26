@@ -1450,8 +1450,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
-		// http://www.eclipse.org/emf/2002/Ecore/OCL
-		createOCLAnnotations();
+		// http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot
+		createPivotAnnotations();
 	}
 
 	/**
@@ -1466,9 +1466,9 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		  (this, 
 		   source, 
 		   new String[] {
-			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL",
-			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL",
-			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL"
+			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
 		   });	
 		addAnnotation
 		  (classEClass, 
@@ -1515,13 +1515,13 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	}
 
 	/**
-	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL</b>.
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot</b>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void createOCLAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL";	
+	protected void createPivotAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";	
 		addAnnotation
 		  (classEClass, 
 		   source, 

@@ -12,7 +12,7 @@ package pamtram.metamodel;
  * @see pamtram.metamodel.MetamodelPackage#getContainmentReference()
  * @model abstract="true"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='eReferenceIsContainment'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL eReferenceIsContainment='self.eReference.containment=true'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot eReferenceIsContainment='self.eReference.containment=true'"
  * @generated
  */
 public interface ContainmentReference extends Reference {

@@ -1947,6 +1947,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
+		// http://www.eclipse.org/OCL/Import
+		createImportAnnotations();
 		// http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot
 		createPivotAnnotations();
 	}
@@ -1977,13 +1979,13 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (cardinalityMappingEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "sourceClassMatchesSection\r\nsourceClassIsVariableCardinality\r\ntargetClassMatchesSection\r\ntargetClassIsVariableCardinality"
+			 "constraints", "sourceClassMatchesSection sourceClassIsVariableCardinality targetClassMatchesSection targetClassIsVariableCardinality"
 		   });	
 		addAnnotation
 		  (mappingInstanceSelectorEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "affectedReferenceIsNonContainment\r\naffectedReferenceMatchesSection"
+			 "constraints", "affectedReferenceIsNonContainment affectedReferenceMatchesSection"
 		   });	
 		addAnnotation
 		  (attributeMatcherEClass, 
@@ -2014,6 +2016,23 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "sourceAttributeMatchesContainerSection"
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/OCL/Import</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createImportAnnotations() {
+		String source = "http://www.eclipse.org/OCL/Import";	
+		addAnnotation
+		  (this, 
+		   source, 
+		   new String[] {
+			 "ecore", "http://www.eclipse.org/emf/2002/Ecore",
+			 "genlib", "http://www.et.tu-dresden.de/ifa/agtele/genlib"
 		   });
 	}
 

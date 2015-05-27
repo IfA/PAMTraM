@@ -61,6 +61,10 @@
       <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
       <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
     </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/OCL/Import">
+      <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
+      <details key="genlib" value="http://www.et.tu-dresden.de/ifa/agtele/genlib"/>
+    </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="MetaModelElement" abstract="true"
         eSuperTypes="#//NamedElement">
       <eOperations name="getContainingSection" lowerBound="1" eType="#//metamodel/Class">
@@ -81,7 +85,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Class" abstract="true" eSuperTypes="#//metamodel/MetaModelElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="eClassMatchesParentEReference&#xD;&#xA;variableCardinalityIsValid"/>
+        <details key="constraints" value="eClassMatchesParentEReference variableCardinalityIsValid"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="eClassMatchesParentEReference" value="if self&lt;>self.getContainingSection() then self.oclContainer().oclAsType(pamtram::metamodel::Reference).eReference.oclAsType(ecore::EReference).eReferenceType.isSuperTypeOf(self.eClass.oclAsType(ecore::EClass)) else true endif"/>
@@ -381,6 +385,10 @@
       <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
       <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
     </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/OCL/Import">
+      <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
+      <details key="genlib" value="http://www.et.tu-dresden.de/ifa/agtele/genlib"/>
+    </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="MappingType" abstract="true" eSuperTypes="#//NamedElement #//DeactivatableElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceMMSection" lowerBound="1"
           eType="#//metamodel/SourceSectionClass"/>
@@ -448,7 +456,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CardinalityMapping" eSuperTypes="#//mapping/MappingHint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="sourceClassMatchesSection&#xD;&#xA;sourceClassIsVariableCardinality&#xD;&#xA;targetClassMatchesSection&#xD;&#xA;targetClassIsVariableCardinality"/>
+        <details key="constraints" value="sourceClassMatchesSection sourceClassIsVariableCardinality targetClassMatchesSection targetClassIsVariableCardinality"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
@@ -458,7 +466,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MappingInstanceSelector" eSuperTypes="#//mapping/MappingHint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="affectedReferenceIsNonContainment&#xD;&#xA;affectedReferenceMatchesSection"/>
+        <details key="constraints" value="affectedReferenceIsNonContainment affectedReferenceMatchesSection"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="affectedReferenceIsNonContainment" value="not self.affectedReference.eReference.oclAsType(ecore::EReference).containment"/>

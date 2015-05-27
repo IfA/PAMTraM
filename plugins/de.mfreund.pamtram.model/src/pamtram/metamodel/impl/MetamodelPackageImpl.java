@@ -1450,6 +1450,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
+		// http://www.eclipse.org/OCL/Import
+		createImportAnnotations();
 		// http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot
 		createPivotAnnotations();
 	}
@@ -1474,7 +1476,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		  (classEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "eClassMatchesParentEReference\r\nvariableCardinalityIsValid"
+			 "constraints", "eClassMatchesParentEReference variableCardinalityIsValid"
 		   });	
 		addAnnotation
 		  (referenceEClass, 
@@ -1511,6 +1513,23 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		   source, 
 		   new String[] {
 			 "constraints", "attributeMatchesParentEClass"
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/OCL/Import</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createImportAnnotations() {
+		String source = "http://www.eclipse.org/OCL/Import";	
+		addAnnotation
+		  (this, 
+		   source, 
+		   new String[] {
+			 "ecore", "http://www.eclipse.org/emf/2002/Ecore",
+			 "genlib", "http://www.et.tu-dresden.de/ifa/agtele/genlib"
 		   });
 	}
 

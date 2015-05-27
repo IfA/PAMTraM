@@ -23,18 +23,16 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface TargetSectionReference extends Reference {
 	/**
-	 * Returns the value of the '<em><b>Owning Class</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link pamtram.metamodel.TargetSectionClass#getReferences <em>References</em>}'.
+	 * Returns the value of the '<em><b>Owning Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Class</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Class</em>' container reference.
+	 * @return the value of the '<em>Owning Class</em>' reference.
 	 * @see pamtram.metamodel.MetamodelPackage#getTargetSectionReference_OwningClass()
-	 * @see pamtram.metamodel.TargetSectionClass#getReferences
-	 * @model opposite="references" transient="false" changeable="false"
+	 * @model changeable="false"
 	 * @generated
 	 */
 	TargetSectionClass getOwningClass();

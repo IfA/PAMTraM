@@ -99,7 +99,7 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 				return createMetaModelElementAdapter();
 			}
 			@Override
-			public Adapter caseClass(pamtram.metamodel.Class object) {
+			public <R extends Reference> Adapter caseClass(pamtram.metamodel.Class<R> object) {
 				return createClassAdapter();
 			}
 			@Override

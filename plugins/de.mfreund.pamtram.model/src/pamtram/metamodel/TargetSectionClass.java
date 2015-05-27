@@ -13,7 +13,6 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link pamtram.metamodel.TargetSectionClass#getReferences <em>References</em>}</li>
  *   <li>{@link pamtram.metamodel.TargetSectionClass#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link pamtram.metamodel.TargetSectionClass#getContainer <em>Container</em>}</li>
  * </ul>
@@ -23,25 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface TargetSectionClass extends pamtram.metamodel.Class {
-
-	/**
-	 * Returns the value of the '<em><b>References</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.metamodel.TargetSectionReference}.
-	 * It is bidirectional and its opposite is '{@link pamtram.metamodel.TargetSectionReference#getOwningClass <em>Owning Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>References</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>References</em>' containment reference list.
-	 * @see pamtram.metamodel.MetamodelPackage#getTargetSectionClass_References()
-	 * @see pamtram.metamodel.TargetSectionReference#getOwningClass
-	 * @model opposite="owningClass" containment="true"
-	 * @generated
-	 */
-	EList<TargetSectionReference> getReferences();
+public interface TargetSectionClass extends pamtram.metamodel.Class<TargetSectionReference> {
 
 	/**
 	 * Returns the value of the '<em><b>Attributes</b></em>' containment reference list.

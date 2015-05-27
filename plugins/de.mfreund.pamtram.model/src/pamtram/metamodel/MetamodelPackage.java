@@ -164,13 +164,22 @@ public interface MetamodelPackage extends EPackage {
 	int CLASS__CARDINALITY = META_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>References</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__REFERENCES = META_MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_FEATURE_COUNT = META_MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int CLASS_FEATURE_COUNT = META_MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -306,7 +315,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS__REFERENCES = CLASS_FEATURE_COUNT + 0;
+	int SOURCE_SECTION_CLASS__REFERENCES = CLASS__REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
@@ -315,7 +324,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS__ATTRIBUTES = CLASS_FEATURE_COUNT + 1;
+	int SOURCE_SECTION_CLASS__ATTRIBUTES = CLASS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Container</b></em>' reference.
@@ -324,7 +333,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS__CONTAINER = CLASS_FEATURE_COUNT + 2;
+	int SOURCE_SECTION_CLASS__CONTAINER = CLASS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owning Containment Reference</b></em>' container reference.
@@ -333,7 +342,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS__OWNING_CONTAINMENT_REFERENCE = CLASS_FEATURE_COUNT + 3;
+	int SOURCE_SECTION_CLASS__OWNING_CONTAINMENT_REFERENCE = CLASS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Source Section Class</em>' class.
@@ -342,7 +351,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 4;
+	int SOURCE_SECTION_CLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -478,7 +487,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS__REFERENCES = CLASS_FEATURE_COUNT + 0;
+	int TARGET_SECTION_CLASS__REFERENCES = CLASS__REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
@@ -487,7 +496,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS__ATTRIBUTES = CLASS_FEATURE_COUNT + 1;
+	int TARGET_SECTION_CLASS__ATTRIBUTES = CLASS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Container</b></em>' reference.
@@ -496,7 +505,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS__CONTAINER = CLASS_FEATURE_COUNT + 2;
+	int TARGET_SECTION_CLASS__CONTAINER = CLASS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Target Section Class</em>' class.
@@ -505,7 +514,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 3;
+	int TARGET_SECTION_CLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -1156,7 +1165,7 @@ public interface MetamodelPackage extends EPackage {
 	int SOURCE_SECTION_REFERENCE__EREFERENCE = REFERENCE__EREFERENCE;
 
 	/**
-	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1247,7 +1256,7 @@ public interface MetamodelPackage extends EPackage {
 	int TARGET_SECTION_REFERENCE__EREFERENCE = REFERENCE__EREFERENCE;
 
 	/**
-	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1338,7 +1347,7 @@ public interface MetamodelPackage extends EPackage {
 	int TARGET_SECTION_CONTAINMENT_REFERENCE__EREFERENCE = CONTAINMENT_REFERENCE__EREFERENCE;
 
 	/**
-	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1438,7 +1447,7 @@ public interface MetamodelPackage extends EPackage {
 	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE__EREFERENCE = NON_CONTAINMENT_REFERENCE__EREFERENCE;
 
 	/**
-	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1538,7 +1547,7 @@ public interface MetamodelPackage extends EPackage {
 	int SOURCE_SECTION_CONTAINMENT_REFERENCE__EREFERENCE = CONTAINMENT_REFERENCE__EREFERENCE;
 
 	/**
-	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1638,7 +1647,7 @@ public interface MetamodelPackage extends EPackage {
 	int META_MODEL_SECTION_REFERENCE__EREFERENCE = SOURCE_SECTION_REFERENCE__EREFERENCE;
 
 	/**
-	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2734,6 +2743,17 @@ public interface MetamodelPackage extends EPackage {
 	EAttribute getClass_Cardinality();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.Class#getReferences <em>References</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>References</em>'.
+	 * @see pamtram.metamodel.Class#getReferences()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_References();
+
+	/**
 	 * Returns the meta object for the '{@link pamtram.metamodel.Class#getReferencesGeneric() <em>Get References Generic</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2804,17 +2824,6 @@ public interface MetamodelPackage extends EPackage {
 	EClass getSourceSectionClass();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.SourceSectionClass#getReferences <em>References</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>References</em>'.
-	 * @see pamtram.metamodel.SourceSectionClass#getReferences()
-	 * @see #getSourceSectionClass()
-	 * @generated
-	 */
-	EReference getSourceSectionClass_References();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.SourceSectionClass#getAttributes <em>Attributes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2856,17 +2865,6 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getTargetSectionClass();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.TargetSectionClass#getReferences <em>References</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>References</em>'.
-	 * @see pamtram.metamodel.TargetSectionClass#getReferences()
-	 * @see #getTargetSectionClass()
-	 * @generated
-	 */
-	EReference getTargetSectionClass_References();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link pamtram.metamodel.TargetSectionClass#getAttributes <em>Attributes</em>}'.
@@ -3091,10 +3089,10 @@ public interface MetamodelPackage extends EPackage {
 	EClass getSourceSectionReference();
 
 	/**
-	 * Returns the meta object for the container reference '{@link pamtram.metamodel.SourceSectionReference#getOwningClass <em>Owning Class</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.metamodel.SourceSectionReference#getOwningClass <em>Owning Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Owning Class</em>'.
+	 * @return the meta object for the reference '<em>Owning Class</em>'.
 	 * @see pamtram.metamodel.SourceSectionReference#getOwningClass()
 	 * @see #getSourceSectionReference()
 	 * @generated
@@ -3122,10 +3120,10 @@ public interface MetamodelPackage extends EPackage {
 	EClass getTargetSectionReference();
 
 	/**
-	 * Returns the meta object for the container reference '{@link pamtram.metamodel.TargetSectionReference#getOwningClass <em>Owning Class</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.metamodel.TargetSectionReference#getOwningClass <em>Owning Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Owning Class</em>'.
+	 * @return the meta object for the reference '<em>Owning Class</em>'.
 	 * @see pamtram.metamodel.TargetSectionReference#getOwningClass()
 	 * @see #getTargetSectionReference()
 	 * @generated
@@ -3570,6 +3568,14 @@ public interface MetamodelPackage extends EPackage {
 		EAttribute CLASS__CARDINALITY = eINSTANCE.getClass_Cardinality();
 
 		/**
+		 * The meta object literal for the '<em><b>References</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__REFERENCES = eINSTANCE.getClass_References();
+
+		/**
 		 * The meta object literal for the '<em><b>Get References Generic</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3628,14 +3634,6 @@ public interface MetamodelPackage extends EPackage {
 		EClass SOURCE_SECTION_CLASS = eINSTANCE.getSourceSectionClass();
 
 		/**
-		 * The meta object literal for the '<em><b>References</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SOURCE_SECTION_CLASS__REFERENCES = eINSTANCE.getSourceSectionClass_References();
-
-		/**
 		 * The meta object literal for the '<em><b>Attributes</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3668,14 +3666,6 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass TARGET_SECTION_CLASS = eINSTANCE.getTargetSectionClass();
-
-		/**
-		 * The meta object literal for the '<em><b>References</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TARGET_SECTION_CLASS__REFERENCES = eINSTANCE.getTargetSectionClass_References();
 
 		/**
 		 * The meta object literal for the '<em><b>Attributes</b></em>' containment reference list feature.
@@ -3864,7 +3854,7 @@ public interface MetamodelPackage extends EPackage {
 		EClass SOURCE_SECTION_REFERENCE = eINSTANCE.getSourceSectionReference();
 
 		/**
-		 * The meta object literal for the '<em><b>Owning Class</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Owning Class</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -3890,7 +3880,7 @@ public interface MetamodelPackage extends EPackage {
 		EClass TARGET_SECTION_REFERENCE = eINSTANCE.getTargetSectionReference();
 
 		/**
-		 * The meta object literal for the '<em><b>Owning Class</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Owning Class</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

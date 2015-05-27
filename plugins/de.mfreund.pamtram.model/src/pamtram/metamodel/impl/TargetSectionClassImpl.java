@@ -10,6 +10,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -25,7 +26,6 @@ import pamtram.metamodel.TargetSectionReference;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link pamtram.metamodel.impl.TargetSectionClassImpl#getReferences <em>References</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.TargetSectionClassImpl#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.TargetSectionClassImpl#getContainer <em>Container</em>}</li>
  * </ul>
@@ -33,17 +33,7 @@ import pamtram.metamodel.TargetSectionReference;
  *
  * @generated
  */
-public class TargetSectionClassImpl extends ClassImpl implements TargetSectionClass {
-	/**
-	 * The cached value of the '{@link #getReferences() <em>References</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getReferences()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<TargetSectionReference> references;
-
+public class TargetSectionClassImpl extends ClassImpl<TargetSectionReference> implements TargetSectionClass {
 	/**
 	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -85,11 +75,13 @@ public class TargetSectionClassImpl extends ClassImpl implements TargetSectionCl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific element type known in this context.
 	 * @generated
 	 */
+	@Override
 	public EList<TargetSectionReference> getReferences() {
 		if (references == null) {
-			references = new EObjectContainmentWithInverseEList<TargetSectionReference>(TargetSectionReference.class, this, MetamodelPackage.TARGET_SECTION_CLASS__REFERENCES, MetamodelPackage.TARGET_SECTION_REFERENCE__OWNING_CLASS);
+			references = new EObjectContainmentEList<TargetSectionReference>(TargetSectionReference.class, this, MetamodelPackage.TARGET_SECTION_CLASS__REFERENCES);
 		}
 		return references;
 	}
@@ -153,8 +145,6 @@ public class TargetSectionClassImpl extends ClassImpl implements TargetSectionCl
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MetamodelPackage.TARGET_SECTION_CLASS__REFERENCES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getReferences()).basicAdd(otherEnd, msgs);
 			case MetamodelPackage.TARGET_SECTION_CLASS__ATTRIBUTES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAttributes()).basicAdd(otherEnd, msgs);
 		}
@@ -169,8 +159,6 @@ public class TargetSectionClassImpl extends ClassImpl implements TargetSectionCl
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MetamodelPackage.TARGET_SECTION_CLASS__REFERENCES:
-				return ((InternalEList<?>)getReferences()).basicRemove(otherEnd, msgs);
 			case MetamodelPackage.TARGET_SECTION_CLASS__ATTRIBUTES:
 				return ((InternalEList<?>)getAttributes()).basicRemove(otherEnd, msgs);
 		}
@@ -185,8 +173,6 @@ public class TargetSectionClassImpl extends ClassImpl implements TargetSectionCl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.TARGET_SECTION_CLASS__REFERENCES:
-				return getReferences();
 			case MetamodelPackage.TARGET_SECTION_CLASS__ATTRIBUTES:
 				return getAttributes();
 			case MetamodelPackage.TARGET_SECTION_CLASS__CONTAINER:
@@ -205,10 +191,6 @@ public class TargetSectionClassImpl extends ClassImpl implements TargetSectionCl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.TARGET_SECTION_CLASS__REFERENCES:
-				getReferences().clear();
-				getReferences().addAll((Collection<? extends TargetSectionReference>)newValue);
-				return;
 			case MetamodelPackage.TARGET_SECTION_CLASS__ATTRIBUTES:
 				getAttributes().clear();
 				getAttributes().addAll((Collection<? extends TargetSectionAttribute>)newValue);
@@ -228,9 +210,6 @@ public class TargetSectionClassImpl extends ClassImpl implements TargetSectionCl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.TARGET_SECTION_CLASS__REFERENCES:
-				getReferences().clear();
-				return;
 			case MetamodelPackage.TARGET_SECTION_CLASS__ATTRIBUTES:
 				getAttributes().clear();
 				return;
@@ -249,8 +228,6 @@ public class TargetSectionClassImpl extends ClassImpl implements TargetSectionCl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.TARGET_SECTION_CLASS__REFERENCES:
-				return references != null && !references.isEmpty();
 			case MetamodelPackage.TARGET_SECTION_CLASS__ATTRIBUTES:
 				return attributes != null && !attributes.isEmpty();
 			case MetamodelPackage.TARGET_SECTION_CLASS__CONTAINER:

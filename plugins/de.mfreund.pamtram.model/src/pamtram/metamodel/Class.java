@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link pamtram.metamodel.Class#getEClass <em>EClass</em>}</li>
  *   <li>{@link pamtram.metamodel.Class#getCardinality <em>Cardinality</em>}</li>
+ *   <li>{@link pamtram.metamodel.Class#getReferences <em>References</em>}</li>
  * </ul>
  * </p>
  *
@@ -24,7 +25,7 @@ import org.eclipse.emf.ecore.EClass;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot eClassMatchesParentEReference='if self<>self.getContainingSection() then self.oclContainer().oclAsType(pamtram::metamodel::Reference).eReference.oclAsType(ecore::EReference).eReferenceType.isSuperTypeOf(self.eClass.oclAsType(ecore::EClass)) else true endif' cardinalityIsValid='if self<>self.getContainingSection() then not ((self.cardinality <> pamtram::metamodel::CardinalityType::ONE) and (self.oclContainer().oclAsType(pamtram::metamodel::Reference).eReference.oclAsType(ecore::EReference).upperBound <= 1)) else true endif'"
  * @generated
  */
-public interface Class extends MetaModelElement {
+public interface Class<R extends Reference> extends MetaModelElement {
 	/**
 	 * Returns the value of the '<em><b>EClass</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -82,13 +83,28 @@ public interface Class extends MetaModelElement {
 	void setCardinality(CardinalityType value);
 
 	/**
+	 * Returns the value of the '<em><b>References</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>References</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>References</em>' containment reference list.
+	 * @see pamtram.metamodel.MetamodelPackage#getClass_References()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<R> getReferences();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<Reference> refs= new org.eclipse.emf.common.util.BasicEList<Reference>();\nif(this instanceof SourceSectionClass){\n refs.addAll(((SourceSectionClass) this).getReferences());\n\n} else if(this instanceof TargetSectionClass){\n refs.addAll(((TargetSectionClass) this).getReferences());\n}\nreturn refs;'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return getReferences(); //TODO delete this'"
 	 * @generated
 	 */
-	EList<Reference> getReferencesGeneric();
+	EList<R> getReferencesGeneric();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -106,7 +122,7 @@ public interface Class extends MetaModelElement {
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='pamtram.metamodel.Class ret;\r\nif(this instanceof SourceSectionClass){\r\n\tret = ((SourceSectionClass)this).getContainer();\r\n} else if(this instanceof TargetSectionClass){\r\n\tret = ((TargetSectionClass)this).getContainer();\r\n} else {\r\n\treturn null;\r\n}\r\nif(ret == null && this.eContainer() instanceof Reference &&\r\n\t\t!(this.eContainer() instanceof SectionModel)) {\r\n\tret = (pamtram.metamodel.Class) this.eContainer().eContainer();\r\n}\r\nreturn ret;'"
 	 * @generated
 	 */
-	Class getContainerGeneric();
+	Class<Reference> getContainerGeneric();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -115,7 +131,7 @@ public interface Class extends MetaModelElement {
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='pamtram.metamodel.Class container = containedClass.getContainerGeneric();\r\n\t\t\r\n// this means that we have reached the top level container for the \'containedClass\'\r\nif(container == null) {\r\n\treturn false;\r\n// this is the container\r\n} else if(this.equals(container)) {\r\n\treturn true;\r\n// this was not the container, so iterate up in the containment hierarchy\r\n} else {\r\n\treturn isContainerForGeneric(containedClass.getContainerGeneric());\r\n}'"
 	 * @generated
 	 */
-	boolean isContainerForGeneric(Class containedClass);
+	boolean isContainerForGeneric(Class<Reference> containedClass);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -133,6 +149,6 @@ public interface Class extends MetaModelElement {
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<pamtram.metamodel.Class> containedClasses = new BasicEList<>();\r\n\r\n// collect all classes that are referenced by containment references\r\nfor (Reference ref : containerClass.getReferencesGeneric()) {\r\n\tif(!(ref.getEReference().isContainment())) {\r\n\t\tcontinue;\r\n\t}\r\n\tif(ref instanceof SourceSectionReference) {\r\n\t\tcontainedClasses.addAll(((SourceSectionReference) ref).getValuesGeneric());\r\n\t} else if(ref instanceof TargetSectionReference) {\r\n\t\tcontainedClasses.addAll(((TargetSectionReference) ref).getValuesGeneric());\r\n\t}\r\n}\r\n\r\n// recursively iterate over all contained classes\r\nboolean found = false;\r\nfor (pamtram.metamodel.Class containedClass : containedClasses) {\r\n\tif(containedClass.equals(this) || isContainedInGeneric(containedClass)) {\r\n\t\tfound = true;\r\n\t\tbreak;\r\n\t}\r\n}\r\nreturn found;'"
 	 * @generated
 	 */
-	boolean isContainedInGeneric(Class containerClass);
+	boolean isContainedInGeneric(Class<Reference> containerClass);
 
 } // Class

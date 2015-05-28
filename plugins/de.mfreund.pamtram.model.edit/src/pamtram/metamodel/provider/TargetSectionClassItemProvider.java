@@ -5,19 +5,13 @@ package pamtram.metamodel.provider;
 
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import pamtram.mapping.commands.BasicDragAndDropSetCommand;
-import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.TargetSectionClass;
 
@@ -50,62 +44,8 @@ public class TargetSectionClassItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addContainerPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Container feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addContainerPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_TargetSectionClass_container_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetSectionClass_container_feature", "_UI_TargetSectionClass_type"),
-				 MetamodelPackage.Literals.TARGET_SECTION_CLASS__CONTAINER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(MetamodelPackage.Literals.TARGET_SECTION_CLASS__REFERENCES);
-			childrenFeatures.add(MetamodelPackage.Literals.TARGET_SECTION_CLASS__ATTRIBUTES);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
 	}
 
 	/**
@@ -138,13 +78,6 @@ public class TargetSectionClassItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(TargetSectionClass.class)) {
-			case MetamodelPackage.TARGET_SECTION_CLASS__REFERENCES:
-			case MetamodelPackage.TARGET_SECTION_CLASS__ATTRIBUTES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 
@@ -158,26 +91,6 @@ public class TargetSectionClassItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MetamodelPackage.Literals.TARGET_SECTION_CLASS__REFERENCES,
-				 MetamodelFactory.eINSTANCE.createTargetSectionContainmentReference()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MetamodelPackage.Literals.TARGET_SECTION_CLASS__REFERENCES,
-				 MetamodelFactory.eINSTANCE.createTargetSectionNonContainmentReference()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MetamodelPackage.Literals.TARGET_SECTION_CLASS__ATTRIBUTES,
-				 MetamodelFactory.eINSTANCE.createActualAttribute()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MetamodelPackage.Literals.TARGET_SECTION_CLASS__ATTRIBUTES,
-				 MetamodelFactory.eINSTANCE.createVirtualAttribute()));
 	}
 	
 	@Override
@@ -191,7 +104,7 @@ public class TargetSectionClassItemProvider
 				if(value instanceof TargetSectionClass) {
 			
 					return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
-							MetamodelPackage.Literals.TARGET_SECTION_CLASS__CONTAINER, value, 0);
+							MetamodelPackage.Literals.CLASS__CONTAINER, value, 0);
 				}
 			}
 		}

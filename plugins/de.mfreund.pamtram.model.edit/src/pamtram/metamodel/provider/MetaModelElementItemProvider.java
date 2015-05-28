@@ -56,7 +56,7 @@ public class MetaModelElementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((MetaModelElement)object).getName();
+		String label = ((MetaModelElement<?>)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_MetaModelElement_type") :
 			getString("_UI_MetaModelElement_type") + " " + label;

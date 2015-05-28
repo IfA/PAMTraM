@@ -54,7 +54,6 @@ public class TargetSectionNonContainmentReferenceItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addValuePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -64,6 +63,7 @@ public class TargetSectionNonContainmentReferenceItemProvider
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	protected void addValuePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(new ItemPropertyDescriptor
@@ -71,7 +71,7 @@ public class TargetSectionNonContainmentReferenceItemProvider
 				 getResourceLocator(),
 				 getString("_UI_TargetSectionNonContainmentReference_value_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_TargetSectionNonContainmentReference_value_feature", "_UI_TargetSectionNonContainmentReference_type"),
-				 MetamodelPackage.Literals.TARGET_SECTION_NON_CONTAINMENT_REFERENCE__VALUE,
+				 MetamodelPackage.Literals.NON_CONTAINMENT_REFERENCE__VALUE,
 				 true,
 				 false,
 				 true,
@@ -160,8 +160,7 @@ public class TargetSectionNonContainmentReferenceItemProvider
 			Collection<?> collection) {
 		
 		EList<TargetSectionClass> values = new BasicEList<TargetSectionClass>();
-		for(Iterator<?> iter = collection.iterator(); iter.hasNext(); ) {
-			Object value = iter.next();
+		for (Object value : collection) {
 			if(value instanceof TargetSectionClass) {
 				values.add((TargetSectionClass) value);
 			} else {
@@ -175,7 +174,7 @@ public class TargetSectionNonContainmentReferenceItemProvider
 					operation, collection); 
 		} else {
 			return new BasicDragAndDropAddCommand(domain, (EObject) owner, 
-					MetamodelPackage.Literals.TARGET_SECTION_NON_CONTAINMENT_REFERENCE__VALUE, values);
+					MetamodelPackage.Literals.NON_CONTAINMENT_REFERENCE__VALUE, values);
 		}
 	}
 

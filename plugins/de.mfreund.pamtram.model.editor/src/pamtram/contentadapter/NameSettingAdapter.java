@@ -52,10 +52,9 @@ final class NameSettingAdapter extends PamtramChildContentAdapter {
 			// the notifying reference
 			Reference ref = (Reference) n.getNotifier();
 			
-		    if (n.getFeature() == MetamodelPackage.Literals.SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE ||
-		    		n.getFeature() == MetamodelPackage.Literals.TARGET_SECTION_CONTAINMENT_REFERENCE__VALUE ||
+		    if (n.getFeature() == MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE ||
 		    		n.getFeature() == MetamodelPackage.Literals.META_MODEL_SECTION_REFERENCE__VALUE ||
-		    		n.getFeature() == MetamodelPackage.Literals.TARGET_SECTION_NON_CONTAINMENT_REFERENCE__VALUE){
+		    		n.getFeature() == MetamodelPackage.Literals.NON_CONTAINMENT_REFERENCE__VALUE){
 		    	
 				if(n.getEventType() == Notification.ADD) {
 					
@@ -73,8 +72,7 @@ final class NameSettingAdapter extends PamtramChildContentAdapter {
 			
 			if(n.getEventType() == Notification.ADD) {
 			
-			    if (n.getFeature() == MetamodelPackage.Literals.SOURCE_SECTION_CLASS__REFERENCES ||
-			    		n.getFeature() == MetamodelPackage.Literals.TARGET_SECTION_CLASS__REFERENCES){
+			    if (n.getFeature() == MetamodelPackage.Literals.CLASS__REFERENCES){
 		    		if(n.getNewValue() instanceof ContainmentReference) {
 		    			// the notifying class
 		    			pamtram.metamodel.Class c = (Class) n.getNotifier();

@@ -41,6 +41,10 @@
          id="org.eclipse.emf.edit"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.ocl.examples"
+         version="0.0.0"/>
+
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.debug.core"/>
@@ -65,6 +69,7 @@
       <import plugin="org.eclipse.ui.ide" version="3.9.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.epsilon.common.dt" version="0.9.1" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.ecore.xmi" version="2.7.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ocl.examples.xtext.oclinecore"/>
    </requires>
 
    <plugin

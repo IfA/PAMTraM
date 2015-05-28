@@ -26,7 +26,7 @@ import pamtram.metamodel.MetamodelPackage;
  *
  * @generated
  */
-public abstract class ContainmentReferenceImpl<V extends pamtram.metamodel.Class<?, ?>> extends ReferenceImpl<V> implements ContainmentReference<V> {
+public abstract class ContainmentReferenceImpl<V extends pamtram.metamodel.Class<?, ?, ?>> extends ReferenceImpl<V> implements ContainmentReference<V> {
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EReference;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot eReferenceMatchesParentEClass='if self.isLibraryEntry() then true else self.oclContainer().oclAsType(pamtram::metamodel::Class).eClass.oclAsType(ecore::EClass).eAllReferences->includes(self.eReference) endif'"
  * @generated
  */
-public interface Reference<V extends pamtram.metamodel.Class<?, ?>> extends MetaModelElement<V> {
+public interface Reference<V extends pamtram.metamodel.Class<?, ?, ?>> extends MetaModelElement<V> {
 	/**
 	 * Returns the value of the '<em><b>EReference</b></em>' reference.
 	 * <!-- begin-user-doc -->

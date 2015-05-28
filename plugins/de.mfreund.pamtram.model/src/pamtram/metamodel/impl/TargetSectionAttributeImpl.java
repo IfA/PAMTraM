@@ -3,11 +3,9 @@
 package pamtram.metamodel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
@@ -28,6 +26,15 @@ import pamtram.metamodel.TargetSectionClass;
  * @generated
  */
 public abstract class TargetSectionAttributeImpl extends AttributeImpl<TargetSectionClass> implements TargetSectionAttribute {
+	/**
+	 * The cached value of the '{@link #getOwningClass() <em>Owning Class</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningClass()
+	 * @generated
+	 * @ordered
+	 */
+	protected TargetSectionClass owningClass;
 	/**
 	 * The default value of the '{@link #isUnique() <em>Unique</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -91,8 +98,24 @@ public abstract class TargetSectionAttributeImpl extends AttributeImpl<TargetSec
 	 * @generated
 	 */
 	public TargetSectionClass getOwningClass() {
-		if (eContainerFeatureID() != MetamodelPackage.TARGET_SECTION_ATTRIBUTE__OWNING_CLASS) return null;
-		return (TargetSectionClass)eInternalContainer();
+		if (owningClass != null && owningClass.eIsProxy()) {
+			InternalEObject oldOwningClass = (InternalEObject)owningClass;
+			owningClass = (TargetSectionClass)eResolveProxy(oldOwningClass);
+			if (owningClass != oldOwningClass) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.TARGET_SECTION_ATTRIBUTE__OWNING_CLASS, oldOwningClass, owningClass));
+			}
+		}
+		return owningClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TargetSectionClass basicGetOwningClass() {
+		return owningClass;
 	}
 
 	/**
@@ -143,54 +166,11 @@ public abstract class TargetSectionAttributeImpl extends AttributeImpl<TargetSec
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE__OWNING_CLASS:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return eBasicSetContainer(otherEnd, MetamodelPackage.TARGET_SECTION_ATTRIBUTE__OWNING_CLASS, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE__OWNING_CLASS:
-				return eBasicSetContainer(null, MetamodelPackage.TARGET_SECTION_ATTRIBUTE__OWNING_CLASS, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE__OWNING_CLASS:
-				return eInternalContainer().eInverseRemove(this, MetamodelPackage.TARGET_SECTION_CLASS__ATTRIBUTES, TargetSectionClass.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE__OWNING_CLASS:
-				return getOwningClass();
+				if (resolve) return getOwningClass();
+				return basicGetOwningClass();
 			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE__UNIQUE:
 				return isUnique();
 			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE__VALUE:
@@ -244,7 +224,7 @@ public abstract class TargetSectionAttributeImpl extends AttributeImpl<TargetSec
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE__OWNING_CLASS:
-				return getOwningClass() != null;
+				return owningClass != null;
 			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE__UNIQUE:
 				return unique != UNIQUE_EDEFAULT;
 			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE__VALUE:

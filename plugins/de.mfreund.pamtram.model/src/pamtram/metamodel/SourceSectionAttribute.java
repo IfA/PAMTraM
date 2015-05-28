@@ -27,18 +27,16 @@ import org.eclipse.emf.ecore.EAttribute;
  */
 public interface SourceSectionAttribute extends Attribute<SourceSectionClass> {
 	/**
-	 * Returns the value of the '<em><b>Owning Class</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link pamtram.metamodel.SourceSectionClass#getAttributes <em>Attributes</em>}'.
+	 * Returns the value of the '<em><b>Owning Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Class</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Class</em>' container reference.
+	 * @return the value of the '<em>Owning Class</em>' reference.
 	 * @see pamtram.metamodel.MetamodelPackage#getSourceSectionAttribute_OwningClass()
-	 * @see pamtram.metamodel.SourceSectionClass#getAttributes
-	 * @model opposite="attributes" required="true" transient="false" changeable="false"
+	 * @model required="true" changeable="false"
 	 * @generated
 	 */
 	SourceSectionClass getOwningClass();

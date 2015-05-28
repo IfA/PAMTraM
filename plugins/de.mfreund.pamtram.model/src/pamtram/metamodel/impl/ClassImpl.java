@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import pamtram.metamodel.Attribute;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.MetamodelPackage;
@@ -30,12 +31,13 @@ import pamtram.metamodel.Reference;
  *   <li>{@link pamtram.metamodel.impl.ClassImpl#getCardinality <em>Cardinality</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.ClassImpl#getReferences <em>References</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.ClassImpl#getContainer <em>Container</em>}</li>
+ *   <li>{@link pamtram.metamodel.impl.ClassImpl#getAttributes <em>Attributes</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R>, R extends Reference<C>> extends MetaModelElementImpl<C> implements pamtram.metamodel.Class<C, R> {
+public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C>, A extends Attribute<C>> extends MetaModelElementImpl<C> implements pamtram.metamodel.Class<C, R, A> {
 	/**
 	 * The cached value of the '{@link #getEClass() <em>EClass</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -85,6 +87,16 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R>, R exten
 	 * @ordered
 	 */
 	protected C container;
+
+	/**
+	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAttributes()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<A> attributes;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -235,6 +247,18 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R>, R exten
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<A> getAttributes() {
+		if (attributes == null) {
+			attributes = new EObjectContainmentEList<A>(Attribute.class, this, MetamodelPackage.CLASS__ATTRIBUTES);
+		}
+		return attributes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public boolean isContainerForGeneric(final C containedClass) {
 		C container = containedClass.getContainer();
@@ -294,6 +318,8 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R>, R exten
 		switch (featureID) {
 			case MetamodelPackage.CLASS__REFERENCES:
 				return ((InternalEList<?>)getReferences()).basicRemove(otherEnd, msgs);
+			case MetamodelPackage.CLASS__ATTRIBUTES:
+				return ((InternalEList<?>)getAttributes()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -316,6 +342,8 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R>, R exten
 			case MetamodelPackage.CLASS__CONTAINER:
 				if (resolve) return getContainer();
 				return basicGetContainer();
+			case MetamodelPackage.CLASS__ATTRIBUTES:
+				return getAttributes();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -342,6 +370,10 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R>, R exten
 			case MetamodelPackage.CLASS__CONTAINER:
 				setContainer((C)newValue);
 				return;
+			case MetamodelPackage.CLASS__ATTRIBUTES:
+				getAttributes().clear();
+				getAttributes().addAll((Collection<? extends A>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -366,6 +398,9 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R>, R exten
 			case MetamodelPackage.CLASS__CONTAINER:
 				setContainer((C)null);
 				return;
+			case MetamodelPackage.CLASS__ATTRIBUTES:
+				getAttributes().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -386,6 +421,8 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R>, R exten
 				return references != null && !references.isEmpty();
 			case MetamodelPackage.CLASS__CONTAINER:
 				return container != null;
+			case MetamodelPackage.CLASS__ATTRIBUTES:
+				return attributes != null && !attributes.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

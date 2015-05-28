@@ -102,7 +102,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case MetamodelPackage.CLASS: {
-				pamtram.metamodel.Class<?, ?> class_ = (pamtram.metamodel.Class<?, ?>)theEObject;
+				pamtram.metamodel.Class<?, ?, ?> class_ = (pamtram.metamodel.Class<?, ?, ?>)theEObject;
 				T result = caseClass(class_);
 				if (result == null) result = caseMetaModelElement(class_);
 				if (result == null) result = caseNamedElement(class_);
@@ -371,7 +371,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C extends pamtram.metamodel.Class<?, ?>> T caseMetaModelElement(MetaModelElement<C> object) {
+	public <C extends pamtram.metamodel.Class<?, ?, ?>> T caseMetaModelElement(MetaModelElement<C> object) {
 		return null;
 	}
 
@@ -386,7 +386,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C extends pamtram.metamodel.Class<C, R>, R extends Reference<C>> T caseClass(pamtram.metamodel.Class<C, R> object) {
+	public <C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C>, A extends Attribute<C>> T caseClass(pamtram.metamodel.Class<C, R, A> object) {
 		return null;
 	}
 
@@ -506,7 +506,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <V extends pamtram.metamodel.Class<?, ?>> T caseReference(Reference<V> object) {
+	public <V extends pamtram.metamodel.Class<?, ?, ?>> T caseReference(Reference<V> object) {
 		return null;
 	}
 
@@ -521,7 +521,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <V extends pamtram.metamodel.Class<?, ?>> T caseContainmentReference(ContainmentReference<V> object) {
+	public <V extends pamtram.metamodel.Class<?, ?, ?>> T caseContainmentReference(ContainmentReference<V> object) {
 		return null;
 	}
 
@@ -536,7 +536,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <V extends pamtram.metamodel.Class<?, ?>> T caseNonContainmentReference(NonContainmentReference<V> object) {
+	public <V extends pamtram.metamodel.Class<?, ?, ?>> T caseNonContainmentReference(NonContainmentReference<V> object) {
 		return null;
 	}
 
@@ -641,7 +641,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C extends pamtram.metamodel.Class<?, ?>> T caseAttribute(Attribute<C> object) {
+	public <C extends pamtram.metamodel.Class<?, ?, ?>> T caseAttribute(Attribute<C> object) {
 		return null;
 	}
 

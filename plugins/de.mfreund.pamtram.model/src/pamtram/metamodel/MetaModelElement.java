@@ -15,7 +15,7 @@ import pamtram.SectionModel;
  * @model abstract="true"
  * @generated
  */
-public interface MetaModelElement<C extends pamtram.metamodel.Class<?, ?>> extends NamedElement {
+public interface MetaModelElement<C extends pamtram.metamodel.Class<?, ?, ?>> extends NamedElement {
 
 	/**
 	 * <!-- begin-user-doc -->

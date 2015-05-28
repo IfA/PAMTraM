@@ -36,6 +36,16 @@ import pamtram.metamodel.SourceSectionClass;
  */
 public class SourceSectionAttributeImpl extends AttributeImpl<SourceSectionClass> implements SourceSectionAttribute {
 	/**
+	 * The cached value of the '{@link #getOwningClass() <em>Owning Class</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningClass()
+	 * @generated
+	 * @ordered
+	 */
+	protected SourceSectionClass owningClass;
+
+	/**
 	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -81,8 +91,24 @@ public class SourceSectionAttributeImpl extends AttributeImpl<SourceSectionClass
 	 */
 	@Override
 	public SourceSectionClass getOwningClass() {
-		if (eContainerFeatureID() != MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__OWNING_CLASS) return null;
-		return (SourceSectionClass)eInternalContainer();
+		if (owningClass != null && owningClass.eIsProxy()) {
+			InternalEObject oldOwningClass = (InternalEObject)owningClass;
+			owningClass = (SourceSectionClass)eResolveProxy(oldOwningClass);
+			if (owningClass != oldOwningClass) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__OWNING_CLASS, oldOwningClass, owningClass));
+			}
+		}
+		return owningClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SourceSectionClass basicGetOwningClass() {
+		return owningClass;
 	}
 
 	/**
@@ -152,26 +178,8 @@ public class SourceSectionAttributeImpl extends AttributeImpl<SourceSectionClass
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__OWNING_CLASS:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return eBasicSetContainer(otherEnd, MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__OWNING_CLASS, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__OWNING_CLASS:
-				return eBasicSetContainer(null, MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__OWNING_CLASS, msgs);
 			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
 				return ((InternalEList<?>)getValueConstraint()).basicRemove(otherEnd, msgs);
 		}
@@ -184,24 +192,11 @@ public class SourceSectionAttributeImpl extends AttributeImpl<SourceSectionClass
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__OWNING_CLASS:
-				return eInternalContainer().eInverseRemove(this, MetamodelPackage.SOURCE_SECTION_CLASS__ATTRIBUTES, SourceSectionClass.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__OWNING_CLASS:
-				return getOwningClass();
+				if (resolve) return getOwningClass();
+				return basicGetOwningClass();
 			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE:
 				if (resolve) return getAttribute();
 				return basicGetAttribute();
@@ -258,7 +253,7 @@ public class SourceSectionAttributeImpl extends AttributeImpl<SourceSectionClass
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__OWNING_CLASS:
-				return getOwningClass() != null;
+				return owningClass != null;
 			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE:
 				return attribute != null;
 			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:

@@ -24,7 +24,7 @@ import pamtram.metamodel.Reference;
  *
  * @generated
  */
-public abstract class ReferenceImpl<V extends pamtram.metamodel.Class<?, ?>> extends MetaModelElementImpl<V> implements Reference<V> {
+public abstract class ReferenceImpl<V extends pamtram.metamodel.Class<?, ?, ?>> extends MetaModelElementImpl<V> implements Reference<V> {
 	/**
 	 * The cached value of the '{@link #getEReference() <em>EReference</em>}' reference.
 	 * <!-- begin-user-doc -->

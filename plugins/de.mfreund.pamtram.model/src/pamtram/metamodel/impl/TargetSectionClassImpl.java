@@ -2,14 +2,9 @@
  */
 package pamtram.metamodel.impl;
 
-import java.util.Collection;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
@@ -20,24 +15,11 @@ import pamtram.metamodel.TargetSectionReference;
  * An implementation of the model object '<em><b>Target Section Class</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link pamtram.metamodel.impl.TargetSectionClassImpl#getAttributes <em>Attributes</em>}</li>
- * </ul>
  * </p>
  *
  * @generated
  */
-public class TargetSectionClassImpl extends ClassImpl<TargetSectionClass, TargetSectionReference> implements TargetSectionClass {
-	/**
-	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAttributes()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<TargetSectionAttribute> attributes;
+public class TargetSectionClassImpl extends ClassImpl<TargetSectionClass, TargetSectionReference, TargetSectionAttribute> implements TargetSectionClass {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -85,102 +67,15 @@ public class TargetSectionClassImpl extends ClassImpl<TargetSectionClass, Target
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific element type known in this context.
 	 * @generated
 	 */
+	@Override
 	public EList<TargetSectionAttribute> getAttributes() {
 		if (attributes == null) {
-			attributes = new EObjectContainmentWithInverseEList<TargetSectionAttribute>(TargetSectionAttribute.class, this, MetamodelPackage.TARGET_SECTION_CLASS__ATTRIBUTES, MetamodelPackage.TARGET_SECTION_ATTRIBUTE__OWNING_CLASS);
+			attributes = new EObjectContainmentEList<TargetSectionAttribute>(TargetSectionAttribute.class, this, MetamodelPackage.TARGET_SECTION_CLASS__ATTRIBUTES);
 		}
 		return attributes;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case MetamodelPackage.TARGET_SECTION_CLASS__ATTRIBUTES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAttributes()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case MetamodelPackage.TARGET_SECTION_CLASS__ATTRIBUTES:
-				return ((InternalEList<?>)getAttributes()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case MetamodelPackage.TARGET_SECTION_CLASS__ATTRIBUTES:
-				return getAttributes();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case MetamodelPackage.TARGET_SECTION_CLASS__ATTRIBUTES:
-				getAttributes().clear();
-				getAttributes().addAll((Collection<? extends TargetSectionAttribute>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case MetamodelPackage.TARGET_SECTION_CLASS__ATTRIBUTES:
-				getAttributes().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case MetamodelPackage.TARGET_SECTION_CLASS__ATTRIBUTES:
-				return attributes != null && !attributes.isEmpty();
-		}
-		return super.eIsSet(featureID);
 	}
 
 } //TargetSectionClassImpl

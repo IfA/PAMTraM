@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link pamtram.metamodel.Class#getCardinality <em>Cardinality</em>}</li>
  *   <li>{@link pamtram.metamodel.Class#getReferences <em>References</em>}</li>
  *   <li>{@link pamtram.metamodel.Class#getContainer <em>Container</em>}</li>
+ *   <li>{@link pamtram.metamodel.Class#getAttributes <em>Attributes</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,7 +27,7 @@ import org.eclipse.emf.ecore.EClass;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot eClassMatchesParentEReference='if self<>self.getContainingSection() then self.oclContainer().oclAsType(pamtram::metamodel::Reference).eReference.oclAsType(ecore::EReference).eReferenceType.isSuperTypeOf(self.eClass.oclAsType(ecore::EClass)) else true endif' cardinalityIsValid='if self<>self.getContainingSection() then not ((self.cardinality <> pamtram::metamodel::CardinalityType::ONE) and (self.oclContainer().oclAsType(pamtram::metamodel::Reference).eReference.oclAsType(ecore::EReference).upperBound <= 1)) else true endif'"
  * @generated
  */
-public interface Class<C extends Class<C, R>, R extends Reference<C>> extends MetaModelElement<C> {
+public interface Class<C extends Class<C, R, A>, R extends Reference<C>, A extends Attribute<C>> extends MetaModelElement<C> {
 	/**
 	 * Returns the value of the '<em><b>EClass</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -123,6 +124,21 @@ public interface Class<C extends Class<C, R>, R extends Reference<C>> extends Me
 	 * @generated
 	 */
 	void setContainer(C value);
+
+	/**
+	 * Returns the value of the '<em><b>Attributes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Attributes</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Attributes</em>' containment reference list.
+	 * @see pamtram.metamodel.MetamodelPackage#getClass_Attributes()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<A> getAttributes();
 
 	/**
 	 * <!-- begin-user-doc -->

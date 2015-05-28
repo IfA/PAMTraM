@@ -71,6 +71,7 @@
         <eBounds eClassifier="#//metamodel/Class">
           <eTypeArguments/>
           <eTypeArguments/>
+          <eTypeArguments/>
         </eBounds>
       </eTypeParameters>
       <eOperations name="getContainingSection" lowerBound="1">
@@ -102,10 +103,16 @@
         <eBounds eClassifier="#//metamodel/Class">
           <eTypeArguments eTypeParameter="#//metamodel/Class/C"/>
           <eTypeArguments eTypeParameter="#//metamodel/Class/R"/>
+          <eTypeArguments eTypeParameter="#//metamodel/Class/A"/>
         </eBounds>
       </eTypeParameters>
       <eTypeParameters name="R">
         <eBounds eClassifier="#//metamodel/Reference">
+          <eTypeArguments eTypeParameter="#//metamodel/Class/C"/>
+        </eBounds>
+      </eTypeParameters>
+      <eTypeParameters name="A">
+        <eBounds eClassifier="#//metamodel/Attribute">
           <eTypeArguments eTypeParameter="#//metamodel/Class/C"/>
         </eBounds>
       </eTypeParameters>
@@ -141,26 +148,28 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="container">
         <eGenericType eTypeParameter="#//metamodel/Class/C"/>
       </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
+          containment="true">
+        <eGenericType eTypeParameter="#//metamodel/Class/A"/>
+      </eStructuralFeatures>
       <eGenericSuperTypes eClassifier="#//metamodel/MetaModelElement">
         <eTypeArguments eTypeParameter="#//metamodel/Class/C"/>
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SourceSectionClass">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
-          eType="#//metamodel/SourceSectionAttribute" containment="true" eOpposite="#//metamodel/SourceSectionAttribute/owningClass"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="owningContainmentReference"
           eType="#//metamodel/SourceSectionContainmentReference"/>
       <eGenericSuperTypes eClassifier="#//metamodel/Class">
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TargetSectionClass">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
-          eType="#//metamodel/TargetSectionAttribute" containment="true" eOpposite="#//metamodel/TargetSectionAttribute/owningClass"/>
       <eGenericSuperTypes eClassifier="#//metamodel/Class">
         <eTypeArguments eClassifier="#//metamodel/TargetSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/TargetSectionReference"/>
+        <eTypeArguments eClassifier="#//metamodel/TargetSectionAttribute"/>
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="LibraryParameter" abstract="true"
@@ -226,6 +235,7 @@
         <eBounds eClassifier="#//metamodel/Class">
           <eTypeArguments/>
           <eTypeArguments/>
+          <eTypeArguments/>
         </eBounds>
       </eTypeParameters>
       <eStructuralFeatures xsi:type="ecore:EReference" name="eReference" lowerBound="1"
@@ -243,6 +253,7 @@
       </eAnnotations>
       <eTypeParameters name="V">
         <eBounds eClassifier="#//metamodel/Class">
+          <eTypeArguments/>
           <eTypeArguments/>
           <eTypeArguments/>
         </eBounds>
@@ -264,6 +275,7 @@
       </eAnnotations>
       <eTypeParameters name="V">
         <eBounds eClassifier="#//metamodel/Class">
+          <eTypeArguments/>
           <eTypeArguments/>
           <eTypeArguments/>
         </eBounds>
@@ -332,6 +344,7 @@
         <eBounds eClassifier="#//metamodel/Class">
           <eTypeArguments/>
           <eTypeArguments/>
+          <eTypeArguments/>
         </eBounds>
       </eTypeParameters>
       <eGenericSuperTypes eClassifier="#//metamodel/MetaModelElement">
@@ -346,7 +359,7 @@
         <details key="attributeMatchesParentEClass" value="self.oclContainer().oclAsType(pamtram::metamodel::Class).eClass.eAllAttributes->includes(self.attribute)"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="owningClass" lowerBound="1"
-          eType="#//metamodel/SourceSectionClass" changeable="false" eOpposite="#//metamodel/SourceSectionClass/attributes"/>
+          eType="#//metamodel/SourceSectionClass" changeable="false"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
           eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="valueConstraint" upperBound="-1"
@@ -357,7 +370,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TargetSectionAttribute" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EReference" name="owningClass" eType="#//metamodel/TargetSectionClass"
-          changeable="false" eOpposite="#//metamodel/TargetSectionClass/attributes"/>
+          changeable="false"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="unique" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           defaultValueLiteral="false"/>

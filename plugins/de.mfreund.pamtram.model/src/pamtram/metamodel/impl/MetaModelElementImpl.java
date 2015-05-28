@@ -30,7 +30,7 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
  *
  * @generated
  */
-public abstract class MetaModelElementImpl<C extends pamtram.metamodel.Class<?, ?>> extends NamedElementImpl implements MetaModelElement<C> {
+public abstract class MetaModelElementImpl<C extends pamtram.metamodel.Class<?, ?, ?>> extends NamedElementImpl implements MetaModelElement<C> {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

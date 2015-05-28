@@ -23,7 +23,7 @@ import pamtram.metamodel.NonContainmentReference;
  *
  * @generated
  */
-public abstract class NonContainmentReferenceImpl<V extends pamtram.metamodel.Class<?, ?>> extends ReferenceImpl<V> implements NonContainmentReference<V> {
+public abstract class NonContainmentReferenceImpl<V extends pamtram.metamodel.Class<?, ?, ?>> extends ReferenceImpl<V> implements NonContainmentReference<V> {
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' reference list.
 	 * <!-- begin-user-doc -->

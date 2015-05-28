@@ -67,9 +67,9 @@ public class ClassTreeItem {
 		this.referenceObject = referenceObject;
 	}
 	public EList<Reference> getReferences() {
-		return classObject.getReferencesGeneric();
+		return classObject.getReferences();
 	}
 	public EList<Attribute> getAttributes() {
-		return classObject.getAttributesGeneric();
+		return classObject.getAttributes();
 	}
 }

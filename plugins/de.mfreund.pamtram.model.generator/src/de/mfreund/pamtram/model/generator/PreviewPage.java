@@ -5,13 +5,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
-import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.epsilon.eol.types.EolOrderedSet;
@@ -22,7 +20,6 @@ import org.eclipse.jface.viewers.ICheckStateListener;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.TreePath;
-import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -36,21 +33,11 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.dialogs.ContainerCheckedTreeViewer;
 
-import pamtram.MappingModel;
-import pamtram.condition.provider.ConditionItemProviderAdapterFactory;
-import pamtram.mapping.provider.MappingItemProviderAdapterFactory;
 import pamtram.metamodel.Attribute;
-import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.MetaModelElement;
-import pamtram.metamodel.NonContainmentReference;
-import pamtram.metamodel.Reference;
 import pamtram.metamodel.provider.MetamodelItemProviderAdapterFactory;
-import pamtram.provider.PamtramItemProviderAdapterFactory;
-import pamtram.transformation.provider.TransformationItemProviderAdapterFactory;
 import de.mfreund.pamtram.model.generator.provider.ResultPageTableViewerContentProvider;
 import de.mfreund.pamtram.model.generator.provider.ResultPageTableViewerLabelProvider;
-import de.mfreund.pamtram.model.generator.provider.ResultPageTreeViewerContentProvider;
-import de.mfreund.pamtram.model.generator.provider.ResultPageTreeViewerLabelProvider;
 
 public class PreviewPage extends WizardPage {
 	
@@ -71,7 +58,7 @@ public class PreviewPage extends WizardPage {
 			if(item.getData() instanceof pamtram.metamodel.Class) {
 				// populate the attribute view
 				lines.addAll(
-						((pamtram.metamodel.Class)item.getData()).getAttributesGeneric());
+						((pamtram.metamodel.Class)item.getData()).getAttributes());
 			}
 			
 			propertiesViewer.setInput(lines);
@@ -273,7 +260,7 @@ public class PreviewPage extends WizardPage {
 			@Override
 			public Object[] getChildren(Object object) {
 				if(object instanceof pamtram.metamodel.Class) {
-					return ((pamtram.metamodel.Class) object).getReferencesGeneric().toArray();
+					return ((pamtram.metamodel.Class) object).getReferences().toArray();
 				} else {
 					return super.getChildren(object);
 				}
@@ -281,7 +268,7 @@ public class PreviewPage extends WizardPage {
 			@Override
 			public boolean hasChildren(Object object) {
 				if(object instanceof pamtram.metamodel.Class) {
-					return !((pamtram.metamodel.Class) object).getReferencesGeneric().isEmpty();
+					return !((pamtram.metamodel.Class) object).getReferences().isEmpty();
 				} else {
 					return super.hasChildren(object);
 				}

@@ -43,6 +43,12 @@ public class MainPreferencePage extends FieldEditorPreferencePage implements
 		addField(new BooleanFieldEditor(PreferenceSupplier.PREF_AUTO_SET_NAMES,
 		        "Automatically set/update element names", getFieldEditorParent()));
 
+		/*
+		 * a field to control the persisting of type information for references
+		 */
+		addField(new BooleanFieldEditor(PreferenceSupplier.PREF_SERIALIZE_ALL_TYPE_INFO,
+		        "Persist type information for every reference type", getFieldEditorParent()));
+
 	}
 
 }

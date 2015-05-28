@@ -7,6 +7,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -16,7 +17,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.CardinalityType;
+import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.LibraryEntry;
+import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.Reference;
 
@@ -247,6 +250,7 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<A> getAttributes() {
 		if (attributes == null) {
 			attributes = new EObjectContainmentEList<A>(Attribute.class, this, MetamodelPackage.CLASS__ATTRIBUTES);
@@ -294,18 +298,29 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 	 */
 	@Override
 	public boolean isContainedInGeneric(final C containerClass) {
-		C container = containerClass.getContainer();
-				
-		// this means that we have reached the top level container for the 'containedClass'
-		if(container == null) {
-			return false;
-		// this is the container
-		} else if(this.equals(container)) {
-			return true;
-		// this was not the container, so iterate up in the containment hierarchy
-		} else {
-			return isContainerForGeneric(container);
+		EList<C> containedClasses = new BasicEList<>();
+		
+		// collect all classes that are referenced by containment references
+		for (R ref : containerClass.getReferences()) {
+			if(!(ref.getEReference().isContainment())) {
+				continue;
+			}
+			if(ref instanceof ContainmentReference<?>){
+				containedClasses.addAll(((ContainmentReference<C>) ref).getValue());
+			} else if(ref instanceof MetaModelSectionReference) {
+				containedClasses.addAll((Collection<? extends C>) ((MetaModelSectionReference) ref).getValue());
+			}
 		}
+			
+				// recursively iterate over all contained classes
+				boolean found = false;
+				for (C containedClass : containedClasses) {
+					if(containedClass.equals(this) || isContainedInGeneric(containedClass)) {
+						found = true;
+						break;
+					}
+				}
+				return found;
 	}
 
 	/**

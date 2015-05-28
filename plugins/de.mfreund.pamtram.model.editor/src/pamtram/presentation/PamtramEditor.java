@@ -35,22 +35,26 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipse.emf.common.ui.viewer.ColumnViewerInformationControlToolTipSupport;
 import org.eclipse.emf.common.ui.MarkerHelper;
 import org.eclipse.emf.common.ui.ViewerPane;
 import org.eclipse.emf.common.ui.editor.ProblemEditorPart;
+import org.eclipse.emf.common.ui.viewer.ColumnViewerInformationControlToolTipSupport;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.edit.ui.provider.DecoratingColumLabelProvider;
-import org.eclipse.emf.edit.ui.provider.DiagnosticDecorator;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.ecore.xmi.XMLSave;
+import org.eclipse.emf.ecore.xmi.XMLSave.XMLTypeInfo;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
@@ -65,6 +69,8 @@ import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.edit.ui.provider.DecoratingColumLabelProvider;
+import org.eclipse.emf.edit.ui.provider.DiagnosticDecorator;
 import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
 import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
 import org.eclipse.emf.edit.ui.util.EditUIUtil;
@@ -136,6 +142,7 @@ import pamtram.provider.PamtramItemProviderAdapterFactory;
 import pamtram.transformation.provider.TransformationItemProviderAdapterFactory;
 import pamtram.util.EPackageHelper;
 import pamtram.util.EPackageHelper.EPackageCheck;
+import de.mfreund.pamtram.preferences.PreferenceSupplier;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.GenLibraryItemProviderAdapterFactory;
 
@@ -1737,7 +1744,7 @@ public class PamtramEditor
 	 * This is for implementing {@link IEditorPart} and simply saves the model file.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void doSave(IProgressMonitor progressMonitor) {
@@ -1746,6 +1753,25 @@ public class PamtramEditor
 		final Map<Object, Object> saveOptions = new HashMap<Object, Object>();
 		saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
 		saveOptions.put(Resource.OPTION_LINE_DELIMITER, Resource.OPTION_LINE_DELIMITER_UNSPECIFIED);
+		
+		// Persist type information for every reference type if specified by the corresponding preference
+		//
+		if(PreferenceSupplier.isSerializeAllTypeInfo()) {
+			XMLTypeInfo typeInfo = new XMLSave.XMLTypeInfo() {
+
+				@Override
+				public boolean shouldSaveType(EClass arg0, EClassifier arg1, EStructuralFeature arg2) {
+					return true;
+				}
+
+				@Override
+				public boolean shouldSaveType(EClass arg0, EClass arg1, EStructuralFeature arg2) {
+					return true;
+				}
+			};
+			saveOptions.put(XMLResource.OPTION_SAVE_TYPE_INFORMATION, typeInfo);
+			
+		}
 
 		// Do the work within an operation because this is a long running activity that modifies the workbench.
 		//

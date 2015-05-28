@@ -14,7 +14,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link pamtram.metamodel.TargetSectionClass#getAttributes <em>Attributes</em>}</li>
- *   <li>{@link pamtram.metamodel.TargetSectionClass#getContainer <em>Container</em>}</li>
  * </ul>
  * </p>
  *
@@ -22,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface TargetSectionClass extends pamtram.metamodel.Class<TargetSectionReference> {
+public interface TargetSectionClass extends pamtram.metamodel.Class<TargetSectionClass, TargetSectionReference> {
 
 	/**
 	 * Returns the value of the '<em><b>Attributes</b></em>' containment reference list.
@@ -41,30 +40,4 @@ public interface TargetSectionClass extends pamtram.metamodel.Class<TargetSectio
 	 * @generated
 	 */
 	EList<TargetSectionAttribute> getAttributes();
-
-	/**
-	 * Returns the value of the '<em><b>Container</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Container</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Container</em>' reference.
-	 * @see #setContainer(TargetSectionClass)
-	 * @see pamtram.metamodel.MetamodelPackage#getTargetSectionClass_Container()
-	 * @model
-	 * @generated
-	 */
-	TargetSectionClass getContainer();
-
-	/**
-	 * Sets the value of the '{@link pamtram.metamodel.TargetSectionClass#getContainer <em>Container</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Container</em>' reference.
-	 * @see #getContainer()
-	 * @generated
-	 */
-	void setContainer(TargetSectionClass value);
 } // TargetSectionClass

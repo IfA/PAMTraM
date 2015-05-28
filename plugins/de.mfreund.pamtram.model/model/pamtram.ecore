@@ -67,10 +67,17 @@
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="MetaModelElement" abstract="true"
         eSuperTypes="#//NamedElement">
-      <eOperations name="getContainingSection" lowerBound="1" eType="#//metamodel/Class">
+      <eTypeParameters name="C">
+        <eBounds eClassifier="#//metamodel/Class">
+          <eTypeArguments/>
+          <eTypeArguments/>
+        </eBounds>
+      </eTypeParameters>
+      <eOperations name="getContainingSection" lowerBound="1">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="MetaModelElement element = this;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;// move upwards in the hierarchy&#xD;&#xA;while(element.eContainer() instanceof MetaModelElement) {&#xD;&#xA;&#x9;element = (MetaModelElement) element.eContainer();&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;if(element instanceof pamtram.metamodel.Class &amp;&amp;&#xD;&#xA;&#x9;&#x9;(element.eContainer() instanceof SectionModel || element.eContainer() instanceof ContainerParameter)) {&#xD;&#xA;&#x9;// we have found the section&#xD;&#xA;&#x9;return (pamtram.metamodel.Class) element;&#xD;&#xA;} else if((element instanceof TargetSectionAttribute &amp;&amp; element.eContainer() instanceof AttributeParameter) || &#xD;&#xA;&#x9;&#x9;(element instanceof TargetSectionNonContainmentReference) &amp;&amp; element.eContainer() instanceof ExternalReferenceParameter) {&#xD;&#xA;&#x9;LibraryEntry libEntry = (LibraryEntry) element.eContainer().eContainer();&#xD;&#xA;&#x9;for (LibraryParameter param : libEntry.getParameters()) {&#xD;&#xA;&#x9;&#x9;//TODO if multiple container parameters exist, there might need to be additional logic&#xD;&#xA;&#x9;&#x9;if(param instanceof ContainerParameter) {&#xD;&#xA;&#x9;&#x9;&#x9;return ((ContainerParameter) param).getClass_();&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return null;&#xD;&#xA;} else {&#xD;&#xA;&#x9;// something went wrong&#xD;&#xA;&#x9;return null;&#xD;&#xA;}"/>
+          <details key="body" value="MetaModelElement&lt;C> element = this;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;// move upwards in the hierarchy&#xD;&#xA;while(element.eContainer() instanceof MetaModelElement) {&#xD;&#xA;&#x9;element = (MetaModelElement&lt;C>) element.eContainer();&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;if(element instanceof pamtram.metamodel.Class &amp;&amp;&#xD;&#xA;&#x9;&#x9;(element.eContainer() instanceof SectionModel || element.eContainer() instanceof ContainerParameter)) {&#xD;&#xA;&#x9;// we have found the section&#xD;&#xA;&#x9;return (C) element;&#xD;&#xA;} else if((element instanceof TargetSectionAttribute &amp;&amp; element.eContainer() instanceof AttributeParameter) || &#xD;&#xA;&#x9;&#x9;(element instanceof TargetSectionNonContainmentReference) &amp;&amp; element.eContainer() instanceof ExternalReferenceParameter) {&#xD;&#xA;&#x9;LibraryEntry libEntry = (LibraryEntry) element.eContainer().eContainer();&#xD;&#xA;&#x9;for (LibraryParameter param : libEntry.getParameters()) {&#xD;&#xA;&#x9;&#x9;//TODO if multiple container parameters exist, there might need to be additional logic&#xD;&#xA;&#x9;&#x9;if(param instanceof ContainerParameter) {&#xD;&#xA;&#x9;&#x9;&#x9;return (C) ((ContainerParameter) param).getClass_();&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return null;&#xD;&#xA;} else {&#xD;&#xA;&#x9;// something went wrong&#xD;&#xA;&#x9;return null;&#xD;&#xA;}"/>
         </eAnnotations>
+        <eGenericType eTypeParameter="#//metamodel/MetaModelElement/C"/>
       </eOperations>
       <eOperations name="getContainingSectionModel" lowerBound="1" eType="#//SectionModel">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -83,7 +90,7 @@
         </eAnnotations>
       </eOperations>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Class" abstract="true" eSuperTypes="#//metamodel/MetaModelElement">
+    <eClassifiers xsi:type="ecore:EClass" name="Class" abstract="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="eClassMatchesParentEReference variableCardinalityIsValid"/>
       </eAnnotations>
@@ -91,6 +98,12 @@
         <details key="eClassMatchesParentEReference" value="if self&lt;>self.getContainingSection() then self.oclContainer().oclAsType(pamtram::metamodel::Reference).eReference.oclAsType(ecore::EReference).eReferenceType.isSuperTypeOf(self.eClass.oclAsType(ecore::EClass)) else true endif"/>
         <details key="cardinalityIsValid" value="if self&lt;>self.getContainingSection() then not ((self.cardinality &lt;> pamtram::metamodel::CardinalityType::ONE) and (self.oclContainer().oclAsType(pamtram::metamodel::Reference).eReference.oclAsType(ecore::EReference).upperBound &lt;= 1)) else true endif"/>
       </eAnnotations>
+      <eTypeParameters name="C">
+        <eBounds eClassifier="#//metamodel/Class">
+          <eTypeArguments eTypeParameter="#//metamodel/Class/C"/>
+          <eTypeArguments eTypeParameter="#//metamodel/Class/R"/>
+        </eBounds>
+      </eTypeParameters>
       <eTypeParameters name="R">
         <eBounds eClassifier="#//metamodel/Reference"/>
       </eTypeParameters>
@@ -107,20 +120,16 @@
       </eOperations>
       <eOperations name="getContainerGeneric">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="pamtram.metamodel.Class ret;&#xD;&#xA;if(this instanceof SourceSectionClass){&#xD;&#xA;&#x9;ret = ((SourceSectionClass)this).getContainer();&#xD;&#xA;} else if(this instanceof TargetSectionClass){&#xD;&#xA;&#x9;ret = ((TargetSectionClass)this).getContainer();&#xD;&#xA;} else {&#xD;&#xA;&#x9;return null;&#xD;&#xA;}&#xD;&#xA;if(ret == null &amp;&amp; this.eContainer() instanceof Reference &amp;&amp;&#xD;&#xA;&#x9;&#x9;!(this.eContainer() instanceof SectionModel)) {&#xD;&#xA;&#x9;ret = (pamtram.metamodel.Class) this.eContainer().eContainer();&#xD;&#xA;}&#xD;&#xA;return ret;"/>
+          <details key="body" value="return getContainer(); //TODO delete this"/>
         </eAnnotations>
-        <eGenericType eClassifier="#//metamodel/Class">
-          <eTypeArguments eClassifier="#//metamodel/Reference"/>
-        </eGenericType>
+        <eGenericType eTypeParameter="#//metamodel/Class/C"/>
       </eOperations>
       <eOperations name="isContainerForGeneric" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="body" value="pamtram.metamodel.Class container = containedClass.getContainerGeneric();&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;// this means that we have reached the top level container for the 'containedClass'&#xD;&#xA;if(container == null) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;// this is the container&#xD;&#xA;} else if(this.equals(container)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;// this was not the container, so iterate up in the containment hierarchy&#xD;&#xA;} else {&#xD;&#xA;&#x9;return isContainerForGeneric(containedClass.getContainerGeneric());&#xD;&#xA;}"/>
         </eAnnotations>
         <eParameters name="containedClass" lowerBound="1">
-          <eGenericType eClassifier="#//metamodel/Class">
-            <eTypeArguments eClassifier="#//metamodel/Reference"/>
-          </eGenericType>
+          <eGenericType eTypeParameter="#//metamodel/Class/C"/>
         </eParameters>
       </eOperations>
       <eOperations name="isSection" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -130,12 +139,10 @@
       </eOperations>
       <eOperations name="isContainedInGeneric" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="EList&lt;pamtram.metamodel.Class> containedClasses = new BasicEList&lt;>();&#xD;&#xA;&#xD;&#xA;// collect all classes that are referenced by containment references&#xD;&#xA;for (Reference ref : containerClass.getReferencesGeneric()) {&#xD;&#xA;&#x9;if(!(ref.getEReference().isContainment())) {&#xD;&#xA;&#x9;&#x9;continue;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;if(ref instanceof SourceSectionReference) {&#xD;&#xA;&#x9;&#x9;containedClasses.addAll(((SourceSectionReference) ref).getValuesGeneric());&#xD;&#xA;&#x9;} else if(ref instanceof TargetSectionReference) {&#xD;&#xA;&#x9;&#x9;containedClasses.addAll(((TargetSectionReference) ref).getValuesGeneric());&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;// recursively iterate over all contained classes&#xD;&#xA;boolean found = false;&#xD;&#xA;for (pamtram.metamodel.Class containedClass : containedClasses) {&#xD;&#xA;&#x9;if(containedClass.equals(this) || isContainedInGeneric(containedClass)) {&#xD;&#xA;&#x9;&#x9;found = true;&#xD;&#xA;&#x9;&#x9;break;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;return found;"/>
+          <details key="body" value="EList&lt;C> containedClasses = new BasicEList&lt;>();&#xD;&#xA;&#xD;&#xA;// collect all classes that are referenced by containment references&#xD;&#xA;for (Reference ref : containerClass.getReferencesGeneric()) {&#xD;&#xA;&#x9;if(!(ref.getEReference().isContainment())) {&#xD;&#xA;&#x9;&#x9;continue;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;if(ref instanceof SourceSectionReference) {&#xD;&#xA;&#x9;&#x9;containedClasses.addAll((Collection&lt;? extends C>) ((SourceSectionReference) ref).getValuesGeneric());&#xD;&#xA;&#x9;} else if(ref instanceof TargetSectionReference) {&#xD;&#xA;&#x9;&#x9;containedClasses.addAll((Collection&lt;? extends C>) ((TargetSectionReference) ref).getValuesGeneric());&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;// recursively iterate over all contained classes&#xD;&#xA;boolean found = false;&#xD;&#xA;for (C containedClass : containedClasses) {&#xD;&#xA;&#x9;if(containedClass.equals(this) || isContainedInGeneric(containedClass)) {&#xD;&#xA;&#x9;&#x9;found = true;&#xD;&#xA;&#x9;&#x9;break;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;return found;"/>
         </eAnnotations>
         <eParameters name="containerClass" lowerBound="1">
-          <eGenericType eClassifier="#//metamodel/Class">
-            <eTypeArguments eClassifier="#//metamodel/Reference"/>
-          </eGenericType>
+          <eGenericType eTypeParameter="#//metamodel/Class/C"/>
         </eParameters>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="eClass" lowerBound="1"
@@ -146,22 +153,28 @@
           containment="true">
         <eGenericType eTypeParameter="#//metamodel/Class/R"/>
       </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="container">
+        <eGenericType eTypeParameter="#//metamodel/Class/C"/>
+      </eStructuralFeatures>
+      <eGenericSuperTypes eClassifier="#//metamodel/MetaModelElement">
+        <eTypeArguments eTypeParameter="#//metamodel/Class/C"/>
+      </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SourceSectionClass">
       <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
           eType="#//metamodel/SourceSectionAttribute" containment="true" eOpposite="#//metamodel/SourceSectionAttribute/owningClass"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//metamodel/SourceSectionClass"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="owningContainmentReference"
           eType="#//metamodel/SourceSectionContainmentReference" eOpposite="#//metamodel/SourceSectionContainmentReference/value"/>
       <eGenericSuperTypes eClassifier="#//metamodel/Class">
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TargetSectionClass">
       <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
           eType="#//metamodel/TargetSectionAttribute" containment="true" eOpposite="#//metamodel/TargetSectionAttribute/owningClass"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//metamodel/TargetSectionClass"/>
       <eGenericSuperTypes eClassifier="#//metamodel/Class">
+        <eTypeArguments eClassifier="#//metamodel/TargetSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/TargetSectionReference"/>
       </eGenericSuperTypes>
     </eClassifiers>

@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link pamtram.metamodel.Class#getEClass <em>EClass</em>}</li>
  *   <li>{@link pamtram.metamodel.Class#getCardinality <em>Cardinality</em>}</li>
  *   <li>{@link pamtram.metamodel.Class#getReferences <em>References</em>}</li>
+ *   <li>{@link pamtram.metamodel.Class#getContainer <em>Container</em>}</li>
  * </ul>
  * </p>
  *
@@ -25,7 +26,7 @@ import org.eclipse.emf.ecore.EClass;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot eClassMatchesParentEReference='if self<>self.getContainingSection() then self.oclContainer().oclAsType(pamtram::metamodel::Reference).eReference.oclAsType(ecore::EReference).eReferenceType.isSuperTypeOf(self.eClass.oclAsType(ecore::EClass)) else true endif' cardinalityIsValid='if self<>self.getContainingSection() then not ((self.cardinality <> pamtram::metamodel::CardinalityType::ONE) and (self.oclContainer().oclAsType(pamtram::metamodel::Reference).eReference.oclAsType(ecore::EReference).upperBound <= 1)) else true endif'"
  * @generated
  */
-public interface Class<R extends Reference> extends MetaModelElement {
+public interface Class<C extends Class<C, R>, R extends Reference> extends MetaModelElement<C> {
 	/**
 	 * Returns the value of the '<em><b>EClass</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -98,6 +99,32 @@ public interface Class<R extends Reference> extends MetaModelElement {
 	EList<R> getReferences();
 
 	/**
+	 * Returns the value of the '<em><b>Container</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Container</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Container</em>' reference.
+	 * @see #setContainer(Class)
+	 * @see pamtram.metamodel.MetamodelPackage#getClass_Container()
+	 * @model
+	 * @generated
+	 */
+	C getContainer();
+
+	/**
+	 * Sets the value of the '{@link pamtram.metamodel.Class#getContainer <em>Container</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Container</em>' reference.
+	 * @see #getContainer()
+	 * @generated
+	 */
+	void setContainer(C value);
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation"
@@ -119,10 +146,10 @@ public interface Class<R extends Reference> extends MetaModelElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='pamtram.metamodel.Class ret;\r\nif(this instanceof SourceSectionClass){\r\n\tret = ((SourceSectionClass)this).getContainer();\r\n} else if(this instanceof TargetSectionClass){\r\n\tret = ((TargetSectionClass)this).getContainer();\r\n} else {\r\n\treturn null;\r\n}\r\nif(ret == null && this.eContainer() instanceof Reference &&\r\n\t\t!(this.eContainer() instanceof SectionModel)) {\r\n\tret = (pamtram.metamodel.Class) this.eContainer().eContainer();\r\n}\r\nreturn ret;'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return getContainer(); //TODO delete this'"
 	 * @generated
 	 */
-	Class<Reference> getContainerGeneric();
+	C getContainerGeneric();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -131,7 +158,7 @@ public interface Class<R extends Reference> extends MetaModelElement {
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='pamtram.metamodel.Class container = containedClass.getContainerGeneric();\r\n\t\t\r\n// this means that we have reached the top level container for the \'containedClass\'\r\nif(container == null) {\r\n\treturn false;\r\n// this is the container\r\n} else if(this.equals(container)) {\r\n\treturn true;\r\n// this was not the container, so iterate up in the containment hierarchy\r\n} else {\r\n\treturn isContainerForGeneric(containedClass.getContainerGeneric());\r\n}'"
 	 * @generated
 	 */
-	boolean isContainerForGeneric(Class<Reference> containedClass);
+	boolean isContainerForGeneric(C containedClass);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -146,9 +173,9 @@ public interface Class<R extends Reference> extends MetaModelElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model required="true" containerClassRequired="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<pamtram.metamodel.Class> containedClasses = new BasicEList<>();\r\n\r\n// collect all classes that are referenced by containment references\r\nfor (Reference ref : containerClass.getReferencesGeneric()) {\r\n\tif(!(ref.getEReference().isContainment())) {\r\n\t\tcontinue;\r\n\t}\r\n\tif(ref instanceof SourceSectionReference) {\r\n\t\tcontainedClasses.addAll(((SourceSectionReference) ref).getValuesGeneric());\r\n\t} else if(ref instanceof TargetSectionReference) {\r\n\t\tcontainedClasses.addAll(((TargetSectionReference) ref).getValuesGeneric());\r\n\t}\r\n}\r\n\r\n// recursively iterate over all contained classes\r\nboolean found = false;\r\nfor (pamtram.metamodel.Class containedClass : containedClasses) {\r\n\tif(containedClass.equals(this) || isContainedInGeneric(containedClass)) {\r\n\t\tfound = true;\r\n\t\tbreak;\r\n\t}\r\n}\r\nreturn found;'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<C> containedClasses = new BasicEList<>();\r\n\r\n// collect all classes that are referenced by containment references\r\nfor (Reference ref : containerClass.getReferencesGeneric()) {\r\n\tif(!(ref.getEReference().isContainment())) {\r\n\t\tcontinue;\r\n\t}\r\n\tif(ref instanceof SourceSectionReference) {\r\n\t\tcontainedClasses.addAll((Collection<? extends C>) ((SourceSectionReference) ref).getValuesGeneric());\r\n\t} else if(ref instanceof TargetSectionReference) {\r\n\t\tcontainedClasses.addAll((Collection<? extends C>) ((TargetSectionReference) ref).getValuesGeneric());\r\n\t}\r\n}\r\n\r\n// recursively iterate over all contained classes\r\nboolean found = false;\r\nfor (C containedClass : containedClasses) {\r\n\tif(containedClass.equals(this) || isContainedInGeneric(containedClass)) {\r\n\t\tfound = true;\r\n\t\tbreak;\r\n\t}\r\n}\r\nreturn found;'"
 	 * @generated
 	 */
-	boolean isContainedInGeneric(Class<Reference> containerClass);
+	boolean isContainedInGeneric(C containerClass);
 
 } // Class

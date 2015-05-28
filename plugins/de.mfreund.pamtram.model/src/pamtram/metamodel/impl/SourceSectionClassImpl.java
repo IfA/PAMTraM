@@ -29,14 +29,13 @@ import pamtram.metamodel.SourceSectionReference;
  * The following features are implemented:
  * <ul>
  *   <li>{@link pamtram.metamodel.impl.SourceSectionClassImpl#getAttributes <em>Attributes</em>}</li>
- *   <li>{@link pamtram.metamodel.impl.SourceSectionClassImpl#getContainer <em>Container</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.SourceSectionClassImpl#getOwningContainmentReference <em>Owning Containment Reference</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class SourceSectionClassImpl extends ClassImpl<SourceSectionReference> implements SourceSectionClass {
+public class SourceSectionClassImpl extends ClassImpl<SourceSectionClass, SourceSectionReference> implements SourceSectionClass {
 	/**
 	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -46,16 +45,6 @@ public class SourceSectionClassImpl extends ClassImpl<SourceSectionReference> im
 	 * @ordered
 	 */
 	protected EList<SourceSectionAttribute> attributes;
-	/**
-	 * The cached value of the '{@link #getContainer() <em>Container</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getContainer()
-	 * @generated
-	 * @ordered
-	 */
-	protected SourceSectionClass container;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -92,6 +81,17 @@ public class SourceSectionClassImpl extends ClassImpl<SourceSectionReference> im
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific type known in this context.
+	 * @generated
+	 */
+	@Override
+	public void setContainer(SourceSectionClass newContainer) {
+		super.setContainer(newContainer);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EList<SourceSectionAttribute> getAttributes() {
@@ -99,44 +99,6 @@ public class SourceSectionClassImpl extends ClassImpl<SourceSectionReference> im
 			attributes = new EObjectContainmentWithInverseEList<SourceSectionAttribute>(SourceSectionAttribute.class, this, MetamodelPackage.SOURCE_SECTION_CLASS__ATTRIBUTES, MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__OWNING_CLASS);
 		}
 		return attributes;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SourceSectionClass getContainer() {
-		if (container != null && container.eIsProxy()) {
-			InternalEObject oldContainer = (InternalEObject)container;
-			container = (SourceSectionClass)eResolveProxy(oldContainer);
-			if (container != oldContainer) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.SOURCE_SECTION_CLASS__CONTAINER, oldContainer, container));
-			}
-		}
-		return container;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SourceSectionClass basicGetContainer() {
-		return container;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setContainer(SourceSectionClass newContainer) {
-		SourceSectionClass oldContainer = container;
-		container = newContainer;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.SOURCE_SECTION_CLASS__CONTAINER, oldContainer, container));
 	}
 
 	/**
@@ -239,9 +201,6 @@ public class SourceSectionClassImpl extends ClassImpl<SourceSectionReference> im
 		switch (featureID) {
 			case MetamodelPackage.SOURCE_SECTION_CLASS__ATTRIBUTES:
 				return getAttributes();
-			case MetamodelPackage.SOURCE_SECTION_CLASS__CONTAINER:
-				if (resolve) return getContainer();
-				return basicGetContainer();
 			case MetamodelPackage.SOURCE_SECTION_CLASS__OWNING_CONTAINMENT_REFERENCE:
 				return getOwningContainmentReference();
 		}
@@ -261,9 +220,6 @@ public class SourceSectionClassImpl extends ClassImpl<SourceSectionReference> im
 				getAttributes().clear();
 				getAttributes().addAll((Collection<? extends SourceSectionAttribute>)newValue);
 				return;
-			case MetamodelPackage.SOURCE_SECTION_CLASS__CONTAINER:
-				setContainer((SourceSectionClass)newValue);
-				return;
 			case MetamodelPackage.SOURCE_SECTION_CLASS__OWNING_CONTAINMENT_REFERENCE:
 				setOwningContainmentReference((SourceSectionContainmentReference)newValue);
 				return;
@@ -282,9 +238,6 @@ public class SourceSectionClassImpl extends ClassImpl<SourceSectionReference> im
 			case MetamodelPackage.SOURCE_SECTION_CLASS__ATTRIBUTES:
 				getAttributes().clear();
 				return;
-			case MetamodelPackage.SOURCE_SECTION_CLASS__CONTAINER:
-				setContainer((SourceSectionClass)null);
-				return;
 			case MetamodelPackage.SOURCE_SECTION_CLASS__OWNING_CONTAINMENT_REFERENCE:
 				setOwningContainmentReference((SourceSectionContainmentReference)null);
 				return;
@@ -302,8 +255,6 @@ public class SourceSectionClassImpl extends ClassImpl<SourceSectionReference> im
 		switch (featureID) {
 			case MetamodelPackage.SOURCE_SECTION_CLASS__ATTRIBUTES:
 				return attributes != null && !attributes.isEmpty();
-			case MetamodelPackage.SOURCE_SECTION_CLASS__CONTAINER:
-				return container != null;
 			case MetamodelPackage.SOURCE_SECTION_CLASS__OWNING_CONTAINMENT_REFERENCE:
 				return getOwningContainmentReference() != null;
 		}

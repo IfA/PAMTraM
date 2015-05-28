@@ -451,6 +451,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getClass_Container() {
+		return (EReference)classEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getClass__GetReferencesGeneric() {
 		return classEClass.getEOperations().get(0);
 	}
@@ -523,17 +532,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSourceSectionClass_Container() {
-		return (EReference)sourceSectionClassEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getSourceSectionClass_OwningContainmentReference() {
-		return (EReference)sourceSectionClassEClass.getEStructuralFeatures().get(2);
+		return (EReference)sourceSectionClassEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -552,15 +552,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 */
 	public EReference getTargetSectionClass_Attributes() {
 		return (EReference)targetSectionClassEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTargetSectionClass_Container() {
-		return (EReference)targetSectionClassEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1113,6 +1104,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEReference(classEClass, CLASS__ECLASS);
 		createEAttribute(classEClass, CLASS__CARDINALITY);
 		createEReference(classEClass, CLASS__REFERENCES);
+		createEReference(classEClass, CLASS__CONTAINER);
 		createEOperation(classEClass, CLASS___GET_REFERENCES_GENERIC);
 		createEOperation(classEClass, CLASS___GET_ATTRIBUTES_GENERIC);
 		createEOperation(classEClass, CLASS___GET_CONTAINER_GENERIC);
@@ -1122,12 +1114,10 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		sourceSectionClassEClass = createEClass(SOURCE_SECTION_CLASS);
 		createEReference(sourceSectionClassEClass, SOURCE_SECTION_CLASS__ATTRIBUTES);
-		createEReference(sourceSectionClassEClass, SOURCE_SECTION_CLASS__CONTAINER);
 		createEReference(sourceSectionClassEClass, SOURCE_SECTION_CLASS__OWNING_CONTAINMENT_REFERENCE);
 
 		targetSectionClassEClass = createEClass(TARGET_SECTION_CLASS);
 		createEReference(targetSectionClassEClass, TARGET_SECTION_CLASS__ATTRIBUTES);
-		createEReference(targetSectionClassEClass, TARGET_SECTION_CLASS__CONTAINER);
 
 		libraryParameterEClass = createEClass(LIBRARY_PARAMETER);
 		createEReference(libraryParameterEClass, LIBRARY_PARAMETER__SOURCE);
@@ -1243,21 +1233,42 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		GenLibraryPackage theGenLibraryPackage = (GenLibraryPackage)EPackage.Registry.INSTANCE.getEPackage(GenLibraryPackage.eNS_URI);
 
 		// Create type parameters
+		ETypeParameter metaModelElementEClass_C = addETypeParameter(metaModelElementEClass, "C");
+		ETypeParameter classEClass_C = addETypeParameter(classEClass, "C");
 		ETypeParameter classEClass_R = addETypeParameter(classEClass, "R");
 		ETypeParameter libraryParameterEClass_ParameterType = addETypeParameter(libraryParameterEClass, "ParameterType");
 
 		// Set bounds for type parameters
-		EGenericType g1 = createEGenericType(this.getReference());
+		EGenericType g1 = createEGenericType(this.getClass_());
+		EGenericType g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		metaModelElementEClass_C.getEBounds().add(g1);
+		g1 = createEGenericType(this.getClass_());
+		g2 = createEGenericType(classEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(classEClass_R);
+		g1.getETypeArguments().add(g2);
+		classEClass_C.getEBounds().add(g1);
+		g1 = createEGenericType(this.getReference());
 		classEClass_R.getEBounds().add(g1);
 
 		// Add supertypes to classes
 		metaModelElementEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
-		classEClass.getESuperTypes().add(this.getMetaModelElement());
+		g1 = createEGenericType(this.getMetaModelElement());
+		g2 = createEGenericType(classEClass_C);
+		g1.getETypeArguments().add(g2);
+		classEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getClass_());
-		EGenericType g2 = createEGenericType(this.getSourceSectionReference());
+		g2 = createEGenericType(this.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getSourceSectionReference());
 		g1.getETypeArguments().add(g2);
 		sourceSectionClassEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getClass_());
+		g2 = createEGenericType(this.getTargetSectionClass());
+		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(this.getTargetSectionReference());
 		g1.getETypeArguments().add(g2);
 		targetSectionClassEClass.getEGenericSuperTypes().add(g1);
@@ -1312,7 +1323,9 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		// Initialize classes, features, and operations; add parameters
 		initEClass(metaModelElementEClass, MetaModelElement.class, "MetaModelElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEOperation(getMetaModelElement__GetContainingSection(), this.getClass_(), "getContainingSection", 1, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = initEOperation(getMetaModelElement__GetContainingSection(), null, "getContainingSection", 1, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(metaModelElementEClass_C);
+		initEOperation(op, g1);
 
 		initEOperation(getMetaModelElement__GetContainingSectionModel(), thePamtramPackage.getSectionModel(), "getContainingSectionModel", 1, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -1323,41 +1336,35 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEAttribute(getClass_Cardinality(), this.getCardinalityType(), "cardinality", "ONE", 1, 1, pamtram.metamodel.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		g1 = createEGenericType(classEClass_R);
 		initEReference(getClass_References(), g1, null, "references", null, 0, -1, pamtram.metamodel.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		g1 = createEGenericType(classEClass_C);
+		initEReference(getClass_Container(), g1, null, "container", null, 0, 1, pamtram.metamodel.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = initEOperation(getClass__GetReferencesGeneric(), null, "getReferencesGeneric", 0, -1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getClass__GetReferencesGeneric(), null, "getReferencesGeneric", 0, -1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(classEClass_R);
 		initEOperation(op, g1);
 
 		initEOperation(getClass__GetAttributesGeneric(), this.getAttribute(), "getAttributesGeneric", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getClass__GetContainerGeneric(), null, "getContainerGeneric", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(this.getClass_());
-		g2 = createEGenericType(this.getReference());
-		g1.getETypeArguments().add(g2);
+		g1 = createEGenericType(classEClass_C);
 		initEOperation(op, g1);
 
 		op = initEOperation(getClass__IsContainerForGeneric__Class(), ecorePackage.getEBoolean(), "isContainerForGeneric", 1, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(this.getClass_());
-		g2 = createEGenericType(this.getReference());
-		g1.getETypeArguments().add(g2);
+		g1 = createEGenericType(classEClass_C);
 		addEParameter(op, g1, "containedClass", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getClass__IsSection(), ecorePackage.getEBoolean(), "isSection", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getClass__IsContainedInGeneric__Class(), ecorePackage.getEBoolean(), "isContainedInGeneric", 1, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(this.getClass_());
-		g2 = createEGenericType(this.getReference());
-		g1.getETypeArguments().add(g2);
+		g1 = createEGenericType(classEClass_C);
 		addEParameter(op, g1, "containerClass", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(sourceSectionClassEClass, SourceSectionClass.class, "SourceSectionClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSourceSectionClass_Attributes(), this.getSourceSectionAttribute(), this.getSourceSectionAttribute_OwningClass(), "attributes", null, 0, -1, SourceSectionClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSourceSectionClass_Container(), this.getSourceSectionClass(), null, "container", null, 0, 1, SourceSectionClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSourceSectionClass_OwningContainmentReference(), this.getSourceSectionContainmentReference(), this.getSourceSectionContainmentReference_Value(), "owningContainmentReference", null, 0, 1, SourceSectionClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(targetSectionClassEClass, TargetSectionClass.class, "TargetSectionClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTargetSectionClass_Attributes(), this.getTargetSectionAttribute(), this.getTargetSectionAttribute_OwningClass(), "attributes", null, 0, -1, TargetSectionClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTargetSectionClass_Container(), this.getTargetSectionClass(), null, "container", null, 0, 1, TargetSectionClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(libraryParameterEClass, LibraryParameter.class, "LibraryParameter", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLibraryParameter_Source(), ecorePackage.getEObject(), null, "source", null, 1, 1, LibraryParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

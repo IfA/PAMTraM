@@ -3,11 +3,13 @@
 package pamtram.metamodel.impl;
 
 import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.SourceSectionClass;
@@ -62,6 +64,7 @@ public abstract class SourceSectionReferenceImpl extends ReferenceImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SourceSectionClass getOwningClass() {
 		if (owningClass != null && owningClass.eIsProxy()) {
 			InternalEObject oldOwningClass = (InternalEObject)owningClass;
@@ -88,6 +91,7 @@ public abstract class SourceSectionReferenceImpl extends ReferenceImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<SourceSectionClass> getValuesGeneric() {
 						EList<SourceSectionClass> secs= new org.eclipse.emf.common.util.BasicEList<SourceSectionClass>();
 						if(this instanceof SourceSectionContainmentReference){

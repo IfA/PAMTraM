@@ -15,16 +15,16 @@ import pamtram.SectionModel;
  * @model abstract="true"
  * @generated
  */
-public interface MetaModelElement extends NamedElement {
+public interface MetaModelElement<C extends pamtram.metamodel.Class<?, ?>> extends NamedElement {
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='MetaModelElement element = this;\r\n\t\t\r\n// move upwards in the hierarchy\r\nwhile(element.eContainer() instanceof MetaModelElement) {\r\n\telement = (MetaModelElement) element.eContainer();\r\n}\r\n\r\nif(element instanceof pamtram.metamodel.Class &&\r\n\t\t(element.eContainer() instanceof SectionModel || element.eContainer() instanceof ContainerParameter)) {\r\n\t// we have found the section\r\n\treturn (pamtram.metamodel.Class) element;\r\n} else if((element instanceof TargetSectionAttribute && element.eContainer() instanceof AttributeParameter) || \r\n\t\t(element instanceof TargetSectionNonContainmentReference) && element.eContainer() instanceof ExternalReferenceParameter) {\r\n\tLibraryEntry libEntry = (LibraryEntry) element.eContainer().eContainer();\r\n\tfor (LibraryParameter param : libEntry.getParameters()) {\r\n\t\t//TODO if multiple container parameters exist, there might need to be additional logic\r\n\t\tif(param instanceof ContainerParameter) {\r\n\t\t\treturn ((ContainerParameter) param).getClass_();\r\n\t\t}\r\n\t}\r\n\treturn null;\r\n} else {\r\n\t// something went wrong\r\n\treturn null;\r\n}'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='MetaModelElement<C> element = this;\r\n\t\t\r\n// move upwards in the hierarchy\r\nwhile(element.eContainer() instanceof MetaModelElement) {\r\n\telement = (MetaModelElement<C>) element.eContainer();\r\n}\r\n\r\nif(element instanceof pamtram.metamodel.Class &&\r\n\t\t(element.eContainer() instanceof SectionModel || element.eContainer() instanceof ContainerParameter)) {\r\n\t// we have found the section\r\n\treturn (C) element;\r\n} else if((element instanceof TargetSectionAttribute && element.eContainer() instanceof AttributeParameter) || \r\n\t\t(element instanceof TargetSectionNonContainmentReference) && element.eContainer() instanceof ExternalReferenceParameter) {\r\n\tLibraryEntry libEntry = (LibraryEntry) element.eContainer().eContainer();\r\n\tfor (LibraryParameter param : libEntry.getParameters()) {\r\n\t\t//TODO if multiple container parameters exist, there might need to be additional logic\r\n\t\tif(param instanceof ContainerParameter) {\r\n\t\t\treturn (C) ((ContainerParameter) param).getClass_();\r\n\t\t}\r\n\t}\r\n\treturn null;\r\n} else {\r\n\t// something went wrong\r\n\treturn null;\r\n}'"
 	 * @generated
 	 */
-	pamtram.metamodel.Class getContainingSection();
+	C getContainingSection();
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -95,14 +95,14 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
 			case MetamodelPackage.META_MODEL_ELEMENT: {
-				MetaModelElement metaModelElement = (MetaModelElement)theEObject;
+				MetaModelElement<?> metaModelElement = (MetaModelElement<?>)theEObject;
 				T result = caseMetaModelElement(metaModelElement);
 				if (result == null) result = caseNamedElement(metaModelElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case MetamodelPackage.CLASS: {
-				pamtram.metamodel.Class<?> class_ = (pamtram.metamodel.Class<?>)theEObject;
+				pamtram.metamodel.Class<?, ?> class_ = (pamtram.metamodel.Class<?, ?>)theEObject;
 				T result = caseClass(class_);
 				if (result == null) result = caseMetaModelElement(class_);
 				if (result == null) result = caseNamedElement(class_);
@@ -167,7 +167,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 			case MetamodelPackage.REFERENCE: {
 				Reference reference = (Reference)theEObject;
 				T result = caseReference(reference);
-				if (result == null) result = caseMetaModelElement(reference);
+				if (result == null) result = (T)caseMetaModelElement(reference);
 				if (result == null) result = caseNamedElement(reference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -254,7 +254,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 			case MetamodelPackage.ATTRIBUTE: {
 				Attribute attribute = (Attribute)theEObject;
 				T result = caseAttribute(attribute);
-				if (result == null) result = caseMetaModelElement(attribute);
+				if (result == null) result = (T)caseMetaModelElement(attribute);
 				if (result == null) result = caseNamedElement(attribute);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -371,7 +371,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMetaModelElement(MetaModelElement object) {
+	public <C extends pamtram.metamodel.Class<?, ?>> T caseMetaModelElement(MetaModelElement<C> object) {
 		return null;
 	}
 
@@ -386,7 +386,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <R extends Reference> T caseClass(pamtram.metamodel.Class<R> object) {
+	public <C extends pamtram.metamodel.Class<C, R>, R extends Reference> T caseClass(pamtram.metamodel.Class<C, R> object) {
 		return null;
 	}
 

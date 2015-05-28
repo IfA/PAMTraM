@@ -95,11 +95,11 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	protected MetamodelSwitch<Adapter> modelSwitch =
 		new MetamodelSwitch<Adapter>() {
 			@Override
-			public Adapter caseMetaModelElement(MetaModelElement object) {
+			public <C extends pamtram.metamodel.Class<?, ?>> Adapter caseMetaModelElement(MetaModelElement<C> object) {
 				return createMetaModelElementAdapter();
 			}
 			@Override
-			public <R extends Reference> Adapter caseClass(pamtram.metamodel.Class<R> object) {
+			public <C extends pamtram.metamodel.Class<C, R>, R extends Reference> Adapter caseClass(pamtram.metamodel.Class<C, R> object) {
 				return createClassAdapter();
 			}
 			@Override

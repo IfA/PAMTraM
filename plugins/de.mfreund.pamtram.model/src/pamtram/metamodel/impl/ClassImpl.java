@@ -15,11 +15,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import pamtram.SectionModel;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.LibraryEntry;
-import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.SourceSectionClass;
@@ -37,12 +35,13 @@ import pamtram.metamodel.TargetSectionReference;
  *   <li>{@link pamtram.metamodel.impl.ClassImpl#getEClass <em>EClass</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.ClassImpl#getCardinality <em>Cardinality</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.ClassImpl#getReferences <em>References</em>}</li>
+ *   <li>{@link pamtram.metamodel.impl.ClassImpl#getContainer <em>Container</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class ClassImpl<R extends Reference> extends MetaModelElementImpl implements pamtram.metamodel.Class<R> {
+public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R>, R extends Reference> extends MetaModelElementImpl<C> implements pamtram.metamodel.Class<C, R> {
 	/**
 	 * The cached value of the '{@link #getEClass() <em>EClass</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -82,6 +81,16 @@ public abstract class ClassImpl<R extends Reference> extends MetaModelElementImp
 	 * @ordered
 	 */
 	protected EList<R> references;
+
+	/**
+	 * The cached value of the '{@link #getContainer() <em>Container</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getContainer()
+	 * @generated
+	 * @ordered
+	 */
+	protected C container;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -192,6 +201,47 @@ public abstract class ClassImpl<R extends Reference> extends MetaModelElementImp
 	 * @generated
 	 */
 	@Override
+	@SuppressWarnings("unchecked")
+	public C getContainer() {
+		if (container != null && container.eIsProxy()) {
+			InternalEObject oldContainer = (InternalEObject)container;
+			container = (C)eResolveProxy(oldContainer);
+			if (container != oldContainer) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.CLASS__CONTAINER, oldContainer, container));
+			}
+		}
+		return container;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public C basicGetContainer() {
+		return container;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setContainer(C newContainer) {
+		C oldContainer = container;
+		container = newContainer;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.CLASS__CONTAINER, oldContainer, container));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EList<R> getReferencesGeneric() {
 		return getReferences(); //TODO delete this
 	}
@@ -223,20 +273,8 @@ public abstract class ClassImpl<R extends Reference> extends MetaModelElementImp
 	 * @generated
 	 */
 	@Override
-	public pamtram.metamodel.Class<Reference> getContainerGeneric() {
-		pamtram.metamodel.Class ret;
-		if(this instanceof SourceSectionClass){
-			ret = ((SourceSectionClass)this).getContainer();
-		} else if(this instanceof TargetSectionClass){
-			ret = ((TargetSectionClass)this).getContainer();
-		} else {
-			return null;
-		}
-		if(ret == null && this.eContainer() instanceof Reference &&
-				!(this.eContainer() instanceof SectionModel)) {
-			ret = (pamtram.metamodel.Class) this.eContainer().eContainer();
-		}
-		return ret;
+	public C getContainerGeneric() {
+		return getContainer(); //TODO delete this
 	}
 
 	/**
@@ -245,7 +283,7 @@ public abstract class ClassImpl<R extends Reference> extends MetaModelElementImp
 	 * @generated
 	 */
 	@Override
-	public boolean isContainerForGeneric(final pamtram.metamodel.Class<Reference> containedClass) {
+	public boolean isContainerForGeneric(final C containedClass) {
 		pamtram.metamodel.Class container = containedClass.getContainerGeneric();
 				
 		// this means that we have reached the top level container for the 'containedClass'
@@ -274,18 +312,12 @@ public abstract class ClassImpl<R extends Reference> extends MetaModelElementImp
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * This recursively iterates through all Classes that are contained in the 
-	 * given {@link #containerClass} (via a {@link Reference} for that 
-	 * Reference.getEReference().isContainment() returns <em>true</em>) and checks 
-	 * if any of these classes matches this class.<br /><br />
-	 * Note: This also check containments across {@link MetaModelSectionReference
-	 * MetaModelSectionReferences}.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public boolean isContainedInGeneric(final pamtram.metamodel.Class<Reference> containerClass) {
-		EList<pamtram.metamodel.Class> containedClasses = new BasicEList<>();
+	public boolean isContainedInGeneric(final C containerClass) {
+		EList<C> containedClasses = new BasicEList<>();
 		
 		// collect all classes that are referenced by containment references
 		for (Reference ref : containerClass.getReferencesGeneric()) {
@@ -293,15 +325,15 @@ public abstract class ClassImpl<R extends Reference> extends MetaModelElementImp
 				continue;
 			}
 			if(ref instanceof SourceSectionReference) {
-				containedClasses.addAll(((SourceSectionReference) ref).getValuesGeneric());
+				containedClasses.addAll((Collection<? extends C>) ((SourceSectionReference) ref).getValuesGeneric());
 			} else if(ref instanceof TargetSectionReference) {
-				containedClasses.addAll(((TargetSectionReference) ref).getValuesGeneric());
+				containedClasses.addAll((Collection<? extends C>) ((TargetSectionReference) ref).getValuesGeneric());
 			}
 		}
 		
 		// recursively iterate over all contained classes
 		boolean found = false;
-		for (pamtram.metamodel.Class containedClass : containedClasses) {
+		for (C containedClass : containedClasses) {
 			if(containedClass.equals(this) || isContainedInGeneric(containedClass)) {
 				found = true;
 				break;
@@ -339,6 +371,9 @@ public abstract class ClassImpl<R extends Reference> extends MetaModelElementImp
 				return getCardinality();
 			case MetamodelPackage.CLASS__REFERENCES:
 				return getReferences();
+			case MetamodelPackage.CLASS__CONTAINER:
+				if (resolve) return getContainer();
+				return basicGetContainer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -362,6 +397,9 @@ public abstract class ClassImpl<R extends Reference> extends MetaModelElementImp
 				getReferences().clear();
 				getReferences().addAll((Collection<? extends R>)newValue);
 				return;
+			case MetamodelPackage.CLASS__CONTAINER:
+				setContainer((C)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -383,6 +421,9 @@ public abstract class ClassImpl<R extends Reference> extends MetaModelElementImp
 			case MetamodelPackage.CLASS__REFERENCES:
 				getReferences().clear();
 				return;
+			case MetamodelPackage.CLASS__CONTAINER:
+				setContainer((C)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -401,6 +442,8 @@ public abstract class ClassImpl<R extends Reference> extends MetaModelElementImp
 				return cardinality != CARDINALITY_EDEFAULT;
 			case MetamodelPackage.CLASS__REFERENCES:
 				return references != null && !references.isEmpty();
+			case MetamodelPackage.CLASS__CONTAINER:
+				return container != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -421,11 +464,11 @@ public abstract class ClassImpl<R extends Reference> extends MetaModelElementImp
 			case MetamodelPackage.CLASS___GET_CONTAINER_GENERIC:
 				return getContainerGeneric();
 			case MetamodelPackage.CLASS___IS_CONTAINER_FOR_GENERIC__CLASS:
-				return isContainerForGeneric((pamtram.metamodel.Class<Reference>)arguments.get(0));
+				return isContainerForGeneric((C)arguments.get(0));
 			case MetamodelPackage.CLASS___IS_SECTION:
 				return isSection();
 			case MetamodelPackage.CLASS___IS_CONTAINED_IN_GENERIC__CLASS:
-				return isContainedInGeneric((pamtram.metamodel.Class<Reference>)arguments.get(0));
+				return isContainedInGeneric((C)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

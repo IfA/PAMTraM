@@ -22,6 +22,13 @@ public class PreferenceSupplier {
 	public static final String PREF_AUTO_SET_NAMES = "AUTO-SET-NAMES";
 	public static final boolean DEFAULT_AUTO_SET_NAMES = true;
 	/*
+	 * This preference is used to control whether type information
+	 * (xsi:type/xmi:type=...) shall to be serialized for every reference type or only for
+	 * those types where it is mandatory.
+	 */
+	public static final String PREF_SERIALIZE_ALL_TYPE_INFO = "SERIALIZE-ALL-TYPE-INFO";
+	public static final boolean DEFAULT_SERIALIZE_ALL_TYPE_INFO = false;
+	/*
 	 * More preferences can be defined here...
 	 */
 	// public static final ...
@@ -45,6 +52,7 @@ public class PreferenceSupplier {
 		Map<String, String> entries = new HashMap<>();
 		
 		entries.put(PREF_AUTO_SET_NAMES, Boolean.toString(DEFAULT_AUTO_SET_NAMES));
+		entries.put(PREF_SERIALIZE_ALL_TYPE_INFO, Boolean.toString(DEFAULT_SERIALIZE_ALL_TYPE_INFO));
 		
 		return entries;
 	}
@@ -64,5 +72,12 @@ public class PreferenceSupplier {
 	 */
 	public static boolean isAutoSetNames() {
 		return PreferenceSupplier.getPreferences().getBoolean(PREF_AUTO_SET_NAMES, DEFAULT_AUTO_SET_NAMES);
+	}
+	
+	/**
+	 * This is a convenience method to get the current value of the '<em><b>SERIALIZE-ALL-TYPE-INFOR</b></em>' preference.
+	 */
+	public static boolean isSerializeAllTypeInfo() {
+		return PreferenceSupplier.getPreferences().getBoolean(PREF_SERIALIZE_ALL_TYPE_INFO, DEFAULT_SERIALIZE_ALL_TYPE_INFO);
 	}
 }

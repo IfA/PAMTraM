@@ -29,7 +29,7 @@ import pamtram.metamodel.SourceSectionReference;
  *
  * @generated
  */
-public abstract class SourceSectionReferenceImpl extends ReferenceImpl implements SourceSectionReference {
+public abstract class SourceSectionReferenceImpl extends ReferenceImpl<SourceSectionClass> implements SourceSectionReference {
 	/**
 	 * The cached value of the '{@link #getOwningClass() <em>Owning Class</em>}' reference.
 	 * <!-- begin-user-doc -->

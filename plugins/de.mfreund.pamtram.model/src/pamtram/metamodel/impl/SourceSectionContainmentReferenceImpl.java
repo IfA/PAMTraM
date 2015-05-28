@@ -3,15 +3,12 @@
 package pamtram.metamodel.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.SourceSectionClass;
@@ -26,13 +23,12 @@ import pamtram.metamodel.SourceSectionReference;
  * The following features are implemented:
  * <ul>
  *   <li>{@link pamtram.metamodel.impl.SourceSectionContainmentReferenceImpl#getOwningClass <em>Owning Class</em>}</li>
- *   <li>{@link pamtram.metamodel.impl.SourceSectionContainmentReferenceImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class SourceSectionContainmentReferenceImpl extends ContainmentReferenceImpl implements SourceSectionContainmentReference {
+public class SourceSectionContainmentReferenceImpl extends ContainmentReferenceImpl<SourceSectionClass> implements SourceSectionContainmentReference {
 	/**
 	 * The cached value of the '{@link #getOwningClass() <em>Owning Class</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -42,16 +38,6 @@ public class SourceSectionContainmentReferenceImpl extends ContainmentReferenceI
 	 * @ordered
 	 */
 	protected SourceSectionClass owningClass;
-	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValue()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<SourceSectionClass> value;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,11 +86,13 @@ public class SourceSectionContainmentReferenceImpl extends ContainmentReferenceI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific element type known in this context.
 	 * @generated
 	 */
+	@Override
 	public EList<SourceSectionClass> getValue() {
 		if (value == null) {
-			value = new EObjectContainmentWithInverseEList<SourceSectionClass>(SourceSectionClass.class, this, MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE, MetamodelPackage.SOURCE_SECTION_CLASS__OWNING_CONTAINMENT_REFERENCE);
+			value = new EObjectContainmentEList<SourceSectionClass>(SourceSectionClass.class, this, MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE);
 		}
 		return value;
 	}
@@ -130,77 +118,14 @@ public class SourceSectionContainmentReferenceImpl extends ContainmentReferenceI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getValue()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE:
-				return ((InternalEList<?>)getValue()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE__OWNING_CLASS:
 				if (resolve) return getOwningClass();
 				return basicGetOwningClass();
-			case MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE:
-				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE:
-				getValue().clear();
-				getValue().addAll((Collection<? extends SourceSectionClass>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE:
-				getValue().clear();
-				return;
-		}
-		super.eUnset(featureID);
 	}
 
 	/**
@@ -213,8 +138,6 @@ public class SourceSectionContainmentReferenceImpl extends ContainmentReferenceI
 		switch (featureID) {
 			case MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE__OWNING_CLASS:
 				return owningClass != null;
-			case MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE:
-				return value != null && !value.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

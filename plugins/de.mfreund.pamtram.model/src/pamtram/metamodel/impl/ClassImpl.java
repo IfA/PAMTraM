@@ -7,7 +7,6 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -15,15 +14,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import pamtram.metamodel.Attribute;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.Reference;
-import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.SourceSectionReference;
-import pamtram.metamodel.TargetSectionClass;
-import pamtram.metamodel.TargetSectionReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -41,7 +35,7 @@ import pamtram.metamodel.TargetSectionReference;
  *
  * @generated
  */
-public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R>, R extends Reference> extends MetaModelElementImpl<C> implements pamtram.metamodel.Class<C, R> {
+public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R>, R extends Reference<C>> extends MetaModelElementImpl<C> implements pamtram.metamodel.Class<C, R> {
 	/**
 	 * The cached value of the '{@link #getEClass() <em>EClass</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -242,49 +236,8 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R>, R exten
 	 * @generated
 	 */
 	@Override
-	public EList<R> getReferencesGeneric() {
-		return getReferences(); //TODO delete this
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Attribute> getAttributesGeneric() {
-		EList<Attribute> attrs= new org.eclipse.emf.common.util.BasicEList<Attribute>();
-		if(this instanceof SourceSectionClass){
-		 attrs.addAll(((SourceSectionClass) this).getAttributes());
-		
-		} else if(this instanceof TargetSectionClass){
-		 attrs.addAll(((TargetSectionClass) this).getAttributes());
-		}
-		return attrs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * If the 'container' reference is set, returns the value of
-	 * this reference. If it is not set but the container can 
-	 * automatically be determined by stepping up in the
-	 * section hierarchy, the determined container is returned.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public C getContainerGeneric() {
-		return getContainer(); //TODO delete this
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public boolean isContainerForGeneric(final C containedClass) {
-		pamtram.metamodel.Class container = containedClass.getContainerGeneric();
+		C container = containedClass.getContainer();
 				
 		// this means that we have reached the top level container for the 'containedClass'
 		if(container == null) {
@@ -294,7 +247,7 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R>, R exten
 			return true;
 		// this was not the container, so iterate up in the containment hierarchy
 		} else {
-			return isContainerForGeneric(containedClass.getContainerGeneric());
+			return isContainerForGeneric(container);
 		}
 	}
 
@@ -317,29 +270,18 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R>, R exten
 	 */
 	@Override
 	public boolean isContainedInGeneric(final C containerClass) {
-		EList<C> containedClasses = new BasicEList<>();
-		
-		// collect all classes that are referenced by containment references
-		for (Reference ref : containerClass.getReferencesGeneric()) {
-			if(!(ref.getEReference().isContainment())) {
-				continue;
-			}
-			if(ref instanceof SourceSectionReference) {
-				containedClasses.addAll((Collection<? extends C>) ((SourceSectionReference) ref).getValuesGeneric());
-			} else if(ref instanceof TargetSectionReference) {
-				containedClasses.addAll((Collection<? extends C>) ((TargetSectionReference) ref).getValuesGeneric());
-			}
+		C container = containerClass.getContainer();
+				
+		// this means that we have reached the top level container for the 'containedClass'
+		if(container == null) {
+			return false;
+		// this is the container
+		} else if(this.equals(container)) {
+			return true;
+		// this was not the container, so iterate up in the containment hierarchy
+		} else {
+			return isContainerForGeneric(container);
 		}
-		
-		// recursively iterate over all contained classes
-		boolean found = false;
-		for (C containedClass : containedClasses) {
-			if(containedClass.equals(this) || isContainedInGeneric(containedClass)) {
-				found = true;
-				break;
-			}
-		}
-		return found;
 	}
 
 	/**
@@ -457,12 +399,6 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R>, R exten
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.CLASS___GET_REFERENCES_GENERIC:
-				return getReferencesGeneric();
-			case MetamodelPackage.CLASS___GET_ATTRIBUTES_GENERIC:
-				return getAttributesGeneric();
-			case MetamodelPackage.CLASS___GET_CONTAINER_GENERIC:
-				return getContainerGeneric();
 			case MetamodelPackage.CLASS___IS_CONTAINER_FOR_GENERIC__CLASS:
 				return isContainerForGeneric((C)arguments.get(0));
 			case MetamodelPackage.CLASS___IS_SECTION:

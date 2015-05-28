@@ -27,7 +27,7 @@ import pamtram.metamodel.TargetSectionClass;
  *
  * @generated
  */
-public abstract class TargetSectionAttributeImpl extends AttributeImpl implements TargetSectionAttribute {
+public abstract class TargetSectionAttributeImpl extends AttributeImpl<TargetSectionClass> implements TargetSectionAttribute {
 	/**
 	 * The default value of the '{@link #isUnique() <em>Unique</em>}' attribute.
 	 * <!-- begin-user-doc -->

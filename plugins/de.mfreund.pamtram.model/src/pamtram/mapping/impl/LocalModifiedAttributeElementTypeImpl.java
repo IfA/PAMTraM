@@ -3,11 +3,9 @@
 package pamtram.mapping.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import pamtram.mapping.LocalModifiedAttributeElementType;
 import pamtram.mapping.MappingPackage;
-
-import pamtram.metamodel.Attribute;
+import pamtram.metamodel.SourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,7 +16,7 @@ import pamtram.metamodel.Attribute;
  *
  * @generated
  */
-public abstract class LocalModifiedAttributeElementTypeImpl<AttributeType extends Attribute> extends ModifiedAttributeElementTypeImpl<AttributeType> implements LocalModifiedAttributeElementType<AttributeType> {
+public abstract class LocalModifiedAttributeElementTypeImpl<AttributeType extends SourceSectionAttribute> extends ModifiedAttributeElementTypeImpl<AttributeType> implements LocalModifiedAttributeElementType<AttributeType> {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -36,6 +34,17 @@ public abstract class LocalModifiedAttributeElementTypeImpl<AttributeType extend
 	@Override
 	protected EClass eStaticClass() {
 		return MappingPackage.Literals.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific type known in this context.
+	 * @generated
+	 */
+	@Override
+	public void setSource(AttributeType newSource) {
+		super.setSource(newSource);
 	}
 
 } //LocalModifiedAttributeElementTypeImpl

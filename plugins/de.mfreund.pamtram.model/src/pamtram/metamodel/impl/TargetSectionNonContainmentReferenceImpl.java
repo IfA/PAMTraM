@@ -3,7 +3,6 @@
 package pamtram.metamodel.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -24,13 +23,12 @@ import pamtram.metamodel.TargetSectionReference;
  * The following features are implemented:
  * <ul>
  *   <li>{@link pamtram.metamodel.impl.TargetSectionNonContainmentReferenceImpl#getOwningClass <em>Owning Class</em>}</li>
- *   <li>{@link pamtram.metamodel.impl.TargetSectionNonContainmentReferenceImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class TargetSectionNonContainmentReferenceImpl extends NonContainmentReferenceImpl implements TargetSectionNonContainmentReference {
+public class TargetSectionNonContainmentReferenceImpl extends NonContainmentReferenceImpl<TargetSectionClass> implements TargetSectionNonContainmentReference {
 	/**
 	 * The cached value of the '{@link #getOwningClass() <em>Owning Class</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -40,16 +38,6 @@ public class TargetSectionNonContainmentReferenceImpl extends NonContainmentRefe
 	 * @ordered
 	 */
 	protected TargetSectionClass owningClass;
-	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValue()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<TargetSectionClass> value;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -98,8 +86,10 @@ public class TargetSectionNonContainmentReferenceImpl extends NonContainmentRefe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific element type known in this context.
 	 * @generated
 	 */
+	@Override
 	public EList<TargetSectionClass> getValue() {
 		if (value == null) {
 			value = new EObjectResolvingEList<TargetSectionClass>(TargetSectionClass.class, this, MetamodelPackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE__VALUE);
@@ -134,42 +124,8 @@ public class TargetSectionNonContainmentReferenceImpl extends NonContainmentRefe
 			case MetamodelPackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE__OWNING_CLASS:
 				if (resolve) return getOwningClass();
 				return basicGetOwningClass();
-			case MetamodelPackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE__VALUE:
-				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case MetamodelPackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE__VALUE:
-				getValue().clear();
-				getValue().addAll((Collection<? extends TargetSectionClass>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case MetamodelPackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE__VALUE:
-				getValue().clear();
-				return;
-		}
-		super.eUnset(featureID);
 	}
 
 	/**
@@ -182,8 +138,6 @@ public class TargetSectionNonContainmentReferenceImpl extends NonContainmentRefe
 		switch (featureID) {
 			case MetamodelPackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE__OWNING_CLASS:
 				return owningClass != null;
-			case MetamodelPackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE__VALUE:
-				return value != null && !value.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

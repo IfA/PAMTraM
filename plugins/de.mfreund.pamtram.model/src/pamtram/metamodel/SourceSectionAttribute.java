@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EAttribute;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot attributeMatchesParentEClass='self.oclContainer().oclAsType(pamtram::metamodel::Class).eClass.eAllAttributes->includes(self.attribute)'"
  * @generated
  */
-public interface SourceSectionAttribute extends Attribute {
+public interface SourceSectionAttribute extends Attribute<SourceSectionClass> {
 	/**
 	 * Returns the value of the '<em><b>Owning Class</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link pamtram.metamodel.SourceSectionClass#getAttributes <em>Attributes</em>}'.

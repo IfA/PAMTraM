@@ -2,7 +2,7 @@
  */
 package pamtram.mapping;
 
-import pamtram.metamodel.Attribute;
+import pamtram.metamodel.SourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,5 +16,5 @@ import pamtram.metamodel.Attribute;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot sourceAttributeMatchesSectionOrContainedSection='self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection() = self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection or self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection().isContainedInGeneric(self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)'"
  * @generated
  */
-public interface LocalModifiedAttributeElementType<AttributeType extends Attribute> extends ModifiedAttributeElementType<AttributeType> {
+public interface LocalModifiedAttributeElementType<AttributeType extends SourceSectionAttribute> extends ModifiedAttributeElementType<AttributeType> {
 } // LocalModifiedAttributeElementType

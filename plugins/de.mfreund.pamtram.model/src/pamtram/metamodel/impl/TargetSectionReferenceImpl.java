@@ -27,7 +27,7 @@ import pamtram.metamodel.TargetSectionReference;
  *
  * @generated
  */
-public abstract class TargetSectionReferenceImpl extends ReferenceImpl implements TargetSectionReference {
+public abstract class TargetSectionReferenceImpl extends ReferenceImpl<TargetSectionClass> implements TargetSectionReference {
 	/**
 	 * The cached value of the '{@link #getOwningClass() <em>Owning Class</em>}' reference.
 	 * <!-- begin-user-doc -->

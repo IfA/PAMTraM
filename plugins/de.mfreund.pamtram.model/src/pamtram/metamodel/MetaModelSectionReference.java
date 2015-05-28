@@ -4,6 +4,7 @@ package pamtram.metamodel;
 
 import org.eclipse.emf.common.util.EList;
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Meta Model Section Reference</b></em>'.
@@ -22,6 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface MetaModelSectionReference extends SourceSectionReference {
+
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' reference list.
 	 * The list contents are of type {@link pamtram.metamodel.SourceSectionClass}.

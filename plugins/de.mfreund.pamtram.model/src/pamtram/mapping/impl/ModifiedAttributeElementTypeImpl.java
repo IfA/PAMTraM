@@ -37,7 +37,7 @@ import pamtram.metamodel.Attribute;
  *
  * @generated
  */
-public abstract class ModifiedAttributeElementTypeImpl<AttributeType extends Attribute> extends NamedElementImpl implements ModifiedAttributeElementType<AttributeType> {
+public abstract class ModifiedAttributeElementTypeImpl<AttributeType extends Attribute<?>> extends NamedElementImpl implements ModifiedAttributeElementType<AttributeType> {
 	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->

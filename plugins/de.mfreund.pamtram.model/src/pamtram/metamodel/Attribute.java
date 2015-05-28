@@ -13,6 +13,6 @@ package pamtram.metamodel;
  * @model abstract="true"
  * @generated
  */
-public interface Attribute extends MetaModelElement {
+public interface Attribute<C extends pamtram.metamodel.Class<?, ?>> extends MetaModelElement<C> {
 
 } // Attribute

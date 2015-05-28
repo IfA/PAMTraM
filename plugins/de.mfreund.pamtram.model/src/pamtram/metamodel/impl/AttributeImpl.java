@@ -16,7 +16,7 @@ import pamtram.metamodel.MetamodelPackage;
  *
  * @generated
  */
-public abstract class AttributeImpl extends MetaModelElementImpl implements Attribute {
+public abstract class AttributeImpl<C extends pamtram.metamodel.Class<?, ?>> extends MetaModelElementImpl<C> implements Attribute<C> {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

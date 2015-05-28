@@ -16,7 +16,7 @@ import pamtram.metamodel.Attribute;
  *
  * @generated
  */
-public abstract class ExternalModifiedAttributeElementTypeImpl<AttributeType extends Attribute> extends ModifiedAttributeElementTypeImpl<AttributeType> implements ExternalModifiedAttributeElementType<AttributeType> {
+public abstract class ExternalModifiedAttributeElementTypeImpl<AttributeType extends Attribute<?>> extends ModifiedAttributeElementTypeImpl<AttributeType> implements ExternalModifiedAttributeElementType<AttributeType> {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

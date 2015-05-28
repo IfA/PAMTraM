@@ -10,6 +10,7 @@ import pamtram.DeactivatableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.*;
 import pamtram.metamodel.Attribute;
+import pamtram.metamodel.SourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -156,11 +157,11 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createStringPrependerAdapter();
 			}
 			@Override
-			public <AttributeType extends Attribute> Adapter caseModifiedAttributeElementType(ModifiedAttributeElementType<AttributeType> object) {
+			public <AttributeType extends Attribute<?>> Adapter caseModifiedAttributeElementType(ModifiedAttributeElementType<AttributeType> object) {
 				return createModifiedAttributeElementTypeAdapter();
 			}
 			@Override
-			public <AttributeType extends Attribute> Adapter caseLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<AttributeType> object) {
+			public <AttributeType extends SourceSectionAttribute> Adapter caseLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<AttributeType> object) {
 				return createLocalModifiedAttributeElementTypeAdapter();
 			}
 			@Override
@@ -236,7 +237,7 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createAttributeMappingExternalSourceElementAdapter();
 			}
 			@Override
-			public <AttributeType extends Attribute> Adapter caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<AttributeType> object) {
+			public <AttributeType extends Attribute<?>> Adapter caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<AttributeType> object) {
 				return createExternalModifiedAttributeElementTypeAdapter();
 			}
 			@Override

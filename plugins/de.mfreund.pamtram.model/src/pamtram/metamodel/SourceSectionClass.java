@@ -43,28 +43,26 @@ public interface SourceSectionClass extends pamtram.metamodel.Class<SourceSectio
 	EList<SourceSectionAttribute> getAttributes();
 
 	/**
-	 * Returns the value of the '<em><b>Owning Containment Reference</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link pamtram.metamodel.SourceSectionContainmentReference#getValue <em>Value</em>}'.
+	 * Returns the value of the '<em><b>Owning Containment Reference</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Containment Reference</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Containment Reference</em>' container reference.
+	 * @return the value of the '<em>Owning Containment Reference</em>' reference.
 	 * @see #setOwningContainmentReference(SourceSectionContainmentReference)
 	 * @see pamtram.metamodel.MetamodelPackage#getSourceSectionClass_OwningContainmentReference()
-	 * @see pamtram.metamodel.SourceSectionContainmentReference#getValue
-	 * @model opposite="value" transient="false"
+	 * @model
 	 * @generated
 	 */
 	SourceSectionContainmentReference getOwningContainmentReference();
 
 	/**
-	 * Sets the value of the '{@link pamtram.metamodel.SourceSectionClass#getOwningContainmentReference <em>Owning Containment Reference</em>}' container reference.
+	 * Sets the value of the '{@link pamtram.metamodel.SourceSectionClass#getOwningContainmentReference <em>Owning Containment Reference</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Containment Reference</em>' container reference.
+	 * @param value the new value of the '<em>Owning Containment Reference</em>' reference.
 	 * @see #getOwningContainmentReference()
 	 * @generated
 	 */

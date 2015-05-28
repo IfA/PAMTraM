@@ -1670,10 +1670,14 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		// Set bounds for type parameters
 		EGenericType g1 = createEGenericType(theMetamodelPackage.getAttribute());
+		EGenericType g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
 		modifiedAttributeElementTypeEClass_AttributeType.getEBounds().add(g1);
-		g1 = createEGenericType(theMetamodelPackage.getAttribute());
+		g1 = createEGenericType(theMetamodelPackage.getSourceSectionAttribute());
 		localModifiedAttributeElementTypeEClass_AttributeType.getEBounds().add(g1);
 		g1 = createEGenericType(theMetamodelPackage.getAttribute());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
 		externalModifiedAttributeElementTypeEClass_AttributeType.getEBounds().add(g1);
 
 		// Add supertypes to classes
@@ -1697,7 +1701,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		attributeMatcherEClass.getESuperTypes().add(this.getModifiableHint());
 		attributeMatcherEClass.getESuperTypes().add(this.getExpandableHint());
 		g1 = createEGenericType(this.getLocalModifiedAttributeElementType());
-		EGenericType g2 = createEGenericType(theMetamodelPackage.getSourceSectionAttribute());
+		g2 = createEGenericType(theMetamodelPackage.getSourceSectionAttribute());
 		g1.getETypeArguments().add(g2);
 		attributeMatcherSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getAttributeMatcherSourceInterface());

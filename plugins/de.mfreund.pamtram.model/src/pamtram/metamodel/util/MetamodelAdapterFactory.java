@@ -99,7 +99,7 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 				return createMetaModelElementAdapter();
 			}
 			@Override
-			public <C extends pamtram.metamodel.Class<C, R>, R extends Reference> Adapter caseClass(pamtram.metamodel.Class<C, R> object) {
+			public <C extends pamtram.metamodel.Class<C, R>, R extends Reference<C>> Adapter caseClass(pamtram.metamodel.Class<C, R> object) {
 				return createClassAdapter();
 			}
 			@Override
@@ -131,15 +131,15 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 				return createLibraryEntryAdapter();
 			}
 			@Override
-			public Adapter caseReference(Reference object) {
+			public <V extends pamtram.metamodel.Class<?, ?>> Adapter caseReference(Reference<V> object) {
 				return createReferenceAdapter();
 			}
 			@Override
-			public Adapter caseContainmentReference(ContainmentReference object) {
+			public <V extends pamtram.metamodel.Class<?, ?>> Adapter caseContainmentReference(ContainmentReference<V> object) {
 				return createContainmentReferenceAdapter();
 			}
 			@Override
-			public Adapter caseNonContainmentReference(NonContainmentReference object) {
+			public <V extends pamtram.metamodel.Class<?, ?>> Adapter caseNonContainmentReference(NonContainmentReference<V> object) {
 				return createNonContainmentReferenceAdapter();
 			}
 			@Override
@@ -167,7 +167,7 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 				return createMetaModelSectionReferenceAdapter();
 			}
 			@Override
-			public Adapter caseAttribute(Attribute object) {
+			public <C extends pamtram.metamodel.Class<?, ?>> Adapter caseAttribute(Attribute<C> object) {
 				return createAttributeAdapter();
 			}
 			@Override

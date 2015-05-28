@@ -460,7 +460,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getClass__GetReferencesGeneric() {
+	public EOperation getClass__IsContainerForGeneric__Class() {
 		return classEClass.getEOperations().get(0);
 	}
 
@@ -469,7 +469,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getClass__GetAttributesGeneric() {
+	public EOperation getClass__IsSection() {
 		return classEClass.getEOperations().get(1);
 	}
 
@@ -478,35 +478,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getClass__GetContainerGeneric() {
-		return classEClass.getEOperations().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getClass__IsContainerForGeneric__Class() {
-		return classEClass.getEOperations().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getClass__IsSection() {
-		return classEClass.getEOperations().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EOperation getClass__IsContainedInGeneric__Class() {
-		return classEClass.getEOperations().get(5);
+		return classEClass.getEOperations().get(2);
 	}
 
 	/**
@@ -712,8 +685,26 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getContainmentReference_Value() {
+		return (EReference)containmentReferenceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getNonContainmentReference() {
 		return nonContainmentReferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getNonContainmentReference_Value() {
+		return (EReference)nonContainmentReferenceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -784,15 +775,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTargetSectionContainmentReference_Value() {
-		return (EReference)targetSectionContainmentReferenceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getTargetSectionNonContainmentReference() {
 		return targetSectionNonContainmentReferenceEClass;
 	}
@@ -802,26 +784,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTargetSectionNonContainmentReference_Value() {
-		return (EReference)targetSectionNonContainmentReferenceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getSourceSectionContainmentReference() {
 		return sourceSectionContainmentReferenceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getSourceSectionContainmentReference_Value() {
-		return (EReference)sourceSectionContainmentReferenceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1105,9 +1069,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEAttribute(classEClass, CLASS__CARDINALITY);
 		createEReference(classEClass, CLASS__REFERENCES);
 		createEReference(classEClass, CLASS__CONTAINER);
-		createEOperation(classEClass, CLASS___GET_REFERENCES_GENERIC);
-		createEOperation(classEClass, CLASS___GET_ATTRIBUTES_GENERIC);
-		createEOperation(classEClass, CLASS___GET_CONTAINER_GENERIC);
 		createEOperation(classEClass, CLASS___IS_CONTAINER_FOR_GENERIC__CLASS);
 		createEOperation(classEClass, CLASS___IS_SECTION);
 		createEOperation(classEClass, CLASS___IS_CONTAINED_IN_GENERIC__CLASS);
@@ -1142,8 +1103,10 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEReference(referenceEClass, REFERENCE__EREFERENCE);
 
 		containmentReferenceEClass = createEClass(CONTAINMENT_REFERENCE);
+		createEReference(containmentReferenceEClass, CONTAINMENT_REFERENCE__VALUE);
 
 		nonContainmentReferenceEClass = createEClass(NON_CONTAINMENT_REFERENCE);
+		createEReference(nonContainmentReferenceEClass, NON_CONTAINMENT_REFERENCE__VALUE);
 
 		sourceSectionReferenceEClass = createEClass(SOURCE_SECTION_REFERENCE);
 		createEReference(sourceSectionReferenceEClass, SOURCE_SECTION_REFERENCE__OWNING_CLASS);
@@ -1154,13 +1117,10 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEOperation(targetSectionReferenceEClass, TARGET_SECTION_REFERENCE___GET_VALUES_GENERIC);
 
 		targetSectionContainmentReferenceEClass = createEClass(TARGET_SECTION_CONTAINMENT_REFERENCE);
-		createEReference(targetSectionContainmentReferenceEClass, TARGET_SECTION_CONTAINMENT_REFERENCE__VALUE);
 
 		targetSectionNonContainmentReferenceEClass = createEClass(TARGET_SECTION_NON_CONTAINMENT_REFERENCE);
-		createEReference(targetSectionNonContainmentReferenceEClass, TARGET_SECTION_NON_CONTAINMENT_REFERENCE__VALUE);
 
 		sourceSectionContainmentReferenceEClass = createEClass(SOURCE_SECTION_CONTAINMENT_REFERENCE);
-		createEReference(sourceSectionContainmentReferenceEClass, SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE);
 
 		metaModelSectionReferenceEClass = createEClass(META_MODEL_SECTION_REFERENCE);
 		createEReference(metaModelSectionReferenceEClass, META_MODEL_SECTION_REFERENCE__VALUE);
@@ -1237,6 +1197,10 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		ETypeParameter classEClass_C = addETypeParameter(classEClass, "C");
 		ETypeParameter classEClass_R = addETypeParameter(classEClass, "R");
 		ETypeParameter libraryParameterEClass_ParameterType = addETypeParameter(libraryParameterEClass, "ParameterType");
+		ETypeParameter referenceEClass_V = addETypeParameter(referenceEClass, "V");
+		ETypeParameter containmentReferenceEClass_V = addETypeParameter(containmentReferenceEClass, "V");
+		ETypeParameter nonContainmentReferenceEClass_V = addETypeParameter(nonContainmentReferenceEClass, "V");
+		ETypeParameter attributeEClass_C = addETypeParameter(attributeEClass, "C");
 
 		// Set bounds for type parameters
 		EGenericType g1 = createEGenericType(this.getClass_());
@@ -1252,7 +1216,33 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		g1.getETypeArguments().add(g2);
 		classEClass_C.getEBounds().add(g1);
 		g1 = createEGenericType(this.getReference());
+		g2 = createEGenericType(classEClass_C);
+		g1.getETypeArguments().add(g2);
 		classEClass_R.getEBounds().add(g1);
+		g1 = createEGenericType(this.getClass_());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		referenceEClass_V.getEBounds().add(g1);
+		g1 = createEGenericType(this.getClass_());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		containmentReferenceEClass_V.getEBounds().add(g1);
+		g1 = createEGenericType(this.getClass_());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		nonContainmentReferenceEClass_V.getEBounds().add(g1);
+		g1 = createEGenericType(this.getClass_());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		attributeEClass_C.getEBounds().add(g1);
 
 		// Add supertypes to classes
 		metaModelElementEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
@@ -1295,21 +1285,57 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		g3 = createEGenericType();
 		g2.getETypeArguments().add(g3);
 		externalReferenceParameterEClass.getEGenericSuperTypes().add(g1);
-		referenceEClass.getESuperTypes().add(this.getMetaModelElement());
-		containmentReferenceEClass.getESuperTypes().add(this.getReference());
-		nonContainmentReferenceEClass.getESuperTypes().add(this.getReference());
-		sourceSectionReferenceEClass.getESuperTypes().add(this.getReference());
-		targetSectionReferenceEClass.getESuperTypes().add(this.getReference());
-		targetSectionContainmentReferenceEClass.getESuperTypes().add(this.getContainmentReference());
-		targetSectionContainmentReferenceEClass.getESuperTypes().add(this.getTargetSectionReference());
-		targetSectionNonContainmentReferenceEClass.getESuperTypes().add(this.getNonContainmentReference());
-		targetSectionNonContainmentReferenceEClass.getESuperTypes().add(this.getTargetSectionReference());
-		sourceSectionContainmentReferenceEClass.getESuperTypes().add(this.getContainmentReference());
-		sourceSectionContainmentReferenceEClass.getESuperTypes().add(this.getSourceSectionReference());
+		g1 = createEGenericType(this.getMetaModelElement());
+		g2 = createEGenericType(referenceEClass_V);
+		g1.getETypeArguments().add(g2);
+		referenceEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getReference());
+		g2 = createEGenericType(containmentReferenceEClass_V);
+		g1.getETypeArguments().add(g2);
+		containmentReferenceEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getReference());
+		g2 = createEGenericType(nonContainmentReferenceEClass_V);
+		g1.getETypeArguments().add(g2);
+		nonContainmentReferenceEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getReference());
+		g2 = createEGenericType(this.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		sourceSectionReferenceEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getReference());
+		g2 = createEGenericType(this.getTargetSectionClass());
+		g1.getETypeArguments().add(g2);
+		targetSectionReferenceEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getContainmentReference());
+		g2 = createEGenericType(this.getTargetSectionClass());
+		g1.getETypeArguments().add(g2);
+		targetSectionContainmentReferenceEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getTargetSectionReference());
+		targetSectionContainmentReferenceEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getNonContainmentReference());
+		g2 = createEGenericType(this.getTargetSectionClass());
+		g1.getETypeArguments().add(g2);
+		targetSectionNonContainmentReferenceEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getTargetSectionReference());
+		targetSectionNonContainmentReferenceEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getContainmentReference());
+		g2 = createEGenericType(this.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		sourceSectionContainmentReferenceEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getSourceSectionReference());
+		sourceSectionContainmentReferenceEClass.getEGenericSuperTypes().add(g1);
 		metaModelSectionReferenceEClass.getESuperTypes().add(this.getSourceSectionReference());
-		attributeEClass.getESuperTypes().add(this.getMetaModelElement());
-		sourceSectionAttributeEClass.getESuperTypes().add(this.getAttribute());
-		targetSectionAttributeEClass.getESuperTypes().add(this.getAttribute());
+		g1 = createEGenericType(this.getMetaModelElement());
+		g2 = createEGenericType(attributeEClass_C);
+		g1.getETypeArguments().add(g2);
+		attributeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getAttribute());
+		g2 = createEGenericType(this.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		sourceSectionAttributeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getAttribute());
+		g2 = createEGenericType(this.getTargetSectionClass());
+		g1.getETypeArguments().add(g2);
+		targetSectionAttributeEClass.getEGenericSuperTypes().add(g1);
 		actualAttributeEClass.getESuperTypes().add(this.getTargetSectionAttribute());
 		virtualAttributeEClass.getESuperTypes().add(this.getTargetSectionAttribute());
 		equalityMatcherEClass.getESuperTypes().add(this.getCaseSensitiveConstraint());
@@ -1339,16 +1365,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		g1 = createEGenericType(classEClass_C);
 		initEReference(getClass_Container(), g1, null, "container", null, 0, 1, pamtram.metamodel.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getClass__GetReferencesGeneric(), null, "getReferencesGeneric", 0, -1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(classEClass_R);
-		initEOperation(op, g1);
-
-		initEOperation(getClass__GetAttributesGeneric(), this.getAttribute(), "getAttributesGeneric", 0, -1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getClass__GetContainerGeneric(), null, "getContainerGeneric", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(classEClass_C);
-		initEOperation(op, g1);
-
 		op = initEOperation(getClass__IsContainerForGeneric__Class(), ecorePackage.getEBoolean(), "isContainerForGeneric", 1, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(classEClass_C);
 		addEParameter(op, g1, "containedClass", 1, 1, IS_UNIQUE, IS_ORDERED);
@@ -1361,7 +1377,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		initEClass(sourceSectionClassEClass, SourceSectionClass.class, "SourceSectionClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSourceSectionClass_Attributes(), this.getSourceSectionAttribute(), this.getSourceSectionAttribute_OwningClass(), "attributes", null, 0, -1, SourceSectionClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSourceSectionClass_OwningContainmentReference(), this.getSourceSectionContainmentReference(), this.getSourceSectionContainmentReference_Value(), "owningContainmentReference", null, 0, 1, SourceSectionClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSourceSectionClass_OwningContainmentReference(), this.getSourceSectionContainmentReference(), null, "owningContainmentReference", null, 0, 1, SourceSectionClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(targetSectionClassEClass, TargetSectionClass.class, "TargetSectionClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTargetSectionClass_Attributes(), this.getTargetSectionAttribute(), this.getTargetSectionAttribute_OwningClass(), "attributes", null, 0, -1, TargetSectionClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1393,8 +1409,12 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEReference(getReference_EReference(), ecorePackage.getEReference(), null, "eReference", null, 1, 1, Reference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(containmentReferenceEClass, ContainmentReference.class, "ContainmentReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		g1 = createEGenericType(containmentReferenceEClass_V);
+		initEReference(getContainmentReference_Value(), g1, null, "value", null, 0, -1, ContainmentReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nonContainmentReferenceEClass, NonContainmentReference.class, "NonContainmentReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		g1 = createEGenericType(nonContainmentReferenceEClass_V);
+		initEReference(getNonContainmentReference_Value(), g1, null, "value", null, 0, -1, NonContainmentReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sourceSectionReferenceEClass, SourceSectionReference.class, "SourceSectionReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSourceSectionReference_OwningClass(), this.getSourceSectionClass(), null, "owningClass", null, 1, 1, SourceSectionReference.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1407,13 +1427,10 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEOperation(getTargetSectionReference__GetValuesGeneric(), this.getTargetSectionClass(), "getValuesGeneric", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(targetSectionContainmentReferenceEClass, TargetSectionContainmentReference.class, "TargetSectionContainmentReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTargetSectionContainmentReference_Value(), this.getTargetSectionClass(), null, "value", null, 0, -1, TargetSectionContainmentReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(targetSectionNonContainmentReferenceEClass, TargetSectionNonContainmentReference.class, "TargetSectionNonContainmentReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTargetSectionNonContainmentReference_Value(), this.getTargetSectionClass(), null, "value", null, 0, -1, TargetSectionNonContainmentReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sourceSectionContainmentReferenceEClass, SourceSectionContainmentReference.class, "SourceSectionContainmentReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSourceSectionContainmentReference_Value(), this.getSourceSectionClass(), this.getSourceSectionClass_OwningContainmentReference(), "value", null, 0, -1, SourceSectionContainmentReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(metaModelSectionReferenceEClass, MetaModelSectionReference.class, "MetaModelSectionReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMetaModelSectionReference_Value(), this.getSourceSectionClass(), null, "value", null, 0, -1, MetaModelSectionReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

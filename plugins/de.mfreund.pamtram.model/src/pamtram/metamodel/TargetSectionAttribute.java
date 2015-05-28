@@ -23,7 +23,7 @@ package pamtram.metamodel;
  * @model abstract="true"
  * @generated
  */
-public interface TargetSectionAttribute extends Attribute {
+public interface TargetSectionAttribute extends Attribute<TargetSectionClass> {
 	/**
 	 * Returns the value of the '<em><b>Owning Class</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link pamtram.metamodel.TargetSectionClass#getAttributes <em>Attributes</em>}'.

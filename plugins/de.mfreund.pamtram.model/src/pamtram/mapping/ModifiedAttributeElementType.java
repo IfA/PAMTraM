@@ -25,7 +25,7 @@ import pamtram.metamodel.Attribute;
  * @model abstract="true"
  * @generated
  */
-public interface ModifiedAttributeElementType<AttributeType extends Attribute> extends NamedElement {
+public interface ModifiedAttributeElementType<AttributeType extends Attribute<?>> extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->

@@ -13,6 +13,7 @@ import pamtram.NamedElement;
 import pamtram.mapping.*;
 
 import pamtram.metamodel.Attribute;
+import pamtram.metamodel.SourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -803,7 +804,7 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <AttributeType extends Attribute> T caseModifiedAttributeElementType(ModifiedAttributeElementType<AttributeType> object) {
+	public <AttributeType extends Attribute<?>> T caseModifiedAttributeElementType(ModifiedAttributeElementType<AttributeType> object) {
 		return null;
 	}
 
@@ -818,7 +819,7 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <AttributeType extends Attribute> T caseLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<AttributeType> object) {
+	public <AttributeType extends SourceSectionAttribute> T caseLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<AttributeType> object) {
 		return null;
 	}
 
@@ -1163,7 +1164,7 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <AttributeType extends Attribute> T caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<AttributeType> object) {
+	public <AttributeType extends Attribute<?>> T caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<AttributeType> object) {
 		return null;
 	}
 

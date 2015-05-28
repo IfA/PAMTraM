@@ -34,7 +34,7 @@ import pamtram.metamodel.SourceSectionClass;
  *
  * @generated
  */
-public class SourceSectionAttributeImpl extends AttributeImpl implements SourceSectionAttribute {
+public class SourceSectionAttributeImpl extends AttributeImpl<SourceSectionClass> implements SourceSectionAttribute {
 	/**
 	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' reference.
 	 * <!-- begin-user-doc -->

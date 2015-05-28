@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * @model abstract="true"
  * @generated
  */
-public interface SourceSectionReference extends Reference {
+public interface SourceSectionReference extends Reference<SourceSectionClass> {
 	/**
 	 * Returns the value of the '<em><b>Owning Class</b></em>' reference.
 	 * <!-- begin-user-doc -->

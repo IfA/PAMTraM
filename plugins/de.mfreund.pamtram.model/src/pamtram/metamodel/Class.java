@@ -86,6 +86,7 @@ public interface Class<C extends Class<C, R, A>, R extends Reference<C>, A exten
 
 	/**
 	 * Returns the value of the '<em><b>References</b></em>' containment reference list.
+	 * It is bidirectional and its opposite is '{@link pamtram.metamodel.Reference#getOwningClass <em>Owning Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>References</em>' containment reference list isn't clear,
@@ -94,7 +95,8 @@ public interface Class<C extends Class<C, R, A>, R extends Reference<C>, A exten
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>References</em>' containment reference list.
 	 * @see pamtram.metamodel.MetamodelPackage#getClass_References()
-	 * @model containment="true"
+	 * @see pamtram.metamodel.Reference#getOwningClass
+	 * @model opposite="owningClass" containment="true"
 	 * @generated
 	 */
 	EList<R> getReferences();
@@ -127,6 +129,7 @@ public interface Class<C extends Class<C, R, A>, R extends Reference<C>, A exten
 
 	/**
 	 * Returns the value of the '<em><b>Attributes</b></em>' containment reference list.
+	 * It is bidirectional and its opposite is '{@link pamtram.metamodel.Attribute#getOwningClass <em>Owning Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Attributes</em>' containment reference list isn't clear,
@@ -135,7 +138,8 @@ public interface Class<C extends Class<C, R, A>, R extends Reference<C>, A exten
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Attributes</em>' containment reference list.
 	 * @see pamtram.metamodel.MetamodelPackage#getClass_Attributes()
-	 * @model containment="true"
+	 * @see pamtram.metamodel.Attribute#getOwningClass
+	 * @model opposite="owningClass" containment="true"
 	 * @generated
 	 */
 	EList<A> getAttributes();

@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EReference;
  * The following features are supported:
  * <ul>
  *   <li>{@link pamtram.metamodel.Reference#getEReference <em>EReference</em>}</li>
+ *   <li>{@link pamtram.metamodel.Reference#getOwningClass <em>Owning Class</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,5 +49,22 @@ public interface Reference<V extends pamtram.metamodel.Class<?, ?, ?>> extends M
 	 * @generated
 	 */
 	void setEReference(EReference value);
+
+	/**
+	 * Returns the value of the '<em><b>Owning Class</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link pamtram.metamodel.Class#getReferences <em>References</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owning Class</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owning Class</em>' container reference.
+	 * @see pamtram.metamodel.MetamodelPackage#getReference_OwningClass()
+	 * @see pamtram.metamodel.Class#getReferences
+	 * @model opposite="references" transient="false" changeable="false"
+	 * @generated
+	 */
+	pamtram.metamodel.Class<?, ?, ?> getOwningClass();
 
 } // Reference

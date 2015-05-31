@@ -4,7 +4,6 @@ package pamtram.metamodel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.TargetSectionAttribute;
@@ -17,7 +16,6 @@ import pamtram.metamodel.TargetSectionClass;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link pamtram.metamodel.impl.TargetSectionAttributeImpl#getOwningClass <em>Owning Class</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.TargetSectionAttributeImpl#isUnique <em>Unique</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.TargetSectionAttributeImpl#getValue <em>Value</em>}</li>
  * </ul>
@@ -26,15 +24,6 @@ import pamtram.metamodel.TargetSectionClass;
  * @generated
  */
 public abstract class TargetSectionAttributeImpl extends AttributeImpl<TargetSectionClass> implements TargetSectionAttribute {
-	/**
-	 * The cached value of the '{@link #getOwningClass() <em>Owning Class</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwningClass()
-	 * @generated
-	 * @ordered
-	 */
-	protected TargetSectionClass owningClass;
 	/**
 	 * The default value of the '{@link #isUnique() <em>Unique</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -97,32 +86,6 @@ public abstract class TargetSectionAttributeImpl extends AttributeImpl<TargetSec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TargetSectionClass getOwningClass() {
-		if (owningClass != null && owningClass.eIsProxy()) {
-			InternalEObject oldOwningClass = (InternalEObject)owningClass;
-			owningClass = (TargetSectionClass)eResolveProxy(oldOwningClass);
-			if (owningClass != oldOwningClass) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.TARGET_SECTION_ATTRIBUTE__OWNING_CLASS, oldOwningClass, owningClass));
-			}
-		}
-		return owningClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TargetSectionClass basicGetOwningClass() {
-		return owningClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean isUnique() {
 		return unique;
 	}
@@ -168,9 +131,6 @@ public abstract class TargetSectionAttributeImpl extends AttributeImpl<TargetSec
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE__OWNING_CLASS:
-				if (resolve) return getOwningClass();
-				return basicGetOwningClass();
 			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE__UNIQUE:
 				return isUnique();
 			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE__VALUE:
@@ -223,8 +183,6 @@ public abstract class TargetSectionAttributeImpl extends AttributeImpl<TargetSec
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE__OWNING_CLASS:
-				return owningClass != null;
 			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE__UNIQUE:
 				return unique != UNIQUE_EDEFAULT;
 			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE__VALUE:

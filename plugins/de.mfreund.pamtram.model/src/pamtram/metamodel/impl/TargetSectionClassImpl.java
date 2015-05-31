@@ -2,10 +2,13 @@
  */
 package pamtram.metamodel.impl;
 
+import java.lang.Class;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import pamtram.metamodel.Attribute;
 import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.Reference;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionReference;
@@ -48,7 +51,7 @@ public class TargetSectionClassImpl extends ClassImpl<TargetSectionClass, Target
 	@Override
 	public EList<TargetSectionReference> getReferences() {
 		if (references == null) {
-			references = new EObjectContainmentEList<TargetSectionReference>(TargetSectionReference.class, this, MetamodelPackage.TARGET_SECTION_CLASS__REFERENCES);
+			references = new EObjectContainmentWithInverseEList<TargetSectionReference>(TargetSectionReference.class, this, MetamodelPackage.TARGET_SECTION_CLASS__REFERENCES, MetamodelPackage.REFERENCE__OWNING_CLASS) { private static final long serialVersionUID = 1L; @Override public Class<?> getInverseFeatureClass() { return Reference.class; } };
 		}
 		return references;
 	}
@@ -73,7 +76,7 @@ public class TargetSectionClassImpl extends ClassImpl<TargetSectionClass, Target
 	@Override
 	public EList<TargetSectionAttribute> getAttributes() {
 		if (attributes == null) {
-			attributes = new EObjectContainmentEList<TargetSectionAttribute>(TargetSectionAttribute.class, this, MetamodelPackage.TARGET_SECTION_CLASS__ATTRIBUTES);
+			attributes = new EObjectContainmentWithInverseEList<TargetSectionAttribute>(TargetSectionAttribute.class, this, MetamodelPackage.TARGET_SECTION_CLASS__ATTRIBUTES, MetamodelPackage.ATTRIBUTE__OWNING_CLASS) { private static final long serialVersionUID = 1L; @Override public Class<?> getInverseFeatureClass() { return Attribute.class; } };
 		}
 		return attributes;
 	}

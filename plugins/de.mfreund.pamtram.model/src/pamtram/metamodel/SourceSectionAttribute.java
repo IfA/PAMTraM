@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EAttribute;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link pamtram.metamodel.SourceSectionAttribute#getOwningClass <em>Owning Class</em>}</li>
  *   <li>{@link pamtram.metamodel.SourceSectionAttribute#getAttribute <em>Attribute</em>}</li>
  *   <li>{@link pamtram.metamodel.SourceSectionAttribute#getValueConstraint <em>Value Constraint</em>}</li>
  * </ul>
@@ -26,21 +25,6 @@ import org.eclipse.emf.ecore.EAttribute;
  * @generated
  */
 public interface SourceSectionAttribute extends Attribute<SourceSectionClass> {
-	/**
-	 * Returns the value of the '<em><b>Owning Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owning Class</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Class</em>' reference.
-	 * @see pamtram.metamodel.MetamodelPackage#getSourceSectionAttribute_OwningClass()
-	 * @model required="true" changeable="false"
-	 * @generated
-	 */
-	SourceSectionClass getOwningClass();
-
 	/**
 	 * Returns the value of the '<em><b>Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->

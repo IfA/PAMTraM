@@ -2,13 +2,16 @@
  */
 package pamtram.metamodel.impl;
 
+import java.lang.Class;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import pamtram.metamodel.Attribute;
 import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.Reference;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
@@ -65,7 +68,7 @@ public class SourceSectionClassImpl extends ClassImpl<SourceSectionClass, Source
 	@Override
 	public EList<SourceSectionReference> getReferences() {
 		if (references == null) {
-			references = new EObjectContainmentEList<SourceSectionReference>(SourceSectionReference.class, this, MetamodelPackage.SOURCE_SECTION_CLASS__REFERENCES);
+			references = new EObjectContainmentWithInverseEList<SourceSectionReference>(SourceSectionReference.class, this, MetamodelPackage.SOURCE_SECTION_CLASS__REFERENCES, MetamodelPackage.REFERENCE__OWNING_CLASS) { private static final long serialVersionUID = 1L; @Override public Class<?> getInverseFeatureClass() { return Reference.class; } };
 		}
 		return references;
 	}
@@ -90,7 +93,7 @@ public class SourceSectionClassImpl extends ClassImpl<SourceSectionClass, Source
 	@Override
 	public EList<SourceSectionAttribute> getAttributes() {
 		if (attributes == null) {
-			attributes = new EObjectContainmentEList<SourceSectionAttribute>(SourceSectionAttribute.class, this, MetamodelPackage.SOURCE_SECTION_CLASS__ATTRIBUTES);
+			attributes = new EObjectContainmentWithInverseEList<SourceSectionAttribute>(SourceSectionAttribute.class, this, MetamodelPackage.SOURCE_SECTION_CLASS__ATTRIBUTES, MetamodelPackage.ATTRIBUTE__OWNING_CLASS) { private static final long serialVersionUID = 1L; @Override public Class<?> getInverseFeatureClass() { return Attribute.class; } };
 		}
 		return attributes;
 	}

@@ -13,7 +13,6 @@ package pamtram.metamodel;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link pamtram.metamodel.TargetSectionAttribute#getOwningClass <em>Owning Class</em>}</li>
  *   <li>{@link pamtram.metamodel.TargetSectionAttribute#isUnique <em>Unique</em>}</li>
  *   <li>{@link pamtram.metamodel.TargetSectionAttribute#getValue <em>Value</em>}</li>
  * </ul>
@@ -24,21 +23,6 @@ package pamtram.metamodel;
  * @generated
  */
 public interface TargetSectionAttribute extends Attribute<TargetSectionClass> {
-	/**
-	 * Returns the value of the '<em><b>Owning Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owning Class</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Class</em>' reference.
-	 * @see pamtram.metamodel.MetamodelPackage#getTargetSectionAttribute_OwningClass()
-	 * @model changeable="false"
-	 * @generated
-	 */
-	TargetSectionClass getOwningClass();
-
 	/**
 	 * Returns the value of the '<em><b>Unique</b></em>' attribute.
 	 * The default value is <code>"false"</code>.

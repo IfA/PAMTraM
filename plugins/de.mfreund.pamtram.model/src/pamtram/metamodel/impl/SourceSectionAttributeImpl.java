@@ -26,7 +26,6 @@ import pamtram.metamodel.SourceSectionClass;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link pamtram.metamodel.impl.SourceSectionAttributeImpl#getOwningClass <em>Owning Class</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.SourceSectionAttributeImpl#getAttribute <em>Attribute</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.SourceSectionAttributeImpl#getValueConstraint <em>Value Constraint</em>}</li>
  * </ul>
@@ -35,16 +34,6 @@ import pamtram.metamodel.SourceSectionClass;
  * @generated
  */
 public class SourceSectionAttributeImpl extends AttributeImpl<SourceSectionClass> implements SourceSectionAttribute {
-	/**
-	 * The cached value of the '{@link #getOwningClass() <em>Owning Class</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwningClass()
-	 * @generated
-	 * @ordered
-	 */
-	protected SourceSectionClass owningClass;
-
 	/**
 	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -82,33 +71,6 @@ public class SourceSectionAttributeImpl extends AttributeImpl<SourceSectionClass
 	@Override
 	protected EClass eStaticClass() {
 		return MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public SourceSectionClass getOwningClass() {
-		if (owningClass != null && owningClass.eIsProxy()) {
-			InternalEObject oldOwningClass = (InternalEObject)owningClass;
-			owningClass = (SourceSectionClass)eResolveProxy(oldOwningClass);
-			if (owningClass != oldOwningClass) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__OWNING_CLASS, oldOwningClass, owningClass));
-			}
-		}
-		return owningClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SourceSectionClass basicGetOwningClass() {
-		return owningClass;
 	}
 
 	/**
@@ -194,9 +156,6 @@ public class SourceSectionAttributeImpl extends AttributeImpl<SourceSectionClass
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__OWNING_CLASS:
-				if (resolve) return getOwningClass();
-				return basicGetOwningClass();
 			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE:
 				if (resolve) return getAttribute();
 				return basicGetAttribute();
@@ -252,8 +211,6 @@ public class SourceSectionAttributeImpl extends AttributeImpl<SourceSectionClass
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__OWNING_CLASS:
-				return owningClass != null;
 			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE:
 				return attribute != null;
 			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:

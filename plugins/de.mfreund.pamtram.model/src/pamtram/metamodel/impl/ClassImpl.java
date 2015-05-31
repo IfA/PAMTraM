@@ -4,7 +4,6 @@ package pamtram.metamodel.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -12,9 +11,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.ContainmentReference;
@@ -199,7 +197,7 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 	@Override
 	public EList<R> getReferences() {
 		if (references == null) {
-			references = new EObjectContainmentEList<R>(Reference.class, this, MetamodelPackage.CLASS__REFERENCES);
+			references = new EObjectContainmentWithInverseEList<R>(Reference.class, this, MetamodelPackage.CLASS__REFERENCES, MetamodelPackage.REFERENCE__OWNING_CLASS);
 		}
 		return references;
 	}
@@ -253,7 +251,7 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 	@Override
 	public EList<A> getAttributes() {
 		if (attributes == null) {
-			attributes = new EObjectContainmentEList<A>(Attribute.class, this, MetamodelPackage.CLASS__ATTRIBUTES);
+			attributes = new EObjectContainmentWithInverseEList<A>(Attribute.class, this, MetamodelPackage.CLASS__ATTRIBUTES, MetamodelPackage.ATTRIBUTE__OWNING_CLASS);
 		}
 		return attributes;
 	}
@@ -321,6 +319,23 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 					}
 				}
 				return found;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MetamodelPackage.CLASS__REFERENCES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getReferences()).basicAdd(otherEnd, msgs);
+			case MetamodelPackage.CLASS__ATTRIBUTES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAttributes()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**

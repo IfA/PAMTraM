@@ -137,6 +137,14 @@
           <eGenericType eTypeParameter="#//metamodel/Class/C"/>
         </eParameters>
       </eOperations>
+      <eOperations name="getOwningContainmentReference">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="if(this.eContainer() instanceof ContainmentReference&lt;?>) {&#xD;&#xA;&#x9;return (ContainmentReference&lt;C>) this.eContainer();&#xD;&#xA;} else {&#xD;&#xA;&#x9;return null;&#xD;&#xA;}"/>
+        </eAnnotations>
+        <eGenericType eClassifier="#//metamodel/ContainmentReference">
+          <eTypeArguments eTypeParameter="#//metamodel/Class/C"/>
+        </eGenericType>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="eClass" lowerBound="1"
           eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="cardinality" lowerBound="1"
@@ -151,12 +159,6 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
           containment="true" eOpposite="#//metamodel/Attribute/owningClass">
         <eGenericType eTypeParameter="#//metamodel/Class/A"/>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="owningContainmentReference"
-          eOpposite="#//metamodel/ContainmentReference/value">
-        <eGenericType eClassifier="#//metamodel/ContainmentReference">
-          <eTypeArguments/>
-        </eGenericType>
       </eStructuralFeatures>
       <eGenericSuperTypes eClassifier="#//metamodel/MetaModelElement">
         <eTypeArguments eTypeParameter="#//metamodel/Class/C"/>
@@ -271,7 +273,7 @@
         </eBounds>
       </eTypeParameters>
       <eStructuralFeatures xsi:type="ecore:EReference" name="value" upperBound="-1"
-          containment="true" eOpposite="#//metamodel/Class/owningContainmentReference">
+          containment="true">
         <eGenericType eTypeParameter="#//metamodel/ContainmentReference/V"/>
       </eStructuralFeatures>
       <eGenericSuperTypes eClassifier="#//metamodel/Reference">

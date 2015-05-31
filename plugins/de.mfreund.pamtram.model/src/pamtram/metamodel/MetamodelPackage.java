@@ -254,13 +254,22 @@ public interface MetamodelPackage extends EPackage {
 	int CLASS___IS_CONTAINED_IN_GENERIC__CLASS = META_MODEL_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Get Owning Containment Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS___GET_OWNING_CONTAINMENT_REFERENCE = META_MODEL_ELEMENT_OPERATION_COUNT + 3;
+
+	/**
 	 * The number of operations of the '<em>Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_OPERATION_COUNT = META_MODEL_ELEMENT_OPERATION_COUNT + 3;
+	int CLASS_OPERATION_COUNT = META_MODEL_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link pamtram.metamodel.impl.SourceSectionClassImpl <em>Source Section Class</em>}' class.
@@ -327,22 +336,13 @@ public interface MetamodelPackage extends EPackage {
 	int SOURCE_SECTION_CLASS__ATTRIBUTES = CLASS__ATTRIBUTES;
 
 	/**
-	 * The feature id for the '<em><b>Owning Containment Reference</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOURCE_SECTION_CLASS__OWNING_CONTAINMENT_REFERENCE = CLASS_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Source Section Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 1;
+	int SOURCE_SECTION_CLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -397,6 +397,15 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int SOURCE_SECTION_CLASS___IS_CONTAINED_IN_GENERIC__CLASS = CLASS___IS_CONTAINED_IN_GENERIC__CLASS;
+
+	/**
+	 * The operation id for the '<em>Get Owning Containment Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_CLASS___GET_OWNING_CONTAINMENT_REFERENCE = CLASS___GET_OWNING_CONTAINMENT_REFERENCE;
 
 	/**
 	 * The number of operations of the '<em>Source Section Class</em>' class.
@@ -533,6 +542,15 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int TARGET_SECTION_CLASS___IS_CONTAINED_IN_GENERIC__CLASS = CLASS___IS_CONTAINED_IN_GENERIC__CLASS;
+
+	/**
+	 * The operation id for the '<em>Get Owning Containment Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CLASS___GET_OWNING_CONTAINMENT_REFERENCE = CLASS___GET_OWNING_CONTAINMENT_REFERENCE;
 
 	/**
 	 * The number of operations of the '<em>Target Section Class</em>' class.
@@ -2797,6 +2815,16 @@ public interface MetamodelPackage extends EPackage {
 	EOperation getClass__IsContainedInGeneric__Class();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.metamodel.Class#getOwningContainmentReference() <em>Get Owning Containment Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Owning Containment Reference</em>' operation.
+	 * @see pamtram.metamodel.Class#getOwningContainmentReference()
+	 * @generated
+	 */
+	EOperation getClass__GetOwningContainmentReference();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.SourceSectionClass <em>Source Section Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2805,17 +2833,6 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getSourceSectionClass();
-
-	/**
-	 * Returns the meta object for the reference '{@link pamtram.metamodel.SourceSectionClass#getOwningContainmentReference <em>Owning Containment Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Owning Containment Reference</em>'.
-	 * @see pamtram.metamodel.SourceSectionClass#getOwningContainmentReference()
-	 * @see #getSourceSectionClass()
-	 * @generated
-	 */
-	EReference getSourceSectionClass_OwningContainmentReference();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.TargetSectionClass <em>Target Section Class</em>}'.
@@ -3522,6 +3539,14 @@ public interface MetamodelPackage extends EPackage {
 		EOperation CLASS___IS_CONTAINED_IN_GENERIC__CLASS = eINSTANCE.getClass__IsContainedInGeneric__Class();
 
 		/**
+		 * The meta object literal for the '<em><b>Get Owning Containment Reference</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CLASS___GET_OWNING_CONTAINMENT_REFERENCE = eINSTANCE.getClass__GetOwningContainmentReference();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.SourceSectionClassImpl <em>Source Section Class</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3530,14 +3555,6 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass SOURCE_SECTION_CLASS = eINSTANCE.getSourceSectionClass();
-
-		/**
-		 * The meta object literal for the '<em><b>Owning Containment Reference</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SOURCE_SECTION_CLASS__OWNING_CONTAINMENT_REFERENCE = eINSTANCE.getSourceSectionClass_OwningContainmentReference();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.TargetSectionClassImpl <em>Target Section Class</em>}' class.

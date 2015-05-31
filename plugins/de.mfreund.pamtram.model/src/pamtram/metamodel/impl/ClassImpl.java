@@ -4,6 +4,7 @@ package pamtram.metamodel.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -13,6 +14,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.ContainmentReference;
@@ -326,6 +328,21 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public ContainmentReference<C> getOwningContainmentReference() {
+		if(this.eContainer() instanceof ContainmentReference<?>) {
+			return (ContainmentReference<C>) this.eContainer();
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -472,6 +489,8 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 				return isSection();
 			case MetamodelPackage.CLASS___IS_CONTAINED_IN_GENERIC__CLASS:
 				return isContainedInGeneric((C)arguments.get(0));
+			case MetamodelPackage.CLASS___GET_OWNING_CONTAINMENT_REFERENCE:
+				return getOwningContainmentReference();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -496,8 +496,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSourceSectionClass() {
-		return sourceSectionClassEClass;
+	public EOperation getClass__GetOwningContainmentReference() {
+		return classEClass.getEOperations().get(3);
 	}
 
 	/**
@@ -505,8 +505,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSourceSectionClass_OwningContainmentReference() {
-		return (EReference)sourceSectionClassEClass.getEStructuralFeatures().get(0);
+	public EClass getSourceSectionClass() {
+		return sourceSectionClassEClass;
 	}
 
 	/**
@@ -1046,9 +1046,9 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEOperation(classEClass, CLASS___IS_CONTAINER_FOR_GENERIC__CLASS);
 		createEOperation(classEClass, CLASS___IS_SECTION);
 		createEOperation(classEClass, CLASS___IS_CONTAINED_IN_GENERIC__CLASS);
+		createEOperation(classEClass, CLASS___GET_OWNING_CONTAINMENT_REFERENCE);
 
 		sourceSectionClassEClass = createEClass(SOURCE_SECTION_CLASS);
-		createEReference(sourceSectionClassEClass, SOURCE_SECTION_CLASS__OWNING_CONTAINMENT_REFERENCE);
 
 		targetSectionClassEClass = createEClass(TARGET_SECTION_CLASS);
 
@@ -1368,8 +1368,13 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		g1 = createEGenericType(classEClass_C);
 		addEParameter(op, g1, "containerClass", 1, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = initEOperation(getClass__GetOwningContainmentReference(), null, "getOwningContainmentReference", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(this.getContainmentReference());
+		g2 = createEGenericType(classEClass_C);
+		g1.getETypeArguments().add(g2);
+		initEOperation(op, g1);
+
 		initEClass(sourceSectionClassEClass, SourceSectionClass.class, "SourceSectionClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSourceSectionClass_OwningContainmentReference(), this.getSourceSectionContainmentReference(), null, "owningContainmentReference", null, 0, 1, SourceSectionClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(targetSectionClassEClass, TargetSectionClass.class, "TargetSectionClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

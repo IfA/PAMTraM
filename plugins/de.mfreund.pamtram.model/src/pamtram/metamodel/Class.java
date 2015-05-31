@@ -171,4 +171,13 @@ public interface Class<C extends Class<C, R, A>, R extends Reference<C>, A exten
 	 */
 	boolean isContainedInGeneric(C containerClass);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='if(this.eContainer() instanceof ContainmentReference<?>) {\r\n\treturn (ContainmentReference<C>) this.eContainer();\r\n} else {\r\n\treturn null;\r\n}'"
+	 * @generated
+	 */
+	ContainmentReference<C> getOwningContainmentReference();
+
 } // Class

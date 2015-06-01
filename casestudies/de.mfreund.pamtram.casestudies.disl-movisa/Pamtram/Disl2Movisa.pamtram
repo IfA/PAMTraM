@@ -3682,7 +3682,7 @@
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="ruleId" source="//@sourceSectionModel/@metaModelSections.5/@references.1/@value.0/@attributes.2" modifier="//@mappingModel/@modifierSets.24"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.40/@references.1/@value.0/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.41/@references.1/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.0" modifier="//@mappingModel/@modifierSets.1"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="ruleId" source="//@sourceSectionModel/@metaModelSections.5/@references.1/@value.0/@attributes.2" modifier="//@mappingModel/@modifierSets.11"/>
         </mappingHints>

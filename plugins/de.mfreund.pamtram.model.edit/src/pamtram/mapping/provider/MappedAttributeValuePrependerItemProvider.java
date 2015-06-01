@@ -18,7 +18,7 @@ import pamtram.mapping.MappedAttributeValuePrepender;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MappedAttributeValuePrependerItemProvider extends MappedAttributeValueExpanderItemProvider {
+public class MappedAttributeValuePrependerItemProvider extends LocalMappedAttributeValueExpanderItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

@@ -3,13 +3,9 @@
 package pamtram.mapping.provider;
 
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -26,14 +22,11 @@ import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.MappedAttributeValueExpander;
-import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.commands.BasicDragAndDropAddCommand;
-import pamtram.metamodel.MetaModelSectionReference;
-import pamtram.metamodel.SourceSectionClass;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.MappedAttributeValueExpander} object.
@@ -41,7 +34,7 @@ import pamtram.metamodel.SourceSectionClass;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MappedAttributeValueExpanderItemProvider extends MappedAttributeValueExpanderTypeItemProvider {
+public class MappedAttributeValueExpanderItemProvider extends HintImporterMappingHintItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -113,65 +106,65 @@ public class MappedAttributeValueExpanderItemProvider extends MappedAttributeVal
 			});
 	}
 
-	/**
-	 * This adds a property descriptor for the Source Attribute feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 */
-	@Override
-	protected void addSourceAttributePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MappedAttributeValueExpander_sourceAttribute_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MappedAttributeValueExpander_sourceAttribute_feature", "_UI_MappedAttributeValueExpander_type"),
-				 MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__SOURCE_ATTRIBUTE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null){
-
-					@Override
-					public Collection<?> getChoiceOfValues(Object object) {
-
-						//the parent Mapping Hint Group
-						MappingHintGroupImporter parent=(MappingHintGroupImporter) ((MappedAttributeValueExpander) object).eContainer();
-
-						// the source section
-						SourceSectionClass source = ((Mapping)parent.eContainer()).getSourceMMSection();
-
-						List<Object> choiceOfValues = new ArrayList<Object>();
-						
-						// iterate over all elements and return the attributes as possible options
-						Set<SourceSectionClass> scanned=new HashSet<SourceSectionClass>();
-						List<SourceSectionClass> sectionsToScan=new ArrayList<SourceSectionClass>();
-						sectionsToScan.add(source);
-						
-						while(sectionsToScan.size() > 0){
-							SourceSectionClass classToScan=sectionsToScan.remove(0);
-							scanned.add(classToScan);
-							
-							Iterator<EObject> it = classToScan.eAllContents();
-							while(it.hasNext()) {
-								EObject next = it.next();
-								if(next instanceof pamtram.metamodel.Attribute) {
-									choiceOfValues.add(next);
-								} else if(next instanceof MetaModelSectionReference){
-									List<SourceSectionClass> vals=new ArrayList<SourceSectionClass>();
-									vals.addAll(((MetaModelSectionReference) next).getValue());
-									vals.removeAll(scanned);
-									sectionsToScan.addAll(vals);
-								}
-							}
-						}
-						
-						return choiceOfValues;
-					}
-			});
-	}
+//	/**
+//	 * This adds a property descriptor for the Source Attribute feature.
+//	 * <!-- begin-user-doc -->
+//	 * <!-- end-user-doc -->
+//	 */
+//	@Override
+//	protected void addSourceAttributePropertyDescriptor(Object object) {
+//		itemPropertyDescriptors.add
+//			(new ItemPropertyDescriptor
+//				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+//				 getResourceLocator(),
+//				 getString("_UI_MappedAttributeValueExpander_sourceAttribute_feature"),
+//				 getString("_UI_PropertyDescriptor_description", "_UI_MappedAttributeValueExpander_sourceAttribute_feature", "_UI_MappedAttributeValueExpander_type"),
+//				 MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__SOURCE_ATTRIBUTE,
+//				 true,
+//				 false,
+//				 true,
+//				 null,
+//				 null,
+//				 null){
+//
+//					@Override
+//					public Collection<?> getChoiceOfValues(Object object) {
+//
+//						//the parent Mapping Hint Group
+//						MappingHintGroupImporter parent=(MappingHintGroupImporter) ((MappedAttributeValueExpander) object).eContainer();
+//
+//						// the source section
+//						SourceSectionClass source = ((Mapping)parent.eContainer()).getSourceMMSection();
+//
+//						List<Object> choiceOfValues = new ArrayList<Object>();
+//						
+//						// iterate over all elements and return the attributes as possible options
+//						Set<SourceSectionClass> scanned=new HashSet<SourceSectionClass>();
+//						List<SourceSectionClass> sectionsToScan=new ArrayList<SourceSectionClass>();
+//						sectionsToScan.add(source);
+//						
+//						while(sectionsToScan.size() > 0){
+//							SourceSectionClass classToScan=sectionsToScan.remove(0);
+//							scanned.add(classToScan);
+//							
+//							Iterator<EObject> it = classToScan.eAllContents();
+//							while(it.hasNext()) {
+//								EObject next = it.next();
+//								if(next instanceof pamtram.metamodel.Attribute) {
+//									choiceOfValues.add(next);
+//								} else if(next instanceof MetaModelSectionReference){
+//									List<SourceSectionClass> vals=new ArrayList<SourceSectionClass>();
+//									vals.addAll(((MetaModelSectionReference) next).getValue());
+//									vals.removeAll(scanned);
+//									sectionsToScan.addAll(vals);
+//								}
+//							}
+//						}
+//						
+//						return choiceOfValues;
+//					}
+//			});
+//	}
 
 	/**
 	 * This returns the label text for the adapted class.
@@ -220,8 +213,7 @@ public class MappedAttributeValueExpanderItemProvider extends MappedAttributeVal
 		
 		
 		EList<ExpandableHint> values = new BasicEList<ExpandableHint>();
-		for(Iterator<?> iter = collection.iterator(); iter.hasNext(); ) {
-			Object value = iter.next();
+		for (Object value : collection) {
 			if(value instanceof ExpandableHint) {
 				values.add((ExpandableHint) value);
 			} else {

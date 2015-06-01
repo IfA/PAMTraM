@@ -3,7 +3,6 @@
 package pamtram.mapping.provider;
 
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -11,15 +10,9 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
-import pamtram.SourceSectionModel;
 import pamtram.mapping.ExternalMappedAttributeValueExpander;
-import pamtram.mapping.Mapping;
-import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingPackage;
-import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.SourceSectionContainmentReference;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.ExternalMappedAttributeValueExpander} object.
@@ -27,7 +20,7 @@ import pamtram.metamodel.SourceSectionContainmentReference;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ExternalMappedAttributeValueExpanderItemProvider extends MappedAttributeValueExpanderItemProvider {
+public class ExternalMappedAttributeValueExpanderItemProvider extends ExternalModifiedAttributeElementTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -49,8 +42,31 @@ public class ExternalMappedAttributeValueExpanderItemProvider extends MappedAttr
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addHintsToExpandPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Hints To Expand feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addHintsToExpandPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_MappedAttributeValueExpander_hintsToExpand_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MappedAttributeValueExpander_hintsToExpand_feature", "_UI_MappedAttributeValueExpander_type"),
+				 MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -94,54 +110,54 @@ public class ExternalMappedAttributeValueExpanderItemProvider extends MappedAttr
 	}
 
 
-	/* (non-Javadoc)
-	 * @see pamtram.mapping.provider.MappedAttributeValueExpanderItemProvider#addSourceAttributePropertyDescriptor(java.lang.Object)
-	 */
-	@Override
-	protected void addSourceAttributePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-		(new ItemPropertyDescriptor
-			(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-			 getResourceLocator(),
-			 getString("_UI_MappedAttributeValueExpander_sourceAttribute_feature"),
-			 getString("_UI_PropertyDescriptor_description", "_UI_MappedAttributeValueExpander_sourceAttribute_feature", "_UI_MappedAttributeValueExpander_type"),
-			 MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__SOURCE_ATTRIBUTE,
-			 true,
-			 false,
-			 true,
-			 null,
-			 null,
-			 null){
-
-				@Override
-				public Collection<?> getChoiceOfValues(Object object) {
-
-					//the parent Mapping Hint Group
-					MappingHintGroupImporter parent=(MappingHintGroupImporter) ((ExternalMappedAttributeValueExpander) object).eContainer();
-					// the parent mapping
-					Mapping mapping=(Mapping)parent.eContainer();
-
-					// the container section
-					SourceSectionClass container = mapping.getSourceMMSection().getContainer();
-
-					List<Object> choiceOfValues = new ArrayList<Object>();
-					
-					if(container != null){
-						//add atttributes of container and the metamodel section above
-						while(true){
-							choiceOfValues.addAll(container.getAttributes());
-							if(container.eContainer() instanceof SourceSectionContainmentReference){
-								container=(SourceSectionClass) container.eContainer().eContainer();
-							}else if(container.eContainer() instanceof SourceSectionModel && container.getContainer() != null){
-								container=container.getContainer();
-							} else {
-								break;
-							}
-						}
-					}					
-					return choiceOfValues;
-				}
-		});
-	}
+//	/* (non-Javadoc)
+//	 * @see pamtram.mapping.provider.MappedAttributeValueExpanderItemProvider#addSourceAttributePropertyDescriptor(java.lang.Object)
+//	 */
+//	@Override
+//	protected void addSourceAttributePropertyDescriptor(Object object) {
+//		itemPropertyDescriptors.add
+//		(new ItemPropertyDescriptor
+//			(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+//			 getResourceLocator(),
+//			 getString("_UI_MappedAttributeValueExpander_sourceAttribute_feature"),
+//			 getString("_UI_PropertyDescriptor_description", "_UI_MappedAttributeValueExpander_sourceAttribute_feature", "_UI_MappedAttributeValueExpander_type"),
+//			 MappingPackage.Literals.ModifMAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__SOURCE_ATTRIBUTE,
+//			 true,
+//			 false,
+//			 true,
+//			 null,
+//			 null,
+//			 null){
+//
+//				@Override
+//				public Collection<?> getChoiceOfValues(Object object) {
+//
+//					//the parent Mapping Hint Group
+//					MappingHintGroupImporter parent=(MappingHintGroupImporter) ((ExternalMappedAttributeValueExpander) object).eContainer();
+//					// the parent mapping
+//					Mapping mapping=(Mapping)parent.eContainer();
+//
+//					// the container section
+//					SourceSectionClass container = mapping.getSourceMMSection().getContainer();
+//
+//					List<Object> choiceOfValues = new ArrayList<Object>();
+//					
+//					if(container != null){
+//						//add atttributes of container and the metamodel section above
+//						while(true){
+//							choiceOfValues.addAll(container.getAttributes());
+//							if(container.eContainer() instanceof SourceSectionContainmentReference){
+//								container=(SourceSectionClass) container.eContainer().eContainer();
+//							}else if(container.eContainer() instanceof SourceSectionModel && container.getContainer() != null){
+//								container=container.getContainer();
+//							} else {
+//								break;
+//							}
+//						}
+//					}					
+//					return choiceOfValues;
+//				}
+//		});
+//	}
 
 }

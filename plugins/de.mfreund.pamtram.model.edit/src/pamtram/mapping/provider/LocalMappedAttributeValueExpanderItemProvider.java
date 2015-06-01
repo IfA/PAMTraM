@@ -8,24 +8,27 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
-import pamtram.mapping.MappedAttributeValueAppender;
+import pamtram.mapping.LocalMappedAttributeValueExpander;
+import pamtram.mapping.MappingPackage;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.MappedAttributeValueAppender} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.LocalMappedAttributeValueExpander} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MappedAttributeValueAppenderItemProvider extends LocalMappedAttributeValueExpanderItemProvider {
+public class LocalMappedAttributeValueExpanderItemProvider extends LocalModifiedAttributeElementTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MappedAttributeValueAppenderItemProvider(AdapterFactory adapterFactory) {
+	public LocalMappedAttributeValueExpanderItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -40,19 +43,42 @@ public class MappedAttributeValueAppenderItemProvider extends LocalMappedAttribu
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addHintsToExpandPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This returns MappedAttributeValueAppender.gif.
+	 * This adds a property descriptor for the Hints To Expand feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addHintsToExpandPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_MappedAttributeValueExpander_hintsToExpand_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MappedAttributeValueExpander_hintsToExpand_feature", "_UI_MappedAttributeValueExpander_type"),
+				 MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This returns LocalMappedAttributeValueExpander.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MappedAttributeValueAppender"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/LocalMappedAttributeValueExpander"));
 	}
 
 	/**
@@ -63,10 +89,10 @@ public class MappedAttributeValueAppenderItemProvider extends LocalMappedAttribu
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((MappedAttributeValueAppender)object).getName();
+		String label = ((LocalMappedAttributeValueExpander)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_MappedAttributeValueAppender_type") :
-			getString("_UI_MappedAttributeValueAppender_type") + " " + label;
+			getString("_UI_LocalMappedAttributeValueExpander_type") :
+			getString("_UI_LocalMappedAttributeValueExpander_type") + " " + label;
 	}
 	
 

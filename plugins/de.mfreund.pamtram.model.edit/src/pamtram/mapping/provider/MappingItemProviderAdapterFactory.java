@@ -508,6 +508,29 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.LocalMappedAttributeValueExpander} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LocalMappedAttributeValueExpanderItemProvider localMappedAttributeValueExpanderItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.LocalMappedAttributeValueExpander}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLocalMappedAttributeValueExpanderAdapter() {
+		if (localMappedAttributeValueExpanderItemProvider == null) {
+			localMappedAttributeValueExpanderItemProvider = new LocalMappedAttributeValueExpanderItemProvider(this);
+		}
+
+		return localMappedAttributeValueExpanderItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link pamtram.mapping.MappedAttributeValuePrepender} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -901,6 +924,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (attributeMappingSourceElementItemProvider != null) attributeMappingSourceElementItemProvider.dispose();
 		if (modelConnectionHintSourceElementItemProvider != null) modelConnectionHintSourceElementItemProvider.dispose();
 		if (modelConnectionHintTargetAttributeItemProvider != null) modelConnectionHintTargetAttributeItemProvider.dispose();
+		if (localMappedAttributeValueExpanderItemProvider != null) localMappedAttributeValueExpanderItemProvider.dispose();
 		if (mappedAttributeValuePrependerItemProvider != null) mappedAttributeValuePrependerItemProvider.dispose();
 		if (mappedAttributeValueAppenderItemProvider != null) mappedAttributeValueAppenderItemProvider.dispose();
 		if (globalAttributeItemProvider != null) globalAttributeItemProvider.dispose();

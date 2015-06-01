@@ -25,18 +25,49 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SectionModel" abstract="true">
+    <eTypeParameters name="C">
+      <eBounds eClassifier="#//metamodel/Class">
+        <eTypeArguments eTypeParameter="#//SectionModel/C"/>
+        <eTypeArguments eTypeParameter="#//SectionModel/R"/>
+        <eTypeArguments eTypeParameter="#//SectionModel/A"/>
+      </eBounds>
+    </eTypeParameters>
+    <eTypeParameters name="R">
+      <eBounds eClassifier="#//metamodel/Reference">
+        <eTypeArguments eTypeParameter="#//SectionModel/C"/>
+        <eTypeArguments eTypeParameter="#//SectionModel/R"/>
+        <eTypeArguments eTypeParameter="#//SectionModel/A"/>
+      </eBounds>
+    </eTypeParameters>
+    <eTypeParameters name="A">
+      <eBounds eClassifier="#//metamodel/Attribute">
+        <eTypeArguments eTypeParameter="#//SectionModel/C"/>
+        <eTypeArguments eTypeParameter="#//SectionModel/R"/>
+        <eTypeArguments eTypeParameter="#//SectionModel/A"/>
+      </eBounds>
+    </eTypeParameters>
     <eStructuralFeatures xsi:type="ecore:EReference" name="metaModelPackage" lowerBound="1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SourceSectionModel" eSuperTypes="#//SectionModel">
     <eStructuralFeatures xsi:type="ecore:EReference" name="metaModelSections" upperBound="-1"
-        eType="#//metamodel/SourceSectionClass" containment="true"/>
+        containment="true">
+      <eGenericType eTypeParameter="#//SectionModel/C"/>
+    </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TargetSectionModel" eSuperTypes="#//SectionModel">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="metaModelSections" upperBound="-1"
-        eType="#//metamodel/TargetSectionClass" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SourceSectionModel">
+    <eGenericSuperTypes eClassifier="#//SectionModel">
+      <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
+      <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
+      <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TargetSectionModel">
     <eStructuralFeatures xsi:type="ecore:EReference" name="libraryElements" upperBound="-1"
         eType="#//metamodel/LibraryEntry" containment="true"/>
+    <eGenericSuperTypes eClassifier="#//SectionModel">
+      <eTypeArguments eClassifier="#//metamodel/TargetSectionClass"/>
+      <eTypeArguments eClassifier="#//metamodel/TargetSectionReference"/>
+      <eTypeArguments eClassifier="#//metamodel/TargetSectionAttribute"/>
+    </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MappingModel">
     <eOperations name="getActiveMappings" upperBound="-1" eType="#//mapping/Mapping">
@@ -94,10 +125,15 @@
         </eAnnotations>
         <eGenericType eTypeParameter="#//metamodel/MetaModelElement/C"/>
       </eOperations>
-      <eOperations name="getContainingSectionModel" lowerBound="1" eType="#//SectionModel">
+      <eOperations name="getContainingSectionModel" lowerBound="1">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="body" value="Class section = this.getContainingSection();&#xD;&#xA;&#xD;&#xA;EObject container = section.eContainer();&#xD;&#xA;while(!(container instanceof SectionModel)) {&#xD;&#xA;&#x9;// we have reached the root element&#xD;&#xA;&#x9;if(container == null) {&#xD;&#xA;&#x9;&#x9;return null;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;container = container.eContainer();&#xD;&#xA;}&#xD;&#xA;return (SectionModel) container;"/>
         </eAnnotations>
+        <eGenericType eClassifier="#//SectionModel">
+          <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/C"/>
+          <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/R"/>
+          <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/A"/>
+        </eGenericType>
       </eOperations>
       <eOperations name="isLibraryEntry" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

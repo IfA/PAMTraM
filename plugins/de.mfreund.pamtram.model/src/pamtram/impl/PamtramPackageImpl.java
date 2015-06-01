@@ -5,9 +5,11 @@ package pamtram.impl;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.GenLibraryPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import pamtram.DeactivatableElement;
@@ -283,8 +285,8 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSourceSectionModel() {
-		return sourceSectionModelEClass;
+	public EReference getSectionModel_MetaModelSections() {
+		return (EReference)sectionModelEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -292,8 +294,8 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSourceSectionModel_MetaModelSections() {
-		return (EReference)sourceSectionModelEClass.getEStructuralFeatures().get(0);
+	public EClass getSourceSectionModel() {
+		return sourceSectionModelEClass;
 	}
 
 	/**
@@ -310,17 +312,8 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTargetSectionModel_MetaModelSections() {
-		return (EReference)targetSectionModelEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getTargetSectionModel_LibraryElements() {
-		return (EReference)targetSectionModelEClass.getEStructuralFeatures().get(1);
+		return (EReference)targetSectionModelEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -429,12 +422,11 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 
 		sectionModelEClass = createEClass(SECTION_MODEL);
 		createEReference(sectionModelEClass, SECTION_MODEL__META_MODEL_PACKAGE);
+		createEReference(sectionModelEClass, SECTION_MODEL__META_MODEL_SECTIONS);
 
 		sourceSectionModelEClass = createEClass(SOURCE_SECTION_MODEL);
-		createEReference(sourceSectionModelEClass, SOURCE_SECTION_MODEL__META_MODEL_SECTIONS);
 
 		targetSectionModelEClass = createEClass(TARGET_SECTION_MODEL);
-		createEReference(targetSectionModelEClass, TARGET_SECTION_MODEL__META_MODEL_SECTIONS);
 		createEReference(targetSectionModelEClass, TARGET_SECTION_MODEL__LIBRARY_ELEMENTS);
 
 		mappingModelEClass = createEClass(MAPPING_MODEL);
@@ -483,12 +475,53 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		getESubpackages().add(theMappingPackage);
 
 		// Create type parameters
+		ETypeParameter sectionModelEClass_C = addETypeParameter(sectionModelEClass, "C");
+		ETypeParameter sectionModelEClass_R = addETypeParameter(sectionModelEClass, "R");
+		ETypeParameter sectionModelEClass_A = addETypeParameter(sectionModelEClass, "A");
 
 		// Set bounds for type parameters
+		EGenericType g1 = createEGenericType(theMetamodelPackage.getClass_());
+		EGenericType g2 = createEGenericType(sectionModelEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(sectionModelEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(sectionModelEClass_A);
+		g1.getETypeArguments().add(g2);
+		sectionModelEClass_C.getEBounds().add(g1);
+		g1 = createEGenericType(theMetamodelPackage.getReference());
+		g2 = createEGenericType(sectionModelEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(sectionModelEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(sectionModelEClass_A);
+		g1.getETypeArguments().add(g2);
+		sectionModelEClass_R.getEBounds().add(g1);
+		g1 = createEGenericType(theMetamodelPackage.getAttribute());
+		g2 = createEGenericType(sectionModelEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(sectionModelEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(sectionModelEClass_A);
+		g1.getETypeArguments().add(g2);
+		sectionModelEClass_A.getEBounds().add(g1);
 
 		// Add supertypes to classes
-		sourceSectionModelEClass.getESuperTypes().add(this.getSectionModel());
-		targetSectionModelEClass.getESuperTypes().add(this.getSectionModel());
+		g1 = createEGenericType(this.getSectionModel());
+		g2 = createEGenericType(theMetamodelPackage.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theMetamodelPackage.getSourceSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theMetamodelPackage.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		sourceSectionModelEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getSectionModel());
+		g2 = createEGenericType(theMetamodelPackage.getTargetSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theMetamodelPackage.getTargetSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theMetamodelPackage.getTargetSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		targetSectionModelEClass.getEGenericSuperTypes().add(g1);
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -506,12 +539,12 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 
 		initEClass(sectionModelEClass, SectionModel.class, "SectionModel", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSectionModel_MetaModelPackage(), ecorePackage.getEPackage(), null, "metaModelPackage", null, 1, 1, SectionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		g1 = createEGenericType(sectionModelEClass_C);
+		initEReference(getSectionModel_MetaModelSections(), g1, null, "metaModelSections", null, 0, -1, SectionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sourceSectionModelEClass, SourceSectionModel.class, "SourceSectionModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSourceSectionModel_MetaModelSections(), theMetamodelPackage.getSourceSectionClass(), null, "metaModelSections", null, 0, -1, SourceSectionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(targetSectionModelEClass, TargetSectionModel.class, "TargetSectionModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTargetSectionModel_MetaModelSections(), theMetamodelPackage.getTargetSectionClass(), null, "metaModelSections", null, 0, -1, TargetSectionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTargetSectionModel_LibraryElements(), theMetamodelPackage.getLibraryEntry(), null, "libraryElements", null, 0, -1, TargetSectionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(mappingModelEClass, MappingModel.class, "MappingModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

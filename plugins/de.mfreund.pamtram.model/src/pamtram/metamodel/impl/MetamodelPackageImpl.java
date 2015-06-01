@@ -1490,7 +1490,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		g1 = createEGenericType(metaModelElementEClass_C);
 		initEOperation(op, g1);
 
-		initEOperation(getMetaModelElement__GetContainingSectionModel(), thePamtramPackage.getSectionModel(), "getContainingSectionModel", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getMetaModelElement__GetContainingSectionModel(), null, "getContainingSectionModel", 1, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(thePamtramPackage.getSectionModel());
+		g2 = createEGenericType(metaModelElementEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(metaModelElementEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(metaModelElementEClass_A);
+		g1.getETypeArguments().add(g2);
+		initEOperation(op, g1);
 
 		initEOperation(getMetaModelElement__IsLibraryEntry(), ecorePackage.getEBoolean(), "isLibraryEntry", 1, 1, IS_UNIQUE, IS_ORDERED);
 

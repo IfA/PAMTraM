@@ -4,7 +4,9 @@ package pamtram;
 
 import org.eclipse.emf.common.util.EList;
 import pamtram.metamodel.LibraryEntry;
+import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
+import pamtram.metamodel.TargetSectionReference;
 
 
 /**
@@ -15,7 +17,6 @@ import pamtram.metamodel.TargetSectionClass;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link pamtram.TargetSectionModel#getMetaModelSections <em>Meta Model Sections</em>}</li>
  *   <li>{@link pamtram.TargetSectionModel#getLibraryElements <em>Library Elements</em>}</li>
  * </ul>
  * </p>
@@ -24,23 +25,7 @@ import pamtram.metamodel.TargetSectionClass;
  * @model
  * @generated
  */
-public interface TargetSectionModel extends SectionModel {
-
-	/**
-	 * Returns the value of the '<em><b>Meta Model Sections</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.metamodel.TargetSectionClass}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Meta Model Sections</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Meta Model Sections</em>' containment reference list.
-	 * @see pamtram.PamtramPackage#getTargetSectionModel_MetaModelSections()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<TargetSectionClass> getMetaModelSections();
+public interface TargetSectionModel extends SectionModel<TargetSectionClass, TargetSectionReference, TargetSectionAttribute> {
 
 	/**
 	 * Returns the value of the '<em><b>Library Elements</b></em>' containment reference list.

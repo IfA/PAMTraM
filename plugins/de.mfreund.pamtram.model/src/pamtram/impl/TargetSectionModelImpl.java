@@ -12,7 +12,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.PamtramPackage;
 import pamtram.TargetSectionModel;
 import pamtram.metamodel.LibraryEntry;
+import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
+import pamtram.metamodel.TargetSectionReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,24 +23,13 @@ import pamtram.metamodel.TargetSectionClass;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link pamtram.impl.TargetSectionModelImpl#getMetaModelSections <em>Meta Model Sections</em>}</li>
  *   <li>{@link pamtram.impl.TargetSectionModelImpl#getLibraryElements <em>Library Elements</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class TargetSectionModelImpl extends SectionModelImpl implements TargetSectionModel {
-	/**
-	 * The cached value of the '{@link #getMetaModelSections() <em>Meta Model Sections</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMetaModelSections()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<TargetSectionClass> metaModelSections;
-
+public class TargetSectionModelImpl extends SectionModelImpl<TargetSectionClass, TargetSectionReference, TargetSectionAttribute> implements TargetSectionModel {
 	/**
 	 * The cached value of the '{@link #getLibraryElements() <em>Library Elements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -71,8 +62,10 @@ public class TargetSectionModelImpl extends SectionModelImpl implements TargetSe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific element type known in this context.
 	 * @generated
 	 */
+	@Override
 	public EList<TargetSectionClass> getMetaModelSections() {
 		if (metaModelSections == null) {
 			metaModelSections = new EObjectContainmentEList<TargetSectionClass>(TargetSectionClass.class, this, PamtramPackage.TARGET_SECTION_MODEL__META_MODEL_SECTIONS);
@@ -100,8 +93,6 @@ public class TargetSectionModelImpl extends SectionModelImpl implements TargetSe
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case PamtramPackage.TARGET_SECTION_MODEL__META_MODEL_SECTIONS:
-				return ((InternalEList<?>)getMetaModelSections()).basicRemove(otherEnd, msgs);
 			case PamtramPackage.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS:
 				return ((InternalEList<?>)getLibraryElements()).basicRemove(otherEnd, msgs);
 		}
@@ -116,8 +107,6 @@ public class TargetSectionModelImpl extends SectionModelImpl implements TargetSe
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case PamtramPackage.TARGET_SECTION_MODEL__META_MODEL_SECTIONS:
-				return getMetaModelSections();
 			case PamtramPackage.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS:
 				return getLibraryElements();
 		}
@@ -133,10 +122,6 @@ public class TargetSectionModelImpl extends SectionModelImpl implements TargetSe
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case PamtramPackage.TARGET_SECTION_MODEL__META_MODEL_SECTIONS:
-				getMetaModelSections().clear();
-				getMetaModelSections().addAll((Collection<? extends TargetSectionClass>)newValue);
-				return;
 			case PamtramPackage.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS:
 				getLibraryElements().clear();
 				getLibraryElements().addAll((Collection<? extends LibraryEntry>)newValue);
@@ -153,9 +138,6 @@ public class TargetSectionModelImpl extends SectionModelImpl implements TargetSe
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case PamtramPackage.TARGET_SECTION_MODEL__META_MODEL_SECTIONS:
-				getMetaModelSections().clear();
-				return;
 			case PamtramPackage.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS:
 				getLibraryElements().clear();
 				return;
@@ -171,8 +153,6 @@ public class TargetSectionModelImpl extends SectionModelImpl implements TargetSe
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case PamtramPackage.TARGET_SECTION_MODEL__META_MODEL_SECTIONS:
-				return metaModelSections != null && !metaModelSections.isEmpty();
 			case PamtramPackage.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS:
 				return libraryElements != null && !libraryElements.isEmpty();
 		}

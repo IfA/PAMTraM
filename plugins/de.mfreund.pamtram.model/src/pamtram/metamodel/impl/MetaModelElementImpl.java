@@ -98,7 +98,7 @@ public abstract class MetaModelElementImpl<C extends pamtram.metamodel.Class<C, 
 	 * @generated
 	 */
 	@Override
-	public SectionModel getContainingSectionModel() {
+	public SectionModel<C, R, A> getContainingSectionModel() {
 		Class section = this.getContainingSection();
 		
 		EObject container = section.eContainer();

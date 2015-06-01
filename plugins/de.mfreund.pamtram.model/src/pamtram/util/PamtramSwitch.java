@@ -6,6 +6,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import pamtram.*;
+import pamtram.metamodel.Attribute;
+import pamtram.metamodel.Reference;
 import pamtram.MappingModel;
 import pamtram.NamedElement;
 import pamtram.PAMTraM;
@@ -91,7 +93,7 @@ public class PamtramSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case PamtramPackage.SECTION_MODEL: {
-				SectionModel sectionModel = (SectionModel)theEObject;
+				SectionModel<?, ?, ?> sectionModel = (SectionModel<?, ?, ?>)theEObject;
 				T result = caseSectionModel(sectionModel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -182,7 +184,7 @@ public class PamtramSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSectionModel(SectionModel object) {
+	public <C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> T caseSectionModel(SectionModel<C, R, A> object) {
 		return null;
 	}
 

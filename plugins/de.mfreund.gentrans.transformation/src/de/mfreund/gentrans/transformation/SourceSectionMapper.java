@@ -296,7 +296,7 @@ class SourceSectionMapper implements CancellationListener {
 	private void buildDeepestCmplxAttrMappingElementsMap(
 			final AttributeMapping m, final SourceSectionClass srcSection) {
 		if (!deepestComplexAttrMappingSrcElementsByCmplxMapping.containsKey(m)) {
-			final Set<ModifiedAttributeElementType<SourceSectionAttribute>> srcElements = 
+			final Set<ModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>> srcElements = 
 					new HashSet<>();
 			srcElements.addAll(m.getLocalSourceElements());
 			deepestComplexAttrMappingSrcElementsByCmplxMapping.put(m,
@@ -321,7 +321,7 @@ class SourceSectionMapper implements CancellationListener {
 			final SourceSectionClass srcSection) {
 		if (!deepestComplexConnectionHintSrcElementsByComplexConnectionHint
 				.containsKey(m)) {
-			final Set<ModifiedAttributeElementType<SourceSectionAttribute>> srcElements = 
+			final Set<ModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>> srcElements = 
 					new HashSet<>();
 			srcElements.addAll(m.getLocalSourceElements());
 			deepestComplexConnectionHintSrcElementsByComplexConnectionHint.put(
@@ -346,7 +346,7 @@ class SourceSectionMapper implements CancellationListener {
 			final AttributeMatcher m, final SourceSectionClass srcSection) {
 		if (!deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher
 				.containsKey(m)) {
-			final Set<ModifiedAttributeElementType<SourceSectionAttribute>> srcElements = 
+			final Set<ModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>> srcElements = 
 					new HashSet<>();
 			srcElements.addAll(m.getLocalSourceElements());
 			deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher.put(m,
@@ -380,12 +380,12 @@ class SourceSectionMapper implements CancellationListener {
 	@SuppressWarnings("unchecked")
 	private boolean checkExternalAttributeMapping(final Mapping m,
 			final MappingInstanceStorage res, boolean mappingFailed,
-			final Map<ExternalModifiedAttributeElementType<SourceSectionAttribute>, AttributeValueRepresentation> attrVals,
+			final Map<ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, AttributeValueRepresentation> attrVals,
 			final MappingHintSourceInterface i) {
 		
 		if (i instanceof ExternalModifiedAttributeElementType) {
-			ExternalModifiedAttributeElementType<SourceSectionAttribute> externalModifiedAttributeElement = 
-					((ExternalModifiedAttributeElementType<SourceSectionAttribute>) i);
+			ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> externalModifiedAttributeElement = 
+					((ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) i);
 			String attrVal = getContainerAttributeValue(externalModifiedAttributeElement.getSource(),
 					m.getSourceMMSection().getContainer(), res
 					.getAssociatedSourceModelElement().eContainer());
@@ -393,10 +393,10 @@ class SourceSectionMapper implements CancellationListener {
 				mappingFailed = true;
 			} else {
 				attrVal = attributeValuemodifier.applyAttributeValueModifiers(
-						attrVal, ((ExternalModifiedAttributeElementType<SourceSectionAttribute>) i)
+						attrVal, ((ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) i)
 						.getModifier());
 				attrVals.put(
-						(ExternalModifiedAttributeElementType<SourceSectionAttribute>) i, 
+						(ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) i, 
 						new AttributeValueRepresentation(externalModifiedAttributeElement.getSource(), attrVal));
 			}
 		}
@@ -466,7 +466,7 @@ class SourceSectionMapper implements CancellationListener {
 							currentClass)) {
 						if (currentElement.eContainer() != null) {
 							currentElement = currentElement.eContainer();
-							currentClass = currentClass
+							currentClass = (SourceSectionClass) currentClass
 									.getOwningContainmentReference()
 									.getOwningClass();
 						} else {
@@ -548,14 +548,14 @@ class SourceSectionMapper implements CancellationListener {
 	 * @return Classes that contain the deepest SourceSectionAttributes
 	 */
 	private Set<SourceSectionClass> findDeepestClassesAndCommonContainer(
-			final Set<ModifiedAttributeElementType<SourceSectionAttribute>> s,
+			final Set<ModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>> s,
 			final SourceSectionClass srcSection, final Object hint) {
 		final Set<SourceSectionClass> resultSet = new HashSet<SourceSectionClass>();
 
 		/*
 		 * fill resultSet with all *potential* candidates
 		 */
-		for (final ModifiedAttributeElementType<SourceSectionAttribute> t : s) {
+		for (final ModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> t : s) {
 			resultSet.add(t.getSource().getOwningClass());
 		}
 
@@ -1902,7 +1902,7 @@ class SourceSectionMapper implements CancellationListener {
 	private boolean handleExternalAttributeMappings(final Mapping m,
 			final MappingInstanceStorage res, boolean mappingFailed) {
 		if (m.getSourceMMSection().getContainer() != null) {
-			final Map<ExternalModifiedAttributeElementType<SourceSectionAttribute>, AttributeValueRepresentation> attrVals = new HashMap<>();
+			final Map<ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, AttributeValueRepresentation> attrVals = new HashMap<>();
 			for (final MappingHintType h : getHints(m)) {
 				if (h instanceof AttributeMapping) {
 					for (final AttributeMappingSourceInterface i : ((AttributeMapping) h)
@@ -1928,7 +1928,7 @@ class SourceSectionMapper implements CancellationListener {
 						if(((AttributeMapping) h).getExpression() != null && !((AttributeMapping) h).getExpression().isEmpty()) {
 							
 							final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> newVals = new HashMap<>();
-							for (final ExternalModifiedAttributeElementType<SourceSectionAttribute> e : attrVals
+							for (final ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> e : attrVals
 									.keySet()) {
 								
 								if(e.getSource().getAttribute().isMany()) {
@@ -1965,7 +1965,7 @@ class SourceSectionMapper implements CancellationListener {
 								@SuppressWarnings("unchecked")
 								final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> map = 
 										(Map<AttributeMappingSourceInterface, AttributeValueRepresentation>) hVal;
-								for (final ExternalModifiedAttributeElementType<SourceSectionAttribute> e : attrVals
+								for (final ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> e : attrVals
 										.keySet()) {
 									map.put((AttributeMappingSourceInterface) e,
 											new AttributeValueRepresentation(e.getSource(), attrVals.get(e).getValue()));
@@ -2033,7 +2033,7 @@ class SourceSectionMapper implements CancellationListener {
 										.get(h)) {
 									@SuppressWarnings("unchecked")
 									final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> map = (Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>) hVal;
-									for (final ExternalModifiedAttributeElementType<SourceSectionAttribute> e : attrVals
+									for (final ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> e : attrVals
 											.keySet()) {
 										map.put((AttributeMatcherSourceInterface) e,
 												attrVals.get(e));
@@ -2076,7 +2076,7 @@ class SourceSectionMapper implements CancellationListener {
 								.getModelConnectionHintValues().get(h)) {
 							@SuppressWarnings("unchecked")
 							final Map<ModelConnectionHintSourceInterface, String> map = (Map<ModelConnectionHintSourceInterface, String>) hVal;
-							for (final ExternalModifiedAttributeElementType<SourceSectionAttribute> e : attrVals
+							for (final ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> e : attrVals
 									.keySet()) {
 								map.put((ModelConnectionHintSourceInterface) e,
 										attrVals.get(e).getValue());

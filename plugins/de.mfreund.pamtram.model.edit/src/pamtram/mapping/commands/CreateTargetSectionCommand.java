@@ -12,7 +12,7 @@ public class CreateTargetSectionCommand extends CreateChildCommand {
 	public CreateTargetSectionCommand(EditingDomain editingDomain, PAMTraM pamtram) {
 		super(editingDomain, 
 				pamtram.getTargetSectionModel(),
-				PamtramPackage.Literals.TARGET_SECTION_MODEL__META_MODEL_SECTIONS, 
+				PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS, 
 				MetamodelPackageImpl.eINSTANCE.getEFactoryInstance().create(MetamodelPackageImpl.Literals.TARGET_SECTION_CLASS), 
 				null);
 	}

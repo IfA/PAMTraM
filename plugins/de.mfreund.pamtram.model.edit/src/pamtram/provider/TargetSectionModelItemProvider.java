@@ -5,7 +5,6 @@ package pamtram.provider;
 
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -15,11 +14,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import pamtram.PamtramPackage;
 import pamtram.TargetSectionModel;
 import pamtram.mapping.commands.DeleteLibraryEntryCommand;
-import pamtram.metamodel.MetamodelFactory;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry;
 
 /**
@@ -67,7 +64,6 @@ public class TargetSectionModelItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(PamtramPackage.Literals.TARGET_SECTION_MODEL__META_MODEL_SECTIONS);
 			childrenFeatures.add(PamtramPackage.Literals.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS);
 		}
 		return childrenFeatures;
@@ -120,7 +116,6 @@ public class TargetSectionModelItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(TargetSectionModel.class)) {
-			case PamtramPackage.TARGET_SECTION_MODEL__META_MODEL_SECTIONS:
 			case PamtramPackage.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -138,11 +133,6 @@ public class TargetSectionModelItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.TARGET_SECTION_MODEL__META_MODEL_SECTIONS,
-				 MetamodelFactory.eINSTANCE.createTargetSectionClass()));
 	}
 	
 	/**

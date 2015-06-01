@@ -44,7 +44,6 @@ import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.CardinalityType;
-import pamtram.metamodel.Class;
 import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.SourceSectionAttribute;
@@ -466,7 +465,7 @@ class SourceSectionMapper implements CancellationListener {
 							currentClass)) {
 						if (currentElement.eContainer() != null) {
 							currentElement = currentElement.eContainer();
-							currentClass = (SourceSectionClass) currentClass
+							currentClass = currentClass
 									.getOwningContainmentReference()
 									.getOwningClass();
 						} else {
@@ -1085,7 +1084,7 @@ class SourceSectionMapper implements CancellationListener {
 				final LinkedList<EObject> allElementsMapped = new LinkedList<EObject>();
 
 				while (possibleSrcModelElementsNoVC.keySet().size() > 0) {
-					final pamtram.metamodel.Class smallestKey = possibleSrcModelElementsNoVC
+					final SourceSectionClass smallestKey = possibleSrcModelElementsNoVC
 							.getKeyForValueWithSmallestCollectionSize();
 					if (possibleSrcModelElementsNoVC.get(smallestKey).size() > 0) {
 						MappingInstanceStorage srcSectionResult;
@@ -1165,13 +1164,13 @@ class SourceSectionMapper implements CancellationListener {
 				}
 
 				// try to map all vc-elements
-				final LinkedHashSet<pamtram.metamodel.Class> usedKeys = new LinkedHashSet<pamtram.metamodel.Class>(); // for
+				final LinkedHashSet<SourceSectionClass> usedKeys = new LinkedHashSet<>(); // for
 				// counting
 				// cardinality
 
 				while (possibleSrcModelElementsVC.keySet().size() != 0) {
 
-					final Class smallestKey = possibleSrcModelElementsVC
+					final SourceSectionClass smallestKey = possibleSrcModelElementsVC
 							.getKeyForValueWithSmallestCollectionSize();
 					if (possibleSrcModelElementsVC.get(smallestKey).size() > 0) {
 

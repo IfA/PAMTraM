@@ -1227,7 +1227,6 @@ public class GenericTransformationRunner {
 															for (final Object m : selMap
 																	.getHintValues()
 																	.get(realHint)) {
-																@SuppressWarnings("unchecked")
 																final Map<AttributeMatcherSourceInterface, String> map = (Map<AttributeMatcherSourceInterface, String>) m;
 																if (map.containsKey(element)) {
 																	if (prepend) {

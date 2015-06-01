@@ -806,9 +806,7 @@ class TargetSectionInstantiator implements CancellationListener {
 
 									final int numberOfInstancesToCreate = newHintValues.size();
 									for (int i=0; i<numberOfInstancesToCreate; i++) {
-										System.out.println(i);
 										String attrValStr = null;
-										System.out.println(i);
 										if (hSel.getMatcher() instanceof AttributeMatcher) {
 											attrValStr = calculator.calculateAttributeValue(null, hSel,
 													newHintValues);

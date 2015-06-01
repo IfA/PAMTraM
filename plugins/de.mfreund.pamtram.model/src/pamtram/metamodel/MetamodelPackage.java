@@ -227,13 +227,13 @@ public interface MetamodelPackage extends EPackage {
 	int CLASS___IS_LIBRARY_ENTRY = META_MODEL_ELEMENT___IS_LIBRARY_ENTRY;
 
 	/**
-	 * The operation id for the '<em>Is Container For Generic</em>' operation.
+	 * The operation id for the '<em>Is Container For</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS___IS_CONTAINER_FOR_GENERIC__CLASS = META_MODEL_ELEMENT_OPERATION_COUNT + 0;
+	int CLASS___IS_CONTAINER_FOR__CLASS = META_MODEL_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Is Section</em>' operation.
@@ -245,13 +245,13 @@ public interface MetamodelPackage extends EPackage {
 	int CLASS___IS_SECTION = META_MODEL_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Is Contained In Generic</em>' operation.
+	 * The operation id for the '<em>Is Contained In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS___IS_CONTAINED_IN_GENERIC__CLASS = META_MODEL_ELEMENT_OPERATION_COUNT + 2;
+	int CLASS___IS_CONTAINED_IN__CLASS = META_MODEL_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Get Owning Containment Reference</em>' operation.
@@ -372,13 +372,13 @@ public interface MetamodelPackage extends EPackage {
 	int SOURCE_SECTION_CLASS___IS_LIBRARY_ENTRY = CLASS___IS_LIBRARY_ENTRY;
 
 	/**
-	 * The operation id for the '<em>Is Container For Generic</em>' operation.
+	 * The operation id for the '<em>Is Container For</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS___IS_CONTAINER_FOR_GENERIC__CLASS = CLASS___IS_CONTAINER_FOR_GENERIC__CLASS;
+	int SOURCE_SECTION_CLASS___IS_CONTAINER_FOR__CLASS = CLASS___IS_CONTAINER_FOR__CLASS;
 
 	/**
 	 * The operation id for the '<em>Is Section</em>' operation.
@@ -390,13 +390,13 @@ public interface MetamodelPackage extends EPackage {
 	int SOURCE_SECTION_CLASS___IS_SECTION = CLASS___IS_SECTION;
 
 	/**
-	 * The operation id for the '<em>Is Contained In Generic</em>' operation.
+	 * The operation id for the '<em>Is Contained In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS___IS_CONTAINED_IN_GENERIC__CLASS = CLASS___IS_CONTAINED_IN_GENERIC__CLASS;
+	int SOURCE_SECTION_CLASS___IS_CONTAINED_IN__CLASS = CLASS___IS_CONTAINED_IN__CLASS;
 
 	/**
 	 * The operation id for the '<em>Get Owning Containment Reference</em>' operation.
@@ -517,13 +517,13 @@ public interface MetamodelPackage extends EPackage {
 	int TARGET_SECTION_CLASS___IS_LIBRARY_ENTRY = CLASS___IS_LIBRARY_ENTRY;
 
 	/**
-	 * The operation id for the '<em>Is Container For Generic</em>' operation.
+	 * The operation id for the '<em>Is Container For</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS___IS_CONTAINER_FOR_GENERIC__CLASS = CLASS___IS_CONTAINER_FOR_GENERIC__CLASS;
+	int TARGET_SECTION_CLASS___IS_CONTAINER_FOR__CLASS = CLASS___IS_CONTAINER_FOR__CLASS;
 
 	/**
 	 * The operation id for the '<em>Is Section</em>' operation.
@@ -535,13 +535,13 @@ public interface MetamodelPackage extends EPackage {
 	int TARGET_SECTION_CLASS___IS_SECTION = CLASS___IS_SECTION;
 
 	/**
-	 * The operation id for the '<em>Is Contained In Generic</em>' operation.
+	 * The operation id for the '<em>Is Contained In</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS___IS_CONTAINED_IN_GENERIC__CLASS = CLASS___IS_CONTAINED_IN_GENERIC__CLASS;
+	int TARGET_SECTION_CLASS___IS_CONTAINED_IN__CLASS = CLASS___IS_CONTAINED_IN__CLASS;
 
 	/**
 	 * The operation id for the '<em>Get Owning Containment Reference</em>' operation.
@@ -2785,14 +2785,14 @@ public interface MetamodelPackage extends EPackage {
 	EReference getClass_Attributes();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.metamodel.Class#isContainerForGeneric(pamtram.metamodel.Class) <em>Is Container For Generic</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.metamodel.Class#isContainerFor(pamtram.metamodel.Class) <em>Is Container For</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Is Container For Generic</em>' operation.
-	 * @see pamtram.metamodel.Class#isContainerForGeneric(pamtram.metamodel.Class)
+	 * @return the meta object for the '<em>Is Container For</em>' operation.
+	 * @see pamtram.metamodel.Class#isContainerFor(pamtram.metamodel.Class)
 	 * @generated
 	 */
-	EOperation getClass__IsContainerForGeneric__Class();
+	EOperation getClass__IsContainerFor__Class();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.metamodel.Class#isSection() <em>Is Section</em>}' operation.
@@ -2805,14 +2805,14 @@ public interface MetamodelPackage extends EPackage {
 	EOperation getClass__IsSection();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.metamodel.Class#isContainedInGeneric(pamtram.metamodel.Class) <em>Is Contained In Generic</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.metamodel.Class#isContainedIn(pamtram.metamodel.Class) <em>Is Contained In</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Is Contained In Generic</em>' operation.
-	 * @see pamtram.metamodel.Class#isContainedInGeneric(pamtram.metamodel.Class)
+	 * @return the meta object for the '<em>Is Contained In</em>' operation.
+	 * @see pamtram.metamodel.Class#isContainedIn(pamtram.metamodel.Class)
 	 * @generated
 	 */
-	EOperation getClass__IsContainedInGeneric__Class();
+	EOperation getClass__IsContainedIn__Class();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.metamodel.Class#getOwningContainmentReference() <em>Get Owning Containment Reference</em>}' operation.
@@ -3515,12 +3515,12 @@ public interface MetamodelPackage extends EPackage {
 		EReference CLASS__ATTRIBUTES = eINSTANCE.getClass_Attributes();
 
 		/**
-		 * The meta object literal for the '<em><b>Is Container For Generic</b></em>' operation.
+		 * The meta object literal for the '<em><b>Is Container For</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation CLASS___IS_CONTAINER_FOR_GENERIC__CLASS = eINSTANCE.getClass__IsContainerForGeneric__Class();
+		EOperation CLASS___IS_CONTAINER_FOR__CLASS = eINSTANCE.getClass__IsContainerFor__Class();
 
 		/**
 		 * The meta object literal for the '<em><b>Is Section</b></em>' operation.
@@ -3531,12 +3531,12 @@ public interface MetamodelPackage extends EPackage {
 		EOperation CLASS___IS_SECTION = eINSTANCE.getClass__IsSection();
 
 		/**
-		 * The meta object literal for the '<em><b>Is Contained In Generic</b></em>' operation.
+		 * The meta object literal for the '<em><b>Is Contained In</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation CLASS___IS_CONTAINED_IN_GENERIC__CLASS = eINSTANCE.getClass__IsContainedInGeneric__Class();
+		EOperation CLASS___IS_CONTAINED_IN__CLASS = eINSTANCE.getClass__IsContainedIn__Class();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Owning Containment Reference</b></em>' operation.

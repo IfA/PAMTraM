@@ -135,9 +135,9 @@
           <eTypeArguments eTypeParameter="#//metamodel/Class/A"/>
         </eBounds>
       </eTypeParameters>
-      <eOperations name="isContainerForGeneric" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eOperations name="isContainerFor" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="C container = containedClass.getContainer();&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;// this means that we have reached the top level container for the 'containedClass'&#xD;&#xA;if(container == null) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;// this is the container&#xD;&#xA;} else if(this.equals(container)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;// this was not the container, so iterate up in the containment hierarchy&#xD;&#xA;} else {&#xD;&#xA;&#x9;return isContainerForGeneric(container);&#xD;&#xA;}"/>
+          <details key="body" value="C container = containedClass.getContainer();&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;// this means that we have reached the top level container for the 'containedClass'&#xD;&#xA;if(container == null) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;// this is the container&#xD;&#xA;} else if(this.equals(container)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;// this was not the container, so iterate up in the containment hierarchy&#xD;&#xA;} else {&#xD;&#xA;&#x9;return isContainerFor(container);&#xD;&#xA;}"/>
         </eAnnotations>
         <eParameters name="containedClass" lowerBound="1">
           <eGenericType eTypeParameter="#//metamodel/Class/C"/>
@@ -148,9 +148,9 @@
           <details key="body" value="return this.equals(this.getContainingSection());"/>
         </eAnnotations>
       </eOperations>
-      <eOperations name="isContainedInGeneric" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eOperations name="isContainedIn" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="EList&lt;C> containedClasses = new BasicEList&lt;>();&#xD;&#xA;&#xD;&#xA;// collect all classes that are referenced by containment references&#xD;&#xA;for (R ref : containerClass.getReferences()) {&#xD;&#xA;&#x9;if(!(ref.getEReference().isContainment())) {&#xD;&#xA;&#x9;&#x9;continue;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;if(ref instanceof ContainmentReference&lt;?,?,?>){&#xD;&#xA;&#x9;&#x9;containedClasses.addAll(((ContainmentReference&lt;C,R,A>) ref).getValue());&#xD;&#xA;&#x9;} else if(ref instanceof MetaModelSectionReference) {&#xD;&#xA;&#x9;&#x9;containedClasses.addAll((Collection&lt;? extends C>) ((MetaModelSectionReference) ref).getValue());&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#x9;&#xD;&#xA;// recursively iterate over all contained classes&#xD;&#xA;boolean found = false;&#xD;&#xA;for (C containedClass : containedClasses) {&#xD;&#xA;&#x9;if(containedClass.equals(this) || isContainedInGeneric(containedClass)) {&#xD;&#xA;&#x9;&#x9;found = true;&#xD;&#xA;&#x9;&#x9;break;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return found;"/>
+          <details key="body" value="EList&lt;C> containedClasses = new BasicEList&lt;>();&#xD;&#xA;&#xD;&#xA;// collect all classes that are referenced by containment references&#xD;&#xA;for (R ref : containerClass.getReferences()) {&#xD;&#xA;&#x9;if(!(ref.getEReference().isContainment())) {&#xD;&#xA;&#x9;&#x9;continue;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;if(ref instanceof ContainmentReference&lt;?,?,?>){&#xD;&#xA;&#x9;&#x9;containedClasses.addAll(((ContainmentReference&lt;C,R,A>) ref).getValue());&#xD;&#xA;&#x9;} else if(ref instanceof MetaModelSectionReference) {&#xD;&#xA;&#x9;&#x9;containedClasses.addAll((Collection&lt;? extends C>) ((MetaModelSectionReference) ref).getValue());&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#x9;&#xD;&#xA;// recursively iterate over all contained classes&#xD;&#xA;boolean found = false;&#xD;&#xA;for (C containedClass : containedClasses) {&#xD;&#xA;&#x9;if(containedClass.equals(this) || isContainedIn(containedClass)) {&#xD;&#xA;&#x9;&#x9;found = true;&#xD;&#xA;&#x9;&#x9;break;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return found;"/>
         </eAnnotations>
         <eParameters name="containerClass" lowerBound="1">
           <eGenericType eTypeParameter="#//metamodel/Class/C"/>
@@ -769,7 +769,7 @@
         <details key="constraints" value="sourceAttributeMatchesSectionOrContainedSection"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="sourceAttributeMatchesSectionOrContainedSection" value="self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection() = self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection or self.source.oclAsType(pamtram::metamodel::SourceSectionAttribute).getContainingSection().oclAsType(pamtram::metamodel::SourceSectionClass).isContainedInGeneric(self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)"/>
+        <details key="sourceAttributeMatchesSectionOrContainedSection" value="self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection() = self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection or self.source.oclAsType(pamtram::metamodel::SourceSectionAttribute).getContainingSection().oclAsType(pamtram::metamodel::SourceSectionClass).isContainedIn(self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)"/>
       </eAnnotations>
       <eTypeParameters name="C">
         <eBounds eClassifier="#//metamodel/Class">
@@ -904,7 +904,7 @@
         <details key="constraints" value="sourceAttributeMatchesContainerSection"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="sourceAttributeMatchesContainerSection" value="self.source.oclAsType(pamtram::metamodel::SourceSectionAttribute).getContainingSection().oclAsType(pamtram::metamodel::SourceSectionClass).isContainerForGeneric(self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection.oclAsType(pamtram::metamodel::SourceSectionClass))"/>
+        <details key="sourceAttributeMatchesContainerSection" value="self.source.oclAsType(pamtram::metamodel::SourceSectionAttribute).getContainingSection().oclAsType(pamtram::metamodel::SourceSectionClass).isContainerFor(self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection.oclAsType(pamtram::metamodel::SourceSectionClass))"/>
       </eAnnotations>
       <eTypeParameters name="C">
         <eBounds eClassifier="#//metamodel/Class">

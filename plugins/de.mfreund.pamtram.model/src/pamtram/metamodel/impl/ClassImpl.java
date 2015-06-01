@@ -276,8 +276,7 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public boolean isContainerForGeneric(final C containedClass) {
+	public boolean isContainerFor(final C containedClass) {
 		C container = containedClass.getContainer();
 				
 		// this means that we have reached the top level container for the 'containedClass'
@@ -288,7 +287,7 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 			return true;
 		// this was not the container, so iterate up in the containment hierarchy
 		} else {
-			return isContainerForGeneric(container);
+			return isContainerFor(container);
 		}
 	}
 
@@ -309,9 +308,7 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean isContainedInGeneric(final C containerClass) {
+	public boolean isContainedIn(final C containerClass) {
 		EList<C> containedClasses = new BasicEList<>();
 		
 		// collect all classes that are referenced by containment references
@@ -329,7 +326,7 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 		// recursively iterate over all contained classes
 		boolean found = false;
 		for (C containedClass : containedClasses) {
-			if(containedClass.equals(this) || isContainedInGeneric(containedClass)) {
+			if(containedClass.equals(this) || isContainedIn(containedClass)) {
 				found = true;
 				break;
 			}
@@ -498,12 +495,12 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.CLASS___IS_CONTAINER_FOR_GENERIC__CLASS:
-				return isContainerForGeneric((C)arguments.get(0));
+			case MetamodelPackage.CLASS___IS_CONTAINER_FOR__CLASS:
+				return isContainerFor((C)arguments.get(0));
 			case MetamodelPackage.CLASS___IS_SECTION:
 				return isSection();
-			case MetamodelPackage.CLASS___IS_CONTAINED_IN_GENERIC__CLASS:
-				return isContainedInGeneric((C)arguments.get(0));
+			case MetamodelPackage.CLASS___IS_CONTAINED_IN__CLASS:
+				return isContainedIn((C)arguments.get(0));
 			case MetamodelPackage.CLASS___GET_OWNING_CONTAINMENT_REFERENCE:
 				return getOwningContainmentReference();
 		}

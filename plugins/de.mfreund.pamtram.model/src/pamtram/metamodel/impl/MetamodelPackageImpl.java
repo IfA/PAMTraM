@@ -469,7 +469,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getClass__IsContainerForGeneric__Class() {
+	public EOperation getClass__IsContainerFor__Class() {
 		return classEClass.getEOperations().get(0);
 	}
 
@@ -487,7 +487,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getClass__IsContainedInGeneric__Class() {
+	public EOperation getClass__IsContainedIn__Class() {
 		return classEClass.getEOperations().get(2);
 	}
 
@@ -1043,9 +1043,9 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEReference(classEClass, CLASS__REFERENCES);
 		createEReference(classEClass, CLASS__CONTAINER);
 		createEReference(classEClass, CLASS__ATTRIBUTES);
-		createEOperation(classEClass, CLASS___IS_CONTAINER_FOR_GENERIC__CLASS);
+		createEOperation(classEClass, CLASS___IS_CONTAINER_FOR__CLASS);
 		createEOperation(classEClass, CLASS___IS_SECTION);
-		createEOperation(classEClass, CLASS___IS_CONTAINED_IN_GENERIC__CLASS);
+		createEOperation(classEClass, CLASS___IS_CONTAINED_IN__CLASS);
 		createEOperation(classEClass, CLASS___GET_OWNING_CONTAINMENT_REFERENCE);
 
 		sourceSectionClassEClass = createEClass(SOURCE_SECTION_CLASS);
@@ -1504,13 +1504,13 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		g1 = createEGenericType(classEClass_A);
 		initEReference(getClass_Attributes(), g1, this.getAttribute_OwningClass(), "attributes", null, 0, -1, pamtram.metamodel.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getClass__IsContainerForGeneric__Class(), ecorePackage.getEBoolean(), "isContainerForGeneric", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getClass__IsContainerFor__Class(), ecorePackage.getEBoolean(), "isContainerFor", 1, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(classEClass_C);
 		addEParameter(op, g1, "containedClass", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getClass__IsSection(), ecorePackage.getEBoolean(), "isSection", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getClass__IsContainedInGeneric__Class(), ecorePackage.getEBoolean(), "isContainedInGeneric", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getClass__IsContainedIn__Class(), ecorePackage.getEBoolean(), "isContainedIn", 1, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(classEClass_C);
 		addEParameter(op, g1, "containerClass", 1, 1, IS_UNIQUE, IS_ORDERED);
 

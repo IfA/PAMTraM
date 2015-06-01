@@ -2180,7 +2180,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (localModifiedAttributeElementTypeEClass, 
 		   source, 
 		   new String[] {
-			 "sourceAttributeMatchesSectionOrContainedSection", "self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection() = self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection or self.source.oclAsType(pamtram::metamodel::SourceSectionAttribute).getContainingSection().oclAsType(pamtram::metamodel::SourceSectionClass).isContainedInGeneric(self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)"
+			 "sourceAttributeMatchesSectionOrContainedSection", "self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection() = self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection or self.source.oclAsType(pamtram::metamodel::SourceSectionAttribute).getContainingSection().oclAsType(pamtram::metamodel::SourceSectionClass).isContainedIn(self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)"
 		   });	
 		addAnnotation
 		  (modelConnectionHintTargetAttributeEClass, 
@@ -2198,7 +2198,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (externalModifiedAttributeElementTypeEClass, 
 		   source, 
 		   new String[] {
-			 "sourceAttributeMatchesContainerSection", "self.source.oclAsType(pamtram::metamodel::SourceSectionAttribute).getContainingSection().oclAsType(pamtram::metamodel::SourceSectionClass).isContainerForGeneric(self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection.oclAsType(pamtram::metamodel::SourceSectionClass))"
+			 "sourceAttributeMatchesContainerSection", "self.source.oclAsType(pamtram::metamodel::SourceSectionAttribute).getContainingSection().oclAsType(pamtram::metamodel::SourceSectionClass).isContainerFor(self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection.oclAsType(pamtram::metamodel::SourceSectionClass))"
 		   });
 	}
 

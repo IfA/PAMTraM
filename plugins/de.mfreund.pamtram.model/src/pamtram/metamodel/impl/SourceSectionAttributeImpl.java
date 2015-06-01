@@ -18,6 +18,7 @@ import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.SourceSectionReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,7 +34,7 @@ import pamtram.metamodel.SourceSectionClass;
  *
  * @generated
  */
-public class SourceSectionAttributeImpl extends AttributeImpl<SourceSectionClass> implements SourceSectionAttribute {
+public class SourceSectionAttributeImpl extends AttributeImpl<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements SourceSectionAttribute {
 	/**
 	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' reference.
 	 * <!-- begin-user-doc -->

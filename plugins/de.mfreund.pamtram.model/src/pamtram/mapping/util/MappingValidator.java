@@ -7,71 +7,21 @@ import java.util.Map;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.ocl.examples.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
 
-import pamtram.mapping.AttributeMapping;
-import pamtram.mapping.AttributeMappingExternalSourceElement;
-import pamtram.mapping.AttributeMappingSourceElement;
-import pamtram.mapping.AttributeMappingSourceInterface;
-import pamtram.mapping.AttributeMatcher;
-import pamtram.mapping.AttributeMatcherExternalSourceElement;
-import pamtram.mapping.AttributeMatcherSourceElement;
-import pamtram.mapping.AttributeMatcherSourceInterface;
-import pamtram.mapping.AttributeValueModifier;
-import pamtram.mapping.AttributeValueModifierSet;
-import pamtram.mapping.CardinalityMapping;
-import pamtram.mapping.ClassMatcher;
-import pamtram.mapping.ExpandableHint;
-import pamtram.mapping.ExportedMappingHintGroup;
-import pamtram.mapping.ExpressionHint;
-import pamtram.mapping.ExternalMappedAttributeValueAppender;
-import pamtram.mapping.ExternalMappedAttributeValueExpander;
-import pamtram.mapping.ExternalMappedAttributeValuePrepender;
-import pamtram.mapping.ExternalModifiedAttributeElementType;
-import pamtram.mapping.GlobalAttribute;
-import pamtram.mapping.GlobalAttributeImporter;
-import pamtram.mapping.GlobalValue;
-import pamtram.mapping.HintImporterMappingHint;
-import pamtram.mapping.InstantiableMappingHintGroup;
-import pamtram.mapping.LocalModifiedAttributeElementType;
-import pamtram.mapping.MappedAttributeValueAppender;
-import pamtram.mapping.MappedAttributeValueExpander;
-import pamtram.mapping.MappedAttributeValueExpanderType;
-import pamtram.mapping.MappedAttributeValuePrepender;
-import pamtram.mapping.Mapping;
-import pamtram.mapping.MappingHint;
-import pamtram.mapping.MappingHintGroup;
-import pamtram.mapping.MappingHintGroupImporter;
-import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.MappingHintSourceInterface;
-import pamtram.mapping.MappingHintType;
-import pamtram.mapping.MappingInstanceSelector;
-import pamtram.mapping.MappingPackage;
-import pamtram.mapping.MappingType;
-import pamtram.mapping.MatchToLowerCaseConverter;
-import pamtram.mapping.MatchToUpperCaseConverter;
-import pamtram.mapping.Matcher;
-import pamtram.mapping.ModelConnectionHint;
-import pamtram.mapping.ModelConnectionHintExternalSourceElement;
-import pamtram.mapping.ModelConnectionHintSourceElement;
-import pamtram.mapping.ModelConnectionHintSourceInterface;
-import pamtram.mapping.ModelConnectionHintTargetAttribute;
-import pamtram.mapping.ModifiableHint;
-import pamtram.mapping.ModifiedAttributeElementType;
-import pamtram.mapping.StringAppender;
-import pamtram.mapping.StringPrepender;
-import pamtram.mapping.SubstringReplacer;
-import pamtram.mapping.UniqueNumberAppender;
+import org.eclipse.emf.ecore.EPackage;
+
+import org.eclipse.emf.ecore.util.EObjectValidator;
+
+import pamtram.mapping.*;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Validator</b> for the model.
  * <!-- end-user-doc -->
  * @see pamtram.mapping.MappingPackage
- * @generated NOT
+ * @generated
  */
-public class MappingValidator extends OCLinEcoreEObjectValidator {
+public class MappingValidator extends EObjectValidator {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -181,9 +131,9 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 			case MappingPackage.STRING_PREPENDER:
 				return validateStringPrepender((StringPrepender)value, diagnostics, context);
 			case MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE:
-				return validateModifiedAttributeElementType((ModifiedAttributeElementType<?>)value, diagnostics, context);
+				return validateModifiedAttributeElementType((ModifiedAttributeElementType<?, ?, ?>)value, diagnostics, context);
 			case MappingPackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE:
-				return validateLocalModifiedAttributeElementType((LocalModifiedAttributeElementType<?>)value, diagnostics, context);
+				return validateLocalModifiedAttributeElementType((LocalModifiedAttributeElementType<?, ?, ?>)value, diagnostics, context);
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER:
 				return validateMappingHintGroupImporter((MappingHintGroupImporter)value, diagnostics, context);
 			case MappingPackage.EXPORTED_MAPPING_HINT_GROUP:
@@ -221,7 +171,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 			case MappingPackage.ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT:
 				return validateAttributeMappingExternalSourceElement((AttributeMappingExternalSourceElement)value, diagnostics, context);
 			case MappingPackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE:
-				return validateExternalModifiedAttributeElementType((ExternalModifiedAttributeElementType<?>)value, diagnostics, context);
+				return validateExternalModifiedAttributeElementType((ExternalModifiedAttributeElementType<?, ?, ?>)value, diagnostics, context);
 			case MappingPackage.MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT:
 				return validateModelConnectionHintExternalSourceElement((ModelConnectionHintExternalSourceElement)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT:
@@ -250,6 +200,15 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateMappingType(MappingType mappingType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(mappingType, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateMapping(Mapping mapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(mapping, diagnostics, context);
 	}
@@ -259,8 +218,26 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateMappingType(MappingType mappingType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(mappingType, diagnostics, context);
+	public boolean validateMappingHintGroupType(MappingHintGroupType mappingHintGroupType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(mappingHintGroupType, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateInstantiableMappingHintGroup(InstantiableMappingHintGroup instantiableMappingHintGroup, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(instantiableMappingHintGroup, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMappingHintGroup(MappingHintGroup mappingHintGroup, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(mappingHintGroup, diagnostics, context);
 	}
 
 	/**
@@ -330,7 +307,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 				 attributeMapping,
 				 diagnostics,
 				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL",
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 				 "targetAttributeMatchesSection",
 				 ATTRIBUTE_MAPPING__TARGET_ATTRIBUTE_MATCHES_SECTION__EEXPRESSION,
 				 Diagnostic.ERROR,
@@ -513,7 +490,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 				 mappingInstanceSelector,
 				 diagnostics,
 				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL",
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 				 "affectedReferenceIsNonContainment",
 				 MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE_IS_NON_CONTAINMENT__EEXPRESSION,
 				 Diagnostic.ERROR,
@@ -542,7 +519,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 				 mappingInstanceSelector,
 				 diagnostics,
 				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL",
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 				 "affectedReferenceMatchesSection",
 				 MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE_MATCHES_SECTION__EEXPRESSION,
 				 Diagnostic.ERROR,
@@ -599,7 +576,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 				 attributeMatcher,
 				 diagnostics,
 				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL",
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 				 "targetMatchesAffectedReferenceType",
 				 ATTRIBUTE_MATCHER__TARGET_MATCHES_AFFECTED_REFERENCE_TYPE__EEXPRESSION,
 				 Diagnostic.ERROR,
@@ -642,6 +619,15 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 */
 	public boolean validateClassMatcher(ClassMatcher classMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(classMatcher, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateAttributeValueModifierSet(AttributeValueModifierSet attributeValueModifierSet, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(attributeValueModifierSet, diagnostics, context);
 	}
 
 	/**
@@ -694,7 +680,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateModifiedAttributeElementType(ModifiedAttributeElementType<?> modifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateModifiedAttributeElementType(ModifiedAttributeElementType<?, ?, ?> modifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(modifiedAttributeElementType, diagnostics, context);
 	}
 
@@ -703,7 +689,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<?> localModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<?, ?, ?> localModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(localModifiedAttributeElementType, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(localModifiedAttributeElementType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(localModifiedAttributeElementType, diagnostics, context);
@@ -723,7 +709,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__EEXPRESSION = "self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection() = self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection or self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection().isContainedInGeneric(self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)";
+	protected static final String LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__EEXPRESSION = "self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection() = self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection or self.source.oclAsType(pamtram::metamodel::SourceSectionAttribute).getContainingSection().oclAsType(pamtram::metamodel::SourceSectionClass).isContainedInGeneric(self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)";
 
 	/**
 	 * Validates the sourceAttributeMatchesSectionOrContainedSection constraint of '<em>Local Modified Attribute Element Type</em>'.
@@ -731,55 +717,19 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(LocalModifiedAttributeElementType<?> localModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(LocalModifiedAttributeElementType<?, ?, ?> localModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return
 			validate
 				(MappingPackage.Literals.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE,
 				 localModifiedAttributeElementType,
 				 diagnostics,
 				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL",
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 				 "sourceAttributeMatchesSectionOrContainedSection",
 				 LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__EEXPRESSION,
 				 Diagnostic.ERROR,
 				 DIAGNOSTIC_SOURCE,
 				 0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateAttributeValueModifierSet(AttributeValueModifierSet attributeValueModifierSet, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(attributeValueModifierSet, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateMappingHintGroup(MappingHintGroup mappingHintGroup, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(mappingHintGroup, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateMappingHintGroupType(MappingHintGroupType mappingHintGroupType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(mappingHintGroupType, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateInstantiableMappingHintGroup(InstantiableMappingHintGroup instantiableMappingHintGroup, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(instantiableMappingHintGroup, diagnostics, context);
 	}
 
 	/**
@@ -887,7 +837,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 				 modelConnectionHintTargetAttribute,
 				 diagnostics,
 				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL",
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 				 "sourceMatchesPossibleContainerType",
 				 MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE__SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__EEXPRESSION,
 				 Diagnostic.ERROR,
@@ -989,7 +939,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 				 globalAttribute,
 				 diagnostics,
 				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL",
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 				 "sourceAttributeHasUpperBoundOne",
 				 GLOBAL_ATTRIBUTE__SOURCE_ATTRIBUTE_HAS_UPPER_BOUND_ONE__EEXPRESSION,
 				 Diagnostic.ERROR,
@@ -1057,7 +1007,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<?> externalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<?, ?, ?> externalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(externalModifiedAttributeElementType, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(externalModifiedAttributeElementType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(externalModifiedAttributeElementType, diagnostics, context);
@@ -1077,7 +1027,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__EEXPRESSION = "self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection().isContainerForGeneric(self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)";
+	protected static final String EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__EEXPRESSION = "self.source.oclAsType(pamtram::metamodel::SourceSectionAttribute).getContainingSection().oclAsType(pamtram::metamodel::SourceSectionClass).isContainerForGeneric(self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection.oclAsType(pamtram::metamodel::SourceSectionClass))";
 
 	/**
 	 * Validates the sourceAttributeMatchesContainerSection constraint of '<em>External Modified Attribute Element Type</em>'.
@@ -1085,14 +1035,14 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(ExternalModifiedAttributeElementType<?> externalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(ExternalModifiedAttributeElementType<?, ?, ?> externalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return
 			validate
 				(MappingPackage.Literals.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE,
 				 externalModifiedAttributeElementType,
 				 diagnostics,
 				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL",
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 				 "sourceAttributeMatchesContainerSection",
 				 EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__EEXPRESSION,
 				 Diagnostic.ERROR,

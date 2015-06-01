@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionContainmentReference;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
@@ -20,7 +21,7 @@ import pamtram.metamodel.TargetSectionReference;
  *
  * @generated
  */
-public abstract class TargetSectionReferenceImpl extends ReferenceImpl<TargetSectionClass> implements TargetSectionReference {
+public abstract class TargetSectionReferenceImpl extends ReferenceImpl<TargetSectionClass, TargetSectionReference, TargetSectionAttribute> implements TargetSectionReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

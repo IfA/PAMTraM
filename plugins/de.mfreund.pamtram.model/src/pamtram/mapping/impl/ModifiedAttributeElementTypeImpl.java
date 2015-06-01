@@ -22,6 +22,7 @@ import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.metamodel.Attribute;
+import pamtram.metamodel.Reference;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,7 +38,7 @@ import pamtram.metamodel.Attribute;
  *
  * @generated
  */
-public abstract class ModifiedAttributeElementTypeImpl<AttributeType extends Attribute<?>> extends NamedElementImpl implements ModifiedAttributeElementType<AttributeType> {
+public abstract class ModifiedAttributeElementTypeImpl<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends NamedElementImpl implements ModifiedAttributeElementType<C, R, A> {
 	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -46,7 +47,7 @@ public abstract class ModifiedAttributeElementTypeImpl<AttributeType extends Att
 	 * @generated
 	 * @ordered
 	 */
-	protected AttributeType source;
+	protected A source;
 
 	/**
 	 * The cached value of the '{@link #getModifier() <em>Modifier</em>}' reference list.
@@ -84,10 +85,10 @@ public abstract class ModifiedAttributeElementTypeImpl<AttributeType extends Att
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public AttributeType getSource() {
+	public A getSource() {
 		if (source != null && source.eIsProxy()) {
 			InternalEObject oldSource = (InternalEObject)source;
-			source = (AttributeType)eResolveProxy(oldSource);
+			source = (A)eResolveProxy(oldSource);
 			if (source != oldSource) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE, oldSource, source));
@@ -101,7 +102,7 @@ public abstract class ModifiedAttributeElementTypeImpl<AttributeType extends Att
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttributeType basicGetSource() {
+	public A basicGetSource() {
 		return source;
 	}
 
@@ -110,18 +111,18 @@ public abstract class ModifiedAttributeElementTypeImpl<AttributeType extends Att
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSourceGen(AttributeType newSource) {
-		AttributeType oldSource = source;
+	public void setSourceGen(A newSource) {
+		A oldSource = source;
 		source = newSource;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE, oldSource, source));
 	}
-	
+
 	/**
 	 * Before setting the {@link newSource}, update the name.
 	 */
 	@Override
-	public void setSource(AttributeType newSource) {
+	public void setSource(A newSource) {
 		
 		setNameDerived(source, newSource, null, null);
 		setSourceGen(newSource);
@@ -189,7 +190,7 @@ public abstract class ModifiedAttributeElementTypeImpl<AttributeType extends Att
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE:
-				setSource((AttributeType)newValue);
+				setSource((A)newValue);
 				return;
 			case MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER:
 				getModifier().clear();
@@ -208,7 +209,7 @@ public abstract class ModifiedAttributeElementTypeImpl<AttributeType extends Att
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE:
-				setSource((AttributeType)null);
+				setSource((A)null);
 				return;
 			case MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER:
 				getModifier().clear();

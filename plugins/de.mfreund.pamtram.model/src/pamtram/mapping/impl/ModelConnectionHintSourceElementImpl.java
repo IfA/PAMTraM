@@ -10,6 +10,8 @@ import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModelConnectionHintSourceElement;
 import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.SourceSectionReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +22,7 @@ import pamtram.metamodel.SourceSectionAttribute;
  *
  * @generated
  */
-public class ModelConnectionHintSourceElementImpl extends LocalModifiedAttributeElementTypeImpl<SourceSectionAttribute> implements ModelConnectionHintSourceElement {
+public class ModelConnectionHintSourceElementImpl extends LocalModifiedAttributeElementTypeImpl<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements ModelConnectionHintSourceElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

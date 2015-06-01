@@ -15,7 +15,7 @@ import org.eclipse.emf.common.util.EList;
  * @model abstract="true"
  * @generated
  */
-public interface TargetSectionReference extends Reference<TargetSectionClass> {
+public interface TargetSectionReference extends Reference<TargetSectionClass, TargetSectionReference, TargetSectionAttribute> {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

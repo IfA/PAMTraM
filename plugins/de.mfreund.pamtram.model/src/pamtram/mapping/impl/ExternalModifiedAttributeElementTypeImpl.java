@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.EClass;
 import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.MappingPackage;
 import pamtram.metamodel.Attribute;
+import pamtram.metamodel.Reference;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,7 +17,7 @@ import pamtram.metamodel.Attribute;
  *
  * @generated
  */
-public abstract class ExternalModifiedAttributeElementTypeImpl<AttributeType extends Attribute<?>> extends ModifiedAttributeElementTypeImpl<AttributeType> implements ExternalModifiedAttributeElementType<AttributeType> {
+public abstract class ExternalModifiedAttributeElementTypeImpl<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends ModifiedAttributeElementTypeImpl<C, R, A> implements ExternalModifiedAttributeElementType<C, R, A> {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

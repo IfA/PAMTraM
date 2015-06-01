@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import pamtram.SectionModel;
 import pamtram.impl.NamedElementImpl;
+import pamtram.metamodel.Attribute;
 import pamtram.metamodel.AttributeParameter;
 import pamtram.metamodel.Class;
 import pamtram.metamodel.ContainerParameter;
@@ -18,6 +19,7 @@ import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.LibraryParameter;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.Reference;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 
@@ -30,7 +32,7 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
  *
  * @generated
  */
-public abstract class MetaModelElementImpl<C extends pamtram.metamodel.Class<?, ?, ?>> extends NamedElementImpl implements MetaModelElement<C> {
+public abstract class MetaModelElementImpl<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends NamedElementImpl implements MetaModelElement<C, R, A> {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,11 +65,11 @@ public abstract class MetaModelElementImpl<C extends pamtram.metamodel.Class<?, 
 	@SuppressWarnings("unchecked")
 	@Override
 	public C getContainingSection() {
-		MetaModelElement<C> element = this;
+		MetaModelElement<C,R,A> element = this;
 				
 		// move upwards in the hierarchy
 		while(element.eContainer() instanceof MetaModelElement) {
-			element = (MetaModelElement<C>) element.eContainer();
+			element = (MetaModelElement<C,R,A>) element.eContainer();
 		}
 		
 		if(element instanceof pamtram.metamodel.Class &&
@@ -77,7 +79,7 @@ public abstract class MetaModelElementImpl<C extends pamtram.metamodel.Class<?, 
 		} else if((element instanceof TargetSectionAttribute && element.eContainer() instanceof AttributeParameter) || 
 				(element instanceof TargetSectionNonContainmentReference) && element.eContainer() instanceof ExternalReferenceParameter) {
 			LibraryEntry libEntry = (LibraryEntry) element.eContainer().eContainer();
-			for (LibraryParameter param : libEntry.getParameters()) {
+			for (LibraryParameter<?> param : libEntry.getParameters()) {
 				//TODO if multiple container parameters exist, there might need to be additional logic
 				if(param instanceof ContainerParameter) {
 					return (C) ((ContainerParameter) param).getClass_();

@@ -10,7 +10,7 @@ import pamtram.DeactivatableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.*;
 import pamtram.metamodel.Attribute;
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.metamodel.Reference;
 
 /**
  * <!-- begin-user-doc -->
@@ -157,11 +157,11 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createStringPrependerAdapter();
 			}
 			@Override
-			public <AttributeType extends Attribute<?>> Adapter caseModifiedAttributeElementType(ModifiedAttributeElementType<AttributeType> object) {
+			public <C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> Adapter caseModifiedAttributeElementType(ModifiedAttributeElementType<C, R, A> object) {
 				return createModifiedAttributeElementTypeAdapter();
 			}
 			@Override
-			public <AttributeType extends SourceSectionAttribute> Adapter caseLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<AttributeType> object) {
+			public <C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> Adapter caseLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<C, R, A> object) {
 				return createLocalModifiedAttributeElementTypeAdapter();
 			}
 			@Override
@@ -237,7 +237,7 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createAttributeMappingExternalSourceElementAdapter();
 			}
 			@Override
-			public <AttributeType extends Attribute<?>> Adapter caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<AttributeType> object) {
+			public <C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> Adapter caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<C, R, A> object) {
 				return createExternalModifiedAttributeElementTypeAdapter();
 			}
 			@Override

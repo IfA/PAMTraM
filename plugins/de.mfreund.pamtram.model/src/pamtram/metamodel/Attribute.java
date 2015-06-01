@@ -19,7 +19,7 @@ package pamtram.metamodel;
  * @model abstract="true"
  * @generated
  */
-public interface Attribute<C extends pamtram.metamodel.Class<?, ?, ?>> extends MetaModelElement<C> {
+public interface Attribute<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends MetaModelElement<C, R, A> {
 
 	/**
 	 * Returns the value of the '<em><b>Owning Class</b></em>' container reference.

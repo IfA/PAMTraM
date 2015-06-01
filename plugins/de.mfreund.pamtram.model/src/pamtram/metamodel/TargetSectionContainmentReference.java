@@ -14,5 +14,5 @@ package pamtram.metamodel;
  * @model
  * @generated
  */
-public interface TargetSectionContainmentReference extends ContainmentReference<TargetSectionClass>, TargetSectionReference {
+public interface TargetSectionContainmentReference extends ContainmentReference<TargetSectionClass, TargetSectionReference, TargetSectionAttribute>, TargetSectionReference {
 } // TargetSectionContainmentReference

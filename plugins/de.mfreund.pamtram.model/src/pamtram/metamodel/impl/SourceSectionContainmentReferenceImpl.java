@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
 import pamtram.metamodel.SourceSectionReference;
@@ -21,7 +22,7 @@ import pamtram.metamodel.SourceSectionReference;
  *
  * @generated
  */
-public class SourceSectionContainmentReferenceImpl extends ContainmentReferenceImpl<SourceSectionClass> implements SourceSectionContainmentReference {
+public class SourceSectionContainmentReferenceImpl extends ContainmentReferenceImpl<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements SourceSectionContainmentReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

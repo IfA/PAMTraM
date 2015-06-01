@@ -10,8 +10,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import pamtram.metamodel.Attribute;
 import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.Reference;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +28,7 @@ import pamtram.metamodel.MetamodelPackage;
  *
  * @generated
  */
-public abstract class ContainmentReferenceImpl<V extends pamtram.metamodel.Class<?, ?, ?>> extends ReferenceImpl<V> implements ContainmentReference<V> {
+public abstract class ContainmentReferenceImpl<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends ReferenceImpl<C, R, A> implements ContainmentReference<C, R, A> {
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -35,7 +37,7 @@ public abstract class ContainmentReferenceImpl<V extends pamtram.metamodel.Class
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<V> value;
+	protected EList<C> value;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -61,9 +63,9 @@ public abstract class ContainmentReferenceImpl<V extends pamtram.metamodel.Class
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<V> getValue() {
+	public EList<C> getValue() {
 		if (value == null) {
-			value = new EObjectContainmentEList<V>(pamtram.metamodel.Class.class, this, MetamodelPackage.CONTAINMENT_REFERENCE__VALUE);
+			value = new EObjectContainmentEList<C>(pamtram.metamodel.Class.class, this, MetamodelPackage.CONTAINMENT_REFERENCE__VALUE);
 		}
 		return value;
 	}
@@ -107,7 +109,7 @@ public abstract class ContainmentReferenceImpl<V extends pamtram.metamodel.Class
 		switch (featureID) {
 			case MetamodelPackage.CONTAINMENT_REFERENCE__VALUE:
 				getValue().clear();
-				getValue().addAll((Collection<? extends V>)newValue);
+				getValue().addAll((Collection<? extends C>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

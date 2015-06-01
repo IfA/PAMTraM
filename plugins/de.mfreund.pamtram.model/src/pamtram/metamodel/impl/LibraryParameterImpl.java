@@ -70,6 +70,7 @@ public abstract class LibraryParameterImpl<ParameterType> extends NamedElementIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EObject getSource() {
 		if (source != null && source.eIsProxy()) {
 			InternalEObject oldSource = (InternalEObject)source;

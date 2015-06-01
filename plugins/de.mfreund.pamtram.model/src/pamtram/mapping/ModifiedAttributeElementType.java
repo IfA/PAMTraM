@@ -7,6 +7,7 @@ import org.eclipse.emf.common.util.EList;
 import pamtram.NamedElement;
 
 import pamtram.metamodel.Attribute;
+import pamtram.metamodel.Reference;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,7 +26,7 @@ import pamtram.metamodel.Attribute;
  * @model abstract="true"
  * @generated
  */
-public interface ModifiedAttributeElementType<AttributeType extends Attribute<?>> extends NamedElement {
+public interface ModifiedAttributeElementType<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -40,7 +41,7 @@ public interface ModifiedAttributeElementType<AttributeType extends Attribute<?>
 	 * @model required="true"
 	 * @generated
 	 */
-	AttributeType getSource();
+	A getSource();
 
 	/**
 	 * Sets the value of the '{@link pamtram.mapping.ModifiedAttributeElementType#getSource <em>Source</em>}' reference.
@@ -50,7 +51,7 @@ public interface ModifiedAttributeElementType<AttributeType extends Attribute<?>
 	 * @see #getSource()
 	 * @generated
 	 */
-	void setSource(AttributeType value);
+	void setSource(A value);
 
 	/**
 	 * Returns the value of the '<em><b>Modifier</b></em>' reference list.

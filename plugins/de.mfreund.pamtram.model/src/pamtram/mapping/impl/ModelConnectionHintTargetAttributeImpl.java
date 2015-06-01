@@ -7,6 +7,8 @@ import org.eclipse.emf.ecore.EClass;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModelConnectionHintTargetAttribute;
 import pamtram.metamodel.TargetSectionAttribute;
+import pamtram.metamodel.TargetSectionClass;
+import pamtram.metamodel.TargetSectionReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,7 +19,7 @@ import pamtram.metamodel.TargetSectionAttribute;
  *
  * @generated
  */
-public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeElementTypeImpl<TargetSectionAttribute> implements ModelConnectionHintTargetAttribute {
+public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeElementTypeImpl<TargetSectionClass, TargetSectionReference, TargetSectionAttribute> implements ModelConnectionHintTargetAttribute {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

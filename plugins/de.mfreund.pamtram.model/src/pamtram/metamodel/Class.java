@@ -23,11 +23,11 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @see pamtram.metamodel.MetamodelPackage#getClass_()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='eClassMatchesParentEReference variableCardinalityIsValid'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot eClassMatchesParentEReference='if self<>self.getContainingSection() then self.oclContainer().oclAsType(pamtram::metamodel::Reference).eReference.oclAsType(ecore::EReference).eReferenceType.isSuperTypeOf(self.eClass.oclAsType(ecore::EClass)) else true endif' cardinalityIsValid='if self<>self.getContainingSection() then not ((self.cardinality <> pamtram::metamodel::CardinalityType::ONE) and (self.oclContainer().oclAsType(pamtram::metamodel::Reference).eReference.oclAsType(ecore::EReference).upperBound <= 1)) else true endif'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='eClassMatchesParentEReference variableCardinalityIsValid containerIsValid'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot eClassMatchesParentEReference='if self<>self.getContainingSection() then self.oclContainer().oclAsType(pamtram::metamodel::Reference).eReference.oclAsType(ecore::EReference).eReferenceType.isSuperTypeOf(self.eClass.oclAsType(ecore::EClass)) else true endif' cardinalityIsValid='if self<>self.getContainingSection() then not ((self.cardinality <> pamtram::metamodel::CardinalityType::ONE) and (self.oclContainer().oclAsType(pamtram::metamodel::Reference).eReference.oclAsType(ecore::EReference).upperBound <= 1)) else true endif' containerIsValid='if self.isSection() or self.container = null then true else self.container = self.oclContainer().oclContainer() endif'"
  * @generated
  */
-public interface Class<C extends Class<C, R, A>, R extends Reference<C>, A extends Attribute<C>> extends MetaModelElement<C> {
+public interface Class<C extends Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends MetaModelElement<C, R, A> {
 	/**
 	 * Returns the value of the '<em><b>EClass</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -166,7 +166,7 @@ public interface Class<C extends Class<C, R, A>, R extends Reference<C>, A exten
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model required="true" containerClassRequired="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<C> containedClasses = new BasicEList<>();\r\n\r\n// collect all classes that are referenced by containment references\r\nfor (R ref : containerClass.getReferences()) {\r\n\tif(!(ref.getEReference().isContainment())) {\r\n\t\tcontinue;\r\n\t}\r\n\tif(ref instanceof ContainmentReference<?>){\r\n\t\tcontainedClasses.addAll(((ContainmentReference<C>) ref).getValue());\r\n\t} else if(ref instanceof MetaModelSectionReference) {\r\n\t\tcontainedClasses.addAll((Collection<? extends C>) ((MetaModelSectionReference) ref).getValue());\r\n\t}\r\n}\r\n\t\r\n\t\t// recursively iterate over all contained classes\r\n\t\tboolean found = false;\r\n\t\tfor (C containedClass : containedClasses) {\r\n\t\t\tif(containedClass.equals(this) || isContainedInGeneric(containedClass)) {\r\n\t\t\t\tfound = true;\r\n\t\t\t\tbreak;\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn found;'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<C> containedClasses = new BasicEList<>();\r\n\r\n// collect all classes that are referenced by containment references\r\nfor (R ref : containerClass.getReferences()) {\r\n\tif(!(ref.getEReference().isContainment())) {\r\n\t\tcontinue;\r\n\t}\r\n\tif(ref instanceof ContainmentReference<?,?,?>){\r\n\t\tcontainedClasses.addAll(((ContainmentReference<C,R,A>) ref).getValue());\r\n\t} else if(ref instanceof MetaModelSectionReference) {\r\n\t\tcontainedClasses.addAll((Collection<? extends C>) ((MetaModelSectionReference) ref).getValue());\r\n\t}\r\n}\r\n\t\r\n// recursively iterate over all contained classes\r\nboolean found = false;\r\nfor (C containedClass : containedClasses) {\r\n\tif(containedClass.equals(this) || isContainedInGeneric(containedClass)) {\r\n\t\tfound = true;\r\n\t\tbreak;\r\n\t}\r\n}\r\n\r\nreturn found;'"
 	 * @generated
 	 */
 	boolean isContainedInGeneric(C containerClass);
@@ -175,9 +175,9 @@ public interface Class<C extends Class<C, R, A>, R extends Reference<C>, A exten
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='if(this.eContainer() instanceof ContainmentReference<?>) {\r\n\treturn (ContainmentReference<C>) this.eContainer();\r\n} else {\r\n\treturn null;\r\n}'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='if(this.eContainer() instanceof ContainmentReference<?,?,?>) {\r\n\treturn (ContainmentReference<C,R,A>) this.eContainer();\r\n} else {\r\n\treturn null;\r\n}'"
 	 * @generated
 	 */
-	ContainmentReference<C> getOwningContainmentReference();
+	ContainmentReference<C, R, A> getOwningContainmentReference();
 
 } // Class

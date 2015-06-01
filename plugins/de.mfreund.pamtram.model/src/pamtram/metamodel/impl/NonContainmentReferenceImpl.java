@@ -7,8 +7,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import pamtram.metamodel.Attribute;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.NonContainmentReference;
+import pamtram.metamodel.Reference;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +25,7 @@ import pamtram.metamodel.NonContainmentReference;
  *
  * @generated
  */
-public abstract class NonContainmentReferenceImpl<V extends pamtram.metamodel.Class<?, ?, ?>> extends ReferenceImpl<V> implements NonContainmentReference<V> {
+public abstract class NonContainmentReferenceImpl<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends ReferenceImpl<C, R, A> implements NonContainmentReference<C, R, A> {
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -32,7 +34,7 @@ public abstract class NonContainmentReferenceImpl<V extends pamtram.metamodel.Cl
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<V> value;
+	protected EList<C> value;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -58,9 +60,9 @@ public abstract class NonContainmentReferenceImpl<V extends pamtram.metamodel.Cl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<V> getValue() {
+	public EList<C> getValue() {
 		if (value == null) {
-			value = new EObjectResolvingEList<V>(pamtram.metamodel.Class.class, this, MetamodelPackage.NON_CONTAINMENT_REFERENCE__VALUE);
+			value = new EObjectResolvingEList<C>(pamtram.metamodel.Class.class, this, MetamodelPackage.NON_CONTAINMENT_REFERENCE__VALUE);
 		}
 		return value;
 	}
@@ -90,7 +92,7 @@ public abstract class NonContainmentReferenceImpl<V extends pamtram.metamodel.Cl
 		switch (featureID) {
 			case MetamodelPackage.NON_CONTAINMENT_REFERENCE__VALUE:
 				getValue().clear();
-				getValue().addAll((Collection<? extends V>)newValue);
+				getValue().addAll((Collection<? extends C>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

@@ -22,7 +22,7 @@ package pamtram.metamodel;
  * @model abstract="true"
  * @generated
  */
-public interface TargetSectionAttribute extends Attribute<TargetSectionClass> {
+public interface TargetSectionAttribute extends Attribute<TargetSectionClass, TargetSectionReference, TargetSectionAttribute> {
 	/**
 	 * Returns the value of the '<em><b>Unique</b></em>' attribute.
 	 * The default value is <code>"false"</code>.

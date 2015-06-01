@@ -40,7 +40,7 @@ import pamtram.metamodel.Reference;
  *
  * @generated
  */
-public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C>, A extends Attribute<C>> extends MetaModelElementImpl<C> implements pamtram.metamodel.Class<C, R, A> {
+public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends MetaModelElementImpl<C, R, A> implements pamtram.metamodel.Class<C, R, A> {
 	/**
 	 * The cached value of the '{@link #getEClass() <em>EClass</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -209,9 +209,8 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	@SuppressWarnings("unchecked")
-	public C getContainer() {
+	public C getContainerGen() {
 		if (container != null && container.eIsProxy()) {
 			InternalEObject oldContainer = (InternalEObject)container;
 			container = (C)eResolveProxy(oldContainer);
@@ -221,6 +220,20 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 			}
 		}
 		return container;
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 */
+	@Override
+	public C getContainer() {
+		C container = getContainerGen();
+		if (container == null && !this.isSection()) {
+			return this.getOwningContainmentReference().getOwningClass();
+		} else {
+			return container;
+		}
 	}
 
 	/**
@@ -296,6 +309,7 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean isContainedInGeneric(final C containerClass) {
 		EList<C> containedClasses = new BasicEList<>();
@@ -305,22 +319,23 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 			if(!(ref.getEReference().isContainment())) {
 				continue;
 			}
-			if(ref instanceof ContainmentReference<?>){
-				containedClasses.addAll(((ContainmentReference<C>) ref).getValue());
+			if(ref instanceof ContainmentReference<?,?,?>){
+				containedClasses.addAll(((ContainmentReference<C,R,A>) ref).getValue());
 			} else if(ref instanceof MetaModelSectionReference) {
 				containedClasses.addAll((Collection<? extends C>) ((MetaModelSectionReference) ref).getValue());
 			}
 		}
 			
-				// recursively iterate over all contained classes
-				boolean found = false;
-				for (C containedClass : containedClasses) {
-					if(containedClass.equals(this) || isContainedInGeneric(containedClass)) {
-						found = true;
-						break;
-					}
-				}
-				return found;
+		// recursively iterate over all contained classes
+		boolean found = false;
+		for (C containedClass : containedClasses) {
+			if(containedClass.equals(this) || isContainedInGeneric(containedClass)) {
+				found = true;
+				break;
+			}
+		}
+		
+		return found;
 	}
 
 	/**
@@ -330,9 +345,9 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public ContainmentReference<C> getOwningContainmentReference() {
-		if(this.eContainer() instanceof ContainmentReference<?>) {
-			return (ContainmentReference<C>) this.eContainer();
+	public ContainmentReference<C, R, A> getOwningContainmentReference() {
+		if(this.eContainer() instanceof ContainmentReference<?,?,?>) {
+			return (ContainmentReference<C,R,A>) this.eContainer();
 		} else {
 			return null;
 		}

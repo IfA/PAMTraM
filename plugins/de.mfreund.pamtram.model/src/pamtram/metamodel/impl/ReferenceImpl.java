@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import pamtram.metamodel.Attribute;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.Reference;
 
@@ -26,7 +27,7 @@ import pamtram.metamodel.Reference;
  *
  * @generated
  */
-public abstract class ReferenceImpl<V extends pamtram.metamodel.Class<?, ?, ?>> extends MetaModelElementImpl<V> implements Reference<V> {
+public abstract class ReferenceImpl<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends MetaModelElementImpl<C, R, A> implements Reference<C, R, A> {
 	/**
 	 * The cached value of the '{@link #getEReference() <em>EReference</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -109,9 +110,10 @@ public abstract class ReferenceImpl<V extends pamtram.metamodel.Class<?, ?, ?>> 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public pamtram.metamodel.Class<?, ?, ?> getOwningClass() {
+	@SuppressWarnings("unchecked")
+	public C getOwningClass() {
 		if (eContainerFeatureID() != MetamodelPackage.REFERENCE__OWNING_CLASS) return null;
-		return (pamtram.metamodel.Class<?, ?, ?>)eInternalContainer();
+		return (C)eInternalContainer();
 	}
 
 	/**
@@ -119,6 +121,7 @@ public abstract class ReferenceImpl<V extends pamtram.metamodel.Class<?, ?, ?>> 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {

@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot eReferenceIsNonContainment='self.eReference.containment=false'"
  * @generated
  */
-public interface NonContainmentReference<V extends pamtram.metamodel.Class<?, ?, ?>> extends Reference<V> {
+public interface NonContainmentReference<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends Reference<C, R, A> {
 
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' reference list.
@@ -38,6 +38,6 @@ public interface NonContainmentReference<V extends pamtram.metamodel.Class<?, ?,
 	 * @model
 	 * @generated
 	 */
-	EList<V> getValue();
+	EList<C> getValue();
 
 } // NonContainmentReference

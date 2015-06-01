@@ -4377,7 +4377,7 @@
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.4/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappedAttributeValuePrepender" name="Add State id" sourceAttribute="//@sourceSectionModel/@metaModelSections.4/@attributes.0" modifiers="//@mappingModel/@modifierSets.4 //@mappingModel/@modifierSets.2" hintsToExpand="//@mappingModel/@mapping.0/@mappingHintGroups.1/@mappingHints.1"/>
+        <mappingHints xsi:type="mapping:MappedAttributeValuePrepender" name="Add State id" source="//@sourceSectionModel/@metaModelSections.4/@attributes.0" modifier="//@mappingModel/@modifierSets.4 //@mappingModel/@modifierSets.2" hintsToExpand="//@mappingModel/@mapping.0/@mappingHintGroups.1/@mappingHints.1"/>
       </importedMappingHintGroups>
       <importedMappingHintGroups xsi:type="mapping:MappingHintGroupImporter" name="Inherited NavFlowTriggers" hintGroup="//@mappingModel/@mapping.0/@mappingHintGroups.2" mappingHints=""/>
     </mapping>

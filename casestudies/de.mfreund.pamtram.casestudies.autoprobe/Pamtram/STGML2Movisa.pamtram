@@ -5366,9 +5366,8 @@
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel/@metaModelSections.19/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.29 //@mappingModel/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosXValue" expression="round(x/max(xmaxTest/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@metaModelSections.20/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosXValue" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@metaModelSections.20/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel/@metaModelSections.20/@attributes.1"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="xmaxTest" source="//@sourceSectionModel/@metaModelSections.0/@references.2/@value.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="PosYValue" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@metaModelSections.20/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModel/@metaModelSections.20/@attributes.2"/>
@@ -5513,9 +5512,8 @@
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel/@metaModelSections.18/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.29 //@mappingModel/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosXValue" expression="round(x/max(xmaxTest/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosXValue" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel/@metaModelSections.14/@attributes.1"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="xmaxTest" source="//@sourceSectionModel/@metaModelSections.0/@references.2/@value.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="PosYValue" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModel/@metaModelSections.14/@attributes.2"/>
@@ -5756,9 +5754,8 @@
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel/@metaModelSections.16/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.29 //@mappingModel/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosXValue" expression="round(x/max(xmaxTest/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@metaModelSections.20/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosXValue" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@metaModelSections.20/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel/@metaModelSections.20/@attributes.1"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="xmaxTest" source="//@sourceSectionModel/@metaModelSections.0/@references.2/@value.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="PosYValue" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@metaModelSections.20/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModel/@metaModelSections.20/@attributes.2"/>

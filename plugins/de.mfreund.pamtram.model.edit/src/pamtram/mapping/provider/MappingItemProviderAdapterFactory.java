@@ -370,29 +370,6 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.InstantiableMappingHintGroup} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected InstantiableMappingHintGroupItemProvider instantiableMappingHintGroupItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.InstantiableMappingHintGroup}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createInstantiableMappingHintGroupAdapter() {
-		if (instantiableMappingHintGroupItemProvider == null) {
-			instantiableMappingHintGroupItemProvider = new InstantiableMappingHintGroupItemProvider(this);
-		}
-
-		return instantiableMappingHintGroupItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link pamtram.mapping.MappingHintGroupImporter} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -906,7 +883,6 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	 */
 	public void dispose() {
 		if (mappingItemProvider != null) mappingItemProvider.dispose();
-		if (instantiableMappingHintGroupItemProvider != null) instantiableMappingHintGroupItemProvider.dispose();
 		if (mappingHintGroupItemProvider != null) mappingHintGroupItemProvider.dispose();
 		if (attributeMappingItemProvider != null) attributeMappingItemProvider.dispose();
 		if (cardinalityMappingItemProvider != null) cardinalityMappingItemProvider.dispose();

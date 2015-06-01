@@ -36,8 +36,10 @@ import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ClassMatcher;
 import pamtram.mapping.ConnectionHintTargetAttribute;
 import pamtram.mapping.ExpandableHint;
+import pamtram.mapping.ExternalMappedAttributeValueExpander;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
+import pamtram.mapping.LocalMappedAttributeValueExpander;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupImporter;
@@ -582,7 +584,11 @@ public class PamtramEditorMainPage extends SashForm {
 						}
 					}
 
-					setSourceTargetViewerSelections(exp.getSourceAttribute(), attr);
+					if(exp instanceof LocalMappedAttributeValueExpander) {
+						setSourceTargetViewerSelections(((LocalMappedAttributeValueExpander) exp).getSource(), attr);
+					} else if(exp instanceof ExternalMappedAttributeValueExpander) {
+						setSourceTargetViewerSelections(((ExternalMappedAttributeValueExpander) exp).getSource(), attr);
+					}
 					
 				}
 			}

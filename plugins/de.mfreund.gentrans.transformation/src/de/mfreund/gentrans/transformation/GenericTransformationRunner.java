@@ -43,7 +43,6 @@ import pamtram.mapping.ExternalMappedAttributeValuePrepender;
 import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.GlobalValue;
 import pamtram.mapping.MappedAttributeValueExpander;
-import pamtram.mapping.MappedAttributeValueExpanderType;
 import pamtram.mapping.MappedAttributeValuePrepender;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
@@ -1075,7 +1074,7 @@ public class GenericTransformationRunner {
 						for (final MappingHintType h : g.getMappingHints()) {
 							if (h instanceof MappingHint) {
 								hints.add((MappingHint) h);
-							} else if (h instanceof MappedAttributeValueExpanderType) {
+							} else if (h instanceof MappedAttributeValueExpander) {
 								if (selMap.getHintValues().get(h).size() == 1) {
 									final String hintVal = (String) selMap
 											.getHintValues().get(h).getFirst();
@@ -1172,7 +1171,7 @@ public class GenericTransformationRunner {
 															 * 0.42e2 == 4200e-2
 															 * == 42,
 															 */
-															final String varName = ((MappedAttributeValueExpanderType) h)
+															final String varName = ((MappedAttributeValueExpander) h)
 																	.getSourceAttribute()
 																	.getName();
 															for (final Object m : selMap
@@ -1185,7 +1184,7 @@ public class GenericTransformationRunner {
 														} catch (final Exception e) {
 															consoleStream
 																	.println("Couldn't convert variable "
-																			+ ((MappedAttributeValueExpanderType) h)
+																			+ ((MappedAttributeValueExpander) h)
 																					.getSourceAttribute()
 																					.getName()
 																			+ " of "

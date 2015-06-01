@@ -95,8 +95,7 @@ public class ModifiedAttributeElementTypeItemProvider extends NamedElementItemPr
 				public Collection<?> getChoiceOfValues(Object object) {
 
 					//the parent Mapping Hint Group
-					@SuppressWarnings("unchecked")
-					EObject parent=((ModifiedAttributeElementType<Attribute>) object).eContainer();
+					EObject parent=((ModifiedAttributeElementType<?,?,?>) object).eContainer();
 					// the parent mapping
 					Mapping mapping;
 					while(true){
@@ -193,7 +192,7 @@ public class ModifiedAttributeElementTypeItemProvider extends NamedElementItemPr
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ModifiedAttributeElementType<?>)object).getName();
+		String label = ((ModifiedAttributeElementType<?, ?, ?>)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ModifiedAttributeElementType_type") :
 			getString("_UI_ModifiedAttributeElementType_type") + " " + label;

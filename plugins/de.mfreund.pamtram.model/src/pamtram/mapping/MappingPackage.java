@@ -1217,16 +1217,6 @@ public interface MappingPackage extends EPackage {
 	int HINT_IMPORTER_MAPPING_HINT = 31;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.MappedAttributeValueExpanderTypeImpl <em>Mapped Attribute Value Expander Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.MappedAttributeValueExpanderTypeImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValueExpanderType()
-	 * @generated
-	 */
-	int MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE = 33;
-
-	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappedAttributeValueExpanderImpl <em>Mapped Attribute Value Expander</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2034,70 +2024,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__NAME = HINT_IMPORTER_MAPPING_HINT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Source Attribute</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__SOURCE_ATTRIBUTE = HINT_IMPORTER_MAPPING_HINT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__MODIFIERS = HINT_IMPORTER_MAPPING_HINT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Mapped Attribute Value Expander Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE_FEATURE_COUNT = HINT_IMPORTER_MAPPING_HINT_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Mapped Attribute Value Expander Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE_OPERATION_COUNT = HINT_IMPORTER_MAPPING_HINT_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAPPED_ATTRIBUTE_VALUE_EXPANDER__NAME = MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Source Attribute</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE_ATTRIBUTE = MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__SOURCE_ATTRIBUTE;
-
-	/**
-	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAPPED_ATTRIBUTE_VALUE_EXPANDER__MODIFIERS = MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__MODIFIERS;
+	int MAPPED_ATTRIBUTE_VALUE_EXPANDER__NAME = HINT_IMPORTER_MAPPING_HINT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Hints To Expand</b></em>' reference list.
@@ -2106,7 +2033,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND = MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE_FEATURE_COUNT + 0;
+	int MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND = HINT_IMPORTER_MAPPING_HINT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Mapped Attribute Value Expander</em>' class.
@@ -2115,7 +2042,25 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_EXPANDER_FEATURE_COUNT = MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE_FEATURE_COUNT + 1;
+	int MAPPED_ATTRIBUTE_VALUE_EXPANDER_FEATURE_COUNT = HINT_IMPORTER_MAPPING_HINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Source Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE = HINT_IMPORTER_MAPPING_HINT_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Modifiers</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MODIFIERS = HINT_IMPORTER_MAPPING_HINT_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Mapped Attribute Value Expander</em>' class.
@@ -2124,7 +2069,17 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_EXPANDER_OPERATION_COUNT = MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE_OPERATION_COUNT + 0;
+	int MAPPED_ATTRIBUTE_VALUE_EXPANDER_OPERATION_COUNT = HINT_IMPORTER_MAPPING_HINT_OPERATION_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.LocalMappedAttributeValueExpanderImpl <em>Local Mapped Attribute Value Expander</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.LocalMappedAttributeValueExpanderImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getLocalMappedAttributeValueExpander()
+	 * @generated
+	 */
+	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 33;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2133,25 +2088,25 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_PREPENDER__NAME = MAPPED_ATTRIBUTE_VALUE_EXPANDER__NAME;
+	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__NAME = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Source Attribute</b></em>' reference.
+	 * The feature id for the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_PREPENDER__SOURCE_ATTRIBUTE = MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE_ATTRIBUTE;
+	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
 
 	/**
-	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
+	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_PREPENDER__MODIFIERS = MAPPED_ATTRIBUTE_VALUE_EXPANDER__MODIFIERS;
+	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__MODIFIER = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Hints To Expand</b></em>' reference list.
@@ -2160,7 +2115,88 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_PREPENDER__HINTS_TO_EXPAND = MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND;
+	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Local Mapped Attribute Value Expander</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER_FEATURE_COUNT = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MAPPING_HINT_GROUP = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
+
+	/**
+	 * The operation id for the '<em>Get Source Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Modifiers</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MODIFIERS = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Local Mapped Attribute Value Expander</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER_OPERATION_COUNT = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_PREPENDER__NAME = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_PREPENDER__SOURCE = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_PREPENDER__MODIFIER = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__MODIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Hints To Expand</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_PREPENDER__HINTS_TO_EXPAND = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND;
 
 	/**
 	 * The number of structural features of the '<em>Mapped Attribute Value Prepender</em>' class.
@@ -2169,7 +2205,34 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_PREPENDER_FEATURE_COUNT = MAPPED_ATTRIBUTE_VALUE_EXPANDER_FEATURE_COUNT + 0;
+	int MAPPED_ATTRIBUTE_VALUE_PREPENDER_FEATURE_COUNT = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_PREPENDER___GET_MAPPING_HINT_GROUP = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MAPPING_HINT_GROUP;
+
+	/**
+	 * The operation id for the '<em>Get Source Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_PREPENDER___GET_SOURCE_ATTRIBUTE = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE;
+
+	/**
+	 * The operation id for the '<em>Get Modifiers</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_PREPENDER___GET_MODIFIERS = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MODIFIERS;
 
 	/**
 	 * The number of operations of the '<em>Mapped Attribute Value Prepender</em>' class.
@@ -2178,7 +2241,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_PREPENDER_OPERATION_COUNT = MAPPED_ATTRIBUTE_VALUE_EXPANDER_OPERATION_COUNT + 0;
+	int MAPPED_ATTRIBUTE_VALUE_PREPENDER_OPERATION_COUNT = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2187,25 +2250,25 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_APPENDER__NAME = MAPPED_ATTRIBUTE_VALUE_EXPANDER__NAME;
+	int MAPPED_ATTRIBUTE_VALUE_APPENDER__NAME = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Source Attribute</b></em>' reference.
+	 * The feature id for the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_APPENDER__SOURCE_ATTRIBUTE = MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE_ATTRIBUTE;
+	int MAPPED_ATTRIBUTE_VALUE_APPENDER__SOURCE = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE;
 
 	/**
-	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
+	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_APPENDER__MODIFIERS = MAPPED_ATTRIBUTE_VALUE_EXPANDER__MODIFIERS;
+	int MAPPED_ATTRIBUTE_VALUE_APPENDER__MODIFIER = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__MODIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Hints To Expand</b></em>' reference list.
@@ -2214,7 +2277,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_APPENDER__HINTS_TO_EXPAND = MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND;
+	int MAPPED_ATTRIBUTE_VALUE_APPENDER__HINTS_TO_EXPAND = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND;
 
 	/**
 	 * The number of structural features of the '<em>Mapped Attribute Value Appender</em>' class.
@@ -2223,7 +2286,34 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_APPENDER_FEATURE_COUNT = MAPPED_ATTRIBUTE_VALUE_EXPANDER_FEATURE_COUNT + 0;
+	int MAPPED_ATTRIBUTE_VALUE_APPENDER_FEATURE_COUNT = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_APPENDER___GET_MAPPING_HINT_GROUP = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MAPPING_HINT_GROUP;
+
+	/**
+	 * The operation id for the '<em>Get Source Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_APPENDER___GET_SOURCE_ATTRIBUTE = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE;
+
+	/**
+	 * The operation id for the '<em>Get Modifiers</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_APPENDER___GET_MODIFIERS = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MODIFIERS;
 
 	/**
 	 * The number of operations of the '<em>Mapped Attribute Value Appender</em>' class.
@@ -2232,7 +2322,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_APPENDER_OPERATION_COUNT = MAPPED_ATTRIBUTE_VALUE_EXPANDER_OPERATION_COUNT + 0;
+	int MAPPED_ATTRIBUTE_VALUE_APPENDER_OPERATION_COUNT = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2742,25 +2832,25 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__NAME = MAPPED_ATTRIBUTE_VALUE_EXPANDER__NAME;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__NAME = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Source Attribute</b></em>' reference.
+	 * The feature id for the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE_ATTRIBUTE = MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE_ATTRIBUTE;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
 
 	/**
-	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
+	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__MODIFIERS = MAPPED_ATTRIBUTE_VALUE_EXPANDER__MODIFIERS;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__MODIFIER = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Hints To Expand</b></em>' reference list.
@@ -2769,7 +2859,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND = MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>External Mapped Attribute Value Expander</em>' class.
@@ -2778,7 +2868,34 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER_FEATURE_COUNT = MAPPED_ATTRIBUTE_VALUE_EXPANDER_FEATURE_COUNT + 0;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER_FEATURE_COUNT = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MAPPING_HINT_GROUP = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
+
+	/**
+	 * The operation id for the '<em>Get Source Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Modifiers</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MODIFIERS = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>External Mapped Attribute Value Expander</em>' class.
@@ -2787,7 +2904,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER_OPERATION_COUNT = MAPPED_ATTRIBUTE_VALUE_EXPANDER_OPERATION_COUNT + 0;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER_OPERATION_COUNT = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.ExternalMappedAttributeValuePrependerImpl <em>External Mapped Attribute Value Prepender</em>}' class.
@@ -2809,22 +2926,22 @@ public interface MappingPackage extends EPackage {
 	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER__NAME = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Source Attribute</b></em>' reference.
+	 * The feature id for the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER__SOURCE_ATTRIBUTE = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE_ATTRIBUTE;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER__SOURCE = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE;
 
 	/**
-	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
+	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER__MODIFIERS = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__MODIFIERS;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER__MODIFIER = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__MODIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Hints To Expand</b></em>' reference list.
@@ -2843,6 +2960,33 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER_FEATURE_COUNT = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER___GET_MAPPING_HINT_GROUP = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MAPPING_HINT_GROUP;
+
+	/**
+	 * The operation id for the '<em>Get Source Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER___GET_SOURCE_ATTRIBUTE = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE;
+
+	/**
+	 * The operation id for the '<em>Get Modifiers</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER___GET_MODIFIERS = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MODIFIERS;
 
 	/**
 	 * The number of operations of the '<em>External Mapped Attribute Value Prepender</em>' class.
@@ -2873,22 +3017,22 @@ public interface MappingPackage extends EPackage {
 	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER__NAME = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Source Attribute</b></em>' reference.
+	 * The feature id for the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER__SOURCE_ATTRIBUTE = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE_ATTRIBUTE;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER__SOURCE = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE;
 
 	/**
-	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
+	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER__MODIFIERS = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__MODIFIERS;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER__MODIFIER = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__MODIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Hints To Expand</b></em>' reference list.
@@ -2907,6 +3051,33 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER_FEATURE_COUNT = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER___GET_MAPPING_HINT_GROUP = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MAPPING_HINT_GROUP;
+
+	/**
+	 * The operation id for the '<em>Get Source Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER___GET_SOURCE_ATTRIBUTE = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE;
+
+	/**
+	 * The operation id for the '<em>Get Modifiers</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER___GET_MODIFIERS = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MODIFIERS;
 
 	/**
 	 * The number of operations of the '<em>External Mapped Attribute Value Appender</em>' class.
@@ -3864,36 +4035,34 @@ public interface MappingPackage extends EPackage {
 	EReference getMappedAttributeValueExpander_HintsToExpand();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.MappedAttributeValueExpanderType <em>Mapped Attribute Value Expander Type</em>}'.
+	 * Returns the meta object for the '{@link pamtram.mapping.MappedAttributeValueExpander#getSourceAttribute() <em>Get Source Attribute</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Mapped Attribute Value Expander Type</em>'.
-	 * @see pamtram.mapping.MappedAttributeValueExpanderType
+	 * @return the meta object for the '<em>Get Source Attribute</em>' operation.
+	 * @see pamtram.mapping.MappedAttributeValueExpander#getSourceAttribute()
 	 * @generated
 	 */
-	EClass getMappedAttributeValueExpanderType();
+	EOperation getMappedAttributeValueExpander__GetSourceAttribute();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.mapping.MappedAttributeValueExpanderType#getSourceAttribute <em>Source Attribute</em>}'.
+	 * Returns the meta object for the '{@link pamtram.mapping.MappedAttributeValueExpander#getModifiers() <em>Get Modifiers</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Source Attribute</em>'.
-	 * @see pamtram.mapping.MappedAttributeValueExpanderType#getSourceAttribute()
-	 * @see #getMappedAttributeValueExpanderType()
+	 * @return the meta object for the '<em>Get Modifiers</em>' operation.
+	 * @see pamtram.mapping.MappedAttributeValueExpander#getModifiers()
 	 * @generated
 	 */
-	EReference getMappedAttributeValueExpanderType_SourceAttribute();
+	EOperation getMappedAttributeValueExpander__GetModifiers_1();
 
 	/**
-	 * Returns the meta object for the reference list '{@link pamtram.mapping.MappedAttributeValueExpanderType#getModifiers <em>Modifiers</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.LocalMappedAttributeValueExpander <em>Local Mapped Attribute Value Expander</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Modifiers</em>'.
-	 * @see pamtram.mapping.MappedAttributeValueExpanderType#getModifiers()
-	 * @see #getMappedAttributeValueExpanderType()
+	 * @return the meta object for class '<em>Local Mapped Attribute Value Expander</em>'.
+	 * @see pamtram.mapping.LocalMappedAttributeValueExpander
 	 * @generated
 	 */
-	EReference getMappedAttributeValueExpanderType_Modifiers();
+	EClass getLocalMappedAttributeValueExpander();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.MappedAttributeValuePrepender <em>Mapped Attribute Value Prepender</em>}'.
@@ -4835,30 +5004,30 @@ public interface MappingPackage extends EPackage {
 		EReference MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND = eINSTANCE.getMappedAttributeValueExpander_HintsToExpand();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.MappedAttributeValueExpanderTypeImpl <em>Mapped Attribute Value Expander Type</em>}' class.
+		 * The meta object literal for the '<em><b>Get Source Attribute</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.MappedAttributeValueExpanderTypeImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValueExpanderType()
 		 * @generated
 		 */
-		EClass MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE = eINSTANCE.getMappedAttributeValueExpanderType();
+		EOperation MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE = eINSTANCE.getMappedAttributeValueExpander__GetSourceAttribute();
 
 		/**
-		 * The meta object literal for the '<em><b>Source Attribute</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Get Modifiers</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__SOURCE_ATTRIBUTE = eINSTANCE.getMappedAttributeValueExpanderType_SourceAttribute();
+		EOperation MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MODIFIERS = eINSTANCE.getMappedAttributeValueExpander__GetModifiers_1();
 
 		/**
-		 * The meta object literal for the '<em><b>Modifiers</b></em>' reference list feature.
+		 * The meta object literal for the '{@link pamtram.mapping.impl.LocalMappedAttributeValueExpanderImpl <em>Local Mapped Attribute Value Expander</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.impl.LocalMappedAttributeValueExpanderImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getLocalMappedAttributeValueExpander()
 		 * @generated
 		 */
-		EReference MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__MODIFIERS = eINSTANCE.getMappedAttributeValueExpanderType_Modifiers();
+		EClass LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = eINSTANCE.getLocalMappedAttributeValueExpander();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.MappedAttributeValuePrependerImpl <em>Mapped Attribute Value Prepender</em>}' class.

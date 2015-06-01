@@ -16,7 +16,7 @@ import pamtram.mapping.MappingPackage;
  *
  * @generated
  */
-public class MappedAttributeValuePrependerImpl extends MappedAttributeValueExpanderImpl implements MappedAttributeValuePrepender {
+public class MappedAttributeValuePrependerImpl extends LocalMappedAttributeValueExpanderImpl implements MappedAttributeValuePrepender {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

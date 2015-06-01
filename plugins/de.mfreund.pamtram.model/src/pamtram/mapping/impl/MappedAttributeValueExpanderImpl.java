@@ -2,13 +2,18 @@
  */
 package pamtram.mapping.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.ExpandableHint;
+import pamtram.mapping.ExternalMappedAttributeValueExpander;
+import pamtram.mapping.LocalMappedAttributeValueExpander;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappingPackage;
+import pamtram.metamodel.SourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +28,7 @@ import pamtram.mapping.MappingPackage;
  *
  * @generated
  */
-public abstract class MappedAttributeValueExpanderImpl extends MappedAttributeValueExpanderTypeImpl implements MappedAttributeValueExpander {
+public abstract class MappedAttributeValueExpanderImpl extends HintImporterMappingHintImpl implements MappedAttributeValueExpander {
 	/**
 	 * The cached value of the '{@link #getHintsToExpand() <em>Hints To Expand</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -58,11 +63,43 @@ public abstract class MappedAttributeValueExpanderImpl extends MappedAttributeVa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ExpandableHint> getHintsToExpand() {
 		if (hintsToExpand == null) {
 			hintsToExpand = new EObjectResolvingEList<ExpandableHint>(ExpandableHint.class, this, MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND);
 		}
 		return hintsToExpand;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SourceSectionAttribute getSourceAttribute() {
+		if(this instanceof LocalMappedAttributeValueExpander) {
+			return ((LocalMappedAttributeValueExpander) this).getSource();
+		} else if(this instanceof ExternalMappedAttributeValueExpander) {
+			return ((ExternalMappedAttributeValueExpander) this).getSource();
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<AttributeValueModifierSet> getModifiers() {
+		if(this instanceof LocalMappedAttributeValueExpander) {
+			return ((LocalMappedAttributeValueExpander) this).getModifier();
+		} else if(this instanceof ExternalMappedAttributeValueExpander) {
+			return ((ExternalMappedAttributeValueExpander) this).getModifier();
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -123,6 +160,22 @@ public abstract class MappedAttributeValueExpanderImpl extends MappedAttributeVa
 				return hintsToExpand != null && !hintsToExpand.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE:
+				return getSourceAttribute();
+			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MODIFIERS:
+				return getModifiers();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //MappedAttributeValueExpanderImpl

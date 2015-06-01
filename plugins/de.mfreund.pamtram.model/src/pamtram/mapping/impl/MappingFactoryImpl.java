@@ -73,6 +73,7 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT: return createAttributeMappingSourceElement();
 			case MappingPackage.MODEL_CONNECTION_HINT_SOURCE_ELEMENT: return createModelConnectionHintSourceElement();
 			case MappingPackage.MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE: return createModelConnectionHintTargetAttribute();
+			case MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER: return createLocalMappedAttributeValueExpander();
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_PREPENDER: return createMappedAttributeValuePrepender();
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_APPENDER: return createMappedAttributeValueAppender();
 			case MappingPackage.GLOBAL_ATTRIBUTE: return createGlobalAttribute();
@@ -324,6 +325,16 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public ModelConnectionHintTargetAttribute createModelConnectionHintTargetAttribute() {
 		ModelConnectionHintTargetAttributeImpl modelConnectionHintTargetAttribute = new ModelConnectionHintTargetAttributeImpl();
 		return modelConnectionHintTargetAttribute;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LocalMappedAttributeValueExpander createLocalMappedAttributeValueExpander() {
+		LocalMappedAttributeValueExpanderImpl localMappedAttributeValueExpander = new LocalMappedAttributeValueExpanderImpl();
+		return localMappedAttributeValueExpander;
 	}
 
 	/**

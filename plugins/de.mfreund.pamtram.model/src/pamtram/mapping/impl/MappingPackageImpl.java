@@ -40,10 +40,10 @@ import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.GlobalValue;
 import pamtram.mapping.HintImporterMappingHint;
 import pamtram.mapping.InstantiableMappingHintGroup;
+import pamtram.mapping.LocalMappedAttributeValueExpander;
 import pamtram.mapping.LocalModifiedAttributeElementType;
 import pamtram.mapping.MappedAttributeValueAppender;
 import pamtram.mapping.MappedAttributeValueExpander;
-import pamtram.mapping.MappedAttributeValueExpanderType;
 import pamtram.mapping.MappedAttributeValuePrepender;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingFactory;
@@ -319,7 +319,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass mappedAttributeValueExpanderTypeEClass = null;
+	private EClass localMappedAttributeValueExpanderEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1196,8 +1196,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMappedAttributeValueExpanderType() {
-		return mappedAttributeValueExpanderTypeEClass;
+	public EOperation getMappedAttributeValueExpander__GetSourceAttribute() {
+		return mappedAttributeValueExpanderEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -1205,8 +1205,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMappedAttributeValueExpanderType_SourceAttribute() {
-		return (EReference)mappedAttributeValueExpanderTypeEClass.getEStructuralFeatures().get(0);
+	public EOperation getMappedAttributeValueExpander__GetModifiers_1() {
+		return mappedAttributeValueExpanderEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -1214,8 +1214,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMappedAttributeValueExpanderType_Modifiers() {
-		return (EReference)mappedAttributeValueExpanderTypeEClass.getEStructuralFeatures().get(1);
+	public EClass getLocalMappedAttributeValueExpander() {
+		return localMappedAttributeValueExpanderEClass;
 	}
 
 	/**
@@ -1585,10 +1585,10 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		mappedAttributeValueExpanderEClass = createEClass(MAPPED_ATTRIBUTE_VALUE_EXPANDER);
 		createEReference(mappedAttributeValueExpanderEClass, MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND);
+		createEOperation(mappedAttributeValueExpanderEClass, MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE);
+		createEOperation(mappedAttributeValueExpanderEClass, MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MODIFIERS);
 
-		mappedAttributeValueExpanderTypeEClass = createEClass(MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE);
-		createEReference(mappedAttributeValueExpanderTypeEClass, MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__SOURCE_ATTRIBUTE);
-		createEReference(mappedAttributeValueExpanderTypeEClass, MAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__MODIFIERS);
+		localMappedAttributeValueExpanderEClass = createEClass(LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER);
 
 		mappedAttributeValuePrependerEClass = createEClass(MAPPED_ATTRIBUTE_VALUE_PREPENDER);
 
@@ -1829,10 +1829,19 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		modelConnectionHintTargetAttributeEClass.getEGenericSuperTypes().add(g1);
 		mappingHintTypeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		hintImporterMappingHintEClass.getESuperTypes().add(this.getMappingHintType());
-		mappedAttributeValueExpanderEClass.getESuperTypes().add(this.getMappedAttributeValueExpanderType());
-		mappedAttributeValueExpanderTypeEClass.getESuperTypes().add(this.getHintImporterMappingHint());
-		mappedAttributeValuePrependerEClass.getESuperTypes().add(this.getMappedAttributeValueExpander());
-		mappedAttributeValueAppenderEClass.getESuperTypes().add(this.getMappedAttributeValueExpander());
+		mappedAttributeValueExpanderEClass.getESuperTypes().add(this.getHintImporterMappingHint());
+		g1 = createEGenericType(this.getLocalModifiedAttributeElementType());
+		g2 = createEGenericType(theMetamodelPackage.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theMetamodelPackage.getSourceSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theMetamodelPackage.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		localMappedAttributeValueExpanderEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getMappedAttributeValueExpander());
+		localMappedAttributeValueExpanderEClass.getEGenericSuperTypes().add(g1);
+		mappedAttributeValuePrependerEClass.getESuperTypes().add(this.getLocalMappedAttributeValueExpander());
+		mappedAttributeValueAppenderEClass.getESuperTypes().add(this.getLocalMappedAttributeValueExpander());
 		globalAttributeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		globalAttributeImporterEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		globalAttributeImporterEClass.getESuperTypes().add(this.getAttributeMappingSourceInterface());
@@ -1878,7 +1887,16 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		attributeMatcherExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getAttributeMatcherSourceInterface());
 		attributeMatcherExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
-		externalMappedAttributeValueExpanderEClass.getESuperTypes().add(this.getMappedAttributeValueExpander());
+		g1 = createEGenericType(this.getExternalModifiedAttributeElementType());
+		g2 = createEGenericType(theMetamodelPackage.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theMetamodelPackage.getSourceSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theMetamodelPackage.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		externalMappedAttributeValueExpanderEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getMappedAttributeValueExpander());
+		externalMappedAttributeValueExpanderEClass.getEGenericSuperTypes().add(g1);
 		externalMappedAttributeValuePrependerEClass.getESuperTypes().add(this.getExternalMappedAttributeValueExpander());
 		externalMappedAttributeValueAppenderEClass.getESuperTypes().add(this.getExternalMappedAttributeValueExpander());
 		matchToLowerCaseConverterEClass.getESuperTypes().add(this.getAttributeValueModifier());
@@ -2002,9 +2020,11 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEClass(mappedAttributeValueExpanderEClass, MappedAttributeValueExpander.class, "MappedAttributeValueExpander", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMappedAttributeValueExpander_HintsToExpand(), this.getExpandableHint(), null, "hintsToExpand", null, 1, -1, MappedAttributeValueExpander.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(mappedAttributeValueExpanderTypeEClass, MappedAttributeValueExpanderType.class, "MappedAttributeValueExpanderType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMappedAttributeValueExpanderType_SourceAttribute(), theMetamodelPackage.getSourceSectionAttribute(), null, "sourceAttribute", null, 1, 1, MappedAttributeValueExpanderType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMappedAttributeValueExpanderType_Modifiers(), this.getAttributeValueModifierSet(), null, "modifiers", null, 0, -1, MappedAttributeValueExpanderType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEOperation(getMappedAttributeValueExpander__GetSourceAttribute(), theMetamodelPackage.getSourceSectionAttribute(), "getSourceAttribute", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getMappedAttributeValueExpander__GetModifiers_1(), this.getAttributeValueModifierSet(), "getModifiers", 0, -1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(localMappedAttributeValueExpanderEClass, LocalMappedAttributeValueExpander.class, "LocalMappedAttributeValueExpander", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(mappedAttributeValuePrependerEClass, MappedAttributeValuePrepender.class, "MappedAttributeValuePrepender", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

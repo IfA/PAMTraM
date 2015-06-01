@@ -230,6 +230,15 @@ public interface MappingFactory extends EFactory {
 	ModelConnectionHintTargetAttribute createModelConnectionHintTargetAttribute();
 
 	/**
+	 * Returns a new object of class '<em>Local Mapped Attribute Value Expander</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Local Mapped Attribute Value Expander</em>'.
+	 * @generated
+	 */
+	LocalMappedAttributeValueExpander createLocalMappedAttributeValueExpander();
+
+	/**
 	 * Returns a new object of class '<em>Mapped Attribute Value Prepender</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

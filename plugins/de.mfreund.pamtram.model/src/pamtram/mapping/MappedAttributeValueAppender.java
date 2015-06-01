@@ -13,5 +13,5 @@ package pamtram.mapping;
  * @model
  * @generated
  */
-public interface MappedAttributeValueAppender extends MappedAttributeValueExpander {
+public interface MappedAttributeValueAppender extends LocalMappedAttributeValueExpander {
 } // MappedAttributeValueAppender

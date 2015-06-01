@@ -21,18 +21,18 @@ import pamtram.metamodel.SourceSectionReference;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>External Mapped Attribute Value Expander</b></em>'.
+ * An implementation of the model object '<em><b>Local Mapped Attribute Value Expander</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link pamtram.mapping.impl.ExternalMappedAttributeValueExpanderImpl#getHintsToExpand <em>Hints To Expand</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.LocalMappedAttributeValueExpanderImpl#getHintsToExpand <em>Hints To Expand</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalModifiedAttributeElementTypeImpl<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements ExternalMappedAttributeValueExpander {
+public class LocalMappedAttributeValueExpanderImpl extends LocalModifiedAttributeElementTypeImpl<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements LocalMappedAttributeValueExpander {
 	/**
 	 * The cached value of the '{@link #getHintsToExpand() <em>Hints To Expand</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -48,7 +48,7 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ExternalMappedAttributeValueExpanderImpl() {
+	protected LocalMappedAttributeValueExpanderImpl() {
 		super();
 	}
 
@@ -59,7 +59,7 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalM
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER;
+		return MappingPackage.Literals.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER;
 	}
 
 	/**
@@ -70,7 +70,7 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalM
 	@Override
 	public EList<ExpandableHint> getHintsToExpand() {
 		if (hintsToExpand == null) {
-			hintsToExpand = new EObjectResolvingEList<ExpandableHint>(ExpandableHint.class, this, MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND);
+			hintsToExpand = new EObjectResolvingEList<ExpandableHint>(ExpandableHint.class, this, MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND);
 		}
 		return hintsToExpand;
 	}
@@ -114,7 +114,7 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalM
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
+			case MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
 				return getHintsToExpand();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -129,7 +129,7 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalM
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
+			case MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
 				getHintsToExpand().clear();
 				getHintsToExpand().addAll((Collection<? extends ExpandableHint>)newValue);
 				return;
@@ -145,7 +145,7 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalM
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
+			case MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
 				getHintsToExpand().clear();
 				return;
 		}
@@ -160,7 +160,7 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalM
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
+			case MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
 				return hintsToExpand != null && !hintsToExpand.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -185,7 +185,7 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalM
 		}
 		if (baseClass == MappedAttributeValueExpander.class) {
 			switch (derivedFeatureID) {
-				case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND: return MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND;
+				case MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND: return MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND;
 				default: return -1;
 			}
 		}
@@ -211,7 +211,7 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalM
 		}
 		if (baseClass == MappedAttributeValueExpander.class) {
 			switch (baseFeatureID) {
-				case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND: return MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND;
+				case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND: return MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND;
 				default: return -1;
 			}
 		}
@@ -237,8 +237,8 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalM
 		}
 		if (baseClass == MappedAttributeValueExpander.class) {
 			switch (baseOperationID) {
-				case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE: return MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE;
-				case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MODIFIERS: return MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MODIFIERS;
+				case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE: return MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE;
+				case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MODIFIERS: return MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MODIFIERS;
 				default: return -1;
 			}
 		}
@@ -253,12 +253,12 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalM
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE:
+			case MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE:
 				return getSourceAttribute();
-			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MODIFIERS:
+			case MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MODIFIERS:
 				return getModifiers();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
-} //ExternalMappedAttributeValueExpanderImpl
+} //LocalMappedAttributeValueExpanderImpl

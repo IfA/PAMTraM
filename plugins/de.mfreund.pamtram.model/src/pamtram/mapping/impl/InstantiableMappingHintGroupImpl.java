@@ -25,7 +25,7 @@ import pamtram.mapping.MappingPackage;
  *
  * @generated
  */
-public class InstantiableMappingHintGroupImpl extends NamedElementImpl implements InstantiableMappingHintGroup {
+public abstract class InstantiableMappingHintGroupImpl extends NamedElementImpl implements InstantiableMappingHintGroup {
 	/**
 	 * The default value of the '{@link #isDeactivated() <em>Deactivated</em>}' attribute.
 	 * <!-- begin-user-doc -->

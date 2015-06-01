@@ -55,7 +55,6 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case MappingPackage.MAPPING: return createMapping();
-			case MappingPackage.INSTANTIABLE_MAPPING_HINT_GROUP: return createInstantiableMappingHintGroup();
 			case MappingPackage.MAPPING_HINT_GROUP: return createMappingHintGroup();
 			case MappingPackage.ATTRIBUTE_MAPPING: return createAttributeMapping();
 			case MappingPackage.CARDINALITY_MAPPING: return createCardinalityMapping();
@@ -254,16 +253,6 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public MappingHintGroup createMappingHintGroup() {
 		MappingHintGroupImpl mappingHintGroup = new MappingHintGroupImpl();
 		return mappingHintGroup;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public InstantiableMappingHintGroup createInstantiableMappingHintGroup() {
-		InstantiableMappingHintGroupImpl instantiableMappingHintGroup = new InstantiableMappingHintGroupImpl();
-		return instantiableMappingHintGroup;
 	}
 
 	/**

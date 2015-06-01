@@ -12,7 +12,7 @@ import pamtram.NamedElement;
  *
  *
  * @see pamtram.mapping.MappingPackage#getInstantiableMappingHintGroup()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface InstantiableMappingHintGroup extends NamedElement, DeactivatableElement {

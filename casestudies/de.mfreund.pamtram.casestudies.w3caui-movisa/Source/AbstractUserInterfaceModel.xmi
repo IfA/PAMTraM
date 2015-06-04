@@ -2,10 +2,11 @@
 <aui:AbstractUserInterfaceModel
     xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:aui="http://www.w3.org/2013/mbui-aui">
   <abstractInteractionUnit
       id="aui1"
-      role="confirmation">
+      role="">
     <aggregatedIn
         compositionRationale=""
         compositionRole="sequential"
@@ -14,6 +15,8 @@
       <associatedWith>aui3</associatedWith>
       <associatedWith>aui4</associatedWith>
     </aggregatedIn>
+    <eventSupport/>
+    <presentationSupport/>
   </abstractInteractionUnit>
   <abstractInteractionUnit
       id="aui2"
@@ -26,36 +29,60 @@
       <associatedWith>aui7</associatedWith>
       <associatedWith>aui8</associatedWith>
     </aggregatedIn>
+    <eventSupport/>
+    <presentationSupport/>
   </abstractInteractionUnit>
   <abstractInteractionUnit
       id="aiu3"
       name="">
     <aggregatedIn/>
+    <eventSupport/>
+    <presentationSupport/>
   </abstractInteractionUnit>
   <abstractInteractionUnit
       id="aiu4">
     <aggregatedIn/>
+    <eventSupport/>
+    <presentationSupport/>
   </abstractInteractionUnit>
   <abstractInteractionUnit
-      id="aiu5">
+      domainReference=""
+      id="aiu5"
+      name=""
+      role="navigation">
     <aggregatedIn/>
     <eventSupport>
       <dataSelectionSupport
           end="1"
           selectionStep="1"
           start="7"/>
+      <triggerSupport
+          triggerExpression=""
+          triggerType=""/>
+      <dataInputOutputSupport/>
     </eventSupport>
+    <presentationSupport/>
   </abstractInteractionUnit>
   <abstractInteractionUnit
       id="aiu6">
     <aggregatedIn/>
+    <eventSupport>
+      <dataSelectionSupport
+          xsi:type="aui:DataFilterSupport"/>
+      <dataInputOutputSupport/>
+    </eventSupport>
+    <presentationSupport/>
   </abstractInteractionUnit>
   <abstractInteractionUnit
       id="aiu7">
     <aggregatedIn/>
+    <eventSupport/>
+    <presentationSupport/>
   </abstractInteractionUnit>
   <abstractInteractionUnit
       id="aiu8">
     <aggregatedIn/>
+    <eventSupport/>
+    <presentationSupport/>
   </abstractInteractionUnit>
 </aui:AbstractUserInterfaceModel>

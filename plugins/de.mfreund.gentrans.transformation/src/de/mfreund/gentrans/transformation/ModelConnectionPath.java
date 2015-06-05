@@ -37,7 +37,7 @@ final class ModelConnectionPath {
 		// new
 		// ModelConnectionPath(registry).findPathsFromContainerToClassToConnect(elementClass,
 		// containerClass, maxPathLength);
-		final LinkedHashSet<Pair<EClass, LinkedList<EObject>>> pathStack = new LinkedHashSet<Pair<EClass, LinkedList<EObject>>>();
+		final LinkedHashSet<Pair<EClass, LinkedList<EObject>>> pathStack = new LinkedHashSet<>();
 
 		pathStack.add(new Pair<EClass, LinkedList<EObject>>(containerClass,
 				new LinkedList<EObject>()));
@@ -96,7 +96,7 @@ final class ModelConnectionPath {
 		// new
 		// ModelConnectionPath(registry).findPathsFromContainerToClassToConnect(elementClass,
 		// containerClass, maxPathLength);
-		final LinkedHashSet<Pair<EClass, LinkedList<EObject>>> pathStack = new LinkedHashSet<Pair<EClass, LinkedList<EObject>>>();
+		final LinkedHashSet<Pair<EClass, LinkedList<EObject>>> pathStack = new LinkedHashSet<>();
 
 		pathStack.add(new Pair<EClass, LinkedList<EObject>>(pathStartClass,
 				new LinkedList<EObject>()));
@@ -167,8 +167,8 @@ final class ModelConnectionPath {
 		for (final ModelConnectionPath p : paths) {
 			if (startInstance != null) {
 				if (!p.leadsToRootType(startInstance.eClass())) {
-					continue;// only consider paths with the right start
-					// instance type
+					// only consider paths with the right start instance type
+					continue;
 				}
 			}
 
@@ -272,8 +272,10 @@ final class ModelConnectionPath {
 	 * @return capacity of the path ('<em>-1</em>' is returned for paths with unbounded capacity)
 	 */
 	int getCapacity(final EObject targetInstance) {
-		boolean use = false; // gets toggled every loop, to help us separate
-		// refs from types
+		
+		// gets toggled every loop, to help us separate refs from types
+		boolean use = false;
+		
 		EObject instance = targetInstance;
 		int max = 1;
 
@@ -325,7 +327,7 @@ final class ModelConnectionPath {
 	 * @return inverted List of path elements
 	 */
 	private LinkedList<EObject> getInvertedPathElementList() {
-		final LinkedList<EObject> inverted = new LinkedList<EObject>();
+		final LinkedList<EObject> inverted = new LinkedList<>();
 		final ListIterator<EObject> it = pathElements.listIterator(pathElements
 				.size());
 
@@ -366,6 +368,7 @@ final class ModelConnectionPath {
 	List<EObjectTransformationHelper> instantiate(
 			final EObject refStartInstance,
 			final Collection<EObjectTransformationHelper> instancesAtEnd) {
+		
 		return instantiateMissingPath(getInvertedPathElementList(),
 				refStartInstance, new LinkedList<EObjectTransformationHelper>(
 						instancesAtEnd));
@@ -386,7 +389,8 @@ final class ModelConnectionPath {
 			final LinkedList<EObject> invertedPath,
 			final EObject refStartInstance,
 			List<EObjectTransformationHelper> instancesAtEnd) {
-		final LinkedList<EObject> pathCopy = new LinkedList<EObject>();
+		
+		final LinkedList<EObject> pathCopy = new LinkedList<>();
 		pathCopy.addAll(invertedPath);
 		pathCopy.remove(0);// EClass refStart=(EClass)
 		final EReference ref = (EReference) pathCopy.remove(0);
@@ -411,19 +415,13 @@ final class ModelConnectionPath {
 				return instancesAtEnd;
 
 			} else if (ref.getUpperBound() < 0) {
-				final LinkedList<EObject> newTarget = new LinkedList<EObject>();// it
-				// is
-				// absolutely
-				// neccessary
-				// to
-				// copy
-				// targetInst, since targetInst will be cleared by
-				final List<EObject> targetInstL = new LinkedList<EObject>(); // eSet
-				// before
-				// new
-				// elements
-				// are
-				// added
+				
+				/*
+				 * it is absolutely necessary to copy targetInst, since targetInst will be cleared by
+				 * eSet before new elements are added
+				 */
+				final LinkedList<EObject> newTarget = new LinkedList<>();
+				final List<EObject> targetInstL = new LinkedList<>(); 
 				if (targetInst != null) {
 					@SuppressWarnings("unchecked")
 					final EList<EObject> castedList = (EList<EObject>) targetInst;
@@ -438,8 +436,7 @@ final class ModelConnectionPath {
 					// instance.~description="Class '" + newSelf.first.name +
 					// "' (created to link targetSection):"; TODO seee above
 					targetInstL.add(instance);
-					newTarget.clear();// shouldn't be neccesssary because eSet
-					// will clear this
+					newTarget.clear();// shouldn't be neccesssary because eSet will clear this
 					newTarget.addAll(targetInstL);
 					targetSectionRegistry.addClassInstance(newTarget.getLast());
 					refStartInstance.eSet(ref, newTarget);
@@ -472,7 +469,7 @@ final class ModelConnectionPath {
 
 				}
 			} else if (ref.getUpperBound() < 0) {
-				final LinkedList<EObject> newTarget = new LinkedList<EObject>();// it
+				final LinkedList<EObject> newTarget = new LinkedList<>();// it
 				/*
 				 * is absolutely neccessary to copy targetInst, since targetInst
 				 * will be cleared by eSet before new elements are added
@@ -531,8 +528,7 @@ final class ModelConnectionPath {
 	public String toString() {
 		String path = "";
 
-		final ListIterator<EObject> it = pathElements.listIterator(pathElements
-				.size());
+		final ListIterator<EObject> it = pathElements.listIterator(pathElements.size());
 
 		while (it.hasPrevious()) {
 			final EObject prev = it.previous();

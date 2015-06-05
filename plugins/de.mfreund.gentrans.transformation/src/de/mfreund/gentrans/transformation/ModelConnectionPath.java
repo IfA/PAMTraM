@@ -11,6 +11,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
+import de.mfreund.gentrans.transformation.util.Pair;
+
 /**
  * Holds a very ugly List that represents a path (mixed EClass and EReference)
  * and provides a bunch of methods that involve handling this List.

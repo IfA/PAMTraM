@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation;
+package de.mfreund.gentrans.transformation.util;
 
 /**
  * Class to hold references to two objects. Can be used by a method two return

@@ -23,6 +23,7 @@ import pamtram.mapping.ModelConnectionHintTargetAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import de.mfreund.gentrans.transformation.selectors.GenericItemSelectorDialogRunner;
 import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunner;
+import de.mfreund.gentrans.transformation.util.CancellationListener;
 
 /**
  * Class for linking the sections of the target model.

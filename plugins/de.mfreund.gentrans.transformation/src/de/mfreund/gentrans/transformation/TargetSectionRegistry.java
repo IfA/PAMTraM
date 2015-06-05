@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.eclipse.ui.console.MessageConsoleStream;
 
+import de.mfreund.gentrans.transformation.util.CancellationListener;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.metamodel.TargetSectionClass;
 

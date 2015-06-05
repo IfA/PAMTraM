@@ -46,6 +46,7 @@ import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
 import de.mfreund.gentrans.transformation.selectors.GenericItemSelectorDialogRunner;
 import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunner;
+import de.mfreund.gentrans.transformation.util.CancellationListener;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 
 /**

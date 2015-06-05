@@ -1,7 +1,7 @@
 /**
  *
  */
-package de.mfreund.gentrans.transformation;
+package de.mfreund.gentrans.transformation.util;
 
 /**
  * @author Sascha Steffen

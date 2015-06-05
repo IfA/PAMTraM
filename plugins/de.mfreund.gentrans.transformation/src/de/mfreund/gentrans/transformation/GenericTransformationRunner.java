@@ -61,6 +61,7 @@ import pamtram.util.EPackageHelper;
 import pamtram.util.EPackageHelper.EPackageCheck;
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
+import de.mfreund.gentrans.transformation.util.CancellationListener;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 
 /**

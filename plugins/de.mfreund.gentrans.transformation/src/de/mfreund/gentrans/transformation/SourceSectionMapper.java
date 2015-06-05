@@ -52,6 +52,7 @@ import pamtram.metamodel.SourceSectionContainmentReference;
 import pamtram.metamodel.SourceSectionReference;
 import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.selectors.NamedElementItemSelectorDialogRunner;
+import de.mfreund.gentrans.transformation.util.CancellationListener;
 
 /**
  * Class to map source model Objects to source sections and find values for

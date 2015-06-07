@@ -7,6 +7,7 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 
 import pamtram.metamodel.SourceSectionClass;
+import de.mfreund.gentrans.transformation.AttributeValueRepresentation;
 
 /**
  * This abstract base class provides illustrates a map that allows to collect hint values for 
@@ -17,7 +18,7 @@ import pamtram.metamodel.SourceSectionClass;
  * 
  * @author mfreund
  */
-public abstract class HintValueMap<K extends EObject, S extends EObject> extends HashMap<K, HashMap<SourceSectionClass, LinkedList<Map<S, String>>>> {
+public abstract class HintValueMap<K extends EObject, S extends EObject> extends HashMap<K, HashMap<SourceSectionClass, LinkedList<Map<S, AttributeValueRepresentation>>>> {
 
 	private static final long serialVersionUID = 7863859419011070324L;
 
@@ -30,7 +31,7 @@ public abstract class HintValueMap<K extends EObject, S extends EObject> extends
 	 * @param hint The mapping hint for which the collection of hint values shall be initialized.
 	 */
 	private void init(K hint) {
-		this.put(hint, new HashMap<SourceSectionClass, LinkedList<Map<S, String>>>());
+		this.put(hint, new HashMap<SourceSectionClass, LinkedList<Map<S, AttributeValueRepresentation>>>());
 	}
 	
 	/**
@@ -51,7 +52,7 @@ public abstract class HintValueMap<K extends EObject, S extends EObject> extends
 
 			for (final SourceSectionClass c : hintValueMap.get(h).keySet()) {
 				if (!this.get(h).containsKey(c)) {
-					this.get(h).put(c, new LinkedList<Map<S, String>>());
+					this.get(h).put(c, new LinkedList<Map<S, AttributeValueRepresentation>>());
 				}
 				
 				/*
@@ -69,7 +70,7 @@ public abstract class HintValueMap<K extends EObject, S extends EObject> extends
 	 * @param clazz The source section class that the hint value is associated to.
 	 * @param hintValue The value to be added to this map of hint values.
 	 */
-	public void addHintValue(K hint, SourceSectionClass clazz, Map<S, String> hintValue) {
+	public void addHintValue(K hint, SourceSectionClass clazz, Map<S, AttributeValueRepresentation> hintValue) {
 		
 		/*
 		 * Before we add anything, we make sure that every sub-map and -list is
@@ -80,7 +81,7 @@ public abstract class HintValueMap<K extends EObject, S extends EObject> extends
 		}
 
 		if(!this.get(hint).containsKey(clazz)) {
-			this.get(hint).put(clazz, new LinkedList<Map<S, String>>());
+			this.get(hint).put(clazz, new LinkedList<Map<S, AttributeValueRepresentation>>());
 		}
 	
 		/*
@@ -96,7 +97,7 @@ public abstract class HintValueMap<K extends EObject, S extends EObject> extends
 	 * @param clazz The source section class that the hint values are associated to.
 	 * @param hintValues The values to be added to this map of hint values.
 	 */
-	public void addHintValues(K hint, SourceSectionClass clazz, LinkedList<Map<S, String>> hintValues) {
+	public void addHintValues(K hint, SourceSectionClass clazz, LinkedList<Map<S, AttributeValueRepresentation>> hintValues) {
 		
 		/*
 		 * Before we add anything, we make sure that every sub-map and -list is
@@ -107,7 +108,7 @@ public abstract class HintValueMap<K extends EObject, S extends EObject> extends
 		}
 
 		if(!this.get(hint).containsKey(clazz)) {
-			this.get(hint).put(clazz, new LinkedList<Map<S, String>>());
+			this.get(hint).put(clazz, new LinkedList<Map<S, AttributeValueRepresentation>>());
 		}
 	
 		/*
@@ -122,7 +123,7 @@ public abstract class HintValueMap<K extends EObject, S extends EObject> extends
 	 * @param hint The hint for which this value shall be added.
 	 * @param hintValue The value to be added to this map of hint values.
 	 */
-	public void addHintValue(K hint, Map<S, String> hintValue) {
+	public void addHintValue(K hint, Map<S, AttributeValueRepresentation> hintValue) {
 		
 		addHintValue(hint, null, hintValue);
 	}
@@ -133,7 +134,7 @@ public abstract class HintValueMap<K extends EObject, S extends EObject> extends
 	 * @param hint The hint for which this values shall be added.
 	 * @param hintValues The values to be added to this map of hint values.
 	 */
-	public void addHintValues(K hint, LinkedList<Map<S, String>> hintValues) {
+	public void addHintValues(K hint, LinkedList<Map<S, AttributeValueRepresentation>> hintValues) {
 		
 		addHintValues(hint, null, hintValues);
 	}
@@ -144,7 +145,7 @@ public abstract class HintValueMap<K extends EObject, S extends EObject> extends
 	 * @param hint The hint for which this values shall be set.
 	 * @param hintValues The values to be set.
 	 */
-	public void setHintValues(K hint, LinkedList<Map<S, String>> hintValues) {
+	public void setHintValues(K hint, LinkedList<Map<S, AttributeValueRepresentation>> hintValues) {
 		
 		/*
 		 * Before we add anything, we make sure that every sub-map and -list is
@@ -165,7 +166,7 @@ public abstract class HintValueMap<K extends EObject, S extends EObject> extends
 	 * @return The list of hint values that are associated with the given hint (an empty list is
 	 * returned if no hint value is associated).
 	 */
-	public LinkedList<Map<S, String>> getHintValues(K hint) {
+	public LinkedList<Map<S, AttributeValueRepresentation>> getHintValues(K hint) {
 		
 		if(!this.containsKey(hint) || !this.get(hint).containsKey(null)) {
 			return new LinkedList<>();

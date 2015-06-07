@@ -158,7 +158,7 @@ class MappingInstanceStorage {
 	 * @param value
 	 */
 	void addModelConnectionHintValue(final ModelConnectionHint hint,
-			final Map<ModelConnectionHintSourceElement, String> value) {
+			final Map<ModelConnectionHintSourceElement, AttributeValueRepresentation> value) {
 		modelConnectionHintValues.addHintValue(hint, value);
 	}
 
@@ -340,7 +340,7 @@ class MappingInstanceStorage {
 	 * @param hint
 	 * @return ModelConnectionHint values for the specified target section
 	 */
-	LinkedList<Map<ModelConnectionHintSourceElement, String>> getModelConnectionHintValues(
+	LinkedList<Map<ModelConnectionHintSourceElement, AttributeValueRepresentation>> getModelConnectionHintValues(
 			final ModelConnectionHint hint) {
 
 		return modelConnectionHintValues.getHintValues(hint);
@@ -392,7 +392,7 @@ class MappingInstanceStorage {
 	 * @param newHintValues
 	 */
 	void setConnectionHintValueList(final ModelConnectionHint hint,
-			final LinkedList<Map<ModelConnectionHintSourceElement, String>> newHintValues) {
+			final LinkedList<Map<ModelConnectionHintSourceElement, AttributeValueRepresentation>> newHintValues) {
 		modelConnectionHintValues.setHintValues(hint, newHintValues);
 
 	}
@@ -404,7 +404,7 @@ class MappingInstanceStorage {
 	 * @param newHintValues
 	 */
 	void setAttributeMappingHintValueList(final AttributeMapping hint,
-			final LinkedList<Map<AttributeMappingSourceElement, String>> newHintValues) {
+			final LinkedList<Map<AttributeMappingSourceElement, AttributeValueRepresentation>> newHintValues) {
 		attributeMappingHintValues.setHintValues(hint, newHintValues);
 
 	}
@@ -416,7 +416,7 @@ class MappingInstanceStorage {
 	 * @param newHintValues
 	 */
 	void setMappingInstanceSelectorHintValueList(final MappingInstanceSelector hint,
-			final LinkedList<Map<AttributeMatcherSourceElement, String>> newHintValues) {
+			final LinkedList<Map<AttributeMatcherSourceElement, AttributeValueRepresentation>> newHintValues) {
 		mappingInstanceSelectorHintValues.setHintValues(hint, newHintValues);
 
 	}

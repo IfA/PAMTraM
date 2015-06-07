@@ -14,7 +14,7 @@ import pamtram.metamodel.SourceSectionClass;
  * 
  * @author mfreund
  */
-public class ModelConnectionHintValueMap extends HintValueMap<ModelConnectionHint, ModelConnectionHintSourceInterface> {
+public class ModelConnectionHintValueMap extends AttributeBasedHintValueMap<ModelConnectionHint, ModelConnectionHintSourceInterface> {
 
 	private static final long serialVersionUID = -3933991238187309467L;
 

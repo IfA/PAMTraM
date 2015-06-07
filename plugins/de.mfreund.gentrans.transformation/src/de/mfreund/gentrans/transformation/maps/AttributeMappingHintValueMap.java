@@ -14,7 +14,7 @@ import pamtram.metamodel.SourceSectionClass;
  * 
  * @author mfreund
  */
-public class AttributeMappingHintValueMap extends HintValueMap<AttributeMapping, AttributeMappingSourceInterface> {
+public class AttributeMappingHintValueMap extends AttributeBasedHintValueMap<AttributeMapping, AttributeMappingSourceInterface> {
 
 	private static final long serialVersionUID = 8668242329602708053L;
 	

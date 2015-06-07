@@ -15,7 +15,7 @@ import pamtram.metamodel.SourceSectionClass;
  * 
  * @author mfreund
  */
-public class MappingInstanceSelectorHintValueMap extends HintValueMap<MappingInstanceSelector, AttributeMatcherSourceInterface> {
+public class MappingInstanceSelectorHintValueMap extends AttributeBasedHintValueMap<MappingInstanceSelector, AttributeMatcherSourceInterface> {
 
 	private static final long serialVersionUID = -57312964158841610L;
 

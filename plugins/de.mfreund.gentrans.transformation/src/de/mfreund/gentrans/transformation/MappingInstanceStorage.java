@@ -7,16 +7,19 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 
 import pamtram.mapping.AttributeMapping;
+import pamtram.mapping.AttributeMappingSourceElement;
+import pamtram.mapping.AttributeMatcherSourceElement;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
-import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
+import pamtram.mapping.ModelConnectionHintSourceElement;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.TargetSectionClass;
 import de.mfreund.gentrans.transformation.maps.AttributeMappingHintValueMap;
@@ -64,15 +67,27 @@ class MappingInstanceStorage {
 	private final LinkedHashMap<InstantiableMappingHintGroup, LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>> instancesBySection;
 
 	/**
-	 * Hint values of AttributeMappings to be used when instantiating the mapping's target section(s)
+	 * Hint values of {@link AttributeMapping AttributeMappings} to be used when instantiating the mapping's target section(s).
+	 * <p/>
+	 * Note: These are not associated with a {@link SourceSectionClass} in contrast to the {@link #unSyncedAttrMappings}.
 	 */
-	private final LinkedHashMap<MappingHintType, LinkedList<Object>> hintValues;
+	private final AttributeMappingHintValueMap attributeMappingHintValues;
+	
+	/**
+	 * Hint values of {@link MappingInstanceSelector MappingInstanceSelectors} to be used when instantiating non-containment
+	 * references from the mapping's target sections to other target sections.
+	 * <p/>
+	 * Note: These are not associated with a {@link SourceSectionClass} in contrast to the {@link #unSyncedAttrMatchers}.
+	 */
+	private final MappingInstanceSelectorHintValueMap mappingInstanceSelectorHintValues;
 
 	/**
-	 * Hint value's to be used when linking the generated sections to the rest
-	 * of the generated target model
+	 * Hint values of {@link ModelConnectionHint ModelConnectionHints} to be used when linking the generated 
+	 * sections to the rest of the generated target model
+	 * <p/>
+	 * Note: These are not associated with a {@link SourceSectionClass} in contrast to the {@link #unSyncedConnectionHints}.
 	 */
-	private final LinkedHashMap<ModelConnectionHint, LinkedList<Object>> modelConnectionHintValues;
+	private final ModelConnectionHintValueMap modelConnectionHintValues;
 
 	/**
 	 * Unsynced hints used by complexMappingHints
@@ -82,16 +97,17 @@ class MappingInstanceStorage {
 	private final ModelConnectionHintValueMap unSyncedConnectionHints;
 
 	/**
-	 * Constructor
+	 * This constructs an instance.
 	 */
 	MappingInstanceStorage() {
 		sourceModelObjetsMapped = new LinkedHashMap<SourceSectionClass, Set<EObject>>();
-		hintValues = new LinkedHashMap<MappingHintType, LinkedList<Object>>();
 		mapping = null;
 		associatedSourceModelElement = null;
 		associatedSourceClass = null;
 		instancesBySection = new LinkedHashMap<InstantiableMappingHintGroup, LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>>();
-		modelConnectionHintValues = new LinkedHashMap<ModelConnectionHint, LinkedList<Object>>();
+		attributeMappingHintValues = new AttributeMappingHintValueMap();
+		mappingInstanceSelectorHintValues = new MappingInstanceSelectorHintValueMap();
+		modelConnectionHintValues = new ModelConnectionHintValueMap();
 		unSyncedAttrMappings = new AttributeMappingHintValueMap();
 		unSyncedAttrMatchers = new MappingInstanceSelectorHintValueMap();
 		unSyncedConnectionHints = new ModelConnectionHintValueMap();
@@ -110,45 +126,15 @@ class MappingInstanceStorage {
 				.getSourceModelObjectsMapped());
 
 		// combine hints
-		addHintValues(newRefsAndHints.getHintValues());
-
-		// combine connectionHints
-		addModelConnectionHintValues(newRefsAndHints
-				.getModelConnectionHintValues());
+		attributeMappingHintValues.addHintValues(newRefsAndHints.getAttributeMappingHintValues());
+		mappingInstanceSelectorHintValues.addHintValues(newRefsAndHints.getMappingInstanceSelectorHintValues());
+		modelConnectionHintValues.addHintValues(newRefsAndHints.getModelConnectionHintValues());
 
 		// combine unsynced hints
 		addUnSyncedHintValues(newRefsAndHints.getUnSyncedComplexAttrMappings(),
 				newRefsAndHints.getUnSyncedComplexAttrMatchers(),
 				newRefsAndHints.getUnSyncedComplexConnectionHints());
 
-	}
-
-	/**
-	 * Add new hint value.
-	 *
-	 * @param hint
-	 * @param value
-	 */
-	void addHintValue(final MappingHintType hint, final Object value) {
-		if (!hintValues.containsKey(hint)) {
-			hintValues.put(hint, new LinkedList<Object>());
-		}
-		hintValues.get(hint).add(value);
-	}
-
-	/**
-	 * Add several new hint values.
-	 *
-	 * @param newHintValues
-	 */
-	void addHintValues(
-			final LinkedHashMap<MappingHintType, LinkedList<Object>> newHintValues) {
-		for (final MappingHintType h : newHintValues.keySet()) {
-			if (!hintValues.containsKey(h)) {
-				hintValues.put(h, new LinkedList<Object>());
-			}
-			hintValues.get(h).addAll(newHintValues.get(h));
-		}
 	}
 
 	/**
@@ -166,32 +152,25 @@ class MappingInstanceStorage {
 	}
 
 	/**
-	 * Add new value for a ModelConnectionHint
+	 * Add new value for a {@link ModelConnectionHint}.
 	 *
 	 * @param hint
 	 * @param value
 	 */
 	void addModelConnectionHintValue(final ModelConnectionHint hint,
-			final Object value) {
-		if (!modelConnectionHintValues.containsKey(hint)) {
-			modelConnectionHintValues.put(hint, new LinkedList<Object>());
-		}
-		modelConnectionHintValues.get(hint).add(value);
+			final Map<ModelConnectionHintSourceElement, String> value) {
+		modelConnectionHintValues.addHintValue(hint, value);
 	}
 
 	/**
-	 * Add values for several ModelConnectionHints
+	 * Add values for several {@link ModelConnectionHints}.
 	 *
 	 * @param newHintValues
 	 */
 	void addModelConnectionHintValues(
-			final LinkedHashMap<ModelConnectionHint, LinkedList<Object>> newHintValues) {
-		for (final ModelConnectionHint h : newHintValues.keySet()) {
-			if (!modelConnectionHintValues.containsKey(h)) {
-				modelConnectionHintValues.put(h, new LinkedList<Object>());
-			}
-			modelConnectionHintValues.get(h).addAll(newHintValues.get(h));
-		}
+			final HintValueMap<ModelConnectionHint, ModelConnectionHintSourceElement> newHintValues) {
+	
+		modelConnectionHintValues.addHintValues(newHintValues);
 	}
 
 	/**
@@ -290,12 +269,33 @@ class MappingInstanceStorage {
 	}
 
 	/**
-	 * Getter for the hintValues Map
+	 * Getter for the {@link #attributeMappingHintValues}.
 	 *
-	 * @return hint values
+	 * @return The map of attribute mapping hint values that are currently collected
+	 * with this {@link MappingInstanceStorage}. 
 	 */
-	LinkedHashMap<MappingHintType, LinkedList<Object>> getHintValues() {
-		return hintValues;
+	AttributeMappingHintValueMap getAttributeMappingHintValues() {
+		return attributeMappingHintValues;
+	}
+	
+	/**
+	 * Getter for the {@link #mappingInstanceSelectorHintValues}.
+	 *
+	 * @return The map of mapping instance selector hint values that are currently collected
+	 * with this {@link MappingInstanceStorage}. 
+	 */
+	MappingInstanceSelectorHintValueMap getMappingInstanceSelectorHintValues() {
+		return mappingInstanceSelectorHintValues;
+	}
+
+	/**
+	 * Getter for the {@link #modelConnectionHintValues}.
+	 *
+	 * @return The map of model connection hint values that are currently collected
+	 * with this {@link MappingInstanceStorage}. 
+	 */
+	final ModelConnectionHintValueMap getModelConnectionHintValues() {
+		return modelConnectionHintValues;
 	}
 
 	/**
@@ -337,25 +337,13 @@ class MappingInstanceStorage {
 	}
 
 	/**
-	 * @return hint values for the ModelConnectionHints, created during the
-	 *         mapping of the source section
-	 */
-	final LinkedHashMap<ModelConnectionHint, LinkedList<Object>> getModelConnectionHintValues() {
-		return modelConnectionHintValues;
-	}
-
-	/**
 	 * @param hint
 	 * @return ModelConnectionHint values for the specified target section
 	 */
-	LinkedList<Object> getModelConnectionHintValues(
+	LinkedList<Map<ModelConnectionHintSourceElement, String>> getModelConnectionHintValues(
 			final ModelConnectionHint hint) {
 
-		if (modelConnectionHintValues.containsKey(hint)) {
-			return modelConnectionHintValues.get(hint);
-		} else {
-			return new LinkedList<Object>();
-		}
+		return modelConnectionHintValues.getHintValues(hint);
 	}
 
 	/**
@@ -398,26 +386,38 @@ class MappingInstanceStorage {
 	}
 
 	/**
-	 * Set the values for a model connection hint
+	 * Set the values for a {@link ModelConnectionHint}.
 	 *
 	 * @param hint
 	 * @param newHintValues
 	 */
 	void setConnectionHintValueList(final ModelConnectionHint hint,
-			final LinkedList<Object> newHintValues) {
-		modelConnectionHintValues.put(hint, newHintValues);
+			final LinkedList<Map<ModelConnectionHintSourceElement, String>> newHintValues) {
+		modelConnectionHintValues.setHintValues(hint, newHintValues);
 
 	}
 
 	/**
-	 * Set the values for a mapping hint
+	 * Set the values for an {@link AttributeMapping}.
 	 *
 	 * @param hint
 	 * @param newHintValues
 	 */
-	void setHintValueList(final MappingHintType hint,
-			final LinkedList<Object> newHintValues) {
-		hintValues.put(hint, newHintValues);
+	void setAttributeMappingHintValueList(final AttributeMapping hint,
+			final LinkedList<Map<AttributeMappingSourceElement, String>> newHintValues) {
+		attributeMappingHintValues.setHintValues(hint, newHintValues);
+
+	}
+	
+	/**
+	 * Set the values for a {@link MappingInstanceSelector}.
+	 *
+	 * @param hint
+	 * @param newHintValues
+	 */
+	void setMappingInstanceSelectorHintValueList(final MappingInstanceSelector hint,
+			final LinkedList<Map<AttributeMatcherSourceElement, String>> newHintValues) {
+		mappingInstanceSelectorHintValues.setHintValues(hint, newHintValues);
 
 	}
 

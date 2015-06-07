@@ -200,6 +200,7 @@ class SourceSectionMapper implements CancellationListener {
 	SourceSectionMapper(final List<Mapping> mappingsToChooseFrom,
 			final AttributeValueModifierExecutor attributeValuemodifier,
 			final MessageConsoleStream consoleStream) {
+		
 		mappedSections = new LinkedHashMap<SourceSectionClass, Set<EObject>>();
 		mappedContainers = new LinkedHashMap<SourceSectionClass, Set<EObject>>();
 		mappingHints = new LinkedHashMap<Mapping, LinkedList<MappingHintType>>();
@@ -1288,7 +1289,7 @@ class SourceSectionMapper implements CancellationListener {
 							.containsKey(h)) {
 						changedRefsAndHints
 						.getUnSyncedComplexAttrMappings()
-						.put(h,
+						.put((AttributeMapping) h,
 								new HashMap<SourceSectionClass, LinkedList<Map<AttributeMappingSourceElement, String>>>());
 					}
 					changedRefsAndHints
@@ -1321,7 +1322,7 @@ class SourceSectionMapper implements CancellationListener {
 								.containsKey(h)) {
 							changedRefsAndHints
 							.getUnSyncedComplexAttrMatchers()
-							.put(h,
+							.put((MappingInstanceSelector) h,
 									new HashMap<SourceSectionClass, LinkedList<Map<AttributeMatcherSourceElement, String>>>());
 						}
 						changedRefsAndHints

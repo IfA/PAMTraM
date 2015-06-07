@@ -4,27 +4,23 @@
 package de.mfreund.gentrans.transformation;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
-import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 
 import pamtram.mapping.AttributeMapping;
-import pamtram.mapping.AttributeMappingSourceElement;
-import pamtram.mapping.AttributeMatcherSourceElement;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
-import pamtram.mapping.ModelConnectionHintSourceElement;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.TargetSectionClass;
 import de.mfreund.gentrans.transformation.maps.AttributeMappingHintValueMap;
+import de.mfreund.gentrans.transformation.maps.HintValueMap;
 import de.mfreund.gentrans.transformation.maps.MappingInstanceSelectorHintValueMap;
 import de.mfreund.gentrans.transformation.maps.ModelConnectionHintValueMap;
 
@@ -68,7 +64,7 @@ class MappingInstanceStorage {
 	private final LinkedHashMap<InstantiableMappingHintGroup, LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>> instancesBySection;
 
 	/**
-	 * HintValues to be used when instantiating the mapping's target section(s)
+	 * Hint values of AttributeMappings to be used when instantiating the mapping's target section(s)
 	 */
 	private final LinkedHashMap<MappingHintType, LinkedList<Object>> hintValues;
 
@@ -81,9 +77,9 @@ class MappingInstanceStorage {
 	/**
 	 * Unsynced hints used by complexMappingHints
 	 */
-	private final AttributeMappingHintValueMap unSyncedComplexAttrMappings;
-	private final MappingInstanceSelectorHintValueMap unSyncedComplexAttrMatchers;
-	private final ModelConnectionHintValueMap unSyncedComplexConnectionHints;
+	private final AttributeMappingHintValueMap unSyncedAttrMappings;
+	private final MappingInstanceSelectorHintValueMap unSyncedAttrMatchers;
+	private final ModelConnectionHintValueMap unSyncedConnectionHints;
 
 	/**
 	 * Constructor
@@ -96,9 +92,9 @@ class MappingInstanceStorage {
 		associatedSourceClass = null;
 		instancesBySection = new LinkedHashMap<InstantiableMappingHintGroup, LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>>();
 		modelConnectionHintValues = new LinkedHashMap<ModelConnectionHint, LinkedList<Object>>();
-		unSyncedComplexAttrMappings = new AttributeMappingHintValueMap();
-		unSyncedComplexAttrMatchers = new MappingInstanceSelectorHintValueMap();
-		unSyncedComplexConnectionHints = new ModelConnectionHintValueMap();
+		unSyncedAttrMappings = new AttributeMappingHintValueMap();
+		unSyncedAttrMatchers = new MappingInstanceSelectorHintValueMap();
+		unSyncedConnectionHints = new ModelConnectionHintValueMap();
 
 	}
 
@@ -230,85 +226,21 @@ class MappingInstanceStorage {
 	}
 
 	/**
-	 * @param unSyncedComplexAttrMappings
-	 * @param unSyncedCalcMappings
-	 * @param unSyncedComplexAttrMatchers
-	 * @param unSyncedComplexConnectionHints
+	 * This adds all hint values that are collected in the different {@link HintValueMap HintValueMaps}
+	 * that are passed as parameters to the corresponding maps of unsynced hint values.
+	 * 
+	 * @param unSyncedAttrMappings A map of hint values for {@link AttributeMapping AttributeMappings}.
+	 * @param unSyncedAttrMatchers A map of hint values for {@link MappingInstanceSelector MappingInstanceSelectors}.
+	 * @param unSyncedConnectionHints A map of hint values for {@link ModelConnectionHint ModelConnectionHints}.
 	 */
 	void addUnSyncedHintValues(
-			final AttributeMappingHintValueMap unSyncedComplexAttrMappings,
-			final MappingInstanceSelectorHintValueMap unSyncedComplexAttrMatchers,
-			final ModelConnectionHintValueMap unSyncedComplexConnectionHints) {
+			final AttributeMappingHintValueMap unSyncedAttrMappings,
+			final MappingInstanceSelectorHintValueMap unSyncedAttrMatchers,
+			final ModelConnectionHintValueMap unSyncedConnectionHints) {
 
-		/*
-		 * AttributeMapping
-		 */
-		for (final AttributeMapping h : unSyncedComplexAttrMappings.keySet()) {
-			if (!this.unSyncedComplexAttrMappings.containsKey(h)) {
-				this.unSyncedComplexAttrMappings
-						.put(h,
-								new HashMap<SourceSectionClass, LinkedList<Map<AttributeMappingSourceElement, String>>>());
-			}
-
-			for (final SourceSectionClass c : unSyncedComplexAttrMappings
-					.get(h).keySet()) {
-				if (!this.unSyncedComplexAttrMappings.get(h).containsKey(c)) {
-					this.unSyncedComplexAttrMappings
-							.get(h)
-							.put(c,
-									new LinkedList<Map<AttributeMappingSourceElement, String>>());
-				}
-				this.unSyncedComplexAttrMappings.get(h).get(c)
-						.addAll(unSyncedComplexAttrMappings.get(h).get(c));
-			}
-		}
-
-		/*
-		 * AttributeMatcher
-		 */
-		for (final MappingInstanceSelector h : unSyncedComplexAttrMatchers.keySet()) {
-			if (!this.unSyncedComplexAttrMatchers.containsKey(h)) {
-				this.unSyncedComplexAttrMatchers
-						.put(h,
-								new HashMap<SourceSectionClass, LinkedList<Map<AttributeMatcherSourceElement, String>>>());
-			}
-
-			for (final SourceSectionClass c : unSyncedComplexAttrMatchers
-					.get(h).keySet()) {
-				if (!this.unSyncedComplexAttrMatchers.get(h).containsKey(c)) {
-					this.unSyncedComplexAttrMatchers
-							.get(h)
-							.put(c,
-									new LinkedList<Map<AttributeMatcherSourceElement, String>>());
-				}
-				this.unSyncedComplexAttrMatchers.get(h).get(c)
-						.addAll(unSyncedComplexAttrMatchers.get(h).get(c));
-			}
-		}
-
-		/*
-		 * ModelConnectionHint
-		 */
-		for (final ModelConnectionHint h : unSyncedComplexConnectionHints
-				.keySet()) {
-			if (!this.unSyncedComplexConnectionHints.containsKey(h)) {
-				this.unSyncedComplexConnectionHints
-						.put(h,
-								new HashMap<SourceSectionClass, LinkedList<Map<ModelConnectionHintSourceElement, String>>>());
-			}
-
-			for (final SourceSectionClass c : unSyncedComplexConnectionHints
-					.get(h).keySet()) {
-				if (!this.unSyncedComplexConnectionHints.get(h).containsKey(c)) {
-					this.unSyncedComplexConnectionHints
-							.get(h)
-							.put(c,
-									new LinkedList<Map<ModelConnectionHintSourceElement, String>>());
-				}
-				this.unSyncedComplexConnectionHints.get(h).get(c)
-						.addAll(unSyncedComplexConnectionHints.get(h).get(c));
-			}
-		}
+		this.unSyncedAttrMappings.addHintValues(unSyncedAttrMappings);
+		this.unSyncedAttrMatchers.addHintValues(unSyncedAttrMatchers);
+		this.unSyncedConnectionHints.addHintValues(unSyncedConnectionHints);
 	}
 
 	/**
@@ -437,21 +369,21 @@ class MappingInstanceStorage {
 	 * @return The unsynced hints used by {@link AttributeMapping AttributeMappings}.
 	 */
 	AttributeMappingHintValueMap getUnSyncedComplexAttrMappings() {
-		return unSyncedComplexAttrMappings;
+		return unSyncedAttrMappings;
 	}
 
 	/**
 	 * @return
 	 */
 	MappingInstanceSelectorHintValueMap getUnSyncedComplexAttrMatchers() {
-		return unSyncedComplexAttrMatchers;
+		return unSyncedAttrMatchers;
 	}
 
 	/**
 	 * @return
 	 */
 	ModelConnectionHintValueMap getUnSyncedComplexConnectionHints() {
-		return unSyncedComplexConnectionHints;
+		return unSyncedConnectionHints;
 	}
 
 	/**

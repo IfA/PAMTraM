@@ -1,7 +1,7 @@
 package de.mfreund.gentrans.transformation.maps;
 
 import pamtram.mapping.AttributeMapping;
-import pamtram.mapping.AttributeMappingSourceElement;
+import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.metamodel.SourceSectionClass;
 
 /**
@@ -9,12 +9,12 @@ import pamtram.metamodel.SourceSectionClass;
  * {@link AttributeMapping AttributeMappings}
  * <p />
  * Thereby, the stored hint values are associated with the <em>AttributeMapping</em>, the 
- * <em>{@link AttributeMappingSourceElement}</em> of the hint and the 
+ * <em>{@link AttributeMappingSourceInterface}</em> of the hint and the 
  * <em>{@link SourceSectionClass}</em> that they belong to.
  * 
  * @author mfreund
  */
-public class AttributeMappingHintValueMap extends HintValueMap<AttributeMapping, AttributeMappingSourceElement> {
+public class AttributeMappingHintValueMap extends HintValueMap<AttributeMapping, AttributeMappingSourceInterface> {
 
 	private static final long serialVersionUID = 8668242329602708053L;
 	

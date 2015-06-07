@@ -13,13 +13,13 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 
 import pamtram.mapping.AttributeMapping;
-import pamtram.mapping.AttributeMappingSourceElement;
-import pamtram.mapping.AttributeMatcherSourceElement;
+import pamtram.mapping.AttributeMappingSourceInterface;
+import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
-import pamtram.mapping.ModelConnectionHintSourceElement;
+import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.TargetSectionClass;
 import de.mfreund.gentrans.transformation.maps.AttributeMappingHintValueMap;
@@ -158,7 +158,7 @@ class MappingInstanceStorage {
 	 * @param value
 	 */
 	void addModelConnectionHintValue(final ModelConnectionHint hint,
-			final Map<ModelConnectionHintSourceElement, AttributeValueRepresentation> value) {
+			final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> value) {
 		modelConnectionHintValues.addHintValue(hint, value);
 	}
 
@@ -168,7 +168,7 @@ class MappingInstanceStorage {
 	 * @param newHintValues
 	 */
 	void addModelConnectionHintValues(
-			final HintValueMap<ModelConnectionHint, ModelConnectionHintSourceElement> newHintValues) {
+			final HintValueMap<ModelConnectionHint, ModelConnectionHintSourceInterface> newHintValues) {
 	
 		modelConnectionHintValues.addHintValues(newHintValues);
 	}
@@ -340,7 +340,7 @@ class MappingInstanceStorage {
 	 * @param hint
 	 * @return ModelConnectionHint values for the specified target section
 	 */
-	LinkedList<Map<ModelConnectionHintSourceElement, AttributeValueRepresentation>> getModelConnectionHintValues(
+	LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>> getModelConnectionHintValues(
 			final ModelConnectionHint hint) {
 
 		return modelConnectionHintValues.getHintValues(hint);
@@ -392,7 +392,7 @@ class MappingInstanceStorage {
 	 * @param newHintValues
 	 */
 	void setConnectionHintValueList(final ModelConnectionHint hint,
-			final LinkedList<Map<ModelConnectionHintSourceElement, AttributeValueRepresentation>> newHintValues) {
+			final LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>> newHintValues) {
 		modelConnectionHintValues.setHintValues(hint, newHintValues);
 
 	}
@@ -404,7 +404,7 @@ class MappingInstanceStorage {
 	 * @param newHintValues
 	 */
 	void setAttributeMappingHintValueList(final AttributeMapping hint,
-			final LinkedList<Map<AttributeMappingSourceElement, AttributeValueRepresentation>> newHintValues) {
+			final LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> newHintValues) {
 		attributeMappingHintValues.setHintValues(hint, newHintValues);
 
 	}
@@ -416,7 +416,7 @@ class MappingInstanceStorage {
 	 * @param newHintValues
 	 */
 	void setMappingInstanceSelectorHintValueList(final MappingInstanceSelector hint,
-			final LinkedList<Map<AttributeMatcherSourceElement, AttributeValueRepresentation>> newHintValues) {
+			final LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>> newHintValues) {
 		mappingInstanceSelectorHintValues.setHintValues(hint, newHintValues);
 
 	}

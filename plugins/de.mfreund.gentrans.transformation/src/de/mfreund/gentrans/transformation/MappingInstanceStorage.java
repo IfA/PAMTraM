@@ -23,7 +23,7 @@ import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.TargetSectionClass;
 import de.mfreund.gentrans.transformation.maps.AttributeMappingHintValueMap;
-import de.mfreund.gentrans.transformation.maps.HintValueMap;
+import de.mfreund.gentrans.transformation.maps.AttributeBasedHintValueMap;
 import de.mfreund.gentrans.transformation.maps.MappingInstanceSelectorHintValueMap;
 import de.mfreund.gentrans.transformation.maps.ModelConnectionHintValueMap;
 
@@ -168,7 +168,7 @@ class MappingInstanceStorage {
 	 * @param newHintValues
 	 */
 	void addModelConnectionHintValues(
-			final HintValueMap<ModelConnectionHint, ModelConnectionHintSourceInterface> newHintValues) {
+			final AttributeBasedHintValueMap<ModelConnectionHint, ModelConnectionHintSourceInterface> newHintValues) {
 	
 		modelConnectionHintValues.addHintValues(newHintValues);
 	}
@@ -205,7 +205,7 @@ class MappingInstanceStorage {
 	}
 
 	/**
-	 * This adds all hint values that are collected in the different {@link HintValueMap HintValueMaps}
+	 * This adds all hint values that are collected in the different {@link AttributeBasedHintValueMap HintValueMaps}
 	 * that are passed as parameters to the corresponding maps of unsynced hint values.
 	 * 
 	 * @param unSyncedAttrMappings A map of hint values for {@link AttributeMapping AttributeMappings}.

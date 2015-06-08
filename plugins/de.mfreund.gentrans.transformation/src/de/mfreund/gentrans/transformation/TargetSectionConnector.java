@@ -593,7 +593,7 @@ public class TargetSectionConnector implements CancellationListener {
 	 * @param mappingName The name of the {@link Mapping} that is used.
 	 * @param mappingGroupName The name of the {@link MappingHintGroup} that is used.
 	 * @param connectionHint The {@link ModelConnectionHint} to be used to connect the section.
-	 * @param connectionHintValues A list of values that are to be used by the given {@link ModelConnectionHint}.
+	 * @param linkedList A list of values that are to be used by the given {@link ModelConnectionHint}.
 	 * @param maxPathLength The maximum path length to be used.
 	 */
 	public void linkToTargetModelUsingModelConnectionHint(final EClass classToConnect,
@@ -601,7 +601,7 @@ public class TargetSectionConnector implements CancellationListener {
 			final TargetSectionClass section, final String mappingName,
 			final String mappingGroupName,
 			final ModelConnectionHint connectionHint,
-			final LinkedList<Object> connectionHintValues,
+			final LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>> linkedList,
 			final int maxPathLength) {// connectionHint.targetAttribute.~owningClass
 		
 		// if we don't do this here, an ArrayOutOfBoundsException might occur later
@@ -630,7 +630,8 @@ public class TargetSectionConnector implements CancellationListener {
 		
 		// now search for target attributes
 
-		final LinkedHashMap<ModelConnectionHintTargetAttribute, LinkedList<EObjectTransformationHelper>> containerInstancesByTargetAttribute = new LinkedHashMap<>();
+		final LinkedHashMap<ModelConnectionHintTargetAttribute, LinkedList<EObjectTransformationHelper>> containerInstancesByTargetAttribute = 
+				new LinkedHashMap<>();
 
 		for (final ModelConnectionHintTargetAttribute targetAttr : connectionHint
 				.getTargetAttributes()) {
@@ -643,20 +644,22 @@ public class TargetSectionConnector implements CancellationListener {
 
 		// find container Instance for each element
 
-		final LinkedHashMap<String, LinkedHashSet<EObjectTransformationHelper>> contInstsByHintVal = new LinkedHashMap<String, LinkedHashSet<EObjectTransformationHelper>>();
-		final LinkedHashMap<String, LinkedHashSet<EObjectTransformationHelper>> rootInstancesByHintVal = new LinkedHashMap<String, LinkedHashSet<EObjectTransformationHelper>>();
-		LinkedList<Object> connectionHintValuesCopy;
+		final LinkedHashMap<String, LinkedHashSet<EObjectTransformationHelper>> contInstsByHintVal = 
+				new LinkedHashMap<>();
+		final LinkedHashMap<String, LinkedHashSet<EObjectTransformationHelper>> rootInstancesByHintVal = 
+				new LinkedHashMap<>();
+		LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>> connectionHintValuesCopy;
 
 		// again, we need to handle the special case, when there is only one
 		// hintValue
-		if (connectionHintValues.size() == 1) {
-			connectionHintValuesCopy = new LinkedList<Object>();
+		if (linkedList.size() == 1) {
+			connectionHintValuesCopy = new LinkedList<>();
 			for (int i = 0; i < rootInstances.size(); i++) {
-				connectionHintValuesCopy.add(connectionHintValues
+				connectionHintValuesCopy.add(linkedList
 						.getFirst());
 			}
 		} else {
-			connectionHintValuesCopy = connectionHintValues;
+			connectionHintValuesCopy = linkedList;
 		}
 
 		for (final Object hintVal : connectionHintValuesCopy) {

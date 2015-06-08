@@ -20,6 +20,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.mapping.AttributeMapping;
+import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.CardinalityMapping;
@@ -29,9 +30,7 @@ import pamtram.mapping.GlobalValue;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
-import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingInstanceSelector;
-import pamtram.mapping.ModelConnectionHint;
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.LibraryEntry;
@@ -68,29 +67,27 @@ class TargetSectionInstantiator implements CancellationListener {
 	 * @param oldSelectedHint
 	 * @return
 	 */
-	private static MappingHint searchAttributeMapping(
+	private static AttributeMapping searchAttributeMapping(
 			final TargetSectionClass metaModelSection,
 			final Collection<MappingHint> hints,
-			final Map<MappingHintType, LinkedList<Object>> hintValues,
-			final MappingHint oldSelectedHint) {
-		MappingHint selectedHint = oldSelectedHint;
+			final HintValueStorage hintValues,
+			final AttributeMapping oldSelectedHint) {
+		AttributeMapping selectedHint = oldSelectedHint;
 		for (final TargetSectionAttribute attr : metaModelSection
 				.getAttributes()) {// check attributes
 			for (final MappingHint hint : hints) {
 				if (hint instanceof AttributeMapping) {
 					if (((AttributeMapping) hint).getTarget().equals(attr)) {
 
-						if (selectedHint == null
-								|| hintValues.get(hint).size() == 0) {
-							if (hintValues.get(hint).size() == 0) {
+						if (selectedHint == null || hintValues.getHintValues((AttributeMapping) hint).size() == 0) {
+							if (hintValues.getHintValues((AttributeMapping) hint).size() == 0) {
 								return null;// there needs to be at least one
 								// value for each attributeHint
 							} else {
-								selectedHint = hint;
+								selectedHint = (AttributeMapping) hint;
 							}
-						} else if (hintValues.get(hint).size() > hintValues
-								.get(selectedHint).size()) {
-							selectedHint = hint;
+						} else if (hintValues.getHintValues((AttributeMapping) hint).size() > hintValues.getHintValues(selectedHint).size()) {
+							selectedHint = (AttributeMapping) hint;
 						}
 					}
 				}
@@ -101,7 +98,7 @@ class TargetSectionInstantiator implements CancellationListener {
 				.getReferences()) {// check references
 			for (final TargetSectionClass val : ref.getValuesGeneric()) {
 				if (val.getCardinality().equals(CardinalityType.ONE)) {
-					final MappingHint hint = searchAttributeMapping(val, hints,
+					final AttributeMapping hint = searchAttributeMapping(val, hints,
 							hintValues, selectedHint);
 					if (hint == null && selectedHint != null) {
 						return null;
@@ -137,6 +134,7 @@ class TargetSectionInstantiator implements CancellationListener {
 //	 * MinFunction instance, needed when evaluating ClaculatorMappingHints
 //	 */
 //	private MinFunction min;
+	
 	/**
 	 * target section registry used when instantiating classes
 	 */
@@ -305,7 +303,6 @@ class TargetSectionInstantiator implements CancellationListener {
 	 * @param mappingGroup
 	 * @param mappingHints
 	 * @param hintValues
-	 * @param conHintValues
 	 * @param instBySection
 	 * @param mappingName
 	 * @param sectionAttributeValues
@@ -317,8 +314,7 @@ class TargetSectionInstantiator implements CancellationListener {
 			final TargetSectionClass metamodelSection,
 			final InstantiableMappingHintGroup mappingGroup,
 			final List<MappingHint> mappingHints,
-			final Map<MappingHintType, LinkedList<Object>> hintValues,
-			final Map<ModelConnectionHint, LinkedList<Object>> conHintValues,
+			final HintValueStorage hintValues,
 			final Map<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instBySection,
 			final String mappingName,
 			final Map<EClass, Map<EAttribute, Set<String>>> sectionAttributeValues) {
@@ -335,10 +331,9 @@ class TargetSectionInstantiator implements CancellationListener {
 			} else if (h instanceof CardinalityMapping) {
 				if (((CardinalityMapping) h).getTarget().equals(
 						metamodelSection)) {
-					if (hintValues.containsKey(h)) {
-						if (hintValues.get(h).size() > 1) {
-							final Integer val = (Integer) hintValues.get(h)
-									.remove(0);
+					if (hintValues.getCardinalityMappingHintValues().containsKey(h)) {
+						if (hintValues.getHintValues((CardinalityMapping) h).size() > 1) {
+							final Integer val = hintValues.removeHintValue((CardinalityMapping) h);
 							cardHintValue = val.intValue();
 						}
 
@@ -360,16 +355,15 @@ class TargetSectionInstantiator implements CancellationListener {
 				if (mhGrp.getModelConnectionMatcher() != null) {
 					if (mhGrp.getTargetMMSection().equals(metamodelSection)) {
 						hintFound = true;
-						cardinality = conHintValues.get(
-								mhGrp.getModelConnectionMatcher()).size();
+						cardinality = hintValues.getHintValues(mhGrp.getModelConnectionMatcher()).size();
 					}
 				}
 			}
 
-			final MappingHint hint = searchAttributeMapping(metamodelSection,
+			final AttributeMapping hint = searchAttributeMapping(metamodelSection,
 					mappingHints, hintValues, null);
 			if (hint != null) {// there was an AttributeHint....
-				int hintCardinality = hintValues.get(hint).size();
+				int hintCardinality = hintValues.getHintValues(hint).size();
 				
 				/*
 				 * Now, we have to check if there are multi-valued attributes that also try
@@ -377,11 +371,9 @@ class TargetSectionInstantiator implements CancellationListener {
 				 */
 				int multiValuedAttributeCardinality = 1;
 				
-				for (Object x : hintValues.get(hint)) {
-					@SuppressWarnings("unchecked")
-					final HashMap<AttributeMatcherSourceInterface, AttributeValueRepresentation> val = 
-							(HashMap<AttributeMatcherSourceInterface, AttributeValueRepresentation>) x;
-					for(AttributeValueRepresentation rep : val.values()) {
+				for (Map<AttributeMappingSourceInterface, AttributeValueRepresentation> x : hintValues.getHintValues(hint)) {
+					
+					for(AttributeValueRepresentation rep : x.values()) {
 						if(rep.isMany()) {
 							if(multiValuedAttributeCardinality == 1) {
 								multiValuedAttributeCardinality = rep.getValues().size();
@@ -444,7 +436,7 @@ class TargetSectionInstantiator implements CancellationListener {
 					LibraryEntry libEntry = (LibraryEntry) metamodelSection.eContainer().eContainer();
 					libEntryInstantiators.add(
 							new LibraryEntryInstantiator(
-									libEntry, instTransformationHelper, mappingGroup, mappingHints, hintValues, conHintValues, consoleStream));
+									libEntry, instTransformationHelper, mappingGroup, mappingHints, hintValues, consoleStream));
 				}
 
 			}
@@ -465,34 +457,27 @@ class TargetSectionInstantiator implements CancellationListener {
 
 				MappingHint hintFound = null;
 				// look for an attribute mapping
-				LinkedList<Object> attrHintValues = null;
+				LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> attrHintValues = null;
+				
 				for (final MappingHint hint : mappingHints) {
 					if (hint instanceof AttributeMapping) {
 						if (((AttributeMapping) hint).getTarget().equals(attr)) {
+							
 							hintFound = hint;
-							if (hintValues.get(hint).size() == 1) {
-								attrHintValues = new LinkedList<Object>();
+							if (hintValues.getHintValues((AttributeMapping) hint).size() == 1) {
+								attrHintValues = new LinkedList<>();
 								for (int i = 0; i < cardinality; i++) {
-									attrHintValues.add(hintValues.get(hint)
-											.getFirst());
+									attrHintValues.add(hintValues.getHintValues((AttributeMapping) hint).getFirst());
 								}
 								break;
 								// cardinality okay?
-							} else if (hintValues.get(hint).size() >= cardinality) {
-								attrHintValues = hintValues.get(hint);
+							} else if (hintValues.getHintValues((AttributeMapping) hint).size() >= cardinality) {
+								attrHintValues = hintValues.getHintValues((AttributeMapping) hint);
 								break;
 							} else {
-								consoleStream
-								.println("Cardinality mismatch (expected: "
-										+ cardinality
-										+ ", got :"
-										+ hintValues.get(hint).size()
-										+ "): "
-										+ hint.getName()
-										+ " for Mapping "
-										+ mappingName
-										+ " (Group: "
-										+ mappingGroup.getName()
+								consoleStream.println("Cardinality mismatch (expected: " + cardinality + ", got :"
+										+ hintValues.getHintValues((AttributeMapping) hint).size() + "): " + hint.getName()
+										+ " for Mapping " + mappingName + " (Group: " + mappingGroup.getName()
 										+ ") Maybe check Cardinality of Metamodel section?");
 								return null;
 							}
@@ -502,8 +487,7 @@ class TargetSectionInstantiator implements CancellationListener {
 				// create attribute values
 				for(int i=0; i<instances.size(); i++) {
 					EObjectTransformationHelper instance = instances.get(i);
-					String attrValue = calculator.calculateAttributeValue(attr, hintFound,
-							attrHintValues);
+					String attrValue = calculator.calculateAttributeValue(attr, hintFound, attrHintValues);
 
 					// Check if value is unique and was already used, mark
 					// instance for deletion if necessary
@@ -592,7 +576,7 @@ class TargetSectionInstantiator implements CancellationListener {
 								.getValue()) {// instantiate targets
 							final LinkedList<EObjectTransformationHelper> children = instantiateTargetSectionFirstPass(
 									val, mappingGroup, mappingHints,
-									hintValues, conHintValues, instBySection,
+									hintValues, instBySection,
 									mappingName, sectionAttributeValues);
 							if (children != null) { // error? //TODO also delete
 								// here?
@@ -686,7 +670,6 @@ class TargetSectionInstantiator implements CancellationListener {
 	 * @param mappingGroup
 	 * @param mappingHints
 	 * @param hintValues
-	 * @param conHintValues
 	 * @param mappingName
 	 * @return Map of target section instances
 	 */
@@ -694,8 +677,7 @@ class TargetSectionInstantiator implements CancellationListener {
 			final TargetSectionClass metamodelSection,
 			final InstantiableMappingHintGroup mappingGroup,
 			final List<MappingHint> mappingHints,
-			final Map<MappingHintType, LinkedList<Object>> hintValues,
-			final Map<ModelConnectionHint, LinkedList<Object>> conHintValues,
+			final HintValueStorage hintValues,
 			final String mappingName) {
 		
 		final LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instBySection = new LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>();
@@ -704,7 +686,7 @@ class TargetSectionInstantiator implements CancellationListener {
 		 * Now, perform the first-run instantiation.
 		 */
 		if (instantiateTargetSectionFirstPass(metamodelSection, mappingGroup,
-				mappingHints, hintValues, conHintValues, instBySection,
+				mappingHints, hintValues, instBySection,
 				mappingName,
 				new HashMap<EClass, Map<EAttribute, Set<String>>>()) != null) {
 			return instBySection;
@@ -730,7 +712,7 @@ class TargetSectionInstantiator implements CancellationListener {
 			final InstantiableMappingHintGroup group,
 			final TargetSectionClass groupTargetSection,
 			final List<MappingHint> hints,
-			final LinkedHashMap<MappingHintType, LinkedList<Object>> hintValues,
+			final HintValueStorage hintValues,
 			final LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection) {
 		/*
 		 * only go on if any instances of this section were created
@@ -766,7 +748,7 @@ class TargetSectionInstantiator implements CancellationListener {
 
 									// instances are sorted in the same order as
 									// hintValues
-									final LinkedList<EObjectTransformationHelper> instancesToConsider = new LinkedList<EObjectTransformationHelper>();
+									final LinkedList<EObjectTransformationHelper> instancesToConsider = new LinkedList<>();
 									instancesToConsider
 									.addAll(instancesBySection
 											.get(targetSectionClass));
@@ -776,33 +758,23 @@ class TargetSectionInstantiator implements CancellationListener {
 									 * a cardinality mapping, the size of the
 									 * hintValues must be 1
 									 */
-									LinkedList<Object> newHintValues = new LinkedList<Object>();
-									if (hintValues.get(h).size() == 1) {
-										final Object hintVal = hintValues
-												.get(h).getFirst();
-										for (int i = 0; i < instancesToConsider
-												.size(); i++) {
+									LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>> newHintValues = 
+											new LinkedList<>();
+									if (hintValues.getHintValues((MappingInstanceSelector) h).size() == 1) {
+										final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> hintVal = hintValues.getHintValues((MappingInstanceSelector) h).getFirst();
+										for (int i = 0; i < instancesToConsider.size(); i++) {
 											newHintValues.add(hintVal);
 										}
-									} else if (instancesToConsider.size() == hintValues
-											.get(h).size()) {
-										newHintValues = hintValues.get(h);
+									} else if (instancesToConsider.size() == hintValues.getHintValues((MappingInstanceSelector) h).size()) {
+										newHintValues = hintValues.getHintValues((MappingInstanceSelector) h);
 										// newHintValues.addAll(hintValues.get(h));
 									} else {
 										consoleStream
 										.println("There was a size mismatch while trying to set a non-containment reference, using the Hint "
-												+ h.getName()
-												+ ". There where "
-												+ instancesToConsider
-												.size()
-												+ " instances to be connected but "
-												+ hintValues.get(h)
-												.size()
-												+ " MappingHint values. The output below"
+												+ h.getName() + ". There where " + instancesToConsider.size() + " instances to be connected but "
+												+ hintValues.getHintValues((MappingInstanceSelector) h).size() + " MappingHint values. The output below"
 												+ " shows the hint values and the source instances for the reference:\n"
-												+ hintValues.get(h)
-												+ "\n"
-												+ instancesToConsider);
+												+ hintValues.getHintValues((MappingInstanceSelector) h) + "\n" + instancesToConsider);
 									}
 
 									final int numberOfInstancesToCreate = newHintValues.size();
@@ -1274,8 +1246,9 @@ class TargetSectionInstantiator implements CancellationListener {
 			final InstantiableMappingHintGroup group,
 			final TargetSectionClass groupTargetSection,
 			final List<MappingHint> hints,
-			final LinkedHashMap<MappingHintType, LinkedList<Object>> hintValues,
+			final HintValueStorage hintValues,
 			final LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection) {
+		
 		for (final TargetSectionReference ref : targetSectionClass
 				.getReferences()) {
 			if (ref instanceof TargetSectionContainmentReference) {

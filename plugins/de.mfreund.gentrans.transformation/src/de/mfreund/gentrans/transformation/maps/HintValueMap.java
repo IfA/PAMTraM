@@ -28,7 +28,7 @@ public abstract class HintValueMap<H extends EObject, V extends Object> extends 
 	 * 
 	 * @param hint The mapping hint for which the collection of hint values shall be initialized.
 	 */
-	protected void init(H hint) {
+	public void init(H hint) {
 		this.put(hint, new HashMap<SourceSectionClass, LinkedList<V>>());
 	}
 	
@@ -153,6 +153,26 @@ public abstract class HintValueMap<H extends EObject, V extends Object> extends 
 		}
 	}
 
+	/**
+	 * This set the list of hint values in this map that are associated with a {@link SourceSectionClass}.
+	 * 
+	 * @param hint The hint for which these values shall be set.
+	 * @param clazz The source section class that the hint values are associated to.
+	 * @param values The values to be set.
+	 */
+	public void setHintValues(H hint, SourceSectionClass clazz, LinkedList<V> values) {
+		
+		/*
+		 * Before we add anything, we make sure that every sub-map and -list is
+		 * initialized so that we do not get any Exceptions.
+		 */
+		if (!this.containsKey(hint)) {
+			this.init(hint);
+		}
+
+		this.get(hint).put(clazz, values);
+	}
+	
 	/**
 	 * This set the list of hint values in this map that are not associated with a {@link SourceSectionClass}.
 	 * 

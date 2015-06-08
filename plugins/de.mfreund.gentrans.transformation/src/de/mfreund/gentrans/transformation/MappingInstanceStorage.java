@@ -17,6 +17,7 @@ import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.InstantiableMappingHintGroup;
+import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
@@ -26,6 +27,7 @@ import pamtram.metamodel.TargetSectionClass;
 import de.mfreund.gentrans.transformation.maps.AttributeMappingHintValueMap;
 import de.mfreund.gentrans.transformation.maps.CardinalityMappingHintValueMap;
 import de.mfreund.gentrans.transformation.maps.HintValueMap;
+import de.mfreund.gentrans.transformation.maps.MappedAttributeValueExpanderHintValueMap;
 import de.mfreund.gentrans.transformation.maps.MappingInstanceSelectorHintValueMap;
 import de.mfreund.gentrans.transformation.maps.ModelConnectionHintValueMap;
 
@@ -81,6 +83,14 @@ class MappingInstanceStorage {
 	private final AttributeMappingHintValueMap attributeMappingHintValues;
 	
 	/**
+	 * Hint values of {@link MappedAttributeValueExpander MappedAttributeValueExpanders} to be used when instantiating the
+	 * mapping's target section(s). 
+	 * <p/>
+	 * Note: These are not associated with a {@link SourceSectionClass} in contrast to the {@link #unSyncedConnectionHints}.
+	 */
+	private final MappedAttributeValueExpanderHintValueMap mappedAttributeValueExpanderHintValues;
+	
+	/**
 	 * Hint values of {@link MappingInstanceSelector MappingInstanceSelectors} to be used when instantiating non-containment
 	 * references from the mapping's target sections to other target sections.
 	 * <p/>
@@ -100,6 +110,7 @@ class MappingInstanceStorage {
 	 * Unsynced hints used by complexMappingHints
 	 */
 	private final AttributeMappingHintValueMap unSyncedAttrMappings;
+	private final MappedAttributeValueExpanderHintValueMap unSyncedMappedAttributeValueExpanders;
 	private final CardinalityMappingHintValueMap unSyncedCardinalityMappings;
 	private final MappingInstanceSelectorHintValueMap unSyncedAttrMatchers;
 	private final ModelConnectionHintValueMap unSyncedConnectionHints;
@@ -115,10 +126,12 @@ class MappingInstanceStorage {
 		associatedSourceClass = null;
 		instancesBySection = new LinkedHashMap<InstantiableMappingHintGroup, LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>>();
 		attributeMappingHintValues = new AttributeMappingHintValueMap();
+		mappedAttributeValueExpanderHintValues = new MappedAttributeValueExpanderHintValueMap();
 		cardinalityMappingHintValues = new CardinalityMappingHintValueMap();
 		mappingInstanceSelectorHintValues = new MappingInstanceSelectorHintValueMap();
 		modelConnectionHintValues = new ModelConnectionHintValueMap();
 		unSyncedAttrMappings = new AttributeMappingHintValueMap();
+		unSyncedMappedAttributeValueExpanders = new MappedAttributeValueExpanderHintValueMap();
 		unSyncedCardinalityMappings = new CardinalityMappingHintValueMap();
 		unSyncedAttrMatchers = new MappingInstanceSelectorHintValueMap();
 		unSyncedConnectionHints = new ModelConnectionHintValueMap();
@@ -138,12 +151,14 @@ class MappingInstanceStorage {
 
 		// combine hints
 		attributeMappingHintValues.addHintValues(newRefsAndHints.getAttributeMappingHintValues());
+		mappedAttributeValueExpanderHintValues.addHintValues(newRefsAndHints.getMappedAttributeValueExpanderHintValues());
 		cardinalityMappingHintValues.addHintValues(newRefsAndHints.getCardinalityMappingHintValues());
 		mappingInstanceSelectorHintValues.addHintValues(newRefsAndHints.getMappingInstanceSelectorHintValues());
 		modelConnectionHintValues.addHintValues(newRefsAndHints.getModelConnectionHintValues());
 
 		// combine unsynced hints
 		addUnSyncedHintValues(newRefsAndHints.getUnSyncedComplexAttrMappings(),
+				newRefsAndHints.getUnSyncedMappedAttributeValueExpanders(),
 				newRefsAndHints.getUnSyncedCardinalityMappings(),
 				newRefsAndHints.getUnSyncedComplexAttrMatchers(),
 				newRefsAndHints.getUnSyncedComplexConnectionHints());
@@ -200,17 +215,20 @@ class MappingInstanceStorage {
 	 * that are passed as parameters to the corresponding maps of unsynced hint values.
 	 * 
 	 * @param unSyncedAttrMappings A map of hint values for {@link AttributeMapping AttributeMappings}.
-	 * @param unSyncedCardianlityMappings A map of hint values for {@link CardinalityMapping CardinalityMappings}.
+	 * @param unSyncedMappedAttributeValueExpanders A map of hint values for {@link MappedAttributeValueExpander MappedAttributeValueExpanders}.
+	 * @param unSyncedCardinalityMappings A map of hint values for {@link CardinalityMapping CardinalityMappings}.
 	 * @param unSyncedAttrMatchers A map of hint values for {@link MappingInstanceSelector MappingInstanceSelectors}.
 	 * @param unSyncedConnectionHints A map of hint values for {@link ModelConnectionHint ModelConnectionHints}.
 	 */
 	void addUnSyncedHintValues(
 			final AttributeMappingHintValueMap unSyncedAttrMappings,
+			final MappedAttributeValueExpanderHintValueMap unSyncedMappedAttributeValueExpanders,
 			final CardinalityMappingHintValueMap unSyncedCardinalityMappings,
 			final MappingInstanceSelectorHintValueMap unSyncedAttrMatchers,
 			final ModelConnectionHintValueMap unSyncedConnectionHints) {
 
 		this.unSyncedAttrMappings.addHintValues(unSyncedAttrMappings);
+		this.unSyncedMappedAttributeValueExpanders.addHintValues(unSyncedMappedAttributeValueExpanders);
 		this.unSyncedCardinalityMappings.addHintValues(unSyncedCardinalityMappings);
 		this.unSyncedAttrMatchers.addHintValues(unSyncedAttrMatchers);
 		this.unSyncedConnectionHints.addHintValues(unSyncedConnectionHints);
@@ -270,6 +288,16 @@ class MappingInstanceStorage {
 	 */
 	AttributeMappingHintValueMap getAttributeMappingHintValues() {
 		return attributeMappingHintValues;
+	}
+	
+	/**
+	 * Getter for the {@link #mappedAttributeValueExpanderHintValues}.
+	 *
+	 * @return The map of mapped attribute value expander hint values that are currently collected
+	 * with this {@link MappingInstanceStorage}. 
+	 */
+	MappedAttributeValueExpanderHintValueMap getMappedAttributeValueExpanderHintValues() {
+		return mappedAttributeValueExpanderHintValues;
 	}
 	
 	/**
@@ -367,6 +395,13 @@ class MappingInstanceStorage {
 	}
 	
 	/**
+	 * @return The unsynced hints used by {@link AttributeMapping AttributeMappings}.
+	 */
+	MappedAttributeValueExpanderHintValueMap getUnSyncedMappedAttributeValueExpanders() {
+		return unSyncedMappedAttributeValueExpanders;
+	}
+	
+	/**
 	 * @return The unsynced hints used by {@link CardinalityMapping CardinalityMappings}.
 	 */
 	CardinalityMappingHintValueMap getUnSyncedCardinalityMappings() {
@@ -442,6 +477,29 @@ class MappingInstanceStorage {
 	void setAttributeMappingHintValueList(final AttributeMapping hint,
 			final LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> newHintValues) {
 		attributeMappingHintValues.setHintValues(hint, newHintValues);
+
+	}
+	
+	/**
+	 * Get the values for a {@link MappedAttributeValueExpander}.
+	 * 
+	 * @param hint
+	 * @return 
+	 * 
+	 */
+	public LinkedList<String> getMappedAttributeValueExpanderHintValues(MappedAttributeValueExpander hint) {
+		return mappedAttributeValueExpanderHintValues.getHintValues(hint);
+	}
+
+	/**
+	 * Set the values for an {MappedAttributeValueExpander AttributeMapping}.
+	 *
+	 * @param hint
+	 * @param newHintValues
+	 */
+	void setMappedAttributeValueExpanderHintValueList(final MappedAttributeValueExpander hint,
+			final LinkedList<String> newHintValues) {
+		mappedAttributeValueExpanderHintValues.setHintValues(hint, newHintValues);
 
 	}
 	

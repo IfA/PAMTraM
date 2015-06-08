@@ -704,7 +704,7 @@ class SourceSectionMapper implements CancellationListener {
 
 		final Map<AttributeMappingSourceElement, AttributeValueRepresentation> complexSourceElementHintValues = new LinkedHashMap<>();
 		final Map<AttributeMatcherSourceElement, AttributeValueRepresentation> complexAttrMatcherSourceElementHintValues = new LinkedHashMap<>();
-		final Map<ModelConnectionHintSourceElement, AttributeValueRepresentation> complexConnectionHintSourceElementHintValues = new LinkedHashMap<ModelConnectionHintSourceElement, String>();
+		final Map<ModelConnectionHintSourceElement, AttributeValueRepresentation> complexConnectionHintSourceElementHintValues = new LinkedHashMap<>();
 
 		// set refs
 		changedRefsAndHints.addSourceModelObjectsMapped(newRefsAndHints
@@ -952,6 +952,8 @@ class SourceSectionMapper implements CancellationListener {
 						changedRefsAndHints.getModelConnectionHintValues().addHintValues(res.getModelConnectionHintValues());
 						changedRefsAndHints.addUnSyncedHintValues(
 								res.getUnSyncedComplexAttrMappings(),
+								res.getUnSyncedMappedAttributeValueExpanders(),
+								res.getUnSyncedCardinalityMappings(),
 								res.getUnSyncedComplexAttrMatchers(),
 								res.getUnSyncedComplexConnectionHints());
 					}
@@ -1081,18 +1083,20 @@ class SourceSectionMapper implements CancellationListener {
 						} else {
 							changedRefsAndHints.getAttributeMappingHintValues().addHintValues(srcSectionResult
 									.getAttributeMappingHintValues());
+							changedRefsAndHints.getMappedAttributeValueExpanderHintValues().addHintValues(srcSectionResult.
+									getMappedAttributeValueExpanderHintValues());
+							changedRefsAndHints.getCardinalityMappingHintValues().addHintValues(srcSectionResult.
+									getCardinalityMappingHintValues());
 							changedRefsAndHints.getMappingInstanceSelectorHintValues().addHintValues(srcSectionResult
 									.getMappingInstanceSelectorHintValues());
 							changedRefsAndHints.getModelConnectionHintValues().addHintValues(srcSectionResult
 									.getModelConnectionHintValues());
-							changedRefsAndHints
-							.addUnSyncedHintValues(
-									srcSectionResult
-									.getUnSyncedComplexAttrMappings(),
-									srcSectionResult
-									.getUnSyncedComplexAttrMatchers(),
-									srcSectionResult
-									.getUnSyncedComplexConnectionHints());
+							changedRefsAndHints.addUnSyncedHintValues(
+									srcSectionResult.getUnSyncedComplexAttrMappings(),
+									srcSectionResult.getUnSyncedMappedAttributeValueExpanders(),
+									srcSectionResult.getUnSyncedCardinalityMappings(),
+									srcSectionResult.getUnSyncedComplexAttrMatchers(),
+									srcSectionResult.getUnSyncedComplexConnectionHints());
 
 						}
 						allElementsMapped.add(srcSectionResult
@@ -1154,19 +1158,20 @@ class SourceSectionMapper implements CancellationListener {
 
 							changedRefsAndHints.getAttributeMappingHintValues().addHintValues(srcSectionResult
 									.getAttributeMappingHintValues());
+							changedRefsAndHints.getMappedAttributeValueExpanderHintValues().addHintValues(srcSectionResult.
+									getMappedAttributeValueExpanderHintValues());
+							changedRefsAndHints.getCardinalityMappingHintValues().addHintValues(srcSectionResult.
+									getCardinalityMappingHintValues());
 							changedRefsAndHints.getMappingInstanceSelectorHintValues().addHintValues(srcSectionResult
 									.getMappingInstanceSelectorHintValues());
-							changedRefsAndHints
-							.addModelConnectionHintValues(srcSectionResult
+							changedRefsAndHints.getModelConnectionHintValues().addHintValues(srcSectionResult
 									.getModelConnectionHintValues());
-							changedRefsAndHints
-							.addUnSyncedHintValues(
-									srcSectionResult
-									.getUnSyncedComplexAttrMappings(),
-									srcSectionResult
-									.getUnSyncedComplexAttrMatchers(),
-									srcSectionResult
-									.getUnSyncedComplexConnectionHints());
+							changedRefsAndHints.addUnSyncedHintValues(
+									srcSectionResult.getUnSyncedComplexAttrMappings(),
+									srcSectionResult.getUnSyncedMappedAttributeValueExpanders(),
+									srcSectionResult.getUnSyncedCardinalityMappings(),
+									srcSectionResult.getUnSyncedComplexAttrMatchers(),
+									srcSectionResult.getUnSyncedComplexConnectionHints());
 
 						}
 						allElementsMapped.add(srcSectionResult
@@ -1216,7 +1221,7 @@ class SourceSectionMapper implements CancellationListener {
 			if (h instanceof CardinalityMapping) {
 				if (mappingCounts.keySet().contains(
 						((CardinalityMapping) h).getSource())) {
-					changedRefsAndHints.addHintValue(h, mappingCounts
+					changedRefsAndHints.getCardinalityMappingHintValues().addHintValue((CardinalityMapping) h, mappingCounts
 							.get(((CardinalityMapping) h).getSource()));
 				}
 			}
@@ -1238,29 +1243,19 @@ class SourceSectionMapper implements CancellationListener {
 			if (h instanceof AttributeMapping) {
 				if (!(complexAttributeMappingsFound.contains(h) && deepestComplexAttrMappingSrcElementsByCmplxMapping
 						.get(h).contains(srcSection))) {
-					changedRefsAndHints.getHintValues().get(h).remove();// remove
+					changedRefsAndHints.getAttributeMappingHintValues((AttributeMapping) h).remove();// remove
 					// incomplete
 					// hint
 					// value
 				} else if (deepestComplexAttrMappingSrcElementsByCmplxMapping
 						.get(h).size() > 1) {
-					if (!changedRefsAndHints.getUnSyncedComplexAttrMappings()
-							.containsKey(h)) {
-						changedRefsAndHints
-						.getUnSyncedComplexAttrMappings()
-						.put((AttributeMapping) h,
-								new HashMap<SourceSectionClass, LinkedList<Map<AttributeMappingSourceElement, String>>>());
-					}
-					changedRefsAndHints
-					.getUnSyncedComplexAttrMappings()
-					.get(h)
-					.put(srcSection,
-							new LinkedList<Map<AttributeMappingSourceElement, String>>());
+					
+					changedRefsAndHints.getUnSyncedComplexAttrMappings().setHintValues((AttributeMapping) h, srcSection,
+							new LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>>());
 					@SuppressWarnings("unchecked")
-					final Map<AttributeMappingSourceElement, String> val = (Map<AttributeMappingSourceElement, String>) changedRefsAndHints
-					.getHintValues().get(h).remove();
-					changedRefsAndHints.getUnSyncedComplexAttrMappings().get(h)
-					.get(srcSection).add(val);
+					final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> val = 
+							changedRefsAndHints.getAttributeMappingHintValues((AttributeMapping) h).remove();
+					changedRefsAndHints.getUnSyncedComplexAttrMappings().addHintValue((AttributeMapping) h, srcSection, val);
 				}
 			} else if (h instanceof MappingInstanceSelector) {
 				if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
@@ -1269,31 +1264,17 @@ class SourceSectionMapper implements CancellationListener {
 									.getMatcher()) && deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher
 									.get(((MappingInstanceSelector) h).getMatcher())
 									.contains(srcSection))) {
-						changedRefsAndHints.getHintValues().get(h).remove();// remove
+						changedRefsAndHints.getMappingInstanceSelectorHintValues((MappingInstanceSelector) h).remove();// remove
 						// incomplete
 						// hint
 						// value
 					} else if (deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher
 							.get(((MappingInstanceSelector) h).getMatcher())
 							.size() > 1) {
-						if (!changedRefsAndHints
-								.getUnSyncedComplexAttrMatchers()
-								.containsKey(h)) {
-							changedRefsAndHints
-							.getUnSyncedComplexAttrMatchers()
-							.put((MappingInstanceSelector) h,
-									new HashMap<SourceSectionClass, LinkedList<Map<AttributeMatcherSourceElement, String>>>());
-						}
-						changedRefsAndHints
-						.getUnSyncedComplexAttrMatchers()
-						.get(h)
-						.put(srcSection,
-								new LinkedList<Map<AttributeMatcherSourceElement, String>>());
-						@SuppressWarnings("unchecked")
-						final Map<AttributeMatcherSourceElement, String> val = (Map<AttributeMatcherSourceElement, String>) changedRefsAndHints
-						.getHintValues().get(h).remove();
-						changedRefsAndHints.getUnSyncedComplexAttrMatchers()
-						.get(h).get(srcSection).add(val);
+						
+						changedRefsAndHints.getUnSyncedComplexAttrMatchers().setHintValues((MappingInstanceSelector) h, srcSection, new LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>>());
+						final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> val = changedRefsAndHints.getMappingInstanceSelectorHintValues((MappingInstanceSelector) h).remove();
+						changedRefsAndHints.getUnSyncedComplexAttrMatchers().addHintValue((MappingInstanceSelector) h, srcSection, val);
 					}
 				}
 			}
@@ -1303,27 +1284,13 @@ class SourceSectionMapper implements CancellationListener {
 			if (h instanceof ModelConnectionHint) {
 				if (!(complexConnectionHintsFound.contains(h) && deepestComplexConnectionHintSrcElementsByComplexConnectionHint
 						.get(h).contains(srcSection))) {
-					changedRefsAndHints.getModelConnectionHintValues().get(h)
-					.remove();// remove incomplete hint value
+					changedRefsAndHints.getModelConnectionHintValues(h).remove();// remove incomplete hint value
 				} else if (deepestComplexConnectionHintSrcElementsByComplexConnectionHint
 						.get(h).size() > 1) {
-					if (!changedRefsAndHints
-							.getUnSyncedComplexConnectionHints().containsKey(h)) {
-						changedRefsAndHints
-						.getUnSyncedComplexConnectionHints()
-						.put(h,
-								new HashMap<SourceSectionClass, LinkedList<Map<ModelConnectionHintSourceElement, String>>>());
-					}
-					changedRefsAndHints
-					.getUnSyncedComplexConnectionHints()
-					.get(h)
-					.put(srcSection,
-							new LinkedList<Map<ModelConnectionHintSourceElement, String>>());
-					@SuppressWarnings("unchecked")
-					final Map<ModelConnectionHintSourceElement, String> val = (Map<ModelConnectionHintSourceElement, String>) changedRefsAndHints
-					.getModelConnectionHintValues().get(h).remove();
-					changedRefsAndHints.getUnSyncedComplexConnectionHints()
-					.get(h).get(srcSection).add(val);
+					
+					changedRefsAndHints.getUnSyncedComplexConnectionHints().setHintValues(h, srcSection, new LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>>());
+					final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> val = changedRefsAndHints.getModelConnectionHintValues(h).remove();
+					changedRefsAndHints.getUnSyncedComplexConnectionHints().addHintValue(h, srcSection, val);
 				}
 			}
 		}
@@ -1458,7 +1425,7 @@ class SourceSectionMapper implements CancellationListener {
 			 */
 			for (final MappingHintType h : getHints(returnVal.getMapping())) {
 				if (h instanceof CardinalityMapping) {
-					returnVal.addHintValue(h, new Integer(1));
+					returnVal.getCardinalityMappingHintValues().addHintValue((CardinalityMapping) h, new Integer(1));
 				}
 			}
 		}
@@ -1627,7 +1594,7 @@ class SourceSectionMapper implements CancellationListener {
 			final MappingInstanceStorage changedRefsAndHints,
 			final Map<AttributeMappingSourceElement, AttributeValueRepresentation> complexSourceElementHintValues,
 			final Map<AttributeMatcherSourceElement, AttributeValueRepresentation> complexAttrMatcherSourceElementHintValues,
-			final Map<ModelConnectionHintSourceElement, String> complexConnectionHintSourceElementHintValues) {
+			final Map<ModelConnectionHintSourceElement, AttributeValueRepresentation> complexConnectionHintSourceElementHintValues) {
 		
 		for (final SourceSectionAttribute at : srcSection.getAttributes()) {
 			/*
@@ -1756,7 +1723,7 @@ class SourceSectionMapper implements CancellationListener {
 											srcAttrAsString,
 											((MappedAttributeValueExpander) hint)
 											.getModifiers());
-							changedRefsAndHints.addHintValue(hint, valCopy);
+							changedRefsAndHints.getMappedAttributeValueExpanderHintValues().addHintValue((MappedAttributeValueExpander) hint, valCopy);
 						}
 
 					} else if (hint instanceof AttributeMapping) {
@@ -1829,8 +1796,7 @@ class SourceSectionMapper implements CancellationListener {
 										.applyAttributeValueModifiers(
 												srcAttrAsString,
 												m.getModifier());
-								complexConnectionHintSourceElementHintValues
-								.put(m, modifiedVal);
+								complexConnectionHintSourceElementHintValues.put(m, new AttributeValueRepresentation(at, modifiedVal));
 							}
 						}
 					}
@@ -1879,10 +1845,8 @@ class SourceSectionMapper implements CancellationListener {
 					} else if (attrVals.keySet().size() > 0) {
 						// if the external element was the only one in the hint
 						// we need to add a hint value
-						if (res.getHintValues().get(h).size() == 0) {
-							res.getHintValues()
-							.get(h)
-							.add(new LinkedHashMap<AttributeMappingSourceInterface, AttributeValueRepresentation>());
+						if (res.getAttributeMappingHintValues((AttributeMapping) h).size() == 0) {
+							res.getAttributeMappingHintValues().init((AttributeMapping) h);
 						}
 						
 						if(((AttributeMapping) h).getExpression() != null && !((AttributeMapping) h).getExpression().isEmpty()) {
@@ -1914,20 +1878,14 @@ class SourceSectionMapper implements CancellationListener {
 											+ "The problematic source element's attribute value was: " + attrVals.get(e));							
 								}
 							}
-							for (final Object hVal : res.getHintValues().get(h)) {
-								@SuppressWarnings("unchecked")
-								final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> map = 
-										(Map<AttributeMappingSourceInterface, AttributeValueRepresentation>) hVal;
-								map.putAll(newVals);
+							for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> hVal : res.getAttributeMappingHintValues((AttributeMapping) h)) {
+								hVal.putAll(newVals);
 							}
 						} else {
-							for (final Object hVal : res.getHintValues().get(h)) {
-								@SuppressWarnings("unchecked")
-								final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> map = 
-										(Map<AttributeMappingSourceInterface, AttributeValueRepresentation>) hVal;
+							for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> hVal : res.getAttributeMappingHintValues((AttributeMapping) h)) {
 								for (final ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> e : attrVals
 										.keySet()) {
-									map.put((AttributeMappingSourceInterface) e,
+									hVal.put((AttributeMappingSourceInterface) e,
 											new AttributeValueRepresentation(e.getSource(), attrVals.get(e).getValue()));
 								}
 							}
@@ -1958,7 +1916,7 @@ class SourceSectionMapper implements CancellationListener {
 										attrVal,
 										((ExternalMappedAttributeValueExpander) h)
 										.getModifiers());
-						res.getHintValues().get(h).add(attrVal);
+						res.getMappedAttributeValueExpanderHintValues((MappedAttributeValueExpander) h).add(attrVal);
 					}
 
 				} else if (h instanceof MappingInstanceSelector) {
@@ -1984,18 +1942,13 @@ class SourceSectionMapper implements CancellationListener {
 							if (mappingFailed) {
 								break;
 							} else if (attrVals.keySet().size() > 0) {
-								if (res.getHintValues().get(h).size() == 0) {
-									res.getHintValues()
-									.get(h)
-									.add(new LinkedHashMap<AttributeMatcherSourceInterface, String>());
+								if (res.getMappingInstanceSelectorHintValues((MappingInstanceSelector) h).size() == 0) {
+									res.getMappingInstanceSelectorHintValues().init((MappingInstanceSelector) h);
 								}
-								for (final Object hVal : res.getHintValues()
-										.get(h)) {
-									@SuppressWarnings("unchecked")
-									final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> map = (Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>) hVal;
+								for (final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> hVal : res.getMappingInstanceSelectorHintValues((MappingInstanceSelector) h)) {
 									for (final ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> e : attrVals
 											.keySet()) {
-										map.put((AttributeMatcherSourceInterface) e,
+										hVal.put((AttributeMatcherSourceInterface) e,
 												attrVals.get(e));
 									}
 								}
@@ -2027,19 +1980,13 @@ class SourceSectionMapper implements CancellationListener {
 					if (mappingFailed) {
 						break;
 					} else if (attrVals.keySet().size() > 0) {
-						if (res.getModelConnectionHintValues().get(h).size() == 0) {
-							res.getModelConnectionHintValues()
-							.get(h)
-							.add(new LinkedHashMap<ModelConnectionHintSourceInterface, String>());
+						if (res.getModelConnectionHintValues(h).size() == 0) {
+							res.getModelConnectionHintValues().init(h);
 						}
-						for (final Object hVal : res
-								.getModelConnectionHintValues().get(h)) {
-							@SuppressWarnings("unchecked")
-							final Map<ModelConnectionHintSourceInterface, String> map = (Map<ModelConnectionHintSourceInterface, String>) hVal;
+						for (final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> hVal : res.getModelConnectionHintValues(h)) {
 							for (final ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> e : attrVals
 									.keySet()) {
-								map.put((ModelConnectionHintSourceInterface) e,
-										attrVals.get(e).getValue());
+								hVal.put((ModelConnectionHintSourceInterface) e, attrVals.get(e));
 							}
 						}
 						// last action: reset attrval list
@@ -2067,7 +2014,7 @@ class SourceSectionMapper implements CancellationListener {
 	 */
 	private void syncComplexAttrMappings(final SourceSectionClass srcSection,
 			final MappingInstanceStorage changedRefsAndHints) {
-		for (final MappingHintType h : changedRefsAndHints
+		for (final AttributeMapping h : changedRefsAndHints
 				.getUnSyncedComplexAttrMappings().keySet()) {
 			final boolean isCommonParent = commonContainerClassOfComplexMappings
 					.get(h).equals(srcSection);
@@ -2077,10 +2024,10 @@ class SourceSectionMapper implements CancellationListener {
 				if (changedRefsAndHints.getUnSyncedComplexAttrMappings().get(h)
 						.size() > 1
 						|| isCommonParent) {
-					final Map<SourceSectionClass, LinkedList<Map<AttributeMappingSourceElement, String>>> m = changedRefsAndHints
+					final Map<SourceSectionClass, LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>>> m = changedRefsAndHints
 							.getUnSyncedComplexAttrMappings().get(h);
 					// list of "synced" hints
-					LinkedList<Map<AttributeMappingSourceElement, String>> syncedComplexMappings = null;
+					LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> syncedComplexMappings = null;
 					// find longest list (ideally they are either of the same
 					// length, or there is only one value)
 					SourceSectionClass cl = null;
@@ -2099,10 +2046,9 @@ class SourceSectionMapper implements CancellationListener {
 
 					// combine values
 					for (final SourceSectionClass c : m.keySet()) {
-						final LinkedList<Map<AttributeMappingSourceElement, String>> vals = m
-								.get(c);
+						final LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> vals = m.get(c);
 						if (vals.size() == 1) {
-							for (final Map<AttributeMappingSourceElement, String> valMap : syncedComplexMappings) {
+							for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> valMap : syncedComplexMappings) {
 								valMap.putAll(vals.getFirst());
 							}
 						} else if (vals.size() > 1) {
@@ -2120,15 +2066,11 @@ class SourceSectionMapper implements CancellationListener {
 
 					if (isCommonParent) {// sync
 						// add to changedRefsAndHints
-						changedRefsAndHints.getHintValues().get(h)
-						.addAll(syncedComplexMappings);
+						changedRefsAndHints.getAttributeMappingHintValues().addHintValues(h, syncedComplexMappings);
 						// }
 					} else {
-						changedRefsAndHints.getUnSyncedComplexAttrMappings()
-						.get(h).clear();// remove old hints
-						// add new hints
-						changedRefsAndHints.getUnSyncedComplexAttrMappings()
-						.get(h).put(srcSection, syncedComplexMappings);
+						// remove old hints and add new hints
+						changedRefsAndHints.getUnSyncedComplexAttrMappings().setHintValues(h, srcSection, syncedComplexMappings);
 					}
 				}
 			}
@@ -2141,7 +2083,7 @@ class SourceSectionMapper implements CancellationListener {
 	 */
 	private void syncComplexAttrMatchers(final SourceSectionClass srcSection,
 			final MappingInstanceStorage changedRefsAndHints) {
-		for (final MappingHintType h : changedRefsAndHints
+		for (final MappingInstanceSelector h : changedRefsAndHints
 				.getUnSyncedComplexAttrMatchers().keySet()) {
 			final boolean isCommonParent = commonContainerClassOfComplexMappings
 					.get(h).equals(srcSection);
@@ -2151,10 +2093,10 @@ class SourceSectionMapper implements CancellationListener {
 				if (changedRefsAndHints.getUnSyncedComplexAttrMatchers().get(h)
 						.size() > 1
 						|| isCommonParent) {
-					final Map<SourceSectionClass, LinkedList<Map<AttributeMatcherSourceElement, String>>> m = changedRefsAndHints
+					final Map<SourceSectionClass, LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>>> m = changedRefsAndHints
 							.getUnSyncedComplexAttrMatchers().get(h);
 					// list of "synced" hints
-					LinkedList<Map<AttributeMatcherSourceElement, String>> syncedComplexMappings = null;
+					LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>> syncedComplexMappings = null;
 					// find longest list (ideally they are either of the same
 					// length, or there is only one value)
 					SourceSectionClass cl = null;
@@ -2173,10 +2115,9 @@ class SourceSectionMapper implements CancellationListener {
 
 					// combine values
 					for (final SourceSectionClass c : m.keySet()) {
-						final LinkedList<Map<AttributeMatcherSourceElement, String>> vals = m
-								.get(c);
+						final LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>> vals = m.get(c);
 						if (vals.size() == 1) {
-							for (final Map<AttributeMatcherSourceElement, String> valMap : syncedComplexMappings) {
+							for (final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> valMap : syncedComplexMappings) {
 								valMap.putAll(vals.getFirst());
 							}
 						} else if (vals.size() > 1) {
@@ -2197,16 +2138,11 @@ class SourceSectionMapper implements CancellationListener {
 
 					if (isCommonParent) {// sync
 						// add to changedRefsAndHints
-						changedRefsAndHints.getHintValues().get(h)
-						.addAll(syncedComplexMappings);
+						changedRefsAndHints.getMappingInstanceSelectorHintValues().addHintValues(h, syncedComplexMappings);
 						// }
 					} else {
-						changedRefsAndHints.getUnSyncedComplexAttrMatchers()
-						.get(h).clear();// remove old hints
-						changedRefsAndHints.getUnSyncedComplexAttrMatchers()
-						.get(h).put(srcSection, syncedComplexMappings);// add
-						// new
-						// hints
+						// remove old hints and add new hints
+						changedRefsAndHints.getUnSyncedComplexAttrMatchers().setHintValues(h, srcSection, syncedComplexMappings);
 					}
 				}
 			}
@@ -2219,8 +2155,7 @@ class SourceSectionMapper implements CancellationListener {
 	 */
 	private void syncModelConnectionHints(final SourceSectionClass srcSection,
 			final MappingInstanceStorage changedRefsAndHints) {
-		for (final ModelConnectionHint h : changedRefsAndHints
-				.getUnSyncedComplexConnectionHints().keySet()) {
+		for (final ModelConnectionHint h : changedRefsAndHints.getUnSyncedComplexConnectionHints().keySet()) {
 			final boolean isCommonParent = commonContainerClassOfComplexMappings
 					.get(h).equals(srcSection);
 
@@ -2229,10 +2164,10 @@ class SourceSectionMapper implements CancellationListener {
 				if (changedRefsAndHints.getUnSyncedComplexConnectionHints()
 						.get(h).size() > 1
 						|| isCommonParent) {
-					final Map<SourceSectionClass, LinkedList<Map<ModelConnectionHintSourceElement, String>>> m = changedRefsAndHints
+					final Map<SourceSectionClass, LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>>> m = changedRefsAndHints
 							.getUnSyncedComplexConnectionHints().get(h);
 					// list of "synced" hints
-					LinkedList<Map<ModelConnectionHintSourceElement, String>> syncedComplexMappings = null;
+					LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>> syncedComplexMappings = null;
 					// find longest list (ideally they are either of the same
 					// length, or there is only one value)
 					SourceSectionClass cl = null;
@@ -2251,10 +2186,9 @@ class SourceSectionMapper implements CancellationListener {
 
 					// combine values
 					for (final SourceSectionClass c : m.keySet()) {
-						final LinkedList<Map<ModelConnectionHintSourceElement, String>> vals = m
-								.get(c);
+						final LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>> vals = m.get(c);
 						if (vals.size() == 1) {
-							for (final Map<ModelConnectionHintSourceElement, String> valMap : syncedComplexMappings) {
+							for (final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> valMap : syncedComplexMappings) {
 								valMap.putAll(vals.getFirst());
 							}
 						} else if (vals.size() > 1) {
@@ -2275,16 +2209,11 @@ class SourceSectionMapper implements CancellationListener {
 
 					if (isCommonParent) {// sync
 						// add to changedRefsAndHints
-						changedRefsAndHints.getHintValues().get(h)
-						.addAll(syncedComplexMappings);
+						changedRefsAndHints.getModelConnectionHintValues(h).addAll(syncedComplexMappings);
 						// }
 					} else {
-						changedRefsAndHints.getUnSyncedComplexConnectionHints()
-						.get(h).clear();// remove old hints
-						changedRefsAndHints.getUnSyncedComplexConnectionHints()
-						.get(h).put(srcSection, syncedComplexMappings);// add
-						// new
-						// hints
+						// remove old hints and add new hints
+						changedRefsAndHints.getUnSyncedComplexConnectionHints().setHintValues(h, srcSection, syncedComplexMappings);
 					}
 				}
 			}

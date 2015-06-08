@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import pamtram.mapping.AttributeMapping;
+import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.InstantiableMappingHintGroup;
@@ -18,7 +19,6 @@ import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingInstanceSelector;
-import pamtram.mapping.ModelConnectionHint;
 import pamtram.metamodel.AttributeParameter;
 import pamtram.metamodel.ContainerParameter;
 import pamtram.metamodel.ExternalReferenceParameter;
@@ -28,6 +28,7 @@ import pamtram.util.GenLibraryManager;
 import de.mfreund.gentrans.transformation.AttributeValueCalculator;
 import de.mfreund.gentrans.transformation.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.EObjectTransformationHelper;
+import de.mfreund.gentrans.transformation.HintValueStorage;
 import de.mfreund.gentrans.transformation.TargetSectionConnector;
 import de.mfreund.gentrans.transformation.TargetSectionRegistry;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractContainerParameter;
@@ -77,14 +78,8 @@ public class LibraryEntryInstantiator {
 	 * A map of {@link MappingHintType}s and associated {@link Object}s that represent 
 	 * hint values to be used during the instantiation.
 	 */
-	final private Map<MappingHintType, LinkedList<Object>> hintValues;
+	final private HintValueStorage hintValues;
 	
-	/**
-	 * A map of {@link ModelConnectionHint}s and associated {@link Object}s that represent
-	 * hint values to be used during the instantiation.
-	 */
-	final private Map<ModelConnectionHint, LinkedList<Object>> conHintValues;
-
 	/**
 	 * The {@link MessageConsoleStream} that is used to print messages.
 	 */
@@ -100,8 +95,6 @@ public class LibraryEntryInstantiator {
 	 * @param mappingHints A list of {@link MappingHint}s that are part of the {@link #mappingGroup}.
 	 * @param hintValues  A map of {@link MappingHintType}s and associated {@link Object}s that represent 
 	 * 			hint values to be used during the instantiation.
-	 * @param conHintValues A map of {@link ModelConnectionHint}s and associated {@link Object}s that represent
-	 * 			hint values to be used during the instantiation.
 	 * @param consoleStream The {@link MessageConsoleStream} that shall be used to print messages. 
 	 */
 	public LibraryEntryInstantiator(
@@ -109,14 +102,13 @@ public class LibraryEntryInstantiator {
 			EObjectTransformationHelper transformationHelper, 
 			InstantiableMappingHintGroup mappingGroup,
 			List<MappingHint> mappingHints,
-			Map<MappingHintType, LinkedList<Object>> hintValues,
-			Map<ModelConnectionHint, LinkedList<Object>> conHintValues, final MessageConsoleStream consoleStream) {
+			HintValueStorage hintValues,
+			final MessageConsoleStream consoleStream) {
 		this.libraryEntry = libraryEntry;
 		this.transformationHelper = transformationHelper;
 		this.mappingGroup = mappingGroup;
 		this.mappingHints = mappingHints;
 		this.hintValues = hintValues;
-		this.conHintValues = conHintValues;
 		this.consoleStream = consoleStream;
 	}
 	
@@ -158,7 +150,7 @@ public class LibraryEntryInstantiator {
 				AttributeMapping attMapping = (AttributeMapping) ref;
 				
 				// calculate the attribute value using the given hint values and the AttributeMapping
-				LinkedList<Object> hints = hintValues.get(attMapping);
+				LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> hints = hintValues.getHintValues(attMapping);
 				String value = calculator.calculateAttributeValue(attParam.getAttribute(), attMapping, hints);
 				
 				// set the calculated value
@@ -220,7 +212,7 @@ public class LibraryEntryInstantiator {
 									.getTargetAttribute()
 									.getOwningClass());
 
-					for (final Object attrVal : hintValues.get(selector)) {
+					for (final Object attrVal : hintValues.getHintValues(selector)) {
 						String attrValStr = null;
 
 						attrValStr = "";

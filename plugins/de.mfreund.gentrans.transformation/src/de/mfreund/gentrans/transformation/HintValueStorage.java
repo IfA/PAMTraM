@@ -13,6 +13,7 @@ import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.ModelConnectionHintSourceInterface;
+import pamtram.metamodel.SourceSectionClass;
 import de.mfreund.gentrans.transformation.maps.AttributeMappingHintValueMap;
 import de.mfreund.gentrans.transformation.maps.CardinalityMappingHintValueMap;
 import de.mfreund.gentrans.transformation.maps.HintValueMap;
@@ -255,6 +256,61 @@ public class HintValueStorage {
 	}
 	
 	/**
+	 * This adds a hint value to the storage.
+	 * 
+	 * @param hint The {@link AttributeMapping} for that the value shall be added.
+	 * @param clazz The {@link SourceSectionClass} for that the value shall be added.
+	 * @param value The value to be added.
+	 */
+	public void addHintValue(AttributeMapping hint, SourceSectionClass clazz, Map<AttributeMappingSourceInterface, AttributeValueRepresentation> value) {
+		attributeMappingHintValues.addHintValue(hint, clazz, value);
+	}
+	
+	/**
+	 * This adds a hint value to the storage.
+	 * 
+	 * @param hint The {@link CardinalityMapping} for that the value shall be added.
+	 * @param clazz The {@link SourceSectionClass} for that the value shall be added.
+	 * @param value The value to be added.
+	 */
+	public void addHintValue(CardinalityMapping hint, SourceSectionClass clazz, Integer value) {
+		cardinalityMappingHintValues.addHintValue(hint, clazz, value);
+	}
+	
+	/**
+	 * This adds a hint value to the storage.
+	 * 
+	 * @param hint The {@link MappedAttributeValueExpander} for that the value shall be added.
+	 * @param clazz The {@link SourceSectionClass} for that the value shall be added.
+	 * @param value The value to be added.
+	 */
+	public void addHintValue(MappedAttributeValueExpander hint, SourceSectionClass clazz, String value) {
+		mappedAttributeValueExpanderHintValues.addHintValue(hint, clazz, value);
+	}
+	
+	/**
+	 * This adds a hint value to the storage.
+	 * 
+	 * @param hint The {@link MappingInstanceSelector} for that the value shall be added.
+	 * @param clazz The {@link SourceSectionClass} for that the value shall be added.
+	 * @param value The value to be added.
+	 */
+	public void addHintValue(MappingInstanceSelector hint, SourceSectionClass clazz, Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> value) {
+		mappingInstanceSelectorHintValues.addHintValue(hint, clazz, value);
+	}
+	
+	/**
+	 * This adds a hint value to the storage.
+	 * 
+	 * @param hint The {@link ModelConnectionHint} for that the value shall be added.
+	 * @param clazz The {@link SourceSectionClass} for that the value shall be added.
+	 * @param value The value to be added.
+	 */
+	public void addHintValue(ModelConnectionHint hint, SourceSectionClass clazz, Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> value) {
+		modelConnectionHintValues.addHintValue(hint, clazz, value);
+	}
+	
+	/**
 	 * This adds the hint values stored in another {@link HintValueStorage} to this storage.
 	 * 
 	 * @param hintValuesToAdd The {@link HintValueStorage} that contains the hint values to add.
@@ -395,6 +451,62 @@ public class HintValueStorage {
 	public void setHintValues(ModelConnectionHint hint, LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>> values) {
 		modelConnectionHintValues.setHintValues(hint, values);
 	}
+	
+	/**
+	 * This sets the list of stored hint values for the given hint and a given {@link SourceSectionClass}.
+	 * 
+	 * @param hint The {@link AttributeMapping} for that the values shall be set.
+	 * @param clazz The {@link SourceSectionClass} for that the values shall be set.
+	 * @param values The values to be set.
+	 */
+	public void setHintValues(AttributeMapping hint, SourceSectionClass clazz, LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> values) {
+		attributeMappingHintValues.setHintValues(hint, clazz, values);
+	}
+	
+	/**
+	 * This sets the list of stored hint values for the given hint and a given {@link SourceSectionClass}.
+	 * 
+	 * @param hint The {@link CardinalityMapping} for that the values shall be set.
+	 * @param clazz The {@link SourceSectionClass} for that the values shall be set.
+	 * @param values The values to be set.
+	 */
+	public void setHintValues(CardinalityMapping hint, SourceSectionClass clazz, LinkedList<Integer> values) {
+		cardinalityMappingHintValues.setHintValues(hint, clazz, values);
+	}
+	
+	/**
+	 * This sets the list of stored hint values for the given hint and a given {@link SourceSectionClass}.
+	 * 
+	 * @param hint The {@link MappedAttributeValueExpander} for that the values shall be set.
+	 * @param clazz The {@link SourceSectionClass} for that the values shall be set.
+	 * @param values The values to be set.
+	 */
+	public void setHintValues(MappedAttributeValueExpander hint, SourceSectionClass clazz, LinkedList<String> values) {
+		mappedAttributeValueExpanderHintValues.setHintValues(hint, clazz, values);
+	}
+	
+	/**
+	 * This sets the list of stored hint values for the given hint and a given {@link SourceSectionClass}.
+	 * 
+	 * @param hint The {@link MappingInstanceSelector} for that the values shall be set.
+	 * @param clazz The {@link SourceSectionClass} for that the values shall be set.
+	 * @param values The values to be set.
+	 */
+	public void setHintValues(MappingInstanceSelector hint, SourceSectionClass clazz, LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>> values) {
+		mappingInstanceSelectorHintValues.setHintValues(hint, clazz, values);
+	}
+	
+	/**
+	 * This sets the list of stored hint values for the given hint and a given {@link SourceSectionClass}.
+	 * 
+	 * @param hint The {@link ModelConnectionHint} for that the values shall be set.
+	 * @param clazz The {@link SourceSectionClass} for that the values shall be set.
+	 * @param values The values to be set.
+	 */
+	public void setHintValues(ModelConnectionHint hint, SourceSectionClass clazz, LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>> values) {
+		modelConnectionHintValues.setHintValues(hint, clazz, values);
+	}
+	
 	/**
 	 *This retrieves and removes the first hint value stored for a given hint.
 	 * 

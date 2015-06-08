@@ -395,5 +395,54 @@ public class HintValueStorage {
 	public void setHintValues(ModelConnectionHint hint, LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>> values) {
 		modelConnectionHintValues.setHintValues(hint, values);
 	}
+	/**
+	 *This retrieves and removes the first hint value stored for a given hint.
+	 * 
+	 * @param hint The hint for which the first hint value shall be retrieved and removed.
+	 * @return The removed hint value.
+	 */
+	public Map<AttributeMappingSourceInterface, AttributeValueRepresentation> removeHintValue(AttributeMapping hint) {
+		return attributeMappingHintValues.removeHintValue(hint);
+	}
+	
+	/**
+	 *This retrieves and removes the first hint value stored for a given hint.
+	 * 
+	 * @param hint The hint for which the first hint value shall be retrieved and removed.
+	 * @return The removed hint value.
+	 */
+	public Integer removeHintValue(CardinalityMapping hint) {
+		return cardinalityMappingHintValues.removeHintValue(hint);
+	}
+	
+	/**
+	 *This retrieves and removes the first hint value stored for a given hint.
+	 * 
+	 * @param hint The hint for which the first hint value shall be retrieved and removed.
+	 * @return The removed hint value.
+	 */
+	public String removeHintValue(MappedAttributeValueExpander hint) {
+		return mappedAttributeValueExpanderHintValues.removeHintValue(hint);
+	}
+	
+	/**
+	 *This retrieves and removes the first hint value stored for a given hint.
+	 * 
+	 * @param hint The hint for which the first hint value shall be retrieved and removed.
+	 * @return The removed hint value.
+	 */
+	public Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> removeHintValue(MappingInstanceSelector hint) {
+		return mappingInstanceSelectorHintValues.removeHintValue(hint);
+	}
+	
+	/**
+	 *This retrieves and removes the first hint value stored for a given hint.
+	 * 
+	 * @param hint The hint for which the first hint value shall be retrieved and removed.
+	 * @return The removed hint value.
+	 */
+	public Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> removeHintValue(ModelConnectionHint hint) {
+		return modelConnectionHintValues.removeHintValue(hint);
+	}
 	
 }

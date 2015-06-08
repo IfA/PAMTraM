@@ -183,4 +183,14 @@ public abstract class HintValueMap<H extends EObject, V extends Object> extends 
 		
 		setHintValues(hint, null, values);
 	}
+	
+	/**
+	 * This retrieves and removes the first hint value stored for a given hint.
+	 * 
+	 * @param hint The hint for which the first hint value shall be retrieved and removed.
+	 * @return The removed hint value.
+	 */
+	public V removeHintValue(H hint) {
+		return this.get(hint).get(null).remove();
+	}
 }

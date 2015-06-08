@@ -158,7 +158,7 @@ public abstract class HintValueMap<H extends EObject, V extends Object> extends 
 	 * 
 	 * @param hint The hint for which these values shall be set.
 	 * @param clazz The source section class that the hint values are associated to.
-	 * @param values The values to be set.
+	 * @param values The values to be set. If <em>null</em> is passed, an empty list is set as values.
 	 */
 	public void setHintValues(H hint, SourceSectionClass clazz, LinkedList<V> values) {
 		
@@ -170,25 +170,17 @@ public abstract class HintValueMap<H extends EObject, V extends Object> extends 
 			this.init(hint);
 		}
 
-		this.get(hint).put(clazz, values);
+		this.get(hint).put(clazz, values == null ? new LinkedList<V>() : values);
 	}
 	
 	/**
 	 * This set the list of hint values in this map that are not associated with a {@link SourceSectionClass}.
 	 * 
 	 * @param hint The hint for which these values shall be set.
-	 * @param values The values to be set.
+	 * @param values The values to be set. If <em>null</em> is passed, an empty list is set as values.
 	 */
 	public void setHintValues(H hint, LinkedList<V> values) {
 		
-		/*
-		 * Before we add anything, we make sure that every sub-map and -list is
-		 * initialized so that we do not get any Exceptions.
-		 */
-		if (!this.containsKey(hint)) {
-			this.init(hint);
-		}
-
-		this.get(hint).put(null, values);
+		setHintValues(hint, null, values);
 	}
 }

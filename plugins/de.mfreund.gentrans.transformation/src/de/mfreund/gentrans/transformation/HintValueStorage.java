@@ -1,5 +1,6 @@
 package de.mfreund.gentrans.transformation;
 
+import java.util.LinkedList;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
@@ -64,6 +65,118 @@ public class HintValueStorage {
 		modelConnectionHintValues = new ModelConnectionHintValueMap();
 	}
 	
+
+	/**
+	 * This returns the list of stored values for the given hint.
+	 * 
+	 * @param hint The hint for which the stored values shall be returned. The concrete type of this needs to be one of 
+	 * {@link AttributeMapping}, {@link CardinalityMapping}, {@link MappedAttributeValueExpander},
+	 * {@link MappingInstanceSelector}, or {@link ModelConnectionHint}.
+	 * @return The stored values for the given hint. The concrete return type is in line with the type of the <em>hint</em> according to
+	 * the concrete implementation of the {@link HintValueMap} type.
+	 */
+	public Object getHintValues(EObject hint) {
+		if(hint instanceof AttributeMapping) {
+			return getHintValues((AttributeMapping) hint);
+		} else if(hint instanceof CardinalityMapping) {
+			return getHintValues((CardinalityMapping) hint);
+		} else if(hint instanceof MappedAttributeValueExpander) {
+			return getHintValues((MappedAttributeValueExpander) hint);
+		} else if(hint instanceof MappingInstanceSelector) {
+			return getHintValues((MappingInstanceSelector) hint);
+		} else if(hint instanceof ModelConnectionHint) {
+			return getHintValues((ModelConnectionHint) hint);
+		} else {
+			throw new RuntimeException("Unsupported MappingHint type: '" + hint.eClass().getName() + "'!");
+		}
+	}
+	
+	/**
+	 * @return the {@link #attributeMappingHintValues}
+	 */
+	public AttributeMappingHintValueMap getAttributeMappingHintValues() {
+		return attributeMappingHintValues;
+	}
+	
+	/**
+	 * This returns the list of stored values for the given hint.
+	 * 
+	 * @param hint The hint for which the stored values shall be returned.
+	 * @return The stored values for the given hint.
+	 */
+	public LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> getHintValues(AttributeMapping hint) {
+		return attributeMappingHintValues.getHintValues(hint);
+	}
+
+	/**
+	 * @return the {@link #cardinalityMappingHintValues}
+	 */
+	public CardinalityMappingHintValueMap getCardinalityMappingHintValues() {
+		return cardinalityMappingHintValues;
+	}
+	
+
+	/**
+	 * This returns the list of stored values for the given hint.
+	 * 
+	 * @param hint The hint for which the stored values shall be returned.
+	 * @return The stored values for the given hint.
+	 */
+	public LinkedList<Integer> getHintValues(CardinalityMapping hint) {
+		return cardinalityMappingHintValues.getHintValues(hint);
+	}
+
+	/**
+	 * @return the {@link #mappedAttributeValueExpanderHintValues}
+	 */
+	public MappedAttributeValueExpanderHintValueMap getMappedAttributeValueExpanderHintValues() {
+		return mappedAttributeValueExpanderHintValues;
+	}
+
+	/**
+	 * This returns the list of stored values for the given hint.
+	 * 
+	 * @param hint The hint for which the stored values shall be returned.
+	 * @return The stored values for the given hint.
+	 */
+	public LinkedList<String> getHintValues(MappedAttributeValueExpander hint) {
+		return mappedAttributeValueExpanderHintValues.getHintValues(hint);
+	}
+
+	/**
+	 * @return the {@link #mappingInstanceSelectorHintValues}
+	 */
+	public MappingInstanceSelectorHintValueMap getMappingInstanceSelectorHintValues() {
+		return mappingInstanceSelectorHintValues;
+	}
+
+	/**
+	 * This returns the list of stored values for the given hint.
+	 * 
+	 * @param hint The hint for which the stored values shall be returned.
+	 * @return The stored values for the given hint.
+	 */
+	public LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>> getHintValues(MappingInstanceSelector hint) {
+		return mappingInstanceSelectorHintValues.getHintValues(hint);
+	}
+
+	/**
+	 * @return the {@link #modelConnectionHintValues}
+	 */
+	public ModelConnectionHintValueMap getModelConnectionHintValues() {
+		return modelConnectionHintValues;
+	}
+
+	/**
+	 * This returns the list of stored values for the given hint.
+	 * 
+	 * @param hint The hint for which the stored values shall be returned.
+	 * @return The stored values for the given hint.
+	 */
+	public LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>> getHintValues(ModelConnectionHint hint) {
+		return modelConnectionHintValues.getHintValues(hint);
+	}
+
 	/**
 	 * This adds a hint value to the storage.
 	 * 
@@ -139,6 +252,148 @@ public class HintValueStorage {
 	 */
 	public void addHintValue(ModelConnectionHint hint, Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> value) {
 		modelConnectionHintValues.addHintValue(hint, value);
+	}
+	
+	/**
+	 * This adds the hint values stored in another {@link HintValueStorage} to this storage.
+	 * 
+	 * @param hintValuesToAdd The {@link HintValueStorage} that contains the hint values to add.
+	 */
+	public void addHintValues(HintValueStorage hintValuesToAdd) {
+		
+		// copy the various maps
+		this.getAttributeMappingHintValues().addHintValues(hintValuesToAdd.getAttributeMappingHintValues());
+		this.getCardinalityMappingHintValues().addHintValues(hintValuesToAdd.getCardinalityMappingHintValues());
+		this.getMappedAttributeValueExpanderHintValues().addHintValues(hintValuesToAdd.getMappedAttributeValueExpanderHintValues());
+		this.getMappingInstanceSelectorHintValues().addHintValues(hintValuesToAdd.getMappingInstanceSelectorHintValues());
+		this.getModelConnectionHintValues().addHintValues(hintValuesToAdd.getModelConnectionHintValues());
+	}
+	
+	/**
+	 * This adds a list of hint value to the storage.
+	 * 
+	 * @param hint The hint for that the value shall be added. The concrete type of this needs to be one of 
+	 * {@link AttributeMapping}, {@link CardinalityMapping}, {@link MappedAttributeValueExpander},
+	 * {@link MappingInstanceSelector}, or {@link ModelConnectionHint}.
+	 * @param value The values to be added. The concrete type needs to be in line with the type of the <em>hint</em> according to
+	 * the concrete implementation of the {@link HintValueMap} type.
+	 * @throws ClassCastException if the concrete type of the <em>value</em> is not in line with the type of the <em>hint</em>.
+	 */
+	@SuppressWarnings("unchecked")
+	public void addHintValues(EObject hint, Object values) throws ClassCastException {
+		if(hint instanceof AttributeMapping) {
+			addHintValues(hint, values);
+		} else if(hint instanceof CardinalityMapping) {
+			addHintValues((CardinalityMapping) hint, (LinkedList<Integer>) values);
+		} else if(hint instanceof MappedAttributeValueExpander) {
+			addHintValues((MappedAttributeValueExpander) hint, (LinkedList<String>) values);
+		} else if(hint instanceof MappingInstanceSelector) {
+			addHintValues((MappingInstanceSelector) hint, (LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>>) values);
+		} else if(hint instanceof ModelConnectionHint) {
+			addHintValues((ModelConnectionHint) hint, (LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>>) values);
+		} else {
+			throw new RuntimeException("Unsupported MappingHint type: '" + hint.eClass().getName() + "'!");
+		}
+	}
+	
+	/**
+	 * This adds a list of hint value to the storage.
+	 * 
+	 * @param hint The {@link AttributeMapping} for that the value shall be added.
+	 * @param values The values to be added.
+	 */
+	public void addHintValues(AttributeMapping hint, LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> values) {
+		attributeMappingHintValues.addHintValues(hint, values);
+	}
+	
+	/**
+	 * This adds a list of hint value to the storage.
+	 * 
+	 * @param hint The {@link CardinalityMapping} for that the value shall be added.
+	 * @param values The values to be added.
+	 */
+	public void addHintValues(CardinalityMapping hint, LinkedList<Integer> values) {
+		cardinalityMappingHintValues.addHintValues(hint, values);
+	}
+	
+	/**
+	 * This adds a list of hint value to the storage.
+	 * 
+	 * @param hint The {@link MappedAttributeValueExpander} for that the value shall be added.
+	 * @param values The values to be added.
+	 */
+	public void addHintValues(MappedAttributeValueExpander hint, LinkedList<String> values) {
+		mappedAttributeValueExpanderHintValues.addHintValues(hint, values);
+	}
+	
+	/**
+	 * This adds a list of hint value to the storage.
+	 * 
+	 * @param hint The {@link MappingInstanceSelector} for that the value shall be added.
+	 * @param values The values to be added.
+	 */
+	public void addHintValues(MappingInstanceSelector hint, LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>> values) {
+		mappingInstanceSelectorHintValues.addHintValues(hint, values);
+	}
+	
+	/**
+	 * This adds a list of hint value to the storage.
+	 * 
+	 * @param hint The {@link ModelConnectionHint} for that the value shall be added.
+	 * @param values The values to be added.
+	 */
+	public void addHintValues(ModelConnectionHint hint, LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>> values) {
+		modelConnectionHintValues.addHintValues(hint, values);
+	}
+	
+	/**
+	 * This sets the list of stored hint values for the given hint.
+	 * 
+	 * @param hint The {@link AttributeMapping} for that the values shall be set.
+	 * @param values The values to be set.
+	 */
+	public void setHintValues(AttributeMapping hint, LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> values) {
+		attributeMappingHintValues.setHintValues(hint, values);
+	}
+	
+	/**
+	 * This sets the list of stored hint values for the given hint.
+	 * 
+	 * @param hint The {@link CardinalityMapping} for that the values shall be set.
+	 * @param values The values to be set.
+	 */
+	public void setHintValues(CardinalityMapping hint, LinkedList<Integer> values) {
+		cardinalityMappingHintValues.setHintValues(hint, values);
+	}
+	
+	/**
+	 * This sets the list of stored hint values for the given hint.
+	 * 
+	 * @param hint The {@link MappedAttributeValueExpander} for that the values shall be set.
+	 * @param values The values to be set.
+	 */
+	public void setHintValues(MappedAttributeValueExpander hint, LinkedList<String> values) {
+		mappedAttributeValueExpanderHintValues.setHintValues(hint, values);
+	}
+	
+	/**
+	 * This sets the list of stored hint values for the given hint.
+	 * 
+	 * @param hint The {@link MappingInstanceSelector} for that the values shall be set.
+	 * @param values The values to be set.
+	 */
+	public void setHintValues(MappingInstanceSelector hint, LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>> values) {
+		mappingInstanceSelectorHintValues.setHintValues(hint, values);
+	}
+	
+	/**
+	 * This sets the list of stored hint values for the given hint.
+	 * 
+	 * @param hint The {@link ModelConnectionHint} for that the values shall be set.
+	 * @param values The values to be set.
+	 */
+	public void setHintValues(ModelConnectionHint hint, LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>> values) {
+		modelConnectionHintValues.setHintValues(hint, values);
 	}
 	
 }

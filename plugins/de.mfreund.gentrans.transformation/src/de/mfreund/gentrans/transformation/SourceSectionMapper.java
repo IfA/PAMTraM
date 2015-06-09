@@ -1477,8 +1477,7 @@ class SourceSectionMapper implements CancellationListener {
 				}
 			}
 
-			for (final MappingHintGroupImporter g : m
-					.getImportedMappingHintGroups()) {
+			for (final MappingHintGroupImporter g : m.getActiveImportedMappingHintGroups()) {
 				if (g.getMappingHints() != null) {
 					mappingHints.get(m).addAll(g.getMappingHints());
 				}

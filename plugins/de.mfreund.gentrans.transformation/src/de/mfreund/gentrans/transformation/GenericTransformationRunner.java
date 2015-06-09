@@ -573,7 +573,7 @@ public class GenericTransformationRunner {
 			 * global vals for ImportedMappingHintGroups
 			 */
 			for (final MappingHintGroupImporter g : selMap.getMapping()
-					.getImportedMappingHintGroups()) {
+					.getActiveImportedMappingHintGroups()) {
 				for (final MappingHintType h : g.getMappingHints()) {
 
 					if (h instanceof AttributeMapping) {
@@ -626,7 +626,7 @@ public class GenericTransformationRunner {
 			 * be restricted to a cardinality of 0..1
 			 */
 			for (final MappingHintGroupImporter g : selMap.getMapping()
-					.getImportedMappingHintGroups()) {
+					.getActiveImportedMappingHintGroups()) {
 				for (final MappingHintType h : g.getMappingHints()) {
 					if (h instanceof AttributeMapping && selMap.getHintValues().getHintValues((AttributeMapping) h).size() > 1) {
 						consoleStream.println("The MappingHint " + h.getName() + " of the HintImporter " + g.getName() + " in Mapping "
@@ -798,7 +798,7 @@ public class GenericTransformationRunner {
 			}
 
 			for (final MappingHintGroupImporter i : m
-					.getImportedMappingHintGroups()) {
+					.getActiveImportedMappingHintGroups()) {
 				final ExportedMappingHintGroup g = i.getHintGroup();
 				if (g.getTargetMMSection() != null) {
 					/*
@@ -1061,7 +1061,7 @@ public class GenericTransformationRunner {
 			}
 
 			for (final MappingHintGroupImporter g : selMap.getMapping()
-					.getImportedMappingHintGroups()) {
+					.getActiveImportedMappingHintGroups()) {
 				final ExportedMappingHintGroup expGrp = g.getHintGroup();
 				if (expGrp != null) {
 					
@@ -1305,7 +1305,7 @@ public class GenericTransformationRunner {
 			}
 
 			for (final MappingHintGroupImporter g : selMap.getMapping()
-					.getImportedMappingHintGroups()) {
+					.getActiveImportedMappingHintGroups()) {
 				final ExportedMappingHintGroup expGrp = g.getHintGroup();
 				if (expGrp.getTargetMMSection() != null) {
 					if (selMap.getInstancesBySection(g) != null) {

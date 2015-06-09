@@ -706,6 +706,27 @@ class SourceSectionMapper implements CancellationListener {
 		final Map<AttributeMatcherSourceElement, AttributeValueRepresentation> complexAttrMatcherSourceElementHintValues = new LinkedHashMap<>();
 		final Map<ModelConnectionHintSourceElement, AttributeValueRepresentation> complexConnectionHintSourceElementHintValues = new LinkedHashMap<>();
 
+		// init hintValues
+		for (final MappingHintType hint : hints) {
+			if (hint instanceof AttributeMapping) {
+				changedRefsAndHints.getHintValues().getAttributeMappingHintValues().init((AttributeMapping) hint);
+			} else if (hint instanceof MappingInstanceSelector) {
+				if (((MappingInstanceSelector) hint).getMatcher() instanceof AttributeMatcher) {
+					changedRefsAndHints.getHintValues().getMappingInstanceSelectorHintValues().init((MappingInstanceSelector) hint);
+				}
+			}
+
+		}
+		for (final ModelConnectionHint hint : connectionHints) {
+			if (hint instanceof ModelConnectionHint) {
+				if (newRefsAndHints.getHintValues().containsHint(hint)) {
+					changedRefsAndHints.getHintValues().getHintValues(hint).addAll(newRefsAndHints.getHintValues().getHintValues(hint));
+				} else {
+					changedRefsAndHints.getHintValues().getModelConnectionHintValues().init(hint);
+				}
+			}
+		}
+		
 		// set refs
 		changedRefsAndHints.addSourceModelObjectsMapped(newRefsAndHints
 				.getSourceModelObjectsMapped());
@@ -715,13 +736,14 @@ class SourceSectionMapper implements CancellationListener {
 				srcSection);
 
 		/*
-		 * check Attributes
+		 * check Attributes and determine HintValues
 		 */
-		if (!handleAttributes(srcModelObject, hints, connectionHints,
+		boolean attributesOk = handleAttributes(srcModelObject, hints, connectionHints,
 				globalVars, srcSection, changedRefsAndHints,
 				complexSourceElementHintValues,
 				complexAttrMatcherSourceElementHintValues,
-				complexConnectionHintSourceElementHintValues)) {
+				complexConnectionHintSourceElementHintValues);
+		if (!attributesOk) {
 			return null;
 		}
 		
@@ -1202,11 +1224,7 @@ class SourceSectionMapper implements CancellationListener {
 			if (h instanceof AttributeMapping) {
 				if (!(complexAttributeMappingsFound.contains(h) && deepestComplexAttrMappingSrcElementsByCmplxMapping
 						.get(h).contains(srcSection))) {
-					changedRefsAndHints.getHintValues().setHintValues((AttributeMapping) h, null); //TODO check if this is the same as before the refactoring
-//					changedRefsAndHints.getAttributeMappingHintValues((AttributeMapping) h).remove();// remove
-					// incomplete
-					// hint
-					// value
+					changedRefsAndHints.getHintValues().removeHintValue((AttributeMapping) h); // remove incomplete hint value
 				} else if (deepestComplexAttrMappingSrcElementsByCmplxMapping
 						.get(h).size() > 1) {
 					
@@ -1223,11 +1241,7 @@ class SourceSectionMapper implements CancellationListener {
 									.getMatcher()) && deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher
 									.get(((MappingInstanceSelector) h).getMatcher())
 									.contains(srcSection))) {
-						changedRefsAndHints.getHintValues().setHintValues((MappingInstanceSelector) h, null); //TODO check if this is the same as before the refactoring
-//						changedRefsAndHints.getMappingInstanceSelectorHintValues((MappingInstanceSelector) h).remove();// remove
-						// incomplete
-						// hint
-						// value
+						changedRefsAndHints.getHintValues().removeHintValue((MappingInstanceSelector) h); // remove incomplete hint value
 					} else if (deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher
 							.get(((MappingInstanceSelector) h).getMatcher())
 							.size() > 1) {
@@ -1244,8 +1258,7 @@ class SourceSectionMapper implements CancellationListener {
 			if (h instanceof ModelConnectionHint) {
 				if (!(complexConnectionHintsFound.contains(h) && deepestComplexConnectionHintSrcElementsByComplexConnectionHint
 						.get(h).contains(srcSection))) {
-					changedRefsAndHints.getHintValues().setHintValues(h, null); //TODO check if this is the same as before the refactoring
-//					changedRefsAndHints.getModelConnectionHintValues(h).remove();// remove incomplete hint value
+					changedRefsAndHints.getHintValues().removeHintValue(h); // remove incomplete hint value
 				} else if (deepestComplexConnectionHintSrcElementsByComplexConnectionHint
 						.get(h).size() > 1) {
 					

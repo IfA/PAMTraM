@@ -593,6 +593,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getMapping__GetActiveImportedMappingHintGroups() {
+		return mappingEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getMappingType() {
 		return mappingTypeEClass;
 	}
@@ -1205,7 +1214,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getMappedAttributeValueExpander__GetModifiers_1() {
+	public EOperation getMappedAttributeValueExpander__GetModifiers() {
 		return mappedAttributeValueExpanderEClass.getEOperations().get(1);
 	}
 
@@ -1489,6 +1498,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		createEReference(mappingEClass, MAPPING__IMPORTED_MAPPING_HINT_GROUPS);
 		createEReference(mappingEClass, MAPPING__GLOBAL_VARIABLES);
 		createEOperation(mappingEClass, MAPPING___GET_ACTIVE_MAPPING_HINT_GROUPS);
+		createEOperation(mappingEClass, MAPPING___GET_ACTIVE_IMPORTED_MAPPING_HINT_GROUPS);
 
 		mappingHintGroupTypeEClass = createEClass(MAPPING_HINT_GROUP_TYPE);
 		createEReference(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE__TARGET_MM_SECTION);
@@ -1915,6 +1925,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		initEOperation(getMapping__GetActiveMappingHintGroups(), this.getMappingHintGroupType(), "getActiveMappingHintGroups", 0, -1, IS_UNIQUE, IS_ORDERED);
 
+		initEOperation(getMapping__GetActiveImportedMappingHintGroups(), this.getMappingHintGroupImporter(), "getActiveImportedMappingHintGroups", 0, -1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(mappingHintGroupTypeEClass, MappingHintGroupType.class, "MappingHintGroupType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMappingHintGroupType_TargetMMSection(), theMetamodelPackage.getTargetSectionClass(), null, "targetMMSection", null, 1, 1, MappingHintGroupType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMappingHintGroupType_MappingHints(), this.getMappingHint(), null, "mappingHints", null, 0, -1, MappingHintGroupType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2022,7 +2034,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		initEOperation(getMappedAttributeValueExpander__GetSourceAttribute(), theMetamodelPackage.getSourceSectionAttribute(), "getSourceAttribute", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEOperation(getMappedAttributeValueExpander__GetModifiers_1(), this.getAttributeValueModifierSet(), "getModifiers", 0, -1, IS_UNIQUE, IS_ORDERED);
+		initEOperation(getMappedAttributeValueExpander__GetModifiers(), this.getAttributeValueModifierSet(), "getModifiers", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(localMappedAttributeValueExpanderEClass, LocalMappedAttributeValueExpander.class, "LocalMappedAttributeValueExpander", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -208,13 +208,22 @@ public interface MappingPackage extends EPackage {
 	int MAPPING___GET_ACTIVE_MAPPING_HINT_GROUPS = MAPPING_TYPE_OPERATION_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Get Active Imported Mapping Hint Groups</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING___GET_ACTIVE_IMPORTED_MAPPING_HINT_GROUPS = MAPPING_TYPE_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Mapping</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_OPERATION_COUNT = MAPPING_TYPE_OPERATION_COUNT + 1;
+	int MAPPING_OPERATION_COUNT = MAPPING_TYPE_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappingHintTypeImpl <em>Hint Type</em>}' class.
@@ -3337,6 +3346,16 @@ public interface MappingPackage extends EPackage {
 	EOperation getMapping__GetActiveMappingHintGroups();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.Mapping#getActiveImportedMappingHintGroups() <em>Get Active Imported Mapping Hint Groups</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Active Imported Mapping Hint Groups</em>' operation.
+	 * @see pamtram.mapping.Mapping#getActiveImportedMappingHintGroups()
+	 * @generated
+	 */
+	EOperation getMapping__GetActiveImportedMappingHintGroups();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.MappingType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4052,7 +4071,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.MappedAttributeValueExpander#getModifiers()
 	 * @generated
 	 */
-	EOperation getMappedAttributeValueExpander__GetModifiers_1();
+	EOperation getMappedAttributeValueExpander__GetModifiers();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.LocalMappedAttributeValueExpander <em>Local Mapped Attribute Value Expander</em>}'.
@@ -4402,6 +4421,14 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MAPPING___GET_ACTIVE_MAPPING_HINT_GROUPS = eINSTANCE.getMapping__GetActiveMappingHintGroups();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Active Imported Mapping Hint Groups</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MAPPING___GET_ACTIVE_IMPORTED_MAPPING_HINT_GROUPS = eINSTANCE.getMapping__GetActiveImportedMappingHintGroups();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.MappingTypeImpl <em>Type</em>}' class.
@@ -5017,7 +5044,7 @@ public interface MappingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MODIFIERS = eINSTANCE.getMappedAttributeValueExpander__GetModifiers_1();
+		EOperation MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MODIFIERS = eINSTANCE.getMappedAttributeValueExpander__GetModifiers();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.LocalMappedAttributeValueExpanderImpl <em>Local Mapped Attribute Value Expander</em>}' class.

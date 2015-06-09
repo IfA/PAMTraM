@@ -109,4 +109,13 @@ public interface Mapping extends MappingType {
 	 */
 	EList<MappingHintGroupType> getActiveMappingHintGroups();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<MappingHintGroupImporter> hintGroups = getImportedMappingHintGroups();\r\nEList<MappingHintGroupImporter> activeHintGroups = new BasicEList<>();\r\nfor (MappingHintGroupImporter hintGroup : hintGroups) {\r\n\tif(hintGroup.isDeactivated()) {\r\n\t\t// skip this one\r\n\t} else {\r\n\t\tactiveHintGroups.add(hintGroup);\r\n\t}\r\n}\r\nreturn activeHintGroups;'"
+	 * @generated
+	 */
+	EList<MappingHintGroupImporter> getActiveImportedMappingHintGroups();
+
 } // Mapping

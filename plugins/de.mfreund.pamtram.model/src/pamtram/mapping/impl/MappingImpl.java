@@ -211,6 +211,25 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 * @generated
 	 */
 	@Override
+	public EList<MappingHintGroupImporter> getActiveImportedMappingHintGroups() {
+		EList<MappingHintGroupImporter> hintGroups = getImportedMappingHintGroups();
+		EList<MappingHintGroupImporter> activeHintGroups = new BasicEList<>();
+		for (MappingHintGroupImporter hintGroup : hintGroups) {
+			if(hintGroup.isDeactivated()) {
+				// skip this one
+			} else {
+				activeHintGroups.add(hintGroup);
+			}
+		}
+		return activeHintGroups;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case MappingPackage.MAPPING__CONDITION:
@@ -327,6 +346,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 		switch (operationID) {
 			case MappingPackage.MAPPING___GET_ACTIVE_MAPPING_HINT_GROUPS:
 				return getActiveMappingHintGroups();
+			case MappingPackage.MAPPING___GET_ACTIVE_IMPORTED_MAPPING_HINT_GROUPS:
+				return getActiveImportedMappingHintGroups();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

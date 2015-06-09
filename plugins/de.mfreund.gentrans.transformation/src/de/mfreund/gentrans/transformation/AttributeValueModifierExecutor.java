@@ -51,7 +51,7 @@ public class AttributeValueModifierExecutor {
 			for (final AttributeValueModifier m : set.getModifier()) {
 				if (!modifiersWithErrors.contains(m)) {
 					try {
-						retVal = m.modify(retVal);
+						retVal = m.modifyValue(retVal);
 						/*
 						 * Catch an exception thrown by RegExes that aren't
 						 * formatted correctly

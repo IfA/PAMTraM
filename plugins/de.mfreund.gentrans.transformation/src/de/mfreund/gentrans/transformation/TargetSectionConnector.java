@@ -662,23 +662,18 @@ public class TargetSectionConnector implements CancellationListener {
 			connectionHintValuesCopy = linkedList;
 		}
 
-		for (final Object hintVal : connectionHintValuesCopy) {
+		for (final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> hintVal : connectionHintValuesCopy) {
+			
 			String hintValAsString = null;
 			if (connectionHint instanceof ModelConnectionHint) {
 				hintValAsString = "";
-				@SuppressWarnings("unchecked")
-				final Map<ModelConnectionHintSourceInterface, String> hVal = (Map<ModelConnectionHintSourceInterface, String>) hintVal;
-				for (final ModelConnectionHintSourceInterface srcElement : connectionHint
-						.getSourceElements()) {
-					if (hVal.containsKey(srcElement)) {
-						hintValAsString += hVal.get(srcElement);
+				
+				for (final ModelConnectionHintSourceInterface srcElement : connectionHint.getSourceElements()) {
+					if (hintVal.containsKey(srcElement)) {
+						hintValAsString += hintVal.get(srcElement).getValue();
 					} else {
-						consoleStream.println("HintSourceValue not found "
-								+ srcElement.getName()
-								+ " in ComplexModelConnectionHint "
-								+ connectionHint.getName() + "(Mapping: "
-								+ mappingName + ", Group: "
-								+ mappingGroupName + ").");
+						consoleStream.println("HintSourceValue not found " + srcElement.getName() + " in ComplexModelConnectionHint "
+								+ connectionHint.getName() + "(Mapping: " + mappingName + ", Group: " + mappingGroupName + ").");
 					}
 				}
 			}

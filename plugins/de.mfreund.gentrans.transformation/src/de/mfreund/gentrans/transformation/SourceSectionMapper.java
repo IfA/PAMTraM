@@ -761,8 +761,9 @@ class SourceSectionMapper implements CancellationListener {
 				
 				// append the complex hint value (cardinality either 0 or 1)
 				// with found values in right order
-				for (final AttributeMappingSourceElement s : ((AttributeMapping) h)
-						.getLocalSourceElements()) {
+				for (final AttributeMappingSourceInterface s : ((AttributeMapping) h).getSourceAttributeMappings()) {
+					//TODO complexSourceElementHintValues does not seem to contain values from external source elements (either only for 
+					// expression mappings or all the times
 					if (complexSourceElementHintValues.containsKey(s)) {
 													
 						if(((AttributeMapping) h).getExpression() != null && !((AttributeMapping) h).getExpression().isEmpty()) {
@@ -778,7 +779,7 @@ class SourceSectionMapper implements CancellationListener {
 									final double variableVal = new ExpressionBuilder(value).build().calculate();
 									
 									if(calculatedValue == null) {
-										calculatedValue = new AttributeValueRepresentation(s.getSource(), String.valueOf(variableVal));
+										calculatedValue = new AttributeValueRepresentation(s.getSourceAttribute(), String.valueOf(variableVal));
 									} else {
 										calculatedValue.addValue(String.valueOf(variableVal));
 									}

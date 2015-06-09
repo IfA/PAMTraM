@@ -2,10 +2,13 @@
  */
 package pamtram.mapping.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.StringPrepender;
 
@@ -22,7 +25,7 @@ import pamtram.mapping.StringPrepender;
  *
  * @generated
  */
-public class StringPrependerImpl extends AttributeValueModifierImpl implements StringPrepender {
+public class StringPrependerImpl extends NamedElementImpl implements StringPrepender {
 	/**
 	 * The default value of the '{@link #getString() <em>String</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -149,6 +152,20 @@ public class StringPrependerImpl extends AttributeValueModifierImpl implements S
 				return STRING_EDEFAULT == null ? string != null : !STRING_EDEFAULT.equals(string);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case MappingPackage.STRING_PREPENDER___MODIFY_VALUE__STRING:
+				return modifyValue((String)arguments.get(0));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

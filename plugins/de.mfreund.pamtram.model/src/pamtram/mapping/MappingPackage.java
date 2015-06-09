@@ -306,10 +306,10 @@ public interface MappingPackage extends EPackage {
 	int CLASS_MATCHER = 15;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeValueModifierImpl <em>Attribute Value Modifier</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.AttributeValueModifier <em>Attribute Value Modifier</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.AttributeValueModifierImpl
+	 * @see pamtram.mapping.AttributeValueModifier
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeValueModifier()
 	 * @generated
 	 */
@@ -4671,10 +4671,10 @@ public interface MappingPackage extends EPackage {
 		EReference CLASS_MATCHER__TARGET_CLASS = eINSTANCE.getClassMatcher_TargetClass();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.AttributeValueModifierImpl <em>Attribute Value Modifier</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.AttributeValueModifier <em>Attribute Value Modifier</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.AttributeValueModifierImpl
+		 * @see pamtram.mapping.AttributeValueModifier
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeValueModifier()
 		 * @generated
 		 */

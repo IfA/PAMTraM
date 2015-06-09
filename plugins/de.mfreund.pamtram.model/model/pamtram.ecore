@@ -749,7 +749,7 @@
           eType="#//mapping/AttributeValueModifier" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeValueModifier" abstract="true"
-        eSuperTypes="#//NamedElement">
+        interface="true" eSuperTypes="#//NamedElement">
       <eOperations name="modifyValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eParameters name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eOperations>

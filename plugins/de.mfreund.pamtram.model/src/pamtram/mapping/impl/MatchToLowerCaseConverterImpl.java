@@ -2,13 +2,16 @@
  */
 package pamtram.mapping.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.MatchToLowerCaseConverter;
 
@@ -25,7 +28,7 @@ import pamtram.mapping.MatchToLowerCaseConverter;
  *
  * @generated
  */
-public class MatchToLowerCaseConverterImpl extends AttributeValueModifierImpl implements MatchToLowerCaseConverter {
+public class MatchToLowerCaseConverterImpl extends NamedElementImpl implements MatchToLowerCaseConverter {
 	/**
 	 * The default value of the '{@link #getRegex() <em>Regex</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -142,6 +145,20 @@ public class MatchToLowerCaseConverterImpl extends AttributeValueModifierImpl im
 				return REGEX_EDEFAULT == null ? regex != null : !REGEX_EDEFAULT.equals(regex);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case MappingPackage.MATCH_TO_LOWER_CASE_CONVERTER___MODIFY_VALUE__STRING:
+				return modifyValue((String)arguments.get(0));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

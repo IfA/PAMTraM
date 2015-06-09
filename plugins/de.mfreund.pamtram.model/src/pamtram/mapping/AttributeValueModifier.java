@@ -11,7 +11,7 @@ import pamtram.NamedElement;
  *
  *
  * @see pamtram.mapping.MappingPackage#getAttributeValueModifier()
- * @model abstract="true"
+ * @model interface="true" abstract="true"
  * @generated
  */
 public interface AttributeValueModifier extends NamedElement {
@@ -23,10 +23,6 @@ public interface AttributeValueModifier extends NamedElement {
 	 */
 	String modifyValue(String value);
 
-	/**
-	 * @param value
-	 * @return
-	 */
-	public String modify(String value);
+	
 	
 } // AttributeValueModifier

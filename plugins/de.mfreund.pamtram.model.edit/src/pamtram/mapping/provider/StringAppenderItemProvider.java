@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
@@ -15,6 +16,8 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.StringAppender;
+import pamtram.provider.NamedElementItemProvider;
+import pamtram.provider.PamtramEditPlugin;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.StringAppender} object.
@@ -23,7 +26,7 @@ import pamtram.mapping.StringAppender;
  * @generated
  */
 public class StringAppenderItemProvider
-	extends AttributeValueModifierItemProvider {
+	extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -126,6 +129,17 @@ public class StringAppenderItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return PamtramEditPlugin.INSTANCE;
 	}
 
 }

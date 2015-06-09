@@ -338,7 +338,7 @@ public class HintValueStorage {
 	@SuppressWarnings("unchecked")
 	public void addHintValues(EObject hint, Object values) throws ClassCastException {
 		if(hint instanceof AttributeMapping) {
-			addHintValues(hint, values);
+			addHintValues((AttributeMapping) hint, (LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>>) values);
 		} else if(hint instanceof CardinalityMapping) {
 			addHintValues((CardinalityMapping) hint, (LinkedList<Integer>) values);
 		} else if(hint instanceof MappedAttributeValueExpander) {
@@ -400,6 +400,33 @@ public class HintValueStorage {
 	 */
 	public void addHintValues(ModelConnectionHint hint, LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>> values) {
 		modelConnectionHintValues.addHintValues(hint, values);
+	}
+	
+	/**
+	 * This sets the list of stored hint values for the given hint.
+	 * 
+	 * @param hint The hint for that the value shall be set. The concrete type of this needs to be one of 
+	 * {@link AttributeMapping}, {@link CardinalityMapping}, {@link MappedAttributeValueExpander},
+	 * {@link MappingInstanceSelector}, or {@link ModelConnectionHint}.
+	 * @param value The values to be set. The concrete type needs to be in line with the type of the <em>hint</em> according to
+	 * the concrete implementation of the {@link HintValueMap} type.
+	 * @throws ClassCastException if the concrete type of the <em>value</em> is not in line with the type of the <em>hint</em>.
+	 */
+	@SuppressWarnings("unchecked")
+	public void setHintValues(EObject hint, Object values) throws ClassCastException {
+		if(hint instanceof AttributeMapping) {
+			setHintValues((AttributeMapping) hint, (LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>>) values);
+		} else if(hint instanceof CardinalityMapping) {
+			setHintValues((CardinalityMapping) hint, (LinkedList<Integer>) values);
+		} else if(hint instanceof MappedAttributeValueExpander) {
+			setHintValues((MappedAttributeValueExpander) hint, (LinkedList<String>) values);
+		} else if(hint instanceof MappingInstanceSelector) {
+			setHintValues((MappingInstanceSelector) hint, (LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>>) values);
+		} else if(hint instanceof ModelConnectionHint) {
+			setHintValues((ModelConnectionHint) hint, (LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>>) values);
+		} else {
+			throw new RuntimeException("Unsupported MappingHint type: '" + hint.eClass().getName() + "'!");
+		}
 	}
 	
 	/**
@@ -583,4 +610,27 @@ public class HintValueStorage {
 		return modelConnectionHintValues.removeHintValue(hint);
 	}
 	
+	/**
+	 * This checks whether hint values are stored for the given hint.
+	 * 
+	 * @param hint The hint that shall be checked. The concrete type of this needs to be one of 
+	 * {@link AttributeMapping}, {@link CardinalityMapping}, {@link MappedAttributeValueExpander},
+	 * {@link MappingInstanceSelector}, or {@link ModelConnectionHint}.
+	 * @throws ClassCastException if the concrete type of the <em>value</em> is not in line with the type of the <em>hint</em>.
+	 */
+	public boolean containsHint(EObject hint) throws ClassCastException {
+		if(hint instanceof AttributeMapping) {
+			return getAttributeMappingHintValues().containsKey(hint);
+		} else if(hint instanceof CardinalityMapping) {
+			return getCardinalityMappingHintValues().containsKey(hint);
+		} else if(hint instanceof MappedAttributeValueExpander) {
+			return getMappedAttributeValueExpanderHintValues().containsKey(hint);
+		} else if(hint instanceof MappingInstanceSelector) {
+			return getMappingInstanceSelectorHintValues().containsKey(hint);
+		} else if(hint instanceof ModelConnectionHint) {
+			return getModelConnectionHintValues().containsKey(hint);
+		} else {
+			throw new RuntimeException("Unsupported MappingHint type: '" + hint.eClass().getName() + "'!");
+		}
+	}
 }

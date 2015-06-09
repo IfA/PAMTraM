@@ -38,6 +38,7 @@ import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.AttributeMatcherSourceInterface;
+import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.ExternalMappedAttributeValuePrepender;
 import pamtram.mapping.GlobalAttributeImporter;
@@ -116,8 +117,8 @@ public class GenericTransformationRunner {
 	 */
 	private int maxPathLength;
 	/**
-	 * Determines wether the user should be asked every time an ambiguous
-	 * mapping was deteced, or if we should reuse user decisions. standard value
+	 * Determines whether the user should be asked every time an ambiguous
+	 * mapping was detected, or if we should reuse user decisions. standard value
 	 * = true
 	 */
 	private boolean onlyAskOnceOnAmbiguousMappings;
@@ -360,7 +361,7 @@ public class GenericTransformationRunner {
 		 * 
 		 * Also add values of GlobalVariables to ComplexAttributeMapping's Hints
 		 */
-		final Map<MappingHint, LinkedList<Object>> exportedMappingHints = handleGlobalVarsAndExportedMappings(
+		final HintValueStorage exportedMappingHints = handleGlobalVarsAndExportedMappings(
 				sourceSectionMapper, selectedMappings);
 
 		if (isCancelled)
@@ -463,12 +464,16 @@ public class GenericTransformationRunner {
 	 * @param selectedMappings
 	 * @return
 	 */
-	private Map<MappingHint, LinkedList<Object>> handleGlobalVarsAndExportedMappings(
+	private HintValueStorage handleGlobalVarsAndExportedMappings(
 			final SourceSectionMapper sourceSectionMapper,
 			final LinkedList<MappingInstanceStorage> selectedMappings) {
-		consoleStream
-		.println("Getting hint values of exported hint groups, checking MappingHintImporters, adding global variables to hints");
-		final Map<MappingHint, LinkedList<Object>> exportedMappingHints = new LinkedHashMap<MappingHint, LinkedList<Object>>();
+		
+		consoleStream.println("Getting hint values of exported hint groups, checking MappingHintImporters, adding global variables to hints");
+//		final AttributeMappingHintValueMap exportedAttributeMappingHints = new AttributeMappingHintValueMap();
+//		final CardinalityMappingHintValueMap exportedCardinalityMappingHints = new CardinalityMappingHintValueMap();
+//		final MappingInstanceSelectorHintValueMap exportedMappingInstanceSelectors= new MappingInstanceSelectorHintValueMap();
+		final HintValueStorage exportedHintValues = new HintValueStorage();
+		
 		for (final MappingInstanceStorage selMap : selectedMappings) {
 			/*
 			 * import hint values
@@ -477,17 +482,11 @@ public class GenericTransformationRunner {
 					.getActiveMappingHintGroups()) {
 				if (g instanceof ExportedMappingHintGroup) {
 					for (final MappingHint h : g.getMappingHints()) {
-						if (!exportedMappingHints.containsKey(h)) {
-							exportedMappingHints.put(h,
-									new LinkedList<Object>());
-						}
 						/*
 						 * this works because the SourceSectionMapper guarantees
 						 * that a key exists for each MappingHint of the Mapping
 						 */
-						exportedMappingHints.get(h).addAll(
-								selMap.getHintValues().remove(h));
-
+						exportedHintValues.addHintValues(h, selMap.getHintValues().removeHint(h));
 					}
 				}
 
@@ -509,11 +508,8 @@ public class GenericTransformationRunner {
 											.getGlobalVarValues()
 											.get(((GlobalAttributeImporter) i)
 													.getGlobalAttribute());
-									for (final Object m : selMap
-											.getHintValues().get(h)) {
-										@SuppressWarnings("unchecked")
-										final Map<AttributeMappingSourceInterface, String> map = (Map<AttributeMappingSourceInterface, String>) m;
-										map.put(i, gVal);
+									for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> m : selMap.getHintValues().getHintValues((AttributeMapping) h)) {
+										m.put(i, new AttributeValueRepresentation(i.getSourceAttribute(), gVal));
 									}
 								}
 							}
@@ -534,11 +530,8 @@ public class GenericTransformationRunner {
 												.getGlobalVarValues()
 												.get(((GlobalAttributeImporter) i)
 														.getGlobalAttribute());
-										for (final Object o : selMap
-												.getHintValues().get(h)) {
-											@SuppressWarnings("unchecked")
-											final Map<AttributeMatcherSourceInterface, String> map = (Map<AttributeMatcherSourceInterface, String>) o;
-											map.put(i, gVal);
+										for (final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> o : selMap.getHintValues().getHintValues((MappingInstanceSelector) h)) {
+											o.put(i, new AttributeValueRepresentation(i.getSourceAttribute(), gVal));
 										}
 									}
 								}
@@ -565,12 +558,8 @@ public class GenericTransformationRunner {
 											.getGlobalVarValues()
 											.get(((GlobalAttributeImporter) i)
 													.getGlobalAttribute());
-									for (final Object o : selMap
-											.getModelConnectionHintValues()
-											.get(h)) {
-										@SuppressWarnings("unchecked")
-										final Map<ModelConnectionHintSourceInterface, String> map = (Map<ModelConnectionHintSourceInterface, String>) o;
-										map.put(i, gVal);
+									for (final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> o : selMap.getHintValues().getHintValues(h)) {
+										o.put(i, new AttributeValueRepresentation(i.getSourceAttribute(), gVal));
 									}
 								}
 							}
@@ -599,11 +588,8 @@ public class GenericTransformationRunner {
 											.getGlobalVarValues()
 											.get(((GlobalAttributeImporter) i)
 													.getGlobalAttribute());
-									for (final Object m : selMap
-											.getHintValues().get(h)) {
-										@SuppressWarnings("unchecked")
-										final Map<AttributeMappingSourceInterface, String> map = (Map<AttributeMappingSourceInterface, String>) m;
-										map.put(i, gVal);
+									for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> m : selMap.getHintValues().getHintValues((AttributeMapping) h)) {
+										m.put(i, new AttributeValueRepresentation(i.getSourceAttribute(), gVal));
 									}
 								}
 							}
@@ -624,11 +610,8 @@ public class GenericTransformationRunner {
 												.getGlobalVarValues()
 												.get(((GlobalAttributeImporter) i)
 														.getGlobalAttribute());
-										for (final Object o : selMap
-												.getHintValues().get(h)) {
-											@SuppressWarnings("unchecked")
-											final Map<AttributeMatcherSourceInterface, String> map = (Map<AttributeMatcherSourceInterface, String>) o;
-											map.put(i, gVal);
+										for (final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> o : selMap.getHintValues().getHintValues((MappingInstanceSelector) h)) {
+											o.put(i, new AttributeValueRepresentation(i.getSourceAttribute(), gVal));
 										}
 									}
 								}
@@ -637,6 +620,7 @@ public class GenericTransformationRunner {
 					}
 				}
 			}
+			
 			/*
 			 * additional MappingHints for HintImporters are necessary but must
 			 * be restricted to a cardinality of 0..1
@@ -644,27 +628,51 @@ public class GenericTransformationRunner {
 			for (final MappingHintGroupImporter g : selMap.getMapping()
 					.getImportedMappingHintGroups()) {
 				for (final MappingHintType h : g.getMappingHints()) {
-					if (selMap.getHintValues().get(h).size() > 1) {
-						consoleStream
-						.println("The MappingHint "
-								+ h.getName()
-								+ " of the HintImporter "
-								+ g.getName()
-								+ " in Mapping "
-								+ selMap.getMapping().getName()
-								+ " picked up more than one HintValue. This is not allowed.");
+					if (h instanceof AttributeMapping && selMap.getHintValues().getHintValues((AttributeMapping) h).size() > 1) {
+						consoleStream.println("The MappingHint " + h.getName() + " of the HintImporter " + g.getName() + " in Mapping "
+								+ selMap.getMapping().getName() + " picked up more than one HintValue. This is not allowed.");
 						/*
 						 * TODO OCL? (possible? => Even sections with card. type
 						 * of ONE can have more than one hint value if they are
 						 * part of a vc-section. However, we cannot restrict the
 						 * parent sections to non-vc, argh...can we?)
 						 */
-						selMap.getHintValues().put(h, new LinkedList<Object>());
+						selMap.getHintValues().setHintValues((AttributeMapping) h, null);
+					} else if (h instanceof MappingInstanceSelector && selMap.getHintValues().getHintValues((MappingInstanceSelector) h).size() > 1) {
+						consoleStream.println("The MappingHint " + h.getName() + " of the HintImporter " + g.getName() + " in Mapping "
+								+ selMap.getMapping().getName() + " picked up more than one HintValue. This is not allowed.");
+						/*
+						 * TODO OCL? (possible? => Even sections with card. type
+						 * of ONE can have more than one hint value if they are
+						 * part of a vc-section. However, we cannot restrict the
+						 * parent sections to non-vc, argh...can we?)
+						 */
+						selMap.getHintValues().setHintValues((MappingInstanceSelector) h, null);
+					} else if (h instanceof CardinalityMapping && selMap.getHintValues().getHintValues((CardinalityMapping) h).size() > 1) {
+						consoleStream.println("The MappingHint " + h.getName() + " of the HintImporter " + g.getName() + " in Mapping "
+								+ selMap.getMapping().getName() + " picked up more than one HintValue. This is not allowed.");
+						/*
+						 * TODO OCL? (possible? => Even sections with card. type
+						 * of ONE can have more than one hint value if they are
+						 * part of a vc-section. However, we cannot restrict the
+						 * parent sections to non-vc, argh...can we?)
+						 */
+						selMap.getHintValues().setHintValues((CardinalityMapping) h, null);
+					} else if (h instanceof MappedAttributeValueExpander && selMap.getHintValues().getHintValues((MappedAttributeValueExpander) h).size() > 1) {
+						consoleStream.println("The MappingHint " + h.getName() + " of the HintImporter " + g.getName() + " in Mapping "
+								+ selMap.getMapping().getName() + " picked up more than one HintValue. This is not allowed.");
+						/*
+						 * TODO OCL? (possible? => Even sections with card. type
+						 * of ONE can have more than one hint value if they are
+						 * part of a vc-section. However, we cannot restrict the
+						 * parent sections to non-vc, argh...can we?)
+						 */
+						selMap.getHintValues().setHintValues((MappedAttributeValueExpander) h, null);
 					}
 				}
 			}
 		}
-		return exportedMappingHints;
+		return exportedHintValues;
 	}
 
 	/**
@@ -730,8 +738,7 @@ public class GenericTransformationRunner {
 										if (isCancelled)
 											return false;
 
-										targetSectionConnector
-												.linkToTargetModelUsingModelConnectionHint(
+										targetSectionConnector.linkToTargetModelUsingModelConnectionHint(
 														section.getEClass(),
 														new LinkedList<EObjectTransformationHelper>(
 																selMap.getInstances(
@@ -742,7 +749,7 @@ public class GenericTransformationRunner {
 														g.getName(),
 														((MappingHintGroup) g)
 																.getModelConnectionMatcher(),
-														selMap.getModelConnectionHintValues(((MappingHintGroup) g)
+														selMap.getHintValues().getHintValues(((MappingHintGroup) g)
 																.getModelConnectionMatcher()),
 														maxPathLength);
 										if (targetSectionConnector
@@ -983,13 +990,12 @@ public class GenericTransformationRunner {
 	 * @param monitor
 	 * @param attributeValuemodifier
 	 */
-	@SuppressWarnings("unchecked")
 	private void runInstantiationFirstPass(
 			final SourceSectionMapper sourceSectionMapper,
 			final TargetSectionRegistry targetSectionRegistry,
 			final AttributeValueRegistry attrValueRegistry,
 			final LinkedList<MappingInstanceStorage> selectedMappings,
-			final Map<MappingHint, LinkedList<Object>> exportedMappingHints,
+			final HintValueStorage exportedMappingHints,
 			final List<GlobalValue> globalValues,
 			final IProgressMonitor monitor,
 			final AttributeValueModifierExecutor attributeValuemodifier) {
@@ -1029,7 +1035,6 @@ public class GenericTransformationRunner {
 									g.getTargetMMSection(),
 									(MappingHintGroup) g, g.getMappingHints(),
 									selMap.getHintValues(),
-									selMap.getModelConnectionHintValues(),
 									selMap.getMapping().getName());
 					
 					if (instancesBySection == null) {
@@ -1059,14 +1064,15 @@ public class GenericTransformationRunner {
 					.getImportedMappingHintGroups()) {
 				final ExportedMappingHintGroup expGrp = g.getHintGroup();
 				if (expGrp != null) {
+					
 					// import Hints
 					for (final MappingHint h : expGrp.getMappingHints()) {
-						selMap.getHintValues().put(h, new LinkedList<Object>());
-						if (exportedMappingHints.containsKey(h)) {
-							selMap.getHintValues().get(h)
-							.addAll(exportedMappingHints.get(h));
+						selMap.getHintValues().setHintValues(h, null);
+						if (exportedMappingHints.containsHint(h)) {
+							selMap.getHintValues().addHintValues(h, exportedMappingHints.getHintValues(h));
 						}
 					}
+					
 					// start instantiating
 					if (expGrp.getTargetMMSection() != null) {
 
@@ -1076,9 +1082,8 @@ public class GenericTransformationRunner {
 							if (h instanceof MappingHint) {
 								hints.add((MappingHint) h);
 							} else if (h instanceof MappedAttributeValueExpander) {
-								if (selMap.getHintValues().get(h).size() == 1) {
-									final String hintVal = (String) selMap
-											.getHintValues().get(h).getFirst();
+								if (selMap.getHintValues().getHintValues((MappedAttributeValueExpander) h).size() == 1) {
+									final String hintVal = selMap.getHintValues().getHintValues((MappedAttributeValueExpander) h).getFirst();
 									/*
 									 * of course this works only because the
 									 * only other option is the Appender
@@ -1096,7 +1101,7 @@ public class GenericTransformationRunner {
 														((AttributeMapping) realHint).getExpression() == null ||
 														((AttributeMapping) realHint).getExpression().isEmpty()) {// ComplexAttributeMapping
 													
-													final LinkedList<Object> vals = new LinkedList<Object>();
+													final LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> vals = new LinkedList<>();
 													final List<AttributeMappingSourceInterface> sources = ((AttributeMapping) realHint)
 															.getSourceAttributeMappings();
 													
@@ -1113,12 +1118,7 @@ public class GenericTransformationRunner {
 																			.size() - 1);
 														}
 
-														for (final Object m : selMap
-																.getHintValues()
-																.get(realHint)) {
-															
-															final LinkedHashMap<AttributeMappingSourceInterface, AttributeValueRepresentation> originalMap = 
-																	(LinkedHashMap<AttributeMappingSourceInterface, AttributeValueRepresentation>) m;
+														for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> m : selMap.getHintValues().getHintValues((AttributeMapping) realHint)) {
 															
 															/*
 															 *  create a deep-cloned copy of the map holding the source elements and values 
@@ -1129,9 +1129,9 @@ public class GenericTransformationRunner {
 															
 															final LinkedHashMap<AttributeMappingSourceInterface, AttributeValueRepresentation> clonedMap = 
 																new LinkedHashMap<>();
-															for (AttributeMappingSourceInterface key : originalMap.keySet()) {
+															for (AttributeMappingSourceInterface key : m.keySet()) {
 																clonedMap.put(key, 
-																		(AttributeValueRepresentation) originalMap.get(key).clone());
+																		(AttributeValueRepresentation) m.get(key).clone());
 															}
 															
 															// expand either the first or last value source element and let all other
@@ -1151,19 +1151,15 @@ public class GenericTransformationRunner {
 														}
 														
 														// update the hint value list for the real hint
-														selMap.setHintValueList(
-																realHint, vals);
+														selMap.getHintValues().setHintValues((AttributeMapping) realHint, vals);
 													}
 												} else if (realHint instanceof AttributeMapping) {// CalculatorMapping
 													final List<AttributeMappingSourceInterface> sources = ((AttributeMapping) realHint)
 															.getSourceAttributeMappings();
 													if (sources.size() > 0) {
 														try {
-															final Calculable calc = new ExpressionBuilder(
-																	hintVal)
-																	.build();
-															final double variableVal = calc
-																	.calculate();
+															final Calculable calc = new ExpressionBuilder(hintVal).build();
+															final double variableVal = calc.calculate();
 															/*
 															 * parseDouble
 															 * doesn't support
@@ -1172,29 +1168,14 @@ public class GenericTransformationRunner {
 															 * 0.42e2 == 4200e-2
 															 * == 42,
 															 */
-															final String varName = ((MappedAttributeValueExpander) h)
-																	.getSourceAttribute()
-																	.getName();
-															for (final Object m : selMap
-																	.getHintValues()
-																	.get(realHint)) {
-																final Map<String, Double> map = (Map<String, Double>) m;
-																map.put(varName,
-																		variableVal);
+															for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> m : selMap.getHintValues().getHintValues((AttributeMapping) realHint)) {
+																//TODO check if this works
+																m.put(sources.get(0), new AttributeValueRepresentation(((MappedAttributeValueExpander) h).getSourceAttribute(), Double.toString(variableVal)));
 															}
 														} catch (final Exception e) {
-															consoleStream
-																	.println("Couldn't convert variable "
-																			+ ((MappedAttributeValueExpander) h)
-																					.getSourceAttribute()
-																					.getName()
-																			+ " of "
-																			+ h.getClass()
-																					.getName()
-																			+ " "
-																			+ h.getName()
-																			+ " from String to double. The problematic source element's attribute value was: "
-																			+ hintVal);
+															consoleStream.println("Couldn't convert variable " + ((MappedAttributeValueExpander) h).getSourceAttribute().getName()
+																			+ " of " + h.getClass().getName() + " " + h.getName()
+																			+ " from String to double. The problematic source element's attribute value was: " + hintVal);
 														}
 													}
 												}// TODO add any remaining
@@ -1224,19 +1205,16 @@ public class GenericTransformationRunner {
 																				.size() - 1);
 															}
 
-															for (final Object m : selMap
-																	.getHintValues()
-																	.get(realHint)) {
-																final Map<AttributeMatcherSourceInterface, String> map = (Map<AttributeMatcherSourceInterface, String>) m;
-																if (map.containsKey(element)) {
+															for (final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> m : selMap.getHintValues().getHintValues((MappingInstanceSelector) realHint)) {
+																if (m.containsKey(element)) {
 																	if (prepend) {
-																		map.put(element,
-																				hintVal
-																						+ map.get(element));
+																		AttributeValueRepresentation preprended = m.get(element);
+																		preprended.addPrefix(hintVal);
+																		m.put(element, preprended);
 																	} else {
-																		map.put(element,
-																				map.get(element)
-																						+ hintVal);
+																		AttributeValueRepresentation appended = m.get(element);
+																		appended.addSuffix(hintVal);
+																		m.put(element, appended);
 																	}
 																}
 															}
@@ -1257,7 +1235,6 @@ public class GenericTransformationRunner {
 								.instantiateTargetSectionFirstPass(
 										expGrp.getTargetMMSection(), g, hints,
 										selMap.getHintValues(),
-										selMap.getModelConnectionHintValues(),
 										selMap.getMapping().getName());
 						if (instancesBySection == null) {
 							if (expGrp.getTargetMMSection().getCardinality() != CardinalityType.ZERO_INFINITY) {// Error

@@ -486,7 +486,8 @@ public class GenericTransformationRunner {
 						 * this works because the SourceSectionMapper guarantees
 						 * that a key exists for each MappingHint of the Mapping
 						 */
-						exportedHintValues.addHintValues(h, selMap.getHintValues().removeHint(h));
+						Object exportedHint = selMap.getHintValues().removeHint(h);
+						exportedHintValues.addHintValues(h, exportedHint);
 					}
 				}
 

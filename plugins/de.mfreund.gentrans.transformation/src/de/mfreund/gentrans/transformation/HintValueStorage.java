@@ -561,6 +561,32 @@ public class HintValueStorage {
 	}
 	
 	/**
+	 * This retrieves and removes the first hint value stored for a given hint.
+	 * 
+	 * @param hint The hint for which the first hint value shall be retrieved and removed..  The concrete type of this needs to be one of 
+	 * {@link AttributeMapping}, {@link CardinalityMapping}, {@link MappedAttributeValueExpander},
+	 * {@link MappingInstanceSelector}, or {@link ModelConnectionHint}.
+	 * @return The removed hint value. The concrete type is in line with the type of the <em>hint</em> according to
+	 * the concrete implementation of the {@link HintValueMap} type.
+	 */
+	public Object removeHintValue(EObject hint) {
+		
+		if(hint instanceof AttributeMapping) {
+			return removeHintValue((AttributeMapping) hint);
+		} else if(hint instanceof CardinalityMapping) {
+			return removeHintValue((CardinalityMapping) hint);
+		} else if(hint instanceof MappedAttributeValueExpander) {
+			return removeHintValue((MappedAttributeValueExpander) hint);
+		} else if(hint instanceof MappingInstanceSelector) {
+			return removeHintValue((MappingInstanceSelector) hint);
+		} else if(hint instanceof ModelConnectionHint) {
+			return removeHintValue((ModelConnectionHint) hint);
+		} else {
+			throw new RuntimeException("Unsupported MappingHint type: '" + hint.eClass().getName() + "'!");
+		}
+	}
+	
+	/**
 	 *This retrieves and removes the first hint value stored for a given hint.
 	 * 
 	 * @param hint The hint for which the first hint value shall be retrieved and removed.

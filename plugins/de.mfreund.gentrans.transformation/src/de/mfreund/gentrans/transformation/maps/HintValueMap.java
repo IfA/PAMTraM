@@ -27,11 +27,12 @@ public abstract class HintValueMap<H extends EObject, V extends Object> extends 
 	 * not been initialized. However, this may be called manually to reset the list of hint values.
 	 * 
 	 * @param hint The mapping hint for which the collection of hint values shall be initialized.
+	 * @param addEmptyValue Whether an {@link #createEmptyValue() 'empty value'} shall be added to the list.
 	 */
-	public void init(H hint) {
+	public void init(H hint, boolean addEmptyValue) {
 		this.put(hint, new HashMap<SourceSectionClass, LinkedList<V>>());
 		LinkedList<V> values = new LinkedList<>();
-		if(needsEmptyValue()) {
+		if(addEmptyValue) {
 			values.add(createEmptyValue());			
 		}
 		this.get(hint).put(null, values);
@@ -44,6 +45,7 @@ public abstract class HintValueMap<H extends EObject, V extends Object> extends 
 	 * 
 	 * @return <em>true</em> if an 'empty value' is necessary, <em>false</em> otherwise.
 	 */
+	@Deprecated
 	protected boolean needsEmptyValue() {
 		return false;
 	}
@@ -68,7 +70,7 @@ public abstract class HintValueMap<H extends EObject, V extends Object> extends 
 	public LinkedList<V> getHintValues(H hint) {
 		
 		if(!this.containsKey(hint)) {
-			this.init(hint);
+			this.init(hint, false);
 		}
 
 		return this.get(hint).get(null);
@@ -88,7 +90,7 @@ public abstract class HintValueMap<H extends EObject, V extends Object> extends 
 		 * initialized so that we do not get any Exceptions.
 		 */
 		if (!this.containsKey(hint)) {
-			this.init(hint);
+			this.init(hint, false);
 		}
 
 		if(!this.get(hint).containsKey(clazz)) {
@@ -115,7 +117,7 @@ public abstract class HintValueMap<H extends EObject, V extends Object> extends 
 		 * initialized so that we do not get any Exceptions.
 		 */
 		if (!this.containsKey(hint)) {
-			this.init(hint);
+			this.init(hint, false);
 		}
 
 		if(!this.get(hint).containsKey(clazz)) {
@@ -163,7 +165,7 @@ public abstract class HintValueMap<H extends EObject, V extends Object> extends 
 		 */
 		for (final H h : valueMap.keySet()) {
 			if (!this.containsKey(h)) {
-				this.init(h);
+				this.init(h, false);
 			}
 
 			for (final SourceSectionClass c : valueMap.get(h).keySet()) {
@@ -193,7 +195,7 @@ public abstract class HintValueMap<H extends EObject, V extends Object> extends 
 		 * initialized so that we do not get any Exceptions.
 		 */
 		if (!this.containsKey(hint)) {
-			this.init(hint);
+			this.init(hint, false);
 		}
 
 		this.get(hint).put(clazz, values == null ? new LinkedList<V>() : values);

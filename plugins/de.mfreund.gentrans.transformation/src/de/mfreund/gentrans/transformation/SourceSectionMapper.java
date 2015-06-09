@@ -709,10 +709,10 @@ class SourceSectionMapper implements CancellationListener {
 		// init hintValues
 		for (final MappingHintType hint : hints) {
 			if (hint instanceof AttributeMapping) {
-				changedRefsAndHints.getHintValues().getAttributeMappingHintValues().init((AttributeMapping) hint);
+				changedRefsAndHints.getHintValues().getAttributeMappingHintValues().init((AttributeMapping) hint, true);
 			} else if (hint instanceof MappingInstanceSelector) {
 				if (((MappingInstanceSelector) hint).getMatcher() instanceof AttributeMatcher) {
-					changedRefsAndHints.getHintValues().getMappingInstanceSelectorHintValues().init((MappingInstanceSelector) hint);
+					changedRefsAndHints.getHintValues().getMappingInstanceSelectorHintValues().init((MappingInstanceSelector) hint, true);
 				}
 			}
 
@@ -722,7 +722,7 @@ class SourceSectionMapper implements CancellationListener {
 				if (newRefsAndHints.getHintValues().containsHint(hint)) {
 					changedRefsAndHints.getHintValues().getHintValues(hint).addAll(newRefsAndHints.getHintValues().getHintValues(hint));
 				} else {
-					changedRefsAndHints.getHintValues().getModelConnectionHintValues().init(hint);
+					changedRefsAndHints.getHintValues().getModelConnectionHintValues().init(hint, true);
 				}
 			}
 		}

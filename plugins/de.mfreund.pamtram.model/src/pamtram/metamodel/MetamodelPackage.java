@@ -2166,10 +2166,10 @@ public interface MetamodelPackage extends EPackage {
 	int VIRTUAL_ATTRIBUTE_OPERATION_COUNT = TARGET_SECTION_ATTRIBUTE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.metamodel.impl.AttributeValueConstraintImpl <em>Attribute Value Constraint</em>}' class.
+	 * The meta object id for the '{@link pamtram.metamodel.AttributeValueConstraint <em>Attribute Value Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.metamodel.impl.AttributeValueConstraintImpl
+	 * @see pamtram.metamodel.AttributeValueConstraint
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getAttributeValueConstraint()
 	 * @generated
 	 */
@@ -3943,10 +3943,10 @@ public interface MetamodelPackage extends EPackage {
 		EClass EQUALITY_MATCHER = eINSTANCE.getEqualityMatcher();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.metamodel.impl.AttributeValueConstraintImpl <em>Attribute Value Constraint</em>}' class.
+		 * The meta object literal for the '{@link pamtram.metamodel.AttributeValueConstraint <em>Attribute Value Constraint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.metamodel.impl.AttributeValueConstraintImpl
+		 * @see pamtram.metamodel.AttributeValueConstraint
 		 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getAttributeValueConstraint()
 		 * @generated
 		 */

@@ -539,7 +539,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="EqualityMatcher" eSuperTypes="#//metamodel/CaseSensitiveConstraint"/>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeValueConstraint" abstract="true"
-        eSuperTypes="#//NamedElement">
+        interface="true" eSuperTypes="#//NamedElement">
       <eOperations name="checkConstraint" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eParameters name="attrValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eOperations>

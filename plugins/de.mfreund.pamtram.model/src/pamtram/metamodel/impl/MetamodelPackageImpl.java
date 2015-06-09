@@ -1608,7 +1608,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		initEClass(equalityMatcherEClass, EqualityMatcher.class, "EqualityMatcher", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(attributeValueConstraintEClass, AttributeValueConstraint.class, "AttributeValueConstraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(attributeValueConstraintEClass, AttributeValueConstraint.class, "AttributeValueConstraint", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAttributeValueConstraint_Type(), this.getAttributeValueConstraintType(), "type", "INCLUSION", 1, 1, AttributeValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttributeValueConstraint_Value(), ecorePackage.getEString(), "value", null, 1, 1, AttributeValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

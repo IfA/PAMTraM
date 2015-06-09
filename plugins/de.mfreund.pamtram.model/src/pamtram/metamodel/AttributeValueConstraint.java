@@ -19,7 +19,7 @@ import pamtram.NamedElement;
  * </p>
  *
  * @see pamtram.metamodel.MetamodelPackage#getAttributeValueConstraint()
- * @model abstract="true"
+ * @model interface="true" abstract="true"
  * @generated
  */
 public interface AttributeValueConstraint extends NamedElement {

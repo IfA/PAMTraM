@@ -30,6 +30,32 @@ public abstract class HintValueMap<H extends EObject, V extends Object> extends 
 	 */
 	public void init(H hint) {
 		this.put(hint, new HashMap<SourceSectionClass, LinkedList<V>>());
+		LinkedList<V> values = new LinkedList<>();
+		if(needsEmptyValue()) {
+			values.add(createEmptyValue());			
+		}
+		this.get(hint).put(null, values);
+	}
+
+	/**
+	 * This specifies whether an {@link #createEmptyValue() 'empty value'} shall be added to
+	 * the list of values when initializing the map. The default implementations returns
+	 * <em>false</em>.
+	 * 
+	 * @return <em>true</em> if an 'empty value' is necessary, <em>false</em> otherwise.
+	 */
+	protected boolean needsEmptyValue() {
+		return false;
+	}
+	
+	/**
+	 * This creates an 'empty value'. The default implementation of 'empty value' returns <em>null</em>
+	 * but special definitions may be provided by implementing sub-classes. In most cases.
+	 * 
+	 * @return An 'empty value'.
+	 */
+	protected V createEmptyValue() {
+		return null;
 	}
 	
 	/**
@@ -41,11 +67,11 @@ public abstract class HintValueMap<H extends EObject, V extends Object> extends 
 	 */
 	public LinkedList<V> getHintValues(H hint) {
 		
-		if(!this.containsKey(hint) || !this.get(hint).containsKey(null)) {
-			return new LinkedList<>();
-		} else {
-			return this.get(hint).get(null);
+		if(!this.containsKey(hint)) {
+			this.init(hint);
 		}
+
+		return this.get(hint).get(null);
 	}
 	
 	/**
@@ -191,6 +217,6 @@ public abstract class HintValueMap<H extends EObject, V extends Object> extends 
 	 * @return The removed hint value.
 	 */
 	public V removeHintValue(H hint) {
-		return this.get(hint).get(null).remove();
+		return this.getHintValues(hint).remove();
 	}
 }

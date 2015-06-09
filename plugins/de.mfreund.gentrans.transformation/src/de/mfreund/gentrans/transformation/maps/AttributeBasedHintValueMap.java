@@ -1,5 +1,6 @@
 package de.mfreund.gentrans.transformation.maps;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
@@ -19,5 +20,15 @@ import de.mfreund.gentrans.transformation.AttributeValueRepresentation;
 public abstract class AttributeBasedHintValueMap<K extends EObject, S extends EObject> extends HintValueMap<K, Map<S, AttributeValueRepresentation>> {
 
 	private static final long serialVersionUID = 7863859419011070324L;
+	
+	@Override
+	protected Map<S, AttributeValueRepresentation> createEmptyValue() {
+		return new LinkedHashMap<S, AttributeValueRepresentation>();
+	}
+	
+	@Override
+	protected boolean needsEmptyValue() {
+		return true;
+	}
 	
 }

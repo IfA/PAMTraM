@@ -3,8 +3,10 @@
 package pamtram.mapping.impl;
 
 import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+
 import pamtram.mapping.AttributeMappingExternalSourceElement;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.MappingHintSourceInterface;
@@ -45,12 +47,11 @@ public class AttributeMappingExternalSourceElementImpl extends ExternalModifiedA
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
+	@Override
 	public SourceSectionAttribute getSourceAttribute() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return getSource();
 	}
 
 	/**

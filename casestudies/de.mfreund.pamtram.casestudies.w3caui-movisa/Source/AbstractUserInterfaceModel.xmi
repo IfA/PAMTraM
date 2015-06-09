@@ -5,29 +5,40 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:aui="http://www.w3.org/2013/mbui-aui">
   <abstractInteractionUnit
-      id="aui1"
+      id="initial"
       role="">
     <aggregatedIn
         compositionRationale=""
         compositionRole="sequential"
         id="aui1comp">
-      <associatedWith>aui2</associatedWith>
-      <associatedWith>aui3</associatedWith>
-      <associatedWith>aui4</associatedWith>
+      <associatedWith>aiu1</associatedWith>
+      <associatedWith>aiu2</associatedWith>
+      <associatedWith>aiu3</associatedWith>
+      <associatedWith>aiu4</associatedWith>
     </aggregatedIn>
     <eventSupport/>
     <presentationSupport/>
   </abstractInteractionUnit>
   <abstractInteractionUnit
-      id="aui2"
-      role="confirmation">
+      id="aiu1">
+    <aggregatedIn>
+      <associatedWith>aiu1.1</associatedWith>
+      <associatedWith>aiu1.2</associatedWith>
+      <associatedWith>aiu1.3</associatedWith>
+      <associatedWith>aiu1.4</associatedWith>
+    </aggregatedIn>
+    <eventSupport/>
+    <presentationSupport/>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aiu2"
+      role="">
     <aggregatedIn
         compositionRole="parallel"
         id="aui2comp">
-      <associatedWith>aui5</associatedWith>
-      <associatedWith>aui6</associatedWith>
-      <associatedWith>aui7</associatedWith>
-      <associatedWith>aui8</associatedWith>
+      <associatedWith>aui2.1</associatedWith>
+      <associatedWith>aiu2.2</associatedWith>
+      <associatedWith>aiu2.3</associatedWith>
     </aggregatedIn>
     <eventSupport/>
     <presentationSupport/>
@@ -47,7 +58,7 @@
   </abstractInteractionUnit>
   <abstractInteractionUnit
       domainReference=""
-      id="aiu5"
+      id="aiu1.1"
       name=""
       role="navigation">
     <aggregatedIn/>
@@ -56,10 +67,10 @@
           end="1"
           selectionStep="1"
           start="7"/>
-      <triggerSupport
-          triggerExpression=""
-          triggerType=""/>
       <dataInputOutputSupport/>
+      <triggerSupport
+          triggerExpression="aiu2"
+          triggerType="next"/>
     </eventSupport>
     <presentationSupport/>
   </abstractInteractionUnit>

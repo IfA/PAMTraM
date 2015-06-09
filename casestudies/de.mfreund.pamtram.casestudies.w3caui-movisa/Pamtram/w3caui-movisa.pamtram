@@ -14,6 +14,9 @@
         <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="confirmation" value="confirmation"/>
       </attributes>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
+        <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
+      </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSectionClass" name="sequentialComposition">
       <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
@@ -60,8 +63,24 @@
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSectionClass" name="Navigation">
       <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <references xsi:type="metamodel:MetaModelSectionReference" name="aggregatedIn">
-        <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/aggregatedIn"/>
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="eventSupport">
+        <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
+        <value xsi:type="metamodel:SourceSectionClass" name="EventSupport">
+          <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
+          <references xsi:type="metamodel:SourceSectionContainmentReference" name="triggerSupport">
+            <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/triggerSupport"/>
+            <value xsi:type="metamodel:SourceSectionClass" name="TriggerSupport">
+              <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui#/0/TriggerSupport"/>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="triggerType">
+                <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/TriggerSupport/triggerType"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="next" value="next"/>
+              </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="triggerExpression">
+                <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/TriggerSupport/triggerExpression"/>
+              </attributes>
+            </value>
+          </references>
+        </value>
       </references>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
         <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
@@ -71,16 +90,13 @@
         <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="AbstractInteractionUnit">
+    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="ErrorManagement">
       <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="aggregatedIn">
         <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/aggregatedIn"/>
         <value xsi:type="metamodel:SourceSectionClass" name="Composition">
           <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
         </value>
-      </references>
-      <references xsi:type="metamodel:MetaModelSectionReference" name="aggregatedIn">
-        <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/aggregatedIn"/>
       </references>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="eventSupport">
         <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
@@ -111,6 +127,10 @@
           </references>
         </value>
       </references>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
+        <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="error management" value="error management"/>
+      </attributes>
     </metaModelSections>
   </sourceSectionModel>
   <targetSectionModel xsi:type="pamtram:TargetSectionModel">
@@ -159,13 +179,13 @@
           </references>
         </value>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Name">
+      <attributes xsi:type="metamodel:ActualAttribute" name="ButtonName">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:TargetSectionClass" name="Panel" cardinality="ZERO__INFINITY" container="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/Panel"/>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Name">
+      <attributes xsi:type="metamodel:ActualAttribute" name="PanelName">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
@@ -203,29 +223,74 @@
               <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Effect" value="//@targetSectionModel/@metaModelSections.4/@references.1/@value.0/@references.1/@value.0">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Trigger/Effect"/>
               </references>
-              <attributes xsi:type="metamodel:ActualAttribute" name="next">
-                <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
-              </attributes>
             </value>
           </references>
           <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedEffect">
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Interaction/OwnedEffect"/>
             <value xsi:type="metamodel:TargetSectionClass" name="SendSignalEffect">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/SendSignalEffect"/>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Signal">
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Signal" value="//@targetSectionModel/@metaModelSections.5">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/SendSignalEffect/Signal"/>
               </references>
+              <attributes xsi:type="metamodel:ActualAttribute" name="Name">
+                <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+              </attributes>
             </value>
           </references>
         </value>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Name">
+      <attributes xsi:type="metamodel:ActualAttribute" name="NavigationButtonName">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
+    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="Signal">
+      <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//algorithm/Signal"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="SignalName" value="">
+        <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="AlarmControl">
+      <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/AlarmControl"/>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="Representation">
+        <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/AlarmControl/Representation"/>
+        <value xsi:type="metamodel:TargetSectionClass" name="AlarmControlRepresentation">
+          <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/AlarmControlRepresentation"/>
+        </value>
+      </references>
+    </metaModelSections>
     <metaModelSections xsi:type="metamodel:TargetSectionClass" name="SimpleContainer" container="//@targetSectionModel/@metaModelSections.2">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/SimpleContainer"/>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Name">
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="Representation">
+        <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/SimpleContainer/Representation"/>
+        <value xsi:type="metamodel:TargetSectionClass" name="SimpleContainerRepresentation">
+          <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/SimpleContainerRepresentation"/>
+        </value>
+      </references>
+      <attributes xsi:type="metamodel:ActualAttribute" name="ContainerName">
+        <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="CheckBoxArray">
+      <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/CheckBoxArray"/>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="Representation">
+        <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/CheckBoxArray/Representation"/>
+        <value xsi:type="metamodel:TargetSectionClass" name="CheckBoxArrayRepresentation">
+          <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/CheckBoxArrayRepresentation"/>
+        </value>
+      </references>
+      <attributes xsi:type="metamodel:ActualAttribute" name="CheckBoxArrayName">
+        <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="RadioButtonGroup">
+      <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/RadioButtonGroup"/>
+      <references xsi:type="metamodel:TargetSectionContainmentReference" name="Representation">
+        <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/RadioButtonGroup/Representation"/>
+        <value xsi:type="metamodel:TargetSectionClass" name="RadioButtonGroupRepresentation">
+          <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/RadioButtonGroupRepresentation"/>
+        </value>
+      </references>
+      <attributes xsi:type="metamodel:ActualAttribute" name="RadioButtonGroupName" value="">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
@@ -234,16 +299,21 @@
     <mapping xsi:type="mapping:Mapping" name="RootMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.0">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="VisualizationApplicationModel" targetMMSection="//@targetSectionModel/@metaModelSections.0"/>
     </mapping>
-    <mapping xsi:type="mapping:Mapping" name="ConfirmationButtonMapping" deactivated="true" sourceMMSection="//@sourceSectionModel/@metaModelSections.1">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetMMSection="//@targetSectionModel/@metaModelSections.1"/>
+    <mapping xsi:type="mapping:Mapping" name="ConfirmationButtonMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetMMSection="//@targetSectionModel/@metaModelSections.1">
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
+          <targetAttributes xsi:type="mapping:ModelConnectionHintTargetAttribute" name="PanelName" source="//@targetSectionModel/@metaModelSections.2/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.1/@attributes.1" modifier="//@mappingModel/@modifierSets.5"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
     </mapping>
     <mapping xsi:type="mapping:Mapping" name="sequentialCompositionMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.2">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Panel" targetMMSection="//@targetSectionModel/@metaModelSections.2">
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.2/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="associatedWith" source="//@sourceSectionModel/@metaModelSections.2/@attributes.2" modifier="//@mappingModel/@modifierSets.0"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="associatedWith" source="//@sourceSectionModel/@metaModelSections.2/@attributes.2"/>
         </mappingHints>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ChangeViewNavigationFlow" targetMMSection="//@targetSectionModel/@metaModelSections.3">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ChangeViewNavigationFlow" targetMMSection="//@targetSectionModel/@metaModelSections.3" deactivated="true">
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Target" affectedReference="//@targetSectionModel/@metaModelSections.3/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" expression="associatedWith+1" resultModifier="//@mappingModel/@modifierSets.3" targetAttribute="//@targetSectionModel/@metaModelSections.2/@attributes.0">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="associatedWith" source="//@sourceSectionModel/@metaModelSections.2/@attributes.2" modifier="//@mappingModel/@modifierSets.0"/>
@@ -259,15 +329,85 @@
         </mappingHints>
       </mappingHintGroups>
     </mapping>
-    <mapping xsi:type="mapping:Mapping" name="GroupingMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.4">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SimpleContainer" targetMMSection="//@targetSectionModel/@metaModelSections.5">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.5/@attributes.0">
+    <mapping xsi:type="mapping:Mapping" name="GroupingMappingSimpleContainer" sourceMMSection="//@sourceSectionModel/@metaModelSections.4">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SimpleContainer" targetMMSection="//@targetSectionModel/@metaModelSections.7">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.7/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.4/@attributes.0"/>
         </mappingHints>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
+          <targetAttributes xsi:type="mapping:ModelConnectionHintTargetAttribute" name="PanelName" source="//@targetSectionModel/@metaModelSections.2/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.4/@attributes.0" modifier="//@mappingModel/@modifierSets.5"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+    </mapping>
+    <mapping xsi:type="mapping:Mapping" name="GroupingMappingCheckBoxArray" sourceMMSection="//@sourceSectionModel/@metaModelSections.4">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="CheckBoxArray" targetMMSection="//@targetSectionModel/@metaModelSections.8">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="CheckBoxArrayNameMapping" target="//@targetSectionModel/@metaModelSections.8/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.4/@attributes.0"/>
+        </mappingHints>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
+          <targetAttributes xsi:type="mapping:ModelConnectionHintTargetAttribute" name="PanelName" source="//@targetSectionModel/@metaModelSections.2/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.4/@attributes.0" modifier="//@mappingModel/@modifierSets.5"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+    </mapping>
+    <mapping xsi:type="mapping:Mapping" name="GroupingMappingRadioButtonGroup" sourceMMSection="//@sourceSectionModel/@metaModelSections.4">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="RadioButtonGroup" targetMMSection="//@targetSectionModel/@metaModelSections.9">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="RadioButtonGroupNameMapping" target="//@targetSectionModel/@metaModelSections.9/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.4/@attributes.0"/>
+        </mappingHints>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
+          <targetAttributes xsi:type="mapping:ModelConnectionHintTargetAttribute" name="PanelName" source="//@targetSectionModel/@metaModelSections.2/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.4/@attributes.0" modifier="//@mappingModel/@modifierSets.5"/>
+        </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
     <mapping xsi:type="mapping:Mapping" name="NavigationMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.5">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NavigationButton" targetMMSection="//@targetSectionModel/@metaModelSections.4"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NavigationButton" targetMMSection="//@targetSectionModel/@metaModelSections.4">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="ButtonNameMapping" target="//@targetSectionModel/@metaModelSections.4/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="triggerExpression" source="//@sourceSectionModel/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.4/@references.1/@value.0/@references.1/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="triggerExpression" source="//@sourceSectionModel/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel/@modifierSets.6"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Effect" affectedReference="//@targetSectionModel/@metaModelSections.4/@references.1/@value.0/@references.0/@value.0/@references.0">
+          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.4/@references.1/@value.0/@references.1/@value.0/@attributes.0">
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="triggerExpression" source="//@sourceSectionModel/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel/@modifierSets.6"/>
+          </matcher>
+        </mappingHints>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
+          <targetAttributes xsi:type="mapping:ModelConnectionHintTargetAttribute" name="Name" source="//@targetSectionModel/@metaModelSections.2/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="triggerExpression" source="//@sourceSectionModel/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetMMSection="//@targetSectionModel/@metaModelSections.5">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="SignalNameMapping" target="//@targetSectionModel/@metaModelSections.5/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="triggerExpression" source="//@sourceSectionModel/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ChangeViewNavigationFlow" targetMMSection="//@targetSectionModel/@metaModelSections.3">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Target" affectedReference="//@targetSectionModel/@metaModelSections.3/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.2/@attributes.0">
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="triggerExpression" source="//@sourceSectionModel/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          </matcher>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Source" affectedReference="//@targetSectionModel/@metaModelSections.3/@references.0">
+          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.2/@attributes.0">
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.5/@attributes.1" modifier="//@mappingModel/@modifierSets.5"/>
+          </matcher>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.3/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="triggerExpression" source="//@sourceSectionModel/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger" affectedReference="//@targetSectionModel/@metaModelSections.3/@references.2">
+          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.5/@attributes.0">
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="triggerExpression" source="//@sourceSectionModel/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          </matcher>
+        </mappingHints>
+      </mappingHintGroups>
+    </mapping>
+    <mapping xsi:type="mapping:Mapping" name="AlarmMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.6">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="AlarmControl" targetMMSection="//@targetSectionModel/@metaModelSections.6"/>
     </mapping>
     <modifierSets xsi:type="mapping:AttributeValueModifierSet" name="getNumber">
       <modifier xsi:type="mapping:SubstringReplacer" name="getNumber" regex="[^0-9]+" replacement=""/>
@@ -280,6 +420,15 @@
     </modifierSets>
     <modifierSets xsi:type="mapping:AttributeValueModifierSet" name="delete .0">
       <modifier xsi:type="mapping:SubstringReplacer" name="delete .0" regex=".0" replacement=""/>
+    </modifierSets>
+    <modifierSets xsi:type="mapping:AttributeValueModifierSet" name="prependPanel">
+      <modifier xsi:type="mapping:StringPrepender" name="Panel " string="Panel "/>
+    </modifierSets>
+    <modifierSets xsi:type="mapping:AttributeValueModifierSet" name="getParentPanel">
+      <modifier xsi:type="mapping:SubstringReplacer" regex="[.]\d+" replacement=""/>
+    </modifierSets>
+    <modifierSets xsi:type="mapping:AttributeValueModifierSet" name="prependNavigateTo">
+      <modifier xsi:type="mapping:StringPrepender" name="Navigate_to_" string="Navigate_to_"/>
     </modifierSets>
   </mappingModel>
 </pamtram:PAMTraM>

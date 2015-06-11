@@ -2,7 +2,6 @@
 <aui:AbstractUserInterfaceModel
     xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:aui="http://www.w3.org/2013/mbui-aui">
   <abstractInteractionUnit
       id="initial"
@@ -75,25 +74,43 @@
     <presentationSupport/>
   </abstractInteractionUnit>
   <abstractInteractionUnit
-      id="aiu6">
-    <aggregatedIn/>
+      id="aiu1.2"
+      role="grouping">
+    <aggregatedIn
+        compositionRole="parallel"
+        id="aui1.2comp">
+      <associatedWith>aiu1.2.1</associatedWith>
+      <associatedWith>aiu1.2.2</associatedWith>
+      <associatedWith>aiu1.2.3</associatedWith>
+    </aggregatedIn>
     <eventSupport>
-      <dataSelectionSupport
-          xsi:type="aui:DataFilterSupport"/>
       <dataInputOutputSupport/>
+      <dataSelectionSupport/>
     </eventSupport>
     <presentationSupport/>
   </abstractInteractionUnit>
   <abstractInteractionUnit
-      id="aiu7">
+      id="aiu1.3"
+      role="error management">
     <aggregatedIn/>
-    <eventSupport/>
+    <eventSupport>
+      <dataSelectionSupport/>
+      <dataInputOutputSupport
+          dataType="out"/>
+    </eventSupport>
     <presentationSupport/>
   </abstractInteractionUnit>
   <abstractInteractionUnit
-      id="aiu8">
+      id="aiu1.4"
+      name=""
+      role="">
     <aggregatedIn/>
-    <eventSupport/>
+    <eventSupport>
+      <dataSelectionSupport
+          isContinuous="true"
+          selectionType="single"/>
+      <dataInputOutputSupport/>
+    </eventSupport>
     <presentationSupport/>
   </abstractInteractionUnit>
 </aui:AbstractUserInterfaceModel>

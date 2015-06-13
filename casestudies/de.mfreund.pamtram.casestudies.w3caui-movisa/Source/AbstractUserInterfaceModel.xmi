@@ -103,12 +103,16 @@
   <abstractInteractionUnit
       id="aiu1.4"
       name=""
-      role="">
-    <aggregatedIn/>
+      role="grouping">
+    <aggregatedIn
+        compositionRole="parallel">
+      <associatedWith>1.4.1</associatedWith>
+      <associatedWith>1.4.2</associatedWith>
+    </aggregatedIn>
     <eventSupport>
       <dataSelectionSupport
-          isContinuous="true"
-          selectionType="single"/>
+          isContinuous="false"
+          selectionType="multiple"/>
       <dataInputOutputSupport/>
     </eventSupport>
     <presentationSupport/>

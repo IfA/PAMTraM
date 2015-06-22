@@ -5,6 +5,7 @@
     xmlns:aui="http://www.w3.org/2013/mbui-aui">
   <abstractInteractionUnit
       id="initial"
+      name="initial"
       role="">
     <aggregatedIn
         compositionRationale=""
@@ -12,53 +13,26 @@
         id="aui1comp">
       <associatedWith>aiu1</associatedWith>
       <associatedWith>aiu2</associatedWith>
-      <associatedWith>aiu3</associatedWith>
-      <associatedWith>aiu4</associatedWith>
     </aggregatedIn>
     <eventSupport/>
     <presentationSupport/>
   </abstractInteractionUnit>
   <abstractInteractionUnit
-      id="aiu1">
+      id="aiu1"
+      name="aiu1">
     <aggregatedIn>
-      <associatedWith>aiu1.1</associatedWith>
-      <associatedWith>aiu1.2</associatedWith>
-      <associatedWith>aiu1.3</associatedWith>
-      <associatedWith>aiu1.4</associatedWith>
+      <associatedWith>aiu1_4</associatedWith>
+      <associatedWith>aiu1_3</associatedWith>
+      <associatedWith>aiu1_2</associatedWith>
+      <associatedWith>aiu1_1</associatedWith>
     </aggregatedIn>
-    <eventSupport/>
-    <presentationSupport/>
-  </abstractInteractionUnit>
-  <abstractInteractionUnit
-      id="aiu2"
-      role="">
-    <aggregatedIn
-        compositionRole="parallel"
-        id="aui2comp">
-      <associatedWith>aui2.1</associatedWith>
-      <associatedWith>aiu2.2</associatedWith>
-      <associatedWith>aiu2.3</associatedWith>
-    </aggregatedIn>
-    <eventSupport/>
-    <presentationSupport/>
-  </abstractInteractionUnit>
-  <abstractInteractionUnit
-      id="aiu3"
-      name="">
-    <aggregatedIn/>
-    <eventSupport/>
-    <presentationSupport/>
-  </abstractInteractionUnit>
-  <abstractInteractionUnit
-      id="aiu4">
-    <aggregatedIn/>
     <eventSupport/>
     <presentationSupport/>
   </abstractInteractionUnit>
   <abstractInteractionUnit
       domainReference=""
-      id="aiu1.1"
-      name=""
+      id="aiu1_1"
+      name="aiu1_1"
       role="navigation">
     <aggregatedIn/>
     <eventSupport>
@@ -66,7 +40,8 @@
           end="1"
           selectionStep="1"
           start="7"/>
-      <dataInputOutputSupport/>
+      <dataInputOutputSupport
+          defaultValue="Konfiguration"/>
       <triggerSupport
           triggerExpression="aiu2"
           triggerType="next"/>
@@ -74,23 +49,65 @@
     <presentationSupport/>
   </abstractInteractionUnit>
   <abstractInteractionUnit
-      id="aiu1.2"
+      id="aiu1_2"
+      name="aiu1_2"
       role="grouping">
     <aggregatedIn
         compositionRole="parallel"
         id="aui1.2comp">
-      <associatedWith>aiu1.2.1</associatedWith>
-      <associatedWith>aiu1.2.2</associatedWith>
-      <associatedWith>aiu1.2.3</associatedWith>
+      <associatedWith>aiu1_2_3</associatedWith>
+      <associatedWith>aiu1_2_2</associatedWith>
+      <associatedWith>aiu1_2_1</associatedWith>
     </aggregatedIn>
     <eventSupport>
       <dataInputOutputSupport/>
-      <dataSelectionSupport/>
+      <dataSelectionSupport
+          selectionType="single"/>
     </eventSupport>
     <presentationSupport/>
   </abstractInteractionUnit>
   <abstractInteractionUnit
-      id="aiu1.3"
+      id="aiu1_2_1"
+      name="aiu1_2_1"
+      role="kl">
+    <aggregatedIn/>
+    <eventSupport>
+      <dataSelectionSupport
+          selectionType="single"/>
+      <dataInputOutputSupport
+          defaultValue="tank 1"/>
+    </eventSupport>
+    <presentationSupport/>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aiu1_2_2"
+      name="aiu1_2_2"
+      role="kl">
+    <aggregatedIn/>
+    <eventSupport>
+      <dataSelectionSupport
+          selectionType="single"/>
+      <dataInputOutputSupport
+          defaultValue="tank 2"/>
+    </eventSupport>
+    <presentationSupport/>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aiu1_2_3"
+      name="aiu1_2_3"
+      role="kl">
+    <aggregatedIn/>
+    <eventSupport>
+      <dataSelectionSupport
+          selectionType="single"/>
+      <dataInputOutputSupport
+          defaultValue="tank 3"/>
+    </eventSupport>
+    <presentationSupport/>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aiu1_3"
+      name="aiu1_3"
       role="error management">
     <aggregatedIn/>
     <eventSupport>
@@ -101,20 +118,99 @@
     <presentationSupport/>
   </abstractInteractionUnit>
   <abstractInteractionUnit
-      id="aiu1.4"
-      name=""
+      id="aiu1_4"
+      name="aiu1_4"
       role="grouping">
     <aggregatedIn
-        compositionRole="parallel">
-      <associatedWith>1.4.1</associatedWith>
-      <associatedWith>1.4.2</associatedWith>
+        compositionRole="parallel"
+        id="aui1.4comp">
+      <associatedWith>aiu1_4_1</associatedWith>
+      <associatedWith>aiu1_4_2</associatedWith>
+      <associatedWith>aiu1_4_3</associatedWith>
     </aggregatedIn>
     <eventSupport>
-      <dataSelectionSupport
-          isContinuous="false"
-          selectionType="multiple"/>
       <dataInputOutputSupport/>
+      <dataSelectionSupport
+          selectionType="single"/>
     </eventSupport>
+    <presentationSupport/>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aiu1_4_1"
+      name="aiu1_4_1"
+      role="kl">
+    <aggregatedIn/>
+    <eventSupport>
+      <dataSelectionSupport
+          selectionType="single"/>
+      <dataInputOutputSupport
+          defaultValue="tank 1"/>
+    </eventSupport>
+    <presentationSupport/>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aiu1_4_2"
+      name="aiu1_4_2"
+      role="kl">
+    <aggregatedIn/>
+    <eventSupport>
+      <dataSelectionSupport
+          selectionType="single"/>
+      <dataInputOutputSupport
+          defaultValue="tank 2"/>
+    </eventSupport>
+    <presentationSupport/>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aiu1_4_3"
+      name="aiu1_4_3"
+      role="kl">
+    <aggregatedIn/>
+    <eventSupport>
+      <dataSelectionSupport
+          selectionType="single"/>
+      <dataInputOutputSupport
+          defaultValue="tank 3"/>
+    </eventSupport>
+    <presentationSupport/>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aiu2"
+      name="aiu2"
+      role="">
+    <aggregatedIn
+        compositionRole="parallel"
+        id="aui2comp">
+      <associatedWith>aiu2_3</associatedWith>
+      <associatedWith>aiu2_2</associatedWith>
+      <associatedWith>aiu2_1</associatedWith>
+    </aggregatedIn>
+    <eventSupport/>
+    <presentationSupport/>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      domainReference=""
+      id="aiu2_1"
+      name="aiu2_1"
+      role="navigation">
+    <aggregatedIn/>
+    <eventSupport>
+      <dataSelectionSupport
+          end="1"
+          selectionStep="1"
+          start="7"/>
+      <dataInputOutputSupport
+          defaultValue="Best&#xe4;tigung"/>
+      <triggerSupport
+          triggerExpression="aiu1"
+          triggerType="next"/>
+    </eventSupport>
+    <presentationSupport/>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aiu4">
+    <aggregatedIn/>
+    <eventSupport/>
     <presentationSupport/>
   </abstractInteractionUnit>
 </aui:AbstractUserInterfaceModel>

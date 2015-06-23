@@ -422,8 +422,15 @@ public class GenericTransformationRunner {
 		 */
 		writePamtramMessage("Instantiating libraryEntries for selected mappings.");
 		monitor.subTask("Instantiating libraryEntries for selected mappings.");
-		return runInstantiationLibraryEntries(
-				targetSectionInstantiator, targetModel.getContents().get(0));
+		
+		if(targetModel.getContents().isEmpty()) {
+			consoleStream.println("Something seems to be wrong! Target model is empty!");
+			return false;
+		} else {
+			return runInstantiationLibraryEntries(
+					targetSectionInstantiator, targetModel.getContents().get(0));
+		}
+		
 	}
 
 	/**

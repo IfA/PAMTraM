@@ -25,6 +25,7 @@ import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.AttributeMatcherSourceElement;
 import pamtram.mapping.AttributeMatcherSourceInterface;
+import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ExternalMappedAttributeValueExpander;
 import pamtram.mapping.ExternalModifiedAttributeElementType;
@@ -369,7 +370,9 @@ class SourceSectionMapper implements CancellationListener {
 	}
 
 	/**
-	 * Helper method to handle an ExternalAttributeMapping
+	 * Helper method to handle an ExternalAttributeMapping. This uses {@link #getContainerAttributeValue(SourceSectionAttribute, SourceSectionClass, EObject)}
+	 * to find a hint value for a given {@link MappingHintSourceInterface}, applies possible {@link AttributeValueModifierSet AttributeValueModifierSets} and stores
+	 * the found value in the '<em>attrVals</em>' map.
 	 *
 	 * @param m
 	 * @param res
@@ -379,17 +382,21 @@ class SourceSectionMapper implements CancellationListener {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	private boolean checkExternalAttributeMapping(final Mapping m,
-			final MappingInstanceStorage res, boolean mappingFailed,
+	private boolean checkExternalAttributeMapping(
+			final Mapping m,
+			final MappingInstanceStorage res, 
+			boolean mappingFailed,
 			final Map<ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, AttributeValueRepresentation> attrVals,
+			//TODO change this to 'ExternalModifiedAttributeElementType'
 			final MappingHintSourceInterface i) {
 		
 		if (i instanceof ExternalModifiedAttributeElementType) {
+			
 			ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> externalModifiedAttributeElement = 
 					((ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) i);
+			
 			String attrVal = getContainerAttributeValue(externalModifiedAttributeElement.getSource(),
-					m.getSourceMMSection().getContainer(), res
-					.getAssociatedSourceModelElement().eContainer());
+					m.getSourceMMSection().getContainer(), res.getAssociatedSourceModelElement().eContainer());
 			if (attrVal == null) {
 				mappingFailed = true;
 			} else {
@@ -435,15 +442,19 @@ class SourceSectionMapper implements CancellationListener {
 	 */
 	private boolean doContainerCheck(final EObject element,
 			final SourceSectionClass sourceSectionClass) {
+		
 		if (sourceSectionClass.getContainer() == null) {
+			
 			// this part is easy
 			return true;
+			
 		} else {
+			
 			/*
-			 * Step 1: identify all containers the corresponding elements
+			 * Step 1: identify all containers of the corresponding elements
 			 */
-			final List<SourceSectionClass> containerClasses = new LinkedList<SourceSectionClass>();
-			final List<EObject> containerElements = new LinkedList<EObject>();
+			final List<SourceSectionClass> containerClasses = new LinkedList<>();
+			final List<EObject> containerElements = new LinkedList<>();
 
 			SourceSectionClass currentClass = sourceSectionClass;
 			EObject currentElement = element;
@@ -690,17 +701,14 @@ class SourceSectionMapper implements CancellationListener {
 		// first of all: check if usedRefs contains this item and if type fits
 		// (we do not check any of the used elements of other mappings, since
 		// WILL be in a different section of the containment tree )
-		if (!usedOkay
-				&& newRefsAndHints
-				.containsSourceModelObjectMapped(srcModelObject)
-				|| !classFits) {
+		if (!usedOkay && newRefsAndHints.containsSourceModelObjectMapped(srcModelObject) || !classFits) {
 			return null;
 		}
+		
 		// we will return this in Case we find the mapping to be applicable
 		// else we return null
 		final MappingInstanceStorage changedRefsAndHints = new MappingInstanceStorage();
-		changedRefsAndHints.setAssociatedSourceElement(srcSection,
-				srcModelObject);
+		changedRefsAndHints.setAssociatedSourceElement(srcSection, srcModelObject);
 
 		final Map<AttributeMappingSourceElement, AttributeValueRepresentation> complexSourceElementHintValues = new LinkedHashMap<>();
 		final Map<AttributeMatcherSourceElement, AttributeValueRepresentation> complexAttrMatcherSourceElementHintValues = new LinkedHashMap<>();
@@ -1290,29 +1298,35 @@ class SourceSectionMapper implements CancellationListener {
 		// long start;// for statistics
 		// long time;
 
-		final EObject element = contRefObjectsToMap.remove(0);// source model
-		// element which
-		// we will now
-		// try to map
+		/* this is the source model element which we will now try to map 
+		 */
+		final EObject element = contRefObjectsToMap.remove(0);
+		
 		// start = System.nanoTime();
 		final Map<Mapping, MappingInstanceStorage> mappingData = 
 				new LinkedHashMap<>();
+		
 		// find mapping rules that are applicable to a srcMM element
 		for (final Mapping m : mappingsToChooseFrom) {
 			// create result map
 			MappingInstanceStorage res;
 			
+			/*
+			 * This check is also done by findMapping, but since it will
+			 * most likely fail at the top level, for most mappings we do it
+			 * here before we construct any collections and so on. This
+			 * might save us a little time, but of course that depends on
+			 * the number mappings and the source metamodel.
+			 */
 			if (m.getSourceMMSection().getEClass()
 					.isSuperTypeOf(element.eClass())) {
+				
 				/*
-				 * This check is also done by findMapping, but since it will
-				 * most likely fail at the top level, for most mappings we do it
-				 * here before we construct any collections and so on. This
-				 * might save us a little time, but of course that depends on
-				 * the number mappings and the source metamodel.
+				 * check if the section that is referenced as 'container' can be matched
 				 */
-
-				if (doContainerCheck(element, m.getSourceMMSection())) {
+				boolean containerFits = doContainerCheck(element, m.getSourceMMSection());
+				
+				if (containerFits) {
 					res = findMapping(element, false, getHints(m),
 							getModelConnectionHints(m), m.getGlobalVariables(),
 							m.getSourceMMSection(),
@@ -1320,7 +1334,7 @@ class SourceSectionMapper implements CancellationListener {
 					if (transformationAborted)
 						return null;
 
-					boolean mappingFailed = res == null;
+					boolean mappingFailed = (res == null);
 					if (!mappingFailed) {
 						// if mapping possible check ExternalAttributeMappings
 						// check external attributes here; container element
@@ -1630,18 +1644,9 @@ class SourceSectionMapper implements CancellationListener {
 								.checkConstraint(srcAttrAsString);
 					} catch (final Exception e) {
 						constraintsWithErrors.add(constraint);
-						consoleStream
-						.println("The AttributeValueConstraint '"
-								+ constraint.getName()
-								+ "' of the "
-								+ "Attribute '"
-								+ at.getName()
-								+ " (Class: "
-								+ at.getOwningClass().getName()
-								+ ", Section: "
-								+ at.getContainingSection().getName()
-								+ ")"
-								+ "' could not be evaluated and will be ignored. The following error was supplied:\n"
+						consoleStream.println("The AttributeValueConstraint '" + constraint.getName() + "' of the Attribute '"
+								+ at.getName() + " (Class: " + at.getOwningClass().getName() + ", Section: " + at.getContainingSection().getName()
+								+ ")' could not be evaluated and will be ignored. The following error was supplied:\n"
 								+ e.getLocalizedMessage());
 						continue;
 					}
@@ -1794,10 +1799,11 @@ class SourceSectionMapper implements CancellationListener {
 	 * Tries to determine the hintValues for the
 	 * ExternalAttributeMappingSourceElements, if present
 	 *
-	 * @param m
-	 * @param res
-	 * @param mappingFailed
-	 * @return
+	 * @param m The {@link Mapping} that is currently evaluated.
+	 * @param res The {@link MappingInstanceStorage} that contains the hint values that have already been determined. Found external 
+	 * hint values for attribute mappings are stored there.
+	 * @param mappingFailed If the mapping already failed at an earlier stage.
+	 * @return If something went wrong while determining the external hint values for the attribute mapping.
 	 */
 	private boolean handleExternalAttributeMappings(
 			final Mapping m,
@@ -1805,11 +1811,16 @@ class SourceSectionMapper implements CancellationListener {
 			boolean mappingFailed) {
 		
 		if (m.getSourceMMSection().getContainer() != null) {
+			
 			final Map<ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, AttributeValueRepresentation> attrVals = new HashMap<>();
+			
 			for (final MappingHintType h : getHints(m)) {
 				if (h instanceof AttributeMapping) {
-					for (final AttributeMappingSourceInterface i : ((AttributeMapping) h)
-							.getSourceAttributeMappings()) {
+					
+					/* try to find a hint value for every external source element; those will
+					 * be stored in 'attrVals'
+					 */
+					for (final AttributeMappingSourceInterface i : ((AttributeMapping) h).getExternalSourceElements()) {
 						mappingFailed = checkExternalAttributeMapping(m, res,
 								mappingFailed, attrVals, i);
 						if (mappingFailed) {
@@ -1855,6 +1866,8 @@ class SourceSectionMapper implements CancellationListener {
 							}
 						} else {
 							for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> hVal : res.getHintValues().getHintValues((AttributeMapping) h)) {
+								//TODO if there are not yet any hint values (for example as there has been no 'local' source element), nothing will be stored; consequently, a new element
+								// should be created
 								for (final ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> e : attrVals
 										.keySet()) {
 									hVal.put((AttributeMappingSourceInterface) e,

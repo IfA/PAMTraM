@@ -1668,6 +1668,7 @@ class SourceSectionMapper implements CancellationListener {
 				}
 			}
 			
+			//TODO split this up in a separate method to be more intuitive
 			/*
 			 * Second, we iterate once again and calculate all the hint values based
 			 * on the attributes.
@@ -1832,6 +1833,14 @@ class SourceSectionMapper implements CancellationListener {
 						break;
 					} else if (attrVals.keySet().size() > 0) {
 						
+						/*
+						 * if there is not yet any value stored for this hint (e.g. as there are no local source elements), we need
+						 * to initialize the hint value first
+						 */
+						if (res.getHintValues().getHintValues((AttributeMapping) h).size() == 0) {
+							res.getHintValues().getAttributeMappingHintValues().init((AttributeMapping) h, true);
+						}
+						
 						if(((AttributeMapping) h).getExpression() != null && !((AttributeMapping) h).getExpression().isEmpty()) {
 							
 							final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> newVals = new HashMap<>();
@@ -1866,8 +1875,6 @@ class SourceSectionMapper implements CancellationListener {
 							}
 						} else {
 							for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> hVal : res.getHintValues().getHintValues((AttributeMapping) h)) {
-								//TODO if there are not yet any hint values (for example as there has been no 'local' source element), nothing will be stored; consequently, a new element
-								// should be created
 								for (final ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> e : attrVals
 										.keySet()) {
 									hVal.put((AttributeMappingSourceInterface) e,
@@ -1928,6 +1935,14 @@ class SourceSectionMapper implements CancellationListener {
 								break;
 							} else if (attrVals.keySet().size() > 0) {
 								
+								/*
+								 * if there is not yet any value stored for this hint (e.g. as there are no local source elements), we need
+								 * to initialize the hint value first
+								 */
+								if (res.getHintValues().getHintValues((MappingInstanceSelector) h).size() == 0) {
+									res.getHintValues().getMappingInstanceSelectorHintValues().init((MappingInstanceSelector) h, true);
+								}
+								
 								for (final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> hVal : res.getHintValues().getHintValues((MappingInstanceSelector) h)) {
 									for (final ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> e : attrVals
 											.keySet()) {
@@ -1963,6 +1978,15 @@ class SourceSectionMapper implements CancellationListener {
 					if (mappingFailed) {
 						break;
 					} else if (attrVals.keySet().size() > 0) {
+						
+						/*
+						 * if there is not yet any value stored for this hint (e.g. as there are no local source elements), we need
+						 * to initialize the hint value first
+						 */
+						if (res.getHintValues().getHintValues(h).size() == 0) {
+							res.getHintValues().getModelConnectionHintValues().init(h, true);
+						}
+						
 						for (final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> hVal : res.getHintValues().getHintValues(h)) {
 							for (final ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> e : attrVals
 									.keySet()) {

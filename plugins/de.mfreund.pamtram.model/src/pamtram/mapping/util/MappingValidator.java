@@ -96,6 +96,8 @@ public class MappingValidator extends EObjectValidator {
 				return validateInstantiableMappingHintGroup((InstantiableMappingHintGroup)value, diagnostics, context);
 			case MappingPackage.MAPPING_HINT_GROUP:
 				return validateMappingHintGroup((MappingHintGroup)value, diagnostics, context);
+			case MappingPackage.MAPPING_HINT_BASE_TYPE:
+				return validateMappingHintBaseType((MappingHintBaseType)value, diagnostics, context);
 			case MappingPackage.MAPPING_HINT:
 				return validateMappingHint((MappingHint)value, diagnostics, context);
 			case MappingPackage.EXPRESSION_HINT:
@@ -238,6 +240,15 @@ public class MappingValidator extends EObjectValidator {
 	 */
 	public boolean validateMappingHintGroup(MappingHintGroup mappingHintGroup, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(mappingHintGroup, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMappingHintBaseType(MappingHintBaseType mappingHintBaseType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(mappingHintBaseType, diagnostics, context);
 	}
 
 	/**

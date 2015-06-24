@@ -2,7 +2,6 @@
  */
 package pamtram.mapping;
 
-import pamtram.NamedElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,5 +13,5 @@ import pamtram.NamedElement;
  * @model abstract="true"
  * @generated
  */
-public interface MappingHintType extends NamedElement {
+public interface MappingHintType extends MappingHintBaseType {
 } // MappingHintType

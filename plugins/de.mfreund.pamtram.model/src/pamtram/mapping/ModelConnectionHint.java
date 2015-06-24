@@ -3,8 +3,6 @@
 package pamtram.mapping;
 
 import org.eclipse.emf.common.util.EList;
-
-import pamtram.NamedElement;
 import pamtram.metamodel.SourceSectionAttribute;
 
 
@@ -25,7 +23,7 @@ import pamtram.metamodel.SourceSectionAttribute;
  * @model
  * @generated
  */
-public interface ModelConnectionHint extends NamedElement {
+public interface ModelConnectionHint extends MappingHintBaseType {
 
 	/**
 	 * Returns the value of the '<em><b>Target Attributes</b></em>' containment reference list.

@@ -48,6 +48,7 @@ import pamtram.mapping.MappedAttributeValuePrepender;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHint;
+import pamtram.mapping.MappingHintBaseType;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
@@ -236,6 +237,13 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * @generated
 	 */
 	private EClass mappingHintGroupEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mappingHintBaseTypeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1016,6 +1024,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getMappingHintBaseType() {
+		return mappingHintBaseTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getMappingHintGroupType() {
 		return mappingHintGroupTypeEClass;
 	}
@@ -1509,6 +1526,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		mappingHintGroupEClass = createEClass(MAPPING_HINT_GROUP);
 		createEReference(mappingHintGroupEClass, MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER);
 
+		mappingHintBaseTypeEClass = createEClass(MAPPING_HINT_BASE_TYPE);
+
 		mappingHintEClass = createEClass(MAPPING_HINT);
 
 		expressionHintEClass = createEClass(EXPRESSION_HINT);
@@ -1767,6 +1786,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		instantiableMappingHintGroupEClass.getESuperTypes().add(thePamtramPackage.getDeactivatableElement());
 		mappingHintGroupEClass.getESuperTypes().add(this.getMappingHintGroupType());
 		mappingHintGroupEClass.getESuperTypes().add(this.getInstantiableMappingHintGroup());
+		mappingHintBaseTypeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		mappingHintEClass.getESuperTypes().add(this.getMappingHintType());
 		attributeMappingEClass.getESuperTypes().add(this.getMappingHint());
 		attributeMappingEClass.getESuperTypes().add(this.getExpressionHint());
@@ -1808,7 +1828,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		mappingHintGroupImporterEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		mappingHintGroupImporterEClass.getESuperTypes().add(this.getInstantiableMappingHintGroup());
 		exportedMappingHintGroupEClass.getESuperTypes().add(this.getMappingHintGroupType());
-		modelConnectionHintEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
+		modelConnectionHintEClass.getESuperTypes().add(this.getMappingHintBaseType());
 		g1 = createEGenericType(this.getLocalModifiedAttributeElementType());
 		g2 = createEGenericType(theMetamodelPackage.getSourceSectionClass());
 		g1.getETypeArguments().add(g2);
@@ -1837,7 +1857,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		g2 = createEGenericType(theMetamodelPackage.getTargetSectionAttribute());
 		g1.getETypeArguments().add(g2);
 		modelConnectionHintTargetAttributeEClass.getEGenericSuperTypes().add(g1);
-		mappingHintTypeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
+		mappingHintTypeEClass.getESuperTypes().add(this.getMappingHintBaseType());
 		hintImporterMappingHintEClass.getESuperTypes().add(this.getMappingHintType());
 		mappedAttributeValueExpanderEClass.getESuperTypes().add(this.getHintImporterMappingHint());
 		g1 = createEGenericType(this.getLocalModifiedAttributeElementType());
@@ -1935,6 +1955,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		initEClass(mappingHintGroupEClass, MappingHintGroup.class, "MappingHintGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMappingHintGroup_ModelConnectionMatcher(), this.getModelConnectionHint(), null, "modelConnectionMatcher", null, 0, 1, MappingHintGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(mappingHintBaseTypeEClass, MappingHintBaseType.class, "MappingHintBaseType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(mappingHintEClass, MappingHint.class, "MappingHint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

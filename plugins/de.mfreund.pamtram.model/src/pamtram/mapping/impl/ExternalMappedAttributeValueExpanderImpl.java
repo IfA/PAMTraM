@@ -13,6 +13,7 @@ import pamtram.mapping.ExternalMappedAttributeValueExpander;
 import pamtram.mapping.HintImporterMappingHint;
 import pamtram.mapping.LocalMappedAttributeValueExpander;
 import pamtram.mapping.MappedAttributeValueExpander;
+import pamtram.mapping.MappingHintBaseType;
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingPackage;
 import pamtram.metamodel.SourceSectionAttribute;
@@ -173,6 +174,11 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalM
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == MappingHintBaseType.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == MappingHintType.class) {
 			switch (derivedFeatureID) {
 				default: return -1;
@@ -199,6 +205,11 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalM
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == MappingHintBaseType.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == MappingHintType.class) {
 			switch (baseFeatureID) {
 				default: return -1;
@@ -225,6 +236,11 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalM
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == MappingHintBaseType.class) {
+			switch (baseOperationID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == MappingHintType.class) {
 			switch (baseOperationID) {
 				default: return -1;

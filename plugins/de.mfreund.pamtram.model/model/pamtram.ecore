@@ -655,6 +655,8 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelConnectionMatcher"
           eType="#//mapping/ModelConnectionHint" containment="true"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="MappingHintBaseType" abstract="true"
+        eSuperTypes="#//NamedElement"/>
     <eClassifiers xsi:type="ecore:EClass" name="MappingHint" abstract="true" eSuperTypes="#//mapping/MappingHintType"/>
     <eClassifiers xsi:type="ecore:EClass" name="ExpressionHint" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" lowerBound="1"
@@ -849,7 +851,7 @@
           eType="#//mapping/MappingHintType" unsettable="true" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ExportedMappingHintGroup" eSuperTypes="#//mapping/MappingHintGroupType"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ModelConnectionHint" eSuperTypes="#//NamedElement">
+    <eClassifiers xsi:type="ecore:EClass" name="ModelConnectionHint" eSuperTypes="#//mapping/MappingHintBaseType">
       <eOperations name="getSourceAttributes" unique="false" upperBound="-1" eType="#//metamodel/SourceSectionAttribute"/>
       <eOperations name="getLocalSourceElements" unique="false" upperBound="-1" eType="#//mapping/ModelConnectionHintSourceElement">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -890,7 +892,7 @@
         <eTypeArguments eClassifier="#//metamodel/TargetSectionAttribute"/>
       </eGenericSuperTypes>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="MappingHintType" abstract="true" eSuperTypes="#//NamedElement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="MappingHintType" abstract="true" eSuperTypes="#//mapping/MappingHintBaseType"/>
     <eClassifiers xsi:type="ecore:EClass" name="HintImporterMappingHint" abstract="true"
         eSuperTypes="#//mapping/MappingHintType"/>
     <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValueExpander" abstract="true"

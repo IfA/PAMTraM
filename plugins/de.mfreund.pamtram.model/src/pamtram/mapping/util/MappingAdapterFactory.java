@@ -89,6 +89,10 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createMappingHintGroupAdapter();
 			}
 			@Override
+			public Adapter caseMappingHintBaseType(MappingHintBaseType object) {
+				return createMappingHintBaseTypeAdapter();
+			}
+			@Override
 			public Adapter caseMappingHint(MappingHint object) {
 				return createMappingHintAdapter();
 			}
@@ -609,6 +613,20 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMappingHintGroupAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.MappingHintBaseType <em>Hint Base Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.MappingHintBaseType
+	 * @generated
+	 */
+	public Adapter createMappingHintBaseTypeAdapter() {
 		return null;
 	}
 

@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.ModelConnectionHintSourceElement;
@@ -32,7 +31,7 @@ import pamtram.metamodel.SourceSectionAttribute;
  *
  * @generated
  */
-public class ModelConnectionHintImpl extends NamedElementImpl implements ModelConnectionHint {
+public class ModelConnectionHintImpl extends MappingHintBaseTypeImpl implements ModelConnectionHint {
 	/**
 	 * The cached value of the '{@link #getTargetAttributes() <em>Target Attributes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

@@ -693,9 +693,15 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CardinalityMapping" eSuperTypes="#//mapping/MappingHint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="sourceClassMatchesSection sourceClassIsVariableCardinality targetClassMatchesSection targetClassIsVariableCardinality"/>
+        <details key="constraints" value="sourceClassMatchesSection sourceClassIsVariableCardinality targetClassMatchesSection targetClassIsVariableCardinality noCardinalityMappingForSourceSectionRoot"/>
       </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="sourceClassMatchesSection" value="self.source.getContainingSection() = self.oclContainer().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection"/>
+        <details key="sourceClassIsVariableCardinality" value="self.source.cardinality &lt;> pamtram::metamodel::CardinalityType::ONE"/>
+        <details key="targetClassMatchesSection" value="self.target.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection"/>
+        <details key="targetClassIsVariableCardinality" value="self.target.cardinality &lt;> pamtram::metamodel::CardinalityType::ONE"/>
+        <details key="noCardinalityMappingForSourceSectionRoot" value="self.source &lt;> self.source.getContainingSection()"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
           eType="#//metamodel/SourceSectionClass"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"

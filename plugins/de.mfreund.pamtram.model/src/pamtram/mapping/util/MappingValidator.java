@@ -345,8 +345,17 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateCardinalityMapping_sourceClassIsVariableCardinality(cardinalityMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validateCardinalityMapping_targetClassMatchesSection(cardinalityMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validateCardinalityMapping_targetClassIsVariableCardinality(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateCardinalityMapping_noCardinalityMappingForSourceSectionRoot(cardinalityMapping, diagnostics, context);
 		return result;
 	}
+
+	/**
+	 * The cached validation expression for the sourceClassMatchesSection constraint of '<em>Cardinality Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String CARDINALITY_MAPPING__SOURCE_CLASS_MATCHES_SECTION__EEXPRESSION = "self.source.getContainingSection() = self.oclContainer().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection";
 
 	/**
 	 * Validates the sourceClassMatchesSection constraint of '<em>Cardinality Mapping</em>'.
@@ -355,26 +364,27 @@ public class MappingValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateCardinalityMapping_sourceClassMatchesSection(CardinalityMapping cardinalityMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(createDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "sourceClassMatchesSection", getObjectLabel(cardinalityMapping, context) },
-						 new Object[] { cardinalityMapping },
-						 context));
-			}
-			return false;
-		}
-		return true;
+		return
+			validate
+				(MappingPackage.Literals.CARDINALITY_MAPPING,
+				 cardinalityMapping,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "sourceClassMatchesSection",
+				 CARDINALITY_MAPPING__SOURCE_CLASS_MATCHES_SECTION__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
+
+	/**
+	 * The cached validation expression for the sourceClassIsVariableCardinality constraint of '<em>Cardinality Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String CARDINALITY_MAPPING__SOURCE_CLASS_IS_VARIABLE_CARDINALITY__EEXPRESSION = "self.source.cardinality <> pamtram::metamodel::CardinalityType::ONE";
 
 	/**
 	 * Validates the sourceClassIsVariableCardinality constraint of '<em>Cardinality Mapping</em>'.
@@ -383,26 +393,27 @@ public class MappingValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateCardinalityMapping_sourceClassIsVariableCardinality(CardinalityMapping cardinalityMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(createDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "sourceClassIsVariableCardinality", getObjectLabel(cardinalityMapping, context) },
-						 new Object[] { cardinalityMapping },
-						 context));
-			}
-			return false;
-		}
-		return true;
+		return
+			validate
+				(MappingPackage.Literals.CARDINALITY_MAPPING,
+				 cardinalityMapping,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "sourceClassIsVariableCardinality",
+				 CARDINALITY_MAPPING__SOURCE_CLASS_IS_VARIABLE_CARDINALITY__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
+
+	/**
+	 * The cached validation expression for the targetClassMatchesSection constraint of '<em>Cardinality Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String CARDINALITY_MAPPING__TARGET_CLASS_MATCHES_SECTION__EEXPRESSION = "self.target.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection";
 
 	/**
 	 * Validates the targetClassMatchesSection constraint of '<em>Cardinality Mapping</em>'.
@@ -411,26 +422,27 @@ public class MappingValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateCardinalityMapping_targetClassMatchesSection(CardinalityMapping cardinalityMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(createDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "targetClassMatchesSection", getObjectLabel(cardinalityMapping, context) },
-						 new Object[] { cardinalityMapping },
-						 context));
-			}
-			return false;
-		}
-		return true;
+		return
+			validate
+				(MappingPackage.Literals.CARDINALITY_MAPPING,
+				 cardinalityMapping,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "targetClassMatchesSection",
+				 CARDINALITY_MAPPING__TARGET_CLASS_MATCHES_SECTION__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
+
+	/**
+	 * The cached validation expression for the targetClassIsVariableCardinality constraint of '<em>Cardinality Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String CARDINALITY_MAPPING__TARGET_CLASS_IS_VARIABLE_CARDINALITY__EEXPRESSION = "self.target.cardinality <> pamtram::metamodel::CardinalityType::ONE";
 
 	/**
 	 * Validates the targetClassIsVariableCardinality constraint of '<em>Cardinality Mapping</em>'.
@@ -439,25 +451,47 @@ public class MappingValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateCardinalityMapping_targetClassIsVariableCardinality(CardinalityMapping cardinalityMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(createDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "targetClassIsVariableCardinality", getObjectLabel(cardinalityMapping, context) },
-						 new Object[] { cardinalityMapping },
-						 context));
-			}
-			return false;
-		}
-		return true;
+		return
+			validate
+				(MappingPackage.Literals.CARDINALITY_MAPPING,
+				 cardinalityMapping,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "targetClassIsVariableCardinality",
+				 CARDINALITY_MAPPING__TARGET_CLASS_IS_VARIABLE_CARDINALITY__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
+	}
+
+	/**
+	 * The cached validation expression for the noCardinalityMappingForSourceSectionRoot constraint of '<em>Cardinality Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String CARDINALITY_MAPPING__NO_CARDINALITY_MAPPING_FOR_SOURCE_SECTION_ROOT__EEXPRESSION = "self.source <> self.source.getContainingSection()";
+
+	/**
+	 * Validates the noCardinalityMappingForSourceSectionRoot constraint of '<em>Cardinality Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCardinalityMapping_noCardinalityMappingForSourceSectionRoot(CardinalityMapping cardinalityMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(MappingPackage.Literals.CARDINALITY_MAPPING,
+				 cardinalityMapping,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "noCardinalityMappingForSourceSectionRoot",
+				 CARDINALITY_MAPPING__NO_CARDINALITY_MAPPING_FOR_SOURCE_SECTION_ROOT__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**

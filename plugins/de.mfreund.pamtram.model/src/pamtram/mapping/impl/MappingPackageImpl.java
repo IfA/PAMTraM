@@ -2141,7 +2141,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (cardinalityMappingEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "sourceClassMatchesSection sourceClassIsVariableCardinality targetClassMatchesSection targetClassIsVariableCardinality"
+			 "constraints", "sourceClassMatchesSection sourceClassIsVariableCardinality targetClassMatchesSection targetClassIsVariableCardinality noCardinalityMappingForSourceSectionRoot"
 		   });	
 		addAnnotation
 		  (mappingInstanceSelectorEClass, 
@@ -2216,6 +2216,11 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (cardinalityMappingEClass, 
 		   source, 
 		   new String[] {
+			 "sourceClassMatchesSection", "self.source.getContainingSection() = self.oclContainer().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection",
+			 "sourceClassIsVariableCardinality", "self.source.cardinality <> pamtram::metamodel::CardinalityType::ONE",
+			 "targetClassMatchesSection", "self.target.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection",
+			 "targetClassIsVariableCardinality", "self.target.cardinality <> pamtram::metamodel::CardinalityType::ONE",
+			 "noCardinalityMappingForSourceSectionRoot", "self.source <> self.source.getContainingSection()"
 		   });	
 		addAnnotation
 		  (mappingInstanceSelectorEClass, 

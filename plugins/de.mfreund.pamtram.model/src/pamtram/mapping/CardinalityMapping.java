@@ -20,7 +20,8 @@ import pamtram.metamodel.TargetSectionClass;
  * </p>
  *
  * @see pamtram.mapping.MappingPackage#getCardinalityMapping()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='sourceClassMatchesSection sourceClassIsVariableCardinality targetClassMatchesSection targetClassIsVariableCardinality'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='sourceClassMatchesSection sourceClassIsVariableCardinality targetClassMatchesSection targetClassIsVariableCardinality noCardinalityMappingForSourceSectionRoot'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot sourceClassMatchesSection='self.source.getContainingSection() = self.oclContainer().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection' sourceClassIsVariableCardinality='self.source.cardinality <> pamtram::metamodel::CardinalityType::ONE' targetClassMatchesSection='self.target.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection' targetClassIsVariableCardinality='self.target.cardinality <> pamtram::metamodel::CardinalityType::ONE' noCardinalityMappingForSourceSectionRoot='self.source <> self.source.getContainingSection()'"
  * @generated
  */
 public interface CardinalityMapping extends MappingHint {

@@ -296,31 +296,28 @@ public class GenericTransformationRunner {
 		writePamtramMessage("Analysing source model");
 		monitor.subTask("Selecting Mappings for source model elements");
 
-		// list of all unmapped nodes. obtained by iterating over all of the
-		// srcModels containment refs
-		final List<EObject> contRefsToMap = sourceSectionMapper
-				.buildContainmentTree(sourceModel);
+		/*
+		 * Build the ContainmentTree representing the source model. This will keep track of all matched
+		 * and unmatched elements.
+		 */
+		final ContainmentTree containmentTree = ContainmentTree.build(sourceModel);
 
 		/*
 		 * now start mapping each one of the references. We automatically start
 		 * at the sourceModel root node
 		 */
-		final LinkedList<MappingInstanceStorage> selectedMappings = new LinkedList<MappingInstanceStorage>();
-		final LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping = new LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>>();
+		final LinkedList<MappingInstanceStorage> selectedMappings = new LinkedList<>();
+		final LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping = new LinkedHashMap<>();
 		writePamtramMessage("Selecting Mappings for source model elements");
 
-		final int numSrcModelElements = contRefsToMap.size();
-		int lastIterNumSrcElements = numSrcModelElements;
+		final int numSrcModelElements = containmentTree.getNumberOfElements();
 		final double workUnit = 250.0 / numSrcModelElements;
 		double accumulatedWork = 0;
-		int unmapped = 0;
-		while (contRefsToMap.size() > 0 && !isCancelled) {
-			// find mapping
-			// remove(0) automatically selects element highest in the hierarchy
-			// we currently try to map
-
+		
+		while (containmentTree.getNumberOfAvailableElements() > 0 && !isCancelled) {
+			
 			final MappingInstanceStorage selectedMapping = sourceSectionMapper
-					.findMapping(contRefsToMap, onlyAskOnceOnAmbiguousMappings);
+					.findMapping(containmentTree, onlyAskOnceOnAmbiguousMappings);
 			if (sourceSectionMapper.isCancelled()) {
 				writePamtramMessage("Transformation aborted.");
 				return false;
@@ -335,13 +332,10 @@ public class GenericTransformationRunner {
 				selectedMappingsByMapping.get(selectedMapping.getMapping())
 						.add(selectedMapping);
 
-			} else {
-				unmapped++;
 			}
 
 			accumulatedWork += workUnit
-					* (lastIterNumSrcElements - contRefsToMap.size());
-			lastIterNumSrcElements = contRefsToMap.size();
+					* (containmentTree.getNumberOfAvailableElements());
 			if (accumulatedWork >= 1) {
 				monitor.worked((int) Math.floor(accumulatedWork));
 				accumulatedWork -= Math.floor(accumulatedWork);
@@ -351,8 +345,9 @@ public class GenericTransformationRunner {
 		if (isCancelled)
 			return false;
 
-		consoleStream.println("Used srcModel elements: "
-				+ (numSrcModelElements - unmapped));
+		consoleStream.println("Summary:\tAvailable Elements:\t" + containmentTree.getNumberOfElements());
+		consoleStream.println("\t\tMatched Elements:\t" + containmentTree.getNumberOfMatchedElements());
+		consoleStream.println("\t\tUnmatched Elements:\t" + containmentTree.getNumberOfUnmatchedElements());
 
 		/*
 		 * Now write MappingHint values of Hints of ExportedMappingHintGroups to
@@ -925,6 +920,7 @@ public class GenericTransformationRunner {
 	 * @author mfreund
 	 * @return
 	 */
+	@Deprecated
 	public LinkedHashMap<SourceSectionClass, Set<EObject>> mapSections() {
 
 		if(pamtramModel == null || sourceModel == null) {
@@ -947,10 +943,11 @@ public class GenericTransformationRunner {
 		 */
 		writePamtramMessage("Analysing srcModel containment references");
 
-		// list of all unmapped nodes. obtained by iterating over all of the
-		// srcModels containment refs
-		final List<EObject> contRefsToMap = sourceSectionMapper
-				.buildContainmentTree(sourceModel);
+		/*
+		 * Build the ContainmentTree representing the source model. This will keep track of all matched
+		 * and unmatched elements.
+		 */
+		final ContainmentTree containmentTree = ContainmentTree.build(sourceModel);
 
 		/*
 		 * now start mapping each one of the references. We automatically start
@@ -958,15 +955,15 @@ public class GenericTransformationRunner {
 		 */
 		writePamtramMessage("Selecting Mappings for source model elements");
 
-		final int numSrcModelElements = contRefsToMap.size();
+		final int numSrcModelElements = containmentTree.getNumberOfElements();
 		int unmapped = 0;
-		while (contRefsToMap.size() > 0) {
+		while (containmentTree.getNumberOfAvailableElements() > 0) {
 			// find mapping
 			// remove(0) automatically selects element highest in the hierarchy
 			// we currently try to map
 
 			final MappingInstanceStorage selectedMapping = sourceSectionMapper
-					.findMapping(contRefsToMap, onlyAskOnceOnAmbiguousMappings);
+					.findMapping(containmentTree, onlyAskOnceOnAmbiguousMappings);
 			if (sourceSectionMapper.isCancelled()) {
 				writePamtramMessage("Transformation aborted.");
 				return null;

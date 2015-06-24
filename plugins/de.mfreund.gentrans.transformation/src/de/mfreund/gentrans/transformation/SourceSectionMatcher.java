@@ -199,49 +199,6 @@ public class SourceSectionMatcher implements CancellationListener {
 	}
 
 	/**
-	 * @param EObject
-	 *            from srcModel
-	 * @return list of the srcModels elements in hierarchical order
-	 */
-	List<EObject> buildContainmentTree(final EObject object) {
-
-		final List<EObject> list = new LinkedList<EObject>();
-		return buildContainmentTree(object, list);
-	}
-
-	/**
-	 * @param EObject
-	 *            from srcModel
-	 * @param list
-	 *            to expand
-	 * @return list of the srcModels elements in hierarchical order
-	 */
-	@SuppressWarnings("unchecked")
-	private List<EObject> buildContainmentTree(final EObject object,
-			final List<EObject> list) {
-		if (abortTransformation)
-			return list;
-
-		list.add(object);
-
-		for (final EReference feature : object.eClass().getEAllContainments()) {
-			final Object childElements = object.eGet(feature);
-			if (childElements != null) {
-				if (childElements instanceof Iterable) {
-					for (final EObject child : (Iterable<EObject>) childElements) {
-						buildContainmentTree(child, list);
-					}
-
-				} else {
-					buildContainmentTree((EObject) childElements, list);
-				}
-			}
-		}
-
-		return list;
-	}
-
-	/**
 	 * Extend the deepestComplexAttrMappingSrcElementsByCmplxMapping Map for the
 	 * MappingHint
 	 *
@@ -1243,18 +1200,18 @@ public class SourceSectionMatcher implements CancellationListener {
 	 * It is assumed that the List was created by the buildContainmentTree
 	 * method
 	 *
-	 * @param contRefObjectsToMap
+	 * @param containmentTree
 	 * @return Hints and used source model elements for the , null if no mapping
 	 *         could be found
 	 */
-	MappingInstanceStorage findMapping(final List<EObject> contRefObjectsToMap,
+	MappingInstanceStorage findMapping(ContainmentTree containmentTree,
 			final boolean onlyAskOnceOnAmbiguousMappings) {
 		// long start;// for statistics
 		// long time;
 
 		/* this is the source model element which we will now try to map 
 		 */
-		final EObject element = contRefObjectsToMap.remove(0);
+		final EObject element = containmentTree.getNextElementForMatching();
 		
 		// start = System.nanoTime();
 		final Map<Mapping, MappingInstanceStorage> mappingData = 
@@ -1353,8 +1310,10 @@ public class SourceSectionMatcher implements CancellationListener {
 				/*
 				 * remove mapped elements from list of elements to be mapped
 				 */
-				contRefObjectsToMap.removeAll(returnVal
+				containmentTree.markAsMatched(returnVal
 						.getSourceModelObjectsMapped().get(c));
+//				contRefObjectsToMap.removeAll(returnVal
+//						.getSourceModelObjectsMapped().get(c));
 
 			}
 			// consoleStream.println(',' + returnVal.getMapping().getName() +

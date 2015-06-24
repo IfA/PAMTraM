@@ -33,6 +33,7 @@ import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
+import pamtram.mapping.MappingHintBaseType;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
@@ -66,130 +67,94 @@ import de.mfreund.gentrans.transformation.util.CancellationListener;
 public class SourceSectionMatcher implements CancellationListener {
 
 	/**
-	 * Counts how often each associated source model element is referenced by
-	 * each MappingInstdanceStorage as associated source model object and
-	 * returns one mapping result for the Object with the lowest count.
-	 *
-	 * @param possibleElements
-	 * @return Mapping results
+	 * Registry for <em>source model objects</em> that have already been matched. The matched objects are stored in a map
+	 * where the key is the corresponding {@link SourceSectionClass} that they have been matched to.
 	 */
-	private static MappingInstanceStorage getResultForLeastUsedSrcModelElement(
-			final LinkedList<MappingInstanceStorage> possibleElements) {
-		MappingInstanceStorage srcSectionResult;
-		// count how often a sourceModel Element is mapped
-		final LinkedHashMap<EObject, Integer> usages = new LinkedHashMap<EObject, Integer>();
-		for (final MappingInstanceStorage e : possibleElements) {
-			final EObject element = e.getAssociatedSourceModelElement();
-			if (!usages.containsKey(element)) {
-				usages.put(element, 0);
-			}
-			usages.put(element, usages.get(element) + 1);
-		}
-		// use one of the mappings for one of the elements with the least
-		// possible mappings
-		EObject leastUsed = possibleElements.getFirst()
-				.getAssociatedSourceModelElement();
-		int numberUsed = usages.get(leastUsed);
-		for (final EObject o : usages.keySet()) {// find the first element least
-			// used
-			// and return the first possible
-			// result
-			if (usages.get(o) < numberUsed) {
-				leastUsed = o;
-				numberUsed = usages.get(o);
-			}
-		}
-
-		srcSectionResult = possibleElements.getFirst();// initialize this
-		// variable so we dont
-		// get compile errors
-		for (final MappingInstanceStorage e : possibleElements) {
-			if (e.getAssociatedSourceModelElement().equals(leastUsed)) {
-				srcSectionResult = e;
-				break;
-			}
-		}
-		return srcSectionResult;
-	}
+	private final LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSections;
 
 	/**
-	 * Registry for source model objects already mapped
+	 * Registry for <em>source model objects</em> that were not directly matched but indirectly matched as part of a container section.
+	 * The matched objects are stored in a map where the key is the corresponding <em>container section</em> that they have been matched to.
 	 */
-	private final LinkedHashMap<SourceSectionClass, Set<EObject>> mappedSections;
-
+	private final LinkedHashMap<SourceSectionClass, Set<EObject>> matchedContainers;
+	
 	/**
-	 * Registry for src model objects that were "not officially" mapped but
-	 * included through a container mapping
+	 * Registry for {@link ModelConnectionHint ModelConnectionHints} for all selected {@link Mapping Mappings}.
 	 */
-	private final LinkedHashMap<SourceSectionClass, Set<EObject>> mappedContainers;
-	/**
-	 * Registry for ModelConnectionHints. Used When linking target model
-	 * sections.
-	 */
+	//TODO check if this can now be integrated into the 'mappingHints' map as of the new base class 'MappingHintBaseType'
 	private final Map<Mapping, LinkedList<ModelConnectionHint>> modelConnectionHints;
+	
 	/**
-	 * Registry for MappingHints.
+	 * Registry for {@link MappingHintType MappingHints} for all selected {@link Mapping Mappings}.
 	 */
 	private final Map<Mapping, LinkedList<MappingHintType>> mappingHints;
 
 	/**
-	 * Map Referencing the Classes referenced by the
-	 * ComplexAttributeMappingSourceElement that are buried deepest in the
-	 * source Section, sorted by ComplexAttributeMapping.
-	 */
-	private final Map<AttributeMapping, Set<SourceSectionClass>> deepestComplexAttrMappingSrcElementsByCmplxMapping;
-
-	/**
-	 * We save any user selection for a particular set of possible Mappings so
-	 * we don't have to ask twice for the same combination of Mappings.
-	 */
-	private final Map<Set<Mapping>, Mapping> ambiguousMappingSelections;
-	/**
-	 * Map to determine at which point ComplexHints need to be joined
-	 */
-	private final Map<Object, SourceSectionClass> commonContainerClassOfComplexMappings;
-
-	/**
-	 * Map Referencing the Classes referenced by the
-	 * ComplexAttributeMatcherSourceElement that are buried deepest in the
-	 * source Section, sorted by ComplexAttributeMatcher.
-	 */
-	private final Map<AttributeMatcher, Set<SourceSectionClass>> deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher;
-	/**
-	 * Map Referencing the Classes referenced by the
-	 * ComplexModelConnectionHintSourceElement that are buried deepest in the
-	 * source Section, sorted by ComplexAttributeMatcher.
-	 */
-	private final Map<ModelConnectionHint, Set<SourceSectionClass>> deepestComplexConnectionHintSrcElementsByComplexConnectionHint;
-	/**
-	 * Mappings from the PAMTram model
+	 * The list of {@link Mapping Mappings} that can be used in the <em>matching</em> process.
 	 */
 	private final List<Mapping> mappingsToChooseFrom;
+
 	/**
-	 * Output stream for messages
+	 * We save any user selection for a particular set of possible {@link Mapping Mappings} so that
+	 * we don't have to ask twice for the same combination of possible mappings.
+	 */
+	private final Map<Set<Mapping>, Mapping> ambiguousMappingSelections;
+	
+	/**
+	 * This keeps track of the {@link SourceSectionClass} that is the common container for all source elements of a {@link MappingHintBaseType}.
+	 * This map is used to determine at which point complex hints with multiple source elements need to be joined.
+	 */
+	private final Map<MappingHintBaseType, SourceSectionClass> commonContainerClassOfComplexHints;
+
+	/**
+	 * This keeps track of those {@link SourceSectionClass SourceSectionClasses} that contain a {@link SourceSectionAttribute} that is
+	 * referenced by an {@link AttributeMappingSourceElement} of an {@link AttributeMapping} and that are located at the 
+	 * <em>deepest</em> position in the containment tree.
+	 */
+	//TODO explain why we need this
+	private final Map<AttributeMapping, Set<SourceSectionClass>> deepestSourceSectionsByAttributeMapping;
+
+	/**
+	 * This keeps track of those {@link SourceSectionClass SourceSectionClasses} that contain a {@link SourceSectionAttribute} that is
+	 * referenced by an {@link AttributeMatcherSourceElement} of an {@link AttributeMatcher} and that are located at the 
+	 * <em>deepest</em> position in the containment tree.
+	 */
+	//TODO explain why we need this
+	private final Map<AttributeMatcher, Set<SourceSectionClass>> deepestSourceSectionsByAttributeMatcher;
+	
+	/**
+	 * This keeps track of those {@link SourceSectionClass SourceSectionClasses} that contain a {@link SourceSectionAttribute} that is
+	 * referenced by an {@link ModelConnectionHintSourceElement} of a {@link ModelConnectionHintr} and that are located at the 
+	 * <em>deepest</em> position in the containment tree.
+	 */
+	//TODO explain why we need this
+	private final Map<ModelConnectionHint, Set<SourceSectionClass>> deepestSourceSectionsByModelConnectionHint;
+	
+	/**
+	 * The {@link MessageConsoleStream} that shall be used to print messages.
 	 */
 	private final MessageConsoleStream consoleStream;
 
 	/**
-	 * true when user action was triggered to abort the transformation
+	 * This keeps track if the user chose to abort the transformation in one of the possible dialogues
+	 * ('<em>true</em>' if a user action was triggered to abort the transformation).
 	 */
-	private boolean transformationAborted;
+	private boolean abortTransformation;
 
 	/**
-	 * Registry for values of global Variables Only the newest value found is
-	 * saved (GlobalVariables really only make sense for elements that appear
-	 * only once)
+	 * Registry for values of {@link GlobalAttribute GlobalAttributes}. Only the latest value found is
+	 * saved (GlobalAttributes really only make sense for elements that appear only once in the source model).
 	 */
 	private final Map<GlobalAttribute, String> globalVarValues;
 
 	/**
-	 * used for modifying attribute values
+	 * The {@link AttributeValueModifierExecutor} that shall be used for modifying attribute values.
 	 */
 	private final AttributeValueModifierExecutor attributeValuemodifier;
 
 	/**
-	 * Set that contains all ValueModifiers with errors so we don't need to send
-	 * a potential error message twice
+	 * This keeps track of all {@link AttributeValueConstraint AttributeValueConstraints} that could not be satisfied 
+	 * so we don't need to send a potential error message twice.
 	 */
 	private final Set<AttributeValueConstraint> constraintsWithErrors;
 
@@ -199,24 +164,24 @@ public class SourceSectionMatcher implements CancellationListener {
 	 * @param consoleStream
 	 *            Output stream for messages
 	 */
-	SourceSectionMatcher(final List<Mapping> mappingsToChooseFrom,
+	public SourceSectionMatcher(final List<Mapping> mappingsToChooseFrom,
 			final AttributeValueModifierExecutor attributeValuemodifier,
 			final MessageConsoleStream consoleStream) {
 		
-		mappedSections = new LinkedHashMap<SourceSectionClass, Set<EObject>>();
-		mappedContainers = new LinkedHashMap<SourceSectionClass, Set<EObject>>();
+		matchedSections = new LinkedHashMap<SourceSectionClass, Set<EObject>>();
+		matchedContainers = new LinkedHashMap<SourceSectionClass, Set<EObject>>();
 		mappingHints = new LinkedHashMap<Mapping, LinkedList<MappingHintType>>();
 		modelConnectionHints = new LinkedHashMap<Mapping, LinkedList<ModelConnectionHint>>();
-		deepestComplexAttrMappingSrcElementsByCmplxMapping = new LinkedHashMap<AttributeMapping, Set<SourceSectionClass>>();
-		deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher = new LinkedHashMap<AttributeMatcher, Set<SourceSectionClass>>();
-		deepestComplexConnectionHintSrcElementsByComplexConnectionHint = new LinkedHashMap<ModelConnectionHint, Set<SourceSectionClass>>();
+		deepestSourceSectionsByAttributeMapping = new LinkedHashMap<AttributeMapping, Set<SourceSectionClass>>();
+		deepestSourceSectionsByAttributeMatcher = new LinkedHashMap<AttributeMatcher, Set<SourceSectionClass>>();
+		deepestSourceSectionsByModelConnectionHint = new LinkedHashMap<ModelConnectionHint, Set<SourceSectionClass>>();
 		globalVarValues = new HashMap<GlobalAttribute, String>();
 		this.mappingsToChooseFrom = mappingsToChooseFrom;
 		this.consoleStream = consoleStream;
-		transformationAborted = false;
+		abortTransformation = false;
 		this.attributeValuemodifier = attributeValuemodifier;
 		constraintsWithErrors = new HashSet<AttributeValueConstraint>();
-		commonContainerClassOfComplexMappings = new HashMap<Object, SourceSectionClass>();
+		commonContainerClassOfComplexHints = new HashMap<>();
 		ambiguousMappingSelections = new HashMap<Set<Mapping>, Mapping>();
 
 		// this will fill some maps...
@@ -266,7 +231,7 @@ public class SourceSectionMatcher implements CancellationListener {
 	@SuppressWarnings("unchecked")
 	private List<EObject> buildContainmentTree(final EObject object,
 			final List<EObject> list) {
-		if (transformationAborted)
+		if (abortTransformation)
 			return list;
 
 		list.add(object);
@@ -298,14 +263,14 @@ public class SourceSectionMatcher implements CancellationListener {
 	 */
 	private void buildDeepestCmplxAttrMappingElementsMap(
 			final AttributeMapping m, final SourceSectionClass srcSection) {
-		if (!deepestComplexAttrMappingSrcElementsByCmplxMapping.containsKey(m)) {
+		if (!deepestSourceSectionsByAttributeMapping.containsKey(m)) {
 			final Set<ModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>> srcElements = 
 					new HashSet<>();
 			srcElements.addAll(m.getLocalSourceElements());
-			deepestComplexAttrMappingSrcElementsByCmplxMapping.put(m,
+			deepestSourceSectionsByAttributeMapping.put(m,
 					new HashSet<SourceSectionClass>());
 
-			deepestComplexAttrMappingSrcElementsByCmplxMapping.get(m).addAll(
+			deepestSourceSectionsByAttributeMapping.get(m).addAll(
 					findDeepestClassesAndCommonContainer(srcElements,
 							srcSection, m));
 
@@ -322,15 +287,15 @@ public class SourceSectionMatcher implements CancellationListener {
 	private void buildDeepestCmplxConnectionHintElementsMap(
 			final ModelConnectionHint m,
 			final SourceSectionClass srcSection) {
-		if (!deepestComplexConnectionHintSrcElementsByComplexConnectionHint
+		if (!deepestSourceSectionsByModelConnectionHint
 				.containsKey(m)) {
 			final Set<ModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>> srcElements = 
 					new HashSet<>();
 			srcElements.addAll(m.getLocalSourceElements());
-			deepestComplexConnectionHintSrcElementsByComplexConnectionHint.put(
+			deepestSourceSectionsByModelConnectionHint.put(
 					m, new HashSet<SourceSectionClass>());
 
-			deepestComplexConnectionHintSrcElementsByComplexConnectionHint.get(
+			deepestSourceSectionsByModelConnectionHint.get(
 					m).addAll(
 							findDeepestClassesAndCommonContainer(srcElements,
 									srcSection, m));
@@ -347,17 +312,17 @@ public class SourceSectionMatcher implements CancellationListener {
 	 */
 	private void buildDeepestComplexAttrMatcherSrcElements(
 			final AttributeMatcher m, final SourceSectionClass srcSection) {
-		if (!deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher
+		if (!deepestSourceSectionsByAttributeMatcher
 				.containsKey(m)) {
 			final Set<ModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>> srcElements = 
 					new HashSet<>();
 			srcElements.addAll(m.getLocalSourceElements());
-			deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher.put(m,
+			deepestSourceSectionsByAttributeMatcher.put(m,
 					new HashSet<SourceSectionClass>());
 
 			final MappingInstanceSelector s = (MappingInstanceSelector) m
 					.eContainer();
-			deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher.get(m)
+			deepestSourceSectionsByAttributeMatcher.get(m)
 			.addAll(findDeepestClassesAndCommonContainer(srcElements,
 					srcSection, s));
 
@@ -366,7 +331,7 @@ public class SourceSectionMatcher implements CancellationListener {
 
 	@Override
 	public void cancel() {
-		transformationAborted = true;
+		abortTransformation = true;
 
 	}
 
@@ -419,12 +384,12 @@ public class SourceSectionMatcher implements CancellationListener {
 	private boolean checkObjectWasMapped(final SourceSectionClass extClass,
 			final EObject extObj) {
 		if (extObj != null) {
-			if (mappedSections.containsKey(extClass)) {
-				if (mappedSections.get(extClass).contains(extObj)) {
+			if (matchedSections.containsKey(extClass)) {
+				if (matchedSections.get(extClass).contains(extObj)) {
 					return true;
 				}
-			} else if (mappedContainers.containsKey(extClass)) {
-				if (mappedContainers.get(extClass).contains(extObj)) {
+			} else if (matchedContainers.containsKey(extClass)) {
+				if (matchedContainers.get(extClass).contains(extObj)) {
 					return true;
 				}
 			}
@@ -517,11 +482,11 @@ public class SourceSectionMatcher implements CancellationListener {
 					} else {
 						for (final SourceSectionClass c : res
 								.getSourceModelObjectsMapped().keySet()) {
-							if (!mappedContainers.containsKey(c)) {
-								mappedContainers.put(c,
+							if (!matchedContainers.containsKey(c)) {
+								matchedContainers.put(c,
 										new LinkedHashSet<EObject>());
 							}
-							mappedContainers.get(c).addAll(
+							matchedContainers.get(c).addAll(
 									res.getSourceModelObjectsMapped().get(c));
 						}
 					}
@@ -562,7 +527,7 @@ public class SourceSectionMatcher implements CancellationListener {
 	 */
 	private Set<SourceSectionClass> findDeepestClassesAndCommonContainer(
 			final Set<ModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>> s,
-			final SourceSectionClass srcSection, final Object hint) {
+			final SourceSectionClass srcSection, final MappingHintBaseType hint) {
 		final Set<SourceSectionClass> resultSet = new HashSet<SourceSectionClass>();
 
 		/*
@@ -585,7 +550,7 @@ public class SourceSectionMatcher implements CancellationListener {
 		} else {
 			if (resultSet.contains(srcSection)) {
 				resultSet.remove(srcSection);
-				commonContainerClassOfComplexMappings.put(hint, srcSection);
+				commonContainerClassOfComplexHints.put(hint, srcSection);
 				commonContainerFound = true;
 			}
 			resultSets.put(srcSection, new HashSet<SourceSectionClass>(
@@ -647,7 +612,7 @@ public class SourceSectionMatcher implements CancellationListener {
 							break;
 						} else {
 							if (!commonContainerFound) {
-								commonContainerClassOfComplexMappings.put(hint,
+								commonContainerClassOfComplexHints.put(hint,
 										cl);
 								commonContainerFound = true;
 							}
@@ -951,7 +916,7 @@ public class SourceSectionMatcher implements CancellationListener {
 								refByClassMap.get(c) instanceof MetaModelSectionReference
 								|| usedOkay, hints, connectionHints,
 								globalVars, c, changedRefsAndHints);
-						if (transformationAborted)
+						if (abortTransformation)
 							return null;
 					}
 				}
@@ -963,7 +928,7 @@ public class SourceSectionMatcher implements CancellationListener {
 								refByClassMap.get(c) instanceof MetaModelSectionReference
 								|| usedOkay, hints, connectionHints,
 								globalVars, c, changedRefsAndHints);
-						if (transformationAborted)
+						if (abortTransformation)
 							return null;
 						if (res != null) {
 							break;
@@ -1040,7 +1005,7 @@ public class SourceSectionMatcher implements CancellationListener {
 								refByClassMap.get(val) instanceof MetaModelSectionReference
 								|| usedOkay, hints, connectionHints,
 								globalVars, val, changedRefsAndHints);
-						if (transformationAborted)
+						if (abortTransformation)
 							return null;
 
 						if (res != null) {// mapping possible
@@ -1232,10 +1197,10 @@ public class SourceSectionMatcher implements CancellationListener {
 		 */
 		for (final MappingHintType h : hints) {
 			if (h instanceof AttributeMapping) {
-				if (!(complexAttributeMappingsFound.contains(h) && deepestComplexAttrMappingSrcElementsByCmplxMapping
+				if (!(complexAttributeMappingsFound.contains(h) && deepestSourceSectionsByAttributeMapping
 						.get(h).contains(srcSection))) {
 					changedRefsAndHints.getHintValues().removeHintValue((AttributeMapping) h); // remove incomplete hint value
-				} else if (deepestComplexAttrMappingSrcElementsByCmplxMapping
+				} else if (deepestSourceSectionsByAttributeMapping
 						.get(h).size() > 1) {
 					
 					changedRefsAndHints.getUnsyncedHintValues().setHintValues((AttributeMapping) h, srcSection,
@@ -1248,11 +1213,11 @@ public class SourceSectionMatcher implements CancellationListener {
 				if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
 					if (!(complexAttributeMatchersFound
 							.contains(((MappingInstanceSelector) h)
-									.getMatcher()) && deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher
+									.getMatcher()) && deepestSourceSectionsByAttributeMatcher
 									.get(((MappingInstanceSelector) h).getMatcher())
 									.contains(srcSection))) {
 						changedRefsAndHints.getHintValues().removeHintValue((MappingInstanceSelector) h); // remove incomplete hint value
-					} else if (deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher
+					} else if (deepestSourceSectionsByAttributeMatcher
 							.get(((MappingInstanceSelector) h).getMatcher())
 							.size() > 1) {
 						
@@ -1266,10 +1231,10 @@ public class SourceSectionMatcher implements CancellationListener {
 
 		for (final ModelConnectionHint h : connectionHints) {
 			if (h instanceof ModelConnectionHint) {
-				if (!(complexConnectionHintsFound.contains(h) && deepestComplexConnectionHintSrcElementsByComplexConnectionHint
+				if (!(complexConnectionHintsFound.contains(h) && deepestSourceSectionsByModelConnectionHint
 						.get(h).contains(srcSection))) {
 					changedRefsAndHints.getHintValues().removeHintValue(h); // remove incomplete hint value
-				} else if (deepestComplexConnectionHintSrcElementsByComplexConnectionHint
+				} else if (deepestSourceSectionsByModelConnectionHint
 						.get(h).size() > 1) {
 					
 					changedRefsAndHints.getUnsyncedHintValues().setHintValues(h, srcSection, new LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>>());
@@ -1332,7 +1297,7 @@ public class SourceSectionMatcher implements CancellationListener {
 							getModelConnectionHints(m), m.getGlobalVariables(),
 							m.getSourceMMSection(),
 							new MappingInstanceStorage());
-					if (transformationAborted)
+					if (abortTransformation)
 						return null;
 
 					boolean mappingFailed = (res == null);
@@ -1370,7 +1335,7 @@ public class SourceSectionMatcher implements CancellationListener {
 				returnVal = mappingData.get(ambiguousMappingSelections
 						.get(mappingData.keySet()));
 			} else {
-				if (transformationAborted)
+				if (abortTransformation)
 					return null;
 				final NamedElementItemSelectorDialogRunner<Mapping> dialog = new NamedElementItemSelectorDialogRunner<Mapping>(
 						"Please select a Mapping for the source element\n'"
@@ -1379,7 +1344,7 @@ public class SourceSectionMatcher implements CancellationListener {
 										mappingData.keySet()), 0);
 				Display.getDefault().syncExec(dialog);
 				if (dialog.wasTransformationStopRequested()) {
-					transformationAborted = true;
+					abortTransformation = true;
 					return null;
 				}
 				returnVal = mappingData.get(dialog
@@ -1392,11 +1357,11 @@ public class SourceSectionMatcher implements CancellationListener {
 		if (returnVal != null) {
 			for (final SourceSectionClass c : returnVal
 					.getSourceModelObjectsMapped().keySet()) {
-				if (!mappedSections.containsKey(c)) {
-					mappedSections.put(c, new LinkedHashSet<EObject>());
+				if (!matchedSections.containsKey(c)) {
+					matchedSections.put(c, new LinkedHashSet<EObject>());
 				}
 				returnVal.getSourceModelObjectsMapped().get(c).size();
-				mappedSections.get(c).addAll(
+				matchedSections.get(c).addAll(
 						returnVal.getSourceModelObjectsMapped().get(c));
 				/*
 				 * remove mapped elements from list of elements to be mapped
@@ -1523,7 +1488,7 @@ public class SourceSectionMatcher implements CancellationListener {
 	 * @return Registry for mapped sections
 	 */
 	LinkedHashMap<SourceSectionClass, Set<EObject>> getMappedSections() {
-		return mappedSections;
+		return matchedSections;
 	}
 
 	/**
@@ -2009,7 +1974,7 @@ public class SourceSectionMatcher implements CancellationListener {
 	 */
 	@Override
 	public boolean isCancelled() {
-		return transformationAborted;
+		return abortTransformation;
 	}
 
 
@@ -2020,7 +1985,7 @@ public class SourceSectionMatcher implements CancellationListener {
 	private void syncComplexAttrMappings(final SourceSectionClass srcSection,
 			final MappingInstanceStorage changedRefsAndHints) {
 		for (final AttributeMapping h : changedRefsAndHints.getUnsyncedHintValues().getAttributeMappingHintValues().keySet()) {
-			final boolean isCommonParent = commonContainerClassOfComplexMappings
+			final boolean isCommonParent = commonContainerClassOfComplexHints
 					.get(h).equals(srcSection);
 
 			if (changedRefsAndHints.getUnsyncedHintValues().getHintValues(h).size() > 1 || isCommonParent) {
@@ -2083,7 +2048,7 @@ public class SourceSectionMatcher implements CancellationListener {
 	private void syncComplexAttrMatchers(final SourceSectionClass srcSection,
 			final MappingInstanceStorage changedRefsAndHints) {
 		for (final MappingInstanceSelector h : changedRefsAndHints.getUnsyncedHintValues().getMappingInstanceSelectorHintValues().keySet()) {
-			final boolean isCommonParent = commonContainerClassOfComplexMappings
+			final boolean isCommonParent = commonContainerClassOfComplexHints
 					.get(h).equals(srcSection);
 
 			if (changedRefsAndHints.getUnsyncedHintValues().getHintValues(h).size() > 1 || isCommonParent) {
@@ -2149,7 +2114,7 @@ public class SourceSectionMatcher implements CancellationListener {
 	private void syncModelConnectionHints(final SourceSectionClass srcSection,
 			final MappingInstanceStorage changedRefsAndHints) {
 		for (final ModelConnectionHint h : changedRefsAndHints.getUnsyncedHintValues().getModelConnectionHintValues().keySet()) {
-			final boolean isCommonParent = commonContainerClassOfComplexMappings
+			final boolean isCommonParent = commonContainerClassOfComplexHints
 					.get(h).equals(srcSection);
 
 			if (changedRefsAndHints.getUnsyncedHintValues().getHintValues(h).size() > 1 || isCommonParent) {
@@ -2207,6 +2172,53 @@ public class SourceSectionMatcher implements CancellationListener {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Counts how often each associated source model element is referenced by
+	 * each MappingInstdanceStorage as associated source model object and
+	 * returns one mapping result for the Object with the lowest count.
+	 *
+	 * @param possibleElements
+	 * @return Mapping results
+	 */
+	private static MappingInstanceStorage getResultForLeastUsedSrcModelElement(
+			final LinkedList<MappingInstanceStorage> possibleElements) {
+		MappingInstanceStorage srcSectionResult;
+		// count how often a sourceModel Element is mapped
+		final LinkedHashMap<EObject, Integer> usages = new LinkedHashMap<EObject, Integer>();
+		for (final MappingInstanceStorage e : possibleElements) {
+			final EObject element = e.getAssociatedSourceModelElement();
+			if (!usages.containsKey(element)) {
+				usages.put(element, 0);
+			}
+			usages.put(element, usages.get(element) + 1);
+		}
+		// use one of the mappings for one of the elements with the least
+		// possible mappings
+		EObject leastUsed = possibleElements.getFirst()
+				.getAssociatedSourceModelElement();
+		int numberUsed = usages.get(leastUsed);
+		for (final EObject o : usages.keySet()) {// find the first element least
+			// used
+			// and return the first possible
+			// result
+			if (usages.get(o) < numberUsed) {
+				leastUsed = o;
+				numberUsed = usages.get(o);
+			}
+		}
+	
+		srcSectionResult = possibleElements.getFirst();// initialize this
+		// variable so we dont
+		// get compile errors
+		for (final MappingInstanceStorage e : possibleElements) {
+			if (e.getAssociatedSourceModelElement().equals(leastUsed)) {
+				srcSectionResult = e;
+				break;
+			}
+		}
+		return srcSectionResult;
 	}
 
 }

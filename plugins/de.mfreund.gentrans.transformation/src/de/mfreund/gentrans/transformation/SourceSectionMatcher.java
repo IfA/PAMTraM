@@ -67,6 +67,11 @@ import de.mfreund.gentrans.transformation.util.CancellationListener;
 public class SourceSectionMatcher implements CancellationListener {
 
 	/**
+	 * The {@link ContainmentTree} for the source model that we try to match.
+	 */
+	private ContainmentTree containmentTree;
+
+	/**
 	 * Registry for <em>source model objects</em> that have already been matched. The matched objects are stored in a map
 	 * where the key is the corresponding {@link SourceSectionClass} that they have been matched to.
 	 */
@@ -93,6 +98,11 @@ public class SourceSectionMatcher implements CancellationListener {
 	 * The list of {@link Mapping Mappings} that shall be used in the <em>matching</em> process.
 	 */
 	private final List<Mapping> mappingsToChooseFrom;
+
+	/**
+	 * If ambiguous {@link Mapping Mappings} should be resolved only once or on a per-element basis.
+	 */
+	private boolean onlyAskOnceOnAmbiguousMappings;
 
 	/**
 	 * We save any user selection for a particular set of possible {@link Mapping Mappings} so that
@@ -159,27 +169,34 @@ public class SourceSectionMatcher implements CancellationListener {
 	private final Set<AttributeValueConstraint> constraintsWithErrors;
 
 	/**
-	 * This constrcuts an instance.
+	 * This constructs an instance.
 	 * 
+	 * @param containmentTree 
+	 * 				The {@link ContainmentTree} for the source model that we try to match.
 	 * @param mappingsToChooseFrom
 	 *            A list of {@link Mapping Mappings} that shall be used in the <em>matching</em> process.
+	 * @param onlyAskOnceOnAmbiguousMappings If ambiguous {@link Mapping Mappings} should be resolved only once or on a per-element basis.
 	 * @param attributeValuemodifier The {@link AttributeValueModifierExecutor} that shall be used for modifying attribute values.
 	 * @param consoleStream
 	 *           The {@link MessageConsoleStream} that shall be used to print messages.
 	 */
 	public SourceSectionMatcher(
+			ContainmentTree containmentTree, 
 			final List<Mapping> mappingsToChooseFrom,
+			boolean onlyAskOnceOnAmbiguousMappings, 
 			final AttributeValueModifierExecutor attributeValuemodifier,
 			final MessageConsoleStream consoleStream) {
 		
 		/*
 		 * initialize all class variables
 		 */
+		this.containmentTree = containmentTree;
 		this.matchedSections = new LinkedHashMap<>();
 		this.matchedContainers = new LinkedHashMap<>();
 		this.mappingHints = new LinkedHashMap<>();
 		this.modelConnectionHints = new LinkedHashMap<>();
 		this.mappingsToChooseFrom = mappingsToChooseFrom;
+		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
 		this.ambiguousMappingSelections = new HashMap<>();
 		this.commonContainerClassOfComplexHints = new HashMap<>();
 		this.deepestSourceSectionClassesByAttributeMapping = new LinkedHashMap<>();
@@ -210,6 +227,776 @@ public class SourceSectionMatcher implements CancellationListener {
 	@Override
 	public boolean isCancelled() {
 		return abortTransformation;
+	}
+
+	/**
+	 * This determines and returns a mapping for the next unmatched element from the given {@link ContainmentTree}. If multiple mappings are
+	 * applicable, the user needs to choose a suitable one.
+	 * <p />
+	 * Note: All hint values (local and external ones) for the various hints in the selected mapping are also determined by this method.
+	 * Consequently, the returned {@link MappingInstanceStorage} already contains all hint values.
+	 *
+	 * @param containmentTree The {@link ContainmentTree} that keeps track of matched and unmatched elements and is
+	 * used to get the element for that a mapping shall be found.
+	 * @return The {@link MappingInstanceStorage} that represents the found mapping and contains all hint values
+	 * or '<em><b>null</b></em>' if no mapping could be found.
+	 */
+	public MappingInstanceStorage findMappingForNextElement() {
+		
+		/* 
+		 * This is the source model element which we will now try to match
+		 */
+		final EObject element = containmentTree.getNextElementForMatching();
+		
+		/*
+		 * Determine all mappings that are applicable for the source model element.
+		 */
+		final Map<Mapping, MappingInstanceStorage> applicableMappings = findApplicableMappings(element);
+
+		/*
+		 * Now, we have to return exactly one (of the possibly multiple found) applicable mappings. 
+		 */
+		MappingInstanceStorage ret = null;
+		
+		switch (applicableMappings.size()) {
+			case 0:
+				// no applicable mapping was found
+				return null;
+			case 1:
+				// return the only found mapping
+				ret = applicableMappings.values().iterator().next();
+				break;
+			default:
+				/*
+				 * if multiple mappings we need to act depending of the 'onlyAskOnceOnAmbiguousMappings' setting
+				 */
+				if (onlyAskOnceOnAmbiguousMappings && ambiguousMappingSelections.containsKey(applicableMappings.keySet())) {
+					// the user already chose a mapping for this selection of mappings before so that we can reuse this
+					ret = applicableMappings.get(ambiguousMappingSelections.get(applicableMappings.keySet()));
+				} else {
+					/*
+					 * There is no other choice but to let the user decide which mapping to apply.					
+					 */
+					final NamedElementItemSelectorDialogRunner<Mapping> dialog = new NamedElementItemSelectorDialogRunner<>(
+							"Please select a Mapping for the source element\n'" + EObjectTransformationHelper.asString(element)+ "'", 
+							new ArrayList<Mapping>(applicableMappings.keySet()), 
+							0);
+					Display.getDefault().syncExec(dialog);
+					if (dialog.wasTransformationStopRequested()) {
+						abortTransformation = true;
+						return null;
+					}
+					
+					ret = applicableMappings.get(dialog.getSelection());
+					ambiguousMappingSelections.put(applicableMappings.keySet(), dialog.getSelection());
+				}
+		}
+
+		/*
+		 * Before returning the selected mapping (respectively its MappingInstanceStorage), we mark the affected elements
+		 * as 'matched' in the containment tree and update the 'matchedSections' map
+		 */
+		for (final SourceSectionClass c : ret.getSourceModelObjectsMapped().keySet()) {
+			
+			if (!matchedSections.containsKey(c)) {
+				matchedSections.put(c, new LinkedHashSet<EObject>());
+			}
+			matchedSections.get(c).addAll(ret.getSourceModelObjectsMapped().get(c));
+			containmentTree.markAsMatched(ret.getSourceModelObjectsMapped().get(c));
+
+		}
+
+		return ret;
+	}
+
+	/**
+	 * This determines and returns all applicable mappings for the given source model <em>element</em>.
+	 * <p />
+	 * Note: All hint values (local and external ones) for the various hints in the determined mappings are also determined by 
+	 * this method and stored in the corresponding {@link MappingInstanceStorage MappingInstanceStorages}.
+	 *
+	 * @param element The element from the source model for that the applicable mappings shall be determined.
+	 * @return A map that contains all applicable mappings and the associated {@link MappingInstanceStorage MappingInstanceStorages}.
+	 */
+	private Map<Mapping, MappingInstanceStorage> findApplicableMappings(
+			final EObject element) {
+		
+		/*
+		 * This keeps track of all found possible mappings (a MappingInstanceStorage is created for
+		 * every mapping). One of the found mappings will be returned in the end.
+		 */
+		final Map<Mapping, MappingInstanceStorage> mappingData = new LinkedHashMap<>();
+		
+		/*
+		 * Now, iterate over all mappings and find those that are applicable for the current 'element'
+		 */
+		for (final Mapping m : mappingsToChooseFrom) {
+			
+			MappingInstanceStorage res;
+			
+			/*
+			 * This check is also done by 'findMapping(EObject, ...)', but since it will
+			 * most likely fail at the top level, for most mappings we do it
+			 * here before we construct any collections and so on. This
+			 * might save us a little time, but of course that depends on
+			 * the number mappings and the source meta-model.
+			 */
+			if (m.getSourceMMSection().getEClass().isSuperTypeOf(element.eClass())) {
+				
+				/*
+				 * check if the section that is referenced as 'container' can be matched
+				 */
+				boolean mappingFailed = !checkContainer(element, m.getSourceMMSection());
+				
+				if (!mappingFailed) {
+					
+					// check if the mapping is applicable and determine the (local) hint values
+					res = checkMapping(element, false, mappingHints.get(m), modelConnectionHints.get(m), m.getGlobalVariables(),
+							m.getSourceMMSection(),
+							new MappingInstanceStorage());
+					
+					if (abortTransformation)
+						return null;
+
+					mappingFailed = (res == null);
+					
+					if (!mappingFailed) {
+
+						/* 
+						 * now, determine the external hint values (the container must be present and valid as this was
+						 * already checked earlier
+						 */
+						mappingFailed = handleExternalSourceElements(m, res, mappingFailed);
+					}
+					
+					if (!mappingFailed) {
+						// all checks were successful -> the mapping is applicable
+						res.setMapping(m);
+						mappingData.put(m, res);
+					}
+				}
+			}
+		}
+		
+		return mappingData;
+	}
+
+	/**
+	 * This recursively checks if a {@link Mapping} (respectively its {@link Mapping#getSourceMMSection() sourceMMSection}) is 
+	 * applicable for a certain part of the source model. Therefore, it iterates downward in the containment hierarchy of the 
+	 * source section and checks if every element can be matched to a part of the source model. 
+	 * <p />
+	 * Note: During this process, all hint values are determined as well and stored in the returned {@link MappingInstanceStorage}.
+	 *
+	 * @param srcModelObject
+	 *            The element of the source model that is currently evaluated for applicability.
+	 * @param usedOkay
+	 *            Whether elements already contained in newRefsAndHints can be mapped (needed for non-containment references).
+	 * @param hints A list of {@link MappingHintType MappingHints} that are defined by the mapping that is currently checked.
+	 * @param connectionHints A list of {@link ModelConnectionHint ModelConnectionHints} that are defined by the mapping that is currently checked.
+	 * @param globalAttributes A list {@link GlobalAttribute GlobalAttributes} that are defined by the mapping that is currently checked.
+	 * @param srcSection The {@link SourceSectionClass} (either the sourceMMSection itself or a direct or indirect child of it) that is
+	 * currently checked.
+	 * @param newRefsAndHints The {@link MappingInstanceStorage} containing the hint values that have been already determined (earlier in the
+	 * recursion cycle).
+	 * 
+	 * @return The {@link MappingInstanceStorage} representing the instance of the mapping (including the <em>new</em> hint values as well as 
+	 * those hint values that have already been determined in  earlier recursion cycles) or '<em><b>null</b></em>' if the mapping was not 
+	 * applicable/the source section could not be matched.
+	 */
+	private MappingInstanceStorage checkMapping(
+			final EObject srcModelObject,
+			final boolean usedOkay, 
+			final Iterable<MappingHintType> hints,
+			final Iterable<ModelConnectionHint> connectionHints,
+			final Iterable<GlobalAttribute> globalAttributes,
+			final SourceSectionClass srcSection,
+			final MappingInstanceStorage newRefsAndHints) {
+	
+		final boolean classFits = srcSection.getEClass().isSuperTypeOf(srcModelObject.eClass());
+	
+		// first of all: check if usedRefs contains this item and if type fits
+		// (we do not check any of the used elements of other mappings, since
+		// WILL be in a different section of the containment tree )
+		if (!usedOkay && newRefsAndHints.containsSourceModelObjectMapped(srcModelObject) || !classFits) {
+			return null;
+		}
+		
+		// we will return this in Case we find the mapping to be applicable
+		// else we return null
+		final MappingInstanceStorage changedRefsAndHints = new MappingInstanceStorage();
+		changedRefsAndHints.setAssociatedSourceElement(srcSection, srcModelObject);
+	
+		final Map<AttributeMappingSourceElement, AttributeValueRepresentation> complexSourceElementHintValues = new LinkedHashMap<>();
+		final Map<AttributeMatcherSourceElement, AttributeValueRepresentation> complexAttrMatcherSourceElementHintValues = new LinkedHashMap<>();
+		final Map<ModelConnectionHintSourceElement, AttributeValueRepresentation> complexConnectionHintSourceElementHintValues = new LinkedHashMap<>();
+	
+		// init hintValues
+		for (final MappingHintType hint : hints) {
+			if (hint instanceof AttributeMapping) {
+				changedRefsAndHints.getHintValues().getAttributeMappingHintValues().init((AttributeMapping) hint, true);
+			} else if (hint instanceof MappingInstanceSelector) {
+				if (((MappingInstanceSelector) hint).getMatcher() instanceof AttributeMatcher) {
+					changedRefsAndHints.getHintValues().getMappingInstanceSelectorHintValues().init((MappingInstanceSelector) hint, true);
+				}
+			}
+	
+		}
+		for (final ModelConnectionHint hint : connectionHints) {
+			if (hint instanceof ModelConnectionHint) {
+				if (newRefsAndHints.getHintValues().containsHint(hint)) {
+					changedRefsAndHints.getHintValues().getHintValues(hint).addAll(newRefsAndHints.getHintValues().getHintValues(hint));
+				} else {
+					changedRefsAndHints.getHintValues().getModelConnectionHintValues().init(hint, true);
+				}
+			}
+		}
+		
+		// set refs
+		changedRefsAndHints.addSourceModelObjectsMapped(newRefsAndHints
+				.getSourceModelObjectsMapped());
+	
+		// add self to new Refs
+		changedRefsAndHints.addSourceModelObjectMapped(srcModelObject,
+				srcSection);
+	
+		/*
+		 * check Attributes and determine HintValues
+		 */
+		boolean attributesOk = handleAttributes(srcModelObject, hints, connectionHints,
+				globalAttributes, srcSection, changedRefsAndHints,
+				complexSourceElementHintValues,
+				complexAttrMatcherSourceElementHintValues,
+				complexConnectionHintSourceElementHintValues);
+		if (!attributesOk) {
+			return null;
+		}
+		
+		// now work on ComplexAttributeMappings and CalcMappings
+		final Set<AttributeMapping> complexAttributeMappingsFound = new HashSet<>();
+		final Set<AttributeMatcher> complexAttributeMatchersFound = new HashSet<>();
+		final Set<ModelConnectionHint> complexConnectionHintsFound = new HashSet<>();
+	
+		for (final MappingHintType h : hints) {
+			if (h instanceof AttributeMapping) {
+				
+					
+				final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> foundValues = 
+						new LinkedHashMap<>();
+				
+				// append the complex hint value (cardinality either 0 or 1)
+				// with found values in right order
+				for (final AttributeMappingSourceInterface s : ((AttributeMapping) h).getSourceAttributeMappings()) {
+					//TODO complexSourceElementHintValues does not seem to contain values from external source elements (either only for 
+					// expression mappings or all the times
+					if (complexSourceElementHintValues.containsKey(s)) {
+													
+						if(((AttributeMapping) h).getExpression() != null && !((AttributeMapping) h).getExpression().isEmpty()) {
+							AttributeValueRepresentation calculatedValue = null;
+							
+							for (String value : complexSourceElementHintValues.get(s).getValues()) {
+								try {
+									/*
+									 * Use 'ExpressionBuilder' to parse a 'double' from the 'string' representation
+									 * of the attribute value. The simpler way 'Double.parseDouble(value)' would not
+									 * support scientific notations like '0.42e2' or '4200e-2'.
+									 */
+									final double variableVal = new ExpressionBuilder(value).build().calculate();
+									
+									if(calculatedValue == null) {
+										calculatedValue = new AttributeValueRepresentation(s.getSourceAttribute(), String.valueOf(variableVal));
+									} else {
+										calculatedValue.addValue(String.valueOf(variableVal));
+									}
+								} catch (final Exception e) {
+									consoleStream.println("Couldn't convert variable " + s.getName() 
+											+ " of CalculatorMapping " + h.getName() + " from String to double. "
+											+ "The problematic source element's attribute value was: " + value);
+								}
+							
+							}
+							foundValues.put(s, calculatedValue);
+						} else {
+							foundValues.put(s, complexSourceElementHintValues.get(s));
+						}
+					}
+					
+				}
+					
+				if (foundValues.keySet().size() > 0) {
+					complexAttributeMappingsFound.add((AttributeMapping) h);
+					final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> oldValues = 
+							changedRefsAndHints.getHintValues().removeHintValue((AttributeMapping) h);
+					foundValues.putAll(oldValues);
+					changedRefsAndHints.getHintValues().addHintValue((AttributeMapping) h, foundValues);
+				}
+				
+				
+			} else if (h instanceof MappingInstanceSelector) {
+				if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
+					final AttributeMatcher m = (AttributeMatcher) ((MappingInstanceSelector) h)
+							.getMatcher();
+					final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> foundValues = new LinkedHashMap<>();
+					// append the complex hint value (cardinality either 0 or 1)
+					// with found values in right order
+					for (final AttributeMatcherSourceElement s : m
+							.getLocalSourceElements()) {
+						if (complexAttrMatcherSourceElementHintValues
+								.containsKey(s)) {
+							foundValues.put(s,
+									complexAttrMatcherSourceElementHintValues
+									.get(s));
+						}
+					}
+	
+					if (foundValues.keySet().size() > 0) {
+						complexAttributeMatchersFound.add(m);
+						final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> oldValues = 
+								changedRefsAndHints.getHintValues().removeHintValue((MappingInstanceSelector) h);
+						foundValues.putAll(oldValues);
+						changedRefsAndHints.getHintValues().addHintValue((MappingInstanceSelector) h, foundValues);
+					}
+				}
+			}
+		}
+	
+		// handle ComplexModelConnectionHints in the same way as
+		// ComplexAttributeMappings
+		for (final ModelConnectionHint hint : connectionHints) {
+			if (hint instanceof ModelConnectionHint) {
+				final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> foundValues = new LinkedHashMap<>();
+				// append the complex hint value (cardinality either 0 or 1)
+				// with found values in right order
+				for (final ModelConnectionHintSourceElement s : hint
+						.getLocalSourceElements()) {
+					if (complexConnectionHintSourceElementHintValues
+							.containsKey(s)) {
+						foundValues.put(s,
+								complexConnectionHintSourceElementHintValues
+								.get(s));
+					}
+				}
+	
+				if (foundValues.keySet().size() > 0) {
+					complexConnectionHintsFound
+					.add(hint);
+					final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> oldValues = 
+							changedRefsAndHints.getHintValues().removeHintValue(hint);
+					foundValues.putAll(oldValues);
+					changedRefsAndHints.getHintValues().addHintValue(hint, foundValues);
+				}
+			}
+		}
+	
+		/*
+		 * Combine values of references of same type
+		 */
+		final Map<EReference, List<SourceSectionClass>> classByRefMap = new LinkedHashMap<EReference, List<SourceSectionClass>>();
+		final Map<SourceSectionClass, SourceSectionReference> refByClassMap = new HashMap<SourceSectionClass, SourceSectionReference>();// TODO
+		/*
+		 * if this gets to slow, maybe add a map (refBySectionByClass) to this
+		 * class
+		 */
+	
+		final Map<SourceSectionClass, Integer> mappingCounts = new HashMap<SourceSectionClass, Integer>();
+	
+		for (final SourceSectionReference ref : srcSection.getReferences()) {
+			if (!classByRefMap.containsKey(ref.getEReference())) {
+				classByRefMap.put(ref.getEReference(),
+						new LinkedList<SourceSectionClass>());
+			}
+	
+			classByRefMap.get(ref.getEReference()).addAll(
+					ref.getValuesGeneric());
+	
+			for (final SourceSectionClass c : ref.getValuesGeneric()) {
+				refByClassMap.put(c, ref);
+				mappingCounts.put(c, new Integer(0));
+			}
+		}
+	
+		// now go through all the srcMmSection refs
+		for (final EReference ref : classByRefMap.keySet()) {
+			// reference.name.println;
+			// check if reference is allowed by src metamodel
+			// check if reference in srcMMSection points anywhere
+			if (classByRefMap.get(ref).size() < 1)
+				break;
+			final Object refTarget = srcModelObject.eGet(ref);// getrefTarget(s)
+			// in srcModel
+			// behave, depending on cardinality
+			/*
+			 * There are cases in which modeling more than target values for a
+			 * section than it can actually hold might make sense depending on
+			 * how the target's CardinalityType value was set. Therefore we do
+			 * not check the modeled references values at this point.
+			 */
+			if (ref.getUpperBound() == 1) {
+				final EObject refTargetObj = (EObject) refTarget;
+				if (refTargetObj == null)
+					return null;
+				MappingInstanceStorage res = null;
+				boolean nonZeroCardSectionFound = false;
+	
+				for (final SourceSectionClass c : classByRefMap.get(ref)) {
+					// check non-zero sections first (it doesn't make sense in
+					// this case to model ZERO_INFINITY sections, if there is
+					// one
+					// section with a minimum cardinality of 1, but it can be
+					// handled
+					if (!c.getCardinality().equals(
+							CardinalityType.ZERO_INFINITY)) {
+						if (nonZeroCardSectionFound) {// modeling error
+							consoleStream
+							.println("Modeling error in source section: '"
+									+ srcSection.getContainer()
+									.getName()
+									+ "'"
+									+ ", subsection: '"
+									+ srcSection.getName()
+									+ "'. The Reference '"
+									+ refByClassMap.get(c)
+									+ "'"
+									+ " points to a metamodel reference, that can only hold one value but in the source section it references more than one Class with"
+									+ "a CardinalityType that is not ZERO_INFINITY.");
+							return null;
+						}
+						nonZeroCardSectionFound = true;
+						res = checkMapping(
+								refTargetObj,
+								refByClassMap.get(c) instanceof MetaModelSectionReference
+								|| usedOkay, hints, connectionHints,
+								globalAttributes, c, changedRefsAndHints);
+						if (abortTransformation)
+							return null;
+					}
+				}
+	
+				if (!nonZeroCardSectionFound) {
+					for (final SourceSectionClass c : classByRefMap.get(ref)) {
+						res = checkMapping(
+								refTargetObj,
+								refByClassMap.get(c) instanceof MetaModelSectionReference
+								|| usedOkay, hints, connectionHints,
+								globalAttributes, c, changedRefsAndHints);
+						if (abortTransformation)
+							return null;
+						if (res != null) {
+							break;
+						}
+					}
+				}
+	
+				if (res != null) {
+					// success: combine refs and hints
+					if (refByClassMap.get(res.getAssociatedSourceClass()) instanceof ContainmentReference) {
+						changedRefsAndHints.add(res);
+					} else {
+						changedRefsAndHints.getHintValues().addHintValues(res.getHintValues());
+						changedRefsAndHints.getUnsyncedHintValues().addHintValues(res.getUnsyncedHintValues());
+					}
+					// check for a cardinality hint (it doesn't really make
+					// sense to model this for a class connected to a reference
+					// with cardinality == 1 but it can be tolerated )
+					mappingCounts.put(
+							res.getAssociatedSourceClass(),
+							new Integer(
+									mappingCounts.get(
+											res.getAssociatedSourceClass())
+											.intValue() + 1));
+	
+				} else {
+					return null;
+				}
+	
+			} else {// unbounded or unspecified
+				// cast refTarget to EList
+				@SuppressWarnings("unchecked")
+				final LinkedList<EObject> refTargetL = new LinkedList<EObject>(
+						(EList<EObject>) refTarget);
+	
+				/*
+				 * this is a little more complicated: now we need to find ONE
+				 * possible way to map our referenceTargets to the source
+				 * sections
+				 * 
+				 * To do this we need to find out first which MMSections are
+				 * applicable to which srcModel sections.
+				 * 
+				 * Then we try to find a way to map one srcModelSection to each
+				 * MMSection
+				 */
+	
+				// Map to store possible srcModelSections to MMSections
+				// (non-vc))
+				final SourceSectionMappingResultsMap possibleSrcModelElementsNoVC = new SourceSectionMappingResultsMap();
+				for (final SourceSectionClass val : classByRefMap.get(ref)) {
+					if (val.getCardinality().equals(CardinalityType.ONE)) {
+						possibleSrcModelElementsNoVC.put(val,
+								new LinkedList<MappingInstanceStorage>());
+					}
+				}
+	
+				// Map to store possible srcModelSections to MMSections (vc))
+				final SourceSectionMappingResultsMap possibleSrcModelElementsVC = new SourceSectionMappingResultsMap();
+				for (final SourceSectionClass val : classByRefMap.get(ref)) {
+					if (!val.getCardinality().equals(CardinalityType.ONE)) {
+						possibleSrcModelElementsVC.put(val,
+								new LinkedList<MappingInstanceStorage>());
+					}
+				}
+	
+				final LinkedHashSet<EObject> elementsUsableForVC = new LinkedHashSet<EObject>();
+				// find possible srcElements for mmsections
+				for (final EObject rt : refTargetL) {
+					boolean foundMapping = false;
+					for (final SourceSectionClass val : classByRefMap.get(ref)) {
+						final MappingInstanceStorage res = checkMapping(
+								rt,
+								refByClassMap.get(val) instanceof MetaModelSectionReference
+								|| usedOkay, hints, connectionHints,
+								globalAttributes, val, changedRefsAndHints);
+						if (abortTransformation)
+							return null;
+	
+						if (res != null) {// mapping possible
+							foundMapping = true;
+							res.setAssociatedSourceElement(val, rt);
+							if (!val.getCardinality().equals(
+									CardinalityType.ONE)) {
+								possibleSrcModelElementsVC.get(val).add(res);
+								elementsUsableForVC.add(rt);
+	
+							} else {
+								possibleSrcModelElementsNoVC.get(val).add(res);
+							}
+						}
+					}
+					if (!foundMapping) {
+						return null; // we need to find a mapping for every
+						// srcModelElement if the reference Type
+						// was modeled in the srcMMSection
+					}
+				}
+	
+				final LinkedList<EObject> allElementsMapped = new LinkedList<EObject>();
+	
+				while (possibleSrcModelElementsNoVC.keySet().size() > 0) {
+					final SourceSectionClass smallestKey = possibleSrcModelElementsNoVC
+							.getKeyForValueWithSmallestCollectionSize();
+					if (possibleSrcModelElementsNoVC.get(smallestKey).size() > 0) {
+						MappingInstanceStorage srcSectionResult;
+						// we need to filter a little more
+						if (possibleSrcModelElementsNoVC.get(smallestKey)
+								.size() > 1) {
+							LinkedList<MappingInstanceStorage> possibleElements = new LinkedList<MappingInstanceStorage>();
+							possibleElements
+									.addAll(possibleSrcModelElementsNoVC
+											.get(smallestKey));
+	
+							// filter elements that can be used for a vc-section
+							final LinkedList<MappingInstanceStorage> allVCIncompatible = new LinkedList<MappingInstanceStorage>();
+							for (final MappingInstanceStorage s : possibleElements) {
+								if (!elementsUsableForVC.contains(s
+										.getAssociatedSourceModelElement())) {
+									allVCIncompatible.add(s);
+								}
+							}
+							if (allVCIncompatible.size() >= 1) {
+								possibleElements = allVCIncompatible;
+							}
+	
+							srcSectionResult = getResultForLeastUsedSrcModelElement(possibleElements);
+	
+						} else {
+							srcSectionResult = possibleSrcModelElementsNoVC
+									.get(smallestKey).getFirst();
+						}
+	
+						// remember mapping
+						if (refByClassMap.get(srcSectionResult
+								.getAssociatedSourceClass()) instanceof ContainmentReference) {
+							changedRefsAndHints.add(srcSectionResult);
+	
+						} else {
+							changedRefsAndHints.getHintValues().addHintValues(srcSectionResult.getHintValues());
+							changedRefsAndHints.getUnsyncedHintValues().addHintValues(srcSectionResult.getUnsyncedHintValues());
+						}
+						allElementsMapped.add(srcSectionResult
+								.getAssociatedSourceModelElement());
+						// remove srcModel element from possibility lists of
+						// MMSections
+						possibleSrcModelElementsNoVC
+								.removeResultsForElement(srcSectionResult);
+						possibleSrcModelElementsVC
+								.removeResultsForElement(srcSectionResult);
+						possibleSrcModelElementsNoVC.remove(smallestKey);// remove
+						/*
+						 * successfully mapped mmSection from list
+						 */
+	
+						// update cardinality
+						mappingCounts.put(
+								srcSectionResult.getAssociatedSourceClass(),
+								new Integer(mappingCounts.get(
+										srcSectionResult
+										.getAssociatedSourceClass())
+										.intValue() + 1));
+					} else {
+						// consoleStream.println("no-vc mapping failed");
+						return null;// all non-vc-elements need to be mapped
+						// exactly once
+					}
+				}
+	
+				// try to map all vc-elements
+				final LinkedHashSet<SourceSectionClass> usedKeys = new LinkedHashSet<>(); // for
+				// counting
+				// cardinality
+	
+				while (possibleSrcModelElementsVC.keySet().size() != 0) {
+	
+					final SourceSectionClass smallestKey = possibleSrcModelElementsVC
+							.getKeyForValueWithSmallestCollectionSize();
+					if (possibleSrcModelElementsVC.get(smallestKey).size() > 0) {
+	
+						usedKeys.add(smallestKey);
+						MappingInstanceStorage srcSectionResult;
+						// we need to filter a little more
+						if (possibleSrcModelElementsVC.get(smallestKey).size() > 1) {
+	
+							srcSectionResult = getResultForLeastUsedSrcModelElement(possibleSrcModelElementsVC
+									.get(smallestKey));
+	
+						} else {
+							srcSectionResult = possibleSrcModelElementsVC.get(
+									smallestKey).getFirst();
+						}
+						// remember mapping
+						if (refByClassMap.get(srcSectionResult
+								.getAssociatedSourceClass()) instanceof ContainmentReference) {
+							changedRefsAndHints.add(srcSectionResult);
+	
+						} else {
+							changedRefsAndHints.getHintValues().addHintValues(srcSectionResult.getHintValues());
+							changedRefsAndHints.getUnsyncedHintValues().addHintValues(srcSectionResult.getUnsyncedHintValues());
+						}
+						allElementsMapped.add(srcSectionResult
+								.getAssociatedSourceModelElement());
+	
+						// remove srcModel element from possibility lists of
+						// MMSections
+						possibleSrcModelElementsVC
+								.removeResultsForElement(srcSectionResult);
+	
+						// update cardinality
+						mappingCounts.put(
+								srcSectionResult.getAssociatedSourceClass(),
+								new Integer(mappingCounts.get(
+										srcSectionResult
+										.getAssociatedSourceClass())
+										.intValue() + 1));
+	
+					} else if (usedKeys.contains(smallestKey)
+							|| smallestKey.getCardinality().equals(
+									CardinalityType.ZERO_INFINITY)) {
+						possibleSrcModelElementsVC.remove(smallestKey);// remove
+						// mmSection
+						// from
+						// list
+					} else {
+						// consoleStream.println("vc mapping failed");
+						return null; // the fact that samllestKey is not in the
+						// collection means that no mapping was
+						// found at all
+					}
+				}
+	
+				// check if all refTargets where mapped
+				refTargetL.removeAll(allElementsMapped);
+				if (refTargetL.size() > 0) {
+					consoleStream.println("Not everything could be mapped");
+					return null;
+				}
+			}
+		}
+	
+		/*
+		 * Handle cardinality Hints
+		 */
+		for (final MappingHintType h : hints) {
+			if (h instanceof CardinalityMapping) {
+				if (mappingCounts.keySet().contains(
+						((CardinalityMapping) h).getSource())) {
+					changedRefsAndHints.getHintValues().addHintValue((CardinalityMapping) h, mappingCounts
+							.get(((CardinalityMapping) h).getSource()));
+				}
+			}
+		}
+	
+		/*
+		 * sync complex hints
+		 */
+		syncComplexAttrMappings(srcSection, changedRefsAndHints);
+		syncComplexAttrMatchers(srcSection, changedRefsAndHints);
+		syncModelConnectionHints(srcSection, changedRefsAndHints);
+	
+		/*
+		 * if we are at one of the deepest SourceElements of a complex Mapping,
+		 * we create a new unsynced list, and remove it from the
+		 * changedRefsAndHints List until we sync it again (see above)
+		 */
+		for (final MappingHintType h : hints) {
+			if (h instanceof AttributeMapping) {
+				if (!(complexAttributeMappingsFound.contains(h) && deepestSourceSectionClassesByAttributeMapping
+						.get(h).contains(srcSection))) {
+					changedRefsAndHints.getHintValues().removeHintValue((AttributeMapping) h); // remove incomplete hint value
+				} else if (deepestSourceSectionClassesByAttributeMapping
+						.get(h).size() > 1) {
+					
+					changedRefsAndHints.getUnsyncedHintValues().setHintValues((AttributeMapping) h, srcSection,
+							new LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>>());
+					final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> val = 
+							changedRefsAndHints.getHintValues().removeHintValue((AttributeMapping) h);
+					changedRefsAndHints.getUnsyncedHintValues().addHintValue((AttributeMapping) h, srcSection, val);
+				}
+			} else if (h instanceof MappingInstanceSelector) {
+				if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
+					if (!(complexAttributeMatchersFound
+							.contains(((MappingInstanceSelector) h)
+									.getMatcher()) && deepestSourceSectionClassesByAttributeMatcher
+									.get(((MappingInstanceSelector) h).getMatcher())
+									.contains(srcSection))) {
+						changedRefsAndHints.getHintValues().removeHintValue((MappingInstanceSelector) h); // remove incomplete hint value
+					} else if (deepestSourceSectionClassesByAttributeMatcher
+							.get(((MappingInstanceSelector) h).getMatcher())
+							.size() > 1) {
+						
+						changedRefsAndHints.getUnsyncedHintValues().setHintValues((MappingInstanceSelector) h, srcSection, new LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>>());
+						final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> val = changedRefsAndHints.getHintValues().removeHintValue((MappingInstanceSelector) h);
+						changedRefsAndHints.getUnsyncedHintValues().addHintValue((MappingInstanceSelector) h, srcSection, val);
+					}
+				}
+			}
+		}
+	
+		for (final ModelConnectionHint h : connectionHints) {
+			if (h instanceof ModelConnectionHint) {
+				if (!(complexConnectionHintsFound.contains(h) && deepestSourceSectionClassesByModelConnectionHint
+						.get(h).contains(srcSection))) {
+					changedRefsAndHints.getHintValues().removeHintValue(h); // remove incomplete hint value
+				} else if (deepestSourceSectionClassesByModelConnectionHint
+						.get(h).size() > 1) {
+					
+					changedRefsAndHints.getUnsyncedHintValues().setHintValues(h, srcSection, new LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>>());
+					final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> val = changedRefsAndHints.getHintValues().removeHintValue(h);
+					changedRefsAndHints.getUnsyncedHintValues().addHintValue(h, srcSection, val);
+				}
+			}
+		}
+	
+		return changedRefsAndHints;
+	
 	}
 
 	/**
@@ -283,7 +1070,7 @@ public class SourceSectionMatcher implements CancellationListener {
 	 * @return true if the container attribute of the sourceSection Class
 	 *         doesn't exist or a fitting container instance exists
 	 */
-	private boolean doContainerCheck(final EObject element,
+	private boolean checkContainer(final EObject element,
 			final SourceSectionClass sourceSectionClass) {
 		
 		if (sourceSectionClass.getContainer() == null) {
@@ -347,7 +1134,7 @@ public class SourceSectionMatcher implements CancellationListener {
 				 */
 				if (!checkObjectWasMapped(containerClasses.get(index),
 						containerElements.get(index))) {
-					final MappingInstanceStorage res = findMapping(
+					final MappingInstanceStorage res = checkMapping(
 							containerElements.get(index), false,
 							Collections.<MappingHintType> emptyList(),
 							Collections.<ModelConnectionHint> emptyList(),
@@ -392,755 +1179,6 @@ public class SourceSectionMatcher implements CancellationListener {
 			// if we reached this point all went well
 			return true;
 		}
-	}
-
-	/**
-	 * Method for finding a suitable Mapping for a srcModelObject (this checks if a mapping is applicable).
-	 *
-	 * @param srcModelObject
-	 *            Element of the srcModel to be transformed
-	 * @param usedOkay
-	 *            specify whether elements already contained in newRefsAndHints
-	 *            can be mapped (needed for non-cont refs)
-	 * @param hints
-	 * @param connectionHints
-	 * @param globalVars
-	 * @param srcSection
-	 * @param newRefsAndHints
-	 */
-	private MappingInstanceStorage findMapping(final EObject srcModelObject,
-			final boolean usedOkay, final Iterable<MappingHintType> hints,
-			final Iterable<ModelConnectionHint> connectionHints,
-			final Iterable<GlobalAttribute> globalVars,
-			final SourceSectionClass srcSection,
-			final MappingInstanceStorage newRefsAndHints) {
-
-		final boolean classFits = srcSection.getEClass().isSuperTypeOf(
-				srcModelObject.eClass());
-
-		// first of all: check if usedRefs contains this item and if type fits
-		// (we do not check any of the used elements of other mappings, since
-		// WILL be in a different section of the containment tree )
-		if (!usedOkay && newRefsAndHints.containsSourceModelObjectMapped(srcModelObject) || !classFits) {
-			return null;
-		}
-		
-		// we will return this in Case we find the mapping to be applicable
-		// else we return null
-		final MappingInstanceStorage changedRefsAndHints = new MappingInstanceStorage();
-		changedRefsAndHints.setAssociatedSourceElement(srcSection, srcModelObject);
-
-		final Map<AttributeMappingSourceElement, AttributeValueRepresentation> complexSourceElementHintValues = new LinkedHashMap<>();
-		final Map<AttributeMatcherSourceElement, AttributeValueRepresentation> complexAttrMatcherSourceElementHintValues = new LinkedHashMap<>();
-		final Map<ModelConnectionHintSourceElement, AttributeValueRepresentation> complexConnectionHintSourceElementHintValues = new LinkedHashMap<>();
-
-		// init hintValues
-		for (final MappingHintType hint : hints) {
-			if (hint instanceof AttributeMapping) {
-				changedRefsAndHints.getHintValues().getAttributeMappingHintValues().init((AttributeMapping) hint, true);
-			} else if (hint instanceof MappingInstanceSelector) {
-				if (((MappingInstanceSelector) hint).getMatcher() instanceof AttributeMatcher) {
-					changedRefsAndHints.getHintValues().getMappingInstanceSelectorHintValues().init((MappingInstanceSelector) hint, true);
-				}
-			}
-
-		}
-		for (final ModelConnectionHint hint : connectionHints) {
-			if (hint instanceof ModelConnectionHint) {
-				if (newRefsAndHints.getHintValues().containsHint(hint)) {
-					changedRefsAndHints.getHintValues().getHintValues(hint).addAll(newRefsAndHints.getHintValues().getHintValues(hint));
-				} else {
-					changedRefsAndHints.getHintValues().getModelConnectionHintValues().init(hint, true);
-				}
-			}
-		}
-		
-		// set refs
-		changedRefsAndHints.addSourceModelObjectsMapped(newRefsAndHints
-				.getSourceModelObjectsMapped());
-
-		// add self to new Refs
-		changedRefsAndHints.addSourceModelObjectMapped(srcModelObject,
-				srcSection);
-
-		/*
-		 * check Attributes and determine HintValues
-		 */
-		boolean attributesOk = handleAttributes(srcModelObject, hints, connectionHints,
-				globalVars, srcSection, changedRefsAndHints,
-				complexSourceElementHintValues,
-				complexAttrMatcherSourceElementHintValues,
-				complexConnectionHintSourceElementHintValues);
-		if (!attributesOk) {
-			return null;
-		}
-		
-		// now work on ComplexAttributeMappings and CalcMappings
-		final Set<AttributeMapping> complexAttributeMappingsFound = new HashSet<>();
-		final Set<AttributeMatcher> complexAttributeMatchersFound = new HashSet<>();
-		final Set<ModelConnectionHint> complexConnectionHintsFound = new HashSet<>();
-
-		for (final MappingHintType h : hints) {
-			if (h instanceof AttributeMapping) {
-				
-					
-				final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> foundValues = 
-						new LinkedHashMap<>();
-				
-				// append the complex hint value (cardinality either 0 or 1)
-				// with found values in right order
-				for (final AttributeMappingSourceInterface s : ((AttributeMapping) h).getSourceAttributeMappings()) {
-					//TODO complexSourceElementHintValues does not seem to contain values from external source elements (either only for 
-					// expression mappings or all the times
-					if (complexSourceElementHintValues.containsKey(s)) {
-													
-						if(((AttributeMapping) h).getExpression() != null && !((AttributeMapping) h).getExpression().isEmpty()) {
-							AttributeValueRepresentation calculatedValue = null;
-							
-							for (String value : complexSourceElementHintValues.get(s).getValues()) {
-								try {
-									/*
-									 * Use 'ExpressionBuilder' to parse a 'double' from the 'string' representation
-									 * of the attribute value. The simpler way 'Double.parseDouble(value)' would not
-									 * support scientific notations like '0.42e2' or '4200e-2'.
-									 */
-									final double variableVal = new ExpressionBuilder(value).build().calculate();
-									
-									if(calculatedValue == null) {
-										calculatedValue = new AttributeValueRepresentation(s.getSourceAttribute(), String.valueOf(variableVal));
-									} else {
-										calculatedValue.addValue(String.valueOf(variableVal));
-									}
-								} catch (final Exception e) {
-									consoleStream.println("Couldn't convert variable " + s.getName() 
-											+ " of CalculatorMapping " + h.getName() + " from String to double. "
-											+ "The problematic source element's attribute value was: " + value);
-								}
-							
-							}
-							foundValues.put(s, calculatedValue);
-						} else {
-							foundValues.put(s, complexSourceElementHintValues.get(s));
-						}
-					}
-					
-				}
-					
-				if (foundValues.keySet().size() > 0) {
-					complexAttributeMappingsFound.add((AttributeMapping) h);
-					final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> oldValues = 
-							changedRefsAndHints.getHintValues().removeHintValue((AttributeMapping) h);
-					foundValues.putAll(oldValues);
-					changedRefsAndHints.getHintValues().addHintValue((AttributeMapping) h, foundValues);
-				}
-				
-				
-			} else if (h instanceof MappingInstanceSelector) {
-				if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
-					final AttributeMatcher m = (AttributeMatcher) ((MappingInstanceSelector) h)
-							.getMatcher();
-					final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> foundValues = new LinkedHashMap<>();
-					// append the complex hint value (cardinality either 0 or 1)
-					// with found values in right order
-					for (final AttributeMatcherSourceElement s : m
-							.getLocalSourceElements()) {
-						if (complexAttrMatcherSourceElementHintValues
-								.containsKey(s)) {
-							foundValues.put(s,
-									complexAttrMatcherSourceElementHintValues
-									.get(s));
-						}
-					}
-
-					if (foundValues.keySet().size() > 0) {
-						complexAttributeMatchersFound.add(m);
-						final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> oldValues = 
-								changedRefsAndHints.getHintValues().removeHintValue((MappingInstanceSelector) h);
-						foundValues.putAll(oldValues);
-						changedRefsAndHints.getHintValues().addHintValue((MappingInstanceSelector) h, foundValues);
-					}
-				}
-			}
-		}
-
-		// handle ComplexModelConnectionHints in the same way as
-		// ComplexAttributeMappings
-		for (final ModelConnectionHint hint : connectionHints) {
-			if (hint instanceof ModelConnectionHint) {
-				final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> foundValues = new LinkedHashMap<>();
-				// append the complex hint value (cardinality either 0 or 1)
-				// with found values in right order
-				for (final ModelConnectionHintSourceElement s : hint
-						.getLocalSourceElements()) {
-					if (complexConnectionHintSourceElementHintValues
-							.containsKey(s)) {
-						foundValues.put(s,
-								complexConnectionHintSourceElementHintValues
-								.get(s));
-					}
-				}
-
-				if (foundValues.keySet().size() > 0) {
-					complexConnectionHintsFound
-					.add(hint);
-					final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> oldValues = 
-							changedRefsAndHints.getHintValues().removeHintValue(hint);
-					foundValues.putAll(oldValues);
-					changedRefsAndHints.getHintValues().addHintValue(hint, foundValues);
-				}
-			}
-		}
-
-		/*
-		 * Combine values of references of same type
-		 */
-		final Map<EReference, List<SourceSectionClass>> classByRefMap = new LinkedHashMap<EReference, List<SourceSectionClass>>();
-		final Map<SourceSectionClass, SourceSectionReference> refByClassMap = new HashMap<SourceSectionClass, SourceSectionReference>();// TODO
-		/*
-		 * if this gets to slow, maybe add a map (refBySectionByClass) to this
-		 * class
-		 */
-
-		final Map<SourceSectionClass, Integer> mappingCounts = new HashMap<SourceSectionClass, Integer>();
-
-		for (final SourceSectionReference ref : srcSection.getReferences()) {
-			if (!classByRefMap.containsKey(ref.getEReference())) {
-				classByRefMap.put(ref.getEReference(),
-						new LinkedList<SourceSectionClass>());
-			}
-
-			classByRefMap.get(ref.getEReference()).addAll(
-					ref.getValuesGeneric());
-
-			for (final SourceSectionClass c : ref.getValuesGeneric()) {
-				refByClassMap.put(c, ref);
-				mappingCounts.put(c, new Integer(0));
-			}
-		}
-
-		// now go through all the srcMmSection refs
-		for (final EReference ref : classByRefMap.keySet()) {
-			// reference.name.println;
-			// check if reference is allowed by src metamodel
-			// check if reference in srcMMSection points anywhere
-			if (classByRefMap.get(ref).size() < 1)
-				break;
-			final Object refTarget = srcModelObject.eGet(ref);// getrefTarget(s)
-			// in srcModel
-			// behave, depending on cardinality
-			/*
-			 * There are cases in which modeling more than target values for a
-			 * section than it can actually hold might make sense depending on
-			 * how the target's CardinalityType value was set. Therefore we do
-			 * not check the modeled references values at this point.
-			 */
-			if (ref.getUpperBound() == 1) {
-				final EObject refTargetObj = (EObject) refTarget;
-				if (refTargetObj == null)
-					return null;
-				MappingInstanceStorage res = null;
-				boolean nonZeroCardSectionFound = false;
-
-				for (final SourceSectionClass c : classByRefMap.get(ref)) {
-					// check non-zero sections first (it doesn't make sense in
-					// this case to model ZERO_INFINITY sections, if there is
-					// one
-					// section with a minimum cardinality of 1, but it can be
-					// handled
-					if (!c.getCardinality().equals(
-							CardinalityType.ZERO_INFINITY)) {
-						if (nonZeroCardSectionFound) {// modeling error
-							consoleStream
-							.println("Modeling error in source section: '"
-									+ srcSection.getContainer()
-									.getName()
-									+ "'"
-									+ ", subsection: '"
-									+ srcSection.getName()
-									+ "'. The Reference '"
-									+ refByClassMap.get(c)
-									+ "'"
-									+ " points to a metamodel reference, that can only hold one value but in the source section it references more than one Class with"
-									+ "a CardinalityType that is not ZERO_INFINITY.");
-							return null;
-						}
-						nonZeroCardSectionFound = true;
-						res = findMapping(
-								refTargetObj,
-								refByClassMap.get(c) instanceof MetaModelSectionReference
-								|| usedOkay, hints, connectionHints,
-								globalVars, c, changedRefsAndHints);
-						if (abortTransformation)
-							return null;
-					}
-				}
-
-				if (!nonZeroCardSectionFound) {
-					for (final SourceSectionClass c : classByRefMap.get(ref)) {
-						res = findMapping(
-								refTargetObj,
-								refByClassMap.get(c) instanceof MetaModelSectionReference
-								|| usedOkay, hints, connectionHints,
-								globalVars, c, changedRefsAndHints);
-						if (abortTransformation)
-							return null;
-						if (res != null) {
-							break;
-						}
-					}
-				}
-
-				if (res != null) {
-					// success: combine refs and hints
-					if (refByClassMap.get(res.getAssociatedSourceClass()) instanceof ContainmentReference) {
-						changedRefsAndHints.add(res);
-					} else {
-						changedRefsAndHints.getHintValues().addHintValues(res.getHintValues());
-						changedRefsAndHints.getUnsyncedHintValues().addHintValues(res.getUnsyncedHintValues());
-					}
-					// check for a cardinality hint (it doesn't really make
-					// sense to model this for a class connected to a reference
-					// with cardinality == 1 but it can be tolerated )
-					mappingCounts.put(
-							res.getAssociatedSourceClass(),
-							new Integer(
-									mappingCounts.get(
-											res.getAssociatedSourceClass())
-											.intValue() + 1));
-
-				} else {
-					return null;
-				}
-
-			} else {// unbounded or unspecified
-				// cast refTarget to EList
-				@SuppressWarnings("unchecked")
-				final LinkedList<EObject> refTargetL = new LinkedList<EObject>(
-						(EList<EObject>) refTarget);
-
-				/*
-				 * this is a little more complicated: now we need to find ONE
-				 * possible way to map our referenceTargets to the source
-				 * sections
-				 * 
-				 * To do this we need to find out first which MMSections are
-				 * applicable to which srcModel sections.
-				 * 
-				 * Then we try to find a way to map one srcModelSection to each
-				 * MMSection
-				 */
-
-				// Map to store possible srcModelSections to MMSections
-				// (non-vc))
-				final SourceSectionMappingResultsMap possibleSrcModelElementsNoVC = new SourceSectionMappingResultsMap();
-				for (final SourceSectionClass val : classByRefMap.get(ref)) {
-					if (val.getCardinality().equals(CardinalityType.ONE)) {
-						possibleSrcModelElementsNoVC.put(val,
-								new LinkedList<MappingInstanceStorage>());
-					}
-				}
-
-				// Map to store possible srcModelSections to MMSections (vc))
-				final SourceSectionMappingResultsMap possibleSrcModelElementsVC = new SourceSectionMappingResultsMap();
-				for (final SourceSectionClass val : classByRefMap.get(ref)) {
-					if (!val.getCardinality().equals(CardinalityType.ONE)) {
-						possibleSrcModelElementsVC.put(val,
-								new LinkedList<MappingInstanceStorage>());
-					}
-				}
-
-				final LinkedHashSet<EObject> elementsUsableForVC = new LinkedHashSet<EObject>();
-				// find possible srcElements for mmsections
-				for (final EObject rt : refTargetL) {
-					boolean foundMapping = false;
-					for (final SourceSectionClass val : classByRefMap.get(ref)) {
-						final MappingInstanceStorage res = findMapping(
-								rt,
-								refByClassMap.get(val) instanceof MetaModelSectionReference
-								|| usedOkay, hints, connectionHints,
-								globalVars, val, changedRefsAndHints);
-						if (abortTransformation)
-							return null;
-
-						if (res != null) {// mapping possible
-							foundMapping = true;
-							res.setAssociatedSourceElement(val, rt);
-							if (!val.getCardinality().equals(
-									CardinalityType.ONE)) {
-								possibleSrcModelElementsVC.get(val).add(res);
-								elementsUsableForVC.add(rt);
-
-							} else {
-								possibleSrcModelElementsNoVC.get(val).add(res);
-							}
-						}
-					}
-					if (!foundMapping) {
-						return null; // we need to find a mapping for every
-						// srcModelElement if the reference Type
-						// was modeled in the srcMMSection
-					}
-				}
-
-				final LinkedList<EObject> allElementsMapped = new LinkedList<EObject>();
-
-				while (possibleSrcModelElementsNoVC.keySet().size() > 0) {
-					final SourceSectionClass smallestKey = possibleSrcModelElementsNoVC
-							.getKeyForValueWithSmallestCollectionSize();
-					if (possibleSrcModelElementsNoVC.get(smallestKey).size() > 0) {
-						MappingInstanceStorage srcSectionResult;
-						// we need to filter a little more
-						if (possibleSrcModelElementsNoVC.get(smallestKey)
-								.size() > 1) {
-							LinkedList<MappingInstanceStorage> possibleElements = new LinkedList<MappingInstanceStorage>();
-							possibleElements
-									.addAll(possibleSrcModelElementsNoVC
-											.get(smallestKey));
-
-							// filter elements that can be used for a vc-section
-							final LinkedList<MappingInstanceStorage> allVCIncompatible = new LinkedList<MappingInstanceStorage>();
-							for (final MappingInstanceStorage s : possibleElements) {
-								if (!elementsUsableForVC.contains(s
-										.getAssociatedSourceModelElement())) {
-									allVCIncompatible.add(s);
-								}
-							}
-							if (allVCIncompatible.size() >= 1) {
-								possibleElements = allVCIncompatible;
-							}
-
-							srcSectionResult = getResultForLeastUsedSrcModelElement(possibleElements);
-
-						} else {
-							srcSectionResult = possibleSrcModelElementsNoVC
-									.get(smallestKey).getFirst();
-						}
-
-						// remember mapping
-						if (refByClassMap.get(srcSectionResult
-								.getAssociatedSourceClass()) instanceof ContainmentReference) {
-							changedRefsAndHints.add(srcSectionResult);
-
-						} else {
-							changedRefsAndHints.getHintValues().addHintValues(srcSectionResult.getHintValues());
-							changedRefsAndHints.getUnsyncedHintValues().addHintValues(srcSectionResult.getUnsyncedHintValues());
-						}
-						allElementsMapped.add(srcSectionResult
-								.getAssociatedSourceModelElement());
-						// remove srcModel element from possibility lists of
-						// MMSections
-						possibleSrcModelElementsNoVC
-								.removeResultsForElement(srcSectionResult);
-						possibleSrcModelElementsVC
-								.removeResultsForElement(srcSectionResult);
-						possibleSrcModelElementsNoVC.remove(smallestKey);// remove
-						/*
-						 * successfully mapped mmSection from list
-						 */
-
-						// update cardinality
-						mappingCounts.put(
-								srcSectionResult.getAssociatedSourceClass(),
-								new Integer(mappingCounts.get(
-										srcSectionResult
-										.getAssociatedSourceClass())
-										.intValue() + 1));
-					} else {
-						// consoleStream.println("no-vc mapping failed");
-						return null;// all non-vc-elements need to be mapped
-						// exactly once
-					}
-				}
-
-				// try to map all vc-elements
-				final LinkedHashSet<SourceSectionClass> usedKeys = new LinkedHashSet<>(); // for
-				// counting
-				// cardinality
-
-				while (possibleSrcModelElementsVC.keySet().size() != 0) {
-
-					final SourceSectionClass smallestKey = possibleSrcModelElementsVC
-							.getKeyForValueWithSmallestCollectionSize();
-					if (possibleSrcModelElementsVC.get(smallestKey).size() > 0) {
-
-						usedKeys.add(smallestKey);
-						MappingInstanceStorage srcSectionResult;
-						// we need to filter a little more
-						if (possibleSrcModelElementsVC.get(smallestKey).size() > 1) {
-
-							srcSectionResult = getResultForLeastUsedSrcModelElement(possibleSrcModelElementsVC
-									.get(smallestKey));
-
-						} else {
-							srcSectionResult = possibleSrcModelElementsVC.get(
-									smallestKey).getFirst();
-						}
-						// remember mapping
-						if (refByClassMap.get(srcSectionResult
-								.getAssociatedSourceClass()) instanceof ContainmentReference) {
-							changedRefsAndHints.add(srcSectionResult);
-
-						} else {
-							changedRefsAndHints.getHintValues().addHintValues(srcSectionResult.getHintValues());
-							changedRefsAndHints.getUnsyncedHintValues().addHintValues(srcSectionResult.getUnsyncedHintValues());
-						}
-						allElementsMapped.add(srcSectionResult
-								.getAssociatedSourceModelElement());
-
-						// remove srcModel element from possibility lists of
-						// MMSections
-						possibleSrcModelElementsVC
-								.removeResultsForElement(srcSectionResult);
-
-						// update cardinality
-						mappingCounts.put(
-								srcSectionResult.getAssociatedSourceClass(),
-								new Integer(mappingCounts.get(
-										srcSectionResult
-										.getAssociatedSourceClass())
-										.intValue() + 1));
-
-					} else if (usedKeys.contains(smallestKey)
-							|| smallestKey.getCardinality().equals(
-									CardinalityType.ZERO_INFINITY)) {
-						possibleSrcModelElementsVC.remove(smallestKey);// remove
-						// mmSection
-						// from
-						// list
-					} else {
-						// consoleStream.println("vc mapping failed");
-						return null; // the fact that samllestKey is not in the
-						// collection means that no mapping was
-						// found at all
-					}
-				}
-
-				// check if all refTargets where mapped
-				refTargetL.removeAll(allElementsMapped);
-				if (refTargetL.size() > 0) {
-					consoleStream.println("Not everything could be mapped");
-					return null;
-				}
-			}
-		}
-
-		/*
-		 * Handle cardinality Hints
-		 */
-		for (final MappingHintType h : hints) {
-			if (h instanceof CardinalityMapping) {
-				if (mappingCounts.keySet().contains(
-						((CardinalityMapping) h).getSource())) {
-					changedRefsAndHints.getHintValues().addHintValue((CardinalityMapping) h, mappingCounts
-							.get(((CardinalityMapping) h).getSource()));
-				}
-			}
-		}
-
-		/*
-		 * sync complex hints
-		 */
-		syncComplexAttrMappings(srcSection, changedRefsAndHints);
-		syncComplexAttrMatchers(srcSection, changedRefsAndHints);
-		syncModelConnectionHints(srcSection, changedRefsAndHints);
-
-		/*
-		 * if we are at one of the deepest SourceElements of a complex Mapping,
-		 * we create a new unsynced list, and remove it from the
-		 * changedRefsAndHints List until we sync it again (see above)
-		 */
-		for (final MappingHintType h : hints) {
-			if (h instanceof AttributeMapping) {
-				if (!(complexAttributeMappingsFound.contains(h) && deepestSourceSectionClassesByAttributeMapping
-						.get(h).contains(srcSection))) {
-					changedRefsAndHints.getHintValues().removeHintValue((AttributeMapping) h); // remove incomplete hint value
-				} else if (deepestSourceSectionClassesByAttributeMapping
-						.get(h).size() > 1) {
-					
-					changedRefsAndHints.getUnsyncedHintValues().setHintValues((AttributeMapping) h, srcSection,
-							new LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>>());
-					final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> val = 
-							changedRefsAndHints.getHintValues().removeHintValue((AttributeMapping) h);
-					changedRefsAndHints.getUnsyncedHintValues().addHintValue((AttributeMapping) h, srcSection, val);
-				}
-			} else if (h instanceof MappingInstanceSelector) {
-				if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
-					if (!(complexAttributeMatchersFound
-							.contains(((MappingInstanceSelector) h)
-									.getMatcher()) && deepestSourceSectionClassesByAttributeMatcher
-									.get(((MappingInstanceSelector) h).getMatcher())
-									.contains(srcSection))) {
-						changedRefsAndHints.getHintValues().removeHintValue((MappingInstanceSelector) h); // remove incomplete hint value
-					} else if (deepestSourceSectionClassesByAttributeMatcher
-							.get(((MappingInstanceSelector) h).getMatcher())
-							.size() > 1) {
-						
-						changedRefsAndHints.getUnsyncedHintValues().setHintValues((MappingInstanceSelector) h, srcSection, new LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>>());
-						final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> val = changedRefsAndHints.getHintValues().removeHintValue((MappingInstanceSelector) h);
-						changedRefsAndHints.getUnsyncedHintValues().addHintValue((MappingInstanceSelector) h, srcSection, val);
-					}
-				}
-			}
-		}
-
-		for (final ModelConnectionHint h : connectionHints) {
-			if (h instanceof ModelConnectionHint) {
-				if (!(complexConnectionHintsFound.contains(h) && deepestSourceSectionClassesByModelConnectionHint
-						.get(h).contains(srcSection))) {
-					changedRefsAndHints.getHintValues().removeHintValue(h); // remove incomplete hint value
-				} else if (deepestSourceSectionClassesByModelConnectionHint
-						.get(h).size() > 1) {
-					
-					changedRefsAndHints.getUnsyncedHintValues().setHintValues(h, srcSection, new LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>>());
-					final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> val = changedRefsAndHints.getHintValues().removeHintValue(h);
-					changedRefsAndHints.getUnsyncedHintValues().addHintValue(h, srcSection, val);
-				}
-			}
-		}
-
-		return changedRefsAndHints;
-
-	}
-
-	/**
-	 * Try to apply a mapping that has the first Element of the supplied List as
-	 * its root object.
-	 * <p>
-	 * It is assumed that the List was created by the buildContainmentTree
-	 * method
-	 *
-	 * @param containmentTree
-	 * @return Hints and used source model elements for the , null if no mapping
-	 *         could be found
-	 */
-	MappingInstanceStorage findMapping(ContainmentTree containmentTree,
-			final boolean onlyAskOnceOnAmbiguousMappings) {
-		// long start;// for statistics
-		// long time;
-
-		/* this is the source model element which we will now try to map 
-		 */
-		final EObject element = containmentTree.getNextElementForMatching();
-		
-		// start = System.nanoTime();
-		final Map<Mapping, MappingInstanceStorage> mappingData = 
-				new LinkedHashMap<>();
-		
-		// find mapping rules that are applicable to a srcMM element
-		for (final Mapping m : mappingsToChooseFrom) {
-			// create result map
-			MappingInstanceStorage res;
-			
-			/*
-			 * This check is also done by findMapping, but since it will
-			 * most likely fail at the top level, for most mappings we do it
-			 * here before we construct any collections and so on. This
-			 * might save us a little time, but of course that depends on
-			 * the number mappings and the source metamodel.
-			 */
-			if (m.getSourceMMSection().getEClass()
-					.isSuperTypeOf(element.eClass())) {
-				
-				/*
-				 * check if the section that is referenced as 'container' can be matched
-				 */
-				boolean containerFits = doContainerCheck(element, m.getSourceMMSection());
-				
-				if (containerFits) {
-					res = findMapping(element, false, mappingHints.get(m), modelConnectionHints.get(m), m.getGlobalVariables(),
-							m.getSourceMMSection(),
-							new MappingInstanceStorage());
-					if (abortTransformation)
-						return null;
-
-					boolean mappingFailed = (res == null);
-					if (!mappingFailed) {
-						// if mapping possible check ExternalAttributeMappings
-						// check external attributes here; container element
-						// MUST be present (check was done earlier)
-						mappingFailed = handleExternalAttributeMappings(m, res,
-								mappingFailed);
-					}
-					if (!mappingFailed) {// if mapping possible add to list
-						res.setMapping(m);
-						mappingData.put(m, res);
-					}
-				}
-			}
-		}
-		// time = System.nanoTime() - start;
-
-		// last step: let user decide
-		MappingInstanceStorage returnVal = null;
-		switch (mappingData.keySet().size()) {
-		case 0:
-			// consoleStream.println("No suitable mappping found for element\n'"
-			// + element.eClass().getName() + "'.");
-			break;
-		case 1:
-			returnVal = mappingData.values().iterator().next();
-			break;
-		default:
-			if (onlyAskOnceOnAmbiguousMappings
-					&& ambiguousMappingSelections.containsKey(mappingData
-							.keySet())) {// only use past choices if this option
-				// is set
-				returnVal = mappingData.get(ambiguousMappingSelections
-						.get(mappingData.keySet()));
-			} else {
-				if (abortTransformation)
-					return null;
-				final NamedElementItemSelectorDialogRunner<Mapping> dialog = new NamedElementItemSelectorDialogRunner<Mapping>(
-						"Please select a Mapping for the source element\n'"
-								+ EObjectTransformationHelper.asString(element)
-								+ "'", new ArrayList<Mapping>(
-										mappingData.keySet()), 0);
-				Display.getDefault().syncExec(dialog);
-				if (dialog.wasTransformationStopRequested()) {
-					abortTransformation = true;
-					return null;
-				}
-				returnVal = mappingData.get(dialog
-						.getSelection());
-				ambiguousMappingSelections.put(mappingData.keySet(),
-						dialog.getSelection());
-			}
-		}
-
-		if (returnVal != null) {
-			for (final SourceSectionClass c : returnVal
-					.getSourceModelObjectsMapped().keySet()) {
-				if (!matchedSections.containsKey(c)) {
-					matchedSections.put(c, new LinkedHashSet<EObject>());
-				}
-				returnVal.getSourceModelObjectsMapped().get(c).size();
-				matchedSections.get(c).addAll(
-						returnVal.getSourceModelObjectsMapped().get(c));
-				/*
-				 * remove mapped elements from list of elements to be mapped
-				 */
-				containmentTree.markAsMatched(returnVal
-						.getSourceModelObjectsMapped().get(c));
-//				contRefObjectsToMap.removeAll(returnVal
-//						.getSourceModelObjectsMapped().get(c));
-
-			}
-			// consoleStream.println(',' + returnVal.getMapping().getName() +
-			// ", "
-			// + used + " ,  " + time);
-
-			/*
-			 * Handle cardinality Hints for section root (doesn't make sense to
-			 * model this but we will tolerate it)
-			 */
-			for (final MappingHintType h : mappingHints.get(returnVal.getMapping())) {
-				if (h instanceof CardinalityMapping) {
-					returnVal.getHintValues().addHintValue((CardinalityMapping) h, new Integer(1));
-				}
-			}
-		}
-
-		return returnVal;
 	}
 
 	/**
@@ -1746,7 +1784,7 @@ public class SourceSectionMatcher implements CancellationListener {
 	 * @param mappingFailed If the mapping already failed at an earlier stage.
 	 * @return If something went wrong while determining the external hint values for the attribute mapping.
 	 */
-	private boolean handleExternalAttributeMappings(
+	private boolean handleExternalSourceElements(
 			final Mapping m,
 			final MappingInstanceStorage res, 
 			boolean mappingFailed) {
@@ -2185,5 +2223,4 @@ public class SourceSectionMatcher implements CancellationListener {
 		}
 		return srcSectionResult;
 	}
-
 }

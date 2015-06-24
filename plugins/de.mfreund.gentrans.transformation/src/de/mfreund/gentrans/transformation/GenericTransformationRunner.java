@@ -281,14 +281,11 @@ public class GenericTransformationRunner {
 	private boolean executeMappings(final XMIResource targetModel, final EObject sourceModel,
 			final PAMTraM pamtramModel, final List<Mapping> suitableMappings,
 			final IProgressMonitor monitor) {
+		
 		// generate storage objects and generators
 		final AttributeValueModifierExecutor attributeValueModifier = new AttributeValueModifierExecutor(
 				consoleStream);
-		final SourceSectionMatcher sourceSectionMapper = new SourceSectionMatcher(
-				suitableMappings, attributeValueModifier, consoleStream);
 		final AttributeValueRegistry attrValueRegistry = new AttributeValueRegistry();
-
-		objectsToCancel.add(sourceSectionMapper);
 
 		/*
 		 * create a list of all the containment references in the source model
@@ -301,6 +298,13 @@ public class GenericTransformationRunner {
 		 * and unmatched elements.
 		 */
 		final ContainmentTree containmentTree = ContainmentTree.build(sourceModel);
+		
+		/*
+		 * Create the source section matcher that finds applicable mappings
+		 */
+		final SourceSectionMatcher sourceSectionMatcher = new SourceSectionMatcher(
+				containmentTree, suitableMappings, onlyAskOnceOnAmbiguousMappings, attributeValueModifier, consoleStream);
+		objectsToCancel.add(sourceSectionMatcher);
 
 		/*
 		 * now start mapping each one of the references. We automatically start
@@ -316,9 +320,10 @@ public class GenericTransformationRunner {
 		
 		while (containmentTree.getNumberOfAvailableElements() > 0 && !isCancelled) {
 			
-			final MappingInstanceStorage selectedMapping = sourceSectionMapper
-					.findMapping(containmentTree, onlyAskOnceOnAmbiguousMappings);
-			if (sourceSectionMapper.isCancelled()) {
+			final MappingInstanceStorage selectedMapping = 
+					sourceSectionMatcher.findMappingForNextElement();
+			
+			if (sourceSectionMatcher.isCancelled()) {
 				writePamtramMessage("Transformation aborted.");
 				return false;
 			}
@@ -357,7 +362,7 @@ public class GenericTransformationRunner {
 		 * Also add values of GlobalVariables to ComplexAttributeMapping's Hints
 		 */
 		final HintValueStorage exportedMappingHints = handleGlobalVarsAndExportedMappings(
-				sourceSectionMapper, selectedMappings);
+				sourceSectionMatcher, selectedMappings);
 
 		if (isCancelled)
 			return false;
@@ -377,7 +382,7 @@ public class GenericTransformationRunner {
 		 */
 		writePamtramMessage("Instantiating targetModelSections for selected mappings. First pass");
 		runInstantiationFirstPass(
-				sourceSectionMapper, targetSectionRegistry, attrValueRegistry,
+				sourceSectionMatcher, targetSectionRegistry, attrValueRegistry,
 				selectedMappings, exportedMappingHints, pamtramModel
 						.getMappingModel().getGlobalValues(), monitor,
 				attributeValueModifier);
@@ -935,8 +940,7 @@ public class GenericTransformationRunner {
 		// generate storage objects and generators
 		final AttributeValueModifierExecutor attributeValueModifier = new AttributeValueModifierExecutor(
 				consoleStream);
-		final SourceSectionMatcher sourceSectionMapper = new SourceSectionMatcher(
-				suitableMappings, attributeValueModifier, consoleStream);
+		
 
 		/*
 		 * create a list of all the containment references in the source model
@@ -949,6 +953,10 @@ public class GenericTransformationRunner {
 		 */
 		final ContainmentTree containmentTree = ContainmentTree.build(sourceModel);
 
+
+		final SourceSectionMatcher sourceSectionMapper = new SourceSectionMatcher(
+				containmentTree, suitableMappings, onlyAskOnceOnAmbiguousMappings, attributeValueModifier, consoleStream);
+		
 		/*
 		 * now start mapping each one of the references. We automatically start
 		 * at the sourceModel root node
@@ -962,8 +970,7 @@ public class GenericTransformationRunner {
 			// remove(0) automatically selects element highest in the hierarchy
 			// we currently try to map
 
-			final MappingInstanceStorage selectedMapping = sourceSectionMapper
-					.findMapping(containmentTree, onlyAskOnceOnAmbiguousMappings);
+			final MappingInstanceStorage selectedMapping = sourceSectionMapper.findMappingForNextElement();
 			if (sourceSectionMapper.isCancelled()) {
 				writePamtramMessage("Transformation aborted.");
 				return null;

@@ -2466,7 +2466,7 @@
                           <attributes xsi:type="metamodel:ActualAttribute" name="Name">
                             <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
                           </attributes>
-                          <attributes xsi:type="metamodel:ActualAttribute" name="Multiplicity">
+                          <attributes xsi:type="metamodel:ActualAttribute" name="Multiplicity" value="1..1">
                             <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//algorithm/MultiplicityElement/Multiplicity"/>
                           </attributes>
                           <attributes xsi:type="metamodel:ActualAttribute" name="SelectStructuredTypeMember">
@@ -2499,7 +2499,7 @@
                           <attributes xsi:type="metamodel:ActualAttribute" name="Name">
                             <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
                           </attributes>
-                          <attributes xsi:type="metamodel:ActualAttribute" name="Multiplicity">
+                          <attributes xsi:type="metamodel:ActualAttribute" name="Multiplicity" value="1..1">
                             <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//algorithm/MultiplicityElement/Multiplicity"/>
                           </attributes>
                           <attributes xsi:type="metamodel:ActualAttribute" name="SelectStructuredTypeMember">
@@ -2673,7 +2673,7 @@
                           <attributes xsi:type="metamodel:ActualAttribute" name="Name">
                             <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
                           </attributes>
-                          <attributes xsi:type="metamodel:ActualAttribute" name="Multiplicity">
+                          <attributes xsi:type="metamodel:ActualAttribute" name="Multiplicity" value="1..1">
                             <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//algorithm/MultiplicityElement/Multiplicity"/>
                           </attributes>
                           <attributes xsi:type="metamodel:ActualAttribute" name="SelectStructuredTypeMember">
@@ -2706,7 +2706,7 @@
                           <attributes xsi:type="metamodel:ActualAttribute" name="Name">
                             <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
                           </attributes>
-                          <attributes xsi:type="metamodel:ActualAttribute" name="Multiplicity">
+                          <attributes xsi:type="metamodel:ActualAttribute" name="Multiplicity" value="1..1">
                             <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//algorithm/MultiplicityElement/Multiplicity"/>
                           </attributes>
                           <attributes xsi:type="metamodel:ActualAttribute" name="SelectStructuredTypeMember">
@@ -2883,7 +2883,7 @@
                           <attributes xsi:type="metamodel:ActualAttribute" name="Name">
                             <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
                           </attributes>
-                          <attributes xsi:type="metamodel:ActualAttribute" name="Multiplicity">
+                          <attributes xsi:type="metamodel:ActualAttribute" name="Multiplicity" value="1..1">
                             <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//algorithm/MultiplicityElement/Multiplicity"/>
                           </attributes>
                           <attributes xsi:type="metamodel:ActualAttribute" name="SelectStructuredTypeMember">
@@ -2919,7 +2919,7 @@
                           <attributes xsi:type="metamodel:ActualAttribute" name="Name">
                             <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
                           </attributes>
-                          <attributes xsi:type="metamodel:ActualAttribute" name="Multiplicity">
+                          <attributes xsi:type="metamodel:ActualAttribute" name="Multiplicity" value="1..1">
                             <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//algorithm/MultiplicityElement/Multiplicity"/>
                           </attributes>
                           <attributes xsi:type="metamodel:ActualAttribute" name="SelectStructuredTypeMember">

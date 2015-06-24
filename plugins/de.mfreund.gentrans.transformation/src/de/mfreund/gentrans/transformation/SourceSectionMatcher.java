@@ -109,26 +109,26 @@ public class SourceSectionMatcher implements CancellationListener {
 	/**
 	 * This keeps track of those {@link SourceSectionClass SourceSectionClasses} that contain a {@link SourceSectionAttribute} that is
 	 * referenced by an {@link AttributeMappingSourceElement} of an {@link AttributeMapping} and that are located at the 
-	 * <em>deepest</em> position in the containment tree.
+	 * <em>deepest</em> position in the containment tree of the containing source section.
 	 */
 	//TODO explain why we need this
-	private final Map<AttributeMapping, Set<SourceSectionClass>> deepestSourceSectionsByAttributeMapping;
+	private final Map<AttributeMapping, Set<SourceSectionClass>> deepestSourceSectionClassesByAttributeMapping;
 
 	/**
 	 * This keeps track of those {@link SourceSectionClass SourceSectionClasses} that contain a {@link SourceSectionAttribute} that is
 	 * referenced by an {@link AttributeMatcherSourceElement} of an {@link AttributeMatcher} and that are located at the 
-	 * <em>deepest</em> position in the containment tree.
+	 * <em>deepest</em> position in the containment tree of the containing source section.
 	 */
 	//TODO explain why we need this
-	private final Map<AttributeMatcher, Set<SourceSectionClass>> deepestSourceSectionsByAttributeMatcher;
+	private final Map<AttributeMatcher, Set<SourceSectionClass>> deepestSourceSectionClassesByAttributeMatcher;
 	
 	/**
 	 * This keeps track of those {@link SourceSectionClass SourceSectionClasses} that contain a {@link SourceSectionAttribute} that is
 	 * referenced by an {@link ModelConnectionHintSourceElement} of a {@link ModelConnectionHintr} and that are located at the 
-	 * <em>deepest</em> position in the containment tree.
+	 * <em>deepest</em> position in the containment tree of the containing source section.
 	 */
 	//TODO explain why we need this
-	private final Map<ModelConnectionHint, Set<SourceSectionClass>> deepestSourceSectionsByModelConnectionHint;
+	private final Map<ModelConnectionHint, Set<SourceSectionClass>> deepestSourceSectionClassesByModelConnectionHint;
 	
 	/**
 	 * The {@link MessageConsoleStream} that shall be used to print messages.
@@ -182,9 +182,9 @@ public class SourceSectionMatcher implements CancellationListener {
 		this.mappingsToChooseFrom = mappingsToChooseFrom;
 		this.ambiguousMappingSelections = new HashMap<>();
 		this.commonContainerClassOfComplexHints = new HashMap<>();
-		this.deepestSourceSectionsByAttributeMapping = new LinkedHashMap<>();
-		this.deepestSourceSectionsByAttributeMatcher = new LinkedHashMap<>();
-		this.deepestSourceSectionsByModelConnectionHint = new LinkedHashMap<>();
+		this.deepestSourceSectionClassesByAttributeMapping = new LinkedHashMap<>();
+		this.deepestSourceSectionClassesByAttributeMatcher = new LinkedHashMap<>();
+		this.deepestSourceSectionClassesByModelConnectionHint = new LinkedHashMap<>();
 		this.consoleStream = consoleStream;
 		this.abortTransformation = false;
 		this.globalAttributeValues = new HashMap<>();
@@ -198,86 +198,18 @@ public class SourceSectionMatcher implements CancellationListener {
 
 	}
 
-	/**
-	 * Extend the deepestComplexAttrMappingSrcElementsByCmplxMapping Map for the
-	 * MappingHint
-	 *
-	 * @param m
-	 *            MApping
-	 * @param srcSection
-	 */
-	private void buildDeepestCmplxAttrMappingElementsMap(
-			final AttributeMapping m, final SourceSectionClass srcSection) {
-		if (!deepestSourceSectionsByAttributeMapping.containsKey(m)) {
-			final Set<ModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>> srcElements = 
-					new HashSet<>();
-			srcElements.addAll(m.getLocalSourceElements());
-			deepestSourceSectionsByAttributeMapping.put(m,
-					new HashSet<SourceSectionClass>());
-
-			deepestSourceSectionsByAttributeMapping.get(m).addAll(
-					findDeepestClassesAndCommonContainer(srcElements,
-							srcSection, m));
-
-		}
-	}
-
-	/**
-	 * Extend the deepestComplexConnectionHintSrcElementsByComplexConnectionHint
-	 * ModelConnectionHint
-	 *
-	 * @param m
-	 * @param srcSection
-	 */
-	private void buildDeepestCmplxConnectionHintElementsMap(
-			final ModelConnectionHint m,
-			final SourceSectionClass srcSection) {
-		if (!deepestSourceSectionsByModelConnectionHint
-				.containsKey(m)) {
-			final Set<ModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>> srcElements = 
-					new HashSet<>();
-			srcElements.addAll(m.getLocalSourceElements());
-			deepestSourceSectionsByModelConnectionHint.put(
-					m, new HashSet<SourceSectionClass>());
-
-			deepestSourceSectionsByModelConnectionHint.get(
-					m).addAll(
-							findDeepestClassesAndCommonContainer(srcElements,
-									srcSection, m));
-
-		}
-	}
-
-	/**
-	 * Extend the deepestComplexAttrMatcherSrcElementsByComplexAttrMatcher
-	 * MappingHint
-	 *
-	 * @param m
-	 * @param srcSection
-	 */
-	private void buildDeepestComplexAttrMatcherSrcElements(
-			final AttributeMatcher m, final SourceSectionClass srcSection) {
-		if (!deepestSourceSectionsByAttributeMatcher
-				.containsKey(m)) {
-			final Set<ModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>> srcElements = 
-					new HashSet<>();
-			srcElements.addAll(m.getLocalSourceElements());
-			deepestSourceSectionsByAttributeMatcher.put(m,
-					new HashSet<SourceSectionClass>());
-
-			final MappingInstanceSelector s = (MappingInstanceSelector) m
-					.eContainer();
-			deepestSourceSectionsByAttributeMatcher.get(m)
-			.addAll(findDeepestClassesAndCommonContainer(srcElements,
-					srcSection, s));
-
-		}
-	}
-
 	@Override
 	public void cancel() {
 		abortTransformation = true;
 
+	}
+
+	/**
+	 * @return '<em><b>true</b></em>' when user action was triggered to abort the transformation, '<em><b>false</b></em>' otherwise
+	 */
+	@Override
+	public boolean isCancelled() {
+		return abortTransformation;
 	}
 
 	/**
@@ -460,129 +392,6 @@ public class SourceSectionMatcher implements CancellationListener {
 			// if we reached this point all went well
 			return true;
 		}
-	}
-
-	/**
-	 * Helper Method used when building the deepestElements Maps
-	 *
-	 * @param s
-	 * @param srcSection
-	 * @param hint
-	 * @return Classes that contain the deepest SourceSectionAttributes
-	 */
-	private Set<SourceSectionClass> findDeepestClassesAndCommonContainer(
-			final Set<ModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>> s,
-			final SourceSectionClass srcSection, final MappingHintBaseType hint) {
-		final Set<SourceSectionClass> resultSet = new HashSet<SourceSectionClass>();
-
-		/*
-		 * fill resultSet with all *potential* candidates
-		 */
-		for (final ModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> t : s) {
-			resultSet.add(t.getSource().getOwningClass());
-		}
-
-		/*
-		 * Find deeppest Elements
-		 */
-		Map<SourceSectionClass, Set<SourceSectionClass>> resultSets = new HashMap<SourceSectionClass, Set<SourceSectionClass>>();
-		boolean commonContainerFound = false;
-		/*
-		 * init classesToCheck
-		 */
-		if (resultSet.size() == 1) {
-			return resultSet;
-		} else {
-			if (resultSet.contains(srcSection)) {
-				resultSet.remove(srcSection);
-				commonContainerClassOfComplexHints.put(hint, srcSection);
-				commonContainerFound = true;
-			}
-			resultSets.put(srcSection, new HashSet<SourceSectionClass>(
-					resultSet));
-		}
-
-		/*
-		 * Find deepest elements
-		 */
-		while (resultSets.size() > 0) {
-			final Map<SourceSectionClass, Set<SourceSectionClass>> nextResultSets = new HashMap<SourceSectionClass, Set<SourceSectionClass>>();
-			for (final SourceSectionClass cl : resultSets.keySet()) {
-				for (final SourceSectionReference ref : cl.getReferences()) {
-					boolean breakLoop = false;
-					for (final SourceSectionClass childClass : ref
-							.getValuesGeneric()) {
-						nextResultSets.put(childClass,
-								new HashSet<SourceSectionClass>());
-
-						/*
-						 * get all child classes and add them to set
-						 */
-						final Set<SourceSectionClass> childrenChecked = new HashSet<SourceSectionClass>();// to
-						// prevent
-						// endless
-						// loops
-						final List<SourceSectionClass> classesToCheck = new LinkedList<SourceSectionClass>();
-						classesToCheck.add(childClass);
-						while (classesToCheck.size() > 0) {
-							final SourceSectionClass chkClass = classesToCheck
-									.remove(0);
-
-							childrenChecked.add(chkClass);
-							nextResultSets.get(childClass).add(chkClass);
-
-							/*
-							 * next checks
-							 */
-							for (final SourceSectionReference chRef : chkClass
-									.getReferences()) {
-								for (final SourceSectionClass refVal : chRef
-										.getValuesGeneric()) {
-									if (!childrenChecked.contains(refVal)) {
-										classesToCheck.add(refVal);
-									}
-								}
-							}
-						}
-
-						/*
-						 * is the resultSet still a subset of the childClasses
-						 * set?
-						 */
-
-						if (nextResultSets.get(childClass).containsAll(
-								resultSets.get(cl))) {
-							breakLoop = true;
-							nextResultSets.put(childClass, resultSets.get(cl));
-							break;
-						} else {
-							if (!commonContainerFound) {
-								commonContainerClassOfComplexHints.put(hint,
-										cl);
-								commonContainerFound = true;
-							}
-							nextResultSets.get(childClass).retainAll(
-									resultSets.get(cl));// remove all non-result
-							// classes
-							// (intersection)
-							if (nextResultSets.get(childClass).size() < 1) {
-								resultSet.add(childClass);
-								nextResultSets.remove(childClass);
-							}
-						}
-					}
-					if (breakLoop) {
-						break;
-					}
-				}
-
-			}
-
-			// next iteration
-			resultSets = nextResultSets;
-		}
-		return resultSet;
-
 	}
 
 	/**
@@ -1142,10 +951,10 @@ public class SourceSectionMatcher implements CancellationListener {
 		 */
 		for (final MappingHintType h : hints) {
 			if (h instanceof AttributeMapping) {
-				if (!(complexAttributeMappingsFound.contains(h) && deepestSourceSectionsByAttributeMapping
+				if (!(complexAttributeMappingsFound.contains(h) && deepestSourceSectionClassesByAttributeMapping
 						.get(h).contains(srcSection))) {
 					changedRefsAndHints.getHintValues().removeHintValue((AttributeMapping) h); // remove incomplete hint value
-				} else if (deepestSourceSectionsByAttributeMapping
+				} else if (deepestSourceSectionClassesByAttributeMapping
 						.get(h).size() > 1) {
 					
 					changedRefsAndHints.getUnsyncedHintValues().setHintValues((AttributeMapping) h, srcSection,
@@ -1158,11 +967,11 @@ public class SourceSectionMatcher implements CancellationListener {
 				if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
 					if (!(complexAttributeMatchersFound
 							.contains(((MappingInstanceSelector) h)
-									.getMatcher()) && deepestSourceSectionsByAttributeMatcher
+									.getMatcher()) && deepestSourceSectionClassesByAttributeMatcher
 									.get(((MappingInstanceSelector) h).getMatcher())
 									.contains(srcSection))) {
 						changedRefsAndHints.getHintValues().removeHintValue((MappingInstanceSelector) h); // remove incomplete hint value
-					} else if (deepestSourceSectionsByAttributeMatcher
+					} else if (deepestSourceSectionClassesByAttributeMatcher
 							.get(((MappingInstanceSelector) h).getMatcher())
 							.size() > 1) {
 						
@@ -1176,10 +985,10 @@ public class SourceSectionMatcher implements CancellationListener {
 
 		for (final ModelConnectionHint h : connectionHints) {
 			if (h instanceof ModelConnectionHint) {
-				if (!(complexConnectionHintsFound.contains(h) && deepestSourceSectionsByModelConnectionHint
+				if (!(complexConnectionHintsFound.contains(h) && deepestSourceSectionClassesByModelConnectionHint
 						.get(h).contains(srcSection))) {
 					changedRefsAndHints.getHintValues().removeHintValue(h); // remove incomplete hint value
-				} else if (deepestSourceSectionsByModelConnectionHint
+				} else if (deepestSourceSectionClassesByModelConnectionHint
 						.get(h).size() > 1) {
 					
 					changedRefsAndHints.getUnsyncedHintValues().setHintValues(h, srcSection, new LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>>());
@@ -1419,9 +1228,9 @@ public class SourceSectionMatcher implements CancellationListener {
 	 * <ul>
 	 * 	<li>{@link #mappingHints}</li>
 	 * 	<li>{@link #modelConnectionHints}</li>
-	 * 	<li>{@link #deepestSourceSectionsByAttributeMapping}</li>
-	 * 	<li>{@link #deepestSourceSectionsByAttributeMatcher}</li>
-	 * 	<li>{@link #deepestSourceSectionsByModelConnectionHint}</li>
+	 * 	<li>{@link #deepestSourceSectionClassesByAttributeMapping}</li>
+	 * 	<li>{@link #deepestSourceSectionClassesByAttributeMatcher}</li>
+	 * 	<li>{@link #deepestSourceSectionClassesByModelConnectionHint}</li>
 	 * </ul>
 	 * <p />
 	 * Note: This needs to be called before the process of <em>matching</em> can be started!
@@ -1459,13 +1268,13 @@ public class SourceSectionMatcher implements CancellationListener {
 			for (final MappingHintType h : mappingHints.get(mapping)) {
 				// initialize the 'deepestSourceSectionsByAttributeMapping' map
 				if (h instanceof AttributeMapping) {
-					buildDeepestCmplxAttrMappingElementsMap(
+					buildDeepestSourceSectionClassesByAttributeMappingMap(
 							(AttributeMapping) h, mapping.getSourceMMSection());
 					
 				// initialize the 'deepestSourceSectionsByAttributeMatcher' map
 				} else if (h instanceof MappingInstanceSelector) {
 					if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
-						buildDeepestComplexAttrMatcherSrcElements(
+						buildDeepestSourceSectionClassesByAttributeMatcherMap(
 								(AttributeMatcher) ((MappingInstanceSelector) h).getMatcher(), 
 								mapping.getSourceMMSection());
 					}
@@ -1475,11 +1284,207 @@ public class SourceSectionMatcher implements CancellationListener {
 			// initialize the 'deepestSourceSectionsByModelConnectionHint' map
 			for (final ModelConnectionHint h : modelConnectionHints.get(mapping)) {
 				if (h instanceof ModelConnectionHint) {
-					buildDeepestCmplxConnectionHintElementsMap(
+					buildDeepestSourceSectionClassesByModelConnectionHintMap(
 							h, mapping.getSourceMMSection());
 				}
 			}
 		}
+	}
+
+	/**
+	 * Build the {@link #deepestSourceSectionClassesByAttributeMapping} map for the given {@link AttributeMapping} and
+	 * {@link SourceSectionClass}.
+	 *
+	 * @param attributeMapping The {@link AttributeMapping} for that the deepest source sections shall be determined.
+	 * @param srcSection The {@link SourceSectionClass SourceSection} for that the deepest sections shall be determined.
+	 */
+	private void buildDeepestSourceSectionClassesByAttributeMappingMap(
+			final AttributeMapping attributeMapping, 
+			final SourceSectionClass srcSection) {
+		if (!deepestSourceSectionClassesByAttributeMapping.containsKey(attributeMapping)) {
+			final Set<ModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>> srcElements = 
+					new HashSet<>();
+			srcElements.addAll(attributeMapping.getLocalSourceElements());
+			deepestSourceSectionClassesByAttributeMapping.put(attributeMapping, new HashSet<SourceSectionClass>());
+			deepestSourceSectionClassesByAttributeMapping.get(attributeMapping).addAll(
+					findDeepestClassesAndCommonContainer(srcElements, srcSection, attributeMapping));
+	
+		}
+	}
+
+	/**
+	 * Build the {@link #deepestSourceSectionClassesByModelConnectionHint} map for the given {@link ModelConnectionHint} and
+	 * {@link SourceSectionClass}.
+	 *
+	 * @param modelConnectionHint The {@link ModelConnectionHint} for that the deepest source sections shall be determined.
+	 * @param srcSection The {@link SourceSectionClass SourceSection} for that the deepest sections shall be determined.
+	 */
+	private void buildDeepestSourceSectionClassesByModelConnectionHintMap(
+			final ModelConnectionHint modelConnectionHint,
+			final SourceSectionClass srcSection) {
+		if (!deepestSourceSectionClassesByModelConnectionHint
+				.containsKey(modelConnectionHint)) {
+			final Set<ModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>> srcElements = 
+					new HashSet<>();
+			srcElements.addAll(modelConnectionHint.getLocalSourceElements());
+			deepestSourceSectionClassesByModelConnectionHint.put(modelConnectionHint, new HashSet<SourceSectionClass>());
+			deepestSourceSectionClassesByModelConnectionHint.get(modelConnectionHint).addAll(
+							findDeepestClassesAndCommonContainer(srcElements, srcSection, modelConnectionHint));
+	
+		}
+	}
+
+	/**
+	 * Build the {@link #deepestSourceSectionClassesByAttributeMatcher} map for the given {@link AttributeMatcher} and
+	 * {@link SourceSectionClass}.
+	 *
+	 * @param attributeMatcher The {@link AttributeMatcher} for that the deepest source sections shall be determined.
+	 * @param srcSection The {@link SourceSectionClass SourceSection} for that the deepest sections shall be determined.
+	 */
+	private void buildDeepestSourceSectionClassesByAttributeMatcherMap(
+			final AttributeMatcher attributeMatcher, 
+			final SourceSectionClass srcSection) {
+		if (!deepestSourceSectionClassesByAttributeMatcher
+				.containsKey(attributeMatcher)) {
+			final Set<ModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>> srcElements = 
+					new HashSet<>();
+			srcElements.addAll(attributeMatcher.getLocalSourceElements());
+			deepestSourceSectionClassesByAttributeMatcher.put(attributeMatcher, new HashSet<SourceSectionClass>());
+			final MappingInstanceSelector s = (MappingInstanceSelector) attributeMatcher.eContainer();
+			deepestSourceSectionClassesByAttributeMatcher.get(attributeMatcher).addAll(
+					findDeepestClassesAndCommonContainer(srcElements, srcSection, s));
+	
+		}
+	}
+
+	/**
+	 * Helper method used when building the various maps holding the 'deepestSourceSectionClasses' (
+	 * {@link #deepestSourceSectionClassesByAttributeMapping}, {@link #deepestSourceSectionClassesByAttributeMatcher} and
+	 * {@link #deepestSourceSectionClassesByModelConnectionHint}). It returns the list of {@link SourceSectionClass classes}
+	 * that contain the <em>deepest</em> {@link SourceSectionAttribute SourceSectionAttributes} referenced by the given mapping
+	 * hint. Additionally, the {@link #commonContainerClassOfComplexHints common container class} for the given hint is determined.
+	 *
+	 * @param sourceElements The set of {@link ModifiedAttributeElementType elements} that is defined by the the given <em>hint</em>.
+	 * @param srcSection The {@link SourceSectionClass} representing the current <em>source section</em> that is analyzed.
+	 * @param hint The {@link MappingHintBaseType mapping hint} that is analyzed.
+	 * 
+	 * @return Those {@link SourceSectionClass classes} from the source section that contain the deepest 
+	 * {@link SourceSectionAttribute SourceSectionAttributes}.
+	 */
+	private Set<SourceSectionClass> findDeepestClassesAndCommonContainer(
+			final Set<ModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>> sourceElements,
+			final SourceSectionClass srcSection, 
+			final MappingHintBaseType hint) {
+		
+		final Set<SourceSectionClass> resultSet = new HashSet<>();
+	
+		/*
+		 * Fill the resultSet with all potential candidates
+		 */
+		for (final ModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> sourceElement : sourceElements) {
+			resultSet.add(sourceElement.getSource().getOwningClass());
+		}
+	
+		/*
+		 * Now, find the deepest elements
+		 */
+		Map<SourceSectionClass, Set<SourceSectionClass>> resultSets = new HashMap<>();
+		boolean commonContainerFound = false;
+		
+		/*
+		 * init classesToCheck
+		 */
+		if (resultSet.size() == 1) {
+			return resultSet;
+		} else {
+			if (resultSet.contains(srcSection)) {
+				resultSet.remove(srcSection);
+				commonContainerClassOfComplexHints.put(hint, srcSection);
+				commonContainerFound = true;
+			}
+			resultSets.put(srcSection, new HashSet<>(resultSet));
+		}
+	
+		/*
+		 * Find deepest elements
+		 */
+		while (resultSets.size() > 0) {
+			final Map<SourceSectionClass, Set<SourceSectionClass>> nextResultSets = new HashMap<>();
+			for (final SourceSectionClass cl : resultSets.keySet()) {
+				for (final SourceSectionReference ref : cl.getReferences()) {
+					boolean breakLoop = false;
+					for (final SourceSectionClass childClass : ref
+							.getValuesGeneric()) {
+						nextResultSets.put(childClass,
+								new HashSet<SourceSectionClass>());
+	
+						/*
+						 * get all child classes and add them to set
+						 */
+						
+						// to prevent endless loops
+						final Set<SourceSectionClass> childrenChecked = new HashSet<SourceSectionClass>();
+						final List<SourceSectionClass> classesToCheck = new LinkedList<SourceSectionClass>();
+						classesToCheck.add(childClass);
+						while (classesToCheck.size() > 0) {
+							final SourceSectionClass chkClass = classesToCheck
+									.remove(0);
+	
+							childrenChecked.add(chkClass);
+							nextResultSets.get(childClass).add(chkClass);
+	
+							/*
+							 * next checks
+							 */
+							for (final SourceSectionReference chRef : chkClass
+									.getReferences()) {
+								for (final SourceSectionClass refVal : chRef
+										.getValuesGeneric()) {
+									if (!childrenChecked.contains(refVal)) {
+										classesToCheck.add(refVal);
+									}
+								}
+							}
+						}
+	
+						/*
+						 * is the resultSet still a subset of the childClasses
+						 * set?
+						 */
+	
+						if (nextResultSets.get(childClass).containsAll(
+								resultSets.get(cl))) {
+							breakLoop = true;
+							nextResultSets.put(childClass, resultSets.get(cl));
+							break;
+						} else {
+							if (!commonContainerFound) {
+								commonContainerClassOfComplexHints.put(hint, cl);
+								commonContainerFound = true;
+							}
+							
+							// remove all non-result classes (intersection)
+							nextResultSets.get(childClass).retainAll(
+									resultSets.get(cl));
+							
+							if (nextResultSets.get(childClass).size() < 1) {
+								resultSet.add(childClass);
+								nextResultSets.remove(childClass);
+							}
+						}
+					}
+					if (breakLoop) {
+						break;
+					}
+				}
+	
+			}
+	
+			// next iteration
+			resultSets = nextResultSets;
+		}
+		return resultSet;
+	
 	}
 
 	/**
@@ -1937,15 +1942,6 @@ public class SourceSectionMatcher implements CancellationListener {
 		}
 		return mappingFailed;
 	}
-
-	/**
-	 * @return true when user action was triggered to abort the transformation
-	 */
-	@Override
-	public boolean isCancelled() {
-		return abortTransformation;
-	}
-
 
 	/**
 	 * @param srcSection

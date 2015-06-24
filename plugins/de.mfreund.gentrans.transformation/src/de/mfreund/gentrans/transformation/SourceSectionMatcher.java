@@ -79,18 +79,18 @@ public class SourceSectionMatcher implements CancellationListener {
 	private final LinkedHashMap<SourceSectionClass, Set<EObject>> matchedContainers;
 	
 	/**
-	 * Registry for {@link ModelConnectionHint ModelConnectionHints} for all selected {@link Mapping Mappings}.
-	 */
-	//TODO check if this can now be integrated into the 'mappingHints' map as of the new base class 'MappingHintBaseType'
-	private final Map<Mapping, LinkedList<ModelConnectionHint>> modelConnectionHints;
-	
-	/**
 	 * Registry for {@link MappingHintType MappingHints} for all selected {@link Mapping Mappings}.
 	 */
 	private final Map<Mapping, LinkedList<MappingHintType>> mappingHints;
 
 	/**
-	 * The list of {@link Mapping Mappings} that can be used in the <em>matching</em> process.
+	 * Registry for {@link ModelConnectionHint ModelConnectionHints} for all selected {@link Mapping Mappings}.
+	 */
+	//TODO check if this can now be integrated into the 'mappingHints' map as of the new base class 'MappingHintBaseType'
+	private final Map<Mapping, LinkedList<ModelConnectionHint>> modelConnectionHints;
+
+	/**
+	 * The list of {@link Mapping Mappings} that shall be used in the <em>matching</em> process.
 	 */
 	private final List<Mapping> mappingsToChooseFrom;
 
@@ -145,12 +145,12 @@ public class SourceSectionMatcher implements CancellationListener {
 	 * Registry for values of {@link GlobalAttribute GlobalAttributes}. Only the latest value found is
 	 * saved (GlobalAttributes really only make sense for elements that appear only once in the source model).
 	 */
-	private final Map<GlobalAttribute, String> globalVarValues;
+	private final Map<GlobalAttribute, String> globalAttributeValues;
 
 	/**
 	 * The {@link AttributeValueModifierExecutor} that shall be used for modifying attribute values.
 	 */
-	private final AttributeValueModifierExecutor attributeValuemodifier;
+	private final AttributeValueModifierExecutor attributeValueModifierExecutor;
 
 	/**
 	 * This keeps track of all {@link AttributeValueConstraint AttributeValueConstraints} that could not be satisfied 
@@ -159,55 +159,43 @@ public class SourceSectionMatcher implements CancellationListener {
 	private final Set<AttributeValueConstraint> constraintsWithErrors;
 
 	/**
+	 * This constrcuts an instance.
+	 * 
 	 * @param mappingsToChooseFrom
-	 *            Mappings from the PAMTram model
+	 *            A list of {@link Mapping Mappings} that shall be used in the <em>matching</em> process.
+	 * @param attributeValuemodifier The {@link AttributeValueModifierExecutor} that shall be used for modifying attribute values.
 	 * @param consoleStream
-	 *            Output stream for messages
+	 *           The {@link MessageConsoleStream} that shall be used to print messages.
 	 */
-	public SourceSectionMatcher(final List<Mapping> mappingsToChooseFrom,
+	public SourceSectionMatcher(
+			final List<Mapping> mappingsToChooseFrom,
 			final AttributeValueModifierExecutor attributeValuemodifier,
 			final MessageConsoleStream consoleStream) {
 		
-		matchedSections = new LinkedHashMap<SourceSectionClass, Set<EObject>>();
-		matchedContainers = new LinkedHashMap<SourceSectionClass, Set<EObject>>();
-		mappingHints = new LinkedHashMap<Mapping, LinkedList<MappingHintType>>();
-		modelConnectionHints = new LinkedHashMap<Mapping, LinkedList<ModelConnectionHint>>();
-		deepestSourceSectionsByAttributeMapping = new LinkedHashMap<AttributeMapping, Set<SourceSectionClass>>();
-		deepestSourceSectionsByAttributeMatcher = new LinkedHashMap<AttributeMatcher, Set<SourceSectionClass>>();
-		deepestSourceSectionsByModelConnectionHint = new LinkedHashMap<ModelConnectionHint, Set<SourceSectionClass>>();
-		globalVarValues = new HashMap<GlobalAttribute, String>();
+		/*
+		 * initialize all class variables
+		 */
+		this.matchedSections = new LinkedHashMap<>();
+		this.matchedContainers = new LinkedHashMap<>();
+		this.mappingHints = new LinkedHashMap<>();
+		this.modelConnectionHints = new LinkedHashMap<>();
 		this.mappingsToChooseFrom = mappingsToChooseFrom;
+		this.ambiguousMappingSelections = new HashMap<>();
+		this.commonContainerClassOfComplexHints = new HashMap<>();
+		this.deepestSourceSectionsByAttributeMapping = new LinkedHashMap<>();
+		this.deepestSourceSectionsByAttributeMatcher = new LinkedHashMap<>();
+		this.deepestSourceSectionsByModelConnectionHint = new LinkedHashMap<>();
 		this.consoleStream = consoleStream;
-		abortTransformation = false;
-		this.attributeValuemodifier = attributeValuemodifier;
-		constraintsWithErrors = new HashSet<AttributeValueConstraint>();
-		commonContainerClassOfComplexHints = new HashMap<>();
-		ambiguousMappingSelections = new HashMap<Set<Mapping>, Mapping>();
+		this.abortTransformation = false;
+		this.globalAttributeValues = new HashMap<>();
+		this.attributeValueModifierExecutor = attributeValuemodifier;
+		this.constraintsWithErrors = new HashSet<AttributeValueConstraint>();
+		
+		/*
+		 * initialize the various maps based on the given list of mappings
+		 */
+		initializeMaps(mappingsToChooseFrom);
 
-		// this will fill some maps...
-		for (final Mapping m : mappingsToChooseFrom) {
-			getModelConnectionHints(m);
-			for (final MappingHintType h : getHints(m)) {
-				if (h instanceof AttributeMapping) {
-					buildDeepestCmplxAttrMappingElementsMap(
-							(AttributeMapping) h, m.getSourceMMSection());
-				} else if (h instanceof MappingInstanceSelector) {
-					if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
-						buildDeepestComplexAttrMatcherSrcElements(
-								(AttributeMatcher) ((MappingInstanceSelector) h)
-								.getMatcher(), m.getSourceMMSection());
-					}
-				}
-			}
-
-			for (final ModelConnectionHint h : getModelConnectionHints(m)) {
-				if (h instanceof ModelConnectionHint) {
-					buildDeepestCmplxConnectionHintElementsMap(
-							h,
-							m.getSourceMMSection());
-				}
-			}
-		}
 	}
 
 	/**
@@ -366,7 +354,7 @@ public class SourceSectionMatcher implements CancellationListener {
 			if (attrVal == null) {
 				mappingFailed = true;
 			} else {
-				attrVal = attributeValuemodifier.applyAttributeValueModifiers(
+				attrVal = attributeValueModifierExecutor.applyAttributeValueModifiers(
 						attrVal, ((ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) i)
 						.getModifier());
 				attrVals.put(
@@ -1293,8 +1281,7 @@ public class SourceSectionMatcher implements CancellationListener {
 				boolean containerFits = doContainerCheck(element, m.getSourceMMSection());
 				
 				if (containerFits) {
-					res = findMapping(element, false, getHints(m),
-							getModelConnectionHints(m), m.getGlobalVariables(),
+					res = findMapping(element, false, mappingHints.get(m), modelConnectionHints.get(m), m.getGlobalVariables(),
 							m.getSourceMMSection(),
 							new MappingInstanceStorage());
 					if (abortTransformation)
@@ -1378,7 +1365,7 @@ public class SourceSectionMatcher implements CancellationListener {
 			 * Handle cardinality Hints for section root (doesn't make sense to
 			 * model this but we will tolerate it)
 			 */
-			for (final MappingHintType h : getHints(returnVal.getMapping())) {
+			for (final MappingHintType h : mappingHints.get(returnVal.getMapping())) {
 				if (h instanceof CardinalityMapping) {
 					returnVal.getHintValues().addHintValue((CardinalityMapping) h, new Integer(1));
 				}
@@ -1454,32 +1441,7 @@ public class SourceSectionMatcher implements CancellationListener {
 	 * @return Registry for values of global Variables
 	 */
 	Map<GlobalAttribute, String> getGlobalVarValues() {
-		return globalVarValues;
-	}
-
-	/**
-	 * @param m
-	 *            Mapping
-	 * @return MappingHints of all the Mappings MappingHintGroups.
-	 */
-	private List<MappingHintType> getHints(final Mapping m) {
-		if (!mappingHints.containsKey(m)) {
-			mappingHints.put(m, new LinkedList<MappingHintType>());
-			for (final MappingHintGroupType g : m.getActiveMappingHintGroups()) {
-				if (g.getMappingHints() != null) {
-					mappingHints.get(m).addAll(g.getMappingHints());
-				}
-			}
-
-			for (final MappingHintGroupImporter g : m.getActiveImportedMappingHintGroups()) {
-				if (g.getMappingHints() != null) {
-					mappingHints.get(m).addAll(g.getMappingHints());
-				}
-			}
-		}
-
-		return mappingHints.get(m);
-
+		return globalAttributeValues;
 	}
 
 	/**
@@ -1492,25 +1454,73 @@ public class SourceSectionMatcher implements CancellationListener {
 	}
 
 	/**
-	 * @param m
-	 * @return ModelConnectionHints of all the Mappings MappingHintGroups.
+	 * This initializes various maps based on the given list of {@link Mapping Mappings}.
+	 * <p />
+	 * The following maps are initialized:<br />
+	 * <ul>
+	 * 	<li>{@link #mappingHints}</li>
+	 * 	<li>{@link #modelConnectionHints}</li>
+	 * 	<li>{@link #deepestSourceSectionsByAttributeMapping}</li>
+	 * 	<li>{@link #deepestSourceSectionsByAttributeMatcher}</li>
+	 * 	<li>{@link #deepestSourceSectionsByModelConnectionHint}</li>
+	 * </ul>
+	 * <p />
+	 * Note: This needs to be called before the process of <em>matching</em> can be started!
+	 * 
+	 * @param mappings The list of {@link Mapping Mappings} for which the various maps shall be initialized.
 	 */
-	private List<ModelConnectionHint> getModelConnectionHints(final Mapping m) {
-		if (!modelConnectionHints.containsKey(m)) {
-			modelConnectionHints.put(m, new LinkedList<ModelConnectionHint>());
-			for (final MappingHintGroupType g : m.getActiveMappingHintGroups()) {
+	private void initializeMaps(List<Mapping> mappings) {
+		
+		for (Mapping mapping : mappings) {
+			
+			// initialize the 'modelConnectionHints' map
+			modelConnectionHints.put(mapping, new LinkedList<ModelConnectionHint>());
+			for (final MappingHintGroupType g : mapping.getActiveMappingHintGroups()) {
 				if (g instanceof MappingHintGroup) {
 					if (((MappingHintGroup) g).getModelConnectionMatcher() != null) {
-						modelConnectionHints.get(m).add(
-								((MappingHintGroup) g)
-								.getModelConnectionMatcher());
+						modelConnectionHints.get(mapping).add(
+								((MappingHintGroup) g).getModelConnectionMatcher());
 					}
 				}
 			}
+			
+			// initialize the 'mappingHints' map
+			mappingHints.put(mapping, new LinkedList<MappingHintType>());
+			for (final MappingHintGroupType g : mapping.getActiveMappingHintGroups()) {
+				if (g.getMappingHints() != null) {
+					mappingHints.get(mapping).addAll(g.getMappingHints());
+				}
+			}
+			for (final MappingHintGroupImporter g : mapping.getActiveImportedMappingHintGroups()) {
+				if (g.getMappingHints() != null) {
+					mappingHints.get(mapping).addAll(g.getMappingHints());
+				}
+			}
+			
+			for (final MappingHintType h : mappingHints.get(mapping)) {
+				// initialize the 'deepestSourceSectionsByAttributeMapping' map
+				if (h instanceof AttributeMapping) {
+					buildDeepestCmplxAttrMappingElementsMap(
+							(AttributeMapping) h, mapping.getSourceMMSection());
+					
+				// initialize the 'deepestSourceSectionsByAttributeMatcher' map
+				} else if (h instanceof MappingInstanceSelector) {
+					if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
+						buildDeepestComplexAttrMatcherSrcElements(
+								(AttributeMatcher) ((MappingInstanceSelector) h).getMatcher(), 
+								mapping.getSourceMMSection());
+					}
+				}
+			}
+
+			// initialize the 'deepestSourceSectionsByModelConnectionHint' map
+			for (final ModelConnectionHint h : modelConnectionHints.get(mapping)) {
+				if (h instanceof ModelConnectionHint) {
+					buildDeepestCmplxConnectionHintElementsMap(
+							h, mapping.getSourceMMSection());
+				}
+			}
 		}
-
-		return modelConnectionHints.get(m);
-
 	}
 
 	/**
@@ -1664,7 +1674,7 @@ public class SourceSectionMatcher implements CancellationListener {
 								throw new RuntimeException("MappedAttributeValueExpanders based on multi-valued attributes are not yet supported!");
 							}
 							
-							final String valCopy = attributeValuemodifier
+							final String valCopy = attributeValueModifierExecutor
 									.applyAttributeValueModifiers(
 											srcAttrAsString,
 											((MappedAttributeValueExpander) hint)
@@ -1678,7 +1688,7 @@ public class SourceSectionMatcher implements CancellationListener {
 								.getLocalSourceElements()) {
 							if (m.getSource().equals(at)) {
 
-								final String valCopy = attributeValuemodifier
+								final String valCopy = attributeValueModifierExecutor
 										.applyAttributeValueModifiers(
 												srcAttrAsString,
 												m.getModifier());
@@ -1709,7 +1719,7 @@ public class SourceSectionMatcher implements CancellationListener {
 //										throw new RuntimeException("AttributeMatchers based on multi-valued attributes are not yet supported!");
 //									}
 									
-									final String valCopy = attributeValuemodifier
+									final String valCopy = attributeValueModifierExecutor
 											.applyAttributeValueModifiers(
 													srcAttrAsString, 
 													e.getModifier());
@@ -1738,7 +1748,7 @@ public class SourceSectionMatcher implements CancellationListener {
 									throw new RuntimeException("ModelConnectionHints based on multi-valued attributes are not yet supported!");
 								}
 								
-								final String modifiedVal = attributeValuemodifier
+								final String modifiedVal = attributeValueModifierExecutor
 										.applyAttributeValueModifiers(
 												srcAttrAsString,
 												m.getModifier());
@@ -1750,10 +1760,10 @@ public class SourceSectionMatcher implements CancellationListener {
 
 				for (final GlobalAttribute gVar : globalVars) {
 					if (gVar.getSource().equals(at)) {
-						final String modifiedVal = attributeValuemodifier
+						final String modifiedVal = attributeValueModifierExecutor
 								.applyAttributeValueModifiers(srcAttrAsString,
 										gVar.getModifier());
-						globalVarValues.put(gVar, modifiedVal);
+						globalAttributeValues.put(gVar, modifiedVal);
 					}
 				}
 
@@ -1781,7 +1791,7 @@ public class SourceSectionMatcher implements CancellationListener {
 			
 			final Map<ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, AttributeValueRepresentation> attrVals = new HashMap<>();
 			
-			for (final MappingHintType h : getHints(m)) {
+			for (final MappingHintType h : mappingHints.get(m)) {
 				if (h instanceof AttributeMapping) {
 					
 					/* try to find a hint value for every external source element; those will
@@ -1869,7 +1879,7 @@ public class SourceSectionMatcher implements CancellationListener {
 						mappingFailed = true;
 						break;
 					} else {
-						attrVal = attributeValuemodifier
+						attrVal = attributeValueModifierExecutor
 								.applyAttributeValueModifiers(
 										attrVal,
 										((ExternalMappedAttributeValueExpander) h)
@@ -1924,7 +1934,7 @@ public class SourceSectionMatcher implements CancellationListener {
 				}
 			}
 
-			for (final ModelConnectionHint h : getModelConnectionHints(m)) {
+			for (final ModelConnectionHint h : modelConnectionHints.get(m)) {
 				if (h instanceof ModelConnectionHint) {
 					for (final ModelConnectionHintSourceInterface i : h
 							.getSourceElements()) {

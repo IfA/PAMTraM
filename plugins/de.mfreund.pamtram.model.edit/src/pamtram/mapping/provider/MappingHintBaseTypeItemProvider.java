@@ -5,25 +5,33 @@ package pamtram.mapping.provider;
 
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import pamtram.mapping.MappingHintType;
+
+import pamtram.mapping.MappingHintBaseType;
+
+import pamtram.provider.NamedElementItemProvider;
+import pamtram.provider.PamtramEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.MappingHintType} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.MappingHintBaseType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MappingHintTypeItemProvider extends MappingHintBaseTypeItemProvider {
+public class MappingHintBaseTypeItemProvider extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MappingHintTypeItemProvider(AdapterFactory adapterFactory) {
+	public MappingHintBaseTypeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -50,10 +58,10 @@ public class MappingHintTypeItemProvider extends MappingHintBaseTypeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((MappingHintType)object).getName();
+		String label = ((MappingHintBaseType)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_MappingHintType_type") :
-			getString("_UI_MappingHintType_type") + " " + label;
+			getString("_UI_MappingHintBaseType_type") :
+			getString("_UI_MappingHintBaseType_type") + " " + label;
 	}
 	
 
@@ -80,6 +88,17 @@ public class MappingHintTypeItemProvider extends MappingHintBaseTypeItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return PamtramEditPlugin.INSTANCE;
 	}
 
 }

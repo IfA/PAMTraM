@@ -32,6 +32,7 @@ import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.Mapping;
+import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
@@ -56,13 +57,13 @@ import de.mfreund.gentrans.transformation.selectors.NamedElementItemSelectorDial
 import de.mfreund.gentrans.transformation.util.CancellationListener;
 
 /**
- * Class to map source model Objects to source sections and find values for
- * mapping hints.
+ * This class can be used to match <em>source model objects</em> to {@link pamtram.metamodel.Class SourceSections} and find values for
+ * {@link MappingHint MappingHints}. Consequently, it performs the first step of a <em>gentrans</em> transformation (<em>matching</em>).
  *
- * @author Sascha Steffen
- * @version 1.0
+ * @author mfreund
+ * @version 2.0
  */
-class SourceSectionMapper implements CancellationListener {
+public class SourceSectionMatcher implements CancellationListener {
 
 	/**
 	 * Counts how often each associated source model element is referenced by
@@ -198,7 +199,7 @@ class SourceSectionMapper implements CancellationListener {
 	 * @param consoleStream
 	 *            Output stream for messages
 	 */
-	SourceSectionMapper(final List<Mapping> mappingsToChooseFrom,
+	SourceSectionMatcher(final List<Mapping> mappingsToChooseFrom,
 			final AttributeValueModifierExecutor attributeValuemodifier,
 			final MessageConsoleStream consoleStream) {
 		

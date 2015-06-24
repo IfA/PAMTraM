@@ -284,7 +284,7 @@ public class GenericTransformationRunner {
 		// generate storage objects and generators
 		final AttributeValueModifierExecutor attributeValueModifier = new AttributeValueModifierExecutor(
 				consoleStream);
-		final SourceSectionMapper sourceSectionMapper = new SourceSectionMapper(
+		final SourceSectionMatcher sourceSectionMapper = new SourceSectionMatcher(
 				suitableMappings, attributeValueModifier, consoleStream);
 		final AttributeValueRegistry attrValueRegistry = new AttributeValueRegistry();
 
@@ -472,7 +472,7 @@ public class GenericTransformationRunner {
 	 * @return
 	 */
 	private HintValueStorage handleGlobalVarsAndExportedMappings(
-			final SourceSectionMapper sourceSectionMapper,
+			final SourceSectionMatcher sourceSectionMapper,
 			final LinkedList<MappingInstanceStorage> selectedMappings) {
 		
 		consoleStream.println("Getting hint values of exported hint groups, checking MappingHintImporters, adding global variables to hints");
@@ -939,7 +939,7 @@ public class GenericTransformationRunner {
 		// generate storage objects and generators
 		final AttributeValueModifierExecutor attributeValueModifier = new AttributeValueModifierExecutor(
 				consoleStream);
-		final SourceSectionMapper sourceSectionMapper = new SourceSectionMapper(
+		final SourceSectionMatcher sourceSectionMapper = new SourceSectionMatcher(
 				suitableMappings, attributeValueModifier, consoleStream);
 
 		/*
@@ -999,7 +999,7 @@ public class GenericTransformationRunner {
 	 * @param attributeValuemodifier
 	 */
 	private void runInstantiationFirstPass(
-			final SourceSectionMapper sourceSectionMapper,
+			final SourceSectionMatcher sourceSectionMapper,
 			final TargetSectionRegistry targetSectionRegistry,
 			final AttributeValueRegistry attrValueRegistry,
 			final LinkedList<MappingInstanceStorage> selectedMappings,

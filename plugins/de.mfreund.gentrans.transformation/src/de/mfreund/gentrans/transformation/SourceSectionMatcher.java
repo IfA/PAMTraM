@@ -215,6 +215,24 @@ public class SourceSectionMatcher implements CancellationListener {
 
 	}
 
+	/**
+	 * Getter for registry of {@link #globalAttributeValues values of global attributes}.
+	 *
+	 * @return The {@link #globalAttributeValues}.
+	 */
+	public Map<GlobalAttribute, String> getGlobalAttributeValues() {
+		return globalAttributeValues;
+	}
+
+	/**
+	 * Getter for registry of {@link #matchedSections}.
+	 *
+	 * @return The {@link #matchedSections}.
+	 */
+	public LinkedHashMap<SourceSectionClass, Set<EObject>> getMatchedSections() {
+		return matchedSections;
+	}
+
 	@Override
 	public void cancel() {
 		abortTransformation = true;
@@ -1239,24 +1257,6 @@ public class SourceSectionMatcher implements CancellationListener {
 			}
 
 		}
-	}
-
-	/**
-	 * Getter for Registry for values of global Variables
-	 *
-	 * @return Registry for values of global Variables
-	 */
-	Map<GlobalAttribute, String> getGlobalVarValues() {
-		return globalAttributeValues;
-	}
-
-	/**
-	 * Getter for Registry for mapped sections
-	 *
-	 * @return Registry for mapped sections
-	 */
-	LinkedHashMap<SourceSectionClass, Set<EObject>> getMappedSections() {
-		return matchedSections;
 	}
 
 	/**

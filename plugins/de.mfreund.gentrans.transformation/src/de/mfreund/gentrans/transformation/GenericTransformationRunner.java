@@ -508,12 +508,12 @@ public class GenericTransformationRunner {
 						for (final AttributeMappingSourceInterface i : ((AttributeMapping) h)
 								.getSourceAttributeMappings()) {
 							if (i instanceof GlobalAttributeImporter) {
-								if (sourceSectionMapper.getGlobalVarValues()
+								if (sourceSectionMapper.getGlobalAttributeValues()
 										.containsKey(
 												((GlobalAttributeImporter) i)
 												.getGlobalAttribute())) {
 									final String gVal = sourceSectionMapper
-											.getGlobalVarValues()
+											.getGlobalAttributeValues()
 											.get(((GlobalAttributeImporter) i)
 													.getGlobalAttribute());
 									for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> m : selMap.getHintValues().getHintValues((AttributeMapping) h)) {
@@ -530,12 +530,12 @@ public class GenericTransformationRunner {
 									.getSourceAttributes()) {
 								if (i instanceof GlobalAttributeImporter) {
 									if (sourceSectionMapper
-											.getGlobalVarValues()
+											.getGlobalAttributeValues()
 											.containsKey(
 													((GlobalAttributeImporter) i)
 													.getGlobalAttribute())) {
 										final String gVal = sourceSectionMapper
-												.getGlobalVarValues()
+												.getGlobalAttributeValues()
 												.get(((GlobalAttributeImporter) i)
 														.getGlobalAttribute());
 										for (final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> o : selMap.getHintValues().getHintValues((MappingInstanceSelector) h)) {
@@ -558,12 +558,12 @@ public class GenericTransformationRunner {
 						for (final ModelConnectionHintSourceInterface i : h
 								.getSourceElements()) {
 							if (i instanceof GlobalAttributeImporter) {
-								if (sourceSectionMapper.getGlobalVarValues()
+								if (sourceSectionMapper.getGlobalAttributeValues()
 										.containsKey(
 												((GlobalAttributeImporter) i)
 												.getGlobalAttribute())) {
 									final String gVal = sourceSectionMapper
-											.getGlobalVarValues()
+											.getGlobalAttributeValues()
 											.get(((GlobalAttributeImporter) i)
 													.getGlobalAttribute());
 									for (final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> o : selMap.getHintValues().getHintValues(h)) {
@@ -588,12 +588,12 @@ public class GenericTransformationRunner {
 						for (final AttributeMappingSourceInterface i : ((AttributeMapping) h)
 								.getSourceAttributeMappings()) {
 							if (i instanceof GlobalAttributeImporter) {
-								if (sourceSectionMapper.getGlobalVarValues()
+								if (sourceSectionMapper.getGlobalAttributeValues()
 										.containsKey(
 												((GlobalAttributeImporter) i)
 												.getGlobalAttribute())) {
 									final String gVal = sourceSectionMapper
-											.getGlobalVarValues()
+											.getGlobalAttributeValues()
 											.get(((GlobalAttributeImporter) i)
 													.getGlobalAttribute());
 									for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> m : selMap.getHintValues().getHintValues((AttributeMapping) h)) {
@@ -610,12 +610,12 @@ public class GenericTransformationRunner {
 									.getSourceAttributes()) {
 								if (i instanceof GlobalAttributeImporter) {
 									if (sourceSectionMapper
-											.getGlobalVarValues()
+											.getGlobalAttributeValues()
 											.containsKey(
 													((GlobalAttributeImporter) i)
 													.getGlobalAttribute())) {
 										final String gVal = sourceSectionMapper
-												.getGlobalVarValues()
+												.getGlobalAttributeValues()
 												.get(((GlobalAttributeImporter) i)
 														.getGlobalAttribute());
 										for (final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> o : selMap.getHintValues().getHintValues((MappingInstanceSelector) h)) {
@@ -983,7 +983,7 @@ public class GenericTransformationRunner {
 		consoleStream.println("Used srcModel elements: "
 				+ (numSrcModelElements - unmapped));
 
-		return sourceSectionMapper.getMappedSections();
+		return sourceSectionMapper.getMatchedSections();
 
 	}
 
@@ -1017,7 +1017,7 @@ public class GenericTransformationRunner {
 		 */
 		targetSectionInstantiator = new TargetSectionInstantiator(
 				targetSectionRegistry, attrValueRegistry,
-				sourceSectionMapper.getGlobalVarValues(),
+				sourceSectionMapper.getGlobalAttributeValues(),
 				attributeValuemodifier, globalValues, consoleStream, this);
 		
 		/*

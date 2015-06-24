@@ -9,7 +9,7 @@ import pamtram.metamodel.SourceSectionClass;
 import de.mfreund.gentrans.transformation.AttributeValueRepresentation;
 
 /**
- * This abstract base class provides illustrates a map that allows to collect hint values for 
+ * This abstract base class represents a map that allows to collect hint values for 
  * mapping hints that are based on attribute values.
  * <p />
  * Thereby, the stored hint values are associated with the <em>mapping hint</em>, the 
@@ -24,11 +24,6 @@ public abstract class AttributeBasedHintValueMap<K extends EObject, S extends EO
 	@Override
 	protected Map<S, AttributeValueRepresentation> createEmptyValue() {
 		return new LinkedHashMap<S, AttributeValueRepresentation>();
-	}
-	
-	@Override
-	protected boolean needsEmptyValue() {
-		return true;
 	}
 	
 }

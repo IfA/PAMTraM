@@ -2,13 +2,14 @@ package de.mfreund.gentrans.transformation.maps;
 
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 
 import org.eclipse.emf.ecore.EObject;
 
 import pamtram.metamodel.SourceSectionClass;
 
 /**
- * This abstract base class provides illustrates a map that allows to collect hint values for 
+ * This abstract base class represents a map that allows to collect hint values for 
  * mapping hints.
  * <p />
  * Thereby, the stored hint values are associated with the <em>mapping hint</em> and (optionally) 
@@ -21,13 +22,14 @@ public abstract class HintValueMap<H extends EObject, V extends Object> extends 
 	private static final long serialVersionUID = 7863859419011070324L;
 
 	/**
-	 * This initializes this map.
+	 * This initializes this map. Optionally, an {@link #createEmptyValue() empty value} is added to the
+	 * list of hint values.
 	 * <p />
 	 * Note: This is called automatically when hint values for a hint are to be stored that has
 	 * not been initialized. However, this may be called manually to reset the list of hint values.
 	 * 
 	 * @param hint The mapping hint for which the collection of hint values shall be initialized.
-	 * @param addEmptyValue Whether an {@link #createEmptyValue() 'empty value'} shall be added to the list.
+	 * @param addEmptyValue Whether an {@link #createEmptyValue() empty value} shall be added to the list.
 	 */
 	public void init(H hint, boolean addEmptyValue) {
 		this.put(hint, new HashMap<SourceSectionClass, LinkedList<V>>());
@@ -37,21 +39,9 @@ public abstract class HintValueMap<H extends EObject, V extends Object> extends 
 		}
 		this.get(hint).put(null, values);
 	}
-
-	/**
-	 * This specifies whether an {@link #createEmptyValue() 'empty value'} shall be added to
-	 * the list of values when initializing the map. The default implementations returns
-	 * <em>false</em>.
-	 * 
-	 * @return <em>true</em> if an 'empty value' is necessary, <em>false</em> otherwise.
-	 */
-	@Deprecated
-	protected boolean needsEmptyValue() {
-		return false;
-	}
 	
 	/**
-	 * This creates an 'empty value'. The default implementation of 'empty value' returns <em>null</em>
+	 * This creates an {@link #createEmptyValue() empty value}. The default implementation of 'empty value' returns <em>null</em>
 	 * but special definitions may be provided by implementing sub-classes. In most cases.
 	 * 
 	 * @return An 'empty value'.
@@ -77,11 +67,29 @@ public abstract class HintValueMap<H extends EObject, V extends Object> extends 
 	}
 	
 	/**
+	 * This returns the list of hint values that are stored for the given hint and a certain
+	 * {@link SourceSectionClass}.
+	 * 
+	 * @param hint The <em>hint</em> for which the stored hint values shall be returned.
+	 * @param clazz The {@link SourceSectionClass} for which the stored hint values shall be returned.
+	 * @return The list of hint values that are associated with the given hint and clazz (an empty list is
+	 * returned if no hint value is associated).
+	 */
+	public LinkedList<V> getHintValues(H hint, SourceSectionClass clazz) {
+		
+		if(!this.containsKey(hint)) {
+			this.init(hint, false);
+		}
+
+		return this.get(hint).get(clazz);
+	}
+	
+	/**
 	 * This adds a hint value that is associated with a {@link SourceSectionClass} to this map.
 	 * 
-	 * @param hint The hint for which this value shall be added.
-	 * @param clazz The source section class that the hint value is associated to.
-	 * @param hintValue The value to be added to this map of hint values.
+	 * @param hint The <em>hint</em> for which this value shall be added.
+	 * @param clazz The {@link SourceSectionClass} that the hint value is associated to.
+	 * @param hintValue The <em>value</em> to be added to this map of hint values.
 	 */
 	public void addHintValue(H hint, SourceSectionClass clazz, V value) {
 		
@@ -106,9 +114,9 @@ public abstract class HintValueMap<H extends EObject, V extends Object> extends 
 	/**
 	 * This adds a list of hint values that are associated with a {@link SourceSectionClass} to this map.
 	 * 
-	 * @param hint The hint for which this value shall be added.
-	 * @param clazz The source section class that the hint values are associated to.
-	 * @param hintValues The values to be added to this map of hint values.
+	 * @param hint The <em>hint</em> for which this value shall be added.
+	 * @param clazz The {@link SourceSectionClass} that the hint values are associated to.
+	 * @param hintValues The <em>values</em> to be added to this map of hint values.
 	 */
 	public void addHintValues(H hint, SourceSectionClass clazz, LinkedList<V> values) {
 		
@@ -133,8 +141,8 @@ public abstract class HintValueMap<H extends EObject, V extends Object> extends 
 	/**
 	 * This adds a hint value that is not associated with a {@link SourceSectionClass} to this map.
 	 * 
-	 * @param hint The hint for which this value shall be added.
-	 * @param value The value to be added to this map of hint values.
+	 * @param hint The <em>hint</em> for which this value shall be added.
+	 * @param value The <em>value</em> to be added to this map of hint values.
 	 */
 	public void addHintValue(H hint, V value) {
 		
@@ -144,8 +152,8 @@ public abstract class HintValueMap<H extends EObject, V extends Object> extends 
 	/**
 	 * This adds a list of hint values that are not associated with a {@link SourceSectionClass} to this map.
 	 * 
-	 * @param hint The hint for which these values shall be added.
-	 * @param values The values to be added to this map of hint values.
+	 * @param hint The <em>hint</em> for which these values shall be added.
+	 * @param values The <em>values</em> to be added to this map of hint values.
 	 */
 	public void addHintValues(H hint, LinkedList<V> values) {
 		
@@ -153,7 +161,7 @@ public abstract class HintValueMap<H extends EObject, V extends Object> extends 
 	}
 
 	/**
-	 * This adds all values that are stored in the given <em>hintValueMap</em> to this HintValueMap.
+	 * This adds all values that are stored in the given {@link HintValueMap} to this map.
 	 * 
 	 * @param valueMap The map of hint values that shall be added to this HintValueMap.
 	 */
@@ -184,9 +192,9 @@ public abstract class HintValueMap<H extends EObject, V extends Object> extends 
 	/**
 	 * This set the list of hint values in this map that are associated with a {@link SourceSectionClass}.
 	 * 
-	 * @param hint The hint for which these values shall be set.
-	 * @param clazz The source section class that the hint values are associated to.
-	 * @param values The values to be set. If <em>null</em> is passed, an empty list is set as values.
+	 * @param hint The <em>hint</em> for which these values shall be set.
+	 * @param clazz The {@link SourceSectionClass} that the hint values are associated to.
+	 * @param values The <em>values</em> to be set. If <em>null</em> is passed, an empty list is set as values.
 	 */
 	public void setHintValues(H hint, SourceSectionClass clazz, LinkedList<V> values) {
 		
@@ -202,10 +210,10 @@ public abstract class HintValueMap<H extends EObject, V extends Object> extends 
 	}
 	
 	/**
-	 * This set the list of hint values in this map that are not associated with a {@link SourceSectionClass}.
+	 * This set the list of hint values in this map that are <b>not</b> associated with a {@link SourceSectionClass}.
 	 * 
-	 * @param hint The hint for which these values shall be set.
-	 * @param values The values to be set. If <em>null</em> is passed, an empty list is set as values.
+	 * @param hint The <em>hint</em> for which these values shall be set.
+	 * @param values The <em>values</em> to be set. If <em>null</em> is passed, an empty list is set as values.
 	 */
 	public void setHintValues(H hint, LinkedList<V> values) {
 		
@@ -213,10 +221,11 @@ public abstract class HintValueMap<H extends EObject, V extends Object> extends 
 	}
 	
 	/**
-	 * This retrieves and removes the first hint value stored for a given hint.
+	 * This retrieves and removes the first hint value stored for a given <em>hint</em>.
 	 * 
-	 * @param hint The hint for which the first hint value shall be retrieved and removed.
+	 * @param hint The <em>hint</em> for which the first hint value shall be retrieved and removed.
 	 * @return The removed hint value.
+	 * @throws NoSuchElementException If no hint value is stored for the given <em>hint</em>.
 	 */
 	public V removeHintValue(H hint) {
 		return this.getHintValues(hint).remove();

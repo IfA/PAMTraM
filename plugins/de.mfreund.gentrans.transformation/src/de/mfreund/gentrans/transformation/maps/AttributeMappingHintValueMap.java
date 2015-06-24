@@ -5,8 +5,8 @@ import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.metamodel.SourceSectionClass;
 
 /**
- * This class provides represents a map that allows to collect hint values for 
- * {@link AttributeMapping AttributeMappings}
+ * This class represents a map that allows to collect hint values for 
+ * {@link AttributeMapping AttributeMappings}.
  * <p />
  * Thereby, the stored hint values are associated with the <em>AttributeMapping</em>, the 
  * <em>{@link AttributeMappingSourceInterface}</em> of the hint and the 

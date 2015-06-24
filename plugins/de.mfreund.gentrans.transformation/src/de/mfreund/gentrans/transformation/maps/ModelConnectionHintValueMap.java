@@ -5,8 +5,8 @@ import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.metamodel.SourceSectionClass;
 
 /**
- * This class provides represents a map that allows to collect hint values for 
- * {@link ModelConnectionHint ModelConnectionHints}
+ * This class represents a map that allows to collect hint values for 
+ * {@link ModelConnectionHint ModelConnectionHints}.
  * <p />
  * Thereby, the stored hint values are associated with the <em>ModelConnectionHint</em>, the 
  * <em>{@link ModelConnectionHintSourceInterface}</em> of the hint and the 

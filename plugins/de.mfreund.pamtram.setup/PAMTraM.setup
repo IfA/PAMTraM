@@ -4,9 +4,11 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:git="http://www.eclipse.org/oomph/setup/git/1.0"
+    xmlns:predicates="http://www.eclipse.org/oomph/predicates/1.0"
     xmlns:projects="http://www.eclipse.org/oomph/setup/projects/1.0"
     xmlns:setup="http://www.eclipse.org/oomph/setup/1.0"
-    xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/setup/projects/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Projects.ecore"
+    xmlns:setup.workingsets="http://www.eclipse.org/oomph/setup/workingsets/1.0"
+    xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/predicates/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Predicates.ecore http://www.eclipse.org/oomph/setup/projects/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Projects.ecore http://www.eclipse.org/oomph/setup/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupWorkingSets.ecore"
     name="pamtram"
     label="PAMTraM">
   <stream name="master">
@@ -249,6 +251,61 @@
         <sourceLocator
             rootFolder="${clone.location}\de.mfreund.pamtram.update-site.git"/>
       </setupTask>
+      <description>Import all necessary projects.</description>
+    </setupTask>
+    <setupTask
+        xsi:type="setup.workingsets:WorkingSetTask"
+        id="workingSets">
+      <workingSet
+          name="gentrans"
+          id="workingset.gentrans">
+        <predicate
+            xsi:type="predicates:NamePredicate"
+            pattern="de.mfreund.gentrans.*"/>
+      </workingSet>
+      <workingSet
+          name="pamtram"
+          id="workingset.pamtram">
+        <predicate
+            xsi:type="predicates:OrPredicate">
+          <operand
+              xsi:type="predicates:NamePredicate"
+              pattern="de.mfreund.pamtram.model"/>
+          <operand
+              xsi:type="predicates:NamePredicate"
+              pattern="de.mfreund.pamtram.model.*"/>
+          <operand
+              xsi:type="predicates:NamePredicate"
+              pattern="de.mfreund.pamtram"/>
+          <operand
+              xsi:type="predicates:NamePredicate"
+              pattern="de.mfreund.pamtram.ui"/>
+        </predicate>
+      </workingSet>
+      <workingSet
+          name="casestudies"
+          id="workingset.casestudies">
+        <predicate
+            xsi:type="predicates:NamePredicate"
+            pattern="de.mfreund.pamtram.casestudies.*"/>
+      </workingSet>
+      <workingSet
+          name="admin"
+          id="workingset.admin">
+        <predicate
+            xsi:type="predicates:OrPredicate">
+          <operand
+              xsi:type="predicates:NamePredicate"
+              pattern="de.mfreund.pamtram.feature"/>
+          <operand
+              xsi:type="predicates:NamePredicate"
+              pattern="de.mfreund.pamtram.setup"/>
+          <operand
+              xsi:type="predicates:NamePredicate"
+              pattern="de.mfreund.pamtram.update-site"/>
+        </predicate>
+      </workingSet>
+      <description>Add projects to working sets.</description>
     </setupTask>
   </stream>
   <logicalProjectContainer

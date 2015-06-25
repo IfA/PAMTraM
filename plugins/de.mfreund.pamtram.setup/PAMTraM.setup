@@ -193,12 +193,6 @@
       </setupTask>
       <setupTask
           xsi:type="projects:ProjectsImportTask"
-          id="import.pamtram.documentation">
-        <sourceLocator
-            rootFolder="${clone.location}\de.mfreund.pamtram.documentation.git"/>
-      </setupTask>
-      <setupTask
-          xsi:type="projects:ProjectsImportTask"
           id="import.pamtram.feature">
         <sourceLocator
             rootFolder="${clone.location}\de.mfreund.pamtram.feature.git"/>

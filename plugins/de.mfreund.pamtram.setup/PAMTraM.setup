@@ -4,8 +4,9 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:git="http://www.eclipse.org/oomph/setup/git/1.0"
+    xmlns:projects="http://www.eclipse.org/oomph/setup/projects/1.0"
     xmlns:setup="http://www.eclipse.org/oomph/setup/1.0"
-    xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore"
+    xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/setup/projects/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Projects.ecore"
     name="pamtram"
     label="PAMTraM">
   <stream name="master">
@@ -20,7 +21,7 @@
     <setupTask
         xsi:type="setup:CompoundTask"
         id="clone"
-        name="clone">
+        name="Clone Projects">
       <setupTask
           xsi:type="git:GitCloneTask"
           id="clone.gentrans"
@@ -141,6 +142,113 @@
         <description>Clone the 'de.mfreund.pamtram.update-site.git' repository.</description>
       </setupTask>
       <description>Clone all necessary git repositories.</description>
+    </setupTask>
+    <setupTask
+        xsi:type="setup:CompoundTask"
+        id="import"
+        name="Import Projects">
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.gentrans">
+        <sourceLocator
+            rootFolder="${clone.location}\de.mfreund.gentrans.git"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.gentrans.transformation">
+        <sourceLocator
+            rootFolder="${clone.location}\de.mfreund.gentrans.transformation.git"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.gentrans.transformation.selectors">
+        <sourceLocator
+            rootFolder="${clone.location}\de.mfreund.gentrans.transformation.selectors.git"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.gentrans.ui">
+        <sourceLocator
+            rootFolder="${clone.location}\de.mfreund.gentrans.ui.git"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.pamtram.casestudies.autoprobe">
+        <sourceLocator
+            rootFolder="${clone.location}\de.mfreund.pamtram.casestudies.autoprobe.git"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.pamtram.casestudies.disl-movisa">
+        <sourceLocator
+            rootFolder="${clone.location}\de.mfreund.pamtram.casestudies.disl-movisa.git"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.pamtram.casestudies.w3caui-movisa">
+        <sourceLocator
+            rootFolder="${clone.location}\de.mfreund.pamtram.casestudies.w3caui-movisa.git"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.pamtram.documentation">
+        <sourceLocator
+            rootFolder="${clone.location}\de.mfreund.pamtram.documentation.git"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.pamtram.feature">
+        <sourceLocator
+            rootFolder="${clone.location}\de.mfreund.pamtram.feature.git"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.pamtram">
+        <sourceLocator
+            rootFolder="${clone.location}\de.mfreund.pamtram.git"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.pamtram.model.edit">
+        <sourceLocator
+            rootFolder="${clone.location}\de.mfreund.pamtram.model.edit.git"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.pamtram.model.editor">
+        <sourceLocator
+            rootFolder="${clone.location}\de.mfreund.pamtram.model.editor.git"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.pamtram.model.generator">
+        <sourceLocator
+            rootFolder="${clone.location}\de.mfreund.pamtram.model.generator.git"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.pamtram.model">
+        <sourceLocator
+            rootFolder="${clone.location}\de.mfreund.pamtram.model.git"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.pamtram.setup">
+        <sourceLocator
+            rootFolder="${clone.location}\de.mfreund.pamtram.setup.git"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.pamtram.ui">
+        <sourceLocator
+            rootFolder="${clone.location}\de.mfreund.pamtram.ui.git"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.pamtram.update-site">
+        <sourceLocator
+            rootFolder="${clone.location}\de.mfreund.pamtram.update-site.git"/>
+      </setupTask>
     </setupTask>
   </stream>
   <logicalProjectContainer

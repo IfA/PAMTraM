@@ -3,10 +3,146 @@
     xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:git="http://www.eclipse.org/oomph/setup/git/1.0"
     xmlns:setup="http://www.eclipse.org/oomph/setup/1.0"
+    xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore"
     name="pamtram"
     label="PAMTraM">
-  <stream name="master"/>
+  <stream name="master">
+    <setupTask
+        xsi:type="setup:VariableTask"
+        id="clone.location"
+        name="clone.location"
+        defaultValue=""
+        label="Clone location">
+      <description>The folder where all projects will be cloned to.</description>
+    </setupTask>
+    <setupTask
+        xsi:type="setup:CompoundTask"
+        id="clone"
+        name="clone">
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.gentrans"
+          location="${clone.location}\de.mfreund.gentrans.git"
+          remoteURI="G:\staff\matthias\projects\pamtram\de.mfreund.gentrans.git">
+        <description>Clone the 'de.mfreund.gentrans.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.gentrans.transformation"
+          location="${clone.location}\de.mfreund.gentrans.transformation.git"
+          remoteURI="G:\staff\matthias\projects\pamtram\de.mfreund.gentrans.transformation.git">
+        <description>Clone the 'de.mfreund.gentrans.transformation.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.gentrans.transformation.selectors"
+          location="${clone.location}\de.mfreund.gentrans.transformation.selectors.git"
+          remoteURI="G:\staff\matthias\projects\pamtram\de.mfreund.gentrans.transformation.selectors.git">
+        <description>Clone the 'de.mfreund.gentrans.transformation.selectors.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.gentrans.ui"
+          location="${clone.location}\de.mfreund.gentrans.ui.git"
+          remoteURI="G:\staff\matthias\projects\pamtram\de.mfreund.gentrans.ui.git">
+        <description>Clone the 'de.mfreund.gentrans.ui.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.pamtram.casestudies.autoprobe"
+          location="${clone.location}\de.mfreund.pamtram.casestudies.autoprobe.git"
+          remoteURI="G:\staff\matthias\projects\pamtram\de.mfreund.pamtram.casestudies.autoprobe.git">
+        <description>Clone the 'de.mfreund.pamtram.casestudies.autoprobe.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.pamtram.casestudies.disl-movisa"
+          location="${clone.location}\de.mfreund.pamtram.casestudies.disl-movisa.git"
+          remoteURI="G:\staff\matthias\projects\pamtram\de.mfreund.pamtram.casestudies.disl-movisa.git">
+        <description>Clone the 'de.mfreund.pamtram.casestudies.disl-movisa.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.pamtram.casestudies.w3caui-movisa"
+          location="${clone.location}\de.mfreund.pamtram.casestudies.w3caui-movisa.git"
+          remoteURI="G:\staff\matthias\projects\pamtram\de.mfreund.pamtram.casestudies.w3caui-movisa.git">
+        <description>Clone the 'de.mfreund.pamtram.casestudies.w3caui-movisa.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.pamtram.documentation"
+          location="${clone.location}\de.mfreund.pamtram.documentation.git"
+          remoteURI="G:\staff\matthias\projects\pamtram\de.mfreund.pamtram.documentation.git">
+        <description>Clone the 'de.mfreund.pamtram.documentation.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.pamtram.feature"
+          location="${clone.location}\de.mfreund.pamtram.feature.git"
+          remoteURI="G:\staff\matthias\projects\pamtram\de.mfreund.pamtram.feature.git">
+        <description>Clone the 'de.mfreund.pamtram.feature.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.pamtram"
+          location="${clone.location}\de.mfreund.pamtram.git"
+          remoteURI="G:\staff\matthias\projects\pamtram\de.mfreund.pamtram.git">
+        <description>Clone the 'de.mfreund.pamtram.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.pamtram.model.edit"
+          location="${clone.location}\de.mfreund.pamtram.model.edit.git"
+          remoteURI="G:\staff\matthias\projects\pamtram\de.mfreund.pamtram.model.edit.git">
+        <description>Clone the 'de.mfreund.pamtram.model.edit.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.pamtram.model.editor"
+          location="${clone.location}\de.mfreund.pamtram.model.editor.git"
+          remoteURI="G:\staff\matthias\projects\pamtram\de.mfreund.pamtram.model.editor.git">
+        <description>Clone the 'de.mfreund.pamtram.model.editor.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.pamtram.model.generator"
+          location="${clone.location}\de.mfreund.pamtram.model.generator.git"
+          remoteURI="G:\staff\matthias\projects\pamtram\de.mfreund.pamtram.model.generator.git">
+        <description>Clone the 'de.mfreund.pamtram.model.generator.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.pamtram.model"
+          location="${clone.location}\de.mfreund.pamtram.model.git"
+          remoteURI="G:\staff\matthias\projects\pamtram\de.mfreund.pamtram.model.git">
+        <description>Clone the 'de.mfreund.pamtram.model.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.pamtram.setup"
+          location="${clone.location}\de.mfreund.pamtram.setup.git"
+          remoteURI="G:\staff\matthias\projects\pamtram\de.mfreund.pamtram.setup.git">
+        <description>Clone the 'de.mfreund.pamtram.setup.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.pamtram.ui"
+          location="${clone.location}\de.mfreund.pamtram.ui.git"
+          remoteURI="G:\staff\matthias\projects\pamtram\de.mfreund.pamtram.ui.git">
+        <description>Clone the 'de.mfreund.pamtram.ui.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.pamtram.update-site"
+          location="${clone.location}\de.mfreund.pamtram.update-site.git"
+          remoteURI="G:\staff\matthias\projects\pamtram\de.mfreund.pamtram.update-site.git">
+        <description>Clone the 'de.mfreund.pamtram.update-site.git' repository.</description>
+      </setupTask>
+      <description>Clone all necessary git repositories.</description>
+    </setupTask>
+  </stream>
   <logicalProjectContainer
       xsi:type="setup:ProjectCatalog"
       href="index:/org.eclipse.setup#//@projectCatalogs[name='org.eclipse']"/>

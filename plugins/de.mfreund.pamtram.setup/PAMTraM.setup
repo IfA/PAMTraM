@@ -440,16 +440,16 @@
           name="genlibrary.movisalibrary"
           id="workingset.genlibrary.movisalibrary">
         <predicate
-            xsi:type="predicates:AndPredicate">
+            xsi:type="predicates:OrPredicate">
           <operand
-              xsi:type="predicates:OrPredicate">
-            <operand
-                xsi:type="predicates:NamePredicate"
-                pattern="de.tud.et.ifa.agtele.genlibrary.movisalibrary"/>
-            <operand
-                xsi:type="predicates:NamePredicate"
-                pattern="de.tud.et.ifa.agtele.genlibrary.movisalibrary.*"/>
-          </operand>
+              xsi:type="predicates:NamePredicate"
+              pattern="de.tud.et.ifa.agtele.genlibrary.movisalibrary"/>
+          <operand
+              xsi:type="predicates:NamePredicate"
+              pattern="de.tud.et.ifa.agtele.genlibrary.movisalibrary.*"/>
+          <operand
+              xsi:type="predicates:NamePredicate"
+              pattern="de.tud.et.ifa.agtele.movisa.resourceconverter"/>
         </predicate>
       </workingSet>
       <description>Add projects to working sets.</description>

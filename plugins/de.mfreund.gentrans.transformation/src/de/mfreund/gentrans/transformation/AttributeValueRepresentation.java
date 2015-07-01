@@ -15,27 +15,28 @@ import pamtram.metamodel.SourceSectionAttribute;
  *
  */
 public class AttributeValueRepresentation {
-	
+
 	/**
 	 * This is the {@link SourceSectionAttribute} that this represents.
 	 */
 	private SourceSectionAttribute attribute;
-	
+
 	/**
 	 * This represents the values of the attribute. In case where
 	 * {@link EAttribute#isMany()} returns '<em><b>false</em></b>', this lsit
 	 * will only contain one value.
 	 */
 	private ArrayList<String> attributeValues = new ArrayList<>();
-	
+
 	/**
 	 * This pointer is used by {@link #getNextValue()} to determine the 'next' value to return.
 	 */
 	private int pointer = 0;
-	
+
 	/**
 	 * This constructs an instance for a single given value.
 	 * 
+	 * @param attribute The {@link SourceSectionAttribute} that this represents. 
 	 * @param value The value to be stored. If '<em><b>null</em></b>' is passed as value,
 	 * an empty string will be stored.
 	 */
@@ -43,7 +44,7 @@ public class AttributeValueRepresentation {
 		this.attribute = attribute;
 		this.attributeValues.add(value != null ? value : "");
 	}
-	
+
 	/**
 	 * This adds a value to the list of values that the
 	 * attribute represents.
@@ -53,7 +54,7 @@ public class AttributeValueRepresentation {
 	public void addValue(String value) {
 		attributeValues.add(value);
 	}
-	
+
 	/**
 	 * This method can be used to check if this {@link AttributeValueRepresentation}
 	 * currently represents more than one value.
@@ -79,7 +80,7 @@ public class AttributeValueRepresentation {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * This returns the list of values that this {@link AttributeValueRepresentation} 
 	 * currently represents.
@@ -89,7 +90,7 @@ public class AttributeValueRepresentation {
 	public ArrayList<String> getValues() {
 		return attributeValues;
 	}
-	
+
 	/**
 	 * This adds a prefix to every value that this {@link AttributeValueRepresentation}
 	 * currently represents.
@@ -101,7 +102,7 @@ public class AttributeValueRepresentation {
 			attributeValues.set(i, prefix + attributeValues.get(i));
 		}
 	}
-	
+
 	/**
 	 * This adds a suffix to every value that this {@link AttributeValueRepresentation}
 	 * currently represents.
@@ -113,14 +114,16 @@ public class AttributeValueRepresentation {
 			attributeValues.set(i, attributeValues.get(i) + suffix);
 		}
 	}
-	
+
 	/**
 	 * This returns the 'next' value of the list of values. Which value is the 'next' one
 	 * to return is determined by an internal counter that is incremented automatically.
+	 * 
+	 * @return The 'next' value of the list of values. 
 	 */
 	public String getNextValue() {
 		String ret = attributeValues.get(pointer);
-		
+
 		// Reset the pointer if all values have already been retrieved.
 		// TODO check if this may happen or if we should throw an exception
 		if(++pointer == attributeValues.size()) {
@@ -128,7 +131,7 @@ public class AttributeValueRepresentation {
 		}
 		return ret;
 	}
-	
+
 	@Override
 	protected Object clone() {
 		/*

@@ -10,6 +10,15 @@ import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ui.console.MessageConsoleStream;
 
+import de.mfreund.gentrans.transformation.AttributeValueCalculator;
+import de.mfreund.gentrans.transformation.AttributeValueRepresentation;
+import de.mfreund.gentrans.transformation.EObjectTransformationHelper;
+import de.mfreund.gentrans.transformation.HintValueStorage;
+import de.mfreund.gentrans.transformation.TargetSectionConnector;
+import de.mfreund.gentrans.transformation.TargetSectionRegistry;
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractContainerParameter;
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
+import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPlugin;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
@@ -25,15 +34,6 @@ import pamtram.metamodel.ExternalReferenceParameter;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.LibraryParameter;
 import pamtram.util.GenLibraryManager;
-import de.mfreund.gentrans.transformation.AttributeValueCalculator;
-import de.mfreund.gentrans.transformation.AttributeValueRepresentation;
-import de.mfreund.gentrans.transformation.EObjectTransformationHelper;
-import de.mfreund.gentrans.transformation.HintValueStorage;
-import de.mfreund.gentrans.transformation.TargetSectionConnector;
-import de.mfreund.gentrans.transformation.TargetSectionRegistry;
-import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractContainerParameter;
-import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
-import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPlugin;
 
 /**
  * This class is used to instantiate library entries.
@@ -49,7 +49,7 @@ public class LibraryEntryInstantiator {
 	 * The {@link LibraryEntry} to be instantiated.
 	 */
 	final private LibraryEntry libraryEntry;
-	
+
 	/**
 	 * This is the public getter for the {@link #libraryEntry}.
 	 * @return The {@link #libraryEntry}.
@@ -60,38 +60,38 @@ public class LibraryEntryInstantiator {
 
 	/**
 	 * This is the {@link EObjectTransformationHelper} that wraps the concrete root instance
-	 * that has been created during the transformation for this {@link #libraryEntry.
+	 * that has been created during the transformation for this {@link #libraryEntry}.
 	 */
 	private EObjectTransformationHelper transformationHelper;
-	
+
 	/**
 	 * The {@link InstantiableMappingHintGroup} associated with the library entry.
 	 */
 	final private InstantiableMappingHintGroup mappingGroup;
-	
+
 	/**
 	 * A list of {@link MappingHint}s that are part of the {@link #mappingGroup}.
 	 */
 	final private List<MappingHint> mappingHints;
-	
+
 	/**
 	 * A map of {@link MappingHintType}s and associated {@link Object}s that represent 
 	 * hint values to be used during the instantiation.
 	 */
 	final private HintValueStorage hintValues;
-	
+
 	/**
 	 * The {@link MessageConsoleStream} that is used to print messages.
 	 */
 	private MessageConsoleStream consoleStream;
-	
+
 	/**
 	 * This creates an instance.
 	 * 
 	 * @param libraryEntry The {@link LibraryEntry} to be instantiated.
 	 * @param transformationHelper The {@link EObjectTransformationHelper} that wraps one root instance
 	 * 			that has been created during the transformation for this {@link #libraryEntry}.
-	 * @param mappingGroupThe {@link InstantiableMappingHintGroup} associated with the library entry.
+	 * @param mappingGroup The {@link InstantiableMappingHintGroup} associated with the library entry.
 	 * @param mappingHints A list of {@link MappingHint}s that are part of the {@link #mappingGroup}.
 	 * @param hintValues  A map of {@link MappingHintType}s and associated {@link Object}s that represent 
 	 * 			hint values to be used during the instantiation.
@@ -111,7 +111,7 @@ public class LibraryEntryInstantiator {
 		this.hintValues = hintValues;
 		this.consoleStream = consoleStream;
 	}
-	
+
 	/**
 	 * This instantiates the {@link #libraryEntry} in a given target model.
 	 * 
@@ -125,14 +125,14 @@ public class LibraryEntryInstantiator {
 	@SuppressWarnings("unchecked")
 	public boolean instantiate(GenLibraryManager manager, EObject targetModel, AttributeValueCalculator calculator, TargetSectionConnector targetSectionConnector,
 			TargetSectionRegistry targetSectionRegistry) {
-		
+
 		/*
 		 * Now, we prepare the parameters.
 		 */
 		for (LibraryParameter<?> param : libraryEntry.getParameters()) {
 			if(param instanceof AttributeParameter) {
 				AttributeParameter attParam = ((AttributeParameter) param);
-				
+
 				// find the AttributeMapping for this AttributeParameter
 				Collection<Setting> refs = EcoreUtil.UsageCrossReferencer.find(attParam.getAttribute(), mappingHints);
 				/*
@@ -148,24 +148,24 @@ public class LibraryEntryInstantiator {
 					return false;
 				}
 				AttributeMapping attMapping = (AttributeMapping) ref;
-				
+
 				// calculate the attribute value using the given hint values and the AttributeMapping
 				LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> hints = hintValues.getHintValues(attMapping);
 				String value = calculator.calculateAttributeValue(attParam.getAttribute(), attMapping, hints);
-				
+
 				// set the calculated value
 				attParam.getOriginalParameter().setNewValue(value);
 			} else if(param instanceof ContainerParameter) {
-				
+
 				ContainerParameter contParam = (ContainerParameter) param;
-				
+
 				if(!(mappingGroup instanceof MappingHintGroup)) {
 					return false;
 				}
 				if(!((MappingHintGroup) mappingGroup).getTargetMMSection().equals(contParam.getClass_())) {
 					return false;
 				}
-				
+
 				/*
 				 * As the root instance of the LibraryEntry has already been instantiated by the 
 				 * transformation algorithm, we do not have to determine the the container. Instead, we just
@@ -177,11 +177,11 @@ public class LibraryEntryInstantiator {
 				((AbstractContainerParameter<EObject, EObject>) (contParam.getOriginalParameter())).setContainer(transformationHelper.getEObject().eContainer());
 				EcoreUtil.delete(transformationHelper.getEObject());
 				targetSectionRegistry.getPamtramClassInstances(contParam.getClass_()).put(mappingGroup, rootInstances);				
-				
+
 			} else if (param instanceof ExternalReferenceParameter) {
-				
+
 				ExternalReferenceParameter extRefParam = (ExternalReferenceParameter) param;
-				
+
 				// find the MappingInstanceSelector for this ExternalReferenceParameter
 				Collection<Setting> refs = EcoreUtil.UsageCrossReferencer.find(extRefParam.getReference(), mappingHints);
 				if(refs.size() != 1) {
@@ -199,13 +199,13 @@ public class LibraryEntryInstantiator {
 				if (selector.getMatcher() instanceof AttributeMatcher) {
 					final AttributeMatcher matcher = (AttributeMatcher) selector
 							.getMatcher();
-					
+
 					/*
 					 * The following has been copied and adapted from the 
 					 * 'TargetSectionInstantiator.instantiateTargetSectionSecondPass()'
 					 * method. Maybe, this could be improved/reused in a better way.
 					 */
-					
+
 					// now search for target attributes
 					final LinkedList<EObjectTransformationHelper> targetInstances = targetSectionRegistry
 							.getFlattenedPamtramClassInstances(matcher
@@ -225,7 +225,7 @@ public class LibraryEntryInstantiator {
 								attrValStr += hVal
 										.get(srcElement).getNextValue();
 							} else {
-									consoleStream.println("HintSourceValue not found "
+								consoleStream.println("HintSourceValue not found "
 										+ srcElement
 										.getName()
 										+ " in hint "
@@ -233,7 +233,7 @@ public class LibraryEntryInstantiator {
 										+ ".");
 							}
 						}
-						
+
 						boolean found = false;
 						for (final EObjectTransformationHelper targetInst : targetInstances) {
 							// get Attribute value
@@ -260,10 +260,10 @@ public class LibraryEntryInstantiator {
 					consoleStream.println("Unsupported matcher type '" + selector.getMatcher().getClass().getName() + "'!");
 					return false;
 				}
-				
+
 			}
 		}
-		
+
 		/*
 		 * Finally, insert the library entry into the target model as all parameters have been filled out
 		 */

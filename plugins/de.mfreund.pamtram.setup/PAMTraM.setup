@@ -7,6 +7,7 @@
     xmlns:predicates="http://www.eclipse.org/oomph/predicates/1.0"
     xmlns:projects="http://www.eclipse.org/oomph/setup/projects/1.0"
     xmlns:setup="http://www.eclipse.org/oomph/setup/1.0"
+    xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0"
     xmlns:setup.workingsets="http://www.eclipse.org/oomph/setup/workingsets/1.0"
     xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/predicates/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Predicates.ecore http://www.eclipse.org/oomph/setup/projects/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Projects.ecore http://www.eclipse.org/oomph/setup/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupWorkingSets.ecore"
     name="pamtram"
@@ -21,6 +22,34 @@
       option="-Xmx"
       value="2048m"
       vm="true"/>
+  <setupTask
+      xsi:type="setup.p2:P2Task"
+      label="PAMTraM">
+    <requirement
+        name="org.eclipse.recommenders.rcp.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.recommenders.snipmatch.rcp.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.epp.package.modeling.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.wst.xml_ui.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.epsilon.core.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.epsilon.core.dt.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.epsilon.emf.dt.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.epsilon.emf.feature.feature.group"/>
+    <requirement
+        name="com.vogella.saneclipse.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.ocl.examples.feature.group"/>
+    <repository
+        url="http://download.eclipse.org/epsilon/updates/"/>
+    <repository
+        url="http://dl.bintray.com/vogellacompany/saneclipse/"/>
+  </setupTask>
   <stream name="master">
     <setupTask
         xsi:type="setup:VariableTask"

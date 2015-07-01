@@ -1,0 +1,30 @@
+<project name="MyProject" default="publish" basedir=".">
+    <description>
+		This updates the setup on the web server.
+    </description>
+	
+	<!-- the folder that shall contain the setup -->
+	<property name="setup-url" location="G:\staff\matthias\projects\pamtram\setup"/>
+	
+	<!-- ================================= 
+	          target: dir.check              
+	         ================================= -->
+	<target name="dir.check">
+		<!-- check if the folder representing the setup folder exists -->
+		<condition property="dir.exists">
+			<available file="${setup-url}" type="dir"/>
+		</condition>
+	</target>
+
+	<!-- ================================= 
+	          target: publish              
+	         ================================= -->
+	<target name="publish" depends="dir.check" if="dir.exists">
+
+		<echo>Publishing to setup folder...</echo>
+		
+		<!-- copy the 'features' and 'plugins' folder as well as 'artifacts.jar' and 'content.jar'
+			to the specified directory representing the update site -->
+		<copy todir="${setup-url}" file="PAMTraM.setup" />
+	</target>
+</project>

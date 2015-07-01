@@ -11,6 +11,16 @@
     xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/predicates/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Predicates.ecore http://www.eclipse.org/oomph/setup/projects/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Projects.ecore http://www.eclipse.org/oomph/setup/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupWorkingSets.ecore"
     name="pamtram"
     label="PAMTraM">
+  <setupTask
+      xsi:type="setup:EclipseIniTask"
+      option="-Doomph.redirection.setups"
+      value="=https://eats3.et.tu-dresden.de/git/staff/matthias/projects/pamtram/setup/PAMTraM.setup->${clone.location|uri}/de.mfreund.pamtram.setup.git/de.mfreund.pamtram.setup/PAMTraM.setup"
+      vm="true"/>
+  <setupTask
+      xsi:type="setup:EclipseIniTask"
+      option="-Xmx"
+      value="2048m"
+      vm="true"/>
   <stream name="master">
     <setupTask
         xsi:type="setup:VariableTask"

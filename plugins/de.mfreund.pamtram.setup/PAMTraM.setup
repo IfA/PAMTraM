@@ -53,6 +53,72 @@
     <repository
         url="http://download.eclipse.org/releases/luna/"/>
   </setupTask>
+  <setupTask
+      xsi:type="setup:CompoundTask"
+      id="preferences"
+      name="Preferences">
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.core.resources/refresh.enabled"
+        value="true"/>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.ocl.common/default.delegation.mode"
+        value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.ui.ide/REFRESH_WORKSPACE_ON_STARTUP"
+        value="true"/>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.compiler.problem.staticAccessReceiver"
+        value="error"/>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.compiler.problem.possibleAccidentalBooleanAssignment"
+        value="warning"/>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.compiler.problem.invalidJavadoc"
+        value="warning"/>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.compiler.problem.invalidJavadocTags"
+        value="enabled"/>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.compiler.problem.missingJavadocTags"
+        value="warning"/>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.compiler.problem.missingJavadocTagsMethodTypeParameters"
+        value="enabled"/>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.jdt.ui/highlightBracketAtCaretLocation"
+        value="true"/>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.jdt.ui/sp_cleanup.correct_indentation"
+        value="true"/>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.jdt.ui/sp_cleanup.always_use_blocks"
+        value="true"/>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.debug.ui/Console.limitConsoleOutput"
+        value="false"/>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.egit.ui/remote_connection_timeout"
+        value="60"/>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.egit.ui/resourcehistory_show_all_branches"
+        value="true"/>
+    <description>This sets a bunch of preferences.</description>
+  </setupTask>
   <stream name="master">
     <setupTask
         xsi:type="setup:VariableTask"

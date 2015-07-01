@@ -18,6 +18,9 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.console.MessageConsoleStream;
 
+import de.congrace.exp4j.ExpressionBuilder;
+import de.mfreund.gentrans.transformation.selectors.NamedElementItemSelectorDialogRunner;
+import de.mfreund.gentrans.transformation.util.CancellationListener;
 import pamtram.SourceSectionModel;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceElement;
@@ -53,9 +56,6 @@ import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
 import pamtram.metamodel.SourceSectionReference;
-import de.congrace.exp4j.ExpressionBuilder;
-import de.mfreund.gentrans.transformation.selectors.NamedElementItemSelectorDialogRunner;
-import de.mfreund.gentrans.transformation.util.CancellationListener;
 
 /**
  * This class can be used to match <em>source model objects</em> to {@link pamtram.metamodel.Class SourceSections} and find values for
@@ -82,7 +82,7 @@ public class SourceSectionMatcher implements CancellationListener {
 	 * The matched objects are stored in a map where the key is the corresponding <em>container section</em> that they have been matched to.
 	 */
 	private final LinkedHashMap<SourceSectionClass, Set<EObject>> matchedContainers;
-	
+
 	/**
 	 * Registry for {@link MappingHintType MappingHints} for all selected {@link Mapping Mappings}.
 	 */
@@ -109,7 +109,7 @@ public class SourceSectionMatcher implements CancellationListener {
 	 * we don't have to ask twice for the same combination of possible mappings.
 	 */
 	private final Map<Set<Mapping>, Mapping> ambiguousMappingSelections;
-	
+
 	/**
 	 * This keeps track of the {@link SourceSectionClass} that is the common container for all source elements of a {@link MappingHintBaseType}.
 	 * This map is used to determine at which point complex hints with multiple source elements need to be joined.
@@ -131,7 +131,7 @@ public class SourceSectionMatcher implements CancellationListener {
 	 */
 	//TODO explain why we need this
 	private final Map<AttributeMatcher, Set<SourceSectionClass>> deepestSourceSectionClassesByAttributeMatcher;
-	
+
 	/**
 	 * This keeps track of those {@link SourceSectionClass SourceSectionClasses} that contain a {@link SourceSectionAttribute} that is
 	 * referenced by an {@link ModelConnectionHintSourceElement} of a {@link ModelConnectionHintr} and that are located at the 
@@ -139,7 +139,7 @@ public class SourceSectionMatcher implements CancellationListener {
 	 */
 	//TODO explain why we need this
 	private final Map<ModelConnectionHint, Set<SourceSectionClass>> deepestSourceSectionClassesByModelConnectionHint;
-	
+
 	/**
 	 * The {@link MessageConsoleStream} that shall be used to print messages.
 	 */
@@ -186,7 +186,7 @@ public class SourceSectionMatcher implements CancellationListener {
 			boolean onlyAskOnceOnAmbiguousMappings, 
 			final AttributeValueModifierExecutor attributeValuemodifier,
 			final MessageConsoleStream consoleStream) {
-		
+
 		/*
 		 * initialize all class variables
 		 */
@@ -207,7 +207,7 @@ public class SourceSectionMatcher implements CancellationListener {
 		this.globalAttributeValues = new HashMap<>();
 		this.attributeValueModifierExecutor = attributeValuemodifier;
 		this.constraintsWithErrors = new HashSet<AttributeValueConstraint>();
-		
+
 		/*
 		 * initialize the various maps based on the given list of mappings
 		 */
@@ -248,24 +248,22 @@ public class SourceSectionMatcher implements CancellationListener {
 	}
 
 	/**
-	 * This determines and returns a mapping for the next unmatched element from the given {@link ContainmentTree}. If multiple mappings are
+	 * This determines and returns a mapping for the {@link #containmentTree} that we operate on. If multiple mappings are
 	 * applicable, the user needs to choose a suitable one.
 	 * <p />
 	 * Note: All hint values (local and external ones) for the various hints in the selected mapping are also determined by this method.
 	 * Consequently, the returned {@link MappingInstanceStorage} already contains all hint values.
 	 *
-	 * @param containmentTree The {@link ContainmentTree} that keeps track of matched and unmatched elements and is
-	 * used to get the element for that a mapping shall be found.
 	 * @return The {@link MappingInstanceStorage} that represents the found mapping and contains all hint values
 	 * or '<em><b>null</b></em>' if no mapping could be found.
 	 */
 	public MappingInstanceStorage findMappingForNextElement() {
-		
+
 		/* 
 		 * This is the source model element which we will now try to match
 		 */
 		final EObject element = containmentTree.getNextElementForMatching();
-		
+
 		/*
 		 * Determine all mappings that are applicable for the source model element.
 		 */
@@ -275,39 +273,39 @@ public class SourceSectionMatcher implements CancellationListener {
 		 * Now, we have to return exactly one (of the possibly multiple found) applicable mappings. 
 		 */
 		MappingInstanceStorage ret = null;
-		
+
 		switch (applicableMappings.size()) {
-			case 0:
-				// no applicable mapping was found
-				return null;
-			case 1:
-				// return the only found mapping
-				ret = applicableMappings.values().iterator().next();
-				break;
-			default:
+		case 0:
+			// no applicable mapping was found
+			return null;
+		case 1:
+			// return the only found mapping
+			ret = applicableMappings.values().iterator().next();
+			break;
+		default:
+			/*
+			 * if multiple mappings we need to act depending of the 'onlyAskOnceOnAmbiguousMappings' setting
+			 */
+			if (onlyAskOnceOnAmbiguousMappings && ambiguousMappingSelections.containsKey(applicableMappings.keySet())) {
+				// the user already chose a mapping for this selection of mappings before so that we can reuse this
+				ret = applicableMappings.get(ambiguousMappingSelections.get(applicableMappings.keySet()));
+			} else {
 				/*
-				 * if multiple mappings we need to act depending of the 'onlyAskOnceOnAmbiguousMappings' setting
+				 * There is no other choice but to let the user decide which mapping to apply.					
 				 */
-				if (onlyAskOnceOnAmbiguousMappings && ambiguousMappingSelections.containsKey(applicableMappings.keySet())) {
-					// the user already chose a mapping for this selection of mappings before so that we can reuse this
-					ret = applicableMappings.get(ambiguousMappingSelections.get(applicableMappings.keySet()));
-				} else {
-					/*
-					 * There is no other choice but to let the user decide which mapping to apply.					
-					 */
-					final NamedElementItemSelectorDialogRunner<Mapping> dialog = new NamedElementItemSelectorDialogRunner<>(
-							"Please select a Mapping for the source element\n'" + EObjectTransformationHelper.asString(element)+ "'", 
-							new ArrayList<Mapping>(applicableMappings.keySet()), 
-							0);
-					Display.getDefault().syncExec(dialog);
-					if (dialog.wasTransformationStopRequested()) {
-						abortTransformation = true;
-						return null;
-					}
-					
-					ret = applicableMappings.get(dialog.getSelection());
-					ambiguousMappingSelections.put(applicableMappings.keySet(), dialog.getSelection());
+				final NamedElementItemSelectorDialogRunner<Mapping> dialog = new NamedElementItemSelectorDialogRunner<>(
+						"Please select a Mapping for the source element\n'" + EObjectTransformationHelper.asString(element)+ "'", 
+						new ArrayList<Mapping>(applicableMappings.keySet()), 
+						0);
+				Display.getDefault().syncExec(dialog);
+				if (dialog.wasTransformationStopRequested()) {
+					abortTransformation = true;
+					return null;
 				}
+
+				ret = applicableMappings.get(dialog.getSelection());
+				ambiguousMappingSelections.put(applicableMappings.keySet(), dialog.getSelection());
+			}
 		}
 
 		/*
@@ -315,7 +313,7 @@ public class SourceSectionMatcher implements CancellationListener {
 		 * as 'matched' in the containment tree and update the 'matchedSections' map
 		 */
 		for (final SourceSectionClass c : ret.getSourceModelObjectsMapped().keySet()) {
-			
+
 			if (!matchedSections.containsKey(c)) {
 				matchedSections.put(c, new LinkedHashSet<EObject>());
 			}
@@ -338,20 +336,20 @@ public class SourceSectionMatcher implements CancellationListener {
 	 */
 	private Map<Mapping, MappingInstanceStorage> findApplicableMappings(
 			final EObject element) {
-		
+
 		/*
 		 * This keeps track of all found possible mappings (a MappingInstanceStorage is created for
 		 * every mapping). One of the found mappings will be returned in the end.
 		 */
 		final Map<Mapping, MappingInstanceStorage> mappingData = new LinkedHashMap<>();
-		
+
 		/*
 		 * Now, iterate over all mappings and find those that are applicable for the current 'element'
 		 */
 		for (final Mapping m : mappingsToChooseFrom) {
-			
+
 			MappingInstanceStorage res;
-			
+
 			/*
 			 * This check is also done by 'findMapping(EObject, ...)', but since it will
 			 * most likely fail at the top level, for most mappings we do it
@@ -360,24 +358,25 @@ public class SourceSectionMatcher implements CancellationListener {
 			 * the number mappings and the source meta-model.
 			 */
 			if (m.getSourceMMSection().getEClass().isSuperTypeOf(element.eClass())) {
-				
+
 				/*
 				 * check if the section that is referenced as 'container' can be matched
 				 */
 				boolean mappingFailed = !checkContainer(element, m.getSourceMMSection());
-				
+
 				if (!mappingFailed) {
-					
+
 					// check if the mapping is applicable and determine the (local) hint values
 					res = checkMapping(element, false, mappingHints.get(m), modelConnectionHints.get(m), m.getGlobalVariables(),
 							m.getSourceMMSection(),
 							new MappingInstanceStorage());
-					
-					if (abortTransformation)
+
+					if (abortTransformation) {
 						return null;
+					}
 
 					mappingFailed = (res == null);
-					
+
 					if (!mappingFailed) {
 
 						/* 
@@ -386,7 +385,7 @@ public class SourceSectionMatcher implements CancellationListener {
 						 */
 						mappingFailed = handleExternalSourceElements(m, res, mappingFailed);
 					}
-					
+
 					if (!mappingFailed) {
 						// all checks were successful -> the mapping is applicable
 						res.setMapping(m);
@@ -395,7 +394,7 @@ public class SourceSectionMatcher implements CancellationListener {
 				}
 			}
 		}
-		
+
 		return mappingData;
 	}
 
@@ -430,25 +429,25 @@ public class SourceSectionMatcher implements CancellationListener {
 			final Iterable<GlobalAttribute> globalAttributes,
 			final SourceSectionClass srcSection,
 			final MappingInstanceStorage newRefsAndHints) {
-	
+
 		final boolean classFits = srcSection.getEClass().isSuperTypeOf(srcModelObject.eClass());
-	
+
 		// first of all: check if usedRefs contains this item and if type fits
 		// (we do not check any of the used elements of other mappings, since
 		// WILL be in a different section of the containment tree )
 		if (!usedOkay && newRefsAndHints.containsSourceModelObjectMapped(srcModelObject) || !classFits) {
 			return null;
 		}
-		
+
 		// we will return this in Case we find the mapping to be applicable
 		// else we return null
 		final MappingInstanceStorage changedRefsAndHints = new MappingInstanceStorage();
 		changedRefsAndHints.setAssociatedSourceElement(srcSection, srcModelObject);
-	
+
 		final Map<AttributeMappingSourceElement, AttributeValueRepresentation> complexSourceElementHintValues = new LinkedHashMap<>();
 		final Map<AttributeMatcherSourceElement, AttributeValueRepresentation> complexAttrMatcherSourceElementHintValues = new LinkedHashMap<>();
 		final Map<ModelConnectionHintSourceElement, AttributeValueRepresentation> complexConnectionHintSourceElementHintValues = new LinkedHashMap<>();
-	
+
 		// init hintValues
 		for (final MappingHintType hint : hints) {
 			if (hint instanceof AttributeMapping) {
@@ -458,7 +457,7 @@ public class SourceSectionMatcher implements CancellationListener {
 					changedRefsAndHints.getHintValues().getMappingInstanceSelectorHintValues().init((MappingInstanceSelector) hint, true);
 				}
 			}
-	
+
 		}
 		for (final ModelConnectionHint hint : connectionHints) {
 			if (hint instanceof ModelConnectionHint) {
@@ -469,15 +468,15 @@ public class SourceSectionMatcher implements CancellationListener {
 				}
 			}
 		}
-		
+
 		// set refs
 		changedRefsAndHints.addSourceModelObjectsMapped(newRefsAndHints
 				.getSourceModelObjectsMapped());
-	
+
 		// add self to new Refs
 		changedRefsAndHints.addSourceModelObjectMapped(srcModelObject,
 				srcSection);
-	
+
 		/*
 		 * check Attributes and determine HintValues
 		 */
@@ -489,29 +488,29 @@ public class SourceSectionMatcher implements CancellationListener {
 		if (!attributesOk) {
 			return null;
 		}
-		
+
 		// now work on ComplexAttributeMappings and CalcMappings
 		final Set<AttributeMapping> complexAttributeMappingsFound = new HashSet<>();
 		final Set<AttributeMatcher> complexAttributeMatchersFound = new HashSet<>();
 		final Set<ModelConnectionHint> complexConnectionHintsFound = new HashSet<>();
-	
+
 		for (final MappingHintType h : hints) {
 			if (h instanceof AttributeMapping) {
-				
-					
+
+
 				final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> foundValues = 
 						new LinkedHashMap<>();
-				
+
 				// append the complex hint value (cardinality either 0 or 1)
 				// with found values in right order
 				for (final AttributeMappingSourceInterface s : ((AttributeMapping) h).getSourceAttributeMappings()) {
 					//TODO complexSourceElementHintValues does not seem to contain values from external source elements (either only for 
 					// expression mappings or all the times
 					if (complexSourceElementHintValues.containsKey(s)) {
-													
+
 						if(((AttributeMapping) h).getExpression() != null && !((AttributeMapping) h).getExpression().isEmpty()) {
 							AttributeValueRepresentation calculatedValue = null;
-							
+
 							for (String value : complexSourceElementHintValues.get(s).getValues()) {
 								try {
 									/*
@@ -520,7 +519,7 @@ public class SourceSectionMatcher implements CancellationListener {
 									 * support scientific notations like '0.42e2' or '4200e-2'.
 									 */
 									final double variableVal = new ExpressionBuilder(value).build().calculate();
-									
+
 									if(calculatedValue == null) {
 										calculatedValue = new AttributeValueRepresentation(s.getSourceAttribute(), String.valueOf(variableVal));
 									} else {
@@ -528,19 +527,19 @@ public class SourceSectionMatcher implements CancellationListener {
 									}
 								} catch (final Exception e) {
 									consoleStream.println("Couldn't convert variable " + s.getName() 
-											+ " of CalculatorMapping " + h.getName() + " from String to double. "
-											+ "The problematic source element's attribute value was: " + value);
+									+ " of CalculatorMapping " + h.getName() + " from String to double. "
+									+ "The problematic source element's attribute value was: " + value);
 								}
-							
+
 							}
 							foundValues.put(s, calculatedValue);
 						} else {
 							foundValues.put(s, complexSourceElementHintValues.get(s));
 						}
 					}
-					
+
 				}
-					
+
 				if (foundValues.keySet().size() > 0) {
 					complexAttributeMappingsFound.add((AttributeMapping) h);
 					final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> oldValues = 
@@ -548,8 +547,8 @@ public class SourceSectionMatcher implements CancellationListener {
 					foundValues.putAll(oldValues);
 					changedRefsAndHints.getHintValues().addHintValue((AttributeMapping) h, foundValues);
 				}
-				
-				
+
+
 			} else if (h instanceof MappingInstanceSelector) {
 				if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
 					final AttributeMatcher m = (AttributeMatcher) ((MappingInstanceSelector) h)
@@ -566,7 +565,7 @@ public class SourceSectionMatcher implements CancellationListener {
 									.get(s));
 						}
 					}
-	
+
 					if (foundValues.keySet().size() > 0) {
 						complexAttributeMatchersFound.add(m);
 						final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> oldValues = 
@@ -577,7 +576,7 @@ public class SourceSectionMatcher implements CancellationListener {
 				}
 			}
 		}
-	
+
 		// handle ComplexModelConnectionHints in the same way as
 		// ComplexAttributeMappings
 		for (final ModelConnectionHint hint : connectionHints) {
@@ -594,7 +593,7 @@ public class SourceSectionMatcher implements CancellationListener {
 								.get(s));
 					}
 				}
-	
+
 				if (foundValues.keySet().size() > 0) {
 					complexConnectionHintsFound
 					.add(hint);
@@ -605,7 +604,7 @@ public class SourceSectionMatcher implements CancellationListener {
 				}
 			}
 		}
-	
+
 		/*
 		 * Combine values of references of same type
 		 */
@@ -615,31 +614,32 @@ public class SourceSectionMatcher implements CancellationListener {
 		 * if this gets to slow, maybe add a map (refBySectionByClass) to this
 		 * class
 		 */
-	
+
 		final Map<SourceSectionClass, Integer> mappingCounts = new HashMap<SourceSectionClass, Integer>();
-	
+
 		for (final SourceSectionReference ref : srcSection.getReferences()) {
 			if (!classByRefMap.containsKey(ref.getEReference())) {
 				classByRefMap.put(ref.getEReference(),
 						new LinkedList<SourceSectionClass>());
 			}
-	
+
 			classByRefMap.get(ref.getEReference()).addAll(
 					ref.getValuesGeneric());
-	
+
 			for (final SourceSectionClass c : ref.getValuesGeneric()) {
 				refByClassMap.put(c, ref);
 				mappingCounts.put(c, new Integer(0));
 			}
 		}
-	
+
 		// now go through all the srcMmSection refs
 		for (final EReference ref : classByRefMap.keySet()) {
 			// reference.name.println;
 			// check if reference is allowed by src metamodel
 			// check if reference in srcMMSection points anywhere
-			if (classByRefMap.get(ref).size() < 1)
+			if (classByRefMap.get(ref).size() < 1) {
 				break;
+			}
 			final Object refTarget = srcModelObject.eGet(ref);// getrefTarget(s)
 			// in srcModel
 			// behave, depending on cardinality
@@ -651,11 +651,12 @@ public class SourceSectionMatcher implements CancellationListener {
 			 */
 			if (ref.getUpperBound() == 1) {
 				final EObject refTargetObj = (EObject) refTarget;
-				if (refTargetObj == null)
+				if (refTargetObj == null) {
 					return null;
+				}
 				MappingInstanceStorage res = null;
 				boolean nonZeroCardSectionFound = false;
-	
+
 				for (final SourceSectionClass c : classByRefMap.get(ref)) {
 					// check non-zero sections first (it doesn't make sense in
 					// this case to model ZERO_INFINITY sections, if there is
@@ -685,11 +686,12 @@ public class SourceSectionMatcher implements CancellationListener {
 								refByClassMap.get(c) instanceof MetaModelSectionReference
 								|| usedOkay, hints, connectionHints,
 								globalAttributes, c, changedRefsAndHints);
-						if (abortTransformation)
+						if (abortTransformation) {
 							return null;
+						}
 					}
 				}
-	
+
 				if (!nonZeroCardSectionFound) {
 					for (final SourceSectionClass c : classByRefMap.get(ref)) {
 						res = checkMapping(
@@ -697,14 +699,15 @@ public class SourceSectionMatcher implements CancellationListener {
 								refByClassMap.get(c) instanceof MetaModelSectionReference
 								|| usedOkay, hints, connectionHints,
 								globalAttributes, c, changedRefsAndHints);
-						if (abortTransformation)
+						if (abortTransformation) {
 							return null;
+						}
 						if (res != null) {
 							break;
 						}
 					}
 				}
-	
+
 				if (res != null) {
 					// success: combine refs and hints
 					if (refByClassMap.get(res.getAssociatedSourceClass()) instanceof ContainmentReference) {
@@ -721,18 +724,18 @@ public class SourceSectionMatcher implements CancellationListener {
 							new Integer(
 									mappingCounts.get(
 											res.getAssociatedSourceClass())
-											.intValue() + 1));
-	
+									.intValue() + 1));
+
 				} else {
 					return null;
 				}
-	
+
 			} else {// unbounded or unspecified
 				// cast refTarget to EList
 				@SuppressWarnings("unchecked")
 				final LinkedList<EObject> refTargetL = new LinkedList<EObject>(
 						(EList<EObject>) refTarget);
-	
+
 				/*
 				 * this is a little more complicated: now we need to find ONE
 				 * possible way to map our referenceTargets to the source
@@ -744,7 +747,7 @@ public class SourceSectionMatcher implements CancellationListener {
 				 * Then we try to find a way to map one srcModelSection to each
 				 * MMSection
 				 */
-	
+
 				// Map to store possible srcModelSections to MMSections
 				// (non-vc))
 				final SourceSectionMappingResultsMap possibleSrcModelElementsNoVC = new SourceSectionMappingResultsMap();
@@ -754,7 +757,7 @@ public class SourceSectionMatcher implements CancellationListener {
 								new LinkedList<MappingInstanceStorage>());
 					}
 				}
-	
+
 				// Map to store possible srcModelSections to MMSections (vc))
 				final SourceSectionMappingResultsMap possibleSrcModelElementsVC = new SourceSectionMappingResultsMap();
 				for (final SourceSectionClass val : classByRefMap.get(ref)) {
@@ -763,7 +766,7 @@ public class SourceSectionMatcher implements CancellationListener {
 								new LinkedList<MappingInstanceStorage>());
 					}
 				}
-	
+
 				final LinkedHashSet<EObject> elementsUsableForVC = new LinkedHashSet<EObject>();
 				// find possible srcElements for mmsections
 				for (final EObject rt : refTargetL) {
@@ -774,9 +777,10 @@ public class SourceSectionMatcher implements CancellationListener {
 								refByClassMap.get(val) instanceof MetaModelSectionReference
 								|| usedOkay, hints, connectionHints,
 								globalAttributes, val, changedRefsAndHints);
-						if (abortTransformation)
+						if (abortTransformation) {
 							return null;
-	
+						}
+
 						if (res != null) {// mapping possible
 							foundMapping = true;
 							res.setAssociatedSourceElement(val, rt);
@@ -784,7 +788,7 @@ public class SourceSectionMatcher implements CancellationListener {
 									CardinalityType.ONE)) {
 								possibleSrcModelElementsVC.get(val).add(res);
 								elementsUsableForVC.add(rt);
-	
+
 							} else {
 								possibleSrcModelElementsNoVC.get(val).add(res);
 							}
@@ -796,9 +800,9 @@ public class SourceSectionMatcher implements CancellationListener {
 						// was modeled in the srcMMSection
 					}
 				}
-	
+
 				final LinkedList<EObject> allElementsMapped = new LinkedList<EObject>();
-	
+
 				while (possibleSrcModelElementsNoVC.keySet().size() > 0) {
 					final SourceSectionClass smallestKey = possibleSrcModelElementsNoVC
 							.getKeyForValueWithSmallestCollectionSize();
@@ -809,9 +813,9 @@ public class SourceSectionMatcher implements CancellationListener {
 								.size() > 1) {
 							LinkedList<MappingInstanceStorage> possibleElements = new LinkedList<MappingInstanceStorage>();
 							possibleElements
-									.addAll(possibleSrcModelElementsNoVC
-											.get(smallestKey));
-	
+							.addAll(possibleSrcModelElementsNoVC
+									.get(smallestKey));
+
 							// filter elements that can be used for a vc-section
 							final LinkedList<MappingInstanceStorage> allVCIncompatible = new LinkedList<MappingInstanceStorage>();
 							for (final MappingInstanceStorage s : possibleElements) {
@@ -823,19 +827,19 @@ public class SourceSectionMatcher implements CancellationListener {
 							if (allVCIncompatible.size() >= 1) {
 								possibleElements = allVCIncompatible;
 							}
-	
+
 							srcSectionResult = getResultForLeastUsedSrcModelElement(possibleElements);
-	
+
 						} else {
 							srcSectionResult = possibleSrcModelElementsNoVC
 									.get(smallestKey).getFirst();
 						}
-	
+
 						// remember mapping
 						if (refByClassMap.get(srcSectionResult
 								.getAssociatedSourceClass()) instanceof ContainmentReference) {
 							changedRefsAndHints.add(srcSectionResult);
-	
+
 						} else {
 							changedRefsAndHints.getHintValues().addHintValues(srcSectionResult.getHintValues());
 							changedRefsAndHints.getUnsyncedHintValues().addHintValues(srcSectionResult.getUnsyncedHintValues());
@@ -845,14 +849,14 @@ public class SourceSectionMatcher implements CancellationListener {
 						// remove srcModel element from possibility lists of
 						// MMSections
 						possibleSrcModelElementsNoVC
-								.removeResultsForElement(srcSectionResult);
+						.removeResultsForElement(srcSectionResult);
 						possibleSrcModelElementsVC
-								.removeResultsForElement(srcSectionResult);
+						.removeResultsForElement(srcSectionResult);
 						possibleSrcModelElementsNoVC.remove(smallestKey);// remove
 						/*
 						 * successfully mapped mmSection from list
 						 */
-	
+
 						// update cardinality
 						mappingCounts.put(
 								srcSectionResult.getAssociatedSourceClass(),
@@ -866,26 +870,26 @@ public class SourceSectionMatcher implements CancellationListener {
 						// exactly once
 					}
 				}
-	
+
 				// try to map all vc-elements
 				final LinkedHashSet<SourceSectionClass> usedKeys = new LinkedHashSet<>(); // for
 				// counting
 				// cardinality
-	
+
 				while (possibleSrcModelElementsVC.keySet().size() != 0) {
-	
+
 					final SourceSectionClass smallestKey = possibleSrcModelElementsVC
 							.getKeyForValueWithSmallestCollectionSize();
 					if (possibleSrcModelElementsVC.get(smallestKey).size() > 0) {
-	
+
 						usedKeys.add(smallestKey);
 						MappingInstanceStorage srcSectionResult;
 						// we need to filter a little more
 						if (possibleSrcModelElementsVC.get(smallestKey).size() > 1) {
-	
+
 							srcSectionResult = getResultForLeastUsedSrcModelElement(possibleSrcModelElementsVC
 									.get(smallestKey));
-	
+
 						} else {
 							srcSectionResult = possibleSrcModelElementsVC.get(
 									smallestKey).getFirst();
@@ -894,19 +898,19 @@ public class SourceSectionMatcher implements CancellationListener {
 						if (refByClassMap.get(srcSectionResult
 								.getAssociatedSourceClass()) instanceof ContainmentReference) {
 							changedRefsAndHints.add(srcSectionResult);
-	
+
 						} else {
 							changedRefsAndHints.getHintValues().addHintValues(srcSectionResult.getHintValues());
 							changedRefsAndHints.getUnsyncedHintValues().addHintValues(srcSectionResult.getUnsyncedHintValues());
 						}
 						allElementsMapped.add(srcSectionResult
 								.getAssociatedSourceModelElement());
-	
+
 						// remove srcModel element from possibility lists of
 						// MMSections
 						possibleSrcModelElementsVC
-								.removeResultsForElement(srcSectionResult);
-	
+						.removeResultsForElement(srcSectionResult);
+
 						// update cardinality
 						mappingCounts.put(
 								srcSectionResult.getAssociatedSourceClass(),
@@ -914,7 +918,7 @@ public class SourceSectionMatcher implements CancellationListener {
 										srcSectionResult
 										.getAssociatedSourceClass())
 										.intValue() + 1));
-	
+
 					} else if (usedKeys.contains(smallestKey)
 							|| smallestKey.getCardinality().equals(
 									CardinalityType.ZERO_INFINITY)) {
@@ -929,7 +933,7 @@ public class SourceSectionMatcher implements CancellationListener {
 						// found at all
 					}
 				}
-	
+
 				// check if all refTargets where mapped
 				refTargetL.removeAll(allElementsMapped);
 				if (refTargetL.size() > 0) {
@@ -938,7 +942,7 @@ public class SourceSectionMatcher implements CancellationListener {
 				}
 			}
 		}
-	
+
 		/*
 		 * Handle cardinality Hints
 		 */
@@ -951,14 +955,14 @@ public class SourceSectionMatcher implements CancellationListener {
 				}
 			}
 		}
-	
+
 		/*
 		 * sync complex hints
 		 */
 		syncComplexAttrMappings(srcSection, changedRefsAndHints);
 		syncComplexAttrMatchers(srcSection, changedRefsAndHints);
 		syncModelConnectionHints(srcSection, changedRefsAndHints);
-	
+
 		/*
 		 * if we are at one of the deepest SourceElements of a complex Mapping,
 		 * we create a new unsynced list, and remove it from the
@@ -971,7 +975,7 @@ public class SourceSectionMatcher implements CancellationListener {
 					changedRefsAndHints.getHintValues().removeHintValue((AttributeMapping) h); // remove incomplete hint value
 				} else if (deepestSourceSectionClassesByAttributeMapping
 						.get(h).size() > 1) {
-					
+
 					changedRefsAndHints.getUnsyncedHintValues().setHintValues((AttributeMapping) h, srcSection,
 							new LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>>());
 					final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> val = 
@@ -983,13 +987,13 @@ public class SourceSectionMatcher implements CancellationListener {
 					if (!(complexAttributeMatchersFound
 							.contains(((MappingInstanceSelector) h)
 									.getMatcher()) && deepestSourceSectionClassesByAttributeMatcher
-									.get(((MappingInstanceSelector) h).getMatcher())
-									.contains(srcSection))) {
+							.get(((MappingInstanceSelector) h).getMatcher())
+							.contains(srcSection))) {
 						changedRefsAndHints.getHintValues().removeHintValue((MappingInstanceSelector) h); // remove incomplete hint value
 					} else if (deepestSourceSectionClassesByAttributeMatcher
 							.get(((MappingInstanceSelector) h).getMatcher())
 							.size() > 1) {
-						
+
 						changedRefsAndHints.getUnsyncedHintValues().setHintValues((MappingInstanceSelector) h, srcSection, new LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>>());
 						final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> val = changedRefsAndHints.getHintValues().removeHintValue((MappingInstanceSelector) h);
 						changedRefsAndHints.getUnsyncedHintValues().addHintValue((MappingInstanceSelector) h, srcSection, val);
@@ -997,7 +1001,7 @@ public class SourceSectionMatcher implements CancellationListener {
 				}
 			}
 		}
-	
+
 		for (final ModelConnectionHint h : connectionHints) {
 			if (h instanceof ModelConnectionHint) {
 				if (!(complexConnectionHintsFound.contains(h) && deepestSourceSectionClassesByModelConnectionHint
@@ -1005,16 +1009,16 @@ public class SourceSectionMatcher implements CancellationListener {
 					changedRefsAndHints.getHintValues().removeHintValue(h); // remove incomplete hint value
 				} else if (deepestSourceSectionClassesByModelConnectionHint
 						.get(h).size() > 1) {
-					
+
 					changedRefsAndHints.getUnsyncedHintValues().setHintValues(h, srcSection, new LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>>());
 					final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> val = changedRefsAndHints.getHintValues().removeHintValue(h);
 					changedRefsAndHints.getUnsyncedHintValues().addHintValue(h, srcSection, val);
 				}
 			}
 		}
-	
+
 		return changedRefsAndHints;
-	
+
 	}
 
 	/**
@@ -1037,12 +1041,12 @@ public class SourceSectionMatcher implements CancellationListener {
 			final Map<ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, AttributeValueRepresentation> attrVals,
 			//TODO change this to 'ExternalModifiedAttributeElementType'
 			final MappingHintSourceInterface i) {
-		
+
 		if (i instanceof ExternalModifiedAttributeElementType) {
-			
+
 			ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> externalModifiedAttributeElement = 
 					((ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) i);
-			
+
 			String attrVal = getContainerAttributeValue(externalModifiedAttributeElement.getSource(),
 					m.getSourceMMSection().getContainer(), res.getAssociatedSourceModelElement().eContainer());
 			if (attrVal == null) {
@@ -1090,14 +1094,14 @@ public class SourceSectionMatcher implements CancellationListener {
 	 */
 	private boolean checkContainer(final EObject element,
 			final SourceSectionClass sourceSectionClass) {
-		
+
 		if (sourceSectionClass.getContainer() == null) {
-			
+
 			// this part is easy
 			return true;
-			
+
 		} else {
-			
+
 			/*
 			 * Step 1: identify all containers of the corresponding elements
 			 */
@@ -1239,14 +1243,16 @@ public class SourceSectionMatcher implements CancellationListener {
 				extObj = extObj.eContainer();
 				// Check if the parent object exists, and if it was mapped for
 				// the section.
-				if (!checkObjectWasMapped(extClass, extObj))
+				if (!checkObjectWasMapped(extClass, extObj)) {
 					return null;
+				}
 			} else if (extClass.eContainer() instanceof SourceSectionModel
 					&& extClass.getContainer() != null) {
 				extClass = extClass.getContainer();
 				extObj = extObj.eContainer();
-				if (!checkObjectWasMapped(extClass, extObj))
+				if (!checkObjectWasMapped(extClass, extObj)) {
 					return null;
+				}
 			} else {// modeling error, object not found
 				consoleStream
 				.println("Modeling error. External Source Element "
@@ -1276,9 +1282,9 @@ public class SourceSectionMatcher implements CancellationListener {
 	 * @param mappings The list of {@link Mapping Mappings} for which the various maps shall be initialized.
 	 */
 	private void initializeMaps(List<Mapping> mappings) {
-		
+
 		for (Mapping mapping : mappings) {
-			
+
 			// initialize the 'modelConnectionHints' map
 			modelConnectionHints.put(mapping, new LinkedList<ModelConnectionHint>());
 			for (final MappingHintGroupType g : mapping.getActiveMappingHintGroups()) {
@@ -1289,7 +1295,7 @@ public class SourceSectionMatcher implements CancellationListener {
 					}
 				}
 			}
-			
+
 			// initialize the 'mappingHints' map
 			mappingHints.put(mapping, new LinkedList<MappingHintType>());
 			for (final MappingHintGroupType g : mapping.getActiveMappingHintGroups()) {
@@ -1302,14 +1308,14 @@ public class SourceSectionMatcher implements CancellationListener {
 					mappingHints.get(mapping).addAll(g.getMappingHints());
 				}
 			}
-			
+
 			for (final MappingHintType h : mappingHints.get(mapping)) {
 				// initialize the 'deepestSourceSectionsByAttributeMapping' map
 				if (h instanceof AttributeMapping) {
 					buildDeepestSourceSectionClassesByAttributeMappingMap(
 							(AttributeMapping) h, mapping.getSourceMMSection());
-					
-				// initialize the 'deepestSourceSectionsByAttributeMatcher' map
+
+					// initialize the 'deepestSourceSectionsByAttributeMatcher' map
 				} else if (h instanceof MappingInstanceSelector) {
 					if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
 						buildDeepestSourceSectionClassesByAttributeMatcherMap(
@@ -1346,7 +1352,7 @@ public class SourceSectionMatcher implements CancellationListener {
 			deepestSourceSectionClassesByAttributeMapping.put(attributeMapping, new HashSet<SourceSectionClass>());
 			deepestSourceSectionClassesByAttributeMapping.get(attributeMapping).addAll(
 					findDeepestClassesAndCommonContainer(srcElements, srcSection, attributeMapping));
-	
+
 		}
 	}
 
@@ -1367,8 +1373,8 @@ public class SourceSectionMatcher implements CancellationListener {
 			srcElements.addAll(modelConnectionHint.getLocalSourceElements());
 			deepestSourceSectionClassesByModelConnectionHint.put(modelConnectionHint, new HashSet<SourceSectionClass>());
 			deepestSourceSectionClassesByModelConnectionHint.get(modelConnectionHint).addAll(
-							findDeepestClassesAndCommonContainer(srcElements, srcSection, modelConnectionHint));
-	
+					findDeepestClassesAndCommonContainer(srcElements, srcSection, modelConnectionHint));
+
 		}
 	}
 
@@ -1391,7 +1397,7 @@ public class SourceSectionMatcher implements CancellationListener {
 			final MappingInstanceSelector s = (MappingInstanceSelector) attributeMatcher.eContainer();
 			deepestSourceSectionClassesByAttributeMatcher.get(attributeMatcher).addAll(
 					findDeepestClassesAndCommonContainer(srcElements, srcSection, s));
-	
+
 		}
 	}
 
@@ -1413,22 +1419,22 @@ public class SourceSectionMatcher implements CancellationListener {
 			final Set<ModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>> sourceElements,
 			final SourceSectionClass srcSection, 
 			final MappingHintBaseType hint) {
-		
+
 		final Set<SourceSectionClass> resultSet = new HashSet<>();
-	
+
 		/*
 		 * Fill the resultSet with all potential candidates
 		 */
 		for (final ModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> sourceElement : sourceElements) {
 			resultSet.add(sourceElement.getSource().getOwningClass());
 		}
-	
+
 		/*
 		 * Now, find the deepest elements
 		 */
 		Map<SourceSectionClass, Set<SourceSectionClass>> resultSets = new HashMap<>();
 		boolean commonContainerFound = false;
-		
+
 		/*
 		 * init classesToCheck
 		 */
@@ -1442,7 +1448,7 @@ public class SourceSectionMatcher implements CancellationListener {
 			}
 			resultSets.put(srcSection, new HashSet<>(resultSet));
 		}
-	
+
 		/*
 		 * Find deepest elements
 		 */
@@ -1455,11 +1461,11 @@ public class SourceSectionMatcher implements CancellationListener {
 							.getValuesGeneric()) {
 						nextResultSets.put(childClass,
 								new HashSet<SourceSectionClass>());
-	
+
 						/*
 						 * get all child classes and add them to set
 						 */
-						
+
 						// to prevent endless loops
 						final Set<SourceSectionClass> childrenChecked = new HashSet<SourceSectionClass>();
 						final List<SourceSectionClass> classesToCheck = new LinkedList<SourceSectionClass>();
@@ -1467,10 +1473,10 @@ public class SourceSectionMatcher implements CancellationListener {
 						while (classesToCheck.size() > 0) {
 							final SourceSectionClass chkClass = classesToCheck
 									.remove(0);
-	
+
 							childrenChecked.add(chkClass);
 							nextResultSets.get(childClass).add(chkClass);
-	
+
 							/*
 							 * next checks
 							 */
@@ -1484,12 +1490,12 @@ public class SourceSectionMatcher implements CancellationListener {
 								}
 							}
 						}
-	
+
 						/*
 						 * is the resultSet still a subset of the childClasses
 						 * set?
 						 */
-	
+
 						if (nextResultSets.get(childClass).containsAll(
 								resultSets.get(cl))) {
 							breakLoop = true;
@@ -1500,11 +1506,11 @@ public class SourceSectionMatcher implements CancellationListener {
 								commonContainerClassOfComplexHints.put(hint, cl);
 								commonContainerFound = true;
 							}
-							
+
 							// remove all non-result classes (intersection)
 							nextResultSets.get(childClass).retainAll(
 									resultSets.get(cl));
-							
+
 							if (nextResultSets.get(childClass).size() < 1) {
 								resultSet.add(childClass);
 								nextResultSets.remove(childClass);
@@ -1515,14 +1521,14 @@ public class SourceSectionMatcher implements CancellationListener {
 						break;
 					}
 				}
-	
+
 			}
-	
+
 			// next iteration
 			resultSets = nextResultSets;
 		}
 		return resultSet;
-	
+
 	}
 
 	/**
@@ -1561,13 +1567,13 @@ public class SourceSectionMatcher implements CancellationListener {
 			final Map<AttributeMappingSourceElement, AttributeValueRepresentation> complexSourceElementHintValues,
 			final Map<AttributeMatcherSourceElement, AttributeValueRepresentation> complexAttrMatcherSourceElementHintValues,
 			final Map<ModelConnectionHintSourceElement, AttributeValueRepresentation> complexConnectionHintSourceElementHintValues) {
-		
+
 		for (final SourceSectionAttribute at : srcSection.getAttributes()) {
 			/*
 			 * look for attributes in srcSection does it exist in src model?
 			 */
 			final Object srcAttr = srcModelObject.eGet(at.getAttribute());
-			
+
 			if (srcAttr == null) {// attribute not set / null
 				// Not a problem unless any mappings point here or Constraints
 				// were modeled.
@@ -1577,7 +1583,7 @@ public class SourceSectionMatcher implements CancellationListener {
 					return false;
 				}
 			}
-			
+
 			/*
 			 * As attributes may have a cardinality greater than 1, too, we have to handle
 			 * every attribute value separately.
@@ -1588,12 +1594,12 @@ public class SourceSectionMatcher implements CancellationListener {
 			} else {
 				srcAttrValues.add(srcAttr);
 			}
-			
+
 			/*
 			 * First, we check if all the constraints are satisfied for every attribute value.
 			 */
 			for (Object srcAttrValue : srcAttrValues) {
-				
+
 				// convert Attribute value to String
 				final String srcAttrAsString = at
 						.getAttribute()
@@ -1613,8 +1619,9 @@ public class SourceSectionMatcher implements CancellationListener {
 				boolean containsInclusions = false;
 				for (final AttributeValueConstraint constraint : at
 						.getValueConstraint()) {
-					if (constraintsWithErrors.contains(constraint))
+					if (constraintsWithErrors.contains(constraint)) {
 						continue;
+					}
 
 					boolean constraintVal;
 					try {
@@ -1645,7 +1652,7 @@ public class SourceSectionMatcher implements CancellationListener {
 					return false;
 				}
 			}
-			
+
 			//TODO split this up in a separate method to be more intuitive
 			/*
 			 * Second, we iterate once again and calculate all the hint values based
@@ -1654,7 +1661,7 @@ public class SourceSectionMatcher implements CancellationListener {
 			 * constraints (see above) fails at anything but the first value.
 			 */
 			for (Object srcAttrValue : srcAttrValues) {
-				
+
 				// convert Attribute value to String
 				final String srcAttrAsString = at
 						.getAttribute()
@@ -1667,15 +1674,15 @@ public class SourceSectionMatcher implements CancellationListener {
 				// handle possible attribute mappings
 				for (final MappingHintType hint : hints) {
 					if (hint instanceof MappedAttributeValueExpander) {
-						
+
 						if (((MappedAttributeValueExpander) hint)
 								.getSourceAttribute().equals(at)) {
-							
+
 							if(at.getAttribute().isMany()) {
 								//TODO implement this?
 								throw new RuntimeException("MappedAttributeValueExpanders based on multi-valued attributes are not yet supported!");
 							}
-							
+
 							final String valCopy = attributeValueModifierExecutor
 									.applyAttributeValueModifiers(
 											srcAttrAsString,
@@ -1685,7 +1692,7 @@ public class SourceSectionMatcher implements CancellationListener {
 						}
 
 					} else if (hint instanceof AttributeMapping) {
-						
+
 						for (final AttributeMappingSourceElement m : ((AttributeMapping) hint)
 								.getLocalSourceElements()) {
 							if (m.getSource().equals(at)) {
@@ -1703,7 +1710,7 @@ public class SourceSectionMatcher implements CancellationListener {
 							}
 						}
 					} else if (hint instanceof MappingInstanceSelector) {// handle
-						
+
 						// MappingInstanceSelector
 						// with
 						// AttributeMatcher
@@ -1715,12 +1722,12 @@ public class SourceSectionMatcher implements CancellationListener {
 							for (final AttributeMatcherSourceElement e : matcher
 									.getLocalSourceElements()) {
 								if (e.getSource().equals(at)) {
-									
-//									if(at.getAttribute().isMany()) {
-//										//TODO implement this?
-//										throw new RuntimeException("AttributeMatchers based on multi-valued attributes are not yet supported!");
-//									}
-									
+
+									//									if(at.getAttribute().isMany()) {
+									//										//TODO implement this?
+									//										throw new RuntimeException("AttributeMatchers based on multi-valued attributes are not yet supported!");
+									//									}
+
 									final String valCopy = attributeValueModifierExecutor
 											.applyAttributeValueModifiers(
 													srcAttrAsString, 
@@ -1744,12 +1751,12 @@ public class SourceSectionMatcher implements CancellationListener {
 						for (final ModelConnectionHintSourceElement m : hint
 								.getLocalSourceElements()) {
 							if (m.getSource().equals(at)) {
-								
+
 								if(at.getAttribute().isMany()) {
 									//TODO implement this?
 									throw new RuntimeException("ModelConnectionHints based on multi-valued attributes are not yet supported!");
 								}
-								
+
 								final String modifiedVal = attributeValueModifierExecutor
 										.applyAttributeValueModifiers(
 												srcAttrAsString,
@@ -1788,14 +1795,14 @@ public class SourceSectionMatcher implements CancellationListener {
 			final Mapping m,
 			final MappingInstanceStorage res, 
 			boolean mappingFailed) {
-		
+
 		if (m.getSourceMMSection().getContainer() != null) {
-			
+
 			final Map<ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, AttributeValueRepresentation> attrVals = new HashMap<>();
-			
+
 			for (final MappingHintType h : mappingHints.get(m)) {
 				if (h instanceof AttributeMapping) {
-					
+
 					/* try to find a hint value for every external source element; those will
 					 * be stored in 'attrVals'
 					 */
@@ -1810,7 +1817,7 @@ public class SourceSectionMatcher implements CancellationListener {
 					if (mappingFailed) {
 						break;
 					} else if (attrVals.keySet().size() > 0) {
-						
+
 						/*
 						 * if there is not yet any value stored for this hint (e.g. as there are no local source elements), we need
 						 * to initialize the hint value first
@@ -1818,19 +1825,19 @@ public class SourceSectionMatcher implements CancellationListener {
 						if (res.getHintValues().getHintValues((AttributeMapping) h).size() == 0) {
 							res.getHintValues().getAttributeMappingHintValues().init((AttributeMapping) h, true);
 						}
-						
+
 						if(((AttributeMapping) h).getExpression() != null && !((AttributeMapping) h).getExpression().isEmpty()) {
-							
+
 							final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> newVals = new HashMap<>();
 							for (final ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> e : attrVals
 									.keySet()) {
-								
+
 								if(e.getSource().getAttribute().isMany()) {
 									//TODO implement this?
 									throw new RuntimeException("AttributeMappings with external source attributes that are "
 											+ "based on multi-valued attributes are not yet supported!");
 								}
-								
+
 								try {
 
 									/*
@@ -1844,8 +1851,8 @@ public class SourceSectionMatcher implements CancellationListener {
 											new AttributeValueRepresentation(e.getSource(), String.valueOf(variableVal)));
 								} catch (final Exception execption) {
 									consoleStream.println("Couldn't convert variable " + e.getName()
-											+ " of CalculatorMapping " + h.getName() + " from String to double. "
-											+ "The problematic source element's attribute value was: " + attrVals.get(e));							
+									+ " of CalculatorMapping " + h.getName() + " from String to double. "
+									+ "The problematic source element's attribute value was: " + attrVals.get(e));							
 								}
 							}
 							for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> hVal : res.getHintValues().getHintValues((AttributeMapping) h)) {
@@ -1860,17 +1867,17 @@ public class SourceSectionMatcher implements CancellationListener {
 								}
 							}
 						}
-						
+
 						// last action: reset attrval list
 						attrVals.clear();
 					}
 				} else if (h instanceof ExternalMappedAttributeValueExpander) {
-					
+
 					if(((ExternalMappedAttributeValueExpander) h).getSourceAttribute().getAttribute().isMany()) {
 						//TODO implement this?
 						throw new RuntimeException("ExternalMappedAttributeValueExpanders based on multi-valued attributes are not yet supported!");
 					}
-					
+
 					String attrVal = getContainerAttributeValue(
 							((ExternalMappedAttributeValueExpander) h)
 							.getSourceAttribute(),
@@ -1896,12 +1903,12 @@ public class SourceSectionMatcher implements CancellationListener {
 									.getMatcher();
 							for (final AttributeMatcherSourceInterface i : matcher
 									.getSourceAttributes()) {
-								
+
 								if(i.getSourceAttribute().getAttribute().isMany()) {
 									//TODO implement this?
 									throw new RuntimeException("AttributeMatchers based on multi-valued attributes are not yet supported!");
 								}
-								
+
 								mappingFailed = checkExternalAttributeMapping(
 										m, res, mappingFailed, attrVals, i);
 								if (mappingFailed) {
@@ -1912,7 +1919,7 @@ public class SourceSectionMatcher implements CancellationListener {
 							if (mappingFailed) {
 								break;
 							} else if (attrVals.keySet().size() > 0) {
-								
+
 								/*
 								 * if there is not yet any value stored for this hint (e.g. as there are no local source elements), we need
 								 * to initialize the hint value first
@@ -1920,7 +1927,7 @@ public class SourceSectionMatcher implements CancellationListener {
 								if (res.getHintValues().getHintValues((MappingInstanceSelector) h).size() == 0) {
 									res.getHintValues().getMappingInstanceSelectorHintValues().init((MappingInstanceSelector) h, true);
 								}
-								
+
 								for (final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> hVal : res.getHintValues().getHintValues((MappingInstanceSelector) h)) {
 									for (final ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> e : attrVals
 											.keySet()) {
@@ -1940,12 +1947,12 @@ public class SourceSectionMatcher implements CancellationListener {
 				if (h instanceof ModelConnectionHint) {
 					for (final ModelConnectionHintSourceInterface i : h
 							.getSourceElements()) {
-						
+
 						if(i.getSourceAttribute().getAttribute().isMany()) {
 							//TODO implement this?
 							throw new RuntimeException("ModelConnectionHints based on multi-valued attributes are not yet supported!");
 						}
-						
+
 						mappingFailed = checkExternalAttributeMapping(m, res,
 								mappingFailed, attrVals, i);
 						if (mappingFailed) {
@@ -1956,7 +1963,7 @@ public class SourceSectionMatcher implements CancellationListener {
 					if (mappingFailed) {
 						break;
 					} else if (attrVals.keySet().size() > 0) {
-						
+
 						/*
 						 * if there is not yet any value stored for this hint (e.g. as there are no local source elements), we need
 						 * to initialize the hint value first
@@ -1964,7 +1971,7 @@ public class SourceSectionMatcher implements CancellationListener {
 						if (res.getHintValues().getHintValues(h).size() == 0) {
 							res.getHintValues().getModelConnectionHintValues().init(h, true);
 						}
-						
+
 						for (final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> hVal : res.getHintValues().getHintValues(h)) {
 							for (final ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> e : attrVals
 									.keySet()) {
@@ -2121,7 +2128,7 @@ public class SourceSectionMatcher implements CancellationListener {
 					.get(h).equals(srcSection);
 
 			if (changedRefsAndHints.getUnsyncedHintValues().getHintValues(h).size() > 1 || isCommonParent) {
-				
+
 				final Map<SourceSectionClass, LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>>> m = 
 						changedRefsAndHints.getUnsyncedHintValues().getModelConnectionHintValues().get(h);
 				// list of "synced" hints
@@ -2211,7 +2218,7 @@ public class SourceSectionMatcher implements CancellationListener {
 				numberUsed = usages.get(o);
 			}
 		}
-	
+
 		srcSectionResult = possibleElements.getFirst();// initialize this
 		// variable so we dont
 		// get compile errors

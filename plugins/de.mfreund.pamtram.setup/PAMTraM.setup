@@ -21,6 +21,14 @@
       <description>The folder where all projects will be cloned to.</description>
     </setupTask>
     <setupTask
+        xsi:type="setup:VariableTask"
+        id="clone.location.genlibrary"
+        name="clone.location.genlibrary"
+        defaultValue="${clone.location}"
+        label="Genlibrary clone location">
+      <description>The folder where all projects related to the 'genlibrary' will be cloned to.</description>
+    </setupTask>
+    <setupTask
         xsi:type="setup:CompoundTask"
         id="clone"
         name="Clone Projects">
@@ -143,6 +151,55 @@
           remoteURI="G:\staff\matthias\projects\pamtram\de.mfreund.pamtram.update-site.git">
         <description>Clone the 'de.mfreund.pamtram.update-site.git' repository.</description>
       </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.genlibrary"
+          location="${clone.location.genlibrary}\de.tud.et.ifa.agtele.genlibrary.git"
+          remoteURI="G:\projects\movisa\library\de.tud.et.ifa.agtele.genlibrary.git">
+        <description>Clone the 'de.tud.et.ifa.agtele.genlibrary.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.genlibrary.edit"
+          location="${clone.location.genlibrary}\de.tud.et.ifa.agtele.genlibrary.edit.git"
+          remoteURI="G:\projects\movisa\library\de.tud.et.ifa.agtele.genlibrary.edit.git">
+        <description>Clone the 'de.tud.et.ifa.agtele.genlibrary.edit.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.genlibrary.ui"
+          location="${clone.location.genlibrary}\de.tud.et.ifa.agtele.genlibrary.ui.git"
+          remoteURI="G:\projects\movisa\library\de.tud.et.ifa.agtele.genlibrary.ui.git">
+        <description>Clone the 'de.tud.et.ifa.agtele.genlibrary.ui.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.genlibrary.movisalibrary"
+          location="${clone.location.genlibrary}\de.tud.et.ifa.agtele.genlibrary.movisalibrary.git"
+          remoteURI="G:\projects\movisa\library\de.tud.et.ifa.agtele.genlibrary.movisalibrary.git">
+        <description>Clone the 'de.tud.et.ifa.agtele.genlibrary.movisalibrary.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.genlibrary.movisalibrary.ui"
+          location="${clone.location.genlibrary}\de.tud.et.ifa.agtele.genlibrary.movisalibrary.ui.git"
+          remoteURI="G:\projects\movisa\library\de.tud.et.ifa.agtele.genlibrary.movisalibrary.ui.git">
+        <description>Clone the 'de.tud.et.ifa.agtele.genlibrary.movisalibrary.ui.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.genlibrary.movisalibrary.generator"
+          location="${clone.location.genlibrary}\de.tud.et.ifa.agtele.genlibrary.movisalibrary.generator.git"
+          remoteURI="G:\projects\movisa\library\de.tud.et.ifa.agtele.genlibrary.movisalibrary.generator.git">
+        <description>Clone the 'de.tud.et.ifa.agtele.genlibrary.movisalibrary.generator.git' repository.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="git:GitCloneTask"
+          id="clone.genlibrary.movisalibrary.resourceconverter"
+          location="${clone.location.genlibrary}\de.tud.et.ifa.agtele.movisa.resourceconverter.git"
+          remoteURI="G:\projects\movisa\de.tud.et.ifa.agtele.movisa.resourceconverter.git">
+        <description>Clone the 'de.tud.et.ifa.agtele.movisa.resourceconverter.git' repository.</description>
+      </setupTask>
       <description>Clone all necessary git repositories.</description>
     </setupTask>
     <setupTask
@@ -245,6 +302,48 @@
         <sourceLocator
             rootFolder="${clone.location}\de.mfreund.pamtram.update-site.git"/>
       </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.genlibrary">
+        <sourceLocator
+            rootFolder="${clone.location.genlibrary}\de.tud.et.ifa.agtele.genlibrary.git"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.genlibrary.edit">
+        <sourceLocator
+            rootFolder="${clone.location.genlibrary}\de.tud.et.ifa.agtele.genlibrary.edit.git"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.genlibrary.ui">
+        <sourceLocator
+            rootFolder="${clone.location.genlibrary}\de.tud.et.ifa.agtele.genlibrary.ui.git"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.genlibrary.movisalibrary">
+        <sourceLocator
+            rootFolder="${clone.location.genlibrary}\de.tud.et.ifa.agtele.genlibrary.movisalibrary.git"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.genlibrary.movisalibrary.edit">
+        <sourceLocator
+            rootFolder="${clone.location.genlibrary}\de.tud.et.ifa.agtele.genlibrary.movisalibrary.ui.git"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.genlibrary.movisalibrary.generator">
+        <sourceLocator
+            rootFolder="${clone.location.genlibrary}\de.tud.et.ifa.agtele.genlibrary.movisalibrary.generator.git"/>
+      </setupTask>
+      <setupTask
+          xsi:type="projects:ProjectsImportTask"
+          id="import.genlibrary.movisalibrary.resourceconverter">
+        <sourceLocator
+            rootFolder="${clone.location.genlibrary}\de.tud.et.ifa.agtele.movisa.resourceconverter.git"/>
+      </setupTask>
       <description>Import all necessary projects.</description>
     </setupTask>
     <setupTask
@@ -297,6 +396,50 @@
           <operand
               xsi:type="predicates:NamePredicate"
               pattern="de.mfreund.pamtram.update-site"/>
+        </predicate>
+      </workingSet>
+      <workingSet
+          name="genlibrary"
+          id="workingset.genlibrary">
+        <predicate
+            xsi:type="predicates:AndPredicate">
+          <operand
+              xsi:type="predicates:NotPredicate">
+            <operand
+                xsi:type="predicates:OrPredicate">
+              <operand
+                  xsi:type="predicates:NamePredicate"
+                  pattern="de.tud.et.ifa.agtele.genlibrary.movisalibrary"/>
+              <operand
+                  xsi:type="predicates:NamePredicate"
+                  pattern="de.tud.et.ifa.agtele.genlibrary.movisalibrary.*"/>
+            </operand>
+          </operand>
+          <operand
+              xsi:type="predicates:OrPredicate">
+            <operand
+                xsi:type="predicates:NamePredicate"
+                pattern="de.tud.et.ifa.agtele.genlibrary"/>
+            <operand
+                xsi:type="predicates:NamePredicate"
+                pattern="de.tud.et.ifa.agtele.genlibrary.*"/>
+          </operand>
+        </predicate>
+      </workingSet>
+      <workingSet
+          name="genlibrary.movisalibrary"
+          id="workingset.genlibrary.movisalibrary">
+        <predicate
+            xsi:type="predicates:AndPredicate">
+          <operand
+              xsi:type="predicates:OrPredicate">
+            <operand
+                xsi:type="predicates:NamePredicate"
+                pattern="de.tud.et.ifa.agtele.genlibrary.movisalibrary"/>
+            <operand
+                xsi:type="predicates:NamePredicate"
+                pattern="de.tud.et.ifa.agtele.genlibrary.movisalibrary.*"/>
+          </operand>
         </predicate>
       </workingSet>
       <description>Add projects to working sets.</description>

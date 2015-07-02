@@ -1236,6 +1236,224 @@ public class SourceSectionMatcher implements CancellationListener {
 	}
 
 	/**
+	 * This 'synchronizes' hint values for {@link AttributeMapping AttributeMappings}. This means that those hint values that
+	 * have been found in the current iteration cycle are added to the list of {@link MappingInstanceStorage#getUnsyncedHintValues()
+	 * unsyncedHintValues} in the given {@link MappingInstanceStorage}. If the given '<em>srcSection</em>' is the common
+	 * container for an {@link AttributeMapping} (this means that all necessary hint values should have been found) the
+	 * (now complete) list of hint values is stored as {@link MappingInstanceStorage#getHintValues() syncedHintValues} in the given
+	 * {@link MappingInstanceStorage}.
+	 * 
+	 * @param srcSection The {@link SourceSectionClass} (either the sourceMMSection itself or a direct or indirect child of it) that is
+	 * currently checked.
+	 * @param changedRefsAndHints The {@link MappingInstanceStorage} where all ('<em>synced</em>' as well as '<em>unsynced</em>') 
+	 * hint values are stored.
+	 */
+	private void syncComplexAttrMappings(final SourceSectionClass srcSection,
+			final MappingInstanceStorage changedRefsAndHints) {
+	
+		for (final AttributeMapping h : changedRefsAndHints.getUnsyncedHintValues().getAttributeMappingHintValues().keySet()) {
+	
+			final boolean isCommonParent = commonContainerClassOfComplexHints.get(h).equals(srcSection);
+	
+			if (changedRefsAndHints.getUnsyncedHintValues().getHintValues(h).size() > 1 || isCommonParent) {
+				final Map<SourceSectionClass, LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>>> m = 
+						changedRefsAndHints.getUnsyncedHintValues().getAttributeMappingHintValues().get(h);
+	
+				// list of "synced" hint values
+				LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> syncedHintValues = null;
+	
+				// find longest list (ideally they are either of the same
+				// length, or there is only one value)
+				SourceSectionClass cl = null;
+				for (final SourceSectionClass c : m.keySet()) {
+					if (syncedHintValues == null) {
+						syncedHintValues = m.get(c);
+						cl = c;
+					} else if (m.get(c).size() > syncedHintValues
+							.size()) {
+						syncedHintValues = m.get(c);
+						cl = c;
+					}
+				}
+				// remove selected List from m
+				m.remove(cl);
+	
+				// combine values
+				for (final SourceSectionClass c : m.keySet()) {
+					final LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> vals = m.get(c);
+					if (vals.size() == 1) {
+						for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> valMap : syncedHintValues) {
+							valMap.putAll(vals.getFirst());
+						}
+					} else if (vals.size() > 1) {
+						for (int i = 0; i < vals.size(); i++) {// remember:
+							/*
+							 * the size of vals will be lower or equel the
+							 * size of syncedComplexAttrMappings
+							 */
+							syncedHintValues.get(i).putAll(vals.get(i));
+						}
+					}
+				}
+				m.clear();
+	
+				if (isCommonParent) {
+					// sync (add to changedRefsAndHints)
+					changedRefsAndHints.getHintValues().addHintValues(h, syncedHintValues);
+				} else {
+					// remove old hints and add new hints
+					changedRefsAndHints.getUnsyncedHintValues().setHintValues(h, srcSection, syncedHintValues);
+				}
+			}
+		}
+	}
+
+	/**
+	 * This 'synchronizes' hint values for {@link AttributeMatcher AttributeMatchers}. This means that those hint values that
+	 * have been found in the current iteration cycle are added to the list of {@link MappingInstanceStorage#getUnsyncedHintValues()
+	 * unsyncedHintValues} in the given {@link MappingInstanceStorage}. If the given '<em>srcSection</em>' is the common
+	 * container for an {@link AttributeMatcher} (this means that all necessary hint values should have been found) the
+	 * (now complete) list of hint values is stored as {@link MappingInstanceStorage#getHintValues() syncedHintValues} in the given
+	 * {@link MappingInstanceStorage}.
+	 * 
+	 * @param srcSection The {@link SourceSectionClass} (either the sourceMMSection itself or a direct or indirect child of it) that is
+	 * currently checked.
+	 * @param changedRefsAndHints The {@link MappingInstanceStorage} where all ('<em>synced</em>' as well as '<em>unsynced</em>') 
+	 * hint values are stored.
+	 */
+	private void syncComplexAttrMatchers(final SourceSectionClass srcSection,
+			final MappingInstanceStorage changedRefsAndHints) {
+	
+		for (final MappingInstanceSelector h : changedRefsAndHints.getUnsyncedHintValues().getMappingInstanceSelectorHintValues().keySet()) {
+	
+			final boolean isCommonParent = commonContainerClassOfComplexHints.get(h).equals(srcSection);
+	
+			if (changedRefsAndHints.getUnsyncedHintValues().getHintValues(h).size() > 1 || isCommonParent) {
+				final Map<SourceSectionClass, LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>>> m = 
+						changedRefsAndHints.getUnsyncedHintValues().getMappingInstanceSelectorHintValues().get(h);
+				// list of "synced" hints
+				LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>> syncedHintValues = null;
+				// find longest list (ideally they are either of the same
+				// length, or there is only one value)
+				SourceSectionClass cl = null;
+				for (final SourceSectionClass c : m.keySet()) {
+					if (syncedHintValues == null) {
+						syncedHintValues = m.get(c);
+						cl = c;
+					} else if (m.get(c).size() > syncedHintValues
+							.size()) {
+						syncedHintValues = m.get(c);
+						cl = c;
+					}
+				}
+				// remove selected List from m
+				m.remove(cl);
+	
+				// combine values
+				for (final SourceSectionClass c : m.keySet()) {
+					final LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>> vals = m.get(c);
+					if (vals.size() == 1) {
+						for (final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> valMap : syncedHintValues) {
+							valMap.putAll(vals.getFirst());
+						}
+					} else if (vals.size() > 1) {
+						for (int i = 0; i < vals.size(); i++) {// remember:
+							/* 
+							 * the size of vals will be lower or equal the size of syncedComplexAttrMappings
+							 */
+							syncedHintValues.get(i)
+							.putAll(vals.get(i));
+						}
+					}
+				}
+				m.clear();
+	
+				if (isCommonParent) {
+					// sync (add to changedRefsAndHints)
+					changedRefsAndHints.getHintValues().addHintValues(h, syncedHintValues);
+					// }
+				} else {
+					// remove old hints and add new hints
+					changedRefsAndHints.getUnsyncedHintValues().setHintValues(h, srcSection, syncedHintValues);
+				}
+			}
+		}
+	}
+
+	/**
+	 * This 'synchronizes' hint values for {@link ModelConnectionHint ModelConnectionHints}. This means that those hint values that
+	 * have been found in the current iteration cycle are added to the list of {@link MappingInstanceStorage#getUnsyncedHintValues()
+	 * unsyncedHintValues} in the given {@link MappingInstanceStorage}. If the given '<em>srcSection</em>' is the common
+	 * container for an {@link ModelConnectionHint} (this means that all necessary hint values should have been found) the
+	 * (now complete) list of hint values is stored as {@link MappingInstanceStorage#getHintValues() syncedHintValues} in the given
+	 * {@link MappingInstanceStorage}.
+	 * 
+	 * @param srcSection The {@link SourceSectionClass} (either the sourceMMSection itself or a direct or indirect child of it) that is
+	 * currently checked.
+	 * @param changedRefsAndHints The {@link MappingInstanceStorage} where all ('<em>synced</em>' as well as '<em>unsynced</em>') 
+	 * hint values are stored.
+	 */
+	private void syncModelConnectionHints(final SourceSectionClass srcSection,
+			final MappingInstanceStorage changedRefsAndHints) {
+	
+		for (final ModelConnectionHint h : changedRefsAndHints.getUnsyncedHintValues().getModelConnectionHintValues().keySet()) {
+	
+			final boolean isCommonParent = commonContainerClassOfComplexHints.get(h).equals(srcSection);
+	
+			if (changedRefsAndHints.getUnsyncedHintValues().getHintValues(h).size() > 1 || isCommonParent) {
+	
+				final Map<SourceSectionClass, LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>>> m = 
+						changedRefsAndHints.getUnsyncedHintValues().getModelConnectionHintValues().get(h);
+	
+				// list of "synced" hints
+				LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>> syncedHintValues = null;
+	
+				// find longest list (ideally they are either of the same
+				// length, or there is only one value)
+				SourceSectionClass cl = null;
+				for (final SourceSectionClass c : m.keySet()) {
+					if (syncedHintValues == null) {
+						syncedHintValues = m.get(c);
+						cl = c;
+					} else if (m.get(c).size() > syncedHintValues
+							.size()) {
+						syncedHintValues = m.get(c);
+						cl = c;
+					}
+				}
+				// remove selected List from m
+				m.remove(cl);
+	
+				// combine values
+				for (final SourceSectionClass c : m.keySet()) {
+					final LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>> vals = m.get(c);
+					if (vals.size() == 1) {
+						for (final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> valMap : syncedHintValues) {
+							valMap.putAll(vals.getFirst());
+						}
+					} else if (vals.size() > 1) {
+						for (int i = 0; i < vals.size(); i++) {// remember:
+							/*
+							 * the size of vals will be lower or equal the size of syncedComplexAttrMappings
+							 */
+							syncedHintValues.get(i).putAll(vals.get(i));
+						}
+					}
+				}
+				m.clear();
+	
+				if (isCommonParent) {
+					// sync (add to changedRefsAndHints)
+					changedRefsAndHints.getHintValues().addHintValues(h, syncedHintValues);
+				} else {
+					// remove old hints and add new hints
+					changedRefsAndHints.getUnsyncedHintValues().setHintValues(h, srcSection, syncedHintValues);
+				}
+			}
+		}
+	}
+
+	/**
 	 * Helper method to handle an ExternalAttributeMapping. This uses {@link #getContainerAttributeValue(SourceSectionAttribute, SourceSectionClass, EObject)}
 	 * to find a hint value for a given {@link MappingHintSourceInterface}, applies possible {@link AttributeValueModifierSet AttributeValueModifierSets} and stores
 	 * the found value in the '<em>attrVals</em>' map.
@@ -1936,203 +2154,6 @@ public class SourceSectionMatcher implements CancellationListener {
 
 		}
 		return mappingFailed;
-	}
-
-	/**
-	 * @param srcSection
-	 * @param changedRefsAndHints
-	 */
-	private void syncComplexAttrMappings(final SourceSectionClass srcSection,
-			final MappingInstanceStorage changedRefsAndHints) {
-
-		for (final AttributeMapping h : changedRefsAndHints.getUnsyncedHintValues().getAttributeMappingHintValues().keySet()) {
-
-			final boolean isCommonParent = commonContainerClassOfComplexHints.get(h).equals(srcSection);
-
-			if (changedRefsAndHints.getUnsyncedHintValues().getHintValues(h).size() > 1 || isCommonParent) {
-				final Map<SourceSectionClass, LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>>> m = 
-						changedRefsAndHints.getUnsyncedHintValues().getAttributeMappingHintValues().get(h);
-
-				// list of "synced" hints
-				LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> syncedComplexMappings = null;
-
-				// find longest list (ideally they are either of the same
-				// length, or there is only one value)
-				SourceSectionClass cl = null;
-				for (final SourceSectionClass c : m.keySet()) {
-					if (syncedComplexMappings == null) {
-						syncedComplexMappings = m.get(c);
-						cl = c;
-					} else if (m.get(c).size() > syncedComplexMappings
-							.size()) {
-						syncedComplexMappings = m.get(c);
-						cl = c;
-					}
-				}
-				// remove selected List from m
-				m.remove(cl);
-
-				// combine values
-				for (final SourceSectionClass c : m.keySet()) {
-					final LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> vals = m.get(c);
-					if (vals.size() == 1) {
-						for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> valMap : syncedComplexMappings) {
-							valMap.putAll(vals.getFirst());
-						}
-					} else if (vals.size() > 1) {
-						for (int i = 0; i < vals.size(); i++) {// remember:
-							/*
-							 * the size of vals will be lower or equel the
-							 * size of syncedComplexAttrMappings
-							 */
-							syncedComplexMappings.get(i).putAll(vals.get(i));
-						}
-					}
-				}
-				m.clear();
-
-				if (isCommonParent) {
-					// sync add to changedRefsAndHints
-					changedRefsAndHints.getHintValues().addHintValues(h, syncedComplexMappings);
-				} else {
-					// remove old hints and add new hints
-					changedRefsAndHints.getUnsyncedHintValues().setHintValues(h, srcSection, syncedComplexMappings);
-				}
-			}
-		}
-	}
-
-	/**
-	 * @param srcSection
-	 * @param changedRefsAndHints
-	 */
-	private void syncComplexAttrMatchers(final SourceSectionClass srcSection,
-			final MappingInstanceStorage changedRefsAndHints) {
-		for (final MappingInstanceSelector h : changedRefsAndHints.getUnsyncedHintValues().getMappingInstanceSelectorHintValues().keySet()) {
-			final boolean isCommonParent = commonContainerClassOfComplexHints
-					.get(h).equals(srcSection);
-
-			if (changedRefsAndHints.getUnsyncedHintValues().getHintValues(h).size() > 1 || isCommonParent) {
-				final Map<SourceSectionClass, LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>>> m = 
-						changedRefsAndHints.getUnsyncedHintValues().getMappingInstanceSelectorHintValues().get(h);
-				// list of "synced" hints
-				LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>> syncedComplexMappings = null;
-				// find longest list (ideally they are either of the same
-				// length, or there is only one value)
-				SourceSectionClass cl = null;
-				for (final SourceSectionClass c : m.keySet()) {
-					if (syncedComplexMappings == null) {
-						syncedComplexMappings = m.get(c);
-						cl = c;
-					} else if (m.get(c).size() > syncedComplexMappings
-							.size()) {
-						syncedComplexMappings = m.get(c);
-						cl = c;
-					}
-				}
-				// remove selected List from m
-				m.remove(cl);
-
-				// combine values
-				for (final SourceSectionClass c : m.keySet()) {
-					final LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>> vals = m.get(c);
-					if (vals.size() == 1) {
-						for (final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> valMap : syncedComplexMappings) {
-							valMap.putAll(vals.getFirst());
-						}
-					} else if (vals.size() > 1) {
-						for (int i = 0; i < vals.size(); i++) {// remember:
-							// the size
-							// of vals
-							// will be
-							// lower or
-							// equal the
-							// size of
-							// syncedComplexAttrMappings
-							syncedComplexMappings.get(i)
-							.putAll(vals.get(i));
-						}
-					}
-				}
-				m.clear();
-
-				if (isCommonParent) {// sync
-					// add to changedRefsAndHints
-					changedRefsAndHints.getHintValues().addHintValues(h, syncedComplexMappings);
-					// }
-				} else {
-					// remove old hints and add new hints
-					changedRefsAndHints.getUnsyncedHintValues().setHintValues(h, srcSection, syncedComplexMappings);
-				}
-			}
-		}
-	}
-
-	/**
-	 * @param srcSection
-	 * @param changedRefsAndHints
-	 */
-	private void syncModelConnectionHints(final SourceSectionClass srcSection,
-			final MappingInstanceStorage changedRefsAndHints) {
-		for (final ModelConnectionHint h : changedRefsAndHints.getUnsyncedHintValues().getModelConnectionHintValues().keySet()) {
-			final boolean isCommonParent = commonContainerClassOfComplexHints
-					.get(h).equals(srcSection);
-
-			if (changedRefsAndHints.getUnsyncedHintValues().getHintValues(h).size() > 1 || isCommonParent) {
-
-				final Map<SourceSectionClass, LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>>> m = 
-						changedRefsAndHints.getUnsyncedHintValues().getModelConnectionHintValues().get(h);
-				// list of "synced" hints
-				LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>> syncedComplexMappings = null;
-				// find longest list (ideally they are either of the same
-				// length, or there is only one value)
-				SourceSectionClass cl = null;
-				for (final SourceSectionClass c : m.keySet()) {
-					if (syncedComplexMappings == null) {
-						syncedComplexMappings = m.get(c);
-						cl = c;
-					} else if (m.get(c).size() > syncedComplexMappings
-							.size()) {
-						syncedComplexMappings = m.get(c);
-						cl = c;
-					}
-				}
-				// remove selected List from m
-				m.remove(cl);
-
-				// combine values
-				for (final SourceSectionClass c : m.keySet()) {
-					final LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>> vals = m.get(c);
-					if (vals.size() == 1) {
-						for (final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> valMap : syncedComplexMappings) {
-							valMap.putAll(vals.getFirst());
-						}
-					} else if (vals.size() > 1) {
-						for (int i = 0; i < vals.size(); i++) {// remember:
-							// the size
-							// of vals
-							// will be
-							// lower or
-							// equal the
-							// size of
-							// syncedComplexAttrMappings
-							syncedComplexMappings.get(i)
-							.putAll(vals.get(i));
-						}
-					}
-				}
-				m.clear();
-
-				if (isCommonParent) {// sync
-					// add to changedRefsAndHints
-					changedRefsAndHints.getHintValues().addHintValues(h, syncedComplexMappings);
-					// }
-				} else {
-					// remove old hints and add new hints
-					changedRefsAndHints.getUnsyncedHintValues().setHintValues(h, srcSection, syncedComplexMappings);
-				}
-			}
-		}
 	}
 
 	/**

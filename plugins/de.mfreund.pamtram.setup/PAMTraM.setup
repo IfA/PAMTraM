@@ -45,13 +45,11 @@
         name="com.vogella.saneclipse.feature.feature.group"/>
     <requirement
         name="org.eclipse.ocl.examples.feature.group"
-        versionRange="[3.0.0,3.4.4]"/>
+        versionRange="3.5.0"/>
     <repository
         url="http://download.eclipse.org/epsilon/updates/"/>
     <repository
         url="http://dl.bintray.com/vogellacompany/saneclipse/"/>
-    <repository
-        url="http://download.eclipse.org/releases/luna/"/>
   </setupTask>
   <setupTask
       xsi:type="setup:CompoundTask"

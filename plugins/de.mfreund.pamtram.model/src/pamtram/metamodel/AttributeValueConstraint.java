@@ -12,11 +12,11 @@ import pamtram.NamedElement;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.metamodel.AttributeValueConstraint#getType <em>Type</em>}</li>
  *   <li>{@link pamtram.metamodel.AttributeValueConstraint#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.metamodel.MetamodelPackage#getAttributeValueConstraint()
  * @model interface="true" abstract="true"

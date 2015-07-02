@@ -12,8 +12,6 @@ import pamtram.condition.ConditionPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Complex Condition</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

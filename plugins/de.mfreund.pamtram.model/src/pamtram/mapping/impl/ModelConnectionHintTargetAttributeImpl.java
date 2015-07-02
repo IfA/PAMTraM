@@ -14,8 +14,6 @@ import pamtram.metamodel.TargetSectionReference;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Model Connection Hint Target Attribute</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

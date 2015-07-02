@@ -11,8 +11,6 @@ import pamtram.metamodel.MetamodelPackage;
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
  * <em><b>Equality Matcher</b></em>'. <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

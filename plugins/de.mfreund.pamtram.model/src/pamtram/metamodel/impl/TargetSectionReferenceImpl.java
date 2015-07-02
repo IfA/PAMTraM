@@ -16,8 +16,6 @@ import pamtram.metamodel.TargetSectionReference;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Target Section Reference</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

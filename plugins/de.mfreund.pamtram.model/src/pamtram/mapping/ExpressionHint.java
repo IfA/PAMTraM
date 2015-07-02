@@ -11,10 +11,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.ExpressionHint#getExpression <em>Expression</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.mapping.MappingPackage#getExpressionHint()
  * @model abstract="true"

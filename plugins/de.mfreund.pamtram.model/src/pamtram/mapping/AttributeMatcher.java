@@ -12,11 +12,11 @@ import pamtram.metamodel.TargetSectionAttribute;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.AttributeMatcher#getTargetAttribute <em>Target Attribute</em>}</li>
  *   <li>{@link pamtram.mapping.AttributeMatcher#getSourceAttributes <em>Source Attributes</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.mapping.MappingPackage#getAttributeMatcher()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='targetMatchesAffectedReferenceType'"

@@ -21,10 +21,10 @@ import pamtram.metamodel.SourceSectionAttribute;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.impl.MappedAttributeValueExpanderImpl#getHintsToExpand <em>Hints To Expand</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

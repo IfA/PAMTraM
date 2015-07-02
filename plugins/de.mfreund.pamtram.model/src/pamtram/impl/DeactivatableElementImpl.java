@@ -18,10 +18,10 @@ import pamtram.PamtramPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.impl.DeactivatableElementImpl#isDeactivated <em>Deactivated</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -10,10 +10,10 @@ package pamtram.mapping;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.MatchToLowerCaseConverter#getRegex <em>Regex</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.mapping.MappingPackage#getMatchToLowerCaseConverter()
  * @model

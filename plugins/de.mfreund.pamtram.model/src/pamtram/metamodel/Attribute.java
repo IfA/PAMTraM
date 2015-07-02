@@ -10,10 +10,10 @@ package pamtram.metamodel;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.metamodel.Attribute#getOwningClass <em>Owning Class</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.metamodel.MetamodelPackage#getAttribute()
  * @model abstract="true"

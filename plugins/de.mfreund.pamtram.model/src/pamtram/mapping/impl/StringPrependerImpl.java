@@ -18,10 +18,10 @@ import pamtram.mapping.StringPrepender;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.impl.StringPrependerImpl#getString <em>String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

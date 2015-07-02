@@ -18,11 +18,11 @@ import pamtram.mapping.SubstringReplacer;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.impl.SubstringReplacerImpl#getRegex <em>Regex</em>}</li>
  *   <li>{@link pamtram.mapping.impl.SubstringReplacerImpl#getReplacement <em>Replacement</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

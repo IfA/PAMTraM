@@ -12,10 +12,10 @@ import pamtram.metamodel.TargetSectionClass;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.ClassMatcher#getTargetClass <em>Target Class</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.mapping.MappingPackage#getClassMatcher()
  * @model

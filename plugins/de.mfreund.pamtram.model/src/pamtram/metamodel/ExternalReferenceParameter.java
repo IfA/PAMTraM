@@ -12,10 +12,10 @@ import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenc
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.metamodel.ExternalReferenceParameter#getReference <em>Reference</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.metamodel.MetamodelPackage#getExternalReferenceParameter()
  * @model

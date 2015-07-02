@@ -14,11 +14,11 @@ import pamtram.mapping.MappingType;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.transformation.TransformationMapping#getSourceMElement <em>Source MElement</em>}</li>
  *   <li>{@link pamtram.transformation.TransformationMapping#getTargetMElement <em>Target MElement</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.transformation.TransformationPackage#getTransformationMapping()
  * @model

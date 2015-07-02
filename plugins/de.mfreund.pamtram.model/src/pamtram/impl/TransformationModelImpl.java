@@ -22,10 +22,10 @@ import pamtram.transformation.Transformation;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.impl.TransformationModelImpl#getTransformation <em>Transformation</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

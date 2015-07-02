@@ -25,11 +25,11 @@ import pamtram.metamodel.Reference;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.impl.SectionModelImpl#getMetaModelPackage <em>Meta Model Package</em>}</li>
  *   <li>{@link pamtram.impl.SectionModelImpl#getMetaModelSections <em>Meta Model Sections</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -23,11 +23,11 @@ import pamtram.metamodel.SourceSectionAttribute;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.impl.ModelConnectionHintImpl#getTargetAttributes <em>Target Attributes</em>}</li>
  *   <li>{@link pamtram.mapping.impl.ModelConnectionHintImpl#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

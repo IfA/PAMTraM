@@ -11,10 +11,10 @@ import org.eclipse.emf.ecore.EAttribute;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.metamodel.ActualAttribute#getAttribute <em>Attribute</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.metamodel.MetamodelPackage#getActualAttribute()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='attributeMatchesParentEClass'"

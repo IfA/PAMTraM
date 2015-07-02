@@ -17,11 +17,11 @@ import pamtram.metamodel.MetamodelPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.metamodel.impl.LibraryParameterImpl#getSource <em>Source</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.LibraryParameterImpl#getOriginalParameter <em>Original Parameter</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

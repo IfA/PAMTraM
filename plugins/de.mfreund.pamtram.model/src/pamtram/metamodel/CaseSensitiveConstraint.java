@@ -10,10 +10,10 @@ package pamtram.metamodel;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.metamodel.CaseSensitiveConstraint#isCaseSensitive <em>Case Sensitive</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.metamodel.MetamodelPackage#getCaseSensitiveConstraint()
  * @model abstract="true"

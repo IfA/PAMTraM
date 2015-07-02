@@ -21,10 +21,10 @@ import pamtram.metamodel.TargetSectionClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.metamodel.impl.ContainerParameterImpl#getClass_ <em>Class</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

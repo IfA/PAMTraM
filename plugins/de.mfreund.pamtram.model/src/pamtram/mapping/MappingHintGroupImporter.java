@@ -14,12 +14,12 @@ import pamtram.metamodel.TargetSectionClass;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.MappingHintGroupImporter#getHintGroup <em>Hint Group</em>}</li>
  *   <li>{@link pamtram.mapping.MappingHintGroupImporter#getContainer <em>Container</em>}</li>
  *   <li>{@link pamtram.mapping.MappingHintGroupImporter#getMappingHints <em>Mapping Hints</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.mapping.MappingPackage#getMappingHintGroupImporter()
  * @model

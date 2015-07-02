@@ -12,12 +12,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.transformation.Transformation#getTransformationMapping <em>Transformation Mapping</em>}</li>
  *   <li>{@link pamtram.transformation.Transformation#getName <em>Name</em>}</li>
  *   <li>{@link pamtram.transformation.Transformation#getId <em>Id</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.transformation.TransformationPackage#getTransformation()
  * @model

@@ -12,8 +12,6 @@ import pamtram.metamodel.Reference;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>External Modified Attribute Element Type</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

@@ -14,10 +14,10 @@ import pamtram.transformation.Transformation;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.TransformationModel#getTransformation <em>Transformation</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.PamtramPackage#getTransformationModel()
  * @model

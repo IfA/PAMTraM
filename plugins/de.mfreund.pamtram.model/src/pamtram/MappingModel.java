@@ -16,12 +16,12 @@ import pamtram.mapping.Mapping;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.MappingModel#getMapping <em>Mapping</em>}</li>
  *   <li>{@link pamtram.MappingModel#getModifierSets <em>Modifier Sets</em>}</li>
  *   <li>{@link pamtram.MappingModel#getGlobalValues <em>Global Values</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.PamtramPackage#getMappingModel()
  * @model

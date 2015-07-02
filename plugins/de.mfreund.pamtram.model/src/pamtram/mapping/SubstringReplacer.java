@@ -10,11 +10,11 @@ package pamtram.mapping;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.SubstringReplacer#getRegex <em>Regex</em>}</li>
  *   <li>{@link pamtram.mapping.SubstringReplacer#getReplacement <em>Replacement</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.mapping.MappingPackage#getSubstringReplacer()
  * @model

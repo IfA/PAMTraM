@@ -13,10 +13,10 @@ import pamtram.NamedElement;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.AttributeValueModifierSet#getModifier <em>Modifier</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.mapping.MappingPackage#getAttributeValueModifierSet()
  * @model

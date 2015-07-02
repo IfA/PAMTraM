@@ -17,10 +17,10 @@ import pamtram.metamodel.TargetSectionClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.impl.ClassMatcherImpl#getTargetClass <em>Target Class</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

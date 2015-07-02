@@ -16,11 +16,11 @@ import pamtram.metamodel.Reference;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.ModifiedAttributeElementType#getSource <em>Source</em>}</li>
  *   <li>{@link pamtram.mapping.ModifiedAttributeElementType#getModifier <em>Modifier</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.mapping.MappingPackage#getModifiedAttributeElementType()
  * @model abstract="true"

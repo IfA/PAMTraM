@@ -11,12 +11,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.condition.Condition#getAttribute <em>Attribute</em>}</li>
  *   <li>{@link pamtram.condition.Condition#getComparator <em>Comparator</em>}</li>
  *   <li>{@link pamtram.condition.Condition#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.condition.ConditionPackage#getCondition()
  * @model

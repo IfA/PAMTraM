@@ -19,12 +19,12 @@ import pamtram.metamodel.MetamodelPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.metamodel.impl.CaseSensitiveConstraintImpl#getType <em>Type</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.CaseSensitiveConstraintImpl#getValue <em>Value</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.CaseSensitiveConstraintImpl#isCaseSensitive <em>Case Sensitive</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

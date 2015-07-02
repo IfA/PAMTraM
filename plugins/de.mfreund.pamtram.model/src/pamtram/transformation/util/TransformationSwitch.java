@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.util.Switch;
 import pamtram.DeactivatableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.MappingType;
+import pamtram.transformation.*;
 import pamtram.transformation.Transformation;
 import pamtram.transformation.TransformationMapping;
 import pamtram.transformation.TransformationPackage;
@@ -50,7 +51,7 @@ public class TransformationSwitch<T> extends Switch<T> {
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @parameter ePackage the package in question.
+	 * @param ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */

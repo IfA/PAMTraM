@@ -25,11 +25,11 @@ import pamtram.metamodel.TargetSectionClass;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupTypeImpl#getTargetMMSection <em>Target MM Section</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupTypeImpl#getMappingHints <em>Mapping Hints</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

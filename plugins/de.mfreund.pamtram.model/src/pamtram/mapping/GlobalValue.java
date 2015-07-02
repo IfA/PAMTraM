@@ -11,10 +11,10 @@ import pamtram.NamedElement;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.GlobalValue#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.mapping.MappingPackage#getGlobalValue()
  * @model

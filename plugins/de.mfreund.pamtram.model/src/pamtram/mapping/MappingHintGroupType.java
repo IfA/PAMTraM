@@ -14,11 +14,11 @@ import pamtram.metamodel.TargetSectionClass;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.MappingHintGroupType#getTargetMMSection <em>Target MM Section</em>}</li>
  *   <li>{@link pamtram.mapping.MappingHintGroupType#getMappingHints <em>Mapping Hints</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.mapping.MappingPackage#getMappingHintGroupType()
  * @model abstract="true"

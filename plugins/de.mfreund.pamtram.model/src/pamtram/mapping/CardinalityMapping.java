@@ -13,11 +13,11 @@ import pamtram.metamodel.TargetSectionClass;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.CardinalityMapping#getSource <em>Source</em>}</li>
  *   <li>{@link pamtram.mapping.CardinalityMapping#getTarget <em>Target</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.mapping.MappingPackage#getCardinalityMapping()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='sourceClassMatchesSection sourceClassIsVariableCardinality targetClassMatchesSection targetClassIsVariableCardinality noCardinalityMappingForSourceSectionRoot'"

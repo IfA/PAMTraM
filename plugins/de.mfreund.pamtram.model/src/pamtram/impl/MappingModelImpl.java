@@ -26,12 +26,12 @@ import pamtram.mapping.Mapping;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.impl.MappingModelImpl#getMapping <em>Mapping</em>}</li>
  *   <li>{@link pamtram.impl.MappingModelImpl#getModifierSets <em>Modifier Sets</em>}</li>
  *   <li>{@link pamtram.impl.MappingModelImpl#getGlobalValues <em>Global Values</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

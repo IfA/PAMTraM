@@ -17,8 +17,6 @@ import pamtram.metamodel.TargetSectionReference;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Target Section Non Containment Reference</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

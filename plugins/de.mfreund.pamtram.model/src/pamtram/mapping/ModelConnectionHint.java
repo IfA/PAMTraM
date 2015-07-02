@@ -13,11 +13,11 @@ import pamtram.metamodel.SourceSectionAttribute;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.ModelConnectionHint#getTargetAttributes <em>Target Attributes</em>}</li>
  *   <li>{@link pamtram.mapping.ModelConnectionHint#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.mapping.MappingPackage#getModelConnectionHint()
  * @model

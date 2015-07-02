@@ -16,10 +16,10 @@ import pamtram.metamodel.TargetSectionReference;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.TargetSectionModel#getLibraryElements <em>Library Elements</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.PamtramPackage#getTargetSectionModel()
  * @model

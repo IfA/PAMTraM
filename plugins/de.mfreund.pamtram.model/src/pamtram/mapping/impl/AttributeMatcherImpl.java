@@ -30,13 +30,13 @@ import pamtram.metamodel.TargetSectionAttribute;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getExpression <em>Expression</em>}</li>
  *   <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getResultModifier <em>Result Modifier</em>}</li>
  *   <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getTargetAttribute <em>Target Attribute</em>}</li>
  *   <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getSourceAttributes <em>Source Attributes</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

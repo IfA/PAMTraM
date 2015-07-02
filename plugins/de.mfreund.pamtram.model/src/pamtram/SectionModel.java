@@ -15,11 +15,11 @@ import pamtram.metamodel.Reference;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.SectionModel#getMetaModelPackage <em>Meta Model Package</em>}</li>
  *   <li>{@link pamtram.SectionModel#getMetaModelSections <em>Meta Model Sections</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.PamtramPackage#getSectionModel()
  * @model abstract="true"

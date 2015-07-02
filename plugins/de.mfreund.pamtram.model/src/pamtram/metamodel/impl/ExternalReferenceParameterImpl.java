@@ -21,10 +21,10 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.metamodel.impl.ExternalReferenceParameterImpl#getReference <em>Reference</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

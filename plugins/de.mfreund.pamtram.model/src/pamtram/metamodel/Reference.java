@@ -11,11 +11,11 @@ import org.eclipse.emf.ecore.EReference;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.metamodel.Reference#getEReference <em>EReference</em>}</li>
  *   <li>{@link pamtram.metamodel.Reference#getOwningClass <em>Owning Class</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.metamodel.MetamodelPackage#getReference()
  * @model abstract="true"

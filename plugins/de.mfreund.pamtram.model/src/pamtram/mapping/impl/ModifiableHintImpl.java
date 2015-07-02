@@ -22,10 +22,10 @@ import pamtram.mapping.ModifiableHint;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.impl.ModifiableHintImpl#getResultModifier <em>Result Modifier</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

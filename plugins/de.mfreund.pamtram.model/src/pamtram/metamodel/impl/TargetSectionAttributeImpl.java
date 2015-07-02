@@ -16,11 +16,11 @@ import pamtram.metamodel.TargetSectionReference;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.metamodel.impl.TargetSectionAttributeImpl#isUnique <em>Unique</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.TargetSectionAttributeImpl#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

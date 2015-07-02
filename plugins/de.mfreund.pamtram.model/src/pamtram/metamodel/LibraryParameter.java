@@ -12,11 +12,11 @@ import pamtram.NamedElement;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.metamodel.LibraryParameter#getSource <em>Source</em>}</li>
  *   <li>{@link pamtram.metamodel.LibraryParameter#getOriginalParameter <em>Original Parameter</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.metamodel.MetamodelPackage#getLibraryParameter()
  * @model abstract="true"

@@ -12,10 +12,10 @@ import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractAttributeParamet
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.metamodel.AttributeParameter#getAttribute <em>Attribute</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.metamodel.MetamodelPackage#getAttributeParameter()
  * @model

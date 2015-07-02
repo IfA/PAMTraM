@@ -18,11 +18,11 @@ import pamtram.metamodel.RegExMatcher;
  * <em><b>Reg Ex Matcher</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.metamodel.impl.RegExMatcherImpl#getType <em>Type</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.RegExMatcherImpl#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

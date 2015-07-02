@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.metamodel.Class#getEClass <em>EClass</em>}</li>
  *   <li>{@link pamtram.metamodel.Class#getCardinality <em>Cardinality</em>}</li>
@@ -19,7 +20,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link pamtram.metamodel.Class#getContainer <em>Container</em>}</li>
  *   <li>{@link pamtram.metamodel.Class#getAttributes <em>Attributes</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.metamodel.MetamodelPackage#getClass_()
  * @model abstract="true"

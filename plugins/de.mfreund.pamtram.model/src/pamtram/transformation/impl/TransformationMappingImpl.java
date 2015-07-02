@@ -22,11 +22,11 @@ import pamtram.transformation.TransformationPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.transformation.impl.TransformationMappingImpl#getSourceMElement <em>Source MElement</em>}</li>
  *   <li>{@link pamtram.transformation.impl.TransformationMappingImpl#getTargetMElement <em>Target MElement</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

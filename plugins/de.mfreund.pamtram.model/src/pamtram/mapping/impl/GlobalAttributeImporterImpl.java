@@ -24,10 +24,10 @@ import pamtram.metamodel.SourceSectionAttribute;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.impl.GlobalAttributeImporterImpl#getGlobalAttribute <em>Global Attribute</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

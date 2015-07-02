@@ -10,10 +10,10 @@ package pamtram.condition;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.condition.Not#getCondition <em>Condition</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.condition.ConditionPackage#getNot()
  * @model

@@ -17,8 +17,6 @@ import pamtram.metamodel.SourceSectionReference;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Attribute Mapping Source Element</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

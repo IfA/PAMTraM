@@ -24,12 +24,12 @@ import pamtram.transformation.TransformationPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.transformation.impl.TransformationImpl#getTransformationMapping <em>Transformation Mapping</em>}</li>
  *   <li>{@link pamtram.transformation.impl.TransformationImpl#getName <em>Name</em>}</li>
  *   <li>{@link pamtram.transformation.impl.TransformationImpl#getId <em>Id</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -13,10 +13,10 @@ import pamtram.metamodel.SourceSectionClass;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.MappingType#getSourceMMSection <em>Source MM Section</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.mapping.MappingPackage#getMappingType()
  * @model abstract="true"

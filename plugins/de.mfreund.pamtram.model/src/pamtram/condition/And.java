@@ -11,10 +11,10 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.condition.And#getCondition <em>Condition</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.condition.ConditionPackage#getAnd()
  * @model

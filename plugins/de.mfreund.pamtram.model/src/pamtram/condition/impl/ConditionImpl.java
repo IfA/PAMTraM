@@ -18,12 +18,12 @@ import pamtram.condition.ConditionPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.condition.impl.ConditionImpl#getAttribute <em>Attribute</em>}</li>
  *   <li>{@link pamtram.condition.impl.ConditionImpl#getComparator <em>Comparator</em>}</li>
  *   <li>{@link pamtram.condition.impl.ConditionImpl#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

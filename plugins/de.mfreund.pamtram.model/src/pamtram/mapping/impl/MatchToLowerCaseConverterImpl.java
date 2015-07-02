@@ -21,10 +21,10 @@ import pamtram.mapping.MatchToLowerCaseConverter;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.impl.MatchToLowerCaseConverterImpl#getRegex <em>Regex</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

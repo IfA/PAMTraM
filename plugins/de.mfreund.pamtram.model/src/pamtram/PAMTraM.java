@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EPackage;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.PAMTraM#getContextMetaModelPackage <em>Context Meta Model Package</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getSourceSectionModel <em>Source Section Model</em>}</li>
@@ -20,7 +21,6 @@ import org.eclipse.emf.ecore.EPackage;
  *   <li>{@link pamtram.PAMTraM#getMappingModel <em>Mapping Model</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getTransformationModel <em>Transformation Model</em>}</li>
  * </ul>
- * </p>
  *
  * @see pamtram.PamtramPackage#getPAMTraM()
  * @model

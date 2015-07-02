@@ -30,11 +30,11 @@ import pamtram.metamodel.Reference;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.impl.ModifiedAttributeElementTypeImpl#getSource <em>Source</em>}</li>
  *   <li>{@link pamtram.mapping.impl.ModifiedAttributeElementTypeImpl#getModifier <em>Modifier</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

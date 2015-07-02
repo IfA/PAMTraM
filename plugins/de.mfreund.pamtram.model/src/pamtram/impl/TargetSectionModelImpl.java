@@ -22,10 +22,10 @@ import pamtram.metamodel.TargetSectionReference;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link pamtram.impl.TargetSectionModelImpl#getLibraryElements <em>Library Elements</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

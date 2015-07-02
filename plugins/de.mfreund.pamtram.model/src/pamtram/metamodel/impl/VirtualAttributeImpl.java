@@ -11,8 +11,6 @@ import pamtram.metamodel.VirtualAttribute;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Virtual Attribute</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

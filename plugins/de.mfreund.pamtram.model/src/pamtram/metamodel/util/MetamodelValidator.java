@@ -8,7 +8,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.ocl.examples.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
+import org.eclipse.ocl.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
 
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.Attribute;
@@ -103,7 +103,7 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 */
 	@Override
 	protected EPackage getEPackage() {
-	  return MetamodelPackage.eINSTANCE;
+		return MetamodelPackage.eINSTANCE;
 	}
 
 	/**
@@ -115,72 +115,72 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	@Override
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID) {
-			case MetamodelPackage.META_MODEL_ELEMENT:
-				return validateMetaModelElement((MetaModelElement)value, diagnostics, context);
-			case MetamodelPackage.CLASS:
-				return validateClass((pamtram.metamodel.Class)value, diagnostics, context);
-			case MetamodelPackage.SOURCE_SECTION_CLASS:
-				return validateSourceSectionClass((SourceSectionClass)value, diagnostics, context);
-			case MetamodelPackage.TARGET_SECTION_CLASS:
-				return validateTargetSectionClass((TargetSectionClass)value, diagnostics, context);
-			case MetamodelPackage.LIBRARY_PARAMETER:
-				return validateLibraryParameter((LibraryParameter<?>)value, diagnostics, context);
-			case MetamodelPackage.ATTRIBUTE_PARAMETER:
-				return validateAttributeParameter((AttributeParameter)value, diagnostics, context);
-			case MetamodelPackage.CONTAINER_PARAMETER:
-				return validateContainerParameter((ContainerParameter)value, diagnostics, context);
-			case MetamodelPackage.EXTERNAL_REFERENCE_PARAMETER:
-				return validateExternalReferenceParameter((ExternalReferenceParameter)value, diagnostics, context);
-			case MetamodelPackage.LIBRARY_ENTRY:
-				return validateLibraryEntry((LibraryEntry)value, diagnostics, context);
-			case MetamodelPackage.REFERENCE:
-				return validateReference((Reference)value, diagnostics, context);
-			case MetamodelPackage.CONTAINMENT_REFERENCE:
-				return validateContainmentReference((ContainmentReference)value, diagnostics, context);
-			case MetamodelPackage.NON_CONTAINMENT_REFERENCE:
-				return validateNonContainmentReference((NonContainmentReference)value, diagnostics, context);
-			case MetamodelPackage.SOURCE_SECTION_REFERENCE:
-				return validateSourceSectionReference((SourceSectionReference)value, diagnostics, context);
-			case MetamodelPackage.TARGET_SECTION_REFERENCE:
-				return validateTargetSectionReference((TargetSectionReference)value, diagnostics, context);
-			case MetamodelPackage.TARGET_SECTION_CONTAINMENT_REFERENCE:
-				return validateTargetSectionContainmentReference((TargetSectionContainmentReference)value, diagnostics, context);
-			case MetamodelPackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE:
-				return validateTargetSectionNonContainmentReference((TargetSectionNonContainmentReference)value, diagnostics, context);
-			case MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE:
-				return validateSourceSectionContainmentReference((SourceSectionContainmentReference)value, diagnostics, context);
-			case MetamodelPackage.META_MODEL_SECTION_REFERENCE:
-				return validateMetaModelSectionReference((MetaModelSectionReference)value, diagnostics, context);
-			case MetamodelPackage.ATTRIBUTE:
-				return validateAttribute((Attribute)value, diagnostics, context);
-			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE:
-				return validateSourceSectionAttribute((SourceSectionAttribute)value, diagnostics, context);
-			case MetamodelPackage.TARGET_SECTION_ATTRIBUTE:
-				return validateTargetSectionAttribute((TargetSectionAttribute)value, diagnostics, context);
-			case MetamodelPackage.ACTUAL_ATTRIBUTE:
-				return validateActualAttribute((ActualAttribute)value, diagnostics, context);
-			case MetamodelPackage.VIRTUAL_ATTRIBUTE:
-				return validateVirtualAttribute((VirtualAttribute)value, diagnostics, context);
-			case MetamodelPackage.EQUALITY_MATCHER:
-				return validateEqualityMatcher((EqualityMatcher)value, diagnostics, context);
-			case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT:
-				return validateAttributeValueConstraint((AttributeValueConstraint)value, diagnostics, context);
-			case MetamodelPackage.SUBSTRING_MATCHER:
-				return validateSubstringMatcher((SubstringMatcher)value, diagnostics, context);
-			case MetamodelPackage.BEGINNING_MATCHER:
-				return validateBeginningMatcher((BeginningMatcher)value, diagnostics, context);
-			case MetamodelPackage.ENDING_MATCHER:
-				return validateEndingMatcher((EndingMatcher)value, diagnostics, context);
-			case MetamodelPackage.REG_EX_MATCHER:
-				return validateRegExMatcher((RegExMatcher)value, diagnostics, context);
-			case MetamodelPackage.CASE_SENSITIVE_CONSTRAINT:
-				return validateCaseSensitiveConstraint((CaseSensitiveConstraint)value, diagnostics, context);
-			case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT_TYPE:
-				return validateAttributeValueConstraintType((AttributeValueConstraintType)value, diagnostics, context);
-			case MetamodelPackage.CARDINALITY_TYPE:
-				return validateCardinalityType((CardinalityType)value, diagnostics, context);
-			default:
-				return true;
+		case MetamodelPackage.META_MODEL_ELEMENT:
+			return validateMetaModelElement((MetaModelElement)value, diagnostics, context);
+		case MetamodelPackage.CLASS:
+			return validateClass((pamtram.metamodel.Class)value, diagnostics, context);
+		case MetamodelPackage.SOURCE_SECTION_CLASS:
+			return validateSourceSectionClass((SourceSectionClass)value, diagnostics, context);
+		case MetamodelPackage.TARGET_SECTION_CLASS:
+			return validateTargetSectionClass((TargetSectionClass)value, diagnostics, context);
+		case MetamodelPackage.LIBRARY_PARAMETER:
+			return validateLibraryParameter((LibraryParameter<?>)value, diagnostics, context);
+		case MetamodelPackage.ATTRIBUTE_PARAMETER:
+			return validateAttributeParameter((AttributeParameter)value, diagnostics, context);
+		case MetamodelPackage.CONTAINER_PARAMETER:
+			return validateContainerParameter((ContainerParameter)value, diagnostics, context);
+		case MetamodelPackage.EXTERNAL_REFERENCE_PARAMETER:
+			return validateExternalReferenceParameter((ExternalReferenceParameter)value, diagnostics, context);
+		case MetamodelPackage.LIBRARY_ENTRY:
+			return validateLibraryEntry((LibraryEntry)value, diagnostics, context);
+		case MetamodelPackage.REFERENCE:
+			return validateReference((Reference)value, diagnostics, context);
+		case MetamodelPackage.CONTAINMENT_REFERENCE:
+			return validateContainmentReference((ContainmentReference)value, diagnostics, context);
+		case MetamodelPackage.NON_CONTAINMENT_REFERENCE:
+			return validateNonContainmentReference((NonContainmentReference)value, diagnostics, context);
+		case MetamodelPackage.SOURCE_SECTION_REFERENCE:
+			return validateSourceSectionReference((SourceSectionReference)value, diagnostics, context);
+		case MetamodelPackage.TARGET_SECTION_REFERENCE:
+			return validateTargetSectionReference((TargetSectionReference)value, diagnostics, context);
+		case MetamodelPackage.TARGET_SECTION_CONTAINMENT_REFERENCE:
+			return validateTargetSectionContainmentReference((TargetSectionContainmentReference)value, diagnostics, context);
+		case MetamodelPackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE:
+			return validateTargetSectionNonContainmentReference((TargetSectionNonContainmentReference)value, diagnostics, context);
+		case MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE:
+			return validateSourceSectionContainmentReference((SourceSectionContainmentReference)value, diagnostics, context);
+		case MetamodelPackage.META_MODEL_SECTION_REFERENCE:
+			return validateMetaModelSectionReference((MetaModelSectionReference)value, diagnostics, context);
+		case MetamodelPackage.ATTRIBUTE:
+			return validateAttribute((Attribute)value, diagnostics, context);
+		case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE:
+			return validateSourceSectionAttribute((SourceSectionAttribute)value, diagnostics, context);
+		case MetamodelPackage.TARGET_SECTION_ATTRIBUTE:
+			return validateTargetSectionAttribute((TargetSectionAttribute)value, diagnostics, context);
+		case MetamodelPackage.ACTUAL_ATTRIBUTE:
+			return validateActualAttribute((ActualAttribute)value, diagnostics, context);
+		case MetamodelPackage.VIRTUAL_ATTRIBUTE:
+			return validateVirtualAttribute((VirtualAttribute)value, diagnostics, context);
+		case MetamodelPackage.EQUALITY_MATCHER:
+			return validateEqualityMatcher((EqualityMatcher)value, diagnostics, context);
+		case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT:
+			return validateAttributeValueConstraint((AttributeValueConstraint)value, diagnostics, context);
+		case MetamodelPackage.SUBSTRING_MATCHER:
+			return validateSubstringMatcher((SubstringMatcher)value, diagnostics, context);
+		case MetamodelPackage.BEGINNING_MATCHER:
+			return validateBeginningMatcher((BeginningMatcher)value, diagnostics, context);
+		case MetamodelPackage.ENDING_MATCHER:
+			return validateEndingMatcher((EndingMatcher)value, diagnostics, context);
+		case MetamodelPackage.REG_EX_MATCHER:
+			return validateRegExMatcher((RegExMatcher)value, diagnostics, context);
+		case MetamodelPackage.CASE_SENSITIVE_CONSTRAINT:
+			return validateCaseSensitiveConstraint((CaseSensitiveConstraint)value, diagnostics, context);
+		case MetamodelPackage.ATTRIBUTE_VALUE_CONSTRAINT_TYPE:
+			return validateAttributeValueConstraintType((AttributeValueConstraintType)value, diagnostics, context);
+		case MetamodelPackage.CARDINALITY_TYPE:
+			return validateCardinalityType((CardinalityType)value, diagnostics, context);
+		default:
+			return true;
 		}
 	}
 
@@ -199,17 +199,37 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateClass(pamtram.metamodel.Class class_, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(class_, diagnostics, context)) return false;
+		if (!validate_NoCircularContainment(class_, diagnostics, context)) {
+			return false;
+		}
 		boolean result = validate_EveryMultiplicityConforms(class_, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(class_, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(class_, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(class_, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(class_, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(class_, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(class_, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(class_, diagnostics, context);
-		if (result || diagnostics != null) result &= validateClass_eClassMatchesParentEReference(class_, diagnostics, context);
-		if (result || diagnostics != null) result &= validateClass_variableCardinalityIsValid(class_, diagnostics, context);
+		if (result || diagnostics != null) {
+			result &= validate_EveryDataValueConforms(class_, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryReferenceIsContained(class_, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryBidirectionalReferenceIsPaired(class_, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryProxyResolves(class_, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_UniqueID(class_, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryKeyUnique(class_, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryMapEntryUnique(class_, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateClass_eClassMatchesParentEReference(class_, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateClass_variableCardinalityIsValid(class_, diagnostics, context);
+		}
 		return result;
 	}
 
@@ -229,17 +249,17 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 */
 	public boolean validateClass_eClassMatchesParentEReference(pamtram.metamodel.Class class_, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return
-			validate
+				validate
 				(MetamodelPackage.Literals.CLASS,
-				 class_,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL",
-				 "eClassMatchesParentEReference",
-				 CLASS__ECLASS_MATCHES_PARENT_EREFERENCE__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
+						class_,
+						diagnostics,
+						context,
+						"http://www.eclipse.org/emf/2002/Ecore/OCL",
+						"eClassMatchesParentEReference",
+						CLASS__ECLASS_MATCHES_PARENT_EREFERENCE__EEXPRESSION,
+						Diagnostic.ERROR,
+						DIAGNOSTIC_SOURCE,
+						0);
 	}
 
 	/**
@@ -256,14 +276,14 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+				(createDiagnostic
 						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "variableCardinalityIsValid", getObjectLabel(class_, context) },
-						 new Object[] { class_ },
-						 context));
+								DIAGNOSTIC_SOURCE,
+								0,
+								"_UI_GenericConstraint_diagnostic",
+								new Object[] { "variableCardinalityIsValid", getObjectLabel(class_, context) },
+								new Object[] { class_ },
+								context));
 			}
 			return false;
 		}
@@ -276,17 +296,37 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSourceSectionClass(SourceSectionClass sourceSectionClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(sourceSectionClass, diagnostics, context)) return false;
+		if (!validate_NoCircularContainment(sourceSectionClass, diagnostics, context)) {
+			return false;
+		}
 		boolean result = validate_EveryMultiplicityConforms(sourceSectionClass, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(sourceSectionClass, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(sourceSectionClass, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(sourceSectionClass, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(sourceSectionClass, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(sourceSectionClass, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(sourceSectionClass, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(sourceSectionClass, diagnostics, context);
-		if (result || diagnostics != null) result &= validateClass_eClassMatchesParentEReference(sourceSectionClass, diagnostics, context);
-		if (result || diagnostics != null) result &= validateClass_variableCardinalityIsValid(sourceSectionClass, diagnostics, context);
+		if (result || diagnostics != null) {
+			result &= validate_EveryDataValueConforms(sourceSectionClass, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryReferenceIsContained(sourceSectionClass, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryBidirectionalReferenceIsPaired(sourceSectionClass, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryProxyResolves(sourceSectionClass, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_UniqueID(sourceSectionClass, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryKeyUnique(sourceSectionClass, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryMapEntryUnique(sourceSectionClass, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateClass_eClassMatchesParentEReference(sourceSectionClass, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateClass_variableCardinalityIsValid(sourceSectionClass, diagnostics, context);
+		}
 		return result;
 	}
 
@@ -296,17 +336,37 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateTargetSectionClass(TargetSectionClass targetSectionClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(targetSectionClass, diagnostics, context)) return false;
+		if (!validate_NoCircularContainment(targetSectionClass, diagnostics, context)) {
+			return false;
+		}
 		boolean result = validate_EveryMultiplicityConforms(targetSectionClass, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(targetSectionClass, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(targetSectionClass, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(targetSectionClass, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(targetSectionClass, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(targetSectionClass, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(targetSectionClass, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(targetSectionClass, diagnostics, context);
-		if (result || diagnostics != null) result &= validateClass_eClassMatchesParentEReference(targetSectionClass, diagnostics, context);
-		if (result || diagnostics != null) result &= validateClass_variableCardinalityIsValid(targetSectionClass, diagnostics, context);
+		if (result || diagnostics != null) {
+			result &= validate_EveryDataValueConforms(targetSectionClass, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryReferenceIsContained(targetSectionClass, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryBidirectionalReferenceIsPaired(targetSectionClass, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryProxyResolves(targetSectionClass, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_UniqueID(targetSectionClass, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryKeyUnique(targetSectionClass, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryMapEntryUnique(targetSectionClass, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateClass_eClassMatchesParentEReference(targetSectionClass, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateClass_variableCardinalityIsValid(targetSectionClass, diagnostics, context);
+		}
 		return result;
 	}
 
@@ -361,16 +421,34 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateReference(Reference reference, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(reference, diagnostics, context)) return false;
+		if (!validate_NoCircularContainment(reference, diagnostics, context)) {
+			return false;
+		}
 		boolean result = validate_EveryMultiplicityConforms(reference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(reference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(reference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(reference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(reference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(reference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(reference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(reference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateReference_eReferenceMatchesParentEClass(reference, diagnostics, context);
+		if (result || diagnostics != null) {
+			result &= validate_EveryDataValueConforms(reference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryReferenceIsContained(reference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryBidirectionalReferenceIsPaired(reference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryProxyResolves(reference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_UniqueID(reference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryKeyUnique(reference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryMapEntryUnique(reference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateReference_eReferenceMatchesParentEClass(reference, diagnostics, context);
+		}
 		return result;
 	}
 
@@ -390,17 +468,17 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 */
 	public boolean validateReference_eReferenceMatchesParentEClass(Reference reference, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return
-			validate
+				validate
 				(MetamodelPackage.Literals.REFERENCE,
-				 reference,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL",
-				 "eReferenceMatchesParentEClass",
-				 REFERENCE__EREFERENCE_MATCHES_PARENT_ECLASS__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
+						reference,
+						diagnostics,
+						context,
+						"http://www.eclipse.org/emf/2002/Ecore/OCL",
+						"eReferenceMatchesParentEClass",
+						REFERENCE__EREFERENCE_MATCHES_PARENT_ECLASS__EEXPRESSION,
+						Diagnostic.ERROR,
+						DIAGNOSTIC_SOURCE,
+						0);
 	}
 
 	/**
@@ -409,17 +487,37 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateContainmentReference(ContainmentReference containmentReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(containmentReference, diagnostics, context)) return false;
+		if (!validate_NoCircularContainment(containmentReference, diagnostics, context)) {
+			return false;
+		}
 		boolean result = validate_EveryMultiplicityConforms(containmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(containmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(containmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(containmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(containmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(containmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(containmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(containmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateReference_eReferenceMatchesParentEClass(containmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateContainmentReference_eReferenceIsContainment(containmentReference, diagnostics, context);
+		if (result || diagnostics != null) {
+			result &= validate_EveryDataValueConforms(containmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryReferenceIsContained(containmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryBidirectionalReferenceIsPaired(containmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryProxyResolves(containmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_UniqueID(containmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryKeyUnique(containmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryMapEntryUnique(containmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateReference_eReferenceMatchesParentEClass(containmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateContainmentReference_eReferenceIsContainment(containmentReference, diagnostics, context);
+		}
 		return result;
 	}
 
@@ -439,17 +537,17 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 */
 	public boolean validateContainmentReference_eReferenceIsContainment(ContainmentReference containmentReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return
-			validate
+				validate
 				(MetamodelPackage.Literals.CONTAINMENT_REFERENCE,
-				 containmentReference,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL",
-				 "eReferenceIsContainment",
-				 CONTAINMENT_REFERENCE__EREFERENCE_IS_CONTAINMENT__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
+						containmentReference,
+						diagnostics,
+						context,
+						"http://www.eclipse.org/emf/2002/Ecore/OCL",
+						"eReferenceIsContainment",
+						CONTAINMENT_REFERENCE__EREFERENCE_IS_CONTAINMENT__EEXPRESSION,
+						Diagnostic.ERROR,
+						DIAGNOSTIC_SOURCE,
+						0);
 	}
 
 	/**
@@ -458,17 +556,37 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateNonContainmentReference(NonContainmentReference nonContainmentReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(nonContainmentReference, diagnostics, context)) return false;
+		if (!validate_NoCircularContainment(nonContainmentReference, diagnostics, context)) {
+			return false;
+		}
 		boolean result = validate_EveryMultiplicityConforms(nonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(nonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(nonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(nonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(nonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(nonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(nonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(nonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateReference_eReferenceMatchesParentEClass(nonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateNonContainmentReference_eReferenceIsNonContainment(nonContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) {
+			result &= validate_EveryDataValueConforms(nonContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryReferenceIsContained(nonContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryBidirectionalReferenceIsPaired(nonContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryProxyResolves(nonContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_UniqueID(nonContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryKeyUnique(nonContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryMapEntryUnique(nonContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateReference_eReferenceMatchesParentEClass(nonContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateNonContainmentReference_eReferenceIsNonContainment(nonContainmentReference, diagnostics, context);
+		}
 		return result;
 	}
 
@@ -488,17 +606,17 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 */
 	public boolean validateNonContainmentReference_eReferenceIsNonContainment(NonContainmentReference nonContainmentReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return
-			validate
+				validate
 				(MetamodelPackage.Literals.NON_CONTAINMENT_REFERENCE,
-				 nonContainmentReference,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL",
-				 "eReferenceIsNonContainment",
-				 NON_CONTAINMENT_REFERENCE__EREFERENCE_IS_NON_CONTAINMENT__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
+						nonContainmentReference,
+						diagnostics,
+						context,
+						"http://www.eclipse.org/emf/2002/Ecore/OCL",
+						"eReferenceIsNonContainment",
+						NON_CONTAINMENT_REFERENCE__EREFERENCE_IS_NON_CONTAINMENT__EEXPRESSION,
+						Diagnostic.ERROR,
+						DIAGNOSTIC_SOURCE,
+						0);
 	}
 
 	/**
@@ -507,16 +625,34 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSourceSectionReference(SourceSectionReference sourceSectionReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(sourceSectionReference, diagnostics, context)) return false;
+		if (!validate_NoCircularContainment(sourceSectionReference, diagnostics, context)) {
+			return false;
+		}
 		boolean result = validate_EveryMultiplicityConforms(sourceSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(sourceSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(sourceSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(sourceSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(sourceSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(sourceSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(sourceSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(sourceSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateReference_eReferenceMatchesParentEClass(sourceSectionReference, diagnostics, context);
+		if (result || diagnostics != null) {
+			result &= validate_EveryDataValueConforms(sourceSectionReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryReferenceIsContained(sourceSectionReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryBidirectionalReferenceIsPaired(sourceSectionReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryProxyResolves(sourceSectionReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_UniqueID(sourceSectionReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryKeyUnique(sourceSectionReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryMapEntryUnique(sourceSectionReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateReference_eReferenceMatchesParentEClass(sourceSectionReference, diagnostics, context);
+		}
 		return result;
 	}
 
@@ -526,16 +662,34 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateTargetSectionReference(TargetSectionReference targetSectionReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(targetSectionReference, diagnostics, context)) return false;
+		if (!validate_NoCircularContainment(targetSectionReference, diagnostics, context)) {
+			return false;
+		}
 		boolean result = validate_EveryMultiplicityConforms(targetSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(targetSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(targetSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(targetSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(targetSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(targetSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(targetSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(targetSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateReference_eReferenceMatchesParentEClass(targetSectionReference, diagnostics, context);
+		if (result || diagnostics != null) {
+			result &= validate_EveryDataValueConforms(targetSectionReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryReferenceIsContained(targetSectionReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryBidirectionalReferenceIsPaired(targetSectionReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryProxyResolves(targetSectionReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_UniqueID(targetSectionReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryKeyUnique(targetSectionReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryMapEntryUnique(targetSectionReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateReference_eReferenceMatchesParentEClass(targetSectionReference, diagnostics, context);
+		}
 		return result;
 	}
 
@@ -545,17 +699,37 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateTargetSectionContainmentReference(TargetSectionContainmentReference targetSectionContainmentReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(targetSectionContainmentReference, diagnostics, context)) return false;
+		if (!validate_NoCircularContainment(targetSectionContainmentReference, diagnostics, context)) {
+			return false;
+		}
 		boolean result = validate_EveryMultiplicityConforms(targetSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(targetSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(targetSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(targetSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(targetSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(targetSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(targetSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(targetSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateReference_eReferenceMatchesParentEClass(targetSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateContainmentReference_eReferenceIsContainment(targetSectionContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) {
+			result &= validate_EveryDataValueConforms(targetSectionContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryReferenceIsContained(targetSectionContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryBidirectionalReferenceIsPaired(targetSectionContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryProxyResolves(targetSectionContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_UniqueID(targetSectionContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryKeyUnique(targetSectionContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryMapEntryUnique(targetSectionContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateReference_eReferenceMatchesParentEClass(targetSectionContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateContainmentReference_eReferenceIsContainment(targetSectionContainmentReference, diagnostics, context);
+		}
 		return result;
 	}
 
@@ -565,17 +739,37 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateTargetSectionNonContainmentReference(TargetSectionNonContainmentReference targetSectionNonContainmentReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(targetSectionNonContainmentReference, diagnostics, context)) return false;
+		if (!validate_NoCircularContainment(targetSectionNonContainmentReference, diagnostics, context)) {
+			return false;
+		}
 		boolean result = validate_EveryMultiplicityConforms(targetSectionNonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(targetSectionNonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(targetSectionNonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(targetSectionNonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(targetSectionNonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(targetSectionNonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(targetSectionNonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(targetSectionNonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateReference_eReferenceMatchesParentEClass(targetSectionNonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateNonContainmentReference_eReferenceIsNonContainment(targetSectionNonContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) {
+			result &= validate_EveryDataValueConforms(targetSectionNonContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryReferenceIsContained(targetSectionNonContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryBidirectionalReferenceIsPaired(targetSectionNonContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryProxyResolves(targetSectionNonContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_UniqueID(targetSectionNonContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryKeyUnique(targetSectionNonContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryMapEntryUnique(targetSectionNonContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateReference_eReferenceMatchesParentEClass(targetSectionNonContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateNonContainmentReference_eReferenceIsNonContainment(targetSectionNonContainmentReference, diagnostics, context);
+		}
 		return result;
 	}
 
@@ -585,17 +779,37 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSourceSectionContainmentReference(SourceSectionContainmentReference sourceSectionContainmentReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(sourceSectionContainmentReference, diagnostics, context)) return false;
+		if (!validate_NoCircularContainment(sourceSectionContainmentReference, diagnostics, context)) {
+			return false;
+		}
 		boolean result = validate_EveryMultiplicityConforms(sourceSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(sourceSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(sourceSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(sourceSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(sourceSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(sourceSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(sourceSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(sourceSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateReference_eReferenceMatchesParentEClass(sourceSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateContainmentReference_eReferenceIsContainment(sourceSectionContainmentReference, diagnostics, context);
+		if (result || diagnostics != null) {
+			result &= validate_EveryDataValueConforms(sourceSectionContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryReferenceIsContained(sourceSectionContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryBidirectionalReferenceIsPaired(sourceSectionContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryProxyResolves(sourceSectionContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_UniqueID(sourceSectionContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryKeyUnique(sourceSectionContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryMapEntryUnique(sourceSectionContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateReference_eReferenceMatchesParentEClass(sourceSectionContainmentReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateContainmentReference_eReferenceIsContainment(sourceSectionContainmentReference, diagnostics, context);
+		}
 		return result;
 	}
 
@@ -605,17 +819,37 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMetaModelSectionReference(MetaModelSectionReference metaModelSectionReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(metaModelSectionReference, diagnostics, context)) return false;
+		if (!validate_NoCircularContainment(metaModelSectionReference, diagnostics, context)) {
+			return false;
+		}
 		boolean result = validate_EveryMultiplicityConforms(metaModelSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(metaModelSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(metaModelSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(metaModelSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(metaModelSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(metaModelSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(metaModelSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(metaModelSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateReference_eReferenceMatchesParentEClass(metaModelSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateMetaModelSectionReference_valuesMatchReferenceType(metaModelSectionReference, diagnostics, context);
+		if (result || diagnostics != null) {
+			result &= validate_EveryDataValueConforms(metaModelSectionReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryReferenceIsContained(metaModelSectionReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryBidirectionalReferenceIsPaired(metaModelSectionReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryProxyResolves(metaModelSectionReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_UniqueID(metaModelSectionReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryKeyUnique(metaModelSectionReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryMapEntryUnique(metaModelSectionReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateReference_eReferenceMatchesParentEClass(metaModelSectionReference, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateMetaModelSectionReference_valuesMatchReferenceType(metaModelSectionReference, diagnostics, context);
+		}
 		return result;
 	}
 
@@ -635,17 +869,17 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 */
 	public boolean validateMetaModelSectionReference_valuesMatchReferenceType(MetaModelSectionReference metaModelSectionReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return
-			validate
+				validate
 				(MetamodelPackage.Literals.META_MODEL_SECTION_REFERENCE,
-				 metaModelSectionReference,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL",
-				 "valuesMatchReferenceType",
-				 META_MODEL_SECTION_REFERENCE__VALUES_MATCH_REFERENCE_TYPE__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
+						metaModelSectionReference,
+						diagnostics,
+						context,
+						"http://www.eclipse.org/emf/2002/Ecore/OCL",
+						"valuesMatchReferenceType",
+						META_MODEL_SECTION_REFERENCE__VALUES_MATCH_REFERENCE_TYPE__EEXPRESSION,
+						Diagnostic.ERROR,
+						DIAGNOSTIC_SOURCE,
+						0);
 	}
 
 	/**
@@ -663,16 +897,34 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSourceSectionAttribute(SourceSectionAttribute sourceSectionAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(sourceSectionAttribute, diagnostics, context)) return false;
+		if (!validate_NoCircularContainment(sourceSectionAttribute, diagnostics, context)) {
+			return false;
+		}
 		boolean result = validate_EveryMultiplicityConforms(sourceSectionAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(sourceSectionAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(sourceSectionAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(sourceSectionAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(sourceSectionAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(sourceSectionAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(sourceSectionAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(sourceSectionAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSourceSectionAttribute_attributeMatchesParentEClass(sourceSectionAttribute, diagnostics, context);
+		if (result || diagnostics != null) {
+			result &= validate_EveryDataValueConforms(sourceSectionAttribute, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryReferenceIsContained(sourceSectionAttribute, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryBidirectionalReferenceIsPaired(sourceSectionAttribute, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryProxyResolves(sourceSectionAttribute, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_UniqueID(sourceSectionAttribute, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryKeyUnique(sourceSectionAttribute, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryMapEntryUnique(sourceSectionAttribute, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateSourceSectionAttribute_attributeMatchesParentEClass(sourceSectionAttribute, diagnostics, context);
+		}
 		return result;
 	}
 
@@ -692,17 +944,17 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 */
 	public boolean validateSourceSectionAttribute_attributeMatchesParentEClass(SourceSectionAttribute sourceSectionAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return
-			validate
+				validate
 				(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE,
-				 sourceSectionAttribute,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL",
-				 "attributeMatchesParentEClass",
-				 SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE_MATCHES_PARENT_ECLASS__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
+						sourceSectionAttribute,
+						diagnostics,
+						context,
+						"http://www.eclipse.org/emf/2002/Ecore/OCL",
+						"attributeMatchesParentEClass",
+						SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE_MATCHES_PARENT_ECLASS__EEXPRESSION,
+						Diagnostic.ERROR,
+						DIAGNOSTIC_SOURCE,
+						0);
 	}
 
 	/**
@@ -720,16 +972,34 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateActualAttribute(ActualAttribute actualAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(actualAttribute, diagnostics, context)) return false;
+		if (!validate_NoCircularContainment(actualAttribute, diagnostics, context)) {
+			return false;
+		}
 		boolean result = validate_EveryMultiplicityConforms(actualAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(actualAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(actualAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(actualAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(actualAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(actualAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(actualAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(actualAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validateActualAttribute_attributeMatchesParentEClass(actualAttribute, diagnostics, context);
+		if (result || diagnostics != null) {
+			result &= validate_EveryDataValueConforms(actualAttribute, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryReferenceIsContained(actualAttribute, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryBidirectionalReferenceIsPaired(actualAttribute, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryProxyResolves(actualAttribute, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_UniqueID(actualAttribute, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryKeyUnique(actualAttribute, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryMapEntryUnique(actualAttribute, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateActualAttribute_attributeMatchesParentEClass(actualAttribute, diagnostics, context);
+		}
 		return result;
 	}
 
@@ -749,17 +1019,17 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 */
 	public boolean validateActualAttribute_attributeMatchesParentEClass(ActualAttribute actualAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return
-			validate
+				validate
 				(MetamodelPackage.Literals.ACTUAL_ATTRIBUTE,
-				 actualAttribute,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL",
-				 "attributeMatchesParentEClass",
-				 ACTUAL_ATTRIBUTE__ATTRIBUTE_MATCHES_PARENT_ECLASS__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
+						actualAttribute,
+						diagnostics,
+						context,
+						"http://www.eclipse.org/emf/2002/Ecore/OCL",
+						"attributeMatchesParentEClass",
+						ACTUAL_ATTRIBUTE__ATTRIBUTE_MATCHES_PARENT_ECLASS__EEXPRESSION,
+						Diagnostic.ERROR,
+						DIAGNOSTIC_SOURCE,
+						0);
 	}
 
 	/**

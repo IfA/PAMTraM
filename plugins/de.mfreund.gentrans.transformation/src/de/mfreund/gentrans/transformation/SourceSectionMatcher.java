@@ -375,9 +375,9 @@ public class SourceSectionMatcher implements CancellationListener {
 
 						/* 
 						 * now, determine the external hint values (the container must be present and valid as this was
-						 * already checked earlier
+						 * already checked earlier); found values are added to the given MappingInstanceStorage
 						 */
-						mappingFailed = handleExternalSourceElements(m, res, mappingFailed);
+						mappingFailed = determineExternalHintValues(m, res, mappingFailed);
 					}
 
 					if (!mappingFailed) {
@@ -398,8 +398,8 @@ public class SourceSectionMatcher implements CancellationListener {
 	 * source section and checks if every element can be matched to a part of the source model. 
 	 * <p />
 	 * Note: This does not check the if the {@link SourceSectionClass#getContainer() container} and {@link ExternalModifiedAttributeElementType
-	 * external attributes} can also be matched. This has to be checked additionally by means of {@link #handleExternalSourceElements(Mapping, 
-	 * MappingInstanceStorage, boolean) handleExternalSourceElements()}.
+	 * external attributes} can also be matched. This has to be checked additionally by means of {@link #determineExternalHintValues(Mapping, 
+	 * MappingInstanceStorage, boolean) determineExternalHintValues()}.
 	 * <p />
 	 * Note: During this process, all hint values are determined as well and stored in the returned {@link MappingInstanceStorage}.
 	 *
@@ -490,9 +490,9 @@ public class SourceSectionMatcher implements CancellationListener {
 		}
 
 		/*
-		 * Now, we calculate the values for the various hints based on the found source values.
+		 * Now, we store the found (local) values for the various hints in the MappingInstanceStorage. Possible
+		 * external values will be added later by 'checkExternalAttributes'.
 		 */
-		// TODO Don't we need to determine external values, first???
 		final Set<AttributeMapping> attributeMappingsFound = new HashSet<>();
 		final Set<AttributeMatcher> attributeMatchersFound = new HashSet<>();
 		final Set<ModelConnectionHint> modelConnectionHintsFound = new HashSet<>();
@@ -506,8 +506,6 @@ public class SourceSectionMatcher implements CancellationListener {
 
 				// append the complex hint value (cardinality either 0 or 1) with found values in right order
 				for (final AttributeMappingSourceInterface s : attributeMapping.getSourceAttributeMappings()) {
-					//TODO complexSourceElementHintValues does not seem to contain values from external source elements (either only for 
-					// expression mappings or all the times
 					if (attributeMappingSourceValues.containsKey(s)) {
 						foundValues.put(s, attributeMappingSourceValues.get(s));
 						attributeMappingsFound.add(attributeMapping);
@@ -522,7 +520,6 @@ public class SourceSectionMatcher implements CancellationListener {
 					final AttributeMatcher m = (AttributeMatcher) mappingInstanceSelector.getMatcher();
 
 					// append the complex hint value (cardinality either 0 or 1) with found values in right order
-					//TODO don't we need to take external values into account, too???
 					for (final AttributeMatcherSourceElement s : m.getLocalSourceElements()) {
 						if (attributeMatcherSourceValues.containsKey(s)) {
 							foundValues.put(s, attributeMatcherSourceValues.get(s));
@@ -535,7 +532,6 @@ public class SourceSectionMatcher implements CancellationListener {
 				ModelConnectionHint modelConnectionHint = (ModelConnectionHint) h;
 
 				// append the complex hint value (cardinality either 0 or 1) with found values in right order
-				//TODO don't we need to take external values into account, too???
 				for (final ModelConnectionHintSourceElement s : modelConnectionHint.getLocalSourceElements()) {
 					if (modelConnectionHintSourceValues.containsKey(s)) {
 						foundValues.put(s, modelConnectionHintSourceValues.get(s));
@@ -1953,16 +1949,16 @@ public class SourceSectionMatcher implements CancellationListener {
 	}
 
 	/**
-	 * Tries to determine the hintValues for the
-	 * ExternalAttributeMappingSourceElements, if present
+	 * Tries to determine the hintValues for {@link ExternalModifiedAttributeElementType external hint values}, if present.
 	 *
 	 * @param m The {@link Mapping} that is currently evaluated.
 	 * @param res The {@link MappingInstanceStorage} that contains the hint values that have already been determined. Found external 
 	 * hint values for attribute mappings are stored there.
 	 * @param mappingFailed If the mapping already failed at an earlier stage.
-	 * @return If something went wrong while determining the external hint values for the attribute mapping.
+	 * @return '<em>false</em>' if something went wrong while determining the external hint values for the attribute mapping; '<em>true</em>'
+	 * otherwise
 	 */
-	private boolean handleExternalSourceElements(
+	private boolean determineExternalHintValues(
 			final Mapping m,
 			final MappingInstanceStorage res, 
 			boolean mappingFailed) {

@@ -2269,7 +2269,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (modelConnectionHintTargetAttributeEClass, 
 		   source, 
 		   new String[] {
-			 "sourceMatchesPossibleContainerType", "self.source.oclContainer().oclAsType(pamtram::metamodel::Class).eClass.eAllContainments->exists(r : ecore::EReference | r.eReferenceType.isSuperTypeOf(self.oclContainer().oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection.eClass))"
+			 "sourceMatchesPossibleContainerType", "self.source.oclAsType(pamtram::metamodel::TargetSectionAttribute).oclContainer().oclAsType(pamtram::metamodel::Class).eClass.eAllContainments->exists(r : ecore::EReference | r.eReferenceType.isSuperTypeOf(self.oclContainer().oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection.eClass))"
 		   });	
 		addAnnotation
 		  (globalAttributeEClass, 

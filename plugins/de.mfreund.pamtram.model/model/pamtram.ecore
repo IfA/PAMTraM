@@ -902,7 +902,7 @@
         <details key="constraints" value="sourceMatchesPossibleContainerType"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="sourceMatchesPossibleContainerType" value="self.source.oclContainer().oclAsType(pamtram::metamodel::Class).eClass.eAllContainments->exists(r : ecore::EReference | r.eReferenceType.isSuperTypeOf(self.oclContainer().oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection.eClass))"/>
+        <details key="sourceMatchesPossibleContainerType" value="self.source.oclAsType(pamtram::metamodel::TargetSectionAttribute).oclContainer().oclAsType(pamtram::metamodel::Class).eClass.eAllContainments->exists(r : ecore::EReference | r.eReferenceType.isSuperTypeOf(self.oclContainer().oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection.eClass))"/>
       </eAnnotations>
       <eGenericSuperTypes eClassifier="#//mapping/ModifiedAttributeElementType">
         <eTypeArguments eClassifier="#//metamodel/TargetSectionClass"/>

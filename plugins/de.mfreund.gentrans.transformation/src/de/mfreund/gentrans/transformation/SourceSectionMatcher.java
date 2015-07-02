@@ -600,9 +600,9 @@ public class SourceSectionMatcher implements CancellationListener {
 		/*
 		 * sync complex hints
 		 */
-		syncComplexAttrMappings(srcSection, changedRefsAndHints);
-		syncComplexAttrMatchers(srcSection, changedRefsAndHints);
-		syncModelConnectionHints(srcSection, changedRefsAndHints);
+		syncAttributeMappingHintValues(srcSection, changedRefsAndHints);
+		syncAttributeMatcherHintValues(srcSection, changedRefsAndHints);
+		syncModelConnectionHintValues(srcSection, changedRefsAndHints);
 
 		/*
 		 * if we are at one of the deepest SourceElements of a complex Mapping,
@@ -1248,7 +1248,7 @@ public class SourceSectionMatcher implements CancellationListener {
 	 * @param changedRefsAndHints The {@link MappingInstanceStorage} where all ('<em>synced</em>' as well as '<em>unsynced</em>') 
 	 * hint values are stored.
 	 */
-	private void syncComplexAttrMappings(final SourceSectionClass srcSection,
+	private void syncAttributeMappingHintValues(final SourceSectionClass srcSection,
 			final MappingInstanceStorage changedRefsAndHints) {
 	
 		for (final AttributeMapping h : changedRefsAndHints.getUnsyncedHintValues().getAttributeMappingHintValues().keySet()) {
@@ -1321,7 +1321,7 @@ public class SourceSectionMatcher implements CancellationListener {
 	 * @param changedRefsAndHints The {@link MappingInstanceStorage} where all ('<em>synced</em>' as well as '<em>unsynced</em>') 
 	 * hint values are stored.
 	 */
-	private void syncComplexAttrMatchers(final SourceSectionClass srcSection,
+	private void syncAttributeMatcherHintValues(final SourceSectionClass srcSection,
 			final MappingInstanceStorage changedRefsAndHints) {
 	
 		for (final MappingInstanceSelector h : changedRefsAndHints.getUnsyncedHintValues().getMappingInstanceSelectorHintValues().keySet()) {
@@ -1393,7 +1393,7 @@ public class SourceSectionMatcher implements CancellationListener {
 	 * @param changedRefsAndHints The {@link MappingInstanceStorage} where all ('<em>synced</em>' as well as '<em>unsynced</em>') 
 	 * hint values are stored.
 	 */
-	private void syncModelConnectionHints(final SourceSectionClass srcSection,
+	private void syncModelConnectionHintValues(final SourceSectionClass srcSection,
 			final MappingInstanceStorage changedRefsAndHints) {
 	
 		for (final ModelConnectionHint h : changedRefsAndHints.getUnsyncedHintValues().getModelConnectionHintValues().keySet()) {

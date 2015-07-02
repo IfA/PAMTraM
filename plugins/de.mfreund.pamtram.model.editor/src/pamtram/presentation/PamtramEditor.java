@@ -132,6 +132,9 @@ import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.PropertySheetPage;
 
+import de.mfreund.pamtram.preferences.PreferenceSupplier;
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry;
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.GenLibraryItemProviderAdapterFactory;
 import pamtram.PAMTraM;
 import pamtram.commandlistener.PamtramCommandStackListener;
 import pamtram.condition.provider.ConditionItemProviderAdapterFactory;
@@ -142,9 +145,6 @@ import pamtram.provider.PamtramItemProviderAdapterFactory;
 import pamtram.transformation.provider.TransformationItemProviderAdapterFactory;
 import pamtram.util.EPackageHelper;
 import pamtram.util.EPackageHelper.EPackageCheck;
-import de.mfreund.pamtram.preferences.PreferenceSupplier;
-import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry;
-import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.GenLibraryItemProviderAdapterFactory;
 
 
 /**
@@ -153,9 +153,9 @@ import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.GenLibraryItemP
  * <!-- end-user-doc -->
  * @generated
  */
-public class PamtramEditor
-	extends MultiPageEditorPart
-	implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
+public class PamtramEditor 
+extends MultiPageEditorPart
+implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 	/**
 	 * This keeps track of the editing domain that is used to track all changes to the model.
 	 * <!-- begin-user-doc -->
@@ -212,7 +212,7 @@ public class PamtramEditor
 	 * @generated
 	 */
 	protected TreeViewer selectionViewer;
-	
+
 	/**
 	 * This inverts the roll of parent and child in the content provider and show parents as a tree.
 	 * <!-- begin-user-doc -->
@@ -267,12 +267,12 @@ public class PamtramEditor
 	 * This is the viewer that displays the attribute value modifier sets.
 	 */
 	protected TreeViewer globalElementsViewer;
-	
+
 	/**
 	 * This is the the viewer for the source meta model sections.
 	 */
 	protected TreeViewer sourceViewer;
-	
+
 	/**
 	 * This is the the viewer for the target meta model sections.
 	 */
@@ -326,43 +326,43 @@ public class PamtramEditor
 	 * @generated
 	 */
 	protected IPartListener partListener =
-		new IPartListener() {
-			@Override
-			public void partActivated(IWorkbenchPart p) {
-				if (p instanceof ContentOutline) {
-					if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
-						getActionBarContributor().setActiveEditor(PamtramEditor.this);
+			new IPartListener() {
+		@Override
+		public void partActivated(IWorkbenchPart p) {
+			if (p instanceof ContentOutline) {
+				if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
+					getActionBarContributor().setActiveEditor(PamtramEditor.this);
 
-						setCurrentViewer(contentOutlineViewer);
-					}
+					setCurrentViewer(contentOutlineViewer);
 				}
-				else if (p instanceof PropertySheet) {
-					if (propertySheetPages.contains(((PropertySheet)p).getCurrentPage())) {
-						getActionBarContributor().setActiveEditor(PamtramEditor.this);
-						handleActivate();
-					}
-				}
-				else if (p == PamtramEditor.this) {
+			}
+			else if (p instanceof PropertySheet) {
+				if (propertySheetPages.contains(((PropertySheet)p).getCurrentPage())) {
+					getActionBarContributor().setActiveEditor(PamtramEditor.this);
 					handleActivate();
 				}
 			}
-			@Override
-			public void partBroughtToTop(IWorkbenchPart p) {
-				// Ignore.
+			else if (p == PamtramEditor.this) {
+				handleActivate();
 			}
-			@Override
-			public void partClosed(IWorkbenchPart p) {
-				// Ignore.
-			}
-			@Override
-			public void partDeactivated(IWorkbenchPart p) {
-				// Ignore.
-			}
-			@Override
-			public void partOpened(IWorkbenchPart p) {
-				// Ignore.
-			}
-		};
+		}
+		@Override
+		public void partBroughtToTop(IWorkbenchPart p) {
+			// Ignore.
+		}
+		@Override
+		public void partClosed(IWorkbenchPart p) {
+			// Ignore.
+		}
+		@Override
+		public void partDeactivated(IWorkbenchPart p) {
+			// Ignore.
+		}
+		@Override
+		public void partOpened(IWorkbenchPart p) {
+			// Ignore.
+		}
+	};
 
 	/**
 	 * Resources that have been removed since last activation.
@@ -411,93 +411,93 @@ public class PamtramEditor
 	 * @generated
 	 */
 	protected EContentAdapter problemIndicationAdapter =
-		new EContentAdapter() {
-			@Override
-			public void notifyChanged(Notification notification) {
-				if (notification.getNotifier() instanceof Resource) {
-					switch (notification.getFeatureID(Resource.class)) {
-						case Resource.RESOURCE__IS_LOADED:
-						case Resource.RESOURCE__ERRORS:
-						case Resource.RESOURCE__WARNINGS: {
-							Resource resource = (Resource)notification.getNotifier();
-							Diagnostic diagnostic = analyzeResourceProblems(resource, null);
-							if (diagnostic.getSeverity() != Diagnostic.OK) {
-								resourceToDiagnosticMap.put(resource, diagnostic);
-							}
-							else {
-								resourceToDiagnosticMap.remove(resource);
-							}
-
-							if (updateProblemIndication) {
-								getSite().getShell().getDisplay().asyncExec
-									(new Runnable() {
-										 @Override
-										public void run() {
-											 updateProblemIndication();
-										 }
-									 });
-							}
-							break;
-						}
+			new EContentAdapter() {
+		@Override
+		public void notifyChanged(Notification notification) {
+			if (notification.getNotifier() instanceof Resource) {
+				switch (notification.getFeatureID(Resource.class)) {
+				case Resource.RESOURCE__IS_LOADED:
+				case Resource.RESOURCE__ERRORS:
+				case Resource.RESOURCE__WARNINGS: {
+					Resource resource = (Resource)notification.getNotifier();
+					Diagnostic diagnostic = analyzeResourceProblems(resource, null);
+					if (diagnostic.getSeverity() != Diagnostic.OK) {
+						resourceToDiagnosticMap.put(resource, diagnostic);
 					}
-				}
-				else {
-					super.notifyChanged(notification);
-				}
-			}
+					else {
+						resourceToDiagnosticMap.remove(resource);
+					}
 
-			@Override
-			protected void setTarget(Resource target) {
-				basicSetTarget(target);
-			}
-
-			@Override
-			protected void unsetTarget(Resource target) {
-				basicUnsetTarget(target);
-				resourceToDiagnosticMap.remove(target);
-				if (updateProblemIndication) {
-					getSite().getShell().getDisplay().asyncExec
+					if (updateProblemIndication) {
+						getSite().getShell().getDisplay().asyncExec
 						(new Runnable() {
-							 @Override
+							@Override
 							public void run() {
-								 updateProblemIndication();
-							 }
-						 });
+								updateProblemIndication();
+							}
+						});
+					}
+					break;
+				}
 				}
 			}
-		};
-		
+			else {
+				super.notifyChanged(notification);
+			}
+		}
+
+		@Override
+		protected void setTarget(Resource target) {
+			basicSetTarget(target);
+		}
+
+		@Override
+		protected void unsetTarget(Resource target) {
+			basicUnsetTarget(target);
+			resourceToDiagnosticMap.remove(target);
+			if (updateProblemIndication) {
+				getSite().getShell().getDisplay().asyncExec
+				(new Runnable() {
+					@Override
+					public void run() {
+						updateProblemIndication();
+					}
+				});
+			}
+		}
+	};
+
 	/**
 	 * The content adapter used to perform various changes
 	 * automatically when the model changes.
 	 */
 	protected PamtramContentAdapter pamtramContentAdapter = 
 			new PamtramContentAdapter(this);
-	
+
 	public PamtramContentAdapter getPamtramContentAdapter() {
 		return pamtramContentAdapter;
 	}
-	
+
 	/**
 	 * This adapter keeps track of the {@link Resource}s in the resource set that represent {@link LibraryEntry}s.
 	 */
 	protected Adapter libraryResourceAdapter =
 			new AdapterImpl() {
-				@Override
-				public void notifyChanged(Notification msg) {
-					super.notifyChanged(msg);
-					if(msg.getEventType() == Notification.ADD) {
-						if(msg.getNewValue() instanceof Resource && !((Resource) msg.getNewValue()).equals(pamtram.eResource())) {
-							libraryResources.add((Resource) msg.getNewValue());						
-							editingDomain.getResourceToReadOnlyMap().put((Resource) msg.getNewValue(), Boolean.TRUE);
-						}
-					} else if(msg.getEventType() == Notification.REMOVE) {
-						libraryResources.remove(msg.getOldValue());
-						editingDomain.getResourceToReadOnlyMap().remove(msg.getOldValue());
-					}
+		@Override
+		public void notifyChanged(Notification msg) {
+			super.notifyChanged(msg);
+			if(msg.getEventType() == Notification.ADD) {
+				if(msg.getNewValue() instanceof Resource && !((Resource) msg.getNewValue()).equals(pamtram.eResource())) {
+					libraryResources.add((Resource) msg.getNewValue());						
+					editingDomain.getResourceToReadOnlyMap().put((Resource) msg.getNewValue(), Boolean.TRUE);
 				}
-			};
-	
+			} else if(msg.getEventType() == Notification.REMOVE) {
+				libraryResources.remove(msg.getOldValue());
+				editingDomain.getResourceToReadOnlyMap().remove(msg.getOldValue());
+			}
+		}
+	};
+
 	/**
 	 * This listens for commands.
 	 */
@@ -511,104 +511,104 @@ public class PamtramEditor
 	 * @generated NOT
 	 */
 	protected IResourceChangeListener resourceChangeListener =
-		new IResourceChangeListener() {
-			@Override
-			public void resourceChanged(IResourceChangeEvent event) {
-				IResourceDelta delta = event.getDelta();
-				try {
-					class ResourceDeltaVisitor implements IResourceDeltaVisitor {
-						protected ResourceSet resourceSet = editingDomain.getResourceSet();
-						protected Collection<Resource> changedResources = new ArrayList<Resource>();
-						protected Collection<Resource> removedResources = new ArrayList<Resource>();
+			new IResourceChangeListener() {
+		@Override
+		public void resourceChanged(IResourceChangeEvent event) {
+			IResourceDelta delta = event.getDelta();
+			try {
+				class ResourceDeltaVisitor implements IResourceDeltaVisitor {
+					protected ResourceSet resourceSet = editingDomain.getResourceSet();
+					protected Collection<Resource> changedResources = new ArrayList<Resource>();
+					protected Collection<Resource> removedResources = new ArrayList<Resource>();
 
-						@Override
-						public boolean visit(IResourceDelta delta) {
-							if (delta.getResource().getType() == IResource.FILE) {
-								if (delta.getKind() == IResourceDelta.REMOVED ||
-								    delta.getKind() == IResourceDelta.CHANGED && delta.getFlags() != IResourceDelta.MARKERS) {
-									Resource resource = resourceSet.getResource(URI.createPlatformResourceURI(delta.getFullPath().toString(), true), false);
-									if (resource != null) {
-										if (delta.getKind() == IResourceDelta.REMOVED) {
-											removedResources.add(resource);
-										}
-										else if (!savedResources.remove(resource)) {
-											changedResources.add(resource);
-										}
+					@Override
+					public boolean visit(IResourceDelta delta) {
+						if (delta.getResource().getType() == IResource.FILE) {
+							if (delta.getKind() == IResourceDelta.REMOVED ||
+									delta.getKind() == IResourceDelta.CHANGED && delta.getFlags() != IResourceDelta.MARKERS) {
+								Resource resource = resourceSet.getResource(URI.createPlatformResourceURI(delta.getFullPath().toString(), true), false);
+								if (resource != null) {
+									if (delta.getKind() == IResourceDelta.REMOVED) {
+										removedResources.add(resource);
+									}
+									else if (!savedResources.remove(resource)) {
+										changedResources.add(resource);
 									}
 								}
-								return false;
 							}
-
-							return true;
+							return false;
 						}
 
-						public Collection<Resource> getChangedResources() {
-							return changedResources;
-						}
-
-						public Collection<Resource> getRemovedResources() {
-							return removedResources;
-						}
+						return true;
 					}
 
-					final ResourceDeltaVisitor visitor = new ResourceDeltaVisitor();
-					delta.accept(visitor);
-
-					if (!visitor.getRemovedResources().isEmpty()) {
-						boolean exit = false;
-						EList<pamtram.metamodel.LibraryEntry> libEntries = pamtram.getTargetSectionModel().getLibraryElements();
-						for (Resource resource : visitor.getRemovedResources()) {
-							if(resource.getURI().lastSegment().equals("data.xmi")) {
-								String path = resource.getURI().trimSegments(1).lastSegment();
-								for (pamtram.metamodel.LibraryEntry libraryEntry : libEntries) {
-									if(libraryEntry.getPath().equals(path)) {
-										exit = true;
-										break;
-									}
-								}
-							} else {
-								exit = true;
-								break;
-							}
-						}
-						if(exit) {
-							getSite().getShell().getDisplay().asyncExec
-							(new Runnable() {
-								@Override
-								public void run() {
-									removedResources.addAll(visitor.getRemovedResources());
-									if (!isDirty()) {
-										getSite().getPage().closeEditor(PamtramEditor.this, false);
-									}
-								}
-							});							
-						}
+					public Collection<Resource> getChangedResources() {
+						return changedResources;
 					}
 
-					if (!visitor.getChangedResources().isEmpty()) {
-						getSite().getShell().getDisplay().asyncExec
-							(new Runnable() {
-								 @Override
-								public void run() {
-									 changedResources.addAll(visitor.getChangedResources());
-									 if (getSite().getPage().getActiveEditor() == PamtramEditor.this) {
-										 handleActivate();
-									 }
-								 }
-							 });
+					public Collection<Resource> getRemovedResources() {
+						return removedResources;
 					}
 				}
-				catch (CoreException exception) {
-					PamtramEditorPlugin.INSTANCE.log(exception);
+
+				final ResourceDeltaVisitor visitor = new ResourceDeltaVisitor();
+				delta.accept(visitor);
+
+				if (!visitor.getRemovedResources().isEmpty()) {
+					boolean exit = false;
+					EList<pamtram.metamodel.LibraryEntry> libEntries = pamtram.getTargetSectionModel().getLibraryElements();
+					for (Resource resource : visitor.getRemovedResources()) {
+						if(resource.getURI().lastSegment().equals("data.xmi")) {
+							String path = resource.getURI().trimSegments(1).lastSegment();
+							for (pamtram.metamodel.LibraryEntry libraryEntry : libEntries) {
+								if(libraryEntry.getPath().equals(path)) {
+									exit = true;
+									break;
+								}
+							}
+						} else {
+							exit = true;
+							break;
+						}
+					}
+					if(exit) {
+						getSite().getShell().getDisplay().asyncExec
+						(new Runnable() {
+							@Override
+							public void run() {
+								removedResources.addAll(visitor.getRemovedResources());
+								if (!isDirty()) {
+									getSite().getPage().closeEditor(PamtramEditor.this, false);
+								}
+							}
+						});							
+					}
+				}
+
+				if (!visitor.getChangedResources().isEmpty()) {
+					getSite().getShell().getDisplay().asyncExec
+					(new Runnable() {
+						@Override
+						public void run() {
+							changedResources.addAll(visitor.getChangedResources());
+							if (getSite().getPage().getActiveEditor() == PamtramEditor.this) {
+								handleActivate();
+							}
+						}
+					});
 				}
 			}
-		};
+			catch (CoreException exception) {
+				PamtramEditorPlugin.INSTANCE.log(exception);
+			}
+		}
+	};
 
 	/**
 	 * This is the {@link PAMTraM} instance that this editor works on.
 	 */
 	protected PAMTraM pamtram;
-	
+
 	/**
 	 * This is a list of {@link Resource}s that represent {@link de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry}s in the {@link PAMTraM}
 	 */
@@ -624,11 +624,11 @@ public class PamtramEditor
 		// Recompute the read only state.
 		//
 		if (editingDomain.getResourceToReadOnlyMap() != null) {
-		  editingDomain.getResourceToReadOnlyMap().clear();
+			editingDomain.getResourceToReadOnlyMap().clear();
 
-		  // Refresh any actions that may become enabled or disabled.
-		  //
-		  setSelection(getSelection());
+			// Refresh any actions that may become enabled or disabled.
+			//
+			setSelection(getSelection());
 		}
 
 		if (!removedResources.isEmpty()) {
@@ -648,7 +648,7 @@ public class PamtramEditor
 			savedResources.clear();
 		}
 	}
-	
+
 	/**
 	 * Handles activation of the editor or it's associated views.
 	 * <!-- begin-user-doc -->
@@ -657,7 +657,7 @@ public class PamtramEditor
 	 */
 	protected void handleActivate() {
 		handleActivateGen();
-		
+
 		if(pamtram == null || pamtram.getTargetSectionModel() == null) {
 			return;
 		}
@@ -714,12 +714,12 @@ public class PamtramEditor
 	protected void updateProblemIndication() {
 		if (updateProblemIndication) {
 			BasicDiagnostic diagnostic =
-				new BasicDiagnostic
+					new BasicDiagnostic
 					(Diagnostic.OK,
-					 "de.mfreund.pamtram.model.editor",
-					 0,
-					 null,
-					 new Object [] { editingDomain.getResourceSet() });
+							"de.mfreund.pamtram.model.editor",
+							0,
+							null,
+							new Object [] { editingDomain.getResourceSet() });
 			for (Diagnostic childDiagnostic : resourceToDiagnosticMap.values()) {
 				if (childDiagnostic.getSeverity() != Diagnostic.OK) {
 					diagnostic.add(childDiagnostic);
@@ -770,10 +770,10 @@ public class PamtramEditor
 	 */
 	protected boolean handleDirtyConflict() {
 		return
-			MessageDialog.openQuestion
+				MessageDialog.openQuestion
 				(getSite().getShell(),
-				 getString("_UI_FileConflict_label"),
-				 getString("_WARN_FileConflict"));
+						getString("_UI_FileConflict_label"),
+						getString("_WARN_FileConflict"));
 	}
 
 	/**
@@ -814,34 +814,34 @@ public class PamtramEditor
 		// Add a listener to set the most recent command's affected objects to be the selection of the viewer with focus.
 		//
 		commandStack.addCommandStackListener
-			(new CommandStackListener() {
-				 @Override
-				public void commandStackChanged(final EventObject event) {
-					 getContainer().getDisplay().asyncExec
-						 (new Runnable() {
-							  @Override
-							public void run() {
-								  firePropertyChange(IEditorPart.PROP_DIRTY);
+		(new CommandStackListener() {
+			@Override
+			public void commandStackChanged(final EventObject event) {
+				getContainer().getDisplay().asyncExec
+				(new Runnable() {
+					@Override
+					public void run() {
+						firePropertyChange(IEditorPart.PROP_DIRTY);
 
-								  // Try to select the affected objects.
-								  //
-								  Command mostRecentCommand = ((CommandStack)event.getSource()).getMostRecentCommand();
-								  if (mostRecentCommand != null) {
-									  setSelectionToViewer(mostRecentCommand.getAffectedObjects());
-								  }
-								  for (Iterator<PropertySheetPage> i = propertySheetPages.iterator(); i.hasNext(); ) {
-									  PropertySheetPage propertySheetPage = i.next();
-									  if (propertySheetPage.getControl().isDisposed()) {
-										  i.remove();
-									  }
-									  else {
-										  propertySheetPage.refresh();
-									  }
-								  }
-							  }
-						  });
-				 }
-			 });
+						// Try to select the affected objects.
+						//
+						Command mostRecentCommand = ((CommandStack)event.getSource()).getMostRecentCommand();
+						if (mostRecentCommand != null) {
+							setSelectionToViewer(mostRecentCommand.getAffectedObjects());
+						}
+						for (Iterator<PropertySheetPage> i = propertySheetPages.iterator(); i.hasNext(); ) {
+							PropertySheetPage propertySheetPage = i.next();
+							if (propertySheetPage.getControl().isDisposed()) {
+								i.remove();
+							}
+							else {
+								propertySheetPage.refresh();
+							}
+						}
+					}
+				});
+			}
+		});
 
 		// Create the editing domain with a special command stack.
 		//
@@ -854,7 +854,7 @@ public class PamtramEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-			@Override
+	@Override
 	protected void firePropertyChange(int action) {
 		super.firePropertyChange(action);
 	}
@@ -871,16 +871,16 @@ public class PamtramEditor
 		//
 		if (theSelection != null && !theSelection.isEmpty()) {
 			Runnable runnable =
-				new Runnable() {
-					@Override
-					public void run() {
-						// Try to select the items in the current content viewer of the editor.
-						//
-						if (currentViewer != null) {
-							currentViewer.setSelection(new StructuredSelection(theSelection.toArray()), true);
-						}
+					new Runnable() {
+				@Override
+				public void run() {
+					// Try to select the items in the current content viewer of the editor.
+					//
+					if (currentViewer != null) {
+						currentViewer.setSelection(new StructuredSelection(theSelection.toArray()), true);
 					}
-				};
+				}
+			};
 			getSite().getShell().getDisplay().asyncExec(runnable);
 		}
 	}
@@ -987,14 +987,14 @@ public class PamtramEditor
 				// Create the listener on demand.
 				//
 				selectionChangedListener =
-					new ISelectionChangedListener() {
-						// This just notifies those things that are affected by the section.
-						//
-						@Override
-						public void selectionChanged(SelectionChangedEvent selectionChangedEvent) {
-							setSelection(selectionChangedEvent.getSelection());
-						}
-					};
+						new ISelectionChangedListener() {
+					// This just notifies those things that are affected by the section.
+					//
+					@Override
+					public void selectionChanged(SelectionChangedEvent selectionChangedEvent) {
+						setSelection(selectionChangedEvent.getSelection());
+					}
+				};
 			}
 
 			// Stop listening to the old one.
@@ -1050,7 +1050,7 @@ public class PamtramEditor
 		viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(viewer));
 		viewer.addDropSupport(dndOperations, transfers, new EditingDomainViewerDropAdapter(editingDomain, viewer));
 	}
-	
+
 	/**
 	 * This is the method called to load a resource into the editing domain's resource set based on the editor's input.
 	 * <!-- begin-user-doc -->
@@ -1058,7 +1058,7 @@ public class PamtramEditor
 	 * @generated
 	 */
 	public void createModel() {
-		URI resourceURI = EditUIUtil.getURI(getEditorInput());
+		URI resourceURI = EditUIUtil.getURI(getEditorInput(), editingDomain.getResourceSet().getURIConverter());
 		Exception exception = null;
 		Resource resource = null;
 		try {
@@ -1086,25 +1086,26 @@ public class PamtramEditor
 	 * @generated
 	 */
 	public Diagnostic analyzeResourceProblems(Resource resource, Exception exception) {
-		if (!resource.getErrors().isEmpty() || !resource.getWarnings().isEmpty()) {
+		boolean hasErrors = !resource.getErrors().isEmpty();
+		if (hasErrors || !resource.getWarnings().isEmpty()) {
 			BasicDiagnostic basicDiagnostic =
-				new BasicDiagnostic
-					(Diagnostic.ERROR,
-					 "de.mfreund.pamtram.model.editor",
-					 0,
-					 getString("_UI_CreateModelError_message", resource.getURI()),
-					 new Object [] { exception == null ? (Object)resource : exception });
+					new BasicDiagnostic
+					(hasErrors ? Diagnostic.ERROR : Diagnostic.WARNING,
+							"de.mfreund.pamtram.model.editor",
+							0,
+							getString("_UI_CreateModelError_message", resource.getURI()),
+							new Object [] { exception == null ? (Object)resource : exception });
 			basicDiagnostic.merge(EcoreUtil.computeDiagnostic(resource, true));
 			return basicDiagnostic;
 		}
 		else if (exception != null) {
 			return
-				new BasicDiagnostic
+					new BasicDiagnostic
 					(Diagnostic.ERROR,
-					 "de.mfreund.pamtram.model.editor",
-					 0,
-					 getString("_UI_CreateModelError_message", resource.getURI()),
-					 new Object[] { exception });
+							"de.mfreund.pamtram.model.editor",
+							0,
+							getString("_UI_CreateModelError_message", resource.getURI()),
+							new Object[] { exception });
 		}
 		else {
 			return Diagnostic.OK_INSTANCE;
@@ -1129,19 +1130,19 @@ public class PamtramEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), PamtramEditor.this) {
-						@Override
-						public Viewer createViewer(Composite composite) {
-							Tree tree = new Tree(composite, SWT.MULTI);
-							TreeViewer newTreeViewer = new TreeViewer(tree);
-							return newTreeViewer;
-						}
-						@Override
-						public void requestActivation() {
-							super.requestActivation();
-							setCurrentViewerPane(this);
-						}
-					};
+						new ViewerPane(getSite().getPage(), PamtramEditor.this) {
+					@Override
+					public Viewer createViewer(Composite composite) {
+						Tree tree = new Tree(composite, SWT.MULTI);
+						TreeViewer newTreeViewer = new TreeViewer(tree);
+						return newTreeViewer;
+					}
+					@Override
+					public void requestActivation() {
+						super.requestActivation();
+						setCurrentViewerPane(this);
+					}
+				};
 				viewerPane.createControl(getContainer());
 
 				selectionViewer = (TreeViewer)viewerPane.getViewer();
@@ -1164,19 +1165,19 @@ public class PamtramEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), PamtramEditor.this) {
-						@Override
-						public Viewer createViewer(Composite composite) {
-							Tree tree = new Tree(composite, SWT.MULTI);
-							TreeViewer newTreeViewer = new TreeViewer(tree);
-							return newTreeViewer;
-						}
-						@Override
-						public void requestActivation() {
-							super.requestActivation();
-							setCurrentViewerPane(this);
-						}
-					};
+						new ViewerPane(getSite().getPage(), PamtramEditor.this) {
+					@Override
+					public Viewer createViewer(Composite composite) {
+						Tree tree = new Tree(composite, SWT.MULTI);
+						TreeViewer newTreeViewer = new TreeViewer(tree);
+						return newTreeViewer;
+					}
+					@Override
+					public void requestActivation() {
+						super.requestActivation();
+						setCurrentViewerPane(this);
+					}
+				};
 				viewerPane.createControl(getContainer());
 
 				parentViewer = (TreeViewer)viewerPane.getViewer();
@@ -1193,17 +1194,17 @@ public class PamtramEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), PamtramEditor.this) {
-						@Override
-						public Viewer createViewer(Composite composite) {
-							return new ListViewer(composite);
-						}
-						@Override
-						public void requestActivation() {
-							super.requestActivation();
-							setCurrentViewerPane(this);
-						}
-					};
+						new ViewerPane(getSite().getPage(), PamtramEditor.this) {
+					@Override
+					public Viewer createViewer(Composite composite) {
+						return new ListViewer(composite);
+					}
+					@Override
+					public void requestActivation() {
+						super.requestActivation();
+						setCurrentViewerPane(this);
+					}
+				};
 				viewerPane.createControl(getContainer());
 				listViewer = (ListViewer)viewerPane.getViewer();
 				listViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
@@ -1218,17 +1219,17 @@ public class PamtramEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), PamtramEditor.this) {
-						@Override
-						public Viewer createViewer(Composite composite) {
-							return new TreeViewer(composite);
-						}
-						@Override
-						public void requestActivation() {
-							super.requestActivation();
-							setCurrentViewerPane(this);
-						}
-					};
+						new ViewerPane(getSite().getPage(), PamtramEditor.this) {
+					@Override
+					public Viewer createViewer(Composite composite) {
+						return new TreeViewer(composite);
+					}
+					@Override
+					public void requestActivation() {
+						super.requestActivation();
+						setCurrentViewerPane(this);
+					}
+				};
 				viewerPane.createControl(getContainer());
 				treeViewer = (TreeViewer)viewerPane.getViewer();
 				treeViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
@@ -1246,17 +1247,17 @@ public class PamtramEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), PamtramEditor.this) {
-						@Override
-						public Viewer createViewer(Composite composite) {
-							return new TableViewer(composite);
-						}
-						@Override
-						public void requestActivation() {
-							super.requestActivation();
-							setCurrentViewerPane(this);
-						}
-					};
+						new ViewerPane(getSite().getPage(), PamtramEditor.this) {
+					@Override
+					public Viewer createViewer(Composite composite) {
+						return new TableViewer(composite);
+					}
+					@Override
+					public void requestActivation() {
+						super.requestActivation();
+						setCurrentViewerPane(this);
+					}
+				};
 				viewerPane.createControl(getContainer());
 				tableViewer = (TableViewer)viewerPane.getViewer();
 
@@ -1291,17 +1292,17 @@ public class PamtramEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), PamtramEditor.this) {
-						@Override
-						public Viewer createViewer(Composite composite) {
-							return new TreeViewer(composite);
-						}
-						@Override
-						public void requestActivation() {
-							super.requestActivation();
-							setCurrentViewerPane(this);
-						}
-					};
+						new ViewerPane(getSite().getPage(), PamtramEditor.this) {
+					@Override
+					public Viewer createViewer(Composite composite) {
+						return new TreeViewer(composite);
+					}
+					@Override
+					public void requestActivation() {
+						super.requestActivation();
+						setCurrentViewerPane(this);
+					}
+				};
 				viewerPane.createControl(getContainer());
 
 				treeViewerWithColumns = (TreeViewer)viewerPane.getViewer();
@@ -1333,39 +1334,39 @@ public class PamtramEditor
 			}
 
 			getSite().getShell().getDisplay().asyncExec
-				(new Runnable() {
-					 @Override
-					public void run() {
-						 setActivePage(0);
-					 }
-				 });
+			(new Runnable() {
+				@Override
+				public void run() {
+					setActivePage(0);
+				}
+			});
 		}
 
 		// Ensures that this editor will only display the page's tab
 		// area if there are more than one page
 		//
 		getContainer().addControlListener
-			(new ControlAdapter() {
-				boolean guard = false;
-				@Override
-				public void controlResized(ControlEvent event) {
-					if (!guard) {
-						guard = true;
-						hideTabs();
-						guard = false;
-					}
+		(new ControlAdapter() {
+			boolean guard = false;
+			@Override
+			public void controlResized(ControlEvent event) {
+				if (!guard) {
+					guard = true;
+					hideTabs();
+					guard = false;
 				}
-			 });
+			}
+		});
 
 		getSite().getShell().getDisplay().asyncExec
-			(new Runnable() {
-				 @Override
-				public void run() {
-					 updateProblemIndication();
-				 }
-			 });
+		(new Runnable() {
+			@Override
+			public void run() {
+				updateProblemIndication();
+			}
+		});
 	}
-	
+
 	/**
 	 * This is the method used by the framework to install your own controls.
 	 * <!-- begin-user-doc -->
@@ -1378,23 +1379,23 @@ public class PamtramEditor
 		//
 		boolean pamtramFound = 
 				getPamtramFromResourceSet();
-		
+
 		// Only creates the other pages if there is something that can be edited
 		//
 		if(pamtramFound) {
 			// Try to register missing ePackages.
 			//
 			registerEPackages();
-			
+
 			// Set the Pamtram content adapter.
 			pamtram.eAdapters().add(pamtramContentAdapter);
-			
+
 			// Set the library resource adapter.
 			editingDomain.getResourceSet().eAdapters().add(libraryResourceAdapter);
-			
+
 			// Set the Pamtram command stack listener.
 			getEditingDomain().getCommandStack().addCommandStackListener(pamtramCommandStackListener);
-						
+
 			// Create a page for the selection tree view.
 			//
 			{
@@ -1403,7 +1404,7 @@ public class PamtramEditor
 				int pageIndex = addPage(mainPage);
 				setPageText(pageIndex, getString("_UI_SelectionPage_label"));
 			}
-			
+
 			// Create a page for the source section matcher view.
 			//
 			{
@@ -1411,43 +1412,43 @@ public class PamtramEditor
 						new PamtramEditorSourceSectionMatcherPage(
 								getContainer(), 
 								SWT.NONE, adapterFactory, this);
-//										createContextMenuFor(parentViewer);
+				//										createContextMenuFor(parentViewer);
 				int pageIndex = addPage(sourceSectionMatcherPage);
 				setPageText(pageIndex, getString("_UI_ParentPage_label"));
 			}
-			
+
 			getSite().getShell().getDisplay().asyncExec
-				(new Runnable() {
-					 @Override
-					public void run() {
-						 setActivePage(0);
-					 }
-				 });
+			(new Runnable() {
+				@Override
+				public void run() {
+					setActivePage(0);
+				}
+			});
 		}
 
 		// Ensures that this editor will only display the page's tab
 		// area if there are more than one page
 		//
 		getContainer().addControlListener
-			(new ControlAdapter() {
-				boolean guard = false;
-				@Override
-				public void controlResized(ControlEvent event) {
-					if (!guard) {
-						guard = true;
-						hideTabs();
-						guard = false;
-					}
+		(new ControlAdapter() {
+			boolean guard = false;
+			@Override
+			public void controlResized(ControlEvent event) {
+				if (!guard) {
+					guard = true;
+					hideTabs();
+					guard = false;
 				}
-			 });
+			}
+		});
 
 		getSite().getShell().getDisplay().asyncExec
-			(new Runnable() {
-				 @Override
-				public void run() {
-					 updateProblemIndication();
-				 }
-			 });
+		(new Runnable() {
+			@Override
+			public void run() {
+				updateProblemIndication();
+			}
+		});
 	}
 
 	/**
@@ -1459,15 +1460,15 @@ public class PamtramEditor
 	 * @return true if the pamtram model has been found and stored; false otherwise.
 	 */
 	private boolean getPamtramFromResourceSet() {
-		
+
 		// Creates the model from the editor input
 		//
 		createModel();
-		
+
 		if(getEditingDomain().getResourceSet().getResources().isEmpty()) {
 			return false;
 		}
-		
+
 		// Get the Pamtram instance.
 		for (Resource resource : getEditingDomain().getResourceSet().getResources()) {
 			if(resource.getContents().get(0) instanceof PAMTraM) {
@@ -1490,35 +1491,35 @@ public class PamtramEditor
 	 * diagnostic map and will thus not be reflected in the editor. 
 	 */
 	private void registerEPackages() {
-		
+
 		// Create a backup of the diagnostic map.
 		Map<Resource, Diagnostic> backup = new HashMap<Resource, Diagnostic>(resourceToDiagnosticMap);
-		
+
 		// try to register the ePackages involved in the pamtram model (if not already done)
 		EPackageCheck result = EPackageHelper.checkInvolvedEPackages(
 				pamtram,
 				ResourceUtil.getFile(getEditorInput()).getProject(),
 				EPackage.Registry.INSTANCE);
-		
+
 		switch (result) {
-			case OK_NOTHING_REGISTERED:
-				return;
-			case OK_PACKAGES_REGISTERED:
-				// if packages have been registered, a new resource set has to be created; otherwise,
-				// proxy resolving does not seem to work correctly; therefore, the editing is re-initialized
-				// and the source model is reloaded
-				initializeEditingDomain();
-				getPamtramFromResourceSet();
-				
-				// Reset the diagnostic map so that errors that occurred during the above operations are
-				// not reflected.
-				resourceToDiagnosticMap = backup;
-				break;
-			case ERROR_METAMODEL_FOLDER_NOT_FOUND:
-			case ERROR_PACKAGE_NOT_FOUND:
-			case ERROR_PAMTRAM_NOT_FOUND:
-			default:
-				break;
+		case OK_NOTHING_REGISTERED:
+			return;
+		case OK_PACKAGES_REGISTERED:
+			// if packages have been registered, a new resource set has to be created; otherwise,
+			// proxy resolving does not seem to work correctly; therefore, the editing is re-initialized
+			// and the source model is reloaded
+			initializeEditingDomain();
+			getPamtramFromResourceSet();
+
+			// Reset the diagnostic map so that errors that occurred during the above operations are
+			// not reflected.
+			resourceToDiagnosticMap = backup;
+			break;
+		case ERROR_METAMODEL_FOLDER_NOT_FOUND:
+		case ERROR_PACKAGE_NOT_FOUND:
+		case ERROR_PAMTRAM_NOT_FOUND:
+		default:
+			break;
 		}
 	}
 
@@ -1626,9 +1627,9 @@ public class PamtramEditor
 					createContextMenuFor(contentOutlineViewer);
 
 					if (!editingDomain.getResourceSet().getResources().isEmpty()) {
-					  // Select the root object in the view.
-					  //
-					  contentOutlineViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
+						// Select the root object in the view.
+						//
+						contentOutlineViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
 					}
 				}
 
@@ -1650,14 +1651,14 @@ public class PamtramEditor
 			// Listen to selection so that we can handle it is a special way.
 			//
 			contentOutlinePage.addSelectionChangedListener
-				(new ISelectionChangedListener() {
-					 // This ensures that we handle selections correctly.
-					 //
-					 @Override
-					public void selectionChanged(SelectionChangedEvent event) {
-						 handleContentOutlineSelection(event.getSelection());
-					 }
-				 });
+			(new ISelectionChangedListener() {
+				// This ensures that we handle selections correctly.
+				//
+				@Override
+				public void selectionChanged(SelectionChangedEvent event) {
+					handleContentOutlineSelection(event.getSelection());
+				}
+			});
 		}
 
 		return contentOutlinePage;
@@ -1671,19 +1672,19 @@ public class PamtramEditor
 	 */
 	public IPropertySheetPage getPropertySheetPage() {
 		PropertySheetPage propertySheetPage =
-			new ExtendedPropertySheetPage(editingDomain, ExtendedPropertySheetPage.Decoration.LIVE, PamtramEditorPlugin.getPlugin().getDialogSettings()) {
-				@Override
-				public void setSelectionToViewer(List<?> selection) {
-					PamtramEditor.this.setSelectionToViewer(selection);
-					PamtramEditor.this.setFocus();
-				}
+				new ExtendedPropertySheetPage(editingDomain, ExtendedPropertySheetPage.Decoration.LIVE, PamtramEditorPlugin.getPlugin().getDialogSettings()) {
+			@Override
+			public void setSelectionToViewer(List<?> selection) {
+				PamtramEditor.this.setSelectionToViewer(selection);
+				PamtramEditor.this.setFocus();
+			}
 
-				@Override
-				public void setActionBars(IActionBars actionBars) {
-					super.setActionBars(actionBars);
-					getActionBarContributor().shareGlobalActions(this, actionBars);
-				}
-			};
+			@Override
+			public void setActionBars(IActionBars actionBars) {
+				super.setActionBars(actionBars);
+				getActionBarContributor().shareGlobalActions(this, actionBars);
+			}
+		};
 		propertySheetPage.setPropertySourceProvider(new AdapterFactoryContentProvider(adapterFactory));
 		propertySheetPages.add(propertySheetPage);
 
@@ -1753,7 +1754,7 @@ public class PamtramEditor
 		final Map<Object, Object> saveOptions = new HashMap<Object, Object>();
 		saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
 		saveOptions.put(Resource.OPTION_LINE_DELIMITER, Resource.OPTION_LINE_DELIMITER_UNSPECIFIED);
-		
+
 		// Persist type information for every reference type if specified by the corresponding preference
 		//
 		if(PreferenceSupplier.isSerializeAllTypeInfo()) {
@@ -1770,37 +1771,37 @@ public class PamtramEditor
 				}
 			};
 			saveOptions.put(XMLResource.OPTION_SAVE_TYPE_INFORMATION, typeInfo);
-			
+
 		}
 
 		// Do the work within an operation because this is a long running activity that modifies the workbench.
 		//
 		WorkspaceModifyOperation operation =
-			new WorkspaceModifyOperation() {
-				// This is the method that gets invoked when the operation runs.
+				new WorkspaceModifyOperation() {
+			// This is the method that gets invoked when the operation runs.
+			//
+			@Override
+			public void execute(IProgressMonitor monitor) {
+				// Save the resources to the file system.
 				//
-				@Override
-				public void execute(IProgressMonitor monitor) {
-					// Save the resources to the file system.
-					//
-					boolean first = true;
-					for (Resource resource : editingDomain.getResourceSet().getResources()) {
-						if ((first || !resource.getContents().isEmpty() || isPersisted(resource)) && !editingDomain.isReadOnly(resource)) {
-							try {
-								long timeStamp = resource.getTimeStamp();
-								resource.save(saveOptions);
-								if (resource.getTimeStamp() != timeStamp) {
-									savedResources.add(resource);
-								}
+				boolean first = true;
+				for (Resource resource : editingDomain.getResourceSet().getResources()) {
+					if ((first || !resource.getContents().isEmpty() || isPersisted(resource)) && !editingDomain.isReadOnly(resource)) {
+						try {
+							long timeStamp = resource.getTimeStamp();
+							resource.save(saveOptions);
+							if (resource.getTimeStamp() != timeStamp) {
+								savedResources.add(resource);
 							}
-							catch (Exception exception) {
-								resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
-							}
-							first = false;
 						}
+						catch (Exception exception) {
+							resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
+						}
+						first = false;
 					}
 				}
-			};
+			}
+		};
 
 		updateProblemIndication = false;
 		try {
@@ -1884,10 +1885,10 @@ public class PamtramEditor
 		setInputWithNotify(editorInput);
 		setPartName(editorInput.getName());
 		IProgressMonitor progressMonitor =
-			getActionBars().getStatusLineManager() != null ?
-				getActionBars().getStatusLineManager().getProgressMonitor() :
-				new NullProgressMonitor();
-		doSave(progressMonitor);
+				getActionBars().getStatusLineManager() != null ?
+						getActionBars().getStatusLineManager().getProgressMonitor() :
+							new NullProgressMonitor();
+						doSave(progressMonitor);
 	}
 
 	/**
@@ -1991,25 +1992,25 @@ public class PamtramEditor
 	 */
 	public void setStatusLineManager(ISelection selection) {
 		IStatusLineManager statusLineManager = currentViewer != null && currentViewer == contentOutlineViewer ?
-			contentOutlineStatusLineManager : getActionBars().getStatusLineManager();
+				contentOutlineStatusLineManager : getActionBars().getStatusLineManager();
 
 		if (statusLineManager != null) {
 			if (selection instanceof IStructuredSelection) {
 				Collection<?> collection = ((IStructuredSelection)selection).toList();
 				switch (collection.size()) {
-					case 0: {
-						statusLineManager.setMessage(getString("_UI_NoObjectSelected"));
-						break;
-					}
-					case 1: {
-						String text = new AdapterFactoryItemDelegator(adapterFactory).getText(collection.iterator().next());
-						statusLineManager.setMessage(getString("_UI_SingleObjectSelected", text));
-						break;
-					}
-					default: {
-						statusLineManager.setMessage(getString("_UI_MultiObjectSelected", Integer.toString(collection.size())));
-						break;
-					}
+				case 0: {
+					statusLineManager.setMessage(getString("_UI_NoObjectSelected"));
+					break;
+				}
+				case 1: {
+					String text = new AdapterFactoryItemDelegator(adapterFactory).getText(collection.iterator().next());
+					statusLineManager.setMessage(getString("_UI_SingleObjectSelected", text));
+					break;
+				}
+				default: {
+					statusLineManager.setMessage(getString("_UI_MultiObjectSelected", Integer.toString(collection.size())));
+					break;
+				}
 				}
 			}
 			else {
@@ -2104,24 +2105,24 @@ public class PamtramEditor
 
 		super.dispose();
 	}
-	
+
 	/**
 	 * Dispose the PamtramContentAdapter and call the
 	 * original dispose() function.
 	 */
 	@Override
 	public void dispose() {
-		
+
 		// Dispose the Pamtram content adapter.
 		pamtram.eAdapters().remove(pamtramContentAdapter);
-		
+
 		// Dispose the library resource adapter.
 		editingDomain.getResourceSet().eAdapters().remove(libraryResourceAdapter);
-		
+
 		// Dispose the problem indication adapter.
 		editingDomain.getResourceSet().eAdapters().remove(
 				problemIndicationAdapter);
-		
+
 		disposeGen();
 	}
 

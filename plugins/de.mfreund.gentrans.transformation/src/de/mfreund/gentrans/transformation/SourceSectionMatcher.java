@@ -23,9 +23,11 @@ import de.mfreund.gentrans.transformation.selectors.NamedElementItemSelectorDial
 import de.mfreund.gentrans.transformation.util.CancellationListener;
 import pamtram.SourceSectionModel;
 import pamtram.mapping.AttributeMapping;
+import pamtram.mapping.AttributeMappingExternalSourceElement;
 import pamtram.mapping.AttributeMappingSourceElement;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
+import pamtram.mapping.AttributeMatcherExternalSourceElement;
 import pamtram.mapping.AttributeMatcherSourceElement;
 import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.AttributeValueModifierSet;
@@ -43,6 +45,7 @@ import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
+import pamtram.mapping.ModelConnectionHintExternalSourceElement;
 import pamtram.mapping.ModelConnectionHintSourceElement;
 import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.mapping.ModifiedAttributeElementType;
@@ -1450,45 +1453,301 @@ public class SourceSectionMatcher implements CancellationListener {
 	}
 
 	/**
-	 * Helper method to handle an ExternalAttributeMapping. This uses {@link #getContainerAttributeValue(SourceSectionAttribute, SourceSectionClass, EObject)}
-	 * to find a hint value for a given {@link MappingHintSourceInterface}, applies possible {@link AttributeValueModifierSet AttributeValueModifierSets} and stores
-	 * the found value in the '<em>attrVals</em>' map.
+	 * Tries to determine the hintValues for {@link ExternalModifiedAttributeElementType external hint values}, if present.
 	 *
-	 * @param m
-	 * @param res
-	 * @param mappingFailed
-	 * @param attrVals
-	 * @param i
-	 * @return
+	 * @param m The {@link Mapping} that is currently evaluated.
+	 * @param res The {@link MappingInstanceStorage} that contains the hint values that have already been determined. Found external 
+	 * hint values for attribute mappings are stored there.
+	 * @param mappingFailed If the mapping already failed at an earlier stage.
+	 * @return '<em>false</em>' if something went wrong while determining the external hint values for the attribute mapping; '<em>true</em>'
+	 * otherwise
 	 */
-	@SuppressWarnings("unchecked")
-	private boolean checkExternalAttributeMapping(
+	private boolean determineExternalHintValues(
+			final Mapping m,
+			final MappingInstanceStorage res, 
+			boolean mappingFailed) {
+
+		if (m.getSourceMMSection().getContainer() != null) {
+
+			final Map<ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, AttributeValueRepresentation> attrVals = 
+					new HashMap<>();
+
+			for (final MappingHintBaseType h : mappingHints.get(m)) {
+				if (h instanceof AttributeMapping) {
+					AttributeMapping attributeMapping = (AttributeMapping) h;
+
+					/* try to find a hint value for every external source element; those will
+					 * be stored in 'attrVals'
+					 */
+					for (final AttributeMappingExternalSourceElement i : attributeMapping.getExternalSourceElements()) {
+						mappingFailed = determineExternalHintValue(m, res, mappingFailed, attrVals, i);
+
+						if (mappingFailed) {
+							break;
+						}
+					}
+
+					// add to hintVals
+					if (mappingFailed) {
+						break;
+					} else if (attrVals.keySet().size() > 0) {
+
+						/*
+						 * if there is not yet any value stored for this hint (e.g. as there are no local source elements), we need
+						 * to initialize the hint value first
+						 */
+						if (res.getHintValues().getHintValues(attributeMapping).size() == 0) {
+							res.getHintValues().getAttributeMappingHintValues().init(attributeMapping, true);
+						}
+
+						if(attributeMapping.getExpression() != null && !attributeMapping.getExpression().isEmpty()) {
+
+							final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> newVals = new HashMap<>();
+							for (final ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> e : attrVals
+									.keySet()) {
+
+								if(e.getSource().getAttribute().isMany()) {
+									//TODO implement this?
+									throw new RuntimeException("AttributeMappings with external source attributes that are "
+											+ "based on multi-valued attributes are not yet supported!");
+								}
+
+								try {
+
+									/*
+									 * Use 'ExpressionBuilder' to parse a 'double' from the 'string' representation
+									 * of the attribute value. The simpler way 'Double.parseDouble(value)' would not
+									 * support scientific notations like '0.42e2' or '4200e-2'.
+									 */
+									final double variableVal = new ExpressionBuilder(attrVals.get(e).getValue()).build().calculate();
+
+									newVals.put((AttributeMappingSourceInterface) e,
+											new AttributeValueRepresentation(e.getSource(), String.valueOf(variableVal)));
+								} catch (final Exception execption) {
+									consoleStream.println("Couldn't convert variable " + e.getName()
+									+ " of CalculatorMapping " + h.getName() + " from String to double. "
+									+ "The problematic source element's attribute value was: " + attrVals.get(e));							
+								}
+							}
+							for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> hVal : res.getHintValues().getHintValues(attributeMapping)) {
+								hVal.putAll(newVals);
+							}
+						} else {
+							for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> hVal : res.getHintValues().getHintValues(attributeMapping)) {
+								for (final ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> e : attrVals
+										.keySet()) {
+									hVal.put((AttributeMappingSourceInterface) e,
+											new AttributeValueRepresentation(e.getSource(), attrVals.get(e).getValue()));
+								}
+							}
+						}
+
+						// last action: reset attrval list
+						attrVals.clear();
+					}
+				} else if (h instanceof ExternalMappedAttributeValueExpander) {
+					ExternalMappedAttributeValueExpander externalMappedAttributeValueExpander = (ExternalMappedAttributeValueExpander) h;
+
+					if(externalMappedAttributeValueExpander.getSourceAttribute().getAttribute().isMany()) {
+						//TODO implement this?
+						throw new RuntimeException("ExternalMappedAttributeValueExpanders based on multi-valued attributes are not yet supported!");
+					}
+
+					String attrVal = getContainerAttributeValue(
+							externalMappedAttributeValueExpander.getSourceAttribute(),
+							m.getSourceMMSection().getContainer(), 
+							res.getAssociatedSourceModelElement().eContainer());
+					if (attrVal == null) {
+						mappingFailed = true;
+						break;
+					} else {
+						attrVal = attributeValueModifierExecutor.applyAttributeValueModifiers(attrVal, 
+								externalMappedAttributeValueExpander.getModifiers());
+						res.getHintValues().addHintValue(externalMappedAttributeValueExpander, attrVal);
+					}
+
+				} else if (h instanceof MappingInstanceSelector) {
+					MappingInstanceSelector mappingInstanceSelector = (MappingInstanceSelector) h;
+
+					if (mappingInstanceSelector.getMatcher() != null) {
+						if (mappingInstanceSelector.getMatcher() instanceof AttributeMatcher) {
+							final AttributeMatcher matcher = (AttributeMatcher) mappingInstanceSelector.getMatcher();
+							for (final AttributeMatcherExternalSourceElement i : matcher.getExternalSourceElements()) {
+
+								if(i.getSourceAttribute().getAttribute().isMany()) {
+									//TODO implement this?
+									throw new RuntimeException("AttributeMatchers based on multi-valued attributes are not yet supported!");
+								}
+
+								mappingFailed = determineExternalHintValue(
+										m, res, mappingFailed, attrVals, i);
+								if (mappingFailed) {
+									break;
+								}
+							}
+							// add to hintVals
+							if (mappingFailed) {
+								break;
+							} else if (attrVals.keySet().size() > 0) {
+
+								/*
+								 * if there is not yet any value stored for this hint (e.g. as there are no local source elements), we need
+								 * to initialize the hint value first
+								 */
+								if (res.getHintValues().getHintValues(mappingInstanceSelector).size() == 0) {
+									res.getHintValues().getMappingInstanceSelectorHintValues().init(mappingInstanceSelector, true);
+								}
+
+								for (final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> hVal : res.getHintValues().getHintValues(mappingInstanceSelector)) {
+									for (final ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> e : attrVals
+											.keySet()) {
+										hVal.put((AttributeMatcherSourceInterface) e, attrVals.get(e));
+									}
+								}
+								// last action: reset attrval list
+								attrVals.clear();
+							}
+						}
+					}
+				} else if (h instanceof ModelConnectionHint) {
+					ModelConnectionHint modelConnectionHint = (ModelConnectionHint) h;
+
+					for (final ModelConnectionHintExternalSourceElement i : modelConnectionHint.getExternalSourceElements()) {
+
+						if(i.getSourceAttribute().getAttribute().isMany()) {
+							//TODO implement this?
+							throw new RuntimeException("ModelConnectionHints based on multi-valued attributes are not yet supported!");
+						}
+
+						mappingFailed = determineExternalHintValue(
+								m, res, mappingFailed, attrVals, i);
+						if (mappingFailed) {
+							break;
+						}
+					}
+					// add to hintVals
+					if (mappingFailed) {
+						break;
+					} else if (attrVals.keySet().size() > 0) {
+
+						/*
+						 * if there is not yet any value stored for this hint (e.g. as there are no local source elements), we need
+						 * to initialize the hint value first
+						 */
+						if (res.getHintValues().getHintValues(modelConnectionHint).size() == 0) {
+							res.getHintValues().getModelConnectionHintValues().init(modelConnectionHint, true);
+						}
+
+						for (final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> hVal : res.getHintValues().getHintValues(modelConnectionHint)) {
+							for (final ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> e : attrVals
+									.keySet()) {
+								hVal.put((ModelConnectionHintSourceInterface) e, attrVals.get(e));
+							}
+						}
+						// last action: reset attrval list
+						attrVals.clear();
+					}
+				}
+			}
+
+		}
+		return mappingFailed;
+	}
+
+	/**
+	 * Helper method to determine a value for an {@link ExternalModifiedAttributeElementType}. This uses {@link #getContainerAttributeValue(
+	 * SourceSectionAttribute, SourceSectionClass, EObject)} to find a hint value for a given {@link MappingHintSourceInterface}, 
+	 * applies possible {@link AttributeValueModifierSet AttributeValueModifierSets} and stores the found value in the '<em>attrVals</em>' map.
+	 *
+	 * @param m The {@link Mapping} that is currently checked.
+	 * @param res The {@link MappingInstanceStorage} representing the mapping that is currently checked.
+	 * @param mappingFailed Whether the mapping failed earlier. //TODO do we really need this here? 
+	 * @param attrVals The map where a found external hint value shall be stored.
+	 * @param externalModifiedAttributeElement The {@link ExternalModifiedAttributeElementType} for that the hint value shall be determined.
+	 * @return '<em>true</em>' if the hint value could be determined; '<em>false</em>' otherwise
+	 */
+	private boolean determineExternalHintValue(
 			final Mapping m,
 			final MappingInstanceStorage res, 
 			boolean mappingFailed,
 			final Map<ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, AttributeValueRepresentation> attrVals,
-			//TODO change this to 'ExternalModifiedAttributeElementType'
-			final MappingHintSourceInterface i) {
+			final ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> externalModifiedAttributeElement) {
 
-		if (i instanceof ExternalModifiedAttributeElementType) {
-
-			ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> externalModifiedAttributeElement = 
-					((ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) i);
-
-			String attrVal = getContainerAttributeValue(externalModifiedAttributeElement.getSource(),
-					m.getSourceMMSection().getContainer(), res.getAssociatedSourceModelElement().eContainer());
-			if (attrVal == null) {
-				mappingFailed = true;
-			} else {
-				attrVal = attributeValueModifierExecutor.applyAttributeValueModifiers(
-						attrVal, ((ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) i)
-						.getModifier());
-				attrVals.put(
-						(ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) i, 
-						new AttributeValueRepresentation(externalModifiedAttributeElement.getSource(), attrVal));
-			}
+		String attrVal = getContainerAttributeValue(externalModifiedAttributeElement.getSource(),
+				m.getSourceMMSection().getContainer(), res.getAssociatedSourceModelElement().eContainer());
+		if (attrVal == null) {
+			mappingFailed = true;
+		} else {
+			attrVal = attributeValueModifierExecutor.applyAttributeValueModifiers(
+					attrVal, externalModifiedAttributeElement.getModifier());
+			attrVals.put(
+					externalModifiedAttributeElement, 
+					new AttributeValueRepresentation(externalModifiedAttributeElement.getSource(), attrVal));
 		}
+
 		return mappingFailed;
+	}
+
+	/**
+	 * Finds the value for an ExternalAttributeMappingSourceElement
+	 *
+	 * @param attr
+	 *            attribute to find
+	 * @param extClass
+	 *            container class to start looking
+	 * @param extObj
+	 *            eObject corresponding to the container class
+	 * @return
+	 */
+	private String getContainerAttributeValue(
+			final SourceSectionAttribute attr, SourceSectionClass extClass,
+			EObject extObj) {
+		final SourceSectionClass attrClass = attr.getOwningClass();
+
+		while (true) {
+			// found container section?
+			if (attrClass.equals(extClass)) {
+				final Object attrVal = extObj.eGet(attr.getAttribute());
+				if (attrVal == null) {
+					consoleStream.println("Unset external Attrbute "
+							+ attr.getName());
+					return null;
+				} else { // convert Attribute value to String
+					return attr
+							.getAttribute()
+							.getEType()
+							.getEPackage()
+							.getEFactoryInstance()
+							.convertToString(
+									attr.getAttribute().getEAttributeType(),
+									attrVal);
+				}
+			} else if (extClass.eContainer() instanceof SourceSectionContainmentReference) {
+				extClass = (SourceSectionClass) extClass.eContainer()
+						.eContainer();
+				extObj = extObj.eContainer();
+				// Check if the parent object exists, and if it was mapped for
+				// the section.
+				if (!checkObjectWasMapped(extClass, extObj)) {
+					return null;
+				}
+			} else if (extClass.eContainer() instanceof SourceSectionModel
+					&& extClass.getContainer() != null) {
+				extClass = extClass.getContainer();
+				extObj = extObj.eContainer();
+				if (!checkObjectWasMapped(extClass, extObj)) {
+					return null;
+				}
+			} else {// modeling error, object not found
+				consoleStream
+				.println("Modeling error. External Source Element "
+						+ attr.getName()
+						+ "is not part of the the container"
+						+ "section or the section that the container section is part of.");
+				return null;
+			}
+
+		}
 	}
 
 	/**
@@ -1626,68 +1885,6 @@ public class SourceSectionMatcher implements CancellationListener {
 		// if we reached this point all went well
 		return true;
 
-	}
-
-	/**
-	 * Finds the value for an ExternalAttributeMappingSourceElement
-	 *
-	 * @param attr
-	 *            attribute to find
-	 * @param extClass
-	 *            container class to start looking
-	 * @param extObj
-	 *            eObject corresponding to the container class
-	 * @return
-	 */
-	private String getContainerAttributeValue(
-			final SourceSectionAttribute attr, SourceSectionClass extClass,
-			EObject extObj) {
-		final SourceSectionClass attrClass = attr.getOwningClass();
-
-		while (true) {
-			// found container section?
-			if (attrClass.equals(extClass)) {
-				final Object attrVal = extObj.eGet(attr.getAttribute());
-				if (attrVal == null) {
-					consoleStream.println("Unset external Attrbute "
-							+ attr.getName());
-					return null;
-				} else { // convert Attribute value to String
-					return attr
-							.getAttribute()
-							.getEType()
-							.getEPackage()
-							.getEFactoryInstance()
-							.convertToString(
-									attr.getAttribute().getEAttributeType(),
-									attrVal);
-				}
-			} else if (extClass.eContainer() instanceof SourceSectionContainmentReference) {
-				extClass = (SourceSectionClass) extClass.eContainer()
-						.eContainer();
-				extObj = extObj.eContainer();
-				// Check if the parent object exists, and if it was mapped for
-				// the section.
-				if (!checkObjectWasMapped(extClass, extObj)) {
-					return null;
-				}
-			} else if (extClass.eContainer() instanceof SourceSectionModel
-					&& extClass.getContainer() != null) {
-				extClass = extClass.getContainer();
-				extObj = extObj.eContainer();
-				if (!checkObjectWasMapped(extClass, extObj)) {
-					return null;
-				}
-			} else {// modeling error, object not found
-				consoleStream
-				.println("Modeling error. External Source Element "
-						+ attr.getName()
-						+ "is not part of the the container"
-						+ "section or the section that the container section is part of.");
-				return null;
-			}
-
-		}
 	}
 
 	/**
@@ -1946,208 +2143,6 @@ public class SourceSectionMatcher implements CancellationListener {
 		}
 		return resultSet;
 
-	}
-
-	/**
-	 * Tries to determine the hintValues for {@link ExternalModifiedAttributeElementType external hint values}, if present.
-	 *
-	 * @param m The {@link Mapping} that is currently evaluated.
-	 * @param res The {@link MappingInstanceStorage} that contains the hint values that have already been determined. Found external 
-	 * hint values for attribute mappings are stored there.
-	 * @param mappingFailed If the mapping already failed at an earlier stage.
-	 * @return '<em>false</em>' if something went wrong while determining the external hint values for the attribute mapping; '<em>true</em>'
-	 * otherwise
-	 */
-	private boolean determineExternalHintValues(
-			final Mapping m,
-			final MappingInstanceStorage res, 
-			boolean mappingFailed) {
-
-		if (m.getSourceMMSection().getContainer() != null) {
-
-			final Map<ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, AttributeValueRepresentation> attrVals = new HashMap<>();
-
-			for (final MappingHintBaseType h : mappingHints.get(m)) {
-				if (h instanceof AttributeMapping) {
-
-					/* try to find a hint value for every external source element; those will
-					 * be stored in 'attrVals'
-					 */
-					for (final AttributeMappingSourceInterface i : ((AttributeMapping) h).getExternalSourceElements()) {
-						mappingFailed = checkExternalAttributeMapping(m, res,
-								mappingFailed, attrVals, i);
-						if (mappingFailed) {
-							break;
-						}
-					}
-					// add to hintVals
-					if (mappingFailed) {
-						break;
-					} else if (attrVals.keySet().size() > 0) {
-
-						/*
-						 * if there is not yet any value stored for this hint (e.g. as there are no local source elements), we need
-						 * to initialize the hint value first
-						 */
-						if (res.getHintValues().getHintValues((AttributeMapping) h).size() == 0) {
-							res.getHintValues().getAttributeMappingHintValues().init((AttributeMapping) h, true);
-						}
-
-						if(((AttributeMapping) h).getExpression() != null && !((AttributeMapping) h).getExpression().isEmpty()) {
-
-							final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> newVals = new HashMap<>();
-							for (final ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> e : attrVals
-									.keySet()) {
-
-								if(e.getSource().getAttribute().isMany()) {
-									//TODO implement this?
-									throw new RuntimeException("AttributeMappings with external source attributes that are "
-											+ "based on multi-valued attributes are not yet supported!");
-								}
-
-								try {
-
-									/*
-									 * Use 'ExpressionBuilder' to parse a 'double' from the 'string' representation
-									 * of the attribute value. The simpler way 'Double.parseDouble(value)' would not
-									 * support scientific notations like '0.42e2' or '4200e-2'.
-									 */
-									final double variableVal = new ExpressionBuilder(attrVals.get(e).getValue()).build().calculate();
-
-									newVals.put((AttributeMappingSourceInterface) e,
-											new AttributeValueRepresentation(e.getSource(), String.valueOf(variableVal)));
-								} catch (final Exception execption) {
-									consoleStream.println("Couldn't convert variable " + e.getName()
-									+ " of CalculatorMapping " + h.getName() + " from String to double. "
-									+ "The problematic source element's attribute value was: " + attrVals.get(e));							
-								}
-							}
-							for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> hVal : res.getHintValues().getHintValues((AttributeMapping) h)) {
-								hVal.putAll(newVals);
-							}
-						} else {
-							for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> hVal : res.getHintValues().getHintValues((AttributeMapping) h)) {
-								for (final ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> e : attrVals
-										.keySet()) {
-									hVal.put((AttributeMappingSourceInterface) e,
-											new AttributeValueRepresentation(e.getSource(), attrVals.get(e).getValue()));
-								}
-							}
-						}
-
-						// last action: reset attrval list
-						attrVals.clear();
-					}
-				} else if (h instanceof ExternalMappedAttributeValueExpander) {
-
-					if(((ExternalMappedAttributeValueExpander) h).getSourceAttribute().getAttribute().isMany()) {
-						//TODO implement this?
-						throw new RuntimeException("ExternalMappedAttributeValueExpanders based on multi-valued attributes are not yet supported!");
-					}
-
-					String attrVal = getContainerAttributeValue(
-							((ExternalMappedAttributeValueExpander) h)
-							.getSourceAttribute(),
-							m.getSourceMMSection().getContainer(), res
-							.getAssociatedSourceModelElement()
-							.eContainer());
-					if (attrVal == null) {
-						mappingFailed = true;
-						break;
-					} else {
-						attrVal = attributeValueModifierExecutor
-								.applyAttributeValueModifiers(
-										attrVal,
-										((ExternalMappedAttributeValueExpander) h)
-										.getModifiers());
-						res.getHintValues().addHintValue((MappedAttributeValueExpander) h, attrVal);
-					}
-
-				} else if (h instanceof MappingInstanceSelector) {
-					if (((MappingInstanceSelector) h).getMatcher() != null) {
-						if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
-							final AttributeMatcher matcher = (AttributeMatcher) ((MappingInstanceSelector) h)
-									.getMatcher();
-							for (final AttributeMatcherSourceInterface i : matcher
-									.getSourceAttributes()) {
-
-								if(i.getSourceAttribute().getAttribute().isMany()) {
-									//TODO implement this?
-									throw new RuntimeException("AttributeMatchers based on multi-valued attributes are not yet supported!");
-								}
-
-								mappingFailed = checkExternalAttributeMapping(
-										m, res, mappingFailed, attrVals, i);
-								if (mappingFailed) {
-									break;
-								}
-							}
-							// add to hintVals
-							if (mappingFailed) {
-								break;
-							} else if (attrVals.keySet().size() > 0) {
-
-								/*
-								 * if there is not yet any value stored for this hint (e.g. as there are no local source elements), we need
-								 * to initialize the hint value first
-								 */
-								if (res.getHintValues().getHintValues((MappingInstanceSelector) h).size() == 0) {
-									res.getHintValues().getMappingInstanceSelectorHintValues().init((MappingInstanceSelector) h, true);
-								}
-
-								for (final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> hVal : res.getHintValues().getHintValues((MappingInstanceSelector) h)) {
-									for (final ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> e : attrVals
-											.keySet()) {
-										hVal.put((AttributeMatcherSourceInterface) e,
-												attrVals.get(e));
-									}
-								}
-								// last action: reset attrval list
-								attrVals.clear();
-							}
-						}
-					}
-				} else if (h instanceof ModelConnectionHint) {
-					for (final ModelConnectionHintSourceInterface i : ((ModelConnectionHint) h).getSourceElements()) {
-
-						if(i.getSourceAttribute().getAttribute().isMany()) {
-							//TODO implement this?
-							throw new RuntimeException("ModelConnectionHints based on multi-valued attributes are not yet supported!");
-						}
-
-						mappingFailed = checkExternalAttributeMapping(m, res,
-								mappingFailed, attrVals, i);
-						if (mappingFailed) {
-							break;
-						}
-					}
-					// add to hintVals
-					if (mappingFailed) {
-						break;
-					} else if (attrVals.keySet().size() > 0) {
-
-						/*
-						 * if there is not yet any value stored for this hint (e.g. as there are no local source elements), we need
-						 * to initialize the hint value first
-						 */
-						if (res.getHintValues().getHintValues((ModelConnectionHint) h).size() == 0) {
-							res.getHintValues().getModelConnectionHintValues().init((ModelConnectionHint) h, true);
-						}
-
-						for (final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> hVal : res.getHintValues().getHintValues((ModelConnectionHint) h)) {
-							for (final ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> e : attrVals
-									.keySet()) {
-								hVal.put((ModelConnectionHintSourceInterface) e, attrVals.get(e));
-							}
-						}
-						// last action: reset attrval list
-						attrVals.clear();
-					}
-				}
-			}
-
-		}
-		return mappingFailed;
 	}
 
 	/**

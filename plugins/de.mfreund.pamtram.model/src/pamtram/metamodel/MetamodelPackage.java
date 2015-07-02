@@ -2230,10 +2230,10 @@ public interface MetamodelPackage extends EPackage {
 	int ATTRIBUTE_VALUE_CONSTRAINT_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link pamtram.metamodel.impl.CaseSensitiveConstraintImpl <em>Case Sensitive Constraint</em>}' class.
+	 * The meta object id for the '{@link pamtram.metamodel.CaseSensitiveConstraint <em>Case Sensitive Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.metamodel.impl.CaseSensitiveConstraintImpl
+	 * @see pamtram.metamodel.CaseSensitiveConstraint
 	 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getCaseSensitiveConstraint()
 	 * @generated
 	 */
@@ -4017,10 +4017,10 @@ public interface MetamodelPackage extends EPackage {
 		EClass REG_EX_MATCHER = eINSTANCE.getRegExMatcher();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.metamodel.impl.CaseSensitiveConstraintImpl <em>Case Sensitive Constraint</em>}' class.
+		 * The meta object literal for the '{@link pamtram.metamodel.CaseSensitiveConstraint <em>Case Sensitive Constraint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.metamodel.impl.CaseSensitiveConstraintImpl
+		 * @see pamtram.metamodel.CaseSensitiveConstraint
 		 * @see pamtram.metamodel.impl.MetamodelPackageImpl#getCaseSensitiveConstraint()
 		 * @generated
 		 */

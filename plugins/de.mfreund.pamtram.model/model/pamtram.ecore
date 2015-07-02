@@ -553,7 +553,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="EndingMatcher" eSuperTypes="#//metamodel/CaseSensitiveConstraint"/>
     <eClassifiers xsi:type="ecore:EClass" name="RegExMatcher" eSuperTypes="#//metamodel/AttributeValueConstraint"/>
     <eClassifiers xsi:type="ecore:EClass" name="CaseSensitiveConstraint" abstract="true"
-        eSuperTypes="#//metamodel/AttributeValueConstraint">
+        interface="true" eSuperTypes="#//metamodel/AttributeValueConstraint">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="caseSensitive" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           defaultValueLiteral="true"/>

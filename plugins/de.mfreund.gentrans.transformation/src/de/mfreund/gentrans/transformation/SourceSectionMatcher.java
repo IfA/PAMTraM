@@ -51,6 +51,7 @@ import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.MetaModelSectionReference;
+import pamtram.metamodel.RegExMatcher;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
@@ -156,8 +157,9 @@ public class SourceSectionMatcher implements CancellationListener {
 	private final AttributeValueModifierExecutor attributeValueModifierExecutor;
 
 	/**
-	 * This keeps track of all {@link AttributeValueConstraint AttributeValueConstraints} that could not be satisfied 
-	 * so we don't need to send a potential error message twice.
+	 * This keeps track of all {@link AttributeValueConstraint AttributeValueConstraints} that could not be evaluated 
+	 * so we don't need to send a potential error message twice. This might e.g. happen for a malformed regular expression
+	 * in a {@link RegExMatcher}.
 	 */
 	private final Set<AttributeValueConstraint> constraintsWithErrors;
 
@@ -395,6 +397,10 @@ public class SourceSectionMatcher implements CancellationListener {
 	 * applicable for a certain part of the source model. Therefore, it iterates downward in the containment hierarchy of the 
 	 * source section and checks if every element can be matched to a part of the source model. 
 	 * <p />
+	 * Note: This does not check the if the {@link SourceSectionClass#getContainer() container} and {@link ExternalModifiedAttributeElementType
+	 * external attributes} can also be matched. This has to be checked additionally by means of {@link #handleExternalSourceElements(Mapping, 
+	 * MappingInstanceStorage, boolean) handleExternalSourceElements()}.
+	 * <p />
 	 * Note: During this process, all hint values are determined as well and stored in the returned {@link MappingInstanceStorage}.
 	 *
 	 * @param srcModelObject
@@ -468,13 +474,14 @@ public class SourceSectionMatcher implements CancellationListener {
 				srcSection);
 
 		/*
-		 * check Attributes and determine HintValues
+		 * check if all attributes are present and valid; determine HintValues
 		 */
-		boolean attributesOk = handleAttributes(srcModelObject, hints,
+		boolean attributesOk = checkAttributes(srcModelObject, hints,
 				globalAttributes, srcSection, changedRefsAndHints,
 				complexSourceElementHintValues,
 				complexAttrMatcherSourceElementHintValues,
 				complexConnectionHintSourceElementHintValues);
+
 		if (!attributesOk) {
 			return null;
 		}
@@ -999,6 +1006,224 @@ public class SourceSectionMatcher implements CancellationListener {
 	}
 
 	/**
+	 * This checks if all {@link SourceSectionAttribute Attributes} that have been defined for a given 
+	 * {@link SourceSectionClass} can be mapped for the given '<em>srcModelObject</em>'. Therefore, 
+	 * all the {@link AttributeValueConstraint AttributeValueConstraints} are checked.
+	 * <br />
+	 * <b>Note:</b> The hint values that are determined from the attribute values are calculated during 
+	 * above process as well. They are stored in the various <em>...HintValues</em> maps.
+	 * 
+	 * @param srcModelObject The object to be checked.
+	 * @param hints A list of {@link MappingHintBaseType MappingHints} that are associated with the mapping 
+	 * that is currently evaluated.
+	 * @param globalAttributes A list of {@link GlobalAttribute GlobalAttributes}.
+	 * @param srcSection The {@link SourceSectionClass} for which the attributes shall be checked.
+	 * @param changedRefsAndHints The {@link MappingInstanceStorage} where calculated hint values 
+	 * will be stored.
+	 * @param complexSourceElementHintValues A {@link Map} where hint values for all found 
+	 * {@link AttributeMappingSourceElement AttributeMappingSourceElements} will be stored.
+	 * @param complexAttrMatcherSourceElementHintValues A {@link Map} where hint values for all found 
+	 * {@link AttributeMatcherSourceElement AttributeMatcherSourceElements} will be stored.
+	 * @param complexConnectionHintSourceElementHintValues A {@link Map} where hint values for all found 
+	 * {@link ModelConnectionHintSourceElement ModelConnectionHintSourceElements} will be stored.
+	 * @return '<em></b>true</b></em>' if all attributes are present, '<em><b>false</b></em>' otherwise
+	 */
+	private boolean checkAttributes(
+			final EObject srcModelObject,
+			final Iterable<MappingHintBaseType> hints,
+			final Iterable<GlobalAttribute> globalAttributes,
+			final SourceSectionClass srcSection,
+			final MappingInstanceStorage changedRefsAndHints,
+			final Map<AttributeMappingSourceElement, AttributeValueRepresentation> complexSourceElementHintValues,
+			final Map<AttributeMatcherSourceElement, AttributeValueRepresentation> complexAttrMatcherSourceElementHintValues,
+			final Map<ModelConnectionHintSourceElement, AttributeValueRepresentation> complexConnectionHintSourceElementHintValues) {
+
+		for (final SourceSectionAttribute at : srcSection.getAttributes()) {
+
+			/*
+			 * Check if the modeled attribute exists in the srcModelObject
+			 */
+			final Object srcAttr = srcModelObject.eGet(at.getAttribute());
+
+			if (srcAttr == null) {
+				/*
+				 * This is not a problem unless any mappings point here or AttributeValueConstraints were modeled.
+				 * Unset mapping hint values are handled elsewhere. Here we only need to check for matchers.
+				 */
+				if (at.getValueConstraint().size() > 0) {
+					return false;
+				}
+			}
+
+			/*
+			 * As attributes may have a cardinality greater than 1, too, we have to handle
+			 * every attribute value separately.
+			 */
+			ArrayList<Object> srcAttrValues = new ArrayList<>();
+			if(at.getAttribute().isMany()) {
+				srcAttrValues.addAll((Collection<?>) srcAttr);
+			} else {
+				srcAttrValues.add(srcAttr);
+			}
+
+			/*
+			 * First, we check if all the constraints are satisfied for every attribute value.
+			 */
+			for (Object srcAttrValue : srcAttrValues) {
+
+				// convert Attribute value to String
+				final String srcAttrAsString = at.getAttribute().getEType().getEPackage().getEFactoryInstance()
+						.convertToString(at.getAttribute().getEAttributeType(), srcAttrValue);
+				/*
+				 * check AttributeValueConstraints
+				 *
+				 * Inclusions are OR connected
+				 *
+				 * Exclusions are NOR connected
+				 */
+				boolean inclusionMatched = false;
+				boolean containsInclusions = false;
+				for (final AttributeValueConstraint constraint : at.getValueConstraint()) {
+
+					if (constraintsWithErrors.contains(constraint)) {
+						continue;
+					}
+
+					boolean constraintVal;
+					try {
+						// Note: 'checkConstraint' already takes the type (INCLUSION/EXCLUSION) into consideration
+						constraintVal = constraint.checkConstraint(srcAttrAsString);
+					} catch (final Exception e) {
+						constraintsWithErrors.add(constraint);
+						consoleStream.println("The AttributeValueConstraint '" + constraint.getName() + "' of the Attribute '"
+								+ at.getName() + " (Class: " + at.getOwningClass().getName() + ", Section: " + at.getContainingSection().getName()
+								+ ")' could not be evaluated and will be ignored. The following error was supplied:\n"
+								+ e.getLocalizedMessage());
+						continue;
+					}
+
+					if (!constraintVal && constraint.getType().equals(AttributeValueConstraintType.EXCLUSION)) {
+						return false;
+					} else if (constraint.getType().equals(AttributeValueConstraintType.INCLUSION)) {
+						containsInclusions = true;
+						if (constraintVal) {
+							inclusionMatched = true;
+						}
+					}
+				}
+
+				if (!inclusionMatched && containsInclusions) {
+					return false;
+				}
+			}
+
+			/*
+			 * Second, we iterate once again and calculate all the hint values based
+			 * on the attributes.
+			 * Note: We have to iterate two times to prevent side effects if the check for
+			 * constraints (see above) fails at anything but the first value.
+			 */
+			for (Object srcAttrValue : srcAttrValues) {
+
+				// convert Attribute value to String
+				final String srcAttrAsString = at.getAttribute().getEType().getEPackage().getEFactoryInstance()
+						.convertToString(at.getAttribute().getEAttributeType(), srcAttrValue);
+
+				/*
+				 * Now, calculate the hint values for the various types of hints.
+				 */
+				for (final MappingHintBaseType hint : hints) {
+					if (hint instanceof MappedAttributeValueExpander) {
+						MappedAttributeValueExpander mappedAttributeValueExpander = (MappedAttributeValueExpander) hint;
+
+						if (mappedAttributeValueExpander.getSourceAttribute().equals(at)) {
+
+							if(at.getAttribute().isMany()) {
+								//TODO implement this?
+								throw new RuntimeException("MappedAttributeValueExpanders based on multi-valued attributes are not yet supported!");
+							}
+
+							final String valCopy = attributeValueModifierExecutor.
+									applyAttributeValueModifiers(srcAttrAsString, mappedAttributeValueExpander.getModifiers());
+							changedRefsAndHints.getHintValues().addHintValue(mappedAttributeValueExpander, valCopy);
+						}
+
+					} else if (hint instanceof AttributeMapping) {
+						AttributeMapping attributeMapping = (AttributeMapping) hint;
+
+						for (final AttributeMappingSourceElement sourceElement : attributeMapping.getLocalSourceElements()) {
+							if (sourceElement.getSource().equals(at)) {
+
+								final String valCopy = attributeValueModifierExecutor
+										.applyAttributeValueModifiers(srcAttrAsString, sourceElement.getModifier());
+
+								// create a new AttributeValueRepresentation or update the existing one
+								if(complexSourceElementHintValues.get(sourceElement) == null) {
+									complexSourceElementHintValues.put(sourceElement, new AttributeValueRepresentation(sourceElement.getSource(), valCopy));
+								} else {
+									complexSourceElementHintValues.get(sourceElement).addValue(valCopy);
+								}
+							}
+						}
+					} else if (hint instanceof MappingInstanceSelector) {
+						MappingInstanceSelector mappingInstanceSelector = (MappingInstanceSelector) hint;
+
+						if (mappingInstanceSelector.getMatcher() instanceof AttributeMatcher) {
+
+							final AttributeMatcher matcher = (AttributeMatcher) mappingInstanceSelector.getMatcher();
+
+							for (final AttributeMatcherSourceElement sourceElement : matcher.getLocalSourceElements()) {
+								if (sourceElement.getSource().equals(at)) {
+
+									final String valCopy = attributeValueModifierExecutor
+											.applyAttributeValueModifiers(srcAttrAsString, sourceElement.getModifier());
+
+									// create a new AttributeValueRepresentation or update the existing one
+									if(complexAttrMatcherSourceElementHintValues.get(sourceElement) == null) {
+										complexAttrMatcherSourceElementHintValues.put(sourceElement, new AttributeValueRepresentation(sourceElement.getSource(), valCopy));
+									} else {
+										complexAttrMatcherSourceElementHintValues.get(sourceElement).addValue(valCopy);
+									}
+								}
+							}
+						}
+					} else if (hint instanceof ModelConnectionHint) {
+						ModelConnectionHint modelConnectionHint = (ModelConnectionHint) hint;
+
+						for (final ModelConnectionHintSourceElement m : modelConnectionHint.getLocalSourceElements()) {
+							if (m.getSource().equals(at)) {
+
+								if(at.getAttribute().isMany()) {
+									//TODO implement this?
+									throw new RuntimeException("ModelConnectionHints based on multi-valued attributes are not yet supported!");
+								}
+
+								final String modifiedVal = attributeValueModifierExecutor
+										.applyAttributeValueModifiers(srcAttrAsString, m.getModifier());
+								complexConnectionHintSourceElementHintValues.put(m, new AttributeValueRepresentation(at, modifiedVal));
+							}
+						}
+					}
+				}
+
+				/*
+				 * Last, calculate the values for GlobalAttributes.
+				 */
+				for (final GlobalAttribute globalAttribute : globalAttributes) {
+					if (globalAttribute.getSource().equals(at)) {
+						final String modifiedVal = attributeValueModifierExecutor
+								.applyAttributeValueModifiers(srcAttrAsString, globalAttribute.getModifier());
+						globalAttributeValues.put(globalAttribute, modifiedVal);
+					}
+				}
+
+			} 
+		}
+
+		return true;
+	}
+
+	/**
 	 * Helper method to handle an ExternalAttributeMapping. This uses {@link #getContainerAttributeValue(SourceSectionAttribute, SourceSectionClass, EObject)}
 	 * to find a hint value for a given {@link MappingHintSourceInterface}, applies possible {@link AttributeValueModifierSet AttributeValueModifierSets} and stores
 	 * the found value in the '<em>attrVals</em>' map.
@@ -1497,246 +1722,6 @@ public class SourceSectionMatcher implements CancellationListener {
 		}
 		return resultSet;
 
-	}
-
-	/**
-	 * This checks if all {@link SourceSectionAttribute Attributes} that have been defined for a given 
-	 * {@link SourceSectionClass} can be mapped for the given '<em>srcModelObject</em>'. Therefore, 
-	 * all the {@link AttributeValueConstraint AttributeValueConstraints} are checked.
-	 * <br />
-	 * <b>Note:</b> The hint values that are determined from the attribute values are calculated during 
-	 * above process as well.
-	 * 
-	 * @param srcModelObject The object to be checked.
-	 * @param hints A list of {@link MappingHintBaseType MappingHints} that are associated with the mapping 
-	 * that is currently evaluated.
-	 * @param globalVars A list of {@link GlobalAttribute GlobalAttributes}.
-	 * @param srcSection The {@link SourceSectionClass} for which the attributes shall be checked.
-	 * @param changedRefsAndHints The {@link MappingInstanceStorage} where calculated hint values 
-	 * will be stored.
-	 * @param complexSourceElementHintValues A {@link Map} where hint values for all found 
-	 * {@link AttributeMappingSourceElement AttributeMappingSourceElements} will be stored.
-	 * @param complexAttrMatcherSourceElementHintValues A {@link Map} where hint values for all found 
-	 * {@link AttributeMatcherSourceElement AttributeMatcherSourceElements} will be stored.
-	 * @param complexConnectionHintSourceElementHintValues A {@link Map} where hint values for all found 
-	 * {@link ModelConnectionHintSourceElement ModelConnectionHintSourceElements} will be stored.
-	 * @return '<em></b>true</b></em>' if all attributes are present, '<em><b>false</b></em>' otherwise
-	 */
-	@SuppressWarnings("unchecked")
-	private boolean handleAttributes(
-			final EObject srcModelObject,
-			final Iterable<MappingHintBaseType> hints,
-			final Iterable<GlobalAttribute> globalVars,
-			final SourceSectionClass srcSection,
-			final MappingInstanceStorage changedRefsAndHints,
-			final Map<AttributeMappingSourceElement, AttributeValueRepresentation> complexSourceElementHintValues,
-			final Map<AttributeMatcherSourceElement, AttributeValueRepresentation> complexAttrMatcherSourceElementHintValues,
-			final Map<ModelConnectionHintSourceElement, AttributeValueRepresentation> complexConnectionHintSourceElementHintValues) {
-
-		for (final SourceSectionAttribute at : srcSection.getAttributes()) {
-			/*
-			 * look for attributes in srcSection does it exist in src model?
-			 */
-			final Object srcAttr = srcModelObject.eGet(at.getAttribute());
-
-			if (srcAttr == null) {// attribute not set / null
-				// Not a problem unless any mappings point here or Constraints
-				// were modeled.
-				// Unset mapping hint values are handled elsewhere.
-				// Here we only need to check for matchers
-				if (at.getValueConstraint().size() > 0) {
-					return false;
-				}
-			}
-
-			/*
-			 * As attributes may have a cardinality greater than 1, too, we have to handle
-			 * every attribute value separately.
-			 */
-			ArrayList<Object> srcAttrValues = new ArrayList<>();
-			if(srcAttr instanceof Collection<?>) {
-				srcAttrValues.addAll((Collection<Object>) srcAttr);
-			} else {
-				srcAttrValues.add(srcAttr);
-			}
-
-			/*
-			 * First, we check if all the constraints are satisfied for every attribute value.
-			 */
-			for (Object srcAttrValue : srcAttrValues) {
-
-				// convert Attribute value to String
-				final String srcAttrAsString = at
-						.getAttribute()
-						.getEType()
-						.getEPackage()
-						.getEFactoryInstance()
-						.convertToString(at.getAttribute().getEAttributeType(),
-								srcAttrValue);
-				/*
-				 * check AttributeValueSpecifications
-				 *
-				 * Inclusions are OR connected
-				 *
-				 * Exclusions are NOR connected
-				 */
-				boolean inclusionMatched = false;
-				boolean containsInclusions = false;
-				for (final AttributeValueConstraint constraint : at
-						.getValueConstraint()) {
-					if (constraintsWithErrors.contains(constraint)) {
-						continue;
-					}
-
-					boolean constraintVal;
-					try {
-						constraintVal = constraint
-								.checkConstraint(srcAttrAsString);
-					} catch (final Exception e) {
-						constraintsWithErrors.add(constraint);
-						consoleStream.println("The AttributeValueConstraint '" + constraint.getName() + "' of the Attribute '"
-								+ at.getName() + " (Class: " + at.getOwningClass().getName() + ", Section: " + at.getContainingSection().getName()
-								+ ")' could not be evaluated and will be ignored. The following error was supplied:\n"
-								+ e.getLocalizedMessage());
-						continue;
-					}
-					if (!constraintVal
-							&& constraint.getType().equals(
-									AttributeValueConstraintType.EXCLUSION)) {
-						return false;
-					} else if (constraint.getType().equals(
-							AttributeValueConstraintType.INCLUSION)) {
-						containsInclusions = true;
-						if (constraintVal) {
-							inclusionMatched = true;
-						}
-					}
-				}
-
-				if (!inclusionMatched && containsInclusions) {
-					return false;
-				}
-			}
-
-			//TODO split this up in a separate method to be more intuitive
-			/*
-			 * Second, we iterate once again and calculate all the hint values based
-			 * on the attributes.
-			 * Note: We have to iterate two times to prevent side effects if the check for
-			 * constraints (see above) fails at anything but the first value.
-			 */
-			for (Object srcAttrValue : srcAttrValues) {
-
-				// convert Attribute value to String
-				final String srcAttrAsString = at
-						.getAttribute()
-						.getEType()
-						.getEPackage()
-						.getEFactoryInstance()
-						.convertToString(at.getAttribute().getEAttributeType(),
-								srcAttrValue);
-
-				// handle possible attribute mappings
-				for (final MappingHintBaseType hint : hints) {
-					if (hint instanceof MappedAttributeValueExpander) {
-
-						if (((MappedAttributeValueExpander) hint)
-								.getSourceAttribute().equals(at)) {
-
-							if(at.getAttribute().isMany()) {
-								//TODO implement this?
-								throw new RuntimeException("MappedAttributeValueExpanders based on multi-valued attributes are not yet supported!");
-							}
-
-							final String valCopy = attributeValueModifierExecutor
-									.applyAttributeValueModifiers(
-											srcAttrAsString,
-											((MappedAttributeValueExpander) hint)
-											.getModifiers());
-							changedRefsAndHints.getHintValues().addHintValue((MappedAttributeValueExpander) hint, valCopy);
-						}
-
-					} else if (hint instanceof AttributeMapping) {
-
-						for (final AttributeMappingSourceElement m : ((AttributeMapping) hint)
-								.getLocalSourceElements()) {
-							if (m.getSource().equals(at)) {
-
-								final String valCopy = attributeValueModifierExecutor
-										.applyAttributeValueModifiers(
-												srcAttrAsString,
-												m.getModifier());
-								// create a new AttributeValueRepresentation or update the existing one
-								if(complexSourceElementHintValues.get(m) == null) {
-									complexSourceElementHintValues.put(m, new AttributeValueRepresentation(m.getSource(), valCopy));
-								} else {
-									complexSourceElementHintValues.get(m).addValue(valCopy);
-								}
-							}
-						}
-					} else if (hint instanceof MappingInstanceSelector) {// handle
-
-						// MappingInstanceSelector
-						// with
-						// AttributeMatcher
-						if (((MappingInstanceSelector) hint)
-								.getMatcher() instanceof AttributeMatcher) {
-
-							final AttributeMatcher matcher = (AttributeMatcher) ((MappingInstanceSelector) hint)
-									.getMatcher();
-							for (final AttributeMatcherSourceElement e : matcher
-									.getLocalSourceElements()) {
-								if (e.getSource().equals(at)) {
-
-									//									if(at.getAttribute().isMany()) {
-									//										//TODO implement this?
-									//										throw new RuntimeException("AttributeMatchers based on multi-valued attributes are not yet supported!");
-									//									}
-
-									final String valCopy = attributeValueModifierExecutor
-											.applyAttributeValueModifiers(
-													srcAttrAsString, 
-													e.getModifier());
-									// create a new AttributeValueRepresentation or update the existing one
-									if(complexAttrMatcherSourceElementHintValues.get(e) == null) {
-										complexAttrMatcherSourceElementHintValues.put(e, new AttributeValueRepresentation(e.getSource(), valCopy));
-									} else {
-										complexAttrMatcherSourceElementHintValues.get(e).addValue(valCopy);
-									}
-								}
-							}
-						}
-					} else if (hint instanceof ModelConnectionHint) {
-						for (final ModelConnectionHintSourceElement m : ((ModelConnectionHint) hint).getLocalSourceElements()) {
-							if (m.getSource().equals(at)) {
-
-								if(at.getAttribute().isMany()) {
-									//TODO implement this?
-									throw new RuntimeException("ModelConnectionHints based on multi-valued attributes are not yet supported!");
-								}
-
-								final String modifiedVal = attributeValueModifierExecutor
-										.applyAttributeValueModifiers(
-												srcAttrAsString,
-												m.getModifier());
-								complexConnectionHintSourceElementHintValues.put(m, new AttributeValueRepresentation(at, modifiedVal));
-							}
-						}
-					}
-				}
-
-				for (final GlobalAttribute gVar : globalVars) {
-					if (gVar.getSource().equals(at)) {
-						final String modifiedVal = attributeValueModifierExecutor
-								.applyAttributeValueModifiers(srcAttrAsString,
-										gVar.getModifier());
-						globalAttributeValues.put(gVar, modifiedVal);
-					}
-				}
-
-			} 
-		}
-		return true;
 	}
 
 	/**

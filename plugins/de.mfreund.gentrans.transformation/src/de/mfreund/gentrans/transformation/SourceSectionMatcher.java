@@ -574,6 +574,7 @@ public class SourceSectionMatcher implements CancellationListener {
 
 		/*
 		 * check if all modeled references can be matched; this will also iterate further down the hierarchy
+		 * (and thereby call 'checkMapping', 'checkAttributes' and 'checkReferences' multiple times)
 		 */
 		boolean referencesOk = checkReferences(srcModelObject, usedOkay, hints, globalAttributes, srcSection, changedRefsAndHints,
 				classByRefMap, refByClassMap, mappingCounts);
@@ -587,10 +588,11 @@ public class SourceSectionMatcher implements CancellationListener {
 		 */
 		for (final MappingHintBaseType h : hints) {
 			if (h instanceof CardinalityMapping) {
-				if (mappingCounts.keySet().contains(
-						((CardinalityMapping) h).getSource())) {
-					changedRefsAndHints.getHintValues().addHintValue((CardinalityMapping) h, mappingCounts
-							.get(((CardinalityMapping) h).getSource()));
+				CardinalityMapping cardinalityMapping = (CardinalityMapping) h;
+
+				if (mappingCounts.keySet().contains(cardinalityMapping.getSource())) {
+					changedRefsAndHints.getHintValues().addHintValue(
+							cardinalityMapping, mappingCounts.get(cardinalityMapping.getSource()));
 				}
 			}
 		}
@@ -689,6 +691,10 @@ public class SourceSectionMatcher implements CancellationListener {
 			final Map<EReference, List<SourceSectionClass>> classByRefMap,
 			final Map<SourceSectionClass, SourceSectionReference> refByClassMap,
 			final Map<SourceSectionClass, Integer> mappingCounts) {
+
+		/*
+		 * update the 'classByRef' and 'refByClass' map
+		 */
 		for (final SourceSectionReference ref : srcSection.getReferences()) {
 			if (!classByRefMap.containsKey(ref.getEReference())) {
 				classByRefMap.put(ref.getEReference(), new LinkedList<SourceSectionClass>());
@@ -707,22 +713,29 @@ public class SourceSectionMatcher implements CancellationListener {
 			// check if reference is allowed by src metamodel
 			// check if reference in srcMMSection points anywhere
 			if (classByRefMap.get(ref).size() < 1) {
+				// don't do anything if no target SourceSectionClass has been specified for this Reference
 				break;
 			}
-			final Object refTarget = srcModelObject.eGet(ref);// getrefTarget(s)
-			// in srcModel
-			// behave, depending on cardinality
+
 			/*
-			 * There are cases in which modeling more than target values for a
+			 * get targets of the reference in the source model, then behave depending on the
+			 * cardinality of the reference
+			 */
+			final Object refTarget = srcModelObject.eGet(ref);
+
+			/*
+			 * There are cases in which modeling more target values for a
 			 * section than it can actually hold might make sense depending on
 			 * how the target's CardinalityType value was set. Therefore we do
 			 * not check the modeled references values at this point.
 			 */
 			if (ref.getUpperBound() == 1) {
+
 				final EObject refTargetObj = (EObject) refTarget;
 				if (refTargetObj == null) {
 					return false;
 				}
+
 				MappingInstanceStorage res = null;
 				boolean nonZeroCardSectionFound = false;
 
@@ -734,19 +747,12 @@ public class SourceSectionMatcher implements CancellationListener {
 					// handled
 					if (!c.getCardinality().equals(
 							CardinalityType.ZERO_INFINITY)) {
-						if (nonZeroCardSectionFound) {// modeling error
-							consoleStream
-							.println("Modeling error in source section: '"
-									+ srcSection.getContainer()
-									.getName()
-									+ "'"
-									+ ", subsection: '"
-									+ srcSection.getName()
-									+ "'. The Reference '"
-									+ refByClassMap.get(c)
-									+ "'"
-									+ " points to a metamodel reference, that can only hold one value but in the source section it references more than one Class with"
-									+ "a CardinalityType that is not ZERO_INFINITY.");
+						if (nonZeroCardSectionFound) {
+							// modeling error
+							consoleStream.println("Modeling error in source section: '" + srcSection.getContainer().getName()
+									+ "', subsection: '" + srcSection.getName() + "'. The Reference '" + refByClassMap.get(c)
+									+ "' points to a metamodel reference, that can only hold one value but in the source section "
+									+ "it references more than one Class with a CardinalityType that is not ZERO_INFINITY.");
 							return false;
 						}
 						nonZeroCardSectionFound = true;
@@ -991,15 +997,11 @@ public class SourceSectionMatcher implements CancellationListener {
 					} else if (usedKeys.contains(smallestKey)
 							|| smallestKey.getCardinality().equals(
 									CardinalityType.ZERO_INFINITY)) {
-						possibleSrcModelElementsVC.remove(smallestKey);// remove
-						// mmSection
-						// from
-						// list
+						// remove mmSection from list
+						possibleSrcModelElementsVC.remove(smallestKey);
 					} else {
-						// consoleStream.println("vc mapping failed");
-						return false; // the fact that samllestKey is not in the
-						// collection means that no mapping was
-						// found at all
+						// the fact that samllestKey is not in the collection means that no mapping was found at all
+						return false;
 					}
 				}
 
@@ -1942,15 +1944,18 @@ public class SourceSectionMatcher implements CancellationListener {
 	 */
 	private void syncComplexAttrMappings(final SourceSectionClass srcSection,
 			final MappingInstanceStorage changedRefsAndHints) {
+
 		for (final AttributeMapping h : changedRefsAndHints.getUnsyncedHintValues().getAttributeMappingHintValues().keySet()) {
-			final boolean isCommonParent = commonContainerClassOfComplexHints
-					.get(h).equals(srcSection);
+
+			final boolean isCommonParent = commonContainerClassOfComplexHints.get(h).equals(srcSection);
 
 			if (changedRefsAndHints.getUnsyncedHintValues().getHintValues(h).size() > 1 || isCommonParent) {
 				final Map<SourceSectionClass, LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>>> m = 
 						changedRefsAndHints.getUnsyncedHintValues().getAttributeMappingHintValues().get(h);
+
 				// list of "synced" hints
 				LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> syncedComplexMappings = null;
+
 				// find longest list (ideally they are either of the same
 				// length, or there is only one value)
 				SourceSectionClass cl = null;
@@ -1980,17 +1985,15 @@ public class SourceSectionMatcher implements CancellationListener {
 							 * the size of vals will be lower or equel the
 							 * size of syncedComplexAttrMappings
 							 */
-							syncedComplexMappings.get(i)
-							.putAll(vals.get(i));
+							syncedComplexMappings.get(i).putAll(vals.get(i));
 						}
 					}
 				}
 				m.clear();
 
-				if (isCommonParent) {// sync
-					// add to changedRefsAndHints
+				if (isCommonParent) {
+					// sync add to changedRefsAndHints
 					changedRefsAndHints.getHintValues().addHintValues(h, syncedComplexMappings);
-					// }
 				} else {
 					// remove old hints and add new hints
 					changedRefsAndHints.getUnsyncedHintValues().setHintValues(h, srcSection, syncedComplexMappings);

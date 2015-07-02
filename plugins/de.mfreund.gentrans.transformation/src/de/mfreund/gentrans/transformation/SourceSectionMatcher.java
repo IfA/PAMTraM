@@ -598,7 +598,7 @@ public class SourceSectionMatcher implements CancellationListener {
 		}
 
 		/*
-		 * sync complex hints
+		 * sync hint values
 		 */
 		syncAttributeMappingHintValues(srcSection, changedRefsAndHints);
 		syncAttributeMatcherHintValues(srcSection, changedRefsAndHints);
@@ -611,45 +611,45 @@ public class SourceSectionMatcher implements CancellationListener {
 		 */
 		for (final MappingHintBaseType h : hints) {
 			if (h instanceof AttributeMapping) {
+				AttributeMapping attributeMapping = (AttributeMapping) h;
+
 				if (!(attributeMappingsFound.contains(h) && deepestSourceSectionClassesByAttributeMapping
 						.get(h).contains(srcSection))) {
-					changedRefsAndHints.getHintValues().removeHintValue((AttributeMapping) h); // remove incomplete hint value
+					changedRefsAndHints.getHintValues().removeHintValue(attributeMapping); // remove incomplete hint value
 				} else if (deepestSourceSectionClassesByAttributeMapping
 						.get(h).size() > 1) {
 
-					changedRefsAndHints.getUnsyncedHintValues().setHintValues((AttributeMapping) h, srcSection,
+					changedRefsAndHints.getUnsyncedHintValues().setHintValues(attributeMapping, srcSection,
 							new LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>>());
 					final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> val = 
-							changedRefsAndHints.getHintValues().removeHintValue((AttributeMapping) h);
-					changedRefsAndHints.getUnsyncedHintValues().addHintValue((AttributeMapping) h, srcSection, val);
+							changedRefsAndHints.getHintValues().removeHintValue(attributeMapping);
+					changedRefsAndHints.getUnsyncedHintValues().addHintValue(attributeMapping, srcSection, val);
 				}
 			} else if (h instanceof MappingInstanceSelector) {
-				if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
-					if (!(attributeMatchersFound
-							.contains(((MappingInstanceSelector) h)
-									.getMatcher()) && deepestSourceSectionClassesByAttributeMatcher
-							.get(((MappingInstanceSelector) h).getMatcher())
-							.contains(srcSection))) {
-						changedRefsAndHints.getHintValues().removeHintValue((MappingInstanceSelector) h); // remove incomplete hint value
-					} else if (deepestSourceSectionClassesByAttributeMatcher
-							.get(((MappingInstanceSelector) h).getMatcher())
-							.size() > 1) {
+				MappingInstanceSelector mappingInstanceSelector = (MappingInstanceSelector) h;
 
-						changedRefsAndHints.getUnsyncedHintValues().setHintValues((MappingInstanceSelector) h, srcSection, new LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>>());
-						final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> val = changedRefsAndHints.getHintValues().removeHintValue((MappingInstanceSelector) h);
-						changedRefsAndHints.getUnsyncedHintValues().addHintValue((MappingInstanceSelector) h, srcSection, val);
+				if (mappingInstanceSelector.getMatcher() instanceof AttributeMatcher) {
+					if (!(attributeMatchersFound.contains(mappingInstanceSelector.getMatcher()) && 
+							deepestSourceSectionClassesByAttributeMatcher.get(mappingInstanceSelector.getMatcher()).contains(srcSection))) {
+						changedRefsAndHints.getHintValues().removeHintValue((MappingInstanceSelector) h); // remove incomplete hint value
+					} else if (deepestSourceSectionClassesByAttributeMatcher.get(((MappingInstanceSelector) h).getMatcher()).size() > 1) {
+
+						changedRefsAndHints.getUnsyncedHintValues().setHintValues(mappingInstanceSelector, srcSection, new LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>>());
+						final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> val = changedRefsAndHints.getHintValues().removeHintValue(mappingInstanceSelector);
+						changedRefsAndHints.getUnsyncedHintValues().addHintValue(mappingInstanceSelector, srcSection, val);
 					}
 				}
 			} else if (h instanceof ModelConnectionHint) {
-				if (!(modelConnectionHintsFound.contains(h) && deepestSourceSectionClassesByModelConnectionHint
-						.get(h).contains(srcSection))) {
-					changedRefsAndHints.getHintValues().removeHintValue(h); // remove incomplete hint value
-				} else if (deepestSourceSectionClassesByModelConnectionHint
-						.get(h).size() > 1) {
+				ModelConnectionHint modelConnectionHint = (ModelConnectionHint) h;
 
-					changedRefsAndHints.getUnsyncedHintValues().setHintValues((ModelConnectionHint) h, srcSection, new LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>>());
-					final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> val = changedRefsAndHints.getHintValues().removeHintValue((ModelConnectionHint) h);
-					changedRefsAndHints.getUnsyncedHintValues().addHintValue((ModelConnectionHint) h, srcSection, val);
+				if (!(modelConnectionHintsFound.contains(h) && 
+						deepestSourceSectionClassesByModelConnectionHint.get(h).contains(srcSection))) {
+					changedRefsAndHints.getHintValues().removeHintValue(h); // remove incomplete hint value
+				} else if (deepestSourceSectionClassesByModelConnectionHint.get(h).size() > 1) {
+
+					changedRefsAndHints.getUnsyncedHintValues().setHintValues(modelConnectionHint, srcSection, new LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>>());
+					final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> val = changedRefsAndHints.getHintValues().removeHintValue(modelConnectionHint);
+					changedRefsAndHints.getUnsyncedHintValues().addHintValue(modelConnectionHint, srcSection, val);
 				}
 			}
 		}
@@ -1250,18 +1250,18 @@ public class SourceSectionMatcher implements CancellationListener {
 	 */
 	private void syncAttributeMappingHintValues(final SourceSectionClass srcSection,
 			final MappingInstanceStorage changedRefsAndHints) {
-	
+
 		for (final AttributeMapping h : changedRefsAndHints.getUnsyncedHintValues().getAttributeMappingHintValues().keySet()) {
-	
+
 			final boolean isCommonParent = commonContainerClassOfComplexHints.get(h).equals(srcSection);
-	
+
 			if (changedRefsAndHints.getUnsyncedHintValues().getHintValues(h).size() > 1 || isCommonParent) {
 				final Map<SourceSectionClass, LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>>> m = 
 						changedRefsAndHints.getUnsyncedHintValues().getAttributeMappingHintValues().get(h);
-	
+
 				// list of "synced" hint values
 				LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> syncedHintValues = null;
-	
+
 				// find longest list (ideally they are either of the same
 				// length, or there is only one value)
 				SourceSectionClass cl = null;
@@ -1277,7 +1277,7 @@ public class SourceSectionMatcher implements CancellationListener {
 				}
 				// remove selected List from m
 				m.remove(cl);
-	
+
 				// combine values
 				for (final SourceSectionClass c : m.keySet()) {
 					final LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> vals = m.get(c);
@@ -1296,7 +1296,7 @@ public class SourceSectionMatcher implements CancellationListener {
 					}
 				}
 				m.clear();
-	
+
 				if (isCommonParent) {
 					// sync (add to changedRefsAndHints)
 					changedRefsAndHints.getHintValues().addHintValues(h, syncedHintValues);
@@ -1323,11 +1323,11 @@ public class SourceSectionMatcher implements CancellationListener {
 	 */
 	private void syncAttributeMatcherHintValues(final SourceSectionClass srcSection,
 			final MappingInstanceStorage changedRefsAndHints) {
-	
+
 		for (final MappingInstanceSelector h : changedRefsAndHints.getUnsyncedHintValues().getMappingInstanceSelectorHintValues().keySet()) {
-	
+
 			final boolean isCommonParent = commonContainerClassOfComplexHints.get(h).equals(srcSection);
-	
+
 			if (changedRefsAndHints.getUnsyncedHintValues().getHintValues(h).size() > 1 || isCommonParent) {
 				final Map<SourceSectionClass, LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>>> m = 
 						changedRefsAndHints.getUnsyncedHintValues().getMappingInstanceSelectorHintValues().get(h);
@@ -1348,7 +1348,7 @@ public class SourceSectionMatcher implements CancellationListener {
 				}
 				// remove selected List from m
 				m.remove(cl);
-	
+
 				// combine values
 				for (final SourceSectionClass c : m.keySet()) {
 					final LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>> vals = m.get(c);
@@ -1367,7 +1367,7 @@ public class SourceSectionMatcher implements CancellationListener {
 					}
 				}
 				m.clear();
-	
+
 				if (isCommonParent) {
 					// sync (add to changedRefsAndHints)
 					changedRefsAndHints.getHintValues().addHintValues(h, syncedHintValues);
@@ -1395,19 +1395,19 @@ public class SourceSectionMatcher implements CancellationListener {
 	 */
 	private void syncModelConnectionHintValues(final SourceSectionClass srcSection,
 			final MappingInstanceStorage changedRefsAndHints) {
-	
+
 		for (final ModelConnectionHint h : changedRefsAndHints.getUnsyncedHintValues().getModelConnectionHintValues().keySet()) {
-	
+
 			final boolean isCommonParent = commonContainerClassOfComplexHints.get(h).equals(srcSection);
-	
+
 			if (changedRefsAndHints.getUnsyncedHintValues().getHintValues(h).size() > 1 || isCommonParent) {
-	
+
 				final Map<SourceSectionClass, LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>>> m = 
 						changedRefsAndHints.getUnsyncedHintValues().getModelConnectionHintValues().get(h);
-	
+
 				// list of "synced" hints
 				LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>> syncedHintValues = null;
-	
+
 				// find longest list (ideally they are either of the same
 				// length, or there is only one value)
 				SourceSectionClass cl = null;
@@ -1423,7 +1423,7 @@ public class SourceSectionMatcher implements CancellationListener {
 				}
 				// remove selected List from m
 				m.remove(cl);
-	
+
 				// combine values
 				for (final SourceSectionClass c : m.keySet()) {
 					final LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>> vals = m.get(c);
@@ -1441,7 +1441,7 @@ public class SourceSectionMatcher implements CancellationListener {
 					}
 				}
 				m.clear();
-	
+
 				if (isCommonParent) {
 					// sync (add to changedRefsAndHints)
 					changedRefsAndHints.getHintValues().addHintValues(h, syncedHintValues);
@@ -1496,18 +1496,21 @@ public class SourceSectionMatcher implements CancellationListener {
 	}
 
 	/**
-	 * @param extClass
-	 * @param extObj
+	 * This can be used to check if a given '<em>clazz</em>' and the corresponding '<em>object</em>' have been matched
+	 * previously (by another mapping).
+	 *  
+	 * @param clazz The {@link SourceSectionClass} that shall be checked for previous matching.
+	 * @param object The {@link EObject} that shall be checked for previous matching.
 	 */
-	private boolean checkObjectWasMapped(final SourceSectionClass extClass,
-			final EObject extObj) {
-		if (extObj != null) {
-			if (matchedSections.containsKey(extClass)) {
-				if (matchedSections.get(extClass).contains(extObj)) {
+	private boolean checkObjectWasMapped(final SourceSectionClass clazz,
+			final EObject object) {
+		if (object != null) {
+			if (matchedSections.containsKey(clazz)) {
+				if (matchedSections.get(clazz).contains(object)) {
 					return true;
 				}
-			} else if (matchedContainers.containsKey(extClass)) {
-				if (matchedContainers.get(extClass).contains(extObj)) {
+			} else if (matchedContainers.containsKey(clazz)) {
+				if (matchedContainers.get(clazz).contains(object)) {
 					return true;
 				}
 			}
@@ -1516,13 +1519,13 @@ public class SourceSectionMatcher implements CancellationListener {
 	}
 
 	/**
-	 * Check if the container section referenced by the sourceSection Classe's
-	 * container ref. can be mapped.
+	 * Check if the container section referenced by the {@link SourceSectionClass SourceSectionClass'}
+	 * container can be matched for the given element.
 	 *
-	 * @param element
-	 * @param sourceSectionClass
-	 * @return true if the container attribute of the sourceSection Class
-	 *         doesn't exist or a fitting container instance exists
+	 * @param element The {@link EObject element} for that the container shall be checked.
+	 * @param sourceSectionClass The {@link SourceSectionClass} that specifies the container to be checked.
+	 * @return '<em>true</em>' if the {@link SourceSectionClass#getContainer() container} of the SourceSectionClass
+	 *         has not been set or if a fitting container instance exists; '<em>false</em>' otherwise
 	 */
 	private boolean checkContainer(final EObject element,
 			final SourceSectionClass sourceSectionClass) {
@@ -1531,107 +1534,102 @@ public class SourceSectionMatcher implements CancellationListener {
 
 			// this part is easy
 			return true;
-
-		} else {
-
-			/*
-			 * Step 1: identify all containers of the corresponding elements
-			 */
-			final List<SourceSectionClass> containerClasses = new LinkedList<>();
-			final List<EObject> containerElements = new LinkedList<>();
-
-			SourceSectionClass currentClass = sourceSectionClass;
-			EObject currentElement = element;
-
-			while (currentClass.getContainer() != null) {
-				/*
-				 * "jump" SourceMMSection boundary
-				 */
-				if (currentElement.eContainer() != null) {
-					currentElement = currentElement.eContainer();
-					currentClass = currentClass.getContainer();
-
-					/*
-					 * scan all levels of source section until we are at a top
-					 * level again
-					 *
-					 * we do not concern ourselves with mapping of the elements
-					 * at this point, all we need are the container sections
-					 */
-					while (!currentClass.getContainingSection().equals(
-							currentClass)) {
-						if (currentElement.eContainer() != null) {
-							currentElement = currentElement.eContainer();
-							currentClass = currentClass
-									.getOwningContainmentReference()
-									.getOwningClass();
-						} else {
-							return false;
-						}
-					}
-					containerElements.add(currentElement);
-					containerClasses.add(currentClass);
-
-				} else {
-					return false;
-				}
-			}
-
-			/*
-			 * Step 2: try to map each container section, starting from the
-			 * highest
-			 */
-			int index = containerClasses.size() - 1;
-			while (index >= 0) {
-				/*
-				 * map container if it wasn't mapped before
-				 */
-				if (!checkObjectWasMapped(containerClasses.get(index),
-						containerElements.get(index))) {
-					final MappingInstanceStorage res = checkMapping(
-							containerElements.get(index), false,
-							Collections.<MappingHintBaseType> emptyList(),
-							Collections.<GlobalAttribute> emptyList(),
-							containerClasses.get(index),
-							new MappingInstanceStorage());
-					if (res == null) {
-						return false;
-					} else {
-						for (final SourceSectionClass c : res
-								.getSourceModelObjectsMapped().keySet()) {
-							if (!matchedContainers.containsKey(c)) {
-								matchedContainers.put(c,
-										new LinkedHashSet<EObject>());
-							}
-							matchedContainers.get(c).addAll(
-									res.getSourceModelObjectsMapped().get(c));
-						}
-					}
-				}
-
-				/*
-				 * make sure that next container's container was mapped at the
-				 * appropriate position
-				 */
-				index--;
-				if (index >= 0) {
-					if (!checkObjectWasMapped(containerClasses.get(index)
-							.getContainer(), containerElements.get(index)
-							.eContainer())) {
-						return false;
-					}
-				} else {// we cannot put this element in the list because we do
-					// not want to map it already
-					if (!checkObjectWasMapped(
-							sourceSectionClass.getContainer(),
-							element.eContainer())) {
-						return false;
-					}
-				}
-			}
-			// if we reached this point all went well
-			return true;
 		}
+
+		/*
+		 * Step 1: identify all containers and the corresponding elements; we do not collect
+		 * all elements all the way up but only those SourceSectionClasses for that 'isSection()' returns 'true'
+		 */
+		final List<SourceSectionClass> containerClasses = new LinkedList<>();
+		final List<EObject> containerElements = new LinkedList<>();
+
+		SourceSectionClass currentClass = sourceSectionClass;
+		EObject currentElement = element;
+
+		while (currentClass.getContainer() != null) {
+			/*
+			 * "jump" SourceMMSection boundary
+			 */
+			if (currentElement.eContainer() != null) {
+				currentElement = currentElement.eContainer();
+				currentClass = currentClass.getContainer();
+
+				/*
+				 * scan all levels of source section until we are at a top
+				 * level again
+				 *
+				 * we do not concern ourselves with mapping of the elements
+				 * at this point, all we need are the container sections
+				 */
+				while (!currentClass.getContainingSection().equals(currentClass)) {
+					if (currentElement.eContainer() != null) {
+						currentElement = currentElement.eContainer();
+						currentClass = currentClass.getOwningContainmentReference().getOwningClass();
+					} else {
+						return false;
+					}
+				}
+				containerElements.add(currentElement);
+				containerClasses.add(currentClass);
+
+			} else {
+				return false;
+			}
+		}
+
+		/*
+		 * Step 2: Check if each container section can be matched, starting from the highest
+		 */
+		for(int i=containerClasses.size() - 1; i >= 0; i--) {
+			/*
+			 * map container if it wasn't mapped before
+			 */
+			if (!checkObjectWasMapped(containerClasses.get(i), containerElements.get(i))) {
+
+				final MappingInstanceStorage res = checkMapping(
+						containerElements.get(i), false,
+						Collections.<MappingHintBaseType> emptyList(),
+						Collections.<GlobalAttribute> emptyList(),
+						containerClasses.get(i),
+						new MappingInstanceStorage());
+				if (res == null) {
+					return false;
+				} else {
+					for (final SourceSectionClass c : res
+							.getSourceModelObjectsMapped().keySet()) {
+						if (!matchedContainers.containsKey(c)) {
+							matchedContainers.put(c,
+									new LinkedHashSet<EObject>());
+						}
+						matchedContainers.get(c).addAll(
+								res.getSourceModelObjectsMapped().get(c));
+					}
+				}
+			}
+
+			/* 
+			 * This should not be necessary as it only checks if the current element has been matched which
+			 * has already been checked via 'res == null'!?
+			 */
+			//			/*
+			//			 * make sure that next container's container was mapped at the
+			//			 * appropriate position
+			//			 */
+			//			if (i-1 >= 0) {
+			//				if (!checkObjectWasMapped(containerClasses.get(i-1).getContainer(), containerElements.get(i-1).eContainer())) {
+			//					return false;
+			//				}
+			//			} else {// we cannot put this element in the list because we do
+			//				// not want to map it already
+			//				if (!checkObjectWasMapped(sourceSectionClass.getContainer(), element.eContainer())) {
+			//					return false;
+			//				}
+			//			}
+		}
+
+		// if we reached this point all went well
+		return true;
+
 	}
 
 	/**

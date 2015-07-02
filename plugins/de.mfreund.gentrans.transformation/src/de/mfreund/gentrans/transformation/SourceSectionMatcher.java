@@ -442,9 +442,12 @@ public class SourceSectionMatcher implements CancellationListener {
 		final MappingInstanceStorage changedRefsAndHints = new MappingInstanceStorage();
 		changedRefsAndHints.setAssociatedSourceElement(srcSection, srcModelObject);
 
-		final Map<AttributeMappingSourceElement, AttributeValueRepresentation> complexSourceElementHintValues = new LinkedHashMap<>();
-		final Map<AttributeMatcherSourceElement, AttributeValueRepresentation> complexAttrMatcherSourceElementHintValues = new LinkedHashMap<>();
-		final Map<ModelConnectionHintSourceElement, AttributeValueRepresentation> complexConnectionHintSourceElementHintValues = new LinkedHashMap<>();
+		/*
+		 * These maps will be filled with values for the various (local) source elements of the hints.
+		 */
+		final Map<AttributeMappingSourceElement, AttributeValueRepresentation> attributeMappingSourceValues = new LinkedHashMap<>();
+		final Map<AttributeMatcherSourceElement, AttributeValueRepresentation> attributeMatcherSourceValues = new LinkedHashMap<>();
+		final Map<ModelConnectionHintSourceElement, AttributeValueRepresentation> modelConnectionHintSourceValues = new LinkedHashMap<>();
 
 		// init hintValues
 		for (final MappingHintBaseType hint : hints) {
@@ -478,141 +481,220 @@ public class SourceSectionMatcher implements CancellationListener {
 		 */
 		boolean attributesOk = checkAttributes(srcModelObject, hints,
 				globalAttributes, srcSection, changedRefsAndHints,
-				complexSourceElementHintValues,
-				complexAttrMatcherSourceElementHintValues,
-				complexConnectionHintSourceElementHintValues);
+				attributeMappingSourceValues,
+				attributeMatcherSourceValues,
+				modelConnectionHintSourceValues);
 
 		if (!attributesOk) {
 			return null;
 		}
 
-		// now work on ComplexAttributeMappings and CalcMappings
-		final Set<AttributeMapping> complexAttributeMappingsFound = new HashSet<>();
-		final Set<AttributeMatcher> complexAttributeMatchersFound = new HashSet<>();
-		final Set<ModelConnectionHint> complexConnectionHintsFound = new HashSet<>();
+		/*
+		 * Now, we calculate the values for the various hints based on the found source values.
+		 */
+		// TODO Don't we need to determine external values, first???
+		final Set<AttributeMapping> attributeMappingsFound = new HashSet<>();
+		final Set<AttributeMatcher> attributeMatchersFound = new HashSet<>();
+		final Set<ModelConnectionHint> modelConnectionHintsFound = new HashSet<>();
 
 		for (final MappingHintBaseType h : hints) {
+
+			final Map<Object, AttributeValueRepresentation> foundValues = new LinkedHashMap<>();
+
 			if (h instanceof AttributeMapping) {
+				AttributeMapping attributeMapping = (AttributeMapping) h;
 
-
-				final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> foundValues = 
-						new LinkedHashMap<>();
-
-				// append the complex hint value (cardinality either 0 or 1)
-				// with found values in right order
-				for (final AttributeMappingSourceInterface s : ((AttributeMapping) h).getSourceAttributeMappings()) {
+				// append the complex hint value (cardinality either 0 or 1) with found values in right order
+				for (final AttributeMappingSourceInterface s : attributeMapping.getSourceAttributeMappings()) {
 					//TODO complexSourceElementHintValues does not seem to contain values from external source elements (either only for 
 					// expression mappings or all the times
-					if (complexSourceElementHintValues.containsKey(s)) {
-
-						if(((AttributeMapping) h).getExpression() != null && !((AttributeMapping) h).getExpression().isEmpty()) {
-							AttributeValueRepresentation calculatedValue = null;
-
-							for (String value : complexSourceElementHintValues.get(s).getValues()) {
-								try {
-									/*
-									 * Use 'ExpressionBuilder' to parse a 'double' from the 'string' representation
-									 * of the attribute value. The simpler way 'Double.parseDouble(value)' would not
-									 * support scientific notations like '0.42e2' or '4200e-2'.
-									 */
-									final double variableVal = new ExpressionBuilder(value).build().calculate();
-
-									if(calculatedValue == null) {
-										calculatedValue = new AttributeValueRepresentation(s.getSourceAttribute(), String.valueOf(variableVal));
-									} else {
-										calculatedValue.addValue(String.valueOf(variableVal));
-									}
-								} catch (final Exception e) {
-									consoleStream.println("Couldn't convert variable " + s.getName() 
-									+ " of CalculatorMapping " + h.getName() + " from String to double. "
-									+ "The problematic source element's attribute value was: " + value);
-								}
-
-							}
-							foundValues.put(s, calculatedValue);
-						} else {
-							foundValues.put(s, complexSourceElementHintValues.get(s));
-						}
+					if (attributeMappingSourceValues.containsKey(s)) {
+						foundValues.put(s, attributeMappingSourceValues.get(s));
+						attributeMappingsFound.add(attributeMapping);
 					}
 
 				}
-
-				if (foundValues.keySet().size() > 0) {
-					complexAttributeMappingsFound.add((AttributeMapping) h);
-					final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> oldValues = 
-							changedRefsAndHints.getHintValues().removeHintValue((AttributeMapping) h);
-					foundValues.putAll(oldValues);
-					changedRefsAndHints.getHintValues().addHintValue((AttributeMapping) h, foundValues);
-				}
-
 
 			} else if (h instanceof MappingInstanceSelector) {
-				if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
-					final AttributeMatcher m = (AttributeMatcher) ((MappingInstanceSelector) h)
-							.getMatcher();
-					final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> foundValues = new LinkedHashMap<>();
-					// append the complex hint value (cardinality either 0 or 1)
-					// with found values in right order
-					for (final AttributeMatcherSourceElement s : m
-							.getLocalSourceElements()) {
-						if (complexAttrMatcherSourceElementHintValues
-								.containsKey(s)) {
-							foundValues.put(s,
-									complexAttrMatcherSourceElementHintValues
-									.get(s));
+				MappingInstanceSelector mappingInstanceSelector = (MappingInstanceSelector) h;
+
+				if (mappingInstanceSelector.getMatcher() instanceof AttributeMatcher) {
+					final AttributeMatcher m = (AttributeMatcher) mappingInstanceSelector.getMatcher();
+
+					// append the complex hint value (cardinality either 0 or 1) with found values in right order
+					//TODO don't we need to take external values into account, too???
+					for (final AttributeMatcherSourceElement s : m.getLocalSourceElements()) {
+						if (attributeMatcherSourceValues.containsKey(s)) {
+							foundValues.put(s, attributeMatcherSourceValues.get(s));
+							attributeMatchersFound.add(m);
 						}
 					}
 
-					if (foundValues.keySet().size() > 0) {
-						complexAttributeMatchersFound.add(m);
-						final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> oldValues = 
-								changedRefsAndHints.getHintValues().removeHintValue((MappingInstanceSelector) h);
-						foundValues.putAll(oldValues);
-						changedRefsAndHints.getHintValues().addHintValue((MappingInstanceSelector) h, foundValues);
-					}
 				}
 			} else if (h instanceof ModelConnectionHint) {
-				final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> foundValues = new LinkedHashMap<>();
-				// append the complex hint value (cardinality either 0 or 1)
-				// with found values in right order
-				for (final ModelConnectionHintSourceElement s : ((ModelConnectionHint) h).getLocalSourceElements()) {
-					if (complexConnectionHintSourceElementHintValues
-							.containsKey(s)) {
-						foundValues.put(s,
-								complexConnectionHintSourceElementHintValues.get(s));
+				ModelConnectionHint modelConnectionHint = (ModelConnectionHint) h;
+
+				// append the complex hint value (cardinality either 0 or 1) with found values in right order
+				//TODO don't we need to take external values into account, too???
+				for (final ModelConnectionHintSourceElement s : modelConnectionHint.getLocalSourceElements()) {
+					if (modelConnectionHintSourceValues.containsKey(s)) {
+						foundValues.put(s, modelConnectionHintSourceValues.get(s));
+						modelConnectionHintsFound.add(modelConnectionHint);
 					}
 				}
 
-				if (foundValues.keySet().size() > 0) {
-					complexConnectionHintsFound.add((ModelConnectionHint) h);
-					final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> oldValues = 
-							changedRefsAndHints.getHintValues().removeHintValue((ModelConnectionHint) h);
-					foundValues.putAll(oldValues);
-					changedRefsAndHints.getHintValues().addHintValue(h, foundValues);
-				}
 			}
+
+
+			if (foundValues.keySet().size() > 0) {
+				/*
+				 * if there already exist some hint values in 'changedRefsAndHints', we have to keep those and
+				 * add our new values
+				 */
+				@SuppressWarnings("unchecked")
+				final Map<Object, AttributeValueRepresentation> oldValues = 
+				(Map<Object, AttributeValueRepresentation>) changedRefsAndHints.getHintValues().removeHintValue(h);
+				foundValues.putAll(oldValues);
+				changedRefsAndHints.getHintValues().addHintValue(h, foundValues);
+			}
+
 		}
 
 		/*
 		 * Combine values of references of same type
 		 */
-		final Map<EReference, List<SourceSectionClass>> classByRefMap = new LinkedHashMap<EReference, List<SourceSectionClass>>();
-		final Map<SourceSectionClass, SourceSectionReference> refByClassMap = new HashMap<SourceSectionClass, SourceSectionReference>();// TODO
+		final Map<EReference, List<SourceSectionClass>> classByRefMap = new LinkedHashMap<>();
+		final Map<SourceSectionClass, SourceSectionReference> refByClassMap = new HashMap<>();// TODO
 		/*
 		 * if this gets to slow, maybe add a map (refBySectionByClass) to this
 		 * class
 		 */
 
-		final Map<SourceSectionClass, Integer> mappingCounts = new HashMap<SourceSectionClass, Integer>();
+		final Map<SourceSectionClass, Integer> mappingCounts = new HashMap<>();
 
+		/*
+		 * check if all modeled references can be matched; this will also iterate further down the hierarchy
+		 */
+		boolean referencesOk = checkReferences(srcModelObject, usedOkay, hints, globalAttributes, srcSection, changedRefsAndHints,
+				classByRefMap, refByClassMap, mappingCounts);
+
+		if(!referencesOk) {
+			return null;
+		}
+
+		/*
+		 * Handle cardinality Hints
+		 */
+		for (final MappingHintBaseType h : hints) {
+			if (h instanceof CardinalityMapping) {
+				if (mappingCounts.keySet().contains(
+						((CardinalityMapping) h).getSource())) {
+					changedRefsAndHints.getHintValues().addHintValue((CardinalityMapping) h, mappingCounts
+							.get(((CardinalityMapping) h).getSource()));
+				}
+			}
+		}
+
+		/*
+		 * sync complex hints
+		 */
+		syncComplexAttrMappings(srcSection, changedRefsAndHints);
+		syncComplexAttrMatchers(srcSection, changedRefsAndHints);
+		syncModelConnectionHints(srcSection, changedRefsAndHints);
+
+		/*
+		 * if we are at one of the deepest SourceElements of a complex Mapping,
+		 * we create a new unsynced list, and remove it from the
+		 * changedRefsAndHints List until we sync it again (see above)
+		 */
+		for (final MappingHintBaseType h : hints) {
+			if (h instanceof AttributeMapping) {
+				if (!(attributeMappingsFound.contains(h) && deepestSourceSectionClassesByAttributeMapping
+						.get(h).contains(srcSection))) {
+					changedRefsAndHints.getHintValues().removeHintValue((AttributeMapping) h); // remove incomplete hint value
+				} else if (deepestSourceSectionClassesByAttributeMapping
+						.get(h).size() > 1) {
+
+					changedRefsAndHints.getUnsyncedHintValues().setHintValues((AttributeMapping) h, srcSection,
+							new LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>>());
+					final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> val = 
+							changedRefsAndHints.getHintValues().removeHintValue((AttributeMapping) h);
+					changedRefsAndHints.getUnsyncedHintValues().addHintValue((AttributeMapping) h, srcSection, val);
+				}
+			} else if (h instanceof MappingInstanceSelector) {
+				if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
+					if (!(attributeMatchersFound
+							.contains(((MappingInstanceSelector) h)
+									.getMatcher()) && deepestSourceSectionClassesByAttributeMatcher
+							.get(((MappingInstanceSelector) h).getMatcher())
+							.contains(srcSection))) {
+						changedRefsAndHints.getHintValues().removeHintValue((MappingInstanceSelector) h); // remove incomplete hint value
+					} else if (deepestSourceSectionClassesByAttributeMatcher
+							.get(((MappingInstanceSelector) h).getMatcher())
+							.size() > 1) {
+
+						changedRefsAndHints.getUnsyncedHintValues().setHintValues((MappingInstanceSelector) h, srcSection, new LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>>());
+						final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> val = changedRefsAndHints.getHintValues().removeHintValue((MappingInstanceSelector) h);
+						changedRefsAndHints.getUnsyncedHintValues().addHintValue((MappingInstanceSelector) h, srcSection, val);
+					}
+				}
+			} else if (h instanceof ModelConnectionHint) {
+				if (!(modelConnectionHintsFound.contains(h) && deepestSourceSectionClassesByModelConnectionHint
+						.get(h).contains(srcSection))) {
+					changedRefsAndHints.getHintValues().removeHintValue(h); // remove incomplete hint value
+				} else if (deepestSourceSectionClassesByModelConnectionHint
+						.get(h).size() > 1) {
+
+					changedRefsAndHints.getUnsyncedHintValues().setHintValues((ModelConnectionHint) h, srcSection, new LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>>());
+					final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> val = changedRefsAndHints.getHintValues().removeHintValue((ModelConnectionHint) h);
+					changedRefsAndHints.getUnsyncedHintValues().addHintValue((ModelConnectionHint) h, srcSection, val);
+				}
+			}
+		}
+
+		return changedRefsAndHints;
+
+	}
+
+	/**
+	 * This checks if all {@link SourceSectionReference References} that have been defined for a given 
+	 * {@link SourceSectionClass} can be matched for the given '<em>srcModelObject</em>'. Therefore, all
+	 * {@link SourceSectionClass#getCardinality() cardinalities} of referenced {@link SourceSectionClass classes}
+	 * are checked.
+	 * <br />
+	 * <b>Note:<b/> For every {@link SourceSectionClass class} that is referenced by a modeled
+	 * {@link SourceSectionReference reference}, this calls {@link #checkMapping(EObject, boolean, Iterable, Iterable, 
+	 * SourceSectionClass, MappingInstanceStorage) checkMapping()} so that we iteratively go through the complete
+	 * hierarchy of the modeled section.
+	 * 
+	 * @param srcModelObject The object to be checked.
+	 * @param usedOkay  Whether elements already contained in <em>changedRefsAndHints<em> can be matched again. 
+	 * This needs to be set to '<em>true</em> when {@link #checkReferences(EObject, boolean, Iterable, Iterable, 
+	 * SourceSectionClass, MappingInstanceStorage, Map, Map, Map) checkMapping()} is called for a non-containment reference.
+	 * @param hints A list of {@link MappingHintBaseType MappingHints} that are associated with the mapping 
+	 * that is currently evaluated.
+	 * @param globalAttributes A list of {@link GlobalAttribute GlobalAttributes}.
+	 * @param srcSection The {@link SourceSectionClass} for which the references shall be checked.
+	 * @param changedRefsAndHints The {@link MappingInstanceStorage} containing the hint values that have been already 
+	 * determined (earlier in the recursion cycle).
+	 * @param classByRefMap A map that collects all {@link SourceSectionClass SourceSectionClasses} and the 
+	 * {@link SourceSectionReference} that they are referenced by. 
+	 * @param refByClassMap A map that collects all {@link SourceSectionReference SourceSectionReferences} and the
+	 * {@link SourceSectionClass} that they are contained in.
+	 * @param mappingCounts A map that stores how often each {@link SourceSectionClass} has been matched.
+	 */
+	private boolean checkReferences(final EObject srcModelObject, final boolean usedOkay,
+			final Iterable<MappingHintBaseType> hints, final Iterable<GlobalAttribute> globalAttributes,
+			final SourceSectionClass srcSection, final MappingInstanceStorage changedRefsAndHints,
+			final Map<EReference, List<SourceSectionClass>> classByRefMap,
+			final Map<SourceSectionClass, SourceSectionReference> refByClassMap,
+			final Map<SourceSectionClass, Integer> mappingCounts) {
 		for (final SourceSectionReference ref : srcSection.getReferences()) {
 			if (!classByRefMap.containsKey(ref.getEReference())) {
-				classByRefMap.put(ref.getEReference(),
-						new LinkedList<SourceSectionClass>());
+				classByRefMap.put(ref.getEReference(), new LinkedList<SourceSectionClass>());
 			}
 
-			classByRefMap.get(ref.getEReference()).addAll(
-					ref.getValuesGeneric());
+			classByRefMap.get(ref.getEReference()).addAll(ref.getValuesGeneric());
 
 			for (final SourceSectionClass c : ref.getValuesGeneric()) {
 				refByClassMap.put(c, ref);
@@ -622,7 +704,6 @@ public class SourceSectionMatcher implements CancellationListener {
 
 		// now go through all the srcMmSection refs
 		for (final EReference ref : classByRefMap.keySet()) {
-			// reference.name.println;
 			// check if reference is allowed by src metamodel
 			// check if reference in srcMMSection points anywhere
 			if (classByRefMap.get(ref).size() < 1) {
@@ -640,7 +721,7 @@ public class SourceSectionMatcher implements CancellationListener {
 			if (ref.getUpperBound() == 1) {
 				final EObject refTargetObj = (EObject) refTarget;
 				if (refTargetObj == null) {
-					return null;
+					return false;
 				}
 				MappingInstanceStorage res = null;
 				boolean nonZeroCardSectionFound = false;
@@ -666,7 +747,7 @@ public class SourceSectionMatcher implements CancellationListener {
 									+ "'"
 									+ " points to a metamodel reference, that can only hold one value but in the source section it references more than one Class with"
 									+ "a CardinalityType that is not ZERO_INFINITY.");
-							return null;
+							return false;
 						}
 						nonZeroCardSectionFound = true;
 						res = checkMapping(
@@ -675,7 +756,7 @@ public class SourceSectionMatcher implements CancellationListener {
 								|| usedOkay, hints,
 								globalAttributes, c, changedRefsAndHints);
 						if (abortTransformation) {
-							return null;
+							return false;
 						}
 					}
 				}
@@ -688,7 +769,7 @@ public class SourceSectionMatcher implements CancellationListener {
 								|| usedOkay, hints,
 								globalAttributes, c, changedRefsAndHints);
 						if (abortTransformation) {
-							return null;
+							return false;
 						}
 						if (res != null) {
 							break;
@@ -715,7 +796,7 @@ public class SourceSectionMatcher implements CancellationListener {
 									.intValue() + 1));
 
 				} else {
-					return null;
+					return false;
 				}
 
 			} else {// unbounded or unspecified
@@ -766,7 +847,7 @@ public class SourceSectionMatcher implements CancellationListener {
 								|| usedOkay, hints,
 								globalAttributes, val, changedRefsAndHints);
 						if (abortTransformation) {
-							return null;
+							return false;
 						}
 
 						if (res != null) {// mapping possible
@@ -783,7 +864,7 @@ public class SourceSectionMatcher implements CancellationListener {
 						}
 					}
 					if (!foundMapping) {
-						return null; // we need to find a mapping for every
+						return false; // we need to find a mapping for every
 						// srcModelElement if the reference Type
 						// was modeled in the srcMMSection
 					}
@@ -854,7 +935,7 @@ public class SourceSectionMatcher implements CancellationListener {
 										.intValue() + 1));
 					} else {
 						// consoleStream.println("no-vc mapping failed");
-						return null;// all non-vc-elements need to be mapped
+						return false;// all non-vc-elements need to be mapped
 						// exactly once
 					}
 				}
@@ -916,7 +997,7 @@ public class SourceSectionMatcher implements CancellationListener {
 						// list
 					} else {
 						// consoleStream.println("vc mapping failed");
-						return null; // the fact that samllestKey is not in the
+						return false; // the fact that samllestKey is not in the
 						// collection means that no mapping was
 						// found at all
 					}
@@ -926,83 +1007,12 @@ public class SourceSectionMatcher implements CancellationListener {
 				refTargetL.removeAll(allElementsMapped);
 				if (refTargetL.size() > 0) {
 					consoleStream.println("Not everything could be mapped");
-					return null;
+					return false;
 				}
 			}
 		}
 
-		/*
-		 * Handle cardinality Hints
-		 */
-		for (final MappingHintBaseType h : hints) {
-			if (h instanceof CardinalityMapping) {
-				if (mappingCounts.keySet().contains(
-						((CardinalityMapping) h).getSource())) {
-					changedRefsAndHints.getHintValues().addHintValue((CardinalityMapping) h, mappingCounts
-							.get(((CardinalityMapping) h).getSource()));
-				}
-			}
-		}
-
-		/*
-		 * sync complex hints
-		 */
-		syncComplexAttrMappings(srcSection, changedRefsAndHints);
-		syncComplexAttrMatchers(srcSection, changedRefsAndHints);
-		syncModelConnectionHints(srcSection, changedRefsAndHints);
-
-		/*
-		 * if we are at one of the deepest SourceElements of a complex Mapping,
-		 * we create a new unsynced list, and remove it from the
-		 * changedRefsAndHints List until we sync it again (see above)
-		 */
-		for (final MappingHintBaseType h : hints) {
-			if (h instanceof AttributeMapping) {
-				if (!(complexAttributeMappingsFound.contains(h) && deepestSourceSectionClassesByAttributeMapping
-						.get(h).contains(srcSection))) {
-					changedRefsAndHints.getHintValues().removeHintValue((AttributeMapping) h); // remove incomplete hint value
-				} else if (deepestSourceSectionClassesByAttributeMapping
-						.get(h).size() > 1) {
-
-					changedRefsAndHints.getUnsyncedHintValues().setHintValues((AttributeMapping) h, srcSection,
-							new LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>>());
-					final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> val = 
-							changedRefsAndHints.getHintValues().removeHintValue((AttributeMapping) h);
-					changedRefsAndHints.getUnsyncedHintValues().addHintValue((AttributeMapping) h, srcSection, val);
-				}
-			} else if (h instanceof MappingInstanceSelector) {
-				if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
-					if (!(complexAttributeMatchersFound
-							.contains(((MappingInstanceSelector) h)
-									.getMatcher()) && deepestSourceSectionClassesByAttributeMatcher
-							.get(((MappingInstanceSelector) h).getMatcher())
-							.contains(srcSection))) {
-						changedRefsAndHints.getHintValues().removeHintValue((MappingInstanceSelector) h); // remove incomplete hint value
-					} else if (deepestSourceSectionClassesByAttributeMatcher
-							.get(((MappingInstanceSelector) h).getMatcher())
-							.size() > 1) {
-
-						changedRefsAndHints.getUnsyncedHintValues().setHintValues((MappingInstanceSelector) h, srcSection, new LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>>());
-						final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> val = changedRefsAndHints.getHintValues().removeHintValue((MappingInstanceSelector) h);
-						changedRefsAndHints.getUnsyncedHintValues().addHintValue((MappingInstanceSelector) h, srcSection, val);
-					}
-				}
-			} else if (h instanceof ModelConnectionHint) {
-				if (!(complexConnectionHintsFound.contains(h) && deepestSourceSectionClassesByModelConnectionHint
-						.get(h).contains(srcSection))) {
-					changedRefsAndHints.getHintValues().removeHintValue(h); // remove incomplete hint value
-				} else if (deepestSourceSectionClassesByModelConnectionHint
-						.get(h).size() > 1) {
-
-					changedRefsAndHints.getUnsyncedHintValues().setHintValues((ModelConnectionHint) h, srcSection, new LinkedList<Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation>>());
-					final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> val = changedRefsAndHints.getHintValues().removeHintValue((ModelConnectionHint) h);
-					changedRefsAndHints.getUnsyncedHintValues().addHintValue((ModelConnectionHint) h, srcSection, val);
-				}
-			}
-		}
-
-		return changedRefsAndHints;
-
+		return true;
 	}
 
 	/**

@@ -1673,8 +1673,10 @@ public class SourceSectionMatcher implements CancellationListener {
 			final Map<ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, AttributeValueRepresentation> attrVals,
 			final ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> externalModifiedAttributeElement) {
 
-		String attrVal = getContainerAttributeValue(externalModifiedAttributeElement.getSource(),
-				m.getSourceMMSection().getContainer(), res.getAssociatedSourceModelElement().eContainer());
+		String attrVal = getContainerAttributeValue(
+				externalModifiedAttributeElement.getSource(),
+				m.getSourceMMSection().getContainer(), 
+				res.getAssociatedSourceModelElement().eContainer());
 		if (attrVal == null) {
 			mappingFailed = true;
 		} else {
@@ -1689,19 +1691,23 @@ public class SourceSectionMatcher implements CancellationListener {
 	}
 
 	/**
-	 * Finds the value for an ExternalAttributeMappingSourceElement
+	 * Determines and returns the value of a {@link SourceSectionAttribute} that is located somewhere
+	 * inside the given {@link SourceSectionClass} respectively the corresponding {@link EObject}.
 	 *
 	 * @param attr
-	 *            attribute to find
+	 *            The {@link SourceSectionAttribute attribute} to find.
 	 * @param extClass
-	 *            container class to start looking
+	 *            The {@link SourceSectionClass container class} to start looking.
 	 * @param extObj
-	 *            eObject corresponding to the container class
-	 * @return
+	 *            The {@link EObject} that corresponds to the <em>container class</em>.
+	 * @return The value of the {@link SourceSectionAttribute} or '<em>null</em>' if the value could
+	 * not be determined.
 	 */
 	private String getContainerAttributeValue(
-			final SourceSectionAttribute attr, SourceSectionClass extClass,
+			final SourceSectionAttribute attr, 
+			SourceSectionClass extClass,
 			EObject extObj) {
+
 		final SourceSectionClass attrClass = attr.getOwningClass();
 
 		while (true) {
@@ -1709,22 +1715,15 @@ public class SourceSectionMatcher implements CancellationListener {
 			if (attrClass.equals(extClass)) {
 				final Object attrVal = extObj.eGet(attr.getAttribute());
 				if (attrVal == null) {
-					consoleStream.println("Unset external Attrbute "
-							+ attr.getName());
+					consoleStream.println("Unset external Attrbute "+ attr.getName());
 					return null;
+
 				} else { // convert Attribute value to String
-					return attr
-							.getAttribute()
-							.getEType()
-							.getEPackage()
-							.getEFactoryInstance()
-							.convertToString(
-									attr.getAttribute().getEAttributeType(),
-									attrVal);
+					return attr.getAttribute().getEType().getEPackage().getEFactoryInstance().convertToString(
+							attr.getAttribute().getEAttributeType(), attrVal);
 				}
 			} else if (extClass.eContainer() instanceof SourceSectionContainmentReference) {
-				extClass = (SourceSectionClass) extClass.eContainer()
-						.eContainer();
+				extClass = (SourceSectionClass) extClass.eContainer().eContainer();
 				extObj = extObj.eContainer();
 				// Check if the parent object exists, and if it was mapped for
 				// the section.
@@ -1739,11 +1738,9 @@ public class SourceSectionMatcher implements CancellationListener {
 					return null;
 				}
 			} else {// modeling error, object not found
-				consoleStream
-				.println("Modeling error. External Source Element "
-						+ attr.getName()
-						+ "is not part of the the container"
-						+ "section or the section that the container section is part of.");
+				consoleStream.println("Modeling error. External Source Element " + attr.getName()
+				+ "is not part of the the container section or the section that the container "
+				+ "section is part of.");
 				return null;
 			}
 

@@ -733,6 +733,12 @@
           <details key="body" value="EList&lt;AttributeMatcherSourceElement> elements= new org.eclipse.emf.common.util.BasicEList&lt;AttributeMatcherSourceElement>();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;for(AttributeMatcherSourceInterface i : this.getSourceAttributes()){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(i instanceof AttributeMatcherSourceElement){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;elements.add((AttributeMatcherSourceElement) i);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;return elements;"/>
         </eAnnotations>
       </eOperations>
+      <eOperations name="getExternalSourceElements" unique="false" upperBound="-1"
+          eType="#//mapping/AttributeMatcherExternalSourceElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="EList&lt;AttributeMatcherExternalSourceElement> elements= new org.eclipse.emf.common.util.BasicEList&lt;>();&#xD;&#xA;&#xD;&#xA;for(AttributeMatcherSourceInterface i : this.getSourceAttributes()){&#xD;&#xA;&#x9;if(i instanceof AttributeMatcherExternalSourceElement){&#xD;&#xA;&#x9;&#x9;elements.add((AttributeMatcherExternalSourceElement) i);&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return elements;"/>
+        </eAnnotations>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="targetAttribute" lowerBound="1"
           eType="#//metamodel/TargetSectionAttribute"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceAttributes" lowerBound="1"
@@ -862,6 +868,12 @@
       <eOperations name="getLocalSourceElements" unique="false" upperBound="-1" eType="#//mapping/ModelConnectionHintSourceElement">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="body" value="&#x9;&#x9;EList&lt;ModelConnectionHintSourceElement> elements= new org.eclipse.emf.common.util.BasicEList&lt;ModelConnectionHintSourceElement>();&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;for(ModelConnectionHintSourceInterface i : this.getSourceElements()){&#xD;&#xA;&#x9;&#x9;&#x9;if(i instanceof ModelConnectionHintSourceElement){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;elements.add((ModelConnectionHintSourceElement) i);&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;return elements;"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getExternalSourceElements" unique="false" upperBound="-1"
+          eType="#//mapping/ModelConnectionHintExternalSourceElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="EList&lt;ModelConnectionHintExternalSourceElement> elements= new org.eclipse.emf.common.util.BasicEList&lt;>();&#xD;&#xA;&#xD;&#xA;for(ModelConnectionHintSourceInterface i : this.getSourceElements()){&#xD;&#xA;&#x9;if(i instanceof ModelConnectionHintExternalSourceElement){&#xD;&#xA;&#x9;&#x9;elements.add((ModelConnectionHintExternalSourceElement) i);&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return elements;"/>
         </eAnnotations>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="targetAttributes" lowerBound="1"

@@ -4,17 +4,19 @@ package pamtram.mapping.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import pamtram.mapping.AttributeMatcher;
+import pamtram.mapping.AttributeMatcherExternalSourceElement;
 import pamtram.mapping.AttributeMatcherSourceElement;
 import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.AttributeValueModifierSet;
@@ -115,6 +117,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getExpression() {
 		return expression;
 	}
@@ -124,6 +127,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExpression(String newExpression) {
 		String oldExpression = expression;
 		expression = newExpression;
@@ -136,6 +140,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<AttributeValueModifierSet> getResultModifier() {
 		if (resultModifier == null) {
 			resultModifier = new EObjectResolvingEList<AttributeValueModifierSet>(AttributeValueModifierSet.class, this, MappingPackage.ATTRIBUTE_MATCHER__RESULT_MODIFIER);
@@ -148,6 +153,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TargetSectionAttribute getTargetAttribute() {
 		if (targetAttribute != null && targetAttribute.eIsProxy()) {
 			InternalEObject oldTargetAttribute = (InternalEObject)targetAttribute;
@@ -174,6 +180,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTargetAttribute(TargetSectionAttribute newTargetAttribute) {
 		TargetSectionAttribute oldTargetAttribute = targetAttribute;
 		targetAttribute = newTargetAttribute;
@@ -186,6 +193,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<AttributeMatcherSourceInterface> getSourceAttributes() {
 		if (sourceAttributes == null) {
 			sourceAttributes = new EObjectContainmentEList<AttributeMatcherSourceInterface>(AttributeMatcherSourceInterface.class, this, MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES);
@@ -198,6 +206,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<AttributeMatcherSourceElement> getLocalSourceElements() {
 		EList<AttributeMatcherSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<AttributeMatcherSourceElement>();
 						
@@ -208,6 +217,24 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 						}
 						
 						return elements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<AttributeMatcherExternalSourceElement> getExternalSourceElements() {
+		EList<AttributeMatcherExternalSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<>();
+		
+		for(AttributeMatcherSourceInterface i : this.getSourceAttributes()){
+			if(i instanceof AttributeMatcherExternalSourceElement){
+				elements.add((AttributeMatcherExternalSourceElement) i);
+			}
+		}
+		
+		return elements;
 	}
 
 	/**
@@ -380,6 +407,8 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 		switch (operationID) {
 			case MappingPackage.ATTRIBUTE_MATCHER___GET_LOCAL_SOURCE_ELEMENTS:
 				return getLocalSourceElements();
+			case MappingPackage.ATTRIBUTE_MATCHER___GET_EXTERNAL_SOURCE_ELEMENTS:
+				return getExternalSourceElements();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

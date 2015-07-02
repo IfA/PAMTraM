@@ -75,4 +75,13 @@ public interface AttributeMatcher extends Matcher, ExpressionHint, ModifiableHin
 	 */
 	EList<AttributeMatcherSourceElement> getLocalSourceElements();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" unique="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<AttributeMatcherExternalSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<>();\r\n\r\nfor(AttributeMatcherSourceInterface i : this.getSourceAttributes()){\r\n\tif(i instanceof AttributeMatcherExternalSourceElement){\r\n\t\telements.add((AttributeMatcherExternalSourceElement) i);\r\n\t}\r\n}\r\n\r\nreturn elements;'"
+	 * @generated
+	 */
+	EList<AttributeMatcherExternalSourceElement> getExternalSourceElements();
+
 } // AttributeMatcher

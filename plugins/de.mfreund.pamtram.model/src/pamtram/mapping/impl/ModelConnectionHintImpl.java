@@ -4,14 +4,17 @@ package pamtram.mapping.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModelConnectionHint;
+import pamtram.mapping.ModelConnectionHintExternalSourceElement;
 import pamtram.mapping.ModelConnectionHintSourceElement;
 import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.mapping.ModelConnectionHintTargetAttribute;
@@ -76,6 +79,7 @@ public class ModelConnectionHintImpl extends MappingHintBaseTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ModelConnectionHintTargetAttribute> getTargetAttributes() {
 		if (targetAttributes == null) {
 			targetAttributes = new EObjectContainmentEList<ModelConnectionHintTargetAttribute>(ModelConnectionHintTargetAttribute.class, this, MappingPackage.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES);
@@ -88,6 +92,7 @@ public class ModelConnectionHintImpl extends MappingHintBaseTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ModelConnectionHintSourceInterface> getSourceElements() {
 		if (sourceElements == null) {
 			sourceElements = new EObjectContainmentEList<ModelConnectionHintSourceInterface>(ModelConnectionHintSourceInterface.class, this, MappingPackage.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS);
@@ -99,6 +104,7 @@ public class ModelConnectionHintImpl extends MappingHintBaseTypeImpl implements 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	public EList<SourceSectionAttribute> getSourceAttributes() {
 		return this.getSourceAttributes();
 	}
@@ -108,6 +114,7 @@ public class ModelConnectionHintImpl extends MappingHintBaseTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ModelConnectionHintSourceElement> getLocalSourceElements() {
 				EList<ModelConnectionHintSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<ModelConnectionHintSourceElement>();
 				
@@ -118,6 +125,24 @@ public class ModelConnectionHintImpl extends MappingHintBaseTypeImpl implements 
 				}
 				
 				return elements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<ModelConnectionHintExternalSourceElement> getExternalSourceElements() {
+		EList<ModelConnectionHintExternalSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<>();
+		
+		for(ModelConnectionHintSourceInterface i : this.getSourceElements()){
+			if(i instanceof ModelConnectionHintExternalSourceElement){
+				elements.add((ModelConnectionHintExternalSourceElement) i);
+			}
+		}
+		
+		return elements;
 	}
 
 	/**
@@ -219,6 +244,8 @@ public class ModelConnectionHintImpl extends MappingHintBaseTypeImpl implements 
 				return getSourceAttributes();
 			case MappingPackage.MODEL_CONNECTION_HINT___GET_LOCAL_SOURCE_ELEMENTS:
 				return getLocalSourceElements();
+			case MappingPackage.MODEL_CONNECTION_HINT___GET_EXTERNAL_SOURCE_ELEMENTS:
+				return getExternalSourceElements();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

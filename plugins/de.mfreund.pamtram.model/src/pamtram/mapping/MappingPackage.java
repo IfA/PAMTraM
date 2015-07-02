@@ -958,13 +958,22 @@ public interface MappingPackage extends EPackage {
 	int ATTRIBUTE_MATCHER___GET_LOCAL_SOURCE_ELEMENTS = MATCHER_OPERATION_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Get External Source Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MATCHER___GET_EXTERNAL_SOURCE_ELEMENTS = MATCHER_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Attribute Matcher</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MATCHER_OPERATION_COUNT = MATCHER_OPERATION_COUNT + 1;
+	int ATTRIBUTE_MATCHER_OPERATION_COUNT = MATCHER_OPERATION_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1830,13 +1839,22 @@ public interface MappingPackage extends EPackage {
 	int MODEL_CONNECTION_HINT___GET_LOCAL_SOURCE_ELEMENTS = MAPPING_HINT_BASE_TYPE_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Get External Source Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_CONNECTION_HINT___GET_EXTERNAL_SOURCE_ELEMENTS = MAPPING_HINT_BASE_TYPE_OPERATION_COUNT + 2;
+
+	/**
 	 * The number of operations of the '<em>Model Connection Hint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_OPERATION_COUNT = MAPPING_HINT_BASE_TYPE_OPERATION_COUNT + 2;
+	int MODEL_CONNECTION_HINT_OPERATION_COUNT = MAPPING_HINT_BASE_TYPE_OPERATION_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3634,6 +3652,16 @@ public interface MappingPackage extends EPackage {
 	EOperation getAttributeMatcher__GetLocalSourceElements();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.AttributeMatcher#getExternalSourceElements() <em>Get External Source Elements</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get External Source Elements</em>' operation.
+	 * @see pamtram.mapping.AttributeMatcher#getExternalSourceElements()
+	 * @generated
+	 */
+	EOperation getAttributeMatcher__GetExternalSourceElements();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.AttributeMatcherSourceElement <em>Attribute Matcher Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4028,6 +4056,16 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getModelConnectionHint__GetLocalSourceElements();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.ModelConnectionHint#getExternalSourceElements() <em>Get External Source Elements</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get External Source Elements</em>' operation.
+	 * @see pamtram.mapping.ModelConnectionHint#getExternalSourceElements()
+	 * @generated
+	 */
+	EOperation getModelConnectionHint__GetExternalSourceElements();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.AttributeMappingSourceElement <em>Attribute Mapping Source Element</em>}'.
@@ -4680,6 +4718,14 @@ public interface MappingPackage extends EPackage {
 		EOperation ATTRIBUTE_MATCHER___GET_LOCAL_SOURCE_ELEMENTS = eINSTANCE.getAttributeMatcher__GetLocalSourceElements();
 
 		/**
+		 * The meta object literal for the '<em><b>Get External Source Elements</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ATTRIBUTE_MATCHER___GET_EXTERNAL_SOURCE_ELEMENTS = eINSTANCE.getAttributeMatcher__GetExternalSourceElements();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.AttributeMatcherSourceElementImpl <em>Attribute Matcher Source Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5018,6 +5064,14 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MODEL_CONNECTION_HINT___GET_LOCAL_SOURCE_ELEMENTS = eINSTANCE.getModelConnectionHint__GetLocalSourceElements();
+
+		/**
+		 * The meta object literal for the '<em><b>Get External Source Elements</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_CONNECTION_HINT___GET_EXTERNAL_SOURCE_ELEMENTS = eINSTANCE.getModelConnectionHint__GetExternalSourceElements();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.AttributeMappingSourceElementImpl <em>Attribute Mapping Source Element</em>}' class.

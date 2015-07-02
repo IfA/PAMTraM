@@ -74,4 +74,13 @@ public interface ModelConnectionHint extends MappingHintBaseType {
 	 */
 	EList<ModelConnectionHintSourceElement> getLocalSourceElements();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" unique="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<ModelConnectionHintExternalSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<>();\r\n\r\nfor(ModelConnectionHintSourceInterface i : this.getSourceElements()){\r\n\tif(i instanceof ModelConnectionHintExternalSourceElement){\r\n\t\telements.add((ModelConnectionHintExternalSourceElement) i);\r\n\t}\r\n}\r\n\r\nreturn elements;'"
+	 * @generated
+	 */
+	EList<ModelConnectionHintExternalSourceElement> getExternalSourceElements();
+
 } // ModelConnectionHint

@@ -232,15 +232,25 @@
       role="navigation">
     <aggregatedIn/>
     <eventSupport>
-      <dataSelectionSupport
-          end=""
-          selectionStep=""
-          start=""/>
       <dataInputOutputSupport
           defaultValue="Konfiguration"/>
       <triggerSupport
           triggerExpression="aiu2"
           triggerType="next"/>
+    </eventSupport>
+    <presentationSupport/>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aiu1_8"
+      name="aiu1_8"
+      role="">
+    <aggregatedIn
+        compositionRole="gsd"/>
+    <eventSupport>
+      <dataSelectionSupport
+          selectionType="multiple"/>
+      <dataInputOutputSupport
+          defaultValue="test"/>
     </eventSupport>
     <presentationSupport/>
   </abstractInteractionUnit>

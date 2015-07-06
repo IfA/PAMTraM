@@ -70,7 +70,7 @@
   <abstractInteractionUnit
       id="aiu1_2_1"
       name="aiu1_2_1"
-      role="kl">
+      role="">
     <aggregatedIn/>
     <eventSupport>
       <dataSelectionSupport
@@ -83,7 +83,7 @@
   <abstractInteractionUnit
       id="aiu1_2_2"
       name="aiu1_2_2"
-      role="kl">
+      role="">
     <aggregatedIn/>
     <eventSupport>
       <dataSelectionSupport
@@ -96,7 +96,7 @@
   <abstractInteractionUnit
       id="aiu1_2_3"
       name="aiu1_2_3"
-      role="kl">
+      role="">
     <aggregatedIn/>
     <eventSupport>
       <dataSelectionSupport
@@ -180,13 +180,62 @@
       domainReference=""
       id="aiu1_5"
       name="aiu1_5"
-      role="navigation">
+      role="confirmation">
     <aggregatedIn/>
     <eventSupport>
       <dataSelectionSupport
           end="1"
           selectionStep="1"
           start="7"/>
+      <dataInputOutputSupport
+          defaultValue="Start"/>
+      <triggerSupport
+          triggerExpression="aiu2"
+          triggerType="next"/>
+    </eventSupport>
+    <presentationSupport/>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aiu1_5_1"
+      name="aiu1_5_1"
+      role="guidance">
+    <aggregatedIn/>
+    <eventSupport>
+      <dataInputOutputSupport
+          defaultValue="press here to start pumping"/>
+    </eventSupport>
+    <presentationSupport/>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      domainReference=""
+      id="aiu1_6"
+      name="aiu1_6"
+      role="confirmation">
+    <aggregatedIn/>
+    <eventSupport>
+      <dataSelectionSupport
+          end="1"
+          selectionStep="1"
+          start="7"/>
+      <dataInputOutputSupport
+          defaultValue="Stop"/>
+      <triggerSupport
+          triggerExpression="aiu2"
+          triggerType="next"/>
+    </eventSupport>
+    <presentationSupport/>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      domainReference=""
+      id="aiu1_7"
+      name="aiu1_7"
+      role="navigation">
+    <aggregatedIn/>
+    <eventSupport>
+      <dataSelectionSupport
+          end=""
+          selectionStep=""
+          start=""/>
       <dataInputOutputSupport
           defaultValue="Konfiguration"/>
       <triggerSupport
@@ -217,9 +266,9 @@
     <aggregatedIn/>
     <eventSupport>
       <dataSelectionSupport
-          end="1"
-          selectionStep="1"
-          start="7"/>
+          end=""
+          selectionStep=""
+          start=""/>
       <dataInputOutputSupport
           defaultValue="Best&#xe4;tigung"/>
       <triggerSupport

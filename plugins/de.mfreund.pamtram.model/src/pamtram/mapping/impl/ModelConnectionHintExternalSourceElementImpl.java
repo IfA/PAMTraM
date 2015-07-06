@@ -58,7 +58,6 @@ public class ModelConnectionHintExternalSourceElementImpl extends ExternalModifi
 		if (baseClass == MappingHintSourceInterface.class) {
 			switch (baseOperationID) {
 				case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return MappingPackage.MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE;
-				case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE___GET_NAME: return MappingPackage.MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT___GET_NAME;
 				default: return -1;
 			}
 		}

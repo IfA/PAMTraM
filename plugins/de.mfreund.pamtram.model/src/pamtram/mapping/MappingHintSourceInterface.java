@@ -2,8 +2,7 @@
  */
 package pamtram.mapping;
 
-import org.eclipse.emf.ecore.EObject;
-
+import pamtram.NamedElement;
 import pamtram.metamodel.SourceSectionAttribute;
 
 /**
@@ -16,7 +15,7 @@ import pamtram.metamodel.SourceSectionAttribute;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface MappingHintSourceInterface extends EObject {
+public interface MappingHintSourceInterface extends NamedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -24,13 +23,5 @@ public interface MappingHintSourceInterface extends EObject {
 	 * @generated
 	 */
 	SourceSectionAttribute getSourceAttribute();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model kind="operation" required="true"
-	 * @generated
-	 */
-	String getName();
 
 } // MappingHintSourceInterface

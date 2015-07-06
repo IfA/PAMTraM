@@ -179,7 +179,6 @@ public class GlobalAttributeImporterImpl extends NamedElementImpl implements Glo
 		if (baseClass == MappingHintSourceInterface.class) {
 			switch (baseOperationID) {
 				case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER___GET_SOURCE_ATTRIBUTE;
-				case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE___GET_NAME: return MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER___GET_NAME;
 				default: return -1;
 			}
 		}

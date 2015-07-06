@@ -58,7 +58,6 @@ public class AttributeMatcherSourceElementImpl extends LocalModifiedAttributeEle
 		if (baseClass == MappingHintSourceInterface.class) {
 			switch (baseOperationID) {
 				case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return MappingPackage.ATTRIBUTE_MATCHER_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE;
-				case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE___GET_NAME: return MappingPackage.ATTRIBUTE_MATCHER_SOURCE_ELEMENT___GET_NAME;
 				default: return -1;
 			}
 		}

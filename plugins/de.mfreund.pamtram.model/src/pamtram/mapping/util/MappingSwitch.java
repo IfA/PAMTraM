@@ -202,6 +202,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				AttributeMatcherSourceInterface attributeMatcherSourceInterface = (AttributeMatcherSourceInterface)theEObject;
 				T result = caseAttributeMatcherSourceInterface(attributeMatcherSourceInterface);
 				if (result == null) result = caseMappingHintSourceInterface(attributeMatcherSourceInterface);
+				if (result == null) result = caseNamedElement(attributeMatcherSourceInterface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -406,11 +407,11 @@ public class MappingSwitch<T> extends Switch<T> {
 			case MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER: {
 				GlobalAttributeImporter globalAttributeImporter = (GlobalAttributeImporter)theEObject;
 				T result = caseGlobalAttributeImporter(globalAttributeImporter);
-				if (result == null) result = caseNamedElement(globalAttributeImporter);
 				if (result == null) result = caseAttributeMappingSourceInterface(globalAttributeImporter);
 				if (result == null) result = caseAttributeMatcherSourceInterface(globalAttributeImporter);
 				if (result == null) result = caseModelConnectionHintSourceInterface(globalAttributeImporter);
 				if (result == null) result = caseMappingHintSourceInterface(globalAttributeImporter);
+				if (result == null) result = caseNamedElement(globalAttributeImporter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -418,12 +419,14 @@ public class MappingSwitch<T> extends Switch<T> {
 				AttributeMappingSourceInterface attributeMappingSourceInterface = (AttributeMappingSourceInterface)theEObject;
 				T result = caseAttributeMappingSourceInterface(attributeMappingSourceInterface);
 				if (result == null) result = caseMappingHintSourceInterface(attributeMappingSourceInterface);
+				if (result == null) result = caseNamedElement(attributeMappingSourceInterface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE: {
 				MappingHintSourceInterface mappingHintSourceInterface = (MappingHintSourceInterface)theEObject;
 				T result = caseMappingHintSourceInterface(mappingHintSourceInterface);
+				if (result == null) result = caseNamedElement(mappingHintSourceInterface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -431,6 +434,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				ModelConnectionHintSourceInterface modelConnectionHintSourceInterface = (ModelConnectionHintSourceInterface)theEObject;
 				T result = caseModelConnectionHintSourceInterface(modelConnectionHintSourceInterface);
 				if (result == null) result = caseMappingHintSourceInterface(modelConnectionHintSourceInterface);
+				if (result == null) result = caseNamedElement(modelConnectionHintSourceInterface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

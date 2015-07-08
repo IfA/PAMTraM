@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EReference;
  *
  * @see pamtram.metamodel.MetamodelPackage#getReference()
  * @model abstract="true"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='eReferenceMatchesParentEClass'"
  * @generated
  */
 public interface Reference<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends MetaModelElement<C, R, A> {

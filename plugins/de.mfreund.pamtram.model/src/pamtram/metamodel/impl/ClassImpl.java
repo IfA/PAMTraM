@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
 import org.eclipse.ocl.pivot.ids.IdResolver;
@@ -29,9 +28,9 @@ import org.eclipse.ocl.pivot.library.logical.BooleanAndOperation;
 import org.eclipse.ocl.pivot.library.logical.BooleanNotOperation;
 import org.eclipse.ocl.pivot.library.logical.BooleanOrOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation;
-import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
-import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclAnyOclTypeOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
+import org.eclipse.ocl.pivot.library.string.StringConcatOperation;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
@@ -382,71 +381,75 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 		/**
 		 * 
 		 * inv containerIsValid:
-		 *   let severity : Integer[1] = 'Class::containerIsValid'.getSeverity()
+		 *   let severity : Integer[1] = 4
 		 *   in
-		 *     if severity <= 0
-		 *     then true
-		 *     else
+		 *     let
+		 *       status : OclAny[1] = if self.isSection() or self.container = null
+		 *       then true
+		 *       else self.container = self.oclContainer().oclContainer()
+		 *       endif
+		 *     in
 		 *       let
-		 *         status : OclAny[1] = if self.isSection() or self.container = null
-		 *         then true
-		 *         else self.container = self.oclContainer().oclContainer()
+		 *         message : String[?] = if status <> true
+		 *         then 'The \'container\' refrence must point to the containing Class!'
+		 *         else null
 		 *         endif
 		 *       in
-		 *         'Class::containerIsValid'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
-		 *     endif
+		 *         'Class::containerIsValid'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
 		 */
 		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		final /*@NonNull*/ /*@NonInvalid*/ IntegerValue severity_0 = ClassUtil.nonNullState(CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, MetamodelTables.STR_Class_c_c_containerIsValid));
-		final /*@NonInvalid*/ boolean le = ClassUtil.nonNullState(OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, severity_0, MetamodelTables.INT_0).booleanValue());
-		/*@NonInvalid*/ boolean symbol_0;
-		if (le) {
-		    symbol_0 = ValueUtil.TRUE_VALUE;
-		}
-		else {
-		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
+		/*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
+		try {
+		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_isSection;
 		    try {
-		        /*@NonNull*/ /*@Caught*/ Object CAUGHT_isSection;
-		        try {
-		            final /*@Thrown*/ boolean isSection = this.isSection();
-		            CAUGHT_isSection = isSection;
-		        }
-		        catch (Exception e) {
-		            CAUGHT_isSection = ValueUtil.createInvalidValue(e);
-		        }
-		        /*@NonNull*/ /*@Caught*/ Object CAUGHT_eq;
-		        try {
-		            final /*@Nullable*/ /*@Thrown*/ Object container = this.getContainer();
-		            final /*@Thrown*/ boolean eq = container == null;
-		            CAUGHT_eq = eq;
-		        }
-		        catch (Exception e) {
-		            CAUGHT_eq = ValueUtil.createInvalidValue(e);
-		        }
-		        final /*@Nullable*/ /*@Thrown*/ Boolean or = BooleanOrOperation.INSTANCE.evaluate(CAUGHT_isSection, CAUGHT_eq);
-		        if (or == null) {
-		            throw new InvalidValueException("Null if condition");
-		        }
-		        /*@Thrown*/ boolean status;
-		        if (or) {
-		            status = ValueUtil.TRUE_VALUE;
-		        }
-		        else {
-		            final /*@Nullable*/ /*@Thrown*/ Object container_0 = this.getContainer();
-		            final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
-		            final /*@Nullable*/ /*@Thrown*/ Object oclContainer_0 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, oclContainer);
-		            final /*@Thrown*/ boolean eq_0 = (container_0 != null) ? container_0.equals(oclContainer_0) : (oclContainer_0 == null);
-		            status = eq_0;
-		        }
-		        CAUGHT_status = status;
+		        final /*@Thrown*/ boolean isSection = this.isSection();
+		        CAUGHT_isSection = isSection;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_status = ValueUtil.createInvalidValue(e);
+		        CAUGHT_isSection = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, MetamodelTables.STR_Class_c_c_containerIsValid, this, null, diagnostics, context, null, severity_0, CAUGHT_status, MetamodelTables.INT_0).booleanValue());
-		    symbol_0 = logDiagnostic;
+		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_eq;
+		    try {
+		        final /*@Nullable*/ /*@Thrown*/ Object container = this.getContainer();
+		        final /*@Thrown*/ boolean eq = container == null;
+		        CAUGHT_eq = eq;
+		    }
+		    catch (Exception e) {
+		        CAUGHT_eq = ValueUtil.createInvalidValue(e);
+		    }
+		    final /*@Nullable*/ /*@Thrown*/ Boolean or = BooleanOrOperation.INSTANCE.evaluate(CAUGHT_isSection, CAUGHT_eq);
+		    if (or == null) {
+		        throw new InvalidValueException("Null if condition");
+		    }
+		    /*@Thrown*/ boolean status;
+		    if (or) {
+		        status = ValueUtil.TRUE_VALUE;
+		    }
+		    else {
+		        final /*@Nullable*/ /*@Thrown*/ Object container_0 = this.getContainer();
+		        final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
+		        final /*@Nullable*/ /*@Thrown*/ Object oclContainer_0 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, oclContainer);
+		        final /*@Thrown*/ boolean eq_0 = (container_0 != null) ? container_0.equals(oclContainer_0) : (oclContainer_0 == null);
+		        status = eq_0;
+		    }
+		    CAUGHT_status = status;
 		}
-		return Boolean.TRUE == symbol_0;
+		catch (Exception e) {
+		    CAUGHT_status = ValueUtil.createInvalidValue(e);
+		}
+		if (CAUGHT_status instanceof InvalidValueException) {
+		    throw (InvalidValueException)CAUGHT_status;
+		}
+		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
+		/*@Nullable*/ /*@NonInvalid*/ String message_0;
+		if (ne) {
+		    message_0 = MetamodelTables.STR_The_32_39_container_39_32_refrence_32_must_32_point_32_to_32_the_32_containing_32_Class_33;
+		}
+		else {
+		    message_0 = null;
+		}
+		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, MetamodelTables.STR_Class_c_c_containerIsValid, this, null, diagnostics, context, message_0, MetamodelTables.INT_4, CAUGHT_status, MetamodelTables.INT_0).booleanValue());
+		return Boolean.TRUE == logDiagnostic;
 	}
 
 	/**
@@ -458,82 +461,129 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 		/**
 		 * 
 		 * inv cardinalityIsValid:
-		 *   let severity : Integer[1] = 'Class::cardinalityIsValid'.getSeverity()
+		 *   let severity : Integer[1] = 4
 		 *   in
-		 *     if severity <= 0
-		 *     then true
-		 *     else
+		 *     let
+		 *       status : OclAny[?] = if self =
+		 *         self.getContainingSection() or
+		 *         self.eClass.oclType() = OclVoid
+		 *       then true
+		 *       else
+		 *         let
+		 *           parentEReference : ecore::EReference[1] = self.oclContainer()
+		 *           .oclAsType(Reference(C, R, A)).eReference
+		 *         in
+		 *           if parentEReference.oclType() = OclVoid
+		 *           then true
+		 *           else
+		 *             not (self.cardinality <> CardinalityType::ONE and
+		 *               self.oclContainer()
+		 *               .oclAsType(Reference(C, R, A))
+		 *               .eReference.oclAsType(ecore::EReference).upperBound = 1
+		 *             )
+		 *           endif
+		 *       endif
+		 *     in
 		 *       let
-		 *         status : OclAny[?] = if self <> self.getContainingSection()
-		 *         then
-		 *           not (self.cardinality <> CardinalityType::ONE and
-		 *             self.oclContainer()
-		 *             .oclAsType(Reference(C, R, A))
-		 *             .eReference.oclAsType(ecore::EReference).upperBound <= 1
-		 *           )
-		 *         else true
+		 *         message : String[?] = if status <> true
+		 *         then 'The cardinality of a Class must be specified as \'CardinalityType::ONE\' when the upper bound of the containing Reference is \'1\'!'
+		 *         else null
 		 *         endif
 		 *       in
-		 *         'Class::cardinalityIsValid'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
-		 *     endif
+		 *         'Class::cardinalityIsValid'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
 		 */
 		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		final /*@NonNull*/ /*@NonInvalid*/ IntegerValue severity_0 = ClassUtil.nonNullState(CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, MetamodelTables.STR_Class_c_c_cardinalityIsValid));
-		final /*@NonInvalid*/ boolean le = ClassUtil.nonNullState(OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, severity_0, MetamodelTables.INT_0).booleanValue());
-		/*@NonInvalid*/ boolean symbol_0;
-		if (le) {
-		    symbol_0 = ValueUtil.TRUE_VALUE;
-		}
-		else {
-		    /*@Nullable*/ /*@Caught*/ Object CAUGHT_status;
+		/*@Nullable*/ /*@Caught*/ Object CAUGHT_status;
+		try {
+		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_eq;
 		    try {
 		        final /*@NonNull*/ /*@Thrown*/ Object getContainingSection = ((MetaModelElement)this).getContainingSection();
-		        final /*@Thrown*/ boolean ne = !this.equals(getContainingSection);
-		        /*@Nullable*/ /*@Thrown*/ Boolean status;
-		        if (ne) {
-		            /*@NonNull*/ /*@Caught*/ Object CAUGHT_ne_0;
+		        final /*@Thrown*/ boolean eq = this.equals(getContainingSection);
+		        CAUGHT_eq = eq;
+		    }
+		    catch (Exception e) {
+		        CAUGHT_eq = ValueUtil.createInvalidValue(e);
+		    }
+		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_eq_0;
+		    try {
+		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid_0 = idResolver.getClass(TypeId.OCL_VOID, null);
+		        final /*@NonNull*/ /*@Thrown*/ EClass eClass = this.getEClass();
+		        final /*@NonNull*/ /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType = ClassUtil.nonNullState((org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(evaluator, eClass));
+		        final /*@Thrown*/ boolean eq_0 = oclType.getTypeId() == TYP_OclVoid_0.getTypeId();
+		        CAUGHT_eq_0 = eq_0;
+		    }
+		    catch (Exception e) {
+		        CAUGHT_eq_0 = ValueUtil.createInvalidValue(e);
+		    }
+		    final /*@Nullable*/ /*@Thrown*/ Boolean or = BooleanOrOperation.INSTANCE.evaluate(CAUGHT_eq, CAUGHT_eq_0);
+		    if (or == null) {
+		        throw new InvalidValueException("Null if condition");
+		    }
+		    /*@Nullable*/ /*@Thrown*/ Boolean status;
+		    if (or) {
+		        status = ValueUtil.TRUE_VALUE;
+		    }
+		    else {
+		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Reference_o_C_44_R_44_A_e_0 = idResolver.getClass(MetamodelTables.CLSSid_Reference, null);
+		        final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
+		        final /*@NonNull*/ /*@Thrown*/ Reference oclAsType = ClassUtil.nonNullState((Reference)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_metamodel_c_c_Reference_o_C_44_R_44_A_e_0));
+		        final /*@NonNull*/ /*@Thrown*/ EReference parentEReference = oclAsType.getEReference();
+		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid_1 = idResolver.getClass(TypeId.OCL_VOID, null);
+		        final /*@NonNull*/ /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType_0 = ClassUtil.nonNullState((org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(evaluator, parentEReference));
+		        final /*@Thrown*/ boolean eq_1 = oclType_0.getTypeId() == TYP_OclVoid_1.getTypeId();
+		        /*@Nullable*/ /*@Thrown*/ Boolean symbol_0;
+		        if (eq_1) {
+		            symbol_0 = ValueUtil.TRUE_VALUE;
+		        }
+		        else {
+		            /*@NonNull*/ /*@Caught*/ Object CAUGHT_ne;
 		            try {
 		                final /*@NonNull*/ /*@Thrown*/ Enumerator cardinality = this.getCardinality();
 		                final /*@NonNull*/ /*@Thrown*/ EnumerationLiteralId BOXED_cardinality = MetamodelTables.ENUMid_CardinalityType.getEnumerationLiteralId(ClassUtil.nonNullState(cardinality.getName()));
-		                final /*@Thrown*/ boolean ne_0 = BOXED_cardinality != MetamodelTables.ELITid_ONE;
-		                CAUGHT_ne_0 = ne_0;
+		                final /*@Thrown*/ boolean ne = BOXED_cardinality != MetamodelTables.ELITid_ONE;
+		                CAUGHT_ne = ne;
 		            }
 		            catch (Exception e) {
-		                CAUGHT_ne_0 = ValueUtil.createInvalidValue(e);
+		                CAUGHT_ne = ValueUtil.createInvalidValue(e);
 		            }
-		            /*@NonNull*/ /*@Caught*/ Object CAUGHT_le_0;
+		            /*@NonNull*/ /*@Caught*/ Object CAUGHT_eq_2;
 		            try {
 		                final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ecore_c_c_EReference_0 = idResolver.getClass(MetamodelTables.CLSSid_EReference, null);
-		                final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Reference_o_C_44_R_44_A_e_0 = idResolver.getClass(MetamodelTables.CLSSid_Reference, null);
-		                final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
-		                final /*@NonNull*/ /*@Thrown*/ Reference oclAsType = ClassUtil.nonNullState((Reference)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_metamodel_c_c_Reference_o_C_44_R_44_A_e_0));
 		                final /*@NonNull*/ /*@Thrown*/ EReference eReference = oclAsType.getEReference();
-		                final /*@NonNull*/ /*@Thrown*/ EReference oclAsType_0 = ClassUtil.nonNullState((EReference)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, eReference, TYP_ecore_c_c_EReference_0));
-		                final /*@Nullable*/ /*@Thrown*/ Object upperBound = oclAsType_0.getUpperBound();
+		                final /*@NonNull*/ /*@Thrown*/ EReference oclAsType_1 = ClassUtil.nonNullState((EReference)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, eReference, TYP_ecore_c_c_EReference_0));
+		                final /*@Nullable*/ /*@Thrown*/ Object upperBound = oclAsType_1.getUpperBound();
 		                final /*@Nullable*/ /*@Thrown*/ IntegerValue BOXED_upperBound = upperBound == null ? null : ValueUtil.integerValueOf(upperBound);
-		                final /*@Thrown*/ boolean le_0 = ClassUtil.nonNullState(OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, BOXED_upperBound, MetamodelTables.INT_1).booleanValue());
-		                CAUGHT_le_0 = le_0;
+		                final /*@Thrown*/ boolean eq_2 = MetamodelTables.INT_1.equals(BOXED_upperBound);
+		                CAUGHT_eq_2 = eq_2;
 		            }
 		            catch (Exception e) {
-		                CAUGHT_le_0 = ValueUtil.createInvalidValue(e);
+		                CAUGHT_eq_2 = ValueUtil.createInvalidValue(e);
 		            }
-		            final /*@Nullable*/ /*@Thrown*/ Boolean and = BooleanAndOperation.INSTANCE.evaluate(CAUGHT_ne_0, CAUGHT_le_0);
+		            final /*@Nullable*/ /*@Thrown*/ Boolean and = BooleanAndOperation.INSTANCE.evaluate(CAUGHT_ne, CAUGHT_eq_2);
 		            final /*@Nullable*/ /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(and);
-		            status = not;
+		            symbol_0 = not;
 		        }
-		        else {
-		            status = ValueUtil.TRUE_VALUE;
-		        }
-		        CAUGHT_status = status;
+		        status = symbol_0;
 		    }
-		    catch (Exception e) {
-		        CAUGHT_status = ValueUtil.createInvalidValue(e);
-		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, MetamodelTables.STR_Class_c_c_cardinalityIsValid, this, null, diagnostics, context, null, severity_0, CAUGHT_status, MetamodelTables.INT_0).booleanValue());
-		    symbol_0 = logDiagnostic;
+		    CAUGHT_status = status;
 		}
-		return Boolean.TRUE == symbol_0;
+		catch (Exception e) {
+		    CAUGHT_status = ValueUtil.createInvalidValue(e);
+		}
+		if (CAUGHT_status instanceof InvalidValueException) {
+		    throw (InvalidValueException)CAUGHT_status;
+		}
+		final /*@Thrown*/ boolean ne_0 = CAUGHT_status == Boolean.FALSE;
+		/*@Nullable*/ /*@NonInvalid*/ String message_0;
+		if (ne_0) {
+		    message_0 = MetamodelTables.STR_The_32_cardinality_32_of_32_a_32_Class_32_must_32_be_32_specified_32_as_32_39_CardinalityType;
+		}
+		else {
+		    message_0 = null;
+		}
+		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, MetamodelTables.STR_Class_c_c_cardinalityIsValid, this, null, diagnostics, context, message_0, MetamodelTables.INT_4, CAUGHT_status, MetamodelTables.INT_0).booleanValue());
+		return Boolean.TRUE == logDiagnostic;
 	}
 
 	/**
@@ -545,67 +595,114 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 		/**
 		 * 
 		 * inv eClassMatchesParentEReference:
-		 *   let
-		 *     severity : Integer[1] = 'Class::eClassMatchesParentEReference'.getSeverity()
+		 *   let severity : Integer[1] = 4
 		 *   in
-		 *     if severity <= 0
-		 *     then true
-		 *     else
+		 *     let
+		 *       status : OclAny[?] = if self =
+		 *         self.getContainingSection() or
+		 *         self.eClass.oclType() = OclVoid
+		 *       then true
+		 *       else
+		 *         let
+		 *           parentEReference : ecore::EReference[1] = self.oclContainer()
+		 *           .oclAsType(Reference(C, R, A)).eReference
+		 *         in
+		 *           if parentEReference.oclType() = OclVoid
+		 *           then true
+		 *           else
+		 *             parentEReference.oclAsType(ecore::EReference)
+		 *             .eReferenceType.isSuperTypeOf(
+		 *               self.eClass.oclAsType(ecore::EClass))
+		 *           endif
+		 *       endif
+		 *     in
 		 *       let
-		 *         status : OclAny[?] = if self <> self.getContainingSection()
-		 *         then
-		 *           self.oclContainer()
-		 *           .oclAsType(Reference(C, R, A))
-		 *           .eReference.oclAsType(ecore::EReference)
-		 *           .eReferenceType.isSuperTypeOf(
-		 *             self.eClass.oclAsType(ecore::EClass))
-		 *         else true
+		 *         message : String[?] = if status <> true
+		 *         then 'The eClass \'' + self.eClass.name + '\' is not allowed by the containing reference!'
+		 *         else null
 		 *         endif
 		 *       in
-		 *         'Class::eClassMatchesParentEReference'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
-		 *     endif
+		 *         'Class::eClassMatchesParentEReference'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
 		 */
 		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		final /*@NonNull*/ /*@NonInvalid*/ IntegerValue severity_0 = ClassUtil.nonNullState(CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, MetamodelTables.STR_Class_c_c_eClassMatchesParentEReference));
-		final /*@NonInvalid*/ boolean le = ClassUtil.nonNullState(OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, severity_0, MetamodelTables.INT_0).booleanValue());
-		/*@NonInvalid*/ boolean symbol_0;
-		if (le) {
-		    symbol_0 = ValueUtil.TRUE_VALUE;
-		}
-		else {
-		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
+		/*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
+		try {
+		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_eq;
 		    try {
 		        final /*@NonNull*/ /*@Thrown*/ Object getContainingSection = ((MetaModelElement)this).getContainingSection();
-		        final /*@Thrown*/ boolean ne = !this.equals(getContainingSection);
-		        /*@Thrown*/ boolean status;
-		        if (ne) {
-		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ecore_c_c_EClass = idResolver.getClass(MetamodelTables.CLSSid_EClass, null);
-		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ecore_c_c_EReference = idResolver.getClass(MetamodelTables.CLSSid_EReference, null);
-		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Reference_o_C_44_R_44_A_e = idResolver.getClass(MetamodelTables.CLSSid_Reference, null);
-		            final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
-		            final /*@NonNull*/ /*@Thrown*/ Reference oclAsType = ClassUtil.nonNullState((Reference)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_metamodel_c_c_Reference_o_C_44_R_44_A_e));
-		            final /*@NonNull*/ /*@Thrown*/ EReference eReference = oclAsType.getEReference();
-		            final /*@NonNull*/ /*@Thrown*/ EReference oclAsType_0 = ClassUtil.nonNullState((EReference)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, eReference, TYP_ecore_c_c_EReference));
-		            @SuppressWarnings("null")
-		            final /*@NonNull*/ /*@Thrown*/ EClass eReferenceType = oclAsType_0.getEReferenceType();
-		            final /*@NonNull*/ /*@Thrown*/ EClass eClass = this.getEClass();
-		            final /*@NonNull*/ /*@Thrown*/ EClass oclAsType_1 = ClassUtil.nonNullState((EClass)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, eClass, TYP_ecore_c_c_EClass));
-		            final /*@Thrown*/ boolean isSuperTypeOf = eReferenceType.isSuperTypeOf(oclAsType_1);
-		            status = isSuperTypeOf;
-		        }
-		        else {
-		            status = ValueUtil.TRUE_VALUE;
-		        }
-		        CAUGHT_status = status;
+		        final /*@Thrown*/ boolean eq = this.equals(getContainingSection);
+		        CAUGHT_eq = eq;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_status = ValueUtil.createInvalidValue(e);
+		        CAUGHT_eq = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, MetamodelTables.STR_Class_c_c_eClassMatchesParentEReference, this, null, diagnostics, context, null, severity_0, CAUGHT_status, MetamodelTables.INT_0).booleanValue());
-		    symbol_0 = logDiagnostic;
+		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_eq_0;
+		    try {
+		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid = idResolver.getClass(TypeId.OCL_VOID, null);
+		        final /*@NonNull*/ /*@Thrown*/ EClass eClass = this.getEClass();
+		        final /*@NonNull*/ /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType = ClassUtil.nonNullState((org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(evaluator, eClass));
+		        final /*@Thrown*/ boolean eq_0 = oclType.getTypeId() == TYP_OclVoid.getTypeId();
+		        CAUGHT_eq_0 = eq_0;
+		    }
+		    catch (Exception e) {
+		        CAUGHT_eq_0 = ValueUtil.createInvalidValue(e);
+		    }
+		    final /*@Nullable*/ /*@Thrown*/ Boolean or = BooleanOrOperation.INSTANCE.evaluate(CAUGHT_eq, CAUGHT_eq_0);
+		    if (or == null) {
+		        throw new InvalidValueException("Null if condition");
+		    }
+		    /*@Thrown*/ boolean status;
+		    if (or) {
+		        status = ValueUtil.TRUE_VALUE;
+		    }
+		    else {
+		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Reference_o_C_44_R_44_A_e = idResolver.getClass(MetamodelTables.CLSSid_Reference, null);
+		        final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
+		        final /*@NonNull*/ /*@Thrown*/ Reference oclAsType = ClassUtil.nonNullState((Reference)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_metamodel_c_c_Reference_o_C_44_R_44_A_e));
+		        final /*@NonNull*/ /*@Thrown*/ EReference parentEReference = oclAsType.getEReference();
+		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid_0 = idResolver.getClass(TypeId.OCL_VOID, null);
+		        final /*@NonNull*/ /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType_0 = ClassUtil.nonNullState((org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(evaluator, parentEReference));
+		        final /*@Thrown*/ boolean eq_1 = oclType_0.getTypeId() == TYP_OclVoid_0.getTypeId();
+		        /*@Thrown*/ boolean symbol_0;
+		        if (eq_1) {
+		            symbol_0 = ValueUtil.TRUE_VALUE;
+		        }
+		        else {
+		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ecore_c_c_EClass = idResolver.getClass(MetamodelTables.CLSSid_EClass, null);
+		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ecore_c_c_EReference = idResolver.getClass(MetamodelTables.CLSSid_EReference, null);
+		            final /*@NonNull*/ /*@Thrown*/ EReference oclAsType_0 = ClassUtil.nonNullState((EReference)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, parentEReference, TYP_ecore_c_c_EReference));
+		            @SuppressWarnings("null")
+		            final /*@NonNull*/ /*@Thrown*/ EClass eReferenceType = oclAsType_0.getEReferenceType();
+		            final /*@NonNull*/ /*@Thrown*/ EClass eClass_0 = this.getEClass();
+		            final /*@NonNull*/ /*@Thrown*/ EClass oclAsType_1 = ClassUtil.nonNullState((EClass)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, eClass_0, TYP_ecore_c_c_EClass));
+		            final /*@Thrown*/ boolean isSuperTypeOf = eReferenceType.isSuperTypeOf(oclAsType_1);
+		            symbol_0 = isSuperTypeOf;
+		        }
+		        status = symbol_0;
+		    }
+		    CAUGHT_status = status;
 		}
-		return Boolean.TRUE == symbol_0;
+		catch (Exception e) {
+		    CAUGHT_status = ValueUtil.createInvalidValue(e);
+		}
+		if (CAUGHT_status instanceof InvalidValueException) {
+		    throw (InvalidValueException)CAUGHT_status;
+		}
+		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
+		/*@Nullable*/ /*@NonInvalid*/ String message_0;
+		if (ne) {
+		    final /*@NonNull*/ /*@Thrown*/ EClass eClass_1 = this.getEClass();
+		    final /*@Nullable*/ /*@Thrown*/ String name = eClass_1.getName();
+		    final /*@NonNull*/ /*@NonInvalid*/ String sum = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(MetamodelTables.STR_The_32_eClass_32_39, name));
+		    final /*@NonNull*/ /*@NonInvalid*/ String sum_0 = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(sum, MetamodelTables.STR__39_32_is_32_not_32_allowed_32_by_32_the_32_containing_32_reference_33));
+		    message_0 = sum_0;
+		}
+		else {
+		    message_0 = null;
+		}
+		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, MetamodelTables.STR_Class_c_c_eClassMatchesParentEReference, this, null, diagnostics, context, message_0, MetamodelTables.INT_4, CAUGHT_status, MetamodelTables.INT_0).booleanValue());
+		return Boolean.TRUE == logDiagnostic;
 	}
 
 	/**
@@ -761,11 +858,11 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 				return isContainedIn((C)arguments.get(0));
 			case MetamodelPackage.CLASS___GET_OWNING_CONTAINMENT_REFERENCE:
 				return getOwningContainmentReference();
-			case MetamodelPackage.CLASS___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP_2:
+			case MetamodelPackage.CLASS___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP_13:
 				return containerIsValid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MetamodelPackage.CLASS___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP_2:
+			case MetamodelPackage.CLASS___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP_13:
 				return cardinalityIsValid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MetamodelPackage.CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP_2:
+			case MetamodelPackage.CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP_13:
 				return eClassMatchesParentEReference((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

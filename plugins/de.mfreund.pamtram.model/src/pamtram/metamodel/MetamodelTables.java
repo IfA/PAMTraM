@@ -118,6 +118,7 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ EnumerationId ENUMid_CardinalityType = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getEnumerationId("CardinalityType");
     public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_0 = ValueUtil.integerValueOf("0");
     public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_1 = ValueUtil.integerValueOf("1");
+    public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_4 = ValueUtil.integerValueOf("4");
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_TMPLid__1 = TypeId.ORDERED_SET.getSpecializedId(IdManager.getTemplateParameterId(0));
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_ActualAttribute_c_c_attributeMatchesParentEClass = "ActualAttribute::attributeMatchesParentEClass";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_Class_c_c_cardinalityIsValid = "Class::cardinalityIsValid";
@@ -128,6 +129,10 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_NonContainmentReference_c_c_eReferenceIsNonContainment = "NonContainmentReference::eReferenceIsNonContainment";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_Reference_c_c_eReferenceMatchesParentEClass = "Reference::eReferenceMatchesParentEClass";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_SourceSectionAttribute_c_c_attributeMatchesParentEClass = "SourceSectionAttribute::attributeMatchesParentEClass";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_39_container_39_32_refrence_32_must_32_point_32_to_32_the_32_containing_32_Class_33 = "The \'container\' refrence must point to the containing Class!";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_cardinality_32_of_32_a_32_Class_32_must_32_be_32_specified_32_as_32_39_CardinalityType = "The cardinality of a Class must be specified as \'CardinalityType::ONE\' when the upper bound of the containing Reference is \'1\'!";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_eClass_32_39 = "The eClass \'";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_32_is_32_not_32_allowed_32_by_32_the_32_containing_32_reference_33 = "\' is not allowed by the containing reference!";
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_AttributeMapping = TypeId.BAG.getSpecializedId(MetamodelTables.CLSSid_AttributeMapping);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_AttributeMatcher = TypeId.BAG.getSpecializedId(MetamodelTables.CLSSid_AttributeMatcher);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_CardinalityMapping = TypeId.BAG.getSpecializedId(MetamodelTables.CLSSid_CardinalityMapping);

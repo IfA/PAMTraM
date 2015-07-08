@@ -21,7 +21,7 @@ import pamtram.metamodel.TargetSectionAttribute;
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getAttributeMapping()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='targetAttributeMatchesSection'"
  * @generated
  */
 public interface AttributeMapping extends MappingHint, ExpressionHint, ModifiableHint, ExpandableHint {

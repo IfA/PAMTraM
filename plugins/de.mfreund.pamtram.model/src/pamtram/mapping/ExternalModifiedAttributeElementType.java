@@ -15,6 +15,7 @@ import pamtram.metamodel.Reference;
  *
  * @see pamtram.mapping.MappingPackage#getExternalModifiedAttributeElementType()
  * @model abstract="true"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='sourceAttributeMatchesContainerSection'"
  * @generated
  */
 public interface ExternalModifiedAttributeElementType<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends ModifiedAttributeElementType<C, R, A> {

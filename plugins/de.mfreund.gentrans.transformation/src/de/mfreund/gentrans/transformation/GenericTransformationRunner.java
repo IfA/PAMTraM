@@ -72,8 +72,9 @@ import pamtram.util.EPackageHelper.EPackageCheck;
  * @version 1.0
  */
 public class GenericTransformationRunner {
+
 	/**
-	 * List of objects to cancel
+	 * This keeps track of objects that need to be canceled when the user requests an early termination of the transformation.
 	 */
 	private final List<CancellationListener> objectsToCancel;
 
@@ -83,12 +84,12 @@ public class GenericTransformationRunner {
 	private final String sourceFilePath;
 
 	/**
-	 * The source model
+	 * The source model to be transformed
 	 */
 	private EObject sourceModel;
 
 	/**
-	 * Path to the transformation model
+	 * File path to the transformation model
 	 */
 	private final String pamtramPath;
 
@@ -103,29 +104,71 @@ public class GenericTransformationRunner {
 	private final String targetFilePath;
 
 	/**
-	 * The target model resource
+	 * The target model resource where the result of the transformation shall be stored
 	 */
 	private XMIResource targetModel;
 
 	/**
-	 * Message output stream (Console view)
+	 * A {@link MessageConsoleStream message output stream} (Console view) that can be used to print messages to the user
 	 */
 	private final MessageConsoleStream consoleStream;
+
 	/**
-	 * Maximum length for connection paths maxPathLength<0 == unbounded Standard
-	 * value = -1
+	 * Maximum length for connection paths in the 'joining' step;
+	 * If this is set to less than zero 0, it means that the maximum length is unbounded
 	 */
 	private int maxPathLength;
+
+	/**
+	 * This is the getter for the {@link #maxPathLength} setting.
+	 * @return The maximum length for connection paths in the 'joining' step.
+	 */
+	public int getMaxPathLength() {
+		return maxPathLength;
+	}
+
+	/**
+	 * This is the setter for the {@link #maxPathLength} setting.
+	 * @param maxPathLength The maximum length for connection paths in the 'joining' step (value must 
+	 * be larger or equal to '-1').
+	 */
+	public void setMaxPathLength(final int maxPathLength) {
+		this.maxPathLength = maxPathLength >= 0 ? maxPathLength : -1;
+	}
+
 	/**
 	 * Determines whether the user should be asked every time an ambiguous
-	 * mapping was detected, or if we should reuse user decisions. standard value
-	 * = true
+	 * mapping was detected, or if we should reuse user decisions
 	 */
 	private boolean onlyAskOnceOnAmbiguousMappings;
+
+	/**
+	 * This is the getter for the {@link #onlyAskOnceOnAmbiguousMappings} setting.
+	 * @return '<em><b>true</b></em>' if the user should be asked every time an ambiguous mapping was detected,
+	 * '<em><b>false</b></em>' otherwise.
+	 */
+	public boolean isOnlyAskOnceOnAmbiguousMappings() {
+		return onlyAskOnceOnAmbiguousMappings;
+	}
+
+	/**
+	 * This is the setter for the {@link #onlyAskOnceOnAmbiguousMappings} setting.
+	 * @param onlyAskOnceOnAmbiguousMappings '<em><b>true</b></em>' if the user should be asked every time 
+	 * an ambiguous mapping was detected, '<em><b>false</b></em>' otherwise.
+	 */
+	public void setOnlyAskOnceOnAmbiguousMappings(
+			final boolean onlyAskOnceOnAmbiguousMappings) {
+		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
+	}
+
+	/**
+	 * This keeps track of whether the user requested an early termination of the transformation
+	 */
 	private boolean isCancelled;
 
 	/**
-	 * This keeps track of the descriptor for the target library context to be used during the transformation.
+	 * This keeps track of the {@link LibraryContextDescriptor descriptor for the target library context} to 
+	 * be used during the transformation.
 	 */
 	private LibraryContextDescriptor targetLibraryContextDescriptor;
 
@@ -157,7 +200,7 @@ public class GenericTransformationRunner {
 	}
 
 	/**
-	 * This is the {@link TargetSectionRegistry} that registers target sections.
+	 * This is the {@link TargetSectionRegistry} that registers created target sections.
 	 */
 	private TargetSectionRegistry targetSectionRegistry;
 
@@ -196,16 +239,14 @@ public class GenericTransformationRunner {
 		this.maxPathLength = maxPathLength;
 		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
 		this.targetLibraryContextDescriptor = targetLibraryContextDescriptor;
-		consoleStream = findConsole(
-				"de.mfreund.gentrans.transformation_" + hashCode())
-				.newMessageStream();
+		consoleStream = findConsole("de.mfreund.gentrans.transformation_" + hashCode()).newMessageStream();
 		objectsToCancel = new LinkedList<CancellationListener>();
 		// brings the console view to the front
 		showConsole();
 	}
 
 	/**
-	 * Constructor
+	 * This constructs an instance. 
 	 *
 	 * @param sourceFilePath
 	 *            File path of the source Model
@@ -216,13 +257,17 @@ public class GenericTransformationRunner {
 	 * @param targetLibraryContextDescriptor
 	 * 			  The descriptor for the target library context to be used during the transformation.
 	 */
-	public GenericTransformationRunner(final String sourceFilePath,
-			final String pamtramPath, final String targetFilePath, LibraryContextDescriptor targetLibraryContextDescriptor) {
+	public GenericTransformationRunner(
+			final String sourceFilePath,
+			final String pamtramPath,
+			final String targetFilePath, 
+			LibraryContextDescriptor targetLibraryContextDescriptor) {
+
 		this(sourceFilePath, pamtramPath, targetFilePath, -1, true, targetLibraryContextDescriptor);
 	}
 
 	/**
-	 * Constructor
+	 * This constructs an instance.
 	 *
 	 * @param sourceFilePath
 	 *            File path of the source Model
@@ -233,14 +278,18 @@ public class GenericTransformationRunner {
 	 * @param targetLibraryContextDescriptor
 	 * 			  The descriptor for the target library context to be used during the transformation.
 	 */
-	public GenericTransformationRunner(final String sourceFilePath,
-			final PAMTraM pamtramModel, final String targetFilePath, LibraryContextDescriptor targetLibraryContextDescriptor) {
+	public GenericTransformationRunner(
+			final String sourceFilePath,
+			final PAMTraM pamtramModel, 
+			final String targetFilePath, 
+			LibraryContextDescriptor targetLibraryContextDescriptor) {
+
 		this(sourceFilePath, null, targetFilePath, -1, true, targetLibraryContextDescriptor);
 		this.pamtramModel = pamtramModel;
 	}
 
 	/**
-	 * Constructor
+	 * This constructs an instance.
 	 *
 	 * @param sourceModel
 	 *            The source Model
@@ -251,15 +300,19 @@ public class GenericTransformationRunner {
 	 * @param targetLibraryContextDescriptor
 	 * 			  The descriptor for the target library context to be used during the transformation.
 	 */
-	public GenericTransformationRunner(final EObject sourceModel,
-			final PAMTraM pamtramModel, final String targetFilePath, LibraryContextDescriptor targetLibraryContextDescriptor) {
+	public GenericTransformationRunner(
+			final EObject sourceModel,
+			final PAMTraM pamtramModel, 
+			final String targetFilePath, 
+			LibraryContextDescriptor targetLibraryContextDescriptor) {
+
 		this(null, null, targetFilePath, -1, true, targetLibraryContextDescriptor);
 		this.pamtramModel = pamtramModel;
 		this.sourceModel = sourceModel;
 	}
 
 	/**
-	 * Cancels any running (or future) transformations
+	 * This cancels any running (or future) transformation.
 	 */
 	public void cancel() {
 		isCancelled = true;
@@ -272,11 +325,12 @@ public class GenericTransformationRunner {
 	 * This performs the actual execution of the transformation. In the course of this method,
 	 * the four main steps of the transformation get executed.
 	 * 
-	 * @param targetModel
-	 * @param pamtramModel
-	 * @param suitableMappings
-	 * @param monitor
-	 * @return true on success
+	 * @param targetModel The {@link XMIResource target model resource} where the result of the transformation shall be stored
+	 * @param pamtramModel The {@link PAMTraM} instance that describes the transformation.
+	 * @param suitableMappings A list of {@link Mapping Mappings} that may be used in the transformation. This needs to match
+	 * those mappings defined in the given '<em>pamtramModel</em>' or be a subset of these mappings
+	 * @param monitor The {@link IProgressMonitor monitor} that shall be used to visualize the progress of the transformation.
+	 * @return '<em><b>true</b></em>' if the transformation was performed successfully, '<em><b>false</b></em>' otherwise
 	 */
 	private boolean executeMappings(final XMIResource targetModel, final EObject sourceModel,
 			final PAMTraM pamtramModel, final List<Mapping> suitableMappings,
@@ -307,8 +361,8 @@ public class GenericTransformationRunner {
 		objectsToCancel.add(sourceSectionMatcher);
 
 		/*
-		 * now start mapping each one of the references. We automatically start
-		 * at the sourceModel root node
+		 * Now start matching each of the elements in the containment tree. We automatically start
+		 * at the root element.
 		 */
 		final LinkedList<MappingInstanceStorage> selectedMappings = new LinkedList<>();
 		final LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping = new LinkedHashMap<>();
@@ -318,6 +372,10 @@ public class GenericTransformationRunner {
 		final double workUnit = 250.0 / numSrcModelElements;
 		double accumulatedWork = 0;
 
+		/*
+		 * When iterating through the containment tree, 'getNumberOfAvailableElements()' will decrease over the time
+		 * until every element has either been matched or marked as 'unmatched'.
+		 */
 		while (containmentTree.getNumberOfAvailableElements() > 0 && !isCancelled) {
 
 			final MappingInstanceStorage selectedMapping = 
@@ -327,18 +385,19 @@ public class GenericTransformationRunner {
 				writePamtramMessage("Transformation aborted.");
 				return false;
 			}
+
+			// store the selected mapping
 			if (selectedMapping != null) {
 				selectedMappings.add(selectedMapping);
-				if (!selectedMappingsByMapping.containsKey(selectedMapping
-						.getMapping())) {
+				if (!selectedMappingsByMapping.containsKey(selectedMapping.getMapping())) {
 					selectedMappingsByMapping.put(selectedMapping.getMapping(),
 							new LinkedList<MappingInstanceStorage>());
 				}
-				selectedMappingsByMapping.get(selectedMapping.getMapping())
-				.add(selectedMapping);
+				selectedMappingsByMapping.get(selectedMapping.getMapping()).add(selectedMapping);
 
 			}
 
+			// update the progress bar in the monitor
 			accumulatedWork += workUnit
 					* (containmentTree.getNumberOfAvailableElements());
 			if (accumulatedWork >= 1) {
@@ -375,8 +434,9 @@ public class GenericTransformationRunner {
 		monitor.subTask("Instantiating targetModelSections for selected mappings. First pass");
 		writePamtramMessage("Analyzing target metamodel");
 		targetSectionRegistry = new TargetSectionRegistry(
-				consoleStream, attrValueRegistry, pamtramModel
-				.getTargetSectionModel().getMetaModelPackage());
+				consoleStream,
+				attrValueRegistry, 
+				pamtramModel.getTargetSectionModel().getMetaModelPackage());
 		objectsToCancel.add(targetSectionRegistry);
 
 		/*
@@ -435,36 +495,6 @@ public class GenericTransformationRunner {
 					targetSectionInstantiator, targetModel.getContents().get(0));
 		}
 
-	}
-
-	/**
-	 * Get the output Console. Copied from: @see <a href=
-	 * "http://wiki.eclipse.org/FAQ_How_do_I_write_to_the_console_from_a_plug-in%3F"
-	 * >Eclipse FAQ</a>
-	 *
-	 * @param consoleName
-	 * @return MessageConsole object
-	 */
-	private MessageConsole findConsole(final String consoleName) {
-		final ConsolePlugin plugin = ConsolePlugin.getDefault();
-		final IConsoleManager conMan = plugin.getConsoleManager();
-		final IConsole[] existing = conMan.getConsoles();
-		for (final IConsole element : existing) {
-			if (consoleName.equals(element.getName())) {
-				return (MessageConsole) element;
-			}
-		}
-		// no console found, so create a new one
-		final MessageConsole myConsole = new MessageConsole(consoleName, null);
-		conMan.addConsoles(new IConsole[] { myConsole });
-		return myConsole;
-	}
-
-	/**
-	 * @return the maxPathLength
-	 */
-	public int getMaxPathLength() {
-		return maxPathLength;
 	}
 
 	/**
@@ -687,13 +717,6 @@ public class GenericTransformationRunner {
 			}
 		}
 		return exportedHintValues;
-	}
-
-	/**
-	 * @return the onlyAskOnceOnAmbiguousMappings
-	 */
-	public boolean isOnlyAskOnceOnAmbiguousMappings() {
-		return onlyAskOnceOnAmbiguousMappings;
 	}
 
 	/**
@@ -1562,20 +1585,26 @@ public class GenericTransformationRunner {
 	}
 
 	/**
-	 * @param maxPathLength
-	 *            the maxPathLength to set (value must be larger or equal -1)
+	 * Find an existing output console for the transformation or create a new one. 
+	 * Copied from: @see <a href="http://wiki.eclipse.org/FAQ_How_do_I_write_to_the_console_from_a_plug-in%3F"
+	 * >Eclipse FAQ</a>
+	 *
+	 * @param consoleName The name of the console to be returned.
+	 * @return A {@link MessageConsole} object with the given '<em>consoleName</em>'. 
 	 */
-	public void setMaxPathLength(final int maxPathLength) {
-		this.maxPathLength = maxPathLength >= 0 ? maxPathLength : -1;
-	}
-
-	/**
-	 * @param onlyAskOnceOnAmbiguousMappings
-	 *            the onlyAskOnceOnAmbiguousMappings to set
-	 */
-	public void setOnlyAskOnceOnAmbiguousMappings(
-			final boolean onlyAskOnceOnAmbiguousMappings) {
-		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
+	private MessageConsole findConsole(final String consoleName) {
+		final ConsolePlugin plugin = ConsolePlugin.getDefault();
+		final IConsoleManager conMan = plugin.getConsoleManager();
+		final IConsole[] existing = conMan.getConsoles();
+		for (final IConsole element : existing) {
+			if (consoleName.equals(element.getName())) {
+				return (MessageConsole) element;
+			}
+		}
+		// no console found, so create a new one
+		final MessageConsole myConsole = new MessageConsole(consoleName, null);
+		conMan.addConsoles(new IConsole[] { myConsole });
+		return myConsole;
 	}
 
 	/**
@@ -1606,10 +1635,9 @@ public class GenericTransformationRunner {
 	 * Writes a message on the console that helps to divide the transformation
 	 * output into different stages of the transformation
 	 *
-	 * @param msg
+	 * @param msg The message to be printed to the console
 	 */
 	private void writePamtramMessage(final String msg) {
-		consoleStream.println("\n################# " + msg
-				+ " #################\n");
+		consoleStream.println("\n################# " + msg + " #################\n");
 	}
 }

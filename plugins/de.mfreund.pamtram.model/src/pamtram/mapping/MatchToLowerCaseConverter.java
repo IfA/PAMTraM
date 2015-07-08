@@ -32,6 +32,7 @@ public interface MatchToLowerCaseConverter extends AttributeValueModifier {
 	 * @see #setRegex(String)
 	 * @see pamtram.mapping.MappingPackage#getMatchToLowerCaseConverter_Regex()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!MatchToLowerCaseConverter!regex'"
 	 * @generated
 	 */
 	String getRegex();

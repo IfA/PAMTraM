@@ -36,6 +36,7 @@ public interface TargetSectionAttribute extends Attribute<TargetSectionClass, Ta
 	 * @see #setUnique(boolean)
 	 * @see pamtram.metamodel.MetamodelPackage#getTargetSectionAttribute_Unique()
 	 * @model default="false" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!TargetSectionAttribute!unique'"
 	 * @generated
 	 */
 	boolean isUnique();
@@ -61,7 +62,7 @@ public interface TargetSectionAttribute extends Attribute<TargetSectionClass, Ta
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(String)
 	 * @see pamtram.metamodel.MetamodelPackage#getTargetSectionAttribute_Value()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!TargetSectionAttribute!value'"
 	 * @generated
 	 */
 	String getValue();

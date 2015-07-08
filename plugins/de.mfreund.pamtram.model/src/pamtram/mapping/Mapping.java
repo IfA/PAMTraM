@@ -38,6 +38,7 @@ public interface Mapping extends MappingType {
 	 * @see #setCondition(ComplexCondition)
 	 * @see pamtram.mapping.MappingPackage#getMapping_Condition()
 	 * @model containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!Mapping!condition'"
 	 * @generated
 	 */
 	ComplexCondition getCondition();
@@ -64,6 +65,7 @@ public interface Mapping extends MappingType {
 	 * @return the value of the '<em>Mapping Hint Groups</em>' containment reference list.
 	 * @see pamtram.mapping.MappingPackage#getMapping_MappingHintGroups()
 	 * @model containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!Mapping!mappingHintGroups'"
 	 * @generated
 	 */
 	EList<MappingHintGroupType> getMappingHintGroups();
@@ -80,6 +82,7 @@ public interface Mapping extends MappingType {
 	 * @return the value of the '<em>Imported Mapping Hint Groups</em>' containment reference list.
 	 * @see pamtram.mapping.MappingPackage#getMapping_ImportedMappingHintGroups()
 	 * @model containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!Mapping!importedMappingHintGroups'"
 	 * @generated
 	 */
 	EList<MappingHintGroupImporter> getImportedMappingHintGroups();
@@ -96,6 +99,7 @@ public interface Mapping extends MappingType {
 	 * @return the value of the '<em>Global Variables</em>' containment reference list.
 	 * @see pamtram.mapping.MappingPackage#getMapping_GlobalVariables()
 	 * @model containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!Mapping!globalVariables'"
 	 * @generated
 	 */
 	EList<GlobalAttribute> getGlobalVariables();

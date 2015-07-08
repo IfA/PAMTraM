@@ -33,6 +33,7 @@ public interface And extends ComplexCondition {
 	 * @return the value of the '<em>Condition</em>' containment reference list.
 	 * @see pamtram.condition.ConditionPackage#getAnd_Condition()
 	 * @model containment="true" lower="2"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!And!condition'"
 	 * @generated
 	 */
 	EList<ComplexCondition> getCondition();

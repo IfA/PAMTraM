@@ -40,6 +40,7 @@ public interface MappingModel extends EObject {
 	 * @return the value of the '<em>Mapping</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getMappingModel_Mapping()
 	 * @model containment="true" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!MappingModel!mapping'"
 	 * @generated
 	 */
 	EList<Mapping> getMapping();
@@ -56,6 +57,7 @@ public interface MappingModel extends EObject {
 	 * @return the value of the '<em>Modifier Sets</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getMappingModel_ModifierSets()
 	 * @model containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!MappingModel!modifierSets'"
 	 * @generated
 	 */
 	EList<AttributeValueModifierSet> getModifierSets();
@@ -72,6 +74,7 @@ public interface MappingModel extends EObject {
 	 * @return the value of the '<em>Global Values</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getMappingModel_GlobalValues()
 	 * @model containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!MappingModel!globalValues'"
 	 * @generated
 	 */
 	EList<GlobalValue> getGlobalValues();

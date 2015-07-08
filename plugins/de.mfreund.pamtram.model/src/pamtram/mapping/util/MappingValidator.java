@@ -4,7 +4,6 @@ package pamtram.mapping.util;
 
 import java.util.Map;
 
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
@@ -92,12 +91,116 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	public static final String DIAGNOSTIC_SOURCE = "pamtram.mapping";
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Target Attribute Matches Section' of 'Attribute Mapping'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int ATTRIBUTE_MAPPING__TARGET_ATTRIBUTE_MATCHES_SECTION = 1;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'No Cardinality Mapping For Source Section Root' of 'Cardinality Mapping'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int CARDINALITY_MAPPING__NO_CARDINALITY_MAPPING_FOR_SOURCE_SECTION_ROOT = 2;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Source Class Matches Section' of 'Cardinality Mapping'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int CARDINALITY_MAPPING__SOURCE_CLASS_MATCHES_SECTION = 3;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Target Class Matches Section' of 'Cardinality Mapping'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int CARDINALITY_MAPPING__TARGET_CLASS_MATCHES_SECTION = 4;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Target Class Is Variable Cardinality' of 'Cardinality Mapping'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int CARDINALITY_MAPPING__TARGET_CLASS_IS_VARIABLE_CARDINALITY = 5;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Source Class Is Variable Cardinality' of 'Cardinality Mapping'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int CARDINALITY_MAPPING__SOURCE_CLASS_IS_VARIABLE_CARDINALITY = 6;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Affected Reference Matches Section' of 'Instance Selector'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE_MATCHES_SECTION = 7;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Affected Reference Is Non Containment' of 'Instance Selector'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE_IS_NON_CONTAINMENT = 8;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Target Matches Affected Reference Type' of 'Attribute Matcher'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int ATTRIBUTE_MATCHER__TARGET_MATCHES_AFFECTED_REFERENCE_TYPE = 9;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Source Attribute Matches Section Or Contained Section' of 'Local Modified Attribute Element Type'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION = 10;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Source Matches Possible Container Type' of 'Model Connection Hint Target Attribute'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE__SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE = 11;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Source Attribute Has Upper Bound One' of 'Global Attribute'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int GLOBAL_ATTRIBUTE__SOURCE_ATTRIBUTE_HAS_UPPER_BOUND_ONE = 12;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Source Attribute Matches Container Section' of 'External Modified Attribute Element Type'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION = 13;
+
+	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 0;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 13;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -367,32 +470,13 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	}
 
 	/**
-	 * The cached validation expression for the targetAttributeMatchesSection constraint of '<em>Attribute Mapping</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String ATTRIBUTE_MAPPING__TARGET_ATTRIBUTE_MATCHES_SECTION__EEXPRESSION = "self.target.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection";
-
-	/**
 	 * Validates the targetAttributeMatchesSection constraint of '<em>Attribute Mapping</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean validateAttributeMapping_targetAttributeMatchesSection(AttributeMapping attributeMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-				validate
-				(MappingPackage.Literals.ATTRIBUTE_MAPPING,
-						attributeMapping,
-						diagnostics,
-						context,
-						"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-						"targetAttributeMatchesSection",
-						ATTRIBUTE_MAPPING__TARGET_ATTRIBUTE_MATCHES_SECTION__EEXPRESSION,
-						Diagnostic.ERROR,
-						DIAGNOSTIC_SOURCE,
-						0);
+		return attributeMapping.targetAttributeMatchesSection(diagnostics, context);
 	}
 
 	/**
@@ -427,10 +511,10 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 			result &= validate_EveryMapEntryUnique(cardinalityMapping, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
-			result &= validateCardinalityMapping_sourceClassMatchesSection(cardinalityMapping, diagnostics, context);
+			result &= validateCardinalityMapping_noCardinalityMappingForSourceSectionRoot(cardinalityMapping, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
-			result &= validateCardinalityMapping_sourceClassIsVariableCardinality(cardinalityMapping, diagnostics, context);
+			result &= validateCardinalityMapping_sourceClassMatchesSection(cardinalityMapping, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
 			result &= validateCardinalityMapping_targetClassMatchesSection(cardinalityMapping, diagnostics, context);
@@ -439,18 +523,10 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 			result &= validateCardinalityMapping_targetClassIsVariableCardinality(cardinalityMapping, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
-			result &= validateCardinalityMapping_noCardinalityMappingForSourceSectionRoot(cardinalityMapping, diagnostics, context);
+			result &= validateCardinalityMapping_sourceClassIsVariableCardinality(cardinalityMapping, diagnostics, context);
 		}
 		return result;
 	}
-
-	/**
-	 * The cached validation expression for the sourceClassMatchesSection constraint of '<em>Cardinality Mapping</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String CARDINALITY_MAPPING__SOURCE_CLASS_MATCHES_SECTION__EEXPRESSION = "self.source.getContainingSection() = self.oclContainer().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection";
 
 	/**
 	 * Validates the sourceClassMatchesSection constraint of '<em>Cardinality Mapping</em>'.
@@ -459,27 +535,8 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateCardinalityMapping_sourceClassMatchesSection(CardinalityMapping cardinalityMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-				validate
-				(MappingPackage.Literals.CARDINALITY_MAPPING,
-						cardinalityMapping,
-						diagnostics,
-						context,
-						"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-						"sourceClassMatchesSection",
-						CARDINALITY_MAPPING__SOURCE_CLASS_MATCHES_SECTION__EEXPRESSION,
-						Diagnostic.ERROR,
-						DIAGNOSTIC_SOURCE,
-						0);
+		return cardinalityMapping.sourceClassMatchesSection(diagnostics, context);
 	}
-
-	/**
-	 * The cached validation expression for the sourceClassIsVariableCardinality constraint of '<em>Cardinality Mapping</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String CARDINALITY_MAPPING__SOURCE_CLASS_IS_VARIABLE_CARDINALITY__EEXPRESSION = "self.source.cardinality <> pamtram::metamodel::CardinalityType::ONE";
 
 	/**
 	 * Validates the sourceClassIsVariableCardinality constraint of '<em>Cardinality Mapping</em>'.
@@ -488,27 +545,8 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateCardinalityMapping_sourceClassIsVariableCardinality(CardinalityMapping cardinalityMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-				validate
-				(MappingPackage.Literals.CARDINALITY_MAPPING,
-						cardinalityMapping,
-						diagnostics,
-						context,
-						"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-						"sourceClassIsVariableCardinality",
-						CARDINALITY_MAPPING__SOURCE_CLASS_IS_VARIABLE_CARDINALITY__EEXPRESSION,
-						Diagnostic.ERROR,
-						DIAGNOSTIC_SOURCE,
-						0);
+		return cardinalityMapping.sourceClassIsVariableCardinality(diagnostics, context);
 	}
-
-	/**
-	 * The cached validation expression for the targetClassMatchesSection constraint of '<em>Cardinality Mapping</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String CARDINALITY_MAPPING__TARGET_CLASS_MATCHES_SECTION__EEXPRESSION = "self.target.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection";
 
 	/**
 	 * Validates the targetClassMatchesSection constraint of '<em>Cardinality Mapping</em>'.
@@ -517,27 +555,8 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateCardinalityMapping_targetClassMatchesSection(CardinalityMapping cardinalityMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-				validate
-				(MappingPackage.Literals.CARDINALITY_MAPPING,
-						cardinalityMapping,
-						diagnostics,
-						context,
-						"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-						"targetClassMatchesSection",
-						CARDINALITY_MAPPING__TARGET_CLASS_MATCHES_SECTION__EEXPRESSION,
-						Diagnostic.ERROR,
-						DIAGNOSTIC_SOURCE,
-						0);
+		return cardinalityMapping.targetClassMatchesSection(diagnostics, context);
 	}
-
-	/**
-	 * The cached validation expression for the targetClassIsVariableCardinality constraint of '<em>Cardinality Mapping</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String CARDINALITY_MAPPING__TARGET_CLASS_IS_VARIABLE_CARDINALITY__EEXPRESSION = "self.target.cardinality <> pamtram::metamodel::CardinalityType::ONE";
 
 	/**
 	 * Validates the targetClassIsVariableCardinality constraint of '<em>Cardinality Mapping</em>'.
@@ -546,27 +565,8 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateCardinalityMapping_targetClassIsVariableCardinality(CardinalityMapping cardinalityMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-				validate
-				(MappingPackage.Literals.CARDINALITY_MAPPING,
-						cardinalityMapping,
-						diagnostics,
-						context,
-						"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-						"targetClassIsVariableCardinality",
-						CARDINALITY_MAPPING__TARGET_CLASS_IS_VARIABLE_CARDINALITY__EEXPRESSION,
-						Diagnostic.ERROR,
-						DIAGNOSTIC_SOURCE,
-						0);
+		return cardinalityMapping.targetClassIsVariableCardinality(diagnostics, context);
 	}
-
-	/**
-	 * The cached validation expression for the noCardinalityMappingForSourceSectionRoot constraint of '<em>Cardinality Mapping</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String CARDINALITY_MAPPING__NO_CARDINALITY_MAPPING_FOR_SOURCE_SECTION_ROOT__EEXPRESSION = "self.source <> self.source.getContainingSection()";
 
 	/**
 	 * Validates the noCardinalityMappingForSourceSectionRoot constraint of '<em>Cardinality Mapping</em>'.
@@ -575,18 +575,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateCardinalityMapping_noCardinalityMappingForSourceSectionRoot(CardinalityMapping cardinalityMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-				validate
-				(MappingPackage.Literals.CARDINALITY_MAPPING,
-						cardinalityMapping,
-						diagnostics,
-						context,
-						"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-						"noCardinalityMappingForSourceSectionRoot",
-						CARDINALITY_MAPPING__NO_CARDINALITY_MAPPING_FOR_SOURCE_SECTION_ROOT__EEXPRESSION,
-						Diagnostic.ERROR,
-						DIAGNOSTIC_SOURCE,
-						0);
+		return cardinalityMapping.noCardinalityMappingForSourceSectionRoot(diagnostics, context);
 	}
 
 	/**
@@ -621,21 +610,13 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 			result &= validate_EveryMapEntryUnique(mappingInstanceSelector, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
-			result &= validateMappingInstanceSelector_affectedReferenceIsNonContainment(mappingInstanceSelector, diagnostics, context);
+			result &= validateMappingInstanceSelector_affectedReferenceMatchesSection(mappingInstanceSelector, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
-			result &= validateMappingInstanceSelector_affectedReferenceMatchesSection(mappingInstanceSelector, diagnostics, context);
+			result &= validateMappingInstanceSelector_affectedReferenceIsNonContainment(mappingInstanceSelector, diagnostics, context);
 		}
 		return result;
 	}
-
-	/**
-	 * The cached validation expression for the affectedReferenceIsNonContainment constraint of '<em>Instance Selector</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE_IS_NON_CONTAINMENT__EEXPRESSION = "not self.affectedReference.eReference.oclAsType(ecore::EReference).containment";
 
 	/**
 	 * Validates the affectedReferenceIsNonContainment constraint of '<em>Instance Selector</em>'.
@@ -644,27 +625,8 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMappingInstanceSelector_affectedReferenceIsNonContainment(MappingInstanceSelector mappingInstanceSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-				validate
-				(MappingPackage.Literals.MAPPING_INSTANCE_SELECTOR,
-						mappingInstanceSelector,
-						diagnostics,
-						context,
-						"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-						"affectedReferenceIsNonContainment",
-						MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE_IS_NON_CONTAINMENT__EEXPRESSION,
-						Diagnostic.ERROR,
-						DIAGNOSTIC_SOURCE,
-						0);
+		return mappingInstanceSelector.affectedReferenceIsNonContainment(diagnostics, context);
 	}
-
-	/**
-	 * The cached validation expression for the affectedReferenceMatchesSection constraint of '<em>Instance Selector</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE_MATCHES_SECTION__EEXPRESSION = "if self.oclContainer().oclIsKindOf(pamtram::mapping::MappingHintGroupType) then self.affectedReference.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection else self.affectedReference.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupImporter).hintGroup.targetMMSection endif";
 
 	/**
 	 * Validates the affectedReferenceMatchesSection constraint of '<em>Instance Selector</em>'.
@@ -673,18 +635,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMappingInstanceSelector_affectedReferenceMatchesSection(MappingInstanceSelector mappingInstanceSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-				validate
-				(MappingPackage.Literals.MAPPING_INSTANCE_SELECTOR,
-						mappingInstanceSelector,
-						diagnostics,
-						context,
-						"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-						"affectedReferenceMatchesSection",
-						MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE_MATCHES_SECTION__EEXPRESSION,
-						Diagnostic.ERROR,
-						DIAGNOSTIC_SOURCE,
-						0);
+		return mappingInstanceSelector.affectedReferenceMatchesSection(diagnostics, context);
 	}
 
 	/**
@@ -734,32 +685,13 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	}
 
 	/**
-	 * The cached validation expression for the targetMatchesAffectedReferenceType constraint of '<em>Attribute Matcher</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String ATTRIBUTE_MATCHER__TARGET_MATCHES_AFFECTED_REFERENCE_TYPE__EEXPRESSION = "self.oclContainer().oclAsType(pamtram::mapping::MappingInstanceSelector).affectedReference.eReference.oclAsType(ecore::EReference).eReferenceType.oclAsType(ecore::EClass).isSuperTypeOf(self.targetAttribute.oclContainer().oclAsType(pamtram::metamodel::Class).eClass)";
-
-	/**
 	 * Validates the targetMatchesAffectedReferenceType constraint of '<em>Attribute Matcher</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean validateAttributeMatcher_targetMatchesAffectedReferenceType(AttributeMatcher attributeMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-				validate
-				(MappingPackage.Literals.ATTRIBUTE_MATCHER,
-						attributeMatcher,
-						diagnostics,
-						context,
-						"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-						"targetMatchesAffectedReferenceType",
-						ATTRIBUTE_MATCHER__TARGET_MATCHES_AFFECTED_REFERENCE_TYPE__EEXPRESSION,
-						Diagnostic.ERROR,
-						DIAGNOSTIC_SOURCE,
-						0);
+		return attributeMatcher.targetMatchesAffectedReferenceType(diagnostics, context);
 	}
 
 	/**
@@ -918,32 +850,13 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	}
 
 	/**
-	 * The cached validation expression for the sourceAttributeMatchesSectionOrContainedSection constraint of '<em>Local Modified Attribute Element Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__EEXPRESSION = "self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection() = self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection or self.source.oclAsType(pamtram::metamodel::SourceSectionAttribute).getContainingSection().oclAsType(pamtram::metamodel::SourceSectionClass).isContainedIn(self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)";
-
-	/**
 	 * Validates the sourceAttributeMatchesSectionOrContainedSection constraint of '<em>Local Modified Attribute Element Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(LocalModifiedAttributeElementType<?, ?, ?> localModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-				validate
-				(MappingPackage.Literals.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE,
-						localModifiedAttributeElementType,
-						diagnostics,
-						context,
-						"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-						"sourceAttributeMatchesSectionOrContainedSection",
-						LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__EEXPRESSION,
-						Diagnostic.ERROR,
-						DIAGNOSTIC_SOURCE,
-						0);
+		return localModifiedAttributeElementType.sourceAttributeMatchesSectionOrContainedSection(diagnostics, context);
 	}
 
 	/**
@@ -1085,32 +998,13 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	}
 
 	/**
-	 * The cached validation expression for the sourceMatchesPossibleContainerType constraint of '<em>Model Connection Hint Target Attribute</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE__SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__EEXPRESSION = "self.source.oclContainer().oclAsType(pamtram::metamodel::Class).eClass.eAllContainments->exists(r : ecore::EReference | r.eReferenceType.isSuperTypeOf(self.oclContainer().oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection.eClass))";
-
-	/**
 	 * Validates the sourceMatchesPossibleContainerType constraint of '<em>Model Connection Hint Target Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean validateModelConnectionHintTargetAttribute_sourceMatchesPossibleContainerType(ModelConnectionHintTargetAttribute modelConnectionHintTargetAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-				validate
-				(MappingPackage.Literals.MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE,
-						modelConnectionHintTargetAttribute,
-						diagnostics,
-						context,
-						"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-						"sourceMatchesPossibleContainerType",
-						MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE__SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__EEXPRESSION,
-						Diagnostic.ERROR,
-						DIAGNOSTIC_SOURCE,
-						0);
+		return modelConnectionHintTargetAttribute.sourceMatchesPossibleContainerType(diagnostics, context);
 	}
 
 	/**
@@ -1289,32 +1183,13 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	}
 
 	/**
-	 * The cached validation expression for the sourceAttributeHasUpperBoundOne constraint of '<em>Global Attribute</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String GLOBAL_ATTRIBUTE__SOURCE_ATTRIBUTE_HAS_UPPER_BOUND_ONE__EEXPRESSION = "self.source.attribute.upperBound = 1";
-
-	/**
 	 * Validates the sourceAttributeHasUpperBoundOne constraint of '<em>Global Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean validateGlobalAttribute_sourceAttributeHasUpperBoundOne(GlobalAttribute globalAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-				validate
-				(MappingPackage.Literals.GLOBAL_ATTRIBUTE,
-						globalAttribute,
-						diagnostics,
-						context,
-						"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-						"sourceAttributeHasUpperBoundOne",
-						GLOBAL_ATTRIBUTE__SOURCE_ATTRIBUTE_HAS_UPPER_BOUND_ONE__EEXPRESSION,
-						Diagnostic.ERROR,
-						DIAGNOSTIC_SOURCE,
-						0);
+		return globalAttribute.sourceAttributeHasUpperBoundOne(diagnostics, context);
 	}
 
 	/**
@@ -1428,32 +1303,13 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	}
 
 	/**
-	 * The cached validation expression for the sourceAttributeMatchesContainerSection constraint of '<em>External Modified Attribute Element Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__EEXPRESSION = "self.source.oclAsType(pamtram::metamodel::SourceSectionAttribute).getContainingSection().oclAsType(pamtram::metamodel::SourceSectionClass).isContainerFor(self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection.oclAsType(pamtram::metamodel::SourceSectionClass))";
-
-	/**
 	 * Validates the sourceAttributeMatchesContainerSection constraint of '<em>External Modified Attribute Element Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(ExternalModifiedAttributeElementType<?, ?, ?> externalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-				validate
-				(MappingPackage.Literals.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE,
-						externalModifiedAttributeElementType,
-						diagnostics,
-						context,
-						"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-						"sourceAttributeMatchesContainerSection",
-						EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__EEXPRESSION,
-						Diagnostic.ERROR,
-						DIAGNOSTIC_SOURCE,
-						0);
+		return externalModifiedAttributeElementType.sourceAttributeMatchesContainerSection(diagnostics, context);
 	}
 
 	/**

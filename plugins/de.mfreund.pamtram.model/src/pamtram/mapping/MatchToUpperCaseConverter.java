@@ -32,6 +32,7 @@ public interface MatchToUpperCaseConverter extends AttributeValueModifier {
 	 * @see #setRegex(String)
 	 * @see pamtram.mapping.MappingPackage#getMatchToUpperCaseConverter_Regex()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!MatchToUpperCaseConverter!regex'"
 	 * @generated
 	 */
 	String getRegex();

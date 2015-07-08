@@ -35,6 +35,7 @@ public interface LibraryParameter<ParameterType> extends NamedElement {
 	 * @see #setSource(EObject)
 	 * @see pamtram.metamodel.MetamodelPackage#getLibraryParameter_Source()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!LibraryParameter{ParameterType}!source'"
 	 * @generated
 	 */
 	EObject getSource();
@@ -61,6 +62,7 @@ public interface LibraryParameter<ParameterType> extends NamedElement {
 	 * @see #setOriginalParameter(Object)
 	 * @see pamtram.metamodel.MetamodelPackage#getLibraryParameter_OriginalParameter()
 	 * @model kind="reference" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!LibraryParameter{ParameterType}!originalParameter'"
 	 * @generated
 	 */
 	ParameterType getOriginalParameter();

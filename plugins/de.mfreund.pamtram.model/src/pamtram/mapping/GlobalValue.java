@@ -33,6 +33,7 @@ public interface GlobalValue extends NamedElement {
 	 * @see #setValue(double)
 	 * @see pamtram.mapping.MappingPackage#getGlobalValue_Value()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!GlobalValue!value'"
 	 * @generated
 	 */
 	double getValue();

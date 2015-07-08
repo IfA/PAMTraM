@@ -37,6 +37,7 @@ public interface ModelConnectionHint extends MappingHintBaseType {
 	 * @return the value of the '<em>Target Attributes</em>' containment reference list.
 	 * @see pamtram.mapping.MappingPackage#getModelConnectionHint_TargetAttributes()
 	 * @model containment="true" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!ModelConnectionHint!targetAttributes'"
 	 * @generated
 	 */
 	EList<ModelConnectionHintTargetAttribute> getTargetAttributes();
@@ -53,6 +54,7 @@ public interface ModelConnectionHint extends MappingHintBaseType {
 	 * @return the value of the '<em>Source Elements</em>' containment reference list.
 	 * @see pamtram.mapping.MappingPackage#getModelConnectionHint_SourceElements()
 	 * @model containment="true" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!ModelConnectionHint!sourceElements'"
 	 * @generated
 	 */
 	EList<ModelConnectionHintSourceInterface> getSourceElements();
@@ -61,6 +63,7 @@ public interface ModelConnectionHint extends MappingHintBaseType {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" unique="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!ModelConnectionHint!getSourceAttributes()'"
 	 * @generated
 	 */
 	EList<SourceSectionAttribute> getSourceAttributes();

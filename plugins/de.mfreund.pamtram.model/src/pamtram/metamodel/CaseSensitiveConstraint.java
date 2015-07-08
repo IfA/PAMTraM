@@ -33,6 +33,7 @@ public interface CaseSensitiveConstraint extends AttributeValueConstraint {
 	 * @see #setCaseSensitive(boolean)
 	 * @see pamtram.metamodel.MetamodelPackage#getCaseSensitiveConstraint_CaseSensitive()
 	 * @model default="true" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!CaseSensitiveConstraint!caseSensitive'"
 	 * @generated
 	 */
 	boolean isCaseSensitive();

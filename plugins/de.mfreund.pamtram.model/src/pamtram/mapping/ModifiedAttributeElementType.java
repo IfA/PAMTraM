@@ -39,6 +39,7 @@ public interface ModifiedAttributeElementType<C extends pamtram.metamodel.Class<
 	 * @see #setSource(Attribute)
 	 * @see pamtram.mapping.MappingPackage#getModifiedAttributeElementType_Source()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!ModifiedAttributeElementType{C,R,A}!source'"
 	 * @generated
 	 */
 	A getSource();
@@ -64,7 +65,7 @@ public interface ModifiedAttributeElementType<C extends pamtram.metamodel.Class<
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Modifier</em>' reference list.
 	 * @see pamtram.mapping.MappingPackage#getModifiedAttributeElementType_Modifier()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!ModifiedAttributeElementType{C,R,A}!modifier'"
 	 * @generated
 	 */
 	EList<AttributeValueModifierSet> getModifier();

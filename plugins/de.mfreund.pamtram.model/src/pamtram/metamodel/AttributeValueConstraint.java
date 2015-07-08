@@ -38,6 +38,7 @@ public interface AttributeValueConstraint extends NamedElement {
 	 * @see #setType(AttributeValueConstraintType)
 	 * @see pamtram.metamodel.MetamodelPackage#getAttributeValueConstraint_Type()
 	 * @model default="INCLUSION" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!AttributeValueConstraint!type'"
 	 * @generated
 	 */
 	AttributeValueConstraintType getType();
@@ -65,6 +66,7 @@ public interface AttributeValueConstraint extends NamedElement {
 	 * @see #setValue(String)
 	 * @see pamtram.metamodel.MetamodelPackage#getAttributeValueConstraint_Value()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!AttributeValueConstraint!value'"
 	 * @generated
 	 */
 	String getValue();
@@ -83,6 +85,7 @@ public interface AttributeValueConstraint extends NamedElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model required="true" attrValueRequired="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!AttributeValueConstraint!checkConstraint(String)'"
 	 * @generated
 	 */
 	boolean checkConstraint(String attrValue);

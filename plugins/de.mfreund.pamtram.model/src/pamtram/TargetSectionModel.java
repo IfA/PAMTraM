@@ -39,6 +39,7 @@ public interface TargetSectionModel extends SectionModel<TargetSectionClass, Tar
 	 * @return the value of the '<em>Library Elements</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getTargetSectionModel_LibraryElements()
 	 * @model containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!TargetSectionModel!libraryElements'"
 	 * @generated
 	 */
 	EList<LibraryEntry> getLibraryElements();

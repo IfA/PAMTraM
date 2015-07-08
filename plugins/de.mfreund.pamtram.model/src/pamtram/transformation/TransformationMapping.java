@@ -37,6 +37,7 @@ public interface TransformationMapping extends MappingType {
 	 * @see #setSourceMElement(EObject)
 	 * @see pamtram.transformation.TransformationPackage#getTransformationMapping_SourceMElement()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/transformation!TransformationMapping!sourceMElement'"
 	 * @generated
 	 */
 	EObject getSourceMElement();
@@ -63,6 +64,7 @@ public interface TransformationMapping extends MappingType {
 	 * @return the value of the '<em>Target MElement</em>' reference list.
 	 * @see pamtram.transformation.TransformationPackage#getTransformationMapping_TargetMElement()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/transformation!TransformationMapping!targetMElement'"
 	 * @generated
 	 */
 	EList<EObject> getTargetMElement();

@@ -35,6 +35,7 @@ public interface Condition extends ComplexCondition {
 	 * @see #setAttribute(EObject)
 	 * @see pamtram.condition.ConditionPackage#getCondition_Attribute()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!Condition!attribute'"
 	 * @generated
 	 */
 	EObject getAttribute();
@@ -62,7 +63,7 @@ public interface Condition extends ComplexCondition {
 	 * @see pamtram.condition.ComparatorEnum
 	 * @see #setComparator(ComparatorEnum)
 	 * @see pamtram.condition.ConditionPackage#getCondition_Comparator()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!Condition!comparator'"
 	 * @generated
 	 */
 	ComparatorEnum getComparator();
@@ -89,7 +90,7 @@ public interface Condition extends ComplexCondition {
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(String)
 	 * @see pamtram.condition.ConditionPackage#getCondition_Value()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!Condition!value'"
 	 * @generated
 	 */
 	String getValue();

@@ -37,6 +37,7 @@ public interface LibraryEntry extends EObject {
 	 * @return the value of the '<em>Parameters</em>' containment reference list.
 	 * @see pamtram.metamodel.MetamodelPackage#getLibraryEntry_Parameters()
 	 * @model containment="true" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!LibraryEntry!parameters'"
 	 * @generated
 	 */
 	EList<LibraryParameter<?>> getParameters();
@@ -53,6 +54,7 @@ public interface LibraryEntry extends EObject {
 	 * @see #setLibraryFile(String)
 	 * @see pamtram.metamodel.MetamodelPackage#getLibraryEntry_LibraryFile()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!LibraryEntry!libraryFile'"
 	 * @generated
 	 */
 	String getLibraryFile();
@@ -79,6 +81,7 @@ public interface LibraryEntry extends EObject {
 	 * @see #setPath(String)
 	 * @see pamtram.metamodel.MetamodelPackage#getLibraryEntry_Path()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!LibraryEntry!path'"
 	 * @generated
 	 */
 	String getPath();
@@ -105,6 +108,7 @@ public interface LibraryEntry extends EObject {
 	 * @see #setOriginalLibraryEntry(de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry)
 	 * @see pamtram.metamodel.MetamodelPackage#getLibraryEntry_OriginalLibraryEntry()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!LibraryEntry!originalLibraryEntry'"
 	 * @generated
 	 */
 	de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry getOriginalLibraryEntry();

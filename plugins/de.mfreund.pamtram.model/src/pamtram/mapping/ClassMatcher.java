@@ -34,6 +34,7 @@ public interface ClassMatcher extends Matcher {
 	 * @see #setTargetClass(TargetSectionClass)
 	 * @see pamtram.mapping.MappingPackage#getClassMatcher_TargetClass()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!ClassMatcher!targetClass'"
 	 * @generated
 	 */
 	TargetSectionClass getTargetClass();

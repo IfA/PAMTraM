@@ -35,6 +35,7 @@ public interface AttributeValueModifierSet extends NamedElement {
 	 * @return the value of the '<em>Modifier</em>' containment reference list.
 	 * @see pamtram.mapping.MappingPackage#getAttributeValueModifierSet_Modifier()
 	 * @model containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!AttributeValueModifierSet!modifier'"
 	 * @generated
 	 */
 	EList<AttributeValueModifier> getModifier();

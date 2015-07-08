@@ -32,6 +32,7 @@ public interface MappingHintGroup extends MappingHintGroupType, InstantiableMapp
 	 * @see #setModelConnectionMatcher(ModelConnectionHint)
 	 * @see pamtram.mapping.MappingPackage#getMappingHintGroup_ModelConnectionMatcher()
 	 * @model containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!MappingHintGroup!modelConnectionMatcher'"
 	 * @generated
 	 */
 	ModelConnectionHint getModelConnectionMatcher();

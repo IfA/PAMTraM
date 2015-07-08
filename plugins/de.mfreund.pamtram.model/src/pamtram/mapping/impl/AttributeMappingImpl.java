@@ -5,8 +5,10 @@ package pamtram.mapping.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -15,6 +17,18 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.library.classifier.ClassifierOclContainerOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
+import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
+import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.IntegerValue;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingExternalSourceElement;
 import pamtram.mapping.AttributeMappingSourceElement;
@@ -22,9 +36,13 @@ import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.ExpressionHint;
+import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.MappingTables;
 import pamtram.mapping.ModifiableHint;
+import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.TargetSectionAttribute;
+import pamtram.metamodel.TargetSectionClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -248,6 +266,58 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean targetAttributeMatchesSection(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		/**
+		 * 
+		 * inv targetAttributeMatchesSection:
+		 *   let
+		 *     severity : Integer[1] = 'AttributeMapping::targetAttributeMatchesSection'.getSeverity()
+		 *   in
+		 *     if severity <= 0
+		 *     then true
+		 *     else
+		 *       let
+		 *         status : OclAny[1] = self.target.getContainingSection() =
+		 *         self.oclContainer()
+		 *         .oclAsType(MappingHintGroupType).targetMMSection
+		 *       in
+		 *         'AttributeMapping::targetAttributeMatchesSection'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
+		 *     endif
+		 */
+		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
+		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
+		final /*@NonNull*/ /*@NonInvalid*/ IntegerValue severity_0 = ClassUtil.nonNullState(CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, MappingTables.STR_AttributeMapping_c_c_targetAttributeMatchesSection));
+		final /*@NonInvalid*/ boolean le = ClassUtil.nonNullState(OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, severity_0, MappingTables.INT_0).booleanValue());
+		/*@NonInvalid*/ boolean symbol_0;
+		if (le) {
+		    symbol_0 = ValueUtil.TRUE_VALUE;
+		}
+		else {
+		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
+		    try {
+		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType = idResolver.getClass(MappingTables.CLSSid_MappingHintGroupType, null);
+		        final /*@NonNull*/ /*@Thrown*/ TargetSectionAttribute target = this.getTarget();
+		        final /*@NonNull*/ /*@Thrown*/ Object getContainingSection = ((MetaModelElement)target).getContainingSection();
+		        final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
+		        final /*@NonNull*/ /*@Thrown*/ MappingHintGroupType oclAsType = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType));
+		        final /*@NonNull*/ /*@Thrown*/ TargetSectionClass targetMMSection = oclAsType.getTargetMMSection();
+		        final /*@Thrown*/ boolean status = getContainingSection.equals(targetMMSection);
+		        CAUGHT_status = status;
+		    }
+		    catch (Exception e) {
+		        CAUGHT_status = ValueUtil.createInvalidValue(e);
+		    }
+		    final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, MappingTables.STR_AttributeMapping_c_c_targetAttributeMatchesSection, this, null, diagnostics, context, null, severity_0, CAUGHT_status, MappingTables.INT_0).booleanValue());
+		    symbol_0 = logDiagnostic;
+		}
+		return Boolean.TRUE == symbol_0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -409,12 +479,15 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	 * @generated
 	 */
 	@Override
+	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case MappingPackage.ATTRIBUTE_MAPPING___GET_LOCAL_SOURCE_ELEMENTS:
 				return getLocalSourceElements();
 			case MappingPackage.ATTRIBUTE_MAPPING___GET_EXTERNAL_SOURCE_ELEMENTS:
 				return getExternalSourceElements();
+			case MappingPackage.ATTRIBUTE_MAPPING___TARGET_ATTRIBUTE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP_2:
+				return targetAttributeMatchesSection((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -36,6 +36,7 @@ public interface Transformation extends EObject {
 	 * @return the value of the '<em>Transformation Mapping</em>' containment reference list.
 	 * @see pamtram.transformation.TransformationPackage#getTransformation_TransformationMapping()
 	 * @model containment="true" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/transformation!Transformation!transformationMapping'"
 	 * @generated
 	 */
 	EList<TransformationMapping> getTransformationMapping();
@@ -51,7 +52,7 @@ public interface Transformation extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see pamtram.transformation.TransformationPackage#getTransformation_Name()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/transformation!Transformation!name'"
 	 * @generated
 	 */
 	String getName();
@@ -77,7 +78,7 @@ public interface Transformation extends EObject {
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
 	 * @see pamtram.transformation.TransformationPackage#getTransformation_Id()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/transformation!Transformation!id'"
 	 * @generated
 	 */
 	String getId();

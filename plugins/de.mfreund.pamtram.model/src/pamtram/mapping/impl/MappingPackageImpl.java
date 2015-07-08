@@ -718,6 +718,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getAttributeMapping__TargetAttributeMatchesSection__DiagnosticChain_Map_2() {
+		return attributeMappingEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCardinalityMapping() {
 		return cardinalityMappingEClass;
 	}
@@ -745,6 +754,51 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getCardinalityMapping__NoCardinalityMappingForSourceSectionRoot__DiagnosticChain_Map_2() {
+		return cardinalityMappingEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getCardinalityMapping__SourceClassMatchesSection__DiagnosticChain_Map_2() {
+		return cardinalityMappingEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getCardinalityMapping__TargetClassMatchesSection__DiagnosticChain_Map_2() {
+		return cardinalityMappingEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getCardinalityMapping__TargetClassIsVariableCardinality__DiagnosticChain_Map_2() {
+		return cardinalityMappingEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getCardinalityMapping__SourceClassIsVariableCardinality__DiagnosticChain_Map_2() {
+		return cardinalityMappingEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getMappingInstanceSelector() {
 		return mappingInstanceSelectorEClass;
 	}
@@ -765,6 +819,24 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 */
 	public EReference getMappingInstanceSelector_Matcher() {
 		return (EReference)mappingInstanceSelectorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getMappingInstanceSelector__AffectedReferenceMatchesSection__DiagnosticChain_Map_2() {
+		return mappingInstanceSelectorEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getMappingInstanceSelector__AffectedReferenceIsNonContainment__DiagnosticChain_Map_2() {
+		return mappingInstanceSelectorEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -819,6 +891,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 */
 	public EOperation getAttributeMatcher__GetExternalSourceElements() {
 		return attributeMatcherEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getAttributeMatcher__TargetMatchesAffectedReferenceType__DiagnosticChain_Map_2() {
+		return attributeMatcherEClass.getEOperations().get(2);
 	}
 
 	/**
@@ -990,6 +1071,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 */
 	public EClass getLocalModifiedAttributeElementType() {
 		return localModifiedAttributeElementTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getLocalModifiedAttributeElementType__SourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map_2() {
+		return localModifiedAttributeElementTypeEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -1204,6 +1294,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getModelConnectionHintTargetAttribute__SourceMatchesPossibleContainerType__DiagnosticChain_Map_2() {
+		return modelConnectionHintTargetAttributeEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getMappingHintType() {
 		return mappingHintTypeEClass;
 	}
@@ -1312,6 +1411,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getGlobalAttribute__SourceAttributeHasUpperBoundOne__DiagnosticChain_Map_2() {
+		return globalAttributeEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getGlobalAttributeImporter() {
 		return globalAttributeImporterEClass;
 	}
@@ -1377,6 +1485,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 */
 	public EClass getExternalModifiedAttributeElementType() {
 		return externalModifiedAttributeElementTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExternalModifiedAttributeElementType__SourceAttributeMatchesContainerSection__DiagnosticChain_Map_2() {
+		return externalModifiedAttributeElementTypeEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -1550,14 +1667,22 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		createEReference(attributeMappingEClass, ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS);
 		createEOperation(attributeMappingEClass, ATTRIBUTE_MAPPING___GET_LOCAL_SOURCE_ELEMENTS);
 		createEOperation(attributeMappingEClass, ATTRIBUTE_MAPPING___GET_EXTERNAL_SOURCE_ELEMENTS);
+		createEOperation(attributeMappingEClass, ATTRIBUTE_MAPPING___TARGET_ATTRIBUTE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP_2);
 
 		cardinalityMappingEClass = createEClass(CARDINALITY_MAPPING);
 		createEReference(cardinalityMappingEClass, CARDINALITY_MAPPING__SOURCE);
 		createEReference(cardinalityMappingEClass, CARDINALITY_MAPPING__TARGET);
+		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___NO_CARDINALITY_MAPPING_FOR_SOURCE_SECTION_ROOT__DIAGNOSTICCHAIN_MAP_2);
+		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___SOURCE_CLASS_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP_2);
+		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___TARGET_CLASS_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP_2);
+		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___TARGET_CLASS_IS_VARIABLE_CARDINALITY__DIAGNOSTICCHAIN_MAP_2);
+		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___SOURCE_CLASS_IS_VARIABLE_CARDINALITY__DIAGNOSTICCHAIN_MAP_2);
 
 		mappingInstanceSelectorEClass = createEClass(MAPPING_INSTANCE_SELECTOR);
 		createEReference(mappingInstanceSelectorEClass, MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE);
 		createEReference(mappingInstanceSelectorEClass, MAPPING_INSTANCE_SELECTOR__MATCHER);
+		createEOperation(mappingInstanceSelectorEClass, MAPPING_INSTANCE_SELECTOR___AFFECTED_REFERENCE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP_2);
+		createEOperation(mappingInstanceSelectorEClass, MAPPING_INSTANCE_SELECTOR___AFFECTED_REFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP_2);
 
 		matcherEClass = createEClass(MATCHER);
 
@@ -1566,6 +1691,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		createEReference(attributeMatcherEClass, ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES);
 		createEOperation(attributeMatcherEClass, ATTRIBUTE_MATCHER___GET_LOCAL_SOURCE_ELEMENTS);
 		createEOperation(attributeMatcherEClass, ATTRIBUTE_MATCHER___GET_EXTERNAL_SOURCE_ELEMENTS);
+		createEOperation(attributeMatcherEClass, ATTRIBUTE_MATCHER___TARGET_MATCHES_AFFECTED_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP_2);
 
 		attributeMatcherSourceElementEClass = createEClass(ATTRIBUTE_MATCHER_SOURCE_ELEMENT);
 
@@ -1598,6 +1724,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		createEOperation(modifiedAttributeElementTypeEClass, MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP);
 
 		localModifiedAttributeElementTypeEClass = createEClass(LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE);
+		createEOperation(localModifiedAttributeElementTypeEClass, LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP_2);
 
 		mappingHintGroupImporterEClass = createEClass(MAPPING_HINT_GROUP_IMPORTER);
 		createEReference(mappingHintGroupImporterEClass, MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP);
@@ -1618,6 +1745,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		modelConnectionHintSourceElementEClass = createEClass(MODEL_CONNECTION_HINT_SOURCE_ELEMENT);
 
 		modelConnectionHintTargetAttributeEClass = createEClass(MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE);
+		createEOperation(modelConnectionHintTargetAttributeEClass, MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE___SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP_2);
 
 		mappingHintTypeEClass = createEClass(MAPPING_HINT_TYPE);
 
@@ -1637,6 +1765,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		globalAttributeEClass = createEClass(GLOBAL_ATTRIBUTE);
 		createEReference(globalAttributeEClass, GLOBAL_ATTRIBUTE__SOURCE);
 		createEReference(globalAttributeEClass, GLOBAL_ATTRIBUTE__MODIFIER);
+		createEOperation(globalAttributeEClass, GLOBAL_ATTRIBUTE___SOURCE_ATTRIBUTE_HAS_UPPER_BOUND_ONE__DIAGNOSTICCHAIN_MAP_2);
 
 		globalAttributeImporterEClass = createEClass(GLOBAL_ATTRIBUTE_IMPORTER);
 		createEReference(globalAttributeImporterEClass, GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE);
@@ -1651,6 +1780,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		attributeMappingExternalSourceElementEClass = createEClass(ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT);
 
 		externalModifiedAttributeElementTypeEClass = createEClass(EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE);
+		createEOperation(externalModifiedAttributeElementTypeEClass, EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP_2);
 
 		modelConnectionHintExternalSourceElementEClass = createEClass(MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT);
 
@@ -1985,13 +2115,85 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		initEOperation(getAttributeMapping__GetExternalSourceElements(), this.getAttributeMappingExternalSourceElement(), "getExternalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
 
+		EOperation op = initEOperation(getAttributeMapping__TargetAttributeMatchesSection__DiagnosticChain_Map_2(), ecorePackage.getEBoolean(), "targetAttributeMatchesSection", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(cardinalityMappingEClass, CardinalityMapping.class, "CardinalityMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCardinalityMapping_Source(), theMetamodelPackage.getSourceSectionClass(), null, "source", null, 1, 1, CardinalityMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCardinalityMapping_Target(), theMetamodelPackage.getTargetSectionClass(), null, "target", null, 1, 1, CardinalityMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		op = initEOperation(getCardinalityMapping__NoCardinalityMappingForSourceSectionRoot__DiagnosticChain_Map_2(), ecorePackage.getEBoolean(), "noCardinalityMappingForSourceSectionRoot", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getCardinalityMapping__SourceClassMatchesSection__DiagnosticChain_Map_2(), ecorePackage.getEBoolean(), "sourceClassMatchesSection", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getCardinalityMapping__TargetClassMatchesSection__DiagnosticChain_Map_2(), ecorePackage.getEBoolean(), "targetClassMatchesSection", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getCardinalityMapping__TargetClassIsVariableCardinality__DiagnosticChain_Map_2(), ecorePackage.getEBoolean(), "targetClassIsVariableCardinality", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getCardinalityMapping__SourceClassIsVariableCardinality__DiagnosticChain_Map_2(), ecorePackage.getEBoolean(), "sourceClassIsVariableCardinality", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(mappingInstanceSelectorEClass, MappingInstanceSelector.class, "MappingInstanceSelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMappingInstanceSelector_AffectedReference(), theMetamodelPackage.getTargetSectionNonContainmentReference(), null, "affectedReference", null, 1, 1, MappingInstanceSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMappingInstanceSelector_Matcher(), this.getMatcher(), null, "matcher", null, 1, 1, MappingInstanceSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = initEOperation(getMappingInstanceSelector__AffectedReferenceMatchesSection__DiagnosticChain_Map_2(), ecorePackage.getEBoolean(), "affectedReferenceMatchesSection", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getMappingInstanceSelector__AffectedReferenceIsNonContainment__DiagnosticChain_Map_2(), ecorePackage.getEBoolean(), "affectedReferenceIsNonContainment", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(matcherEClass, Matcher.class, "Matcher", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2002,6 +2204,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEOperation(getAttributeMatcher__GetLocalSourceElements(), this.getAttributeMatcherSourceElement(), "getLocalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getAttributeMatcher__GetExternalSourceElements(), this.getAttributeMatcherExternalSourceElement(), "getExternalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getAttributeMatcher__TargetMatchesAffectedReferenceType__DiagnosticChain_Map_2(), ecorePackage.getEBoolean(), "targetMatchesAffectedReferenceType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(attributeMatcherSourceElementEClass, AttributeMatcherSourceElement.class, "AttributeMatcherSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2015,7 +2226,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		initEClass(attributeValueModifierEClass, AttributeValueModifier.class, "AttributeValueModifier", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		EOperation op = initEOperation(getAttributeValueModifier__ModifyValue__String(), ecorePackage.getEString(), "modifyValue", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getAttributeValueModifier__ModifyValue__String(), ecorePackage.getEString(), "modifyValue", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "value", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(substringReplacerEClass, SubstringReplacer.class, "SubstringReplacer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2038,6 +2249,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEOperation(getModifiedAttributeElementType__GetMappingHintGroup(), thePamtramPackage.getNamedElement(), "getMappingHintGroup", 1, 1, !IS_UNIQUE, IS_ORDERED);
 
 		initEClass(localModifiedAttributeElementTypeEClass, LocalModifiedAttributeElementType.class, "LocalModifiedAttributeElementType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		op = initEOperation(getLocalModifiedAttributeElementType__SourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map_2(), ecorePackage.getEBoolean(), "sourceAttributeMatchesSectionOrContainedSection", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(mappingHintGroupImporterEClass, MappingHintGroupImporter.class, "MappingHintGroupImporter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMappingHintGroupImporter_HintGroup(), this.getExportedMappingHintGroup(), null, "hintGroup", null, 1, 1, MappingHintGroupImporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2062,6 +2282,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		initEClass(modelConnectionHintTargetAttributeEClass, ModelConnectionHintTargetAttribute.class, "ModelConnectionHintTargetAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		op = initEOperation(getModelConnectionHintTargetAttribute__SourceMatchesPossibleContainerType__DiagnosticChain_Map_2(), ecorePackage.getEBoolean(), "sourceMatchesPossibleContainerType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(mappingHintTypeEClass, MappingHintType.class, "MappingHintType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(hintImporterMappingHintEClass, HintImporterMappingHint.class, "HintImporterMappingHint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2083,6 +2312,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEReference(getGlobalAttribute_Source(), theMetamodelPackage.getSourceSectionAttribute(), null, "source", null, 1, 1, GlobalAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGlobalAttribute_Modifier(), this.getAttributeValueModifierSet(), null, "modifier", null, 0, -1, GlobalAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		op = initEOperation(getGlobalAttribute__SourceAttributeHasUpperBoundOne__DiagnosticChain_Map_2(), ecorePackage.getEBoolean(), "sourceAttributeHasUpperBoundOne", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(globalAttributeImporterEClass, GlobalAttributeImporter.class, "GlobalAttributeImporter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGlobalAttributeImporter_GlobalAttribute(), this.getGlobalAttribute(), null, "globalAttribute", null, 1, 1, GlobalAttributeImporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2097,6 +2335,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEClass(attributeMappingExternalSourceElementEClass, AttributeMappingExternalSourceElement.class, "AttributeMappingExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(externalModifiedAttributeElementTypeEClass, ExternalModifiedAttributeElementType.class, "ExternalModifiedAttributeElementType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		op = initEOperation(getExternalModifiedAttributeElementType__SourceAttributeMatchesContainerSection__DiagnosticChain_Map_2(), ecorePackage.getEBoolean(), "sourceAttributeMatchesContainerSection", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(modelConnectionHintExternalSourceElementEClass, ModelConnectionHintExternalSourceElement.class, "ModelConnectionHintExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2124,8 +2371,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		createEcoreAnnotations();
 		// http://www.eclipse.org/OCL/Import
 		createImportAnnotations();
-		// http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot
-		createPivotAnnotations();
 	}
 
 	/**
@@ -2140,57 +2385,46 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (this, 
 		   source, 
 		   new String[] {
-			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
 		   });	
 		addAnnotation
 		  (attributeMappingEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "targetAttributeMatchesSection"
 		   });	
 		addAnnotation
 		  (cardinalityMappingEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "sourceClassMatchesSection sourceClassIsVariableCardinality targetClassMatchesSection targetClassIsVariableCardinality noCardinalityMappingForSourceSectionRoot"
 		   });	
 		addAnnotation
 		  (mappingInstanceSelectorEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "affectedReferenceIsNonContainment affectedReferenceMatchesSection"
 		   });	
 		addAnnotation
 		  (attributeMatcherEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "targetMatchesAffectedReferenceType"
 		   });	
 		addAnnotation
 		  (localModifiedAttributeElementTypeEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "sourceAttributeMatchesSectionOrContainedSection"
 		   });	
 		addAnnotation
 		  (modelConnectionHintTargetAttributeEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "sourceMatchesPossibleContainerType"
 		   });	
 		addAnnotation
 		  (globalAttributeEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "sourceAttributeHasUpperBoundOne"
 		   });	
 		addAnnotation
 		  (externalModifiedAttributeElementTypeEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "sourceAttributeMatchesContainerSection"
 		   });
 	}
 
@@ -2208,69 +2442,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		   new String[] {
 			 "ecore", "http://www.eclipse.org/emf/2002/Ecore",
 			 "genlib", "http://www.et.tu-dresden.de/ifa/agtele/genlib"
-		   });
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createPivotAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";	
-		addAnnotation
-		  (attributeMappingEClass, 
-		   source, 
-		   new String[] {
-			 "targetAttributeMatchesSection", "self.target.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection"
-		   });	
-		addAnnotation
-		  (cardinalityMappingEClass, 
-		   source, 
-		   new String[] {
-			 "sourceClassMatchesSection", "self.source.getContainingSection() = self.oclContainer().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection",
-			 "sourceClassIsVariableCardinality", "self.source.cardinality <> pamtram::metamodel::CardinalityType::ONE",
-			 "targetClassMatchesSection", "self.target.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection",
-			 "targetClassIsVariableCardinality", "self.target.cardinality <> pamtram::metamodel::CardinalityType::ONE",
-			 "noCardinalityMappingForSourceSectionRoot", "self.source <> self.source.getContainingSection()"
-		   });	
-		addAnnotation
-		  (mappingInstanceSelectorEClass, 
-		   source, 
-		   new String[] {
-			 "affectedReferenceIsNonContainment", "not self.affectedReference.eReference.oclAsType(ecore::EReference).containment",
-			 "affectedReferenceMatchesSection", "if self.oclContainer().oclIsKindOf(pamtram::mapping::MappingHintGroupType) then self.affectedReference.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection else self.affectedReference.getContainingSection() = self.oclContainer().oclAsType(pamtram::mapping::MappingHintGroupImporter).hintGroup.targetMMSection endif"
-		   });	
-		addAnnotation
-		  (attributeMatcherEClass, 
-		   source, 
-		   new String[] {
-			 "targetMatchesAffectedReferenceType", "self.oclContainer().oclAsType(pamtram::mapping::MappingInstanceSelector).affectedReference.eReference.oclAsType(ecore::EReference).eReferenceType.oclAsType(ecore::EClass).isSuperTypeOf(self.targetAttribute.oclContainer().oclAsType(pamtram::metamodel::Class).eClass)"
-		   });	
-		addAnnotation
-		  (localModifiedAttributeElementTypeEClass, 
-		   source, 
-		   new String[] {
-			 "sourceAttributeMatchesSectionOrContainedSection", "self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection() = self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection or self.source.oclAsType(pamtram::metamodel::SourceSectionAttribute).getContainingSection().oclAsType(pamtram::metamodel::SourceSectionClass).isContainedIn(self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection)"
-		   });	
-		addAnnotation
-		  (modelConnectionHintTargetAttributeEClass, 
-		   source, 
-		   new String[] {
-			 "sourceMatchesPossibleContainerType", "self.source.oclAsType(pamtram::metamodel::TargetSectionAttribute).oclContainer().oclAsType(pamtram::metamodel::Class).eClass.eAllContainments->exists(r : ecore::EReference | r.eReferenceType.isSuperTypeOf(self.oclContainer().oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection.eClass))"
-		   });	
-		addAnnotation
-		  (globalAttributeEClass, 
-		   source, 
-		   new String[] {
-			 "sourceAttributeHasUpperBoundOne", "self.source.attribute.upperBound = 1"
-		   });	
-		addAnnotation
-		  (externalModifiedAttributeElementTypeEClass, 
-		   source, 
-		   new String[] {
-			 "sourceAttributeMatchesContainerSection", "self.source.oclAsType(pamtram::metamodel::SourceSectionAttribute).getContainingSection().oclAsType(pamtram::metamodel::SourceSectionClass).isContainerFor(self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection.oclAsType(pamtram::metamodel::SourceSectionClass))"
 		   });
 	}
 

@@ -32,6 +32,7 @@ public interface Not extends ComplexCondition {
 	 * @see #setCondition(ComplexCondition)
 	 * @see pamtram.condition.ConditionPackage#getNot_Condition()
 	 * @model containment="true" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/condition!Not!condition'"
 	 * @generated
 	 */
 	ComplexCondition getCondition();

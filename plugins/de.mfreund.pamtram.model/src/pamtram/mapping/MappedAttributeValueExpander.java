@@ -36,6 +36,7 @@ public interface MappedAttributeValueExpander extends HintImporterMappingHint {
 	 * @return the value of the '<em>Hints To Expand</em>' reference list.
 	 * @see pamtram.mapping.MappingPackage#getMappedAttributeValueExpander_HintsToExpand()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!MappedAttributeValueExpander!hintsToExpand'"
 	 * @generated
 	 */
 	EList<ExpandableHint> getHintsToExpand();

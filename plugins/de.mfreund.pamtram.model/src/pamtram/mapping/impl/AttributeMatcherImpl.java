@@ -5,16 +5,31 @@ package pamtram.mapping.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.library.classifier.ClassifierOclContainerOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
+import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
+import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.IntegerValue;
 import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.AttributeMatcherExternalSourceElement;
 import pamtram.mapping.AttributeMatcherSourceElement;
@@ -22,9 +37,12 @@ import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.ExpressionHint;
+import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.MappingTables;
 import pamtram.mapping.ModifiableHint;
 import pamtram.metamodel.TargetSectionAttribute;
+import pamtram.metamodel.TargetSectionNonContainmentReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -242,6 +260,72 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean targetMatchesAffectedReferenceType(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		/**
+		 * 
+		 * inv targetMatchesAffectedReferenceType:
+		 *   let
+		 *     severity : Integer[1] = 'AttributeMatcher::targetMatchesAffectedReferenceType'.getSeverity()
+		 *   in
+		 *     if severity <= 0
+		 *     then true
+		 *     else
+		 *       let
+		 *         status : OclAny[?] = self.oclContainer()
+		 *         .oclAsType(MappingInstanceSelector)
+		 *         .affectedReference.eReference.oclAsType(ecore::EReference)
+		 *         .eReferenceType.oclAsType(ecore::EClass)
+		 *         .isSuperTypeOf(
+		 *           self.targetAttribute.oclContainer()
+		 *           .oclAsType(metamodel::Class(C, R, A)).eClass)
+		 *       in
+		 *         'AttributeMatcher::targetMatchesAffectedReferenceType'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
+		 *     endif
+		 */
+		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
+		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
+		final /*@NonNull*/ /*@NonInvalid*/ IntegerValue severity_0 = ClassUtil.nonNullState(CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, MappingTables.STR_AttributeMatcher_c_c_targetMatchesAffectedReferenceType));
+		final /*@NonInvalid*/ boolean le = ClassUtil.nonNullState(OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, severity_0, MappingTables.INT_0).booleanValue());
+		/*@NonInvalid*/ boolean symbol_0;
+		if (le) {
+		    symbol_0 = ValueUtil.TRUE_VALUE;
+		}
+		else {
+		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
+		    try {
+		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ecore_c_c_EClass = idResolver.getClass(MappingTables.CLSSid_EClass, null);
+		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ecore_c_c_EReference_0 = idResolver.getClass(MappingTables.CLSSid_EReference, null);
+		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingInstanceSelector = idResolver.getClass(MappingTables.CLSSid_MappingInstanceSelector, null);
+		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Class_o_C_44_R_44_A_e = idResolver.getClass(MappingTables.CLSSid_Class, null);
+		        final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
+		        final /*@NonNull*/ /*@Thrown*/ MappingInstanceSelector oclAsType = ClassUtil.nonNullState((MappingInstanceSelector)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_mapping_c_c_MappingInstanceSelector));
+		        final /*@NonNull*/ /*@Thrown*/ TargetSectionNonContainmentReference affectedReference = oclAsType.getAffectedReference();
+		        final /*@NonNull*/ /*@Thrown*/ EReference eReference = affectedReference.getEReference();
+		        final /*@NonNull*/ /*@Thrown*/ EReference oclAsType_0 = ClassUtil.nonNullState((EReference)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, eReference, TYP_ecore_c_c_EReference_0));
+		        @SuppressWarnings("null")
+		        final /*@NonNull*/ /*@Thrown*/ EClass eReferenceType = oclAsType_0.getEReferenceType();
+		        final /*@NonNull*/ /*@Thrown*/ EClass oclAsType_1 = ClassUtil.nonNullState((EClass)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, eReferenceType, TYP_ecore_c_c_EClass));
+		        final /*@NonNull*/ /*@Thrown*/ TargetSectionAttribute targetAttribute = this.getTargetAttribute();
+		        final /*@Nullable*/ /*@Thrown*/ Object oclContainer_0 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, targetAttribute);
+		        final /*@NonNull*/ /*@Thrown*/ pamtram.metamodel.Class oclAsType_2 = ClassUtil.nonNullState((pamtram.metamodel.Class)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_0, TYP_pamtram_c_c_metamodel_c_c_Class_o_C_44_R_44_A_e));
+		        final /*@NonNull*/ /*@Thrown*/ EClass eClass = oclAsType_2.getEClass();
+		        final /*@Thrown*/ boolean status = oclAsType_1.isSuperTypeOf(eClass);
+		        CAUGHT_status = status;
+		    }
+		    catch (Exception e) {
+		        CAUGHT_status = ValueUtil.createInvalidValue(e);
+		    }
+		    final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, MappingTables.STR_AttributeMatcher_c_c_targetMatchesAffectedReferenceType, this, null, diagnostics, context, null, severity_0, CAUGHT_status, MappingTables.INT_0).booleanValue());
+		    symbol_0 = logDiagnostic;
+		}
+		return Boolean.TRUE == symbol_0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -403,12 +487,15 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 * @generated
 	 */
 	@Override
+	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case MappingPackage.ATTRIBUTE_MATCHER___GET_LOCAL_SOURCE_ELEMENTS:
 				return getLocalSourceElements();
 			case MappingPackage.ATTRIBUTE_MATCHER___GET_EXTERNAL_SOURCE_ELEMENTS:
 				return getExternalSourceElements();
+			case MappingPackage.ATTRIBUTE_MATCHER___TARGET_MATCHES_AFFECTED_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP_2:
+				return targetMatchesAffectedReferenceType((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

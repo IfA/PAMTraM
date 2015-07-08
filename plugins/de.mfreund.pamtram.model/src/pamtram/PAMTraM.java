@@ -38,7 +38,7 @@ public interface PAMTraM extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Context Meta Model Package</em>' reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_ContextMetaModelPackage()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!PAMTraM!contextMetaModelPackage'"
 	 * @generated
 	 */
 	EList<EPackage> getContextMetaModelPackage();
@@ -55,6 +55,7 @@ public interface PAMTraM extends EObject {
 	 * @see #setSourceSectionModel(SourceSectionModel)
 	 * @see pamtram.PamtramPackage#getPAMTraM_SourceSectionModel()
 	 * @model containment="true" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!PAMTraM!sourceSectionModel'"
 	 * @generated
 	 */
 	SourceSectionModel getSourceSectionModel();
@@ -81,6 +82,7 @@ public interface PAMTraM extends EObject {
 	 * @see #setTargetSectionModel(TargetSectionModel)
 	 * @see pamtram.PamtramPackage#getPAMTraM_TargetSectionModel()
 	 * @model containment="true" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!PAMTraM!targetSectionModel'"
 	 * @generated
 	 */
 	TargetSectionModel getTargetSectionModel();
@@ -107,6 +109,7 @@ public interface PAMTraM extends EObject {
 	 * @see #setMappingModel(MappingModel)
 	 * @see pamtram.PamtramPackage#getPAMTraM_MappingModel()
 	 * @model containment="true" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!PAMTraM!mappingModel'"
 	 * @generated
 	 */
 	MappingModel getMappingModel();
@@ -133,6 +136,7 @@ public interface PAMTraM extends EObject {
 	 * @see #setTransformationModel(TransformationModel)
 	 * @see pamtram.PamtramPackage#getPAMTraM_TransformationModel()
 	 * @model containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!PAMTraM!transformationModel'"
 	 * @generated
 	 */
 	TransformationModel getTransformationModel();

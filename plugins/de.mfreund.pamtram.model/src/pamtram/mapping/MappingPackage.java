@@ -24,7 +24,6 @@ import pamtram.PamtramPackage;
  * <!-- end-user-doc -->
  * @see pamtram.mapping.MappingFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot'"
  *        annotation="http://www.eclipse.org/OCL/Import ecore='http://www.eclipse.org/emf/2002/Ecore' genlib='http://www.et.tu-dresden.de/ifa/agtele/genlib'"
  * @generated
  */
@@ -787,13 +786,22 @@ public interface MappingPackage extends EPackage {
 	int ATTRIBUTE_MAPPING___GET_EXTERNAL_SOURCE_ELEMENTS = MAPPING_HINT_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Target Attribute Matches Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING___TARGET_ATTRIBUTE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP_2 = MAPPING_HINT_OPERATION_COUNT + 2;
+
+	/**
 	 * The number of operations of the '<em>Attribute Mapping</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING_OPERATION_COUNT = MAPPING_HINT_OPERATION_COUNT + 2;
+	int ATTRIBUTE_MAPPING_OPERATION_COUNT = MAPPING_HINT_OPERATION_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -832,13 +840,58 @@ public interface MappingPackage extends EPackage {
 	int CARDINALITY_MAPPING_FEATURE_COUNT = MAPPING_HINT_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>No Cardinality Mapping For Source Section Root</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING___NO_CARDINALITY_MAPPING_FOR_SOURCE_SECTION_ROOT__DIAGNOSTICCHAIN_MAP_2 = MAPPING_HINT_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Source Class Matches Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING___SOURCE_CLASS_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP_2 = MAPPING_HINT_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Target Class Matches Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING___TARGET_CLASS_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP_2 = MAPPING_HINT_OPERATION_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Target Class Is Variable Cardinality</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING___TARGET_CLASS_IS_VARIABLE_CARDINALITY__DIAGNOSTICCHAIN_MAP_2 = MAPPING_HINT_OPERATION_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Source Class Is Variable Cardinality</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING___SOURCE_CLASS_IS_VARIABLE_CARDINALITY__DIAGNOSTICCHAIN_MAP_2 = MAPPING_HINT_OPERATION_COUNT + 4;
+
+	/**
 	 * The number of operations of the '<em>Cardinality Mapping</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING_OPERATION_COUNT = MAPPING_HINT_OPERATION_COUNT + 0;
+	int CARDINALITY_MAPPING_OPERATION_COUNT = MAPPING_HINT_OPERATION_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -877,13 +930,31 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_INSTANCE_SELECTOR_FEATURE_COUNT = MAPPING_HINT_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Affected Reference Matches Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_INSTANCE_SELECTOR___AFFECTED_REFERENCE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP_2 = MAPPING_HINT_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Affected Reference Is Non Containment</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_INSTANCE_SELECTOR___AFFECTED_REFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP_2 = MAPPING_HINT_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Instance Selector</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_INSTANCE_SELECTOR_OPERATION_COUNT = MAPPING_HINT_OPERATION_COUNT + 0;
+	int MAPPING_INSTANCE_SELECTOR_OPERATION_COUNT = MAPPING_HINT_OPERATION_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Matcher</em>' class.
@@ -967,13 +1038,22 @@ public interface MappingPackage extends EPackage {
 	int ATTRIBUTE_MATCHER___GET_EXTERNAL_SOURCE_ELEMENTS = MATCHER_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Target Matches Affected Reference Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MATCHER___TARGET_MATCHES_AFFECTED_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP_2 = MATCHER_OPERATION_COUNT + 2;
+
+	/**
 	 * The number of operations of the '<em>Attribute Matcher</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MATCHER_OPERATION_COUNT = MATCHER_OPERATION_COUNT + 2;
+	int ATTRIBUTE_MATCHER_OPERATION_COUNT = MATCHER_OPERATION_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1085,13 +1165,22 @@ public interface MappingPackage extends EPackage {
 	int LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP = MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
 
 	/**
+	 * The operation id for the '<em>Source Attribute Matches Section Or Contained Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP_2 = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Local Modified Attribute Element Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
+	int LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeMatcherSourceElementImpl <em>Attribute Matcher Source Element</em>}' class.
@@ -1147,6 +1236,15 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_MATCHER_SOURCE_ELEMENT___GET_MAPPING_HINT_GROUP = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
+
+	/**
+	 * The operation id for the '<em>Source Attribute Matches Section Or Contained Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MATCHER_SOURCE_ELEMENT___SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP_2 = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP_2;
 
 	/**
 	 * The operation id for the '<em>Get Source Attribute</em>' operation.
@@ -1893,6 +1991,15 @@ public interface MappingPackage extends EPackage {
 	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT___GET_MAPPING_HINT_GROUP = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
 
 	/**
+	 * The operation id for the '<em>Source Attribute Matches Section Or Contained Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT___SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP_2 = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP_2;
+
+	/**
 	 * The operation id for the '<em>Get Source Attribute</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1954,6 +2061,15 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_CONNECTION_HINT_SOURCE_ELEMENT___GET_MAPPING_HINT_GROUP = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
+
+	/**
+	 * The operation id for the '<em>Source Attribute Matches Section Or Contained Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_CONNECTION_HINT_SOURCE_ELEMENT___SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP_2 = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP_2;
 
 	/**
 	 * The operation id for the '<em>Get Source Attribute</em>' operation.
@@ -2019,13 +2135,22 @@ public interface MappingPackage extends EPackage {
 	int MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE___GET_MAPPING_HINT_GROUP = MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
 
 	/**
+	 * The operation id for the '<em>Source Matches Possible Container Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE___SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP_2 = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Model Connection Hint Target Attribute</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE_OPERATION_COUNT = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
+	int MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE_OPERATION_COUNT = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2173,6 +2298,15 @@ public interface MappingPackage extends EPackage {
 	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MAPPING_HINT_GROUP = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
 
 	/**
+	 * The operation id for the '<em>Source Attribute Matches Section Or Contained Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP_2 = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP_2;
+
+	/**
 	 * The operation id for the '<em>Get Source Attribute</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2252,6 +2386,15 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAPPED_ATTRIBUTE_VALUE_PREPENDER___GET_MAPPING_HINT_GROUP = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MAPPING_HINT_GROUP;
+
+	/**
+	 * The operation id for the '<em>Source Attribute Matches Section Or Contained Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_PREPENDER___SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP_2 = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP_2;
 
 	/**
 	 * The operation id for the '<em>Get Source Attribute</em>' operation.
@@ -2335,6 +2478,15 @@ public interface MappingPackage extends EPackage {
 	int MAPPED_ATTRIBUTE_VALUE_APPENDER___GET_MAPPING_HINT_GROUP = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MAPPING_HINT_GROUP;
 
 	/**
+	 * The operation id for the '<em>Source Attribute Matches Section Or Contained Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_APPENDER___SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP_2 = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP_2;
+
+	/**
 	 * The operation id for the '<em>Get Source Attribute</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2398,13 +2550,22 @@ public interface MappingPackage extends EPackage {
 	int GLOBAL_ATTRIBUTE_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Source Attribute Has Upper Bound One</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOBAL_ATTRIBUTE___SOURCE_ATTRIBUTE_HAS_UPPER_BOUND_ONE__DIAGNOSTICCHAIN_MAP_2 = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Global Attribute</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GLOBAL_ATTRIBUTE_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int GLOBAL_ATTRIBUTE_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2589,13 +2750,22 @@ public interface MappingPackage extends EPackage {
 	int EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP = MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
 
 	/**
+	 * The operation id for the '<em>Source Attribute Matches Container Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP_2 = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>External Modified Attribute Element Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
+	int EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeMappingExternalSourceElementImpl <em>Attribute Mapping External Source Element</em>}' class.
@@ -2651,6 +2821,15 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT___GET_MAPPING_HINT_GROUP = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
+
+	/**
+	 * The operation id for the '<em>Source Attribute Matches Container Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT___SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP_2 = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP_2;
 
 	/**
 	 * The operation id for the '<em>Get Source Attribute</em>' operation.
@@ -2726,6 +2905,15 @@ public interface MappingPackage extends EPackage {
 	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT___GET_MAPPING_HINT_GROUP = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
 
 	/**
+	 * The operation id for the '<em>Source Attribute Matches Container Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT___SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP_2 = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP_2;
+
+	/**
 	 * The operation id for the '<em>Get Source Attribute</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2797,6 +2985,15 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT___GET_MAPPING_HINT_GROUP = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
+
+	/**
+	 * The operation id for the '<em>Source Attribute Matches Container Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT___SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP_2 = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP_2;
 
 	/**
 	 * The operation id for the '<em>Get Source Attribute</em>' operation.
@@ -2879,6 +3076,15 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MAPPING_HINT_GROUP = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
+
+	/**
+	 * The operation id for the '<em>Source Attribute Matches Container Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP_2 = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP_2;
 
 	/**
 	 * The operation id for the '<em>Get Source Attribute</em>' operation.
@@ -2972,6 +3178,15 @@ public interface MappingPackage extends EPackage {
 	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER___GET_MAPPING_HINT_GROUP = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MAPPING_HINT_GROUP;
 
 	/**
+	 * The operation id for the '<em>Source Attribute Matches Container Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER___SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP_2 = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP_2;
+
+	/**
 	 * The operation id for the '<em>Get Source Attribute</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3061,6 +3276,15 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER___GET_MAPPING_HINT_GROUP = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MAPPING_HINT_GROUP;
+
+	/**
+	 * The operation id for the '<em>Source Attribute Matches Container Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER___SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP_2 = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP_2;
 
 	/**
 	 * The operation id for the '<em>Get Source Attribute</em>' operation.
@@ -3473,6 +3697,16 @@ public interface MappingPackage extends EPackage {
 	EOperation getAttributeMapping__GetExternalSourceElements();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.AttributeMapping#targetAttributeMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Target Attribute Matches Section</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Target Attribute Matches Section</em>' operation.
+	 * @see pamtram.mapping.AttributeMapping#targetAttributeMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getAttributeMapping__TargetAttributeMatchesSection__DiagnosticChain_Map_2();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.CardinalityMapping <em>Cardinality Mapping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3505,6 +3739,56 @@ public interface MappingPackage extends EPackage {
 	EReference getCardinalityMapping_Target();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.CardinalityMapping#noCardinalityMappingForSourceSectionRoot(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>No Cardinality Mapping For Source Section Root</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>No Cardinality Mapping For Source Section Root</em>' operation.
+	 * @see pamtram.mapping.CardinalityMapping#noCardinalityMappingForSourceSectionRoot(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getCardinalityMapping__NoCardinalityMappingForSourceSectionRoot__DiagnosticChain_Map_2();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.CardinalityMapping#sourceClassMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Source Class Matches Section</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Source Class Matches Section</em>' operation.
+	 * @see pamtram.mapping.CardinalityMapping#sourceClassMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getCardinalityMapping__SourceClassMatchesSection__DiagnosticChain_Map_2();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.CardinalityMapping#targetClassMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Target Class Matches Section</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Target Class Matches Section</em>' operation.
+	 * @see pamtram.mapping.CardinalityMapping#targetClassMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getCardinalityMapping__TargetClassMatchesSection__DiagnosticChain_Map_2();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.CardinalityMapping#targetClassIsVariableCardinality(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Target Class Is Variable Cardinality</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Target Class Is Variable Cardinality</em>' operation.
+	 * @see pamtram.mapping.CardinalityMapping#targetClassIsVariableCardinality(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getCardinalityMapping__TargetClassIsVariableCardinality__DiagnosticChain_Map_2();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.CardinalityMapping#sourceClassIsVariableCardinality(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Source Class Is Variable Cardinality</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Source Class Is Variable Cardinality</em>' operation.
+	 * @see pamtram.mapping.CardinalityMapping#sourceClassIsVariableCardinality(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getCardinalityMapping__SourceClassIsVariableCardinality__DiagnosticChain_Map_2();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.MappingInstanceSelector <em>Instance Selector</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3535,6 +3819,26 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMappingInstanceSelector_Matcher();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.MappingInstanceSelector#affectedReferenceMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Affected Reference Matches Section</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Affected Reference Matches Section</em>' operation.
+	 * @see pamtram.mapping.MappingInstanceSelector#affectedReferenceMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getMappingInstanceSelector__AffectedReferenceMatchesSection__DiagnosticChain_Map_2();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.MappingInstanceSelector#affectedReferenceIsNonContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Affected Reference Is Non Containment</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Affected Reference Is Non Containment</em>' operation.
+	 * @see pamtram.mapping.MappingInstanceSelector#affectedReferenceIsNonContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getMappingInstanceSelector__AffectedReferenceIsNonContainment__DiagnosticChain_Map_2();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.Matcher <em>Matcher</em>}'.
@@ -3597,6 +3901,16 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getAttributeMatcher__GetExternalSourceElements();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.AttributeMatcher#targetMatchesAffectedReferenceType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Target Matches Affected Reference Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Target Matches Affected Reference Type</em>' operation.
+	 * @see pamtram.mapping.AttributeMatcher#targetMatchesAffectedReferenceType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getAttributeMatcher__TargetMatchesAffectedReferenceType__DiagnosticChain_Map_2();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.AttributeMatcherSourceElement <em>Attribute Matcher Source Element</em>}'.
@@ -3794,6 +4108,16 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getLocalModifiedAttributeElementType();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.LocalModifiedAttributeElementType#sourceAttributeMatchesSectionOrContainedSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Source Attribute Matches Section Or Contained Section</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Source Attribute Matches Section Or Contained Section</em>' operation.
+	 * @see pamtram.mapping.LocalModifiedAttributeElementType#sourceAttributeMatchesSectionOrContainedSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getLocalModifiedAttributeElementType__SourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map_2();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.AttributeValueModifierSet <em>Attribute Value Modifier Set</em>}'.
@@ -4035,6 +4359,16 @@ public interface MappingPackage extends EPackage {
 	EClass getModelConnectionHintTargetAttribute();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.ModelConnectionHintTargetAttribute#sourceMatchesPossibleContainerType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Source Matches Possible Container Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Source Matches Possible Container Type</em>' operation.
+	 * @see pamtram.mapping.ModelConnectionHintTargetAttribute#sourceMatchesPossibleContainerType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getModelConnectionHintTargetAttribute__SourceMatchesPossibleContainerType__DiagnosticChain_Map_2();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.MappingHintType <em>Hint Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4158,6 +4492,16 @@ public interface MappingPackage extends EPackage {
 	EReference getGlobalAttribute_Modifier();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.GlobalAttribute#sourceAttributeHasUpperBoundOne(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Source Attribute Has Upper Bound One</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Source Attribute Has Upper Bound One</em>' operation.
+	 * @see pamtram.mapping.GlobalAttribute#sourceAttributeHasUpperBoundOne(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getGlobalAttribute__SourceAttributeHasUpperBoundOne__DiagnosticChain_Map_2();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.GlobalAttributeImporter <em>Global Attribute Importer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4237,6 +4581,16 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getExternalModifiedAttributeElementType();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.ExternalModifiedAttributeElementType#sourceAttributeMatchesContainerSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Source Attribute Matches Container Section</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Source Attribute Matches Container Section</em>' operation.
+	 * @see pamtram.mapping.ExternalModifiedAttributeElementType#sourceAttributeMatchesContainerSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getExternalModifiedAttributeElementType__SourceAttributeMatchesContainerSection__DiagnosticChain_Map_2();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.ModelConnectionHintExternalSourceElement <em>Model Connection Hint External Source Element</em>}'.
@@ -4549,6 +4903,14 @@ public interface MappingPackage extends EPackage {
 		EOperation ATTRIBUTE_MAPPING___GET_EXTERNAL_SOURCE_ELEMENTS = eINSTANCE.getAttributeMapping__GetExternalSourceElements();
 
 		/**
+		 * The meta object literal for the '<em><b>Target Attribute Matches Section</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ATTRIBUTE_MAPPING___TARGET_ATTRIBUTE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP_2 = eINSTANCE.getAttributeMapping__TargetAttributeMatchesSection__DiagnosticChain_Map_2();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.CardinalityMappingImpl <em>Cardinality Mapping</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4575,6 +4937,46 @@ public interface MappingPackage extends EPackage {
 		EReference CARDINALITY_MAPPING__TARGET = eINSTANCE.getCardinalityMapping_Target();
 
 		/**
+		 * The meta object literal for the '<em><b>No Cardinality Mapping For Source Section Root</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CARDINALITY_MAPPING___NO_CARDINALITY_MAPPING_FOR_SOURCE_SECTION_ROOT__DIAGNOSTICCHAIN_MAP_2 = eINSTANCE.getCardinalityMapping__NoCardinalityMappingForSourceSectionRoot__DiagnosticChain_Map_2();
+
+		/**
+		 * The meta object literal for the '<em><b>Source Class Matches Section</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CARDINALITY_MAPPING___SOURCE_CLASS_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP_2 = eINSTANCE.getCardinalityMapping__SourceClassMatchesSection__DiagnosticChain_Map_2();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Class Matches Section</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CARDINALITY_MAPPING___TARGET_CLASS_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP_2 = eINSTANCE.getCardinalityMapping__TargetClassMatchesSection__DiagnosticChain_Map_2();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Class Is Variable Cardinality</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CARDINALITY_MAPPING___TARGET_CLASS_IS_VARIABLE_CARDINALITY__DIAGNOSTICCHAIN_MAP_2 = eINSTANCE.getCardinalityMapping__TargetClassIsVariableCardinality__DiagnosticChain_Map_2();
+
+		/**
+		 * The meta object literal for the '<em><b>Source Class Is Variable Cardinality</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CARDINALITY_MAPPING___SOURCE_CLASS_IS_VARIABLE_CARDINALITY__DIAGNOSTICCHAIN_MAP_2 = eINSTANCE.getCardinalityMapping__SourceClassIsVariableCardinality__DiagnosticChain_Map_2();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.MappingInstanceSelectorImpl <em>Instance Selector</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4599,6 +5001,22 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MAPPING_INSTANCE_SELECTOR__MATCHER = eINSTANCE.getMappingInstanceSelector_Matcher();
+
+		/**
+		 * The meta object literal for the '<em><b>Affected Reference Matches Section</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MAPPING_INSTANCE_SELECTOR___AFFECTED_REFERENCE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP_2 = eINSTANCE.getMappingInstanceSelector__AffectedReferenceMatchesSection__DiagnosticChain_Map_2();
+
+		/**
+		 * The meta object literal for the '<em><b>Affected Reference Is Non Containment</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MAPPING_INSTANCE_SELECTOR___AFFECTED_REFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP_2 = eINSTANCE.getMappingInstanceSelector__AffectedReferenceIsNonContainment__DiagnosticChain_Map_2();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.MatcherImpl <em>Matcher</em>}' class.
@@ -4651,6 +5069,14 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation ATTRIBUTE_MATCHER___GET_EXTERNAL_SOURCE_ELEMENTS = eINSTANCE.getAttributeMatcher__GetExternalSourceElements();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Matches Affected Reference Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ATTRIBUTE_MATCHER___TARGET_MATCHES_AFFECTED_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP_2 = eINSTANCE.getAttributeMatcher__TargetMatchesAffectedReferenceType__DiagnosticChain_Map_2();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.AttributeMatcherSourceElementImpl <em>Attribute Matcher Source Element</em>}' class.
@@ -4823,6 +5249,14 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EClass LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE = eINSTANCE.getLocalModifiedAttributeElementType();
+
+		/**
+		 * The meta object literal for the '<em><b>Source Attribute Matches Section Or Contained Section</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP_2 = eINSTANCE.getLocalModifiedAttributeElementType__SourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map_2();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.AttributeValueModifierSetImpl <em>Attribute Value Modifier Set</em>}' class.
@@ -5031,6 +5465,14 @@ public interface MappingPackage extends EPackage {
 		EClass MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE = eINSTANCE.getModelConnectionHintTargetAttribute();
 
 		/**
+		 * The meta object literal for the '<em><b>Source Matches Possible Container Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE___SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP_2 = eINSTANCE.getModelConnectionHintTargetAttribute__SourceMatchesPossibleContainerType__DiagnosticChain_Map_2();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.MappingHintTypeImpl <em>Hint Type</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5141,6 +5583,14 @@ public interface MappingPackage extends EPackage {
 		EReference GLOBAL_ATTRIBUTE__MODIFIER = eINSTANCE.getGlobalAttribute_Modifier();
 
 		/**
+		 * The meta object literal for the '<em><b>Source Attribute Has Upper Bound One</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation GLOBAL_ATTRIBUTE___SOURCE_ATTRIBUTE_HAS_UPPER_BOUND_ONE__DIAGNOSTICCHAIN_MAP_2 = eINSTANCE.getGlobalAttribute__SourceAttributeHasUpperBoundOne__DiagnosticChain_Map_2();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.GlobalAttributeImporterImpl <em>Global Attribute Importer</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5215,6 +5665,14 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EClass EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE = eINSTANCE.getExternalModifiedAttributeElementType();
+
+		/**
+		 * The meta object literal for the '<em><b>Source Attribute Matches Container Section</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP_2 = eINSTANCE.getExternalModifiedAttributeElementType__SourceAttributeMatchesContainerSection__DiagnosticChain_Map_2();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.ModelConnectionHintExternalSourceElementImpl <em>Model Connection Hint External Source Element</em>}' class.

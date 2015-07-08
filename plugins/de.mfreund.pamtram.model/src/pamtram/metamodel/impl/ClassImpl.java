@@ -5,22 +5,45 @@ package pamtram.metamodel.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
+import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.library.classifier.ClassifierOclContainerOperation;
+import org.eclipse.ocl.pivot.library.logical.BooleanAndOperation;
+import org.eclipse.ocl.pivot.library.logical.BooleanNotOperation;
+import org.eclipse.ocl.pivot.library.logical.BooleanOrOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
+import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
+import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.LibraryEntry;
+import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.MetamodelTables;
 import pamtram.metamodel.Reference;
 
 /**
@@ -355,6 +378,241 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean containerIsValid(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		/**
+		 * 
+		 * inv containerIsValid:
+		 *   let severity : Integer[1] = 'Class::containerIsValid'.getSeverity()
+		 *   in
+		 *     if severity <= 0
+		 *     then true
+		 *     else
+		 *       let
+		 *         status : OclAny[1] = if self.isSection() or self.container = null
+		 *         then true
+		 *         else self.container = self.oclContainer().oclContainer()
+		 *         endif
+		 *       in
+		 *         'Class::containerIsValid'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
+		 *     endif
+		 */
+		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
+		final /*@NonNull*/ /*@NonInvalid*/ IntegerValue severity_0 = ClassUtil.nonNullState(CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, MetamodelTables.STR_Class_c_c_containerIsValid));
+		final /*@NonInvalid*/ boolean le = ClassUtil.nonNullState(OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, severity_0, MetamodelTables.INT_0).booleanValue());
+		/*@NonInvalid*/ boolean symbol_0;
+		if (le) {
+		    symbol_0 = ValueUtil.TRUE_VALUE;
+		}
+		else {
+		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
+		    try {
+		        /*@NonNull*/ /*@Caught*/ Object CAUGHT_isSection;
+		        try {
+		            final /*@Thrown*/ boolean isSection = this.isSection();
+		            CAUGHT_isSection = isSection;
+		        }
+		        catch (Exception e) {
+		            CAUGHT_isSection = ValueUtil.createInvalidValue(e);
+		        }
+		        /*@NonNull*/ /*@Caught*/ Object CAUGHT_eq;
+		        try {
+		            final /*@Nullable*/ /*@Thrown*/ Object container = this.getContainer();
+		            final /*@Thrown*/ boolean eq = container == null;
+		            CAUGHT_eq = eq;
+		        }
+		        catch (Exception e) {
+		            CAUGHT_eq = ValueUtil.createInvalidValue(e);
+		        }
+		        final /*@Nullable*/ /*@Thrown*/ Boolean or = BooleanOrOperation.INSTANCE.evaluate(CAUGHT_isSection, CAUGHT_eq);
+		        if (or == null) {
+		            throw new InvalidValueException("Null if condition");
+		        }
+		        /*@Thrown*/ boolean status;
+		        if (or) {
+		            status = ValueUtil.TRUE_VALUE;
+		        }
+		        else {
+		            final /*@Nullable*/ /*@Thrown*/ Object container_0 = this.getContainer();
+		            final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
+		            final /*@Nullable*/ /*@Thrown*/ Object oclContainer_0 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, oclContainer);
+		            final /*@Thrown*/ boolean eq_0 = (container_0 != null) ? container_0.equals(oclContainer_0) : (oclContainer_0 == null);
+		            status = eq_0;
+		        }
+		        CAUGHT_status = status;
+		    }
+		    catch (Exception e) {
+		        CAUGHT_status = ValueUtil.createInvalidValue(e);
+		    }
+		    final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, MetamodelTables.STR_Class_c_c_containerIsValid, this, null, diagnostics, context, null, severity_0, CAUGHT_status, MetamodelTables.INT_0).booleanValue());
+		    symbol_0 = logDiagnostic;
+		}
+		return Boolean.TRUE == symbol_0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean cardinalityIsValid(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		/**
+		 * 
+		 * inv cardinalityIsValid:
+		 *   let severity : Integer[1] = 'Class::cardinalityIsValid'.getSeverity()
+		 *   in
+		 *     if severity <= 0
+		 *     then true
+		 *     else
+		 *       let
+		 *         status : OclAny[?] = if self <> self.getContainingSection()
+		 *         then
+		 *           not (self.cardinality <> CardinalityType::ONE and
+		 *             self.oclContainer()
+		 *             .oclAsType(Reference(C, R, A))
+		 *             .eReference.oclAsType(ecore::EReference).upperBound <= 1
+		 *           )
+		 *         else true
+		 *         endif
+		 *       in
+		 *         'Class::cardinalityIsValid'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
+		 *     endif
+		 */
+		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
+		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
+		final /*@NonNull*/ /*@NonInvalid*/ IntegerValue severity_0 = ClassUtil.nonNullState(CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, MetamodelTables.STR_Class_c_c_cardinalityIsValid));
+		final /*@NonInvalid*/ boolean le = ClassUtil.nonNullState(OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, severity_0, MetamodelTables.INT_0).booleanValue());
+		/*@NonInvalid*/ boolean symbol_0;
+		if (le) {
+		    symbol_0 = ValueUtil.TRUE_VALUE;
+		}
+		else {
+		    /*@Nullable*/ /*@Caught*/ Object CAUGHT_status;
+		    try {
+		        final /*@NonNull*/ /*@Thrown*/ Object getContainingSection = ((MetaModelElement)this).getContainingSection();
+		        final /*@Thrown*/ boolean ne = !this.equals(getContainingSection);
+		        /*@Nullable*/ /*@Thrown*/ Boolean status;
+		        if (ne) {
+		            /*@NonNull*/ /*@Caught*/ Object CAUGHT_ne_0;
+		            try {
+		                final /*@NonNull*/ /*@Thrown*/ Enumerator cardinality = this.getCardinality();
+		                final /*@NonNull*/ /*@Thrown*/ EnumerationLiteralId BOXED_cardinality = MetamodelTables.ENUMid_CardinalityType.getEnumerationLiteralId(ClassUtil.nonNullState(cardinality.getName()));
+		                final /*@Thrown*/ boolean ne_0 = BOXED_cardinality != MetamodelTables.ELITid_ONE;
+		                CAUGHT_ne_0 = ne_0;
+		            }
+		            catch (Exception e) {
+		                CAUGHT_ne_0 = ValueUtil.createInvalidValue(e);
+		            }
+		            /*@NonNull*/ /*@Caught*/ Object CAUGHT_le_0;
+		            try {
+		                final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ecore_c_c_EReference_0 = idResolver.getClass(MetamodelTables.CLSSid_EReference, null);
+		                final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Reference_o_C_44_R_44_A_e_0 = idResolver.getClass(MetamodelTables.CLSSid_Reference, null);
+		                final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
+		                final /*@NonNull*/ /*@Thrown*/ Reference oclAsType = ClassUtil.nonNullState((Reference)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_metamodel_c_c_Reference_o_C_44_R_44_A_e_0));
+		                final /*@NonNull*/ /*@Thrown*/ EReference eReference = oclAsType.getEReference();
+		                final /*@NonNull*/ /*@Thrown*/ EReference oclAsType_0 = ClassUtil.nonNullState((EReference)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, eReference, TYP_ecore_c_c_EReference_0));
+		                final /*@Nullable*/ /*@Thrown*/ Object upperBound = oclAsType_0.getUpperBound();
+		                final /*@Nullable*/ /*@Thrown*/ IntegerValue BOXED_upperBound = upperBound == null ? null : ValueUtil.integerValueOf(upperBound);
+		                final /*@Thrown*/ boolean le_0 = ClassUtil.nonNullState(OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, BOXED_upperBound, MetamodelTables.INT_1).booleanValue());
+		                CAUGHT_le_0 = le_0;
+		            }
+		            catch (Exception e) {
+		                CAUGHT_le_0 = ValueUtil.createInvalidValue(e);
+		            }
+		            final /*@Nullable*/ /*@Thrown*/ Boolean and = BooleanAndOperation.INSTANCE.evaluate(CAUGHT_ne_0, CAUGHT_le_0);
+		            final /*@Nullable*/ /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(and);
+		            status = not;
+		        }
+		        else {
+		            status = ValueUtil.TRUE_VALUE;
+		        }
+		        CAUGHT_status = status;
+		    }
+		    catch (Exception e) {
+		        CAUGHT_status = ValueUtil.createInvalidValue(e);
+		    }
+		    final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, MetamodelTables.STR_Class_c_c_cardinalityIsValid, this, null, diagnostics, context, null, severity_0, CAUGHT_status, MetamodelTables.INT_0).booleanValue());
+		    symbol_0 = logDiagnostic;
+		}
+		return Boolean.TRUE == symbol_0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean eClassMatchesParentEReference(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		/**
+		 * 
+		 * inv eClassMatchesParentEReference:
+		 *   let
+		 *     severity : Integer[1] = 'Class::eClassMatchesParentEReference'.getSeverity()
+		 *   in
+		 *     if severity <= 0
+		 *     then true
+		 *     else
+		 *       let
+		 *         status : OclAny[?] = if self <> self.getContainingSection()
+		 *         then
+		 *           self.oclContainer()
+		 *           .oclAsType(Reference(C, R, A))
+		 *           .eReference.oclAsType(ecore::EReference)
+		 *           .eReferenceType.isSuperTypeOf(
+		 *             self.eClass.oclAsType(ecore::EClass))
+		 *         else true
+		 *         endif
+		 *       in
+		 *         'Class::eClassMatchesParentEReference'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
+		 *     endif
+		 */
+		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
+		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
+		final /*@NonNull*/ /*@NonInvalid*/ IntegerValue severity_0 = ClassUtil.nonNullState(CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, MetamodelTables.STR_Class_c_c_eClassMatchesParentEReference));
+		final /*@NonInvalid*/ boolean le = ClassUtil.nonNullState(OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, severity_0, MetamodelTables.INT_0).booleanValue());
+		/*@NonInvalid*/ boolean symbol_0;
+		if (le) {
+		    symbol_0 = ValueUtil.TRUE_VALUE;
+		}
+		else {
+		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
+		    try {
+		        final /*@NonNull*/ /*@Thrown*/ Object getContainingSection = ((MetaModelElement)this).getContainingSection();
+		        final /*@Thrown*/ boolean ne = !this.equals(getContainingSection);
+		        /*@Thrown*/ boolean status;
+		        if (ne) {
+		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ecore_c_c_EClass = idResolver.getClass(MetamodelTables.CLSSid_EClass, null);
+		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ecore_c_c_EReference = idResolver.getClass(MetamodelTables.CLSSid_EReference, null);
+		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Reference_o_C_44_R_44_A_e = idResolver.getClass(MetamodelTables.CLSSid_Reference, null);
+		            final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
+		            final /*@NonNull*/ /*@Thrown*/ Reference oclAsType = ClassUtil.nonNullState((Reference)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_metamodel_c_c_Reference_o_C_44_R_44_A_e));
+		            final /*@NonNull*/ /*@Thrown*/ EReference eReference = oclAsType.getEReference();
+		            final /*@NonNull*/ /*@Thrown*/ EReference oclAsType_0 = ClassUtil.nonNullState((EReference)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, eReference, TYP_ecore_c_c_EReference));
+		            @SuppressWarnings("null")
+		            final /*@NonNull*/ /*@Thrown*/ EClass eReferenceType = oclAsType_0.getEReferenceType();
+		            final /*@NonNull*/ /*@Thrown*/ EClass eClass = this.getEClass();
+		            final /*@NonNull*/ /*@Thrown*/ EClass oclAsType_1 = ClassUtil.nonNullState((EClass)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, eClass, TYP_ecore_c_c_EClass));
+		            final /*@Thrown*/ boolean isSuperTypeOf = eReferenceType.isSuperTypeOf(oclAsType_1);
+		            status = isSuperTypeOf;
+		        }
+		        else {
+		            status = ValueUtil.TRUE_VALUE;
+		        }
+		        CAUGHT_status = status;
+		    }
+		    catch (Exception e) {
+		        CAUGHT_status = ValueUtil.createInvalidValue(e);
+		    }
+		    final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, MetamodelTables.STR_Class_c_c_eClassMatchesParentEReference, this, null, diagnostics, context, null, severity_0, CAUGHT_status, MetamodelTables.INT_0).booleanValue());
+		    symbol_0 = logDiagnostic;
+		}
+		return Boolean.TRUE == symbol_0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -503,6 +761,12 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 				return isContainedIn((C)arguments.get(0));
 			case MetamodelPackage.CLASS___GET_OWNING_CONTAINMENT_REFERENCE:
 				return getOwningContainmentReference();
+			case MetamodelPackage.CLASS___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP_2:
+				return containerIsValid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case MetamodelPackage.CLASS___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP_2:
+				return cardinalityIsValid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case MetamodelPackage.CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP_2:
+				return eClassMatchesParentEReference((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -34,7 +34,7 @@ public interface ModifiableHint extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Result Modifier</em>' reference list.
 	 * @see pamtram.mapping.MappingPackage#getModifiableHint_ResultModifier()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!ModifiableHint!resultModifier'"
 	 * @generated
 	 */
 	EList<AttributeValueModifierSet> getResultModifier();

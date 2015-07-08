@@ -36,6 +36,7 @@ public interface TransformationModel extends EObject {
 	 * @return the value of the '<em>Transformation</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getTransformationModel_Transformation()
 	 * @model containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!TransformationModel!transformation'"
 	 * @generated
 	 */
 	EList<Transformation> getTransformation();

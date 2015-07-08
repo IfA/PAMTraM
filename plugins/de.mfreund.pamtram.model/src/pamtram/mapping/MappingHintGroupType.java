@@ -37,6 +37,7 @@ public interface MappingHintGroupType extends NamedElement {
 	 * @see #setTargetMMSection(TargetSectionClass)
 	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupType_TargetMMSection()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!MappingHintGroupType!targetMMSection'"
 	 * @generated
 	 */
 	TargetSectionClass getTargetMMSection();
@@ -63,6 +64,7 @@ public interface MappingHintGroupType extends NamedElement {
 	 * @return the value of the '<em>Mapping Hints</em>' containment reference list.
 	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupType_MappingHints()
 	 * @model containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!MappingHintGroupType!mappingHints'"
 	 * @generated
 	 */
 	EList<MappingHint> getMappingHints();

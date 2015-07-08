@@ -34,6 +34,7 @@ public interface DeactivatableElement extends EObject {
 	 * @see #setDeactivated(boolean)
 	 * @see pamtram.PamtramPackage#getDeactivatableElement_Deactivated()
 	 * @model default="false" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!DeactivatableElement!deactivated'"
 	 * @generated
 	 */
 	boolean isDeactivated();

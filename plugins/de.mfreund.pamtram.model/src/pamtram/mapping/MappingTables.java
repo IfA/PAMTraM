@@ -76,6 +76,7 @@ public class MappingTables
     public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping = IdManager.getNsURIPackageId("http://mfreund.de/pamtram/mapping", null, MappingPackage.eINSTANCE);
     public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel = IdManager.getNsURIPackageId("http://mfreund.de/pamtram/metamodel", null, MetamodelPackage.eINSTANCE);
     public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore = IdManager.getNsURIPackageId("http://www.eclipse.org/emf/2002/Ecore", null, EcorePackage.eINSTANCE);
+    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_Attribute = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("Attribute", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_AttributeMapping = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("AttributeMapping", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_AttributeMappingExternalSourceElement = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("AttributeMappingExternalSourceElement", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_AttributeMappingSourceElement = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("AttributeMappingSourceElement", 0);
@@ -147,14 +148,18 @@ public class MappingTables
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_ModelConnectionHintTargetAttribute_c_c_sourceMatchesPossibleContain = "ModelConnectionHintTargetAttribute::sourceMatchesPossibleContainerType";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_affected_32_reference_32_39 = "The affected reference \'";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_affected_32_reference_32_39_32_p_32_self_affectedReference_name_32_p_32_39_32_is_32_no = "The affected reference \' + self.affectedReference.name + \' is no non-containment reference!";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_source_32_attribute_32_39 = "The source attribute \'";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_source_32_class_32_39 = "The source class \'";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_target_32_attribute_32_39 = "The target attribute \'";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_target_32_class_32_39 = "The target class \'";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_type_32_of_32_the_32_class_32_containing_32_the_32_target_32_attribute_32_o_39 = "The type of the class containing the target attribute (\'";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR__33 = "!";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_32_is_32_not_32_contained_32_in_32_the_32_source_32_section_32_of_32_the_32_parent_32_hint_32_grou = "\' is not contained in the source section of the parent hint group \'";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_32_is_32_not_32_part_32_of_32_a_32_container_32_section_32_of_32_the_32_source_32_section_32_of_32_th = "\' is not part of a container section of the source section of the parent hint group \'";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_32_is_32_not_32_part_32_of_32_the_32_source_32_section_32_referenced_32_by_32_parent_32_mapping = "\' is not part of the source section referenced by parent mapping \'";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_32_is_32_not_32_part_32_of_32_the_32_target_32_section_32_referenced_32_by_32_parent_32_hint_32_gr = "\' is not part of the target section referenced by parent hint group ";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_32_is_32_not_32_part_32_of_32_the_32_target_32_section_32_referenced_32_by_32_parent_32_hint_32_gr_0 = "\' is not part of the target section referenced by parent hint group \'";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_32_or_32_in_32_one_32_of_32_its_32_sub_m_sections_33 = "\' or in one of its sub-sections!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_33 = "\'!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_e_32_is_32_not_32_allowed_32_by_32_the_32_affected_32_reference_32_of_32_the_32_parent_32_mappin = "\') is not allowed by the affected reference of the parent mapping instance selector that ";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_requires_32_a_32_o_sub_m_e_type_32_of_32_39 = "requires a (sub-)type of \'";

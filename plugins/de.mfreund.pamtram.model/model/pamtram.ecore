@@ -649,6 +649,12 @@
           eType="#//metamodel/SourceSectionClass"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Mapping" eSuperTypes="#//mapping/MappingType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="containsDeactivatedHintGroups"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="containsDeactivatedHintGroups" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The mapping contains deactivated hint groups that will not be used in a transformation!',&#xD;&#xA;&#x9;severity : Integer = 2,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self.deactivated = false then&#xD;&#xA;&#x9;&#x9;&#x9;self.mappingHintGroups->size() = self.getActiveMappingHintGroups()->size() and&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;self.importedMappingHintGroups->size() = self.getActiveImportedMappingHintGroups()->size() else&#xD;&#xA;&#x9;&#x9;&#x9;true&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
+      </eAnnotations>
       <eOperations name="getActiveMappingHintGroups" upperBound="-1" eType="#//mapping/MappingHintGroupType">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="body" value="EList&lt;MappingHintGroupType> hintGroups = getMappingHintGroups();&#xD;&#xA;EList&lt;MappingHintGroupType> activeHintGroups = new BasicEList&lt;>();&#xD;&#xA;for (MappingHintGroupType hintGroup : hintGroups) {&#xD;&#xA;&#x9;if(hintGroup instanceof InstantiableMappingHintGroup &amp;&amp; &#xD;&#xA;&#x9;&#x9;&#x9;((InstantiableMappingHintGroup) hintGroup).isDeactivated()) {&#xD;&#xA;&#x9;&#x9;// skip this one&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;activeHintGroups.add(hintGroup);&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;return activeHintGroups;"/>

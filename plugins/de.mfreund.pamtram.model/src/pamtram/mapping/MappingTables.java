@@ -145,6 +145,8 @@ public class MappingTables
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_MappingInstanceSelector_c_c_affectedReferenceIsNonContainment = "MappingInstanceSelector::affectedReferenceIsNonContainment";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_MappingInstanceSelector_c_c_affectedReferenceMatchesSection = "MappingInstanceSelector::affectedReferenceMatchesSection";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_ModelConnectionHintTargetAttribute_c_c_sourceMatchesPossibleContain = "ModelConnectionHintTargetAttribute::sourceMatchesPossibleContainerType";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_affected_32_reference_32_39 = "The affected reference \'";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_affected_32_reference_32_39_32_p_32_self_affectedReference_name_32_p_32_39_32_is_32_no = "The affected reference \' + self.affectedReference.name + \' is no non-containment reference!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_source_32_class_32_39 = "The source class \'";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_target_32_attribute_32_39 = "The target attribute \'";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_target_32_class_32_39 = "The target class \'";

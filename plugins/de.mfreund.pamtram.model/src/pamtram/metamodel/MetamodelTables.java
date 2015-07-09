@@ -155,8 +155,12 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_EAttribute = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_EAttribute);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_EReference = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_EReference);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_LibraryParameter = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_LibraryParameter);
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_MappingHintGroupType = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_MappingHintGroupType);
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_MappingType = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_MappingType);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_SourceSectionClass = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_SourceSectionClass);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_TargetSectionClass = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_TargetSectionClass);
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId SET_CLSSid_MappingHintGroupType = TypeId.SET.getSpecializedId(MetamodelTables.CLSSid_MappingHintGroupType);
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId SET_CLSSid_MappingType = TypeId.SET.getSpecializedId(MetamodelTables.CLSSid_MappingType);
 
 	/**
 	 *	The type parameters for templated types and operations.
@@ -664,12 +668,14 @@ public class MetamodelTables
 		public static final /*@NonNull*/ ExecutorProperty _SourceSectionAttribute__attribute = new EcoreExecutorProperty(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE, Types._SourceSectionAttribute, 0);
 		public static final /*@NonNull*/ ExecutorProperty _SourceSectionAttribute__valueConstraint = new EcoreExecutorProperty(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT, Types._SourceSectionAttribute, 1);
 
-		public static final /*@NonNull*/ ExecutorProperty _SourceSectionClass__MetaModelSectionReference__value = new ExecutorPropertyWithImplementation("MetaModelSectionReference", Types._SourceSectionClass, 0, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.META_MODEL_SECTION_REFERENCE__VALUE));
+		public static final /*@NonNull*/ ExecutorProperty _SourceSectionClass__referencingMappings = new EcoreExecutorProperty(MetamodelPackage.Literals.SOURCE_SECTION_CLASS__REFERENCING_MAPPINGS, Types._SourceSectionClass, 0);
+		public static final /*@NonNull*/ ExecutorProperty _SourceSectionClass__MetaModelSectionReference__value = new ExecutorPropertyWithImplementation("MetaModelSectionReference", Types._SourceSectionClass, 1, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.META_MODEL_SECTION_REFERENCE__VALUE));
 
 		public static final /*@NonNull*/ ExecutorProperty _TargetSectionAttribute__unique = new EcoreExecutorProperty(MetamodelPackage.Literals.TARGET_SECTION_ATTRIBUTE__UNIQUE, Types._TargetSectionAttribute, 0);
 		public static final /*@NonNull*/ ExecutorProperty _TargetSectionAttribute__value = new EcoreExecutorProperty(MetamodelPackage.Literals.TARGET_SECTION_ATTRIBUTE__VALUE, Types._TargetSectionAttribute, 1);
 
-		public static final /*@NonNull*/ ExecutorProperty _TargetSectionClass__ContainerParameter__class = new ExecutorPropertyWithImplementation("ContainerParameter", Types._TargetSectionClass, 0, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.CONTAINER_PARAMETER__CLASS));
+		public static final /*@NonNull*/ ExecutorProperty _TargetSectionClass__referencingMappingHintGroups = new EcoreExecutorProperty(MetamodelPackage.Literals.TARGET_SECTION_CLASS__REFERENCING_MAPPING_HINT_GROUPS, Types._TargetSectionClass, 0);
+		public static final /*@NonNull*/ ExecutorProperty _TargetSectionClass__ContainerParameter__class = new ExecutorPropertyWithImplementation("ContainerParameter", Types._TargetSectionClass, 1, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.CONTAINER_PARAMETER__CLASS));
 
 		public static final /*@NonNull*/ ExecutorProperty _TargetSectionNonContainmentReference__ExternalReferenceParameter__reference = new ExecutorPropertyWithImplementation("ExternalReferenceParameter", Types._TargetSectionNonContainmentReference, 0, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.EXTERNAL_REFERENCE_PARAMETER__REFERENCE));
 		static {
@@ -2470,6 +2476,7 @@ public class MetamodelTables
 			MetamodelTables.Properties._Class__container,
 			MetamodelTables.Properties._Class__eClass,
 			MetamodelTables.Properties._Class__references,
+			MetamodelTables.Properties._SourceSectionClass__referencingMappings,
 			MetamodelTables.Properties._SourceSectionClass__MetaModelSectionReference__value
 		};
 
@@ -2503,6 +2510,7 @@ public class MetamodelTables
 			MetamodelTables.Properties._Class__container,
 			MetamodelTables.Properties._Class__eClass,
 			MetamodelTables.Properties._Class__references,
+			MetamodelTables.Properties._TargetSectionClass__referencingMappingHintGroups,
 			MetamodelTables.Properties._TargetSectionClass__ContainerParameter__class
 		};
 

@@ -173,6 +173,8 @@ public class MappingTables
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_MappingHintGroupImporter = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_MappingHintGroupImporter);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_ModifiableHint = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_ModifiableHint);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_ModifiedAttributeElementType = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_ModifiedAttributeElementType);
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_SourceSectionClass = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_SourceSectionClass);
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_TargetSectionClass = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_TargetSectionClass);
     public static final /*@NonNull*/ /*@NonInvalid*/ EnumerationLiteralId ELITid_ONE = MappingTables.ENUMid_CardinalityType.getEnumerationLiteralId("ONE");
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_AttributeMappingSourceInterface = TypeId.ORDERED_SET.getSpecializedId(MappingTables.CLSSid_AttributeMappingSourceInterface);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_AttributeMatcherSourceInterface = TypeId.ORDERED_SET.getSpecializedId(MappingTables.CLSSid_AttributeMatcherSourceInterface);

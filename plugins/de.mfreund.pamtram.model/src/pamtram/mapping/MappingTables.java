@@ -142,6 +142,7 @@ public class MappingTables
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_Cardinality_32_mappings_32_must_32_not_32_be_32_defined_32_for_32_SourceSection_32_root_32 = "Cardinality mappings must not be defined for SourceSection root classes!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_ExternalModifiedAttributeElementType_c_c_sourceAttributeMatchesCont = "ExternalModifiedAttributeElementType::sourceAttributeMatchesContainerSection";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_GlobalAttribute_c_c_sourceAttributeHasUpperBoundOne = "GlobalAttribute::sourceAttributeHasUpperBoundOne";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_Global_32_attributes_32_may_32_only_32_be_32_defined_32_for_32_attributes_32_that_32_have_32_a = "Global attributes may only be defined for attributes that have an upper bound of 1!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_LocalModifiedAttributeElementType_c_c_sourceAttributeMatchesSection = "LocalModifiedAttributeElementType::sourceAttributeMatchesSectionOrContainedSection";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_MappingInstanceSelector_c_c_affectedReferenceIsNonContainment = "MappingInstanceSelector::affectedReferenceIsNonContainment";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_MappingInstanceSelector_c_c_affectedReferenceMatchesSection = "MappingInstanceSelector::affectedReferenceMatchesSection";

@@ -110,7 +110,7 @@ public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeEle
 		else {
 		    /*@Nullable*/ /*@Caught*/ Object CAUGHT_status;
 		    try {
-		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Class_o_C_44_R_44_A_e_0 = idResolver.getClass(MappingTables.CLSSid_Class, null);
+		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Class_o_C_44_R_44_A_e_0 = idResolver.getClass(MappingTables.CLSSid_Class_0, null);
 		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_TargetSectionAttribute = idResolver.getClass(MappingTables.CLSSid_TargetSectionAttribute, null);
 		        final /*@NonNull*/ /*@Thrown*/ Object source = this.getSource();
 		        final /*@NonNull*/ /*@Thrown*/ TargetSectionAttribute oclAsType = ClassUtil.nonNullState((TargetSectionAttribute)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, source, TYP_pamtram_c_c_metamodel_c_c_TargetSectionAttribute));
@@ -195,7 +195,7 @@ public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeEle
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE___SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP:
+			case MappingPackage.MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE___SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP_3:
 				return sourceMatchesPossibleContainerType((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

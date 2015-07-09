@@ -87,8 +87,8 @@ public class MappingTables
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_AttributeValueModifier = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("AttributeValueModifier", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_AttributeValueModifierSet = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("AttributeValueModifierSet", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_CardinalityMapping = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("CardinalityMapping", 0);
-    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_Class = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("Class", 0);
-    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_Class_0 = MappingTables.PACKid_$metamodel$.getClassId("Class", 0);
+    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_Class = MappingTables.PACKid_$metamodel$.getClassId("Class", 0);
+    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_Class_0 = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("Class", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_ComplexCondition = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_condition.getClassId("ComplexCondition", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_EAttribute = MappingTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getClassId("EAttribute", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_EClass = MappingTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getClassId("EClass", 0);
@@ -128,6 +128,7 @@ public class MappingTables
     public static final /*@NonNull*/ /*@NonInvalid*/ EnumerationId ENUMid_CardinalityType = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getEnumerationId("CardinalityType");
     public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_0 = ValueUtil.integerValueOf("0");
     public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_1 = ValueUtil.integerValueOf("1");
+    public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_4 = ValueUtil.integerValueOf("4");
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_AttributeMapping_c_c_targetAttributeMatchesSection = "AttributeMapping::targetAttributeMatchesSection";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_AttributeMatcher_c_c_targetMatchesAffectedReferenceType = "AttributeMatcher::targetMatchesAffectedReferenceType";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_CardinalityMapping_c_c_noCardinalityMappingForSourceSectionRoot = "CardinalityMapping::noCardinalityMappingForSourceSectionRoot";
@@ -141,6 +142,9 @@ public class MappingTables
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_MappingInstanceSelector_c_c_affectedReferenceIsNonContainment = "MappingInstanceSelector::affectedReferenceIsNonContainment";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_MappingInstanceSelector_c_c_affectedReferenceMatchesSection = "MappingInstanceSelector::affectedReferenceMatchesSection";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_ModelConnectionHintTargetAttribute_c_c_sourceMatchesPossibleContain = "ModelConnectionHintTargetAttribute::sourceMatchesPossibleContainerType";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_target_32_attribute_32_39 = "The target attribute \'";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR__32_33 = " !";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_32_is_32_not_32_part_32_of_32_the_32_target_32_section_32_referenced_32_by_32_parent_32_hint_32_gr = "\' is not part of the target section referenced by parent hint group ";
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_GlobalAttribute = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_GlobalAttribute);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_GlobalAttributeImporter = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_GlobalAttributeImporter);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_MappedAttributeValueExpander = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_MappedAttributeValueExpander);

@@ -131,6 +131,7 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_SourceSectionAttribute_c_c_attributeMatchesParentEClass = "SourceSectionAttribute::attributeMatchesParentEClass";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_39_container_39_32_refrence_32_must_32_point_32_to_32_the_32_containing_32_Class_33 = "The \'container\' refrence must point to the containing Class!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_cardinality_32_of_32_a_32_Class_32_must_32_be_32_specified_32_as_32_39_CardinalityType = "The cardinality of a Class must be specified as \'CardinalityType::ONE\' when the upper bound of the containing Reference is \'1\'!";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_eAttribute_32_39 = "The eAttribute \'";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_eClass_32_39 = "The eClass \'";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_eReference_32_39 = "The eReference \'";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR__32_of_32_the_32_selected_32_target_32_Classes_32_o_Value_e_32_are_32_not_32_allowed_32_by_32_the_32_s = " of the selected target Classes (Value) are not allowed by the selected eReference \'";

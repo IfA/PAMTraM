@@ -289,7 +289,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 		 *         message : String[?] = if status <> true
 		 *         then 'The target attribute \'' + self.target.name + '\' is not part of the target section referenced by parent hint group ' +
 		 *           self.oclContainer()
-		 *           .oclAsType(MappingHintGroupType).name + ' !'
+		 *           .oclAsType(MappingHintGroupType).name + '!'
 		 *         else null
 		 *         endif
 		 *       in
@@ -362,7 +362,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 		    final /*@NonNull*/ /*@Thrown*/ MappingHintGroupType oclAsType_1 = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_1, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_1));
 		    final /*@Nullable*/ /*@Thrown*/ String name_0 = oclAsType_1.getName();
 		    final /*@NonNull*/ /*@NonInvalid*/ String sum_1 = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(sum_0, name_0));
-		    final /*@NonNull*/ /*@NonInvalid*/ String sum_2 = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(sum_1, MappingTables.STR__32_33));
+		    final /*@NonNull*/ /*@NonInvalid*/ String sum_2 = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(sum_1, MappingTables.STR__33));
 		    message_0 = sum_2;
 		}
 		else {
@@ -545,7 +545,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 				return getLocalSourceElements();
 			case MappingPackage.ATTRIBUTE_MAPPING___GET_EXTERNAL_SOURCE_ELEMENTS:
 				return getExternalSourceElements();
-			case MappingPackage.ATTRIBUTE_MAPPING___TARGET_ATTRIBUTE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP_3:
+			case MappingPackage.ATTRIBUTE_MAPPING___TARGET_ATTRIBUTE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP_7:
 				return targetAttributeMatchesSection((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

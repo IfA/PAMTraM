@@ -19,13 +19,14 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.classifier.ClassifierOclContainerOperation;
 import org.eclipse.ocl.pivot.library.collection.CollectionIncludesOperation;
+import org.eclipse.ocl.pivot.library.logical.BooleanOrOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation;
-import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
-import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclAnyOclTypeOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
+import org.eclipse.ocl.pivot.library.string.StringConcatOperation;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
-import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.MetaModelElement;
@@ -145,64 +146,111 @@ public abstract class ReferenceImpl<C extends pamtram.metamodel.Class<C, R, A>, 
 		/**
 		 * 
 		 * inv eReferenceMatchesParentEClass:
-		 *   let
-		 *     severity : Integer[1] = 'Reference::eReferenceMatchesParentEClass'.getSeverity()
+		 *   let severity : Integer[1] = 4
 		 *   in
-		 *     if severity <= 0
-		 *     then true
-		 *     else
+		 *     let
+		 *       status : OclAny[1] = if
+		 *         self.isLibraryEntry() or
+		 *         self.eReference.oclType() = OclVoid
+		 *       then true
+		 *       else
+		 *         let
+		 *           parentEClass : ecore::EClass[1] = self.oclContainer()
+		 *           .oclAsType(Class(C, R, A)).eClass
+		 *         in
+		 *           if parentEClass.oclType() = OclVoid
+		 *           then true
+		 *           else
+		 *             parentEClass.oclAsType(ecore::EClass)
+		 *             .eAllReferences->includes(self.eReference)
+		 *           endif
+		 *       endif
+		 *     in
 		 *       let
-		 *         status : OclAny[1] = if self.isLibraryEntry()
-		 *         then true
-		 *         else
-		 *           self.oclContainer()
-		 *           .oclAsType(Class(C, R, A))
-		 *           .eClass.oclAsType(ecore::EClass)
-		 *           .eAllReferences->includes(self.eReference)
+		 *         message : String[?] = if status <> true
+		 *         then 'The eReference \'' + self.eReference.name + '\' is not allowed by the containing Class!'
+		 *         else null
 		 *         endif
 		 *       in
-		 *         'Reference::eReferenceMatchesParentEClass'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
-		 *     endif
+		 *         'Reference::eReferenceMatchesParentEClass'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
 		 */
 		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		final /*@NonNull*/ /*@NonInvalid*/ IntegerValue severity_0 = ClassUtil.nonNullState(CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, MetamodelTables.STR_Reference_c_c_eReferenceMatchesParentEClass));
-		final /*@NonInvalid*/ boolean le = ClassUtil.nonNullState(OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, severity_0, MetamodelTables.INT_0).booleanValue());
-		/*@NonInvalid*/ boolean symbol_0;
-		if (le) {
-		    symbol_0 = ValueUtil.TRUE_VALUE;
-		}
-		else {
-		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
+		/*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
+		try {
+		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_isLibraryEntry;
 		    try {
 		        final /*@Thrown*/ boolean isLibraryEntry = ((MetaModelElement)this).isLibraryEntry();
-		        /*@Thrown*/ boolean status;
-		        if (isLibraryEntry) {
-		            status = ValueUtil.TRUE_VALUE;
+		        CAUGHT_isLibraryEntry = isLibraryEntry;
+		    }
+		    catch (Exception e) {
+		        CAUGHT_isLibraryEntry = ValueUtil.createInvalidValue(e);
+		    }
+		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_eq;
+		    try {
+		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid_0 = idResolver.getClass(TypeId.OCL_VOID, null);
+		        final /*@NonNull*/ /*@Thrown*/ EReference eReference = this.getEReference();
+		        final /*@NonNull*/ /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType = ClassUtil.nonNullState((org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(evaluator, eReference));
+		        final /*@Thrown*/ boolean eq = oclType.getTypeId() == TYP_OclVoid_0.getTypeId();
+		        CAUGHT_eq = eq;
+		    }
+		    catch (Exception e) {
+		        CAUGHT_eq = ValueUtil.createInvalidValue(e);
+		    }
+		    final /*@Nullable*/ /*@Thrown*/ Boolean or = BooleanOrOperation.INSTANCE.evaluate(CAUGHT_isLibraryEntry, CAUGHT_eq);
+		    if (or == null) {
+		        throw new InvalidValueException("Null if condition");
+		    }
+		    /*@Thrown*/ boolean status;
+		    if (or) {
+		        status = ValueUtil.TRUE_VALUE;
+		    }
+		    else {
+		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Class_o_C_44_R_44_A_e = idResolver.getClass(MetamodelTables.CLSSid_Class, null);
+		        final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
+		        final /*@NonNull*/ /*@Thrown*/ pamtram.metamodel.Class oclAsType = ClassUtil.nonNullState((pamtram.metamodel.Class)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_metamodel_c_c_Class_o_C_44_R_44_A_e));
+		        final /*@NonNull*/ /*@Thrown*/ EClass parentEClass = oclAsType.getEClass();
+		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid_1 = idResolver.getClass(TypeId.OCL_VOID, null);
+		        final /*@NonNull*/ /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType_0 = ClassUtil.nonNullState((org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(evaluator, parentEClass));
+		        final /*@Thrown*/ boolean eq_0 = oclType_0.getTypeId() == TYP_OclVoid_1.getTypeId();
+		        /*@Thrown*/ boolean symbol_0;
+		        if (eq_0) {
+		            symbol_0 = ValueUtil.TRUE_VALUE;
 		        }
 		        else {
 		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ecore_c_c_EClass_0 = idResolver.getClass(MetamodelTables.CLSSid_EClass, null);
-		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Class_o_C_44_R_44_A_e = idResolver.getClass(MetamodelTables.CLSSid_Class, null);
-		            final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
-		            final /*@NonNull*/ /*@Thrown*/ pamtram.metamodel.Class oclAsType = ClassUtil.nonNullState((pamtram.metamodel.Class)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_metamodel_c_c_Class_o_C_44_R_44_A_e));
-		            final /*@NonNull*/ /*@Thrown*/ EClass eClass = oclAsType.getEClass();
-		            final /*@NonNull*/ /*@Thrown*/ EClass oclAsType_0 = ClassUtil.nonNullState((EClass)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, eClass, TYP_ecore_c_c_EClass_0));
+		            final /*@NonNull*/ /*@Thrown*/ EClass oclAsType_0 = ClassUtil.nonNullState((EClass)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, parentEClass, TYP_ecore_c_c_EClass_0));
 		            @SuppressWarnings("null")
 		            final /*@NonNull*/ /*@Thrown*/ List<EReference> eAllReferences = oclAsType_0.getEAllReferences();
 		            final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_eAllReferences = idResolver.createOrderedSetOfAll(MetamodelTables.ORD_CLSSid_EReference, eAllReferences);
-		            final /*@NonNull*/ /*@Thrown*/ EReference eReference = this.getEReference();
-		            final /*@Thrown*/ boolean includes = ClassUtil.nonNullState(CollectionIncludesOperation.INSTANCE.evaluate(BOXED_eAllReferences, eReference).booleanValue());
-		            status = includes;
+		            final /*@NonNull*/ /*@Thrown*/ EReference eReference_0 = this.getEReference();
+		            final /*@Thrown*/ boolean includes = ClassUtil.nonNullState(CollectionIncludesOperation.INSTANCE.evaluate(BOXED_eAllReferences, eReference_0).booleanValue());
+		            symbol_0 = includes;
 		        }
-		        CAUGHT_status = status;
+		        status = symbol_0;
 		    }
-		    catch (Exception e) {
-		        CAUGHT_status = ValueUtil.createInvalidValue(e);
-		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, MetamodelTables.STR_Reference_c_c_eReferenceMatchesParentEClass, this, null, diagnostics, context, null, severity_0, CAUGHT_status, MetamodelTables.INT_0).booleanValue());
-		    symbol_0 = logDiagnostic;
+		    CAUGHT_status = status;
 		}
-		return Boolean.TRUE == symbol_0;
+		catch (Exception e) {
+		    CAUGHT_status = ValueUtil.createInvalidValue(e);
+		}
+		if (CAUGHT_status instanceof InvalidValueException) {
+		    throw (InvalidValueException)CAUGHT_status;
+		}
+		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
+		/*@Nullable*/ /*@NonInvalid*/ String message_0;
+		if (ne) {
+		    final /*@NonNull*/ /*@Thrown*/ EReference eReference_1 = this.getEReference();
+		    final /*@Nullable*/ /*@Thrown*/ String name = eReference_1.getName();
+		    final /*@NonNull*/ /*@NonInvalid*/ String sum = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(MetamodelTables.STR_The_32_eReference_32_39, name));
+		    final /*@NonNull*/ /*@NonInvalid*/ String sum_0 = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(sum, MetamodelTables.STR__39_32_is_32_not_32_allowed_32_by_32_the_32_containing_32_Class_33));
+		    message_0 = sum_0;
+		}
+		else {
+		    message_0 = null;
+		}
+		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, MetamodelTables.STR_Reference_c_c_eReferenceMatchesParentEClass, this, null, diagnostics, context, message_0, MetamodelTables.INT_4, CAUGHT_status, MetamodelTables.INT_0).booleanValue());
+		return Boolean.TRUE == logDiagnostic;
 	}
 
 	/**
@@ -322,7 +370,7 @@ public abstract class ReferenceImpl<C extends pamtram.metamodel.Class<C, R, A>, 
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_13:
+			case MetamodelPackage.REFERENCE___EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_6:
 				return eReferenceMatchesParentEClass((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

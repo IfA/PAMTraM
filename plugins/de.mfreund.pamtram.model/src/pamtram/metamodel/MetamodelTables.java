@@ -132,7 +132,13 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_39_container_39_32_refrence_32_must_32_point_32_to_32_the_32_containing_32_Class_33 = "The \'container\' refrence must point to the containing Class!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_cardinality_32_of_32_a_32_Class_32_must_32_be_32_specified_32_as_32_39_CardinalityType = "The cardinality of a Class must be specified as \'CardinalityType::ONE\' when the upper bound of the containing Reference is \'1\'!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_eClass_32_39 = "The eClass \'";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_eReference_32_39 = "The eReference \'";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR__32_of_32_the_32_selected_32_target_32_Classes_32_o_Value_e_32_are_32_not_32_allowed_32_by_32_the_32_s = " of the selected target Classes (Value) are not allowed by the selected eReference \'";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_32_is_32_no_32_containment_32_reference_33 = "\' is no containment reference!";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_32_is_32_no_32_non_m_containment_32_reference_33 = "\' is no non-containment reference!";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_32_is_32_not_32_allowed_32_by_32_the_32_containing_32_Class_33 = "\' is not allowed by the containing Class!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_32_is_32_not_32_allowed_32_by_32_the_32_containing_32_reference_33 = "\' is not allowed by the containing reference!";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_33 = "\'!";
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_AttributeMapping = TypeId.BAG.getSpecializedId(MetamodelTables.CLSSid_AttributeMapping);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_AttributeMatcher = TypeId.BAG.getSpecializedId(MetamodelTables.CLSSid_AttributeMatcher);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_CardinalityMapping = TypeId.BAG.getSpecializedId(MetamodelTables.CLSSid_CardinalityMapping);

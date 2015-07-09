@@ -11,14 +11,15 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
-import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclAnyOclTypeOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
+import org.eclipse.ocl.pivot.library.string.StringConcatOperation;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
-import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.MetamodelTables;
@@ -89,39 +90,61 @@ public abstract class NonContainmentReferenceImpl<C extends pamtram.metamodel.Cl
 		/**
 		 * 
 		 * inv eReferenceIsNonContainment:
-		 *   let
-		 *     severity : Integer[1] = 'NonContainmentReference::eReferenceIsNonContainment'.getSeverity()
+		 *   let severity : Integer[1] = 4
 		 *   in
-		 *     if severity <= 0
-		 *     then true
-		 *     else
-		 *       let status : OclAny[1] = self.eReference.containment = false
+		 *     let
+		 *       status : OclAny[1] = if self.eReference.oclType() = OclVoid
+		 *       then true
+		 *       else self.eReference.containment = false
+		 *       endif
+		 *     in
+		 *       let
+		 *         message : String[?] = if status <> true
+		 *         then 'The eReference \'' + self.eReference.name + '\' is no non-containment reference!'
+		 *         else null
+		 *         endif
 		 *       in
-		 *         'NonContainmentReference::eReferenceIsNonContainment'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
-		 *     endif
+		 *         'NonContainmentReference::eReferenceIsNonContainment'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
 		 */
 		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		final /*@NonNull*/ /*@NonInvalid*/ IntegerValue severity_0 = ClassUtil.nonNullState(CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, MetamodelTables.STR_NonContainmentReference_c_c_eReferenceIsNonContainment));
-		final /*@NonInvalid*/ boolean le = ClassUtil.nonNullState(OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, severity_0, MetamodelTables.INT_0).booleanValue());
-		/*@NonInvalid*/ boolean symbol_0;
-		if (le) {
-		    symbol_0 = ValueUtil.TRUE_VALUE;
+		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
+		/*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
+		try {
+		    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid_0 = idResolver.getClass(TypeId.OCL_VOID, null);
+		    final /*@NonNull*/ /*@Thrown*/ EReference eReference_0 = this.getEReference();
+		    final /*@NonNull*/ /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType = ClassUtil.nonNullState((org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(evaluator, eReference_0));
+		    final /*@Thrown*/ boolean eq = oclType.getTypeId() == TYP_OclVoid_0.getTypeId();
+		    /*@Thrown*/ boolean status;
+		    if (eq) {
+		        status = ValueUtil.TRUE_VALUE;
+		    }
+		    else {
+		        final /*@Nullable*/ /*@Thrown*/ Boolean containment = eReference_0.isContainment();
+		        final /*@Thrown*/ boolean eq_0 = !containment;
+		        status = eq_0;
+		    }
+		    CAUGHT_status = status;
+		}
+		catch (Exception e) {
+		    CAUGHT_status = ValueUtil.createInvalidValue(e);
+		}
+		if (CAUGHT_status instanceof InvalidValueException) {
+		    throw (InvalidValueException)CAUGHT_status;
+		}
+		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
+		/*@Nullable*/ /*@NonInvalid*/ String message_0;
+		if (ne) {
+		    final /*@NonNull*/ /*@Thrown*/ EReference eReference_1 = this.getEReference();
+		    final /*@Nullable*/ /*@Thrown*/ String name = eReference_1.getName();
+		    final /*@NonNull*/ /*@NonInvalid*/ String sum = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(MetamodelTables.STR_The_32_eReference_32_39, name));
+		    final /*@NonNull*/ /*@NonInvalid*/ String sum_0 = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(sum, MetamodelTables.STR__39_32_is_32_no_32_non_m_containment_32_reference_33));
+		    message_0 = sum_0;
 		}
 		else {
-		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
-		    try {
-		        final /*@NonNull*/ /*@Thrown*/ EReference eReference = this.getEReference();
-		        final /*@Nullable*/ /*@Thrown*/ Boolean containment = eReference.isContainment();
-		        final /*@Thrown*/ boolean status = !containment;
-		        CAUGHT_status = status;
-		    }
-		    catch (Exception e) {
-		        CAUGHT_status = ValueUtil.createInvalidValue(e);
-		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, MetamodelTables.STR_NonContainmentReference_c_c_eReferenceIsNonContainment, this, null, diagnostics, context, null, severity_0, CAUGHT_status, MetamodelTables.INT_0).booleanValue());
-		    symbol_0 = logDiagnostic;
+		    message_0 = null;
 		}
-		return Boolean.TRUE == symbol_0;
+		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, MetamodelTables.STR_NonContainmentReference_c_c_eReferenceIsNonContainment, this, null, diagnostics, context, message_0, MetamodelTables.INT_4, CAUGHT_status, MetamodelTables.INT_0).booleanValue());
+		return Boolean.TRUE == logDiagnostic;
 	}
 
 	/**
@@ -193,7 +216,7 @@ public abstract class NonContainmentReferenceImpl<C extends pamtram.metamodel.Cl
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.NON_CONTAINMENT_REFERENCE___EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP_13:
+			case MetamodelPackage.NON_CONTAINMENT_REFERENCE___EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP_6:
 				return eReferenceIsNonContainment((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

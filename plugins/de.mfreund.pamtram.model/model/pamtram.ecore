@@ -294,7 +294,7 @@
         <details key="constraints" value="eReferenceMatchesParentEClass"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="eReferenceMatchesParentEClass" value="if self.isLibraryEntry() then true else self.oclContainer().oclAsType(pamtram::metamodel::Class).eClass.oclAsType(ecore::EClass).eAllReferences->includes(self.eReference) endif"/>
+        <details key="eReferenceMatchesParentEClass" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The eReference \'' + self.eReference.name + '\' is not allowed by the containing Class!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self.isLibraryEntry() or self.eReference.oclType() = OclVoid then &#xD;&#xA;&#x9;&#x9;&#x9;true else &#xD;&#xA;&#x9;&#x9;&#x9;let parentEClass = self.oclContainer().oclAsType(pamtram::metamodel::Class).eClass in&#xD;&#xA;&#x9;&#x9;&#x9;if parentEClass.oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;parentEClass.oclAsType(ecore::EClass).eAllReferences->includes(self.eReference)&#xD;&#xA;&#x9;&#x9;&#x9;endif&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
       </eAnnotations>
       <eTypeParameters name="C">
         <eBounds eClassifier="#//metamodel/Class">
@@ -334,7 +334,7 @@
         <details key="constraints" value="eReferenceIsContainment"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="eReferenceIsContainment" value="self.eReference.containment=true"/>
+        <details key="eReferenceIsContainment" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The eReference \'' + self.eReference.name + '\' is no containment reference!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self.eReference.oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;self.eReference.containment=true&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
       </eAnnotations>
       <eTypeParameters name="C">
         <eBounds eClassifier="#//metamodel/Class">
@@ -372,7 +372,7 @@
         <details key="constraints" value="eReferenceIsNonContainment"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="eReferenceIsNonContainment" value="self.eReference.containment=false"/>
+        <details key="eReferenceIsNonContainment" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The eReference \'' + self.eReference.name + '\' is no non-containment reference!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self.eReference.oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;self.eReference.containment=false&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
       </eAnnotations>
       <eTypeParameters name="C">
         <eBounds eClassifier="#//metamodel/Class">
@@ -457,7 +457,7 @@
         <details key="constraints" value="valuesMatchReferenceType"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="valuesMatchReferenceType" value="self.value->forAll(c : SourceSectionClass | self.eReference.eReferenceType.isSuperTypeOf(c.eClass))"/>
+        <details key="valuesMatchReferenceType" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;self.value->select(c : SourceSectionClass | not self.eReference.eReferenceType.isSuperTypeOf(c.eClass))->size().toString() + ' of the selected target Classes (Value) are not allowed by the selected eReference \'' + self.eReference.name + '\'!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self.eReference.oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;self.value->forAll(c : SourceSectionClass | self.eReference.eReferenceType.isSuperTypeOf(c.eClass))&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="value" upperBound="-1"
           eType="#//metamodel/SourceSectionClass"/>

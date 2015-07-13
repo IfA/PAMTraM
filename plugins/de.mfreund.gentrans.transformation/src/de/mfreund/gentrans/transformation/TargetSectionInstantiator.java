@@ -19,6 +19,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.console.MessageConsoleStream;
 
+import de.congrace.exp4j.Calculable;
+import de.congrace.exp4j.ExpressionBuilder;
+import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
+import de.mfreund.gentrans.transformation.selectors.GenericItemSelectorDialogRunner;
+import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunner;
+import de.mfreund.gentrans.transformation.util.CancellationListener;
+import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
@@ -40,13 +47,6 @@ import pamtram.metamodel.TargetSectionContainmentReference;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 import pamtram.metamodel.TargetSectionReference;
 import pamtram.util.GenLibraryManager;
-import de.congrace.exp4j.Calculable;
-import de.congrace.exp4j.ExpressionBuilder;
-import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
-import de.mfreund.gentrans.transformation.selectors.GenericItemSelectorDialogRunner;
-import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunner;
-import de.mfreund.gentrans.transformation.util.CancellationListener;
-import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 
 /**
  * Class for instantiating target model sections using the hints supplied by
@@ -118,23 +118,23 @@ class TargetSectionInstantiator implements CancellationListener {
 	 * connected with them
 	 */
 	private final Set<TargetSectionContainmentReference> wrongCardinalityContainmentRefs;
-//	/**
-//	 * used for modifying attribute values
-//	 */
-//	private final AttributeValueModifierExecutor attributeValuemodifier;
-//	/**
-//	 * RoundFunction instance, needed when evaluating ClaculatorMappingHints
-//	 */
-//	private RoundFunction round;
-//	/**
-//	 * MaxFunction instance, needed when evaluating ClaculatorMappingHints
-//	 */
-//	private MaxFunction max;
-//	/**
-//	 * MinFunction instance, needed when evaluating ClaculatorMappingHints
-//	 */
-//	private MinFunction min;
-	
+	//	/**
+	//	 * used for modifying attribute values
+	//	 */
+	//	private final AttributeValueModifierExecutor attributeValuemodifier;
+	//	/**
+	//	 * RoundFunction instance, needed when evaluating ClaculatorMappingHints
+	//	 */
+	//	private RoundFunction round;
+	//	/**
+	//	 * MaxFunction instance, needed when evaluating ClaculatorMappingHints
+	//	 */
+	//	private MaxFunction max;
+	//	/**
+	//	 * MinFunction instance, needed when evaluating ClaculatorMappingHints
+	//	 */
+	//	private MinFunction min;
+
 	/**
 	 * target section registry used when instantiating classes
 	 */
@@ -157,18 +157,18 @@ class TargetSectionInstantiator implements CancellationListener {
 	 * Registry for values of global Variables that can be mapped to double
 	 */
 	private final Map<String, Double> globalVarValueDoubles;
-	
+
 	/**
 	 * List of {@link LibraryEntryInstantiator}s that are to be used at the end of the
 	 * transformation.
 	 */
 	private ArrayList<LibraryEntryInstantiator> libEntryInstantiators = new ArrayList<>();
-	
+
 	/**
 	 * An instance of {@link AttributeValueCalculator} that is used to calculate attribute values.
 	 */
 	private AttributeValueCalculator calculator; 
-	
+
 	/**
 	 * The parent {@link GenericTransformationRunner}.
 	 */
@@ -200,16 +200,16 @@ class TargetSectionInstantiator implements CancellationListener {
 		this.consoleStream = consoleStream;
 		this.transformationRunner = transformationRunner;
 		transformationAborted = false;
-//		this.attributeValuemodifier = attributeValuemodifier;
+		//		this.attributeValuemodifier = attributeValuemodifier;
 		wrongCardinalityContainmentRefs = new HashSet<TargetSectionContainmentReference>();
 
-//		try {
-//			round = new RoundFunction();
-//			max = new MaxFunction();
-//			min = new MinFunction();
-//		} catch (final InvalidCustomFunctionException e) {
-//			consoleStream.println("This will never happen.");
-//		}
+		//		try {
+		//			round = new RoundFunction();
+		//			max = new MaxFunction();
+		//			min = new MinFunction();
+		//		} catch (final InvalidCustomFunctionException e) {
+		//			consoleStream.println("This will never happen.");
+		//		}
 
 		consoleStream
 		.println("Parsing GlobalVariables for numbers. Look below for potential errors..");
@@ -240,9 +240,9 @@ class TargetSectionInstantiator implements CancellationListener {
 				globalVarValueDoubles.put(val.getName(), val.getValue());
 			}
 		}
-		
+
 		calculator = new AttributeValueCalculator(globalVarValueDoubles, attributeValuemodifier, consoleStream);
-		
+
 		consoleStream.println("...parsing done!");
 	}
 
@@ -364,15 +364,15 @@ class TargetSectionInstantiator implements CancellationListener {
 					mappingHints, hintValues, null);
 			if (hint != null) {// there was an AttributeHint....
 				int hintCardinality = hintValues.getHintValues(hint).size();
-				
+
 				/*
 				 * Now, we have to check if there are multi-valued attributes that also try
 				 * to determine the cardinality.
 				 */
 				int multiValuedAttributeCardinality = 1;
-				
+
 				for (Map<AttributeMappingSourceInterface, AttributeValueRepresentation> x : hintValues.getHintValues(hint)) {
-					
+
 					for(AttributeValueRepresentation rep : x.values()) {
 						if(rep.isMany()) {
 							if(multiValuedAttributeCardinality == 1) {
@@ -384,7 +384,7 @@ class TargetSectionInstantiator implements CancellationListener {
 						}
 					}						
 				}
-				
+
 				/*
 				 * Check if there are contradictory cardinalities...
 				 */
@@ -394,7 +394,7 @@ class TargetSectionInstantiator implements CancellationListener {
 				} else if(multiValuedAttributeCardinality > 1) {
 					hintCardinality = multiValuedAttributeCardinality;
 				}
-				
+
 				if (hintCardinality > cardinality) {
 					cardinality = hintCardinality;
 				}
@@ -418,7 +418,7 @@ class TargetSectionInstantiator implements CancellationListener {
 			// instantiate self(s)
 			final LinkedList<EObjectTransformationHelper> instances = new LinkedList<EObjectTransformationHelper>();
 			for (int i = 0; i < cardinality; i++) {
-				
+
 				// create the eObject
 				final EObject inst = metamodelSection.getEClass().getEPackage()
 						.getEFactoryInstance()
@@ -427,7 +427,7 @@ class TargetSectionInstantiator implements CancellationListener {
 				EObjectTransformationHelper instTransformationHelper = new EObjectTransformationHelper(inst,
 						attributeValueRegistry); 
 				instances.add(instTransformationHelper);
-				
+
 				/*
 				 * If the target section is a library entry, we create a new 'LibraryEntryInstantiator'
 				 * that will insert the real library entry at the end.
@@ -458,11 +458,11 @@ class TargetSectionInstantiator implements CancellationListener {
 				MappingHint hintFound = null;
 				// look for an attribute mapping
 				LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> attrHintValues = null;
-				
+
 				for (final MappingHint hint : mappingHints) {
 					if (hint instanceof AttributeMapping) {
 						if (((AttributeMapping) hint).getTarget().equals(attr)) {
-							
+
 							hintFound = hint;
 							if (hintValues.getHintValues((AttributeMapping) hint).size() == 1) {
 								attrHintValues = new LinkedList<>();
@@ -660,7 +660,7 @@ class TargetSectionInstantiator implements CancellationListener {
 		}
 	}
 
-	
+
 
 	/**
 	 * instantiate targetModelSection (first pass: attributes and containment
@@ -679,9 +679,9 @@ class TargetSectionInstantiator implements CancellationListener {
 			final List<MappingHint> mappingHints,
 			final HintValueStorage hintValues,
 			final String mappingName) {
-		
+
 		final LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instBySection = new LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>();
-		
+
 		/*
 		 * Now, perform the first-run instantiation.
 		 */
@@ -690,8 +690,9 @@ class TargetSectionInstantiator implements CancellationListener {
 				mappingName,
 				new HashMap<EClass, Map<EAttribute, Set<String>>>()) != null) {
 			return instBySection;
-		} else
+		} else {
 			return null;
+		}
 
 	}
 
@@ -811,8 +812,9 @@ class TargetSectionInstantiator implements CancellationListener {
 										} else if (fittingVals.size() > 1) {// let
 											// user
 											// decide
-											if (transformationAborted)
+											if (transformationAborted) {
 												return;
+											}
 											final GenericItemSelectorDialogRunner<EObjectTransformationHelper> dialog = new GenericItemSelectorDialogRunner<EObjectTransformationHelper>(
 													"The MappingInstanceSelector '"
 															+ h.getName()
@@ -892,8 +894,9 @@ class TargetSectionInstantiator implements CancellationListener {
 												targetInstance = insts.get(0);
 											} else if (insts.size() > 1) {
 												// Dialog
-												if (transformationAborted)
+												if (transformationAborted) {
 													return;
+												}
 												final GenericItemSelectorDialogRunner<EObjectTransformationHelper> dialog = new GenericItemSelectorDialogRunner<EObjectTransformationHelper>(
 														"The MappingInstanceSelector '"
 																+ h.getName()
@@ -1092,8 +1095,9 @@ class TargetSectionInstantiator implements CancellationListener {
 											.getEObject(), source.getEObject());
 								} else if (instances.size() > 1) {
 									// Dialog
-									if (transformationAborted)
+									if (transformationAborted) {
 										return;
+									}
 									final GenericItemSelectorDialogRunner<EObjectTransformationHelper> dialog = new GenericItemSelectorDialogRunner<EObjectTransformationHelper>(
 											"There was more than one target element found for the NonContainmmentReference '"
 													+ ref.getName()
@@ -1172,8 +1176,9 @@ class TargetSectionInstantiator implements CancellationListener {
 							} else if (targetInstancesToConsider.values()
 									.size() > 1) {
 								// Dialog
-								if (transformationAborted)
+								if (transformationAborted) {
 									return;
+								}
 								final PathAndInstanceSelectorRunner dialog = new PathAndInstanceSelectorRunner(
 										"There was more than one target element found for the NonContainmmentReference '"
 												+ ref.getName()
@@ -1248,7 +1253,7 @@ class TargetSectionInstantiator implements CancellationListener {
 			final List<MappingHint> hints,
 			final HintValueStorage hintValues,
 			final LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection) {
-		
+
 		for (final TargetSectionReference ref : targetSectionClass
 				.getReferences()) {
 			if (ref instanceof TargetSectionContainmentReference) {
@@ -1265,7 +1270,7 @@ class TargetSectionInstantiator implements CancellationListener {
 
 		}
 	}
-	
+
 	/**
 	 * Instantiate all library entry-based target sections that have been collected
 	 * during {@link #instantiateTargetSectionFirstPass}.
@@ -1278,17 +1283,17 @@ class TargetSectionInstantiator implements CancellationListener {
 	 */
 	boolean instantiateLibraryEntries(
 			EObject targetModel, LibraryContextDescriptor targetLibraryContextDescriptor) {
-		
+
 		if(libEntryInstantiators.isEmpty()) { // nothing to be done
 			return true;
 		}
-		
+
 		if(targetLibraryContextDescriptor.getLibraryContextClass() == null) {
 			consoleStream.println("Could not instantiate library entries as no target"
 					+ " library context class has been specified!");
 			return false;
 		}
-		
+
 		/*
 		 * Create a GenLibraryManager that proxies calls to the LibraryPlugin. 
 		 */
@@ -1301,7 +1306,7 @@ class TargetSectionInstantiator implements CancellationListener {
 			consoleStream.println("Error while instantiatiating library context/parser!");
 			return false;
 		}
-		
+
 		boolean successful = true;
 		/*
 		 * Iterate over all stored instantiators and instantiate the associated library entry
@@ -1311,14 +1316,14 @@ class TargetSectionInstantiator implements CancellationListener {
 			if(!libraryEntryInstantiator.instantiate(
 					manager, targetModel, calculator, 
 					transformationRunner.getTargetSectionConnector(),
-					transformationRunner.getTargetSectionRegistry())) {
+					targetSectionRegistry)) {
 				consoleStream.println("Failed to instantiate library entry '" + 
-					libraryEntryInstantiator.getLibraryEntry().getPath() + "'!");
+						libraryEntryInstantiator.getLibraryEntry().getPath() + "'!");
 				successful = false;
 			}
 		}
 		return successful;
-	
+
 	}
 
 	/**

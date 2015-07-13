@@ -36,15 +36,18 @@ import org.eclipse.ui.progress.UIJob;
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.util.CancellationListener;
+import de.mfreund.gentrans.transformation.util.MonitorWrapper;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 import pamtram.PAMTraM;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.AttributeMatcherSourceInterface;
+import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.ExternalMappedAttributeValuePrepender;
+import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.GlobalValue;
 import pamtram.mapping.MappedAttributeValueExpander;
@@ -200,19 +203,6 @@ public class GenericTransformationRunner {
 	}
 
 	/**
-	 * This is the {@link TargetSectionRegistry} that registers created target sections.
-	 */
-	private TargetSectionRegistry targetSectionRegistry;
-
-	/**
-	 * This is the Getter for the {@link #targetSectionRegistry}.
-	 * @return The {@link #targetSectionRegistry} used by the transformation runner.
-	 */
-	public TargetSectionRegistry getTargetSectionRegistry() {
-		return targetSectionRegistry;
-	}
-
-	/**
 	 * Private constructor that is called from all other constructors.
 	 * 
 	 * @param sourceFilePath
@@ -312,6 +302,80 @@ public class GenericTransformationRunner {
 	}
 
 	/**
+	 * This performs the actual generic transformation. It loads all necessary models, executes the mappings defined
+	 * in the PAMTraM model and stores the generated target model. All progress is reported to the given '<em>monitor</em>'.
+	 *
+	 * @param monitor An {@link IProgressMonitor} that shall be used to display the progress of the transformation. If '<em>null</em>'
+	 * is passed as argument, no monitor will be used.
+	 */
+	public void runTransformation(final IProgressMonitor monitor) {
+
+		// create a wrapper for the monitor so that a 'null' argument does not lead to errors
+		MonitorWrapper monitorWrapper = new MonitorWrapper(monitor);
+
+		final long startTime = System.nanoTime();
+
+		monitorWrapper.beginTask("GenTrans", 1000);
+
+		// Create a resource set.
+		ResourceSet resourceSet = new ResourceSetImpl();
+
+		// load the mapping model
+		if(pamtramModel == null && !loadPamtramModel(resourceSet)) {
+			return;
+		}
+
+		// load the source model
+		loadSourceModel(resourceSet);
+
+		// create the target model
+		if(!createTargetModel(resourceSet)) {
+			return;
+		}
+
+		// find active mappings and resolve ambiguities as far as possible without user
+		// input
+		final List<Mapping> suitableMappings = pamtramModel.getMappingModel().getActiveMappings();
+		// TODO apply contextModel
+
+		boolean successful = false;
+		try {
+			/*
+			 * try to execute all active mappings (this includes the 4 resp. 5 main steps of
+			 * the transformation
+			 */
+			successful = executeMappings(targetModel, sourceModel, pamtramModel, suitableMappings,
+					monitorWrapper); 			
+		} catch (RuntimeException e) {
+			consoleStream.println(e.getMessage());
+			consoleStream.println("Aborting...");
+			throw e;
+		}
+
+		if (successful && !isCancelled) {
+			// save targetModel
+			try {
+				// try to save the xmi resource
+				// xmiResource.save(Collections.EMPTY_MAP);
+				final Map<Object, Object> options = new LinkedHashMap<Object, Object>();
+				options.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
+				options.put(XMLResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.TRUE);
+				targetModel.save(Collections.EMPTY_MAP);
+				final long endTime = System.nanoTime();
+				writePamtramMessage("Transformation done. Time: "
+						+ Math.ceil((endTime - startTime) / 100000000L) / 10.0 + "s");
+			} catch (final Exception e) {
+				MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Error",
+						"The XMI resource could not be saved.");
+				e.printStackTrace();
+				return;
+			}
+
+		}
+
+	}
+
+	/**
 	 * This cancels any running (or future) transformation.
 	 */
 	public void cancel() {
@@ -339,18 +403,84 @@ public class GenericTransformationRunner {
 		// generate storage objects and generators
 		final AttributeValueModifierExecutor attributeValueModifier = new AttributeValueModifierExecutor(
 				consoleStream);
-		final AttributeValueRegistry attrValueRegistry = new AttributeValueRegistry();
 
 		/*
-		 * create a list of all the containment references in the source model
+		 * Perform the 'matching' step of the transformation
 		 */
-		writePamtramMessage("Analysing source model");
-		monitor.subTask("Selecting Mappings for source model elements");
+		MatchingResult matchingResult = performMatching(sourceModel, suitableMappings, attributeValueModifier, monitor);
+
+		if(matchingResult.isCanceled()) {
+			return false;
+		}
+
+		/*
+		 * Perform the 'expanding' step of the transformation
+		 */
+		ExpandingResult expandingResult = performExpanding(
+				matchingResult, pamtramModel.getMappingModel().getGlobalValues(), monitor,
+				attributeValueModifier);
+
+		/*
+		 * Perform the 'joining' step of the transformation
+		 */
+		boolean joiningResult = performJoining(targetModel, suitableMappings,
+				expandingResult, attributeValueModifier, matchingResult, monitor); 
+
+		if (!joiningResult) {
+			return false;
+		}
+
+		/*
+		 * Perform the 'linking' step of the transformation
+		 */
+		boolean linkingResult = performLinking(matchingResult,
+				targetSectionInstantiator, monitor);
+
+		if(!linkingResult) {
+			return false;
+		}
+
+		/*
+		 * Finally, instantiate the collected library entries in the target model. 
+		 */
+		if(targetModel.getContents().isEmpty()) {
+			consoleStream.println("Something seems to be wrong! Target model is empty!");
+			return false;
+		} else {
+			return performInstantiatingLibraryEntries(targetModel.getContents().get(0), monitor);
+		}
+
+	}
+
+	/**
+	 * This performs the '<em>matching</em>' step of the transformation. Therefore, it iterates through the
+	 * given '<em>sourceModel</em>' and tries to apply the given '<em>suitableMappings</em>'. During this process,
+	 * the hint values for the various {@link MappingHint MappingHints} are calculated as well. 
+	 *  
+	 * @param sourceModel The {@link EObject} representing/containing the source model to be matched. 
+	 * @param suitableMappings A list of {@link Mapping Mappings} that shall be used for the matching process.
+	 * @param attributeValueModifier An instance of {@link AttributeValueModifierExecutor} that shall be used to 
+	 * apply {@link AttributeValueModifierSet AttributeValueModifierSets} in order to obtain hint values.
+	 * @param monitor An {@link IProgressMonitor} that shall be used to report the progress of the transformation.
+	 * @return A {@link MatchingResult} that contains the various results of the matching.
+	 */
+	private MatchingResult performMatching(
+			EObject sourceModel, 
+			List<Mapping> suitableMappings, 
+			AttributeValueModifierExecutor attributeValueModifier, 
+			IProgressMonitor monitor) {
+
+		LinkedList<MappingInstanceStorage> selectedMappings = new LinkedList<>();
+		LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping = new LinkedHashMap<>();
+		HintValueStorage exportedMappingHints;
+		Map<GlobalAttribute, String> globalAttributeValues;
 
 		/*
 		 * Build the ContainmentTree representing the source model. This will keep track of all matched
 		 * and unmatched elements.
 		 */
+		writePamtramMessage("Analyzing source model");
+		monitor.subTask("Selecting Mappings for source model elements");
 		final ContainmentTree containmentTree = ContainmentTree.build(sourceModel);
 
 		/*
@@ -364,8 +494,6 @@ public class GenericTransformationRunner {
 		 * Now start matching each of the elements in the containment tree. We automatically start
 		 * at the root element.
 		 */
-		final LinkedList<MappingInstanceStorage> selectedMappings = new LinkedList<>();
-		final LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping = new LinkedHashMap<>();
 		writePamtramMessage("Selecting Mappings for source model elements");
 
 		final int numSrcModelElements = containmentTree.getNumberOfElements();
@@ -383,7 +511,7 @@ public class GenericTransformationRunner {
 
 			if (sourceSectionMatcher.isCancelled()) {
 				writePamtramMessage("Transformation aborted.");
-				return false;
+				return MatchingResult.createMatchingCanceledResult();
 			}
 
 			// store the selected mapping
@@ -407,7 +535,7 @@ public class GenericTransformationRunner {
 		}
 
 		if (isCancelled) {
-			return false;
+			return MatchingResult.createMatchingCanceledResult();
 		}
 
 		consoleStream.println("Summary:\tAvailable Elements:\t" + containmentTree.getNumberOfElements());
@@ -421,80 +549,650 @@ public class GenericTransformationRunner {
 		 * 
 		 * Also add values of GlobalVariables to ComplexAttributeMapping's Hints
 		 */
-		final HintValueStorage exportedMappingHints = handleGlobalVarsAndExportedMappings(
+		exportedMappingHints = handleGlobalVarsAndExportedMappings(
 				sourceSectionMatcher, selectedMappings);
+		globalAttributeValues =  sourceSectionMatcher.getGlobalAttributeValues();
 
 		if (isCancelled) {
-			return false;
+			return MatchingResult.createMatchingCanceledResult();
 		}
+
+		return MatchingResult.createMatchingCompletedResult(selectedMappings, selectedMappingsByMapping, exportedMappingHints, globalAttributeValues);
+
+	}
+
+	/**
+	 * This performs the '<em>expanding</em>' step of the transformation:
+	 * The target sections (excluding those that are defined by {@link LibraryEntry LibraryEntries})
+	 * are instantiated (only containment references and attributes but no non-containment
+	 * references).
+	 *
+	 * @param matchingResult
+	 * @param globalValues
+	 * @param monitor
+	 * @param attributeValuemodifier
+	 * @return 
+	 */
+	private ExpandingResult performExpanding(
+			final MatchingResult matchingResult,
+			final List<GlobalValue> globalValues,
+			final IProgressMonitor monitor,
+			final AttributeValueModifierExecutor attributeValuemodifier) {
+
+		final AttributeValueRegistry attrValueRegistry = new AttributeValueRegistry();
 
 		/*
 		 * Instantiate TargetSectionRegistry, analyzes target-metamodel
 		 */
 		monitor.subTask("Instantiating targetModelSections for selected mappings. First pass");
 		writePamtramMessage("Analyzing target metamodel");
-		targetSectionRegistry = new TargetSectionRegistry(
+		final TargetSectionRegistry targetSectionRegistry = new TargetSectionRegistry(
 				consoleStream,
 				attrValueRegistry, 
 				pamtramModel.getTargetSectionModel().getMetaModelPackage());
 		objectsToCancel.add(targetSectionRegistry);
 
-		/*
-		 * Instantiate all Target-Sections (containment refs and attributes)
-		 */
 		writePamtramMessage("Instantiating targetModelSections for selected mappings. First pass");
-		runInstantiationFirstPass(
-				sourceSectionMatcher, targetSectionRegistry, attrValueRegistry,
-				selectedMappings, exportedMappingHints, pamtramModel
-				.getMappingModel().getGlobalValues(), monitor,
-				attributeValueModifier);
 
+		/*
+		 * Initialize the TargetSectionInstantiator
+		 */
+		targetSectionInstantiator = new TargetSectionInstantiator(
+				targetSectionRegistry, attrValueRegistry,
+				matchingResult.getGlobalAttributeValues(),
+				attributeValuemodifier, globalValues, consoleStream, this);
 		objectsToCancel.add(targetSectionInstantiator);
 
-		if (isCancelled) {
-			return false;
-		}
+		/*
+		 * Used to update the monitor.
+		 */
+		final double workUnit = 250.0 / matchingResult.getSelectedMappings().size();
+		double accumulatedWork = 0;
 
 		/*
-		 * creating missing links/containers for target model (joining)
+		 * Iterate over all selected mappings
 		 */
-		writePamtramMessage("Linking targetModelSections");
-		monitor.subTask("Linking targetModelSections");
+		for (final MappingInstanceStorage selMap : matchingResult.getSelectedMappings()) {
 
-		if (!linkTargetSections(targetModel, suitableMappings,
-				targetSectionRegistry, attrValueRegistry,
-				attributeValueModifier, selectedMappingsByMapping, monitor)) {
-			return false;
+			/*
+			 * Iterate over all mapping hint group (except inactive and empty ones)
+			 */
+			for (final MappingHintGroupType g : selMap.getMapping()
+					.getActiveMappingHintGroups()) {
+				if (g.getTargetMMSection() != null
+						&& g instanceof MappingHintGroup) {
+
+					/*
+					 * Instantiate the target section.
+					 */
+					final LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection = 
+							targetSectionInstantiator.instantiateTargetSectionFirstPass(
+									g.getTargetMMSection(),
+									(MappingHintGroup) g, g.getMappingHints(),
+									selMap.getHintValues(),
+									selMap.getMapping().getName());
+
+					if (instancesBySection == null) {
+						if (g.getTargetMMSection().getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
+							consoleStream
+							.println("Error instantiating target section '"
+									+ g.getTargetMMSection().getName()
+									+ "' using mapping rule '"
+									+ selMap.getMapping().getName()
+									+ "'");
+						}
+					} else {
+						for (final TargetSectionClass section : instancesBySection
+								.keySet()) {
+							/*
+							 * Store the created instance(s).
+							 */
+							selMap.addInstances((MappingHintGroup) g, section,
+									instancesBySection.get(section));
+						}
+					}
+				}
+
+			}
+
+			for (final MappingHintGroupImporter g : selMap.getMapping()
+					.getActiveImportedMappingHintGroups()) {
+				final ExportedMappingHintGroup expGrp = g.getHintGroup();
+				if (expGrp != null) {
+
+					// import Hints
+					for (final MappingHint h : expGrp.getMappingHints()) {
+						selMap.getHintValues().setHintValues(h, null);
+						if (matchingResult.getExportedMappingHints().containsHint(h)) {
+							selMap.getHintValues().addHintValues(h, matchingResult.getExportedMappingHints().getHintValues(h));
+						}
+					}
+
+					// start instantiating
+					if (expGrp.getTargetMMSection() != null) {
+
+						final List<MappingHint> hints = new LinkedList<MappingHint>();
+						hints.addAll(expGrp.getMappingHints());
+						for (final MappingHintType h : g.getMappingHints()) {
+							if (h instanceof MappingHint) {
+								hints.add((MappingHint) h);
+							} else if (h instanceof MappedAttributeValueExpander) {
+								if (selMap.getHintValues().getHintValues((MappedAttributeValueExpander) h).size() == 1) {
+									final String hintVal = selMap.getHintValues().getHintValues((MappedAttributeValueExpander) h).getFirst();
+									/*
+									 * of course this works only because the
+									 * only other option is the Appender
+									 */
+									final boolean prepend = h instanceof MappedAttributeValuePrepender
+											|| h instanceof ExternalMappedAttributeValuePrepender;
+
+									for (final MappingHint realHint : g
+											.getHintGroup().getMappingHints()) {
+										if (realHint instanceof AttributeMapping) {
+											if (((MappedAttributeValueExpander) h)
+													.getHintsToExpand()
+													.contains(realHint)) {
+												if (realHint instanceof AttributeMapping && 
+														((AttributeMapping) realHint).getExpression() == null ||
+														((AttributeMapping) realHint).getExpression().isEmpty()) {// ComplexAttributeMapping
+
+													final LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> vals = new LinkedList<>();
+													final List<AttributeMappingSourceInterface> sources = ((AttributeMapping) realHint)
+															.getSourceAttributeMappings();
+
+													if (sources.size() > 0) {
+														// determine the one of possibly multiple source elements of the
+														// attribute mapping to be expanded
+														AttributeMappingSourceInterface element;
+														if (prepend) {
+															element = sources
+																	.get(0);
+														} else {
+															element = sources
+																	.get(sources
+																			.size() - 1);
+														}
+
+														for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> m : selMap.getHintValues().getHintValues((AttributeMapping) realHint)) {
+
+															/*
+															 *  create a deep-cloned copy of the map holding the source elements and values 
+															 *  of complex attribute mapping that we are expanding; this is necessary because the map will
+															 *  change in the course of this function but the changes shall not be propagated to future
+															 *  calls of this function
+															 */
+
+															final LinkedHashMap<AttributeMappingSourceInterface, AttributeValueRepresentation> clonedMap = 
+																	new LinkedHashMap<>();
+															for (AttributeMappingSourceInterface key : m.keySet()) {
+																clonedMap.put(key, 
+																		(AttributeValueRepresentation) m.get(key).clone());
+															}
+
+															// expand either the first or last value source element and let all other
+															// values untouched
+															if (clonedMap.containsKey(element)) {
+																AttributeValueRepresentation rep = clonedMap.get(element);
+																if (prepend) {
+																	rep.addPrefix(hintVal);
+																} else {
+																	rep.addSuffix(hintVal);
+																}
+																clonedMap.put(element, rep);
+															}
+
+															// add the new map to the list holding all hint values
+															vals.add(clonedMap);
+														}
+
+														// update the hint value list for the real hint
+														selMap.getHintValues().setHintValues((AttributeMapping) realHint, vals);
+													}
+												} else if (realHint instanceof AttributeMapping) {// CalculatorMapping
+													final List<AttributeMappingSourceInterface> sources = ((AttributeMapping) realHint)
+															.getSourceAttributeMappings();
+													if (sources.size() > 0) {
+														try {
+															final Calculable calc = new ExpressionBuilder(hintVal).build();
+															final double variableVal = calc.calculate();
+															/*
+															 * parseDouble
+															 * doesn't support
+															 * Scientific
+															 * notation, like:
+															 * 0.42e2 == 4200e-2
+															 * == 42,
+															 */
+															for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> m : selMap.getHintValues().getHintValues((AttributeMapping) realHint)) {
+																//TODO check if this works
+																m.put(sources.get(0), new AttributeValueRepresentation(((MappedAttributeValueExpander) h).getSourceAttribute(), Double.toString(variableVal)));
+															}
+														} catch (final Exception e) {
+															consoleStream.println("Couldn't convert variable " + ((MappedAttributeValueExpander) h).getSourceAttribute().getName()
+																	+ " of " + h.getClass().getName() + " " + h.getName()
+																	+ " from String to double. The problematic source element's attribute value was: " + hintVal);
+														}
+													}
+												}// TODO add any remaining
+												// hintValue changes here
+
+											}
+										} else if (realHint instanceof MappingInstanceSelector) {
+											if (((MappingInstanceSelector) realHint)
+													.getMatcher() instanceof AttributeMatcher) {
+												final AttributeMatcher matcher = (AttributeMatcher) ((MappingInstanceSelector) realHint)
+														.getMatcher();
+
+												if (((MappedAttributeValueExpander) h)
+														.getHintsToExpand()
+														.contains(matcher)) {
+													if (matcher instanceof AttributeMatcher) {// ComplexAttributeMatcher
+														final List<AttributeMatcherSourceInterface> sources = matcher
+																.getSourceAttributes();
+														if (sources.size() > 0) {
+															AttributeMatcherSourceInterface element;
+															if (prepend) {
+																element = sources
+																		.get(0);
+															} else {
+																element = sources
+																		.get(sources
+																				.size() - 1);
+															}
+
+															for (final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> m : selMap.getHintValues().getHintValues((MappingInstanceSelector) realHint)) {
+																if (m.containsKey(element)) {
+																	if (prepend) {
+																		AttributeValueRepresentation preprended = m.get(element);
+																		preprended.addPrefix(hintVal);
+																		m.put(element, preprended);
+																	} else {
+																		AttributeValueRepresentation appended = m.get(element);
+																		appended.addSuffix(hintVal);
+																		m.put(element, appended);
+																	}
+																}
+															}
+														}
+													}// TODO add any remaining
+													// hitValue changes here
+
+												}
+											}
+										}
+									}
+								} // else TODO maybe add something here when we
+								// know how to handle/control cardinality of
+								// ImportedMappingHints
+							}
+						}
+						final LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection = targetSectionInstantiator
+								.instantiateTargetSectionFirstPass(
+										expGrp.getTargetMMSection(), g, hints,
+										selMap.getHintValues(),
+										selMap.getMapping().getName());
+						if (instancesBySection == null) {
+							if (expGrp.getTargetMMSection().getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
+								consoleStream
+								.println("Error instantiating target section '"
+										+ expGrp.getTargetMMSection()
+										.getName()
+										+ "' using mapping rule '"
+										+ selMap.getMapping().getName()
+										+ "'");
+							}
+						} else {
+							for (final TargetSectionClass section : instancesBySection
+									.keySet()) {
+								selMap.addInstances(g, section,
+										instancesBySection.get(section));
+							}
+						}
+					}
+
+				}
+			}
+
+			accumulatedWork += workUnit;
+			if (accumulatedWork >= 1) {
+				monitor.worked((int) Math.floor(accumulatedWork));
+				accumulatedWork -= Math.floor(accumulatedWork);
+			}
 		}
 
-		if (isCancelled) {
-			return false;
-		}
+		return ExpandingResult.createExpandingResult(attrValueRegistry, targetSectionRegistry);
+	}
+
+	/**
+	 * @param targetModel
+	 * @param suitableMappings
+	 * @param expandingResult
+	 * @param attrValueRegistry
+	 * @param attributeValueModifier
+	 * @param matchingResult
+	 * @param monitor
+	 * @return
+	 */
+	private boolean performJoining(
+			final XMIResource targetModel,
+			final List<Mapping> suitableMappings,
+			final ExpandingResult expandingResult,
+			final AttributeValueModifierExecutor attributeValueModifier,
+			final MatchingResult matchingResult,
+			final IProgressMonitor monitor) {
+
+		writePamtramMessage("Joining targetModelSections");
+		monitor.subTask("Joining targetModelSections");
 
 		/*
-		 * creating target Model second pass (non-containment references -> linking)
+		 * Initialize the TargetSectionConnector
 		 */
-		writePamtramMessage("Instantiating targetModelSections for selected mappings. Second pass");
-		monitor.subTask("Instantiating targetModelSections for selected mappings. Second pass");
-		if(!runInstantiationSecondPass(selectedMappings,
-				targetSectionInstantiator, monitor)) {
-			return false;
-		}
+		targetSectionConnector = new TargetSectionConnector(
+				expandingResult.getAttributeValueRegistry(), expandingResult.getTargetSectionRegistry(),
+				attributeValueModifier, targetModel, maxPathLength,
+				consoleStream);
+		objectsToCancel.add(targetSectionConnector);
+		final double workUnit = 250.0 / suitableMappings.size();
+		double accumulatedWork = 0;
 
 		/*
-		 * Finally, instantiate the collected library entries in the target model. 
+		 * Connect all target sections
 		 */
-		writePamtramMessage("Instantiating libraryEntries for selected mappings.");
-		monitor.subTask("Instantiating libraryEntries for selected mappings.");
+		for (final Mapping m : suitableMappings) {
+			for (final MappingHintGroupType g : m.getActiveMappingHintGroups()) {
 
-		if(targetModel.getContents().isEmpty()) {
-			consoleStream.println("Something seems to be wrong! Target model is empty!");
+				if (g.getTargetMMSection() != null
+						&& g instanceof MappingHintGroup) {// targetSection
+					// exists?
+					final TargetSectionClass section = g.getTargetMMSection();
+					if (expandingResult.getTargetSectionRegistry().getPamtramClassInstances(section)
+							.keySet().size() > 0) {// instances of section
+						// exist?
+						if (expandingResult.getTargetSectionRegistry().getPamtramClassInstances(
+								section).get(g) != null) {// ..also of specific
+							// group
+							if (((MappingHintGroup) g)
+									.getModelConnectionMatcher() != null) {// link
+								// using
+								// matcher
+								for (final MappingInstanceStorage selMap : matchingResult.getSelectedMappingsByMapping()
+										.get(m)) {
+									if (selMap.getInstances(
+											(MappingHintGroup) g, section) != null) {
+										if (isCancelled) {
+											return false;
+										}
+
+										targetSectionConnector.linkToTargetModelUsingModelConnectionHint(
+												section.getEClass(),
+												new LinkedList<EObjectTransformationHelper>(
+														selMap.getInstances(
+																(MappingHintGroup) g,
+																section)),
+												section,
+												m.getName(),
+												g.getName(),
+												((MappingHintGroup) g)
+												.getModelConnectionMatcher(),
+												selMap.getHintValues().getHintValues(((MappingHintGroup) g)
+														.getModelConnectionMatcher()),
+												maxPathLength);
+										if (targetSectionConnector
+												.isCancelled()) {
+											writePamtramMessage("Transformation aborted.");
+											return false;
+										}
+									}
+								}
+							} else {// link using container attribute or nothing
+								final LinkedList<EObjectTransformationHelper> containerInstances = expandingResult.getTargetSectionRegistry()
+										.getFlattenedPamtramClassInstances(section
+												.getContainer());
+								final LinkedList<EObjectTransformationHelper> rootInstances = expandingResult.getTargetSectionRegistry()
+										.getPamtramClassInstances(section).get(
+												g); // fetch ALL instances
+								// created by the MH-Group
+								// in question
+								// => less user input and possibly shorter
+								// processing time
+								containerInstances.removeAll(rootInstances);// we
+								/*
+								 * do not want the root instances to contain
+								 * themselves
+								 */
+								final Set<EClass> containerClasses = new HashSet<EClass>();
+								if (section.getContainer() != null) {
+									containerClasses.add(section.getContainer()
+											.getEClass());
+								}
+								targetSectionConnector
+								.linkToTargetModelNoConnectionHint(
+										rootInstances, section,
+										m.getName(), g.getName(),
+										section.getContainer() != null,
+										containerClasses,
+										containerInstances);
+								if (targetSectionConnector.isCancelled()) {
+									writePamtramMessage("Transformation aborted.");
+									return false;
+								}
+							}
+						}
+					}
+				}
+			}
+
+			for (final MappingHintGroupImporter i : m
+					.getActiveImportedMappingHintGroups()) {
+				final ExportedMappingHintGroup g = i.getHintGroup();
+				if (g.getTargetMMSection() != null) {
+					/*
+					 * ImportedMAppingHintGroups with containers specified will
+					 * be linked to a section that was created by the same
+					 * mapping Instance
+					 */
+					if (i.getContainer() != null) {
+						for (final MappingInstanceStorage selMap : matchingResult.getSelectedMappingsByMapping()
+								.get(m)) {
+							final LinkedList<EObjectTransformationHelper> rootInstances = selMap
+									.getInstances(i, g.getTargetMMSection());
+							if (rootInstances.size() > 0) {
+								final LinkedList<EObjectTransformationHelper> containerInstances = new LinkedList<EObjectTransformationHelper>();
+								final Set<EClass> containerClasses = new HashSet<EClass>();
+
+								containerClasses.add(i.getContainer()
+										.getEClass());
+								// get container instances created by this
+								// mapping instance
+								for (final MappingHintGroupType group : m
+										.getActiveMappingHintGroups()) {
+									if (isCancelled) {
+										return false;
+									}
+
+									if (group instanceof MappingHintGroup) {
+										final LinkedList<EObjectTransformationHelper> insts = selMap
+												.getInstances(
+														(MappingHintGroup) group,
+														i.getContainer());
+										if (insts != null) {
+											containerInstances.addAll(insts);
+										}
+
+									}
+								}
+								// link
+								targetSectionConnector
+								.linkToTargetModelNoConnectionHint(
+										rootInstances,
+										g.getTargetMMSection(),
+										m.getName(), g.getName(), true,
+										containerClasses,
+										containerInstances);
+								if (targetSectionConnector.isCancelled()) {
+									writePamtramMessage("Transformation aborted.");
+									return false;
+								}
+							}
+						}
+
+						// use container attribute of targetSection if one is
+						// specified
+						// (target section container == global instance search)
+					} else {
+						final LinkedList<EObjectTransformationHelper> containerInstances = new LinkedList<EObjectTransformationHelper>();
+						final LinkedList<EObjectTransformationHelper> rootInstances = expandingResult.getTargetSectionRegistry()
+								.getPamtramClassInstances(
+										g.getTargetMMSection()).get(i);
+						final Set<EClass> containerClasses = new HashSet<EClass>();
+						if (g.getTargetMMSection().getContainer() != null) {
+							containerClasses.add(g.getTargetMMSection()
+									.getContainer().getEClass());
+							containerInstances.addAll(expandingResult.getTargetSectionRegistry()
+									.getFlattenedPamtramClassInstances(g
+											.getTargetMMSection()
+											.getContainer()));
+
+						}
+
+						if (rootInstances != null) {
+							if (rootInstances.size() > 0) {
+								// link
+								targetSectionConnector
+								.linkToTargetModelNoConnectionHint(
+										rootInstances,
+										g.getTargetMMSection(),
+										m.getName(), g.getName(),
+										containerClasses.size() > 0,
+										containerClasses,
+										containerInstances);
+								if (targetSectionConnector.isCancelled()) {
+									writePamtramMessage("Transformation aborted.");
+									return false;
+								}
+							}
+						}
+					}
+
+				}
+			}
+
+			accumulatedWork += workUnit;
+			if (accumulatedWork >= 1) {
+				monitor.worked((int) Math.floor(accumulatedWork));
+				accumulatedWork -= Math.floor(accumulatedWork);
+			}
+		}
+
+		targetSectionConnector.combineUnlinkedSectionsWithTargetModelRoot();
+		if (targetSectionConnector.isCancelled()) {
+			writePamtramMessage("Transformation aborted.");
 			return false;
 		} else {
-			return runInstantiationLibraryEntries(
-					targetSectionInstantiator, targetModel.getContents().get(0));
+			return true;
 		}
 
+	}
+
+	/**
+	 * @param selectedMappings
+	 * @param targetSectionInstantiator
+	 * @param monitor
+	 * @return
+	 */
+	private boolean performLinking(
+			final MatchingResult matchingResult,
+			final TargetSectionInstantiator targetSectionInstantiator,
+			final IProgressMonitor monitor) {
+
+		writePamtramMessage("Instantiating targetModelSections for selected mappings. Second pass");
+		monitor.subTask("Instantiating targetModelSections for selected mappings. Second pass");
+
+		final double workUnit = 250.0 / matchingResult.getSelectedMappings().size();
+		double accumulatedWork = 0;
+		for (final MappingInstanceStorage selMap : matchingResult.getSelectedMappings()) {
+			for (final MappingHintGroupType g : selMap.getMapping()
+					.getActiveMappingHintGroups()) {
+				if (isCancelled) {
+					return false;
+				}
+
+				if (g.getTargetMMSection() != null
+						&& g instanceof MappingHintGroup) {
+					if (selMap.getInstancesBySection((MappingHintGroup) g) != null) {
+						targetSectionInstantiator
+						.instantiateTargetSectionSecondPass(
+								g.getTargetMMSection(),
+								selMap.getMapping().getName(),
+								(MappingHintGroup) g,
+								g.getTargetMMSection(),
+								g.getMappingHints(),
+								selMap.getHintValues(),
+								selMap.getInstancesBySection((MappingHintGroup) g));
+						if (targetSectionInstantiator.isCancelled()) {
+							writePamtramMessage("Transformation aborted.");
+							return false;
+						}
+					}
+				}
+			}
+
+			for (final MappingHintGroupImporter g : selMap.getMapping()
+					.getActiveImportedMappingHintGroups()) {
+				final ExportedMappingHintGroup expGrp = g.getHintGroup();
+				if (expGrp.getTargetMMSection() != null) {
+					if (selMap.getInstancesBySection(g) != null) {
+						final List<MappingHint> hints = new LinkedList<MappingHint>();
+						hints.addAll(expGrp.getMappingHints());
+						for (final MappingHintType h : g.getMappingHints()) {
+							if (isCancelled) {
+								return false;
+							}
+
+							if (h instanceof MappingHint) {
+								hints.add((MappingHint) h);
+							}// TODO else if ...??-> should have already been
+							// done during 1st pass
+						}
+
+						targetSectionInstantiator
+						.instantiateTargetSectionSecondPass(expGrp
+								.getTargetMMSection(), selMap
+								.getMapping().getName(), g, expGrp
+								.getTargetMMSection(), hints, selMap
+								.getHintValues(), selMap
+								.getInstancesBySection(g));
+						if (targetSectionInstantiator.isCancelled()) {
+							writePamtramMessage("Transformation aborted.");
+							return false;
+						}
+					}
+				}
+			}
+
+			accumulatedWork += workUnit;
+			if (accumulatedWork >= 1) {
+				monitor.worked((int) Math.floor(accumulatedWork));
+				accumulatedWork -= Math.floor(accumulatedWork);
+			}
+		}
+
+		return true;
+	}
+
+	/**
+	 * This performs the final step of the transformation:
+	 * The stored library entries are finally instantiated in the target model.
+	 * 
+	 * @param targetModel The targetModel in which the library entries are to be instantiated.
+	 * @param monitor 
+	 * @return <em>true</em> if everything went well, <em>false</em> otherwise.
+	 */
+	private boolean performInstantiatingLibraryEntries(EObject targetModel, IProgressMonitor monitor) {
+
+		writePamtramMessage("Instantiating libraryEntries for selected mappings.");
+		monitor.subTask("Instantiating libraryEntries for selected mappings.");
+		return targetSectionInstantiator.instantiateLibraryEntries(targetModel, targetLibraryContextDescriptor);
 	}
 
 	/**
@@ -720,234 +1418,6 @@ public class GenericTransformationRunner {
 	}
 
 	/**
-	 * @param targetModel
-	 * @param suitableMappings
-	 * @param targetSectionRegistry
-	 * @param attrValueRegistry
-	 * @param selectedMappingsByMapping
-	 * @param monitor
-	 * @return
-	 */
-	private boolean linkTargetSections(
-			final XMIResource targetModel,
-			final List<Mapping> suitableMappings,
-			final TargetSectionRegistry targetSectionRegistry,
-			final AttributeValueRegistry attrValueRegistry,
-			final AttributeValueModifierExecutor attributeValueModifier,
-			final LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping,
-			final IProgressMonitor monitor) {
-
-		/*
-		 * Initialize the TargetSectionConnector
-		 */
-		targetSectionConnector = new TargetSectionConnector(
-				attrValueRegistry, targetSectionRegistry,
-				attributeValueModifier, targetModel, maxPathLength,
-				consoleStream);
-		objectsToCancel.add(targetSectionConnector);
-		final double workUnit = 250.0 / suitableMappings.size();
-		double accumulatedWork = 0;
-
-		/*
-		 * Connect all target sections
-		 */
-		for (final Mapping m : suitableMappings) {
-			for (final MappingHintGroupType g : m.getActiveMappingHintGroups()) {
-
-				if (g.getTargetMMSection() != null
-						&& g instanceof MappingHintGroup) {// targetSection
-					// exists?
-					final TargetSectionClass section = g.getTargetMMSection();
-					if (targetSectionRegistry.getPamtramClassInstances(section)
-							.keySet().size() > 0) {// instances of section
-						// exist?
-						if (targetSectionRegistry.getPamtramClassInstances(
-								section).get(g) != null) {// ..also of specific
-							// group
-							if (((MappingHintGroup) g)
-									.getModelConnectionMatcher() != null) {// link
-								// using
-								// matcher
-								for (final MappingInstanceStorage selMap : selectedMappingsByMapping
-										.get(m)) {
-									if (selMap.getInstances(
-											(MappingHintGroup) g, section) != null) {
-										if (isCancelled) {
-											return false;
-										}
-
-										targetSectionConnector.linkToTargetModelUsingModelConnectionHint(
-												section.getEClass(),
-												new LinkedList<EObjectTransformationHelper>(
-														selMap.getInstances(
-																(MappingHintGroup) g,
-																section)),
-												section,
-												m.getName(),
-												g.getName(),
-												((MappingHintGroup) g)
-												.getModelConnectionMatcher(),
-												selMap.getHintValues().getHintValues(((MappingHintGroup) g)
-														.getModelConnectionMatcher()),
-												maxPathLength);
-										if (targetSectionConnector
-												.isCancelled()) {
-											writePamtramMessage("Transformation aborted.");
-											return false;
-										}
-									}
-								}
-							} else {// link using container attribute or nothing
-								final LinkedList<EObjectTransformationHelper> containerInstances = targetSectionRegistry
-										.getFlattenedPamtramClassInstances(section
-												.getContainer());
-								final LinkedList<EObjectTransformationHelper> rootInstances = targetSectionRegistry
-										.getPamtramClassInstances(section).get(
-												g); // fetch ALL instances
-								// created by the MH-Group
-								// in question
-								// => less user input and possibly shorter
-								// processing time
-								containerInstances.removeAll(rootInstances);// we
-								/*
-								 * do not want the root instances to contain
-								 * themselves
-								 */
-								final Set<EClass> containerClasses = new HashSet<EClass>();
-								if (section.getContainer() != null) {
-									containerClasses.add(section.getContainer()
-											.getEClass());
-								}
-								targetSectionConnector
-								.linkToTargetModelNoConnectionHint(
-										rootInstances, section,
-										m.getName(), g.getName(),
-										section.getContainer() != null,
-										containerClasses,
-										containerInstances);
-								if (targetSectionConnector.isCancelled()) {
-									writePamtramMessage("Transformation aborted.");
-									return false;
-								}
-							}
-						}
-					}
-				}
-			}
-
-			for (final MappingHintGroupImporter i : m
-					.getActiveImportedMappingHintGroups()) {
-				final ExportedMappingHintGroup g = i.getHintGroup();
-				if (g.getTargetMMSection() != null) {
-					/*
-					 * ImportedMAppingHintGroups with containers specified will
-					 * be linked to a section that was created by the same
-					 * mapping Instance
-					 */
-					if (i.getContainer() != null) {
-						for (final MappingInstanceStorage selMap : selectedMappingsByMapping
-								.get(m)) {
-							final LinkedList<EObjectTransformationHelper> rootInstances = selMap
-									.getInstances(i, g.getTargetMMSection());
-							if (rootInstances.size() > 0) {
-								final LinkedList<EObjectTransformationHelper> containerInstances = new LinkedList<EObjectTransformationHelper>();
-								final Set<EClass> containerClasses = new HashSet<EClass>();
-
-								containerClasses.add(i.getContainer()
-										.getEClass());
-								// get container instances created by this
-								// mapping instance
-								for (final MappingHintGroupType group : m
-										.getActiveMappingHintGroups()) {
-									if (isCancelled) {
-										return false;
-									}
-
-									if (group instanceof MappingHintGroup) {
-										final LinkedList<EObjectTransformationHelper> insts = selMap
-												.getInstances(
-														(MappingHintGroup) group,
-														i.getContainer());
-										if (insts != null) {
-											containerInstances.addAll(insts);
-										}
-
-									}
-								}
-								// link
-								targetSectionConnector
-								.linkToTargetModelNoConnectionHint(
-										rootInstances,
-										g.getTargetMMSection(),
-										m.getName(), g.getName(), true,
-										containerClasses,
-										containerInstances);
-								if (targetSectionConnector.isCancelled()) {
-									writePamtramMessage("Transformation aborted.");
-									return false;
-								}
-							}
-						}
-
-						// use container attribute of targetSection if one is
-						// specified
-						// (target section container == global instance search)
-					} else {
-						final LinkedList<EObjectTransformationHelper> containerInstances = new LinkedList<EObjectTransformationHelper>();
-						final LinkedList<EObjectTransformationHelper> rootInstances = targetSectionRegistry
-								.getPamtramClassInstances(
-										g.getTargetMMSection()).get(i);
-						final Set<EClass> containerClasses = new HashSet<EClass>();
-						if (g.getTargetMMSection().getContainer() != null) {
-							containerClasses.add(g.getTargetMMSection()
-									.getContainer().getEClass());
-							containerInstances.addAll(targetSectionRegistry
-									.getFlattenedPamtramClassInstances(g
-											.getTargetMMSection()
-											.getContainer()));
-
-						}
-
-						if (rootInstances != null) {
-							if (rootInstances.size() > 0) {
-								// link
-								targetSectionConnector
-								.linkToTargetModelNoConnectionHint(
-										rootInstances,
-										g.getTargetMMSection(),
-										m.getName(), g.getName(),
-										containerClasses.size() > 0,
-										containerClasses,
-										containerInstances);
-								if (targetSectionConnector.isCancelled()) {
-									writePamtramMessage("Transformation aborted.");
-									return false;
-								}
-							}
-						}
-					}
-
-				}
-			}
-
-			accumulatedWork += workUnit;
-			if (accumulatedWork >= 1) {
-				monitor.worked((int) Math.floor(accumulatedWork));
-				accumulatedWork -= Math.floor(accumulatedWork);
-			}
-		}
-
-		targetSectionConnector.combineUnlinkedSectionsWithTargetModelRoot();
-		if (targetSectionConnector.isCancelled()) {
-			writePamtramMessage("Transformation aborted.");
-			return false;
-		} else {
-			return true;
-		}
-
-	}
-
-	/**
 	 * This is a temporary method that is called by the 'source section matcher
 	 * page' in order to get the matched sections for a sample source model.
 	 * Therefore, it performs half a transformation and then returns the matched
@@ -1020,471 +1490,13 @@ public class GenericTransformationRunner {
 	}
 
 	/**
-	 * This performs the first step of the transformation:
-	 * The target sections (excluding those that are defined by {@link LibraryEntry}s)
-	 * are instantiated (only containment references and attributes but no non-containment
-	 * references).
-	 *
-	 * @param sourceSectionMapper
-	 * @param targetSectionRegistry
-	 * @param attrValueRegistry
-	 * @param selectedMappings
-	 * @param exportedMappingHints
-	 * @param globalValues
-	 * @param monitor
-	 * @param attributeValuemodifier
-	 */
-	private void runInstantiationFirstPass(
-			final SourceSectionMatcher sourceSectionMapper,
-			final TargetSectionRegistry targetSectionRegistry,
-			final AttributeValueRegistry attrValueRegistry,
-			final LinkedList<MappingInstanceStorage> selectedMappings,
-			final HintValueStorage exportedMappingHints,
-			final List<GlobalValue> globalValues,
-			final IProgressMonitor monitor,
-			final AttributeValueModifierExecutor attributeValuemodifier) {
-
-		/*
-		 * Initialize the TargetSectionInstantiator
-		 */
-		targetSectionInstantiator = new TargetSectionInstantiator(
-				targetSectionRegistry, attrValueRegistry,
-				sourceSectionMapper.getGlobalAttributeValues(),
-				attributeValuemodifier, globalValues, consoleStream, this);
-
-		/*
-		 * Used to update the monitor.
-		 */
-		final double workUnit = 250.0 / selectedMappings.size();
-		double accumulatedWork = 0;
-
-		/*
-		 * Iterate over all selected mappings
-		 */
-		for (final MappingInstanceStorage selMap : selectedMappings) {
-
-			/*
-			 * Iterate over all mapping hint group (except inactive and empty ones)
-			 */
-			for (final MappingHintGroupType g : selMap.getMapping()
-					.getActiveMappingHintGroups()) {
-				if (g.getTargetMMSection() != null
-						&& g instanceof MappingHintGroup) {
-
-					/*
-					 * Instantiate the target section.
-					 */
-					final LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection = 
-							targetSectionInstantiator.instantiateTargetSectionFirstPass(
-									g.getTargetMMSection(),
-									(MappingHintGroup) g, g.getMappingHints(),
-									selMap.getHintValues(),
-									selMap.getMapping().getName());
-
-					if (instancesBySection == null) {
-						if (g.getTargetMMSection().getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
-							consoleStream
-							.println("Error instantiating target section '"
-									+ g.getTargetMMSection().getName()
-									+ "' using mapping rule '"
-									+ selMap.getMapping().getName()
-									+ "'");
-						}
-					} else {
-						for (final TargetSectionClass section : instancesBySection
-								.keySet()) {
-							/*
-							 * Store the created instance(s).
-							 */
-							selMap.addInstances((MappingHintGroup) g, section,
-									instancesBySection.get(section));
-						}
-					}
-				}
-
-			}
-
-			for (final MappingHintGroupImporter g : selMap.getMapping()
-					.getActiveImportedMappingHintGroups()) {
-				final ExportedMappingHintGroup expGrp = g.getHintGroup();
-				if (expGrp != null) {
-
-					// import Hints
-					for (final MappingHint h : expGrp.getMappingHints()) {
-						selMap.getHintValues().setHintValues(h, null);
-						if (exportedMappingHints.containsHint(h)) {
-							selMap.getHintValues().addHintValues(h, exportedMappingHints.getHintValues(h));
-						}
-					}
-
-					// start instantiating
-					if (expGrp.getTargetMMSection() != null) {
-
-						final List<MappingHint> hints = new LinkedList<MappingHint>();
-						hints.addAll(expGrp.getMappingHints());
-						for (final MappingHintType h : g.getMappingHints()) {
-							if (h instanceof MappingHint) {
-								hints.add((MappingHint) h);
-							} else if (h instanceof MappedAttributeValueExpander) {
-								if (selMap.getHintValues().getHintValues((MappedAttributeValueExpander) h).size() == 1) {
-									final String hintVal = selMap.getHintValues().getHintValues((MappedAttributeValueExpander) h).getFirst();
-									/*
-									 * of course this works only because the
-									 * only other option is the Appender
-									 */
-									final boolean prepend = h instanceof MappedAttributeValuePrepender
-											|| h instanceof ExternalMappedAttributeValuePrepender;
-
-									for (final MappingHint realHint : g
-											.getHintGroup().getMappingHints()) {
-										if (realHint instanceof AttributeMapping) {
-											if (((MappedAttributeValueExpander) h)
-													.getHintsToExpand()
-													.contains(realHint)) {
-												if (realHint instanceof AttributeMapping && 
-														((AttributeMapping) realHint).getExpression() == null ||
-														((AttributeMapping) realHint).getExpression().isEmpty()) {// ComplexAttributeMapping
-
-													final LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> vals = new LinkedList<>();
-													final List<AttributeMappingSourceInterface> sources = ((AttributeMapping) realHint)
-															.getSourceAttributeMappings();
-
-													if (sources.size() > 0) {
-														// determine the one of possibly multiple source elements of the
-														// attribute mapping to be expanded
-														AttributeMappingSourceInterface element;
-														if (prepend) {
-															element = sources
-																	.get(0);
-														} else {
-															element = sources
-																	.get(sources
-																			.size() - 1);
-														}
-
-														for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> m : selMap.getHintValues().getHintValues((AttributeMapping) realHint)) {
-
-															/*
-															 *  create a deep-cloned copy of the map holding the source elements and values 
-															 *  of complex attribute mapping that we are expanding; this is necessary because the map will
-															 *  change in the course of this function but the changes shall not be propagated to future
-															 *  calls of this function
-															 */
-
-															final LinkedHashMap<AttributeMappingSourceInterface, AttributeValueRepresentation> clonedMap = 
-																	new LinkedHashMap<>();
-															for (AttributeMappingSourceInterface key : m.keySet()) {
-																clonedMap.put(key, 
-																		(AttributeValueRepresentation) m.get(key).clone());
-															}
-
-															// expand either the first or last value source element and let all other
-															// values untouched
-															if (clonedMap.containsKey(element)) {
-																AttributeValueRepresentation rep = clonedMap.get(element);
-																if (prepend) {
-																	rep.addPrefix(hintVal);
-																} else {
-																	rep.addSuffix(hintVal);
-																}
-																clonedMap.put(element, rep);
-															}
-
-															// add the new map to the list holding all hint values
-															vals.add(clonedMap);
-														}
-
-														// update the hint value list for the real hint
-														selMap.getHintValues().setHintValues((AttributeMapping) realHint, vals);
-													}
-												} else if (realHint instanceof AttributeMapping) {// CalculatorMapping
-													final List<AttributeMappingSourceInterface> sources = ((AttributeMapping) realHint)
-															.getSourceAttributeMappings();
-													if (sources.size() > 0) {
-														try {
-															final Calculable calc = new ExpressionBuilder(hintVal).build();
-															final double variableVal = calc.calculate();
-															/*
-															 * parseDouble
-															 * doesn't support
-															 * Scientific
-															 * notation, like:
-															 * 0.42e2 == 4200e-2
-															 * == 42,
-															 */
-															for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> m : selMap.getHintValues().getHintValues((AttributeMapping) realHint)) {
-																//TODO check if this works
-																m.put(sources.get(0), new AttributeValueRepresentation(((MappedAttributeValueExpander) h).getSourceAttribute(), Double.toString(variableVal)));
-															}
-														} catch (final Exception e) {
-															consoleStream.println("Couldn't convert variable " + ((MappedAttributeValueExpander) h).getSourceAttribute().getName()
-																	+ " of " + h.getClass().getName() + " " + h.getName()
-																	+ " from String to double. The problematic source element's attribute value was: " + hintVal);
-														}
-													}
-												}// TODO add any remaining
-												// hintValue changes here
-
-											}
-										} else if (realHint instanceof MappingInstanceSelector) {
-											if (((MappingInstanceSelector) realHint)
-													.getMatcher() instanceof AttributeMatcher) {
-												final AttributeMatcher matcher = (AttributeMatcher) ((MappingInstanceSelector) realHint)
-														.getMatcher();
-
-												if (((MappedAttributeValueExpander) h)
-														.getHintsToExpand()
-														.contains(matcher)) {
-													if (matcher instanceof AttributeMatcher) {// ComplexAttributeMatcher
-														final List<AttributeMatcherSourceInterface> sources = matcher
-																.getSourceAttributes();
-														if (sources.size() > 0) {
-															AttributeMatcherSourceInterface element;
-															if (prepend) {
-																element = sources
-																		.get(0);
-															} else {
-																element = sources
-																		.get(sources
-																				.size() - 1);
-															}
-
-															for (final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> m : selMap.getHintValues().getHintValues((MappingInstanceSelector) realHint)) {
-																if (m.containsKey(element)) {
-																	if (prepend) {
-																		AttributeValueRepresentation preprended = m.get(element);
-																		preprended.addPrefix(hintVal);
-																		m.put(element, preprended);
-																	} else {
-																		AttributeValueRepresentation appended = m.get(element);
-																		appended.addSuffix(hintVal);
-																		m.put(element, appended);
-																	}
-																}
-															}
-														}
-													}// TODO add any remaining
-													// hitValue changes here
-
-												}
-											}
-										}
-									}
-								} // else TODO maybe add something here when we
-								// know how to handle/control cardinality of
-								// ImportedMappingHints
-							}
-						}
-						final LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection = targetSectionInstantiator
-								.instantiateTargetSectionFirstPass(
-										expGrp.getTargetMMSection(), g, hints,
-										selMap.getHintValues(),
-										selMap.getMapping().getName());
-						if (instancesBySection == null) {
-							if (expGrp.getTargetMMSection().getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
-								consoleStream
-								.println("Error instantiating target section '"
-										+ expGrp.getTargetMMSection()
-										.getName()
-										+ "' using mapping rule '"
-										+ selMap.getMapping().getName()
-										+ "'");
-							}
-						} else {
-							for (final TargetSectionClass section : instancesBySection
-									.keySet()) {
-								selMap.addInstances(g, section,
-										instancesBySection.get(section));
-							}
-						}
-					}
-
-				}
-			}
-
-			accumulatedWork += workUnit;
-			if (accumulatedWork >= 1) {
-				monitor.worked((int) Math.floor(accumulatedWork));
-				accumulatedWork -= Math.floor(accumulatedWork);
-			}
-		}
-	}
-
-	/**
-	 * @param selectedMappings
-	 * @param targetSectionInstantiator
-	 * @param monitor
-	 * @return
-	 */
-	private boolean runInstantiationSecondPass(
-			final LinkedList<MappingInstanceStorage> selectedMappings,
-			final TargetSectionInstantiator targetSectionInstantiator,
-			final IProgressMonitor monitor) {
-		final double workUnit = 250.0 / selectedMappings.size();
-		double accumulatedWork = 0;
-		for (final MappingInstanceStorage selMap : selectedMappings) {
-			for (final MappingHintGroupType g : selMap.getMapping()
-					.getActiveMappingHintGroups()) {
-				if (isCancelled) {
-					return false;
-				}
-
-				if (g.getTargetMMSection() != null
-						&& g instanceof MappingHintGroup) {
-					if (selMap.getInstancesBySection((MappingHintGroup) g) != null) {
-						targetSectionInstantiator
-						.instantiateTargetSectionSecondPass(
-								g.getTargetMMSection(),
-								selMap.getMapping().getName(),
-								(MappingHintGroup) g,
-								g.getTargetMMSection(),
-								g.getMappingHints(),
-								selMap.getHintValues(),
-								selMap.getInstancesBySection((MappingHintGroup) g));
-						if (targetSectionInstantiator.isCancelled()) {
-							writePamtramMessage("Transformation aborted.");
-							return false;
-						}
-					}
-				}
-			}
-
-			for (final MappingHintGroupImporter g : selMap.getMapping()
-					.getActiveImportedMappingHintGroups()) {
-				final ExportedMappingHintGroup expGrp = g.getHintGroup();
-				if (expGrp.getTargetMMSection() != null) {
-					if (selMap.getInstancesBySection(g) != null) {
-						final List<MappingHint> hints = new LinkedList<MappingHint>();
-						hints.addAll(expGrp.getMappingHints());
-						for (final MappingHintType h : g.getMappingHints()) {
-							if (isCancelled) {
-								return false;
-							}
-
-							if (h instanceof MappingHint) {
-								hints.add((MappingHint) h);
-							}// TODO else if ...??-> should have already been
-							// done during 1st pass
-						}
-
-						targetSectionInstantiator
-						.instantiateTargetSectionSecondPass(expGrp
-								.getTargetMMSection(), selMap
-								.getMapping().getName(), g, expGrp
-								.getTargetMMSection(), hints, selMap
-								.getHintValues(), selMap
-								.getInstancesBySection(g));
-						if (targetSectionInstantiator.isCancelled()) {
-							writePamtramMessage("Transformation aborted.");
-							return false;
-						}
-					}
-				}
-			}
-
-			accumulatedWork += workUnit;
-			if (accumulatedWork >= 1) {
-				monitor.worked((int) Math.floor(accumulatedWork));
-				accumulatedWork -= Math.floor(accumulatedWork);
-			}
-		}
-
-		return true;
-	}
-
-	/**
-	 * This performs the final step of the transformation:
-	 * The stored library entries are finally instantiated in the target model.
-	 * 
-	 * @param targetSectionInstantiator The {@link TargetSectionInstantiator} that holds the
-	 * 			{@link LibraryEntry}s to be instantiated.
-	 * @param targetModel The targetModel in which the library entries are to be instantiated.
-	 * @return <em>true</em> if everything went well, <em>false</em> otherwise.
-	 */
-	private boolean runInstantiationLibraryEntries(
-			final TargetSectionInstantiator targetSectionInstantiator, EObject targetModel) {
-
-		return targetSectionInstantiator.instantiateLibraryEntries(targetModel, targetLibraryContextDescriptor);
-	}
-
-	/**
-	 * Starts the transformation.
-	 *
-	 * @param monitor
-	 */
-	public void runTransformation(final IProgressMonitor monitor) {
-		final long startTime = System.nanoTime();
-
-		monitor.beginTask("GenTrans", 1000);
-
-		// Create a resource set.
-		ResourceSet resourceSet = new ResourceSetImpl();
-
-		// load the mapping model
-		if(pamtramModel == null && !loadPamtram(resourceSet)) {
-			return;
-		}
-
-		// load the source model
-		loadSourceModel(resourceSet);
-
-		// create the target model
-		if(!createTargetModel(resourceSet)) {
-			return;
-		}
-
-		// find active mappings and resolve ambiguities as far as possible without user
-		// input
-		final List<Mapping> suitableMappings = pamtramModel.getMappingModel()
-				.getActiveMappings();// TODO apply contextModel
-
-		boolean successful = false;
-		try {
-			/*
-			 * try to execute all active mappings (this includes the 4 resp. 5 main steps of
-			 * the transformation
-			 */
-			successful = executeMappings(targetModel, sourceModel, pamtramModel, suitableMappings,
-					monitor); 			
-		} catch (RuntimeException e) {
-			consoleStream.println(e.getMessage());
-			consoleStream.println("Aborting...");
-			throw e;
-		}
-
-		if (successful && !isCancelled) {
-			// save targetModel
-			try {
-				// try to save the xmi resource
-				// xmiResource.save(Collections.EMPTY_MAP);
-				final Map<Object, Object> options = new LinkedHashMap<Object, Object>();
-				options.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
-				options.put(XMLResource.OPTION_SAVE_TYPE_INFORMATION,
-						Boolean.TRUE);
-				targetModel.save(Collections.EMPTY_MAP);
-				final long endTime = System.nanoTime();
-				writePamtramMessage("Transformation done. Time: "
-						+ Math.ceil((endTime - startTime) / 100000000L) / 10.0
-						+ "s");
-			} catch (final Exception e) {
-				MessageDialog.openError(PlatformUI.getWorkbench()
-						.getActiveWorkbenchWindow().getShell(), "Error",
-						"The XMI resource could not be saved.");
-				e.printStackTrace();
-				return;
-			}
-
-		}
-
-	}
-
-	/**
-	 * This loads the pamtram model from an XMI file.
+	 * This loads the pamtram model from an XMI file. If necessary, additional {@link EPackage EPackages} that are
+	 * referenced in the model are registered so that no errors occur during the transformation.
 	 * 
 	 * @param rs The resource set to be used to load the resource.
-	 * @return true if the model has successfully been loaded, false otherwise.
+	 * @return '<em><b>true</b></em>' if the model was loaded successfully, '<em><b>false</b></em>' otherwise.
 	 */
-	private boolean loadPamtram(ResourceSet rs) {
+	private boolean loadPamtramModel(ResourceSet rs) {
 
 		ResourceSet resourceSet = rs;
 
@@ -1568,13 +1580,11 @@ public class GenericTransformationRunner {
 		final URI targetFileUri = URI.createPlatformResourceURI(targetFilePath, true);
 
 		try {
-			targetModel = (XMIResource) resFactory
-					.createResource(targetFileUri);
+			targetModel = (XMIResource) resFactory.createResource(targetFileUri);
 			targetModel.setEncoding("UTF-8");
 
 		} catch (final Exception e) {
-			MessageDialog
-			.openError(PlatformUI.getWorkbench()
+			MessageDialog.openError(PlatformUI.getWorkbench()
 					.getActiveWorkbenchWindow().getShell(), "Error",
 					"The XMI resource for the targetModel output could not be created.");
 			e.printStackTrace();
@@ -1639,5 +1649,212 @@ public class GenericTransformationRunner {
 	 */
 	private void writePamtramMessage(final String msg) {
 		consoleStream.println("\n################# " + msg + " #################\n");
+	}
+
+	/**
+	 * This class encapsulates the various results of the <em>matching</em> process during a generic transformation:
+	 * <br />
+	 * <ul>
+	 * 	<li>the status of the matching process,</li>
+	 * 	<li>a list of selected {@link MappingInstanceStorage mappings},</li>
+	 *  <li>a map of selected {@link MappingInstanceStorage mappings}, associated with the {@link Mapping} that they represent,</li>
+	 *  <li>{@link HintValueStorage exported hint values},</li>
+	 *  <li>a map describing values for {@link GlobalAttribute GlobalAttributes}</li>
+	 * </ul>
+	 * @author mfreund
+	 *
+	 */
+	static class MatchingResult {
+
+		/**
+		 * This describes the status of the matching process, '<em><b>true</b></em>' meaning that the matching process has been
+		 * canceled, '<em><b>false</b></em>' otherwise.
+		 */
+		private final boolean canceled;
+
+		/**
+		 * This is the getter for the {@link #canceled}.
+		 * @return The status of the matching process, '<em><b>true</b></em>' meaning that the matching process has been
+		 * canceled, '<em><b>false</b></em>' otherwise.
+		 */
+		boolean isCanceled() {
+			return canceled; 
+		}
+
+		/**
+		 * This is the list of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
+		 * process.
+		 */
+		private final LinkedList<MappingInstanceStorage> selectedMappings;
+
+		/**
+		 * This is the getter for the {@link #selectedMappings}.
+		 * @return The list of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
+		 * process.
+		 */
+		LinkedList<MappingInstanceStorage> getSelectedMappings() {
+			return this.selectedMappings;
+		}
+
+		/**
+		 * This the map of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
+		 * process associated with the {@link Mapping} that they represent.
+		 */
+		private final LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping;
+
+		/**
+		 * This is the getter for the {@link #selectedMappingsByMapping}.
+		 * @return The map of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
+		 * process associated with the {@link Mapping} that they represent. 
+		 */
+		LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> getSelectedMappingsByMapping() {
+			return selectedMappingsByMapping;
+		}
+
+		/**
+		 * This is the {@link HintValueStorage} containing values for exported mapping hints.
+		 */
+		private final HintValueStorage exportedMappingHints;
+
+		/**
+		 * This is the getter for the {@link #exportedMappingHints}.
+		 * @return The {@link HintValueStorage} containing values for exported mapping hints.
+		 */
+		HintValueStorage getExportedMappingHints() {
+			return exportedMappingHints;
+		}
+
+		/**
+		 * This is the map of values for global attributes associated with the {@link GlobalAttribute} that
+		 * they represent.
+		 */
+		private final Map<GlobalAttribute, String> globalAttributeValues;
+
+		/**
+		 * This is the getter for the {@link #globalAttributeValues}.
+		 * @return The map of values for global attributes associated with the {@link GlobalAttribute} that
+		 * they represent.
+		 */
+		Map<GlobalAttribute, String> getGlobalAttributeValues() {
+			return globalAttributeValues;
+		}
+
+		/**
+		 * This constructs an instance for a matching process that has not been canceled.
+		 * 
+		 * @param selectedMappings The list of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
+		 * process.
+		 * @param selectedMappingsByMapping The map of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
+		 * process associated with the {@link Mapping} that they represent. 
+		 * @param exportedMappingHints The {@link HintValueStorage} containing values for exported mapping hints.
+		 * @param globalAttributeValues The map of values for global attributes associated with the {@link GlobalAttribute} that
+		 * they represent.
+		 */
+		private MatchingResult(
+				boolean canceled,
+				LinkedList<MappingInstanceStorage> selectedMappings, 
+				LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping,
+				HintValueStorage exportedMappingHints,
+				Map<GlobalAttribute, String> globalAttributeValues) {
+			this.canceled = canceled;
+			this.selectedMappings = selectedMappings;
+			this.selectedMappingsByMapping = selectedMappingsByMapping;
+			this.exportedMappingHints = exportedMappingHints;
+			this.globalAttributeValues = globalAttributeValues;
+		}
+
+		/**
+		 * This constructs an instance for a matching process that has been canceled.
+		 * @return An instance of {@link MatchingResult} indicating that the matching was canceled.
+		 */
+		public static MatchingResult createMatchingCanceledResult() {
+			return new MatchingResult(false, null, null, null, null);
+		}
+
+		/**
+		 * This constructs an instance for a matching process that has finished successfully.
+		 * @param selectedMappings The list of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
+		 * process.
+		 * @param selectedMappingsByMapping The map of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
+		 * process associated with the {@link Mapping} that they represent. 
+		 * @param exportedMappingHints The {@link HintValueStorage} containing values for exported mapping hints.
+		 * @param globalAttributeValues The map of values for global attributes associated with the {@link GlobalAttribute} that
+		 * they represent.
+		 * @return An instance of {@link MatchingResult} indicating that the matching has completed successfully.
+		 */
+		public static MatchingResult createMatchingCompletedResult(
+				LinkedList<MappingInstanceStorage> selectedMappings, 
+				LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping,
+				HintValueStorage exportedMappingHints,
+				Map<GlobalAttribute, String> globalAttributeValues) {
+			return new MatchingResult(false, selectedMappings, selectedMappingsByMapping, exportedMappingHints, globalAttributeValues);
+		}
+	}
+
+	/**
+	 * This class encapsulates the various results of the <em>expanding</em> process during a generic transformation:
+	 * <br />
+	 * <ul>
+	 * 	<li>an {@link AttributeValueRegistry} containing registered attribute values,</li>
+	 *  <li>a {@link TargetSectionRegistry} containing/representing created target sections</li>
+	 * </ul>
+	 * @author mfreund
+	 *
+	 */
+	static class ExpandingResult {
+
+		/**
+		 * An {@link AttributeValueRegistry} containing registered attribute values.
+		 */
+		private final AttributeValueRegistry attributeValueRegistry;
+
+		/**
+		 * This is the getter for the {@link #attributeValueRegistry}.
+		 * @return An {@link AttributeValueRegistry} containing registered attribute values.
+		 */
+		AttributeValueRegistry getAttributeValueRegistry() {
+			return attributeValueRegistry;
+		}
+
+		/**
+		 * A {@link TargetSectionRegistry} containing/representing created target sections.
+		 */
+		private final TargetSectionRegistry targetSectionRegistry;
+
+		/**
+		 * This is the getter for the {@link #targetSectionRegistry}.
+		 * return A {@link TargetSectionRegistry} containing/representing created target sections.
+		 */
+		TargetSectionRegistry getTargetSectionRegistry() {
+			return targetSectionRegistry;
+		}
+
+		/**
+		 * This constructs an instance for an expanding process.
+		 * 
+		 * @param attributeValueRegistry The {@link AttributeValueRegistry} containing registered attribute values.
+		 * @param targetSectionRegistry The {@link TargetSectionRegistry} containing/representing created target sections.
+		 */
+		private ExpandingResult(
+				AttributeValueRegistry attributeValueRegistry, 
+				TargetSectionRegistry targetSectionRegistry) {
+
+			this.attributeValueRegistry = attributeValueRegistry;
+			this.targetSectionRegistry = targetSectionRegistry;
+		}
+
+		/**
+		 * This constructs an instance for an expanding process.
+		 * 
+		 * @param attributeValueRegistry The {@link AttributeValueRegistry} containing registered attribute values.
+		 * @param targetSectionRegistry The {@link TargetSectionRegistry} containing/representing created target sections.
+		 * @return An instance of {@link ExpandingResult}.
+		 */
+		public static ExpandingResult createExpandingResult(
+				AttributeValueRegistry attributeValueRegistry, 
+				TargetSectionRegistry targetSectionRegistry) {
+
+			return new ExpandingResult(attributeValueRegistry, targetSectionRegistry); 
+		}
 	}
 }

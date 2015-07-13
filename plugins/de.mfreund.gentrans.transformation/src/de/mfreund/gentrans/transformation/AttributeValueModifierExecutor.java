@@ -10,7 +10,7 @@ import pamtram.mapping.AttributeValueModifier;
 import pamtram.mapping.AttributeValueModifierSet;
 
 /**
- * Helper class to apply {@link AttributeValueModifier}s
+ * This is a helper class to apply {@link AttributeValueModifier AttributeValueModifiers}.
  *
  * @author Sascha Steffen
  * @version 1.0
@@ -19,30 +19,35 @@ import pamtram.mapping.AttributeValueModifierSet;
 public class AttributeValueModifierExecutor {
 
 	/**
-	 * Output stream for messages
+	 * An output stream for messages. This is used to print error messages when the application
+	 * of an AttributeValueModifier fails.
 	 */
 	private final MessageConsoleStream consoleStream;
 
 	/**
-	 * Set that contains all ValueModifiers with errors so we don't need to send
+	 * A set that contains all AttributeValueModifiers with errors so we don't need to send
 	 * a potential error message twice
 	 */
 	private final Set<AttributeValueModifier> modifiersWithErrors;
 
 	/**
-	 * @param consoleStream
+	 * This constructs an instance.
+	 * @param consoleStream A {@link MessageConsoleStream} that will be used to print error messages when
+	 * the application of an AttributeValueModifier fails.
 	 */
-	AttributeValueModifierExecutor(final MessageConsoleStream consoleStream) {
+	public AttributeValueModifierExecutor(final MessageConsoleStream consoleStream) {
 		this.consoleStream = consoleStream;
 		modifiersWithErrors = new HashSet<AttributeValueModifier>();
 	}
 
 	/**
-	 * Method for applying attribute value modifiers te a String
+	 * This applies the given list of {@link AttributeValueModifier AttributeValueModifiers} to the given
+	 * '<em>value</em>'.
 	 *
-	 * @param value
-	 * @param modifierSets
-	 * @return modified String
+	 * @param value The value on which the given list of {@link AttributeValueModifier AttributeValueModifiers} shall
+	 * be applied.
+	 * @param modifierSets The modifiers that shall be applied to the given '<em>value</em>'.
+	 * @return The modified string (after application of the {@link AttributeValueModifier AttributeValueModifiers}.
 	 */
 	String applyAttributeValueModifiers(final String value,
 			final EList<AttributeValueModifierSet> modifierSets) {
@@ -58,13 +63,8 @@ public class AttributeValueModifierExecutor {
 						 */
 					} catch (final Exception e) {
 						modifiersWithErrors.add(m);
-						consoleStream
-						.println("The AttributeValueModifier '"
-								+ m.getName()
-								+ "' of the "
-								+ "AttributeValueModifierSet '"
-								+ set.getName()
-								+ "' could not be evaluated. The following error was supplied:\n"
+						consoleStream.println("The AttributeValueModifier '" + m.getName() + "' of the AttributeValueModifierSet '"
+								+ set.getName() + "' could not be evaluated. The following error was supplied:\n"
 								+ e.getLocalizedMessage());
 					}
 				}

@@ -236,7 +236,7 @@
           defaultValue="Konfiguration"/>
       <triggerSupport
           triggerExpression="aiu2"
-          triggerType="next"/>
+          triggerType="navigation"/>
     </eventSupport>
     <presentationSupport/>
   </abstractInteractionUnit>

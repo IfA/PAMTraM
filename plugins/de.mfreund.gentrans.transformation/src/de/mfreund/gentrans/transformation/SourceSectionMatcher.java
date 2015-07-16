@@ -1064,171 +1064,172 @@ public class SourceSectionMatcher implements CancellationListener {
 				if (at.getValueConstraint().size() > 0) {
 					return false;
 				}
-			}
-
-			/*
-			 * As attributes may have a cardinality greater than 1, too, we have to handle
-			 * every attribute value separately.
-			 */
-			ArrayList<Object> srcAttrValues = new ArrayList<>();
-			if(at.getAttribute().isMany()) {
-				srcAttrValues.addAll((Collection<?>) srcAttr);
 			} else {
-				srcAttrValues.add(srcAttr);
-			}
 
-			/*
-			 * First, we check if all the constraints are satisfied for every attribute value.
-			 */
-			for (Object srcAttrValue : srcAttrValues) {
-
-				// convert Attribute value to String
-				final String srcAttrAsString = at.getAttribute().getEType().getEPackage().getEFactoryInstance()
-						.convertToString(at.getAttribute().getEAttributeType(), srcAttrValue);
 				/*
-				 * check AttributeValueConstraints
-				 *
-				 * Inclusions are OR connected
-				 *
-				 * Exclusions are NOR connected
+				 * As attributes may have a cardinality greater than 1, too, we have to handle
+				 * every attribute value separately.
 				 */
-				boolean inclusionMatched = false;
-				boolean containsInclusions = false;
-				for (final AttributeValueConstraint constraint : at.getValueConstraint()) {
+				ArrayList<Object> srcAttrValues = new ArrayList<>();
+				if(at.getAttribute().isMany()) {
+					srcAttrValues.addAll((Collection<?>) srcAttr);
+				} else {
+					srcAttrValues.add(srcAttr);
+				}
 
-					if (constraintsWithErrors.contains(constraint)) {
-						continue;
+				/*
+				 * First, we check if all the constraints are satisfied for every attribute value.
+				 */
+				for (Object srcAttrValue : srcAttrValues) {
+
+					// convert Attribute value to String
+					final String srcAttrAsString = at.getAttribute().getEType().getEPackage().getEFactoryInstance()
+							.convertToString(at.getAttribute().getEAttributeType(), srcAttrValue);
+					/*
+					 * check AttributeValueConstraints
+					 *
+					 * Inclusions are OR connected
+					 *
+					 * Exclusions are NOR connected
+					 */
+					boolean inclusionMatched = false;
+					boolean containsInclusions = false;
+					for (final AttributeValueConstraint constraint : at.getValueConstraint()) {
+
+						if (constraintsWithErrors.contains(constraint)) {
+							continue;
+						}
+
+						boolean constraintVal;
+						try {
+							// Note: 'checkConstraint' already takes the type (INCLUSION/EXCLUSION) into consideration
+							constraintVal = constraint.checkConstraint(srcAttrAsString);
+						} catch (final Exception e) {
+							constraintsWithErrors.add(constraint);
+							consoleStream.println("The AttributeValueConstraint '" + constraint.getName() + "' of the Attribute '"
+									+ at.getName() + " (Class: " + at.getOwningClass().getName() + ", Section: " + at.getContainingSection().getName()
+									+ ")' could not be evaluated and will be ignored. The following error was supplied:\n"
+									+ e.getLocalizedMessage());
+							continue;
+						}
+
+						if (!constraintVal && constraint.getType().equals(AttributeValueConstraintType.EXCLUSION)) {
+							return false;
+						} else if (constraint.getType().equals(AttributeValueConstraintType.INCLUSION)) {
+							containsInclusions = true;
+							if (constraintVal) {
+								inclusionMatched = true;
+							}
+						}
 					}
 
-					boolean constraintVal;
-					try {
-						// Note: 'checkConstraint' already takes the type (INCLUSION/EXCLUSION) into consideration
-						constraintVal = constraint.checkConstraint(srcAttrAsString);
-					} catch (final Exception e) {
-						constraintsWithErrors.add(constraint);
-						consoleStream.println("The AttributeValueConstraint '" + constraint.getName() + "' of the Attribute '"
-								+ at.getName() + " (Class: " + at.getOwningClass().getName() + ", Section: " + at.getContainingSection().getName()
-								+ ")' could not be evaluated and will be ignored. The following error was supplied:\n"
-								+ e.getLocalizedMessage());
-						continue;
-					}
-
-					if (!constraintVal && constraint.getType().equals(AttributeValueConstraintType.EXCLUSION)) {
+					if (!inclusionMatched && containsInclusions) {
 						return false;
-					} else if (constraint.getType().equals(AttributeValueConstraintType.INCLUSION)) {
-						containsInclusions = true;
-						if (constraintVal) {
-							inclusionMatched = true;
-						}
 					}
 				}
 
-				if (!inclusionMatched && containsInclusions) {
-					return false;
-				}
-			}
-
-			/*
-			 * Second, we iterate once again and calculate all the hint values based
-			 * on the attributes.
-			 * Note: We have to iterate two times to prevent side effects if the check for
-			 * constraints (see above) fails at anything but the first value.
-			 */
-			for (Object srcAttrValue : srcAttrValues) {
-
-				// convert Attribute value to String
-				final String srcAttrAsString = at.getAttribute().getEType().getEPackage().getEFactoryInstance()
-						.convertToString(at.getAttribute().getEAttributeType(), srcAttrValue);
-
 				/*
-				 * Now, calculate the hint values for the various types of hints.
+				 * Second, we iterate once again and calculate all the hint values based
+				 * on the attributes.
+				 * Note: We have to iterate two times to prevent side effects if the check for
+				 * constraints (see above) fails at anything but the first value.
 				 */
-				for (final MappingHintBaseType hint : hints) {
-					if (hint instanceof MappedAttributeValueExpander) {
-						MappedAttributeValueExpander mappedAttributeValueExpander = (MappedAttributeValueExpander) hint;
+				for (Object srcAttrValue : srcAttrValues) {
 
-						if (mappedAttributeValueExpander.getSourceAttribute().equals(at)) {
+					// convert Attribute value to String
+					final String srcAttrAsString = at.getAttribute().getEType().getEPackage().getEFactoryInstance()
+							.convertToString(at.getAttribute().getEAttributeType(), srcAttrValue);
 
-							if(at.getAttribute().isMany()) {
-								//TODO implement this?
-								throw new RuntimeException("MappedAttributeValueExpanders based on multi-valued attributes are not yet supported!");
-							}
+					/*
+					 * Now, calculate the hint values for the various types of hints.
+					 */
+					for (final MappingHintBaseType hint : hints) {
+						if (hint instanceof MappedAttributeValueExpander) {
+							MappedAttributeValueExpander mappedAttributeValueExpander = (MappedAttributeValueExpander) hint;
 
-							final String valCopy = attributeValueModifierExecutor.
-									applyAttributeValueModifiers(srcAttrAsString, mappedAttributeValueExpander.getModifiers());
-							changedRefsAndHints.getHintValues().addHintValue(mappedAttributeValueExpander, valCopy);
-						}
+							if (mappedAttributeValueExpander.getSourceAttribute().equals(at)) {
 
-					} else if (hint instanceof AttributeMapping) {
-						AttributeMapping attributeMapping = (AttributeMapping) hint;
-
-						for (final AttributeMappingSourceElement sourceElement : attributeMapping.getLocalSourceElements()) {
-							if (sourceElement.getSource().equals(at)) {
-
-								final String valCopy = attributeValueModifierExecutor
-										.applyAttributeValueModifiers(srcAttrAsString, sourceElement.getModifier());
-
-								// create a new AttributeValueRepresentation or update the existing one
-								if(complexSourceElementHintValues.get(sourceElement) == null) {
-									complexSourceElementHintValues.put(sourceElement, new AttributeValueRepresentation(sourceElement.getSource(), valCopy));
-								} else {
-									complexSourceElementHintValues.get(sourceElement).addValue(valCopy);
+								if(at.getAttribute().isMany()) {
+									//TODO implement this?
+									throw new RuntimeException("MappedAttributeValueExpanders based on multi-valued attributes are not yet supported!");
 								}
+
+								final String valCopy = attributeValueModifierExecutor.
+										applyAttributeValueModifiers(srcAttrAsString, mappedAttributeValueExpander.getModifiers());
+								changedRefsAndHints.getHintValues().addHintValue(mappedAttributeValueExpander, valCopy);
 							}
-						}
-					} else if (hint instanceof MappingInstanceSelector) {
-						MappingInstanceSelector mappingInstanceSelector = (MappingInstanceSelector) hint;
 
-						if (mappingInstanceSelector.getMatcher() instanceof AttributeMatcher) {
+						} else if (hint instanceof AttributeMapping) {
+							AttributeMapping attributeMapping = (AttributeMapping) hint;
 
-							final AttributeMatcher matcher = (AttributeMatcher) mappingInstanceSelector.getMatcher();
-
-							for (final AttributeMatcherSourceElement sourceElement : matcher.getLocalSourceElements()) {
+							for (final AttributeMappingSourceElement sourceElement : attributeMapping.getLocalSourceElements()) {
 								if (sourceElement.getSource().equals(at)) {
 
 									final String valCopy = attributeValueModifierExecutor
 											.applyAttributeValueModifiers(srcAttrAsString, sourceElement.getModifier());
 
 									// create a new AttributeValueRepresentation or update the existing one
-									if(complexAttrMatcherSourceElementHintValues.get(sourceElement) == null) {
-										complexAttrMatcherSourceElementHintValues.put(sourceElement, new AttributeValueRepresentation(sourceElement.getSource(), valCopy));
+									if(complexSourceElementHintValues.get(sourceElement) == null) {
+										complexSourceElementHintValues.put(sourceElement, new AttributeValueRepresentation(sourceElement.getSource(), valCopy));
 									} else {
-										complexAttrMatcherSourceElementHintValues.get(sourceElement).addValue(valCopy);
+										complexSourceElementHintValues.get(sourceElement).addValue(valCopy);
 									}
 								}
 							}
-						}
-					} else if (hint instanceof ModelConnectionHint) {
-						ModelConnectionHint modelConnectionHint = (ModelConnectionHint) hint;
+						} else if (hint instanceof MappingInstanceSelector) {
+							MappingInstanceSelector mappingInstanceSelector = (MappingInstanceSelector) hint;
 
-						for (final ModelConnectionHintSourceElement m : modelConnectionHint.getLocalSourceElements()) {
-							if (m.getSource().equals(at)) {
+							if (mappingInstanceSelector.getMatcher() instanceof AttributeMatcher) {
 
-								if(at.getAttribute().isMany()) {
-									//TODO implement this?
-									throw new RuntimeException("ModelConnectionHints based on multi-valued attributes are not yet supported!");
+								final AttributeMatcher matcher = (AttributeMatcher) mappingInstanceSelector.getMatcher();
+
+								for (final AttributeMatcherSourceElement sourceElement : matcher.getLocalSourceElements()) {
+									if (sourceElement.getSource().equals(at)) {
+
+										final String valCopy = attributeValueModifierExecutor
+												.applyAttributeValueModifiers(srcAttrAsString, sourceElement.getModifier());
+
+										// create a new AttributeValueRepresentation or update the existing one
+										if(complexAttrMatcherSourceElementHintValues.get(sourceElement) == null) {
+											complexAttrMatcherSourceElementHintValues.put(sourceElement, new AttributeValueRepresentation(sourceElement.getSource(), valCopy));
+										} else {
+											complexAttrMatcherSourceElementHintValues.get(sourceElement).addValue(valCopy);
+										}
+									}
 								}
+							}
+						} else if (hint instanceof ModelConnectionHint) {
+							ModelConnectionHint modelConnectionHint = (ModelConnectionHint) hint;
 
-								final String modifiedVal = attributeValueModifierExecutor
-										.applyAttributeValueModifiers(srcAttrAsString, m.getModifier());
-								complexConnectionHintSourceElementHintValues.put(m, new AttributeValueRepresentation(at, modifiedVal));
+							for (final ModelConnectionHintSourceElement m : modelConnectionHint.getLocalSourceElements()) {
+								if (m.getSource().equals(at)) {
+
+									if(at.getAttribute().isMany()) {
+										//TODO implement this?
+										throw new RuntimeException("ModelConnectionHints based on multi-valued attributes are not yet supported!");
+									}
+
+									final String modifiedVal = attributeValueModifierExecutor
+											.applyAttributeValueModifiers(srcAttrAsString, m.getModifier());
+									complexConnectionHintSourceElementHintValues.put(m, new AttributeValueRepresentation(at, modifiedVal));
+								}
 							}
 						}
 					}
-				}
 
-				/*
-				 * Last, calculate the values for GlobalAttributes.
-				 */
-				for (final GlobalAttribute globalAttribute : globalAttributes) {
-					if (globalAttribute.getSource().equals(at)) {
-						final String modifiedVal = attributeValueModifierExecutor
-								.applyAttributeValueModifiers(srcAttrAsString, globalAttribute.getModifier());
-						globalAttributeValues.put(globalAttribute, modifiedVal);
+					/*
+					 * Last, calculate the values for GlobalAttributes.
+					 */
+					for (final GlobalAttribute globalAttribute : globalAttributes) {
+						if (globalAttribute.getSource().equals(at)) {
+							final String modifiedVal = attributeValueModifierExecutor
+									.applyAttributeValueModifiers(srcAttrAsString, globalAttribute.getModifier());
+							globalAttributeValues.put(globalAttribute, modifiedVal);
+						}
 					}
-				}
 
-			} 
+				}
+			}
 		}
 
 		return true;

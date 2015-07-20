@@ -27,11 +27,22 @@ public abstract class BundleContentHelper {
 	 */
 	public static File getBundleEntry(String bundleId, String path) {
 		Bundle bundle = Platform.getBundle(bundleId);
+
+		if(bundle == null) {
+			throw new RuntimeException("Could not load bundle with id '" + bundleId + "'");
+		}
+
+		URL fileURL = bundle.getEntry(path);
+
+		if(fileURL == null ) {
+			throw new RuntimeException("Could not resolve entry '" + path + "' in bundle '" + bundleId + "'");
+		}
+
 		File f = null;
-		
-    	try {
-    		URL resolvedFileURL = FileLocator.toFileURL(bundle.getEntry(path));
-    		f = new File(new URI(resolvedFileURL.getProtocol(), resolvedFileURL.getPath(), null));
+
+		try {
+			URL resolvedFileURL = FileLocator.toFileURL(fileURL);
+			f = new File(new URI(resolvedFileURL.getProtocol(), resolvedFileURL.getPath(), null));
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,10 +50,10 @@ public abstract class BundleContentHelper {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	
-    	return f;
-    }
-	
+
+		return f;
+	}
+
 	/**
 	 * Get contents of a folder in the de.tud.et.ifa.agtele.autoprobe.transformation plugin
 	 * 
@@ -52,31 +63,31 @@ public abstract class BundleContentHelper {
 	 * @return list of files from the bundle folder
 	 */
 	public static ArrayList<File> getBundleContents(String bundleId, String dir) {
-    	Bundle bundle = Platform.getBundle(bundleId);
-    	ArrayList<File> files = new ArrayList<File>();
-    	
-    	// get all bundle entries of the folder
-    	Enumeration<String> entries = bundle.getEntryPaths(dir);
-    	
-    	// skip if there are no entries in the folder
-    	if (entries != null) {
-	    	// iterate over the BundleContents
-	    	for (String file : Collections.list(bundle.getEntryPaths(dir))) {
-	    		// get the file from the bundle
-	    		File f = getBundleEntry(bundleId, file);
-	    		
-	    		// add the file to the file list
-	    		files.add(f);
-	
-	    		// if the current file is a directory then get its entry recursively
-	    		if (f.isDirectory()) {
-	    			files.addAll(getBundleContents(bundleId, file));
-	    		}
+		Bundle bundle = Platform.getBundle(bundleId);
+		ArrayList<File> files = new ArrayList<File>();
+
+		// get all bundle entries of the folder
+		Enumeration<String> entries = bundle.getEntryPaths(dir);
+
+		// skip if there are no entries in the folder
+		if (entries != null) {
+			// iterate over the BundleContents
+			for (String file : Collections.list(bundle.getEntryPaths(dir))) {
+				// get the file from the bundle
+				File f = getBundleEntry(bundleId, file);
+
+				// add the file to the file list
+				files.add(f);
+
+				// if the current file is a directory then get its entry recursively
+				if (f.isDirectory()) {
+					files.addAll(getBundleContents(bundleId, file));
+				}
 			}
-    	}
-    	return files;
-    }
-	
+		}
+		return files;
+	}
+
 	/**
 	 * Get an image from a plugin
 	 * 
@@ -86,13 +97,13 @@ public abstract class BundleContentHelper {
 	 * @return image The image resolved from the bundle
 	 */
 	public static Image getBundleImage(String bundleId, String path) {
-		
+
 		Bundle bundle = Platform.getBundle(bundleId);
 		ImageDescriptor desc = ImageDescriptor.createFromURL(
-	              FileLocator.find(bundle, new Path(path), null));
+				FileLocator.find(bundle, new Path(path), null));
 		Image image = desc.createImage();
-    	
-    	return image;
-    }
-	
+
+		return image;
+	}
+
 }

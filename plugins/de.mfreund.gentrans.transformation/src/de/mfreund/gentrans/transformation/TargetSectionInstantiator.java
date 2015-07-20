@@ -321,7 +321,7 @@ class TargetSectionInstantiator implements CancellationListener {
 
 		int cardinality = 1;
 		boolean attrMappingExists = false;
-		int cardHintValue = 0;
+		int cardHintValue = 1;
 		/*
 		 * check for CardinalityHint
 		 */
@@ -332,7 +332,7 @@ class TargetSectionInstantiator implements CancellationListener {
 				if (((CardinalityMapping) h).getTarget().equals(
 						metamodelSection)) {
 					if (hintValues.getCardinalityMappingHintValues().containsKey(h)) {
-						if (hintValues.getHintValues((CardinalityMapping) h).size() > 1) {
+						if (hintValues.getHintValues((CardinalityMapping) h).size() >= 1) {
 							final Integer val = hintValues.removeHintValue((CardinalityMapping) h);
 							cardHintValue = val.intValue();
 						}
@@ -342,11 +342,11 @@ class TargetSectionInstantiator implements CancellationListener {
 			}
 		}
 
-		if (!metamodelSection.getCardinality().equals(CardinalityType.ONE)) {// ignore
-			/*
-			 * attribute hint and cardinality hint, if variableCardinality ==
-			 * false
-			 */
+		/*
+		 * ignore attribute hints and cardinalitys hint, if variableCardinality ==
+		 * false
+		 */
+		if (!metamodelSection.getCardinality().equals(CardinalityType.ONE)) {
 
 			// check for attribute hint
 			boolean hintFound = false;

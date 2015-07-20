@@ -1,20 +1,18 @@
 package de.mfreund.pamtram.model.generator;
 
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.osgi.framework.Bundle;
 
 import de.mfreund.epsilon.EolExecutor;
 
 public class WizardData {
-	
+
 	private Resource targetModelResource;
 	private IPath sourceModelPath;
 	private EolExecutor eolExecutor;
-	private Bundle bundle = Platform.getBundle("de.mfreund.pamtram.model.generator");
+	private String bundleId = "de.mfreund.pamtram.model.generator";
 	private SectionType sectionType;
 	private EPackage ePackage;
 	private EObject eObject;
@@ -26,7 +24,7 @@ public class WizardData {
 
 	public WizardData setTargetModelResource(Resource targetModelResource) {
 		this.targetModelResource = targetModelResource;
-		
+
 		return this;
 	}
 
@@ -39,12 +37,12 @@ public class WizardData {
 
 	public WizardData setEolExecutor(EolExecutor eolExecutor) {
 		this.eolExecutor = eolExecutor;
-		
+
 		return this;
 	}
-	
-	public Bundle getBundle() {
-		return bundle;
+
+	public String getBundleId() {
+		return bundleId;
 	}
 
 	public SectionType getSectionType() {
@@ -53,7 +51,7 @@ public class WizardData {
 
 	public WizardData setSectionType(SectionType sectionType) {
 		this.sectionType = sectionType;
-		
+
 		return this;
 	}
 
@@ -63,7 +61,7 @@ public class WizardData {
 
 	public WizardData setePackage(EPackage ePackage) {
 		this.ePackage = ePackage;
-		
+
 		return this;
 	}
 
@@ -73,7 +71,7 @@ public class WizardData {
 
 	public WizardData seteObject(EObject eObject) {
 		this.eObject = eObject;
-		
+
 		return this;
 	}
 
@@ -83,7 +81,7 @@ public class WizardData {
 
 	public WizardData setSourceModelPath(IPath sourceModelPath) {
 		this.sourceModelPath = sourceModelPath;
-		
+
 		return this;
 	}
 

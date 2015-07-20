@@ -1,7 +1,6 @@
 package de.mfreund.pamtram.model.generator;
 
-import java.net.URL;
-import java.util.ArrayList;
+import java.io.File;
 import java.util.HashMap;
 
 import org.eclipse.emf.ecore.EObject;
@@ -10,16 +9,16 @@ import org.eclipse.epsilon.eol.models.IModel;
 import org.eclipse.epsilon.eol.types.EolOrderedSet;
 import org.eclipse.jface.wizard.Wizard;
 
-import pamtram.metamodel.Attribute;
+import de.mfreund.pamtram.util.BundleContentHelper;
+import pamtram.metamodel.Class;
 import pamtram.metamodel.MetaModelElement;
-import pamtram.metamodel.Reference;
 
 public class GeneratorWizard extends Wizard {
-	
+
 	protected MappingModelSelectorPage one;
 	protected PreviewPage two;
 	protected WizardData wizardData;
-	
+
 	public GeneratorWizard(WizardData wizardData) {
 		super();
 		setNeedsProgressMonitor(true);
@@ -33,11 +32,11 @@ public class GeneratorWizard extends Wizard {
 		two = new PreviewPage(wizardData);
 		addPage(two);
 	}
-	
-	
+
+
 	@Override
 	public boolean performFinish() {
-		
+
 		// remove the attributes that have been unchecked in the preview page
 		IModel model = (IModel) this.wizardData.getEolExecutor().getModels().values().toArray()[0];
 
@@ -48,28 +47,28 @@ public class GeneratorWizard extends Wizard {
 				e.printStackTrace();
 			}
 		}
-		
+
 		// merge duplicate items
 		mergeDuplicateItems();
-		
+
 		// save the model manually as save-on-disposal is set to false
 		wizardData.getEolExecutor().getModels().
-			get(wizardData.getTargetModelResource().getURI().toFileString()).store();
-		
-		
+		get(wizardData.getTargetModelResource().getURI().toFileString()).store();
+
+
 		// delete the models as they are no longer used
 		// (thereby, the target model is automatically saved on disposal)
 		wizardData.getEolExecutor().disposeModels();
 
 		return true;
 	}
-	
+
 	/* check if this wizard has created 'class' objects that are equal to
 	 * existing ones; if so, merge both (that means delete one and redirect
 	 * referencing non-containment references)
 	 */
 	private void mergeDuplicateItems() {
-		URL fileURL = wizardData.getBundle().getEntry("templates/mergeDuplicateItems.eol");
+		File file = BundleContentHelper.getBundleEntry(wizardData.getBundleId(), "templates/mergeDuplicateItems.eol");
 
 		// create the hashmap containing the parameters to be passed to the eol file
 		HashMap<String, Object> params = new HashMap<String, Object>();
@@ -77,16 +76,16 @@ public class GeneratorWizard extends Wizard {
 		pamtram.metamodel.Class[] createdObjects = wizardData.getCreatedEObjects();
 		EolOrderedSet<pamtram.metamodel.Class> set = 
 				new EolOrderedSet<pamtram.metamodel.Class>();
-		for(int i=0; i<createdObjects.length; i++) {
-			set.add(createdObjects[i]);
+		for (Class createdObject : createdObjects) {
+			set.add(createdObject);
 		}
 		// put the set to the hashmap
 		params.put("createdObjects", set); // the root object for the metamodel section
 		// tell the eol script whether source or target items shall be merged
 		params.put("isSource", (wizardData.getSectionType() == SectionType.SOURCE) ? true : false);
-		
+
 		// execute the eol file
-		wizardData.getEolExecutor().executeEol(fileURL, params);
+		wizardData.getEolExecutor().executeEol(file, params);
 	}
 
 	@Override

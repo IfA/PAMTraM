@@ -52,7 +52,21 @@
         compositionRole=""/>
     <eventSupport>
       <dataInputOutputSupport
-          defaultValue="einzelne CheckBox"/>
+          defaultValue="Check Box 1"/>
+      <dataSelectionSupport
+          selectionType="multiple"/>
+    </eventSupport>
+    <presentationSupport/>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aiu1_1_2"
+      name="aiu1_1_2"
+      role="">
+    <aggregatedIn
+        compositionRole=""/>
+    <eventSupport>
+      <dataInputOutputSupport
+          defaultValue="CheckBox 2"/>
       <dataSelectionSupport
           selectionType="multiple"/>
     </eventSupport>
@@ -62,6 +76,20 @@
       id="aiu1_1_4"
       name="aiu1_1_4"
       role="guidance">
+    <aggregatedIn
+        compositionRole=""/>
+    <eventSupport>
+      <dataInputOutputSupport
+          defaultValue="einzelne CheckBox"/>
+      <dataSelectionSupport
+          selectionType="multiple"/>
+    </eventSupport>
+    <presentationSupport/>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aiu1_2"
+      name="aiu1_2"
+      role="">
     <aggregatedIn
         compositionRole=""/>
     <eventSupport>
@@ -248,6 +276,80 @@
       name="aiu2">
     <aggregatedIn/>
     <eventSupport/>
+    <presentationSupport/>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aiu2_1"
+      name="aiu2_1"
+      role="">
+    <aggregatedIn/>
+    <eventSupport>
+      <dataInputOutputSupport
+          dataType="out"
+          defaultValue="/folder/imageRessource"/>
+    </eventSupport>
+    <presentationSupport/>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aiu2_2"
+      name="aiu2_2"
+      role="">
+    <aggregatedIn/>
+    <eventSupport>
+      <dataInputOutputSupport
+          dataType="out"
+          defaultValue="Hier steht ein Text"/>
+    </eventSupport>
+    <presentationSupport/>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aiu2_3"
+      name="aiu2_3"
+      role="">
+    <aggregatedIn/>
+    <eventSupport>
+      <dataInputOutputSupport
+          dataType="out"
+          defaultValue="Trend"/>
+    </eventSupport>
+    <presentationSupport/>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aiu2_4"
+      name="aiu2_4"
+      role="">
+    <aggregatedIn/>
+    <eventSupport>
+      <dataInputOutputSupport
+          dataType="out"
+          defaultValue="Gauge"/>
+    </eventSupport>
+    <presentationSupport/>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aiu2_5"
+      name="aiu2_5"
+      role="error management">
+    <aggregatedIn/>
+    <eventSupport>
+      <dataInputOutputSupport
+          dataType="out"
+          defaultValue="Alarm Control"/>
+    </eventSupport>
+    <presentationSupport/>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aiu2_6"
+      name="aiu2_6"
+      role="grouping">
+    <aggregatedIn
+        compositionRole="parallel"/>
+    <eventSupport>
+      <dataInputOutputSupport
+          dataType="out"
+          defaultValue="single Container"/>
+      <dataSelectionSupport/>
+    </eventSupport>
     <presentationSupport/>
   </abstractInteractionUnit>
 </aui:AbstractUserInterfaceModel>

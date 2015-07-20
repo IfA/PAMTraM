@@ -94,7 +94,8 @@
         compositionRole=""/>
     <eventSupport>
       <dataInputOutputSupport
-          defaultValue="einzelne CheckBox"/>
+          defaultValue="einzelne CheckBox"
+          isDynamic="true"/>
       <dataSelectionSupport
           selectionType="multiple"/>
     </eventSupport>
@@ -113,7 +114,8 @@
     </aggregatedIn>
     <eventSupport>
       <dataInputOutputSupport
-          defaultValue=""/>
+          defaultValue=""
+          isDynamic="false"/>
       <dataSelectionSupport
           selectionType="single"/>
     </eventSupport>
@@ -348,7 +350,6 @@
       <dataInputOutputSupport
           dataType="out"
           defaultValue="single Container"/>
-      <dataSelectionSupport/>
     </eventSupport>
     <presentationSupport/>
   </abstractInteractionUnit>

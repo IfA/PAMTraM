@@ -684,6 +684,7 @@ public class SourceSectionMatcher implements CancellationListener {
 	 * {@link SourceSectionClass} that they are contained in.
 	 * @param mappingCounts A map that stores how often each {@link SourceSectionClass} has been matched.
 	 */
+	@SuppressWarnings("unchecked")
 	private boolean checkReferences(final EObject srcModelObject, final boolean usedOkay,
 			final Iterable<MappingHintBaseType> hints, final Iterable<GlobalAttribute> globalAttributes,
 			final SourceSectionClass srcSection, final MappingInstanceStorage changedRefsAndHints,
@@ -712,8 +713,18 @@ public class SourceSectionMatcher implements CancellationListener {
 			// check if reference is allowed by src metamodel
 			// check if reference in srcMMSection points anywhere
 			if (classByRefMap.get(ref).size() < 1) {
-				// don't do anything if no target SourceSectionClass has been specified for this Reference
-				break;
+
+				/*
+				 * if no target SourceSectionClass has been specified, this means that there must be NO target element
+				 * in the source model; if this is not the case (meaning that there is a target element for the reference),
+				 * the mapping is not applicable
+				 */
+				if(ref.isMany() && !((EList<EObject>) srcModelObject.eGet(ref)).isEmpty() ||
+						srcModelObject.eGet(ref) != null) {
+					return false;
+				} else {
+					break;					
+				}
 			}
 
 			/*

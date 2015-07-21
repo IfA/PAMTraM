@@ -1,14 +1,13 @@
 package de.mfreund.pamtram.model.generator;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.jface.preference.FileFieldEditor;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
@@ -22,7 +21,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
-import de.mfreund.pamtram.util.BundleContentHelper;
+import pamtram.PAMTraM;
 
 public class MappingModelSelectorPage extends WizardPage {
 
@@ -191,16 +190,18 @@ public class MappingModelSelectorPage extends WizardPage {
 
 		String modelPath = wizardData.getTargetModelResource().getURI().toFileString();
 
-		try {
-			wizardData.getEolExecutor().loadModel(
-					"Pamtram", 
-					"http://mfreund.de/pamtram", 
-					modelPath, 
-					true, 
-					false);
-		} catch (Exception e) {
-			throw new RuntimeException("Error loading PAMTraM model from file path '" + modelPath + "'! (Exception: " + e.getMessage() +  ").");
+		ResourceSet resourceSet = rs;
+
+		// the URI of the pamtram resource
+		final URI pamtramUri = URI.createFileURI(modelPath);
+
+		// load the pamtram model
+		XMIResource pamtramResource = 
+				(XMIResource) resourceSet.getResource(pamtramUri, true);
+		if(!(pamtramResource.getContents().get(0) instanceof PAMTraM)) {
+			throw new RuntimeException("The pamtram file does not seem to contain a pamtram instance. Aborting...");
 		}
+		wizardData.setPamtram((PAMTraM) pamtramResource.getContents().get(0));
 	}
 
 
@@ -212,29 +213,39 @@ public class MappingModelSelectorPage extends WizardPage {
 
 		EPackage ePackage = wizardData.getePackage();
 
-		//		URL fileURL = wizardData.getBundle().getEntry("templates/checkPackage.eol");
-		File file = BundleContentHelper.getBundleEntry(wizardData.getBundleId(), "templates/checkPackage.eol");
+		PAMTraM pamtram = wizardData.getPamtram();
 
-		// create the hashmap containing the parameters to be passed to the eol file
-		HashMap<String, Object> params = new HashMap<String, Object>();
-		params.put("ePackage", ePackage);
+		if(pamtram.getSourceSectionModel() == null) {
+			throw new RuntimeException("The selected target PAMTraM instance does not contain a SourceSectionModel!");
+		} else if(pamtram.getTargetSectionModel() == null) {
+			throw new RuntimeException("The selected target PAMTraM instance does not contain a TargetSectionModel!");
+		} else if(pamtram.getSourceSectionModel().getMetaModelPackage() == null) {
+			throw new RuntimeException("The selected target PAMTraM instance does not specify an EPackage for the SourceSectionModel!");
+		} else if(pamtram.getTargetSectionModel().getMetaModelPackage() == null) {
+			throw new RuntimeException("The selected target PAMTraM instance does not specify an EPackage for the TargetSectionModel!");
+		}
 
-		// load and execute the eol file
-		int ret = (int) wizardData.getEolExecutor().executeEol(file, params);
+		// get the source package
+		EPackage sourcePackage = pamtram.getSourceSectionModel().getMetaModelPackage();
+		// get the target package
+		EPackage targetPackage = pamtram.getTargetSectionModel().getMetaModelPackage();
 
-		switch (ret) {
-		case -1:
-			wizardData.getEolExecutor().disposeModels();
-			wizardData.setSectionType(SectionType.NONE);
-			throw new RuntimeException("The selected target PAMTraM instance can not be used for the selected EObject due to an ePackage discrepancy!");			
-		case 0:
-			wizardData.setSectionType(SectionType.BOTH); break;
-		case 1:
-			wizardData.setSectionType(SectionType.SOURCE); break;
-		case 2:
-			wizardData.setSectionType(SectionType.TARGET); break;
-		default:
-			throw new RuntimeException("EOL program returned with unsupported value!");
+		if(sourcePackage.getNsURI().equals(ePackage.getNsURI())) {
+			if(targetPackage.getNsURI().equals(ePackage.getNsURI())) {
+				// ePackage can be used as both source and target
+				wizardData.setSectionType(SectionType.BOTH);
+			} else {
+				// ePackage can be used only as source
+				wizardData.setSectionType(SectionType.SOURCE);
+			}
+		} else {
+			if(targetPackage.getNsURI().equals(ePackage.getNsURI())) {
+				// ePackage can be used only as target
+				wizardData.setSectionType(SectionType.TARGET);
+			} else {
+				// ePacakge can be used neither as source nor as target
+				wizardData.setSectionType(SectionType.NONE);
+			}
 		}
 	}
 

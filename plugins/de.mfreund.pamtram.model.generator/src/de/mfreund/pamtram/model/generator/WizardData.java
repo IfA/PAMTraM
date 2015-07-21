@@ -1,11 +1,15 @@
 package de.mfreund.pamtram.model.generator;
 
+import java.util.LinkedList;
+
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import de.mfreund.epsilon.EolExecutor;
+import pamtram.PAMTraM;
+import pamtram.metamodel.Class;
 
 public class WizardData {
 
@@ -16,7 +20,12 @@ public class WizardData {
 	private SectionType sectionType;
 	private EPackage ePackage;
 	private EObject eObject;
-	private pamtram.metamodel.Class[] createdEObjects;
+	private LinkedList<Class<?, ?, ?>> createdEObjects;
+
+	/**
+	 * The {@link PAMTraM} instance into that the generated section shall be stored.
+	 */
+	private PAMTraM pamtram;
 
 	public Resource getTargetModelResource() {
 		return targetModelResource;
@@ -85,12 +94,26 @@ public class WizardData {
 		return this;
 	}
 
-	public pamtram.metamodel.Class[] getCreatedEObjects() {
+	public LinkedList<Class<?, ?, ?>> getCreatedEObjects() {
 		return createdEObjects;
 	}
 
-	public void setCreatedEObjects(pamtram.metamodel.Class[] created) {
+	public void setCreatedEObjects(LinkedList<Class<?, ?, ?>> created) {
 		this.createdEObjects = created;
+	}
+
+	/**
+	 * @return the pamtram
+	 */
+	public PAMTraM getPamtram() {
+		return pamtram;
+	}
+
+	/**
+	 * @param pamtram the pamtram to set
+	 */
+	public void setPamtram(PAMTraM pamtram) {
+		this.pamtram = pamtram;
 	}
 
 }

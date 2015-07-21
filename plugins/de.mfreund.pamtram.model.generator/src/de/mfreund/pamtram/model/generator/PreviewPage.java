@@ -1,8 +1,8 @@
 package de.mfreund.pamtram.model.generator;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -12,7 +12,6 @@ import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.epsilon.eol.types.EolOrderedSet;
 import org.eclipse.jface.viewers.CheckStateChangedEvent;
 import org.eclipse.jface.viewers.CheckboxTableViewer;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
@@ -35,7 +34,7 @@ import org.eclipse.ui.dialogs.ContainerCheckedTreeViewer;
 
 import de.mfreund.pamtram.model.generator.provider.ResultPageTableViewerContentProvider;
 import de.mfreund.pamtram.model.generator.provider.ResultPageTableViewerLabelProvider;
-import de.mfreund.pamtram.util.BundleContentHelper;
+import pamtram.PAMTraM;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.provider.MetamodelItemProviderAdapterFactory;
@@ -155,7 +154,7 @@ public class PreviewPage extends WizardPage {
 				viewer.setInput(
 						//						wizardData.getCreatedEObjects());
 						//ClassTreeItem.createClassTreeItems(wizardData.getCreatedEObjects()));
-						wizardData.getCreatedEObjects());
+						wizardData.getCreatedEObjects().toArray());
 				// expand the tree so that the tree item map can be generated
 				viewer.expandAll();
 				// create a map of the items in the tree that is later used for jumping to these items
@@ -179,29 +178,13 @@ public class PreviewPage extends WizardPage {
 	 */
 	private void createMetaModelSection(EObject eObject, EPackage ePackage,
 			SectionType sectionType) {
-		File file = BundleContentHelper.getBundleEntry(wizardData.getBundleId(), "templates/createMetaModelSection.eol");
 
-		// create the hashmap containing the parameters to be passed to the eol file
-		HashMap<String, Object> params = new HashMap<String, Object>();
-		params.put("sectionRoot", eObject); // the root object for the metamodel section
-		params.put("isSource", (sectionType == SectionType.SOURCE) ? true : false); // whether the metamodel section shall be generated as source or target section
-		params.put("ePackage", ePackage); // the epackage of the model
+		PAMTraM pamtram = wizardData.getPamtram();
 
-		// load and execute the eol file
-		Object created = wizardData.getEolExecutor().executeEol(file, params);
-		if(created instanceof EolOrderedSet) {
-			@SuppressWarnings("unchecked")
-			EolOrderedSet<EObject> set = (EolOrderedSet<EObject>) created;
+		MetaModelSectionGenerator generator = new MetaModelSectionGenerator(pamtram, eObject, ePackage, sectionType);
+		LinkedList<pamtram.metamodel.Class<?, ?, ?>> created = generator.generate();
 
-			pamtram.metamodel.Class[] createdEObjects = 
-					new pamtram.metamodel.Class[set.size()];
-
-			for(int i=0; i< set.size(); i++) {
-				createdEObjects[i] = (pamtram.metamodel.Class) set.toArray()[i];
-			}
-
-			wizardData.setCreatedEObjects(createdEObjects);
-		}
+		wizardData.setCreatedEObjects(created);
 
 	}
 

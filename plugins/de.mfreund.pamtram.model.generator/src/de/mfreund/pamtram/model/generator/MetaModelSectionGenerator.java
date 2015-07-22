@@ -11,8 +11,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import de.mfreund.pamtram.util.NullComparator;
 import pamtram.PAMTraM;
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.Attribute;
@@ -286,5 +288,77 @@ public class MetaModelSectionGenerator {
 			}
 			((EList<Attribute<?, ?, ?>>) clazz.getAttributes()).add(attribute);
 		}
+	}
+
+	public void mergeDuplicates(LinkedList<Class<?, ?, ?>> created) {
+
+		@SuppressWarnings("unchecked")
+		EList<Class<?, ? , ?>> sections = 
+		(EList<Class<?, ?, ?>>) (sectionType == SectionType.SOURCE ? pamtram.getSourceSectionModel().getMetaModelSections() : pamtram.getTargetSectionModel().getMetaModelSections());
+
+		for (Class<?, ?, ?> createdSection : created) {
+			compare(createdSection, sections);
+		}
+	}
+
+	private void compare(Class<?, ?, ?> createdSection, EList<Class<?, ?, ?>> pamtramSections) {
+
+		ArrayList<Class<?, ?, ?>> potentialMatches = new ArrayList<>();
+		for (Class<?, ?, ?> section : pamtramSections) {
+			if(createdSection.isSection() && !createdSection.equals(section) && createdSection.eClass().equals(section.eClass()) &&
+					NullComparator.compare(createdSection.getName(), section.getName())) {
+				potentialMatches.add(section);
+			}
+		}
+
+		String selfHash = hash(createdSection);
+
+		ArrayList<Class<?, ?, ?>> matchesToRemove = new ArrayList<>();
+
+		for(Class<?, ?, ?> match : potentialMatches) {	
+			String hash = hash(match);
+			if(!hash.equals(selfHash)) {
+				matchesToRemove.add(match);
+			}
+		}
+		potentialMatches.removeAll(matchesToRemove);
+
+		// TODO: iterate further to calculate the match based on the references
+		// and not only on the attributes	
+
+		if(!potentialMatches.isEmpty()) {
+
+			// merge with the first match
+			Class<?, ?, ?> match = potentialMatches.get(0);
+
+			Collection<Setting> crossReferences = EcoreUtil.UsageCrossReferencer.find(createdSection, created.values());
+
+			for (Setting setting : crossReferences) {
+				setting.set(match);
+			}
+
+			// delete the created object
+			EcoreUtil.remove(createdSection);
+
+		}
+
+	}
+
+	private String hash(Class<?, ?, ?> createdSection) {
+		String hash = "";
+		for(Attribute<?, ?, ?> att : createdSection.getAttributes()) {
+			if(sectionType == SectionType.SOURCE) {
+				hash = hash + ((SourceSectionAttribute) att).getAttribute().getName();
+				if( ((SourceSectionAttribute) att).getValueConstraint().size() > 0){
+					hash = hash +  ((SourceSectionAttribute) att).getValueConstraint().get(0).getValue();
+				} else {
+					hash = hash + "noValue";
+				}
+			} else {
+				hash = hash + ((ActualAttribute) att).getAttribute().getName();
+				hash = hash + ((ActualAttribute) att).getValue();
+			}
+		}
+		return hash;
 	}
 }

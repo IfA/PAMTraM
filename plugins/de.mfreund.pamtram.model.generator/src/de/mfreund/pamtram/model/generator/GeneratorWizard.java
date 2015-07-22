@@ -38,12 +38,13 @@ public class GeneratorWizard extends Wizard {
 		//		// remove the attributes that have been unchecked in the preview page
 		//		IModel model = (IModel) this.wizardData.getEolExecutor().getModels().values().toArray()[0];
 
-		for(MetaModelElement element : two.getElementsToExclude()) {
+		for(MetaModelElement<?, ?, ?> element : two.getElementsToExclude()) {
+			wizardData.getCreatedEObjects().remove(element);
 			EcoreUtil.remove(element);
 		}
 
 		// merge duplicate items
-		mergeDuplicateItems();
+		wizardData.getGenerator().mergeDuplicates(wizardData.getCreatedEObjects());
 
 		//		// save the model manually as save-on-disposal is set to false
 		//		wizardData.getEolExecutor().getModels().
@@ -62,31 +63,6 @@ public class GeneratorWizard extends Wizard {
 			e.printStackTrace();
 		}
 		return true;
-	}
-
-	/* check if this wizard has created 'class' objects that are equal to
-	 * existing ones; if so, merge both (that means delete one and redirect
-	 * referencing non-containment references)
-	 */
-	private void mergeDuplicateItems() {
-		//		File file = BundleContentHelper.getBundleEntry(wizardData.getBundleId(), "templates/mergeDuplicateItems.eol");
-		//
-		//		// create the hashmap containing the parameters to be passed to the eol file
-		//		HashMap<String, Object> params = new HashMap<String, Object>();
-		//		// convert the list of created objects to an eol set
-		//		pamtram.metamodel.Class[] createdObjects = wizardData.getCreatedEObjects();
-		//		EolOrderedSet<pamtram.metamodel.Class> set = 
-		//				new EolOrderedSet<pamtram.metamodel.Class>();
-		//		for (Class createdObject : createdObjects) {
-		//			set.add(createdObject);
-		//		}
-		//		// put the set to the hashmap
-		//		params.put("createdObjects", set); // the root object for the metamodel section
-		//		// tell the eol script whether source or target items shall be merged
-		//		params.put("isSource", (wizardData.getSectionType() == SectionType.SOURCE) ? true : false);
-		//
-		//		// execute the eol file
-		//		wizardData.getEolExecutor().executeEol(file, params);
 	}
 
 	@Override

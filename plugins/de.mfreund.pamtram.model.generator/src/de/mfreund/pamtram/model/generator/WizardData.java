@@ -27,6 +27,11 @@ public class WizardData {
 	 */
 	private PAMTraM pamtram;
 
+	/**
+	 * The {@link MetaModelSectionGenerator} to be used to generate and merge sections.
+	 */
+	private MetaModelSectionGenerator generator;
+
 	public Resource getTargetModelResource() {
 		return targetModelResource;
 	}
@@ -114,6 +119,20 @@ public class WizardData {
 	 */
 	public void setPamtram(PAMTraM pamtram) {
 		this.pamtram = pamtram;
+	}
+
+	/**
+	 * @return the generator
+	 */
+	public MetaModelSectionGenerator getGenerator() {
+		return generator;
+	}
+
+	/**
+	 * @param generator the generator to set
+	 */
+	public void setGenerator(MetaModelSectionGenerator generator) {
+		this.generator = generator;
 	}
 
 }

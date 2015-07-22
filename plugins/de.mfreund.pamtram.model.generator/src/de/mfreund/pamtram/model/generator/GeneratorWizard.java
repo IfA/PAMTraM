@@ -1,8 +1,12 @@
 package de.mfreund.pamtram.model.generator;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.LinkedList;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.wizard.Wizard;
@@ -35,25 +39,27 @@ public class GeneratorWizard extends Wizard {
 	@Override
 	public boolean performFinish() {
 
-		//		// remove the attributes that have been unchecked in the preview page
-		//		IModel model = (IModel) this.wizardData.getEolExecutor().getModels().values().toArray()[0];
-
 		for(MetaModelElement<?, ?, ?> element : two.getElementsToExclude()) {
+
+			Collection<Setting> crossReferences = EcoreUtil.UsageCrossReferencer.find(element, wizardData.getCreatedEObjects());
+			for (Setting setting : crossReferences) {
+				if(setting.getEStructuralFeature().isMany()) {
+					@SuppressWarnings("unchecked")
+					EList<EObject> values = (EList<EObject>) setting.getEObject().eGet(setting.getEStructuralFeature());
+					values.remove(element);
+					setting.getEObject().eSet(setting.getEStructuralFeature(), values);
+
+				} else {
+					setting.getEObject().eUnset(setting.getEStructuralFeature());
+				}
+			}
+
 			wizardData.getCreatedEObjects().remove(element);
 			EcoreUtil.remove(element);
 		}
 
 		// merge duplicate items
 		wizardData.getGenerator().mergeDuplicates(wizardData.getCreatedEObjects());
-
-		//		// save the model manually as save-on-disposal is set to false
-		//		wizardData.getEolExecutor().getModels().
-		//		get(wizardData.getTargetModelResource().getURI().toFileString()).store();
-
-		//
-		//		// delete the models as they are no longer used
-		//		// (thereby, the target model is automatically saved on disposal)
-		//		wizardData.getEolExecutor().disposeModels();
 
 		try {
 			wizardData.getPamtram().eResource().save(null);

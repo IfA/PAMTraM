@@ -122,9 +122,6 @@ public class MetaModelSectionGenerator {
 		clazz.setEClass(eClass);;
 		clazz.setName(eClass.getName());
 
-		//		// add the corresponding eObject as temporary variable
-		//		class.~eObjectString = source.toString();
-
 		// add the attributes to the class
 		createAttributes(source, clazz);
 
@@ -216,7 +213,7 @@ public class MetaModelSectionGenerator {
 			for(EObject eObject : referenced) {
 
 				// check if a section representing the eObject already exists
-				Class<?, ?, ?> existing = created.get(source);
+				Class<?, ?, ?> existing = created.get(eObject);
 				if(existing != null) {
 					// link the existing class
 					if(sectionType == SectionType.SOURCE) {
@@ -334,7 +331,14 @@ public class MetaModelSectionGenerator {
 			Collection<Setting> crossReferences = EcoreUtil.UsageCrossReferencer.find(createdSection, created.values());
 
 			for (Setting setting : crossReferences) {
-				setting.set(match);
+				if(setting.getEStructuralFeature().isMany()) {
+					@SuppressWarnings("unchecked")
+					EList<EObject> values = (EList<EObject>) setting.getEObject().eGet(setting.getEStructuralFeature());
+					values.add(match);
+					setting.getEObject().eSet(setting.getEStructuralFeature(), values);
+				} else {
+					setting.set(match);
+				}
 			}
 
 			// delete the created object

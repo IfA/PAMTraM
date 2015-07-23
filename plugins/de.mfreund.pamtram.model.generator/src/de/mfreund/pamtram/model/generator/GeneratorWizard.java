@@ -14,6 +14,8 @@ import org.eclipse.swt.widgets.Shell;
 
 import pamtram.metamodel.Class;
 import pamtram.metamodel.MetaModelElement;
+import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.TargetSectionClass;
 
 public class GeneratorWizard extends Wizard {
 
@@ -36,6 +38,7 @@ public class GeneratorWizard extends Wizard {
 	}
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean performFinish() {
 
@@ -59,8 +62,17 @@ public class GeneratorWizard extends Wizard {
 		}
 
 		// merge duplicate items
-		wizardData.getGenerator().mergeDuplicates(wizardData.getCreatedEObjects());
+		LinkedList<Class<?, ?, ?>> sectionsToAdd = 
+				wizardData.getGenerator().mergeDuplicates(wizardData.getCreatedEObjects());
 
+		// now that we now which of the sections are unique, we can add those to the pamtram model
+		if(wizardData.getSectionType() == SectionType.SOURCE) {
+			wizardData.getPamtram().getSourceSectionModel().getMetaModelSections().addAll((Collection<? extends SourceSectionClass>) sectionsToAdd);
+		} else {
+			wizardData.getPamtram().getTargetSectionModel().getMetaModelSections().addAll((Collection<? extends TargetSectionClass>) sectionsToAdd);
+		}
+
+		// finally, we save the model
 		try {
 			wizardData.getPamtram().eResource().save(null);
 		} catch (IOException e) {

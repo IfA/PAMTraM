@@ -78,7 +78,11 @@ public class MetaModelSectionGenerator {
 	}
 
 	/**
-	 * This generates the Section(s), adds it/them to the PAMTraM model and returns it/them.
+	 * This generates the Section(s) and returns it/them.
+	 * <br />
+	 * Note: The generated sections are not yet added to the PAMTraM model as some might represent duplicates of
+	 * existing sections (cf. {@link #mergeDuplicates(LinkedList)}). Consequently, clients need to add the 
+	 * sections to the PAMTraM model on their own.
 	 * 
 	 * @return The generated Section(s).
 	 */
@@ -90,12 +94,6 @@ public class MetaModelSectionGenerator {
 		LinkedList<Class<?, ?, ?>> ret = new LinkedList<>();
 		ret.add(metaModelSection);
 		ret.addAll(dangling);
-
-		if(sectionType == SectionType.SOURCE) {
-			pamtram.getSourceSectionModel().getMetaModelSections().addAll((Collection<? extends SourceSectionClass>) ret);
-		} else {
-			pamtram.getTargetSectionModel().getMetaModelSections().addAll((Collection<? extends TargetSectionClass>) ret);
-		}
 
 		return ret;
 	}
@@ -296,18 +294,28 @@ public class MetaModelSectionGenerator {
 	 * the PAMTraM model but deleted instead. Additionally, all cross-references to the duplicate sections are redirected
 	 * to the original sections in the PAMTraM model.
 	 * 
-	 * @param created The list of section (usually created by {@link #generate()} that shall be checked and, if necessary,
+	 * @param created The list of sections (usually created by {@link #generate()} that shall be checked and, if necessary,
 	 * merged with sections from the PAMTraM model.
+	 * @return The list of '<em>unique</em>' sections (after deleting duplicates).
 	 */
-	public void mergeDuplicates(LinkedList<Class<?, ?, ?>> created) {
+	public LinkedList<Class<?, ?, ?>> mergeDuplicates(LinkedList<Class<?, ?, ?>> created) {
+
+		LinkedList<Class<?, ?, ?>> createdSections = new LinkedList<>(created);
 
 		@SuppressWarnings("unchecked")
 		EList<Class<?, ? , ?>> sections = 
 		(EList<Class<?, ?, ?>>) (sectionType == SectionType.SOURCE ? pamtram.getSourceSectionModel().getMetaModelSections() : pamtram.getTargetSectionModel().getMetaModelSections());
 
-		for (Class<?, ?, ?> createdSection : created) {
-			compare(createdSection, sections);
+		ArrayList<Class<?, ?, ?>> duplicateSections = new ArrayList<>();
+
+		for (Class<?, ?, ?> createdSection : createdSections) {
+			if(compare(createdSection, sections)) {
+				duplicateSections.add(createdSection);
+			}
 		}
+
+		createdSections.removeAll(duplicateSections);
+		return createdSections;
 	}
 
 	/**
@@ -317,12 +325,14 @@ public class MetaModelSectionGenerator {
 	 * @param createdSection The {@link Class section} that shall be compared to the sections from the PAMTraM model.
 	 * @param pamtramSections The list of {@link Class sections} from the PAMTraM model that the '<em>createdSection</em> shall
 	 * be compared to.
+	 * @return '<em><b>true<b/></em>' if the createdSection matches one (or more) of the pamtramSections, '<em><b>false</b></em>'
+	 * otherwise
 	 */
-	private void compare(Class<?, ?, ?> createdSection, EList<Class<?, ?, ?>> pamtramSections) {
+	private boolean compare(Class<?, ?, ?> createdSection, EList<Class<?, ?, ?>> pamtramSections) {
 
 		ArrayList<Class<?, ?, ?>> potentialMatches = new ArrayList<>();
 		for (Class<?, ?, ?> section : pamtramSections) {
-			if(createdSection.isSection() && !createdSection.equals(section) && createdSection.eClass().equals(section.eClass()) &&
+			if(!createdSection.equals(section) && createdSection.eClass().equals(section.eClass()) &&
 					NullComparator.compare(createdSection.getName(), section.getName())) {
 				potentialMatches.add(section);
 			}
@@ -361,11 +371,9 @@ public class MetaModelSectionGenerator {
 				}
 			}
 
-			// delete the created object
-			EcoreUtil.remove(createdSection);
-
+			return true;
 		}
-
+		return false;
 	}
 
 	/**

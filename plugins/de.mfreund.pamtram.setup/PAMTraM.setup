@@ -62,7 +62,7 @@
     <setupTask
         xsi:type="setup:PreferenceTask"
         key="/instance/org.eclipse.ocl.common/code.generation.mode"
-        value="generated"/>
+        value="GENERATED"/>
     <setupTask
         xsi:type="setup:PreferenceTask"
         key="/instance/org.eclipse.ui.ide/REFRESH_WORKSPACE_ON_STARTUP"

@@ -940,41 +940,18 @@
         <valueConstraint xsi:type="metamodel:EqualityMatcher" value=""/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="scaledOutput" container="//@sourceSectionModel/@metaModelSections.22">
+    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="Input">
       <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <references xsi:type="metamodel:SourceSectionContainmentReference" name="eventSupport">
-        <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
-        <value xsi:type="metamodel:SourceSectionClass" name="EventSupport">
-          <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
-          <references xsi:type="metamodel:SourceSectionContainmentReference" name="dataInputOutputSupport">
-            <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
-            <value xsi:type="metamodel:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
-              <attributes xsi:type="metamodel:SourceSectionAttribute" name="dataType">
-                <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="out" value="out"/>
-              </attributes>
-              <attributes xsi:type="metamodel:SourceSectionAttribute" name="isDynamic">
-                <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="false" value="false"/>
-              </attributes>
-              <attributes xsi:type="metamodel:SourceSectionAttribute" name="defaultValue">
-                <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
-              </attributes>
-            </value>
-          </references>
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="aggregatedIn">
+        <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/aggregatedIn"/>
+        <value xsi:type="metamodel:SourceSectionClass" name="Composition">
+          <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
+          <attributes xsi:type="metamodel:SourceSectionAttribute" name="compositionRole">
+            <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
+            <valueConstraint xsi:type="metamodel:EqualityMatcher" type="EXCLUSION" value="parallel"/>
+          </attributes>
         </value>
       </references>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
-        <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
-      </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
-        <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" value=""/>
-      </attributes>
-    </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="dynamicScaledOutput">
-      <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="eventSupport">
         <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
         <value xsi:type="metamodel:SourceSectionClass" name="EventSupport">
@@ -985,40 +962,18 @@
               <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="dataType">
                 <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="out" value="out"/>
-              </attributes>
-              <attributes xsi:type="metamodel:SourceSectionAttribute" name="isDynamic">
-                <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
-                <valueConstraint xsi:type="metamodel:EqualityMatcher" name="true" value="true"/>
-              </attributes>
-              <attributes xsi:type="metamodel:SourceSectionAttribute" name="defaultValue">
-                <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" value="in"/>
               </attributes>
             </value>
           </references>
           <references xsi:type="metamodel:SourceSectionContainmentReference" name="dataSelectionSupport">
             <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataSelectionSupport"/>
-            <value xsi:type="metamodel:SourceSectionClass" name="DataSelectionSupport">
-              <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
-              <attributes xsi:type="metamodel:SourceSectionAttribute" name="end">
-                <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/end"/>
-              </attributes>
-              <attributes xsi:type="metamodel:SourceSectionAttribute" name="start">
-                <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/start"/>
-              </attributes>
-              <attributes xsi:type="metamodel:SourceSectionAttribute" name="selectionStep">
-                <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionStep"/>
-              </attributes>
-            </value>
           </references>
         </value>
       </references>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
-        <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
-      </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
         <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" value=""/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" type="EXCLUSION" value="grouping"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSectionClass" name="guidance">
@@ -1034,6 +989,10 @@
               <attributes xsi:type="metamodel:SourceSectionAttribute" name="defaultValue">
                 <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
               </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="dataType">
+                <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <valueConstraint xsi:type="metamodel:EqualityMatcher" value="out"/>
+              </attributes>
             </value>
           </references>
         </value>
@@ -1045,6 +1004,18 @@
         <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="guidance" value="guidance"/>
       </attributes>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="test">
+      <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
+      <references xsi:type="metamodel:SourceSectionContainmentReference" name="eventSupport">
+        <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
+        <value xsi:type="metamodel:SourceSectionClass" name="EventSupport">
+          <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
+          <references xsi:type="metamodel:SourceSectionContainmentReference" name="triggerSupport">
+            <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/triggerSupport"/>
+          </references>
+        </value>
+      </references>
     </metaModelSections>
   </sourceSectionModel>
   <targetSectionModel xsi:type="pamtram:TargetSectionModel">
@@ -3471,7 +3442,7 @@
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
-    <mapping xsi:type="mapping:Mapping" name="RadioButtonGroupMapping" deactivated="true" sourceMMSection="//@sourceSectionModel/@metaModelSections.17">
+    <mapping xsi:type="mapping:Mapping" name="RadioButtonGroupMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.17">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="RadioButtonGroup" targetMMSection="//@targetSectionModel/@metaModelSections.14">
         <mappingHints xsi:type="mapping:AttributeMapping" name="RadioButtonGroupNameMapping" target="//@targetSectionModel/@metaModelSections.14/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.17/@attributes.1"/>
@@ -3723,6 +3694,7 @@
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
+    <mapping xsi:type="mapping:Mapping" name="InputMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.23"/>
     <mapping xsi:type="mapping:Mapping" name="CheckBoxMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.15">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefinition" targetMMSection="//@targetSectionModel/@metaModelSections.24">
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel/@metaModelSections.24/@references.0/@value.0/@attributes.0">
@@ -3793,7 +3765,7 @@
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
-    <mapping xsi:type="mapping:Mapping" name="RadioButtonMapping" deactivated="true" sourceMMSection="//@sourceSectionModel/@metaModelSections.19">
+    <mapping xsi:type="mapping:Mapping" name="RadioButtonMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.19">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="RadioButton" targetMMSection="//@targetSectionModel/@metaModelSections.16">
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.16/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.19/@attributes.1"/>
@@ -4096,23 +4068,23 @@
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
-    <mapping xsi:type="mapping:Mapping" name="guidanceMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.25">
+    <mapping xsi:type="mapping:Mapping" name="guidanceMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.24">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ValueTextDefinition" targetMMSection="//@targetSectionModel/@metaModelSections.24">
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel/@metaModelSections.24/@references.0/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="defaultValue" source="//@sourceSectionModel/@metaModelSections.25/@references.0/@value.0/@references.0/@value.0/@attributes.0"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="defaultValue" source="//@sourceSectionModel/@metaModelSections.24/@references.0/@value.0/@references.0/@value.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.24/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.25/@attributes.0"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.24/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ToolTipText" targetMMSection="//@targetSectionModel/@metaModelSections.35">
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="ToolTipDextDefinition" affectedReference="//@targetSectionModel/@metaModelSections.35/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.24/@attributes.0">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.25/@attributes.0"/>
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.24/@attributes.0"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="ToolTipTextNameMapping" target="//@targetSectionModel/@metaModelSections.35/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.25/@attributes.0"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.24/@attributes.0"/>
         </mappingHints>
         <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
           <targetAttributes xsi:type="mapping:ModelConnectionHintTargetAttribute" name="virtualButtonRepresentationName" source="//@targetSectionModel/@metaModelSections.4/@references.0/@value.0/@attributes.0"/>
@@ -4127,10 +4099,11 @@
           <targetAttributes xsi:type="mapping:ModelConnectionHintTargetAttribute" name="virtualSimpleContainerName" source="//@targetSectionModel/@metaModelSections.9/@references.0/@value.0/@attributes.0"/>
           <targetAttributes xsi:type="mapping:ModelConnectionHintTargetAttribute" name="virtualSliderRepresentationName" source="//@targetSectionModel/@metaModelSections.20/@references.0/@value.0/@attributes.0"/>
           <targetAttributes xsi:type="mapping:ModelConnectionHintTargetAttribute" name="virtualTextLAbelRepresentationName" source="//@targetSectionModel/@metaModelSections.26/@references.0/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.25/@attributes.0" modifier="//@mappingModel/@modifierSets.8 //@mappingModel/@modifierSets.2"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.24/@attributes.0" modifier="//@mappingModel/@modifierSets.8 //@mappingModel/@modifierSets.2"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
+    <mapping xsi:type="mapping:Mapping" name="testMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.25"/>
     <modifierSets xsi:type="mapping:AttributeValueModifierSet" name="getNumber">
       <modifier xsi:type="mapping:SubstringReplacer" name="getNumber" regex="[^0-9]+" replacement=""/>
     </modifierSets>

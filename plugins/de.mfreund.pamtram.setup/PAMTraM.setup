@@ -61,6 +61,10 @@
         value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
     <setupTask
         xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.ocl.common/code.generation.mode"
+        value="generated"/>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
         key="/instance/org.eclipse.ui.ide/REFRESH_WORKSPACE_ON_STARTUP"
         value="true"/>
     <setupTask

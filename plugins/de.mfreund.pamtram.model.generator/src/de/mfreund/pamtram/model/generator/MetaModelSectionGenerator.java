@@ -86,7 +86,6 @@ public class MetaModelSectionGenerator {
 	 * 
 	 * @return The generated Section(s).
 	 */
-	@SuppressWarnings("unchecked")
 	public LinkedList<Class<?, ?, ?>> generate() {
 
 		Class<?, ?, ?> metaModelSection = createMetaModelSection(source);

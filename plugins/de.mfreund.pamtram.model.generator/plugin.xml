@@ -33,28 +33,6 @@
             </visibleWhen>
          </command>
       </menuContribution>
-      <menuContribution
-            allPopups="false"
-            locationURI="popup:org.eclipse.epsilon.dt.exeed.ExeedEditor">
-         <command
-               commandId="de.mfreund.pamtram.model.generator.exportMetaModelSection"
-               label="Movisa: Create Library Item"
-               style="push">
-            <visibleWhen
-                  checkEnabled="false">
-               <with
-                     variable="activeMenuSelection">
-                  <iterate
-                        ifEmpty="false"
-                        operator="or">
-                     <adapt
-                           type="org.eclipse.emf.ecore.EObject">
-                     </adapt>
-                  </iterate>
-               </with>
-            </visibleWhen>
-         </command>
-      </menuContribution>
    </extension>
 
 </plugin>

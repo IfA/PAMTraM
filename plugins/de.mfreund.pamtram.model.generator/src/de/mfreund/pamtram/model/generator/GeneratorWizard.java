@@ -82,7 +82,7 @@ public class GeneratorWizard extends Wizard {
 
 		MessageDialog.openInformation(new Shell(), "Export Result", 
 				sectionsToAdd.size() + " sections have been added to the PAMTraM model. There were " +
-						wizardData.getCreatedEObjects().size() + " sections that have been identified as duplicates of " +
+						(wizardData.getCreatedEObjects().size() - sectionsToAdd.size()) + " sections that have been identified as duplicates of " +
 				"existing sections. Those have not added but merged with the existing ones.");
 
 		return true;

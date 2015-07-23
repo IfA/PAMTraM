@@ -9,7 +9,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -49,11 +48,6 @@ public class MetaModelSectionGenerator {
 	private EObject source;
 
 	/**
-	 * The ePackage that the source object belongs to.
-	 */
-	private EPackage ePackage;
-
-	/**
 	 * The SectionType specifying whether to generate a Source or a TargetSection.
 	 */
 	private SectionType sectionType;
@@ -73,13 +67,11 @@ public class MetaModelSectionGenerator {
 	 * 
 	 * @param pamtram The PAMTraM instance where the generated Section shall be stored.
 	 * @param source The source eObject from which the section shall be generated.
-	 * @param ePackage The ePackage that the source object belongs to.
 	 * @param sectionType The SectionType specifying whether to generate a Source or a TargetSection.
 	 */
-	public MetaModelSectionGenerator(PAMTraM pamtram, EObject source, EPackage ePackage, SectionType sectionType) {
+	public MetaModelSectionGenerator(PAMTraM pamtram, EObject source, SectionType sectionType) {
 		this.pamtram = pamtram;
 		this.source = source;
-		this.ePackage = ePackage;
 		this.sectionType = sectionType;
 		this.created = new HashMap<>();
 		this.dangling = new ArrayList<>();

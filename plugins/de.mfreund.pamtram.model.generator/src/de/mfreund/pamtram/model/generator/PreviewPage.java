@@ -181,7 +181,7 @@ public class PreviewPage extends WizardPage {
 
 		PAMTraM pamtram = wizardData.getPamtram();
 
-		MetaModelSectionGenerator generator = new MetaModelSectionGenerator(pamtram, eObject, ePackage, sectionType);
+		MetaModelSectionGenerator generator = new MetaModelSectionGenerator(pamtram, eObject, sectionType);
 		wizardData.setGenerator(generator);
 
 		LinkedList<pamtram.metamodel.Class<?, ?, ?>> created = generator.generate();

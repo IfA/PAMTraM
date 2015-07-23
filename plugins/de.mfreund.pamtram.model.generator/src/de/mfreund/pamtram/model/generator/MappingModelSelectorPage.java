@@ -78,7 +78,10 @@ public class MappingModelSelectorPage extends WizardPage {
 				if(file instanceof String && ((String) file).endsWith(".pamtram")) {
 					try {
 						// delete the old model
-						wizardData.getEolExecutor().disposeModels();
+						if(wizardData.getPamtram() != null) {
+							wizardData.getPamtram().eResource().unload();
+							wizardData.setPamtram(null);
+						}
 
 						// set the resource of the new model
 						setResource((String) file);
@@ -156,7 +159,6 @@ public class MappingModelSelectorPage extends WizardPage {
 		setPageComplete(false);
 
 	}
-
 
 	/* get the target resource based on its resource path;
 	 * if no resource exists, create a new one

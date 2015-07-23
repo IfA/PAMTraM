@@ -96,4 +96,9 @@ public class GeneratorWizard extends Wizard {
 		return (createdEObjects != null && createdEObjects.size() > 0);
 	}
 
+	@Override
+	public boolean performCancel() {
+		wizardData.getTargetModelResource().unload();
+		return super.performCancel();
+	}
 }

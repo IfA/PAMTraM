@@ -7,7 +7,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 
-import de.mfreund.epsilon.EolExecutor;
 import pamtram.PAMTraM;
 import pamtram.metamodel.Class;
 
@@ -15,7 +14,6 @@ public class WizardData {
 
 	private Resource targetModelResource;
 	private IPath sourceModelPath;
-	private EolExecutor eolExecutor;
 	private String bundleId = "de.mfreund.pamtram.model.generator";
 	private SectionType sectionType;
 	private EPackage ePackage;
@@ -38,19 +36,6 @@ public class WizardData {
 
 	public WizardData setTargetModelResource(Resource targetModelResource) {
 		this.targetModelResource = targetModelResource;
-
-		return this;
-	}
-
-	public EolExecutor getEolExecutor() {
-		if(eolExecutor == null) {
-			eolExecutor = new EolExecutor();
-		}
-		return eolExecutor;
-	}
-
-	public WizardData setEolExecutor(EolExecutor eolExecutor) {
-		this.eolExecutor = eolExecutor;
 
 		return this;
 	}

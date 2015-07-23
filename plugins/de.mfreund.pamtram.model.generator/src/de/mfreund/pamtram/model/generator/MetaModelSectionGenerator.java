@@ -100,6 +100,12 @@ public class MetaModelSectionGenerator {
 		return ret;
 	}
 
+	/**
+	 * This method recursively generates the containment structure of the Section.
+	 * 
+	 * @param source The {@link EObject source object} for which the structure shall be created.
+	 * @return The created {@link Class section}.
+	 */
 	@SuppressWarnings("unchecked")
 	private Class<?, ?, ?> createMetaModelSection(EObject source) {
 		EClass eClass = source.eClass();
@@ -245,6 +251,11 @@ public class MetaModelSectionGenerator {
 		return clazz;
 	}
 
+	/**
+	 * This method is responsible for the creation of the attributes inside a {@link Class section}.
+	 * @param source The {@link EObject source element} for which the {@link Attribute attributes} shall be created.
+	 * @param clazz The {@link Class} to which the created attributes shall be added. 
+	 */
 	@SuppressWarnings("unchecked")
 	private void createAttributes(EObject source, Class<?, ?, ?> clazz) {
 
@@ -279,6 +290,15 @@ public class MetaModelSectionGenerator {
 		}
 	}
 
+	/**
+	 * This method can be called to check if one or more of the generated {@link Class sections} represent duplicates
+	 * of sections that are already present in the {@link PAMTraM} model. If duplicates exists, these are not added to
+	 * the PAMTraM model but deleted instead. Additionally, all cross-references to the duplicate sections are redirected
+	 * to the original sections in the PAMTraM model.
+	 * 
+	 * @param created The list of section (usually created by {@link #generate()} that shall be checked and, if necessary,
+	 * merged with sections from the PAMTraM model.
+	 */
 	public void mergeDuplicates(LinkedList<Class<?, ?, ?>> created) {
 
 		@SuppressWarnings("unchecked")
@@ -290,6 +310,14 @@ public class MetaModelSectionGenerator {
 		}
 	}
 
+	/**
+	 * This compares to {@link Class sections} and, if the sections are equivalent, deletes the '<em>createdSection</em>' and
+	 * redirects all cross-references to it to the existing '<em>pamtramSections</em>'.
+	 * 
+	 * @param createdSection The {@link Class section} that shall be compared to the sections from the PAMTraM model.
+	 * @param pamtramSections The list of {@link Class sections} from the PAMTraM model that the '<em>createdSection</em> shall
+	 * be compared to.
+	 */
 	private void compare(Class<?, ?, ?> createdSection, EList<Class<?, ?, ?>> pamtramSections) {
 
 		ArrayList<Class<?, ?, ?>> potentialMatches = new ArrayList<>();
@@ -340,6 +368,16 @@ public class MetaModelSectionGenerator {
 
 	}
 
+	/**
+	 * This calculates a '<em>hash</em>' value for a given {@link Class section} that can be used to compare to sections.
+	 * To calculate the hash, the names and values of all attributes are taken into account.
+	 * <br />
+	 * Note: Currently, this does not take referenced sub-sections into account which might lead to situations where
+	 * hashes of differing sections match. This problem has to be solved in the future.
+	 *  
+	 * @param createdSection The {@link Class section} for which the hash value shall be calculated.
+	 * @return The calculated hash value.
+	 */
 	private String hash(Class<?, ?, ?> createdSection) {
 		String hash = "";
 		for(Attribute<?, ?, ?> att : createdSection.getAttributes()) {

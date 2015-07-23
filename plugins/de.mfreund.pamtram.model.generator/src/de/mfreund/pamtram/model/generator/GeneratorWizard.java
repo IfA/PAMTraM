@@ -47,7 +47,6 @@ public class GeneratorWizard extends Wizard {
 			Collection<Setting> crossReferences = EcoreUtil.UsageCrossReferencer.find(element, wizardData.getCreatedEObjects());
 			for (Setting setting : crossReferences) {
 				if(setting.getEStructuralFeature().isMany()) {
-					@SuppressWarnings("unchecked")
 					EList<EObject> values = (EList<EObject>) setting.getEObject().eGet(setting.getEStructuralFeature());
 					values.remove(element);
 					setting.getEObject().eSet(setting.getEStructuralFeature(), values);
@@ -80,6 +79,12 @@ public class GeneratorWizard extends Wizard {
 					"Error", "Error while trying to save the PAMTraM model!");
 			e.printStackTrace();
 		}
+
+		MessageDialog.openInformation(new Shell(), "Export Result", 
+				sectionsToAdd.size() + " sections have been added to the PAMTraM model. There were " +
+						wizardData.getCreatedEObjects().size() + " sections that have been identified as duplicates of " +
+				"existing sections. Those have not added but merged with the existing ones.");
+
 		return true;
 	}
 

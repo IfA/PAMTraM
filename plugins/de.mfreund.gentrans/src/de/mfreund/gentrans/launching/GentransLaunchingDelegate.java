@@ -29,7 +29,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 	 * This keeps track of the class that is to be used as target library context.
 	 */
 	private Class<?> targetLibContextClass;
-	
+
 	/**
 	 * This keeps track of the class that is to be used as target library parser.
 	 */
@@ -38,10 +38,10 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 	@Override
 	public void launch(ILaunchConfiguration configuration, String mode,
 			ILaunch launch, IProgressMonitor monitor) throws CoreException {
-		
+
 		// validate the launch configuration
 		validateLaunchConfig(configuration);
-		
+
 		// get the associated files from the launch configuration
 		final String project = configuration.getAttribute("project", "");
 		String sourceFile = project + Path.SEPARATOR +
@@ -50,22 +50,22 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 				"Pamtram" + Path.SEPARATOR + configuration.getAttribute("pamtramFile", "");
 		String targetFile = project + Path.SEPARATOR + 
 				"Target" + Path.SEPARATOR + configuration.getAttribute("targetFile", "");
-		
+
 		//get the settings
 		int maxPathLength=configuration.getAttribute("maxPathLength", -1);
 		boolean rememberAmbiguousMappingChoice=configuration.getAttribute("rememberAmbiguousMappingChoice", true);
-		
+
 		// if an xml source file shall be transformed, 
 		// add the file extension to registry 
 		if(sourceFile.endsWith(".xml")) {
 			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
-				.put("xml", new GenericXMLResourceFactoryImpl());
+			.put("xml", new GenericXMLResourceFactoryImpl());
 		}
-		
+
 		@SuppressWarnings("unchecked") // should not fail due to validation in 'validateLaunchConfig(...)'
 		LibraryContextDescriptor targetLibraryContextDescriptor = 
-				new LibraryContextDescriptor(configuration.getAttribute("targetLibPath", ""), (Class<LibraryContext>) targetLibContextClass, (Class<LibraryPathParser>) targetLibParserClass);
-		
+		new LibraryContextDescriptor(configuration.getAttribute("targetLibPath", ""), (Class<LibraryContext>) targetLibContextClass, (Class<LibraryPathParser>) targetLibParserClass);
+
 		GenericTransformationJob job = new GenericTransformationJob(
 				"GenTrans", sourceFile, pamtramFile, targetFile, targetLibraryContextDescriptor);
 		job.getGenTransRunner().setMaxPathLength(maxPathLength);
@@ -73,45 +73,45 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 
 		job.setUser(true);
 		job.schedule();
-		
+
 		job.addJobChangeListener(new IJobChangeListener() {
-			
+
 			@Override
 			public void done(IJobChangeEvent event) {
 				// refresh the project to see the results
 				IProject projectResource = ResourcesPlugin.getWorkspace().getRoot().
-		 			getProject(project);
+						getProject(project);
 				ResourceHelper.refresh(projectResource);
 
 			}
 
 			@Override
 			public void aboutToRun(IJobChangeEvent event) {
-				
+
 			}
 
 			@Override
 			public void awake(IJobChangeEvent event) {
-				
+
 			}
 
 			@Override
 			public void running(IJobChangeEvent event) {
-				
+
 			}
 
 			@Override
 			public void scheduled(IJobChangeEvent event) {
-				
+
 			}
 
 			@Override
 			public void sleeping(IJobChangeEvent event) {
-				
+
 			}
 
 		});
-		
+
 	}
 
 	/** 
@@ -122,38 +122,39 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 	 * @throws CoreException If the validation fails.
 	 */
 	private void validateLaunchConfig(ILaunchConfiguration configuration) throws CoreException {
-		
+
 		/*
 		 * Validate the settings in the 'Main' tab
 		 */
 		if(configuration.getAttribute("project", "").equals("")) {
 			throw new RuntimeException("No project has been specified!");
 		}
-		
+
 		if(configuration.getAttribute("srcFile", "").equals("")) {
 			throw new RuntimeException("No source file has been specified!");
 		}
-	
+
 		if(configuration.getAttribute("pamtramFile", "").equals("")) {
 			throw new RuntimeException("No pamtram file has been specified!");
 		}
-		
+
 		if(configuration.getAttribute("targetFile", "").equals("")) {
 			throw new RuntimeException("No target file has been specified!");
 		}
-		
+
 		/*
 		 * Validate the settings in the 'Library' tab
 		 */
 		String targetLibPath = configuration.getAttribute("targetLibPath", "");
 		if(targetLibPath.isEmpty()) {
-			throw new RuntimeException("No target library path has been specified!");
+			// do nothing as this is not necessary if no library entries are used
+			//			throw new RuntimeException("No target library path has been specified!");
 		} else if(!(new File(targetLibPath)).exists()) {
 			throw new RuntimeException("Target library path does not exist!");
 		} else if(!(new File(targetLibPath)).isDirectory()) {
 			throw new RuntimeException("Target library path does not represent a folder!");
 		}
-		
+
 		String targetLibBundle = configuration.getAttribute("targetLibBundle", "");
 		Bundle bundle;
 		targetLibContextClass = null;
@@ -190,10 +191,8 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 					throw new RuntimeException("The target library parser class is no sub-class of 'LibraryPathParser'!");
 				}
 			}
-		} else {
-			throw new RuntimeException("No target library bundle has been specified!");
 		}
-		
+
 	}
 
 }

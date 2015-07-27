@@ -719,8 +719,8 @@ public class SourceSectionMatcher implements CancellationListener {
 				 * in the source model; if this is not the case (meaning that there is a target element for the reference),
 				 * the mapping is not applicable
 				 */
-				if(ref.isMany() && !((EList<EObject>) srcModelObject.eGet(ref)).isEmpty() ||
-						srcModelObject.eGet(ref) != null) {
+				if((ref.isMany() && !((EList<EObject>) srcModelObject.eGet(ref)).isEmpty()) ||
+						(!ref.isMany() && srcModelObject.eGet(ref) != null)) {
 					return false;
 				} else {
 					break;					
@@ -817,7 +817,6 @@ public class SourceSectionMatcher implements CancellationListener {
 
 			} else {// unbounded or unspecified
 				// cast refTarget to EList
-				@SuppressWarnings("unchecked")
 				final LinkedList<EObject> refTargetL = new LinkedList<EObject>(
 						(EList<EObject>) refTarget);
 

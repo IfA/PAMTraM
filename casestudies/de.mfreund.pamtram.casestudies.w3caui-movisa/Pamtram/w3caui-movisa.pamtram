@@ -964,6 +964,9 @@
                 <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
                 <valueConstraint xsi:type="metamodel:EqualityMatcher" value="in"/>
               </attributes>
+              <attributes xsi:type="metamodel:SourceSectionAttribute" name="defaultValue">
+                <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
+              </attributes>
             </value>
           </references>
           <references xsi:type="metamodel:SourceSectionContainmentReference" name="dataSelectionSupport">
@@ -974,6 +977,9 @@
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="role">
         <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" type="EXCLUSION" value="grouping"/>
+      </attributes>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
+        <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSectionClass" name="guidance">
@@ -1013,6 +1019,9 @@
           <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
           <references xsi:type="metamodel:SourceSectionContainmentReference" name="triggerSupport">
             <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/triggerSupport"/>
+          </references>
+          <references xsi:type="metamodel:SourceSectionContainmentReference" name="dataSelectionSupport">
+            <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataSelectionSupport"/>
           </references>
         </value>
       </references>
@@ -3694,7 +3703,37 @@
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
-    <mapping xsi:type="mapping:Mapping" name="InputMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.23"/>
+    <mapping xsi:type="mapping:Mapping" name="InputMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.23">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Input" targetMMSection="//@targetSectionModel/@metaModelSections.22">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="InputNameMapping" target="//@targetSectionModel/@metaModelSections.22/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.23/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="virtualInputRepresentationNameMapping" target="//@targetSectionModel/@metaModelSections.22/@references.0/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.23/@attributes.1" modifier="//@mappingModel/@modifierSets.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="xPositionInputMapping" expression="(id-1)*4" target="//@targetSectionModel/@metaModelSections.22/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.23/@attributes.1" modifier="//@mappingModel/@modifierSets.3"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Text" affectedReference="//@targetSectionModel/@metaModelSections.22/@references.0/@value.0/@references.0">
+          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.24/@attributes.0">
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.23/@attributes.1"/>
+          </matcher>
+        </mappingHints>
+        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
+          <targetAttributes xsi:type="mapping:ModelConnectionHintTargetAttribute" name="PanelName" source="//@targetSectionModel/@metaModelSections.1/@attributes.0"/>
+          <targetAttributes xsi:type="mapping:ModelConnectionHintTargetAttribute" name="ContainerName" source="//@targetSectionModel/@metaModelSections.9/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.23/@attributes.1" modifier="//@mappingModel/@modifierSets.8"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ValueTextDefinition" targetMMSection="//@targetSectionModel/@metaModelSections.24">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel/@metaModelSections.24/@references.0/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="defaultValue" source="//@sourceSectionModel/@metaModelSections.23/@references.1/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.24/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.23/@attributes.1"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mapping>
     <mapping xsi:type="mapping:Mapping" name="CheckBoxMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.15">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefinition" targetMMSection="//@targetSectionModel/@metaModelSections.24">
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel/@metaModelSections.24/@references.0/@value.0/@attributes.0">
@@ -4051,23 +4090,6 @@
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
-    <mapping xsi:type="mapping:Mapping" name="simpleContainerMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.11">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SimpleContainer" targetMMSection="//@targetSectionModel/@metaModelSections.9">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="ContainerNameMapping" target="//@targetSectionModel/@metaModelSections.9/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.11/@attributes.1"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="xPositionSimpleContainerMapping" target="//@targetSectionModel/@metaModelSections.9/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.11/@attributes.1" modifier="//@mappingModel/@modifierSets.3"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="virtualSimpleContainerNameMapping" target="//@targetSectionModel/@metaModelSections.9/@references.0/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.11/@attributes.1"/>
-        </mappingHints>
-        <modelConnectionMatcher xsi:type="mapping:ModelConnectionHint">
-          <targetAttributes xsi:type="mapping:ModelConnectionHintTargetAttribute" name="PanelName" source="//@targetSectionModel/@metaModelSections.1/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.11/@attributes.1" modifier="//@mappingModel/@modifierSets.8"/>
-        </modelConnectionMatcher>
-      </mappingHintGroups>
-    </mapping>
     <mapping xsi:type="mapping:Mapping" name="guidanceMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.24">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ValueTextDefinition" targetMMSection="//@targetSectionModel/@metaModelSections.24">
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel/@metaModelSections.24/@references.0/@value.0/@attributes.0">
@@ -4103,7 +4125,7 @@
         </modelConnectionMatcher>
       </mappingHintGroups>
     </mapping>
-    <mapping xsi:type="mapping:Mapping" name="testMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.25"/>
+    <mapping xsi:type="mapping:Mapping" name="testMapping" deactivated="true" sourceMMSection="//@sourceSectionModel/@metaModelSections.25"/>
     <modifierSets xsi:type="mapping:AttributeValueModifierSet" name="getNumber">
       <modifier xsi:type="mapping:SubstringReplacer" name="getNumber" regex="[^0-9]+" replacement=""/>
     </modifierSets>

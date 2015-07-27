@@ -361,10 +361,6 @@
     </eventSupport>
     <presentationSupport/>
   </abstractInteractionUnit>
-  <abstractInteractionUnit>
-    <eventSupport/>
-    <presentationSupport/>
-  </abstractInteractionUnit>
   <abstractInteractionUnit
       id="aiu2_8"
       name="aiu2_8"
@@ -399,12 +395,37 @@
     <presentationSupport/>
   </abstractInteractionUnit>
   <abstractInteractionUnit
-      id="aiu3_3"
-      name="aiu3_3"
+      id="aiu3_1_1"
+      name="aiu3_1_1"
       role="">
-    <aggregatedIn/>
+    <aggregatedIn
+        compositionRole=""/>
+    <eventSupport>
+      <dataInputOutputSupport
+          defaultValue="Text"/>
+    </eventSupport>
+    <presentationSupport/>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aiu3_1_2"
+      name="aiu3_1_2"
+      role="">
+    <aggregatedIn
+        compositionRole=""/>
     <eventSupport>
       <dataInputOutputSupport/>
+    </eventSupport>
+    <presentationSupport/>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aiu3_3"
+      name="aiu3_3"
+      role="confirmation">
+    <aggregatedIn
+        compositionRole=""/>
+    <eventSupport>
+      <dataInputOutputSupport
+          defaultValue="Button"/>
     </eventSupport>
     <presentationSupport/>
   </abstractInteractionUnit>

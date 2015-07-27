@@ -34,6 +34,7 @@ import org.eclipse.ocl.pivot.internal.library.executor.ExecutorFragment;
 import org.eclipse.ocl.pivot.internal.library.executor.ExecutorOperation;
 import org.eclipse.ocl.pivot.internal.library.executor.ExecutorProperty;
 import org.eclipse.ocl.pivot.internal.library.executor.ExecutorPropertyWithImplementation;
+import org.eclipse.ocl.pivot.internal.library.executor.ExecutorSpecializedType;
 import org.eclipse.ocl.pivot.internal.library.executor.ExecutorStandardLibrary;
 import org.eclipse.ocl.pivot.internal.library.executor.ExecutorTypeParameter;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibTables;
@@ -566,6 +567,7 @@ public class MetamodelTables
 
 		public static final /*@NonNull*/ ParameterTypes _ = TypeUtil.createParameterTypes();
 		public static final /*@NonNull*/ ParameterTypes _Class_C = TypeUtil.createParameterTypes(MetamodelTables.TypeParameters._Class_C);
+		public static final /*@NonNull*/ ParameterTypes _Class_C___OrderedSet__Class_C__ = TypeUtil.createParameterTypes(MetamodelTables.TypeParameters._Class_C, new ExecutorSpecializedType("OrderedSet", MetamodelTables.TypeParameters._Class_C));
 		public static final /*@NonNull*/ ParameterTypes _String = TypeUtil.createParameterTypes(OCLstdlibTables.Types._String);
 
 		static {
@@ -596,8 +598,10 @@ public class MetamodelTables
 			1, TemplateParameters.EMPTY_LIST, null);
 		public static final /*@NonNull*/ ExecutorOperation _Class__isContainerFor = new ExecutorOperation("isContainerFor", Parameters._Class_C, Types._Class,
 			2, TemplateParameters.EMPTY_LIST, null);
-		public static final /*@NonNull*/ ExecutorOperation _Class__isSection = new ExecutorOperation("isSection", Parameters._, Types._Class,
+		public static final /*@NonNull*/ ExecutorOperation _Class__isReferencedBy = new ExecutorOperation("isReferencedBy", Parameters._Class_C___OrderedSet__Class_C__, Types._Class,
 			3, TemplateParameters.EMPTY_LIST, null);
+		public static final /*@NonNull*/ ExecutorOperation _Class__isSection = new ExecutorOperation("isSection", Parameters._, Types._Class,
+			4, TemplateParameters.EMPTY_LIST, null);
 
 		public static final /*@NonNull*/ ExecutorOperation _MetaModelElement__getContainingSection = new ExecutorOperation("getContainingSection", Parameters._, Types._MetaModelElement,
 			0, TemplateParameters.EMPTY_LIST, null);
@@ -1382,6 +1386,7 @@ public class MetamodelTables
 			MetamodelTables.Operations._Class__getOwningContainmentReference /* getOwningContainmentReference() */,
 			MetamodelTables.Operations._Class__isContainedIn /* isContainedIn(C[1]) */,
 			MetamodelTables.Operations._Class__isContainerFor /* isContainerFor(C[1]) */,
+			MetamodelTables.Operations._Class__isReferencedBy /* isReferencedBy(C[1],OrderedSet(C)) */,
 			MetamodelTables.Operations._Class__isSection /* isSection() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _Class__MetaModelElement = {
@@ -1777,6 +1782,7 @@ public class MetamodelTables
 			MetamodelTables.Operations._Class__getOwningContainmentReference /* getOwningContainmentReference() */,
 			MetamodelTables.Operations._Class__isContainedIn /* isContainedIn(C[1]) */,
 			MetamodelTables.Operations._Class__isContainerFor /* isContainerFor(C[1]) */,
+			MetamodelTables.Operations._Class__isReferencedBy /* isReferencedBy(C[1],OrderedSet(C)) */,
 			MetamodelTables.Operations._Class__isSection /* isSection() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _SourceSectionClass__MetaModelElement = {
@@ -1936,6 +1942,7 @@ public class MetamodelTables
 			MetamodelTables.Operations._Class__getOwningContainmentReference /* getOwningContainmentReference() */,
 			MetamodelTables.Operations._Class__isContainedIn /* isContainedIn(C[1]) */,
 			MetamodelTables.Operations._Class__isContainerFor /* isContainerFor(C[1]) */,
+			MetamodelTables.Operations._Class__isReferencedBy /* isReferencedBy(C[1],OrderedSet(C)) */,
 			MetamodelTables.Operations._Class__isSection /* isSection() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _TargetSectionClass__MetaModelElement = {

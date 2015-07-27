@@ -86,13 +86,13 @@ public abstract class LocalModifiedAttributeElementTypeImpl<C extends pamtram.me
 		 *           self.source.oclAsType(metamodel::SourceSectionAttribute)
 		 *           .getContainingSection()
 		 *           .oclAsType(metamodel::SourceSectionClass)
-		 *           .isContainedIn(sourceMMSection)
+		 *           .isReferencedBy(sourceMMSection, null)
 		 *         endif
 		 *     in
 		 *       let
 		 *         message : String[?] = if status <> true
 		 *         then 'The source attribute \'' +
-		 *           self.source.oclAsType(metamodel::Attribute(C, R, A)).name + '\' is not contained in the source section of the parent hint group \'' +
+		 *           self.source.oclAsType(metamodel::Attribute(C, R, A)).name + '\' is not referenced by the source section of the parent hint group \'' +
 		 *           self.getMappingHintGroup()
 		 *           .oclContainer()
 		 *           .oclAsType(Mapping).sourceMMSection.name + '\' or in one of its sub-sections!'
@@ -165,7 +165,7 @@ public abstract class LocalModifiedAttributeElementTypeImpl<C extends pamtram.me
 		        catch (Exception e) {
 		            CAUGHT_eq_1 = ValueUtil.createInvalidValue(e);
 		        }
-		        /*@NonNull*/ /*@Caught*/ Object CAUGHT_isContainedIn;
+		        /*@NonNull*/ /*@Caught*/ Object CAUGHT_isReferencedBy;
 		        try {
 		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_SourceSectionAttribute = idResolver.getClass(MappingTables.CLSSid_SourceSectionAttribute, null);
 		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_SourceSectionClass = idResolver.getClass(MappingTables.CLSSid_SourceSectionClass, null);
@@ -176,13 +176,13 @@ public abstract class LocalModifiedAttributeElementTypeImpl<C extends pamtram.me
 		            if (CAUGHT_sourceMMSection instanceof InvalidValueException) {
 		                throw (InvalidValueException)CAUGHT_sourceMMSection;
 		            }
-		            final /*@Thrown*/ boolean isContainedIn = ((pamtram.metamodel.Class)oclAsType_2).isContainedIn((pamtram.metamodel.Class)CAUGHT_sourceMMSection);
-		            CAUGHT_isContainedIn = isContainedIn;
+		            final /*@Thrown*/ boolean isReferencedBy = ((pamtram.metamodel.Class)oclAsType_2).isReferencedBy((pamtram.metamodel.Class)CAUGHT_sourceMMSection, null);
+		            CAUGHT_isReferencedBy = isReferencedBy;
 		        }
 		        catch (Exception e) {
-		            CAUGHT_isContainedIn = ValueUtil.createInvalidValue(e);
+		            CAUGHT_isReferencedBy = ValueUtil.createInvalidValue(e);
 		        }
-		        final /*@Nullable*/ /*@Thrown*/ Boolean or_0 = BooleanOrOperation.INSTANCE.evaluate(CAUGHT_eq_1, CAUGHT_isContainedIn);
+		        final /*@Nullable*/ /*@Thrown*/ Boolean or_0 = BooleanOrOperation.INSTANCE.evaluate(CAUGHT_eq_1, CAUGHT_isReferencedBy);
 		        symbol_0 = or_0;
 		    }
 		    CAUGHT_symbol_0 = symbol_0;
@@ -202,7 +202,7 @@ public abstract class LocalModifiedAttributeElementTypeImpl<C extends pamtram.me
 		    final /*@NonNull*/ /*@Thrown*/ Attribute oclAsType_3 = ClassUtil.nonNullState((Attribute)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, source_2, TYP_pamtram_c_c_metamodel_c_c_Attribute_o_C_44_R_44_A_e));
 		    final /*@Nullable*/ /*@Thrown*/ String name = oclAsType_3.getName();
 		    final /*@NonNull*/ /*@NonInvalid*/ String sum = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(MappingTables.STR_The_32_source_32_attribute_32_39, name));
-		    final /*@NonNull*/ /*@NonInvalid*/ String sum_0 = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(sum, MappingTables.STR__39_32_is_32_not_32_contained_32_in_32_the_32_source_32_section_32_of_32_the_32_parent_32_hint_32_grou));
+		    final /*@NonNull*/ /*@NonInvalid*/ String sum_0 = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(sum, MappingTables.STR__39_32_is_32_not_32_referenced_32_by_32_the_32_source_32_section_32_of_32_the_32_parent_32_hint_32_gro));
 		    final /*@NonNull*/ /*@Thrown*/ NamedElement getMappingHintGroup_0 = ((ModifiedAttributeElementType)this).getMappingHintGroup();
 		    final /*@Nullable*/ /*@Thrown*/ Object oclContainer_0 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, getMappingHintGroup_0);
 		    final /*@NonNull*/ /*@Thrown*/ Mapping oclAsType_4 = ClassUtil.nonNullState((Mapping)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_0, TYP_pamtram_c_c_mapping_c_c_Mapping_1));
@@ -228,7 +228,7 @@ public abstract class LocalModifiedAttributeElementTypeImpl<C extends pamtram.me
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP_1:
+			case MappingPackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP:
 				return sourceAttributeMatchesSectionOrContainedSection((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

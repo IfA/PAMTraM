@@ -202,6 +202,17 @@
           <eTypeArguments eTypeParameter="#//metamodel/Class/A"/>
         </eGenericType>
       </eOperations>
+      <eOperations name="isReferencedBy" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="if(referencedClasses == null) {&#xD;&#xA;&#x9;referencedClasses = new BasicEList&lt;>();&#xD;&#xA;}&#xD;&#xA;BasicEList&lt;C> classes = new BasicEList&lt;>();&#xD;&#xA;&#xD;&#xA;// collect all classes that are referenced&#xD;&#xA;for (R ref : referencingClass.getReferences()) {&#xD;&#xA;&#xD;&#xA;&#x9;if(ref instanceof ContainmentReference&lt;?,?,?>){&#xD;&#xA;&#x9;&#x9;classes.addAll(((ContainmentReference&lt;C,R,A>) ref).getValue());&#xD;&#xA;&#x9;} else if(ref instanceof MetaModelSectionReference) {&#xD;&#xA;&#x9;&#x9;classes.addAll((Collection&lt;? extends C>) ((MetaModelSectionReference) ref).getValue());&#xD;&#xA;&#x9;} else if(ref instanceof NonContainmentReference){&#xD;&#xA;&#x9;&#x9;classes.addAll(((NonContainmentReference&lt;C,R,A>) ref).getValue());&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;// recursively iterate over all referenced classes&#xD;&#xA;for (C clazz : classes) {&#xD;&#xA;&#x9;if(clazz.equals(this) || isReferencedBy(clazz, referencedClasses)) {&#xD;&#xA;&#x9;&#x9;return true;&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;if(!referencedClasses.contains(clazz)) {&#xD;&#xA;&#x9;&#x9;&#x9;referencedClasses.add(clazz);&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return false;"/>
+        </eAnnotations>
+        <eParameters name="referencingClass" lowerBound="1">
+          <eGenericType eTypeParameter="#//metamodel/Class/C"/>
+        </eParameters>
+        <eParameters name="referencedClasses" upperBound="-1">
+          <eGenericType eTypeParameter="#//metamodel/Class/C"/>
+        </eParameters>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="eClass" lowerBound="1"
           eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="cardinality" lowerBound="1"
@@ -858,7 +869,7 @@
         <details key="constraints" value="sourceAttributeMatchesSectionOrContainedSection"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="sourceAttributeMatchesSectionOrContainedSection" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The source attribute \'' + self.source.oclAsType(pamtram::metamodel::Attribute).name + '\' is not contained in the source section of the parent hint group \'' + self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection.name + '\' or in one of its sub-sections!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;let sourceMMSection = self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection in&#xD;&#xA;&#x9;&#x9;if self.source.oclType() = OclVoid or sourceMMSection.oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection() = sourceMMSection or &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;self.source.oclAsType(pamtram::metamodel::SourceSectionAttribute).getContainingSection().oclAsType(pamtram::metamodel::SourceSectionClass).isContainedIn(sourceMMSection)&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
+        <details key="sourceAttributeMatchesSectionOrContainedSection" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The source attribute \'' + self.source.oclAsType(pamtram::metamodel::Attribute).name + '\' is not referenced by the source section of the parent hint group \'' + self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection.name + '\' or in one of its sub-sections!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;let sourceMMSection = self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection in&#xD;&#xA;&#x9;&#x9;if self.source.oclType() = OclVoid or sourceMMSection.oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection() = sourceMMSection or &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;self.source.oclAsType(pamtram::metamodel::SourceSectionAttribute).getContainingSection().oclAsType(pamtram::metamodel::SourceSectionClass).isReferencedBy(sourceMMSection, null)&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
       </eAnnotations>
       <eTypeParameters name="C">
         <eBounds eClassifier="#//metamodel/Class">

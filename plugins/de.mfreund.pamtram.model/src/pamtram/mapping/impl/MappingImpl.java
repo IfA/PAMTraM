@@ -21,8 +21,10 @@ import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.library.collection.CollectionIsEmptyOperation;
 import org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation;
 import org.eclipse.ocl.pivot.library.logical.BooleanAndOperation;
+import org.eclipse.ocl.pivot.library.logical.BooleanNotOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
@@ -244,6 +246,55 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean containsHintGroups(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		/**
+		 * 
+		 * inv containsHintGroups:
+		 *   let severity : Integer[1] = 2
+		 *   in
+		 *     let status : OclAny[?] = not self.mappingHintGroups->isEmpty()
+		 *     in
+		 *       let
+		 *         message : String[?] = if status <> true
+		 *         then 'The mapping does not contain any hint groups!'
+		 *         else null
+		 *         endif
+		 *       in
+		 *         'Mapping::containsHintGroups'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
+		 */
+		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
+		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
+		/*@Nullable*/ /*@Caught*/ Object CAUGHT_status;
+		try {
+		    final /*@NonNull*/ /*@Thrown*/ List<MappingHintGroupType> mappingHintGroups = this.getMappingHintGroups();
+		    final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_mappingHintGroups = idResolver.createOrderedSetOfAll(MappingTables.ORD_CLSSid_MappingHintGroupType, mappingHintGroups);
+		    final /*@Thrown*/ boolean isEmpty = ClassUtil.nonNullState(CollectionIsEmptyOperation.INSTANCE.evaluate(BOXED_mappingHintGroups).booleanValue());
+		    final /*@Nullable*/ /*@Thrown*/ Boolean status = BooleanNotOperation.INSTANCE.evaluate(isEmpty);
+		    CAUGHT_status = status;
+		}
+		catch (Exception e) {
+		    CAUGHT_status = ValueUtil.createInvalidValue(e);
+		}
+		if (CAUGHT_status instanceof InvalidValueException) {
+		    throw (InvalidValueException)CAUGHT_status;
+		}
+		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
+		/*@Nullable*/ /*@NonInvalid*/ String message_0;
+		if (ne) {
+		    message_0 = MappingTables.STR_The_32_mapping_32_does_32_not_32_contain_32_any_32_hint_32_groups_33;
+		}
+		else {
+		    message_0 = null;
+		}
+		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, MappingTables.STR_Mapping_c_c_containsHintGroups, this, null, diagnostics, context, message_0, MappingTables.INT_2, CAUGHT_status, MappingTables.INT_0).booleanValue());
+		return Boolean.TRUE == logDiagnostic;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean containsDeactivatedHintGroups(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		/**
 		 * 
@@ -457,7 +508,9 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 				return getActiveMappingHintGroups();
 			case MappingPackage.MAPPING___GET_ACTIVE_IMPORTED_MAPPING_HINT_GROUPS:
 				return getActiveImportedMappingHintGroups();
-			case MappingPackage.MAPPING___CONTAINS_DEACTIVATED_HINT_GROUPS__DIAGNOSTICCHAIN_MAP_5:
+			case MappingPackage.MAPPING___CONTAINS_HINT_GROUPS__DIAGNOSTICCHAIN_MAP_1:
+				return containsHintGroups((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case MappingPackage.MAPPING___CONTAINS_DEACTIVATED_HINT_GROUPS__DIAGNOSTICCHAIN_MAP_1:
 				return containsDeactivatedHintGroups((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

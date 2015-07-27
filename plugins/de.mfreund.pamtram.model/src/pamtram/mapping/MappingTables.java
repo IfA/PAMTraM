@@ -148,10 +148,12 @@ public class MappingTables
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_MappingInstanceSelector_c_c_affectedReferenceIsNonContainment = "MappingInstanceSelector::affectedReferenceIsNonContainment";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_MappingInstanceSelector_c_c_affectedReferenceMatchesSection = "MappingInstanceSelector::affectedReferenceMatchesSection";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_Mapping_c_c_containsDeactivatedHintGroups = "Mapping::containsDeactivatedHintGroups";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_Mapping_c_c_containsHintGroups = "Mapping::containsHintGroups";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_ModelConnectionHintTargetAttribute_c_c_sourceMatchesPossibleContain = "ModelConnectionHintTargetAttribute::sourceMatchesPossibleContainerType";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_affected_32_reference_32_39 = "The affected reference \'";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_affected_32_reference_32_39_32_p_32_self_affectedReference_name_32_p_32_39_32_is_32_no = "The affected reference \' + self.affectedReference.name + \' is no non-containment reference!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_mapping_32_contains_32_deactivated_32_hint_32_groups_32_that_32_will_32_not_32_be_32_us = "The mapping contains deactivated hint groups that will not be used in a transformation!";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_mapping_32_does_32_not_32_contain_32_any_32_hint_32_groups_33 = "The mapping does not contain any hint groups!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_source_32_attribute_32_39 = "The source attribute \'";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_source_32_class_32_39 = "The source class \'";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_target_32_attribute_32_39 = "The target attribute \'";

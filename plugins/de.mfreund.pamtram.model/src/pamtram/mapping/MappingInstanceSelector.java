@@ -20,7 +20,7 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getMappingInstanceSelector()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='affectedReferenceIsNonContainment affectedReferenceMatchesSection'"
+ * @model
  * @generated
  */
 public interface MappingInstanceSelector extends MappingHint {

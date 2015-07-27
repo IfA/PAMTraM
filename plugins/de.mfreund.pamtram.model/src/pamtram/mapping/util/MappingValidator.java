@@ -91,12 +91,20 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	public static final String DIAGNOSTIC_SOURCE = "pamtram.mapping";
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Contains Hint Groups' of 'Mapping'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int MAPPING__CONTAINS_HINT_GROUPS = 1;
+
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Contains Deactivated Hint Groups' of 'Mapping'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int MAPPING__CONTAINS_DEACTIVATED_HINT_GROUPS = 1;
+	public static final int MAPPING__CONTAINS_DEACTIVATED_HINT_GROUPS = 2;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Target Attribute Matches Section' of 'Attribute Mapping'.
@@ -104,7 +112,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ATTRIBUTE_MAPPING__TARGET_ATTRIBUTE_MATCHES_SECTION = 2;
+	public static final int ATTRIBUTE_MAPPING__TARGET_ATTRIBUTE_MATCHES_SECTION = 3;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'No Cardinality Mapping For Source Section Root' of 'Cardinality Mapping'.
@@ -112,7 +120,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CARDINALITY_MAPPING__NO_CARDINALITY_MAPPING_FOR_SOURCE_SECTION_ROOT = 3;
+	public static final int CARDINALITY_MAPPING__NO_CARDINALITY_MAPPING_FOR_SOURCE_SECTION_ROOT = 4;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Source Class Matches Section' of 'Cardinality Mapping'.
@@ -120,7 +128,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CARDINALITY_MAPPING__SOURCE_CLASS_MATCHES_SECTION = 4;
+	public static final int CARDINALITY_MAPPING__SOURCE_CLASS_MATCHES_SECTION = 5;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Target Class Matches Section' of 'Cardinality Mapping'.
@@ -128,7 +136,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CARDINALITY_MAPPING__TARGET_CLASS_MATCHES_SECTION = 5;
+	public static final int CARDINALITY_MAPPING__TARGET_CLASS_MATCHES_SECTION = 6;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Target Class Is Variable Cardinality' of 'Cardinality Mapping'.
@@ -136,7 +144,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CARDINALITY_MAPPING__TARGET_CLASS_IS_VARIABLE_CARDINALITY = 6;
+	public static final int CARDINALITY_MAPPING__TARGET_CLASS_IS_VARIABLE_CARDINALITY = 7;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Source Class Is Variable Cardinality' of 'Cardinality Mapping'.
@@ -144,7 +152,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CARDINALITY_MAPPING__SOURCE_CLASS_IS_VARIABLE_CARDINALITY = 7;
+	public static final int CARDINALITY_MAPPING__SOURCE_CLASS_IS_VARIABLE_CARDINALITY = 8;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Affected Reference Matches Section' of 'Instance Selector'.
@@ -152,7 +160,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE_MATCHES_SECTION = 8;
+	public static final int MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE_MATCHES_SECTION = 9;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Affected Reference Is Non Containment' of 'Instance Selector'.
@@ -160,7 +168,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE_IS_NON_CONTAINMENT = 9;
+	public static final int MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE_IS_NON_CONTAINMENT = 10;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Target Matches Affected Reference Type' of 'Attribute Matcher'.
@@ -168,7 +176,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ATTRIBUTE_MATCHER__TARGET_MATCHES_AFFECTED_REFERENCE_TYPE = 10;
+	public static final int ATTRIBUTE_MATCHER__TARGET_MATCHES_AFFECTED_REFERENCE_TYPE = 11;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Source Attribute Matches Section Or Contained Section' of 'Local Modified Attribute Element Type'.
@@ -176,7 +184,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION = 11;
+	public static final int LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION = 12;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Source Matches Possible Container Type' of 'Model Connection Hint Target Attribute'.
@@ -184,7 +192,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE__SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE = 12;
+	public static final int MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE__SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE = 13;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Source Attribute Has Upper Bound One' of 'Global Attribute'.
@@ -192,7 +200,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int GLOBAL_ATTRIBUTE__SOURCE_ATTRIBUTE_HAS_UPPER_BOUND_ONE = 13;
+	public static final int GLOBAL_ATTRIBUTE__SOURCE_ATTRIBUTE_HAS_UPPER_BOUND_ONE = 14;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Source Attribute Matches Container Section' of 'External Modified Attribute Element Type'.
@@ -200,7 +208,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION = 14;
+	public static final int EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION = 15;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -208,7 +216,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 14;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 15;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -400,9 +408,22 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 			result &= validate_EveryMapEntryUnique(mapping, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
+			result &= validateMapping_containsHintGroups(mapping, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
 			result &= validateMapping_containsDeactivatedHintGroups(mapping, diagnostics, context);
 		}
 		return result;
+	}
+
+	/**
+	 * Validates the containsHintGroups constraint of '<em>Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMapping_containsHintGroups(Mapping mapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return mapping.containsHintGroups(diagnostics, context);
 	}
 
 	/**
@@ -557,10 +578,10 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 			result &= validate_EveryMapEntryUnique(cardinalityMapping, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
-			result &= validateCardinalityMapping_sourceClassMatchesSection(cardinalityMapping, diagnostics, context);
+			result &= validateCardinalityMapping_noCardinalityMappingForSourceSectionRoot(cardinalityMapping, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
-			result &= validateCardinalityMapping_sourceClassIsVariableCardinality(cardinalityMapping, diagnostics, context);
+			result &= validateCardinalityMapping_sourceClassMatchesSection(cardinalityMapping, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
 			result &= validateCardinalityMapping_targetClassMatchesSection(cardinalityMapping, diagnostics, context);
@@ -569,7 +590,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 			result &= validateCardinalityMapping_targetClassIsVariableCardinality(cardinalityMapping, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
-			result &= validateCardinalityMapping_noCardinalityMappingForSourceSectionRoot(cardinalityMapping, diagnostics, context);
+			result &= validateCardinalityMapping_sourceClassIsVariableCardinality(cardinalityMapping, diagnostics, context);
 		}
 		return result;
 	}
@@ -656,10 +677,10 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 			result &= validate_EveryMapEntryUnique(mappingInstanceSelector, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
-			result &= validateMappingInstanceSelector_affectedReferenceIsNonContainment(mappingInstanceSelector, diagnostics, context);
+			result &= validateMappingInstanceSelector_affectedReferenceMatchesSection(mappingInstanceSelector, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
-			result &= validateMappingInstanceSelector_affectedReferenceMatchesSection(mappingInstanceSelector, diagnostics, context);
+			result &= validateMappingInstanceSelector_affectedReferenceIsNonContainment(mappingInstanceSelector, diagnostics, context);
 		}
 		return result;
 	}

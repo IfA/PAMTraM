@@ -24,7 +24,7 @@ import pamtram.condition.ComplexCondition;
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getMapping()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='containsDeactivatedHintGroups'"
+ * @model
  * @generated
  */
 public interface Mapping extends MappingType {
@@ -123,6 +123,14 @@ public interface Mapping extends MappingType {
 	 * @generated
 	 */
 	EList<MappingHintGroupImporter> getActiveImportedMappingHintGroups();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='/**\n * \n * inv containsHintGroups:\n *   let severity : Integer[1] = 2\n *   in\n *     let status : OclAny[?] = not self.mappingHintGroups->isEmpty()\n *     in\n *       let\n *         message : String[?] = if status <> true\n *         then \'The mapping does not contain any hint groups!\'\n *         else null\n *         endif\n *       in\n *         \'Mapping::containsHintGroups\'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)\n \052/\nfinal /*@NonNull\052/ /*@NonInvalid\052/ <%org.eclipse.ocl.pivot.evaluation.Evaluator%> evaluator = <%org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal%>.getEvaluator(this);\nfinal /*@NonNull\052/ /*@NonInvalid\052/ <%org.eclipse.ocl.pivot.ids.IdResolver%> idResolver = evaluator.getIdResolver();\n/*@Nullable\052/ /*@Caught\052/ <%java.lang.Object%> CAUGHT_status;\ntry {\n    final /*@NonNull\052/ /*@Thrown\052/ <%java.util.List%><<%pamtram.mapping.MappingHintGroupType%>> mappingHintGroups = this.getMappingHintGroups();\n    final /*@NonNull\052/ /*@Thrown\052/ <%org.eclipse.ocl.pivot.values.OrderedSetValue%> BOXED_mappingHintGroups = idResolver.createOrderedSetOfAll(<%pamtram.mapping.MappingTables%>.ORD_CLSSid_MappingHintGroupType, mappingHintGroups);\n    final /*@Thrown\052/ boolean isEmpty = <%org.eclipse.ocl.pivot.utilities.ClassUtil%>.nonNullState(<%org.eclipse.ocl.pivot.library.collection.CollectionIsEmptyOperation%>.INSTANCE.evaluate(BOXED_mappingHintGroups).booleanValue());\n    final /*@Nullable\052/ /*@Thrown\052/ <%java.lang.Boolean%> status = <%org.eclipse.ocl.pivot.library.logical.BooleanNotOperation%>.INSTANCE.evaluate(isEmpty);\n    CAUGHT_status = status;\n}\ncatch (<%java.lang.Exception%> e) {\n    CAUGHT_status = <%org.eclipse.ocl.pivot.utilities.ValueUtil%>.createInvalidValue(e);\n}\nif (CAUGHT_status instanceof <%org.eclipse.ocl.pivot.values.InvalidValueException%>) {\n    throw (<%org.eclipse.ocl.pivot.values.InvalidValueException%>)CAUGHT_status;\n}\nfinal /*@Thrown\052/ boolean ne = CAUGHT_status == Boolean.FALSE;\n/*@Nullable\052/ /*@NonInvalid\052/ <%java.lang.String%> message_0;\nif (ne) {\n    message_0 = <%pamtram.mapping.MappingTables%>.STR_The_32_mapping_32_does_32_not_32_contain_32_any_32_hint_32_groups_33;\n}\nelse {\n    message_0 = null;\n}\nfinal /*@NonInvalid\052/ boolean logDiagnostic = <%org.eclipse.ocl.pivot.utilities.ClassUtil%>.nonNullState(<%org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation%>.INSTANCE.evaluate(evaluator, <%org.eclipse.ocl.pivot.ids.TypeId%>.BOOLEAN, <%pamtram.mapping.MappingTables%>.STR_Mapping_c_c_containsHintGroups, this, null, diagnostics, context, message_0, <%pamtram.mapping.MappingTables%>.INT_2, CAUGHT_status, <%pamtram.mapping.MappingTables%>.INT_0).booleanValue());\nreturn Boolean.TRUE == logDiagnostic;'"
+	 * @generated
+	 */
+	boolean containsHintGroups(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->

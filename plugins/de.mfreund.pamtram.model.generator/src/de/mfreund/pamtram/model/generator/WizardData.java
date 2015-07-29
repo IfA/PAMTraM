@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 
 import pamtram.PAMTraM;
 import pamtram.metamodel.Class;
+import pamtram.presentation.PamtramEditor;
 
 public class WizardData {
 
@@ -24,6 +25,11 @@ public class WizardData {
 	 * The {@link PAMTraM} instance into that the generated section shall be stored.
 	 */
 	private PAMTraM pamtram;
+
+	/**
+	 * The {@link PamtramEditor} used to edit the given {@link #pamtram}. If there is currently no editor used, this will be '<em>null</em>'.
+	 */
+	private PamtramEditor editor;
 
 	/**
 	 * The {@link MetaModelSectionGenerator} to be used to generate and merge sections.
@@ -104,6 +110,20 @@ public class WizardData {
 	 */
 	public void setPamtram(PAMTraM pamtram) {
 		this.pamtram = pamtram;
+	}
+
+	/**
+	 * @return the editor
+	 */
+	public PamtramEditor getEditor() {
+		return editor;
+	}
+
+	/**
+	 * @param editor the editor to set
+	 */
+	public void setEditor(PamtramEditor editor) {
+		this.editor = editor;
 	}
 
 	/**

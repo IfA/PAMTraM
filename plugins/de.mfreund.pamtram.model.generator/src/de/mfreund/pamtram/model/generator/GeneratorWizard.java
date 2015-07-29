@@ -8,10 +8,14 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.PlatformUI;
 
+import pamtram.PamtramPackage;
 import pamtram.metamodel.Class;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.SourceSectionClass;
@@ -64,20 +68,46 @@ public class GeneratorWizard extends Wizard {
 		LinkedList<Class<?, ?, ?>> sectionsToAdd = 
 				wizardData.getGenerator().mergeDuplicates(wizardData.getCreatedEObjects());
 
-		// now that we now which of the sections are unique, we can add those to the pamtram model
-		if(wizardData.getSectionType() == SectionType.SOURCE) {
-			wizardData.getPamtram().getSourceSectionModel().getMetaModelSections().addAll((Collection<? extends SourceSectionClass>) sectionsToAdd);
-		} else {
-			wizardData.getPamtram().getTargetSectionModel().getMetaModelSections().addAll((Collection<? extends TargetSectionClass>) sectionsToAdd);
-		}
 
-		// finally, we save the model
-		try {
-			wizardData.getPamtram().eResource().save(null);
-		} catch (IOException e) {
-			MessageDialog.openError(new Shell(), 
-					"Error", "Error while trying to save the PAMTraM model!");
-			e.printStackTrace();
+		/*
+		 * If there is an open editor for our pamtram instance, we may use the editing domain of the editor
+		 * to add the new elements. That way, undo/redo and other things will be possible.
+		 * If there is no open editor, we just add the pamtram model manually and save the resource that contains it.
+		 */
+		if(wizardData.getEditor() != null) {
+
+			EditingDomain editingDomain = wizardData.getEditor().getEditingDomain();
+
+			AddCommand addGeneratedSections = null;
+			// now that we now which of the sections are unique, we can add those to the pamtram model
+			if(wizardData.getSectionType() == SectionType.SOURCE) {
+				addGeneratedSections = new AddCommand(editingDomain, wizardData.getPamtram().getSourceSectionModel(), PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS, sectionsToAdd);
+			} else {
+				addGeneratedSections = new AddCommand(editingDomain, wizardData.getPamtram().getTargetSectionModel(), PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS, sectionsToAdd);
+			}
+
+			editingDomain.getCommandStack().execute(addGeneratedSections);
+
+			// bring the editor to the top to show the changes to the user
+			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().bringToTop(wizardData.getEditor());
+		} else {
+
+			// now that we now which of the sections are unique, we can add those to the pamtram model
+			if(wizardData.getSectionType() == SectionType.SOURCE) {
+				wizardData.getPamtram().getSourceSectionModel().getMetaModelSections().addAll((Collection<? extends SourceSectionClass>) sectionsToAdd);
+			} else {
+				wizardData.getPamtram().getTargetSectionModel().getMetaModelSections().addAll((Collection<? extends TargetSectionClass>) sectionsToAdd);
+			}
+
+			// finally, we save the model
+			try {
+				wizardData.getPamtram().eResource().save(null);
+			} catch (IOException e) {
+				MessageDialog.openError(new Shell(), 
+						"Error", "Error while trying to save the PAMTraM model!");
+				e.printStackTrace();
+				return false;
+			}
 		}
 
 		MessageDialog.openInformation(new Shell(), "Export Result", 
@@ -98,7 +128,10 @@ public class GeneratorWizard extends Wizard {
 
 	@Override
 	public boolean performCancel() {
-		wizardData.getTargetModelResource().unload();
+		if(wizardData.getTargetModelResource() != null) {
+			wizardData.getTargetModelResource().unload();
+		}
 		return super.performCancel();
 	}
+
 }

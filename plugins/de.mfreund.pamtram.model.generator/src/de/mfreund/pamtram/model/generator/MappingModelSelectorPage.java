@@ -22,6 +22,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
 import pamtram.PAMTraM;
+import pamtram.presentation.PamtramEditor;
 
 public class MappingModelSelectorPage extends WizardPage {
 
@@ -78,16 +79,29 @@ public class MappingModelSelectorPage extends WizardPage {
 				if(file instanceof String && ((String) file).endsWith(".pamtram")) {
 					try {
 						// delete the old model
-						if(wizardData.getPamtram() != null) {
+						if(wizardData.getEditor() == null && wizardData.getPamtram() != null) {
 							wizardData.getPamtram().eResource().unload();
 							wizardData.setPamtram(null);
+						} else {
+							wizardData.setEditor(null);
 						}
 
-						// set the resource of the new model
-						setResource((String) file);
-						// load the new model
-						loadModel();
-						checkPackage();
+						PamtramEditor editor = PamtramEditor.getEditor((String) file);
+
+						// we may use an exising editor and its editing domain for our work 
+						if(editor != null) {
+							wizardData.setEditor(editor);
+							wizardData.setPamtram(editor.getPamtram());
+
+							// we have to load everything by ourselves
+						} else {
+
+							// set the resource of the new model
+							setResource((String) file);
+							// load the new model
+							loadModel();
+						}
+						checkPackage();							
 
 						// activate the finish button if necessary
 						if(wizardData.getSectionType() == SectionType.SOURCE || wizardData.getSectionType() == SectionType.TARGET) {

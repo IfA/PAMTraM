@@ -22,11 +22,13 @@ import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IResourceDeltaVisitor;
+import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
@@ -115,10 +117,14 @@ import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IPartListener;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.ide.IGotoMarker;
@@ -610,6 +616,14 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 	protected PAMTraM pamtram;
 
 	/**
+	 * This is the getter for the {@link #pamtram}
+	 * @return The pamtram instance that this editor operates on.
+	 */
+	public PAMTraM getPamtram() {
+		return pamtram;
+	}
+
+	/**
 	 * This is a list of {@link Resource}s that represent {@link de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry}s in the {@link PAMTraM}
 	 */
 	protected ArrayList<Resource> libraryResources = new ArrayList<>();
@@ -774,6 +788,92 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 				(getSite().getShell(),
 						getString("_UI_FileConflict_label"),
 						getString("_WARN_FileConflict"));
+	}
+
+	/**
+	 * This returns an existing {@link PamtramEditor} that is used for the given '<em>pamtram</em>' instance.
+	 *  
+	 * @param pamtram The {@link PAMTraM} model for which an existing editor shall be returned.
+	 * @return The {@link PamtramEditor} for the given '<em>pamtram</em>' instance.
+	 */
+	public static PamtramEditor getEditor(PAMTraM pamtram) {
+
+		// get the active workbench window
+		IWorkbenchWindow workbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+
+		// iterate through all pages and their editors and check if there is a 'PamtramEditor' for the given pamtram instance
+		for (IWorkbenchPage page : workbenchWindow.getPages()) {
+			for (IEditorReference editorRef : page.getEditorReferences()) {
+				if(editorRef.getEditor(false) instanceof PamtramEditor && ((PamtramEditor) editorRef.getEditor(false)).isEditorFor(pamtram)) {
+
+					return (PamtramEditor) editorRef.getEditor(false);
+				}
+			}
+
+		}
+
+		return null;
+	}
+
+	/**
+	 * This returns an existing {@link PamtramEditor} that is used for the given path to a pamtram instance.
+	 *  
+	 * @param pamtramPath The absolute full path to the pamtram model for which an existing editor shall be returned.
+	 * @return The {@link PamtramEditor} for the given '<em>pamtram</em>' instance.
+	 */
+	public static PamtramEditor getEditor(String pamtramPath) {
+
+		// get the active workbench window
+		IWorkbenchWindow workbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+
+		// iterate through all pages and their editors and check if there is a 'PamtramEditor' for the given pamtram instance
+		for (IWorkbenchPage page : workbenchWindow.getPages()) {
+			for (IEditorReference editorRef : page.getEditorReferences()) {
+				if(editorRef.getEditor(false) instanceof PamtramEditor && ((PamtramEditor) editorRef.getEditor(false)).isEditorFor(pamtramPath)) {
+
+					return (PamtramEditor) editorRef.getEditor(true);
+				}
+			}
+
+		}
+
+		return null;
+	}
+
+	/**
+	 * This may be used to check if the editor is used for editing the given '<em>pamtram</em>' instance.
+	 * 
+	 * @param pamtram The {@link PAMTraM} instance to check.
+	 * @return '<em><b>true</b></em>' if this editor is used for editing the given {@link PAMTraM} instance,
+	 * '<em><b>false</b></em>' otherwise.
+	 */
+	public boolean isEditorFor(PAMTraM pamtram) {
+		if(this.pamtram == null) {
+			return false;
+		} else if(this.pamtram.equals(pamtram) || this.pamtram.eResource().getURI().equals(pamtram.eResource().getURI())) {
+			return true;
+		} else if(pamtram.eResource().getURI().isFile()) {
+			// if all other checks failed, check if both pamtram instance are based on the same file 
+			IWorkspace workspace = ResourcesPlugin.getWorkspace(); 
+			IFile file = workspace.getRoot().getFile(new Path(this.pamtram.eResource().getURI().toPlatformString(true)));
+			return file.getLocation().toOSString().equals(pamtram.eResource().getURI().toFileString());
+		}
+		return false;
+	}
+
+	/**
+	 * This may be used to check if the editor is used for editing the given path to a pamtra file.
+	 * 
+	 * @param pamtramPath The absolute full path to the pamtram instance to check.
+	 * @return '<em><b>true</b></em>' if this editor is used for editing the given {@link PAMTraM} instance,
+	 * '<em><b>false</b></em>' otherwise.
+	 */
+	public boolean isEditorFor(String pamtramPath) {
+
+		// if all other checks failed, check if both pamtram instance are based on the same file 
+		IWorkspace workspace = ResourcesPlugin.getWorkspace(); 
+		IFile file = workspace.getRoot().getFile(new Path(this.pamtram.eResource().getURI().toPlatformString(true)));
+		return file.getLocation().toOSString().equals(pamtramPath);
 	}
 
 	/**

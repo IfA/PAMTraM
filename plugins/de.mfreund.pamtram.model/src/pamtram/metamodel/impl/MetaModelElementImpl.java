@@ -22,6 +22,7 @@ import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
+import pamtram.metamodel.VirtualAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -64,12 +65,12 @@ public abstract class MetaModelElementImpl<C extends pamtram.metamodel.Class<C, 
 	@Override
 	public C getContainingSection() {
 		MetaModelElement<C,R,A> element = this;
-				
+
 		// move upwards in the hierarchy
 		while(element.eContainer() instanceof MetaModelElement) {
 			element = (MetaModelElement<C,R,A>) element.eContainer();
 		}
-		
+
 		if(element instanceof pamtram.metamodel.Class &&
 				(element.eContainer() instanceof SectionModel || element.eContainer() instanceof ContainerParameter)) {
 			// we have found the section
@@ -77,6 +78,15 @@ public abstract class MetaModelElementImpl<C extends pamtram.metamodel.Class<C, 
 		} else if((element instanceof TargetSectionAttribute && element.eContainer() instanceof AttributeParameter) || 
 				(element instanceof TargetSectionNonContainmentReference) && element.eContainer() instanceof ExternalReferenceParameter) {
 			LibraryEntry libEntry = (LibraryEntry) element.eContainer().eContainer();
+			for (LibraryParameter<?> param : libEntry.getParameters()) {
+				//TODO if multiple container parameters exist, there might need to be additional logic
+				if(param instanceof ContainerParameter) {
+					return (C) ((ContainerParameter) param).getClass_();
+				}
+			}
+			return null;
+		} else  if(element instanceof VirtualAttribute && element.eContainer() instanceof LibraryEntry) {
+			LibraryEntry libEntry = (LibraryEntry) element.eContainer();
 			for (LibraryParameter<?> param : libEntry.getParameters()) {
 				//TODO if multiple container parameters exist, there might need to be additional logic
 				if(param instanceof ContainerParameter) {
@@ -98,7 +108,7 @@ public abstract class MetaModelElementImpl<C extends pamtram.metamodel.Class<C, 
 	@Override
 	public SectionModel<C, R, A> getContainingSectionModel() {
 		Class section = this.getContainingSection();
-		
+
 		EObject container = section.eContainer();
 		while(!(container instanceof SectionModel)) {
 			// we have reached the root element
@@ -130,12 +140,12 @@ public abstract class MetaModelElementImpl<C extends pamtram.metamodel.Class<C, 
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.META_MODEL_ELEMENT___GET_CONTAINING_SECTION:
-				return getContainingSection();
-			case MetamodelPackage.META_MODEL_ELEMENT___GET_CONTAINING_SECTION_MODEL:
-				return getContainingSectionModel();
-			case MetamodelPackage.META_MODEL_ELEMENT___IS_LIBRARY_ENTRY:
-				return isLibraryEntry();
+		case MetamodelPackage.META_MODEL_ELEMENT___GET_CONTAINING_SECTION:
+			return getContainingSection();
+		case MetamodelPackage.META_MODEL_ELEMENT___GET_CONTAINING_SECTION_MODEL:
+			return getContainingSectionModel();
+		case MetamodelPackage.META_MODEL_ELEMENT___IS_LIBRARY_ENTRY:
+			return isLibraryEntry();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

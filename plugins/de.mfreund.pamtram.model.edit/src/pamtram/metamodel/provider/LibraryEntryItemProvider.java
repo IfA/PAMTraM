@@ -32,6 +32,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.VirtualAttribute;
 import pamtram.provider.PamtramEditPlugin;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.GenLibraryPackage;
 
@@ -77,7 +78,6 @@ public class LibraryEntryItemProvider
 			super.getPropertyDescriptors(object);
 
 			addLibraryFilePropertyDescriptor(object);
-			addPathPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -120,28 +120,6 @@ public class LibraryEntryItemProvider
 				 null));
 	}
 
-	/**
-	 * This adds a property descriptor for the Path feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addPathPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_LibraryEntry_path_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LibraryEntry_path_feature", "_UI_LibraryEntry_type"),
-				 MetamodelPackage.Literals.LIBRARY_ENTRY__PATH,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-	
 	/**
 	 * This adds a property descriptor for the '<em><b>version</b></em>' feature of the {@link LibraryEntry#getOriginalLibraryEntry}.
 	 */
@@ -201,6 +179,7 @@ public class LibraryEntryItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(MetamodelPackage.Literals.LIBRARY_ENTRY__PARAMETERS);
 			childrenFeatures.add(MetamodelPackage.Literals.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY);
+			childrenFeatures.add(MetamodelPackage.Literals.LIBRARY_ENTRY__PATH);
 		}
 		return childrenFeatures;
 	}
@@ -253,7 +232,8 @@ public class LibraryEntryItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((LibraryEntry)object).getPath();
+		VirtualAttribute labelValue = ((LibraryEntry)object).getPath();
+		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
 			getString("_UI_LibraryEntry_type") :
 			getString("_UI_LibraryEntry_type") + " " + label;

@@ -3,12 +3,12 @@ package pamtram.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import pamtram.metamodel.LibraryEntry;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 import de.tud.et.ifa.agtele.genlibrary.processor.impl.LibraryPluginImpl;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryContext;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPathParser;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPlugin;
+import pamtram.metamodel.LibraryEntry;
 
 /**
  * This class is responsible for creating, initializing, and (if necessary) updating
@@ -19,14 +19,14 @@ import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPlugin;
  * @author mfreund
  */
 public class GenLibraryManager {
-	
+
 	/**
 	 * This holds the single instance of the {@link LibraryPlugin} that is used for
 	 * retrieving and instantiating library entries.</br></br>
 	 * <b>This should only be accessed via the {@link #getLibraryPlugin()} method!</b>
 	 */
 	static private LibraryPlugin libraryPlugin;
-	
+
 	/**
 	 * This returns the single instance of the {@link LibraryPlugin} that is used for
 	 * retrieving and instantiating library entries.
@@ -50,9 +50,9 @@ public class GenLibraryManager {
 		LibraryContext context = libraryContextDescriptor.getLibraryContextClass().newInstance();
 		LibraryPathParser parser = 
 				libraryContextDescriptor.getLibraryPathParserClass() != null ? libraryContextDescriptor.getLibraryPathParserClass().newInstance() : null;
-		getLibraryPlugin().init(libraryContextDescriptor.getLibraryPath(), context, parser);
+				getLibraryPlugin().init(libraryContextDescriptor.getLibraryPath(), context, parser);
 	}
-	
+
 	/**
 	 * This returns the {@link de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry} for a given classpath.
 	 * If <em>useHigher</em> is set to '<em><b>true</b></em>', a more abstract library entry will be returned if
@@ -65,7 +65,7 @@ public class GenLibraryManager {
 	public de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry getLibraryEntry(String classPath, boolean useHigher) {
 		return getLibraryPlugin().getElement(classPath, useHigher);
 	}
-	
+
 	/**
 	 * This returns the {@link de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry} for a given classpath.
 	 * Before the entry is retrieved, a new library path is set in the target library.</br></br>
@@ -83,7 +83,7 @@ public class GenLibraryManager {
 		getLibraryPlugin().setLibPath(libPath);
 		return getLibraryPlugin().getElement(classPath, useHigher);
 	}
-	
+
 	/**
 	 * This inserts the given library item into the given target model while
 	 * taking the given Parameters into account. This is done by calling the
@@ -97,7 +97,7 @@ public class GenLibraryManager {
 	 *            into the target model.
 	 */
 	public void insertIntoTargetModel(EObject targetModel, LibraryEntry libraryEntry) {
-		
+
 		/*
 		 * We need to create a self-contained copy of the library entry and pass it to the
 		 * LibraryPlugin. Otherwise, the same instance (just with new parameters values) 
@@ -106,10 +106,10 @@ public class GenLibraryManager {
 		 */
 		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry originalLibraryEntry = 
 				EcoreUtil.copy(libraryEntry.getOriginalLibraryEntry());
-				
+
 		getLibraryPlugin().insertIntoTargetModel(
 				targetModel, 
 				originalLibraryEntry, 
-				libraryEntry.getPath());
+				libraryEntry.getPath().getValue());
 	}
 }

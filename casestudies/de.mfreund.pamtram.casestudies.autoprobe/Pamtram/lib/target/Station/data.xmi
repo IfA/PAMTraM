@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ASCII"?>
+<genlib:LibraryEntry xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:genlib="http://www.et.tu-dresden.de/ifa/agtele/genlib" xmlns:movisalib="http://www.et.tu-dresden.de/ifa/agtele/genlib/movisalib" xmlns:presentation="http://stefan-hennig.de/movisa/presentation" Version="1">
+  <LibraryItem xsi:type="movisalib:MovisaLibraryItem">
+    <PresentationModelMinimized>
+      <OwnedUIComponent xsi:type="presentation:SimpleContainer" Name="0_SimpleContainer">
+        <AggregatedComponent xsi:type="presentation:TextLabel" Name="1_TextLabel">
+          <Representation Text="//@LibraryItem/@PresentationModelMinimized/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0">
+            <Alignment Name="1_Alignment" VerticalAlignment="MIDDLE"/>
+            <Border Name="1_Border" BorderType="SOLID" LineColor="//@LibraryItem/@PresentationModelMinimized/@OwnedColorDefinition/@OwnedColorValue.1">
+              <Padding Name="1_Padding" Unit="PIXEL"/>
+              <Width Name="1_Width" Unit="PIXEL" Value="2.0"/>
+            </Border>
+            <Color Name="1_Color" Foreground="//@LibraryItem/@PresentationModelMinimized/@OwnedColorDefinition/@OwnedColorValue.0" Background="//@LibraryItem/@PresentationModelMinimized/@OwnedColorDefinition/@OwnedColorValue.2"/>
+            <Format Name="1_Format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+              <FontSize Name="1_FontSize" Unit="PIXEL" Value="12.0"/>
+            </Format>
+            <Position Name="1_Position">
+              <X Name="1_X" Unit="PIXEL"/>
+              <Y Name="1_Y" Unit="PIXEL"/>
+              <Z Name="1_Z" Unit="PIXEL"/>
+            </Position>
+            <Size Name="1_Size">
+              <Height Name="1_Height" Unit="PIXEL" Value="50.0"/>
+              <Width Name="1_Weight" Unit="PIXEL" Value="100.0"/>
+            </Size>
+          </Representation>
+        </AggregatedComponent>
+        <Representation>
+          <Position Name="default_Position">
+            <X Name="default_X" Unit="PIXEL"/>
+            <Y Name="default_Y" Unit="PIXEL"/>
+            <Z Name="default_Z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="0_Size">
+            <Height Name="0_Height" Unit="PIXEL" Value="50.0"/>
+            <Width Name="0_Weight" Unit="PIXEL" Value="100.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedMultiLingualTextDefinition>
+        <OwnedLanguageDefinition Name="german" LocaleId="de_DE"/>
+        <OwnedTextDefinition Name="1_TextDefinition">
+          <TranslatedTextItem Value="Station" Language="//@LibraryItem/@PresentationModelMinimized/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+        </OwnedTextDefinition>
+      </OwnedMultiLingualTextDefinition>
+      <OwnedColorDefinition>
+        <OwnedColorValue xsi:type="presentation:ConstantColor" Name="1_Foreground" Color="BLACK"/>
+        <OwnedColorValue xsi:type="presentation:ConstantColor" Name="1_BorderColor" Color="BLACK"/>
+        <OwnedColorValue xsi:type="presentation:RGBColor" Name="1_Background" Blue="204" Green="255" Red="255"/>
+      </OwnedColorDefinition>
+    </PresentationModelMinimized>
+  </LibraryItem>
+  <parameterDescription xsi:type="movisalib:MovisaParameterDescription">
+    <Containers source="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent"/>
+    <widthParameter source="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Size/@Width"/>
+    <heightParameter source="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Size/@Height"/>
+    <xParameter source="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Position/@X"/>
+    <yParameter source="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Position/@Y"/>
+  </parameterDescription>
+</genlib:LibraryEntry>

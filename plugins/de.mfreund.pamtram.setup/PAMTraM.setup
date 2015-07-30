@@ -295,34 +295,6 @@
           remoteURI="${clone.origin.library}\de.tud.et.ifa.agtele.genlibrary.ui.git">
         <description>Clone the 'de.tud.et.ifa.agtele.genlibrary.ui.git' repository.</description>
       </setupTask>
-      <setupTask
-          xsi:type="git:GitCloneTask"
-          id="clone.genlibrary.movisalibrary"
-          location="${clone.location.genlibrary}\de.tud.et.ifa.agtele.genlibrary.movisalibrary.git"
-          remoteURI="${clone.origin.library}\de.tud.et.ifa.agtele.genlibrary.movisalibrary.git">
-        <description>Clone the 'de.tud.et.ifa.agtele.genlibrary.movisalibrary.git' repository.</description>
-      </setupTask>
-      <setupTask
-          xsi:type="git:GitCloneTask"
-          id="clone.genlibrary.movisalibrary.ui"
-          location="${clone.location.genlibrary}\de.tud.et.ifa.agtele.genlibrary.movisalibrary.ui.git"
-          remoteURI="${clone.origin.library}\de.tud.et.ifa.agtele.genlibrary.movisalibrary.ui.git">
-        <description>Clone the 'de.tud.et.ifa.agtele.genlibrary.movisalibrary.ui.git' repository.</description>
-      </setupTask>
-      <setupTask
-          xsi:type="git:GitCloneTask"
-          id="clone.genlibrary.movisalibrary.generator"
-          location="${clone.location.genlibrary}\de.tud.et.ifa.agtele.genlibrary.movisalibrary.generator.git"
-          remoteURI="${clone.origin.library}\de.tud.et.ifa.agtele.genlibrary.movisalibrary.generator.git">
-        <description>Clone the 'de.tud.et.ifa.agtele.genlibrary.movisalibrary.generator.git' repository.</description>
-      </setupTask>
-      <setupTask
-          xsi:type="git:GitCloneTask"
-          id="clone.genlibrary.movisalibrary.resourceconverter"
-          location="${clone.location.genlibrary}\de.tud.et.ifa.agtele.movisa.resourceconverter.git"
-          remoteURI="G:\projects\movisa\de.tud.et.ifa.agtele.movisa.resourceconverter.git">
-        <description>Clone the 'de.tud.et.ifa.agtele.movisa.resourceconverter.git' repository.</description>
-      </setupTask>
       <description>Clone all necessary git repositories.</description>
     </setupTask>
     <setupTask
@@ -443,30 +415,6 @@
         <sourceLocator
             rootFolder="${clone.location.genlibrary}\de.tud.et.ifa.agtele.genlibrary.ui.git"/>
       </setupTask>
-      <setupTask
-          xsi:type="projects:ProjectsImportTask"
-          id="import.genlibrary.movisalibrary">
-        <sourceLocator
-            rootFolder="${clone.location.genlibrary}\de.tud.et.ifa.agtele.genlibrary.movisalibrary.git"/>
-      </setupTask>
-      <setupTask
-          xsi:type="projects:ProjectsImportTask"
-          id="import.genlibrary.movisalibrary.edit">
-        <sourceLocator
-            rootFolder="${clone.location.genlibrary}\de.tud.et.ifa.agtele.genlibrary.movisalibrary.ui.git"/>
-      </setupTask>
-      <setupTask
-          xsi:type="projects:ProjectsImportTask"
-          id="import.genlibrary.movisalibrary.generator">
-        <sourceLocator
-            rootFolder="${clone.location.genlibrary}\de.tud.et.ifa.agtele.genlibrary.movisalibrary.generator.git"/>
-      </setupTask>
-      <setupTask
-          xsi:type="projects:ProjectsImportTask"
-          id="import.genlibrary.movisalibrary.resourceconverter">
-        <sourceLocator
-            rootFolder="${clone.location.genlibrary}\de.tud.et.ifa.agtele.movisa.resourceconverter.git"/>
-      </setupTask>
       <description>Import all necessary projects.</description>
     </setupTask>
     <setupTask
@@ -547,22 +495,6 @@
                 xsi:type="predicates:NamePredicate"
                 pattern="de.tud.et.ifa.agtele.genlibrary.*"/>
           </operand>
-        </predicate>
-      </workingSet>
-      <workingSet
-          name="genlibrary.movisalibrary"
-          id="workingset.genlibrary.movisalibrary">
-        <predicate
-            xsi:type="predicates:OrPredicate">
-          <operand
-              xsi:type="predicates:NamePredicate"
-              pattern="de.tud.et.ifa.agtele.genlibrary.movisalibrary"/>
-          <operand
-              xsi:type="predicates:NamePredicate"
-              pattern="de.tud.et.ifa.agtele.genlibrary.movisalibrary.*"/>
-          <operand
-              xsi:type="predicates:NamePredicate"
-              pattern="de.tud.et.ifa.agtele.movisa.resourceconverter"/>
         </predicate>
       </workingSet>
       <description>Add projects to working sets.</description>

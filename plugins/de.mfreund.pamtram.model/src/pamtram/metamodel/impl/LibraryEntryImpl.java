@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.LibraryParameter;
 import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.VirtualAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,8 +29,8 @@ import pamtram.metamodel.MetamodelPackage;
  * <ul>
  *   <li>{@link pamtram.metamodel.impl.LibraryEntryImpl#getParameters <em>Parameters</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.LibraryEntryImpl#getLibraryFile <em>Library File</em>}</li>
- *   <li>{@link pamtram.metamodel.impl.LibraryEntryImpl#getPath <em>Path</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.LibraryEntryImpl#getOriginalLibraryEntry <em>Original Library Entry</em>}</li>
+ *   <li>{@link pamtram.metamodel.impl.LibraryEntryImpl#getPath <em>Path</em>}</li>
  * </ul>
  *
  * @generated
@@ -66,26 +67,6 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	protected String libraryFile = LIBRARY_FILE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getPath() <em>Path</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPath()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String PATH_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getPath() <em>Path</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPath()
-	 * @generated
-	 * @ordered
-	 */
-	protected String path = PATH_EDEFAULT;
-
-	/**
 	 * The cached value of the '{@link #getOriginalLibraryEntry() <em>Original Library Entry</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -94,6 +75,16 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * @ordered
 	 */
 	protected de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry originalLibraryEntry;
+
+	/**
+	 * The cached value of the '{@link #getPath() <em>Path</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPath()
+	 * @generated
+	 * @ordered
+	 */
+	protected VirtualAttribute path;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -156,7 +147,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * @generated
 	 */
 	@Override
-	public String getPath() {
+	public VirtualAttribute getPath() {
 		return path;
 	}
 
@@ -165,12 +156,33 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setPath(String newPath) {
-		String oldPath = path;
+	public NotificationChain basicSetPath(VirtualAttribute newPath, NotificationChain msgs) {
+		VirtualAttribute oldPath = path;
 		path = newPath;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.LIBRARY_ENTRY__PATH, oldPath, path));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.LIBRARY_ENTRY__PATH, oldPath, newPath);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPath(VirtualAttribute newPath) {
+		if (newPath != path) {
+			NotificationChain msgs = null;
+			if (path != null)
+				msgs = ((InternalEObject)path).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.LIBRARY_ENTRY__PATH, null, msgs);
+			if (newPath != null)
+				msgs = ((InternalEObject)newPath).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.LIBRARY_ENTRY__PATH, null, msgs);
+			msgs = basicSetPath(newPath, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.LIBRARY_ENTRY__PATH, newPath, newPath));
 	}
 
 	/**
@@ -223,6 +235,8 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 		switch (featureID) {
 			case MetamodelPackage.LIBRARY_ENTRY__PARAMETERS:
 				return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
+			case MetamodelPackage.LIBRARY_ENTRY__PATH:
+				return basicSetPath(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -239,11 +253,11 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 				return getParameters();
 			case MetamodelPackage.LIBRARY_ENTRY__LIBRARY_FILE:
 				return getLibraryFile();
-			case MetamodelPackage.LIBRARY_ENTRY__PATH:
-				return getPath();
 			case MetamodelPackage.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY:
 				if (resolve) return getOriginalLibraryEntry();
 				return basicGetOriginalLibraryEntry();
+			case MetamodelPackage.LIBRARY_ENTRY__PATH:
+				return getPath();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -264,11 +278,11 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 			case MetamodelPackage.LIBRARY_ENTRY__LIBRARY_FILE:
 				setLibraryFile((String)newValue);
 				return;
-			case MetamodelPackage.LIBRARY_ENTRY__PATH:
-				setPath((String)newValue);
-				return;
 			case MetamodelPackage.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY:
 				setOriginalLibraryEntry((de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry)newValue);
+				return;
+			case MetamodelPackage.LIBRARY_ENTRY__PATH:
+				setPath((VirtualAttribute)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -288,11 +302,11 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 			case MetamodelPackage.LIBRARY_ENTRY__LIBRARY_FILE:
 				setLibraryFile(LIBRARY_FILE_EDEFAULT);
 				return;
-			case MetamodelPackage.LIBRARY_ENTRY__PATH:
-				setPath(PATH_EDEFAULT);
-				return;
 			case MetamodelPackage.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY:
 				setOriginalLibraryEntry((de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry)null);
+				return;
+			case MetamodelPackage.LIBRARY_ENTRY__PATH:
+				setPath((VirtualAttribute)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -310,10 +324,10 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 				return parameters != null && !parameters.isEmpty();
 			case MetamodelPackage.LIBRARY_ENTRY__LIBRARY_FILE:
 				return LIBRARY_FILE_EDEFAULT == null ? libraryFile != null : !LIBRARY_FILE_EDEFAULT.equals(libraryFile);
-			case MetamodelPackage.LIBRARY_ENTRY__PATH:
-				return PATH_EDEFAULT == null ? path != null : !PATH_EDEFAULT.equals(path);
 			case MetamodelPackage.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY:
 				return originalLibraryEntry != null;
+			case MetamodelPackage.LIBRARY_ENTRY__PATH:
+				return path != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -330,8 +344,6 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (libraryFile: ");
 		result.append(libraryFile);
-		result.append(", path: ");
-		result.append(path);
 		result.append(')');
 		return result.toString();
 	}

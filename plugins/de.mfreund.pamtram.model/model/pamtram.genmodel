@@ -79,6 +79,10 @@
           <genParameters ecoreParameter="pamtram.ecore#//metamodel/Class/isContainedIn/containerClass"/>
         </genOperations>
         <genOperations ecoreOperation="pamtram.ecore#//metamodel/Class/getOwningContainmentReference"/>
+        <genOperations ecoreOperation="pamtram.ecore#//metamodel/Class/isReferencedBy">
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/Class/isReferencedBy/referencingClass"/>
+          <genParameters ecoreParameter="pamtram.ecore#//metamodel/Class/isReferencedBy/referencedClasses"/>
+        </genOperations>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//metamodel/SourceSectionClass">
         <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
@@ -108,8 +112,8 @@
           labelFeature="#//pamtram/metamodel/LibraryEntry/path">
         <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/LibraryEntry/parameters"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//metamodel/LibraryEntry/libraryFile"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//metamodel/LibraryEntry/path"/>
         <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/LibraryEntry/originalLibraryEntry"/>
+        <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//metamodel/LibraryEntry/path"/>
       </genClasses>
       <genClasses image="false" ecoreClass="pamtram.ecore#//metamodel/Reference">
         <genTypeParameters ecoreTypeParameter="pamtram.ecore#//metamodel/Reference/C"/>

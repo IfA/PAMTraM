@@ -101,6 +101,7 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_ExternalReferenceParameter = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("ExternalReferenceParameter", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_GlobalAttribute = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("GlobalAttribute", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_LibraryEntry = MetamodelTables.PACKid_http_c_s_s_www_et_tu_m_dresden_de_s_ifa_s_agtele_s_genlib.getClassId("LibraryEntry", 0);
+    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_LibraryEntry_0 = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("LibraryEntry", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_LibraryParameter = MetamodelTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Orphanage.getClassId("LibraryParameter", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_MappingHintGroupImporter = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("MappingHintGroupImporter", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_MappingHintGroupType = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping.getClassId("MappingHintGroupType", 0);
@@ -116,6 +117,7 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_TargetSectionClass = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("TargetSectionClass", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_TargetSectionModel = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("TargetSectionModel", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_TargetSectionNonContainmentReference = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("TargetSectionNonContainmentReference", 0);
+    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_VirtualAttribute = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("VirtualAttribute", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ EnumerationId ENUMid_AttributeValueConstraintType = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getEnumerationId("AttributeValueConstraintType");
     public static final /*@NonNull*/ /*@NonInvalid*/ EnumerationId ENUMid_CardinalityType = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getEnumerationId("CardinalityType");
     public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_0 = ValueUtil.integerValueOf("0");
@@ -688,6 +690,8 @@ public class MetamodelTables
 		public static final /*@NonNull*/ ExecutorProperty _TargetSectionClass__ContainerParameter__class = new ExecutorPropertyWithImplementation("ContainerParameter", Types._TargetSectionClass, 1, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.CONTAINER_PARAMETER__CLASS));
 
 		public static final /*@NonNull*/ ExecutorProperty _TargetSectionNonContainmentReference__ExternalReferenceParameter__reference = new ExecutorPropertyWithImplementation("ExternalReferenceParameter", Types._TargetSectionNonContainmentReference, 0, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.EXTERNAL_REFERENCE_PARAMETER__REFERENCE));
+
+		public static final /*@NonNull*/ ExecutorProperty _VirtualAttribute__LibraryEntry__path = new ExecutorPropertyWithImplementation("LibraryEntry", Types._VirtualAttribute, 0, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.LIBRARY_ENTRY__PATH));
 		static {
 			Init.initEnd();
 		}
@@ -2548,7 +2552,8 @@ public class MetamodelTables
 		private static final /*@NonNull*/ ExecutorProperty[] _VirtualAttribute = {
 			MetamodelTables.Properties._Attribute__owningClass,
 			MetamodelTables.Properties._TargetSectionAttribute__unique,
-			MetamodelTables.Properties._TargetSectionAttribute__value
+			MetamodelTables.Properties._TargetSectionAttribute__value,
+			MetamodelTables.Properties._VirtualAttribute__LibraryEntry__path
 		};
 
 		/**

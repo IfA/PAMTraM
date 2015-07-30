@@ -16,8 +16,8 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link pamtram.metamodel.LibraryEntry#getParameters <em>Parameters</em>}</li>
  *   <li>{@link pamtram.metamodel.LibraryEntry#getLibraryFile <em>Library File</em>}</li>
- *   <li>{@link pamtram.metamodel.LibraryEntry#getPath <em>Path</em>}</li>
  *   <li>{@link pamtram.metamodel.LibraryEntry#getOriginalLibraryEntry <em>Original Library Entry</em>}</li>
+ *   <li>{@link pamtram.metamodel.LibraryEntry#getPath <em>Path</em>}</li>
  * </ul>
  *
  * @see pamtram.metamodel.MetamodelPackage#getLibraryEntry()
@@ -70,31 +70,31 @@ public interface LibraryEntry extends EObject {
 	void setLibraryFile(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Path</b></em>' attribute.
+	 * Returns the value of the '<em><b>Path</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Path</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Path</em>' attribute.
-	 * @see #setPath(String)
+	 * @return the value of the '<em>Path</em>' containment reference.
+	 * @see #setPath(VirtualAttribute)
 	 * @see pamtram.metamodel.MetamodelPackage#getLibraryEntry_Path()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!LibraryEntry!path'"
 	 * @generated
 	 */
-	String getPath();
+	VirtualAttribute getPath();
 
 	/**
-	 * Sets the value of the '{@link pamtram.metamodel.LibraryEntry#getPath <em>Path</em>}' attribute.
+	 * Sets the value of the '{@link pamtram.metamodel.LibraryEntry#getPath <em>Path</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Path</em>' attribute.
+	 * @param value the new value of the '<em>Path</em>' containment reference.
 	 * @see #getPath()
 	 * @generated
 	 */
-	void setPath(String value);
+	void setPath(VirtualAttribute value);
 
 	/**
 	 * Returns the value of the '<em><b>Original Library Entry</b></em>' reference.

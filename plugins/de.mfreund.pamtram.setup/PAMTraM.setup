@@ -43,9 +43,11 @@
         name="org.eclipse.epsilon.emf.feature.feature.group"/>
     <requirement
         name="org.eclipse.ocl.examples.feature.group"
-        versionRange="3.5.0"/>
+        versionRange="6.0.1"/>
     <repository
         url="http://download.eclipse.org/epsilon/updates/"/>
+    <repository
+        url="${ocl.examples.location}"/>
   </setupTask>
   <setupTask
       xsi:type="setup:CompoundTask"
@@ -116,6 +118,17 @@
         key="/instance/org.eclipse.egit.ui/resourcehistory_show_all_branches"
         value="true"/>
     <description>This sets a bunch of preferences.</description>
+  </setupTask>
+  <setupTask
+      xsi:type="setup:VariableTask"
+      id="ocl.examples.location"
+      name="ocl.examples.location"
+      label="OCL examples update site location">
+    <description>
+      This is the path to the update site where version 6.0.1+ of the 'OCL examples' is located.
+
+      Note: This variable will be removed in the future as soon as version 6.0.1+ is included in the official OCL repository.
+    </description>
   </setupTask>
   <stream name="master">
     <setupTask
@@ -278,21 +291,21 @@
           xsi:type="git:GitCloneTask"
           id="clone.genlibrary"
           location="${clone.location.genlibrary}\de.tud.et.ifa.agtele.genlibrary.git"
-          remoteURI="${clone.origin.library}\de.tud.et.ifa.agtele.genlibrary.git">
+          remoteURI="${clone.origin.genlibrary}\de.tud.et.ifa.agtele.genlibrary.git">
         <description>Clone the 'de.tud.et.ifa.agtele.genlibrary.git' repository.</description>
       </setupTask>
       <setupTask
           xsi:type="git:GitCloneTask"
           id="clone.genlibrary.edit"
           location="${clone.location.genlibrary}\de.tud.et.ifa.agtele.genlibrary.edit.git"
-          remoteURI="${clone.origin.library}\de.tud.et.ifa.agtele.genlibrary.edit.git">
+          remoteURI="${clone.origin.genlibrary}\de.tud.et.ifa.agtele.genlibrary.edit.git">
         <description>Clone the 'de.tud.et.ifa.agtele.genlibrary.edit.git' repository.</description>
       </setupTask>
       <setupTask
           xsi:type="git:GitCloneTask"
           id="clone.genlibrary.ui"
           location="${clone.location.genlibrary}\de.tud.et.ifa.agtele.genlibrary.ui.git"
-          remoteURI="${clone.origin.library}\de.tud.et.ifa.agtele.genlibrary.ui.git">
+          remoteURI="${clone.origin.genlibrary}\de.tud.et.ifa.agtele.genlibrary.ui.git">
         <description>Clone the 'de.tud.et.ifa.agtele.genlibrary.ui.git' repository.</description>
       </setupTask>
       <description>Clone all necessary git repositories.</description>

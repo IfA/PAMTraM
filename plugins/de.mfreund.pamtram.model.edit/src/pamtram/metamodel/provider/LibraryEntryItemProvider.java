@@ -30,11 +30,11 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptorDecorator;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.GenLibraryPackage;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.VirtualAttribute;
 import pamtram.provider.PamtramEditPlugin;
-import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.GenLibraryPackage;
 
 /**
  * This is the item provider adapter for a {@link pamtram.metamodel.LibraryEntry} object.
@@ -43,20 +43,20 @@ import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.GenLibraryPackage;
  * @generated
  */
 public class LibraryEntryItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
-	
+extends ItemProviderAdapter
+implements
+IEditingDomainItemProvider,
+IStructuredItemContentProvider,
+ITreeItemContentProvider,
+IItemLabelProvider,
+IItemPropertySource {
+
 	/**
 	 * This keeps track of the children to be displayed.
 	 * For this to work, the 'stateful' instead of the 'singleton' pattern needs to be specified in the GenModel.
 	 */
 	protected List<Object> children = null;
-	
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -81,7 +81,7 @@ public class LibraryEntryItemProvider
 		}
 		return itemPropertyDescriptors;
 	}
-	
+
 	/**
 	 * This adds the property descriptors for the version, author and description properties of the
 	 * {@link LibraryEntry#getOriginalLibraryEntry()} to the standard property descriptors.
@@ -106,18 +106,18 @@ public class LibraryEntryItemProvider
 	 */
 	protected void addLibraryFilePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+		(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_LibraryEntry_libraryFile_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LibraryEntry_libraryFile_feature", "_UI_LibraryEntry_type"),
-				 MetamodelPackage.Literals.LIBRARY_ENTRY__LIBRARY_FILE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+						getResourceLocator(),
+						getString("_UI_LibraryEntry_libraryFile_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_LibraryEntry_libraryFile_feature", "_UI_LibraryEntry_type"),
+						MetamodelPackage.Literals.LIBRARY_ENTRY__LIBRARY_FILE,
+						true,
+						false,
+						false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+						null,
+						null));
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class LibraryEntryItemProvider
 			}
 		});
 	}
-	
+
 	/**
 	 * This adds a property descriptor for the '<em><b>author</b></em>' feature of the {@link LibraryEntry#getOriginalLibraryEntry}.
 	 */
@@ -149,7 +149,7 @@ public class LibraryEntryItemProvider
 			}
 		});
 	}
-	
+
 	/**
 	 * This adds a property descriptor for the '<em><b>description</b></em>' feature of the {@link LibraryEntry#getOriginalLibraryEntry}.
 	 */
@@ -207,7 +207,7 @@ public class LibraryEntryItemProvider
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/LibraryEntry"));
 	}
-	
+
 	/**
 	 * Do not allow the parameters as direct children but instead allow the virtual '<em><b>ParameterDescription</b></em>'.
 	 */
@@ -216,6 +216,8 @@ public class LibraryEntryItemProvider
 		if(children == null) {
 			LibraryEntry libraryEntry = (LibraryEntry) object;
 			children = new ArrayList<>();
+			// add an ItemProvider for the Path
+			children.add(wrap(libraryEntry, MetamodelPackage.Literals.LIBRARY_ENTRY__PATH, libraryEntry.getPath(), CommandParameter.NO_INDEX));
 			// add an ItemProvider for the virtual ParameterDescription
 			children.add(new ParameterDescriptionItemProvider(adapterFactory, libraryEntry));
 			// add an ItemProvider for the LibraryEntry (for some reason, the 'wrap(...)' method needs to be used
@@ -223,7 +225,7 @@ public class LibraryEntryItemProvider
 		}
 		return children;
 	}
-	
+
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -235,10 +237,10 @@ public class LibraryEntryItemProvider
 		VirtualAttribute labelValue = ((LibraryEntry)object).getPath();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
-			getString("_UI_LibraryEntry_type") :
-			getString("_UI_LibraryEntry_type") + " " + label;
+				getString("_UI_LibraryEntry_type") :
+					getString("_UI_LibraryEntry_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -254,13 +256,13 @@ public class LibraryEntryItemProvider
 		 * Do not handle notifications that affect the virtual ParameterDescription.
 		 */
 		switch (notification.getFeatureID(LibraryEntry.class)) {
-			case MetamodelPackage.LIBRARY_ENTRY__LIBRARY_FILE:
-			case MetamodelPackage.LIBRARY_ENTRY__PATH:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case MetamodelPackage.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case MetamodelPackage.LIBRARY_ENTRY__LIBRARY_FILE:
+		case MetamodelPackage.LIBRARY_ENTRY__PATH:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case MetamodelPackage.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -287,7 +289,7 @@ public class LibraryEntryItemProvider
 	public ResourceLocator getResourceLocator() {
 		return PamtramEditPlugin.INSTANCE;
 	}
-	
+
 	/**
 	 * Wrapping is needed because we want to display the target of the non-containment reference 
 	 * {@link LibraryEntry#getOriginalLibraryEntry()} as child.
@@ -296,7 +298,7 @@ public class LibraryEntryItemProvider
 	protected boolean isWrappingNeeded(Object object) {
 		return true;
 	}
-	
+
 	/**
 	 * A special wrapper is needed for the {@link LibraryEntry#getOriginalLibraryEntry()} reference.
 	 */
@@ -315,15 +317,15 @@ public class LibraryEntryItemProvider
 			return value;
 		}
 	}
-	
+
 	/**
 	 * This returns the {@link ParameterDescriptionItemProvider}s for this {@link LibraryEntry}
 	 * @return The {@link ParameterDescriptionItemProvider}s for this {@link LibraryEntry}
 	 */
 	public Object getParameters() {
-		return children.get(0);
+		return children.get(1);
 	}
-	
+
 	@Override
 	public void dispose() {
 		super.dispose();
@@ -331,10 +333,10 @@ public class LibraryEntryItemProvider
 		 * Also dispose the ParameterDescriptionItemProvider
 		 */
 		if(children != null) {
-			((IDisposable) children.get(0)).dispose();
+			((IDisposable) children.get(1)).dispose();
 		}
 	}
-	
+
 	/**
 	 * This returns an {@link UnexecutableCommand} as we do not want to allow any manual adding, removing, etc.
 	 */

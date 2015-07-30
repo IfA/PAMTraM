@@ -406,8 +406,7 @@ public class LibraryHelper {
 			pathAttribute.setName("Classpath");
 			pathAttribute.setValue(path);
 			pamtramLibEntry.setPath(pathAttribute);
-			//			pamtramLibEntry.setLibraryFile(libraryFile);
-
+			//						pamtramLibEntry.setLibraryFile(libraryFile);
 			pamtramLibEntry.setOriginalLibraryEntry(libEntry);
 
 			if(libEntry.getParameterDescription() == null) {

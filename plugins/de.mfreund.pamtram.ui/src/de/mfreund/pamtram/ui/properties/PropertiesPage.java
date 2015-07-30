@@ -23,7 +23,7 @@ import org.osgi.framework.Bundle;
 import de.mfreund.pamtram.properties.PropertySupplier;
 
 public class PropertiesPage extends PropertyPage implements
-		IWorkbenchPropertyPage {
+IWorkbenchPropertyPage {
 
 	/**
 	 * A text field to specify the full path to the folder that holds the target library.
@@ -34,12 +34,12 @@ public class PropertiesPage extends PropertyPage implements
 	 * A text field to specify the bundle that represents the specific target library.
 	 */
 	private Text targetBundleText;
-	
+
 	/**
 	 * A text field to specify the concrete library context of the specific target library.
 	 */
 	private Text targetLibContextText;
-	
+
 	/**
 	 * A text field to specify the concrete library path parser of the specific target library.
 	 */
@@ -55,93 +55,93 @@ public class PropertiesPage extends PropertyPage implements
 		Composite comp = new Composite(parent, SWT.NONE);
 		GridLayoutFactory.swtDefaults().numColumns(2).equalWidth(true).applyTo(comp);
 		comp.setFont(parent.getFont());
-		
+
 		// a group to host all library related settings
 		Group libraryGroup = new Group(comp, SWT.NONE);
 		libraryGroup.setText("Library Properties");
 		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).span(2, 1).applyTo(libraryGroup);
 		GridLayoutFactory.swtDefaults().numColumns(2).applyTo(libraryGroup);
-		
+
 		// a group to host all target related settings
 		Group targetGroup = new Group(libraryGroup, SWT.NONE);
 		targetGroup.setText("Target");
 		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).span(2, 1).applyTo(targetGroup);
 		GridLayoutFactory.swtDefaults().numColumns(2).applyTo(targetGroup);
-		
+
 		// create a label for the specification of the path to the folder that holds the target library 
 		Label targetPathLabel = new Label(targetGroup, SWT.NONE);
 		targetPathLabel.setText("Library folder path:");
 		GridDataFactory.swtDefaults().applyTo(targetPathLabel);
-		
+
 		// create a text field for the specification of the path to the folder that holds the target library
 		targetPathText = new Text(targetGroup, SWT.NONE);
 		targetPathText.setMessage("Full path to the folder that holds the target library");
 		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(targetPathText);
 		targetPathText.addModifyListener(new ModifyListener() {
-			
+
 			@Override
 			public void modifyText(ModifyEvent e) {
 				isValid();
 			}
 		});
-		
+
 		// create a label for the specification of the bundle that represents the specific target library 
 		Label targetBundleLabel = new Label(targetGroup, SWT.NONE);
 		targetBundleLabel.setText("Bundle ID:");
 		GridDataFactory.swtDefaults().applyTo(targetBundleLabel);
-		
+
 		// create a text field for the specification of the bundle that represents the specific target library 
 		targetBundleText = new Text(targetGroup, SWT.NONE);
 		targetBundleText.setMessage("Bundle identifier of the plug-in hosting the concrete LibraryContext and PathParser");
 		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(targetBundleText);
 		targetBundleText.addModifyListener(new ModifyListener() {
-			
+
 			@Override
 			public void modifyText(ModifyEvent e) {
 				isValid();
 			}
 		});
-		
+
 		// create a label for the specification of the concrete library context of the specific target library
 		Label targetLibContextLabel = new Label(targetGroup, SWT.NONE);
 		targetLibContextLabel.setText("Library Context ID:");
 		GridDataFactory.swtDefaults().applyTo(targetLibContextLabel);
-		
+
 		// create a text field for the specification of the concrete library context of the specific target library
 		targetLibContextText = new Text(targetGroup, SWT.NONE);
 		targetLibContextText.setMessage("Fully qualified name of the concrete LibraryContext");
 		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(targetLibContextText);
 		targetLibContextText.addModifyListener(new ModifyListener() {
-			
+
 			@Override
 			public void modifyText(ModifyEvent e) {
 				isValid();
 			}
 		});
-		
+
 		// create a label for the specification of the concrete library path parser of the specific target library
 		Label targetLibParserLabel = new Label(targetGroup, SWT.NONE);
 		targetLibParserLabel.setText("Library Path Parser ID:");
 		GridDataFactory.swtDefaults().applyTo(targetLibParserLabel);
-		
+
 		// create a text field for the specification of the concrete library path parser of the specific target library 
 		targetLibParserText = new Text(targetGroup, SWT.NONE);
 		targetLibParserText.setMessage("Fully qualified name of the concrete PathParser (Leave empty to use default parser...)");
 		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).applyTo(targetLibParserText);
 		targetLibParserText.addModifyListener(new ModifyListener() {
-			
+
 			@Override
 			public void modifyText(ModifyEvent e) {
 				isValid();
 			}
 		});
-		
+
 		// Finally, initialize all properties.
 		initializeValues();
-		
+
 		return comp;
 	}
-	
+
 	@Override
 	public boolean performOk() {
 		boolean isValid = isValid();
@@ -151,7 +151,7 @@ public class PropertiesPage extends PropertyPage implements
 			return false;			
 		}
 	}
-	
+
 	/**
 	 * This persists the specified properties.
 	 * @return <em>True</em> if everything went well, <em>false</em> otherwise.
@@ -181,7 +181,7 @@ public class PropertiesPage extends PropertyPage implements
 	@Override
 	protected void performDefaults() {
 		super.performDefaults();
-		
+
 		/*
 		 * Initialize the text fields with the default values.
 		 */
@@ -190,7 +190,7 @@ public class PropertiesPage extends PropertyPage implements
 		targetLibContextText.setText(PropertySupplier.DEFAULT_LIBRARY_TARGET_CONTEXT);
 		targetLibParserText.setText(PropertySupplier.DEFAULT_LIBRARY_TARGET_PARSER); 
 	}
-	
+
 	/**
 	 * This initializes the properties page from the persisted properties.
 	 * @return <em>True</em> if everything went well, <em>false</em> otherwise.
@@ -213,19 +213,18 @@ public class PropertiesPage extends PropertyPage implements
 		}
 		return true;
 	}
-	
+
 	/**
 	 * This validates the properties page.
 	 * @return <em>True</em> if everything went well, <em>false</em> otherwise.
 	 */
 	@Override
 	public boolean isValid() {
-		
+
 		setErrorMessage(null);
 		String targetLibPath = targetPathText.getText();
 		if(targetLibPath.isEmpty()) {
-			setErrorMessage("No target library path has been specified!");
-			return false;
+			// nothing to be done
 		} else if(!(new File(targetLibPath)).exists()) {
 			setErrorMessage("Target library path does not exist!");
 			return false;
@@ -234,7 +233,7 @@ public class PropertiesPage extends PropertyPage implements
 			return false;
 		}
 		try {
-			
+
 			String targetLibBundle = targetBundleText.getText();
 			Bundle bundle;
 			if(!targetLibBundle.isEmpty()) {
@@ -263,9 +262,6 @@ public class PropertiesPage extends PropertyPage implements
 						return false;
 					}
 				}
-			} else {
-				setErrorMessage("No target library bundle has been specified!");
-				return false;
 			}
 		} catch(Exception e) {
 			setErrorMessage(e.getMessage());

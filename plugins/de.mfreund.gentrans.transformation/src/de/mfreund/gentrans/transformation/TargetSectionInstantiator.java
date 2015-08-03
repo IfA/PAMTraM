@@ -1318,7 +1318,7 @@ class TargetSectionInstantiator implements CancellationListener {
 					transformationRunner.getTargetSectionConnector(),
 					targetSectionRegistry)) {
 				consoleStream.println("Failed to instantiate library entry '" + 
-						libraryEntryInstantiator.getLibraryEntry().getPath() + "'!");
+						libraryEntryInstantiator.getLibraryEntry().getPath().getValue() + "'!");
 				successful = false;
 			}
 		}

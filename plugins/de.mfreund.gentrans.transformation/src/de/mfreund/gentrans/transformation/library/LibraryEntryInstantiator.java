@@ -18,6 +18,7 @@ import de.mfreund.gentrans.transformation.TargetSectionConnector;
 import de.mfreund.gentrans.transformation.TargetSectionRegistry;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractContainerParameter;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ParameterDescription;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPlugin;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceInterface;
@@ -282,17 +283,23 @@ public class LibraryEntryInstantiator {
 
 		}
 
+		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry libEntryToInsert = this.libraryEntry.getOriginalLibraryEntry();
+
 		// we may import a more specialized library entry
 		if(!newPath.equals(this.libraryEntry.getPath().getValue())) {
 
-			LibraryEntry moreSpecificEntry = getMoreSpecificEntry(libraryEntry, this.libraryEntry.getPath().getValue(), newPath, manager);
+			de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry moreSpecificEntry = 
+					getMoreSpecificEntry(libraryEntry, this.libraryEntry.getPath().getValue(), newPath, manager);
+			if(moreSpecificEntry != null) {
+				libEntryToInsert = moreSpecificEntry;
+			}
 
 		}
 
 		/*
 		 * Finally, insert the library entry into the target model as all parameters have been filled out
 		 */
-		manager.insertIntoTargetModel(targetModel, libraryEntry);
+		manager.insertIntoTargetModel(targetModel, libEntryToInsert, newPath);
 
 		return true;
 	}
@@ -305,11 +312,11 @@ public class LibraryEntryInstantiator {
 	 * @param oldPath The classpath of the '<em>oldEntry</em>'.
 	 * @param newPath The new (more specific) classpath for that an entry shall be retrieved.
 	 * @param manager The {@link GenLibraryManager} that shall be used to retrieve library entries.
-	 * @return The new {@link LibraryEntry} for the given '<em>newPath</em>' with all parameter values extracted
-	 * from the '<em>oldEntry</em>'. If there is specific entry with matching parameters for the given '<em>newPath</em>',
-	 * this returns '<em><b>null</b></em>'.
+	 * @return The new {@link de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry} for the given '<em>newPath</em>' 
+	 * with all parameter values extracted from the '<em>oldEntry</em>'. If there is specific entry with matching parameters for 
+	 * the given '<em>newPath</em>', this returns '<em><b>null</b></em>'.
 	 */
-	private LibraryEntry getMoreSpecificEntry(LibraryEntry oldEntry, String oldPath, String newPath, GenLibraryManager manager) {
+	private de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry getMoreSpecificEntry(LibraryEntry oldEntry, String oldPath, String newPath, GenLibraryManager manager) {
 
 		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry newEntry = null;
 
@@ -324,7 +331,62 @@ public class LibraryEntryInstantiator {
 			newEntry = manager.getLibraryEntry(resultPath, false);
 			if(newEntry != null) {
 
-				//TODO check if the new entry has the same parameters as the old one
+				ParameterDescription oldParams = oldEntry.getOriginalLibraryEntry().getParameterDescription();
+				ParameterDescription newParams = newEntry.getParameterDescription();
+
+				//TODO up to now, we just compare the types of the existing parameters; maybe there is a way to get a better comparison result???
+				// check (and replace) container parameters
+				if(oldParams.getContainerParameters().size() == newParams.getContainerParameters().size()) {
+					boolean equal = true;
+					for (int j = 0; j < oldParams.getContainerParameters().size(); j++) {
+						if(!oldParams.getContainerParameters().get(j).eClass().equals(newParams.getContainerParameters().get(j).eClass())) {
+							equal = false;
+							break;
+						} else {
+							newParams.getContainerParameters().get(j).setContainer(oldParams.getContainerParameters().get(j).getContainer());
+						}
+					}
+					if(!equal) {
+						newEntry = null;
+						continue;
+					}
+				}
+
+				// check (and replace) attribute parameters
+				if(oldParams.getAttributeParameters().size() == newParams.getAttributeParameters().size()) {
+					boolean equal = true;
+					for (int j = 0; j < oldParams.getAttributeParameters().size(); j++) {
+						if(!oldParams.getAttributeParameters().get(j).eClass().equals(newParams.getAttributeParameters().get(j).eClass())) {
+							equal = false;
+							break;
+						} else {
+							newParams.getAttributeParameters().get(j).setNewValue(oldParams.getAttributeParameters().get(j).getNewValue());
+						}
+					}
+					if(!equal) {
+						newEntry = null;
+						continue;
+					}
+				}
+
+				// check (and replace) external reference parameters
+				if(oldParams.getExternalReferenceParameters().size() == newParams.getExternalReferenceParameters().size()) {
+					boolean equal = true;
+					for (int j = 0; j < oldParams.getExternalReferenceParameters().size(); j++) {
+						if(!oldParams.getExternalReferenceParameters().get(j).eClass().equals(newParams.getExternalReferenceParameters().get(j).eClass())) {
+							equal = false;
+							break;
+						} else {
+							newParams.getExternalReferenceParameters().get(j).setTarget(oldParams.getExternalReferenceParameters().get(j).getTarget());
+						}
+					}
+					if(!equal) {
+						newEntry = null;
+						continue;
+					}
+				}
+
+				//TODO check resource parameters
 
 				break;
 			} else {
@@ -332,8 +394,11 @@ public class LibraryEntryInstantiator {
 			}
 		} while (--i >= 0);
 
-		//TODO if there is a new entry, we need to replace the old one (or at least the parameters
+		if(newEntry == null) {
+			return null;
+		}
 
-		return null;
+		return newEntry;
+
 	}
 }

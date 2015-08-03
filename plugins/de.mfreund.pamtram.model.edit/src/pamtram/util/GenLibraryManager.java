@@ -87,7 +87,7 @@ public class GenLibraryManager {
 	/**
 	 * This inserts the given library item into the given target model while
 	 * taking the given Parameters into account. This is done by calling the
-	 * function {@link LibraryPlugin#insertIntoTargetModel(EObject, LibraryEntry, String)}.
+	 * function {@link LibraryPlugin#insertIntoTargetModel(EObject, de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry, String)}.
 	 * 
 	 * @param targetModel
 	 *            The target model into that the given library item shall be
@@ -112,4 +112,35 @@ public class GenLibraryManager {
 				originalLibraryEntry, 
 				libraryEntry.getPath().getValue());
 	}
+
+	/**
+	 * This inserts the given library item into the given target model while
+	 * taking the given Parameters into account. This is done by calling the
+	 * function {@link LibraryPlugin#insertIntoTargetModel(EObject, de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry, String)}.
+	 * 
+	 * @param targetModel
+	 *            The target model into that the given library item shall be
+	 *            inserted.
+	 * @param libraryEntry
+	 *            The {@link LibraryEntry} to be inserted
+	 *            into the target model.
+	 * @param path The classpath of the '<em>libraryEntry</em>' to be inserted.
+	 */
+	public void insertIntoTargetModel(EObject targetModel, de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry libraryEntry, String path) {
+
+		/*
+		 * We need to create a self-contained copy of the library entry and pass it to the
+		 * LibraryPlugin. Otherwise, the same instance (just with new parameters values) 
+		 * might be inserted multiple times in case of cardinalities > 1 if the caller would
+		 * not handle this by himself. This would lead to strange behavior. 
+		 */
+		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry originalLibraryEntry = 
+				EcoreUtil.copy(libraryEntry);
+
+		getLibraryPlugin().insertIntoTargetModel(
+				targetModel, 
+				originalLibraryEntry, 
+				path);
+	}
+
 }

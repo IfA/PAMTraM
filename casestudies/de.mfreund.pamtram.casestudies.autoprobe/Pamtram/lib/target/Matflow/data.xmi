@@ -44,13 +44,13 @@
     </AlgorithmModel>
   </LibraryItem>
   <parameterDescription xsi:type="movisalib:MovisaParameterDescription" ID="">
-    <resourceParameters Name="_files/default/img/BufferPlace_occupied_product.png"/>
-    <resourceParameters Name="_files/default/img/BufferPlace_occupied_product_transparent.png"/>
-    <resourceParameters Name="_files/default/products.json"/>
-    <resourceParameters Name="_files/html.login/img/ui-bg_gloss-wave_green.png"/>
-    <resourceParameters Name="_files/html.login/img/ui-bg_highlight-soft_75_darkgreen_1x100.png"/>
-    <resourceParameters Name="_files/html.login/img/ui-bg_highlight-soft_75_green_1x100.png"/>
-    <resourceParameters Name="_files/html.login/MatflowBoundary.js"/>
+    <resourceParameters Name="_files/default/img/BufferPlace_occupied_product.png" newPath="img\Matflow__files\default\img\BufferPlace_occupied_product.png"/>
+    <resourceParameters Name="_files/default/img/BufferPlace_occupied_product_transparent.png" newPath="img\Matflow__files\default\img\BufferPlace_occupied_product_transparent.png"/>
+    <resourceParameters Name="_files/default/products.json" newPath="img\Matflow__files\default\products.json"/>
+    <resourceParameters Name="_files/html.login/img/ui-bg_gloss-wave_green.png" newPath="img\Matflow__files\html.login\img\ui-bg_gloss-wave_green.png"/>
+    <resourceParameters Name="_files/html.login/img/ui-bg_highlight-soft_75_darkgreen_1x100.png" newPath="img\Matflow__files\html.login\img\ui-bg_highlight-soft_75_darkgreen_1x100.png"/>
+    <resourceParameters Name="_files/html.login/img/ui-bg_highlight-soft_75_green_1x100.png" newPath="img\Matflow__files\html.login\img\ui-bg_highlight-soft_75_green_1x100.png"/>
+    <resourceParameters Name="_files/html.login/MatflowBoundary.js" newPath="img\Matflow__files\html.login\MatflowBoundary.js"/>
     <Containers source="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent"/>
     <widthParameter source="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Size/@Width"/>
     <heightParameter source="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Size/@Height"/>

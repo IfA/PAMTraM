@@ -33,7 +33,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.GenLibraryPackage;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.VirtualAttribute;
 import pamtram.provider.PamtramEditPlugin;
 
 /**
@@ -230,12 +229,11 @@ IItemPropertySource {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		VirtualAttribute labelValue = ((LibraryEntry)object).getPath();
-		String label = labelValue == null ? null : labelValue.toString();
+		String label = ((LibraryEntry)object).getPath().getValue();
 		return label == null || label.length() == 0 ?
 				getString("_UI_LibraryEntry_type") :
 					getString("_UI_LibraryEntry_type") + " " + label;

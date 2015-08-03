@@ -265,10 +265,75 @@ public class LibraryEntryInstantiator {
 		}
 
 		/*
+		 * Now, we check if a more specific library entry may be used. This is the case if there was an attribute
+		 * mapping for the virtual 'Classpath' attribute that produced a more specific classpath.
+		 */
+
+		// This is the original classpath as denoted in the library entry imported into the pamtram model
+		String newPath = this.libraryEntry.getPath().getValue();
+
+		// Determine the attribute mapping responsible for the 'Path' attribute
+		for (MappingHint mappingHint : mappingHints) {
+			if(mappingHint instanceof AttributeMapping && ((AttributeMapping) mappingHint).getTarget().equals(this.libraryEntry.getPath())) {
+				AttributeMapping pathMapping = (AttributeMapping) mappingHint;
+				newPath = calculator.calculateAttributeValue(this.libraryEntry.getPath(), pathMapping, this.hintValues.getHintValues(pathMapping));
+				break;
+			}
+
+		}
+
+		// we may import a more specialized library entry
+		if(!newPath.equals(this.libraryEntry.getPath().getValue())) {
+
+			LibraryEntry moreSpecificEntry = getMoreSpecificEntry(libraryEntry, this.libraryEntry.getPath().getValue(), newPath, manager);
+
+		}
+
+		/*
 		 * Finally, insert the library entry into the target model as all parameters have been filled out
 		 */
 		manager.insertIntoTargetModel(targetModel, libraryEntry);
 
 		return true;
+	}
+
+	/**
+	 * This retrieves an entry for the given 'newPath' from the library, checks if the parameters match those
+	 * of the old library entry, copies the old parameters to the new entry and returns the new entry.
+	 * 
+	 * @param oldEntry The existing {@link LibraryEntry} that shall be replaced.
+	 * @param oldPath The classpath of the '<em>oldEntry</em>'.
+	 * @param newPath The new (more specific) classpath for that an entry shall be retrieved.
+	 * @param manager The {@link GenLibraryManager} that shall be used to retrieve library entries.
+	 * @return The new {@link LibraryEntry} for the given '<em>newPath</em>' with all parameter values extracted
+	 * from the '<em>oldEntry</em>'. If there is specific entry with matching parameters for the given '<em>newPath</em>',
+	 * this returns '<em><b>null</b></em>'.
+	 */
+	private LibraryEntry getMoreSpecificEntry(LibraryEntry oldEntry, String oldPath, String newPath, GenLibraryManager manager) {
+
+		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry newEntry = null;
+
+		/*
+		 * Now, we move up in the classpath until we find a library entry that has matching paramters.
+		 */
+		String[] newPathSegments = newPath.replace("^" + oldPath + "/", "").split("/");
+		String resultPath = newPath;
+
+		int i = newPathSegments.length - 1;
+		do {
+			newEntry = manager.getLibraryEntry(resultPath, false);
+			if(newEntry != null) {
+
+				//TODO check if the new entry has the same parameters as the old one
+
+				break;
+			} else {
+				resultPath = resultPath.replace("/" + newPathSegments[i] + "$", "");
+			}
+		} while (--i >= 0);
+
+		//TODO if there is a new entry, we need to replace the old one (or at least the parameters
+
+		return null;
 	}
 }

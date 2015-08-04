@@ -25,6 +25,7 @@ import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.InstantiableMappingHintGroup;
+import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintType;
@@ -253,6 +254,9 @@ public class LibraryEntryInstantiator {
 							}
 						}
 						if(!found) {
+							consoleStream.println("The MappigInstanceSelector " + selector.getName() + " (Mapping: " + ((Mapping) mappingGroup.eContainer()).getName() + 
+									", Group: " + mappingGroup.getName() + " ) has an AttributeMatcher that picked up the value '" + attrValStr
+									+ "' to be matched to the TargetAttribute, but no fitting TargetSectionInstance with this value could be found.");
 							return false;
 						}
 					}

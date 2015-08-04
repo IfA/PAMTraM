@@ -3853,108 +3853,6 @@
         <attribute href="http://stefan-hennig.de/movisa#//presentation/ImageResource/Url"/>
       </attributes>
     </metaModelSections>
-    <libraryElements>
-      <parameters xsi:type="metamodel:AttributeParameter" name="WidthParameter">
-        <source href="lib/target/Log/data.xmi#//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Size/@Width"/>
-        <originalParameter xsi:type="movisalib:WidthParameter" href="lib/target/Log/data.xmi#//@parameterDescription/@widthParameter"/>
-        <attribute name="Value">
-          <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
-        </attribute>
-      </parameters>
-      <parameters xsi:type="metamodel:AttributeParameter" name="HeightParameter">
-        <source href="lib/target/Log/data.xmi#//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Size/@Height"/>
-        <originalParameter xsi:type="movisalib:HeightParameter" href="lib/target/Log/data.xmi#//@parameterDescription/@heightParameter"/>
-        <attribute name="Value">
-          <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
-        </attribute>
-      </parameters>
-      <parameters xsi:type="metamodel:AttributeParameter" name="XParameter">
-        <source href="lib/target/Log/data.xmi#//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Position/@X"/>
-        <originalParameter xsi:type="movisalib:XParameter" href="lib/target/Log/data.xmi#//@parameterDescription/@xParameter"/>
-        <attribute name="Value">
-          <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
-        </attribute>
-      </parameters>
-      <parameters xsi:type="metamodel:AttributeParameter" name="YParameter">
-        <source href="lib/target/Log/data.xmi#//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Position/@Y"/>
-        <originalParameter xsi:type="movisalib:YParameter" href="lib/target/Log/data.xmi#//@parameterDescription/@yParameter"/>
-        <attribute name="Value">
-          <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
-        </attribute>
-      </parameters>
-      <parameters xsi:type="metamodel:ContainerParameter" name="UIComponentContainerParameter">
-        <source href="lib/target/Log/data.xmi#//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent"/>
-        <originalParameter xsi:type="movisalib:UIComponentContainerParameter" href="lib/target/Log/data.xmi#//@parameterDescription/@Containers.0"/>
-        <class name="SimpleContainer">
-          <eClass href="http://stefan-hennig.de/movisa#//presentation/SimpleContainer"/>
-        </class>
-      </parameters>
-      <parameters xsi:type="metamodel:ExternalReferenceParameter" name="ServerDataItemParameter">
-        <source href="lib/target/Log/data.xmi#//@LibraryItem/@ClientDataModelMinimized/@OwnedDataItem.1"/>
-        <originalParameter xsi:type="movisalib:ServerDataItemParameter" href="lib/target/Log/data.xmi#//@parameterDescription/@ServerDataItems.0"/>
-        <reference name="PointsTo">
-          <eReference href="http://stefan-hennig.de/movisa#//clientdata/DataItem/PointsTo"/>
-        </reference>
-      </parameters>
-      <parameters xsi:type="metamodel:ExternalReferenceParameter" name="ServerDataItemParameter">
-        <source href="lib/target/Log/data.xmi#//@LibraryItem/@ClientDataModelMinimized/@OwnedDataItem.2"/>
-        <originalParameter xsi:type="movisalib:ServerDataItemParameter" href="lib/target/Log/data.xmi#//@parameterDescription/@ServerDataItems.1"/>
-        <reference name="PointsTo">
-          <eReference href="http://stefan-hennig.de/movisa#//clientdata/DataItem/PointsTo"/>
-        </reference>
-      </parameters>
-      <parameters xsi:type="metamodel:ExternalReferenceParameter" name="ServerDataItemParameter">
-        <source href="lib/target/Log/data.xmi#//@LibraryItem/@ClientDataModelMinimized/@OwnedDataItem.0"/>
-        <originalParameter xsi:type="movisalib:ServerDataItemParameter" href="lib/target/Log/data.xmi#//@parameterDescription/@ServerDataItems.2"/>
-        <reference name="PointsTo">
-          <eReference href="http://stefan-hennig.de/movisa#//clientdata/DataItem/PointsTo"/>
-        </reference>
-      </parameters>
-      <parameters xsi:type="metamodel:ExternalReferenceParameter" name="ServerDataItemParameter">
-        <source href="lib/target/Log/data.xmi#//@LibraryItem/@ClientDataModelMinimized/@OwnedDataItem.3"/>
-        <originalParameter xsi:type="movisalib:ServerDataItemParameter" href="lib/target/Log/data.xmi#//@parameterDescription/@ServerDataItems.3"/>
-        <reference name="PointsTo">
-          <eReference href="http://stefan-hennig.de/movisa#//clientdata/DataItem/PointsTo"/>
-        </reference>
-      </parameters>
-      <parameters xsi:type="metamodel:ExternalReferenceParameter" name="ServerDataItemParameter">
-        <source href="lib/target/Log/data.xmi#//@LibraryItem/@ClientDataModelMinimized/@OwnedDataItem.4"/>
-        <originalParameter xsi:type="movisalib:ServerDataItemParameter" href="lib/target/Log/data.xmi#//@parameterDescription/@ServerDataItems.4"/>
-        <reference name="PointsTo">
-          <eReference href="http://stefan-hennig.de/movisa#//clientdata/DataItem/PointsTo"/>
-        </reference>
-      </parameters>
-      <parameters xsi:type="metamodel:ExternalReferenceParameter" name="ServerDataItemParameter">
-        <source href="lib/target/Log/data.xmi#//@LibraryItem/@ClientDataModelMinimized/@OwnedDataItem.5"/>
-        <originalParameter xsi:type="movisalib:ServerDataItemParameter" href="lib/target/Log/data.xmi#//@parameterDescription/@ServerDataItems.5"/>
-        <reference name="PointsTo">
-          <eReference href="http://stefan-hennig.de/movisa#//clientdata/DataItem/PointsTo"/>
-        </reference>
-      </parameters>
-      <parameters xsi:type="metamodel:ExternalReferenceParameter" name="ServerDataItemParameter">
-        <source href="lib/target/Log/data.xmi#//@LibraryItem/@ClientDataModelMinimized/@OwnedDataItem.6"/>
-        <originalParameter xsi:type="movisalib:ServerDataItemParameter" href="lib/target/Log/data.xmi#//@parameterDescription/@ServerDataItems.6"/>
-        <reference name="PointsTo">
-          <eReference href="http://stefan-hennig.de/movisa#//clientdata/DataItem/PointsTo"/>
-        </reference>
-      </parameters>
-      <parameters xsi:type="metamodel:ExternalReferenceParameter" name="ServerDataItemParameter">
-        <source href="lib/target/Log/data.xmi#//@LibraryItem/@ClientDataModelMinimized/@OwnedDataItem.7"/>
-        <originalParameter xsi:type="movisalib:ServerDataItemParameter" href="lib/target/Log/data.xmi#//@parameterDescription/@ServerDataItems.7"/>
-        <reference name="PointsTo">
-          <eReference href="http://stefan-hennig.de/movisa#//clientdata/DataItem/PointsTo"/>
-        </reference>
-      </parameters>
-      <parameters xsi:type="metamodel:ExternalReferenceParameter" name="ServerDataItemParameter">
-        <source href="lib/target/Log/data.xmi#//@LibraryItem/@ClientDataModelMinimized/@OwnedDataItem.8"/>
-        <originalParameter xsi:type="movisalib:ServerDataItemParameter" href="lib/target/Log/data.xmi#//@parameterDescription/@ServerDataItems.8"/>
-        <reference name="PointsTo">
-          <eReference href="http://stefan-hennig.de/movisa#//clientdata/DataItem/PointsTo"/>
-        </reference>
-      </parameters>
-      <originalLibraryEntry href="lib/target/Log/data.xmi#/"/>
-      <path name="Classpath" value="Log"/>
-    </libraryElements>
     <libraryElements libraryFile="D:\git-repos\autoprobe\de.tud.et.ifa.agtele.autoprobe.resources.git\lib\Station.zip">
       <parameters xsi:type="metamodel:AttributeParameter" name="WidthParameter">
         <source href="lib/target/Station/data.xmi#//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Size/@Width"/>
@@ -5728,21 +5626,21 @@
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="NameStation" source="//@sourceSectionModel/@metaModelSections.18/@references.0/@value.3/@attributes.1" modifier="//@mappingModel/@modifierSets.45"/>
         </mappingHints>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SimpleContainer" targetMMSection="//@targetSectionModel/@libraryElements.1/@parameters.4/@class">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosXValue" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@libraryElements.1/@parameters.2/@attribute">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SimpleContainer" targetMMSection="//@targetSectionModel/@libraryElements.0/@parameters.4/@class">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosXValue" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@libraryElements.0/@parameters.2/@attribute">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel/@metaModelSections.14/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosYValue" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@libraryElements.1/@parameters.3/@attribute">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosYValue" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@libraryElements.0/@parameters.3/@attribute">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModel/@metaModelSections.14/@attributes.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel/@metaModelSections.14/@attributes.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="width" expression="round(w/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@libraryElements.1/@parameters.0/@attribute">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="width" expression="round(w/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@libraryElements.0/@parameters.0/@attribute">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="w" source="//@sourceSectionModel/@metaModelSections.14/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="height" expression="round(h/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@libraryElements.1/@parameters.1/@attribute">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="height" expression="round(h/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@libraryElements.0/@parameters.1/@attribute">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel/@metaModelSections.14/@attributes.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="ClasspathMapping" target="//@targetSectionModel/@libraryElements.1/@path">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="ClasspathMapping" target="//@targetSectionModel/@libraryElements.0/@path">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="value ClassPath" source="//@sourceSectionModel/@metaModelSections.18/@references.0/@value.1/@attributes.1" modifier="//@mappingModel/@modifierSets.58"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="label" source="//@sourceSectionModel/@metaModelSections.14/@attributes.6"/>
         </mappingHints>
@@ -5753,145 +5651,81 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="AlertInterfaceMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.15">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SimpleContainer" targetMMSection="//@targetSectionModel/@libraryElements.0/@parameters.4/@class">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="WidthMapping" expression="round(w/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@libraryElements.0/@parameters.0/@attribute">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SimpleContainer" targetMMSection="//@targetSectionModel/@libraryElements.2/@parameters.4/@class">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="WidthMapping" expression="round(w/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@libraryElements.2/@parameters.0/@attribute">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="w" source="//@sourceSectionModel/@metaModelSections.15/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="HeightMapping" expression="round(h/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@libraryElements.0/@parameters.1/@attribute">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="HeightMapping" expression="round(h/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@libraryElements.2/@parameters.1/@attribute">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="h" source="//@sourceSectionModel/@metaModelSections.15/@attributes.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="XMapping" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@libraryElements.0/@parameters.2/@attribute">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="XMapping" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@libraryElements.2/@parameters.2/@attribute">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel/@metaModelSections.15/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="YMapping" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@libraryElements.0/@parameters.3/@attribute">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="YMapping" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@libraryElements.2/@parameters.3/@attribute">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="y" source="//@sourceSectionModel/@metaModelSections.15/@attributes.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="h" source="//@sourceSectionModel/@metaModelSections.15/@attributes.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.0/@parameters.5/@reference">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.2/@parameters.5/@reference">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.47 //@mappingModel/@modifierSets.21"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.0/@parameters.6/@reference">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.2/@parameters.6/@reference">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.48 //@mappingModel/@modifierSets.21"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.0/@parameters.7/@reference">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.2/@parameters.7/@reference">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.49 //@mappingModel/@modifierSets.21"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.0/@parameters.8/@reference">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.2/@parameters.8/@reference">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.50 //@mappingModel/@modifierSets.21"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.0/@parameters.9/@reference">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.2/@parameters.9/@reference">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.51 //@mappingModel/@modifierSets.21"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.0/@parameters.10/@reference">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.2/@parameters.10/@reference">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.52 //@mappingModel/@modifierSets.21"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.0/@parameters.11/@reference">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.2/@parameters.11/@reference">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.53 //@mappingModel/@modifierSets.21"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.0/@parameters.12/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.57 //@mappingModel/@modifierSets.21"/>
-          </matcher>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.0/@parameters.13/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.59 //@mappingModel/@modifierSets.21"/>
-          </matcher>
-        </mappingHints>
-        <modelConnectionMatcher name="logLibItemConnectionHint">
-          <targetAttributes name="Panel Name" source="//@targetSectionModel/@metaModelSections.7/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0"/>
-        </modelConnectionMatcher>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SimpleContainer" targetMMSection="//@targetSectionModel/@libraryElements.3/@parameters.4/@class">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="WidthMapping" expression="round(w/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@libraryElements.3/@parameters.0/@attribute">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="w" source="//@sourceSectionModel/@metaModelSections.15/@attributes.3"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="HeightMapping" expression="round(h/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@libraryElements.3/@parameters.1/@attribute">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="h" source="//@sourceSectionModel/@metaModelSections.15/@attributes.4"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="XMapping" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@libraryElements.3/@parameters.2/@attribute">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel/@metaModelSections.15/@attributes.1"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="YMapping" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@libraryElements.3/@parameters.3/@attribute">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="y" source="//@sourceSectionModel/@metaModelSections.15/@attributes.2"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="h" source="//@sourceSectionModel/@metaModelSections.15/@attributes.4"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.3/@parameters.5/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.47 //@mappingModel/@modifierSets.21"/>
-          </matcher>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.3/@parameters.6/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.48 //@mappingModel/@modifierSets.21"/>
-          </matcher>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.3/@parameters.7/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.49 //@mappingModel/@modifierSets.21"/>
-          </matcher>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.3/@parameters.8/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.50 //@mappingModel/@modifierSets.21"/>
-          </matcher>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.3/@parameters.9/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.51 //@mappingModel/@modifierSets.21"/>
-          </matcher>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.3/@parameters.10/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.52 //@mappingModel/@modifierSets.21"/>
-          </matcher>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.3/@parameters.11/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.53 //@mappingModel/@modifierSets.21"/>
-          </matcher>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.3/@parameters.12/@reference">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.2/@parameters.12/@reference">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.54 //@mappingModel/@modifierSets.21"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.3/@parameters.13/@reference">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.2/@parameters.13/@reference">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.55 //@mappingModel/@modifierSets.21"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.3/@parameters.14/@reference">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.2/@parameters.14/@reference">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.56 //@mappingModel/@modifierSets.21"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.3/@parameters.15/@reference">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.2/@parameters.15/@reference">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.57 //@mappingModel/@modifierSets.21"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.3/@parameters.16/@reference">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.2/@parameters.16/@reference">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.59 //@mappingModel/@modifierSets.21"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.3/@parameters.17/@reference">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.2/@parameters.17/@reference">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.15/@attributes.0" modifier="//@mappingModel/@modifierSets.60 //@mappingModel/@modifierSets.21"/>
           </matcher>
@@ -5980,17 +5814,17 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Matflow LibItem" targetMMSection="//@targetSectionModel/@libraryElements.2/@parameters.4/@class">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="WidthMapping" expression="round(w/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@libraryElements.2/@parameters.0/@attribute">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Matflow LibItem" targetMMSection="//@targetSectionModel/@libraryElements.1/@parameters.4/@class">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="WidthMapping" expression="round(w/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@libraryElements.1/@parameters.0/@attribute">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="w" source="//@sourceSectionModel/@metaModelSections.14/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="HeightMapping" expression="round(h/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@libraryElements.2/@parameters.1/@attribute">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="HeightMapping" expression="round(h/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@libraryElements.1/@parameters.1/@attribute">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel/@metaModelSections.14/@attributes.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="XMapping" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@libraryElements.2/@parameters.2/@attribute">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="XMapping" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@libraryElements.1/@parameters.2/@attribute">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel/@metaModelSections.14/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="YMapping" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@libraryElements.2/@parameters.3/@attribute">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="YMapping" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel/@libraryElements.1/@parameters.3/@attribute">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModel/@metaModelSections.14/@attributes.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel/@metaModelSections.14/@attributes.4"/>
         </mappingHints>

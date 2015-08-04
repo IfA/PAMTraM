@@ -67,12 +67,12 @@
           <OwnedReception Name="Acknowledge" Signal="//@LibraryItem/@AlgorithmModel/@OwnedElement.3"/>
         </ProvidedInterface>
         <RequiredInterface Name="RequiredInterface">
-          <OwnedReception Name="AS_Variables_Proj_Vis_Visualization_Mailbox_Log_MsgId_MsgIdATInt_changed" Signal="//@LibraryItem/@AlgorithmModel/@OwnedElement.1"/>
-          <OwnedReception Name="AS_Variables_Proj_Vis_Visualization_Mailbox_React_AckId_AckIdATInt_changed" Signal="//@LibraryItem/@AlgorithmModel/@OwnedElement.2"/>
+          <OwnedReception Name="AS_Variables_Proj_Vis_Visualization_Mailbox_Log_MsgId_changed" Signal="//@LibraryItem/@AlgorithmModel/@OwnedElement.1"/>
+          <OwnedReception Name="AS_Variables_Proj_Vis_Visualization_Mailbox_React_AckId_changed" Signal="//@LibraryItem/@AlgorithmModel/@OwnedElement.2"/>
         </RequiredInterface>
       </OwnedElement>
-      <OwnedElement xsi:type="algorithm:Signal" Name="AS_Variables_Proj_Vis_Visualization_Mailbox_Log_MsgId_MsgIdATInt_changed"/>
-      <OwnedElement xsi:type="algorithm:Signal" Name="AS_Variables_Proj_Vis_Visualization_Mailbox_React_AckId_AckIdATInt_changed"/>
+      <OwnedElement xsi:type="algorithm:Signal" Name="AS_Variables_Proj_Vis_Visualization_Mailbox_Log_MsgId_changed"/>
+      <OwnedElement xsi:type="algorithm:Signal" Name="AS_Variables_Proj_Vis_Visualization_Mailbox_React_AckId_changed"/>
       <OwnedElement xsi:type="algorithm:Signal" Name="Acknowledge">
         <OwnedAttribute Name="AckId" Multiplicity="1..1" Type="//@LibraryItem/@AlgorithmModel/@OwnedElement.5"/>
       </OwnedElement>

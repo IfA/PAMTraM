@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Pamtram UI
 Bundle-SymbolicName: de.mfreund.pamtram.ui;singleton:=true
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 1.1.1.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: de.mfreund.pamtram.ui.PamtramUIPlugin$Implementation
 Bundle-Vendor: mfreund

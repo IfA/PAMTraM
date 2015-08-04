@@ -1174,7 +1174,7 @@
                   <attributes xsi:type="metamodel:ActualAttribute" name="FractionDigits" value="0">
                     <attribute href="http://stefan-hennig.de/movisa#//clientdata/Dimension/FractionDigits"/>
                   </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="Unit">
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="Boolean">
                     <attribute href="http://stefan-hennig.de/movisa#//clientdata/Dimension/Unit"/>
                   </attributes>
                 </value>
@@ -1189,7 +1189,7 @@
                   <attributes xsi:type="metamodel:ActualAttribute" name="FractionDigits" value="2">
                     <attribute href="http://stefan-hennig.de/movisa#//clientdata/Dimension/FractionDigits"/>
                   </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="Unit">
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="Double">
                     <attribute href="http://stefan-hennig.de/movisa#//clientdata/Dimension/Unit"/>
                   </attributes>
                 </value>
@@ -1204,7 +1204,7 @@
                   <attributes xsi:type="metamodel:ActualAttribute" name="FractionDigits" value="0">
                     <attribute href="http://stefan-hennig.de/movisa#//clientdata/Dimension/FractionDigits"/>
                   </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="Unit">
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="Integer">
                     <attribute href="http://stefan-hennig.de/movisa#//clientdata/Dimension/Unit"/>
                   </attributes>
                 </value>
@@ -1219,7 +1219,7 @@
                   <attributes xsi:type="metamodel:ActualAttribute" name="FractionDigits" value="0">
                     <attribute href="http://stefan-hennig.de/movisa#//clientdata/Dimension/FractionDigits"/>
                   </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="Unit">
+                  <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="String">
                     <attribute href="http://stefan-hennig.de/movisa#//clientdata/Dimension/Unit"/>
                   </attributes>
                 </value>
@@ -1775,7 +1775,7 @@
       <attributes xsi:type="metamodel:ActualAttribute" name="Logging" value="false">
         <attribute href="http://stefan-hennig.de/movisa#//clientdata/DataItem/Logging"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualAttribute" name="MaxAge" value="0">
+      <attributes xsi:type="metamodel:ActualAttribute" name="MaxAge" value="1000">
         <attribute href="http://stefan-hennig.de/movisa#//clientdata/DataItem/MaxAge"/>
       </attributes>
       <attributes xsi:type="metamodel:ActualAttribute" name="MinValue" value="0">

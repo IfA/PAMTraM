@@ -179,6 +179,7 @@ IItemPropertySource {
 			childrenFeatures.add(MetamodelPackage.Literals.LIBRARY_ENTRY__PARAMETERS);
 			childrenFeatures.add(MetamodelPackage.Literals.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY);
 			childrenFeatures.add(MetamodelPackage.Literals.LIBRARY_ENTRY__PATH);
+			childrenFeatures.add(MetamodelPackage.Literals.LIBRARY_ENTRY__ID);
 		}
 		return childrenFeatures;
 	}
@@ -217,6 +218,8 @@ IItemPropertySource {
 			children = new ArrayList<>();
 			// add an ItemProvider for the Path
 			children.add(wrap(libraryEntry, MetamodelPackage.Literals.LIBRARY_ENTRY__PATH, libraryEntry.getPath(), CommandParameter.NO_INDEX));
+			// add an ItemProvider for the ID
+			children.add(wrap(libraryEntry, MetamodelPackage.Literals.LIBRARY_ENTRY__ID, libraryEntry.getId(), CommandParameter.NO_INDEX));
 			// add an ItemProvider for the virtual ParameterDescription
 			children.add(new ParameterDescriptionItemProvider(adapterFactory, libraryEntry));
 			// add an ItemProvider for the LibraryEntry (for some reason, the 'wrap(...)' method needs to be used
@@ -256,6 +259,7 @@ IItemPropertySource {
 		switch (notification.getFeatureID(LibraryEntry.class)) {
 		case MetamodelPackage.LIBRARY_ENTRY__LIBRARY_FILE:
 		case MetamodelPackage.LIBRARY_ENTRY__PATH:
+		case MetamodelPackage.LIBRARY_ENTRY__ID:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case MetamodelPackage.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY:
@@ -321,7 +325,7 @@ IItemPropertySource {
 	 * @return The {@link ParameterDescriptionItemProvider}s for this {@link LibraryEntry}
 	 */
 	public Object getParameters() {
-		return children.get(1);
+		return children.get(2);
 	}
 
 	@Override

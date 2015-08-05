@@ -400,11 +400,15 @@ public class LibraryHelper {
 			// create the LibraryElement to be returned
 			pamtramLibEntry = MetamodelFactoryImpl.eINSTANCE.createLibraryEntry();
 
-			// set the path, etc.
+			// set the path, id, etc.
 			//			pamtramLibEntry.setPath(libFileEntry.getKey());
 			VirtualAttribute pathAttribute = MetamodelFactoryImpl.eINSTANCE.createVirtualAttribute();
 			pathAttribute.setName("Classpath");
 			pathAttribute.setValue(path);
+			pamtramLibEntry.setPath(pathAttribute);
+			VirtualAttribute idAttribute = MetamodelFactoryImpl.eINSTANCE.createVirtualAttribute();
+			idAttribute.setName("ID");
+			idAttribute.setValue(libEntry.getParameterDescription().getID());
 			pamtramLibEntry.setPath(pathAttribute);
 			//						pamtramLibEntry.setLibraryFile(libraryFile);
 			pamtramLibEntry.setOriginalLibraryEntry(libEntry);

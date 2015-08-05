@@ -31,6 +31,7 @@ import pamtram.metamodel.VirtualAttribute;
  *   <li>{@link pamtram.metamodel.impl.LibraryEntryImpl#getLibraryFile <em>Library File</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.LibraryEntryImpl#getOriginalLibraryEntry <em>Original Library Entry</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.LibraryEntryImpl#getPath <em>Path</em>}</li>
+ *   <li>{@link pamtram.metamodel.impl.LibraryEntryImpl#getId <em>Id</em>}</li>
  * </ul>
  *
  * @generated
@@ -85,6 +86,16 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * @ordered
 	 */
 	protected VirtualAttribute path;
+
+	/**
+	 * The cached value of the '{@link #getId() <em>Id</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
+	protected VirtualAttribute id;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -190,6 +201,49 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public VirtualAttribute getId() {
+		return id;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetId(VirtualAttribute newId, NotificationChain msgs) {
+		VirtualAttribute oldId = id;
+		id = newId;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.LIBRARY_ENTRY__ID, oldId, newId);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setId(VirtualAttribute newId) {
+		if (newId != id) {
+			NotificationChain msgs = null;
+			if (id != null)
+				msgs = ((InternalEObject)id).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.LIBRARY_ENTRY__ID, null, msgs);
+			if (newId != null)
+				msgs = ((InternalEObject)newId).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.LIBRARY_ENTRY__ID, null, msgs);
+			msgs = basicSetId(newId, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.LIBRARY_ENTRY__ID, newId, newId));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry getOriginalLibraryEntry() {
 		if (originalLibraryEntry != null && originalLibraryEntry.eIsProxy()) {
@@ -237,6 +291,8 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 				return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
 			case MetamodelPackage.LIBRARY_ENTRY__PATH:
 				return basicSetPath(null, msgs);
+			case MetamodelPackage.LIBRARY_ENTRY__ID:
+				return basicSetId(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -258,6 +314,8 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 				return basicGetOriginalLibraryEntry();
 			case MetamodelPackage.LIBRARY_ENTRY__PATH:
 				return getPath();
+			case MetamodelPackage.LIBRARY_ENTRY__ID:
+				return getId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -284,6 +342,9 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 			case MetamodelPackage.LIBRARY_ENTRY__PATH:
 				setPath((VirtualAttribute)newValue);
 				return;
+			case MetamodelPackage.LIBRARY_ENTRY__ID:
+				setId((VirtualAttribute)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -308,6 +369,9 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 			case MetamodelPackage.LIBRARY_ENTRY__PATH:
 				setPath((VirtualAttribute)null);
 				return;
+			case MetamodelPackage.LIBRARY_ENTRY__ID:
+				setId((VirtualAttribute)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -328,6 +392,8 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 				return originalLibraryEntry != null;
 			case MetamodelPackage.LIBRARY_ENTRY__PATH:
 				return path != null;
+			case MetamodelPackage.LIBRARY_ENTRY__ID:
+				return id != null;
 		}
 		return super.eIsSet(featureID);
 	}

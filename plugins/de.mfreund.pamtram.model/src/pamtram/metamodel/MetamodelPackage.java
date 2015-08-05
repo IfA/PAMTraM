@@ -998,13 +998,22 @@ public interface MetamodelPackage extends EPackage {
 	int LIBRARY_ENTRY__PATH = 3;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY_ENTRY__ID = 4;
+
+	/**
 	 * The number of structural features of the '<em>Library Entry</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_ENTRY_FEATURE_COUNT = 4;
+	int LIBRARY_ENTRY_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Library Entry</em>' class.
@@ -3361,6 +3370,17 @@ public interface MetamodelPackage extends EPackage {
 	EReference getLibraryEntry_Path();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link pamtram.metamodel.LibraryEntry#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Id</em>'.
+	 * @see pamtram.metamodel.LibraryEntry#getId()
+	 * @see #getLibraryEntry()
+	 * @generated
+	 */
+	EReference getLibraryEntry_Id();
+
+	/**
 	 * Returns the meta object for the reference '{@link pamtram.metamodel.LibraryEntry#getOriginalLibraryEntry <em>Original Library Entry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4181,6 +4201,14 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference LIBRARY_ENTRY__PATH = eINSTANCE.getLibraryEntry_Path();
+
+		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LIBRARY_ENTRY__ID = eINSTANCE.getLibraryEntry_Id();
 
 		/**
 		 * The meta object literal for the '<em><b>Original Library Entry</b></em>' reference feature.

@@ -662,10 +662,11 @@ public class MetamodelTables
 
 		public static final /*@NonNull*/ ExecutorProperty _ExternalReferenceParameter__reference = new EcoreExecutorProperty(MetamodelPackage.Literals.EXTERNAL_REFERENCE_PARAMETER__REFERENCE, Types._ExternalReferenceParameter, 0);
 
-		public static final /*@NonNull*/ ExecutorProperty _LibraryEntry__libraryFile = new EcoreExecutorProperty(MetamodelPackage.Literals.LIBRARY_ENTRY__LIBRARY_FILE, Types._LibraryEntry, 0);
-		public static final /*@NonNull*/ ExecutorProperty _LibraryEntry__originalLibraryEntry = new EcoreExecutorProperty(MetamodelPackage.Literals.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY, Types._LibraryEntry, 1);
-		public static final /*@NonNull*/ ExecutorProperty _LibraryEntry__parameters = new EcoreExecutorProperty(MetamodelPackage.Literals.LIBRARY_ENTRY__PARAMETERS, Types._LibraryEntry, 2);
-		public static final /*@NonNull*/ ExecutorProperty _LibraryEntry__path = new EcoreExecutorProperty(MetamodelPackage.Literals.LIBRARY_ENTRY__PATH, Types._LibraryEntry, 3);
+		public static final /*@NonNull*/ ExecutorProperty _LibraryEntry__id = new EcoreExecutorProperty(MetamodelPackage.Literals.LIBRARY_ENTRY__ID, Types._LibraryEntry, 0);
+		public static final /*@NonNull*/ ExecutorProperty _LibraryEntry__libraryFile = new EcoreExecutorProperty(MetamodelPackage.Literals.LIBRARY_ENTRY__LIBRARY_FILE, Types._LibraryEntry, 1);
+		public static final /*@NonNull*/ ExecutorProperty _LibraryEntry__originalLibraryEntry = new EcoreExecutorProperty(MetamodelPackage.Literals.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY, Types._LibraryEntry, 2);
+		public static final /*@NonNull*/ ExecutorProperty _LibraryEntry__parameters = new EcoreExecutorProperty(MetamodelPackage.Literals.LIBRARY_ENTRY__PARAMETERS, Types._LibraryEntry, 3);
+		public static final /*@NonNull*/ ExecutorProperty _LibraryEntry__path = new EcoreExecutorProperty(MetamodelPackage.Literals.LIBRARY_ENTRY__PATH, Types._LibraryEntry, 4);
 
 		public static final /*@NonNull*/ ExecutorProperty _LibraryParameter__originalParameter = new EcoreExecutorProperty(MetamodelPackage.Literals.LIBRARY_PARAMETER__ORIGINAL_PARAMETER, Types._LibraryParameter, 0);
 		public static final /*@NonNull*/ ExecutorProperty _LibraryParameter__source = new EcoreExecutorProperty(MetamodelPackage.Literals.LIBRARY_PARAMETER__SOURCE, Types._LibraryParameter, 1);
@@ -691,7 +692,8 @@ public class MetamodelTables
 
 		public static final /*@NonNull*/ ExecutorProperty _TargetSectionNonContainmentReference__ExternalReferenceParameter__reference = new ExecutorPropertyWithImplementation("ExternalReferenceParameter", Types._TargetSectionNonContainmentReference, 0, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.EXTERNAL_REFERENCE_PARAMETER__REFERENCE));
 
-		public static final /*@NonNull*/ ExecutorProperty _VirtualAttribute__LibraryEntry__path = new ExecutorPropertyWithImplementation("LibraryEntry", Types._VirtualAttribute, 0, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.LIBRARY_ENTRY__PATH));
+		public static final /*@NonNull*/ ExecutorProperty _VirtualAttribute__LibraryEntry__id = new ExecutorPropertyWithImplementation("LibraryEntry", Types._VirtualAttribute, 0, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.LIBRARY_ENTRY__ID));
+		public static final /*@NonNull*/ ExecutorProperty _VirtualAttribute__LibraryEntry__path = new ExecutorPropertyWithImplementation("LibraryEntry", Types._VirtualAttribute, 1, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.LIBRARY_ENTRY__PATH));
 		static {
 			Init.initEnd();
 		}
@@ -2445,6 +2447,7 @@ public class MetamodelTables
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _LibraryEntry = {
+			MetamodelTables.Properties._LibraryEntry__id,
 			MetamodelTables.Properties._LibraryEntry__libraryFile,
 			MetamodelTables.Properties._LibraryEntry__originalLibraryEntry,
 			MetamodelTables.Properties._LibraryEntry__parameters,
@@ -2553,6 +2556,7 @@ public class MetamodelTables
 			MetamodelTables.Properties._Attribute__owningClass,
 			MetamodelTables.Properties._TargetSectionAttribute__unique,
 			MetamodelTables.Properties._TargetSectionAttribute__value,
+			MetamodelTables.Properties._VirtualAttribute__LibraryEntry__id,
 			MetamodelTables.Properties._VirtualAttribute__LibraryEntry__path
 		};
 

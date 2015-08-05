@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link pamtram.metamodel.LibraryEntry#getLibraryFile <em>Library File</em>}</li>
  *   <li>{@link pamtram.metamodel.LibraryEntry#getOriginalLibraryEntry <em>Original Library Entry</em>}</li>
  *   <li>{@link pamtram.metamodel.LibraryEntry#getPath <em>Path</em>}</li>
+ *   <li>{@link pamtram.metamodel.LibraryEntry#getId <em>Id</em>}</li>
  * </ul>
  *
  * @see pamtram.metamodel.MetamodelPackage#getLibraryEntry()
@@ -95,6 +96,33 @@ public interface LibraryEntry extends EObject {
 	 * @generated
 	 */
 	void setPath(VirtualAttribute value);
+
+	/**
+	 * Returns the value of the '<em><b>Id</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Id</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Id</em>' containment reference.
+	 * @see #setId(VirtualAttribute)
+	 * @see pamtram.metamodel.MetamodelPackage#getLibraryEntry_Id()
+	 * @model containment="true" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!LibraryEntry!id'"
+	 * @generated
+	 */
+	VirtualAttribute getId();
+
+	/**
+	 * Sets the value of the '{@link pamtram.metamodel.LibraryEntry#getId <em>Id</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Id</em>' containment reference.
+	 * @see #getId()
+	 * @generated
+	 */
+	void setId(VirtualAttribute value);
 
 	/**
 	 * Returns the value of the '<em><b>Original Library Entry</b></em>' reference.

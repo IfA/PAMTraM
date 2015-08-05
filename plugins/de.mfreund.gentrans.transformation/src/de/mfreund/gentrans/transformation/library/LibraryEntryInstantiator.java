@@ -153,7 +153,10 @@ public class LibraryEntryInstantiator {
 
 				// calculate the attribute value using the given hint values and the AttributeMapping
 				LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> hints = hintValues.getHintValues(attMapping);
+				//TODO this somehow fixes the problem when lib entries get inserted multiple times but needs to be checked in more detail
+				Map copy = hints.get(0);
 				String value = calculator.calculateAttributeValue(attParam.getAttribute(), attMapping, hints);
+				hints.add(copy);
 
 				// set the calculated value
 				attParam.getOriginalParameter().setNewValue(value);

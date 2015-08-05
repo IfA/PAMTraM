@@ -52,5 +52,20 @@
       domainReference=""
       id="aiu2"
       name="aiu2"
-      role="grouping"/>
+      role="grouping">
+    <aggregatedIn
+        associatedWith="aiu2_1"/>
+    <eventSupport/>
+    <presentationSupport/>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aiu2_1"
+      name="aiu2_1">
+    <aggregatedIn/>
+    <eventSupport>
+      <dataInputOutputSupport
+          dataType="out"/>
+    </eventSupport>
+    <presentationSupport/>
+  </abstractInteractionUnit>
 </aui:AbstractUserInterfaceModel>

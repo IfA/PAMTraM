@@ -309,7 +309,7 @@
     <eventSupport>
       <dataInputOutputSupport
           dataType="out"
-          defaultValue="/folder/imageRessource"/>
+          defaultValue="img/logo.png"/>
     </eventSupport>
     <presentationSupport/>
   </abstractInteractionUnit>

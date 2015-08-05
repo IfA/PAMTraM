@@ -4277,7 +4277,7 @@
       <parameters xsi:type="metamodel:ContainerParameter" name="UIComponentContainerParameter">
         <source href="lib/target/Infrastructure.BufferPlace/data.xmi#//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent"/>
         <originalParameter xsi:type="movisalib:UIComponentContainerParameter" href="lib/target/Infrastructure.BufferPlace/data.xmi#//@parameterDescription/@Containers.0"/>
-        <class name="SimpleContainer">
+        <class name="SimpleContainer" cardinality="ONE__INFINITY">
           <eClass href="http://stefan-hennig.de/movisa#//presentation/SimpleContainer"/>
         </class>
       </parameters>
@@ -6100,6 +6100,7 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="IDMapping" target="//@targetSectionModel/@libraryElements.3/@id">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath @ Integer" source="//@sourceSectionModel/@metaModelSections.16/@references.0/@value.3/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel/@modifierSets.15 //@mappingModel/@modifierSets.62"/>
         </mappingHints>
+        <mappingHints xsi:type="mapping:CardinalityMapping" source="//@sourceSectionModel/@metaModelSections.16/@references.0/@value.3" target="//@targetSectionModel/@libraryElements.3/@parameters.4/@class"/>
         <modelConnectionMatcher name="Panel">
           <targetAttributes name="Panel Name" source="//@targetSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0"/>

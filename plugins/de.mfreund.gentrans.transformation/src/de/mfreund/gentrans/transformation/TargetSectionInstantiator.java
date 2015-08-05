@@ -407,7 +407,7 @@ class TargetSectionInstantiator implements CancellationListener {
 				// no modelConnaectionHint or AttributeMapping found
 				// or cardinality is still 1
 				// last chance
-				if (cardinality == 1) {
+				if (cardinality <= 1) {
 					cardinality = cardHintValue;
 				}
 

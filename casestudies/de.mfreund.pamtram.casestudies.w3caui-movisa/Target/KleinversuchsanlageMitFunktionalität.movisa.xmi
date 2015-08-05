@@ -259,26 +259,6 @@
       </OwnedBehavior>
       <OwnedReception Name="Alert_React" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.12"/>
     </OwnedElement>
-    <OwnedElement xsi:type="algorithm:Class" Name="V1_FL_Changed_Class">
-      <OwnedBehavior Name="V1_FL_Changed_SM">
-        <OwnedTransition Name="Initial2Main" Source="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.0" Target="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1"/>
-        <OwnedTransition Name="Initial2Main" Source="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1" Target="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1"/>
-        <StateMachineElement xsi:type="algorithm:PseudoState" Name="Initial" OutgoingTransition="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@OwnedTransition.0"/>
-        <StateMachineElement xsi:type="algorithm:State" Name="MainState" OutgoingTransition="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@OwnedTransition.1">
-          <StateActivityBlock Name="MainStateSAB">
-            <Edge xsi:type="actions:ControlFlow" Name="V1_FL_Changed_ControlFlow" Source="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2"/>
-            <Edge xsi:type="actions:ObjectFlow" Name="V1_FL_Changed_ObjectFlow" Source="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Output.0" Target="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Value"/>
-            <Action xsi:type="actions:AcceptEventAction" Name="V1_FL_Changed_Action" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Context="//@AlgorithmDomain/@OwnedElement.17" Trigger="//@AlgorithmDomain/@OwnedElement.5/@Signal.2"/>
-            <Action xsi:type="actions:ReadDataItemAction" Context="//@AlgorithmDomain/@OwnedElement.17" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.3">
-              <Result Type="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.1" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
-            </Action>
-            <Action xsi:type="actions:WriteVariableAction" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Context="//@AlgorithmDomain/@OwnedElement.17">
-              <Value Type="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.1" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
-            </Action>
-          </StateActivityBlock>
-        </StateMachineElement>
-      </OwnedBehavior>
-    </OwnedElement>
   </AlgorithmDomain>
   <ClientDataDomain Name="Client Data Model" Author="w3cauitomovisa" Version="1.0">
     <LogicalDataPerspective>

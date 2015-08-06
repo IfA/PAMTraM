@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EAttribute;
@@ -26,6 +27,7 @@ import de.mfreund.gentrans.transformation.selectors.GenericItemSelectorDialogRun
 import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunner;
 import de.mfreund.gentrans.transformation.util.CancellationListener;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
@@ -40,7 +42,9 @@ import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.CardinalityType;
+import pamtram.metamodel.ExternalReferenceParameter;
 import pamtram.metamodel.LibraryEntry;
+import pamtram.metamodel.LibraryParameter;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionContainmentReference;
@@ -719,8 +723,21 @@ class TargetSectionInstantiator implements CancellationListener {
 		 * only go on if any instances of this section were created
 		 */
 		if (instancesBySection.get(targetSectionClass) != null) {
-			for (final TargetSectionReference refVal : targetSectionClass
-					.getReferences()) {
+			EList<TargetSectionReference> references = targetSectionClass.getReferences();
+			if(targetSectionClass.isLibraryEntry()) {
+				// the target section class is part of a library entry, thus there must not be any references as direct children of it
+				assert references.isEmpty();
+				references = new BasicEList<>();
+				// however, we want to perform the linking for the references affected by ExternalReferenceParameters
+				LibraryEntry libEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
+
+				for (LibraryParameter<?> parameter : libEntry.getParameters()) {
+					if(parameter instanceof ExternalReferenceParameter) {
+						references.add(((ExternalReferenceParameter) parameter).getReference());
+					}
+				}
+			}
+			for (final TargetSectionReference refVal : references) {
 				if (refVal instanceof TargetSectionNonContainmentReference) {
 					final TargetSectionNonContainmentReference ref = (TargetSectionNonContainmentReference) refVal;
 					final LinkedList<TargetSectionClass> refValueClone = new LinkedList<TargetSectionClass>();
@@ -805,10 +822,28 @@ class TargetSectionInstantiator implements CancellationListener {
 										}
 										// select targetInst
 										if (fittingVals.size() == 1) {
-											addValueToReference(ref,
-													fittingVals.get(0)
-													.getEObject(),
-													srcInst.getEObject());
+											if(!targetSectionClass.isLibraryEntry()) {
+												addValueToReference(ref,
+														fittingVals.get(0)
+														.getEObject(),
+														srcInst.getEObject());
+											} else {
+												/* 
+												 * for library entries, we cannot simply add the value as the reference we are handling is not part of the targetSectionClass;
+												 * consequenlty, we need to pass a custom 'source' object (the one inside the library item that the ExternalReferenceParameter represents)
+												 */
+												LibraryEntry libEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
+												for (LibraryParameter<?> parameter : libEntry.getParameters()) {
+													if(parameter instanceof ExternalReferenceParameter) {
+														ExternalReferenceParameter extRefParam = ((ExternalReferenceParameter) parameter);
+														if(extRefParam.getReference().equals(ref)) {
+															@SuppressWarnings("unchecked")
+															AbstractExternalReferenceParameter<EObject, EObject> originalParam = (AbstractExternalReferenceParameter<EObject, EObject>) extRefParam.getOriginalParameter();
+															originalParam.setTarget(fittingVals.get(0).getEObject());
+														}
+													}
+												}
+											}
 										} else if (fittingVals.size() > 1) {// let
 											// user
 											// decide

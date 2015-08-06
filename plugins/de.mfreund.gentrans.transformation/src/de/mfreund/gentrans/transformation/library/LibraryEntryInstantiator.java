@@ -17,19 +17,14 @@ import de.mfreund.gentrans.transformation.HintValueStorage;
 import de.mfreund.gentrans.transformation.TargetSectionConnector;
 import de.mfreund.gentrans.transformation.TargetSectionRegistry;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractContainerParameter;
-import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ParameterDescription;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPlugin;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceInterface;
-import pamtram.mapping.AttributeMatcher;
-import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.InstantiableMappingHintGroup;
-import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintType;
-import pamtram.mapping.MappingInstanceSelector;
 import pamtram.metamodel.AttributeParameter;
 import pamtram.metamodel.ContainerParameter;
 import pamtram.metamodel.ExternalReferenceParameter;
@@ -187,88 +182,11 @@ public class LibraryEntryInstantiator {
 
 				ExternalReferenceParameter extRefParam = (ExternalReferenceParameter) param;
 
-				// find the MappingInstanceSelector for this ExternalReferenceParameter
-				Collection<Setting> refs = EcoreUtil.UsageCrossReferencer.find(extRefParam.getReference(), mappingHints);
-				if(refs.size() != 1) {
-					return false;
-				}
-				EObject ref = refs.iterator().next().getEObject();
-				if(!(ref instanceof MappingInstanceSelector)) {
-					return false;
-				}
-				MappingInstanceSelector selector = (MappingInstanceSelector) ref;
-
 				/*
-				 * handle AttributeMatcher
+				 * we do not have to do anything as the target for the parameters has already been set by the TargetSectionInstantiator;
+				 * consequently, we just make sure that a target could be determined for every parameter
 				 */
-				if (selector.getMatcher() instanceof AttributeMatcher) {
-					final AttributeMatcher matcher = (AttributeMatcher) selector
-							.getMatcher();
-
-					/*
-					 * The following has been copied and adapted from the 
-					 * 'TargetSectionInstantiator.instantiateTargetSectionSecondPass()'
-					 * method. Maybe, this could be improved/reused in a better way.
-					 */
-
-					// now search for target attributes
-					final LinkedList<EObjectTransformationHelper> targetInstances = targetSectionRegistry
-							.getFlattenedPamtramClassInstances(matcher
-									.getTargetAttribute()
-									.getOwningClass());
-
-					for (final Object attrVal : hintValues.getHintValues(selector)) {
-						String attrValStr = null;
-
-						attrValStr = "";
-						final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> hVal = 
-								(Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>) attrVal;
-						for (final AttributeMatcherSourceInterface srcElement : ((AttributeMatcher) selector
-								.getMatcher())
-								.getSourceAttributes()) {
-							if (hVal.containsKey(srcElement)) {
-								attrValStr += hVal
-										.get(srcElement).getNextValue();
-							} else {
-								consoleStream.println("HintSourceValue not found "
-										+ srcElement
-										.getName()
-										+ " in hint "
-										+ selector.getName()
-										+ ".");
-							}
-						}
-
-						boolean found = false;
-						for (final EObjectTransformationHelper targetInst : targetInstances) {
-							// get Attribute value
-							final String targetValStr = targetInst
-									.getAttributeValue(matcher
-											.getTargetAttribute());
-							if (targetValStr != null) {
-								if (targetValStr.equals(attrValStr)) {
-									// set the target eObject of the parameter
-									((AbstractExternalReferenceParameter<EObject, EObject>) extRefParam.getOriginalParameter()).setTarget(targetInst.getEObject());
-									found = true;
-									break;
-								}
-							} else {
-								return false;
-							}
-						}
-						if(!found) {
-							consoleStream.println("The MappigInstanceSelector " + selector.getName() + " (Mapping: " + ((Mapping) mappingGroup.eContainer()).getName() + 
-									", Group: " + mappingGroup.getName() + " ) has an AttributeMatcher that picked up the value '" + attrValStr
-									+ "' to be matched to the TargetAttribute, but no fitting TargetSectionInstance with this value could be found.");
-							return false;
-						}
-					}
-
-				} else {
-					consoleStream.println("Unsupported matcher type '" + selector.getMatcher().getClass().getName() + "'!");
-					return false;
-				}
-
+				assert extRefParam.getOriginalParameter().getTarget() != null;
 			}
 		}
 

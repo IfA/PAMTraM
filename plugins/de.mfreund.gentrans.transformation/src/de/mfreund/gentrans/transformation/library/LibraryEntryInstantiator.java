@@ -207,7 +207,8 @@ public class LibraryEntryInstantiator {
 		 * affect the names of the elements to be created.
 		 */
 		for (MappingHint mappingHint : mappingHints) {
-			if(mappingHint instanceof AttributeMapping && ((AttributeMapping) mappingHint).getTarget().equals(this.libraryEntry.getId())) {
+			if(mappingHint instanceof AttributeMapping && ((AttributeMapping) mappingHint).getTarget().getName().equals("ID") &&
+					((AttributeMapping) mappingHint).getTarget().eContainer() instanceof LibraryEntry) {
 				AttributeMapping idMapping = (AttributeMapping) mappingHint;
 				String id = calculator.calculateAttributeValue(this.libraryEntry.getId(), idMapping, this.hintValues.getHintValues(idMapping));
 				if(id != null && !id.isEmpty()) {

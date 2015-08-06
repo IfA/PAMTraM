@@ -125,32 +125,16 @@ public class LibraryEntryInstantiator {
 			if(param instanceof AttributeParameter) {
 				AttributeParameter attParam = ((AttributeParameter) param);
 
-				//				// find the AttributeMapping for this AttributeParameter
-				//				Collection<Setting> refs = EcoreUtil.UsageCrossReferencer.find(attParam.getAttribute(), mappingHints);
-				//				/*
-				//				 * The number of relevant AttributeMappings should always be 1. Even if multiple instances of this library
-				//				 * entry are to be instantiated, only AttributeMappings that are relevant for this concrete instance
-				//				 * are passed to this LibraryEntryInstantiator.
-				//				 */
-				//				if(refs.size() != 1) {
-				//					return false;
-				//				}
-				//				EObject ref = refs.iterator().next().getEObject();
-				//				if(!(ref instanceof AttributeMapping)) {
-				//					return false;
-				//				}
-				//				AttributeMapping attMapping = (AttributeMapping) ref;
-				//
-				//				// calculate the attribute value using the given hint values and the AttributeMapping
-				//				LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> hints = hintValues.getHintValues(attMapping);
-				//				//TODO this somehow fixes the problem when lib entries get inserted multiple times but needs to be checked in more detail
-				//				Map copy = hints.get(0);
-				//				String value = calculator.calculateAttributeValue(attParam.getAttribute(), attMapping, hints);
-				//				hints.add(copy);
-				//
-				//				// set the calculated value
-				//				attParam.getOriginalParameter().setNewValue(value);
-				attParam.getOriginalParameter().setNewValue("100");
+				/*
+				 * we do not have to do anything as the new value for the parameters has already been set by the TargetSectionInstantiator;
+				 * consequently, we just make sure that a new value has been set for every parameter
+				 */
+				if(attParam.getOriginalParameter().getNewValue() == null) {
+					consoleStream.println("Internal Error: The new value for the AttributeParameter '" + attParam.getName() 
+					+ "' could not be determined!");
+					return false;
+				}
+
 			} else if(param instanceof ContainerParameter) {
 
 				ContainerParameter contParam = (ContainerParameter) param;

@@ -28,6 +28,7 @@ import de.mfreund.gentrans.transformation.selectors.GenericItemSelectorDialogRun
 import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunner;
 import de.mfreund.gentrans.transformation.util.CancellationListener;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractAttributeParameter;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceInterface;
@@ -42,6 +43,7 @@ import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.metamodel.ActualAttribute;
+import pamtram.metamodel.AttributeParameter;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.ExternalReferenceParameter;
 import pamtram.metamodel.LibraryEntry;
@@ -472,8 +474,24 @@ class TargetSectionInstantiator implements CancellationListener {
 			 */
 			final Map<TargetSectionAttribute, List<String>> attributeValues = new HashMap<>();
 			final LinkedList<EObjectTransformationHelper> markedForDelete = new LinkedList<>();
-			for (final TargetSectionAttribute attr : metamodelSection
-					.getAttributes()) {
+
+			EList<TargetSectionAttribute> attributes = metamodelSection.getAttributes();
+
+			if(metamodelSection.isLibraryEntry()) {
+				// the metamodelsection is a library entry, thus there must not be any attributes as direct children of it
+				assert attributes.isEmpty();
+				attributes = new BasicEList<>();
+				// however, we want to perform the calculation of the values affected by AttributeParameters
+				LibraryEntry libEntry = (LibraryEntry) metamodelSection.eContainer().eContainer();
+
+				for (LibraryParameter<?> parameter : libEntry.getParameters()) {
+					if(parameter instanceof AttributeParameter) {
+						attributes.add(((AttributeParameter) parameter).getAttribute());
+					}
+				}
+			}
+
+			for (final TargetSectionAttribute attr : attributes) {
 				attributeValues.put(attr, new LinkedList<String>());
 
 				MappingHint hintFound = null;
@@ -559,25 +577,34 @@ class TargetSectionInstantiator implements CancellationListener {
 				for (final TargetSectionAttribute attr : attributeValues
 						.keySet()) {
 					if (noDelete) {
-						final String setValue = attributeValues.get(attr)
-								.remove(0);
+						final String setValue = attributeValues.get(attr).remove(0);
 						try {
-							/*
-							 * setting an Attribute causes the value to be saved
-							 * in the attribute value registry
-							 */
-							instance.setAttributeValue(attr, setValue);
+
+							// finally, we can set the value of the attribute
+							if(!metamodelSection.isLibraryEntry()) {
+								/*
+								 * setting an Attribute causes the value to be saved
+								 * in the attribute value registry
+								 */
+								instance.setAttributeValue(attr, setValue);
+							} else {
+								/* 
+								 * for library entries, we cannot simply set the value as the attribute we are handling is not part of the targetSectionClass;
+								 * instead we want to specify the value as 'new value' for the affected AttributeParameter
+								 */
+								LibraryEntry specificLibEntry = libEntryInstantiatorMap.get(instance).getLibraryEntry();
+								LibraryEntry genericLibEntry = (LibraryEntry) metamodelSection.eContainer().eContainer();
+								AttributeParameter attrParam = (AttributeParameter) specificLibEntry.getParameters().get(genericLibEntry.getParameters().indexOf(attr.eContainer()));
+								@SuppressWarnings("unchecked")
+								AbstractAttributeParameter<EObject> originalParam = (AbstractAttributeParameter<EObject>) attrParam.getOriginalParameter();
+								originalParam.setNewValue(setValue);
+							}
+
 
 						} catch (final IllegalArgumentException e) {
-							consoleStream.println("Could not set Attribute "
-									+ attr.getName()
-									+ " of target section Class "
-									+ metamodelSection.getName()
-									+ " in target section "
-									+ metamodelSection.getContainingSection()
-									.getName() + ".\n"
-									+ "The problematic value was: '" + setValue
-									+ "'.");
+							consoleStream.println("Could not set Attribute " + attr.getName() + " of target section Class "
+									+ metamodelSection.getName() + " in target section " + metamodelSection.getContainingSection()
+									.getName() + ".\nThe problematic value was: '" + setValue + "'.");
 						}
 					} else {
 						attributeValues.get(attr).remove(0);
@@ -701,7 +728,7 @@ class TargetSectionInstantiator implements CancellationListener {
 			final HintValueStorage hintValues,
 			final String mappingName) {
 
-		final LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instBySection = new LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>();
+		final LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instBySection = new LinkedHashMap<>();
 
 		/*
 		 * Now, perform the first-run instantiation.
@@ -837,24 +864,10 @@ class TargetSectionInstantiator implements CancellationListener {
 											}
 										}
 										// select targetInst
+										EObjectTransformationHelper targetInst = null;
 										if (fittingVals.size() == 1) {
-											if(!targetSectionClass.isLibraryEntry()) {
-												addValueToReference(ref,
-														fittingVals.get(0)
-														.getEObject(),
-														srcInst.getEObject());
-											} else {
-												/* 
-												 * for library entries, we cannot simply add the value as the reference we are handling is not part of the targetSectionClass;
-												 * instead we want to specify the value as 'target' for the affected ExternalReferenceParameter
-												 */
-												LibraryEntry specificLibEntry = libEntryInstantiatorMap.get(srcInst).getLibraryEntry();
-												LibraryEntry genericLibEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
-												ExternalReferenceParameter extRefParam = (ExternalReferenceParameter) specificLibEntry.getParameters().get(genericLibEntry.getParameters().indexOf(ref.eContainer()));
-												@SuppressWarnings("unchecked")
-												AbstractExternalReferenceParameter<EObject, EObject> originalParam = (AbstractExternalReferenceParameter<EObject, EObject>) extRefParam.getOriginalParameter();
-												originalParam.setTarget(fittingVals.get(0).getEObject());
-											}
+											targetInst = fittingVals.get(0);
+
 										} else if (fittingVals.size() > 1) {// let
 											// user
 											// decide
@@ -862,44 +875,41 @@ class TargetSectionInstantiator implements CancellationListener {
 												return;
 											}
 											final GenericItemSelectorDialogRunner<EObjectTransformationHelper> dialog = new GenericItemSelectorDialogRunner<EObjectTransformationHelper>(
-													"The MappingInstanceSelector '"
-															+ h.getName()
-															+ " of Mapping"
-															+ mappingName
-															+ "(Group: "
-															+ group.getName()
-															+ ")' has a Matcher that points to a target element with more than one instance. "
-															+ "Please choose to which element the Reference '"
-															+ ref.getName()
-															+ "' of the following element should point to:\n\n"
-															+ srcInst
-															.toString(),
+													"The MappingInstanceSelector '" + h.getName() + " of Mapping" + mappingName + "(Group: "
+															+ group.getName() + ")' has a Matcher that points to a target element with more than one instance. "
+															+ "Please choose to which element the Reference '" + ref.getName()
+															+ "' of the following element should point to:\n\n" + srcInst.toString(),
 															fittingVals, 0);
 											Display.getDefault().syncExec(
 													dialog);
 
-											if (dialog
-													.wasTransformationStopRequested()) {
+											if (dialog.wasTransformationStopRequested()) {
 												transformationAborted = true;
 												return;
 											}
-											addValueToReference(ref, dialog
-													.getSelection()
-													.getEObject(),
-													srcInst.getEObject());
+											targetInst = dialog.getSelection();
 										} else {
-											consoleStream
-											.println("The MappigInstanceSelector "
-													+ hSel.getName()
-													+ " (Mapping: "
-													+ mappingName
-													+ ", Group: "
-													+ group.getName()
-													+ " ) has an AttributeMatcher that picked up the value '"
-													+ attrValStr
-													+ "' to be matched to the "
+											consoleStream.println("The MappigInstanceSelector " + hSel.getName() + " (Mapping: " + mappingName
+													+ ", Group: " + group.getName() + " ) has an AttributeMatcher that picked up the value '"
+													+ attrValStr + "' to be matched to the "
 													+ "TargetAttribute, but no fitting TargetSectionInstance with this value could be found.");
 
+										}
+
+										// finally, we can set the value of the reference
+										if(!targetSectionClass.isLibraryEntry()) {
+											addValueToReference(ref, targetInst.getEObject(), srcInst.getEObject());
+										} else {
+											/* 
+											 * for library entries, we cannot simply add the value as the reference we are handling is not part of the targetSectionClass;
+											 * instead we want to specify the value as 'target' for the affected ExternalReferenceParameter
+											 */
+											LibraryEntry specificLibEntry = libEntryInstantiatorMap.get(srcInst).getLibraryEntry();
+											LibraryEntry genericLibEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
+											ExternalReferenceParameter extRefParam = (ExternalReferenceParameter) specificLibEntry.getParameters().get(genericLibEntry.getParameters().indexOf(ref.eContainer()));
+											@SuppressWarnings("unchecked")
+											AbstractExternalReferenceParameter<EObject, EObject> originalParam = (AbstractExternalReferenceParameter<EObject, EObject>) extRefParam.getOriginalParameter();
+											originalParam.setTarget(targetInst.getEObject());
 										}
 									}
 

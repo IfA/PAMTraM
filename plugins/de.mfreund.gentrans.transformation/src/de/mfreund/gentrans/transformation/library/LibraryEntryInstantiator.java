@@ -1,17 +1,13 @@
 package de.mfreund.gentrans.transformation.library;
 
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.AttributeValueCalculator;
-import de.mfreund.gentrans.transformation.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.EObjectTransformationHelper;
 import de.mfreund.gentrans.transformation.HintValueStorage;
 import de.mfreund.gentrans.transformation.TargetSectionConnector;
@@ -20,7 +16,6 @@ import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractContainerParamet
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ParameterDescription;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPlugin;
 import pamtram.mapping.AttributeMapping;
-import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
@@ -130,41 +125,39 @@ public class LibraryEntryInstantiator {
 			if(param instanceof AttributeParameter) {
 				AttributeParameter attParam = ((AttributeParameter) param);
 
-				// find the AttributeMapping for this AttributeParameter
-				Collection<Setting> refs = EcoreUtil.UsageCrossReferencer.find(attParam.getAttribute(), mappingHints);
-				/*
-				 * The number of relevant AttributeMappings should always be 1. Even if multiple instances of this library
-				 * entry are to be instantiated, only AttributeMappings that are relevant for this concrete instance
-				 * are passed to this LibraryEntryInstantiator.
-				 */
-				if(refs.size() != 1) {
-					return false;
-				}
-				EObject ref = refs.iterator().next().getEObject();
-				if(!(ref instanceof AttributeMapping)) {
-					return false;
-				}
-				AttributeMapping attMapping = (AttributeMapping) ref;
-
-				// calculate the attribute value using the given hint values and the AttributeMapping
-				LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> hints = hintValues.getHintValues(attMapping);
-				//TODO this somehow fixes the problem when lib entries get inserted multiple times but needs to be checked in more detail
-				Map copy = hints.get(0);
-				String value = calculator.calculateAttributeValue(attParam.getAttribute(), attMapping, hints);
-				hints.add(copy);
-
-				// set the calculated value
-				attParam.getOriginalParameter().setNewValue(value);
+				//				// find the AttributeMapping for this AttributeParameter
+				//				Collection<Setting> refs = EcoreUtil.UsageCrossReferencer.find(attParam.getAttribute(), mappingHints);
+				//				/*
+				//				 * The number of relevant AttributeMappings should always be 1. Even if multiple instances of this library
+				//				 * entry are to be instantiated, only AttributeMappings that are relevant for this concrete instance
+				//				 * are passed to this LibraryEntryInstantiator.
+				//				 */
+				//				if(refs.size() != 1) {
+				//					return false;
+				//				}
+				//				EObject ref = refs.iterator().next().getEObject();
+				//				if(!(ref instanceof AttributeMapping)) {
+				//					return false;
+				//				}
+				//				AttributeMapping attMapping = (AttributeMapping) ref;
+				//
+				//				// calculate the attribute value using the given hint values and the AttributeMapping
+				//				LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> hints = hintValues.getHintValues(attMapping);
+				//				//TODO this somehow fixes the problem when lib entries get inserted multiple times but needs to be checked in more detail
+				//				Map copy = hints.get(0);
+				//				String value = calculator.calculateAttributeValue(attParam.getAttribute(), attMapping, hints);
+				//				hints.add(copy);
+				//
+				//				// set the calculated value
+				//				attParam.getOriginalParameter().setNewValue(value);
+				attParam.getOriginalParameter().setNewValue("100");
 			} else if(param instanceof ContainerParameter) {
 
 				ContainerParameter contParam = (ContainerParameter) param;
 
-				if(!(mappingGroup instanceof MappingHintGroup)) {
-					return false;
-				}
-				if(!((MappingHintGroup) mappingGroup).getTargetMMSection().equals(contParam.getClass_())) {
-					return false;
-				}
+				assert mappingGroup instanceof MappingHintGroup;
+				assert ((LibraryEntry) (((MappingHintGroup) mappingGroup).getTargetMMSection().eContainer().eContainer())).getOriginalLibraryEntry().equals(
+						((LibraryEntry) (contParam.getClass_().eContainer().eContainer())).getOriginalLibraryEntry());
 
 				/*
 				 * As the root instance of the LibraryEntry has already been instantiated by the 
@@ -172,11 +165,11 @@ public class LibraryEntryInstantiator {
 				 * delete the created root instance (represented by the 'transformationHelpder) and use its 
 				 * container as parameter for the library entry.
 				 */
-				LinkedList<EObjectTransformationHelper> rootInstances = targetSectionRegistry.getPamtramClassInstances(contParam.getClass_()).get(mappingGroup);
+				LinkedList<EObjectTransformationHelper> rootInstances = targetSectionRegistry.getPamtramClassInstances(((MappingHintGroup) mappingGroup).getTargetMMSection()).get(mappingGroup);
 				rootInstances.remove(transformationHelper);
 				((AbstractContainerParameter<EObject, EObject>) (contParam.getOriginalParameter())).setContainer(transformationHelper.getEObject().eContainer());
 				EcoreUtil.delete(transformationHelper.getEObject());
-				targetSectionRegistry.getPamtramClassInstances(contParam.getClass_()).put(mappingGroup, rootInstances);				
+				targetSectionRegistry.getPamtramClassInstances(((MappingHintGroup) mappingGroup).getTargetMMSection()).put(mappingGroup, rootInstances);				
 
 			} else if (param instanceof ExternalReferenceParameter) {
 
@@ -186,7 +179,11 @@ public class LibraryEntryInstantiator {
 				 * we do not have to do anything as the target for the parameters has already been set by the TargetSectionInstantiator;
 				 * consequently, we just make sure that a target could be determined for every parameter
 				 */
-				assert extRefParam.getOriginalParameter().getTarget() != null;
+				if(extRefParam.getOriginalParameter().getTarget() == null) {
+					consoleStream.println("Internal Error: The target for the ExternalReferenceParameter '" + extRefParam.getName() 
+					+ "' could not be determined!");
+					return false;
+				}
 			}
 		}
 

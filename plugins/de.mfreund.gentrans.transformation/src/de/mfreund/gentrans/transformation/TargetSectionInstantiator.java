@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.console.MessageConsoleStream;
 
@@ -167,6 +168,12 @@ class TargetSectionInstantiator implements CancellationListener {
 	 * transformation.
 	 */
 	private ArrayList<LibraryEntryInstantiator> libEntryInstantiators = new ArrayList<>();
+
+	/**
+	 * This relates temporarily created elements for LibraryEntries (represented by an {@link EObjectTransformationHelper}) to
+	 * their {@link LibraryEntryInstantiator}. 
+	 */
+	private HashMap<EObjectTransformationHelper, LibraryEntryInstantiator> libEntryInstantiatorMap = new HashMap<>();
 
 	/**
 	 * An instance of {@link AttributeValueCalculator} that is used to calculate attribute values.
@@ -437,10 +444,20 @@ class TargetSectionInstantiator implements CancellationListener {
 				 * that will insert the real library entry at the end.
 				 */
 				if(metamodelSection.isLibraryEntry()) {
-					LibraryEntry libEntry = (LibraryEntry) metamodelSection.eContainer().eContainer();
-					libEntryInstantiators.add(
-							new LibraryEntryInstantiator(
-									libEntry, instTransformationHelper, mappingGroup, mappingHints, hintValues, consoleStream));
+
+					/*
+					 * As LibraryEntries may get inserted multiple times, we need to create a self-contained copy
+					 * of the library entry
+					 */
+					LibraryEntry originallibEntry = (LibraryEntry) metamodelSection.eContainer().eContainer();
+					ArrayList<EObject> originals = new ArrayList<>();
+					originals.add(originallibEntry);
+					originals.add(originallibEntry.getOriginalLibraryEntry());
+					LibraryEntry clonedLibEntry = (LibraryEntry) EcoreUtil.copyAll(originals).iterator().next();
+					LibraryEntryInstantiator instLibraryEntryInstantiator = new LibraryEntryInstantiator(
+							clonedLibEntry, instTransformationHelper, mappingGroup, mappingHints, hintValues, consoleStream);
+					libEntryInstantiators.add(instLibraryEntryInstantiator);
+					libEntryInstantiatorMap.put(instTransformationHelper, instLibraryEntryInstantiator);
 				}
 
 			}
@@ -724,6 +741,7 @@ class TargetSectionInstantiator implements CancellationListener {
 		 */
 		if (instancesBySection.get(targetSectionClass) != null) {
 			EList<TargetSectionReference> references = targetSectionClass.getReferences();
+
 			if(targetSectionClass.isLibraryEntry()) {
 				// the target section class is part of a library entry, thus there must not be any references as direct children of it
 				assert references.isEmpty();
@@ -740,7 +758,7 @@ class TargetSectionInstantiator implements CancellationListener {
 			for (final TargetSectionReference refVal : references) {
 				if (refVal instanceof TargetSectionNonContainmentReference) {
 					final TargetSectionNonContainmentReference ref = (TargetSectionNonContainmentReference) refVal;
-					final LinkedList<TargetSectionClass> refValueClone = new LinkedList<TargetSectionClass>();
+					final LinkedList<TargetSectionClass> refValueClone = new LinkedList<>();
 					refValueClone.addAll(ref.getValue());
 					boolean hintFound = false;
 					// search for mapping instance selector
@@ -767,9 +785,7 @@ class TargetSectionInstantiator implements CancellationListener {
 									// instances are sorted in the same order as
 									// hintValues
 									final LinkedList<EObjectTransformationHelper> instancesToConsider = new LinkedList<>();
-									instancesToConsider
-									.addAll(instancesBySection
-											.get(targetSectionClass));
+									instancesToConsider.addAll(instancesBySection.get(targetSectionClass));
 									/*
 									 * Sizes of instances and attributeHints
 									 * must either match, or, in case there was
@@ -830,19 +846,14 @@ class TargetSectionInstantiator implements CancellationListener {
 											} else {
 												/* 
 												 * for library entries, we cannot simply add the value as the reference we are handling is not part of the targetSectionClass;
-												 * consequenlty, we need to pass a custom 'source' object (the one inside the library item that the ExternalReferenceParameter represents)
+												 * instead we want to specify the value as 'target' for the affected ExternalReferenceParameter
 												 */
-												LibraryEntry libEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
-												for (LibraryParameter<?> parameter : libEntry.getParameters()) {
-													if(parameter instanceof ExternalReferenceParameter) {
-														ExternalReferenceParameter extRefParam = ((ExternalReferenceParameter) parameter);
-														if(extRefParam.getReference().equals(ref)) {
-															@SuppressWarnings("unchecked")
-															AbstractExternalReferenceParameter<EObject, EObject> originalParam = (AbstractExternalReferenceParameter<EObject, EObject>) extRefParam.getOriginalParameter();
-															originalParam.setTarget(fittingVals.get(0).getEObject());
-														}
-													}
-												}
+												LibraryEntry specificLibEntry = libEntryInstantiatorMap.get(srcInst).getLibraryEntry();
+												LibraryEntry genericLibEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
+												ExternalReferenceParameter extRefParam = (ExternalReferenceParameter) specificLibEntry.getParameters().get(genericLibEntry.getParameters().indexOf(ref.eContainer()));
+												@SuppressWarnings("unchecked")
+												AbstractExternalReferenceParameter<EObject, EObject> originalParam = (AbstractExternalReferenceParameter<EObject, EObject>) extRefParam.getOriginalParameter();
+												originalParam.setTarget(fittingVals.get(0).getEObject());
 											}
 										} else if (fittingVals.size() > 1) {// let
 											// user

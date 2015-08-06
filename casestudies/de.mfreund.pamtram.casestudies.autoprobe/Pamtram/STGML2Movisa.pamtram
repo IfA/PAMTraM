@@ -4284,14 +4284,14 @@
       <parameters xsi:type="metamodel:ExternalReferenceParameter" name="ServerDataItemParameter">
         <source href="lib/target/Infrastructure.BufferPlace/data.xmi#//@LibraryItem/@ClientDataModelMinimized/@OwnedDataItem.0"/>
         <originalParameter xsi:type="movisalib:ServerDataItemParameter" href="lib/target/Infrastructure.BufferPlace/data.xmi#//@parameterDescription/@ServerDataItems.0"/>
-        <reference name="PointsTo">
+        <reference name="PointsTo CarrierID">
           <eReference href="http://stefan-hennig.de/movisa#//clientdata/DataItem/PointsTo"/>
         </reference>
       </parameters>
       <parameters xsi:type="metamodel:ExternalReferenceParameter" name="ServerDataItemParameter">
         <source href="lib/target/Infrastructure.BufferPlace/data.xmi#//@LibraryItem/@ClientDataModelMinimized/@OwnedDataItem.1"/>
         <originalParameter xsi:type="movisalib:ServerDataItemParameter" href="lib/target/Infrastructure.BufferPlace/data.xmi#//@parameterDescription/@ServerDataItems.1"/>
-        <reference name="PointsTo" value="//@targetSectionModel/@metaModelSections.1">
+        <reference name="PointsTo Product ID" value="//@targetSectionModel/@metaModelSections.1">
           <eReference href="http://stefan-hennig.de/movisa#//clientdata/DataItem/PointsTo"/>
         </reference>
       </parameters>

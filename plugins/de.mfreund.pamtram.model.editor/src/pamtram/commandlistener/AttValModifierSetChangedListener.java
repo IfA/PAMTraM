@@ -6,6 +6,7 @@ import java.util.EventObject;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.util.BasicEList;
@@ -44,7 +45,7 @@ import pamtram.mapping.AttributeValueModifierSet;
  * a similar set should also be updated automatically.
  */
 public class AttValModifierSetChangedListener extends
-		PamtramChildCommandStackListener {
+PamtramChildCommandStackListener {
 
 	public AttValModifierSetChangedListener(
 			PamtramCommandStackListener parentListener) {
@@ -53,22 +54,22 @@ public class AttValModifierSetChangedListener extends
 
 	@Override
 	public void commandStackChanged(EventObject event) {
-		
+
 		new AttributeValueModifierSetFeatureCommandHandler(getMostRecentCommand());
 	}
-	
+
 	private class AttributeValueModifierSetFeatureCommandHandler {
-		
+
 		final class AttValModifierSetChangedCloneCommand extends CompoundCommand {};
 
 		private final Command command;
 		EObject owner = null;
 		EStructuralFeature feature = null;
-		
+
 		public AttributeValueModifierSetFeatureCommandHandler(Command command) {
-			
+
 			this.command = command;
-			
+
 			// do not react on undo commands (-> the command equals the redo command of the command stack)
 			Command redoCommand = 
 					parentListener.getEditor().getEditingDomain().getCommandStack().getRedoCommand();
@@ -83,10 +84,10 @@ public class AttValModifierSetChangedListener extends
 			if(!isAttValModifierSetChangedCommand()) {
 				return;
 			}
-			
+
 			handleAttributeValueModifierSetFeatureCommand();
 		}
-		
+
 		/**
 		 * This method check if an issued command should be handled by this listener
 		 * because it performs changes on a set of AttributeValueModifierSets.
@@ -95,15 +96,15 @@ public class AttValModifierSetChangedListener extends
 		 * @return true if the command should be handled by this listener, false otherwise.
 		 */
 		private boolean isAttValModifierSetChangedCommand() {
-			
+
 			// the command needs to be a compound command
 			if(!(command instanceof CompoundCommand)) {
 				return false;
 			}
-			
+
 			// the child commands of the compound command
 			List<Command> children = ((CompoundCommand) command).getCommandList();
-			
+
 			// check if all child commands are Add/Remove/Move commands and if they all operate on 
 			// the same owner and structural feature
 			for (Command child : children) {
@@ -132,25 +133,25 @@ public class AttValModifierSetChangedListener extends
 					return false;
 				}
 			}
-			
+
 			if(feature != null && feature.getEType().getInstanceClass() == AttributeValueModifierSet.class) {
 				return true;
 			} else {
 				return false;
 			}
 		}
-		
+
 		private void handleAttributeValueModifierSetFeatureCommand() {
-			
+
 			// the child commands of the compound command
 			List<Command> children = ((CompoundCommand) command).getCommandList();
-			
+
 			// the cast to EList should always be safe because multiple AttValModifierSets can always 
 			// be specified
 			@SuppressWarnings("unchecked")
 			BasicEList<AttributeValueModifierSet> newSets =
-				(BasicEList<AttributeValueModifierSet>) owner.eGet(feature);
-			
+			(BasicEList<AttributeValueModifierSet>) owner.eGet(feature);
+
 			// compute the old list of AttValModifierSets by the new list and child commands
 			BasicEList<AttributeValueModifierSet> oldSets = 
 					new BasicEList<>(newSets);
@@ -171,7 +172,12 @@ public class AttValModifierSetChangedListener extends
 					return;
 				}
 			}
-			
+
+			if(oldSets.isEmpty()) {
+				// we do nothing if this was the first thing that was added to the list of modifier sets
+				return;
+			}
+
 			// find all other objects referencing the same set of of AttValModifierSets
 			// and store them in a map
 			Collection<Setting> crossReferences = EcoreUtil.UsageCrossReferencer.find(
@@ -187,27 +193,27 @@ public class AttValModifierSetChangedListener extends
 				@SuppressWarnings("unchecked")
 				BasicEList<AttributeValueModifierSet> possibleMatch = 
 				(BasicEList<AttributeValueModifierSet>) object.eGet(feature);
-				
+
 				if(possibleMatch.equals(oldSets)) {
 					matches.put(object, feature);
 				}
 			}
-			
+
 			// nothing to be done
 			if(matches.isEmpty()) {
 				return;
 			}
-		
+
 			// let the user decide what should be updated automatically
 			final AttributeValueModifierSetAdaptionDialog dialog = 
 					new AttributeValueModifierSetAdaptionDialog(parentListener.getEditor().getSite().getShell(), "AttributeValueModifierSet changed", null,
-					"The following items contain the same list of AttributeValueModifierSets than"
-							+ " the item you just changed. Please select the ones you want to change as well.", MessageDialog.QUESTION, new String[]{"OK", "Cancel"}, 0, matches);
+							"The following items contain the same list of AttributeValueModifierSets than"
+									+ " the item you just changed. Please select the ones you want to change as well.", MessageDialog.QUESTION, new String[]{"OK", "Cancel"}, 0, matches);
 			dialog.open();
 			if(dialog.getReturnCode() != Dialog.OK || dialog.getSelectedItems().isEmpty()) {
 				return;
 			}
-			
+
 			// create a command that will be used to update the items chosen by the user
 			final CompoundCommand compoundCommand = new AttValModifierSetChangedCloneCommand();
 			for (EObject item : dialog.getSelectedItems()) {
@@ -222,14 +228,14 @@ public class AttValModifierSetChangedListener extends
 					} else if(c instanceof MoveCommand) {
 						command = new MoveCommand(
 								parentListener.getEditor().getEditingDomain(), (EList<?>) item.eGet(matches.get(item)), 
-								 ((MoveCommand) c).getOldIndex(), ((MoveCommand) c).getIndex());
+								((MoveCommand) c).getOldIndex(), ((MoveCommand) c).getIndex());
 					} else {
 						continue;
 					}
 					compoundCommand.append(command);
 				}
 			}
-			
+
 			// execute the command in another thread so that the command will be
 			// executed only after the current command has finished (this results
 			// in the correct undo/redo order)
@@ -239,10 +245,10 @@ public class AttValModifierSetChangedListener extends
 					parentListener.getEditor().getEditingDomain().getCommandStack().execute(compoundCommand);
 				}
 			});
-		
+
 		}
 	}
-	
+
 	/**
 	 * This dialog is presented to the user when he has changed a set of
 	 * AttributeValueModifierSets. The user shall select one or more of
@@ -252,8 +258,8 @@ public class AttValModifierSetChangedListener extends
 	 * @author mfreund
 	 */
 	private final class AttributeValueModifierSetAdaptionDialog extends
-			MessageDialog {
-		
+	MessageDialog {
+
 		private ArrayList<EObject> selectedItems = new ArrayList<>();
 		private final Map<EObject, EReference> matches;
 		private Table table;
@@ -295,7 +301,7 @@ public class AttValModifierSetChangedListener extends
 
 		@Override
 		protected Control createCustomArea(Composite parent) {
-				
+
 			// create a table that holds the paths to the AttributeValueModifierSets that
 			// can be selected
 			table = new Table(parent, SWT.MULTI | SWT.CHECK);
@@ -304,17 +310,17 @@ public class AttValModifierSetChangedListener extends
 			GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
 			data.heightHint = 200;
 			table.setLayoutData(data);
-			
+
 			TableColumn objectColumn = new TableColumn(table, SWT.NONE);
 			objectColumn.setText ("Path");
-			
+
 			// the adapter factory is used to get the labels for diverse elements on the paths
 			// to the AttributeValueModifierSets
 			ComposedAdapterFactory composedAdapterFactory = 
-			   new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+					new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 			AdapterFactoryLabelProvider labelProvider = 
-			   new AdapterFactoryLabelProvider(composedAdapterFactory);
-			
+					new AdapterFactoryLabelProvider(composedAdapterFactory);
+
 			// for each path, create a line in the table
 			for (EObject object : this.matches.keySet()) {
 				TableItem item = new TableItem(table, SWT.NONE);
@@ -327,13 +333,13 @@ public class AttValModifierSetChangedListener extends
 				}
 				item.setText(0, text);
 			}
-			
+
 			// the adapter factory is not needed any more
 			composedAdapterFactory.dispose();
 
 			// when the user (de)selects an entry, the list of selected entries is updated
 			table.addSelectionListener(new SelectionListener() {
-				
+
 				@Override
 				public void widgetSelected(SelectionEvent e) {
 					TableItem item = (TableItem) e.item;
@@ -343,15 +349,15 @@ public class AttValModifierSetChangedListener extends
 						selectedItems.remove(item.getData());
 					}
 				}
-				
+
 				@Override
 				public void widgetDefaultSelected(SelectionEvent e) {
 				}
 			});
-			
+
 			objectColumn.pack();
 			table.pack();
-			
+
 			return table;
 		}
 	}

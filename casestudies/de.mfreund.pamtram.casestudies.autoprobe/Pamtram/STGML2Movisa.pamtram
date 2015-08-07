@@ -5806,6 +5806,9 @@
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="value ClassPath" source="//@sourceSectionModel/@metaModelSections.18/@references.0/@value.1/@attributes.1" modifier="//@mappingModel/@modifierSets.59"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="label" source="//@sourceSectionModel/@metaModelSections.14/@attributes.6"/>
         </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="IDMapping" target="//@targetSectionModel/@libraryElements.0/@id">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="NameStation" source="//@sourceSectionModel/@metaModelSections.18/@references.0/@value.3/@attributes.1"/>
+        </mappingHints>
         <modelConnectionMatcher name="Image">
           <targetAttributes name="Panel Name" source="//@targetSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0"/>

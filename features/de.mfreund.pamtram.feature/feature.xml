@@ -2,7 +2,7 @@
 <feature
       id="de.mfreund.pamtram.feature"
       label="PAMTraM"
-      version="1.1.0.qualifier"
+      version="1.1.1.qualifier"
       provider-name="mfreund">
 
    <description url="http://www.example.com/description">

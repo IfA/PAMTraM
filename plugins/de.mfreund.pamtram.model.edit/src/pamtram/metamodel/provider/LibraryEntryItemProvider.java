@@ -335,7 +335,7 @@ IItemPropertySource {
 		 * Also dispose the ParameterDescriptionItemProvider
 		 */
 		if(children != null) {
-			((IDisposable) children.get(1)).dispose();
+			((IDisposable) children.get(2)).dispose();
 		}
 	}
 

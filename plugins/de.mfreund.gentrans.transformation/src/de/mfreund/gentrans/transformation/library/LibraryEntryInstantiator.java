@@ -181,7 +181,8 @@ public class LibraryEntryInstantiator {
 
 		// Determine the attribute mapping responsible for the 'Path' attribute
 		for (MappingHint mappingHint : mappingHints) {
-			if(mappingHint instanceof AttributeMapping && ((AttributeMapping) mappingHint).getTarget().equals(this.libraryEntry.getPath())) {
+			if(mappingHint instanceof AttributeMapping && ((AttributeMapping) mappingHint).getTarget().getName().equals("Classpath") &&
+					((AttributeMapping) mappingHint).getTarget().eContainer() instanceof LibraryEntry) {
 				AttributeMapping pathMapping = (AttributeMapping) mappingHint;
 				newPath = calculator.calculateAttributeValue(this.libraryEntry.getPath(), pathMapping, this.hintValues.getHintValues(pathMapping));
 				break;
@@ -199,6 +200,8 @@ public class LibraryEntryInstantiator {
 			if(moreSpecificEntry != null) {
 				libEntryToInsert = moreSpecificEntry;
 			}
+			// finally, we can set the final, resulting classpath that we are going to use
+			newPath = libraryEntry.getPath().getValue();
 
 		}
 
@@ -229,7 +232,10 @@ public class LibraryEntryInstantiator {
 
 	/**
 	 * This retrieves an entry for the given 'newPath' from the library, checks if the parameters match those
-	 * of the old library entry, copies the old parameters to the new entry and returns the new entry.
+	 * of the old library entry, copies the old parameters to the new entry and returns the new entry. If there is no
+	 * match for the given 'newPath', this algorithm goes up in the classpath and tries to determine a more abstract
+	 * entry. The resulting classpath for that an entry could be determined is stored in the {@link LibraryEntry#getPath()}
+	 * variable of the 'oldEntry' and can be evaulated by clients.
 	 * 
 	 * @param oldEntry The existing {@link LibraryEntry} that shall be replaced.
 	 * @param oldPath The classpath of the '<em>oldEntry</em>'.
@@ -246,7 +252,7 @@ public class LibraryEntryInstantiator {
 		/*
 		 * Now, we move up in the classpath until we find a library entry that has matching paramters.
 		 */
-		String[] newPathSegments = newPath.replace("^" + oldPath + "/", "").split("/");
+		String[] newPathSegments = newPath.replaceAll("^" + oldPath + ".", "").split("\\.");
 		String resultPath = newPath;
 
 		int i = newPathSegments.length - 1;
@@ -313,7 +319,7 @@ public class LibraryEntryInstantiator {
 
 				break;
 			} else {
-				resultPath = resultPath.replace("/" + newPathSegments[i] + "$", "");
+				resultPath = resultPath.replaceAll("." + newPathSegments[i] + "$", "");
 			}
 		} while (--i >= 0);
 
@@ -321,6 +327,8 @@ public class LibraryEntryInstantiator {
 			return null;
 		}
 
+		// we update the resulting path
+		oldEntry.getPath().setValue(resultPath);
 		return newEntry;
 
 	}

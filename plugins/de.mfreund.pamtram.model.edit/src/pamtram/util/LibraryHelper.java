@@ -409,7 +409,7 @@ public class LibraryHelper {
 			VirtualAttribute idAttribute = MetamodelFactoryImpl.eINSTANCE.createVirtualAttribute();
 			idAttribute.setName("ID");
 			idAttribute.setValue(libEntry.getParameterDescription().getID());
-			pamtramLibEntry.setPath(pathAttribute);
+			pamtramLibEntry.setId(idAttribute);
 			//						pamtramLibEntry.setLibraryFile(libraryFile);
 			pamtramLibEntry.setOriginalLibraryEntry(libEntry);
 

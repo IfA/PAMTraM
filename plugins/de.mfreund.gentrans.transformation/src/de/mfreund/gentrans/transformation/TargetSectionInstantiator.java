@@ -1002,11 +1002,20 @@ class TargetSectionInstantiator implements CancellationListener {
 													// of
 													// specific
 													// mapping
-													addValueToReference(
-															ref,
-															targetInstance
-															.getEObject(),
-															inst.getEObject());
+													if(!targetSectionClass.isLibraryEntry()) {
+														addValueToReference(ref, targetInstance.getEObject(), inst.getEObject());
+													} else {
+														/* 
+														 * for library entries, we cannot simply add the value as the reference we are handling is not part of the targetSectionClass;
+														 * instead we want to specify the value as 'target' for the affected ExternalReferenceParameter
+														 */
+														LibraryEntry specificLibEntry = libEntryInstantiatorMap.get(inst).getLibraryEntry();
+														LibraryEntry genericLibEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
+														ExternalReferenceParameter extRefParam = (ExternalReferenceParameter) specificLibEntry.getParameters().get(genericLibEntry.getParameters().indexOf(ref.eContainer()));
+														@SuppressWarnings("unchecked")
+														AbstractExternalReferenceParameter<EObject, EObject> originalParam = (AbstractExternalReferenceParameter<EObject, EObject>) extRefParam.getOriginalParameter();
+														originalParam.setTarget(targetInstance.getEObject());
+													}
 												}
 											}
 										}
@@ -1147,8 +1156,20 @@ class TargetSectionInstantiator implements CancellationListener {
 								final List<EObjectTransformationHelper> instances = targetInstancesByRoot
 										.get(rootBySourceInstance.get(source));
 								if (instances.size() == 1) {
-									addValueToReference(ref, instances.get(0)
-											.getEObject(), source.getEObject());
+									if(!targetSectionClass.isLibraryEntry()) {
+										addValueToReference(ref, instances.get(0).getEObject(), source.getEObject());
+									} else {
+										/* 
+										 * for library entries, we cannot simply add the value as the reference we are handling is not part of the targetSectionClass;
+										 * instead we want to specify the value as 'target' for the affected ExternalReferenceParameter
+										 */
+										LibraryEntry specificLibEntry = libEntryInstantiatorMap.get(source).getLibraryEntry();
+										LibraryEntry genericLibEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
+										ExternalReferenceParameter extRefParam = (ExternalReferenceParameter) specificLibEntry.getParameters().get(genericLibEntry.getParameters().indexOf(ref.eContainer()));
+										@SuppressWarnings("unchecked")
+										AbstractExternalReferenceParameter<EObject, EObject> originalParam = (AbstractExternalReferenceParameter<EObject, EObject>) extRefParam.getOriginalParameter();
+										originalParam.setTarget(instances.get(0).getEObject());
+									}
 								} else if (instances.size() > 1) {
 									// Dialog
 									if (transformationAborted) {
@@ -1175,9 +1196,20 @@ class TargetSectionInstantiator implements CancellationListener {
 										transformationAborted = true;
 										return;
 									}
-									addValueToReference(ref, dialog
-											.getSelection().getEObject(),
-											source.getEObject());
+									if(!targetSectionClass.isLibraryEntry()) {
+										addValueToReference(ref, dialog.getSelection().getEObject(), source.getEObject());
+									} else {
+										/* 
+										 * for library entries, we cannot simply add the value as the reference we are handling is not part of the targetSectionClass;
+										 * instead we want to specify the value as 'target' for the affected ExternalReferenceParameter
+										 */
+										LibraryEntry specificLibEntry = libEntryInstantiatorMap.get(source).getLibraryEntry();
+										LibraryEntry genericLibEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
+										ExternalReferenceParameter extRefParam = (ExternalReferenceParameter) specificLibEntry.getParameters().get(genericLibEntry.getParameters().indexOf(ref.eContainer()));
+										@SuppressWarnings("unchecked")
+										AbstractExternalReferenceParameter<EObject, EObject> originalParam = (AbstractExternalReferenceParameter<EObject, EObject>) extRefParam.getOriginalParameter();
+										originalParam.setTarget(dialog.getSelection().getEObject());
+									}
 
 								} else {
 									consoleStream
@@ -1275,9 +1307,20 @@ class TargetSectionInstantiator implements CancellationListener {
 							if (targetInstance != null) {
 								for (final EObjectTransformationHelper inst : instancesBySection
 										.get(targetSectionClass)) {
-									addValueToReference(ref,
-											targetInstance.getEObject(),
-											inst.getEObject());
+									if(!targetSectionClass.isLibraryEntry()) {
+										addValueToReference(ref, targetInstance.getEObject(), inst.getEObject());
+									} else {
+										/* 
+										 * for library entries, we cannot simply add the value as the reference we are handling is not part of the targetSectionClass;
+										 * instead we want to specify the value as 'target' for the affected ExternalReferenceParameter
+										 */
+										LibraryEntry specificLibEntry = libEntryInstantiatorMap.get(inst).getLibraryEntry();
+										LibraryEntry genericLibEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
+										ExternalReferenceParameter extRefParam = (ExternalReferenceParameter) specificLibEntry.getParameters().get(genericLibEntry.getParameters().indexOf(ref.eContainer()));
+										@SuppressWarnings("unchecked")
+										AbstractExternalReferenceParameter<EObject, EObject> originalParam = (AbstractExternalReferenceParameter<EObject, EObject>) extRefParam.getOriginalParameter();
+										originalParam.setTarget(targetInstance.getEObject());
+									}
 								}
 							}
 

@@ -62,8 +62,8 @@
       <OwnedElement xsi:type="algorithm:Boundary" Comment="{&quot;srcFiles&quot;:{&quot;libPath&quot;:&quot;Alert&quot;,&quot;default&quot;:[],&quot;html.login&quot;:{&quot;boundarySrcFile&quot;:&quot;AlertBoundary.js&quot;,&quot;copy&quot;:[&quot;js/EventEmitter.js&quot;,&quot;js/DialogList.js&quot;,&quot;img/ajax-loader3.gif&quot;,&quot;css/dialoglist.css&quot;]}}}" Name="AlertBoundary">
         <ProvidedInterface Name="ProvidedInterface">
           <OwnedReception Name="React" Signal="//@LibraryItem/@AlgorithmModel/@OwnedElement.4"/>
-          <OwnedReception Name="ListEmpty" Signal="//@LibraryItem/@AlgorithmModel/@OwnedElement.10"/>
-          <OwnedReception Name="ListNewEntry" Signal="//@LibraryItem/@AlgorithmModel/@OwnedElement.11"/>
+          <OwnedReception Name="ListEmpty" Signal="//@parameterDescription/@Signals.0/@source"/>
+          <OwnedReception Name="ListNewEntry" Signal="//@parameterDescription/@Signals.1/@source"/>
           <OwnedReception Name="Acknowledge" Signal="//@LibraryItem/@AlgorithmModel/@OwnedElement.3"/>
         </ProvidedInterface>
         <RequiredInterface Name="RequiredInterface">
@@ -141,8 +141,6 @@
         </OwnedBehavior>
         <OwnedReception Name="React" Signal="//@LibraryItem/@AlgorithmModel/@OwnedElement.4"/>
       </OwnedElement>
-      <OwnedElement xsi:type="algorithm:Signal" Comment="" Name="ListEmpty"/>
-      <OwnedElement xsi:type="algorithm:Signal" Name="ListNewEntry"/>
     </AlgorithmModel>
   </LibraryItem>
   <parameterDescription xsi:type="movisalib:MovisaParameterDescription" ID="">
@@ -216,6 +214,12 @@
         <OwnedParameter Name="Type" Value="Int"/>
       </source>
     </ServerDataItems>
+    <Signals>
+      <source xsi:type="algorithm:Signal" Comment="" Name="ListEmpty"/>
+    </Signals>
+    <Signals>
+      <source xsi:type="algorithm:Signal" Name="ListNewEntry"/>
+    </Signals>
     <Containers source="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent"/>
     <widthParameter source="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Size/@Width"/>
     <heightParameter source="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Size/@Height"/>

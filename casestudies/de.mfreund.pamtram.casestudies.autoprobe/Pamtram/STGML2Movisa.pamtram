@@ -549,6 +549,7 @@
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="send@NavigatorButton">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/send"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Logout" type="EXCLUSION" value="Logout"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ALERT" type="EXCLUSION" value="ALERT"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSectionClass" name="viObject AlertButton" container="//@sourceSectionModel/@metaModelSections.7">
@@ -574,7 +575,7 @@
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="send@NavigatorButton">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/send"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Alert" value="Alert"/>
+        <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ALERT" value="ALERT"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSectionClass" name="viObject container Rectangle" container="//@sourceSectionModel/@metaModelSections.7">
@@ -1550,6 +1551,9 @@
                                   <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="IncomingObjectFlow" value="//@targetSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.7/@references.0/@value.0/@references.1/@value.1/@references.0/@value.0/@references.0/@value.0">
                                     <eReference href="http://stefan-hennig.de/movisa#//algorithm/actions/InputPin/IncomingObjectFlow"/>
                                   </references>
+                                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Type" value="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.3/@value.0">
+                                    <eReference href="http://stefan-hennig.de/movisa#//algorithm/actions/Pin/Type"/>
+                                  </references>
                                   <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
                                     <attribute href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
                                   </attributes>
@@ -1750,6 +1754,9 @@
                                   <eClass href="http://stefan-hennig.de/movisa#//algorithm/actions/InputPin"/>
                                   <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="IncomingObjectFlow" value="//@targetSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.7/@references.0/@value.0/@references.1/@value.2/@references.0/@value.0/@references.0/@value.0">
                                     <eReference href="http://stefan-hennig.de/movisa#//algorithm/actions/InputPin/IncomingObjectFlow"/>
+                                  </references>
+                                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Type" value="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.3/@value.0">
+                                    <eReference href="http://stefan-hennig.de/movisa#//algorithm/actions/Pin/Type"/>
                                   </references>
                                   <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
                                     <attribute href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
@@ -4333,7 +4340,7 @@
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="AlertButtonAnimation" cardinality="ZERO__INFINITY" container="//@targetSectionModel/@metaModelSections.19">
+    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="AlertButtonAnimation" container="//@targetSectionModel/@metaModelSections.19">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/ButtonAnimation"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="RepresentationAnimation">
         <eReference href="http://stefan-hennig.de/movisa#//presentation/Animation/RepresentationAnimation"/>
@@ -4411,10 +4418,10 @@
               </attributes>
             </value>
           </references>
-          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Trigger">
+          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Trigger" value="//@targetSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.8">
             <eReference href="http://stefan-hennig.de/movisa#//presentation/AnimationRecord/Trigger"/>
           </references>
-          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="UsePropertyOfTrigger">
+          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="UsePropertyOfTrigger" value="//@targetSectionModel/@metaModelSections.0/@references.0/@value.0/@references.0/@value.8/@references.0/@value.0">
             <eReference href="http://stefan-hennig.de/movisa#//presentation/AnimationRecord/UsePropertyOfTrigger"/>
           </references>
         </value>
@@ -6796,7 +6803,13 @@
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label@NavigatorButton" source="//@sourceSectionModel/@metaModelSections.14/@attributes.5"/>
         </mappingHints>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="AlertButtonAnimation" targetMMSection="//@targetSectionModel/@metaModelSections.20" deactivated="true"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="AlertButtonAnimation" targetMMSection="//@targetSectionModel/@metaModelSections.20">
+        <modelConnectionMatcher>
+          <targetAttributes name="Name NavButton" source="//@targetSectionModel/@metaModelSections.19/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.2"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label@NavigatorButton" source="//@sourceSectionModel/@metaModelSections.14/@attributes.5" modifier="//@mappingModel/@modifierSets.7 //@mappingModel/@modifierSets.2"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
     </mapping>
     <mapping name="ConveyorCorner" sourceMMSection="//@sourceSectionModel/@metaModelSections.23">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Image ConveyorCorner" targetMMSection="//@targetSectionModel/@metaModelSections.21">

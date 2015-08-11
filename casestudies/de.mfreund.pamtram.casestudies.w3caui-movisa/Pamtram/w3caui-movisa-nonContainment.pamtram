@@ -87,7 +87,7 @@
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="grouping" value="grouping"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="CheckBox" cardinality="ONE__INFINITY">
+    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="CheckBox" cardinality="ONE__INFINITY" container="//@sourceSectionModel/@metaModelSections.3">
       <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui-modified#/0/AbstractInteractionUnit"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="eventSupport">
         <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui-modified#/0/AbstractInteractionUnit/eventSupport"/>

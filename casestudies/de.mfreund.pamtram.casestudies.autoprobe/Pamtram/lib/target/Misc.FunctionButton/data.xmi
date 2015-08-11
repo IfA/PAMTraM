@@ -61,7 +61,7 @@
     </AlgorithmModel>
   </LibraryItem>
   <parameterDescription xsi:type="movisalib:MovisaParameterDescription">
-    <resourceParameters Name="_files/html.login/FunctionButtonClickedBoundary.js" newPath="img\Misc\FunctionButton__files\html.login\FunctionButtonClickedBoundary.js"/>
+    <resourceParameters Name="_files/html.login/FunctionButtonClickedBoundary.js" newPath="img\Misc_FunctionButton__files/html.login/FunctionButtonClickedBoundary.js"/>
     <ServerDataItems>
       <source xsi:type="generic:GenericItem" Name="activate" IsAccessedVia="//@LibraryItem/@ClientDataModelMinimized/@OwnedDataItem.0">
         <OwnedParameter Name="Type" Value="Bool"/>

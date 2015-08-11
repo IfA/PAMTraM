@@ -82,5 +82,6 @@
     <heightParameter source="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Size/@Height"/>
     <xParameter source="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Position/@X"/>
     <yParameter source="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Position/@Y"/>
+    <labelParameter source="//@LibraryItem/@PresentationModelMinimized/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0/@TranslatedTextItem.0"/>
   </parameterDescription>
 </genlib:LibraryEntry>

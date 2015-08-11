@@ -2343,30 +2343,12 @@
                     <attribute href="http://stefan-hennig.de/movisa#//presentation/ImageResource/Url"/>
                   </attributes>
                 </value>
-                <value xsi:type="metamodel:TargetSectionClass" name="FixedImage Stopper Empty">
-                  <eClass href="http://stefan-hennig.de/movisa#//presentation/FixedImage"/>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="stopperepmtyImage">
-                    <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
-                  </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="Url" value="img/stopper_empty.png">
-                    <attribute href="http://stefan-hennig.de/movisa#//presentation/ImageResource/Url"/>
-                  </attributes>
-                </value>
                 <value xsi:type="metamodel:TargetSectionClass" name="FixedImage Conveyor LeftRight">
                   <eClass href="http://stefan-hennig.de/movisa#//presentation/FixedImage"/>
                   <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="conveyorLeftRightImage">
                     <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
                   </attributes>
                   <attributes xsi:type="metamodel:ActualAttribute" name="Url" value="img/conveyor_left_right.png">
-                    <attribute href="http://stefan-hennig.de/movisa#//presentation/ImageResource/Url"/>
-                  </attributes>
-                </value>
-                <value xsi:type="metamodel:TargetSectionClass" name="FixedImage Stopper Full">
-                  <eClass href="http://stefan-hennig.de/movisa#//presentation/FixedImage"/>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="stopperfullImage">
-                    <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
-                  </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="Url" value="img/stopper_full.png">
                     <attribute href="http://stefan-hennig.de/movisa#//presentation/ImageResource/Url"/>
                   </attributes>
                 </value>
@@ -4577,7 +4559,7 @@
               </attributes>
             </value>
           </references>
-          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="imgResource TODO" value="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.1/@value.0/@references.0/@value.2 //@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.1/@value.0/@references.0/@value.1 //@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.1/@value.0/@references.0/@value.6 //@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.1/@value.0/@references.0/@value.12 //@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.1/@value.0/@references.0/@value.10">
+          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="imgResource TODO" value="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.1/@value.0/@references.0/@value.2 //@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.1/@value.0/@references.0/@value.1 //@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.1/@value.0/@references.0/@value.6">
             <eReference href="http://stefan-hennig.de/movisa#//presentation/ImageContainingWidgetRepresentation/ImageResource"/>
           </references>
         </value>

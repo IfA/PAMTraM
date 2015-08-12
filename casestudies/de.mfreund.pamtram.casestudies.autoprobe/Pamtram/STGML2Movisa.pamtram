@@ -6744,7 +6744,7 @@
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Image ConveyorStraight" targetMMSection="//@targetSectionModel/@metaModelSections.21">
         <mappingHints xsi:type="mapping:AttributeMapping" name="ImageName" target="//@targetSectionModel/@metaModelSections.21/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.2"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel/@metaModelSections.22/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.44 //@mappingModel/@modifierSets.2"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel/@metaModelSections.22/@references.0/@value.2/@attributes.1" modifier="//@mappingModel/@modifierSets.44 //@mappingModel/@modifierSets.2 //@mappingModel/@modifierSets.0"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="RepSizeName" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.3 //@mappingModel/@modifierSets.2"/>

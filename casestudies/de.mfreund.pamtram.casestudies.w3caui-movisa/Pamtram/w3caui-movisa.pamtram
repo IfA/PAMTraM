@@ -2385,9 +2385,6 @@
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Input/Representation"/>
         <value xsi:type="metamodel:TargetSectionClass" name="InputRepresentation">
           <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/InputRepresentation"/>
-          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Text">
-            <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/TextContainingWidgetRepresentation/Text"/>
-          </references>
           <references xsi:type="metamodel:TargetSectionContainmentReference" name="Position">
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Representation/Position"/>
             <value xsi:type="metamodel:TargetSectionClass" name="Position">
@@ -3869,7 +3866,7 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="virtualInputRepresentationNameMapping" target="//@targetSectionModel/@metaModelSections.22/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.10/@attributes.0" modifier="//@mappingModel/@modifierSets.6"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="xPositionInputMapping" expression="(id-1)*4" target="//@targetSectionModel/@metaModelSections.22/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="xPositionInputMapping" expression="(id-1)*4" target="//@targetSectionModel/@metaModelSections.22/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.10/@attributes.0" modifier="//@mappingModel/@modifierSets.7"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="InputSignalNameMapping" target="//@targetSectionModel/@metaModelSections.22/@references.1/@value.0/@references.1/@value.0/@attributes.0">
@@ -3911,7 +3908,7 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="virtualInputRepresentationNameMapping" target="//@targetSectionModel/@metaModelSections.22/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.23/@attributes.1" modifier="//@mappingModel/@modifierSets.6"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="xPositionInputMapping" expression="(id-1)*4" target="//@targetSectionModel/@metaModelSections.22/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="xPositionInputMapping" expression="(id-1)*4" target="//@targetSectionModel/@metaModelSections.22/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.23/@attributes.1" modifier="//@mappingModel/@modifierSets.7"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="InputSignalNameMapping" target="//@targetSectionModel/@metaModelSections.22/@references.1/@value.0/@references.1/@value.0/@attributes.0">
@@ -3955,10 +3952,10 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="virtualInputRepresentationNameMapping" target="//@targetSectionModel/@metaModelSections.22/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.24/@attributes.1" modifier="//@mappingModel/@modifierSets.6"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="xPositionInputMapping" expression="(id-1)*4" target="//@targetSectionModel/@metaModelSections.22/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="xPositionInputMapping" expression="(id-1)*4" target="//@targetSectionModel/@metaModelSections.22/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.24/@attributes.1" modifier="//@mappingModel/@modifierSets.7"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Text" affectedReference="//@targetSectionModel/@metaModelSections.22/@references.0/@value.0/@references.0">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.24/@attributes.0">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.24/@attributes.1"/>
           </matcher>

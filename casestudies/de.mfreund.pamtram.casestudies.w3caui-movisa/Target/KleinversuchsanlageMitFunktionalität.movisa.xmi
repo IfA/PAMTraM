@@ -498,40 +498,6 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:Trend" Name="trend">
-        <Animation>
-          <IndicatorAnimation Trigger="//@AlgorithmDomain/@OwnedElement.5/@Signal.0" Indicator="//@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.7/@Representation/@Indicator.0"/>
-        </Animation>
-        <Representation>
-          <Position Name="position">
-            <X Name="x"/>
-            <Y Name="y" Value="4.0"/>
-            <Z Name="z"/>
-          </Position>
-          <Size Name="size">
-            <Height Name="height" Value="4.0"/>
-            <Width Name="width" Value="5.0"/>
-          </Size>
-          <Indicator Name="trend" Caption="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0" Color="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.0">
-            <OriginX Name="x"/>
-            <OriginY Name="y"/>
-            <Width Name="z" Value="5.0"/>
-            <Z Name="q"/>
-          </Indicator>
-          <XAxis Color="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.0" Caption="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0" Location="BELOW" ScaleCaptionEnd="100" ScaleCaptionStep="10" ScaleEnd="100" ScaleStep="10">
-            <OriginX Name="x"/>
-            <OriginY Name="y"/>
-            <Z Name="z"/>
-            <Length Name="q" Value="5.0"/>
-          </XAxis>
-          <YAxis Color="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.0" Caption="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0" ScaleCaptionEnd="100" ScaleCaptionStep="10" ScaleEnd="100" ScaleStep="10">
-            <OriginX Name="x"/>
-            <OriginY Name="x"/>
-            <Z Name="x"/>
-            <Length Name="x" Value="4.0"/>
-          </YAxis>
-        </Representation>
-      </OwnedUIComponent>
     </OwnedPanel>
     <OwnedPanel Name="aiu2">
       <OwnedUIComponent xsi:type="presentation:Button" Name="aiu2_7">

@@ -408,18 +408,7 @@
   </abstractInteractionUnit>
   <abstractInteractionUnit
       id="aiu3_1_2"
-      name="aiu3_1_2"
-      role="">
-    <aggregatedIn
-        compositionRole=""/>
-    <eventSupport>
-      <dataInputOutputSupport/>
-    </eventSupport>
-    <presentationSupport/>
-  </abstractInteractionUnit>
-  <abstractInteractionUnit
-      id="aiu3_3"
-      name="aiu3_3">
+      name="aiu3_1_2">
     <aggregatedIn/>
     <eventSupport>
       <dataInputOutputSupport
@@ -428,8 +417,8 @@
     <presentationSupport/>
   </abstractInteractionUnit>
   <abstractInteractionUnit
-      id="aiu3_4"
-      name="aiu3_4"
+      id="aiu3_3"
+      name="aiu3_3"
       role="confirmation">
     <aggregatedIn
         compositionRole=""/>

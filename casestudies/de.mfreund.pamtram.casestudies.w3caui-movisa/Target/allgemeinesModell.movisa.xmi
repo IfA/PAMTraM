@@ -5,20 +5,19 @@
     <OwnedElement xsi:type="algorithm:StringType" Name="String"/>
     <OwnedElement xsi:type="algorithm:IntegerType" Name="Integer"/>
     <OwnedElement xsi:type="algorithm:SignalCollection" Name="signal collection">
-      <Signal Name="aiu3_4ButtonClickSignal"/>
+      <Signal Name="aiu3_3ButtonClickSignal"/>
       <Signal Name="aiu2"/>
       <Signal Name="aiu3"/>
       <Signal Name="aiu1"/>
-      <Signal Name="aiu1_5DropDownClickSignal"/>
-      <Signal Name="aiu3_3InputClick"/>
-      <Signal Name="aiu3_1_1InputClick"/>
+      <Signal Name="aiu1_4DropDownClickSignal"/>
       <Signal Name="aiu3_1_2InputClick"/>
+      <Signal Name="aiu3_1_1InputClick"/>
       <Signal Name="aiu1_1_1CheckBoxClickSignal"/>
       <Signal Name="aiu1_1_2CheckBoxClickSignal"/>
       <Signal Name="aiu1_3CheckBoxClickSignal"/>
-      <Signal Name="aiu1_4_1RadioButtonClickSignal"/>
-      <Signal Name="aiu1_4_2RadioButtonClickSignal"/>
-      <Signal Name="aiu1_4_3RadioButtonClickSignal"/>
+      <Signal Name="aiu1_5_1RadioButtonClickSignal"/>
+      <Signal Name="aiu1_5_2RadioButtonClickSignal"/>
+      <Signal Name="aiu1_5_3RadioButtonClickSignal"/>
     </OwnedElement>
     <OwnedElement xsi:type="algorithm:RationalType" Name="Rational"/>
   </AlgorithmDomain>
@@ -45,7 +44,7 @@
       <OwnedTextDefinition Name="dummyTextDef">
         <TranslatedTextItem Value="dummy" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
       </OwnedTextDefinition>
-      <OwnedTextDefinition Name="aiu3_4">
+      <OwnedTextDefinition Name="aiu3_3">
         <TranslatedTextItem Value="Button" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
       </OwnedTextDefinition>
       <OwnedTextDefinition Name="aiu1_7">
@@ -57,14 +56,14 @@
       <OwnedTextDefinition Name="aiu3_8">
         <TranslatedTextItem Value="nächstes Panel" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
       </OwnedTextDefinition>
-      <OwnedTextDefinition Name="aiu1_5_1">
-        <TranslatedTextItem Value="RadioButton1" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      <OwnedTextDefinition Name="aiu1_4_1">
+        <TranslatedTextItem Value="DropDown1" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
       </OwnedTextDefinition>
-      <OwnedTextDefinition Name="aiu1_5_2">
-        <TranslatedTextItem Value="RadioButton2" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      <OwnedTextDefinition Name="aiu1_4_2">
+        <TranslatedTextItem Value="DropDown2" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
       </OwnedTextDefinition>
-      <OwnedTextDefinition Name="aiu1_5_3">
-        <TranslatedTextItem Value="RadioButton3" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      <OwnedTextDefinition Name="aiu1_4_3">
+        <TranslatedTextItem Value="DropDown3" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
       </OwnedTextDefinition>
       <OwnedTextDefinition Name="aiu3_1_1">
         <TranslatedTextItem Value="Text" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
@@ -78,14 +77,14 @@
       <OwnedTextDefinition Name="aiu1_3">
         <TranslatedTextItem Value="einzelne CheckBox" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
       </OwnedTextDefinition>
-      <OwnedTextDefinition Name="aiu1_4_1">
-        <TranslatedTextItem Value="DropDown1" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      <OwnedTextDefinition Name="aiu1_5_1">
+        <TranslatedTextItem Value="RadioButton1" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
       </OwnedTextDefinition>
-      <OwnedTextDefinition Name="aiu1_4_2">
-        <TranslatedTextItem Value="DropDown2" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      <OwnedTextDefinition Name="aiu1_5_2">
+        <TranslatedTextItem Value="RadioButton2" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
       </OwnedTextDefinition>
-      <OwnedTextDefinition Name="aiu1_4_3">
-        <TranslatedTextItem Value="DropDown3" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      <OwnedTextDefinition Name="aiu1_5_3">
+        <TranslatedTextItem Value="RadioButton3" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
       </OwnedTextDefinition>
       <OwnedTextDefinition Name="aiu2_2">
         <TranslatedTextItem Value="Hier steht ein Text" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
@@ -118,7 +117,7 @@
         <Option Name="aiu1_1_1">
           <Interaction>
             <CommonTrigger xsi:type="presentation:Click" Effect="//@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.1/@Option.0/@Interaction/@OwnedEffect.0"/>
-            <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu1_1_1CheckBoxClickSignal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.8"/>
+            <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu1_1_1CheckBoxClickSignal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.7"/>
           </Interaction>
           <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.9">
             <Position>
@@ -135,7 +134,7 @@
         <Option Name="aiu1_1_2">
           <Interaction>
             <CommonTrigger xsi:type="presentation:Click" Effect="//@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.1/@Option.1/@Interaction/@OwnedEffect.0"/>
-            <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu1_1_2CheckBoxClickSignal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.9"/>
+            <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu1_1_2CheckBoxClickSignal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.8"/>
           </Interaction>
           <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.10">
             <Position>
@@ -161,31 +160,31 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:RadioButtonGroup" Name="aiu1_4">
-        <Option Name="aiu1_4_1">
+      <OwnedUIComponent xsi:type="presentation:RadioButtonGroup" Name="aiu1_5">
+        <Option Name="aiu1_5_1">
           <Interaction>
             <CommonTrigger xsi:type="presentation:Click" Effect="//@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.2/@Option.0/@Interaction/@OwnedEffect.0"/>
-            <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu1_4_1RadioButtonClickSignal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.11"/>
+            <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu1_5_1RadioButtonClickSignal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.10"/>
           </Interaction>
-          <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.12" Value="DropDown1"/>
+          <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.12" Value="RadioButton1"/>
         </Option>
-        <Option Name="aiu1_4_2">
+        <Option Name="aiu1_5_2">
           <Interaction>
             <CommonTrigger xsi:type="presentation:Click" Effect="//@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.2/@Option.1/@Interaction/@OwnedEffect.0"/>
-            <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu1_4_2RadioButtonClickSignal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.12"/>
+            <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu1_5_2RadioButtonClickSignal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.11"/>
           </Interaction>
-          <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.13" Value="DropDown2"/>
+          <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.13" Value="RadioButton2"/>
         </Option>
-        <Option Name="aiu1_4_3">
+        <Option Name="aiu1_5_3">
           <Interaction>
             <CommonTrigger xsi:type="presentation:Click" Effect="//@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.2/@Option.2/@Interaction/@OwnedEffect.0"/>
-            <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu1_4_3RadioButtonClickSignal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.13"/>
+            <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu1_5_3RadioButtonClickSignal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.12"/>
           </Interaction>
-          <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.14" Value="DropDown3"/>
+          <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.14" Value="RadioButton3"/>
         </Option>
         <Representation>
           <Position Name="RadioButtonGroupPosition">
-            <X Value="12.0"/>
+            <X Value="16.0"/>
             <Y/>
             <Z/>
           </Position>
@@ -195,14 +194,14 @@
           </Size>
         </Representation>
       </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:DropDown" Name="aiu1_5">
+      <OwnedUIComponent xsi:type="presentation:DropDown" Name="aiu1_4">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Effect="//@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.3/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu1_5DropDownClickSignal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.4"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu1_4DropDownClickSignal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.4"/>
         </Interaction>
         <Representation>
           <Position Name="position">
-            <X Name="XPropertyDropDown" Value="16.0"/>
+            <X Name="XPropertyDropDown" Value="12.0"/>
             <Y Name="y"/>
             <Z Name="z"/>
           </Position>
@@ -210,9 +209,9 @@
             <Height Name="height" Value="0.5"/>
             <Width Name="width" Value="3.0"/>
           </Size>
-          <DropDownOption Label="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.5" Value="RadioButton1"/>
-          <DropDownOption Label="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.6" Value="RadioButton2"/>
-          <DropDownOption Label="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.7" Value="RadioButton3"/>
+          <DropDownOption Label="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.5" Value="DropDown1"/>
+          <DropDownOption Label="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.6" Value="DropDown2"/>
+          <DropDownOption Label="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.7" Value="DropDown3"/>
         </Representation>
       </OwnedUIComponent>
       <OwnedUIComponent xsi:type="presentation:Slider" Name="aiu1_6">
@@ -244,7 +243,7 @@
         <Animation/>
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Effect="//@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.5/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu1_3CheckBoxClickSignal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.10"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu1_3CheckBoxClickSignal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.9"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.11">
           <Position>
@@ -375,14 +374,14 @@
       </OwnedUIComponent>
     </OwnedPanel>
     <OwnedPanel Name="aiu3">
-      <OwnedUIComponent xsi:type="presentation:Button" Name="aiu3_4">
+      <OwnedUIComponent xsi:type="presentation:Button" Name="aiu3_3">
         <Interaction>
           <CommonTrigger xsi:type="presentation:Click" Effect="//@PresentationDomain/@OwnedPanel.2/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu3_4ButtonClickSignal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.0"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu3_3ButtonClickSignal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.0"/>
         </Interaction>
         <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.1">
           <Position Name="position">
-            <X Name="x" Value="12.0"/>
+            <X Name="x" Value="8.0"/>
             <Y Name="y"/>
             <Z Name="z"/>
           </Position>
@@ -410,14 +409,15 @@
         </Representation>
       </OwnedUIComponent>
       <OwnedUIComponent xsi:type="presentation:SimpleContainer" Name="aiu3_1">
-        <AggregatedComponent xsi:type="presentation:Input" Name="aiu3_1_1">
+        <AggregatedComponent xsi:type="presentation:Input" Name="aiu3_1_2">
+          <Animation/>
           <Interaction>
             <CommonTrigger xsi:type="presentation:Click" Effect="//@PresentationDomain/@OwnedPanel.2/@OwnedUIComponent.2/@AggregatedComponent.0/@Interaction/@OwnedEffect.0"/>
-            <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu3_1_1InputClick" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.6"/>
+            <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu3_1_2InputClick" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.5"/>
           </Interaction>
           <Representation MaxLength="10">
             <Position>
-              <X Name="xPositionInput"/>
+              <X Name="xPositionInput" Value="4.0"/>
               <Y Name="yPositionInput"/>
               <Z Name="zPositionInput"/>
             </Position>
@@ -427,14 +427,14 @@
             </Size>
           </Representation>
         </AggregatedComponent>
-        <AggregatedComponent xsi:type="presentation:Input" Name="aiu3_1_2">
+        <AggregatedComponent xsi:type="presentation:Input" Name="aiu3_1_1">
           <Interaction>
             <CommonTrigger xsi:type="presentation:Click" Effect="//@PresentationDomain/@OwnedPanel.2/@OwnedUIComponent.2/@AggregatedComponent.1/@Interaction/@OwnedEffect.0"/>
-            <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu3_1_2InputClick" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.7"/>
+            <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu3_1_1InputClick" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.6"/>
           </Interaction>
           <Representation MaxLength="10">
             <Position>
-              <X Name="xPositionInput" Value="4.0"/>
+              <X Name="xPositionInput"/>
               <Y Name="yPositionInput"/>
               <Z Name="zPositionInput"/>
             </Position>
@@ -453,24 +453,6 @@
           <Size Name="sizeContainer">
             <Height Name="heightContainer" Value="5.0"/>
             <Width Name="widthContainer" Value="3.0"/>
-          </Size>
-        </Representation>
-      </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:Input" Name="aiu3_3">
-        <Animation/>
-        <Interaction>
-          <CommonTrigger xsi:type="presentation:Click" Effect="//@PresentationDomain/@OwnedPanel.2/@OwnedUIComponent.3/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu3_3InputClick" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.5"/>
-        </Interaction>
-        <Representation MaxLength="10">
-          <Position>
-            <X Name="xPositionInput" Value="8.0"/>
-            <Y Name="yPositionInput"/>
-            <Z Name="zPositionInput"/>
-          </Position>
-          <Size>
-            <Height Name="heightInput" Value="1.0"/>
-            <Width Name="widthInput" Value="3.0"/>
           </Size>
         </Representation>
       </OwnedUIComponent>

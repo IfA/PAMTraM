@@ -407,7 +407,7 @@
     </eOperations>
     <eOperations name="getExtDataValueByName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="let ext = self.getExtDataByName(name) in&#xD;&#xA;if ext->size() = 0 then&#xD;&#xA;&#x9;null else&#xD;&#xA;&#x9;ext.value&#xD;&#xA;endif"/>
+        <details key="body" value="let ext = self.getExtDataByName(name) in&#xD;&#xA;if ext = null then&#xD;&#xA;&#x9;null else&#xD;&#xA;&#x9;ext.value&#xD;&#xA;endif"/>
       </eAnnotations>
       <eParameters name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
@@ -451,7 +451,7 @@
     </eOperations>
     <eOperations name="getExtDataValueByName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="let ext = self->getExtDataByName(name) in&#xD;&#xA;if ext->size() = 0 then&#xD;&#xA;&#x9;null else&#xD;&#xA;&#x9;ext.value&#xD;&#xA;endif"/>
+        <details key="body" value="let ext = self.getExtDataByName(name) in&#xD;&#xA;if ext = null then&#xD;&#xA;&#x9;null else&#xD;&#xA;&#x9;ext.value&#xD;&#xA;endif"/>
       </eAnnotations>
       <eParameters name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
@@ -1106,6 +1106,12 @@
       </eAnnotations>
       <eParameters name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
+    <eOperations name="getConnectionDirection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="let dx = connVio.centerX - self.centerX in&#xD;&#xA;let dy = connVio.centerY - self.centerY in&#xD;&#xA;&#xD;&#xA;if dx.abs() > 3 and dy.abs() > 3 then&#xD;&#xA;&#x9;null else&#xD;&#xA;&#xD;&#xA;&#x9;if dy.abs() > dx.abs() then&#xD;&#xA;&#x9;&#x9;if dy > 0 then&#xD;&#xA;&#x9;&#x9;&#x9;180 else&#xD;&#xA;&#x9;&#x9;&#x9;0&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;&#x9;else &#xD;&#xA;&#x9;&#x9;if dx > 0 then&#xD;&#xA;&#x9;&#x9;&#x9;90 else&#xD;&#xA;&#x9;&#x9;&#x9;270&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;&#x9;endif&#xD;&#xA;&#xD;&#xA;endif"/>
+      </eAnnotations>
+      <eParameters name="connVio" lowerBound="1" eType="#//Viobject"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mixed" unique="false" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFeatureMapEntry">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -1255,7 +1261,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="conveyorImageName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="if self.isVertical then&#xD;&#xA;&#x9;'conveyor_top_down.png' else&#xD;&#xA;&#x9;'conveyor_left_right.png'&#xD;&#xA;endif"/>
+        <details key="derivation" value="if self.isConveyor then&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;if self.isVertical then&#xD;&#xA;&#x9;&#x9;'conveyor_top_down.png' else&#xD;&#xA;&#x9;&#x9;'conveyor_left_right.png'&#xD;&#xA;&#x9;endif&#xD;&#xA;&#xD;&#xA;else if self.isStopper then&#xD;&#xA;&#xD;&#xA;&#x9;null&#xD;&#xA;&#xD;&#xA;else if self.isMergingPoint then&#xD;&#xA;&#xD;&#xA;&#x9;null&#xD;&#xA;&#xD;&#xA;else if self.isFork then&#xD;&#xA;&#xD;&#xA;&#x9;null&#xD;&#xA;&#xD;&#xA;else null&#xD;&#xA;&#x9;&#xD;&#xA;endif endif endif endif"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isVertical" lowerBound="1"
@@ -1277,6 +1283,46 @@
         volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="derivation" value="self.y + self.height/2"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isConveyor" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" changeable="false"
+        volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="self.getExtDataValueByName('typeID') = 'Conveyor'"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStopper" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" changeable="false"
+        volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="self.getExtDataValueByName('typeID') = 'Stopper'"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isMergingPoint" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" changeable="false"
+        volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="self.getExtDataValueByName('typeID') = 'MergingPoint'"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="incomingConveyors" upperBound="3"
+        eType="#//Viobject" changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="if not(self.isStopper or self.isFork or self.isMergingPoint) then&#xD;&#xA;&#x9;null else&#xD;&#xA;&#x9;let conveyors = self.containingLayer.conveyors in&#xD;&#xA;&#x9;let partrefConveyors = conveyors->select(vio | vio.getExtDataByName('partref') &lt;> null) in&#xD;&#xA;&#x9;if partrefConveyors->size() = 0 then&#xD;&#xA;&#x9;&#x9;null else&#xD;&#xA;&#x9;&#x9;partrefConveyors->select(vio | vio.getExtDataByName('partref').getExtDataValueByName('toid') = self.id) &#xD;&#xA;&#x9;endif&#xD;&#xA;endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containingLayer" eType="#//Layer"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="self.oclContainer()"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isFork" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" changeable="false"
+        volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="self.getExtDataValueByName('typeID') = 'Fork'"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>

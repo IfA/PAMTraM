@@ -603,6 +603,9 @@
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="label">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/label"/>
       </attributes>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="conveyorImageName">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/conveyorImageName"/>
+      </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSectionClass" name="Viobject AlertInterface" container="//@sourceSectionModel/@metaModelSections.7">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
@@ -4559,7 +4562,7 @@
               </attributes>
             </value>
           </references>
-          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="imgResource TODO" value="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.1/@value.0/@references.0/@value.2 //@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.1/@value.0/@references.0/@value.1 //@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.1/@value.0/@references.0/@value.6">
+          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="imgResource" value="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.1/@value.0/@references.0/@value.2 //@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.1/@value.0/@references.0/@value.1 //@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.1/@value.0/@references.0/@value.6 //@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.1/@value.0/@references.0/@value.0">
             <eReference href="http://stefan-hennig.de/movisa#//presentation/ImageContainingWidgetRepresentation/ImageResource"/>
           </references>
         </value>
@@ -4730,7 +4733,7 @@
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="FixedImage StationImage" container="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.1/@value.0">
+    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="FixedImage" container="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.1/@value.0">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/FixedImage"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name" unique="true" value="">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
@@ -6800,12 +6803,22 @@
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel/@metaModelSections.15/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="imgResource" affectedReference="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.4">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.1/@value.0/@references.0/@value.1"/>
+          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.23/@attributes.0">
+            <sourceAttributes xsi:type="mapping:AttributeMatcherExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel/@metaModelSections.15/@attributes.7"/>
+          </matcher>
         </mappingHints>
         <modelConnectionMatcher name="Image">
           <targetAttributes name="Panel Name" source="//@targetSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layer" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0"/>
         </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="FixedImage" targetMMSection="//@targetSectionModel/@metaModelSections.23">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.23/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel/@metaModelSections.15/@attributes.7"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="UrlMapping" resultModifier="//@mappingModel/@modifierSets.64" target="//@targetSectionModel/@metaModelSections.23/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel/@metaModelSections.15/@attributes.7"/>
+        </mappingHints>
       </mappingHintGroups>
     </mapping>
     <mapping name="Fork and Merge" sourceMMSection="//@sourceSectionModel/@metaModelSections.20">
@@ -7443,6 +7456,9 @@
     <modifierSets name="Extract Signal Interface Number">
       <modifier xsi:type="mapping:SubstringReplacer" name="Extractor for &quot;SignalInterface&quot;" regex="^SignalInterface$" replacement="0"/>
       <modifier xsi:type="mapping:SubstringReplacer" name="Extractor for &quot;SignalInterface.?&quot;" regex="^SignalInterface.([0-9]+)$" replacement="$1"/>
+    </modifierSets>
+    <modifierSets name="preprend resource path">
+      <modifier xsi:type="mapping:StringPrepender" name="img/" string="img/"/>
     </modifierSets>
     <globalValues name="doubleLabelYOffset"/>
     <globalValues name="doubleOutHeightFactor" value="0.8"/>

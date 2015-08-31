@@ -981,6 +981,9 @@
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/grtype"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Ellipse" value="Ellipse"/>
       </attributes>
+      <attributes xsi:type="metamodel:SourceSectionAttribute" name="conveyorImageName">
+        <attribute href="http://gfai.de/stgml.xsd#//Viobject/conveyorImageName"/>
+      </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:SourceSectionClass" name="ExternalData == Conveyor (Rect)" container="//@sourceSectionModel/@metaModelSections.15">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
@@ -6735,12 +6738,25 @@
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel/@metaModelSections.21/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="imgResource" affectedReference="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.4">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.1/@value.0/@references.0/@value.2"/>
+          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.23/@attributes.0">
+            <sourceAttributes xsi:type="mapping:AttributeMatcherExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel/@metaModelSections.21/@attributes.6"/>
+          </matcher>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="RepPosZValueMapping" expression="transportLayerZIndex" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel/@metaModelSections.21/@attributes.1"/>
         </mappingHints>
         <modelConnectionMatcher name="Image">
           <targetAttributes name="Panel Name" source="//@targetSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layer" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0"/>
         </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="FixedImage" targetMMSection="//@targetSectionModel/@metaModelSections.23">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.23/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel/@metaModelSections.21/@attributes.6"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="UrlMapping" resultModifier="//@mappingModel/@modifierSets.64" target="//@targetSectionModel/@metaModelSections.23/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel/@metaModelSections.21/@attributes.6"/>
+        </mappingHints>
       </mappingHintGroups>
     </mapping>
     <mapping name="ConveyorStraight" sourceMMSection="//@sourceSectionModel/@metaModelSections.22">
@@ -6881,12 +6897,25 @@
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel/@metaModelSections.21/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="imgResource" affectedReference="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.4">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.1/@value.0/@references.0/@value.6"/>
+          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.23/@attributes.0">
+            <sourceAttributes xsi:type="mapping:AttributeMatcherExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel/@metaModelSections.21/@attributes.6"/>
+          </matcher>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="RepPosZValueMapping" expression="transportLayerZIndex" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel/@metaModelSections.21/@attributes.1"/>
         </mappingHints>
         <modelConnectionMatcher name="Image">
           <targetAttributes name="Panel Name" source="//@targetSectionModel/@metaModelSections.7/@attributes.0" modifier="//@mappingModel/@modifierSets.2"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0"/>
         </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="FixedImage" targetMMSection="//@targetSectionModel/@metaModelSections.23">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.23/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel/@metaModelSections.21/@attributes.6"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="UrlMapping" resultModifier="//@mappingModel/@modifierSets.64" target="//@targetSectionModel/@metaModelSections.23/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel/@metaModelSections.21/@attributes.6"/>
+        </mappingHints>
       </mappingHintGroups>
     </mapping>
     <mapping name="LibraryComponent" sourceMMSection="//@sourceSectionModel/@metaModelSections.24">
@@ -7468,5 +7497,6 @@
     <globalValues name="yRes" value="1080.0"/>
     <globalValues name="variableLabelXOffset" value="50.0"/>
     <globalValues name="conveyorWidth" value="8.0"/>
+    <globalValues name="transportLayerZIndex" value="15.0"/>
   </mappingModel>
 </pamtram:PAMTraM>

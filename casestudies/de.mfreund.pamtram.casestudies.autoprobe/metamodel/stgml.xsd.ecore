@@ -1108,7 +1108,7 @@
     </eOperations>
     <eOperations name="getConnectionDirection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="let dx = connVio.centerX - self.centerX in&#xD;&#xA;let dy = connVio.centerY - self.centerY in&#xD;&#xA;&#xD;&#xA;if dx.abs() > 100 and dy.abs() > 100 then&#xD;&#xA;&#x9;null else&#xD;&#xA;&#xD;&#xA;&#x9;if dy.abs() > dx.abs() then&#xD;&#xA;&#x9;&#x9;if dy > 0 then&#xD;&#xA;&#x9;&#x9;&#x9;180 else&#xD;&#xA;&#x9;&#x9;&#x9;0&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;&#x9;else &#xD;&#xA;&#x9;&#x9;if dx > 0 then&#xD;&#xA;&#x9;&#x9;&#x9;90 else&#xD;&#xA;&#x9;&#x9;&#x9;270&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;&#x9;endif&#xD;&#xA;&#xD;&#xA;endif"/>
+        <details key="body" value="let dx = connVio.centerX - self.centerX in&#xD;&#xA;let dy = connVio.centerY - self.centerY in&#xD;&#xA;&#xD;&#xA;if dx.abs() > 100 and dy.abs() > 100 then&#xD;&#xA;&#x9;null else&#xD;&#xA;&#xD;&#xA;&#x9;if dy.abs() > dx.abs() then&#xD;&#xA;&#x9;&#x9;if dy > 0 then&#xD;&#xA;&#x9;&#x9;&#x9;0 else&#xD;&#xA;&#x9;&#x9;&#x9;180&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;&#x9;else &#xD;&#xA;&#x9;&#x9;if dx > 0 then&#xD;&#xA;&#x9;&#x9;&#x9;90 else&#xD;&#xA;&#x9;&#x9;&#x9;270&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;&#x9;endif&#xD;&#xA;&#xD;&#xA;endif"/>
       </eAnnotations>
       <eParameters name="connVio" lowerBound="1" eType="#//Viobject"/>
     </eOperations>
@@ -1121,12 +1121,13 @@
     </eOperations>
     <eOperations name="compare" eType="#//Externaldataelement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="if self.isVertical = true then&#xD;&#xA;&#x9;startingPointY &lt; self.y and endPointY > self.y and self.x &lt; startingPointX and (self.x + self.width) > startingPointX else &#xD;&#xA;&#x9;startingPointX &lt; self.x and endPointX > self.x and self.y &lt; startingPointY and (self.y + self.height) > startingPointY&#xD;&#xA;endif"/>
+        <details key="body" value="if isVertical = true then&#xD;&#xA;&#x9;startingPointY &lt; self.y and endPointY > (self.y + self.height) and self.x &lt; startingPointX and (self.x + self.width) > startingPointX else &#xD;&#xA;&#x9;startingPointX &lt; self.x and endPointX > (self.x + self.width) and self.y &lt; startingPointY and (self.y + self.height) > startingPointY&#xD;&#xA;endif"/>
       </eAnnotations>
       <eParameters name="startingPointX" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
       <eParameters name="startingPointY" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
       <eParameters name="endPointX" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
       <eParameters name="endPointY" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+      <eParameters name="isVertical" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mixed" unique="false" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFeatureMapEntry">
@@ -1277,7 +1278,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="conveyorImageName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="if self.isConveyor = true then&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;if self.isVertical then&#xD;&#xA;&#x9;&#x9;'conveyor_top_down.png' else&#xD;&#xA;&#x9;&#x9;'conveyor_left_right.png'&#xD;&#xA;&#x9;endif&#xD;&#xA;&#xD;&#xA;else if self.isStopper = true then&#xD;&#xA;&#xD;&#xA;&#x9;null&#xD;&#xA;&#xD;&#xA;else if self.isMergingPoint = true or self.isFork = true then&#xD;&#xA;&#xD;&#xA;&#x9;let num = self.incomingConveyors->union(self.outgoingConveyors)->union(self.passingConveyors)->size() in&#xD;&#xA;&#x9;if  num &lt; 2 or num > 3 then&#xD;&#xA;&#x9;&#x9;null else&#xD;&#xA;&#x9;&#x9;let conn = self.incomingConveyors->union(self.outgoingConveyors),&#xD;&#xA;&#x9;&#x9;&#x9;rotations = conn->iterate(c, result : OrderedSet = OrderedSet{} | &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;result->append(self.getConnectionDirection(c))&#xD;&#xA;&#x9;&#x9;&#x9;), &#xD;&#xA;&#x9;&#x9;&#x9;rotations2 = rotations->union(self.passingConveyors->iterate(c, result : OrderedSet = OrderedSet{} | &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if c.isVertical = true then result->append(0)->append(180) else result->append(90)->append(270) endif)) &#xD;&#xA;&#x9;&#x9;&#x9;in &#xD;&#xA;&#x9;&#x9;&#x9;rotations2->sortedBy(rot | rot)->iterate(rot, result : String = '' | &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if result = '' then &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;rot.toString() else&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;result.concat('_').concat(rot.toString())&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xD;&#xA;&#x9;&#x9;&#x9;)&#xD;&#xA;&#x9;endif &#xD;&#xA;&#xD;&#xA;else null&#xD;&#xA;&#x9;&#xD;&#xA;endif endif endif"/>
+        <details key="derivation" value="if self.isConveyor = true and self.grtype = 'Rectangle' then&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;if self.isVertical then&#xD;&#xA;&#x9;&#x9;'conveyor_top_down.png' else&#xD;&#xA;&#x9;&#x9;'conveyor_left_right.png'&#xD;&#xA;&#x9;endif&#xD;&#xA;&#xD;&#xA;else if self.isStopper = true then&#xD;&#xA;&#xD;&#xA;&#x9;null&#xD;&#xA;&#xD;&#xA;else if self.isMergingPoint = true or self.isFork = true or (self.isConveyor = true and self.grtype = 'Ellipse') then&#xD;&#xA;&#xD;&#xA;&#x9;let num = self.incomingConveyors->union(self.outgoingConveyors)->union(self.passingConveyors)->size() in&#xD;&#xA;&#x9;if  num &lt; 2 or num > 3 then&#xD;&#xA;&#x9;&#x9;null else&#xD;&#xA;&#x9;&#x9;let conn = self.incomingConveyors->union(self.outgoingConveyors),&#xD;&#xA;&#x9;&#x9;&#x9;rotations = conn->iterate(c, result : OrderedSet(Integer) = OrderedSet(Integer){} | &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;result->append(self.getConnectionDirection(c))&#xD;&#xA;&#x9;&#x9;&#x9;), &#xD;&#xA;&#x9;&#x9;&#x9;rotations2 = rotations->union(self.passingConveyors->iterate(c, result : OrderedSet(Integer) = OrderedSet(Integer){} | &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if c.isVertical = true then result->append(0)->append(180) else result->append(90)->append(270) endif)) &#xD;&#xA;&#x9;&#x9;&#x9;in &#xD;&#xA;&#x9;&#x9;&#x9;'conveyor_'.concat(rotations2->sortedBy(rot | if rot = 270 then 1 else if rot = 90 then 2 else if rot = 0 then 3 else if rot = 180 then 4 else 0 endif endif endif endif)->iterate(rot, result : OrderedSet(String) = OrderedSet(String){} | &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if rot = 270 then&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;result->append('left') else&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if rot = 90 then&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;result->append('right') else&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if rot = 0 then&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;result->append('top') else&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if rot = 180 then&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;result->append('down') else&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;null&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;endif endif endif endif&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;)->iterate(rot : String, result : String = '' |&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if result = '' then &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;rot else&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;result.concat('_').concat(rot)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xD;&#xA;&#x9;&#x9;&#x9;)).concat('.png')&#xD;&#xA;&#x9;endif &#xD;&#xA;&#xD;&#xA;else null&#xD;&#xA;&#x9;&#xD;&#xA;endif endif endif"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isVertical" lowerBound="1"
@@ -1350,22 +1351,22 @@
         <details key="derivation" value="self.getExtDataValueByName('typeID') = 'MergingPoint'"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="incomingConveyors" upperBound="3"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="incomingConveyors" upperBound="-1"
         eType="#//Viobject" changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="if not(self.isStopper or self.isFork or self.isMergingPoint) then&#xD;&#xA;&#x9;null else&#xD;&#xA;&#x9;let conveyors = self.containingLayer.conveyors in&#xD;&#xA;&#x9;conveyors->select(vio | self.compare(vio.endPointX, vio.endPointY) = true)&#xD;&#xA;endif"/>
+        <details key="derivation" value="if not(self.isStopper or self.isFork or self.isMergingPoint or (self.isConveyor = true and self.grtype = 'Ellipse')) = true then&#xD;&#xA;&#x9;OrderedSet(Viobject){} else&#xD;&#xA;&#x9;let conveyors = self.containingLayer.conveyors in&#xD;&#xA;&#x9;conveyors->select(vio | self.compare(vio.endPointX, vio.endPointY) = true)&#xD;&#xA;endif"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingConveyors" upperBound="3"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingConveyors" upperBound="-1"
         eType="#//Viobject" changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="if not(self.isStopper or self.isFork or self.isMergingPoint) then&#xD;&#xA;&#x9;null else&#xD;&#xA;&#x9;let conveyors = self.containingLayer.conveyors in&#xD;&#xA;&#x9;conveyors->select(vio | self.compare(vio.startingPointX, vio.startingPointY) = true)&#xD;&#xA;endif"/>
+        <details key="derivation" value="if not(self.isStopper or self.isFork or self.isMergingPoint or (self.isConveyor = true and self.grtype = 'Ellipse')) = true then&#xD;&#xA;&#x9;OrderedSet(Viobject){} else&#xD;&#xA;&#x9;let conveyors = self.containingLayer.conveyors in&#xD;&#xA;&#x9;conveyors->select(vio | self.compare(vio.startingPointX, vio.startingPointY) = true)&#xD;&#xA;endif"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="containingLayer" eType="#//Layer"
         changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="self.oclContainer()"/>
+        <details key="derivation" value="if self.oclContainer().oclType() &lt;> OclVoid then self.oclContainer().oclAsType(Layer) else null endif"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isFork" lowerBound="1"
@@ -1375,10 +1376,10 @@
         <details key="derivation" value="self.getExtDataValueByName('typeID') = 'Fork'"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="passingConveyors" upperBound="3"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="passingConveyors" upperBound="-1"
         eType="#//Viobject" changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="if not(self.isStopper or self.isFork or self.isMergingPoint) then&#xD;&#xA;&#x9;null else&#xD;&#xA;&#x9;let conveyors = self.containingLayer.conveyors in&#xD;&#xA;&#x9;conveyors->select(vio | self.compare(vio.startingPointX, vio.startingPointY, vio.endPointX, vio.endPointY) = true)&#xD;&#xA;endif"/>
+        <details key="derivation" value="if not(self.isStopper or self.isFork or self.isMergingPoint or (self.isConveyor = true and self.grtype = 'Ellipse')) then&#xD;&#xA;&#x9;OrderedSet(Viobject){} else&#xD;&#xA;&#x9;let conveyors = self.containingLayer.conveyors in&#xD;&#xA;&#x9;conveyors->select(vio | self.compare(vio.startingPointX, vio.startingPointY, vio.endPointX, vio.endPointY, vio.isVertical) = true)&#xD;&#xA;endif"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>

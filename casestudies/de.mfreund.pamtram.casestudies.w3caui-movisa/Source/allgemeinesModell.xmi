@@ -408,12 +408,11 @@
   </abstractInteractionUnit>
   <abstractInteractionUnit
       id="aiu3_1_2"
-      name="aiu3_1_2"
-      role="">
-    <aggregatedIn
-        compositionRole=""/>
+      name="aiu3_1_2">
+    <aggregatedIn/>
     <eventSupport>
-      <dataInputOutputSupport/>
+      <dataInputOutputSupport
+          dataType="in_out"/>
     </eventSupport>
     <presentationSupport/>
   </abstractInteractionUnit>

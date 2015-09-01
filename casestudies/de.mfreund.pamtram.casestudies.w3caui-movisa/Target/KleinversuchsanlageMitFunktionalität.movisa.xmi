@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <movisa:VisualizationApplicationModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:actions="http://stefan-hennig.de/movisa/algorithm/actions" xmlns:algorithm="http://stefan-hennig.de/movisa/algorithm" xmlns:generic="http://stefan-hennig.de/movisa/clientdata/perspective/technical/generic" xmlns:movisa="http://stefan-hennig.de/movisa" xmlns:opcxmlda="http://stefan-hennig.de/movisa/clientdata/perspective/technical/opcxmlda" xmlns:presentation="http://stefan-hennig.de/movisa/presentation" Name="Visualization Application Model" Author="w3cauitomovisa" Version="1.0">
   <AlgorithmDomain Name="Algorithm Model" Author="w3cauitomovisa" Version="1.0">
-    <OwnedElement xsi:type="algorithm:BooleanType" Name="boolean"/>
-    <OwnedElement xsi:type="algorithm:StringType" Name="string"/>
-    <OwnedElement xsi:type="algorithm:IntegerType" Name="int"/>
-    <OwnedElement xsi:type="algorithm:RationalType" Name="rational"/>
+    <OwnedElement xsi:type="algorithm:BooleanType" Name="Boolean"/>
+    <OwnedElement xsi:type="algorithm:StringType" Name="String"/>
+    <OwnedElement xsi:type="algorithm:IntegerType" Name="Integer"/>
+    <OwnedElement xsi:type="algorithm:RationalType" Name="Rational"/>
     <OwnedElement xsi:type="algorithm:SignalCollection" Name="signal collection">
       <Signal Name="aiu1_5ButtonClickSignal"/>
       <Signal Name="aiu1_6ButtonClickSignal"/>
@@ -518,11 +518,14 @@
         </Representation>
       </OwnedUIComponent>
       <OwnedUIComponent xsi:type="presentation:Input" Name="aiu2_2">
+        <Animation>
+          <ValueOutputAnimation Trigger="//@AlgorithmDomain/@OwnedElement.5/@Signal.2" ReplaceValue="true"/>
+        </Animation>
         <Interaction>
-          <CommonTrigger xsi:type="presentation:Click" Name="aiu2_2InputChangeClick" Effect="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.1/@Interaction/@OwnedEffect.0"/>
+          <CommonTrigger xsi:type="presentation:DoubleClick" Name="aiu2_2InputChangeClick" Effect="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.1/@Interaction/@OwnedEffect.0"/>
           <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu2_2InputChangeSignal" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.10"/>
         </Interaction>
-        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.5" MaxLength="10">
+        <Representation MaxLength="10">
           <Position Name="position">
             <X Name="xPositionInput" Value="4.0"/>
             <Y Name="yPositionInput"/>
@@ -535,11 +538,14 @@
         </Representation>
       </OwnedUIComponent>
       <OwnedUIComponent xsi:type="presentation:Input" Name="aiu2_4">
+        <Animation>
+          <ValueOutputAnimation Trigger="//@AlgorithmDomain/@OwnedElement.5/@Signal.3" ReplaceValue="true"/>
+        </Animation>
         <Interaction>
-          <CommonTrigger xsi:type="presentation:Click" Name="aiu2_4InputChangeClick" Effect="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.2/@Interaction/@OwnedEffect.0"/>
+          <CommonTrigger xsi:type="presentation:DoubleClick" Effect="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.2/@Interaction/@OwnedEffect.0"/>
           <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu2_4InputChangeSignal" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.11"/>
         </Interaction>
-        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.6" MaxLength="10">
+        <Representation MaxLength="10">
           <Position Name="position">
             <X Name="xPositionInput" Value="12.0"/>
             <Y Name="yPositionInput"/>
@@ -552,11 +558,14 @@
         </Representation>
       </OwnedUIComponent>
       <OwnedUIComponent xsi:type="presentation:Input" Name="aiu2_6">
+        <Animation>
+          <ValueOutputAnimation Trigger="//@AlgorithmDomain/@OwnedElement.5/@Signal.4" ReplaceValue="true"/>
+        </Animation>
         <Interaction>
-          <CommonTrigger xsi:type="presentation:Click" Name="aiu2_6InputChangeClick" Effect="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.3/@Interaction/@OwnedEffect.0"/>
+          <CommonTrigger xsi:type="presentation:DoubleClick" Name="aiu2_6InputChangeClick" Effect="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.3/@Interaction/@OwnedEffect.0"/>
           <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu2_6InputChangeSignal" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.12"/>
         </Interaction>
-        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.7" MaxLength="10">
+        <Representation MaxLength="10">
           <Position Name="position">
             <X Name="xPositionInput" Value="20.0"/>
             <Y Name="yPositionInput"/>

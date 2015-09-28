@@ -137,7 +137,7 @@
         name="clone.origin.pamtram"
         defaultValue="G:\staff\matthias\projects\pamtram"
         label="Pamtram clone origin">
-      <description>The URL where all projects related to the pamtram' will be cloned from.</description>
+      <description>The URL where all projects related to the 'pamtram' will be cloned from.</description>
     </setupTask>
     <setupTask
         xsi:type="setup:VariableTask"

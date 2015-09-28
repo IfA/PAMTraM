@@ -15,7 +15,7 @@
   <setupTask
       xsi:type="setup:EclipseIniTask"
       option="-Doomph.redirection.setups"
-      value="=https://eats3.et.tu-dresden.de/git/staff/matthias/projects/pamtram/setup/PAMTraM.setup->${clone.location|uri}/de.mfreund.pamtram.setup.git/de.mfreund.pamtram.setup/PAMTraM.setup"
+      value="=https://eats3.et.tu-dresden.de/git/staff/matthias/projects/pamtram/setup/PAMTraM.setup->${clone.location.pamtram|uri}/de.mfreund.pamtram.setup.git/de.mfreund.pamtram.setup/PAMTraM.setup"
       vm="true"/>
   <setupTask
       xsi:type="setup:EclipseIniTask"
@@ -133,11 +133,11 @@
   <stream name="master">
     <setupTask
         xsi:type="setup:VariableTask"
-        id="clone.origin"
-        name="clone.origin"
+        id="clone.origin.pamtram"
+        name="clone.origin.pamtram"
         defaultValue="G:\staff\matthias\projects\pamtram"
-        label="Clone origin">
-      <description>The URL where all projects will be cloned from.</description>
+        label="Pamtram clone origin">
+      <description>The URL where all projects related to the pamtram' will be cloned from.</description>
     </setupTask>
     <setupTask
         xsi:type="setup:VariableTask"
@@ -149,17 +149,17 @@
     </setupTask>
     <setupTask
         xsi:type="setup:VariableTask"
-        id="clone.location"
-        name="clone.location"
+        id="clone.location.pamtram"
+        name="clone.location.pamtram"
         defaultValue=""
-        label="Clone location">
-      <description>The folder where all projects will be cloned to.</description>
+        label="Pamtram clone location">
+      <description>The folder where all projects related to the 'pamtram' will be cloned to.</description>
     </setupTask>
     <setupTask
         xsi:type="setup:VariableTask"
         id="clone.location.genlibrary"
         name="clone.location.genlibrary"
-        defaultValue="${clone.location}"
+        defaultValue="${clone.location.pamtram}"
         label="Genlibrary clone location">
       <description>The folder where all projects related to the 'genlibrary' will be cloned to.</description>
     </setupTask>
@@ -170,121 +170,121 @@
       <setupTask
           xsi:type="git:GitCloneTask"
           id="clone.gentrans"
-          location="${clone.location}\de.mfreund.gentrans.git"
-          remoteURI="${clone.origin}\de.mfreund.gentrans.git"
+          location="${clone.location.pamtram}\de.mfreund.gentrans.git"
+          remoteURI="${clone.origin.pamtram}\de.mfreund.gentrans.git"
           pushURI="">
         <description>Clone the 'de.mfreund.gentrans.git' repository.</description>
       </setupTask>
       <setupTask
           xsi:type="git:GitCloneTask"
           id="clone.gentrans.transformation"
-          location="${clone.location}\de.mfreund.gentrans.transformation.git"
-          remoteURI="${clone.origin}\de.mfreund.gentrans.transformation.git">
+          location="${clone.location.pamtram}\de.mfreund.gentrans.transformation.git"
+          remoteURI="${clone.origin.pamtram}\de.mfreund.gentrans.transformation.git">
         <description>Clone the 'de.mfreund.gentrans.transformation.git' repository.</description>
       </setupTask>
       <setupTask
           xsi:type="git:GitCloneTask"
           id="clone.gentrans.transformation.selectors"
-          location="${clone.location}\de.mfreund.gentrans.transformation.selectors.git"
-          remoteURI="${clone.origin}\de.mfreund.gentrans.transformation.selectors.git">
+          location="${clone.location.pamtram}\de.mfreund.gentrans.transformation.selectors.git"
+          remoteURI="${clone.origin.pamtram}\de.mfreund.gentrans.transformation.selectors.git">
         <description>Clone the 'de.mfreund.gentrans.transformation.selectors.git' repository.</description>
       </setupTask>
       <setupTask
           xsi:type="git:GitCloneTask"
           id="clone.gentrans.ui"
-          location="${clone.location}\de.mfreund.gentrans.ui.git"
-          remoteURI="${clone.origin}\de.mfreund.gentrans.ui.git">
+          location="${clone.location.pamtram}\de.mfreund.gentrans.ui.git"
+          remoteURI="${clone.origin.pamtram}\de.mfreund.gentrans.ui.git">
         <description>Clone the 'de.mfreund.gentrans.ui.git' repository.</description>
       </setupTask>
       <setupTask
           xsi:type="git:GitCloneTask"
           id="clone.pamtram.casestudies.autoprobe"
-          location="${clone.location}\de.mfreund.pamtram.casestudies.autoprobe.git"
-          remoteURI="${clone.origin}\de.mfreund.pamtram.casestudies.autoprobe.git">
+          location="${clone.location.pamtram}\de.mfreund.pamtram.casestudies.autoprobe.git"
+          remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.casestudies.autoprobe.git">
         <description>Clone the 'de.mfreund.pamtram.casestudies.autoprobe.git' repository.</description>
       </setupTask>
       <setupTask
           xsi:type="git:GitCloneTask"
           id="clone.pamtram.casestudies.disl-movisa"
-          location="${clone.location}\de.mfreund.pamtram.casestudies.disl-movisa.git"
-          remoteURI="${clone.origin}\de.mfreund.pamtram.casestudies.disl-movisa.git">
+          location="${clone.location.pamtram}\de.mfreund.pamtram.casestudies.disl-movisa.git"
+          remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.casestudies.disl-movisa.git">
         <description>Clone the 'de.mfreund.pamtram.casestudies.disl-movisa.git' repository.</description>
       </setupTask>
       <setupTask
           xsi:type="git:GitCloneTask"
           id="clone.pamtram.casestudies.w3caui-movisa"
-          location="${clone.location}\de.mfreund.pamtram.casestudies.w3caui-movisa.git"
-          remoteURI="${clone.origin}\de.mfreund.pamtram.casestudies.w3caui-movisa.git">
+          location="${clone.location.pamtram}\de.mfreund.pamtram.casestudies.w3caui-movisa.git"
+          remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.casestudies.w3caui-movisa.git">
         <description>Clone the 'de.mfreund.pamtram.casestudies.w3caui-movisa.git' repository.</description>
       </setupTask>
       <setupTask
           xsi:type="git:GitCloneTask"
           id="clone.pamtram.documentation"
-          location="${clone.location}\de.mfreund.pamtram.documentation.git"
-          remoteURI="${clone.origin}\de.mfreund.pamtram.documentation.git">
+          location="${clone.location.pamtram}\de.mfreund.pamtram.documentation.git"
+          remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.documentation.git">
         <description>Clone the 'de.mfreund.pamtram.documentation.git' repository.</description>
       </setupTask>
       <setupTask
           xsi:type="git:GitCloneTask"
           id="clone.pamtram.feature"
-          location="${clone.location}\de.mfreund.pamtram.feature.git"
-          remoteURI="${clone.origin}\de.mfreund.pamtram.feature.git">
+          location="${clone.location.pamtram}\de.mfreund.pamtram.feature.git"
+          remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.feature.git">
         <description>Clone the 'de.mfreund.pamtram.feature.git' repository.</description>
       </setupTask>
       <setupTask
           xsi:type="git:GitCloneTask"
           id="clone.pamtram"
-          location="${clone.location}\de.mfreund.pamtram.git"
-          remoteURI="${clone.origin}\de.mfreund.pamtram.git">
+          location="${clone.location.pamtram}\de.mfreund.pamtram.git"
+          remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.git">
         <description>Clone the 'de.mfreund.pamtram.git' repository.</description>
       </setupTask>
       <setupTask
           xsi:type="git:GitCloneTask"
           id="clone.pamtram.model.edit"
-          location="${clone.location}\de.mfreund.pamtram.model.edit.git"
-          remoteURI="${clone.origin}\de.mfreund.pamtram.model.edit.git">
+          location="${clone.location.pamtram}\de.mfreund.pamtram.model.edit.git"
+          remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.model.edit.git">
         <description>Clone the 'de.mfreund.pamtram.model.edit.git' repository.</description>
       </setupTask>
       <setupTask
           xsi:type="git:GitCloneTask"
           id="clone.pamtram.model.editor"
-          location="${clone.location}\de.mfreund.pamtram.model.editor.git"
-          remoteURI="${clone.origin}\de.mfreund.pamtram.model.editor.git">
+          location="${clone.location.pamtram}\de.mfreund.pamtram.model.editor.git"
+          remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.model.editor.git">
         <description>Clone the 'de.mfreund.pamtram.model.editor.git' repository.</description>
       </setupTask>
       <setupTask
           xsi:type="git:GitCloneTask"
           id="clone.pamtram.model.generator"
-          location="${clone.location}\de.mfreund.pamtram.model.generator.git"
-          remoteURI="${clone.origin}\de.mfreund.pamtram.model.generator.git">
+          location="${clone.location.pamtram}\de.mfreund.pamtram.model.generator.git"
+          remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.model.generator.git">
         <description>Clone the 'de.mfreund.pamtram.model.generator.git' repository.</description>
       </setupTask>
       <setupTask
           xsi:type="git:GitCloneTask"
           id="clone.pamtram.model"
-          location="${clone.location}\de.mfreund.pamtram.model.git"
-          remoteURI="${clone.origin}\de.mfreund.pamtram.model.git">
+          location="${clone.location.pamtram}\de.mfreund.pamtram.model.git"
+          remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.model.git">
         <description>Clone the 'de.mfreund.pamtram.model.git' repository.</description>
       </setupTask>
       <setupTask
           xsi:type="git:GitCloneTask"
           id="clone.pamtram.setup"
-          location="${clone.location}\de.mfreund.pamtram.setup.git"
-          remoteURI="${clone.origin}\de.mfreund.pamtram.setup.git">
+          location="${clone.location.pamtram}\de.mfreund.pamtram.setup.git"
+          remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.setup.git">
         <description>Clone the 'de.mfreund.pamtram.setup.git' repository.</description>
       </setupTask>
       <setupTask
           xsi:type="git:GitCloneTask"
           id="clone.pamtram.ui"
-          location="${clone.location}\de.mfreund.pamtram.ui.git"
-          remoteURI="${clone.origin}\de.mfreund.pamtram.ui.git">
+          location="${clone.location.pamtram}\de.mfreund.pamtram.ui.git"
+          remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.ui.git">
         <description>Clone the 'de.mfreund.pamtram.ui.git' repository.</description>
       </setupTask>
       <setupTask
           xsi:type="git:GitCloneTask"
           id="clone.pamtram.update-site"
-          location="${clone.location}\de.mfreund.pamtram.update-site.git"
-          remoteURI="${clone.origin}\de.mfreund.pamtram.update-site.git">
+          location="${clone.location.pamtram}\de.mfreund.pamtram.update-site.git"
+          remoteURI="${clone.origin.pamtram}\de.mfreund.pamtram.update-site.git">
         <description>Clone the 'de.mfreund.pamtram.update-site.git' repository.</description>
       </setupTask>
       <setupTask
@@ -318,97 +318,97 @@
           xsi:type="projects:ProjectsImportTask"
           id="import.gentrans">
         <sourceLocator
-            rootFolder="${clone.location}\de.mfreund.gentrans.git"/>
+            rootFolder="${clone.location.pamtram}\de.mfreund.gentrans.git"/>
       </setupTask>
       <setupTask
           xsi:type="projects:ProjectsImportTask"
           id="import.gentrans.transformation">
         <sourceLocator
-            rootFolder="${clone.location}\de.mfreund.gentrans.transformation.git"/>
+            rootFolder="${clone.location.pamtram}\de.mfreund.gentrans.transformation.git"/>
       </setupTask>
       <setupTask
           xsi:type="projects:ProjectsImportTask"
           id="import.gentrans.transformation.selectors">
         <sourceLocator
-            rootFolder="${clone.location}\de.mfreund.gentrans.transformation.selectors.git"/>
+            rootFolder="${clone.location.pamtram}\de.mfreund.gentrans.transformation.selectors.git"/>
       </setupTask>
       <setupTask
           xsi:type="projects:ProjectsImportTask"
           id="import.gentrans.ui">
         <sourceLocator
-            rootFolder="${clone.location}\de.mfreund.gentrans.ui.git"/>
+            rootFolder="${clone.location.pamtram}\de.mfreund.gentrans.ui.git"/>
       </setupTask>
       <setupTask
           xsi:type="projects:ProjectsImportTask"
           id="import.pamtram.casestudies.autoprobe">
         <sourceLocator
-            rootFolder="${clone.location}\de.mfreund.pamtram.casestudies.autoprobe.git"/>
+            rootFolder="${clone.location.pamtram}\de.mfreund.pamtram.casestudies.autoprobe.git"/>
       </setupTask>
       <setupTask
           xsi:type="projects:ProjectsImportTask"
           id="import.pamtram.casestudies.disl-movisa">
         <sourceLocator
-            rootFolder="${clone.location}\de.mfreund.pamtram.casestudies.disl-movisa.git"/>
+            rootFolder="${clone.location.pamtram}\de.mfreund.pamtram.casestudies.disl-movisa.git"/>
       </setupTask>
       <setupTask
           xsi:type="projects:ProjectsImportTask"
           id="import.pamtram.casestudies.w3caui-movisa">
         <sourceLocator
-            rootFolder="${clone.location}\de.mfreund.pamtram.casestudies.w3caui-movisa.git"/>
+            rootFolder="${clone.location.pamtram}\de.mfreund.pamtram.casestudies.w3caui-movisa.git"/>
       </setupTask>
       <setupTask
           xsi:type="projects:ProjectsImportTask"
           id="import.pamtram.feature">
         <sourceLocator
-            rootFolder="${clone.location}\de.mfreund.pamtram.feature.git"/>
+            rootFolder="${clone.location.pamtram}\de.mfreund.pamtram.feature.git"/>
       </setupTask>
       <setupTask
           xsi:type="projects:ProjectsImportTask"
           id="import.pamtram">
         <sourceLocator
-            rootFolder="${clone.location}\de.mfreund.pamtram.git"/>
+            rootFolder="${clone.location.pamtram}\de.mfreund.pamtram.git"/>
       </setupTask>
       <setupTask
           xsi:type="projects:ProjectsImportTask"
           id="import.pamtram.model.edit">
         <sourceLocator
-            rootFolder="${clone.location}\de.mfreund.pamtram.model.edit.git"/>
+            rootFolder="${clone.location.pamtram}\de.mfreund.pamtram.model.edit.git"/>
       </setupTask>
       <setupTask
           xsi:type="projects:ProjectsImportTask"
           id="import.pamtram.model.editor">
         <sourceLocator
-            rootFolder="${clone.location}\de.mfreund.pamtram.model.editor.git"/>
+            rootFolder="${clone.location.pamtram}\de.mfreund.pamtram.model.editor.git"/>
       </setupTask>
       <setupTask
           xsi:type="projects:ProjectsImportTask"
           id="import.pamtram.model.generator">
         <sourceLocator
-            rootFolder="${clone.location}\de.mfreund.pamtram.model.generator.git"/>
+            rootFolder="${clone.location.pamtram}\de.mfreund.pamtram.model.generator.git"/>
       </setupTask>
       <setupTask
           xsi:type="projects:ProjectsImportTask"
           id="import.pamtram.model">
         <sourceLocator
-            rootFolder="${clone.location}\de.mfreund.pamtram.model.git"/>
+            rootFolder="${clone.location.pamtram}\de.mfreund.pamtram.model.git"/>
       </setupTask>
       <setupTask
           xsi:type="projects:ProjectsImportTask"
           id="import.pamtram.setup">
         <sourceLocator
-            rootFolder="${clone.location}\de.mfreund.pamtram.setup.git"/>
+            rootFolder="${clone.location.pamtram}\de.mfreund.pamtram.setup.git"/>
       </setupTask>
       <setupTask
           xsi:type="projects:ProjectsImportTask"
           id="import.pamtram.ui">
         <sourceLocator
-            rootFolder="${clone.location}\de.mfreund.pamtram.ui.git"/>
+            rootFolder="${clone.location.pamtram}\de.mfreund.pamtram.ui.git"/>
       </setupTask>
       <setupTask
           xsi:type="projects:ProjectsImportTask"
           id="import.pamtram.update-site">
         <sourceLocator
-            rootFolder="${clone.location}\de.mfreund.pamtram.update-site.git"/>
+            rootFolder="${clone.location.pamtram}\de.mfreund.pamtram.update-site.git"/>
       </setupTask>
       <setupTask
           xsi:type="projects:ProjectsImportTask"

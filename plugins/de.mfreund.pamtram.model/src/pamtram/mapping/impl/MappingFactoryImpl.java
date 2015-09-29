@@ -76,6 +76,7 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER: return createLocalMappedAttributeValueExpander();
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_PREPENDER: return createMappedAttributeValuePrepender();
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_APPENDER: return createMappedAttributeValueAppender();
+			case MappingPackage.FIXED_VALUE: return createFixedValue();
 			case MappingPackage.GLOBAL_ATTRIBUTE: return createGlobalAttribute();
 			case MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER: return createGlobalAttributeImporter();
 			case MappingPackage.ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT: return createAttributeMappingExternalSourceElement();
@@ -355,6 +356,16 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public MappedAttributeValueAppender createMappedAttributeValueAppender() {
 		MappedAttributeValueAppenderImpl mappedAttributeValueAppender = new MappedAttributeValueAppenderImpl();
 		return mappedAttributeValueAppender;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FixedValue createFixedValue() {
+		FixedValueImpl fixedValue = new FixedValueImpl();
+		return fixedValue;
 	}
 
 	/**

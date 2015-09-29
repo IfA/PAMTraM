@@ -257,6 +257,15 @@ public interface MappingFactory extends EFactory {
 	MappedAttributeValueAppender createMappedAttributeValueAppender();
 
 	/**
+	 * Returns a new object of class '<em>Fixed Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Fixed Value</em>'.
+	 * @generated
+	 */
+	FixedValue createFixedValue();
+
+	/**
 	 * Returns a new object of class '<em>Global Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

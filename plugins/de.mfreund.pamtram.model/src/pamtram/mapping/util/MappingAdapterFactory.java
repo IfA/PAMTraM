@@ -217,6 +217,10 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createMappedAttributeValueAppenderAdapter();
 			}
 			@Override
+			public Adapter caseFixedValue(FixedValue object) {
+				return createFixedValueAdapter();
+			}
+			@Override
 			public Adapter caseGlobalAttribute(GlobalAttribute object) {
 				return createGlobalAttributeAdapter();
 			}
@@ -823,6 +827,20 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMappedAttributeValueAppenderAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.FixedValue <em>Fixed Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.FixedValue
+	 * @generated
+	 */
+	public Adapter createFixedValueAdapter() {
 		return null;
 	}
 

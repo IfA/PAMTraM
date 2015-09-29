@@ -1290,7 +1290,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappingHintSourceInterface()
 	 * @generated
 	 */
-	int MAPPING_HINT_SOURCE_INTERFACE = 40;
+	int MAPPING_HINT_SOURCE_INTERFACE = 41;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1416,7 +1416,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalAttribute()
 	 * @generated
 	 */
-	int GLOBAL_ATTRIBUTE = 37;
+	int GLOBAL_ATTRIBUTE = 38;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.GlobalAttributeImporterImpl <em>Global Attribute Importer</em>}' class.
@@ -1426,7 +1426,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalAttributeImporter()
 	 * @generated
 	 */
-	int GLOBAL_ATTRIBUTE_IMPORTER = 38;
+	int GLOBAL_ATTRIBUTE_IMPORTER = 39;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.AttributeMappingSourceInterface <em>Attribute Mapping Source Interface</em>}' class.
@@ -1436,7 +1436,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMappingSourceInterface()
 	 * @generated
 	 */
-	int ATTRIBUTE_MAPPING_SOURCE_INTERFACE = 39;
+	int ATTRIBUTE_MAPPING_SOURCE_INTERFACE = 40;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.ModelConnectionHintSourceElementImpl <em>Model Connection Hint Source Element</em>}' class.
@@ -2532,6 +2532,61 @@ public interface MappingPackage extends EPackage {
 	int MAPPED_ATTRIBUTE_VALUE_APPENDER_OPERATION_COUNT = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.FixedValueImpl <em>Fixed Value</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.FixedValueImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getFixedValue()
+	 * @generated
+	 */
+	int FIXED_VALUE = 37;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_VALUE__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_VALUE__VALUE = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Fixed Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_VALUE_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Source Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_VALUE___GET_SOURCE_ATTRIBUTE = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Fixed Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_VALUE_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2674,7 +2729,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHintSourceInterface()
 	 * @generated
 	 */
-	int MODEL_CONNECTION_HINT_SOURCE_INTERFACE = 41;
+	int MODEL_CONNECTION_HINT_SOURCE_INTERFACE = 42;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2720,7 +2775,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalModifiedAttributeElementType()
 	 * @generated
 	 */
-	int EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE = 43;
+	int EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE = 44;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2793,7 +2848,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMappingExternalSourceElement()
 	 * @generated
 	 */
-	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT = 42;
+	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT = 43;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2875,7 +2930,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getModelConnectionHintExternalSourceElement()
 	 * @generated
 	 */
-	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT = 44;
+	int MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT = 45;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2957,7 +3012,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMatcherExternalSourceElement()
 	 * @generated
 	 */
-	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT = 45;
+	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT = 46;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3039,7 +3094,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalMappedAttributeValueExpander()
 	 * @generated
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 46;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 47;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3139,7 +3194,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalMappedAttributeValuePrepender()
 	 * @generated
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER = 47;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER = 48;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3239,7 +3294,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalMappedAttributeValueAppender()
 	 * @generated
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER = 48;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER = 49;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3339,7 +3394,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExpandableHint()
 	 * @generated
 	 */
-	int EXPANDABLE_HINT = 49;
+	int EXPANDABLE_HINT = 50;
 
 	/**
 	 * The number of structural features of the '<em>Expandable Hint</em>' class.
@@ -3367,7 +3422,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMatchToLowerCaseConverter()
 	 * @generated
 	 */
-	int MATCH_TO_LOWER_CASE_CONVERTER = 50;
+	int MATCH_TO_LOWER_CASE_CONVERTER = 51;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3422,7 +3477,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMatchToUpperCaseConverter()
 	 * @generated
 	 */
-	int MATCH_TO_UPPER_CASE_CONVERTER = 51;
+	int MATCH_TO_UPPER_CASE_CONVERTER = 52;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3477,7 +3532,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalValue()
 	 * @generated
 	 */
-	int GLOBAL_VALUE = 52;
+	int GLOBAL_VALUE = 53;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4496,6 +4551,27 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getMappedAttributeValueAppender();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.FixedValue <em>Fixed Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Fixed Value</em>'.
+	 * @see pamtram.mapping.FixedValue
+	 * @generated
+	 */
+	EClass getFixedValue();
+
+	/**
+	 * Returns the meta object for the attribute '{@link pamtram.mapping.FixedValue#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see pamtram.mapping.FixedValue#getValue()
+	 * @see #getFixedValue()
+	 * @generated
+	 */
+	EAttribute getFixedValue_Value();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.GlobalAttribute <em>Global Attribute</em>}'.
@@ -5609,6 +5685,24 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EClass MAPPED_ATTRIBUTE_VALUE_APPENDER = eINSTANCE.getMappedAttributeValueAppender();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.impl.FixedValueImpl <em>Fixed Value</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.impl.FixedValueImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getFixedValue()
+		 * @generated
+		 */
+		EClass FIXED_VALUE = eINSTANCE.getFixedValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FIXED_VALUE__VALUE = eINSTANCE.getFixedValue_Value();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.GlobalAttributeImpl <em>Global Attribute</em>}' class.

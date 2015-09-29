@@ -6749,7 +6749,7 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="width" expression="w-w+conveyorWidth" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="w" source="//@sourceSectionModel/@metaModelSections.21/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="height" expression="h-h+conveyorWidth" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="height" expression="conveyorWidth" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel/@metaModelSections.21/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="imgResource" affectedReference="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.4">
@@ -6769,7 +6769,7 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.23/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel/@metaModelSections.21/@attributes.6"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="UrlMapping" resultModifier="//@mappingModel/@modifierSets.64" target="//@targetSectionModel/@metaModelSections.23/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="UrlMapping" resultModifier="//@mappingModel/@modifierSets.51" target="//@targetSectionModel/@metaModelSections.23/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel/@metaModelSections.21/@attributes.6"/>
         </mappingHints>
       </mappingHintGroups>
@@ -6847,7 +6847,7 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.23/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel/@metaModelSections.15/@attributes.7"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="UrlMapping" resultModifier="//@mappingModel/@modifierSets.64" target="//@targetSectionModel/@metaModelSections.23/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="UrlMapping" resultModifier="//@mappingModel/@modifierSets.51" target="//@targetSectionModel/@metaModelSections.23/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel/@metaModelSections.15/@attributes.7"/>
         </mappingHints>
       </mappingHintGroups>
@@ -6908,7 +6908,7 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="width" expression="w-w+conveyorWidth" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="w" source="//@sourceSectionModel/@metaModelSections.21/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="height" expression="h-h+conveyorWidth" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="height" expression="conveyorWidth" target="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel/@metaModelSections.21/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="imgResource" affectedReference="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.4">
@@ -6928,7 +6928,7 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.23/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel/@metaModelSections.21/@attributes.6"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="UrlMapping" resultModifier="//@mappingModel/@modifierSets.64" target="//@targetSectionModel/@metaModelSections.23/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="UrlMapping" resultModifier="//@mappingModel/@modifierSets.51" target="//@targetSectionModel/@metaModelSections.23/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel/@metaModelSections.21/@attributes.6"/>
         </mappingHints>
       </mappingHintGroups>
@@ -6952,7 +6952,7 @@
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="NameLibElement" source="//@sourceSectionModel/@metaModelSections.24/@references.0/@value.2/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="ClasspathMapping" target="//@targetSectionModel/@libraryElements.3/@path">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="value ClassPath" source="//@sourceSectionModel/@metaModelSections.24/@references.0/@value.1/@attributes.1" modifier="//@mappingModel/@modifierSets.59"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="value ClassPath" source="//@sourceSectionModel/@metaModelSections.24/@references.0/@value.1/@attributes.1" modifier="//@mappingModel/@modifierSets.48"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="label" source="//@sourceSectionModel/@metaModelSections.15/@attributes.6"/>
         </mappingHints>
         <modelConnectionMatcher name="PanelSelector">
@@ -6977,7 +6977,7 @@
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel/@metaModelSections.15/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="ClasspathMapping" target="//@targetSectionModel/@libraryElements.0/@path">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="value ClassPath" source="//@sourceSectionModel/@metaModelSections.19/@references.0/@value.1/@attributes.1" modifier="//@mappingModel/@modifierSets.59"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="value ClassPath" source="//@sourceSectionModel/@metaModelSections.19/@references.0/@value.1/@attributes.1" modifier="//@mappingModel/@modifierSets.48"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="label" source="//@sourceSectionModel/@metaModelSections.15/@attributes.6"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="IDMapping" target="//@targetSectionModel/@libraryElements.0/@id">
@@ -7005,68 +7005,68 @@
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="h" source="//@sourceSectionModel/@metaModelSections.16/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.5/@parameters.5/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.16/@attributes.0" modifier="//@mappingModel/@modifierSets.48 //@mappingModel/@modifierSets.22"/>
+          <matcher xsi:type="mapping:AttributeMatcher" resultModifier="//@mappingModel/@modifierSets.22" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
+            <sourceAttributes xsi:type="mapping:FixedValue" name="LogAckId" value="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.AckId"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.5/@parameters.6/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.16/@attributes.0" modifier="//@mappingModel/@modifierSets.49 //@mappingModel/@modifierSets.22"/>
+          <matcher xsi:type="mapping:AttributeMatcher" resultModifier="//@mappingModel/@modifierSets.22" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
+            <sourceAttributes xsi:type="mapping:FixedValue" name="LogMsg" value="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.Msg"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.5/@parameters.7/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.16/@attributes.0" modifier="//@mappingModel/@modifierSets.50 //@mappingModel/@modifierSets.22"/>
+          <matcher xsi:type="mapping:AttributeMatcher" resultModifier="//@mappingModel/@modifierSets.22" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
+            <sourceAttributes xsi:type="mapping:FixedValue" name="LogMsgId" value="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.MsgId"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.5/@parameters.8/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.16/@attributes.0" modifier="//@mappingModel/@modifierSets.51 //@mappingModel/@modifierSets.22"/>
+          <matcher xsi:type="mapping:AttributeMatcher" resultModifier="//@mappingModel/@modifierSets.22" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
+            <sourceAttributes xsi:type="mapping:FixedValue" name="LogOption1" value="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.Option1"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.5/@parameters.9/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.16/@attributes.0" modifier="//@mappingModel/@modifierSets.52 //@mappingModel/@modifierSets.22"/>
+          <matcher xsi:type="mapping:AttributeMatcher" resultModifier="//@mappingModel/@modifierSets.22" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
+            <sourceAttributes xsi:type="mapping:FixedValue" name="LogOption2" value="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.Option2"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.5/@parameters.10/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.16/@attributes.0" modifier="//@mappingModel/@modifierSets.53 //@mappingModel/@modifierSets.22"/>
+          <matcher xsi:type="mapping:AttributeMatcher" resultModifier="//@mappingModel/@modifierSets.22" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
+            <sourceAttributes xsi:type="mapping:FixedValue" name="LogOption3" value="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.Option3"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.5/@parameters.11/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.16/@attributes.0" modifier="//@mappingModel/@modifierSets.54 //@mappingModel/@modifierSets.22"/>
+          <matcher xsi:type="mapping:AttributeMatcher" resultModifier="//@mappingModel/@modifierSets.22" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
+            <sourceAttributes xsi:type="mapping:FixedValue" name="LogOption4" value="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.Option4"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.5/@parameters.12/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.16/@attributes.0" modifier="//@mappingModel/@modifierSets.55 //@mappingModel/@modifierSets.22"/>
+          <matcher xsi:type="mapping:AttributeMatcher" resultModifier="//@mappingModel/@modifierSets.22" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
+            <sourceAttributes xsi:type="mapping:FixedValue" name="LogOption5" value="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.Option5"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.5/@parameters.13/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.16/@attributes.0" modifier="//@mappingModel/@modifierSets.56 //@mappingModel/@modifierSets.22"/>
+          <matcher xsi:type="mapping:AttributeMatcher" resultModifier="//@mappingModel/@modifierSets.22" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
+            <sourceAttributes xsi:type="mapping:FixedValue" name="LogOption6" value="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.Option6"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.5/@parameters.14/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.16/@attributes.0" modifier="//@mappingModel/@modifierSets.57 //@mappingModel/@modifierSets.22"/>
+          <matcher xsi:type="mapping:AttributeMatcher" resultModifier="//@mappingModel/@modifierSets.22" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
+            <sourceAttributes xsi:type="mapping:FixedValue" name="LogOption7" value="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.Option7"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.5/@parameters.15/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.16/@attributes.0" modifier="//@mappingModel/@modifierSets.58 //@mappingModel/@modifierSets.22"/>
+          <matcher xsi:type="mapping:AttributeMatcher" resultModifier="//@mappingModel/@modifierSets.22" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
+            <sourceAttributes xsi:type="mapping:FixedValue" name="ReactMsgId" value="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.React.MsgId"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.5/@parameters.16/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.16/@attributes.0" modifier="//@mappingModel/@modifierSets.60 //@mappingModel/@modifierSets.22"/>
+          <matcher xsi:type="mapping:AttributeMatcher" resultModifier="//@mappingModel/@modifierSets.22" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
+            <sourceAttributes xsi:type="mapping:FixedValue" name="ReactMsg" value="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.React.Msg"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo" affectedReference="//@targetSectionModel/@libraryElements.5/@parameters.17/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModel/@metaModelSections.16/@attributes.0" modifier="//@mappingModel/@modifierSets.61 //@mappingModel/@modifierSets.22"/>
+          <matcher xsi:type="mapping:AttributeMatcher" resultModifier="//@mappingModel/@modifierSets.22" targetAttribute="//@targetSectionModel/@metaModelSections.1/@attributes.2">
+            <sourceAttributes xsi:type="mapping:FixedValue" name="ReactAckId" value="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.React.AckId"/>
           </matcher>
         </mappingHints>
         <modelConnectionMatcher name="logLibItemConnectionHint">
@@ -7100,14 +7100,14 @@
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SimpleContainer" targetMMSection="//@targetSectionModel/@libraryElements.2/@parameters.4/@class">
         <mappingHints xsi:type="mapping:AttributeMapping" name="PosXValue based on the SignalInterfaceNumber" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))+stopperHorizontalInDirection*conveyorWidth*sigInterfaceNumber" target="//@targetSectionModel/@libraryElements.2/@parameters.2/@attribute">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel/@metaModelSections.21/@attributes.7"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="sigInterfaceNumber" source="//@sourceSectionModel/@metaModelSections.17/@references.0/@value.3/@attributes.0" modifier="//@mappingModel/@modifierSets.63"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="sigInterfaceNumber" source="//@sourceSectionModel/@metaModelSections.17/@references.0/@value.3/@attributes.0" modifier="//@mappingModel/@modifierSets.50"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="stopperHorizontalInDirection" source="//@sourceSectionModel/@metaModelSections.21/@attributes.10"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="PosYValue based on the SignalInterfaceNumber" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))+stopperVerticalInDirection*conveyorWidth*sigInterfaceNumber" target="//@targetSectionModel/@libraryElements.2/@parameters.3/@attribute">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModel/@metaModelSections.21/@attributes.8"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel/@metaModelSections.21/@attributes.9"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="stopperVerticalInDirection" source="//@sourceSectionModel/@metaModelSections.21/@attributes.11"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="sigInterfaceNumber" source="//@sourceSectionModel/@metaModelSections.17/@references.0/@value.3/@attributes.0" modifier="//@mappingModel/@modifierSets.63"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="sigInterfaceNumber" source="//@sourceSectionModel/@metaModelSections.17/@references.0/@value.3/@attributes.0" modifier="//@mappingModel/@modifierSets.50"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="width" expression="conveyorWidth" target="//@targetSectionModel/@libraryElements.2/@parameters.0/@attribute">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="w" source="//@sourceSectionModel/@metaModelSections.21/@attributes.3"/>
@@ -7126,7 +7126,7 @@
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="IDMapping" target="//@targetSectionModel/@libraryElements.2/@id">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath @ Integer" source="//@sourceSectionModel/@metaModelSections.17/@references.0/@value.3/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel/@modifierSets.15 //@mappingModel/@modifierSets.62"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="valueBrowsePath @ Integer" source="//@sourceSectionModel/@metaModelSections.17/@references.0/@value.3/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel/@modifierSets.15 //@mappingModel/@modifierSets.49"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:CardinalityMapping" source="//@sourceSectionModel/@metaModelSections.17/@references.0/@value.3" target="//@targetSectionModel/@libraryElements.2/@parameters.4/@class"/>
         <modelConnectionMatcher name="Panel">
@@ -7454,47 +7454,8 @@
     <modifierSets name="append &quot;_changed&quot;">
       <modifier xsi:type="mapping:StringAppender" name="_changed" string="_changed"/>
     </modifierSets>
-    <modifierSets name="AlertInterface_to_LogAckId">
-      <modifier xsi:type="mapping:SubstringReplacer" name="AlertInterface_to_LogAckId" regex="AlertInterface" replacement="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.AckId"/>
-    </modifierSets>
-    <modifierSets name="AlertInterface_to_LogMsg">
-      <modifier xsi:type="mapping:SubstringReplacer" name="AlertInterface_to_LogMsg" regex="AlertInterface" replacement="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.Msg"/>
-    </modifierSets>
-    <modifierSets name="AlertInterface_to_LogMsgId">
-      <modifier xsi:type="mapping:SubstringReplacer" name="AlertInterface_to_LogMsgId" regex="AlertInterface" replacement="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.MsgId"/>
-    </modifierSets>
-    <modifierSets name="AlertInterface_to_LogOption1">
-      <modifier xsi:type="mapping:SubstringReplacer" name="AlertInterface_to_LogOption1" regex="AlertInterface" replacement="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.Option1"/>
-    </modifierSets>
-    <modifierSets name="AlertInterface_to_LogOption2">
-      <modifier xsi:type="mapping:SubstringReplacer" name="AlertInterface_to_LogOption2" regex="AlertInterface" replacement="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.Option2"/>
-    </modifierSets>
-    <modifierSets name="AlertInterface_to_LogOption3">
-      <modifier xsi:type="mapping:SubstringReplacer" name="AlertInterface_to_LogOption3" regex="AlertInterface" replacement="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.Option3"/>
-    </modifierSets>
-    <modifierSets name="AlertInterface_to_LogOption4">
-      <modifier xsi:type="mapping:SubstringReplacer" name="AlertInterface_to_LogOption4" regex="AlertInterface" replacement="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.Option4"/>
-    </modifierSets>
-    <modifierSets name="AlertInterface_to_LogOption5">
-      <modifier xsi:type="mapping:SubstringReplacer" name="AlertInterface_to_LogOption5" regex="AlertInterface" replacement="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.Option5"/>
-    </modifierSets>
-    <modifierSets name="AlertInterface_to_LogOption6">
-      <modifier xsi:type="mapping:SubstringReplacer" name="AlertInterface_to_LogOption6" regex="AlertInterface" replacement="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.Option6"/>
-    </modifierSets>
-    <modifierSets name="AlertInterface_to_LogOption7">
-      <modifier xsi:type="mapping:SubstringReplacer" name="AlertInterface_to_LogOption7" regex="AlertInterface" replacement="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.Log.Option7"/>
-    </modifierSets>
-    <modifierSets name="AlertInterface_to_ReactMsgId">
-      <modifier xsi:type="mapping:SubstringReplacer" name="AlertInterface_to_ReactMsgId" regex="AlertInterface" replacement="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.React.MsgId"/>
-    </modifierSets>
     <modifierSets name="Append .">
       <modifier xsi:type="mapping:StringAppender" name="." string="."/>
-    </modifierSets>
-    <modifierSets name="AlertInterface_to_ReactMsg">
-      <modifier xsi:type="mapping:SubstringReplacer" name="AlertInterface_to_ReactMsg" regex="AlertInterface" replacement="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.React.Msg"/>
-    </modifierSets>
-    <modifierSets name="AlertInterface_to_ReactAckId">
-      <modifier xsi:type="mapping:SubstringReplacer" name="AlertInterface_to_ReactAckId" regex="AlertInterface" replacement="..LocalHost.AS.Variables.Proj.Vis.Visualization.Mailbox.React.AckId"/>
     </modifierSets>
     <modifierSets name="replace _CarrierID">
       <modifier xsi:type="mapping:SubstringReplacer" regex="_CarrierID$" replacement=""/>

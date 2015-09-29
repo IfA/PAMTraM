@@ -283,6 +283,11 @@ public class AttributeMappingItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS,
+				 MappingFactory.eINSTANCE.createFixedValue()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS,
 				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 
 		newChildDescriptors.add

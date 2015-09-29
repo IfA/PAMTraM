@@ -147,6 +147,11 @@ public class ModelConnectionHintItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS,
+				 MappingFactory.eINSTANCE.createFixedValue()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS,
 				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 
 		newChildDescriptors.add

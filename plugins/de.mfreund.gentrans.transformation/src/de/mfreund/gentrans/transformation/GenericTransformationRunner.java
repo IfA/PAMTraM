@@ -1,5 +1,6 @@
 package de.mfreund.gentrans.transformation;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -55,6 +56,7 @@ import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappedAttributeValuePrepender;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
+import pamtram.mapping.MappingHintBaseType;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
@@ -1211,18 +1213,21 @@ public class GenericTransformationRunner {
 			final SourceSectionMatcher sourceSectionMapper,
 			final LinkedList<MappingInstanceStorage> selectedMappings) {
 
-		consoleStream.println("Getting hint values of exported hint groups, checking MappingHintImporters, adding global variables to hints");
+		consoleStream.println("Getting hint values of exported HintHroups, checking MappingHintImporters, adding GlobalVariables and FixedValues to hints");
 		//		final AttributeMappingHintValueMap exportedAttributeMappingHints = new AttributeMappingHintValueMap();
 		//		final CardinalityMappingHintValueMap exportedCardinalityMappingHints = new CardinalityMappingHintValueMap();
 		//		final MappingInstanceSelectorHintValueMap exportedMappingInstanceSelectors= new MappingInstanceSelectorHintValueMap();
 		final HintValueStorage exportedHintValues = new HintValueStorage();
 
 		for (final MappingInstanceStorage selMap : selectedMappings) {
+
 			/*
-			 * import hint values
+			 * First, we collect the hints from all HintGroups. 
 			 */
+			ArrayList<MappingHintBaseType> mappingHints = new ArrayList<>();
 			for (final MappingHintGroupType g : selMap.getMapping()
 					.getActiveMappingHintGroups()) {
+
 				if (g instanceof ExportedMappingHintGroup) {
 					for (final MappingHint h : g.getMappingHints()) {
 						/*
@@ -1234,106 +1239,71 @@ public class GenericTransformationRunner {
 					}
 				}
 
-				/*
-				 * add global attribute importers and fixed values
-				 */
+				mappingHints.addAll(g.getMappingHints());
+				if (g instanceof MappingHintGroup) {
+					mappingHints.add(((MappingHintGroup) g).getModelConnectionMatcher());
 
-				for (final MappingHint h : g.getMappingHints()) {
+				}
+			}
+			for (final MappingHintGroupImporter ig : selMap.getMapping()
+					.getActiveImportedMappingHintGroups()) {
 
-					if (h instanceof AttributeMapping) {
-						for (final AttributeMappingSourceInterface i : ((AttributeMapping) h)
-								.getSourceAttributeMappings()) {
+				mappingHints.addAll(ig.getMappingHints());
+			}
 
-							SourceSectionAttribute att = null;
-							String val = null;
 
-							if (i instanceof GlobalAttributeImporter && sourceSectionMapper.getGlobalAttributeValues().containsKey(
-									((GlobalAttributeImporter) i).getGlobalAttribute())) {									
-								att = i.getSourceAttribute();
-								val = sourceSectionMapper.getGlobalAttributeValues().get(
-										((GlobalAttributeImporter) i).getGlobalAttribute());
+			/*
+			 * Now, we add the hint values for GlobalVariables and FixedValues for all collected hints.
+			 */
+			for (final MappingHintBaseType h : mappingHints) {
 
-							} else if (i instanceof FixedValue) {
-								val = ((FixedValue) i).getValue();
+				if (h instanceof AttributeMapping) {
+					for (final AttributeMappingSourceInterface i : ((AttributeMapping) h)
+							.getSourceAttributeMappings()) {
 
-							} else {
-								continue;
+						SourceSectionAttribute att = null;
+						String val = null;
 
-							}
+						if (i instanceof GlobalAttributeImporter && sourceSectionMapper.getGlobalAttributeValues().containsKey(
+								((GlobalAttributeImporter) i).getGlobalAttribute())) {									
+							att = i.getSourceAttribute();
+							val = sourceSectionMapper.getGlobalAttributeValues().get(
+									((GlobalAttributeImporter) i).getGlobalAttribute());
 
-							/*
-							 * If there does not yet exists any hint value for this AttributeMapping (e.g., if no 
-							 * (External)AttributeMappingSourceElement exists for this hint), we need to initialize the
-							 * map of hint values manually.
-							 */
-							if(selMap.getHintValues().getHintValues((AttributeMapping) h).isEmpty()) {
-								selMap.getHintValues().getAttributeMappingHintValues().addHintValue(
-										(AttributeMapping) h, new LinkedHashMap<AttributeMappingSourceInterface, AttributeValueRepresentation>());
-							}
+						} else if (i instanceof FixedValue) {
+							val = ((FixedValue) i).getValue();
 
-							for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> m : selMap.getHintValues().getHintValues((AttributeMapping) h)) {
-								m.put(i, new AttributeValueRepresentation(att, val));
-							}
+						} else {
+							continue;
+
 						}
-					} else if (h instanceof MappingInstanceSelector) {
-						if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
-							final AttributeMatcher m = (AttributeMatcher) ((MappingInstanceSelector) h)
-									.getMatcher();
-							for (final AttributeMatcherSourceInterface i : m.getSourceAttributes()) {
 
-								SourceSectionAttribute att = null;
-								String val = null;
+						/*
+						 * If there does not yet exists any hint value for this AttributeMapping (e.g., if no 
+						 * (External)AttributeMappingSourceElement exists for this hint), we need to initialize the
+						 * map of hint values manually.
+						 */
+						if(selMap.getHintValues().getHintValues((AttributeMapping) h).isEmpty()) {
+							selMap.getHintValues().getAttributeMappingHintValues().addHintValue(
+									(AttributeMapping) h, new LinkedHashMap<AttributeMappingSourceInterface, AttributeValueRepresentation>());
+						}
 
-								if (i instanceof GlobalAttributeImporter && sourceSectionMapper.getGlobalAttributeValues().containsKey(
-										((GlobalAttributeImporter) i)
-										.getGlobalAttribute())) {
-									att = i.getSourceAttribute();
-									val = sourceSectionMapper.getGlobalAttributeValues().get(
-											((GlobalAttributeImporter) i).getGlobalAttribute());
-
-								} else if (i instanceof FixedValue) {
-									val = ((FixedValue) i).getValue();
-
-								} else {
-									continue;
-
-								}
-
-								/*
-								 * If there does not yet exists any hint value for this MappingInstanceSelector (e.g., if no 
-								 * (External)AttributeMatcherSourceElement exists for this hint), we need to initialize the
-								 * map of hint values manually.
-								 */
-								if(selMap.getHintValues().getHintValues((MappingInstanceSelector) h).isEmpty()) {
-									selMap.getHintValues().getMappingInstanceSelectorHintValues().addHintValue(
-											(MappingInstanceSelector) h, new LinkedHashMap<AttributeMatcherSourceInterface, AttributeValueRepresentation>());
-								}
-
-								for (final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> o : selMap.getHintValues().getHintValues((MappingInstanceSelector) h)) {
-									o.put(i, new AttributeValueRepresentation(att, val));
-								}
-							}
+						for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> m : selMap.getHintValues().getHintValues((AttributeMapping) h)) {
+							m.put(i, new AttributeValueRepresentation(att, val));
 						}
 					}
-				}
-
-				/*
-				 * global attributes and fixed values for ModelConnectionHints
-				 *
-				 */
-				if (g instanceof MappingHintGroup) {
-					if (((MappingHintGroup) g).getModelConnectionMatcher() instanceof ModelConnectionHint) {
-						final ModelConnectionHint h = ((MappingHintGroup) g)
-								.getModelConnectionMatcher();
-						for (final ModelConnectionHintSourceInterface i : h
-								.getSourceElements()) {
+				} else if (h instanceof MappingInstanceSelector) {
+					if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
+						final AttributeMatcher m = (AttributeMatcher) ((MappingInstanceSelector) h)
+								.getMatcher();
+						for (final AttributeMatcherSourceInterface i : m.getSourceAttributes()) {
 
 							SourceSectionAttribute att = null;
 							String val = null;
 
 							if (i instanceof GlobalAttributeImporter && sourceSectionMapper.getGlobalAttributeValues().containsKey(
-									((GlobalAttributeImporter) i).getGlobalAttribute())) {
-
+									((GlobalAttributeImporter) i)
+									.getGlobalAttribute())) {
 								att = i.getSourceAttribute();
 								val = sourceSectionMapper.getGlobalAttributeValues().get(
 										((GlobalAttributeImporter) i).getGlobalAttribute());
@@ -1347,72 +1317,54 @@ public class GenericTransformationRunner {
 							}
 
 							/*
-							 * If there does not yet exists any hint value for this ModelConnectionHint (e.g., if no 
-							 * (External)ModelConnectionHintSourceElement exists for this hint), we need to initialize the
+							 * If there does not yet exists any hint value for this MappingInstanceSelector (e.g., if no 
+							 * (External)AttributeMatcherSourceElement exists for this hint), we need to initialize the
 							 * map of hint values manually.
 							 */
-							if(selMap.getHintValues().getHintValues(h).isEmpty()) {
-								selMap.getHintValues().getModelConnectionHintValues().addHintValue(
-										h, new LinkedHashMap<ModelConnectionHintSourceInterface, AttributeValueRepresentation>());
+							if(selMap.getHintValues().getHintValues((MappingInstanceSelector) h).isEmpty()) {
+								selMap.getHintValues().getMappingInstanceSelectorHintValues().addHintValue(
+										(MappingInstanceSelector) h, new LinkedHashMap<AttributeMatcherSourceInterface, AttributeValueRepresentation>());
 							}
 
-							for (final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> o : selMap.getHintValues().getHintValues(h)) {
+							for (final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> o : selMap.getHintValues().getHintValues((MappingInstanceSelector) h)) {
 								o.put(i, new AttributeValueRepresentation(att, val));
 							}
 						}
 					}
-				}
+				} else if (h instanceof ModelConnectionHint) {
+					for (final ModelConnectionHintSourceInterface i : ((ModelConnectionHint) h)
+							.getSourceElements()) {
 
-			}
+						SourceSectionAttribute att = null;
+						String val = null;
 
-			/*
-			 * global vals for ImportedMappingHintGroups
-			 */
-			//TODO add support for FixedValues as above
-			for (final MappingHintGroupImporter g : selMap.getMapping()
-					.getActiveImportedMappingHintGroups()) {
-				for (final MappingHintType h : g.getMappingHints()) {
+						if (i instanceof GlobalAttributeImporter && sourceSectionMapper.getGlobalAttributeValues().containsKey(
+								((GlobalAttributeImporter) i).getGlobalAttribute())) {
 
-					if (h instanceof AttributeMapping) {
-						for (final AttributeMappingSourceInterface i : ((AttributeMapping) h)
-								.getSourceAttributeMappings()) {
-							if (i instanceof GlobalAttributeImporter) {
-								if (sourceSectionMapper.getGlobalAttributeValues()
-										.containsKey(
-												((GlobalAttributeImporter) i)
-												.getGlobalAttribute())) {
-									final String gVal = sourceSectionMapper
-											.getGlobalAttributeValues()
-											.get(((GlobalAttributeImporter) i)
-													.getGlobalAttribute());
-									for (final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> m : selMap.getHintValues().getHintValues((AttributeMapping) h)) {
-										m.put(i, new AttributeValueRepresentation(i.getSourceAttribute(), gVal));
-									}
-								}
-							}
+							att = i.getSourceAttribute();
+							val = sourceSectionMapper.getGlobalAttributeValues().get(
+									((GlobalAttributeImporter) i).getGlobalAttribute());
+
+						} else if (i instanceof FixedValue) {
+							val = ((FixedValue) i).getValue();
+
+						} else {
+							continue;
+
 						}
-					} else if (h instanceof MappingInstanceSelector) {
-						if (((MappingInstanceSelector) h).getMatcher() instanceof AttributeMatcher) {
-							final AttributeMatcher m = (AttributeMatcher) ((MappingInstanceSelector) h)
-									.getMatcher();
-							for (final AttributeMatcherSourceInterface i : m
-									.getSourceAttributes()) {
-								if (i instanceof GlobalAttributeImporter) {
-									if (sourceSectionMapper
-											.getGlobalAttributeValues()
-											.containsKey(
-													((GlobalAttributeImporter) i)
-													.getGlobalAttribute())) {
-										final String gVal = sourceSectionMapper
-												.getGlobalAttributeValues()
-												.get(((GlobalAttributeImporter) i)
-														.getGlobalAttribute());
-										for (final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> o : selMap.getHintValues().getHintValues((MappingInstanceSelector) h)) {
-											o.put(i, new AttributeValueRepresentation(i.getSourceAttribute(), gVal));
-										}
-									}
-								}
-							}
+
+						/*
+						 * If there does not yet exists any hint value for this ModelConnectionHint (e.g., if no 
+						 * (External)ModelConnectionHintSourceElement exists for this hint), we need to initialize the
+						 * map of hint values manually.
+						 */
+						if(selMap.getHintValues().getHintValues((ModelConnectionHint) h).isEmpty()) {
+							selMap.getHintValues().getModelConnectionHintValues().addHintValue(
+									(ModelConnectionHint) h, new LinkedHashMap<ModelConnectionHintSourceInterface, AttributeValueRepresentation>());
+						}
+
+						for (final Map<ModelConnectionHintSourceInterface, AttributeValueRepresentation> o : selMap.getHintValues().getHintValues((ModelConnectionHint) h)) {
+							o.put(i, new AttributeValueRepresentation(att, val));
 						}
 					}
 				}
@@ -1469,6 +1421,7 @@ public class GenericTransformationRunner {
 				}
 			}
 		}
+
 		return exportedHintValues;
 	}
 

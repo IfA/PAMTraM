@@ -3,8 +3,6 @@
 package pamtram;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.GlobalValue;
 import pamtram.mapping.Mapping;
@@ -27,7 +25,7 @@ import pamtram.mapping.Mapping;
  * @model
  * @generated
  */
-public interface MappingModel extends EObject {
+public interface MappingModel extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Mapping</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.mapping.Mapping}.

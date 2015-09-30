@@ -44,85 +44,55 @@ public interface PAMTraM extends EObject {
 	EList<EPackage> getContextMetaModelPackage();
 
 	/**
-	 * Returns the value of the '<em><b>Source Section Model</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Source Section Model</b></em>' containment reference list.
+	 * The list contents are of type {@link pamtram.SourceSectionModel}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source Section Model</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source Section Model</em>' containment reference.
-	 * @see #setSourceSectionModel(SourceSectionModel)
+	 * @return the value of the '<em>Source Section Model</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_SourceSectionModel()
 	 * @model containment="true" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!PAMTraM!sourceSectionModel'"
 	 * @generated
 	 */
-	SourceSectionModel getSourceSectionModel();
+	EList<SourceSectionModel> getSourceSectionModel();
 
 	/**
-	 * Sets the value of the '{@link pamtram.PAMTraM#getSourceSectionModel <em>Source Section Model</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Source Section Model</em>' containment reference.
-	 * @see #getSourceSectionModel()
-	 * @generated
-	 */
-	void setSourceSectionModel(SourceSectionModel value);
-
-	/**
-	 * Returns the value of the '<em><b>Target Section Model</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Target Section Model</b></em>' containment reference list.
+	 * The list contents are of type {@link pamtram.TargetSectionModel}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target Section Model</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Target Section Model</em>' containment reference.
-	 * @see #setTargetSectionModel(TargetSectionModel)
+	 * @return the value of the '<em>Target Section Model</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_TargetSectionModel()
 	 * @model containment="true" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!PAMTraM!targetSectionModel'"
 	 * @generated
 	 */
-	TargetSectionModel getTargetSectionModel();
+	EList<TargetSectionModel> getTargetSectionModel();
 
 	/**
-	 * Sets the value of the '{@link pamtram.PAMTraM#getTargetSectionModel <em>Target Section Model</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target Section Model</em>' containment reference.
-	 * @see #getTargetSectionModel()
-	 * @generated
-	 */
-	void setTargetSectionModel(TargetSectionModel value);
-
-	/**
-	 * Returns the value of the '<em><b>Mapping Model</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Mapping Model</b></em>' containment reference list.
+	 * The list contents are of type {@link pamtram.MappingModel}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Mapping Model</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Mapping Model</em>' containment reference.
-	 * @see #setMappingModel(MappingModel)
+	 * @return the value of the '<em>Mapping Model</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_MappingModel()
 	 * @model containment="true" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!PAMTraM!mappingModel'"
 	 * @generated
 	 */
-	MappingModel getMappingModel();
-
-	/**
-	 * Sets the value of the '{@link pamtram.PAMTraM#getMappingModel <em>Mapping Model</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Mapping Model</em>' containment reference.
-	 * @see #getMappingModel()
-	 * @generated
-	 */
-	void setMappingModel(MappingModel value);
+	EList<MappingModel> getMappingModel();
 
 	/**
 	 * Returns the value of the '<em><b>Transformation Model</b></em>' containment reference.

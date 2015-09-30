@@ -10,7 +10,6 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -35,7 +34,7 @@ import pamtram.mapping.Mapping;
  *
  * @generated
  */
-public class MappingModelImpl extends MinimalEObjectImpl.Container implements MappingModel {
+public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	/**
 	 * The cached value of the '{@link #getMapping() <em>Mapping</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

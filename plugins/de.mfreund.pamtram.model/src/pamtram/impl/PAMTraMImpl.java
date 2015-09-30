@@ -12,8 +12,10 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.MappingModel;
 import pamtram.PAMTraM;
 import pamtram.PamtramPackage;
@@ -50,34 +52,34 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	protected EList<EPackage> contextMetaModelPackage;
 
 	/**
-	 * The cached value of the '{@link #getSourceSectionModel() <em>Source Section Model</em>}' containment reference.
+	 * The cached value of the '{@link #getSourceSectionModel() <em>Source Section Model</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSourceSectionModel()
 	 * @generated
 	 * @ordered
 	 */
-	protected SourceSectionModel sourceSectionModel;
+	protected EList<SourceSectionModel> sourceSectionModel;
 
 	/**
-	 * The cached value of the '{@link #getTargetSectionModel() <em>Target Section Model</em>}' containment reference.
+	 * The cached value of the '{@link #getTargetSectionModel() <em>Target Section Model</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTargetSectionModel()
 	 * @generated
 	 * @ordered
 	 */
-	protected TargetSectionModel targetSectionModel;
+	protected EList<TargetSectionModel> targetSectionModel;
 
 	/**
-	 * The cached value of the '{@link #getMappingModel() <em>Mapping Model</em>}' containment reference.
+	 * The cached value of the '{@link #getMappingModel() <em>Mapping Model</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getMappingModel()
 	 * @generated
 	 * @ordered
 	 */
-	protected MappingModel mappingModel;
+	protected EList<MappingModel> mappingModel;
 
 	/**
 	 * The cached value of the '{@link #getTransformationModel() <em>Transformation Model</em>}' containment reference.
@@ -125,7 +127,10 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionModel getSourceSectionModel() {
+	public EList<SourceSectionModel> getSourceSectionModel() {
+		if (sourceSectionModel == null) {
+			sourceSectionModel = new EObjectContainmentEList<SourceSectionModel>(SourceSectionModel.class, this, PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL);
+		}
 		return sourceSectionModel;
 	}
 
@@ -134,41 +139,10 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSourceSectionModel(SourceSectionModel newSourceSectionModel, NotificationChain msgs) {
-		SourceSectionModel oldSourceSectionModel = sourceSectionModel;
-		sourceSectionModel = newSourceSectionModel;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL, oldSourceSectionModel, newSourceSectionModel);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+	public EList<TargetSectionModel> getTargetSectionModel() {
+		if (targetSectionModel == null) {
+			targetSectionModel = new EObjectContainmentEList<TargetSectionModel>(TargetSectionModel.class, this, PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODEL);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSourceSectionModel(SourceSectionModel newSourceSectionModel) {
-		if (newSourceSectionModel != sourceSectionModel) {
-			NotificationChain msgs = null;
-			if (sourceSectionModel != null)
-				msgs = ((InternalEObject)sourceSectionModel).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL, null, msgs);
-			if (newSourceSectionModel != null)
-				msgs = ((InternalEObject)newSourceSectionModel).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL, null, msgs);
-			msgs = basicSetSourceSectionModel(newSourceSectionModel, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL, newSourceSectionModel, newSourceSectionModel));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TargetSectionModel getTargetSectionModel() {
 		return targetSectionModel;
 	}
 
@@ -177,76 +151,11 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTargetSectionModel(TargetSectionModel newTargetSectionModel, NotificationChain msgs) {
-		TargetSectionModel oldTargetSectionModel = targetSectionModel;
-		targetSectionModel = newTargetSectionModel;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODEL, oldTargetSectionModel, newTargetSectionModel);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+	public EList<MappingModel> getMappingModel() {
+		if (mappingModel == null) {
+			mappingModel = new EObjectContainmentEList<MappingModel>(MappingModel.class, this, PamtramPackage.PAM_TRA_M__MAPPING_MODEL);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTargetSectionModel(TargetSectionModel newTargetSectionModel) {
-		if (newTargetSectionModel != targetSectionModel) {
-			NotificationChain msgs = null;
-			if (targetSectionModel != null)
-				msgs = ((InternalEObject)targetSectionModel).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODEL, null, msgs);
-			if (newTargetSectionModel != null)
-				msgs = ((InternalEObject)newTargetSectionModel).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODEL, null, msgs);
-			msgs = basicSetTargetSectionModel(newTargetSectionModel, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODEL, newTargetSectionModel, newTargetSectionModel));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MappingModel getMappingModel() {
 		return mappingModel;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetMappingModel(MappingModel newMappingModel, NotificationChain msgs) {
-		MappingModel oldMappingModel = mappingModel;
-		mappingModel = newMappingModel;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PamtramPackage.PAM_TRA_M__MAPPING_MODEL, oldMappingModel, newMappingModel);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setMappingModel(MappingModel newMappingModel) {
-		if (newMappingModel != mappingModel) {
-			NotificationChain msgs = null;
-			if (mappingModel != null)
-				msgs = ((InternalEObject)mappingModel).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PamtramPackage.PAM_TRA_M__MAPPING_MODEL, null, msgs);
-			if (newMappingModel != null)
-				msgs = ((InternalEObject)newMappingModel).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PamtramPackage.PAM_TRA_M__MAPPING_MODEL, null, msgs);
-			msgs = basicSetMappingModel(newMappingModel, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PamtramPackage.PAM_TRA_M__MAPPING_MODEL, newMappingModel, newMappingModel));
 	}
 
 	/**
@@ -301,11 +210,11 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL:
-				return basicSetSourceSectionModel(null, msgs);
+				return ((InternalEList<?>)getSourceSectionModel()).basicRemove(otherEnd, msgs);
 			case PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODEL:
-				return basicSetTargetSectionModel(null, msgs);
+				return ((InternalEList<?>)getTargetSectionModel()).basicRemove(otherEnd, msgs);
 			case PamtramPackage.PAM_TRA_M__MAPPING_MODEL:
-				return basicSetMappingModel(null, msgs);
+				return ((InternalEList<?>)getMappingModel()).basicRemove(otherEnd, msgs);
 			case PamtramPackage.PAM_TRA_M__TRANSFORMATION_MODEL:
 				return basicSetTransformationModel(null, msgs);
 		}
@@ -348,13 +257,16 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 				getContextMetaModelPackage().addAll((Collection<? extends EPackage>)newValue);
 				return;
 			case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL:
-				setSourceSectionModel((SourceSectionModel)newValue);
+				getSourceSectionModel().clear();
+				getSourceSectionModel().addAll((Collection<? extends SourceSectionModel>)newValue);
 				return;
 			case PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODEL:
-				setTargetSectionModel((TargetSectionModel)newValue);
+				getTargetSectionModel().clear();
+				getTargetSectionModel().addAll((Collection<? extends TargetSectionModel>)newValue);
 				return;
 			case PamtramPackage.PAM_TRA_M__MAPPING_MODEL:
-				setMappingModel((MappingModel)newValue);
+				getMappingModel().clear();
+				getMappingModel().addAll((Collection<? extends MappingModel>)newValue);
 				return;
 			case PamtramPackage.PAM_TRA_M__TRANSFORMATION_MODEL:
 				setTransformationModel((TransformationModel)newValue);
@@ -375,13 +287,13 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 				getContextMetaModelPackage().clear();
 				return;
 			case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL:
-				setSourceSectionModel((SourceSectionModel)null);
+				getSourceSectionModel().clear();
 				return;
 			case PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODEL:
-				setTargetSectionModel((TargetSectionModel)null);
+				getTargetSectionModel().clear();
 				return;
 			case PamtramPackage.PAM_TRA_M__MAPPING_MODEL:
-				setMappingModel((MappingModel)null);
+				getMappingModel().clear();
 				return;
 			case PamtramPackage.PAM_TRA_M__TRANSFORMATION_MODEL:
 				setTransformationModel((TransformationModel)null);
@@ -401,11 +313,11 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 			case PamtramPackage.PAM_TRA_M__CONTEXT_META_MODEL_PACKAGE:
 				return contextMetaModelPackage != null && !contextMetaModelPackage.isEmpty();
 			case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL:
-				return sourceSectionModel != null;
+				return sourceSectionModel != null && !sourceSectionModel.isEmpty();
 			case PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODEL:
-				return targetSectionModel != null;
+				return targetSectionModel != null && !targetSectionModel.isEmpty();
 			case PamtramPackage.PAM_TRA_M__MAPPING_MODEL:
-				return mappingModel != null;
+				return mappingModel != null && !mappingModel.isEmpty();
 			case PamtramPackage.PAM_TRA_M__TRANSFORMATION_MODEL:
 				return transformationModel != null;
 		}

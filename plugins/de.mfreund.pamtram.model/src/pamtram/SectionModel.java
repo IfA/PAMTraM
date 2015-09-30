@@ -3,7 +3,6 @@
 package pamtram;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.Reference;
@@ -25,7 +24,7 @@ import pamtram.metamodel.Reference;
  * @model abstract="true"
  * @generated
  */
-public interface SectionModel<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends EObject {
+public interface SectionModel<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Meta Model Package</b></em>' reference.
 	 * <!-- begin-user-doc -->

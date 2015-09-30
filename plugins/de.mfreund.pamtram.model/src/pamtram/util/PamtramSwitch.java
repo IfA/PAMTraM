@@ -95,6 +95,7 @@ public class PamtramSwitch<T> extends Switch<T> {
 			case PamtramPackage.SECTION_MODEL: {
 				SectionModel<?, ?, ?> sectionModel = (SectionModel<?, ?, ?>)theEObject;
 				T result = caseSectionModel(sectionModel);
+				if (result == null) result = caseNamedElement(sectionModel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -102,6 +103,7 @@ public class PamtramSwitch<T> extends Switch<T> {
 				SourceSectionModel sourceSectionModel = (SourceSectionModel)theEObject;
 				T result = caseSourceSectionModel(sourceSectionModel);
 				if (result == null) result = caseSectionModel(sourceSectionModel);
+				if (result == null) result = caseNamedElement(sourceSectionModel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -109,12 +111,14 @@ public class PamtramSwitch<T> extends Switch<T> {
 				TargetSectionModel targetSectionModel = (TargetSectionModel)theEObject;
 				T result = caseTargetSectionModel(targetSectionModel);
 				if (result == null) result = caseSectionModel(targetSectionModel);
+				if (result == null) result = caseNamedElement(targetSectionModel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case PamtramPackage.MAPPING_MODEL: {
 				MappingModel mappingModel = (MappingModel)theEObject;
 				T result = caseMappingModel(mappingModel);
+				if (result == null) result = caseNamedElement(mappingModel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

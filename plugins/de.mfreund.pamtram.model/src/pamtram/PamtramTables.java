@@ -85,6 +85,9 @@ public class PamtramTables
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_GlobalValue = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_GlobalValue);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_LibraryEntry = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_LibraryEntry);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Mapping = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_Mapping);
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_MappingModel = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_MappingModel);
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_SourceSectionModel = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_SourceSectionModel);
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_TargetSectionModel = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_TargetSectionModel);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Transformation = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_Transformation);
 
 	/**
@@ -167,6 +170,7 @@ public class PamtramTables
 		private static final /*@NonNull*/ ExecutorFragment _DeactivatableElement__OclElement = new ExecutorFragment(Types._DeactivatableElement, OCLstdlibTables.Types._OclElement);
 
 		private static final /*@NonNull*/ ExecutorFragment _MappingModel__MappingModel = new ExecutorFragment(Types._MappingModel, PamtramTables.Types._MappingModel);
+		private static final /*@NonNull*/ ExecutorFragment _MappingModel__NamedElement = new ExecutorFragment(Types._MappingModel, PamtramTables.Types._NamedElement);
 		private static final /*@NonNull*/ ExecutorFragment _MappingModel__OclAny = new ExecutorFragment(Types._MappingModel, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _MappingModel__OclElement = new ExecutorFragment(Types._MappingModel, OCLstdlibTables.Types._OclElement);
 
@@ -178,15 +182,18 @@ public class PamtramTables
 		private static final /*@NonNull*/ ExecutorFragment _PAMTraM__OclElement = new ExecutorFragment(Types._PAMTraM, OCLstdlibTables.Types._OclElement);
 		private static final /*@NonNull*/ ExecutorFragment _PAMTraM__PAMTraM = new ExecutorFragment(Types._PAMTraM, PamtramTables.Types._PAMTraM);
 
+		private static final /*@NonNull*/ ExecutorFragment _SectionModel__NamedElement = new ExecutorFragment(Types._SectionModel, PamtramTables.Types._NamedElement);
 		private static final /*@NonNull*/ ExecutorFragment _SectionModel__OclAny = new ExecutorFragment(Types._SectionModel, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _SectionModel__OclElement = new ExecutorFragment(Types._SectionModel, OCLstdlibTables.Types._OclElement);
 		private static final /*@NonNull*/ ExecutorFragment _SectionModel__SectionModel = new ExecutorFragment(Types._SectionModel, PamtramTables.Types._SectionModel);
 
+		private static final /*@NonNull*/ ExecutorFragment _SourceSectionModel__NamedElement = new ExecutorFragment(Types._SourceSectionModel, PamtramTables.Types._NamedElement);
 		private static final /*@NonNull*/ ExecutorFragment _SourceSectionModel__OclAny = new ExecutorFragment(Types._SourceSectionModel, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _SourceSectionModel__OclElement = new ExecutorFragment(Types._SourceSectionModel, OCLstdlibTables.Types._OclElement);
 		private static final /*@NonNull*/ ExecutorFragment _SourceSectionModel__SectionModel = new ExecutorFragment(Types._SourceSectionModel, PamtramTables.Types._SectionModel);
 		private static final /*@NonNull*/ ExecutorFragment _SourceSectionModel__SourceSectionModel = new ExecutorFragment(Types._SourceSectionModel, PamtramTables.Types._SourceSectionModel);
 
+		private static final /*@NonNull*/ ExecutorFragment _TargetSectionModel__NamedElement = new ExecutorFragment(Types._TargetSectionModel, PamtramTables.Types._NamedElement);
 		private static final /*@NonNull*/ ExecutorFragment _TargetSectionModel__OclAny = new ExecutorFragment(Types._TargetSectionModel, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _TargetSectionModel__OclElement = new ExecutorFragment(Types._TargetSectionModel, OCLstdlibTables.Types._OclElement);
 		private static final /*@NonNull*/ ExecutorFragment _TargetSectionModel__SectionModel = new ExecutorFragment(Types._TargetSectionModel, PamtramTables.Types._SectionModel);
@@ -314,9 +321,10 @@ public class PamtramTables
 		{
 			Fragments._MappingModel__OclAny /* 0 */,
 			Fragments._MappingModel__OclElement /* 1 */,
-			Fragments._MappingModel__MappingModel /* 2 */
+			Fragments._MappingModel__NamedElement /* 2 */,
+			Fragments._MappingModel__MappingModel /* 3 */
 		};
-		private static final /*@NonNull*/ int[] __MappingModel = { 1,1,1 };
+		private static final /*@NonNull*/ int[] __MappingModel = { 1,1,1,1 };
 
 		private static final /*@NonNull*/ ExecutorFragment[] _NamedElement =
 		{
@@ -338,27 +346,30 @@ public class PamtramTables
 		{
 			Fragments._SectionModel__OclAny /* 0 */,
 			Fragments._SectionModel__OclElement /* 1 */,
-			Fragments._SectionModel__SectionModel /* 2 */
+			Fragments._SectionModel__NamedElement /* 2 */,
+			Fragments._SectionModel__SectionModel /* 3 */
 		};
-		private static final /*@NonNull*/ int[] __SectionModel = { 1,1,1 };
+		private static final /*@NonNull*/ int[] __SectionModel = { 1,1,1,1 };
 
 		private static final /*@NonNull*/ ExecutorFragment[] _SourceSectionModel =
 		{
 			Fragments._SourceSectionModel__OclAny /* 0 */,
 			Fragments._SourceSectionModel__OclElement /* 1 */,
-			Fragments._SourceSectionModel__SectionModel /* 2 */,
-			Fragments._SourceSectionModel__SourceSectionModel /* 3 */
+			Fragments._SourceSectionModel__NamedElement /* 2 */,
+			Fragments._SourceSectionModel__SectionModel /* 3 */,
+			Fragments._SourceSectionModel__SourceSectionModel /* 4 */
 		};
-		private static final /*@NonNull*/ int[] __SourceSectionModel = { 1,1,1,1 };
+		private static final /*@NonNull*/ int[] __SourceSectionModel = { 1,1,1,1,1 };
 
 		private static final /*@NonNull*/ ExecutorFragment[] _TargetSectionModel =
 		{
 			Fragments._TargetSectionModel__OclAny /* 0 */,
 			Fragments._TargetSectionModel__OclElement /* 1 */,
-			Fragments._TargetSectionModel__SectionModel /* 2 */,
-			Fragments._TargetSectionModel__TargetSectionModel /* 3 */
+			Fragments._TargetSectionModel__NamedElement /* 2 */,
+			Fragments._TargetSectionModel__SectionModel /* 3 */,
+			Fragments._TargetSectionModel__TargetSectionModel /* 4 */
 		};
-		private static final /*@NonNull*/ int[] __TargetSectionModel = { 1,1,1,1 };
+		private static final /*@NonNull*/ int[] __TargetSectionModel = { 1,1,1,1,1 };
 
 		private static final /*@NonNull*/ ExecutorFragment[] _TransformationModel =
 		{
@@ -425,6 +436,7 @@ public class PamtramTables
 		private static final /*@NonNull*/ ExecutorOperation[] _MappingModel__MappingModel = {
 			PamtramTables.Operations._MappingModel__getActiveMappings /* getActiveMappings() */
 		};
+		private static final /*@NonNull*/ ExecutorOperation[] _MappingModel__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _MappingModel__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
@@ -494,6 +506,7 @@ public class PamtramTables
 		};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _SectionModel__SectionModel = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _SectionModel__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _SectionModel__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
@@ -517,6 +530,7 @@ public class PamtramTables
 		};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _SourceSectionModel__SourceSectionModel = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _SourceSectionModel__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _SourceSectionModel__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
@@ -541,6 +555,7 @@ public class PamtramTables
 		private static final /*@NonNull*/ ExecutorOperation[] _SourceSectionModel__SectionModel = {};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _TargetSectionModel__TargetSectionModel = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _TargetSectionModel__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation[] _TargetSectionModel__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
@@ -596,6 +611,7 @@ public class PamtramTables
 			Fragments._DeactivatableElement__OclElement.initOperations(_DeactivatableElement__OclElement);
 
 			Fragments._MappingModel__MappingModel.initOperations(_MappingModel__MappingModel);
+			Fragments._MappingModel__NamedElement.initOperations(_MappingModel__NamedElement);
 			Fragments._MappingModel__OclAny.initOperations(_MappingModel__OclAny);
 			Fragments._MappingModel__OclElement.initOperations(_MappingModel__OclElement);
 
@@ -607,15 +623,18 @@ public class PamtramTables
 			Fragments._PAMTraM__OclElement.initOperations(_PAMTraM__OclElement);
 			Fragments._PAMTraM__PAMTraM.initOperations(_PAMTraM__PAMTraM);
 
+			Fragments._SectionModel__NamedElement.initOperations(_SectionModel__NamedElement);
 			Fragments._SectionModel__OclAny.initOperations(_SectionModel__OclAny);
 			Fragments._SectionModel__OclElement.initOperations(_SectionModel__OclElement);
 			Fragments._SectionModel__SectionModel.initOperations(_SectionModel__SectionModel);
 
+			Fragments._SourceSectionModel__NamedElement.initOperations(_SourceSectionModel__NamedElement);
 			Fragments._SourceSectionModel__OclAny.initOperations(_SourceSectionModel__OclAny);
 			Fragments._SourceSectionModel__OclElement.initOperations(_SourceSectionModel__OclElement);
 			Fragments._SourceSectionModel__SectionModel.initOperations(_SourceSectionModel__SectionModel);
 			Fragments._SourceSectionModel__SourceSectionModel.initOperations(_SourceSectionModel__SourceSectionModel);
 
+			Fragments._TargetSectionModel__NamedElement.initOperations(_TargetSectionModel__NamedElement);
 			Fragments._TargetSectionModel__OclAny.initOperations(_TargetSectionModel__OclAny);
 			Fragments._TargetSectionModel__OclElement.initOperations(_TargetSectionModel__OclElement);
 			Fragments._TargetSectionModel__SectionModel.initOperations(_TargetSectionModel__SectionModel);
@@ -651,6 +670,7 @@ public class PamtramTables
 			PamtramTables.Properties._MappingModel__globalValues,
 			PamtramTables.Properties._MappingModel__mapping,
 			PamtramTables.Properties._MappingModel__modifierSets,
+			PamtramTables.Properties._NamedElement__name,
 			PamtramTables.Properties._MappingModel__PAMTraM__mappingModel
 		};
 
@@ -668,12 +688,14 @@ public class PamtramTables
 
 		private static final /*@NonNull*/ ExecutorProperty[] _SectionModel = {
 			PamtramTables.Properties._SectionModel__metaModelPackage,
-			PamtramTables.Properties._SectionModel__metaModelSections
+			PamtramTables.Properties._SectionModel__metaModelSections,
+			PamtramTables.Properties._NamedElement__name
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _SourceSectionModel = {
 			PamtramTables.Properties._SectionModel__metaModelPackage,
 			PamtramTables.Properties._SectionModel__metaModelSections,
+			PamtramTables.Properties._NamedElement__name,
 			PamtramTables.Properties._SourceSectionModel__PAMTraM__sourceSectionModel
 		};
 
@@ -681,6 +703,7 @@ public class PamtramTables
 			PamtramTables.Properties._TargetSectionModel__libraryElements,
 			PamtramTables.Properties._SectionModel__metaModelPackage,
 			PamtramTables.Properties._SectionModel__metaModelSections,
+			PamtramTables.Properties._NamedElement__name,
 			PamtramTables.Properties._TargetSectionModel__PAMTraM__targetSectionModel
 		};
 

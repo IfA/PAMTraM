@@ -10,8 +10,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.PamtramPackage;
@@ -33,7 +31,7 @@ import pamtram.metamodel.Reference;
  *
  * @generated
  */
-public abstract class SectionModelImpl<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends MinimalEObjectImpl.Container implements SectionModel<C, R, A> {
+public abstract class SectionModelImpl<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends NamedElementImpl implements SectionModel<C, R, A> {
 	/**
 	 * The cached value of the '{@link #getMetaModelPackage() <em>Meta Model Package</em>}' reference.
 	 * <!-- begin-user-doc -->

@@ -506,6 +506,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		sectionModelEClass_A.getEBounds().add(g1);
 
 		// Add supertypes to classes
+		sectionModelEClass.getESuperTypes().add(this.getNamedElement());
 		g1 = createEGenericType(this.getSectionModel());
 		g2 = createEGenericType(theMetamodelPackage.getSourceSectionClass());
 		g1.getETypeArguments().add(g2);
@@ -522,6 +523,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		g2 = createEGenericType(theMetamodelPackage.getTargetSectionAttribute());
 		g1.getETypeArguments().add(g2);
 		targetSectionModelEClass.getEGenericSuperTypes().add(g1);
+		mappingModelEClass.getESuperTypes().add(this.getNamedElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -532,9 +534,9 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 
 		initEClass(pamTraMEClass, PAMTraM.class, "PAMTraM", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPAMTraM_ContextMetaModelPackage(), ecorePackage.getEPackage(), null, "contextMetaModelPackage", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPAMTraM_SourceSectionModel(), this.getSourceSectionModel(), null, "sourceSectionModel", null, 1, 1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPAMTraM_TargetSectionModel(), this.getTargetSectionModel(), null, "targetSectionModel", null, 1, 1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPAMTraM_MappingModel(), this.getMappingModel(), null, "mappingModel", null, 1, 1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPAMTraM_SourceSectionModel(), this.getSourceSectionModel(), null, "sourceSectionModel", null, 1, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPAMTraM_TargetSectionModel(), this.getTargetSectionModel(), null, "targetSectionModel", null, 1, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPAMTraM_MappingModel(), this.getMappingModel(), null, "mappingModel", null, 1, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_TransformationModel(), this.getTransformationModel(), null, "transformationModel", null, 0, 1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sectionModelEClass, SectionModel.class, "SectionModel", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

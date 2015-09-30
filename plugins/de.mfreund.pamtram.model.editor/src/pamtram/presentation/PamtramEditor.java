@@ -43,6 +43,7 @@ import org.eclipse.emf.common.ui.editor.ProblemEditorPart;
 import org.eclipse.emf.common.ui.viewer.ColumnViewerInformationControlToolTipSupport;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -142,6 +143,7 @@ import de.mfreund.pamtram.preferences.PreferenceSupplier;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.GenLibraryItemProviderAdapterFactory;
 import pamtram.PAMTraM;
+import pamtram.TargetSectionModel;
 import pamtram.commandlistener.PamtramCommandStackListener;
 import pamtram.condition.provider.ConditionItemProviderAdapterFactory;
 import pamtram.contentadapter.PamtramContentAdapter;
@@ -562,7 +564,10 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 
 				if (!visitor.getRemovedResources().isEmpty()) {
 					boolean exit = false;
-					EList<pamtram.metamodel.LibraryEntry> libEntries = pamtram.getTargetSectionModel().getLibraryElements();
+					EList<pamtram.metamodel.LibraryEntry> libEntries = new BasicEList<>();
+					for (TargetSectionModel	targetSectionModel : pamtram.getTargetSectionModel()) {
+						libEntries.addAll(targetSectionModel.getLibraryElements());
+					}
 					for (Resource resource : visitor.getRemovedResources()) {
 						if(resource.getURI().lastSegment().equals("data.xmi")) {
 							String path = resource.getURI().trimSegments(1).lastSegment();

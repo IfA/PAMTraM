@@ -102,7 +102,9 @@ public class ImportLibraryElementWizard extends Wizard {
 						LibraryHelper.convertToLibraryElement(
 								targetLibraryContextDescriptor, 
 								entry.getKey(), 
-								pamtram.getTargetSectionModel().getMetaModelPackage(), 
+								//TODO do not only/simple use the first target metamodel package
+								//TODO why do we even need this here???
+								pamtram.getTargetSectionModel().get(0).getMetaModelPackage(), 
 								pamtram.eResource().getURI().trimSegments(1).appendSegment("lib"),
 								editingDomain.getResourceSet());
 				libElement.setLibraryFile(one.getLibraryFile());
@@ -110,7 +112,8 @@ public class ImportLibraryElementWizard extends Wizard {
 				// second, create a command to import it to the pamtram model 
 				Command createLibraryEntryCommand = new CreateLibraryEntryCommand(
 						editingDomain, 
-						pamtram.getTargetSectionModel(), 
+						//TODO do not simply add the created library element to the first target section model
+						pamtram.getTargetSectionModel().get(0), 
 						libElement, pamtram.eResource().getURI().trimSegments(1).appendSegment("lib").appendSegment("target").appendSegment(entry.getKey()).appendSegment("data.xmi"));
 				compoundCommand.append(createLibraryEntryCommand);					
 
@@ -152,7 +155,8 @@ public class ImportLibraryElementWizard extends Wizard {
 					// second, create a command to import it to the pamtram model
 					Command createMappingCommand = new CreateChildCommand(
 							editingDomain, 
-							pamtram.getMappingModel(), 
+							//TODO do not simply add the mapping to the first mapping model
+							pamtram.getMappingModel().get(0), 
 							PamtramPackage.Literals.MAPPING_MODEL__MAPPING, 
 							mapping, 
 							null);

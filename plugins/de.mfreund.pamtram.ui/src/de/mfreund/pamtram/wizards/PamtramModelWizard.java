@@ -56,6 +56,7 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 
+import de.mfreund.pamtram.pages.PamtramEPackageSpecificationPage;
 import de.mfreund.pamtram.ui.PamtramUIPlugin;
 import pamtram.PAMTraM;
 import pamtram.PamtramFactory;
@@ -68,7 +69,6 @@ import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.TargetSectionClass;
-import de.mfreund.pamtram.pages.PamtramEPackageSpecificationPage;
 import pamtram.provider.PamtramEditPlugin;
 
 
@@ -86,7 +86,7 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final List<String> FILE_EXTENSIONS =
-		Collections.unmodifiableList(Arrays.asList(PamtramUIPlugin.INSTANCE.getString("_UI_PamtramEditorFilenameExtensions").split("\\s*,\\s*")));
+			Collections.unmodifiableList(Arrays.asList(PamtramUIPlugin.INSTANCE.getString("_UI_PamtramEditorFilenameExtensions").split("\\s*,\\s*")));
 
 	/**
 	 * A formatted list of supported file extensions, suitable for display.
@@ -95,7 +95,7 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final String FORMATTED_FILE_EXTENSIONS =
-		PamtramUIPlugin.INSTANCE.getString("_UI_PamtramEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
+			PamtramUIPlugin.INSTANCE.getString("_UI_PamtramEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
 
 	/**
 	 * This caches an instance of the model package.
@@ -112,7 +112,7 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	protected PamtramFactory pamtramFactory = pamtramPackage.getPamtramFactory();
-	
+
 	/**
 	 * This caches an instance of the 'metamodel' model sub-package.
 	 * <!-- begin-user-doc -->
@@ -126,7 +126,7 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 */
 	protected MetamodelFactory metamodelFactory = metamodelPackage.getMetamodelFactory();
-	
+
 	/**
 	 * This caches an instance of the 'mapping' model sub-package.
 	 * <!-- begin-user-doc -->
@@ -156,7 +156,7 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	protected PamtramModelWizardInitialObjectCreationPage initialObjectCreationPage;
-	
+
 	/**
 	 * This is the ePackage specification page.
 	 */
@@ -192,6 +192,7 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
 		this.selection = selection;
@@ -232,49 +233,49 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 		EObject rootObject = pamtramFactory.create(eClass);
 		return rootObject;
 	}
-	
+
 	/**
 	 * Create a new model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
 	protected EObject createInitialModel() {
-		
+
 		// generate a Pamtram instance
 		PAMTraM pamtram = pamtramFactory.createPAMTraM();
-		
+
 		// add a source section model
-		pamtram.setSourceSectionModel(pamtramFactory.createSourceSectionModel());
+		pamtram.getSourceSectionModel().add(pamtramFactory.createSourceSectionModel());
 		// set the ePackage of the source section model
 		if(ePackageSpecificationPage.getSourceEPackage() != null) {
-			pamtram.getSourceSectionModel().setMetaModelPackage(ePackageSpecificationPage.getSourceEPackage());
+			pamtram.getSourceSectionModel().get(0).setMetaModelPackage(ePackageSpecificationPage.getSourceEPackage());
 		}
 		// add an  empty class to the source section model
 		SourceSectionClass  sourceClass = metamodelFactory.createSourceSectionClass();
 		sourceClass.setName("source");
-		pamtram.getSourceSectionModel().getMetaModelSections().add(sourceClass);
-		
+		pamtram.getSourceSectionModel().get(0).getMetaModelSections().add(sourceClass);
+
 		// add a target section model
-		pamtram.setTargetSectionModel(pamtramFactory.createTargetSectionModel());
+		pamtram.getTargetSectionModel().add(pamtramFactory.createTargetSectionModel());
 		// set the ePackage of the target section model
 		if(ePackageSpecificationPage.getTargetEPackage() != null) {
-			pamtram.getTargetSectionModel().setMetaModelPackage(ePackageSpecificationPage.getTargetEPackage());
+			pamtram.getTargetSectionModel().get(0).setMetaModelPackage(ePackageSpecificationPage.getTargetEPackage());
 		}
 		// add an empty class to the target section model
 		MappingHintGroup  mappingHintGroup = mappingFactory.createMappingHintGroup();
 		TargetSectionClass targetClass = metamodelFactory.createTargetSectionClass();
 		targetClass.setName("target");
-		pamtram.getTargetSectionModel().getMetaModelSections().add(targetClass);
-		
+		pamtram.getTargetSectionModel().get(0).getMetaModelSections().add(targetClass);
+
 		// add a mapping model
-		pamtram.setMappingModel(pamtramFactory.createMappingModel());
+		pamtram.getMappingModel().add(pamtramFactory.createMappingModel());
 		// add a simple mapping to the mapping model
 		Mapping mapping = mappingFactory.createMapping();
 		mapping.setSourceMMSection(sourceClass);
 		mapping.getMappingHintGroups().add(mappingHintGroup);
 		mappingHintGroup.setTargetMMSection(targetClass);
-		pamtram.getMappingModel().getMapping().add(mapping);
-		
+		pamtram.getMappingModel().get(0).getMapping().add(mapping);
+
 		return pamtram;
 	}
 
@@ -293,43 +294,43 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 			// Do the work within an operation.
 			//
 			WorkspaceModifyOperation operation =
-				new WorkspaceModifyOperation() {
-					@Override
-					protected void execute(IProgressMonitor progressMonitor) {
-						try {
-							// Create a resource set
-							//
-							ResourceSet resourceSet = new ResourceSetImpl();
+					new WorkspaceModifyOperation() {
+				@Override
+				protected void execute(IProgressMonitor progressMonitor) {
+					try {
+						// Create a resource set
+						//
+						ResourceSet resourceSet = new ResourceSetImpl();
 
-							// Get the URI of the model file.
-							//
-							URI fileURI = URI.createPlatformResourceURI(modelFile.getFullPath().toString(), true);
+						// Get the URI of the model file.
+						//
+						URI fileURI = URI.createPlatformResourceURI(modelFile.getFullPath().toString(), true);
 
-							// Create a resource for this file.
-							//
-							Resource resource = resourceSet.createResource(fileURI);
+						// Create a resource for this file.
+						//
+						Resource resource = resourceSet.createResource(fileURI);
 
-							// Add the initial model object to the contents.
-							//
-							EObject rootObject = createInitialModel();
-							if (rootObject != null) {
-								resource.getContents().add(rootObject);
-							}
-
-							// Save the contents of the resource to the file system.
-							//
-							Map<Object, Object> options = new HashMap<Object, Object>();
-							options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
-							resource.save(options);
+						// Add the initial model object to the contents.
+						//
+						EObject rootObject = createInitialModel();
+						if (rootObject != null) {
+							resource.getContents().add(rootObject);
 						}
-						catch (Exception exception) {
-							PamtramUIPlugin.INSTANCE.log(exception);
-						}
-						finally {
-							progressMonitor.done();
-						}
+
+						// Save the contents of the resource to the file system.
+						//
+						Map<Object, Object> options = new HashMap<Object, Object>();
+						options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
+						resource.save(options);
 					}
-				};
+					catch (Exception exception) {
+						PamtramUIPlugin.INSTANCE.log(exception);
+					}
+					finally {
+						progressMonitor.done();
+					}
+				}
+			};
 
 			getContainer().run(false, false, operation);
 
@@ -341,19 +342,20 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 			if (activePart instanceof ISetSelectionTarget) {
 				final ISelection targetSelection = new StructuredSelection(modelFile);
 				getShell().getDisplay().asyncExec
-					(new Runnable() {
-						 public void run() {
-							 ((ISetSelectionTarget)activePart).selectReveal(targetSelection);
-						 }
-					 });
+				(new Runnable() {
+					@Override
+					public void run() {
+						((ISetSelectionTarget)activePart).selectReveal(targetSelection);
+					}
+				});
 			}
 
 			// Open an editor on the new file.
 			//
 			try {
 				page.openEditor
-					(new FileEditorInput(modelFile),
-					 workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());					 	 
+				(new FileEditorInput(modelFile),
+						workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());					 	 
 			}
 			catch (PartInitException exception) {
 				MessageDialog.openError(workbenchWindow.getShell(), PamtramUIPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
@@ -367,7 +369,7 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Do the work after everything is specified.
 	 * <!-- begin-user-doc -->
@@ -383,43 +385,43 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 			// Do the work within an operation.
 			//
 			WorkspaceModifyOperation operation =
-				new WorkspaceModifyOperation() {
-					@Override
-					protected void execute(IProgressMonitor progressMonitor) {
-						try {
-							// Create a resource set
-							//
-							ResourceSet resourceSet = new ResourceSetImpl();
+					new WorkspaceModifyOperation() {
+				@Override
+				protected void execute(IProgressMonitor progressMonitor) {
+					try {
+						// Create a resource set
+						//
+						ResourceSet resourceSet = new ResourceSetImpl();
 
-							// Get the URI of the model file.
-							//
-							URI fileURI = URI.createPlatformResourceURI(modelFile.getFullPath().toString(), true);
+						// Get the URI of the model file.
+						//
+						URI fileURI = URI.createPlatformResourceURI(modelFile.getFullPath().toString(), true);
 
-							// Create a resource for this file.
-							//
-							Resource resource = resourceSet.createResource(fileURI);
+						// Create a resource for this file.
+						//
+						Resource resource = resourceSet.createResource(fileURI);
 
-							// Add the initial model object to the contents.
-							//
-							EObject rootObject = createInitialModel();
-							if (rootObject != null) {
-								resource.getContents().add(rootObject);
-							}
-
-							// Save the contents of the resource to the file system.
-							//
-							Map<Object, Object> options = new HashMap<Object, Object>();
-							options.put(XMLResource.OPTION_ENCODING, "UTF-8");
-							resource.save(options);
+						// Add the initial model object to the contents.
+						//
+						EObject rootObject = createInitialModel();
+						if (rootObject != null) {
+							resource.getContents().add(rootObject);
 						}
-						catch (Exception exception) {
-							PamtramUIPlugin.INSTANCE.log(exception);
-						}
-						finally {
-							progressMonitor.done();
-						}
+
+						// Save the contents of the resource to the file system.
+						//
+						Map<Object, Object> options = new HashMap<Object, Object>();
+						options.put(XMLResource.OPTION_ENCODING, "UTF-8");
+						resource.save(options);
 					}
-				};
+					catch (Exception exception) {
+						PamtramUIPlugin.INSTANCE.log(exception);
+					}
+					finally {
+						progressMonitor.done();
+					}
+				}
+			};
 
 			getContainer().run(false, false, operation);
 
@@ -431,19 +433,20 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 			if (activePart instanceof ISetSelectionTarget) {
 				final ISelection targetSelection = new StructuredSelection(modelFile);
 				getShell().getDisplay().asyncExec
-					(new Runnable() {
-						 public void run() {
-							 ((ISetSelectionTarget)activePart).selectReveal(targetSelection);
-						 }
-					 });
+				(new Runnable() {
+					@Override
+					public void run() {
+						((ISetSelectionTarget)activePart).selectReveal(targetSelection);
+					}
+				});
 			}
 
 			// Open an editor on the new file.
 			//
 			try {
 				page.openEditor
-					(new FileEditorInput(modelFile),
-					 workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());					 	 
+				(new FileEditorInput(modelFile),
+						workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());					 	 
 			}
 			catch (PartInitException exception) {
 				MessageDialog.openError(workbenchWindow.getShell(), PamtramUIPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
@@ -548,6 +551,7 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public void createControl(Composite parent) {
 			Composite composite = new Composite(parent, SWT.NONE); {
 				GridLayout layout = new GridLayout();
@@ -621,11 +625,12 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 		 * @generated
 		 */
 		protected ModifyListener validator =
-			new ModifyListener() {
-				public void modifyText(ModifyEvent e) {
-					setPageComplete(validatePage());
-				}
-			};
+				new ModifyListener() {
+			@Override
+			public void modifyText(ModifyEvent e) {
+				setPageComplete(validatePage());
+			}
+		};
 
 		/**
 		 * <!-- begin-user-doc -->
@@ -713,8 +718,8 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 		}
 	}
 
-	
-	
+
+
 	/**
 	 * The framework calls this to create the contents of the wizard.
 	 * <!-- begin-user-doc -->
@@ -768,13 +773,13 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 		initialObjectCreationPage.setDescription(PamtramUIPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
 		addPage(initialObjectCreationPage);
 	}
-		
+
 	/**
 	 * The framework calls this to create the contents of the wizard.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
-		@Override
+	@Override
 	public void addPages() {
 		// Create a page, set the title, and the initial model file name.
 		//
@@ -817,7 +822,7 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 				}
 			}
 		}
-		
+
 		ePackageSpecificationPage = new PamtramEPackageSpecificationPage("Whatever3");
 		ePackageSpecificationPage.setTitle("ePackage specification");
 		ePackageSpecificationPage.setDescription("Specify the ePackages of the source and target sections.");
@@ -833,7 +838,7 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 	public IFile getModelFile() {
 		return newFileCreationPage.getModelFile();
 	}
-	
+
 	public PamtramEPackageSpecificationPage getePackageSpecificationPage() {
 		return ePackageSpecificationPage;
 	}

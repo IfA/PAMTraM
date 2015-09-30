@@ -81,9 +81,11 @@ public class GeneratorWizard extends Wizard {
 			AddCommand addGeneratedSections = null;
 			// now that we now which of the sections are unique, we can add those to the pamtram model
 			if(wizardData.getSectionType() == SectionType.SOURCE) {
-				addGeneratedSections = new AddCommand(editingDomain, wizardData.getPamtram().getSourceSectionModel(), PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS, sectionsToAdd);
+				//TODO do not simply add all sections to the first source section model
+				addGeneratedSections = new AddCommand(editingDomain, wizardData.getPamtram().getSourceSectionModel().get(0), PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS, sectionsToAdd);
 			} else {
-				addGeneratedSections = new AddCommand(editingDomain, wizardData.getPamtram().getTargetSectionModel(), PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS, sectionsToAdd);
+				//TODO do not simply add all sections to the first target section model
+				addGeneratedSections = new AddCommand(editingDomain, wizardData.getPamtram().getTargetSectionModel().get(0), PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS, sectionsToAdd);
 			}
 
 			editingDomain.getCommandStack().execute(addGeneratedSections);
@@ -94,9 +96,11 @@ public class GeneratorWizard extends Wizard {
 
 			// now that we now which of the sections are unique, we can add those to the pamtram model
 			if(wizardData.getSectionType() == SectionType.SOURCE) {
-				wizardData.getPamtram().getSourceSectionModel().getMetaModelSections().addAll((Collection<? extends SourceSectionClass>) sectionsToAdd);
+				//TODO do not simply add all sections to the first source section model
+				wizardData.getPamtram().getSourceSectionModel().get(0).getMetaModelSections().addAll((Collection<? extends SourceSectionClass>) sectionsToAdd);
 			} else {
-				wizardData.getPamtram().getTargetSectionModel().getMetaModelSections().addAll((Collection<? extends TargetSectionClass>) sectionsToAdd);
+				//TODO do not simply add all sections to the first target section model
+				wizardData.getPamtram().getTargetSectionModel().get(0).getMetaModelSections().addAll((Collection<? extends TargetSectionClass>) sectionsToAdd);
 			}
 
 			// finally, we save the model

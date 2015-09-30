@@ -231,20 +231,21 @@ public class MappingModelSelectorPage extends WizardPage {
 
 		PAMTraM pamtram = wizardData.getPamtram();
 
-		if(pamtram.getSourceSectionModel() == null) {
+		//TODO do not simply/only check the first source and target section model
+		if(pamtram.getSourceSectionModel() == null || pamtram.getSourceSectionModel().isEmpty()) {
 			throw new RuntimeException("The selected target PAMTraM instance does not contain a SourceSectionModel!");
-		} else if(pamtram.getTargetSectionModel() == null) {
+		} else if(pamtram.getTargetSectionModel() == null || pamtram.getTargetSectionModel().isEmpty()) {
 			throw new RuntimeException("The selected target PAMTraM instance does not contain a TargetSectionModel!");
-		} else if(pamtram.getSourceSectionModel().getMetaModelPackage() == null) {
+		} else if(pamtram.getSourceSectionModel().get(0).getMetaModelPackage() == null) {
 			throw new RuntimeException("The selected target PAMTraM instance does not specify an EPackage for the SourceSectionModel!");
-		} else if(pamtram.getTargetSectionModel().getMetaModelPackage() == null) {
+		} else if(pamtram.getTargetSectionModel().get(0).getMetaModelPackage() == null) {
 			throw new RuntimeException("The selected target PAMTraM instance does not specify an EPackage for the TargetSectionModel!");
 		}
 
 		// get the source package
-		EPackage sourcePackage = pamtram.getSourceSectionModel().getMetaModelPackage();
+		EPackage sourcePackage = pamtram.getSourceSectionModel().get(0).getMetaModelPackage();
 		// get the target package
-		EPackage targetPackage = pamtram.getTargetSectionModel().getMetaModelPackage();
+		EPackage targetPackage = pamtram.getTargetSectionModel().get(0).getMetaModelPackage();
 
 		if(sourcePackage.getNsURI().equals(ePackage.getNsURI())) {
 			if(targetPackage.getNsURI().equals(ePackage.getNsURI())) {

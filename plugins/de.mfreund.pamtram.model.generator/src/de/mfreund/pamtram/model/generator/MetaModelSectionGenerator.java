@@ -303,7 +303,7 @@ public class MetaModelSectionGenerator {
 
 		@SuppressWarnings("unchecked")
 		EList<Class<?, ? , ?>> sections = 
-		(EList<Class<?, ?, ?>>) (sectionType == SectionType.SOURCE ? pamtram.getSourceSectionModel().getMetaModelSections() : pamtram.getTargetSectionModel().getMetaModelSections());
+		(EList<Class<?, ?, ?>>) (sectionType == SectionType.SOURCE ? pamtram.getSourceSections() : pamtram.getTargetSections());
 
 		ArrayList<Class<?, ?, ?>> duplicateSections = new ArrayList<>();
 

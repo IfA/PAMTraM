@@ -8,6 +8,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import pamtram.SourceSectionModel;
 
 /**
  * This is the item provider adapter for a {@link pamtram.SourceSectionModel} object.
@@ -61,7 +62,10 @@ public class SourceSectionModelItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_SourceSectionModel_type");
+		String label = ((SourceSectionModel)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_SourceSectionModel_type") :
+			getString("_UI_SourceSectionModel_type") + " " + label;
 	}
 
 	/**

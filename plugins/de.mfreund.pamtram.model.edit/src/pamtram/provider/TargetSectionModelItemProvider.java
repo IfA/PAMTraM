@@ -101,7 +101,10 @@ public class TargetSectionModelItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_TargetSectionModel_type");
+		String label = ((TargetSectionModel)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_TargetSectionModel_type") :
+			getString("_UI_TargetSectionModel_type") + " " + label;
 	}
 
 	/**

@@ -8,17 +8,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.PamtramPackage;
 import pamtram.SectionModel;
@@ -31,13 +23,7 @@ import pamtram.metamodel.MetamodelFactory;
  * @generated
  */
 public class SectionModelItemProvider
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -124,7 +110,10 @@ public class SectionModelItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_SectionModel_type");
+		String label = ((SectionModel<?, ?, ?>)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_SectionModel_type") :
+			getString("_UI_SectionModel_type") + " " + label;
 	}
 
 	/**
@@ -166,17 +155,6 @@ public class SectionModelItemProvider
 			(createChildParameter
 				(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS,
 				 MetamodelFactory.eINSTANCE.createTargetSectionClass()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return PamtramEditPlugin.INSTANCE;
 	}
 
 }

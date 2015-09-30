@@ -339,7 +339,7 @@ public class GenericTransformationRunner {
 
 		// find active mappings and resolve ambiguities as far as possible without user
 		// input
-		final List<Mapping> suitableMappings = pamtramModel.getMappingModel().getActiveMappings();
+		final List<Mapping> suitableMappings = pamtramModel.getActiveMappings();
 		// TODO apply contextModel
 
 		boolean successful = false;
@@ -421,7 +421,7 @@ public class GenericTransformationRunner {
 		 * Perform the 'expanding' step of the transformation
 		 */
 		ExpandingResult expandingResult = performExpanding(
-				matchingResult, pamtramModel.getMappingModel().getGlobalValues(), monitor,
+				matchingResult, pamtramModel.getGlobalValues(), monitor,
 				attributeValueModifier);
 
 		/*
@@ -595,7 +595,10 @@ public class GenericTransformationRunner {
 		final TargetSectionRegistry targetSectionRegistry = new TargetSectionRegistry(
 				consoleStream,
 				attrValueRegistry, 
-				pamtramModel.getTargetSectionModel().getMetaModelPackage());
+				/*TODO this only works if all target section models represent the same metamodel, 
+				 * if we want to support different metamodels in the future, we need to change this
+				 */
+				pamtramModel.getTargetSectionModel().get(0).getMetaModelPackage());
 		objectsToCancel.add(targetSectionRegistry);
 
 		writePamtramMessage("Instantiating targetModelSections for selected mappings. First pass");
@@ -1437,8 +1440,7 @@ public class GenericTransformationRunner {
 
 		// find active mappings and resolve ambiguities as far as possible without user
 		// input
-		final List<Mapping> suitableMappings = pamtramModel.getMappingModel()
-				.getActiveMappings();// TODO apply context Model
+		final List<Mapping> suitableMappings = pamtramModel.getActiveMappings();// TODO apply context Model
 
 		// generate storage objects and generators
 		final AttributeValueModifierExecutor attributeValueModifier = new AttributeValueModifierExecutor(

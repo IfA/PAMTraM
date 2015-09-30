@@ -62,8 +62,9 @@ public class EObjectTransformationHelper {
 				e.printStackTrace(System.out);
 				return null;
 			}
-		} else
+		} else {
 			return null;
+		}
 
 	}
 
@@ -94,7 +95,7 @@ public class EObjectTransformationHelper {
 			final AttributeValueRegistry attrValRegistry) {
 		this.eObject = eObject;
 		this.attrValRegistry = attrValRegistry;
-		virtualAttributes = new LinkedHashMap<VirtualAttribute, String>();
+		virtualAttributes = new LinkedHashMap<>();
 	}
 
 	/**
@@ -148,14 +149,14 @@ public class EObjectTransformationHelper {
 	 */
 	void setAttributeValue(final ActualAttribute attr, final String value)
 			throws IllegalArgumentException {
-		
+
 		Object valueObject = attr.getAttribute()
 				.getEType()
 				.getEPackage()
 				.getEFactoryInstance()
 				.createFromString(
 						attr.getAttribute().getEAttributeType(), value);
-		
+
 		if(attr.getAttribute().isMany()) {
 			ArrayList<Object> valueObjectList = new ArrayList<>();
 			valueObjectList.add(valueObject);

@@ -26,7 +26,7 @@ import pamtram.metamodel.TargetSectionClass;
  * @version 1.0
  */
 class MappingInstanceStorage {
-	
+
 	/**
 	 * The source model Objects, referenced by containment References, that were
 	 * mapped by this mapping instance.
@@ -59,7 +59,7 @@ class MappingInstanceStorage {
 	 * This contains the hint values that shall be used when instantiating, linking, and expanding the target section(s). 
 	 */
 	private final HintValueStorage hintValues;
-	
+
 	/**
 	 * This is the getter for the {@link #hintValues}.
 	 * 
@@ -73,7 +73,7 @@ class MappingInstanceStorage {
 	 * This contains the still unsynced hint values that are used by the mapping hints.
 	 */
 	private final HintValueStorage unsyncedHintValues;
-	
+
 	/**
 	 * This is the getter for the {@link #unsyncedHintValues}.
 	 * 
@@ -87,12 +87,12 @@ class MappingInstanceStorage {
 	 * This constructs an instance.
 	 */
 	MappingInstanceStorage() {
-		
-		sourceModelObjetsMapped = new LinkedHashMap<SourceSectionClass, Set<EObject>>();
+
+		sourceModelObjetsMapped = new LinkedHashMap<>();
 		mapping = null;
 		associatedSourceModelElement = null;
 		associatedSourceClass = null;
-		instancesBySection = new LinkedHashMap<InstantiableMappingHintGroup, LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>>();
+		instancesBySection = new LinkedHashMap<>();
 		hintValues = new HintValueStorage();
 		unsyncedHintValues = new HintValueStorage();
 
@@ -222,8 +222,9 @@ class MappingInstanceStorage {
 		if (instancesBySection.containsKey(group)) {
 			return instancesBySection.get(group).get(section);
 
-		} else
+		} else {
 			return null;
+		}
 	}
 
 	/**

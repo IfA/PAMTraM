@@ -37,7 +37,7 @@ public class AttributeValueModifierExecutor {
 	 */
 	public AttributeValueModifierExecutor(final MessageConsoleStream consoleStream) {
 		this.consoleStream = consoleStream;
-		modifiersWithErrors = new HashSet<AttributeValueModifier>();
+		modifiersWithErrors = new HashSet<>();
 	}
 
 	/**

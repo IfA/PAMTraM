@@ -191,13 +191,13 @@ public class AttributeValueCalculator {
 		String attrValue = "";
 		
 		try {
-			final Map<String, Double> vars = new HashMap<String, Double>();
+			final Map<String, Double> vars = new HashMap<>();
 			vars.putAll(globalVarValueDoubles);
 			/*
 			 * Names of local (CalcMapping) variables will
 			 * overwrite names of global variables
 			 */
-			final Map<String, Double> stringVarValues = new HashMap<String, Double>();
+			final Map<String, Double> stringVarValues = new HashMap<>();
 			if(hint instanceof AttributeMapping) {
 				@SuppressWarnings("unchecked")
 				final Map<AttributeMappingSourceInterface, AttributeValueRepresentation> varValues = 

@@ -203,7 +203,7 @@ public class SourceSectionMatcher implements CancellationListener {
 		this.abortTransformation = false;
 		this.globalAttributeValues = new HashMap<>();
 		this.attributeValueModifierExecutor = attributeValuemodifier;
-		this.constraintsWithErrors = new HashSet<AttributeValueConstraint>();
+		this.constraintsWithErrors = new HashSet<>();
 
 		/*
 		 * initialize the various maps based on the given list of mappings
@@ -292,7 +292,7 @@ public class SourceSectionMatcher implements CancellationListener {
 				 */
 				final NamedElementItemSelectorDialogRunner<Mapping> dialog = new NamedElementItemSelectorDialogRunner<>(
 						"Please select a Mapping for the source element\n'" + EObjectTransformationHelper.asString(element)+ "'", 
-						new ArrayList<Mapping>(applicableMappings.keySet()), 
+						new ArrayList<>(applicableMappings.keySet()), 
 						0);
 				Display.getDefault().syncExec(dialog);
 				if (dialog.wasTransformationStopRequested()) {
@@ -817,7 +817,7 @@ public class SourceSectionMatcher implements CancellationListener {
 
 			} else {// unbounded or unspecified
 				// cast refTarget to EList
-				final LinkedList<EObject> refTargetL = new LinkedList<EObject>(
+				final LinkedList<EObject> refTargetL = new LinkedList<>(
 						(EList<EObject>) refTarget);
 
 				/*
@@ -851,7 +851,7 @@ public class SourceSectionMatcher implements CancellationListener {
 					}
 				}
 
-				final LinkedHashSet<EObject> elementsUsableForVC = new LinkedHashSet<EObject>();
+				final LinkedHashSet<EObject> elementsUsableForVC = new LinkedHashSet<>();
 				// find possible srcElements for mmsections
 				for (final EObject rt : refTargetL) {
 					boolean foundMapping = false;
@@ -885,7 +885,7 @@ public class SourceSectionMatcher implements CancellationListener {
 					}
 				}
 
-				final LinkedList<EObject> allElementsMapped = new LinkedList<EObject>();
+				final LinkedList<EObject> allElementsMapped = new LinkedList<>();
 
 				while (possibleSrcModelElementsNoVC.keySet().size() > 0) {
 					final SourceSectionClass smallestKey = possibleSrcModelElementsNoVC
@@ -895,13 +895,13 @@ public class SourceSectionMatcher implements CancellationListener {
 						// we need to filter a little more
 						if (possibleSrcModelElementsNoVC.get(smallestKey)
 								.size() > 1) {
-							LinkedList<MappingInstanceStorage> possibleElements = new LinkedList<MappingInstanceStorage>();
+							LinkedList<MappingInstanceStorage> possibleElements = new LinkedList<>();
 							possibleElements
 							.addAll(possibleSrcModelElementsNoVC
 									.get(smallestKey));
 
 							// filter elements that can be used for a vc-section
-							final LinkedList<MappingInstanceStorage> allVCIncompatible = new LinkedList<MappingInstanceStorage>();
+							final LinkedList<MappingInstanceStorage> allVCIncompatible = new LinkedList<>();
 							for (final MappingInstanceStorage s : possibleElements) {
 								if (!elementsUsableForVC.contains(s
 										.getAssociatedSourceModelElement())) {
@@ -2089,8 +2089,8 @@ public class SourceSectionMatcher implements CancellationListener {
 						 */
 
 						// to prevent endless loops
-						final Set<SourceSectionClass> childrenChecked = new HashSet<SourceSectionClass>();
-						final List<SourceSectionClass> classesToCheck = new LinkedList<SourceSectionClass>();
+						final Set<SourceSectionClass> childrenChecked = new HashSet<>();
+						final List<SourceSectionClass> classesToCheck = new LinkedList<>();
 						classesToCheck.add(childClass);
 						while (classesToCheck.size() > 0) {
 							final SourceSectionClass chkClass = classesToCheck
@@ -2165,7 +2165,7 @@ public class SourceSectionMatcher implements CancellationListener {
 			final LinkedList<MappingInstanceStorage> possibleElements) {
 		MappingInstanceStorage srcSectionResult;
 		// count how often a sourceModel Element is mapped
-		final LinkedHashMap<EObject, Integer> usages = new LinkedHashMap<EObject, Integer>();
+		final LinkedHashMap<EObject, Integer> usages = new LinkedHashMap<>();
 		for (final MappingInstanceStorage e : possibleElements) {
 			final EObject element = e.getAssociatedSourceModelElement();
 			if (!usages.containsKey(element)) {

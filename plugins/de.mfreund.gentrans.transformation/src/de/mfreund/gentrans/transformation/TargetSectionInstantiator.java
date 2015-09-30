@@ -214,7 +214,7 @@ class TargetSectionInstantiator implements CancellationListener {
 		this.transformationRunner = transformationRunner;
 		transformationAborted = false;
 		//		this.attributeValuemodifier = attributeValuemodifier;
-		wrongCardinalityContainmentRefs = new HashSet<TargetSectionContainmentReference>();
+		wrongCardinalityContainmentRefs = new HashSet<>();
 
 		//		try {
 		//			round = new RoundFunction();
@@ -227,7 +227,7 @@ class TargetSectionInstantiator implements CancellationListener {
 		consoleStream
 		.println("Parsing GlobalVariables for numbers. Look below for potential errors..");
 		// find GlobalAttrs that can be mapped to double
-		globalVarValueDoubles = new HashMap<String, Double>();
+		globalVarValueDoubles = new HashMap<>();
 		for (final GlobalAttribute g : globalVarValues.keySet()) {
 			try {
 				final Calculable calc = new ExpressionBuilder(
@@ -285,7 +285,7 @@ class TargetSectionInstantiator implements CancellationListener {
 			@SuppressWarnings("unchecked")
 			final EList<EObject> oldRefs = (EList<EObject>) source.eGet(ref
 					.getEReference());
-			final LinkedList<EObject> newRefs = new LinkedList<EObject>();
+			final LinkedList<EObject> newRefs = new LinkedList<>();
 			if (oldRefs != null) {
 				newRefs.addAll(oldRefs);
 			}
@@ -429,7 +429,7 @@ class TargetSectionInstantiator implements CancellationListener {
 
 		if (cardinality > 0) {
 			// instantiate self(s)
-			final LinkedList<EObjectTransformationHelper> instances = new LinkedList<EObjectTransformationHelper>();
+			final LinkedList<EObjectTransformationHelper> instances = new LinkedList<>();
 			for (int i = 0; i < cardinality; i++) {
 
 				// create the eObject
@@ -619,7 +619,7 @@ class TargetSectionInstantiator implements CancellationListener {
 				if (ref instanceof TargetSectionContainmentReference) {
 					// now instantiate section
 					for (final EObjectTransformationHelper instance : instances) {
-						final LinkedList<EObjectTransformationHelper> childInstances = new LinkedList<EObjectTransformationHelper>();
+						final LinkedList<EObjectTransformationHelper> childInstances = new LinkedList<>();
 						for (final TargetSectionClass val : ((TargetSectionContainmentReference) ref)
 								.getValue()) {// instantiate targets
 							final LinkedList<EObjectTransformationHelper> children = instantiateTargetSectionFirstPass(
@@ -662,7 +662,7 @@ class TargetSectionInstantiator implements CancellationListener {
 								instance.getEObject().eSet(ref.getEReference(),
 										childInstances.getFirst().getEObject());
 							} else {
-								final LinkedList<EObject> childEObjects = new LinkedList<EObject>();
+								final LinkedList<EObject> childEObjects = new LinkedList<>();
 								for (final EObjectTransformationHelper o : childInstances) {
 									childEObjects.add(o.getEObject());
 								}
@@ -687,7 +687,7 @@ class TargetSectionInstantiator implements CancellationListener {
 			if (instBySection.containsKey(metamodelSection)) {
 				instBySection.get(metamodelSection).addAll(instances);
 			} else {
-				final LinkedList<EObjectTransformationHelper> instClone = new LinkedList<EObjectTransformationHelper>();
+				final LinkedList<EObjectTransformationHelper> instClone = new LinkedList<>();
 				instClone.addAll(instances);
 				instBySection.put(metamodelSection, instClone);
 			}
@@ -704,7 +704,7 @@ class TargetSectionInstantiator implements CancellationListener {
 			/*
 			 * return empty Sequence or else this will fail
 			 */
-			return new LinkedList<EObjectTransformationHelper>();
+			return new LinkedList<>();
 		}
 	}
 
@@ -847,7 +847,7 @@ class TargetSectionInstantiator implements CancellationListener {
 										}
 										final EObjectTransformationHelper srcInst = instancesToConsider
 												.remove(0);
-										final List<EObjectTransformationHelper> fittingVals = new LinkedList<EObjectTransformationHelper>();
+										final List<EObjectTransformationHelper> fittingVals = new LinkedList<>();
 										for (final EObjectTransformationHelper targetInst : targetInstances) {
 											// get Attribute value
 											final String targetValStr = targetInst
@@ -874,7 +874,7 @@ class TargetSectionInstantiator implements CancellationListener {
 											if (transformationAborted) {
 												return;
 											}
-											final GenericItemSelectorDialogRunner<EObjectTransformationHelper> dialog = new GenericItemSelectorDialogRunner<EObjectTransformationHelper>(
+											final GenericItemSelectorDialogRunner<EObjectTransformationHelper> dialog = new GenericItemSelectorDialogRunner<>(
 													"The MappingInstanceSelector '" + h.getName() + " of Mapping" + mappingName + "(Group: "
 															+ group.getName() + ")' has a Matcher that points to a target element with more than one instance. "
 															+ "Please choose to which element the Reference '" + ref.getName()
@@ -953,7 +953,7 @@ class TargetSectionInstantiator implements CancellationListener {
 												if (transformationAborted) {
 													return;
 												}
-												final GenericItemSelectorDialogRunner<EObjectTransformationHelper> dialog = new GenericItemSelectorDialogRunner<EObjectTransformationHelper>(
+												final GenericItemSelectorDialogRunner<EObjectTransformationHelper> dialog = new GenericItemSelectorDialogRunner<>(
 														"The MappingInstanceSelector '"
 																+ h.getName()
 																+ " of Mapping"
@@ -1049,8 +1049,8 @@ class TargetSectionInstantiator implements CancellationListener {
 					 * 2. consider all available instances of the ref target
 					 */
 					if (!hintFound) { // last chance
-						final LinkedHashSet<TargetSectionClass> foundLocalNonContRefTargets = new LinkedHashSet<TargetSectionClass>();
-						final LinkedList<TargetSectionClass> refValue = new LinkedList<TargetSectionClass>();
+						final LinkedHashSet<TargetSectionClass> foundLocalNonContRefTargets = new LinkedHashSet<>();
+						final LinkedList<TargetSectionClass> refValue = new LinkedList<>();
 						refValue.addAll(ref.getValue());
 
 						// first check root targetMMSection itself
@@ -1082,7 +1082,7 @@ class TargetSectionInstantiator implements CancellationListener {
 						 */
 						if (foundLocalNonContRefTargets.size() > 0) {
 							// get source instances for the reference
-							final LinkedList<EObjectTransformationHelper> sourceInstances = new LinkedList<EObjectTransformationHelper>();
+							final LinkedList<EObjectTransformationHelper> sourceInstances = new LinkedList<>();
 							sourceInstances.addAll(instancesBySection
 									.get(targetSectionClass));
 
@@ -1091,15 +1091,15 @@ class TargetSectionInstantiator implements CancellationListener {
 									.get(groupTargetSection);
 
 							// get target instances for the reference
-							final LinkedList<EObjectTransformationHelper> targetInstances = new LinkedList<EObjectTransformationHelper>();
+							final LinkedList<EObjectTransformationHelper> targetInstances = new LinkedList<>();
 							for (final TargetSectionClass section : foundLocalNonContRefTargets) {
 								targetInstances.addAll(instancesBySection
 										.get(section));
 							}
 
 							// now sort instances by root
-							final LinkedHashMap<EObjectTransformationHelper, EObjectTransformationHelper> rootBySourceInstance = new LinkedHashMap<EObjectTransformationHelper, EObjectTransformationHelper>();
-							final LinkedHashMap<EObjectTransformationHelper, LinkedList<EObjectTransformationHelper>> targetInstancesByRoot = new LinkedHashMap<EObjectTransformationHelper, LinkedList<EObjectTransformationHelper>>();
+							final LinkedHashMap<EObjectTransformationHelper, EObjectTransformationHelper> rootBySourceInstance = new LinkedHashMap<>();
+							final LinkedHashMap<EObjectTransformationHelper, LinkedList<EObjectTransformationHelper>> targetInstancesByRoot = new LinkedHashMap<>();
 
 							for (final EObjectTransformationHelper root : rootInstances) {
 								targetInstancesByRoot
@@ -1175,7 +1175,7 @@ class TargetSectionInstantiator implements CancellationListener {
 									if (transformationAborted) {
 										return;
 									}
-									final GenericItemSelectorDialogRunner<EObjectTransformationHelper> dialog = new GenericItemSelectorDialogRunner<EObjectTransformationHelper>(
+									final GenericItemSelectorDialogRunner<EObjectTransformationHelper> dialog = new GenericItemSelectorDialogRunner<>(
 											"There was more than one target element found for the NonContainmmentReference '"
 													+ ref.getName()
 													+ "' of TargetMMSection "
@@ -1232,9 +1232,9 @@ class TargetSectionInstantiator implements CancellationListener {
 							 * target
 							 */
 						} else {
-							final LinkedHashMap<String, EObjectTransformationHelper> targetInstancesToConsider = new LinkedHashMap<String, EObjectTransformationHelper>();
-							final LinkedList<String> targetSectionChoices = new LinkedList<String>();
-							final LinkedList<List<String>> instanceChoices = new LinkedList<List<String>>();
+							final LinkedHashMap<String, EObjectTransformationHelper> targetInstancesToConsider = new LinkedHashMap<>();
+							final LinkedList<String> targetSectionChoices = new LinkedList<>();
+							final LinkedList<List<String>> instanceChoices = new LinkedList<>();
 
 							for (final TargetSectionClass v : refValueClone) {
 								final String classString = v.getName()
@@ -1246,7 +1246,7 @@ class TargetSectionInstantiator implements CancellationListener {
 
 								if (insts.size() > 0) {
 									targetSectionChoices.add(classString);
-									final LinkedList<String> choices = new LinkedList<String>();
+									final LinkedList<String> choices = new LinkedList<>();
 									for (final EObjectTransformationHelper i : insts) {
 										final String description = i.toString();
 										targetInstancesToConsider.put(

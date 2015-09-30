@@ -26,7 +26,7 @@ public abstract class AttributeBasedHintValueMap<K extends EObject, S extends EO
 
 	@Override
 	protected Map<S, AttributeValueRepresentation> createEmptyValue() {
-		return new LinkedHashMap<S, AttributeValueRepresentation>();
+		return new LinkedHashMap<>();
 	}
 
 }

@@ -85,14 +85,14 @@ public class TargetSectionConnector implements CancellationListener {
 			final AttributeValueModifierExecutor attributeValuemodifier,
 			final XMIResource targetModel, final int maxPathLength,
 			final MessageConsoleStream consoleStream) {
-		standardPaths = new LinkedHashMap<ModelConnectionHint, ModelConnectionPath>();
+		standardPaths = new LinkedHashMap<>();
 		this.targetSectionRegistry = targetSectionRegistry;
 		this.targetModel = targetModel;
 		this.consoleStream = consoleStream;
 		transformationAborted = false;
 		this.attributeValuemodifier = attributeValuemodifier;
 		maxPathlength = maxPathLength;
-		unlinkeableElements = new LinkedHashMap<EClass, Map<TargetSectionClass, List<EObjectTransformationHelper>>>();
+		unlinkeableElements = new LinkedHashMap<>();
 	}
 
 	/**
@@ -156,7 +156,7 @@ public class TargetSectionConnector implements CancellationListener {
 		 * other cases.
 		 */
 
-		final Set<EClass> common = new HashSet<EClass>();
+		final Set<EClass> common = new HashSet<>();
 		for (final EClass possibleRoot : targetSectionRegistry
 				.getMetaModelClasses()) {
 			boolean failed = false;
@@ -196,16 +196,16 @@ public class TargetSectionConnector implements CancellationListener {
 			if (common.size() == 1) {
 				rootClass = common.iterator().next();
 			} else {
-				final Map<String, EClass> possibleContainers = new LinkedHashMap<String, EClass>();
+				final Map<String, EClass> possibleContainers = new LinkedHashMap<>();
 
 				for (final EClass c : common) {
 					possibleContainers.put(c.getName(), c);
 				}
 
-				final GenericItemSelectorDialogRunner<String> dialog = new GenericItemSelectorDialogRunner<String>(
+				final GenericItemSelectorDialogRunner<String> dialog = new GenericItemSelectorDialogRunner<>(
 						"There was more than one target model element that could not be connected to a root element. Therefore "
 								+ "a model root element needs to be created. Please select a fitting class:",
-								new LinkedList<String>(possibleContainers.keySet()), 0);
+								new LinkedList<>(possibleContainers.keySet()), 0);
 				Display.getDefault().syncExec(dialog);
 				if (dialog.wasTransformationStopRequested()) {
 					cancel();
@@ -246,7 +246,7 @@ public class TargetSectionConnector implements CancellationListener {
 						// get paths with fitting capacity
 						final int neededCapacity = unlinkeableElements.get(c)
 								.get(tSection).size();
-						final LinkedList<ModelConnectionPath> fittingPaths = new LinkedList<ModelConnectionPath>();
+						final LinkedList<ModelConnectionPath> fittingPaths = new LinkedList<>();
 						for (final ModelConnectionPath p : pathSet) {
 							int capacity = p.getCapacity(containerInstance);
 							if (capacity == -1 || capacity >= neededCapacity) {
@@ -271,7 +271,7 @@ public class TargetSectionConnector implements CancellationListener {
 							}
 
 							if (fittingPaths.size() > 1) {
-								final GenericItemSelectorDialogRunner<ModelConnectionPath> dialog = new GenericItemSelectorDialogRunner<ModelConnectionPath>(
+								final GenericItemSelectorDialogRunner<ModelConnectionPath> dialog = new GenericItemSelectorDialogRunner<>(
 										"Please choose one of the possible connections for connecting the "
 												+ "instances of the target section '"
 												+ tSection.getName()
@@ -360,7 +360,7 @@ public class TargetSectionConnector implements CancellationListener {
 		/*
 		 * A set of ModelConnectionPaths that are possible and thus have to be considered by the selection algorithms.
 		 */
-		LinkedList<ModelConnectionPath> pathsToConsider = new LinkedList<ModelConnectionPath>();
+		LinkedList<ModelConnectionPath> pathsToConsider = new LinkedList<>();
 		if (hasContainer) {
 			for (final EClass c : containerClasses) {
 				pathsToConsider.addAll(targetSectionRegistry.getConnections(
@@ -419,7 +419,7 @@ public class TargetSectionConnector implements CancellationListener {
 				return;
 			}
 
-			for (final ModelConnectionPath p : new LinkedList<ModelConnectionPath>(
+			for (final ModelConnectionPath p : new LinkedList<>(
 					pathsToConsider)) {
 				boolean found = false;
 				for (final EClass c : containerClasses) {
@@ -477,14 +477,14 @@ public class TargetSectionConnector implements CancellationListener {
 					inst.getEObject(), rootInstances));
 
 		} else if (pathsToConsider.size() > 0) {// user decides
-			final LinkedHashMap<String, ModelConnectionPath> pathNames = new LinkedHashMap<String, ModelConnectionPath>();
-			final LinkedHashMap<String, LinkedHashMap<String, EObjectTransformationHelper>> instancesByPath = new LinkedHashMap<String, LinkedHashMap<String, EObjectTransformationHelper>>();
+			final LinkedHashMap<String, ModelConnectionPath> pathNames = new LinkedHashMap<>();
+			final LinkedHashMap<String, LinkedHashMap<String, EObjectTransformationHelper>> instancesByPath = new LinkedHashMap<>();
 			ModelConnectionPath standardPath = pathsToConsider
 					.iterator().next();// get shortest path
 			for (final ModelConnectionPath p : pathsToConsider) {// prepare
 				// user
 				// selections
-				final LinkedHashMap<String, EObjectTransformationHelper> instances = new LinkedHashMap<String, EObjectTransformationHelper>();
+				final LinkedHashMap<String, EObjectTransformationHelper> instances = new LinkedHashMap<>();
 				for (final EObjectTransformationHelper inst : targetSectionRegistry
 						.getTargetClassInstances(p.getPathRootClass())) {
 					if (!rootInstances.contains(inst)
@@ -514,12 +514,12 @@ public class TargetSectionConnector implements CancellationListener {
 				return;
 			}
 
-			final LinkedList<String> namesAsList = new LinkedList<String>();
+			final LinkedList<String> namesAsList = new LinkedList<>();
 			namesAsList.addAll(pathNames.keySet());
-			final List<List<String>> instanceNames = new LinkedList<List<String>>();
+			final List<List<String>> instanceNames = new LinkedList<>();
 
 			for (final String k : namesAsList) {
-				final LinkedList<String> instNamesAsList = new LinkedList<String>();
+				final LinkedList<String> instNamesAsList = new LinkedList<>();
 				instNamesAsList.addAll(instancesByPath.get(k).keySet());
 
 				instanceNames.add(instNamesAsList);
@@ -728,7 +728,7 @@ public class TargetSectionConnector implements CancellationListener {
 		}
 
 		// now select targetInst
-		final LinkedHashMap<EObjectTransformationHelper, LinkedHashSet<EObjectTransformationHelper>> rootInstancesByContainer = new LinkedHashMap<EObjectTransformationHelper, LinkedHashSet<EObjectTransformationHelper>>();
+		final LinkedHashMap<EObjectTransformationHelper, LinkedHashSet<EObjectTransformationHelper>> rootInstancesByContainer = new LinkedHashMap<>();
 		for (final String hintVal : rootInstancesByHintVal.keySet()) {
 			if (contInstsByHintVal.get(hintVal).size() == 1) {
 				rootInstancesByContainer.put(contInstsByHintVal
@@ -740,7 +740,7 @@ public class TargetSectionConnector implements CancellationListener {
 				if (transformationAborted) {
 					return;
 				}
-				final GenericItemSelectorDialogRunner<EObjectTransformationHelper> dialog = new GenericItemSelectorDialogRunner<EObjectTransformationHelper>(
+				final GenericItemSelectorDialogRunner<EObjectTransformationHelper> dialog = new GenericItemSelectorDialogRunner<>(
 						"The ModelConnectionHint '"
 								+ connectionHint.getName()
 								+ " (Mapping :"
@@ -759,7 +759,7 @@ public class TargetSectionConnector implements CancellationListener {
 												hintVal).size() + "element")
 								+ " should be inserted.\n\n"
 								+ "Attribute value: " + hintVal,
-								new LinkedList<EObjectTransformationHelper>(
+								new LinkedList<>(
 										contInstsByHintVal.get(hintVal)), 0);
 				Display.getDefault().syncExec(dialog);
 				if (dialog.wasTransformationStopRequested()) {
@@ -811,7 +811,7 @@ public class TargetSectionConnector implements CancellationListener {
 			/*
 			 * A set of ModelConnectionPaths that are possible and thus have to be considered by the selection algorithms.
 			 */
-			LinkedList<ModelConnectionPath> pathsToConsider = new LinkedList<ModelConnectionPath>();
+			LinkedList<ModelConnectionPath> pathsToConsider = new LinkedList<>();
 			if (otherPathsNeeded) {
 				/*
 				 * Find all possible paths to concider that satisfy the minimum capacity.
@@ -856,7 +856,7 @@ public class TargetSectionConnector implements CancellationListener {
 				if (transformationAborted) {
 					return;
 				}
-				final GenericItemSelectorDialogRunner<ModelConnectionPath> dialog = new GenericItemSelectorDialogRunner<ModelConnectionPath>(
+				final GenericItemSelectorDialogRunner<ModelConnectionPath> dialog = new GenericItemSelectorDialogRunner<>(
 						instSize
 						+ " Instance"
 						+ (instSize > 1 ? "s" : "")

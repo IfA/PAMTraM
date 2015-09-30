@@ -39,7 +39,7 @@ final class ModelConnectionPath {
 		// containerClass, maxPathLength);
 		final LinkedHashSet<Pair<EClass, LinkedList<EObject>>> pathStack = new LinkedHashSet<>();
 
-		pathStack.add(new Pair<EClass, LinkedList<EObject>>(containerClass,
+		pathStack.add(new Pair<>(containerClass,
 				new LinkedList<EObject>()));
 
 		while (pathStack.size() > 0 && !registry.isCancelled()) {
@@ -58,7 +58,7 @@ final class ModelConnectionPath {
 			} else {
 				// check for inherited types
 				for (final EClass c : registry.getChildClasses(next.getLeft())) {
-					pathStack.add(new Pair<EClass, LinkedList<EObject>>(c, next
+					pathStack.add(new Pair<>(c, next
 							.getRight()));
 				}
 
@@ -70,12 +70,12 @@ final class ModelConnectionPath {
 						// continue path finding for references
 						for (final EReference cont : next.getLeft()
 								.getEAllContainments()) {
-							final LinkedList<EObject> newRight = new LinkedList<EObject>(
+							final LinkedList<EObject> newRight = new LinkedList<>(
 									next.getRight());
 							newRight.add(next.getLeft());
 							newRight.add(cont);
 							pathStack
-							.add(new Pair<EClass, LinkedList<EObject>>(
+							.add(new Pair<>(
 									cont.getEReferenceType(), newRight));
 						}
 					}
@@ -98,7 +98,7 @@ final class ModelConnectionPath {
 		// containerClass, maxPathLength);
 		final LinkedHashSet<Pair<EClass, LinkedList<EObject>>> pathStack = new LinkedHashSet<>();
 
-		pathStack.add(new Pair<EClass, LinkedList<EObject>>(pathStartClass,
+		pathStack.add(new Pair<>(pathStartClass,
 				new LinkedList<EObject>()));
 
 		while (pathStack.size() > 0 && !registry.isCancelled()) {
@@ -120,7 +120,7 @@ final class ModelConnectionPath {
 			} else {
 				// check for inherited types
 				for (final EClass c : registry.getChildClasses(next.getLeft())) {
-					pathStack.add(new Pair<EClass, LinkedList<EObject>>(c, next
+					pathStack.add(new Pair<>(c, next
 							.getRight()));
 				}
 
@@ -134,12 +134,12 @@ final class ModelConnectionPath {
 								.getClassReferences(next.getLeft())) {
 							for (final EClass s : registry
 									.getReferenceSources(cont)) {
-								final LinkedList<EObject> newRight = new LinkedList<EObject>(
+								final LinkedList<EObject> newRight = new LinkedList<>(
 										next.getRight());
 								newRight.add(next.getLeft());
 								newRight.add(cont);
 								pathStack
-								.add(new Pair<EClass, LinkedList<EObject>>(
+								.add(new Pair<>(
 										s, newRight));
 							}
 						}
@@ -163,7 +163,7 @@ final class ModelConnectionPath {
 	static LinkedList<ModelConnectionPath> findPathsWithMinimumCapacity(
 			final LinkedList<ModelConnectionPath> paths,
 			final EObject startInstance, final int minimumCapacity) {
-		final LinkedList<ModelConnectionPath> pathsToConsider = new LinkedList<ModelConnectionPath>();
+		final LinkedList<ModelConnectionPath> pathsToConsider = new LinkedList<>();
 		for (final ModelConnectionPath p : paths) {
 			if (startInstance != null) {
 				if (!p.leadsToRootType(startInstance.eClass())) {
@@ -210,7 +210,7 @@ final class ModelConnectionPath {
 			final TargetSectionRegistry targetSectionRegistry,
 			final boolean reverse) {
 
-		this.pathElements = new LinkedList<EObject>();
+		this.pathElements = new LinkedList<>();
 		this.pathElements.addAll(pathElements);
 		this.pathElements.add(newElement);
 		if (reverse) {
@@ -229,7 +229,7 @@ final class ModelConnectionPath {
 	private ModelConnectionPath(final LinkedList<EObject> pathElements,
 			final TargetSectionRegistry targetSectionRegistry) {
 
-		this.pathElements = new LinkedList<EObject>();
+		this.pathElements = new LinkedList<>();
 		this.pathElements.addAll(pathElements);
 		this.targetSectionRegistry = targetSectionRegistry;
 
@@ -242,7 +242,7 @@ final class ModelConnectionPath {
 	 */
 	private ModelConnectionPath(
 			final TargetSectionRegistry targetSectionRegistry) {
-		pathElements = new LinkedList<EObject>();
+		pathElements = new LinkedList<>();
 		this.targetSectionRegistry = targetSectionRegistry;
 
 	}
@@ -272,10 +272,10 @@ final class ModelConnectionPath {
 	 * @return capacity of the path ('<em>-1</em>' is returned for paths with unbounded capacity)
 	 */
 	int getCapacity(final EObject targetInstance) {
-		
+
 		// gets toggled every loop, to help us separate refs from types
 		boolean use = false;
-		
+
 		EObject instance = targetInstance;
 		int max = 1;
 
@@ -285,8 +285,9 @@ final class ModelConnectionPath {
 		while (it.hasPrevious()) {
 			final EObject e = it.previous();
 
-			if (max < 1)
+			if (max < 1) {
 				break;
+			}
 			if (use) {// every second element in a path sequence is a reference,
 				// we only need those
 				final EReference ref = (EReference) e;
@@ -368,9 +369,9 @@ final class ModelConnectionPath {
 	List<EObjectTransformationHelper> instantiate(
 			final EObject refStartInstance,
 			final Collection<EObjectTransformationHelper> instancesAtEnd) {
-		
+
 		return instantiateMissingPath(getInvertedPathElementList(),
-				refStartInstance, new LinkedList<EObjectTransformationHelper>(
+				refStartInstance, new LinkedList<>(
 						instancesAtEnd));
 	}
 
@@ -389,7 +390,7 @@ final class ModelConnectionPath {
 			final LinkedList<EObject> invertedPath,
 			final EObject refStartInstance,
 			List<EObjectTransformationHelper> instancesAtEnd) {
-		
+
 		final LinkedList<EObject> pathCopy = new LinkedList<>();
 		pathCopy.addAll(invertedPath);
 		pathCopy.remove(0);// EClass refStart=(EClass)
@@ -415,7 +416,7 @@ final class ModelConnectionPath {
 				return instancesAtEnd;
 
 			} else if (ref.getUpperBound() < 0) {
-				
+
 				/*
 				 * it is absolutely necessary to copy targetInst, since targetInst will be cleared by
 				 * eSet before new elements are added
@@ -451,7 +452,7 @@ final class ModelConnectionPath {
 				// TODO
 				System.out.println("Owei, owei");
 				// addToTargetModelRoot(instancesAtEnd);
-				return new LinkedList<EObjectTransformationHelper>();
+				return new LinkedList<>();
 
 			}
 
@@ -460,7 +461,7 @@ final class ModelConnectionPath {
 				if (targetInst != null) {
 					System.out.println("Big mistake"); // this shouldn't happen
 					// addToTargetModelRoot(instancesAtEnd);
-					return new LinkedList<EObjectTransformationHelper>();
+					return new LinkedList<>();
 				} else {
 					refStartInstance.eSet(ref, instancesAtEnd.remove(0)
 							.getEObject());
@@ -484,12 +485,12 @@ final class ModelConnectionPath {
 				}
 
 				refStartInstance.eSet(ref, newTarget);
-				return new LinkedList<EObjectTransformationHelper>();
+				return new LinkedList<>();
 			} else {// cardinality less than infinity
 				// TODO
 				System.out.println("owei, owei");
 				// addToTargetModelRoot(instancesAtEnd);
-				return new LinkedList<EObjectTransformationHelper>();
+				return new LinkedList<>();
 			}
 		}
 
@@ -505,11 +506,13 @@ final class ModelConnectionPath {
 
 				return ((EClass) pathElements.getLast()).equals(root);
 
-			} else
+			} else {
 				return false;
+			}
 
-		} else
+		} else {
 			return false;
+		}
 	}
 
 	/**

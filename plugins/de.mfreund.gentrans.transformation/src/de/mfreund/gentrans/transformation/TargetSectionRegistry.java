@@ -85,13 +85,13 @@ public class TargetSectionRegistry implements CancellationListener {
 			final AttributeValueRegistry attrValRegistry,
 			final EPackage targetMetaModel) {
 		this.consoleStream = consoleStream;
-		targetClassInstanceRegistry = new LinkedHashMap<EClass, LinkedList<EObjectTransformationHelper>>();
-		targetClassInstanceByHintGroupRegistry = new LinkedHashMap<TargetSectionClass, LinkedHashMap<InstantiableMappingHintGroup, LinkedList<EObjectTransformationHelper>>>();
-		childClassesRegistry = new LinkedHashMap<EClass, LinkedHashSet<EClass>>();
-		possiblePathsRegistry = new LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>>();
-		possibleConnectionsRegistry = new LinkedHashMap<EClass, LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>>>();
-		targetClassReferencesRegistry = new LinkedHashMap<EClass, LinkedHashSet<EReference>>(); // ==refsToThis
-		containmentReferenceSourcesRegistry = new LinkedHashMap<EReference, LinkedHashSet<EClass>>(); // ==sources
+		targetClassInstanceRegistry = new LinkedHashMap<>();
+		targetClassInstanceByHintGroupRegistry = new LinkedHashMap<>();
+		childClassesRegistry = new LinkedHashMap<>();
+		possiblePathsRegistry = new LinkedHashMap<>();
+		possibleConnectionsRegistry = new LinkedHashMap<>();
+		targetClassReferencesRegistry = new LinkedHashMap<>(); // ==refsToThis
+		containmentReferenceSourcesRegistry = new LinkedHashMap<>(); // ==sources
 		this.attrValRegistry = attrValRegistry;
 		transFormationCancelled = false;
 		analyseTargetMetaModel(targetMetaModel);
@@ -147,7 +147,7 @@ public class TargetSectionRegistry implements CancellationListener {
 		}
 
 		targetClassInstanceByHintGroupRegistry.get(targetSection).get(group)
-				.add(instance);
+		.add(instance);
 
 	}
 
@@ -279,8 +279,8 @@ public class TargetSectionRegistry implements CancellationListener {
 	 * @return Classes, contained in a MetaModel Package
 	 */
 	private LinkedList<EClass> getClasses(final EPackage epackage) {
-		final LinkedList<EClass> classes = new LinkedList<EClass>();
-		final List<EPackage> packagesToScan = new LinkedList<EPackage>();
+		final LinkedList<EClass> classes = new LinkedList<>();
+		final List<EPackage> packagesToScan = new LinkedList<>();
 		packagesToScan.add(epackage);
 
 		while (!packagesToScan.isEmpty()) {
@@ -295,8 +295,9 @@ public class TargetSectionRegistry implements CancellationListener {
 
 					if (docroot != null) {// ignore DocumentRoot Classes created
 						// when converting xsd to ecore
-						if (docroot.equals(c))
+						if (docroot.equals(c)) {
 							continue;
+						}
 					}
 					classes.add((EClass) c);
 
@@ -337,7 +338,7 @@ public class TargetSectionRegistry implements CancellationListener {
 	LinkedList<ModelConnectionPath> getConnections(
 			final EClass eClass, final EClass containerClass,
 			final int maxPathLength) {
-		
+
 		if (!possibleConnectionsRegistry.containsKey(eClass)) {
 			possibleConnectionsRegistry.put(eClass,
 					new LinkedHashMap<EClass, LinkedHashSet<ModelConnectionPath>>());
@@ -353,7 +354,7 @@ public class TargetSectionRegistry implements CancellationListener {
 
 		if (possibleConnectionsRegistry.get(eClass).containsKey(
 				containerClass)) {
-			LinkedList<ModelConnectionPath> result = new LinkedList<ModelConnectionPath>();
+			LinkedList<ModelConnectionPath> result = new LinkedList<>();
 			result.addAll(possibleConnectionsRegistry.get(eClass).get(
 					containerClass));
 			return result;
@@ -368,7 +369,7 @@ public class TargetSectionRegistry implements CancellationListener {
 	 */
 	public LinkedList<EObjectTransformationHelper> getFlattenedPamtramClassInstances(
 			final TargetSectionClass c) {
-		final LinkedList<EObjectTransformationHelper> flat = new LinkedList<EObjectTransformationHelper>();
+		final LinkedList<EObjectTransformationHelper> flat = new LinkedList<>();
 		if (!targetClassInstanceByHintGroupRegistry.containsKey(c)) {
 			return flat;
 		}
@@ -396,7 +397,7 @@ public class TargetSectionRegistry implements CancellationListener {
 	public LinkedHashMap<InstantiableMappingHintGroup, LinkedList<EObjectTransformationHelper>> getPamtramClassInstances(
 			final TargetSectionClass c) {
 		if (!targetClassInstanceByHintGroupRegistry.containsKey(c)) {
-			return new LinkedHashMap<InstantiableMappingHintGroup, LinkedList<EObjectTransformationHelper>>();
+			return new LinkedHashMap<>();
 		}
 
 		return targetClassInstanceByHintGroupRegistry.get(c);
@@ -415,7 +416,7 @@ public class TargetSectionRegistry implements CancellationListener {
 	 */
 	public LinkedHashSet<ModelConnectionPath> getPaths(final EClass eClass,
 			final int maxPathLength) {
-		
+
 		if (!possiblePathsRegistry.containsKey(eClass)) {
 			possiblePathsRegistry.put(eClass,
 					new LinkedHashSet<ModelConnectionPath>());

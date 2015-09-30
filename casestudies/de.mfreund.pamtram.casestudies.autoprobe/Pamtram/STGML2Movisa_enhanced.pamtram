@@ -4592,165 +4592,6 @@
         <attribute href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="Image Station">
-      <eClass href="http://stefan-hennig.de/movisa#//presentation/Image"/>
-      <references xsi:type="metamodel:TargetSectionContainmentReference" name="representation">
-        <eReference href="http://stefan-hennig.de/movisa#//presentation/Image/Representation"/>
-        <value xsi:type="metamodel:TargetSectionClass" name="ImgRepresentation">
-          <eClass href="http://stefan-hennig.de/movisa#//presentation/ImageRepresentation"/>
-          <references xsi:type="metamodel:TargetSectionContainmentReference" name="size">
-            <eReference href="http://stefan-hennig.de/movisa#//presentation/Representation/Size"/>
-            <value xsi:type="metamodel:TargetSectionClass" name="Size">
-              <eClass href="http://stefan-hennig.de/movisa#//presentation/Size"/>
-              <references xsi:type="metamodel:TargetSectionContainmentReference" name="Height">
-                <eReference href="http://stefan-hennig.de/movisa#//presentation/Size/Height"/>
-                <value xsi:type="metamodel:TargetSectionClass" name="Height">
-                  <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="RepSizeHeightName">
-                    <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
-                  </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="RepSizeHeightValue">
-                    <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
-                  </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="PIXEL">
-                    <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Unit"/>
-                  </attributes>
-                </value>
-              </references>
-              <references xsi:type="metamodel:TargetSectionContainmentReference" name="Width">
-                <eReference href="http://stefan-hennig.de/movisa#//presentation/Size/Width"/>
-                <value xsi:type="metamodel:TargetSectionClass" name="Width">
-                  <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="RepSizeWidthName">
-                    <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
-                  </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="RepSizeWidthValue">
-                    <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
-                  </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="PIXEL">
-                    <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Unit"/>
-                  </attributes>
-                </value>
-              </references>
-              <attributes xsi:type="metamodel:ActualAttribute" name="RepSizeName">
-                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
-              </attributes>
-            </value>
-          </references>
-          <references xsi:type="metamodel:TargetSectionContainmentReference" name="position">
-            <eReference href="http://stefan-hennig.de/movisa#//presentation/Representation/Position"/>
-            <value xsi:type="metamodel:TargetSectionClass" name="Position">
-              <eClass href="http://stefan-hennig.de/movisa#//presentation/Position"/>
-              <references xsi:type="metamodel:TargetSectionContainmentReference" name="x">
-                <eReference href="http://stefan-hennig.de/movisa#//presentation/Position/X"/>
-                <value xsi:type="metamodel:TargetSectionClass" name="X">
-                  <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="RepPosXName">
-                    <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
-                  </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="RepPosXValue">
-                    <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
-                  </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="PIXEL">
-                    <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Unit"/>
-                  </attributes>
-                </value>
-              </references>
-              <references xsi:type="metamodel:TargetSectionContainmentReference" name="y">
-                <eReference href="http://stefan-hennig.de/movisa#//presentation/Position/Y"/>
-                <value xsi:type="metamodel:TargetSectionClass" name="Y">
-                  <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="RepPosYName">
-                    <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
-                  </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="RepPosYValue">
-                    <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
-                  </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="PIXEL">
-                    <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Unit"/>
-                  </attributes>
-                </value>
-              </references>
-              <references xsi:type="metamodel:TargetSectionContainmentReference" name="z TODO">
-                <eReference href="http://stefan-hennig.de/movisa#//presentation/Position/Z"/>
-                <value xsi:type="metamodel:TargetSectionClass" name="Z">
-                  <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="RepPosZName">
-                    <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
-                  </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="RepPosZValue" value="10.0">
-                    <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
-                  </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="PIXEL">
-                    <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Unit"/>
-                  </attributes>
-                </value>
-              </references>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Name pos">
-                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
-              </attributes>
-            </value>
-          </references>
-          <references xsi:type="metamodel:TargetSectionContainmentReference" name="format">
-            <eReference href="http://stefan-hennig.de/movisa#//presentation/Representation/Format"/>
-            <value xsi:type="metamodel:TargetSectionClass" name="Format">
-              <eClass href="http://stefan-hennig.de/movisa#//presentation/Format"/>
-              <references xsi:type="metamodel:TargetSectionContainmentReference" name="FontSize">
-                <eReference href="http://stefan-hennig.de/movisa#//presentation/Format/FontSize"/>
-                <value xsi:type="metamodel:TargetSectionClass" name="FontSize">
-                  <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="Unit" value="POINT">
-                    <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Unit"/>
-                  </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="Value" value="9">
-                    <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
-                  </attributes>
-                  <attributes xsi:type="metamodel:ActualAttribute" name="Name Font">
-                    <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
-                  </attributes>
-                </value>
-              </references>
-              <attributes xsi:type="metamodel:ActualAttribute" name="FontStyle" value="NORMAL">
-                <attribute href="http://stefan-hennig.de/movisa#//presentation/Format/FontStyle"/>
-              </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="RepFormatName">
-                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
-              </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="FontDecoration" value="NONE">
-                <attribute href="http://stefan-hennig.de/movisa#//presentation/Format/FontDecoration"/>
-              </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="FontFace" value="VERDANA">
-                <attribute href="http://stefan-hennig.de/movisa#//presentation/Format/FontFace"/>
-              </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="FontWeight" value="REGULAR">
-                <attribute href="http://stefan-hennig.de/movisa#//presentation/Format/FontWeight"/>
-              </attributes>
-            </value>
-          </references>
-          <references xsi:type="metamodel:TargetSectionContainmentReference" name="alignment">
-            <eReference href="http://stefan-hennig.de/movisa#//presentation/Representation/Alignment"/>
-            <value xsi:type="metamodel:TargetSectionClass" name="Alignment">
-              <eClass href="http://stefan-hennig.de/movisa#//presentation/Alignment"/>
-              <attributes xsi:type="metamodel:ActualAttribute" name="RepAlignmentName">
-                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
-              </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Horizontal" value="LEFT">
-                <attribute href="http://stefan-hennig.de/movisa#//presentation/Alignment/HorizontalAlignment"/>
-              </attributes>
-              <attributes xsi:type="metamodel:ActualAttribute" name="Vertical" value="MIDDLE">
-                <attribute href="http://stefan-hennig.de/movisa#//presentation/Alignment/VerticalAlignment"/>
-              </attributes>
-            </value>
-          </references>
-          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="imgResource TODO" value="//@targetSectionModel/@metaModelSections.23">
-            <eReference href="http://stefan-hennig.de/movisa#//presentation/ImageContainingWidgetRepresentation/ImageResource"/>
-          </references>
-        </value>
-      </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Name Image">
-        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
-      </attributes>
-    </metaModelSections>
     <metaModelSections xsi:type="metamodel:TargetSectionClass" name="FixedImage" container="//@targetSectionModel/@metaModelSections.0/@references.2/@value.0/@references.1/@value.0">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/FixedImage"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name" unique="true" value="">
@@ -6753,7 +6594,7 @@
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel/@metaModelSections.21/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="imgResource" affectedReference="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.4">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.23/@attributes.0">
+          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.22/@attributes.0">
             <sourceAttributes xsi:type="mapping:AttributeMatcherExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel/@metaModelSections.21/@attributes.6"/>
           </matcher>
         </mappingHints>
@@ -6765,11 +6606,11 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layer" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="FixedImage" targetMMSection="//@targetSectionModel/@metaModelSections.23">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.23/@attributes.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="FixedImage" targetMMSection="//@targetSectionModel/@metaModelSections.22">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.22/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel/@metaModelSections.21/@attributes.6"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="UrlMapping" resultModifier="//@mappingModel/@modifierSets.51" target="//@targetSectionModel/@metaModelSections.23/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="UrlMapping" resultModifier="//@mappingModel/@modifierSets.51" target="//@targetSectionModel/@metaModelSections.22/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel/@metaModelSections.21/@attributes.6"/>
         </mappingHints>
       </mappingHintGroups>
@@ -6834,7 +6675,7 @@
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel/@metaModelSections.15/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="imgResource" affectedReference="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.4">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.23/@attributes.0">
+          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.22/@attributes.0">
             <sourceAttributes xsi:type="mapping:AttributeMatcherExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel/@metaModelSections.15/@attributes.7"/>
           </matcher>
         </mappingHints>
@@ -6843,11 +6684,11 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layer" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="FixedImage" targetMMSection="//@targetSectionModel/@metaModelSections.23">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.23/@attributes.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="FixedImage" targetMMSection="//@targetSectionModel/@metaModelSections.22">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.22/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel/@metaModelSections.15/@attributes.7"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="UrlMapping" resultModifier="//@mappingModel/@modifierSets.51" target="//@targetSectionModel/@metaModelSections.23/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="UrlMapping" resultModifier="//@mappingModel/@modifierSets.51" target="//@targetSectionModel/@metaModelSections.22/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel/@metaModelSections.15/@attributes.7"/>
         </mappingHints>
       </mappingHintGroups>
@@ -6912,7 +6753,7 @@
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel/@metaModelSections.21/@attributes.4"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="imgResource" affectedReference="//@targetSectionModel/@metaModelSections.21/@references.0/@value.0/@references.4">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.23/@attributes.0">
+          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel/@metaModelSections.22/@attributes.0">
             <sourceAttributes xsi:type="mapping:AttributeMatcherExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel/@metaModelSections.21/@attributes.6"/>
           </matcher>
         </mappingHints>
@@ -6924,11 +6765,11 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel/@metaModelSections.7/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="FixedImage" targetMMSection="//@targetSectionModel/@metaModelSections.23">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.23/@attributes.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="FixedImage" targetMMSection="//@targetSectionModel/@metaModelSections.22">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.22/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel/@metaModelSections.21/@attributes.6"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="UrlMapping" resultModifier="//@mappingModel/@modifierSets.51" target="//@targetSectionModel/@metaModelSections.23/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="UrlMapping" resultModifier="//@mappingModel/@modifierSets.51" target="//@targetSectionModel/@metaModelSections.22/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel/@metaModelSections.21/@attributes.6"/>
         </mappingHints>
       </mappingHintGroups>

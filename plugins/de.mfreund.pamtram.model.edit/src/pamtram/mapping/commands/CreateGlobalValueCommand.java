@@ -11,7 +11,7 @@ public class CreateGlobalValueCommand extends CreateChildCommand {
 
 	public CreateGlobalValueCommand(EditingDomain editingDomain, PAMTraM pamtram) {
 		super(editingDomain, 
-				pamtram.getMappingModel(),
+				pamtram.getMappingModel().get(0), //TODO choose mapping model to that the global value shall be added
 				PamtramPackage.Literals.MAPPING_MODEL__GLOBAL_VALUES, 
 				MappingPackageImpl.eINSTANCE.getEFactoryInstance().create(MappingPackageImpl.Literals.GLOBAL_VALUE), 
 				null);

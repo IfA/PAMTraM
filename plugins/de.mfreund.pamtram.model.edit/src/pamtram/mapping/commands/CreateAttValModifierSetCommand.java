@@ -11,7 +11,7 @@ public class CreateAttValModifierSetCommand extends CreateChildCommand {
 
 	public CreateAttValModifierSetCommand(EditingDomain editingDomain, PAMTraM pamtram) {
 		super(editingDomain, 
-				pamtram.getMappingModel(),
+				pamtram.getMappingModel().get(0), //TODO choose mapping model to that the modifier set shall be added
 				PamtramPackage.Literals.MAPPING_MODEL__MODIFIER_SETS, 
 				MappingPackageImpl.eINSTANCE.getEFactoryInstance().create(MappingPackageImpl.Literals.ATTRIBUTE_VALUE_MODIFIER_SET), 
 				null);

@@ -28,7 +28,7 @@ import pamtram.mapping.MappingPackage;
  * @generated
  */
 public class MappingItemProvider
-	extends MappingTypeItemProvider {
+extends MappingTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -86,36 +86,37 @@ public class MappingItemProvider
 
 		return super.getChildFeature(object, child);
 	}
-	
+
 	/**
 	 * This adds a property descriptor for the Source MM Section feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	protected void addSourceMMSectionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+		(new ItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MappingType_sourceMMSection_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MappingType_sourceMMSection_feature", "_UI_MappingType_type"),
-				 MappingPackage.Literals.MAPPING_TYPE__SOURCE_MM_SECTION,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null)
-			   {
-				@Override
-				public Collection<?> getChoiceOfValues(Object object) {
-					
-					PAMTraM pamtram = (PAMTraM) EcoreUtil.getRootContainer((Mapping) object);
+						getResourceLocator(),
+						getString("_UI_MappingType_sourceMMSection_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_MappingType_sourceMMSection_feature", "_UI_MappingType_type"),
+						MappingPackage.Literals.MAPPING_TYPE__SOURCE_MM_SECTION,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null)
+		{
+			@Override
+			public Collection<?> getChoiceOfValues(Object object) {
 
-					// all source metamodel sections are valid options
-					return pamtram.getSourceSectionModel().getMetaModelSections();
-				}
-			   });
+				PAMTraM pamtram = (PAMTraM) EcoreUtil.getRootContainer((Mapping) object);
+
+				// all source metamodel sections are valid options
+				return pamtram.getSourceSections();
+			}
+		});
 	}
 
 	/**
@@ -138,8 +139,8 @@ public class MappingItemProvider
 	public String getText(Object object) {
 		String label = ((Mapping)object).getName();
 		return label == null || label.length() == 0 ?
-			"" :
-			label;
+				"" :
+					label;
 	}
 
 	/**
@@ -154,12 +155,12 @@ public class MappingItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Mapping.class)) {
-			case MappingPackage.MAPPING__CONDITION:
-			case MappingPackage.MAPPING__MAPPING_HINT_GROUPS:
-			case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
-			case MappingPackage.MAPPING__GLOBAL_VARIABLES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case MappingPackage.MAPPING__CONDITION:
+		case MappingPackage.MAPPING__MAPPING_HINT_GROUPS:
+		case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
+		case MappingPackage.MAPPING__GLOBAL_VARIABLES:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -176,44 +177,44 @@ public class MappingItemProvider
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MAPPING__CONDITION,
-				 ConditionFactory.eINSTANCE.createCondition()));
+						ConditionFactory.eINSTANCE.createCondition()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MAPPING__CONDITION,
-				 ConditionFactory.eINSTANCE.createAnd()));
+						ConditionFactory.eINSTANCE.createAnd()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MAPPING__CONDITION,
-				 ConditionFactory.eINSTANCE.createOr()));
+						ConditionFactory.eINSTANCE.createOr()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MAPPING__CONDITION,
-				 ConditionFactory.eINSTANCE.createNot()));
+						ConditionFactory.eINSTANCE.createNot()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS,
-				 MappingFactory.eINSTANCE.createMappingHintGroup()));
+						MappingFactory.eINSTANCE.createMappingHintGroup()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS,
-				 MappingFactory.eINSTANCE.createExportedMappingHintGroup()));
+						MappingFactory.eINSTANCE.createExportedMappingHintGroup()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MAPPING__IMPORTED_MAPPING_HINT_GROUPS,
-				 MappingFactory.eINSTANCE.createMappingHintGroupImporter()));
+						MappingFactory.eINSTANCE.createMappingHintGroupImporter()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MAPPING__GLOBAL_VARIABLES,
-				 MappingFactory.eINSTANCE.createGlobalAttribute()));
+						MappingFactory.eINSTANCE.createGlobalAttribute()));
 	}
 
 }

@@ -234,7 +234,7 @@ public class GenericTransformationRunner {
 		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
 		this.targetLibraryContextDescriptor = targetLibraryContextDescriptor;
 		consoleStream = findConsole("de.mfreund.gentrans.transformation_" + hashCode()).newMessageStream();
-		objectsToCancel = new LinkedList<CancellationListener>();
+		objectsToCancel = new LinkedList<>();
 		// brings the console view to the front
 		showConsole();
 	}
@@ -361,7 +361,7 @@ public class GenericTransformationRunner {
 			try {
 				// try to save the xmi resource
 				// xmiResource.save(Collections.EMPTY_MAP);
-				final Map<Object, Object> options = new LinkedHashMap<Object, Object>();
+				final Map<Object, Object> options = new LinkedHashMap<>();
 				options.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
 				options.put(XMLResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.TRUE);
 				targetModel.save(Collections.EMPTY_MAP);
@@ -571,11 +571,13 @@ public class GenericTransformationRunner {
 	 * are instantiated (only containment references and attributes but no non-containment
 	 * references).
 	 *
-	 * @param matchingResult
-	 * @param globalValues
-	 * @param monitor
-	 * @param attributeValuemodifier
-	 * @return 
+	 * @param matchingResult A {@link MatchingResult} that contains the results from the 
+	 * {@link #performMatching(EObject, List, AttributeValueModifierExecutor, IProgressMonitor) matching} step.
+	 * @param globalValues The list of {@link GlobalValue GlobalValues} to use.
+	 * @param monitor An {@link IProgressMonitor} that shall be used to report the progress of the transformation.
+	 * @param attributeValuemodifier An instance of {@link AttributeValueModifierExecutor} to use for applying
+	 * {@link AttributeValueModifierSet AttributeValueModifierSets}.
+	 * @return An {@link ExpandingResult} that contains the various results of the expanding step.
 	 */
 	private ExpandingResult performExpanding(
 			final MatchingResult matchingResult,
@@ -675,7 +677,7 @@ public class GenericTransformationRunner {
 					// start instantiating
 					if (expGrp.getTargetMMSection() != null) {
 
-						final List<MappingHint> hints = new LinkedList<MappingHint>();
+						final List<MappingHint> hints = new LinkedList<>();
 						hints.addAll(expGrp.getMappingHints());
 						for (final MappingHintType h : g.getMappingHints()) {
 							if (h instanceof MappingHint) {
@@ -796,12 +798,9 @@ public class GenericTransformationRunner {
 														if (sources.size() > 0) {
 															AttributeMatcherSourceInterface element;
 															if (prepend) {
-																element = sources
-																		.get(0);
+																element = sources.get(0);
 															} else {
-																element = sources
-																		.get(sources
-																				.size() - 1);
+																element = sources.get(sources.size() - 1);
 															}
 
 															for (final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> m : selMap.getHintValues().getHintValues((MappingInstanceSelector) realHint)) {
@@ -830,20 +829,15 @@ public class GenericTransformationRunner {
 								// ImportedMappingHints
 							}
 						}
-						final LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection = targetSectionInstantiator
-								.instantiateTargetSectionFirstPass(
+						final LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection = 
+								targetSectionInstantiator.instantiateTargetSectionFirstPass(
 										expGrp.getTargetMMSection(), g, hints,
 										selMap.getHintValues(),
 										selMap.getMapping().getName());
 						if (instancesBySection == null) {
 							if (expGrp.getTargetMMSection().getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
-								consoleStream
-								.println("Error instantiating target section '"
-										+ expGrp.getTargetMMSection()
-										.getName()
-										+ "' using mapping rule '"
-										+ selMap.getMapping().getName()
-										+ "'");
+								consoleStream.println("Error instantiating target section '" + expGrp.getTargetMMSection()
+								.getName() + "' using mapping rule '" + selMap.getMapping().getName() + "'");
 							}
 						} else {
 							for (final TargetSectionClass section : instancesBySection
@@ -868,14 +862,21 @@ public class GenericTransformationRunner {
 	}
 
 	/**
-	 * @param targetModel
-	 * @param suitableMappings
-	 * @param expandingResult
-	 * @param attrValueRegistry
-	 * @param attributeValueModifier
-	 * @param matchingResult
-	 * @param monitor
-	 * @return
+	 * This performs the '<em>joining</em>' step of the transformation:
+	 * The target sections that have been instantiated during the 
+	 * {@link #performExpanding(MatchingResult, List, IProgressMonitor, AttributeValueModifierExecutor) expanding step} are linked
+	 * via containment references and added to the target model. If necessary, intermediary object are created as well.
+	 * 
+	 * @param targetModel The {@link XMIResource} where the coherent target model shall be stored.
+	 * @param suitableMappings The active {@link Mapping mappings} from the PAMTraM model.
+	 * @param expandingResult The {@link ExpandingResult} that contains the results of the 
+	 * {@link #performExpanding(MatchingResult, List, IProgressMonitor, AttributeValueModifierExecutor) expanding step}.
+	 * @param attributeValueModifier An instance of {@link AttributeValueModifierExecutor} to use for applying
+	 * {@link AttributeValueModifierSet AttributeValueModifierSets}.
+	 * @param matchingResult A {@link MatchingResult} that contains the results from the 
+	 * {@link #performMatching(EObject, List, AttributeValueModifierExecutor, IProgressMonitor) matching} step.
+	 * @param monitor An {@link IProgressMonitor} that shall be used to report the progress of the transformation.
+	 * @return '<em><b>true</b></em>' if everything went well, '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean performJoining(
 			final XMIResource targetModel,
@@ -913,36 +914,27 @@ public class GenericTransformationRunner {
 							.keySet().size() > 0) {// instances of section
 						// exist?
 						if (expandingResult.getTargetSectionRegistry().getPamtramClassInstances(
-								section).get(g) != null) {// ..also of specific
-							// group
-							if (((MappingHintGroup) g)
-									.getModelConnectionMatcher() != null) {// link
-								// using
-								// matcher
-								for (final MappingInstanceStorage selMap : matchingResult.getSelectedMappingsByMapping()
-										.get(m)) {
-									if (selMap.getInstances(
-											(MappingHintGroup) g, section) != null) {
+								section).get(g) != null) {// ..also of specific group
+
+							if (((MappingHintGroup) g).getModelConnectionMatcher() != null) {// link using matcher
+
+								for (final MappingInstanceStorage selMap : matchingResult.getSelectedMappingsByMapping().get(m)) {
+
+									if (selMap.getInstances((MappingHintGroup) g, section) != null) {
 										if (isCancelled) {
 											return false;
 										}
 
 										targetSectionConnector.linkToTargetModelUsingModelConnectionHint(
 												section.getEClass(),
-												new LinkedList<EObjectTransformationHelper>(
-														selMap.getInstances(
-																(MappingHintGroup) g,
-																section)),
+												new LinkedList<>(selMap.getInstances((MappingHintGroup) g, section)),
 												section,
 												m.getName(),
 												g.getName(),
-												((MappingHintGroup) g)
-												.getModelConnectionMatcher(),
-												selMap.getHintValues().getHintValues(((MappingHintGroup) g)
-														.getModelConnectionMatcher()),
+												((MappingHintGroup) g).getModelConnectionMatcher(),
+												selMap.getHintValues().getHintValues(((MappingHintGroup) g).getModelConnectionMatcher()),
 												maxPathLength);
-										if (targetSectionConnector
-												.isCancelled()) {
+										if (targetSectionConnector.isCancelled()) {
 											writePamtramMessage("Transformation aborted.");
 											return false;
 										}
@@ -953,8 +945,7 @@ public class GenericTransformationRunner {
 										.getFlattenedPamtramClassInstances(section
 												.getContainer());
 								final LinkedList<EObjectTransformationHelper> rootInstances = expandingResult.getTargetSectionRegistry()
-										.getPamtramClassInstances(section).get(
-												g); // fetch ALL instances
+										.getPamtramClassInstances(section).get(g); // fetch ALL instances
 								// created by the MH-Group
 								// in question
 								// => less user input and possibly shorter
@@ -964,13 +955,12 @@ public class GenericTransformationRunner {
 								 * do not want the root instances to contain
 								 * themselves
 								 */
-								final Set<EClass> containerClasses = new HashSet<EClass>();
+								final Set<EClass> containerClasses = new HashSet<>();
 								if (section.getContainer() != null) {
 									containerClasses.add(section.getContainer()
 											.getEClass());
 								}
-								targetSectionConnector
-								.linkToTargetModelNoConnectionHint(
+								targetSectionConnector.linkToTargetModelNoConnectionHint(
 										rootInstances, section,
 										m.getName(), g.getName(),
 										section.getContainer() != null,
@@ -1001,8 +991,8 @@ public class GenericTransformationRunner {
 							final LinkedList<EObjectTransformationHelper> rootInstances = selMap
 									.getInstances(i, g.getTargetMMSection());
 							if (rootInstances.size() > 0) {
-								final LinkedList<EObjectTransformationHelper> containerInstances = new LinkedList<EObjectTransformationHelper>();
-								final Set<EClass> containerClasses = new HashSet<EClass>();
+								final LinkedList<EObjectTransformationHelper> containerInstances = new LinkedList<>();
+								final Set<EClass> containerClasses = new HashSet<>();
 
 								containerClasses.add(i.getContainer()
 										.getEClass());
@@ -1026,8 +1016,7 @@ public class GenericTransformationRunner {
 									}
 								}
 								// link
-								targetSectionConnector
-								.linkToTargetModelNoConnectionHint(
+								targetSectionConnector.linkToTargetModelNoConnectionHint(
 										rootInstances,
 										g.getTargetMMSection(),
 										m.getName(), g.getName(), true,
@@ -1044,11 +1033,11 @@ public class GenericTransformationRunner {
 						// specified
 						// (target section container == global instance search)
 					} else {
-						final LinkedList<EObjectTransformationHelper> containerInstances = new LinkedList<EObjectTransformationHelper>();
+						final LinkedList<EObjectTransformationHelper> containerInstances = new LinkedList<>();
 						final LinkedList<EObjectTransformationHelper> rootInstances = expandingResult.getTargetSectionRegistry()
 								.getPamtramClassInstances(
 										g.getTargetMMSection()).get(i);
-						final Set<EClass> containerClasses = new HashSet<EClass>();
+						final Set<EClass> containerClasses = new HashSet<>();
 						if (g.getTargetMMSection().getContainer() != null) {
 							containerClasses.add(g.getTargetMMSection()
 									.getContainer().getEClass());
@@ -1099,10 +1088,14 @@ public class GenericTransformationRunner {
 	}
 
 	/**
-	 * @param selectedMappings
-	 * @param targetSectionInstantiator
-	 * @param monitor
-	 * @return
+	 * This performs the '<em>linking</em>' step of the transformation:
+	 * Necessary cross references between the created target sections are instantiated.
+	 *
+	 * @param matchingResult A {@link MatchingResult} that contains the results from the 
+	 * {@link #performMatching(EObject, List, AttributeValueModifierExecutor, IProgressMonitor) matching} step.
+	 * @param targetSectionInstantiator The {@link TargetSectionInstantiator} that was used to expand the target sections.
+	 * @param monitor An {@link IProgressMonitor} that shall be used to report the progress of the transformation.
+	 * @return '<em><b>true</b></em>' if everything went well, '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean performLinking(
 			final MatchingResult matchingResult,
@@ -1124,8 +1117,7 @@ public class GenericTransformationRunner {
 				if (g.getTargetMMSection() != null
 						&& g instanceof MappingHintGroup) {
 					if (selMap.getInstancesBySection((MappingHintGroup) g) != null) {
-						targetSectionInstantiator
-						.instantiateTargetSectionSecondPass(
+						targetSectionInstantiator.instantiateTargetSectionSecondPass(
 								g.getTargetMMSection(),
 								selMap.getMapping().getName(),
 								(MappingHintGroup) g,
@@ -1146,7 +1138,7 @@ public class GenericTransformationRunner {
 				final ExportedMappingHintGroup expGrp = g.getHintGroup();
 				if (expGrp.getTargetMMSection() != null) {
 					if (selMap.getInstancesBySection(g) != null) {
-						final List<MappingHint> hints = new LinkedList<MappingHint>();
+						final List<MappingHint> hints = new LinkedList<>();
 						hints.addAll(expGrp.getMappingHints());
 						for (final MappingHintType h : g.getMappingHints()) {
 							if (isCancelled) {
@@ -1159,13 +1151,14 @@ public class GenericTransformationRunner {
 							// done during 1st pass
 						}
 
-						targetSectionInstantiator
-						.instantiateTargetSectionSecondPass(expGrp
-								.getTargetMMSection(), selMap
-								.getMapping().getName(), g, expGrp
-								.getTargetMMSection(), hints, selMap
-								.getHintValues(), selMap
-								.getInstancesBySection(g));
+						targetSectionInstantiator.instantiateTargetSectionSecondPass(
+								expGrp.getTargetMMSection(), 
+								selMap.getMapping().getName(), 
+								g, 
+								expGrp.getTargetMMSection(), 
+								hints, 
+								selMap.getHintValues(), 
+								selMap.getInstancesBySection(g));
 						if (targetSectionInstantiator.isCancelled()) {
 							writePamtramMessage("Transformation aborted.");
 							return false;

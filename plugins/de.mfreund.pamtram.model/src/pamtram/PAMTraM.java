@@ -5,6 +5,9 @@ package pamtram;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import pamtram.mapping.Mapping;
+import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.TargetSectionClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,6 +23,10 @@ import org.eclipse.emf.ecore.EPackage;
  *   <li>{@link pamtram.PAMTraM#getTargetSectionModel <em>Target Section Model</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getMappingModel <em>Mapping Model</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getTransformationModel <em>Transformation Model</em>}</li>
+ *   <li>{@link pamtram.PAMTraM#getSourceSections <em>Source Sections</em>}</li>
+ *   <li>{@link pamtram.PAMTraM#getTargetSections <em>Target Sections</em>}</li>
+ *   <li>{@link pamtram.PAMTraM#getMappings <em>Mappings</em>}</li>
+ *   <li>{@link pamtram.PAMTraM#getActiveMappings <em>Active Mappings</em>}</li>
  * </ul>
  *
  * @see pamtram.PamtramPackage#getPAMTraM()
@@ -120,5 +127,73 @@ public interface PAMTraM extends EObject {
 	 * @generated
 	 */
 	void setTransformationModel(TransformationModel value);
+
+	/**
+	 * Returns the value of the '<em><b>Source Sections</b></em>' reference list.
+	 * The list contents are of type {@link pamtram.metamodel.SourceSectionClass}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Source Sections</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Source Sections</em>' reference list.
+	 * @see pamtram.PamtramPackage#getPAMTraM_SourceSections()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='/**\n * self.sourceSectionModel->collect(s | s.metaModelSections)\n \052/\nfinal /*@NonNull\052/ /*@NonInvalid\052/ <%org.eclipse.ocl.pivot.evaluation.Evaluator%> evaluator = <%org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal%>.getEvaluator(this);\nfinal /*@NonNull\052/ /*@NonInvalid\052/ <%org.eclipse.ocl.pivot.ids.IdResolver%> idResolver = evaluator.getIdResolver();\nfinal /*@NonNull\052/ /*@Thrown\052/ <%java.util.List%><<%pamtram.SourceSectionModel%>> sourceSectionModel = this.getSourceSectionModel();\nfinal /*@NonNull\052/ /*@Thrown\052/ <%org.eclipse.ocl.pivot.values.OrderedSetValue%> BOXED_sourceSectionModel = idResolver.createOrderedSetOfAll(<%pamtram.PamtramTables%>.ORD_CLSSid_SourceSectionModel, sourceSectionModel);\n/*@NonNull\052/ /*@Thrown\052/ <%org.eclipse.ocl.pivot.values.SequenceValue%>.Accumulator accumulator = <%org.eclipse.ocl.pivot.utilities.ValueUtil%>.createSequenceAccumulatorValue(<%pamtram.PamtramTables%>.SEQ_TMPLid_);\n/*@Nullable\052/ <%java.util.Iterator%><?> ITERATOR_s = BOXED_sourceSectionModel.iterator();\n/*@NonNull\052/ /*@Thrown\052/ <%org.eclipse.ocl.pivot.values.SequenceValue%> collect;\nwhile (true) {\n    if (!ITERATOR_s.hasNext()) {\n        collect = accumulator;\n        break;\n    }\n    /*@Nullable\052/ /*@NonInvalid\052/ <%pamtram.SourceSectionModel%> s = (<%pamtram.SourceSectionModel%>)ITERATOR_s.next();\n    /**\n     * s.metaModelSections\n     \052/\n    if (s == null) {\n        throw new <%org.eclipse.ocl.pivot.values.InvalidValueException%>(\"Null source for \\\'\\\'http://mfreund.de/pamtram\\\'::SectionModel::metaModelSections\\\'\");\n    }\n    final /*@NonNull\052/ /*@Thrown\052/ <%java.util.List%><? extends <%java.lang.Object%>> metaModelSections = s.getMetaModelSections();\n    final /*@NonNull\052/ /*@Thrown\052/ <%org.eclipse.ocl.pivot.values.OrderedSetValue%> BOXED_metaModelSections = idResolver.createOrderedSetOfAll(<%pamtram.PamtramTables%>.ORD_TMPLid_, metaModelSections);\n    //\n    for (Object value : BOXED_metaModelSections.flatten().getElements()) {\n        accumulator.add(value);\n    }\n}\nfinal <%java.util.List%><? extends <%java.lang.Object%>> UNBOXED_collect = collect.asEcoreObjects(idResolver, <%java.lang.Object%>.class);\nassert UNBOXED_collect != null;\nreturn (<%org.eclipse.emf.common.util.EList<pamtram.metamodel.SourceSectionClass>%>)UNBOXED_collect;'"
+	 * @generated
+	 */
+	EList<SourceSectionClass> getSourceSections();
+
+	/**
+	 * Returns the value of the '<em><b>Target Sections</b></em>' reference list.
+	 * The list contents are of type {@link pamtram.metamodel.TargetSectionClass}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Target Sections</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Target Sections</em>' reference list.
+	 * @see pamtram.PamtramPackage#getPAMTraM_TargetSections()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='/**\n * self.targetSectionModel->collect(s | s.metaModelSections)\n \052/\nfinal /*@NonNull\052/ /*@NonInvalid\052/ <%org.eclipse.ocl.pivot.evaluation.Evaluator%> evaluator = <%org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal%>.getEvaluator(this);\nfinal /*@NonNull\052/ /*@NonInvalid\052/ <%org.eclipse.ocl.pivot.ids.IdResolver%> idResolver = evaluator.getIdResolver();\nfinal /*@NonNull\052/ /*@Thrown\052/ <%java.util.List%><<%pamtram.TargetSectionModel%>> targetSectionModel = this.getTargetSectionModel();\nfinal /*@NonNull\052/ /*@Thrown\052/ <%org.eclipse.ocl.pivot.values.OrderedSetValue%> BOXED_targetSectionModel = idResolver.createOrderedSetOfAll(<%pamtram.PamtramTables%>.ORD_CLSSid_TargetSectionModel, targetSectionModel);\n/*@NonNull\052/ /*@Thrown\052/ <%org.eclipse.ocl.pivot.values.SequenceValue%>.Accumulator accumulator = <%org.eclipse.ocl.pivot.utilities.ValueUtil%>.createSequenceAccumulatorValue(<%pamtram.PamtramTables%>.SEQ_TMPLid_);\n/*@Nullable\052/ <%java.util.Iterator%><?> ITERATOR_s = BOXED_targetSectionModel.iterator();\n/*@NonNull\052/ /*@Thrown\052/ <%org.eclipse.ocl.pivot.values.SequenceValue%> collect;\nwhile (true) {\n    if (!ITERATOR_s.hasNext()) {\n        collect = accumulator;\n        break;\n    }\n    /*@Nullable\052/ /*@NonInvalid\052/ <%pamtram.TargetSectionModel%> s = (<%pamtram.TargetSectionModel%>)ITERATOR_s.next();\n    /**\n     * s.metaModelSections\n     \052/\n    if (s == null) {\n        throw new <%org.eclipse.ocl.pivot.values.InvalidValueException%>(\"Null source for \\\'\\\'http://mfreund.de/pamtram\\\'::SectionModel::metaModelSections\\\'\");\n    }\n    final /*@NonNull\052/ /*@Thrown\052/ <%java.util.List%><? extends <%java.lang.Object%>> metaModelSections = s.getMetaModelSections();\n    final /*@NonNull\052/ /*@Thrown\052/ <%org.eclipse.ocl.pivot.values.OrderedSetValue%> BOXED_metaModelSections = idResolver.createOrderedSetOfAll(<%pamtram.PamtramTables%>.ORD_TMPLid_, metaModelSections);\n    //\n    for (Object value : BOXED_metaModelSections.flatten().getElements()) {\n        accumulator.add(value);\n    }\n}\nfinal <%java.util.List%><? extends <%java.lang.Object%>> UNBOXED_collect = collect.asEcoreObjects(idResolver, <%java.lang.Object%>.class);\nassert UNBOXED_collect != null;\nreturn (<%org.eclipse.emf.common.util.EList<pamtram.metamodel.TargetSectionClass>%>)UNBOXED_collect;'"
+	 * @generated
+	 */
+	EList<TargetSectionClass> getTargetSections();
+
+	/**
+	 * Returns the value of the '<em><b>Mappings</b></em>' reference list.
+	 * The list contents are of type {@link pamtram.mapping.Mapping}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Mappings</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Mappings</em>' reference list.
+	 * @see pamtram.PamtramPackage#getPAMTraM_Mappings()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='/**\n * self.mappingModel->collect(s | s.mapping)\n \052/\nfinal /*@NonNull\052/ /*@NonInvalid\052/ <%org.eclipse.ocl.pivot.evaluation.Evaluator%> evaluator = <%org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal%>.getEvaluator(this);\nfinal /*@NonNull\052/ /*@NonInvalid\052/ <%org.eclipse.ocl.pivot.ids.IdResolver%> idResolver = evaluator.getIdResolver();\nfinal /*@NonNull\052/ /*@Thrown\052/ <%java.util.List%><<%pamtram.MappingModel%>> mappingModel = this.getMappingModel();\nfinal /*@NonNull\052/ /*@Thrown\052/ <%org.eclipse.ocl.pivot.values.OrderedSetValue%> BOXED_mappingModel = idResolver.createOrderedSetOfAll(<%pamtram.PamtramTables%>.ORD_CLSSid_MappingModel, mappingModel);\n/*@NonNull\052/ /*@Thrown\052/ <%org.eclipse.ocl.pivot.values.SequenceValue%>.Accumulator accumulator = <%org.eclipse.ocl.pivot.utilities.ValueUtil%>.createSequenceAccumulatorValue(<%pamtram.PamtramTables%>.SEQ_CLSSid_Mapping);\n/*@Nullable\052/ <%java.util.Iterator%><?> ITERATOR_s = BOXED_mappingModel.iterator();\n/*@NonNull\052/ /*@Thrown\052/ <%org.eclipse.ocl.pivot.values.SequenceValue%> collect;\nwhile (true) {\n    if (!ITERATOR_s.hasNext()) {\n        collect = accumulator;\n        break;\n    }\n    /*@Nullable\052/ /*@NonInvalid\052/ <%pamtram.MappingModel%> s = (<%pamtram.MappingModel%>)ITERATOR_s.next();\n    /**\n     * s.mapping\n     \052/\n    if (s == null) {\n        throw new <%org.eclipse.ocl.pivot.values.InvalidValueException%>(\"Null source for \\\'\\\'http://mfreund.de/pamtram\\\'::MappingModel::mapping\\\'\");\n    }\n    final /*@NonNull\052/ /*@Thrown\052/ <%java.util.List%><<%pamtram.mapping.Mapping%>> mapping = s.getMapping();\n    final /*@NonNull\052/ /*@Thrown\052/ <%org.eclipse.ocl.pivot.values.OrderedSetValue%> BOXED_mapping = idResolver.createOrderedSetOfAll(<%pamtram.PamtramTables%>.ORD_CLSSid_Mapping, mapping);\n    //\n    for (Object value : BOXED_mapping.flatten().getElements()) {\n        accumulator.add(value);\n    }\n}\nfinal <%java.util.List%><<%pamtram.mapping.Mapping%>> UNBOXED_collect = collect.asEcoreObjects(idResolver, pamtram.mapping.Mapping.class);\nassert UNBOXED_collect != null;\nreturn (<%org.eclipse.emf.common.util.EList<pamtram.mapping.Mapping>%>)UNBOXED_collect;'"
+	 * @generated
+	 */
+	EList<Mapping> getMappings();
+
+	/**
+	 * Returns the value of the '<em><b>Active Mappings</b></em>' reference list.
+	 * The list contents are of type {@link pamtram.mapping.Mapping}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Active Mappings</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Active Mappings</em>' reference list.
+	 * @see pamtram.PamtramPackage#getPAMTraM_ActiveMappings()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='/**\n * \n * self.mappingModel->collect(s | s.mapping)\n * ->select(m | m.deactivated = false)\n \052/\nfinal /*@NonNull\052/ /*@NonInvalid\052/ <%org.eclipse.ocl.pivot.evaluation.Evaluator%> evaluator = <%org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal%>.getEvaluator(this);\nfinal /*@NonNull\052/ /*@NonInvalid\052/ <%org.eclipse.ocl.pivot.ids.IdResolver%> idResolver = evaluator.getIdResolver();\nfinal /*@NonNull\052/ /*@Thrown\052/ <%java.util.List%><<%pamtram.MappingModel%>> mappingModel = this.getMappingModel();\nfinal /*@NonNull\052/ /*@Thrown\052/ <%org.eclipse.ocl.pivot.values.OrderedSetValue%> BOXED_mappingModel = idResolver.createOrderedSetOfAll(<%pamtram.PamtramTables%>.ORD_CLSSid_MappingModel, mappingModel);\n/*@NonNull\052/ /*@Thrown\052/ <%org.eclipse.ocl.pivot.values.SequenceValue%>.Accumulator accumulator = <%org.eclipse.ocl.pivot.utilities.ValueUtil%>.createSequenceAccumulatorValue(<%pamtram.PamtramTables%>.SEQ_CLSSid_Mapping);\n/*@Nullable\052/ <%java.util.Iterator%><?> ITERATOR_s = BOXED_mappingModel.iterator();\n/*@NonNull\052/ /*@Thrown\052/ <%org.eclipse.ocl.pivot.values.SequenceValue%> collect;\nwhile (true) {\n    if (!ITERATOR_s.hasNext()) {\n        collect = accumulator;\n        break;\n    }\n    /*@Nullable\052/ /*@NonInvalid\052/ <%pamtram.MappingModel%> s = (<%pamtram.MappingModel%>)ITERATOR_s.next();\n    /**\n     * s.mapping\n     \052/\n    if (s == null) {\n        throw new <%org.eclipse.ocl.pivot.values.InvalidValueException%>(\"Null source for \\\'\\\'http://mfreund.de/pamtram\\\'::MappingModel::mapping\\\'\");\n    }\n    final /*@NonNull\052/ /*@Thrown\052/ <%java.util.List%><<%pamtram.mapping.Mapping%>> mapping = s.getMapping();\n    final /*@NonNull\052/ /*@Thrown\052/ <%org.eclipse.ocl.pivot.values.OrderedSetValue%> BOXED_mapping = idResolver.createOrderedSetOfAll(<%pamtram.PamtramTables%>.ORD_CLSSid_Mapping, mapping);\n    //\n    for (Object value : BOXED_mapping.flatten().getElements()) {\n        accumulator.add(value);\n    }\n}\n/*@NonNull\052/ /*@Thrown\052/ <%org.eclipse.ocl.pivot.values.SequenceValue%>.Accumulator accumulator_0 = <%org.eclipse.ocl.pivot.utilities.ValueUtil%>.createSequenceAccumulatorValue(<%pamtram.PamtramTables%>.SEQ_CLSSid_Mapping);\n/*@Nullable\052/ <%java.util.Iterator%><?> ITERATOR_m = collect.iterator();\n/*@NonNull\052/ /*@Thrown\052/ <%org.eclipse.ocl.pivot.values.SequenceValue%> select;\nwhile (true) {\n    if (!ITERATOR_m.hasNext()) {\n        select = accumulator_0;\n        break;\n    }\n    /*@Nullable\052/ /*@NonInvalid\052/ <%pamtram.mapping.Mapping%> m = (<%pamtram.mapping.Mapping%>)ITERATOR_m.next();\n    /**\n     * m.deactivated = false\n     \052/\n    if (m == null) {\n        throw new <%org.eclipse.ocl.pivot.values.InvalidValueException%>(\"Null source for \\\'\\\'http://mfreund.de/pamtram\\\'::DeactivatableElement::deactivated\\\'\");\n    }\n    final /*@Thrown\052/ boolean deactivated = m.isDeactivated();\n    final /*@Thrown\052/ boolean eq = !deactivated;\n    //\n    if (eq == <%org.eclipse.ocl.pivot.utilities.ValueUtil%>.TRUE_VALUE) {\n        accumulator_0.add(m);\n    }\n}\nfinal <%java.util.List%><<%pamtram.mapping.Mapping%>> UNBOXED_select = select.asEcoreObjects(idResolver, pamtram.mapping.Mapping.class);\nassert UNBOXED_select != null;\nreturn (<%org.eclipse.emf.common.util.EList<pamtram.mapping.Mapping>%>)UNBOXED_select;'"
+	 * @generated
+	 */
+	EList<Mapping> getActiveMappings();
 
 } // PAMTraM

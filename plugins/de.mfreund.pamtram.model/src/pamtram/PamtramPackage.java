@@ -188,13 +188,49 @@ public interface PamtramPackage extends EPackage {
 	int PAM_TRA_M__TRANSFORMATION_MODEL = 4;
 
 	/**
+	 * The feature id for the '<em><b>Source Sections</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAM_TRA_M__SOURCE_SECTIONS = 5;
+
+	/**
+	 * The feature id for the '<em><b>Target Sections</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAM_TRA_M__TARGET_SECTIONS = 6;
+
+	/**
+	 * The feature id for the '<em><b>Mappings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAM_TRA_M__MAPPINGS = 7;
+
+	/**
+	 * The feature id for the '<em><b>Active Mappings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAM_TRA_M__ACTIVE_MAPPINGS = 8;
+
+	/**
 	 * The number of structural features of the '<em>PAM Tra M</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M_FEATURE_COUNT = 5;
+	int PAM_TRA_M_FEATURE_COUNT = 9;
 
 	/**
 	 * The number of operations of the '<em>PAM Tra M</em>' class.
@@ -598,6 +634,50 @@ public interface PamtramPackage extends EPackage {
 	EReference getPAMTraM_TransformationModel();
 
 	/**
+	 * Returns the meta object for the reference list '{@link pamtram.PAMTraM#getSourceSections <em>Source Sections</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Source Sections</em>'.
+	 * @see pamtram.PAMTraM#getSourceSections()
+	 * @see #getPAMTraM()
+	 * @generated
+	 */
+	EReference getPAMTraM_SourceSections();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.PAMTraM#getTargetSections <em>Target Sections</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Target Sections</em>'.
+	 * @see pamtram.PAMTraM#getTargetSections()
+	 * @see #getPAMTraM()
+	 * @generated
+	 */
+	EReference getPAMTraM_TargetSections();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.PAMTraM#getMappings <em>Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Mappings</em>'.
+	 * @see pamtram.PAMTraM#getMappings()
+	 * @see #getPAMTraM()
+	 * @generated
+	 */
+	EReference getPAMTraM_Mappings();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.PAMTraM#getActiveMappings <em>Active Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Active Mappings</em>'.
+	 * @see pamtram.PAMTraM#getActiveMappings()
+	 * @see #getPAMTraM()
+	 * @generated
+	 */
+	EReference getPAMTraM_ActiveMappings();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.SectionModel <em>Section Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -842,6 +922,38 @@ public interface PamtramPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PAM_TRA_M__TRANSFORMATION_MODEL = eINSTANCE.getPAMTraM_TransformationModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Source Sections</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PAM_TRA_M__SOURCE_SECTIONS = eINSTANCE.getPAMTraM_SourceSections();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Sections</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PAM_TRA_M__TARGET_SECTIONS = eINSTANCE.getPAMTraM_TargetSections();
+
+		/**
+		 * The meta object literal for the '<em><b>Mappings</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PAM_TRA_M__MAPPINGS = eINSTANCE.getPAMTraM_Mappings();
+
+		/**
+		 * The meta object literal for the '<em><b>Active Mappings</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PAM_TRA_M__ACTIVE_MAPPINGS = eINSTANCE.getPAMTraM_ActiveMappings();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.impl.SectionModelImpl <em>Section Model</em>}' class.

@@ -110,6 +110,7 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_MetaModelSectionReference = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("MetaModelSectionReference", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_NonContainmentReference = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("NonContainmentReference", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_OclElement = MetamodelTables.PACKid_$metamodel$.getClassId("OclElement", 0);
+    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_PAMTraM = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("PAMTraM", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_Reference = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("Reference", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_SectionModel = MetamodelTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Orphanage.getClassId("SectionModel", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_SourceSectionAttribute = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SourceSectionAttribute", 0);
@@ -159,6 +160,7 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_MappingInstanceSelector = TypeId.BAG.getSpecializedId(MetamodelTables.CLSSid_MappingInstanceSelector);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_MappingType = TypeId.BAG.getSpecializedId(MetamodelTables.CLSSid_MappingType);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_MetaModelSectionReference = TypeId.BAG.getSpecializedId(MetamodelTables.CLSSid_MetaModelSectionReference);
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_PAMTraM = TypeId.BAG.getSpecializedId(MetamodelTables.CLSSid_PAMTraM);
     public static final /*@NonNull*/ /*@NonInvalid*/ EnumerationLiteralId ELITid_ONE = MetamodelTables.ENUMid_CardinalityType.getEnumerationLiteralId("ONE");
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_AttributeValueConstraint = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_AttributeValueConstraint);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_EAttribute = TypeId.ORDERED_SET.getSpecializedId(MetamodelTables.CLSSid_EAttribute);

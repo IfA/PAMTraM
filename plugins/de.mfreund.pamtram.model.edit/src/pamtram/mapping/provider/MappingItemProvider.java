@@ -155,12 +155,12 @@ extends MappingTypeItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Mapping.class)) {
-		case MappingPackage.MAPPING__CONDITION:
-		case MappingPackage.MAPPING__MAPPING_HINT_GROUPS:
-		case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
-		case MappingPackage.MAPPING__GLOBAL_VARIABLES:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case MappingPackage.MAPPING__CONDITION:
+			case MappingPackage.MAPPING__MAPPING_HINT_GROUPS:
+			case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
+			case MappingPackage.MAPPING__GLOBAL_VARIABLES:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -177,44 +177,44 @@ extends MappingTypeItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.MAPPING__CONDITION,
-						ConditionFactory.eINSTANCE.createCondition()));
+				 ConditionFactory.eINSTANCE.createCondition()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.MAPPING__CONDITION,
-						ConditionFactory.eINSTANCE.createAnd()));
+				 ConditionFactory.eINSTANCE.createAnd()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.MAPPING__CONDITION,
-						ConditionFactory.eINSTANCE.createOr()));
+				 ConditionFactory.eINSTANCE.createOr()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.MAPPING__CONDITION,
-						ConditionFactory.eINSTANCE.createNot()));
+				 ConditionFactory.eINSTANCE.createNot()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS,
-						MappingFactory.eINSTANCE.createMappingHintGroup()));
+				 MappingFactory.eINSTANCE.createMappingHintGroup()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS,
-						MappingFactory.eINSTANCE.createExportedMappingHintGroup()));
+				 MappingFactory.eINSTANCE.createExportedMappingHintGroup()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.MAPPING__IMPORTED_MAPPING_HINT_GROUPS,
-						MappingFactory.eINSTANCE.createMappingHintGroupImporter()));
+				 MappingFactory.eINSTANCE.createMappingHintGroupImporter()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.MAPPING__GLOBAL_VARIABLES,
-						MappingFactory.eINSTANCE.createGlobalAttribute()));
+				 MappingFactory.eINSTANCE.createGlobalAttribute()));
 	}
 
 }

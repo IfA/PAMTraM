@@ -43,13 +43,13 @@
     </metaModelSections>
   </targetSectionModel>
   <mappingModel>
-    <mapping name="AbstractUserInterfaceModelMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.0">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetMMSection="//@targetSectionModel/@metaModelSections.0"/>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetMMSection="//@targetSectionModel/@metaModelSections.0">
-        <mappingHints xsi:type="mapping:CardinalityMapping" source="//@sourceSectionModel/@metaModelSections.0/@references.0/@value.0" target="//@targetSectionModel/@metaModelSections.0"/>
+    <mapping name="AbstractUserInterfaceModelMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetMMSection="//@targetSectionModel.0/@metaModelSections.0"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetMMSection="//@targetSectionModel.0/@metaModelSections.0">
+        <mappingHints xsi:type="mapping:CardinalityMapping" source="//@sourceSectionModel.0/@metaModelSections.0/@references.0/@value.0" target="//@targetSectionModel.0/@metaModelSections.0"/>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Panel_incl_Buttons" targetMMSection="//@targetSectionModel/@metaModelSections.1">
-        <mappingHints xsi:type="mapping:CardinalityMapping" source="//@sourceSectionModel/@metaModelSections.0/@references.0/@value.0" target="//@targetSectionModel/@metaModelSections.1/@references.0/@value.0"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Panel_incl_Buttons" targetMMSection="//@targetSectionModel.0/@metaModelSections.1">
+        <mappingHints xsi:type="mapping:CardinalityMapping" source="//@sourceSectionModel.0/@metaModelSections.0/@references.0/@value.0" target="//@targetSectionModel.0/@metaModelSections.1/@references.0/@value.0"/>
       </mappingHintGroups>
     </mapping>
     <modifierSets name="getNumber">

@@ -26,14 +26,14 @@
     </metaModelSections>
   </targetSectionModel>
   <mappingModel>
-    <mapping name="ConfirmationButtonMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.0">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetMMSection="//@targetSectionModel/@metaModelSections.0">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.0/@attributes.1" modifier="//@mappingModel/@modifierSets.1"/>
+    <mapping name="ConfirmationButtonMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetMMSection="//@targetSectionModel.0/@metaModelSections.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.0/@metaModelSections.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="CommentMapping" resultModifier="//@mappingModel/@modifierSets.1" target="//@targetSectionModel/@metaModelSections.0/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="CommentMapping" resultModifier="//@mappingModel.0/@modifierSets.1" target="//@targetSectionModel.0/@metaModelSections.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="testButton" value="testButton"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.0/@attributes.1"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.0/@attributes.1"/>
         </mappingHints>
       </mappingHintGroups>
     </mapping>

@@ -5,13 +5,13 @@
     <metaModelSections xsi:type="metamodel:SourceSectionClass" name="AbstractUserInterfaceModel">
       <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractUserInterfaceModel"/>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="AbstractInteractionUnit" container="//@sourceSectionModel/@metaModelSections.0">
+    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="AbstractInteractionUnit" container="//@sourceSectionModel.0/@metaModelSections.0">
       <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="Confirmation" container="//@sourceSectionModel/@metaModelSections.1">
+    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="Confirmation" container="//@sourceSectionModel.0/@metaModelSections.1">
       <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/id"/>
@@ -28,10 +28,10 @@
     </metaModelSections>
   </targetSectionModel>
   <mappingModel>
-    <mapping name="ConfirmationButtonMapping" sourceMMSection="//@sourceSectionModel/@metaModelSections.2">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetMMSection="//@targetSectionModel/@metaModelSections.0">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel/@metaModelSections.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel/@metaModelSections.2/@attributes.0"/>
+    <mapping name="ConfirmationButtonMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.2">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetMMSection="//@targetSectionModel.0/@metaModelSections.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.0/@metaModelSections.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
     </mapping>

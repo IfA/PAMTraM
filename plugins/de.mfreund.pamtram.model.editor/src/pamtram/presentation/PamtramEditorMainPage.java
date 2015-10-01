@@ -9,7 +9,6 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.DecoratingColumLabelProvider;
 import org.eclipse.emf.edit.ui.provider.DiagnosticDecorator;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -29,9 +28,13 @@ import org.eclipse.swt.widgets.TreeItem;
 import de.mfreund.pamtram.util.BundleContentHelper;
 import de.mfreund.pamtram.util.SelectionListener2;
 import de.mfreund.pamtram.wizards.ImportLibraryElementWizard;
-import pamtram.MappingModel;
 import pamtram.TargetSectionModel;
 import pamtram.contentadapter.DeactivationListenerAdapter;
+import pamtram.contentprovider.LibraryEntryContentProvider;
+import pamtram.contentprovider.MappingContentProvider;
+import pamtram.contentprovider.ModifierSetContentProvider;
+import pamtram.contentprovider.SourceSectionContentProvider;
+import pamtram.contentprovider.TargetSectionContentProvider;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
@@ -169,6 +172,7 @@ public class PamtramEditorMainPage extends SashForm {
 				this, adapterFactory, editor.getEditingDomain(),
 				"Source Sections", null, null, true, true
 				).getViewer();
+		sourceViewer.setContentProvider(new SourceSectionContentProvider(adapterFactory));
 		sourceViewer.setInput(editor.pamtram.getSourceSectionModel());
 		sourceViewer.getTree().addSelectionListener(new SelectionListener() {
 			@Override
@@ -245,18 +249,7 @@ public class PamtramEditorMainPage extends SashForm {
 		} else {
 			mappingViewer.setLabelProvider(new MappingViewerLabelProvider(adapterFactory));
 		}
-		mappingViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory) {
-			/* extend the content provider in a way that no attribute value modifier sets 
-			 * but only mappings are returned as children of a mapping model
-			 */
-			@Override
-			public Object[] getElements(Object object) {
-				if(object instanceof MappingModel) {
-					return ((MappingModel) object).getMapping().toArray();
-				}
-				return super.getElements(object);
-			}
-		});
+		mappingViewer.setContentProvider(new MappingContentProvider(adapterFactory));
 		mappingViewer.setInput(editor.pamtram.getMappingModel());
 		mappingViewer.getTree().addSelectionListener(new SelectionListener2() {
 
@@ -646,21 +639,7 @@ public class PamtramEditorMainPage extends SashForm {
 				"Modifier Sets and Global Values", null, null, true, true
 				).getViewer();
 
-		globalElementsViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory){
-			/* extend the content provider in a way that no mappings but only attribute value
-			 * modifier sets are returned as children of a mapping model
-			 */
-			@Override
-			public Object[] getElements(Object object) {
-				if(object instanceof MappingModel) {
-					List<Object> elements=new ArrayList<>();
-					elements.addAll(((MappingModel) object).getModifierSets());
-					elements.addAll(((MappingModel) object).getGlobalValues());
-					return elements.toArray();
-				}
-				return super.getElements(object);
-			}
-		});
+		globalElementsViewer.setContentProvider(new ModifierSetContentProvider(adapterFactory));
 		globalElementsViewer.setInput(editor.pamtram.getMappingModel());
 
 		globalElementsViewer.getTree().addSelectionListener(new SelectionListener() {
@@ -702,18 +681,7 @@ public class PamtramEditorMainPage extends SashForm {
 				"Target Sections", null, null, true, true
 				).getViewer();
 
-		targetViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory) {
-			/* extend the content provider in a way that no library elements 
-			 * but only classic target section are returned as children of a mapping model
-			 */
-			@Override
-			public Object[] getElements(Object object) {
-				if(object instanceof TargetSectionModel) {
-					return ((TargetSectionModel) object).getMetaModelSections().toArray();
-				}
-				return super.getElements(object);
-			}
-		});
+		targetViewer.setContentProvider(new TargetSectionContentProvider(adapterFactory));
 		targetViewer.setInput(editor.pamtram.getTargetSectionModel());
 		targetViewer.getTree().addSelectionListener(new SelectionListener() {
 			@Override
@@ -778,18 +746,7 @@ public class PamtramEditorMainPage extends SashForm {
 			};
 		}.getViewer();
 
-		libTargetViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory) {
-			/* extend the content provider in a way that only library elements 
-			 * but no classic target section are returned as children of a mapping model
-			 */
-			@Override
-			public Object[] getElements(Object object) {
-				if(object instanceof TargetSectionModel) {
-					return ((TargetSectionModel) object).getLibraryElements().toArray();
-				}
-				return super.getElements(object);
-			}
-		});
+		libTargetViewer.setContentProvider(new LibraryEntryContentProvider(adapterFactory));
 		libTargetViewer.setInput(editor.pamtram.getTargetSectionModel());
 		libTargetViewer.getTree().addSelectionListener(new SelectionListener() {
 			@Override

@@ -64,6 +64,8 @@ public class PAMTraMItemProvider
 			addTargetSectionsPropertyDescriptor(object);
 			addMappingsPropertyDescriptor(object);
 			addActiveMappingsPropertyDescriptor(object);
+			addGlobalValuesPropertyDescriptor(object);
+			addModifierSetsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -170,6 +172,50 @@ public class PAMTraMItemProvider
 				 getString("_UI_PAMTraM_activeMappings_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_PAMTraM_activeMappings_feature", "_UI_PAMTraM_type"),
 				 PamtramPackage.Literals.PAM_TRA_M__ACTIVE_MAPPINGS,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Global Values feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addGlobalValuesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PAMTraM_globalValues_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PAMTraM_globalValues_feature", "_UI_PAMTraM_type"),
+				 PamtramPackage.Literals.PAM_TRA_M__GLOBAL_VALUES,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Modifier Sets feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addModifierSetsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PAMTraM_modifierSets_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PAMTraM_modifierSets_feature", "_UI_PAMTraM_type"),
+				 PamtramPackage.Literals.PAM_TRA_M__MODIFIER_SETS,
 				 false,
 				 false,
 				 false,

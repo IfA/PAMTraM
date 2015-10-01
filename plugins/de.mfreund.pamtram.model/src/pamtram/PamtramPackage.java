@@ -224,13 +224,31 @@ public interface PamtramPackage extends EPackage {
 	int PAM_TRA_M__ACTIVE_MAPPINGS = 8;
 
 	/**
+	 * The feature id for the '<em><b>Global Values</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAM_TRA_M__GLOBAL_VALUES = 9;
+
+	/**
+	 * The feature id for the '<em><b>Modifier Sets</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAM_TRA_M__MODIFIER_SETS = 10;
+
+	/**
 	 * The number of structural features of the '<em>PAM Tra M</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M_FEATURE_COUNT = 9;
+	int PAM_TRA_M_FEATURE_COUNT = 11;
 
 	/**
 	 * The number of operations of the '<em>PAM Tra M</em>' class.
@@ -678,6 +696,28 @@ public interface PamtramPackage extends EPackage {
 	EReference getPAMTraM_ActiveMappings();
 
 	/**
+	 * Returns the meta object for the reference list '{@link pamtram.PAMTraM#getGlobalValues <em>Global Values</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Global Values</em>'.
+	 * @see pamtram.PAMTraM#getGlobalValues()
+	 * @see #getPAMTraM()
+	 * @generated
+	 */
+	EReference getPAMTraM_GlobalValues();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.PAMTraM#getModifierSets <em>Modifier Sets</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Modifier Sets</em>'.
+	 * @see pamtram.PAMTraM#getModifierSets()
+	 * @see #getPAMTraM()
+	 * @generated
+	 */
+	EReference getPAMTraM_ModifierSets();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.SectionModel <em>Section Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -954,6 +994,22 @@ public interface PamtramPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PAM_TRA_M__ACTIVE_MAPPINGS = eINSTANCE.getPAMTraM_ActiveMappings();
+
+		/**
+		 * The meta object literal for the '<em><b>Global Values</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PAM_TRA_M__GLOBAL_VALUES = eINSTANCE.getPAMTraM_GlobalValues();
+
+		/**
+		 * The meta object literal for the '<em><b>Modifier Sets</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PAM_TRA_M__MODIFIER_SETS = eINSTANCE.getPAMTraM_ModifierSets();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.impl.SectionModelImpl <em>Section Model</em>}' class.

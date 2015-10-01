@@ -94,6 +94,8 @@ public class PamtramTables
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_TargetSectionClass = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_TargetSectionClass);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_TargetSectionModel = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_TargetSectionModel);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Transformation = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_Transformation);
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_AttributeValueModifierSet = TypeId.SEQUENCE.getSpecializedId(PamtramTables.CLSSid_AttributeValueModifierSet);
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_GlobalValue = TypeId.SEQUENCE.getSpecializedId(PamtramTables.CLSSid_GlobalValue);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_Mapping = TypeId.SEQUENCE.getSpecializedId(PamtramTables.CLSSid_Mapping);
 
 	/**
@@ -282,13 +284,15 @@ public class PamtramTables
 
 		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__activeMappings = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__ACTIVE_MAPPINGS, Types._PAMTraM, 0);
 		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__contextMetaModelPackage = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__CONTEXT_META_MODEL_PACKAGE, Types._PAMTraM, 1);
-		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__mappingModel = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL, Types._PAMTraM, 2);
-		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__mappings = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__MAPPINGS, Types._PAMTraM, 3);
-		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__sourceSectionModel = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL, Types._PAMTraM, 4);
-		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__sourceSections = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTIONS, Types._PAMTraM, 5);
-		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__targetSectionModel = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL, Types._PAMTraM, 6);
-		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__targetSections = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTIONS, Types._PAMTraM, 7);
-		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__transformationModel = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__TRANSFORMATION_MODEL, Types._PAMTraM, 8);
+		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__globalValues = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__GLOBAL_VALUES, Types._PAMTraM, 2);
+		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__mappingModel = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL, Types._PAMTraM, 3);
+		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__mappings = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__MAPPINGS, Types._PAMTraM, 4);
+		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__modifierSets = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__MODIFIER_SETS, Types._PAMTraM, 5);
+		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__sourceSectionModel = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL, Types._PAMTraM, 6);
+		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__sourceSections = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTIONS, Types._PAMTraM, 7);
+		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__targetSectionModel = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL, Types._PAMTraM, 8);
+		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__targetSections = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTIONS, Types._PAMTraM, 9);
+		public static final /*@NonNull*/ ExecutorProperty _PAMTraM__transformationModel = new EcoreExecutorProperty(PamtramPackage.Literals.PAM_TRA_M__TRANSFORMATION_MODEL, Types._PAMTraM, 10);
 
 		public static final /*@NonNull*/ ExecutorProperty _SectionModel__metaModelPackage = new EcoreExecutorProperty(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_PACKAGE, Types._SectionModel, 0);
 		public static final /*@NonNull*/ ExecutorProperty _SectionModel__metaModelSections = new EcoreExecutorProperty(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS, Types._SectionModel, 1);
@@ -691,8 +695,10 @@ public class PamtramTables
 		private static final /*@NonNull*/ ExecutorProperty[] _PAMTraM = {
 			PamtramTables.Properties._PAMTraM__activeMappings,
 			PamtramTables.Properties._PAMTraM__contextMetaModelPackage,
+			PamtramTables.Properties._PAMTraM__globalValues,
 			PamtramTables.Properties._PAMTraM__mappingModel,
 			PamtramTables.Properties._PAMTraM__mappings,
+			PamtramTables.Properties._PAMTraM__modifierSets,
 			PamtramTables.Properties._PAMTraM__sourceSectionModel,
 			PamtramTables.Properties._PAMTraM__sourceSections,
 			PamtramTables.Properties._PAMTraM__targetSectionModel,

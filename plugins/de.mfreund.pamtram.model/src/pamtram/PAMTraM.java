@@ -5,6 +5,8 @@ package pamtram;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.GlobalValue;
 import pamtram.mapping.Mapping;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.TargetSectionClass;
@@ -27,6 +29,8 @@ import pamtram.metamodel.TargetSectionClass;
  *   <li>{@link pamtram.PAMTraM#getTargetSections <em>Target Sections</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getMappings <em>Mappings</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getActiveMappings <em>Active Mappings</em>}</li>
+ *   <li>{@link pamtram.PAMTraM#getGlobalValues <em>Global Values</em>}</li>
+ *   <li>{@link pamtram.PAMTraM#getModifierSets <em>Modifier Sets</em>}</li>
  * </ul>
  *
  * @see pamtram.PamtramPackage#getPAMTraM()
@@ -195,5 +199,39 @@ public interface PAMTraM extends EObject {
 	 * @generated
 	 */
 	EList<Mapping> getActiveMappings();
+
+	/**
+	 * Returns the value of the '<em><b>Global Values</b></em>' reference list.
+	 * The list contents are of type {@link pamtram.mapping.GlobalValue}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Global Values</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Global Values</em>' reference list.
+	 * @see pamtram.PamtramPackage#getPAMTraM_GlobalValues()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='/**\n * self.mappingModel->collect(s | s.globalValues)\n \052/\nfinal /*@NonNull\052/ /*@NonInvalid\052/ <%org.eclipse.ocl.pivot.evaluation.Evaluator%> evaluator = <%org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal%>.getEvaluator(this);\nfinal /*@NonNull\052/ /*@NonInvalid\052/ <%org.eclipse.ocl.pivot.ids.IdResolver%> idResolver = evaluator.getIdResolver();\nfinal /*@NonNull\052/ /*@Thrown\052/ <%java.util.List%><<%pamtram.MappingModel%>> mappingModel = this.getMappingModel();\nfinal /*@NonNull\052/ /*@Thrown\052/ <%org.eclipse.ocl.pivot.values.OrderedSetValue%> BOXED_mappingModel = idResolver.createOrderedSetOfAll(<%pamtram.PamtramTables%>.ORD_CLSSid_MappingModel, mappingModel);\n/*@NonNull\052/ /*@Thrown\052/ <%org.eclipse.ocl.pivot.values.SequenceValue%>.Accumulator accumulator = <%org.eclipse.ocl.pivot.utilities.ValueUtil%>.createSequenceAccumulatorValue(<%pamtram.PamtramTables%>.SEQ_CLSSid_GlobalValue);\n/*@Nullable\052/ <%java.util.Iterator%><?> ITERATOR_s = BOXED_mappingModel.iterator();\n/*@NonNull\052/ /*@Thrown\052/ <%org.eclipse.ocl.pivot.values.SequenceValue%> collect;\nwhile (true) {\n    if (!ITERATOR_s.hasNext()) {\n        collect = accumulator;\n        break;\n    }\n    /*@Nullable\052/ /*@NonInvalid\052/ <%pamtram.MappingModel%> s = (<%pamtram.MappingModel%>)ITERATOR_s.next();\n    /**\n     * s.globalValues\n     \052/\n    if (s == null) {\n        throw new <%org.eclipse.ocl.pivot.values.InvalidValueException%>(\"Null source for \\\'\\\'http://mfreund.de/pamtram\\\'::MappingModel::globalValues\\\'\");\n    }\n    final /*@NonNull\052/ /*@Thrown\052/ <%java.util.List%><<%pamtram.mapping.GlobalValue%>> globalValues = s.getGlobalValues();\n    final /*@NonNull\052/ /*@Thrown\052/ <%org.eclipse.ocl.pivot.values.OrderedSetValue%> BOXED_globalValues = idResolver.createOrderedSetOfAll(<%pamtram.PamtramTables%>.ORD_CLSSid_GlobalValue, globalValues);\n    //\n    for (Object value : BOXED_globalValues.flatten().getElements()) {\n        accumulator.add(value);\n    }\n}\nfinal <%java.util.List%><<%pamtram.mapping.GlobalValue%>> UNBOXED_collect = collect.asEcoreObjects(idResolver, pamtram.mapping.GlobalValue.class);\nassert UNBOXED_collect != null;\nreturn (<%org.eclipse.emf.common.util.EList<pamtram.mapping.GlobalValue>%>)UNBOXED_collect;'"
+	 * @generated
+	 */
+	EList<GlobalValue> getGlobalValues();
+
+	/**
+	 * Returns the value of the '<em><b>Modifier Sets</b></em>' reference list.
+	 * The list contents are of type {@link pamtram.mapping.AttributeValueModifierSet}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Modifier Sets</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Modifier Sets</em>' reference list.
+	 * @see pamtram.PamtramPackage#getPAMTraM_ModifierSets()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='/**\n * self.mappingModel->collect(s | s.modifierSets)\n \052/\nfinal /*@NonNull\052/ /*@NonInvalid\052/ <%org.eclipse.ocl.pivot.evaluation.Evaluator%> evaluator = <%org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal%>.getEvaluator(this);\nfinal /*@NonNull\052/ /*@NonInvalid\052/ <%org.eclipse.ocl.pivot.ids.IdResolver%> idResolver = evaluator.getIdResolver();\nfinal /*@NonNull\052/ /*@Thrown\052/ <%java.util.List%><<%pamtram.MappingModel%>> mappingModel = this.getMappingModel();\nfinal /*@NonNull\052/ /*@Thrown\052/ <%org.eclipse.ocl.pivot.values.OrderedSetValue%> BOXED_mappingModel = idResolver.createOrderedSetOfAll(<%pamtram.PamtramTables%>.ORD_CLSSid_MappingModel, mappingModel);\n/*@NonNull\052/ /*@Thrown\052/ <%org.eclipse.ocl.pivot.values.SequenceValue%>.Accumulator accumulator = <%org.eclipse.ocl.pivot.utilities.ValueUtil%>.createSequenceAccumulatorValue(<%pamtram.PamtramTables%>.SEQ_CLSSid_AttributeValueModifierSet);\n/*@Nullable\052/ <%java.util.Iterator%><?> ITERATOR_s = BOXED_mappingModel.iterator();\n/*@NonNull\052/ /*@Thrown\052/ <%org.eclipse.ocl.pivot.values.SequenceValue%> collect;\nwhile (true) {\n    if (!ITERATOR_s.hasNext()) {\n        collect = accumulator;\n        break;\n    }\n    /*@Nullable\052/ /*@NonInvalid\052/ <%pamtram.MappingModel%> s = (<%pamtram.MappingModel%>)ITERATOR_s.next();\n    /**\n     * s.modifierSets\n     \052/\n    if (s == null) {\n        throw new <%org.eclipse.ocl.pivot.values.InvalidValueException%>(\"Null source for \\\'\\\'http://mfreund.de/pamtram\\\'::MappingModel::modifierSets\\\'\");\n    }\n    final /*@NonNull\052/ /*@Thrown\052/ <%java.util.List%><<%pamtram.mapping.AttributeValueModifierSet%>> modifierSets = s.getModifierSets();\n    final /*@NonNull\052/ /*@Thrown\052/ <%org.eclipse.ocl.pivot.values.OrderedSetValue%> BOXED_modifierSets = idResolver.createOrderedSetOfAll(<%pamtram.PamtramTables%>.ORD_CLSSid_AttributeValueModifierSet, modifierSets);\n    //\n    for (Object value : BOXED_modifierSets.flatten().getElements()) {\n        accumulator.add(value);\n    }\n}\nfinal <%java.util.List%><<%pamtram.mapping.AttributeValueModifierSet%>> UNBOXED_collect = collect.asEcoreObjects(idResolver, pamtram.mapping.AttributeValueModifierSet.class);\nassert UNBOXED_collect != null;\nreturn (<%org.eclipse.emf.common.util.EList<pamtram.mapping.AttributeValueModifierSet>%>)UNBOXED_collect;'"
+	 * @generated
+	 */
+	EList<AttributeValueModifierSet> getModifierSets();
 
 } // PAMTraM

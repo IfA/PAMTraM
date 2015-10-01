@@ -32,6 +32,8 @@ import pamtram.PamtramTables;
 import pamtram.SourceSectionModel;
 import pamtram.TargetSectionModel;
 import pamtram.TransformationModel;
+import pamtram.mapping.AttributeValueModifierSet;
+import pamtram.mapping.GlobalValue;
 import pamtram.mapping.Mapping;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.TargetSectionClass;
@@ -53,6 +55,8 @@ import pamtram.metamodel.TargetSectionClass;
  *   <li>{@link pamtram.impl.PAMTraMImpl#getTargetSections <em>Target Sections</em>}</li>
  *   <li>{@link pamtram.impl.PAMTraMImpl#getMappings <em>Mappings</em>}</li>
  *   <li>{@link pamtram.impl.PAMTraMImpl#getActiveMappings <em>Active Mappings</em>}</li>
+ *   <li>{@link pamtram.impl.PAMTraMImpl#getGlobalValues <em>Global Values</em>}</li>
+ *   <li>{@link pamtram.impl.PAMTraMImpl#getModifierSets <em>Modifier Sets</em>}</li>
  * </ul>
  *
  * @generated
@@ -407,6 +411,86 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<GlobalValue> getGlobalValues() {
+		/**
+		 * self.mappingModel->collect(s | s.globalValues)
+		 */
+		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
+		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
+		final /*@NonNull*/ /*@Thrown*/ List<MappingModel> mappingModel = this.getMappingModel();
+		final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_mappingModel = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_MappingModel, mappingModel);
+		/*@NonNull*/ /*@Thrown*/ SequenceValue.Accumulator accumulator = ValueUtil.createSequenceAccumulatorValue(PamtramTables.SEQ_CLSSid_GlobalValue);
+		/*@Nullable*/ Iterator<?> ITERATOR_s = BOXED_mappingModel.iterator();
+		/*@NonNull*/ /*@Thrown*/ SequenceValue collect;
+		while (true) {
+		    if (!ITERATOR_s.hasNext()) {
+		        collect = accumulator;
+		        break;
+		    }
+		    /*@Nullable*/ /*@NonInvalid*/ MappingModel s = (MappingModel)ITERATOR_s.next();
+		    /**
+		     * s.globalValues
+		     */
+		    if (s == null) {
+		        throw new InvalidValueException("Null source for \'\'http://mfreund.de/pamtram\'::MappingModel::globalValues\'");
+		    }
+		    final /*@NonNull*/ /*@Thrown*/ List<GlobalValue> globalValues = s.getGlobalValues();
+		    final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_globalValues = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_GlobalValue, globalValues);
+		    //
+		    for (Object value : BOXED_globalValues.flatten().getElements()) {
+		        accumulator.add(value);
+		    }
+		}
+		final List<GlobalValue> UNBOXED_collect = collect.asEcoreObjects(idResolver, pamtram.mapping.GlobalValue.class);
+		assert UNBOXED_collect != null;
+		return (EList<GlobalValue>)UNBOXED_collect;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<AttributeValueModifierSet> getModifierSets() {
+		/**
+		 * self.mappingModel->collect(s | s.modifierSets)
+		 */
+		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
+		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
+		final /*@NonNull*/ /*@Thrown*/ List<MappingModel> mappingModel = this.getMappingModel();
+		final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_mappingModel = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_MappingModel, mappingModel);
+		/*@NonNull*/ /*@Thrown*/ SequenceValue.Accumulator accumulator = ValueUtil.createSequenceAccumulatorValue(PamtramTables.SEQ_CLSSid_AttributeValueModifierSet);
+		/*@Nullable*/ Iterator<?> ITERATOR_s = BOXED_mappingModel.iterator();
+		/*@NonNull*/ /*@Thrown*/ SequenceValue collect;
+		while (true) {
+		    if (!ITERATOR_s.hasNext()) {
+		        collect = accumulator;
+		        break;
+		    }
+		    /*@Nullable*/ /*@NonInvalid*/ MappingModel s = (MappingModel)ITERATOR_s.next();
+		    /**
+		     * s.modifierSets
+		     */
+		    if (s == null) {
+		        throw new InvalidValueException("Null source for \'\'http://mfreund.de/pamtram\'::MappingModel::modifierSets\'");
+		    }
+		    final /*@NonNull*/ /*@Thrown*/ List<AttributeValueModifierSet> modifierSets = s.getModifierSets();
+		    final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_modifierSets = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_AttributeValueModifierSet, modifierSets);
+		    //
+		    for (Object value : BOXED_modifierSets.flatten().getElements()) {
+		        accumulator.add(value);
+		    }
+		}
+		final List<AttributeValueModifierSet> UNBOXED_collect = collect.asEcoreObjects(idResolver, pamtram.mapping.AttributeValueModifierSet.class);
+		assert UNBOXED_collect != null;
+		return (EList<AttributeValueModifierSet>)UNBOXED_collect;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -448,6 +532,10 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 				return getMappings();
 			case PamtramPackage.PAM_TRA_M__ACTIVE_MAPPINGS:
 				return getActiveMappings();
+			case PamtramPackage.PAM_TRA_M__GLOBAL_VALUES:
+				return getGlobalValues();
+			case PamtramPackage.PAM_TRA_M__MODIFIER_SETS:
+				return getModifierSets();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -537,6 +625,10 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 				return !getMappings().isEmpty();
 			case PamtramPackage.PAM_TRA_M__ACTIVE_MAPPINGS:
 				return !getActiveMappings().isEmpty();
+			case PamtramPackage.PAM_TRA_M__GLOBAL_VALUES:
+				return !getGlobalValues().isEmpty();
+			case PamtramPackage.PAM_TRA_M__MODIFIER_SETS:
+				return !getModifierSets().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

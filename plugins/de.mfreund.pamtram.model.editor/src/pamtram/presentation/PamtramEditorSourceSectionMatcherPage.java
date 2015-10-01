@@ -145,7 +145,7 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 				this, adapterFactory, editor.getEditingDomain(), "Source Sections"
 				).getViewer();
 		sourceViewer.setContentProvider(new SourceSectionContentProvider(adapterFactory));
-		sourceViewer.setInput(editor.pamtram.getSourceSectionModel());
+		sourceViewer.setInput(editor.pamtram);
 		sourceTreeSelectionListener = new SelectionListener() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -173,7 +173,7 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 				).getViewer();
 
 		mappingViewer.setContentProvider(new MappingContentProvider(adapterFactory));
-		mappingViewer.setInput(editor.pamtram.getMappingModel());
+		mappingViewer.setInput(editor.pamtram);
 		mappingTreeSelectionListener = new SelectionListener() {
 
 			@Override

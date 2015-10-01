@@ -1,9 +1,9 @@
 package pamtram.contentprovider;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 
+import pamtram.PAMTraM;
 import pamtram.SourceSectionModel;
 import pamtram.metamodel.SourceSectionClass;
 
@@ -20,8 +20,8 @@ public class SourceSectionContentProvider extends AdapterFactoryContentProvider 
 
 	@Override
 	public Object[] getElements(Object object) {
-		if(object instanceof EList<?> && ((EList<?>) object).toArray() instanceof SourceSectionModel[]) {
-			return ((EList<?>) object).toArray();
+		if(object instanceof PAMTraM) {
+			return ((PAMTraM) object).getSourceSectionModel().toArray();
 		}
 		return super.getElements(object);
 	}

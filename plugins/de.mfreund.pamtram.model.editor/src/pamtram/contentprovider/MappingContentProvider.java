@@ -1,10 +1,10 @@
 package pamtram.contentprovider;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 
 import pamtram.MappingModel;
+import pamtram.PAMTraM;
 import pamtram.mapping.Mapping;
 
 /**
@@ -20,8 +20,8 @@ public class MappingContentProvider extends AdapterFactoryContentProvider {
 
 	@Override
 	public Object[] getElements(Object object) {
-		if(object instanceof EList<?> && ((EList<?>) object).toArray() instanceof MappingModel[]) {
-			return ((EList<?>) object).toArray();
+		if(object instanceof PAMTraM) {
+			return ((PAMTraM) object).getMappingModel().toArray();
 		}
 		return super.getElements(object);
 	}

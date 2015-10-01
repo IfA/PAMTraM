@@ -173,7 +173,7 @@ public class PamtramEditorMainPage extends SashForm {
 				"Source Sections", null, null, true, true
 				).getViewer();
 		sourceViewer.setContentProvider(new SourceSectionContentProvider(adapterFactory));
-		sourceViewer.setInput(editor.pamtram.getSourceSectionModel());
+		sourceViewer.setInput(editor.pamtram);
 		sourceViewer.getTree().addSelectionListener(new SelectionListener() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -250,7 +250,7 @@ public class PamtramEditorMainPage extends SashForm {
 			mappingViewer.setLabelProvider(new MappingViewerLabelProvider(adapterFactory));
 		}
 		mappingViewer.setContentProvider(new MappingContentProvider(adapterFactory));
-		mappingViewer.setInput(editor.pamtram.getMappingModel());
+		mappingViewer.setInput(editor.pamtram);
 		mappingViewer.getTree().addSelectionListener(new SelectionListener2() {
 
 			/**
@@ -640,7 +640,7 @@ public class PamtramEditorMainPage extends SashForm {
 				).getViewer();
 
 		globalElementsViewer.setContentProvider(new ModifierSetContentProvider(adapterFactory));
-		globalElementsViewer.setInput(editor.pamtram.getMappingModel());
+		globalElementsViewer.setInput(editor.pamtram);
 
 		globalElementsViewer.getTree().addSelectionListener(new SelectionListener() {
 
@@ -682,7 +682,7 @@ public class PamtramEditorMainPage extends SashForm {
 				).getViewer();
 
 		targetViewer.setContentProvider(new TargetSectionContentProvider(adapterFactory));
-		targetViewer.setInput(editor.pamtram.getTargetSectionModel());
+		targetViewer.setInput(editor.pamtram);
 		targetViewer.getTree().addSelectionListener(new SelectionListener() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -747,7 +747,7 @@ public class PamtramEditorMainPage extends SashForm {
 		}.getViewer();
 
 		libTargetViewer.setContentProvider(new LibraryEntryContentProvider(adapterFactory));
-		libTargetViewer.setInput(editor.pamtram.getTargetSectionModel());
+		libTargetViewer.setInput(editor.pamtram);
 		libTargetViewer.getTree().addSelectionListener(new SelectionListener() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {

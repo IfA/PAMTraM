@@ -18,6 +18,13 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PAMTraM">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="sourceSectionModelsHaveSameEPackage targetSectionModelsHaveSameEPackage"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="sourceSectionModelsHaveSameEPackage" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'Not all SourceSectionModels specify the same EPackage. This is currently not supported!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;self.sourceSectionModel->collect(s | s.metaModelPackage)->asSet()->size() &lt;= 1&#xD;&#xA;}.status"/>
+      <details key="targetSectionModelsHaveSameEPackage" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'Not all TargetSectionModels specify the same EPackage. This is currently not supported!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;self.targetSectionModel->collect(s | s.metaModelPackage)->asSet()->size() &lt;= 1&#xD;&#xA;}.status"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contextMetaModelPackage"
         upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceSectionModel" lowerBound="1"

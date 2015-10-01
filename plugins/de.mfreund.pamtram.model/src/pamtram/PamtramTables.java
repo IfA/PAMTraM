@@ -11,6 +11,7 @@
  *******************************************************************************/
 package pamtram;
 
+import java.lang.String;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.pivot.ParameterTypes;
 import org.eclipse.ocl.pivot.TemplateParameters;
@@ -31,6 +32,8 @@ import org.eclipse.ocl.pivot.internal.library.executor.ExecutorStandardLibrary;
 import org.eclipse.ocl.pivot.internal.library.executor.ExecutorTypeParameter;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.utilities.TypeUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.IntegerValue;
 import pamtram.PamtramPackage;
 import pamtram.PamtramTables;
 import pamtram.mapping.MappingPackage;
@@ -83,6 +86,13 @@ public class PamtramTables
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_TargetSectionModel = PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("TargetSectionModel", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_Transformation = PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_transformation.getClassId("Transformation", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_TransformationModel = PamtramTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("TransformationModel", 0);
+    public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_0 = ValueUtil.integerValueOf("0");
+    public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_1 = ValueUtil.integerValueOf("1");
+    public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_4 = ValueUtil.integerValueOf("4");
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_Not_32_all_32_SourceSectionModels_32_specify_32_the_32_same_32_EPackage_32_This_32_is_32_c = "Not all SourceSectionModels specify the same EPackage. This is currently not supported!";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_Not_32_all_32_TargetSectionModels_32_specify_32_the_32_same_32_EPackage_32_This_32_is_32_c = "Not all TargetSectionModels specify the same EPackage. This is currently not supported!";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_PAMTraM_c_c_sourceSectionModelsHaveSameEPackage = "PAMTraM::sourceSectionModelsHaveSameEPackage";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_PAMTraM_c_c_targetSectionModelsHaveSameEPackage = "PAMTraM::targetSectionModelsHaveSameEPackage";
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_AttributeValueModifierSet = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_AttributeValueModifierSet);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_EPackage = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_EPackage);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_GlobalValue = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_GlobalValue);
@@ -95,8 +105,10 @@ public class PamtramTables
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_TargetSectionModel = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_TargetSectionModel);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Transformation = TypeId.ORDERED_SET.getSpecializedId(PamtramTables.CLSSid_Transformation);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_AttributeValueModifierSet = TypeId.SEQUENCE.getSpecializedId(PamtramTables.CLSSid_AttributeValueModifierSet);
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_EPackage = TypeId.SEQUENCE.getSpecializedId(PamtramTables.CLSSid_EPackage);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_GlobalValue = TypeId.SEQUENCE.getSpecializedId(PamtramTables.CLSSid_GlobalValue);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_Mapping = TypeId.SEQUENCE.getSpecializedId(PamtramTables.CLSSid_Mapping);
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId SET_CLSSid_EPackage = TypeId.SET.getSpecializedId(PamtramTables.CLSSid_EPackage);
 
 	/**
 	 *	The type parameters for templated types and operations.

@@ -7,7 +7,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -250,7 +249,7 @@ public class SourceSectionClassImpl extends ClassImpl<SourceSectionClass, Source
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.SOURCE_SECTION_CLASS___IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP:
+			case MetamodelPackage.SOURCE_SECTION_CLASS___IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP_19:
 				return isReferencedByMapping((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

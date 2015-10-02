@@ -2,7 +2,7 @@
 <feature
       id="de.mfreund.pamtram.feature"
       label="PAMTraM"
-      version="1.1.1.qualifier"
+      version="1.2.0.qualifier"
       provider-name="mfreund">
 
    <description url="http://www.example.com/description">
@@ -57,12 +57,12 @@
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.debug.core"/>
       <import plugin="org.eclipse.emf.ecore.xmi" version="2.10.1" match="greaterOrEqual"/>
-      <import plugin="de.mfreund.pamtram.model" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="de.mfreund.pamtram.model" version="1.2.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.resources" version="3.8.100" match="greaterOrEqual"/>
       <import plugin="org.eclipse.xsd"/>
       <import plugin="org.eclipse.ui.console" version="3.5.200" match="greaterOrEqual"/>
-      <import plugin="de.mfreund.pamtram.model.edit" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="de.mfreund.pamtram.model.edit" version="1.2.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui.ide" version="3.10.1" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.ecore" version="2.9.1" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.common"/>

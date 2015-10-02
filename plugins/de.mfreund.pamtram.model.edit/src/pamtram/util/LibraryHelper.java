@@ -5,14 +5,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -206,8 +204,6 @@ public class LibraryHelper {
 	 * 
 	 * @param libraryContextDescriptor The descriptor for the library context to be used during the conversion.
 	 * @param path The path of the library entry inside the library (e.g. 'my.path').
-	 * @param targetEPackage The target ePackage of the pamtram model into that the generated library
-	 * element shall be inserted later on.
 	 * @param uri The URI where the resource created for the library element shall be stored.
 	 * @param resourceSet The resource set to be used to.
 	 * @return The generated LibraryEntry.
@@ -215,12 +211,12 @@ public class LibraryHelper {
 	 * the library file representing the LibraryEntry. 
 	 */
 	public static LibraryEntry convertToLibraryElement(LibraryContextDescriptor libraryContextDescriptor, String path,
-			EPackage targetEPackage, URI uri, ResourceSet resourceSet) throws IOException {
+			URI uri, ResourceSet resourceSet) throws IOException {
 
 		//TODO maybe use a factory pattern for this?
 		LibraryElementConverter converter;
 		try {
-			converter = (new LibraryHelper()).new LibraryElementConverter(libraryContextDescriptor, path, targetEPackage, uri, resourceSet);
+			converter = (new LibraryHelper()).new LibraryElementConverter(libraryContextDescriptor, path, uri, resourceSet);
 		} catch (InstantiationException | IllegalAccessException e) {
 			e.printStackTrace();
 			return null;
@@ -324,13 +320,6 @@ public class LibraryHelper {
 		final private String path;
 
 		/**
-		 * This is the set of target ePackages of the pamtram model into that the generated library
-		 * element shall be inserted later on. This list contains the main ePackage and all of its children
-		 * ePackages.
-		 */
-		final private HashSet<EPackage> targetEPackages;
-
-		/**
 		 * This is the LibraryFileEntry that this converter shall convert.
 		 */
 		private LibraryFileEntry libFileEntry;
@@ -365,18 +354,15 @@ public class LibraryHelper {
 		 * 
 		 * @param libraryContextDescriptor The descriptor for the library context to be used during the conversion.
 		 * @param path The path of the library entry inside the library (e.g. 'my.path').
-		 * @param targetEPackage The target ePackage of the pamtram model into that the generated library
-		 * element shall be inserted later on.
 		 * @param uri The URI where the resource created for the library element shall be stored.
 		 * @param resourceSet The resource set to be used.
 		 * @throws IllegalAccessException 
 		 * @throws InstantiationException 
 		 */
 		public LibraryElementConverter(LibraryContextDescriptor libraryContextDescriptor, String path,
-				EPackage targetEPackage, URI uri, ResourceSet resourceSet) throws InstantiationException, IllegalAccessException {
+				URI uri, ResourceSet resourceSet) throws InstantiationException, IllegalAccessException {
 			this.libraryContextDescriptor = libraryContextDescriptor;
 			this.path = path;
-			this.targetEPackages = EPackageHelper.collectEPackages(targetEPackage);
 			this.uri = uri;
 			this.resourceSet = resourceSet;
 

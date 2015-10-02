@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import pamtram.PAMTraM;
+import pamtram.SectionModel;
 import pamtram.metamodel.Class;
 import pamtram.presentation.PamtramEditor;
 
@@ -25,6 +26,11 @@ public class WizardData {
 	 * The {@link PAMTraM} instance into that the generated section shall be stored.
 	 */
 	private PAMTraM pamtram;
+
+	/**
+	 * The {@link SectionModel} instance into that the generated sections shall be stored.
+	 */
+	private SectionModel<?, ?, ?> sectionModel;
 
 	/**
 	 * The {@link PamtramEditor} used to edit the given {@link #pamtram}. If there is currently no editor used, this will be '<em>null</em>'.
@@ -138,6 +144,20 @@ public class WizardData {
 	 */
 	public void setGenerator(MetaModelSectionGenerator generator) {
 		this.generator = generator;
+	}
+
+	/**
+	 * @return the sectionModel
+	 */
+	public SectionModel<?, ?, ?> getSectionModel() {
+		return sectionModel;
+	}
+
+	/**
+	 * @param sectionModel the sectionModel to set
+	 */
+	public void setSectionModel(SectionModel<?, ?, ?> sectionModel) {
+		this.sectionModel = sectionModel;
 	}
 
 }

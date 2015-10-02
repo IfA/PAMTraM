@@ -2,6 +2,7 @@ package de.mfreund.pamtram.model.generator;
 
 import java.io.IOException;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -20,8 +21,11 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.List;
 
+import de.mfreund.pamtram.util.SelectionListener2;
 import pamtram.PAMTraM;
+import pamtram.SectionModel;
 import pamtram.presentation.PamtramEditor;
 
 public class MappingModelSelectorPage extends WizardPage {
@@ -29,6 +33,7 @@ public class MappingModelSelectorPage extends WizardPage {
 	private Composite container;
 	private WizardData wizardData;
 	private Button sourceButton, targetButton;
+	private List modelSelectionList;
 
 	final private ResourceSet rs = new ResourceSetImpl();
 
@@ -103,11 +108,6 @@ public class MappingModelSelectorPage extends WizardPage {
 						}
 						checkPackage();							
 
-						// activate the finish button if necessary
-						if(wizardData.getSectionType() == SectionType.SOURCE || wizardData.getSectionType() == SectionType.TARGET) {
-							setPageComplete(true);
-						}
-
 						updateSectionTypeButtons();
 					} catch (Exception e) {
 						setErrorMessage(e.getMessage());
@@ -126,7 +126,7 @@ public class MappingModelSelectorPage extends WizardPage {
 		separator.setLayoutData(gd);
 
 		Label sectionTypeLabel = new Label(container, SWT.NONE);
-		sectionTypeLabel.setText("Type of metamodel section to be created");
+		sectionTypeLabel.setText("Type of metamodel section to be created:");
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		gd.horizontalSpan = numColumns + 1;
 		sectionTypeLabel.setLayoutData(gd);
@@ -140,7 +140,7 @@ public class MappingModelSelectorPage extends WizardPage {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				wizardData.setSectionType(SectionType.SOURCE);
-				setPageComplete(true);
+				updateSectionModelList();
 			}
 
 			@Override
@@ -158,13 +158,49 @@ public class MappingModelSelectorPage extends WizardPage {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				wizardData.setSectionType(SectionType.TARGET);		
-				setPageComplete(true);
+				updateSectionModelList();
 			}
 
 			@Override
 			public void widgetDefaultSelected(SelectionEvent arg0) {
 				widgetSelected(arg0);
 
+			}
+		});
+
+		// separator
+		Label separator2 = new Label(container, SWT.SEPARATOR | SWT.HORIZONTAL);
+		gd = new GridData(GridData.FILL_HORIZONTAL);
+		gd.horizontalSpan = numColumns + 1;
+		separator2.setLayoutData(gd);
+
+		Label modelSelectionLabel = new Label(container, SWT.NONE);
+		modelSelectionLabel.setText("Target Source/TargetSectionModel:");
+		gd = new GridData(GridData.FILL_HORIZONTAL);
+		gd.horizontalSpan = numColumns + 1;
+		modelSelectionLabel.setLayoutData(gd);
+
+		// list for selecting the target Source/TargetSectionModel
+		modelSelectionList = new List(container, SWT.NONE);
+		modelSelectionList.setToolTipText("Please specify the Source/TargetSectionModel into that the generated section(s) shall be added..."); 
+		gd = new GridData(GridData.FILL_HORIZONTAL);
+		gd.horizontalSpan = numColumns + 1;
+		modelSelectionList.setLayoutData(gd);
+		modelSelectionList.addSelectionListener(new SelectionListener2() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				PAMTraM pamtram = wizardData.getPamtram();
+				if(pamtram == null || wizardData.getSectionType() == SectionType.NONE || wizardData.getSectionType() == SectionType.BOTH) {
+					wizardData.setSectionModel(null);
+				} else {
+					wizardData.setSectionModel(wizardData.getSectionType() == SectionType.SOURCE ? 
+							wizardData.getPamtram().getSourceSectionModel().get(modelSelectionList.getSelectionIndex()) :
+								wizardData.getPamtram().getTargetSectionModel().get(modelSelectionList.getSelectionIndex()));
+
+
+				}
+				getContainer().updateButtons();
 			}
 		});
 
@@ -296,5 +332,31 @@ public class MappingModelSelectorPage extends WizardPage {
 		default:
 			break;
 		}
+		updateSectionModelList();
+	}
+
+	private void updateSectionModelList() {
+
+		modelSelectionList.setItems(new String[]{});
+
+		// update the list of section models to choose
+
+		PAMTraM pamtram = wizardData.getPamtram();
+		if(pamtram == null || wizardData.getSectionType() == SectionType.NONE || wizardData.getSectionType() == SectionType.BOTH) {
+			return;
+		}
+
+		@SuppressWarnings("unchecked")
+		EList<SectionModel<?, ?, ?>> sectionModels = (EList<SectionModel<?, ?, ?>>) (wizardData.getSectionType() == SectionType.SOURCE ? wizardData.getPamtram().getSourceSectionModel() : wizardData.getPamtram().getTargetSectionModel());
+		String prefix = (wizardData.getSectionType() == SectionType.SOURCE ? "SourceSectionModel " : "TargetSectionModel ");
+		for (SectionModel<?, ?, ?> sectionModel : sectionModels) {
+			modelSelectionList.add(prefix + (sectionModel.getName() != null ? sectionModel.getName() : ""));
+		}
+	}
+
+	@Override
+	public boolean isPageComplete() {
+		return wizardData.getPamtram() != null && wizardData.getSectionType() != SectionType.NONE &&
+				wizardData.getSectionType() != SectionType.BOTH && wizardData.getSectionModel() != null;
 	}
 }

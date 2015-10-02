@@ -18,8 +18,6 @@ import org.eclipse.ui.PlatformUI;
 import pamtram.PamtramPackage;
 import pamtram.metamodel.Class;
 import pamtram.metamodel.MetaModelElement;
-import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.TargetSectionClass;
 
 public class GeneratorWizard extends Wizard {
 
@@ -80,13 +78,7 @@ public class GeneratorWizard extends Wizard {
 
 			AddCommand addGeneratedSections = null;
 			// now that we now which of the sections are unique, we can add those to the pamtram model
-			if(wizardData.getSectionType() == SectionType.SOURCE) {
-				//TODO do not simply add all sections to the first source section model
-				addGeneratedSections = new AddCommand(editingDomain, wizardData.getPamtram().getSourceSectionModel().get(0), PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS, sectionsToAdd);
-			} else {
-				//TODO do not simply add all sections to the first target section model
-				addGeneratedSections = new AddCommand(editingDomain, wizardData.getPamtram().getTargetSectionModel().get(0), PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS, sectionsToAdd);
-			}
+			addGeneratedSections = new AddCommand(editingDomain, wizardData.getSectionModel(), PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS, sectionsToAdd);
 
 			editingDomain.getCommandStack().execute(addGeneratedSections);
 
@@ -95,13 +87,7 @@ public class GeneratorWizard extends Wizard {
 		} else {
 
 			// now that we now which of the sections are unique, we can add those to the pamtram model
-			if(wizardData.getSectionType() == SectionType.SOURCE) {
-				//TODO do not simply add all sections to the first source section model
-				wizardData.getPamtram().getSourceSectionModel().get(0).getMetaModelSections().addAll((Collection<? extends SourceSectionClass>) sectionsToAdd);
-			} else {
-				//TODO do not simply add all sections to the first target section model
-				wizardData.getPamtram().getTargetSectionModel().get(0).getMetaModelSections().addAll((Collection<? extends TargetSectionClass>) sectionsToAdd);
-			}
+			((EList<Class<?, ?, ?>>) wizardData.getSectionModel().getMetaModelSections()).addAll(sectionsToAdd);
 
 			// finally, we save the model
 			try {

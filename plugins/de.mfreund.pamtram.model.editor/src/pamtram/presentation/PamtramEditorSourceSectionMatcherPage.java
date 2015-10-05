@@ -1,5 +1,7 @@
 package pamtram.presentation;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Set;
@@ -309,7 +311,8 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 
 		// Create a transformation runner and use it to get the matching source sections
 		GenericTransformationRunner tr = 
-				new GenericTransformationRunner(contents.get(0), editor.pamtram, targetFile, null);
+				GenericTransformationRunner.createInstanceFromSourceModels(
+						new ArrayList<EObject>(Arrays.asList(contents.get(0))), editor.pamtram, targetFile, null);
 
 		matchedSections = tr.mapSections();
 

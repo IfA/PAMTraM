@@ -3,6 +3,7 @@ package de.mfreund.pamtram.wizards;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
+import java.util.Collection;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IProject;
@@ -36,13 +37,13 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 
 	// the element currently selected (might e.g. be a working set)
 	private IStructuredSelection selection;
-	
+
 	// the project to be created
 	private IProject newProject;
-	
+
 	// the wizard page where the project name can be entered
 	private WizardNewProjectCreationPage mainPage;
-	
+
 	// the wizard page where the name of the pamtram file can be entered
 	private PamtramFileSpecificationPage fileSpecPage;
 
@@ -62,16 +63,17 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 		super.init(workbench, selection);
 		setWindowTitle("PAMTraM Project Wizard");
 	}
-	
+
 	@Override
 	public void addPages() {
-		
+
 		mainPage = new WizardNewProjectCreationPage("autoProBeProjectCreation") { //$NON-NLS-1$
 			/*
 			 * (non-Javadoc)
 			 * 
 			 * @see org.eclipse.ui.dialogs.WizardNewProjectCreationPage#createControl(org.eclipse.swt.widgets.Composite)
 			 */
+			@Override
 			public void createControl(Composite parent) {
 				super.createControl(parent);
 				createWorkingSetGroup(
@@ -84,18 +86,18 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 		mainPage.setTitle("PAMTraM Project");
 		mainPage.setDescription("This creates a new PAMTraM Project that consists of a PAMTraM model.");
 		this.addPage(mainPage);
-		
+
 		fileSpecPage = new PamtramFileSpecificationPage("Whatever2") {
 			@Override
 			public void setVisible(boolean visible) {
 				super.setVisible(visible);
 				if(!visible) {
-					ePackageSpecificationPage.setSourceEPackage(fileSpecPage.getNsUri());
+					ePackageSpecificationPage.addSourceEPackages(fileSpecPage.getNsUris());
 				}
 			}
 		};
 		fileSpecPage.setTitle("Pamtram specification");
-		fileSpecPage.setDescription("Specify the name of the PAMTraM file and the source file (optional).");
+		fileSpecPage.setDescription("Specify the name of the PAMTraM file and the source file(s) (optional).");
 		this.addPage(fileSpecPage);
 
 		ePackageSpecificationPage = new de.mfreund.pamtram.pages.PamtramEPackageSpecificationPage("Whatever3");
@@ -106,35 +108,35 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 
 	@Override
 	public boolean performFinish() {
-		
+
 		try {
-			
+
 			// Create the Project 
 			createNewProject();
-			
+
 			if (newProject == null) {
 				return false;
 			}
-			
+
 			// Add the created project to a working set if necessary
 			IWorkingSet[] workingSets = mainPage.getSelectedWorkingSets();
 			workbench.getWorkingSetManager().addToWorkingSets(newProject.getProject(),
 					workingSets);
-			
+
 			// Create the project sturcture
 			doFinish();
-			
+
 			// Update the perspective to the 'final perspective' set in
 			// the plugin.xml
 			BasicNewProjectResourceWizard.updatePerspective(this.config);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return true;
 	}
-	
+
 	/**
 	 * Creates a new project resource with the selected name.
 	 * <p>
@@ -160,7 +162,7 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 
 		// get a project handle
 		IProject newProjectHandle = mainPage.getProjectHandle();
-		
+
 
 		// get a project descriptor
 		URI location = null;
@@ -173,10 +175,11 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 				.newProjectDescription(newProjectHandle.getName());
 		description.setLocationURI(location);
 		description.setNatureIds(new String[]{"de.mfreund.pamtram.pamtramNature"});
-//		description.setBuildConfigs(new String[]{"org.eclipse.wst.common.project.facet.core.builder"});
-		
+		//		description.setBuildConfigs(new String[]{"org.eclipse.wst.common.project.facet.core.builder"});
+
 		// create the new project operation
 		IRunnableWithProgress op = new IRunnableWithProgress() {
+			@Override
 			public void run(IProgressMonitor monitor)
 					throws InvocationTargetException {
 				CreateProjectOperation op = new CreateProjectOperation(
@@ -187,7 +190,7 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 					// not preserved.  Making this undoable resulted in too many 
 					// accidental file deletions.
 					op.execute(monitor, WorkspaceUndoUtil
-						.getUIInfoAdapter(getShell()));
+							.getUIInfoAdapter(getShell()));
 				} catch (ExecutionException e) {
 					throw new InvocationTargetException(e);
 				}
@@ -202,107 +205,105 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 		} catch (InvocationTargetException e) {
 			throw new InvocationTargetException(e);
 		}
-		
+
 		newProject = newProjectHandle.getProject();
-		
+
 		return newProject;
 	}
-	
+
 	/**
 	 * The worker method. It performs a 'WorkspaceModifyOperation' that
 	 * creates the required folders inside the project, creates an instance
 	 * of the Pamtram model and copies the source model if there is one.
 	 */
 	private void doFinish() {
-		
-		final boolean isSourceFileBased = ePackageSpecificationPage.isSourceFileBased();
+
 		final boolean isTargetFileBased = ePackageSpecificationPage.isTargetFileBased();
-		final String sourceEcorePath = ePackageSpecificationPage.getSourceEcorePath();
+		final Collection<String> sourceEcorePaths = ePackageSpecificationPage.getSourceEcorePaths();
 		final String targetEcorePath = ePackageSpecificationPage.getTargetEcorePath();
-		
+
 		/*
 		 * Create the folders, create a pamtram model and copy the source model
 		 */
 		WorkspaceModifyOperation operation =
-			new WorkspaceModifyOperation() {
-				@Override
-				protected void execute(IProgressMonitor progressMonitor) {
-					
-					progressMonitor.beginTask("Creating project structure...", 1);
-					
-					try {
-						// create the folders inside the project
-						if(isSourceFileBased || isTargetFileBased) {
-							ResourceHelper.addToProjectStructure(
-									newProject.getProject(), new String[]{ "metamodel", "Source", "Pamtram", "Target" });
-						} else {
-							ResourceHelper.addToProjectStructure(
-									newProject.getProject(), new String[]{ "Source", "Pamtram", "Target" });
-							
-						}
-					} catch (CoreException e) {
-						e.printStackTrace();
-						newProject = null;
-						progressMonitor.done();
-						return;
-					}
-					
-					// copy the specified source file
-					String srcFile = fileSpecPage.getSrcFile();
-					if(!srcFile.isEmpty()) {
-						// copy files
-						ResourceHelper.copyFile(
-								new File(srcFile), "Source", newProject.getProject());
-						
-					}
-					
-					// copy the source ecore model if necessary
-					if(isSourceFileBased) {
-						ResourceHelper.copyFile(new File(sourceEcorePath), 
-								"metamodel", newProject.getProject());
-					}
-					
-					// copy the target ecore model if necessary
-					if(isTargetFileBased) {
-						ResourceHelper.copyFile(new File(targetEcorePath), 
-								"metamodel", newProject.getProject());
-					}
-					
-					progressMonitor.beginTask("Creating PAMTraM instance", 1);
-					
-					try {
-						// Create a resource set
-						//
-						ResourceSet resourceSet = new ResourceSetImpl();
+				new WorkspaceModifyOperation() {
+			@Override
+			protected void execute(IProgressMonitor progressMonitor) {
 
-						// Get the URI of the pamtram file to be created.
-						//
-						org.eclipse.emf.common.util.URI fileURI = 
-								org.eclipse.emf.common.util.URI.createPlatformResourceURI(
-										newProject.getFile("Pamtram/" + fileSpecPage.getPamtramFile()).getFullPath().toString(), true);
+				progressMonitor.beginTask("Creating project structure...", 1);
 
-						// Create a resource for this file.
-						//
-						Resource resource = resourceSet.createResource(fileURI);
+				try {
+					// create the folders inside the project
+					if(!sourceEcorePaths.isEmpty() || isTargetFileBased) {
+						ResourceHelper.addToProjectStructure(
+								newProject.getProject(), new String[]{ "metamodel", "Source", "Pamtram", "Target" });
+					} else {
+						ResourceHelper.addToProjectStructure(
+								newProject.getProject(), new String[]{ "Source", "Pamtram", "Target" });
 
-						// Add the initial model object to the contents.
-						//
-						EObject rootObject = createInitialModel();
-						if (rootObject != null) {
-							resource.getContents().add(rootObject);
-						}
-
-						// Save the contents of the resource to the file system.
-						//
-						resource.save(null);
 					}
-					catch (Exception e) {
-						e.printStackTrace();
-					}
-
+				} catch (CoreException e) {
+					e.printStackTrace();
+					newProject = null;
 					progressMonitor.done();
 					return;
 				}
+
+				// copy the specified source file
+				for (String srcFile : fileSpecPage.getSrcFiles()) {
+					// copy files
+					ResourceHelper.copyFile(
+							new File(srcFile), "Source", newProject.getProject());
+				}
+
+
+				// copy the source ecore model(s) if necessary
+				for (String sourceEcorePath : sourceEcorePaths) {
+					ResourceHelper.copyFile(new File(sourceEcorePath), 
+							"metamodel", newProject.getProject());
+				}
+
+				// copy the target ecore model if necessary
+				if(isTargetFileBased) {
+					ResourceHelper.copyFile(new File(targetEcorePath), 
+							"metamodel", newProject.getProject());
+				}
+
+				progressMonitor.beginTask("Creating PAMTraM instance", 1);
+
+				try {
+					// Create a resource set
+					//
+					ResourceSet resourceSet = new ResourceSetImpl();
+
+					// Get the URI of the pamtram file to be created.
+					//
+					org.eclipse.emf.common.util.URI fileURI = 
+							org.eclipse.emf.common.util.URI.createPlatformResourceURI(
+									newProject.getFile("Pamtram/" + fileSpecPage.getPamtramFile()).getFullPath().toString(), true);
+
+					// Create a resource for this file.
+					//
+					Resource resource = resourceSet.createResource(fileURI);
+
+					// Add the initial model object to the contents.
+					//
+					EObject rootObject = createInitialModel();
+					if (rootObject != null) {
+						resource.getContents().add(rootObject);
+					}
+
+					// Save the contents of the resource to the file system.
+					//
+					resource.save(null);
+				}
+				catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				progressMonitor.done();
+				return;
+			}
 		};
 
 		// run the operation

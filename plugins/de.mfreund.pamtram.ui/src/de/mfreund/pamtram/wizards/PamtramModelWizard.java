@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -61,6 +62,7 @@ import de.mfreund.pamtram.ui.PamtramUIPlugin;
 import pamtram.PAMTraM;
 import pamtram.PamtramFactory;
 import pamtram.PamtramPackage;
+import pamtram.SourceSectionModel;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHintGroup;
@@ -244,16 +246,24 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 		// generate a Pamtram instance
 		PAMTraM pamtram = pamtramFactory.createPAMTraM();
 
-		// add a source section model
-		pamtram.getSourceSectionModel().add(pamtramFactory.createSourceSectionModel());
-		// set the ePackage of the source section model
-		if(ePackageSpecificationPage.getSourceEPackage() != null) {
-			pamtram.getSourceSectionModel().get(0).setMetaModelPackage(ePackageSpecificationPage.getSourceEPackage());
+		// add a source section model for every source ePackage
+		if(ePackageSpecificationPage.getSourceEPackages().isEmpty()) {
+			pamtram.getSourceSectionModel().add(pamtramFactory.createSourceSectionModel());			
+		} else {
+			for (EPackage ePackage : ePackageSpecificationPage.getSourceEPackages()) {
+				SourceSectionModel ssm = pamtramFactory.createSourceSectionModel();
+				// set the ePackage of the source section model
+				ssm.setMetaModelPackage(ePackage);
+				ssm.setName(ePackage.getName());
+				pamtram.getSourceSectionModel().add(ssm);		
+			}
 		}
-		// add an  empty class to the source section model
-		SourceSectionClass  sourceClass = metamodelFactory.createSourceSectionClass();
-		sourceClass.setName("source");
-		pamtram.getSourceSectionModel().get(0).getMetaModelSections().add(sourceClass);
+		for (SourceSectionModel ssm : pamtram.getSourceSectionModel()) {
+			// add an  empty class to each source section model
+			SourceSectionClass  sourceClass = metamodelFactory.createSourceSectionClass();
+			sourceClass.setName("source");
+			ssm.getMetaModelSections().add(sourceClass);			
+		}
 
 		// add a target section model
 		pamtram.getTargetSectionModel().add(pamtramFactory.createTargetSectionModel());
@@ -271,7 +281,7 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 		pamtram.getMappingModel().add(pamtramFactory.createMappingModel());
 		// add a simple mapping to the mapping model
 		Mapping mapping = mappingFactory.createMapping();
-		mapping.setSourceMMSection(sourceClass);
+		mapping.setSourceMMSection(pamtram.getSourceSectionModel().get(0).getMetaModelSections().get(0));
 		mapping.getMappingHintGroups().add(mappingHintGroup);
 		mappingHintGroup.setTargetMMSection(targetClass);
 		pamtram.getMappingModel().get(0).getMapping().add(mapping);

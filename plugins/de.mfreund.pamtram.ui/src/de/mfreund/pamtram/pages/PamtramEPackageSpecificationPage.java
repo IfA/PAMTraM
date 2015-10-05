@@ -1,9 +1,14 @@
 package de.mfreund.pamtram.pages;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
 import org.eclipse.jface.fieldassist.AutoCompleteField;
 import org.eclipse.jface.fieldassist.ComboContentAdapter;
 import org.eclipse.jface.preference.FileFieldEditor;
@@ -11,6 +16,8 @@ import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionEvent;
@@ -21,7 +28,10 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.List;
 
+import de.mfreund.pamtram.util.SelectionListener2;
 import de.mfreund.pamtram.wizards.PamtramModelWizard;
 import pamtram.util.EPackageHelper;
 
@@ -31,31 +41,47 @@ import pamtram.util.EPackageHelper;
  */
 public class PamtramEPackageSpecificationPage extends WizardPage {
 
+	private static final String BUNDLE_ID = "de.mfreund.pamtram.ui";
 	private final int numColumns = 3;
 	private final int marginWidth = 5;
 	private final int marginHeight = 5;
 
-	private EPackage sourceEPackage, targetEPackage;
+	private EPackage targetEPackage;
 	private Button sourceIsFileBasedButton, targetIsFileBasedButton;
 	private FileFieldEditor sourceFileFieldEditor, targetFileFieldEditor;
 	private Combo sourceCombo, targetCombo;
 	private Composite sourceFileComposite, targetFileComposite;
 
 	// this holds the nsUris of all packages in the ePackage registry
-	private HashMap<String, Object> registeredEPackages = new HashMap<>();
+	private EPackage.Registry registeredEPackages;
+
 	// this holds the nsUris of all packages defined in the source ecore model (if specified)
 	private HashMap<String, EPackage> sourceEcoreEPackages = new HashMap<>();
+	// this specifies the ecore models for all source packages that are not present in the global registry
+	private HashMap<String, String> sourceEcoreModels = new HashMap<>();
 	// this holds the nsUris of all packages defined in the target ecore model (if specified)
 	private HashMap<String, EPackage> targetEcoreEPackages = new HashMap<>();
 
-	private ModifyListener targetComboModifyListener, sourceComboModifyListener;
+	private ModifyListener targetComboModifyListener;
 	private SelectionListener sourceIsFileBasedButtonSelectionListener, targetIsFileBasedButtonSelectionListener;
+	private Label separator;
+	private List sourceEPackageList;
+
+	/**
+	 * This keeps track of the namespace URIs of the source EPackages to be imported.
+	 */
+	private HashSet<String> sourceEPackages = new HashSet<>();
+
 
 	public PamtramEPackageSpecificationPage(String pageName) {
 
 		super(pageName);
 
-		registeredEPackages = new HashMap<>(EPackage.Registry.INSTANCE);
+		// we create a copy of the global ePackage registry
+		registeredEPackages = new EPackageRegistryImpl();
+		for (Entry<String, Object> entry : EPackage.Registry.INSTANCE.entrySet()) {
+			registeredEPackages.put(entry.getKey(), entry.getValue());
+		}
 	}
 
 	@Override
@@ -76,39 +102,15 @@ public class PamtramEPackageSpecificationPage extends WizardPage {
 		}
 
 		Group sourceGroup = new Group(composite, SWT.NONE);
+		sourceGroup.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		{
-			sourceGroup.setText("Source Sections ePackage");
+			sourceGroup.setText("Source Sections ePackage(s)");
 
 			GridLayout layout = new GridLayout();
-			layout.numColumns = 1;
 			layout.marginWidth = marginWidth;
 			layout.marginHeight = marginHeight;
 			sourceGroup.setLayout(layout);
-
-			sourceGroup.setLayoutData(new GridData());
 		}
-
-		final Composite sourceComposite = new Composite(sourceGroup, SWT.NONE);
-		{
-			GridLayout layout = new GridLayout();
-			layout.numColumns = numColumns;
-			layout.verticalSpacing = 8;
-			sourceComposite.setLayout(layout);
-
-			sourceComposite.setLayoutData(new GridData());
-		}
-
-		// a checkbox to specify if the source ePackage shall be specified by an ecore model
-		sourceIsFileBasedButton = new Button(sourceComposite, SWT.CHECK);
-		{
-
-			GridData data = new GridData();
-			data.horizontalAlignment = GridData.FILL;
-			data.horizontalSpan = numColumns;
-			sourceIsFileBasedButton.setLayoutData(data);
-		}
-
-		sourceIsFileBasedButton.setText("Source ePackage is ecore-based");
 		sourceIsFileBasedButtonSelectionListener = new SelectionListener() {
 
 			@Override
@@ -120,6 +122,32 @@ public class PamtramEPackageSpecificationPage extends WizardPage {
 			public void widgetDefaultSelected(SelectionEvent e) {}
 		};
 
+		Group sourceAddEPackageGroup = new Group(sourceGroup, SWT.NONE);
+		sourceAddEPackageGroup.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		sourceAddEPackageGroup.setText("Add one or more EPackages...");
+		sourceAddEPackageGroup.setLayout(new GridLayout(1, false));
+
+		final Composite sourceComposite = new Composite(sourceAddEPackageGroup, SWT.NONE);
+		sourceComposite.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		{
+			GridLayout layout = new GridLayout();
+			layout.numColumns = 4;
+			layout.verticalSpacing = 8;
+			sourceComposite.setLayout(layout);
+		}
+
+		// a checkbox to specify if the source ePackage shall be specified by an ecore model
+		sourceIsFileBasedButton = new Button(sourceComposite, SWT.CHECK);
+		{
+
+			GridData data = new GridData();
+			data.horizontalAlignment = GridData.FILL;
+			data.horizontalSpan = 4;
+			sourceIsFileBasedButton.setLayoutData(data);
+		}
+
+		sourceIsFileBasedButton.setText("Source ePackage is ecore-based");
+
 		// This is necessary to allow indent for the file field editor
 		sourceFileComposite = new Composite(sourceComposite, SWT.NONE);
 		{			
@@ -129,7 +157,7 @@ public class PamtramEPackageSpecificationPage extends WizardPage {
 			sourceFileComposite.setLayout(layout);
 
 			GridData data = new GridData();
-			data.horizontalSpan = 3;
+			data.horizontalSpan = 4;
 			data.horizontalIndent = 10;
 			data.horizontalAlignment = GridData.FILL;
 			sourceFileComposite.setLayoutData(data);
@@ -137,9 +165,9 @@ public class PamtramEPackageSpecificationPage extends WizardPage {
 
 		// a file field editor to specify the source ecore model
 		sourceFileFieldEditor = new FileFieldEditor("srcEcoreSelect", "", sourceFileComposite);
+		sourceFileFieldEditor.setEnabled(false, sourceFileComposite);
 		sourceFileFieldEditor.setLabelText("Ecore Model:");
 		sourceFileFieldEditor.setFileExtensions(new String[]{"*.ecore"});
-		sourceFileFieldEditor.setEnabled(false, sourceFileComposite);
 		sourceFileFieldEditor.setPropertyChangeListener(new IPropertyChangeListener() {
 
 			@Override
@@ -162,23 +190,66 @@ public class PamtramEPackageSpecificationPage extends WizardPage {
 		{
 			GridData data = new GridData();
 			data.horizontalAlignment = GridData.FILL;
-			data.horizontalSpan = numColumns;
+			data.horizontalSpan = 3;
 			data.grabExcessHorizontalSpace = true;
 			sourceCombo.setLayoutData(data);
 		}
 
-		// add a modify listener that sets the ePackage
-		sourceComboModifyListener = new ModifyListener() {
+		// create a button that allows specifying another source model
+		Button addButton = new Button(sourceComposite, SWT.NONE);
+		addButton.setLayoutData(
+				new GridData(SWT.FILL, SWT.TOP, false, false, 1, 1)
+				);
+		addButton.setToolTipText("Add the source EPackage...");
+		//		addButton.setImage(BundleContentHelper.getBundleImage(BUNDLE_ID, "icons/add_obj.gif"));
+		addButton.setText("Add...");
+		addButton.addSelectionListener(new SelectionListener2() {
+
 			@Override
-			public void modifyText(ModifyEvent e) {
-				sourceEPackage = sourceIsFileBasedButton.getSelection() ?
-						sourceEcoreEPackages.get(sourceCombo.getText()) :
-							(EPackage) registeredEPackages.get(sourceCombo.getText());	
-						getWizard().getContainer().updateButtons();
+			public void widgetSelected(SelectionEvent e) {
+				// make sure that the specified ePackage has not been added before and marks a valid ePackage
+				if(!sourceEPackages.contains(sourceCombo.getText())) {
+					if(Arrays.asList(sourceCombo.getItems()).contains(sourceCombo.getText())) {
+
+						// add the item to the list
+						sourceEPackageList.add(sourceCombo.getText());
+						sourceEPackages.add(sourceCombo.getText());
+					}
+
+					if(sourceIsFileBasedButton.getSelection()) {
+						// set/update the path to the ecore model
+						sourceEcoreModels.put(sourceCombo.getText(), sourceFileFieldEditor.getStringValue());
+					}
+				}
 			}
-		};
+		});
+
+		// realize auto-completion for both combo viewers
+		new AutoCompleteField(sourceCombo, new ComboContentAdapter(), sourceCombo.getItems());
+
+		separator = new Label(sourceGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
+		separator.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+
+		sourceEPackageList = new List(sourceGroup, SWT.BORDER);
+		sourceEPackageList.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		sourceEPackageList.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.keyCode == SWT.DEL && sourceEPackageList.getSelectionIndex() != -1) {
+					sourceEPackages.remove(sourceEPackageList.getSelectionIndex());
+					sourceEcoreModels.remove(sourceEPackageList.getSelectionIndex());
+					sourceEPackageList.remove(sourceEPackageList.getSelectionIndex());
+				}
+			}
+		});
 
 		Group targetGroup = new Group(composite, SWT.NONE);
+		targetGroup.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		{
 			targetGroup.setText("Target Sections ePackage");
 
@@ -187,18 +258,15 @@ public class PamtramEPackageSpecificationPage extends WizardPage {
 			layout.marginWidth = marginWidth;
 			layout.marginHeight = marginHeight;
 			targetGroup.setLayout(layout);
-
-			targetGroup.setLayoutData(new GridData());
 		}
 
 		final Composite targetComposite = new Composite(targetGroup, SWT.NONE);
+		targetComposite.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		{
 			GridLayout layout = new GridLayout();
 			layout.numColumns = numColumns;
 			layout.verticalSpacing = 8;
 			targetComposite.setLayout(layout);
-
-			targetComposite.setLayoutData(new GridData());
 		}
 
 		// a checkbox to specify if the target ePackage shall be specified by an ecore model
@@ -274,10 +342,10 @@ public class PamtramEPackageSpecificationPage extends WizardPage {
 		targetComboModifyListener = new ModifyListener() {
 			@Override
 			public void modifyText(ModifyEvent e) {
-				targetEPackage = targetIsFileBasedButton.getSelection() ?
+				targetEPackage = (targetIsFileBasedButton.getSelection() ?
 						targetEcoreEPackages.get(targetCombo.getText()) :
-							(EPackage) registeredEPackages.get(targetCombo.getText());
-						getWizard().getContainer().updateButtons();
+							registeredEPackages.getEPackage(targetCombo.getText()));
+				getWizard().getContainer().updateButtons();
 			}
 		};
 
@@ -285,9 +353,6 @@ public class PamtramEPackageSpecificationPage extends WizardPage {
 		// to both combo boxes
 		updateSourceCombo(registeredEPackages.keySet());
 		updateTargetCombo(registeredEPackages.keySet());
-
-		// realize auto-completion for both combo viewers
-		new AutoCompleteField(sourceCombo, new ComboContentAdapter(), sourceCombo.getItems());
 		new AutoCompleteField(targetCombo, new ComboContentAdapter(), targetCombo.getItems());
 
 		setPageComplete(true);
@@ -299,12 +364,10 @@ public class PamtramEPackageSpecificationPage extends WizardPage {
 		super.setVisible(visible);
 
 		if(visible) {
-			sourceCombo.addModifyListener(sourceComboModifyListener);
 			targetCombo.addModifyListener(targetComboModifyListener);
 			sourceIsFileBasedButton.addSelectionListener(sourceIsFileBasedButtonSelectionListener);
 			targetIsFileBasedButton.addSelectionListener(targetIsFileBasedButtonSelectionListener);
 		} else {
-			sourceCombo.removeModifyListener(sourceComboModifyListener);
 			targetCombo.removeModifyListener(targetComboModifyListener);
 			sourceIsFileBasedButton.removeSelectionListener(sourceIsFileBasedButtonSelectionListener);
 			targetIsFileBasedButton.removeSelectionListener(targetIsFileBasedButtonSelectionListener);
@@ -313,25 +376,35 @@ public class PamtramEPackageSpecificationPage extends WizardPage {
 
 	/**
 	 * 
-	 * @return the ePackage that shall be used for the target sections
+	 * @return the ePackages that shall be used for the source sections
 	 */
-	public EPackage getSourceEPackage() {
-		return sourceEPackage;
+	public HashSet<EPackage> getSourceEPackages() {
+		HashSet<EPackage> ret = new HashSet<>();
+		for (String nsUri : sourceEPackages) {
+			if(nsUri == null) {
+				continue;
+			}
+			EPackage ePackage = sourceEcoreEPackages.get(nsUri); 
+			if(ePackage == null) {
+				ePackage = EPackage.Registry.INSTANCE.getEPackage(nsUri);
+			}
+			ret.add(ePackage);
+		}
+		return ret;
 	}
 
 	/**
 	 * 
-	 * @return the path to the ecore model that defines the source ePackage
+	 * @return the path(s) to the ecore model(s) that define(s) the source ePackage(s)
 	 */
-	public String getSourceEcorePath() {
-		return sourceFileFieldEditor.getStringValue();
+	public Collection<String> getSourceEcorePaths() {
+		return sourceEcoreModels.values();
 	}
 
 	private boolean setSourceEPackage(EPackage sourceEPackage) {
 
 		for(int i=0; i<this.sourceCombo.getItemCount(); i++) {
 			if(this.sourceCombo.getItem(i).equals(sourceEPackage.getNsURI())) {
-				this.sourceEPackage = sourceEPackage;
 				this.sourceCombo.select(i);
 				return true;
 			}
@@ -444,6 +517,24 @@ public class PamtramEPackageSpecificationPage extends WizardPage {
 
 	@Override
 	public boolean isPageComplete() {
-		return (sourceEPackage != null && targetEPackage != null);
+		return (sourceEPackageList.getItemCount() > 0 && targetEPackage != null);
 	}
+
+	/**
+	 * Add a collection of namespace URIs to the list of source EPackages.
+	 * 
+	 * @param nsUris
+	 */
+	public void addSourceEPackages(Collection<String> nsUris) {
+		for (String nsUri : nsUris) {
+			sourceEPackages.add(nsUri);
+			sourceEPackageList.add(nsUri);
+			if(!registeredEPackages.containsKey(nsUri)) {
+				sourceEcoreEPackages.put(nsUri, null);
+			}
+			sourceCombo.getText();
+		}
+	}
+
+
 }

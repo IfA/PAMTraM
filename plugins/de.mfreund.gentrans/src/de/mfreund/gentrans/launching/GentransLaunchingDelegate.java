@@ -1,6 +1,7 @@
 package de.mfreund.gentrans.launching;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -44,8 +45,11 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 
 		// get the associated files from the launch configuration
 		final String project = configuration.getAttribute("project", "");
-		String sourceFile = project + Path.SEPARATOR +
-				"Source" + Path.SEPARATOR + configuration.getAttribute("srcFile", "");
+		ArrayList<String> sourceFiles = new ArrayList<>();
+		for (String sourceFile : configuration.getAttribute("srcFiles", new ArrayList<>())) {
+			sourceFiles.add(project + Path.SEPARATOR +
+					"Source" + Path.SEPARATOR + sourceFile);
+		}
 		String pamtramFile = project + Path.SEPARATOR + 
 				"Pamtram" + Path.SEPARATOR + configuration.getAttribute("pamtramFile", "");
 		String targetFile = project + Path.SEPARATOR + 
@@ -55,11 +59,15 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		int maxPathLength=configuration.getAttribute("maxPathLength", -1);
 		boolean rememberAmbiguousMappingChoice=configuration.getAttribute("rememberAmbiguousMappingChoice", true);
 
-		// if an xml source file shall be transformed, 
-		// add the file extension to registry 
-		if(sourceFile.endsWith(".xml")) {
-			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
-			.put("xml", new GenericXMLResourceFactoryImpl());
+		// if at least one xml source file shall be transformed, 
+		// add the file extension to registry
+		for (String sourceFile : sourceFiles) {
+			if(sourceFile.endsWith(".xml")) {
+				Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
+				.put("xml", new GenericXMLResourceFactoryImpl());
+				break;
+			}
+
 		}
 
 		@SuppressWarnings("unchecked") // should not fail due to validation in 'validateLaunchConfig(...)'
@@ -67,7 +75,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		new LibraryContextDescriptor(configuration.getAttribute("targetLibPath", ""), (Class<LibraryContext>) targetLibContextClass, (Class<LibraryPathParser>) targetLibParserClass);
 
 		GenericTransformationJob job = new GenericTransformationJob(
-				"GenTrans", sourceFile, pamtramFile, targetFile, targetLibraryContextDescriptor);
+				"GenTrans", sourceFiles, pamtramFile, targetFile, targetLibraryContextDescriptor);
 		job.getGenTransRunner().setMaxPathLength(maxPathLength);
 		job.getGenTransRunner().setOnlyAskOnceOnAmbiguousMappings(rememberAmbiguousMappingChoice);
 
@@ -130,7 +138,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 			throw new RuntimeException("No project has been specified!");
 		}
 
-		if(configuration.getAttribute("srcFile", "").equals("")) {
+		if(configuration.getAttribute("srcFiles", new ArrayList<String>()).isEmpty()){
 			throw new RuntimeException("No source file has been specified!");
 		}
 

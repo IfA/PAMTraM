@@ -3,12 +3,15 @@
  */
 package de.mfreund.gentrans.transformation.handler;
 
+import java.util.ArrayList;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.jobs.Job;
 
 import de.mfreund.gentrans.transformation.GenericTransformationRunner;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
+import pamtram.PAMTraM;
 
 /**
  * @author Sascha Steffen
@@ -22,17 +25,41 @@ public class GenericTransformationJob extends Job {
 	final GenericTransformationRunner genTransRunner;
 
 	/**
-	 * @param jobName
-	 * @param sourceFilePath
-	 * @param pamtramPath
-	 * @param targetFilePath
-	 * @param targetLibraryContextDescriptor
+	 * Create a new GenericTransformationJob with the given 'jobName'.
+	 * 
+	 * @param jobName The name of the transformation job to be created.
+	 * @param sourceFilePath A file path pointing to the single source model to be transformed.
+	 * @param pamtramPath A file path pointing to the {@link PAMTraM} model to be transformed.
+	 * @param targetFilePath A file path denoting the location where the target model created by the transformation shall be stored.
+	 * @param targetLibraryContextDescriptor The descriptor for the target library context to be used during the transformation.
 	 */
 	public GenericTransformationJob(final String jobName,
 			final String sourceFilePath, final String pamtramPath,
 			final String targetFilePath, final LibraryContextDescriptor targetLibraryContextDescriptor) {
+
 		super(jobName);
-		genTransRunner = new GenericTransformationRunner(sourceFilePath,
+		ArrayList<String> sourceFilePaths = new ArrayList<>();
+		sourceFilePaths.add(sourceFilePath);
+		genTransRunner = GenericTransformationRunner.createInstanceFromSourcePaths(sourceFilePaths,
+				pamtramPath, targetFilePath, targetLibraryContextDescriptor);
+		setPriority(Job.BUILD);
+
+	}
+
+	/**
+	 * Create a new GenericTransformationJob with the given 'jobName'.
+	 * 
+	 * @param jobName The name of the transformation job to be created.
+	 * @param sourceFilePaths A list of file paths pointing to the source models to be transformed.
+	 * @param pamtramPath A file path pointing to the {@link PAMTraM} model to be transformed.
+	 * @param targetFilePath A file path denoting the location where the target model created by the transformation shall be stored.
+	 * @param targetLibraryContextDescriptor The descriptor for the target library context to be used during the transformation.
+	 */
+	public GenericTransformationJob(final String jobName,
+			final ArrayList<String> sourceFilePaths, final String pamtramPath,
+			final String targetFilePath, final LibraryContextDescriptor targetLibraryContextDescriptor) {
+		super(jobName);
+		genTransRunner = GenericTransformationRunner.createInstanceFromSourcePaths(sourceFilePaths,
 				pamtramPath, targetFilePath, targetLibraryContextDescriptor);
 		setPriority(Job.BUILD);
 	}

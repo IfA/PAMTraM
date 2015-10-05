@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ASCII"?>
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:pamtram="http://mfreund.de/pamtram">
+  <sourceSectionModel name="Disl">
+    <metaModelPackage href="http://disl#/"/>
+    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="source"/>
+  </sourceSectionModel>
+  <sourceSectionModel name="w3caui">
+    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
+    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="source"/>
+  </sourceSectionModel>
+  <targetSectionModel>
+    <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
+    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="target"/>
+  </targetSectionModel>
+  <mappingModel>
+    <mapping name="sourceMapping" sourceMMSection="//@sourceSectionModel.0/@metaModelSections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="target" targetMMSection="//@targetSectionModel.0/@metaModelSections.0"/>
+    </mapping>
+  </mappingModel>
+</pamtram:PAMTraM>

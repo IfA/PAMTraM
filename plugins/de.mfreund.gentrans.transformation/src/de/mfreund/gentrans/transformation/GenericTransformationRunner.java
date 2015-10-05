@@ -86,14 +86,14 @@ public class GenericTransformationRunner {
 	private final List<CancellationListener> objectsToCancel;
 
 	/**
-	 * File path of the source Model
+	 * File paths of the source models to be transformed
 	 */
-	private final String sourceFilePath;
+	private final ArrayList<String> sourceFilePaths;
 
 	/**
-	 * The source model to be transformed
+	 * The source models to be transformed
 	 */
-	private EObject sourceModel;
+	private ArrayList<EObject> sourceModels;
 
 	/**
 	 * File path to the transformation model
@@ -209,8 +209,8 @@ public class GenericTransformationRunner {
 	/**
 	 * Private constructor that is called from all other constructors.
 	 * 
-	 * @param sourceFilePath
-	 *            File path of the source Model
+	 * @param sourceFilePaths
+	 *            List of file paths of the source models
 	 * @param pamtramPath
 	 *            Path to the transformation model
 	 * @param targetFilePath
@@ -222,12 +222,13 @@ public class GenericTransformationRunner {
 	 * @param targetLibraryContextDescriptor
 	 * 			  The descriptor for the target library context to be used during the transformation.
 	 */
-	private GenericTransformationRunner(final String sourceFilePath,
+	private GenericTransformationRunner(final ArrayList<String> sourceFilePaths,
 			final String pamtramPath, final String targetFilePath, int maxPathLength,
 			boolean onlyAskOnceOnAmbiguousMappings, LibraryContextDescriptor targetLibraryContextDescriptor) {
 		super();
 		isCancelled = false;
-		this.sourceFilePath = sourceFilePath;
+		this.sourceModels = new ArrayList<>();
+		this.sourceFilePaths = sourceFilePaths;
 		this.pamtramPath = pamtramPath;
 		this.targetFilePath = targetFilePath;
 		this.maxPathLength = maxPathLength;
@@ -242,67 +243,74 @@ public class GenericTransformationRunner {
 	/**
 	 * This constructs an instance. 
 	 *
-	 * @param sourceFilePath
-	 *            File path of the source Model
+	 * @param sourceFilePaths
+	 *            List of file paths of the source models
 	 * @param pamtramPath
 	 *            Path to the transformation model
 	 * @param targetFilePath
 	 *            File path to the transformation target
 	 * @param targetLibraryContextDescriptor
 	 * 			  The descriptor for the target library context to be used during the transformation.
+	 * @return An instance of {@link GenericTransformationRunner}.
 	 */
-	public GenericTransformationRunner(
-			final String sourceFilePath,
+	public static GenericTransformationRunner createInstanceFromSourcePaths(
+			final ArrayList<String> sourceFilePaths,
 			final String pamtramPath,
 			final String targetFilePath, 
 			LibraryContextDescriptor targetLibraryContextDescriptor) {
 
-		this(sourceFilePath, pamtramPath, targetFilePath, -1, true, targetLibraryContextDescriptor);
+		return new GenericTransformationRunner(sourceFilePaths, pamtramPath, targetFilePath, -1, true, targetLibraryContextDescriptor);
 	}
 
 	/**
 	 * This constructs an instance.
 	 *
-	 * @param sourceFilePath
-	 *            File path of the source Model
+	 * @param sourceFilePaths
+	 *             List of file paths of the source models
 	 * @param pamtramModel
 	 *            The transformation model
 	 * @param targetFilePath
 	 *            File path to the transformation target
 	 * @param targetLibraryContextDescriptor
 	 * 			  The descriptor for the target library context to be used during the transformation.
+	 * @return An instance of {@link GenericTransformationRunner}.
 	 */
-	public GenericTransformationRunner(
-			final String sourceFilePath,
+	public static GenericTransformationRunner createInstanceFromSourcePaths(
+			final ArrayList<String> sourceFilePaths,
 			final PAMTraM pamtramModel, 
 			final String targetFilePath, 
 			LibraryContextDescriptor targetLibraryContextDescriptor) {
 
-		this(sourceFilePath, null, targetFilePath, -1, true, targetLibraryContextDescriptor);
-		this.pamtramModel = pamtramModel;
+		GenericTransformationRunner instance = 
+				new GenericTransformationRunner(sourceFilePaths, null, targetFilePath, -1, true, targetLibraryContextDescriptor);
+		instance.pamtramModel = pamtramModel;
+		return instance;
 	}
 
 	/**
 	 * This constructs an instance.
 	 *
-	 * @param sourceModel
-	 *            The source Model
+	 * @param sourceModels
+	 *            The list of source models
 	 * @param pamtramModel
 	 *            The transformation model
 	 * @param targetFilePath
 	 *            File path to the transformation target
 	 * @param targetLibraryContextDescriptor
 	 * 			  The descriptor for the target library context to be used during the transformation.
+	 * @return An instance of {@link GenericTransformationRunner}.
 	 */
-	public GenericTransformationRunner(
-			final EObject sourceModel,
+	public static GenericTransformationRunner createInstanceFromSourceModels(
+			final ArrayList<EObject> sourceModels,
 			final PAMTraM pamtramModel, 
 			final String targetFilePath, 
 			LibraryContextDescriptor targetLibraryContextDescriptor) {
 
-		this(null, null, targetFilePath, -1, true, targetLibraryContextDescriptor);
-		this.pamtramModel = pamtramModel;
-		this.sourceModel = sourceModel;
+		GenericTransformationRunner instance = 
+				new GenericTransformationRunner(null, null, targetFilePath, -1, true, targetLibraryContextDescriptor);
+		instance.pamtramModel = pamtramModel;
+		instance.sourceModels = sourceModels;
+		return instance;
 	}
 
 	/**
@@ -348,7 +356,7 @@ public class GenericTransformationRunner {
 			 * try to execute all active mappings (this includes the 4 resp. 5 main steps of
 			 * the transformation
 			 */
-			successful = executeMappings(targetModel, sourceModel, pamtramModel, suitableMappings,
+			successful = executeMappings(targetModel, sourceModels, pamtramModel, suitableMappings,
 					monitorWrapper); 			
 		} catch (RuntimeException e) {
 			consoleStream.println(e.getMessage());
@@ -394,13 +402,14 @@ public class GenericTransformationRunner {
 	 * the four main steps of the transformation get executed.
 	 * 
 	 * @param targetModel The {@link XMIResource target model resource} where the result of the transformation shall be stored
+	 * @param sourceModels The list of {@link EObject source models} to be transformed.
 	 * @param pamtramModel The {@link PAMTraM} instance that describes the transformation.
 	 * @param suitableMappings A list of {@link Mapping Mappings} that may be used in the transformation. This needs to match
 	 * those mappings defined in the given '<em>pamtramModel</em>' or be a subset of these mappings
 	 * @param monitor The {@link IProgressMonitor monitor} that shall be used to visualize the progress of the transformation.
 	 * @return '<em><b>true</b></em>' if the transformation was performed successfully, '<em><b>false</b></em>' otherwise
 	 */
-	private boolean executeMappings(final XMIResource targetModel, final EObject sourceModel,
+	private boolean executeMappings(final XMIResource targetModel, final ArrayList<EObject> sourceModels,
 			final PAMTraM pamtramModel, final List<Mapping> suitableMappings,
 			final IProgressMonitor monitor) {
 
@@ -411,7 +420,7 @@ public class GenericTransformationRunner {
 		/*
 		 * Perform the 'matching' step of the transformation
 		 */
-		MatchingResult matchingResult = performMatching(sourceModel, suitableMappings, attributeValueModifier, monitor);
+		MatchingResult matchingResult = performMatching(sourceModels, suitableMappings, attributeValueModifier, monitor);
 
 		if(matchingResult.isCanceled()) {
 			return false;
@@ -461,7 +470,7 @@ public class GenericTransformationRunner {
 	 * given '<em>sourceModel</em>' and tries to apply the given '<em>suitableMappings</em>'. During this process,
 	 * the hint values for the various {@link MappingHint MappingHints} are calculated as well. 
 	 *  
-	 * @param sourceModel The {@link EObject} representing/containing the source model to be matched. 
+	 * @param sourceModels The list of {@link EObject EObjects} representing/containing the source model to be matched. 
 	 * @param suitableMappings A list of {@link Mapping Mappings} that shall be used for the matching process.
 	 * @param attributeValueModifier An instance of {@link AttributeValueModifierExecutor} that shall be used to 
 	 * apply {@link AttributeValueModifierSet AttributeValueModifierSets} in order to obtain hint values.
@@ -469,7 +478,7 @@ public class GenericTransformationRunner {
 	 * @return A {@link MatchingResult} that contains the various results of the matching.
 	 */
 	private MatchingResult performMatching(
-			EObject sourceModel, 
+			ArrayList<EObject> sourceModels, 
 			List<Mapping> suitableMappings, 
 			AttributeValueModifierExecutor attributeValueModifier, 
 			IProgressMonitor monitor) {
@@ -485,7 +494,7 @@ public class GenericTransformationRunner {
 		 */
 		writePamtramMessage("Analyzing source model");
 		monitor.subTask("Selecting Mappings for source model elements");
-		final ContainmentTree containmentTree = ContainmentTree.build(sourceModel);
+		final ContainmentTree containmentTree = ContainmentTree.build(sourceModels);
 
 		/*
 		 * Create the source section matcher that finds applicable mappings
@@ -1434,7 +1443,7 @@ public class GenericTransformationRunner {
 	@Deprecated
 	public LinkedHashMap<SourceSectionClass, Set<EObject>> mapSections() {
 
-		if(pamtramModel == null || sourceModel == null) {
+		if(pamtramModel == null || sourceModels == null || sourceModels.isEmpty()) {
 			return null;
 		}
 
@@ -1456,7 +1465,7 @@ public class GenericTransformationRunner {
 		 * Build the ContainmentTree representing the source model. This will keep track of all matched
 		 * and unmatched elements.
 		 */
-		final ContainmentTree containmentTree = ContainmentTree.build(sourceModel);
+		final ContainmentTree containmentTree = ContainmentTree.build(sourceModels);
 
 
 		final SourceSectionMatcher sourceSectionMapper = new SourceSectionMatcher(
@@ -1519,7 +1528,7 @@ public class GenericTransformationRunner {
 		// try to register the ePackages involved in the pamtram model (if not already done)
 		EPackageCheck result = EPackageHelper.checkInvolvedEPackages(
 				pamtramModel,
-				ResourcesPlugin.getWorkspace().getRoot().findMember(sourceFilePath).getProject(),
+				ResourcesPlugin.getWorkspace().getRoot().findMember(sourceFilePaths.get(0)).getProject(),
 				EPackage.Registry.INSTANCE);
 		switch (result) {
 		case ERROR_PACKAGE_NOT_FOUND:
@@ -1546,26 +1555,30 @@ public class GenericTransformationRunner {
 	}
 
 	/**
-	 * This loads the source model from an XMI or XML file.
+	 * This loads the source models from XMI or XML files.
 	 * 
 	 * @param rs The resource set to be used to load the resource.
 	 */
 	private void loadSourceModel(ResourceSet resourceSet) {
 
-		// the URI of the source resource
-		final URI sourceUri = URI.createPlatformResourceURI(sourceFilePath, true);
+		for (String sourceFilePath : sourceFilePaths) {
 
-		if(sourceFilePath.endsWith(".xml")) {
-			// add file extension to registry
-			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
-					"xml", new GenericXMLResourceFactoryImpl());
+			// the URI of the source resource
+			final URI sourceUri = URI.createPlatformResourceURI(sourceFilePath, true);
+
+			if(sourceFilePath.endsWith(".xml")) {
+				// add file extension to registry
+				Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
+						"xml", new GenericXMLResourceFactoryImpl());
+			}
+
+			// try to load source model
+			Resource sourceResource = 
+					resourceSet.getResource(sourceUri, true);
+
+			sourceModels.add(sourceResource.getContents().get(0));
+
 		}
-
-		// try to load source model
-		Resource sourceResource = 
-				resourceSet.getResource(sourceUri, true);
-
-		sourceModel = sourceResource.getContents().get(0);
 	}
 
 	/**

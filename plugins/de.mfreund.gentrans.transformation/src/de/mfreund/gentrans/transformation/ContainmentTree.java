@@ -1,5 +1,6 @@
 package de.mfreund.gentrans.transformation;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Set;
 
@@ -9,7 +10,7 @@ import org.eclipse.emf.ecore.EObject;
  * This represents the containment tree of a given {@link EObject source model} and keeps track of unmatched and matched elements in
  * the tree.
  * <p />
- * Note: Instances are created via the static factory method {@link #build(EObject)}.
+ * Note: Instances are created via the static factory method {@link #build(ArrayList)}.
  * 
  * @author mfreund
  *
@@ -54,15 +55,18 @@ public class ContainmentTree {
 	}
 
 	/**
-	 * This creates a new instance based on a given {@link EObject sourceModel} and returns it.
+	 * This creates a new instance based on a given {@link EObject sourceModels} and returns it.
 	 * 
-	 * @param sourceModel The {@link EObject} representing the source model for which the containment tree shall be built.
+	 * @param sourceModels The list of {@link EObject EObjects} representing the source models for which the containment tree shall be built.
 	 * @return The created {@link ContainmentTree}.
 	 */
-	public static ContainmentTree build(EObject sourceModel) {
+	public static ContainmentTree build(ArrayList<EObject> sourceModels) {
 
 		ContainmentTree tree = new ContainmentTree();
-		tree.buildContainmentTree(sourceModel);
+
+		for (EObject sourceModel : sourceModels) {
+			tree.buildContainmentTree(sourceModel);
+		}
 
 		// at the beginning of the matching process, all elements from the containment tree are still 'unmatched'
 		tree.availableElements.addAll(tree.containmentTree);

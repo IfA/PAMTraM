@@ -4,6 +4,7 @@ package pamtram;
 
 import org.eclipse.emf.common.util.EList;
 import pamtram.metamodel.LibraryEntry;
+import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionReference;
@@ -25,7 +26,7 @@ import pamtram.metamodel.TargetSectionReference;
  * @model
  * @generated
  */
-public interface TargetSectionModel extends SectionModel<TargetSectionClass, TargetSectionReference, TargetSectionAttribute> {
+public interface TargetSectionModel extends SectionModel<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute> {
 
 	/**
 	 * Returns the value of the '<em><b>Library Elements</b></em>' containment reference list.

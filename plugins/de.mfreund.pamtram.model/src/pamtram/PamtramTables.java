@@ -119,9 +119,10 @@ public class PamtramTables
 			PamtramTables.init();
 		}
 
-		public static final /*@NonNull*/ ExecutorTypeParameter _SectionModel_C = new ExecutorTypeParameter(TypeId.T_1, "C");
-		public static final /*@NonNull*/ ExecutorTypeParameter _SectionModel_R = new ExecutorTypeParameter(TypeId.T_2, "R");
-		public static final /*@NonNull*/ ExecutorTypeParameter _SectionModel_A = new ExecutorTypeParameter(TypeId.T_3, "A");
+		public static final /*@NonNull*/ ExecutorTypeParameter _SectionModel_S = new ExecutorTypeParameter(TypeId.T_1, "S");
+		public static final /*@NonNull*/ ExecutorTypeParameter _SectionModel_C = new ExecutorTypeParameter(TypeId.T_2, "C");
+		public static final /*@NonNull*/ ExecutorTypeParameter _SectionModel_R = new ExecutorTypeParameter(TypeId.T_3, "R");
+		public static final /*@NonNull*/ ExecutorTypeParameter _SectionModel_A = new ExecutorTypeParameter(IdManager.getTemplateParameterId(3), "A");
 
 		static {
 			Init.initEnd();
@@ -146,7 +147,7 @@ public class PamtramTables
 		public static final /*@NonNull*/ EcoreExecutorType _MappingModel = new EcoreExecutorType(PamtramPackage.Literals.MAPPING_MODEL, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _NamedElement = new EcoreExecutorType(PamtramPackage.Literals.NAMED_ELEMENT, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _PAMTraM = new EcoreExecutorType(PamtramPackage.Literals.PAM_TRA_M, PACKAGE, 0);
-		public static final /*@NonNull*/ EcoreExecutorType _SectionModel = new EcoreExecutorType(PamtramPackage.Literals.SECTION_MODEL, PACKAGE, 0, TypeParameters._SectionModel_C, TypeParameters._SectionModel_R, TypeParameters._SectionModel_A);
+		public static final /*@NonNull*/ EcoreExecutorType _SectionModel = new EcoreExecutorType(PamtramPackage.Literals.SECTION_MODEL, PACKAGE, 0, TypeParameters._SectionModel_S, TypeParameters._SectionModel_C, TypeParameters._SectionModel_R, TypeParameters._SectionModel_A);
 		public static final /*@NonNull*/ EcoreExecutorType _SourceSectionModel = new EcoreExecutorType(PamtramPackage.Literals.SOURCE_SECTION_MODEL, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _TargetSectionModel = new EcoreExecutorType(PamtramPackage.Literals.TARGET_SECTION_MODEL, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _TransformationModel = new EcoreExecutorType(PamtramPackage.Literals.TRANSFORMATION_MODEL, PACKAGE, 0);

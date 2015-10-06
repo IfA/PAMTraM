@@ -566,13 +566,22 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		getESubpackages().add(theMappingPackage);
 
 		// Create type parameters
+		ETypeParameter sectionModelEClass_S = addETypeParameter(sectionModelEClass, "S");
 		ETypeParameter sectionModelEClass_C = addETypeParameter(sectionModelEClass, "C");
 		ETypeParameter sectionModelEClass_R = addETypeParameter(sectionModelEClass, "R");
 		ETypeParameter sectionModelEClass_A = addETypeParameter(sectionModelEClass, "A");
 
 		// Set bounds for type parameters
-		EGenericType g1 = createEGenericType(theMetamodelPackage.getClass_());
+		EGenericType g1 = createEGenericType(theMetamodelPackage.getSection());
 		EGenericType g2 = createEGenericType(sectionModelEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(sectionModelEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(sectionModelEClass_A);
+		g1.getETypeArguments().add(g2);
+		sectionModelEClass_S.getEBounds().add(g1);
+		g1 = createEGenericType(theMetamodelPackage.getClass_());
+		g2 = createEGenericType(sectionModelEClass_C);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(sectionModelEClass_R);
 		g1.getETypeArguments().add(g2);
@@ -599,6 +608,8 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		// Add supertypes to classes
 		sectionModelEClass.getESuperTypes().add(this.getNamedElement());
 		g1 = createEGenericType(this.getSectionModel());
+		g2 = createEGenericType(theMetamodelPackage.getSourceSection());
+		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theMetamodelPackage.getSourceSectionClass());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theMetamodelPackage.getSourceSectionReference());
@@ -607,6 +618,8 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		g1.getETypeArguments().add(g2);
 		sourceSectionModelEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getSectionModel());
+		g2 = createEGenericType(theMetamodelPackage.getTargetSection());
+		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theMetamodelPackage.getTargetSectionClass());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theMetamodelPackage.getTargetSectionReference());
@@ -656,7 +669,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 
 		initEClass(sectionModelEClass, SectionModel.class, "SectionModel", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSectionModel_MetaModelPackage(), ecorePackage.getEPackage(), null, "metaModelPackage", null, 1, 1, SectionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		g1 = createEGenericType(sectionModelEClass_C);
+		g1 = createEGenericType(sectionModelEClass_S);
 		initEReference(getSectionModel_MetaModelSections(), g1, null, "metaModelSections", null, 0, -1, SectionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sourceSectionModelEClass, SourceSectionModel.class, "SourceSectionModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -718,7 +731,6 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		  (pamTraMEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "sourceSectionModelsHaveSameEPackage targetSectionModelsHaveSameEPackage"
 		   });
 	}
 

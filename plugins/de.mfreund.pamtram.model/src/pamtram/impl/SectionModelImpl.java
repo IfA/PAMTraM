@@ -16,6 +16,7 @@ import pamtram.PamtramPackage;
 import pamtram.SectionModel;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.Reference;
+import pamtram.metamodel.Section;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,7 +32,7 @@ import pamtram.metamodel.Reference;
  *
  * @generated
  */
-public abstract class SectionModelImpl<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends NamedElementImpl implements SectionModel<C, R, A> {
+public abstract class SectionModelImpl<S extends Section<C, R, A>, C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends NamedElementImpl implements SectionModel<S, C, R, A> {
 	/**
 	 * The cached value of the '{@link #getMetaModelPackage() <em>Meta Model Package</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -50,7 +51,7 @@ public abstract class SectionModelImpl<C extends pamtram.metamodel.Class<C, R, A
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<C> metaModelSections;
+	protected EList<S> metaModelSections;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -114,9 +115,9 @@ public abstract class SectionModelImpl<C extends pamtram.metamodel.Class<C, R, A
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<C> getMetaModelSections() {
+	public EList<S> getMetaModelSections() {
 		if (metaModelSections == null) {
-			metaModelSections = new EObjectContainmentEList<C>(pamtram.metamodel.Class.class, this, PamtramPackage.SECTION_MODEL__META_MODEL_SECTIONS);
+			metaModelSections = new EObjectContainmentEList<S>(Section.class, this, PamtramPackage.SECTION_MODEL__META_MODEL_SECTIONS);
 		}
 		return metaModelSections;
 	}
@@ -166,7 +167,7 @@ public abstract class SectionModelImpl<C extends pamtram.metamodel.Class<C, R, A
 				return;
 			case PamtramPackage.SECTION_MODEL__META_MODEL_SECTIONS:
 				getMetaModelSections().clear();
-				getMetaModelSections().addAll((Collection<? extends C>)newValue);
+				getMetaModelSections().addAll((Collection<? extends S>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

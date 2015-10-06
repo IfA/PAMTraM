@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.PamtramPackage;
 import pamtram.TargetSectionModel;
 import pamtram.metamodel.LibraryEntry;
+import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionReference;
@@ -29,7 +30,7 @@ import pamtram.metamodel.TargetSectionReference;
  *
  * @generated
  */
-public class TargetSectionModelImpl extends SectionModelImpl<TargetSectionClass, TargetSectionReference, TargetSectionAttribute> implements TargetSectionModel {
+public class TargetSectionModelImpl extends SectionModelImpl<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute> implements TargetSectionModel {
 	/**
 	 * The cached value of the '{@link #getLibraryElements() <em>Library Elements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -66,9 +67,9 @@ public class TargetSectionModelImpl extends SectionModelImpl<TargetSectionClass,
 	 * @generated
 	 */
 	@Override
-	public EList<TargetSectionClass> getMetaModelSections() {
+	public EList<TargetSection> getMetaModelSections() {
 		if (metaModelSections == null) {
-			metaModelSections = new EObjectContainmentEList<TargetSectionClass>(TargetSectionClass.class, this, PamtramPackage.TARGET_SECTION_MODEL__META_MODEL_SECTIONS);
+			metaModelSections = new EObjectContainmentEList<TargetSection>(TargetSection.class, this, PamtramPackage.TARGET_SECTION_MODEL__META_MODEL_SECTIONS);
 		}
 		return metaModelSections;
 	}

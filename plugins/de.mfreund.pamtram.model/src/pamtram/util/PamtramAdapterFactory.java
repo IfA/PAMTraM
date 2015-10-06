@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 import pamtram.*;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.Reference;
+import pamtram.metamodel.Section;
 import pamtram.MappingModel;
 import pamtram.NamedElement;
 import pamtram.PAMTraM;
@@ -87,7 +88,7 @@ public class PamtramAdapterFactory extends AdapterFactoryImpl {
 				return createPAMTraMAdapter();
 			}
 			@Override
-			public <C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> Adapter caseSectionModel(SectionModel<C, R, A> object) {
+			public <S extends Section<C, R, A>, C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> Adapter caseSectionModel(SectionModel<S, C, R, A> object) {
 				return createSectionModelAdapter();
 			}
 			@Override

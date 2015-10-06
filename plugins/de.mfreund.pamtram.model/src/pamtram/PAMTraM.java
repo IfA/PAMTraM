@@ -36,7 +36,7 @@ import pamtram.metamodel.TargetSectionClass;
  * </ul>
  *
  * @see pamtram.PamtramPackage#getPAMTraM()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='sourceSectionModelsHaveSameEPackage targetSectionModelsHaveSameEPackage'"
+ * @model
  * @generated
  */
 public interface PAMTraM extends EObject {

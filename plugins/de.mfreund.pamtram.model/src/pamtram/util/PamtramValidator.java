@@ -114,7 +114,7 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 		case PamtramPackage.PAM_TRA_M:
 			return validatePAMTraM((PAMTraM)value, diagnostics, context);
 		case PamtramPackage.SECTION_MODEL:
-			return validateSectionModel((SectionModel<?, ?, ?>)value, diagnostics, context);
+			return validateSectionModel((SectionModel<?, ?, ?, ?>)value, diagnostics, context);
 		case PamtramPackage.SOURCE_SECTION_MODEL:
 			return validateSourceSectionModel((SourceSectionModel)value, diagnostics, context);
 		case PamtramPackage.TARGET_SECTION_MODEL:
@@ -211,7 +211,7 @@ public class PamtramValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSectionModel(SectionModel<?, ?, ?> sectionModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSectionModel(SectionModel<?, ?, ?, ?> sectionModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(sectionModel, diagnostics, context);
 	}
 

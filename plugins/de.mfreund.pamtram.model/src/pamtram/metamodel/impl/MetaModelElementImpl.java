@@ -20,6 +20,7 @@ import pamtram.metamodel.LibraryParameter;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.Reference;
+import pamtram.metamodel.Section;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 import pamtram.metamodel.VirtualAttribute;
@@ -106,7 +107,7 @@ public abstract class MetaModelElementImpl<C extends pamtram.metamodel.Class<C, 
 	 * @generated
 	 */
 	@Override
-	public SectionModel<C, R, A> getContainingSectionModel() {
+	public SectionModel<Section<C, R, A>, C, R, A> getContainingSectionModel() {
 		Class section = this.getContainingSection();
 		
 		EObject container = section.eContainer();

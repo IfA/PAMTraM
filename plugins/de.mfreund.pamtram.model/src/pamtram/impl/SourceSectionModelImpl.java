@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import pamtram.PamtramPackage;
 import pamtram.SourceSectionModel;
+import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionReference;
@@ -18,7 +19,7 @@ import pamtram.metamodel.SourceSectionReference;
  *
  * @generated
  */
-public class SourceSectionModelImpl extends SectionModelImpl<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements SourceSectionModel {
+public class SourceSectionModelImpl extends SectionModelImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements SourceSectionModel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -45,9 +46,9 @@ public class SourceSectionModelImpl extends SectionModelImpl<SourceSectionClass,
 	 * @generated
 	 */
 	@Override
-	public EList<SourceSectionClass> getMetaModelSections() {
+	public EList<SourceSection> getMetaModelSections() {
 		if (metaModelSections == null) {
-			metaModelSections = new EObjectContainmentEList<SourceSectionClass>(SourceSectionClass.class, this, PamtramPackage.SOURCE_SECTION_MODEL__META_MODEL_SECTIONS);
+			metaModelSections = new EObjectContainmentEList<SourceSection>(SourceSection.class, this, PamtramPackage.SOURCE_SECTION_MODEL__META_MODEL_SECTIONS);
 		}
 		return metaModelSections;
 	}

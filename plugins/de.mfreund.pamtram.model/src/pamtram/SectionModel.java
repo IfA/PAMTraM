@@ -6,6 +6,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EPackage;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.Reference;
+import pamtram.metamodel.Section;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,7 +25,7 @@ import pamtram.metamodel.Reference;
  * @model abstract="true"
  * @generated
  */
-public interface SectionModel<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends NamedElement {
+public interface SectionModel<S extends Section<C, R, A>, C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Meta Model Package</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -37,7 +38,7 @@ public interface SectionModel<C extends pamtram.metamodel.Class<C, R, A>, R exte
 	 * @see #setMetaModelPackage(EPackage)
 	 * @see pamtram.PamtramPackage#getSectionModel_MetaModelPackage()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!SectionModel{C,R,A}!metaModelPackage'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!SectionModel{S,C,R,A}!metaModelPackage'"
 	 * @generated
 	 */
 	EPackage getMetaModelPackage();
@@ -63,9 +64,9 @@ public interface SectionModel<C extends pamtram.metamodel.Class<C, R, A>, R exte
 	 * @return the value of the '<em>Meta Model Sections</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getSectionModel_MetaModelSections()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!SectionModel{C,R,A}!metaModelSections'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram!SectionModel{S,C,R,A}!metaModelSections'"
 	 * @generated
 	 */
-	EList<C> getMetaModelSections();
+	EList<S> getMetaModelSections();
 
 } // SectionModel

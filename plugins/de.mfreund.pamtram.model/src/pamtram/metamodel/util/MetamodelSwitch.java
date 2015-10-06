@@ -25,11 +25,14 @@ import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.RegExMatcher;
+import pamtram.metamodel.Section;
+import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
 import pamtram.metamodel.SourceSectionReference;
 import pamtram.metamodel.SubstringMatcher;
+import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionContainmentReference;
@@ -106,6 +109,37 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				T result = caseClass(class_);
 				if (result == null) result = caseMetaModelElement(class_);
 				if (result == null) result = caseNamedElement(class_);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MetamodelPackage.SECTION: {
+				Section<?, ?, ?> section = (Section<?, ?, ?>)theEObject;
+				T result = caseSection(section);
+				if (result == null) result = caseClass(section);
+				if (result == null) result = caseMetaModelElement(section);
+				if (result == null) result = caseNamedElement(section);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MetamodelPackage.SOURCE_SECTION: {
+				SourceSection sourceSection = (SourceSection)theEObject;
+				T result = caseSourceSection(sourceSection);
+				if (result == null) result = caseSourceSectionClass(sourceSection);
+				if (result == null) result = caseSection(sourceSection);
+				if (result == null) result = caseClass(sourceSection);
+				if (result == null) result = caseMetaModelElement(sourceSection);
+				if (result == null) result = caseNamedElement(sourceSection);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MetamodelPackage.TARGET_SECTION: {
+				TargetSection targetSection = (TargetSection)theEObject;
+				T result = caseTargetSection(targetSection);
+				if (result == null) result = caseTargetSectionClass(targetSection);
+				if (result == null) result = caseSection(targetSection);
+				if (result == null) result = caseClass(targetSection);
+				if (result == null) result = caseMetaModelElement(targetSection);
+				if (result == null) result = caseNamedElement(targetSection);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -387,6 +421,51 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public <C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> T caseClass(pamtram.metamodel.Class<C, R, A> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Section</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Section</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> T caseSection(Section<C, R, A> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Source Section</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Source Section</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSourceSection(SourceSection object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Target Section</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Target Section</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTargetSection(TargetSection object) {
 		return null;
 	}
 

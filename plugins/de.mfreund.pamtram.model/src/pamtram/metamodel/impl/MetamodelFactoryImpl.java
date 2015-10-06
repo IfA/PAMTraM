@@ -22,10 +22,12 @@ import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.RegExMatcher;
+import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
 import pamtram.metamodel.SubstringMatcher;
+import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionContainmentReference;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
@@ -75,6 +77,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
+			case MetamodelPackage.SOURCE_SECTION: return createSourceSection();
+			case MetamodelPackage.TARGET_SECTION: return createTargetSection();
 			case MetamodelPackage.SOURCE_SECTION_CLASS: return createSourceSectionClass();
 			case MetamodelPackage.TARGET_SECTION_CLASS: return createTargetSectionClass();
 			case MetamodelPackage.ATTRIBUTE_PARAMETER: return createAttributeParameter();
@@ -130,6 +134,26 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SourceSection createSourceSection() {
+		SourceSectionImpl sourceSection = new SourceSectionImpl();
+		return sourceSection;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TargetSection createTargetSection() {
+		TargetSectionImpl targetSection = new TargetSectionImpl();
+		return targetSection;
 	}
 
 	/**

@@ -21,7 +21,7 @@ import pamtram.mapping.MappingHintGroupType;
  * </ul>
  *
  * @see pamtram.metamodel.MetamodelPackage#getTargetSection()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='isReferencedByMappingHintGroup'"
  * @generated
  */
 public interface TargetSection extends TargetSectionClass, Section<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute> {

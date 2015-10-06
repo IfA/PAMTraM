@@ -64,11 +64,11 @@ public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C exte
 	@SuppressWarnings("unchecked")
 	@Override
 	public C getContainingSection() {
-		MetaModelElement<C,R,A> element = this;
+		MetaModelElement<S,C,R,A> element = this;
 		
 		// move upwards in the hierarchy
 		while(element.eContainer() instanceof MetaModelElement) {
-			element = (MetaModelElement<C,R,A>) element.eContainer();
+			element = (MetaModelElement<S,C,R,A>) element.eContainer();
 		}
 		
 		if(element instanceof Section || element.eContainer() instanceof ContainerParameter) {
@@ -116,7 +116,7 @@ public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C exte
 			}
 			container = container.eContainer();
 		}
-		return (SectionModel<Section<C, R, A>, C, R, A>) container;
+		return (SectionModel<S, C, R, A>) container;
 	}
 
 	/**

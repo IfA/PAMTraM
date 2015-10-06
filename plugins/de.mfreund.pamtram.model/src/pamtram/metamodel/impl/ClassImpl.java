@@ -36,6 +36,7 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
+
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.ContainmentReference;
@@ -330,8 +331,8 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 			if(!(ref.getEReference().isContainment())) {
 				continue;
 			}
-			if(ref instanceof ContainmentReference<?,?,?>){
-				containedClasses.addAll(((ContainmentReference<C,R,A>) ref).getValue());
+			if(ref instanceof ContainmentReference<?,?,?,?>){
+				containedClasses.addAll(((ContainmentReference<S,C,R,A>) ref).getValue());
 			} else if(ref instanceof MetaModelSectionReference) {
 				containedClasses.addAll((Collection<? extends C>) ((MetaModelSectionReference) ref).getValue());
 			}
@@ -357,8 +358,8 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	@Override
 	@SuppressWarnings("unchecked")
 	public ContainmentReference<S, C, R, A> getOwningContainmentReference() {
-		if(this.eContainer() instanceof ContainmentReference<?,?,?>) {
-			return (ContainmentReference<C,R,A>) this.eContainer();
+		if(this.eContainer() instanceof ContainmentReference<?,?,?,?>) {
+			return (ContainmentReference<S,C,R,A>) this.eContainer();
 		} else {
 			return null;
 		}
@@ -380,12 +381,12 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 		// collect all classes that are referenced
 		for (R ref : referencingClass.getReferences()) {
 
-			if(ref instanceof ContainmentReference<?,?,?>){
-				classes.addAll(((ContainmentReference<C,R,A>) ref).getValue());
+			if(ref instanceof ContainmentReference<?,?,?,?>){
+				classes.addAll(((ContainmentReference<S,C,R,A>) ref).getValue());
 			} else if(ref instanceof MetaModelSectionReference) {
 				classes.addAll((Collection<? extends C>) ((MetaModelSectionReference) ref).getValue());
 			} else if(ref instanceof NonContainmentReference){
-				classes.addAll(((NonContainmentReference<C,R,A>) ref).getValue());
+				classes.addAll(((NonContainmentReference<S,C,R,A>) ref).getValue());
 			}
 		}
 
@@ -888,11 +889,11 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 				return getOwningContainmentReference();
 			case MetamodelPackage.CLASS___IS_REFERENCED_BY__CLASS_ELIST:
 				return isReferencedBy((C)arguments.get(0), (EList<C>)arguments.get(1));
-			case MetamodelPackage.CLASS___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP_2:
+			case MetamodelPackage.CLASS___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP_5:
 				return containerIsValid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MetamodelPackage.CLASS___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP_2:
+			case MetamodelPackage.CLASS___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP_5:
 				return cardinalityIsValid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MetamodelPackage.CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP_2:
+			case MetamodelPackage.CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP_5:
 				return eClassMatchesParentEReference((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

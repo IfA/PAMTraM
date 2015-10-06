@@ -7,6 +7,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
@@ -19,7 +20,7 @@ import pamtram.metamodel.SourceSectionReference;
  *
  * @generated
  */
-public abstract class SourceSectionReferenceImpl extends ReferenceImpl<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements SourceSectionReference {
+public abstract class SourceSectionReferenceImpl extends ReferenceImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements SourceSectionReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

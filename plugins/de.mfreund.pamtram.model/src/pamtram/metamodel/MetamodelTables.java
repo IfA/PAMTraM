@@ -73,8 +73,8 @@ public class MetamodelTables
 	/**
 	 *	Constants used by auto-generated code.
 	 */
-    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_TMPLid_ = TypeId.ORDERED_SET.getSpecializedId(IdManager.getTemplateParameterId(1));
-    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_TMPLid__0 = TypeId.ORDERED_SET.getSpecializedId(IdManager.getTemplateParameterId(2));
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_TMPLid_ = TypeId.ORDERED_SET.getSpecializedId(IdManager.getTemplateParameterId(2));
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_TMPLid__0 = TypeId.ORDERED_SET.getSpecializedId(IdManager.getTemplateParameterId(3));
     public static final /*@NonNull*/ /*@NonInvalid*/ RootPackageId PACKid_$metamodel$ = IdManager.getRootPackageId("$metamodel$");
     public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_mfreund_de_s_pamtram = IdManager.getNsURIPackageId("http://mfreund.de/pamtram", null, PamtramPackage.eINSTANCE);
     public static final /*@NonNull*/ /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_mfreund_de_s_pamtram_s_mapping = IdManager.getNsURIPackageId("http://mfreund.de/pamtram/mapping", null, MappingPackage.eINSTANCE);
@@ -128,7 +128,7 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_1 = ValueUtil.integerValueOf("1");
     public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_2 = ValueUtil.integerValueOf("2");
     public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_4 = ValueUtil.integerValueOf("4");
-    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_TMPLid__1 = TypeId.ORDERED_SET.getSpecializedId(IdManager.getTemplateParameterId(0));
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_TMPLid__1 = TypeId.ORDERED_SET.getSpecializedId(IdManager.getTemplateParameterId(1));
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_ActualAttribute_c_c_attributeMatchesParentEClass = "ActualAttribute::attributeMatchesParentEClass";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_Class_c_c_cardinalityIsValid = "Class::cardinalityIsValid";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_Class_c_c_containerIsValid = "Class::containerIsValid";
@@ -185,35 +185,42 @@ public class MetamodelTables
 			MetamodelTables.init();
 		}
 
-		public static final /*@NonNull*/ ExecutorTypeParameter _Attribute_C = new ExecutorTypeParameter(TypeId.T_1, "C");
-		public static final /*@NonNull*/ ExecutorTypeParameter _Attribute_R = new ExecutorTypeParameter(TypeId.T_2, "R");
-		public static final /*@NonNull*/ ExecutorTypeParameter _Attribute_A = new ExecutorTypeParameter(TypeId.T_3, "A");
+		public static final /*@NonNull*/ ExecutorTypeParameter _Attribute_S = new ExecutorTypeParameter(TypeId.T_1, "S");
+		public static final /*@NonNull*/ ExecutorTypeParameter _Attribute_C = new ExecutorTypeParameter(TypeId.T_2, "C");
+		public static final /*@NonNull*/ ExecutorTypeParameter _Attribute_R = new ExecutorTypeParameter(TypeId.T_3, "R");
+		public static final /*@NonNull*/ ExecutorTypeParameter _Attribute_A = new ExecutorTypeParameter(IdManager.getTemplateParameterId(3), "A");
 
-		public static final /*@NonNull*/ ExecutorTypeParameter _Class_C = new ExecutorTypeParameter(TypeId.T_1, "C");
-		public static final /*@NonNull*/ ExecutorTypeParameter _Class_R = new ExecutorTypeParameter(TypeId.T_2, "R");
-		public static final /*@NonNull*/ ExecutorTypeParameter _Class_A = new ExecutorTypeParameter(TypeId.T_3, "A");
+		public static final /*@NonNull*/ ExecutorTypeParameter _Class_S = new ExecutorTypeParameter(TypeId.T_1, "S");
+		public static final /*@NonNull*/ ExecutorTypeParameter _Class_C = new ExecutorTypeParameter(TypeId.T_2, "C");
+		public static final /*@NonNull*/ ExecutorTypeParameter _Class_R = new ExecutorTypeParameter(TypeId.T_3, "R");
+		public static final /*@NonNull*/ ExecutorTypeParameter _Class_A = new ExecutorTypeParameter(IdManager.getTemplateParameterId(3), "A");
 
-		public static final /*@NonNull*/ ExecutorTypeParameter _ContainmentReference_C = new ExecutorTypeParameter(TypeId.T_1, "C");
-		public static final /*@NonNull*/ ExecutorTypeParameter _ContainmentReference_R = new ExecutorTypeParameter(TypeId.T_2, "R");
-		public static final /*@NonNull*/ ExecutorTypeParameter _ContainmentReference_A = new ExecutorTypeParameter(TypeId.T_3, "A");
+		public static final /*@NonNull*/ ExecutorTypeParameter _ContainmentReference_S = new ExecutorTypeParameter(TypeId.T_1, "S");
+		public static final /*@NonNull*/ ExecutorTypeParameter _ContainmentReference_C = new ExecutorTypeParameter(TypeId.T_2, "C");
+		public static final /*@NonNull*/ ExecutorTypeParameter _ContainmentReference_R = new ExecutorTypeParameter(TypeId.T_3, "R");
+		public static final /*@NonNull*/ ExecutorTypeParameter _ContainmentReference_A = new ExecutorTypeParameter(IdManager.getTemplateParameterId(3), "A");
 
 		public static final /*@NonNull*/ ExecutorTypeParameter _LibraryParameter_ParameterType = new ExecutorTypeParameter(TypeId.T_1, "ParameterType");
 
-		public static final /*@NonNull*/ ExecutorTypeParameter _MetaModelElement_C = new ExecutorTypeParameter(TypeId.T_1, "C");
-		public static final /*@NonNull*/ ExecutorTypeParameter _MetaModelElement_R = new ExecutorTypeParameter(TypeId.T_2, "R");
-		public static final /*@NonNull*/ ExecutorTypeParameter _MetaModelElement_A = new ExecutorTypeParameter(TypeId.T_3, "A");
+		public static final /*@NonNull*/ ExecutorTypeParameter _MetaModelElement_S = new ExecutorTypeParameter(TypeId.T_1, "S");
+		public static final /*@NonNull*/ ExecutorTypeParameter _MetaModelElement_C = new ExecutorTypeParameter(TypeId.T_2, "C");
+		public static final /*@NonNull*/ ExecutorTypeParameter _MetaModelElement_R = new ExecutorTypeParameter(TypeId.T_3, "R");
+		public static final /*@NonNull*/ ExecutorTypeParameter _MetaModelElement_A = new ExecutorTypeParameter(IdManager.getTemplateParameterId(3), "A");
 
-		public static final /*@NonNull*/ ExecutorTypeParameter _NonContainmentReference_C = new ExecutorTypeParameter(TypeId.T_1, "C");
-		public static final /*@NonNull*/ ExecutorTypeParameter _NonContainmentReference_R = new ExecutorTypeParameter(TypeId.T_2, "R");
-		public static final /*@NonNull*/ ExecutorTypeParameter _NonContainmentReference_A = new ExecutorTypeParameter(TypeId.T_3, "A");
+		public static final /*@NonNull*/ ExecutorTypeParameter _NonContainmentReference_S = new ExecutorTypeParameter(TypeId.T_1, "S");
+		public static final /*@NonNull*/ ExecutorTypeParameter _NonContainmentReference_C = new ExecutorTypeParameter(TypeId.T_2, "C");
+		public static final /*@NonNull*/ ExecutorTypeParameter _NonContainmentReference_R = new ExecutorTypeParameter(TypeId.T_3, "R");
+		public static final /*@NonNull*/ ExecutorTypeParameter _NonContainmentReference_A = new ExecutorTypeParameter(IdManager.getTemplateParameterId(3), "A");
 
-		public static final /*@NonNull*/ ExecutorTypeParameter _Reference_C = new ExecutorTypeParameter(TypeId.T_1, "C");
-		public static final /*@NonNull*/ ExecutorTypeParameter _Reference_R = new ExecutorTypeParameter(TypeId.T_2, "R");
-		public static final /*@NonNull*/ ExecutorTypeParameter _Reference_A = new ExecutorTypeParameter(TypeId.T_3, "A");
+		public static final /*@NonNull*/ ExecutorTypeParameter _Reference_S = new ExecutorTypeParameter(TypeId.T_1, "S");
+		public static final /*@NonNull*/ ExecutorTypeParameter _Reference_C = new ExecutorTypeParameter(TypeId.T_2, "C");
+		public static final /*@NonNull*/ ExecutorTypeParameter _Reference_R = new ExecutorTypeParameter(TypeId.T_3, "R");
+		public static final /*@NonNull*/ ExecutorTypeParameter _Reference_A = new ExecutorTypeParameter(IdManager.getTemplateParameterId(3), "A");
 
-		public static final /*@NonNull*/ ExecutorTypeParameter _Section_C = new ExecutorTypeParameter(TypeId.T_1, "C");
-		public static final /*@NonNull*/ ExecutorTypeParameter _Section_R = new ExecutorTypeParameter(TypeId.T_2, "R");
-		public static final /*@NonNull*/ ExecutorTypeParameter _Section_A = new ExecutorTypeParameter(TypeId.T_3, "A");
+		public static final /*@NonNull*/ ExecutorTypeParameter _Section_S = new ExecutorTypeParameter(TypeId.T_1, "S");
+		public static final /*@NonNull*/ ExecutorTypeParameter _Section_C = new ExecutorTypeParameter(TypeId.T_2, "C");
+		public static final /*@NonNull*/ ExecutorTypeParameter _Section_R = new ExecutorTypeParameter(TypeId.T_3, "R");
+		public static final /*@NonNull*/ ExecutorTypeParameter _Section_A = new ExecutorTypeParameter(IdManager.getTemplateParameterId(3), "A");
 
 		static {
 			Init.initEnd();
@@ -235,27 +242,27 @@ public class MetamodelTables
 		}
 
 		public static final /*@NonNull*/ EcoreExecutorType _ActualAttribute = new EcoreExecutorType(MetamodelPackage.Literals.ACTUAL_ATTRIBUTE, PACKAGE, 0);
-		public static final /*@NonNull*/ EcoreExecutorType _Attribute = new EcoreExecutorType(MetamodelPackage.Literals.ATTRIBUTE, PACKAGE, 0, TypeParameters._Attribute_C, TypeParameters._Attribute_R, TypeParameters._Attribute_A);
+		public static final /*@NonNull*/ EcoreExecutorType _Attribute = new EcoreExecutorType(MetamodelPackage.Literals.ATTRIBUTE, PACKAGE, 0, TypeParameters._Attribute_S, TypeParameters._Attribute_C, TypeParameters._Attribute_R, TypeParameters._Attribute_A);
 		public static final /*@NonNull*/ EcoreExecutorType _AttributeParameter = new EcoreExecutorType(MetamodelPackage.Literals.ATTRIBUTE_PARAMETER, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _AttributeValueConstraint = new EcoreExecutorType(MetamodelPackage.Literals.ATTRIBUTE_VALUE_CONSTRAINT, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorEnumeration _AttributeValueConstraintType = new EcoreExecutorEnumeration(MetamodelPackage.Literals.ATTRIBUTE_VALUE_CONSTRAINT_TYPE, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _BeginningMatcher = new EcoreExecutorType(MetamodelPackage.Literals.BEGINNING_MATCHER, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorEnumeration _CardinalityType = new EcoreExecutorEnumeration(MetamodelPackage.Literals.CARDINALITY_TYPE, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _CaseSensitiveConstraint = new EcoreExecutorType(MetamodelPackage.Literals.CASE_SENSITIVE_CONSTRAINT, PACKAGE, 0);
-		public static final /*@NonNull*/ EcoreExecutorType _Class = new EcoreExecutorType(MetamodelPackage.Literals.CLASS, PACKAGE, 0, TypeParameters._Class_C, TypeParameters._Class_R, TypeParameters._Class_A);
+		public static final /*@NonNull*/ EcoreExecutorType _Class = new EcoreExecutorType(MetamodelPackage.Literals.CLASS, PACKAGE, 0, TypeParameters._Class_S, TypeParameters._Class_C, TypeParameters._Class_R, TypeParameters._Class_A);
 		public static final /*@NonNull*/ EcoreExecutorType _ContainerParameter = new EcoreExecutorType(MetamodelPackage.Literals.CONTAINER_PARAMETER, PACKAGE, 0);
-		public static final /*@NonNull*/ EcoreExecutorType _ContainmentReference = new EcoreExecutorType(MetamodelPackage.Literals.CONTAINMENT_REFERENCE, PACKAGE, 0, TypeParameters._ContainmentReference_C, TypeParameters._ContainmentReference_R, TypeParameters._ContainmentReference_A);
+		public static final /*@NonNull*/ EcoreExecutorType _ContainmentReference = new EcoreExecutorType(MetamodelPackage.Literals.CONTAINMENT_REFERENCE, PACKAGE, 0, TypeParameters._ContainmentReference_S, TypeParameters._ContainmentReference_C, TypeParameters._ContainmentReference_R, TypeParameters._ContainmentReference_A);
 		public static final /*@NonNull*/ EcoreExecutorType _EndingMatcher = new EcoreExecutorType(MetamodelPackage.Literals.ENDING_MATCHER, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _EqualityMatcher = new EcoreExecutorType(MetamodelPackage.Literals.EQUALITY_MATCHER, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _ExternalReferenceParameter = new EcoreExecutorType(MetamodelPackage.Literals.EXTERNAL_REFERENCE_PARAMETER, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _LibraryEntry = new EcoreExecutorType(MetamodelPackage.Literals.LIBRARY_ENTRY, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _LibraryParameter = new EcoreExecutorType(MetamodelPackage.Literals.LIBRARY_PARAMETER, PACKAGE, 0, TypeParameters._LibraryParameter_ParameterType);
-		public static final /*@NonNull*/ EcoreExecutorType _MetaModelElement = new EcoreExecutorType(MetamodelPackage.Literals.META_MODEL_ELEMENT, PACKAGE, 0, TypeParameters._MetaModelElement_C, TypeParameters._MetaModelElement_R, TypeParameters._MetaModelElement_A);
+		public static final /*@NonNull*/ EcoreExecutorType _MetaModelElement = new EcoreExecutorType(MetamodelPackage.Literals.META_MODEL_ELEMENT, PACKAGE, 0, TypeParameters._MetaModelElement_S, TypeParameters._MetaModelElement_C, TypeParameters._MetaModelElement_R, TypeParameters._MetaModelElement_A);
 		public static final /*@NonNull*/ EcoreExecutorType _MetaModelSectionReference = new EcoreExecutorType(MetamodelPackage.Literals.META_MODEL_SECTION_REFERENCE, PACKAGE, 0);
-		public static final /*@NonNull*/ EcoreExecutorType _NonContainmentReference = new EcoreExecutorType(MetamodelPackage.Literals.NON_CONTAINMENT_REFERENCE, PACKAGE, 0, TypeParameters._NonContainmentReference_C, TypeParameters._NonContainmentReference_R, TypeParameters._NonContainmentReference_A);
-		public static final /*@NonNull*/ EcoreExecutorType _Reference = new EcoreExecutorType(MetamodelPackage.Literals.REFERENCE, PACKAGE, 0, TypeParameters._Reference_C, TypeParameters._Reference_R, TypeParameters._Reference_A);
+		public static final /*@NonNull*/ EcoreExecutorType _NonContainmentReference = new EcoreExecutorType(MetamodelPackage.Literals.NON_CONTAINMENT_REFERENCE, PACKAGE, 0, TypeParameters._NonContainmentReference_S, TypeParameters._NonContainmentReference_C, TypeParameters._NonContainmentReference_R, TypeParameters._NonContainmentReference_A);
+		public static final /*@NonNull*/ EcoreExecutorType _Reference = new EcoreExecutorType(MetamodelPackage.Literals.REFERENCE, PACKAGE, 0, TypeParameters._Reference_S, TypeParameters._Reference_C, TypeParameters._Reference_R, TypeParameters._Reference_A);
 		public static final /*@NonNull*/ EcoreExecutorType _RegExMatcher = new EcoreExecutorType(MetamodelPackage.Literals.REG_EX_MATCHER, PACKAGE, 0);
-		public static final /*@NonNull*/ EcoreExecutorType _Section = new EcoreExecutorType(MetamodelPackage.Literals.SECTION, PACKAGE, 0, TypeParameters._Section_C, TypeParameters._Section_R, TypeParameters._Section_A);
+		public static final /*@NonNull*/ EcoreExecutorType _Section = new EcoreExecutorType(MetamodelPackage.Literals.SECTION, PACKAGE, 0, TypeParameters._Section_S, TypeParameters._Section_C, TypeParameters._Section_R, TypeParameters._Section_A);
 		public static final /*@NonNull*/ EcoreExecutorType _SourceSection = new EcoreExecutorType(MetamodelPackage.Literals.SOURCE_SECTION, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _SourceSectionAttribute = new EcoreExecutorType(MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _SourceSectionClass = new EcoreExecutorType(MetamodelPackage.Literals.SOURCE_SECTION_CLASS, PACKAGE, 0);

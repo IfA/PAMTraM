@@ -16,6 +16,7 @@ import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappingHintBaseType;
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingPackage;
+import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionReference;
@@ -33,7 +34,7 @@ import pamtram.metamodel.SourceSectionReference;
  *
  * @generated
  */
-public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalModifiedAttributeElementTypeImpl<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements ExternalMappedAttributeValueExpander {
+public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalModifiedAttributeElementTypeImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements ExternalMappedAttributeValueExpander {
 	/**
 	 * The cached value of the '{@link #getHintsToExpand() <em>Hints To Expand</em>}' reference list.
 	 * <!-- begin-user-doc -->

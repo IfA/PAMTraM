@@ -2,6 +2,7 @@
  */
 package pamtram.mapping;
 
+import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionReference;
@@ -17,5 +18,5 @@ import pamtram.metamodel.SourceSectionReference;
  * @model
  * @generated
  */
-public interface AttributeMatcherExternalSourceElement extends ExternalModifiedAttributeElementType<SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, AttributeMatcherSourceInterface {
+public interface AttributeMatcherExternalSourceElement extends ExternalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, AttributeMatcherSourceInterface {
 } // AttributeMatcherExternalSourceElement

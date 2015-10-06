@@ -10,6 +10,7 @@ import pamtram.NamedElement;
 import pamtram.mapping.*;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.Reference;
+import pamtram.metamodel.Section;
 
 /**
  * <!-- begin-user-doc -->
@@ -260,14 +261,14 @@ public class MappingSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE: {
-				ModifiedAttributeElementType<?, ?, ?> modifiedAttributeElementType = (ModifiedAttributeElementType<?, ?, ?>)theEObject;
+				ModifiedAttributeElementType<?, ?, ?, ?> modifiedAttributeElementType = (ModifiedAttributeElementType<?, ?, ?, ?>)theEObject;
 				T result = caseModifiedAttributeElementType(modifiedAttributeElementType);
 				if (result == null) result = caseNamedElement(modifiedAttributeElementType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case MappingPackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE: {
-				LocalModifiedAttributeElementType<?, ?, ?> localModifiedAttributeElementType = (LocalModifiedAttributeElementType<?, ?, ?>)theEObject;
+				LocalModifiedAttributeElementType<?, ?, ?, ?> localModifiedAttributeElementType = (LocalModifiedAttributeElementType<?, ?, ?, ?>)theEObject;
 				T result = caseLocalModifiedAttributeElementType(localModifiedAttributeElementType);
 				if (result == null) result = caseModifiedAttributeElementType(localModifiedAttributeElementType);
 				if (result == null) result = caseNamedElement(localModifiedAttributeElementType);
@@ -461,7 +462,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case MappingPackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE: {
-				ExternalModifiedAttributeElementType<?, ?, ?> externalModifiedAttributeElementType = (ExternalModifiedAttributeElementType<?, ?, ?>)theEObject;
+				ExternalModifiedAttributeElementType<?, ?, ?, ?> externalModifiedAttributeElementType = (ExternalModifiedAttributeElementType<?, ?, ?, ?>)theEObject;
 				T result = caseExternalModifiedAttributeElementType(externalModifiedAttributeElementType);
 				if (result == null) result = caseModifiedAttributeElementType(externalModifiedAttributeElementType);
 				if (result == null) result = caseNamedElement(externalModifiedAttributeElementType);
@@ -845,7 +846,7 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> T caseModifiedAttributeElementType(ModifiedAttributeElementType<C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseModifiedAttributeElementType(ModifiedAttributeElementType<S, C, R, A> object) {
 		return null;
 	}
 
@@ -860,7 +861,7 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> T caseLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<S, C, R, A> object) {
 		return null;
 	}
 
@@ -1235,7 +1236,7 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> T caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<S, C, R, A> object) {
 		return null;
 	}
 

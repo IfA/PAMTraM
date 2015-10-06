@@ -215,17 +215,20 @@ public class MappingTables
 			MappingTables.init();
 		}
 
-		public static final /*@NonNull*/ ExecutorTypeParameter _ExternalModifiedAttributeElementType_C = new ExecutorTypeParameter(TypeId.T_1, "C");
-		public static final /*@NonNull*/ ExecutorTypeParameter _ExternalModifiedAttributeElementType_R = new ExecutorTypeParameter(TypeId.T_2, "R");
-		public static final /*@NonNull*/ ExecutorTypeParameter _ExternalModifiedAttributeElementType_A = new ExecutorTypeParameter(TypeId.T_3, "A");
+		public static final /*@NonNull*/ ExecutorTypeParameter _ExternalModifiedAttributeElementType_S = new ExecutorTypeParameter(TypeId.T_1, "S");
+		public static final /*@NonNull*/ ExecutorTypeParameter _ExternalModifiedAttributeElementType_C = new ExecutorTypeParameter(TypeId.T_2, "C");
+		public static final /*@NonNull*/ ExecutorTypeParameter _ExternalModifiedAttributeElementType_R = new ExecutorTypeParameter(TypeId.T_3, "R");
+		public static final /*@NonNull*/ ExecutorTypeParameter _ExternalModifiedAttributeElementType_A = new ExecutorTypeParameter(IdManager.getTemplateParameterId(3), "A");
 
-		public static final /*@NonNull*/ ExecutorTypeParameter _LocalModifiedAttributeElementType_C = new ExecutorTypeParameter(TypeId.T_1, "C");
-		public static final /*@NonNull*/ ExecutorTypeParameter _LocalModifiedAttributeElementType_R = new ExecutorTypeParameter(TypeId.T_2, "R");
-		public static final /*@NonNull*/ ExecutorTypeParameter _LocalModifiedAttributeElementType_A = new ExecutorTypeParameter(TypeId.T_3, "A");
+		public static final /*@NonNull*/ ExecutorTypeParameter _LocalModifiedAttributeElementType_S = new ExecutorTypeParameter(TypeId.T_1, "S");
+		public static final /*@NonNull*/ ExecutorTypeParameter _LocalModifiedAttributeElementType_C = new ExecutorTypeParameter(TypeId.T_2, "C");
+		public static final /*@NonNull*/ ExecutorTypeParameter _LocalModifiedAttributeElementType_R = new ExecutorTypeParameter(TypeId.T_3, "R");
+		public static final /*@NonNull*/ ExecutorTypeParameter _LocalModifiedAttributeElementType_A = new ExecutorTypeParameter(IdManager.getTemplateParameterId(3), "A");
 
-		public static final /*@NonNull*/ ExecutorTypeParameter _ModifiedAttributeElementType_C = new ExecutorTypeParameter(TypeId.T_1, "C");
-		public static final /*@NonNull*/ ExecutorTypeParameter _ModifiedAttributeElementType_R = new ExecutorTypeParameter(TypeId.T_2, "R");
-		public static final /*@NonNull*/ ExecutorTypeParameter _ModifiedAttributeElementType_A = new ExecutorTypeParameter(TypeId.T_3, "A");
+		public static final /*@NonNull*/ ExecutorTypeParameter _ModifiedAttributeElementType_S = new ExecutorTypeParameter(TypeId.T_1, "S");
+		public static final /*@NonNull*/ ExecutorTypeParameter _ModifiedAttributeElementType_C = new ExecutorTypeParameter(TypeId.T_2, "C");
+		public static final /*@NonNull*/ ExecutorTypeParameter _ModifiedAttributeElementType_R = new ExecutorTypeParameter(TypeId.T_3, "R");
+		public static final /*@NonNull*/ ExecutorTypeParameter _ModifiedAttributeElementType_A = new ExecutorTypeParameter(IdManager.getTemplateParameterId(3), "A");
 
 		static {
 			Init.initEnd();
@@ -264,7 +267,7 @@ public class MappingTables
 		public static final /*@NonNull*/ EcoreExecutorType _ExternalMappedAttributeValueAppender = new EcoreExecutorType(MappingPackage.Literals.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _ExternalMappedAttributeValueExpander = new EcoreExecutorType(MappingPackage.Literals.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _ExternalMappedAttributeValuePrepender = new EcoreExecutorType(MappingPackage.Literals.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER, PACKAGE, 0);
-		public static final /*@NonNull*/ EcoreExecutorType _ExternalModifiedAttributeElementType = new EcoreExecutorType(MappingPackage.Literals.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE, PACKAGE, 0, TypeParameters._ExternalModifiedAttributeElementType_C, TypeParameters._ExternalModifiedAttributeElementType_R, TypeParameters._ExternalModifiedAttributeElementType_A);
+		public static final /*@NonNull*/ EcoreExecutorType _ExternalModifiedAttributeElementType = new EcoreExecutorType(MappingPackage.Literals.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE, PACKAGE, 0, TypeParameters._ExternalModifiedAttributeElementType_S, TypeParameters._ExternalModifiedAttributeElementType_C, TypeParameters._ExternalModifiedAttributeElementType_R, TypeParameters._ExternalModifiedAttributeElementType_A);
 		public static final /*@NonNull*/ EcoreExecutorType _FixedValue = new EcoreExecutorType(MappingPackage.Literals.FIXED_VALUE, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _GlobalAttribute = new EcoreExecutorType(MappingPackage.Literals.GLOBAL_ATTRIBUTE, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _GlobalAttributeImporter = new EcoreExecutorType(MappingPackage.Literals.GLOBAL_ATTRIBUTE_IMPORTER, PACKAGE, 0);
@@ -272,7 +275,7 @@ public class MappingTables
 		public static final /*@NonNull*/ EcoreExecutorType _HintImporterMappingHint = new EcoreExecutorType(MappingPackage.Literals.HINT_IMPORTER_MAPPING_HINT, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _InstantiableMappingHintGroup = new EcoreExecutorType(MappingPackage.Literals.INSTANTIABLE_MAPPING_HINT_GROUP, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _LocalMappedAttributeValueExpander = new EcoreExecutorType(MappingPackage.Literals.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER, PACKAGE, 0);
-		public static final /*@NonNull*/ EcoreExecutorType _LocalModifiedAttributeElementType = new EcoreExecutorType(MappingPackage.Literals.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE, PACKAGE, 0, TypeParameters._LocalModifiedAttributeElementType_C, TypeParameters._LocalModifiedAttributeElementType_R, TypeParameters._LocalModifiedAttributeElementType_A);
+		public static final /*@NonNull*/ EcoreExecutorType _LocalModifiedAttributeElementType = new EcoreExecutorType(MappingPackage.Literals.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE, PACKAGE, 0, TypeParameters._LocalModifiedAttributeElementType_S, TypeParameters._LocalModifiedAttributeElementType_C, TypeParameters._LocalModifiedAttributeElementType_R, TypeParameters._LocalModifiedAttributeElementType_A);
 		public static final /*@NonNull*/ EcoreExecutorType _MappedAttributeValueAppender = new EcoreExecutorType(MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_APPENDER, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _MappedAttributeValueExpander = new EcoreExecutorType(MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _MappedAttributeValuePrepender = new EcoreExecutorType(MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_PREPENDER, PACKAGE, 0);
@@ -295,7 +298,7 @@ public class MappingTables
 		public static final /*@NonNull*/ EcoreExecutorType _ModelConnectionHintSourceInterface = new EcoreExecutorType(MappingPackage.Literals.MODEL_CONNECTION_HINT_SOURCE_INTERFACE, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _ModelConnectionHintTargetAttribute = new EcoreExecutorType(MappingPackage.Literals.MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _ModifiableHint = new EcoreExecutorType(MappingPackage.Literals.MODIFIABLE_HINT, PACKAGE, 0);
-		public static final /*@NonNull*/ EcoreExecutorType _ModifiedAttributeElementType = new EcoreExecutorType(MappingPackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE, PACKAGE, 0, TypeParameters._ModifiedAttributeElementType_C, TypeParameters._ModifiedAttributeElementType_R, TypeParameters._ModifiedAttributeElementType_A);
+		public static final /*@NonNull*/ EcoreExecutorType _ModifiedAttributeElementType = new EcoreExecutorType(MappingPackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE, PACKAGE, 0, TypeParameters._ModifiedAttributeElementType_S, TypeParameters._ModifiedAttributeElementType_C, TypeParameters._ModifiedAttributeElementType_R, TypeParameters._ModifiedAttributeElementType_A);
 		public static final /*@NonNull*/ EcoreExecutorType _StringAppender = new EcoreExecutorType(MappingPackage.Literals.STRING_APPENDER, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _StringPrepender = new EcoreExecutorType(MappingPackage.Literals.STRING_PREPENDER, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _SubstringReplacer = new EcoreExecutorType(MappingPackage.Literals.SUBSTRING_REPLACER, PACKAGE, 0);

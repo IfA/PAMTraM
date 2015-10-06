@@ -11,6 +11,7 @@ import pamtram.NamedElement;
 import pamtram.mapping.*;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.Reference;
+import pamtram.metamodel.Section;
 
 /**
  * <!-- begin-user-doc -->
@@ -161,11 +162,11 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createStringPrependerAdapter();
 			}
 			@Override
-			public <C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> Adapter caseModifiedAttributeElementType(ModifiedAttributeElementType<C, R, A> object) {
+			public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseModifiedAttributeElementType(ModifiedAttributeElementType<S, C, R, A> object) {
 				return createModifiedAttributeElementTypeAdapter();
 			}
 			@Override
-			public <C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> Adapter caseLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<C, R, A> object) {
+			public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<S, C, R, A> object) {
 				return createLocalModifiedAttributeElementTypeAdapter();
 			}
 			@Override
@@ -245,7 +246,7 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createAttributeMappingExternalSourceElementAdapter();
 			}
 			@Override
-			public <C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> Adapter caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<C, R, A> object) {
+			public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<S, C, R, A> object) {
 				return createExternalModifiedAttributeElementTypeAdapter();
 			}
 			@Override

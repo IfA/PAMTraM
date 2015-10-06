@@ -28,6 +28,7 @@ import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.MetamodelTables;
 import pamtram.metamodel.Reference;
+import pamtram.metamodel.Section;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,7 +43,7 @@ import pamtram.metamodel.Reference;
  *
  * @generated
  */
-public abstract class ContainmentReferenceImpl<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends ReferenceImpl<C, R, A> implements ContainmentReference<C, R, A> {
+public abstract class ContainmentReferenceImpl<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ReferenceImpl<S, C, R, A> implements ContainmentReference<S, C, R, A> {
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -233,7 +234,7 @@ public abstract class ContainmentReferenceImpl<C extends pamtram.metamodel.Class
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.CONTAINMENT_REFERENCE___EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP_1:
+			case MetamodelPackage.CONTAINMENT_REFERENCE___EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP_2:
 				return eReferenceIsContainment((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

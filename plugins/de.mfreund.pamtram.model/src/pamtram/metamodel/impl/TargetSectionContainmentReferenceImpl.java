@@ -7,6 +7,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionContainmentReference;
@@ -20,7 +21,7 @@ import pamtram.metamodel.TargetSectionReference;
  *
  * @generated
  */
-public class TargetSectionContainmentReferenceImpl extends ContainmentReferenceImpl<TargetSectionClass, TargetSectionReference, TargetSectionAttribute> implements TargetSectionContainmentReference {
+public class TargetSectionContainmentReferenceImpl extends ContainmentReferenceImpl<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute> implements TargetSectionContainmentReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

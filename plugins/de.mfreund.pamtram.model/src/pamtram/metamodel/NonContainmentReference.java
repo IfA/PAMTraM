@@ -21,10 +21,9 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see pamtram.metamodel.MetamodelPackage#getNonContainmentReference()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='eReferenceIsNonContainment'"
  * @generated
  */
-public interface NonContainmentReference<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends Reference<C, R, A> {
+public interface NonContainmentReference<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends Reference<S, C, R, A> {
 
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' reference list.
@@ -36,7 +35,7 @@ public interface NonContainmentReference<C extends pamtram.metamodel.Class<C, R,
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value</em>' reference list.
 	 * @see pamtram.metamodel.MetamodelPackage#getNonContainmentReference_Value()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!NonContainmentReference{C,R,A}!value'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!NonContainmentReference{S,C,R,A}!value'"
 	 * @generated
 	 */
 	EList<C> getValue();

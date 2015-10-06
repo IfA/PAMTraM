@@ -21,10 +21,9 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see pamtram.metamodel.MetamodelPackage#getContainmentReference()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='eReferenceIsContainment'"
  * @generated
  */
-public interface ContainmentReference<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends Reference<C, R, A> {
+public interface ContainmentReference<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends Reference<S, C, R, A> {
 
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' containment reference list.
@@ -37,7 +36,7 @@ public interface ContainmentReference<C extends pamtram.metamodel.Class<C, R, A>
 	 * @return the value of the '<em>Value</em>' containment reference list.
 	 * @see pamtram.metamodel.MetamodelPackage#getContainmentReference_Value()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!ContainmentReference{C,R,A}!value'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!ContainmentReference{S,C,R,A}!value'"
 	 * @generated
 	 */
 	EList<C> getValue();

@@ -9,6 +9,7 @@ import pamtram.mapping.AttributeMappingSourceElement;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.MappingPackage;
+import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionReference;
@@ -20,7 +21,7 @@ import pamtram.metamodel.SourceSectionReference;
  *
  * @generated
  */
-public class AttributeMappingSourceElementImpl extends LocalModifiedAttributeElementTypeImpl<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements AttributeMappingSourceElement {
+public class AttributeMappingSourceElementImpl extends LocalModifiedAttributeElementTypeImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements AttributeMappingSourceElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

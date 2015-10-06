@@ -35,6 +35,7 @@ import pamtram.metamodel.AttributeValueConstraint;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.MetamodelTables;
+import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionReference;
@@ -53,7 +54,7 @@ import pamtram.metamodel.SourceSectionReference;
  *
  * @generated
  */
-public class SourceSectionAttributeImpl extends AttributeImpl<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements SourceSectionAttribute {
+public class SourceSectionAttributeImpl extends AttributeImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements SourceSectionAttribute {
 	/**
 	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -173,7 +174,7 @@ public class SourceSectionAttributeImpl extends AttributeImpl<SourceSectionClass
 		 *       else
 		 *         let
 		 *           parentEClass : ecore::EClass[1] = self.oclContainer()
-		 *           .oclAsType(Class(C, R, A)).eClass
+		 *           .oclAsType(Class(S, C, R, A)).eClass
 		 *         in
 		 *           if parentEClass.oclType() = OclVoid
 		 *           then true
@@ -223,9 +224,9 @@ public class SourceSectionAttributeImpl extends AttributeImpl<SourceSectionClass
 		        status = ValueUtil.TRUE_VALUE;
 		    }
 		    else {
-		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Class_o_C_44_R_44_A_e_0 = idResolver.getClass(MetamodelTables.CLSSid_Class, null);
+		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Class_o_S_44_C_44_R_44_A_e_0 = idResolver.getClass(MetamodelTables.CLSSid_Class, null);
 		        final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
-		        final /*@NonNull*/ /*@Thrown*/ pamtram.metamodel.Class oclAsType = ClassUtil.nonNullState((pamtram.metamodel.Class)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_metamodel_c_c_Class_o_C_44_R_44_A_e_0));
+		        final /*@NonNull*/ /*@Thrown*/ pamtram.metamodel.Class oclAsType = ClassUtil.nonNullState((pamtram.metamodel.Class)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_metamodel_c_c_Class_o_S_44_C_44_R_44_A_e_0));
 		        final /*@NonNull*/ /*@Thrown*/ EClass parentEClass = oclAsType.getEClass();
 		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid_1 = idResolver.getClass(TypeId.OCL_VOID, null);
 		        final /*@NonNull*/ /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType_0 = ClassUtil.nonNullState((org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(evaluator, parentEClass));
@@ -364,7 +365,7 @@ public class SourceSectionAttributeImpl extends AttributeImpl<SourceSectionClass
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_1:
+			case MetamodelPackage.SOURCE_SECTION_ATTRIBUTE___ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP_2:
 				return attributeMatchesParentEClass((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

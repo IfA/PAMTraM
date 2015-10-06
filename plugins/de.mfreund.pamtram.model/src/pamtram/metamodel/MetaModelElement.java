@@ -15,7 +15,7 @@ import pamtram.SectionModel;
  * @model abstract="true"
  * @generated
  */
-public interface MetaModelElement<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends NamedElement {
+public interface MetaModelElement<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends NamedElement {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -33,7 +33,7 @@ public interface MetaModelElement<C extends pamtram.metamodel.Class<C, R, A>, R 
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='C section = this.getContainingSection();\r\n\r\nEObject container = section.eContainer();\r\nwhile(!(container instanceof SectionModel)) {\r\n\t// we have reached the root element\r\n\tif(container == null) {\r\n\t\treturn null;\r\n\t}\r\n\tcontainer = container.eContainer();\r\n}\r\nreturn (SectionModel<Section<C, R, A>, C, R, A>) container;'"
 	 * @generated
 	 */
-	SectionModel<Section<C, R, A>, C, R, A> getContainingSectionModel();
+	SectionModel<S, C, R, A> getContainingSectionModel();
 
 	/**
 	 * <!-- begin-user-doc -->

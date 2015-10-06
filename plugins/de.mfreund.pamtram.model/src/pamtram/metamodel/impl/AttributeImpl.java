@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.Reference;
+import pamtram.metamodel.Section;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +24,7 @@ import pamtram.metamodel.Reference;
  *
  * @generated
  */
-public abstract class AttributeImpl<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends MetaModelElementImpl<C, R, A> implements Attribute<C, R, A> {
+public abstract class AttributeImpl<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends MetaModelElementImpl<S, C, R, A> implements Attribute<S, C, R, A> {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

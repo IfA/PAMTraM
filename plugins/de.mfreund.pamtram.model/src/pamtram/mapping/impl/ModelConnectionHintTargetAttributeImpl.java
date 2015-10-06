@@ -41,7 +41,7 @@ import pamtram.metamodel.TargetSectionReference;
  *
  * @generated
  */
-public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeElementTypeImpl<TargetSectionClass, TargetSectionReference, TargetSectionAttribute> implements ModelConnectionHintTargetAttribute {
+public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeElementTypeImpl<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute> implements ModelConnectionHintTargetAttribute {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -96,7 +96,7 @@ public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeEle
 		 *         else
 		 *           self.source.oclAsType(metamodel::TargetSectionAttribute)
 		 *           .oclContainer()
-		 *           .oclAsType(metamodel::Class(C, R, A))
+		 *           .oclAsType(metamodel::Class(S, C, R, A))
 		 *           .eClass.eAllContainments->exists(r |
 		 *             r.eReferenceType.isSuperTypeOf(targetMMSection.eClass))
 		 *         endif
@@ -109,7 +109,7 @@ public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeEle
 		 *           .oclAsType(MappingHintGroupType).targetMMSection.eClass.name + '\') cannot be connected to (contained in) the type of the class containing the target attribute (\'' +
 		 *           self.source.oclAsType(metamodel::TargetSectionAttribute)
 		 *           .oclContainer()
-		 *           .oclAsType(metamodel::Class(C, R, A)).name + '\')!'
+		 *           .oclAsType(metamodel::Class(S, C, R, A)).name + '\')!'
 		 *         else null
 		 *         endif
 		 *       in
@@ -164,12 +164,12 @@ public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeEle
 		        symbol_0 = ValueUtil.TRUE_VALUE;
 		    }
 		    else {
-		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Class_o_C_44_R_44_A_e_0 = idResolver.getClass(MappingTables.CLSSid_Class_0, null);
+		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Class_o_S_44_C_44_R_44_A_e_0 = idResolver.getClass(MappingTables.CLSSid_Class_0, null);
 		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_TargetSectionAttribute = idResolver.getClass(MappingTables.CLSSid_TargetSectionAttribute, null);
 		        final /*@NonNull*/ /*@Thrown*/ Object source_0 = this.getSource();
 		        final /*@NonNull*/ /*@Thrown*/ TargetSectionAttribute oclAsType_0 = ClassUtil.nonNullState((TargetSectionAttribute)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, source_0, TYP_pamtram_c_c_metamodel_c_c_TargetSectionAttribute));
 		        final /*@Nullable*/ /*@Thrown*/ Object oclContainer_1 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, oclAsType_0);
-		        final /*@NonNull*/ /*@Thrown*/ pamtram.metamodel.Class oclAsType_1 = ClassUtil.nonNullState((pamtram.metamodel.Class)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_1, TYP_pamtram_c_c_metamodel_c_c_Class_o_C_44_R_44_A_e_0));
+		        final /*@NonNull*/ /*@Thrown*/ pamtram.metamodel.Class oclAsType_1 = ClassUtil.nonNullState((pamtram.metamodel.Class)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_1, TYP_pamtram_c_c_metamodel_c_c_Class_o_S_44_C_44_R_44_A_e_0));
 		        final /*@NonNull*/ /*@Thrown*/ EClass eClass = oclAsType_1.getEClass();
 		        @SuppressWarnings("null")
 		        final /*@NonNull*/ /*@Thrown*/ List<EReference> eAllContainments = eClass.getEAllContainments();
@@ -237,7 +237,7 @@ public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeEle
 		/*@Nullable*/ /*@NonInvalid*/ String message_0;
 		if (ne) {
 		    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_1 = idResolver.getClass(MappingTables.CLSSid_MappingHintGroupType, null);
-		    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Class_o_C_44_R_44_A_e_1 = idResolver.getClass(MappingTables.CLSSid_Class_0, null);
+		    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Class_o_S_44_C_44_R_44_A_e_1 = idResolver.getClass(MappingTables.CLSSid_Class_0, null);
 		    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_TargetSectionAttribute_0 = idResolver.getClass(MappingTables.CLSSid_TargetSectionAttribute, null);
 		    final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer_2 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
 		    final /*@Nullable*/ /*@Thrown*/ Object oclContainer_3 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, oclContainer_2);
@@ -250,7 +250,7 @@ public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeEle
 		    final /*@NonNull*/ /*@Thrown*/ Object source_1 = this.getSource();
 		    final /*@NonNull*/ /*@Thrown*/ TargetSectionAttribute oclAsType_3 = ClassUtil.nonNullState((TargetSectionAttribute)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, source_1, TYP_pamtram_c_c_metamodel_c_c_TargetSectionAttribute_0));
 		    final /*@Nullable*/ /*@Thrown*/ Object oclContainer_4 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, oclAsType_3);
-		    final /*@NonNull*/ /*@Thrown*/ pamtram.metamodel.Class oclAsType_4 = ClassUtil.nonNullState((pamtram.metamodel.Class)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_4, TYP_pamtram_c_c_metamodel_c_c_Class_o_C_44_R_44_A_e_1));
+		    final /*@NonNull*/ /*@Thrown*/ pamtram.metamodel.Class oclAsType_4 = ClassUtil.nonNullState((pamtram.metamodel.Class)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_4, TYP_pamtram_c_c_metamodel_c_c_Class_o_S_44_C_44_R_44_A_e_1));
 		    final /*@Nullable*/ /*@Thrown*/ String name_0 = oclAsType_4.getName();
 		    final /*@NonNull*/ /*@NonInvalid*/ String sum_1 = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(sum_0, name_0));
 		    final /*@NonNull*/ /*@NonInvalid*/ String sum_2 = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(sum_1, MappingTables.STR__39_e_33));
@@ -272,7 +272,7 @@ public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeEle
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE___SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP_1:
+			case MappingPackage.MODEL_CONNECTION_HINT_TARGET_ATTRIBUTE___SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP_2:
 				return sourceMatchesPossibleContainerType((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

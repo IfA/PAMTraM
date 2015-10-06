@@ -31,7 +31,7 @@ import pamtram.metamodel.VirtualAttribute;
  *
  * @generated
  */
-public abstract class MetaModelElementImpl<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends NamedElementImpl implements MetaModelElement<C, R, A> {
+public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends NamedElementImpl implements MetaModelElement<S, C, R, A> {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -105,7 +105,7 @@ public abstract class MetaModelElementImpl<C extends pamtram.metamodel.Class<C, 
 	 * @generated
 	 */
 	@Override
-	public SectionModel<Section<C, R, A>, C, R, A> getContainingSectionModel() {
+	public SectionModel<S, C, R, A> getContainingSectionModel() {
 		C section = this.getContainingSection();
 		
 		EObject container = section.eContainer();

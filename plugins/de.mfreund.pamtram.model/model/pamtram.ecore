@@ -331,27 +331,11 @@
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SourceSection">
-      <eGenericSuperTypes eClassifier="#//metamodel/SourceSectionClass"/>
-      <eGenericSuperTypes eClassifier="#//metamodel/Section">
-        <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
-        <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
-      </eGenericSuperTypes>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="TargetSection">
-      <eGenericSuperTypes eClassifier="#//metamodel/TargetSectionClass"/>
-      <eGenericSuperTypes eClassifier="#//metamodel/Section">
-        <eTypeArguments eClassifier="#//metamodel/TargetSectionClass"/>
-        <eTypeArguments eClassifier="#//metamodel/TargetSectionReference"/>
-        <eTypeArguments eClassifier="#//metamodel/TargetSectionAttribute"/>
-      </eGenericSuperTypes>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="SourceSectionClass">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="isReferencedByMapping"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="isReferencedByMapping" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The section is not referenced by any mapping!',&#xD;&#xA;&#x9;severity : Integer = 2,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self.isSection() then&#xD;&#xA;&#x9;&#x9;&#x9;self.referencingMappings->size() > 0 else&#xD;&#xA;&#x9;&#x9;&#x9;true&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
+        <details key="isReferencedByMapping" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The section is not referenced by any mapping!',&#xD;&#xA;&#x9;severity : Integer = 2,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;self.referencingMappings->size() > 0&#xD;&#xA;}.status"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="referencingMappings"
           upperBound="-1" eType="#//mapping/MappingType" changeable="false" volatile="true"
@@ -360,18 +344,19 @@
           <details key="derivation" value="pamtram::mapping::MappingType.allInstances()->select(m | self = m.sourceMMSection)"/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eGenericSuperTypes eClassifier="#//metamodel/Class">
+      <eGenericSuperTypes eClassifier="#//metamodel/SourceSectionClass"/>
+      <eGenericSuperTypes eClassifier="#//metamodel/Section">
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
       </eGenericSuperTypes>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="TargetSectionClass">
+    <eClassifiers xsi:type="ecore:EClass" name="TargetSection">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="isReferencedByMappingHintGroup"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="isReferencedByMappingHintGroup" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The section is not referenced by any hint group and will not be instantiated!',&#xD;&#xA;&#x9;severity : Integer = 2,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self.isSection() then&#xD;&#xA;&#x9;&#x9;&#x9;self.referencingMappingHintGroups->size() > 0 else&#xD;&#xA;&#x9;&#x9;&#x9;true&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
+        <details key="isReferencedByMappingHintGroup" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The section is not referenced by any hint group and will not be instantiated!',&#xD;&#xA;&#x9;severity : Integer = 2,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;self.referencingMappingHintGroups->size() > 0&#xD;&#xA;}.status"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="referencingMappingHintGroups"
           upperBound="-1" eType="#//mapping/MappingHintGroupType" changeable="false"
@@ -380,6 +365,21 @@
           <details key="derivation" value="pamtram::mapping::MappingHintGroupType.allInstances()->select(mhg | self = mhg.targetMMSection)"/>
         </eAnnotations>
       </eStructuralFeatures>
+      <eGenericSuperTypes eClassifier="#//metamodel/TargetSectionClass"/>
+      <eGenericSuperTypes eClassifier="#//metamodel/Section">
+        <eTypeArguments eClassifier="#//metamodel/TargetSectionClass"/>
+        <eTypeArguments eClassifier="#//metamodel/TargetSectionReference"/>
+        <eTypeArguments eClassifier="#//metamodel/TargetSectionAttribute"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SourceSectionClass">
+      <eGenericSuperTypes eClassifier="#//metamodel/Class">
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TargetSectionClass">
       <eGenericSuperTypes eClassifier="#//metamodel/Class">
         <eTypeArguments eClassifier="#//metamodel/TargetSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/TargetSectionReference"/>

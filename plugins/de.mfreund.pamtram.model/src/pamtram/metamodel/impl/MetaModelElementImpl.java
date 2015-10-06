@@ -63,7 +63,7 @@ public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C exte
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public C getContainingSection() {
+	public S getContainingSection() {
 		MetaModelElement<S,C,R,A> element = this;
 		
 		// move upwards in the hierarchy
@@ -73,14 +73,14 @@ public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C exte
 		
 		if(element instanceof Section || element.eContainer() instanceof ContainerParameter) {
 			// we have found the section
-			return (C) element;
+			return (S) element;
 		} else if((element instanceof TargetSectionAttribute && element.eContainer() instanceof AttributeParameter) || 
 				(element instanceof TargetSectionNonContainmentReference) && element.eContainer() instanceof ExternalReferenceParameter) {
 			LibraryEntry libEntry = (LibraryEntry) element.eContainer().eContainer();
 			for (LibraryParameter<?> param : libEntry.getParameters()) {
 				//TODO if multiple container parameters exist, there might need to be additional logic
 				if(param instanceof ContainerParameter) {
-					return (C) ((ContainerParameter) param).getClass_();
+					return (S) ((ContainerParameter) param).getClass_();
 				}
 			}
 			return null;
@@ -89,7 +89,7 @@ public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C exte
 			for (LibraryParameter<?> param : libEntry.getParameters()) {
 				//TODO if multiple container parameters exist, there might need to be additional logic
 				if(param instanceof ContainerParameter) {
-					return (C) ((ContainerParameter) param).getClass_();
+					return (S) ((ContainerParameter) param).getClass_();
 				}
 			}
 			return null;
@@ -106,7 +106,7 @@ public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C exte
 	 */
 	@Override
 	public SectionModel<S, C, R, A> getContainingSectionModel() {
-		C section = this.getContainingSection();
+		S section = this.getContainingSection();
 		
 		EObject container = section.eContainer();
 		while(!(container instanceof SectionModel)) {

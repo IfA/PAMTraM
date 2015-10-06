@@ -5,6 +5,7 @@ package pamtram.metamodel.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -27,6 +28,7 @@ import org.eclipse.ocl.pivot.library.logical.BooleanAndOperation;
 import org.eclipse.ocl.pivot.library.logical.BooleanNotOperation;
 import org.eclipse.ocl.pivot.library.logical.BooleanOrOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsKindOfOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclTypeOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.library.string.StringConcatOperation;
@@ -37,7 +39,6 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.ContainmentReference;
-import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
@@ -252,7 +253,7 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 	@Override
 	public C getContainer() {
 		C container = getContainerGen();
-		if (container == null && !this.isSection()) {
+		if (container == null && !(this instanceof Section)) {
 			return this.getOwningContainmentReference().getOwningClass();
 		} else {
 			return container;
@@ -313,18 +314,6 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 		} else {
 			return isContainerFor(container);
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * Returns <em>true</em> if the class is a top-level element of a section
-	 * or of a {@link LibraryEntry}.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isSection() {
-		return (this instanceof Section);
 	}
 
 	/**
@@ -419,6 +408,7 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean containerIsValid(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		/**
 		 * 
@@ -426,7 +416,8 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 		 *   let severity : Integer[1] = 4
 		 *   in
 		 *     let
-		 *       status : OclAny[1] = if self.isSection() or self.container = null
+		 *       status : OclAny[1] = if
+		 *         self.oclIsKindOf(Section(C, R, A)) = true or self.container = null
 		 *       then true
 		 *       else self.container = self.oclContainer().oclContainer()
 		 *       endif
@@ -440,16 +431,11 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 		 *         'Class::containerIsValid'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
 		 */
 		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
+		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		/*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
 		try {
-		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_isSection;
-		    try {
-		        final /*@Thrown*/ boolean isSection = this.isSection();
-		        CAUGHT_isSection = isSection;
-		    }
-		    catch (Exception e) {
-		        CAUGHT_isSection = ValueUtil.createInvalidValue(e);
-		    }
+		    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Section_o_C_44_R_44_A_e = idResolver.getClass(MetamodelTables.CLSSid_Section, null);
+		    final /*@NonInvalid*/ boolean oclIsKindOf = ClassUtil.nonNullState(OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, this, TYP_pamtram_c_c_metamodel_c_c_Section_o_C_44_R_44_A_e).booleanValue());
 		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_eq;
 		    try {
 		        final /*@Nullable*/ /*@Thrown*/ Object container = this.getContainer();
@@ -459,7 +445,7 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 		    catch (Exception e) {
 		        CAUGHT_eq = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@Nullable*/ /*@Thrown*/ Boolean or = BooleanOrOperation.INSTANCE.evaluate(CAUGHT_isSection, CAUGHT_eq);
+		    final /*@Nullable*/ /*@Thrown*/ Boolean or = BooleanOrOperation.INSTANCE.evaluate(oclIsKindOf, CAUGHT_eq);
 		    if (or == null) {
 		        throw new InvalidValueException("Null if condition");
 		    }
@@ -499,6 +485,7 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean cardinalityIsValid(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		/**
 		 * 
@@ -633,6 +620,7 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eClassMatchesParentEReference(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		/**
 		 * 
@@ -894,19 +882,17 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 		switch (operationID) {
 			case MetamodelPackage.CLASS___IS_CONTAINER_FOR__CLASS:
 				return isContainerFor((C)arguments.get(0));
-			case MetamodelPackage.CLASS___IS_SECTION:
-				return isSection();
 			case MetamodelPackage.CLASS___IS_CONTAINED_IN__CLASS:
 				return isContainedIn((C)arguments.get(0));
 			case MetamodelPackage.CLASS___GET_OWNING_CONTAINMENT_REFERENCE:
 				return getOwningContainmentReference();
 			case MetamodelPackage.CLASS___IS_REFERENCED_BY__CLASS_ELIST:
 				return isReferencedBy((C)arguments.get(0), (EList<C>)arguments.get(1));
-			case MetamodelPackage.CLASS___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP_2:
+			case MetamodelPackage.CLASS___CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP_1:
 				return containerIsValid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MetamodelPackage.CLASS___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP_2:
+			case MetamodelPackage.CLASS___CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP_1:
 				return cardinalityIsValid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MetamodelPackage.CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP_2:
+			case MetamodelPackage.CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP_1:
 				return eClassMatchesParentEReference((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

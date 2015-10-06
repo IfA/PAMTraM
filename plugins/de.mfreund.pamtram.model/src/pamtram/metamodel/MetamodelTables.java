@@ -112,6 +112,7 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_OclElement = MetamodelTables.PACKid_$metamodel$.getClassId("OclElement", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_PAMTraM = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("PAMTraM", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_Reference = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("Reference", 0);
+    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_Section = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("Section", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_SectionModel = MetamodelTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Orphanage.getClassId("SectionModel", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_SourceSection = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SourceSection", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_SourceSectionAttribute = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SourceSectionAttribute", 0);
@@ -641,8 +642,6 @@ public class MetamodelTables
 			2, TemplateParameters.EMPTY_LIST, null);
 		public static final /*@NonNull*/ ExecutorOperation _Class__isReferencedBy = new ExecutorOperation("isReferencedBy", Parameters._Class_C___OrderedSet__Class_C__, Types._Class,
 			3, TemplateParameters.EMPTY_LIST, null);
-		public static final /*@NonNull*/ ExecutorOperation _Class__isSection = new ExecutorOperation("isSection", Parameters._, Types._Class,
-			4, TemplateParameters.EMPTY_LIST, null);
 
 		public static final /*@NonNull*/ ExecutorOperation _MetaModelElement__getContainingSection = new ExecutorOperation("getContainingSection", Parameters._, Types._MetaModelElement,
 			0, TemplateParameters.EMPTY_LIST, null);
@@ -1472,8 +1471,7 @@ public class MetamodelTables
 			MetamodelTables.Operations._Class__getOwningContainmentReference /* getOwningContainmentReference() */,
 			MetamodelTables.Operations._Class__isContainedIn /* isContainedIn(C[1]) */,
 			MetamodelTables.Operations._Class__isContainerFor /* isContainerFor(C[1]) */,
-			MetamodelTables.Operations._Class__isReferencedBy /* isReferencedBy(C[1],OrderedSet(C)) */,
-			MetamodelTables.Operations._Class__isSection /* isSection() */
+			MetamodelTables.Operations._Class__isReferencedBy /* isReferencedBy(C[1],OrderedSet(C)) */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _Class__MetaModelElement = {
 			MetamodelTables.Operations._MetaModelElement__getContainingSection /* getContainingSection() */,
@@ -1838,8 +1836,7 @@ public class MetamodelTables
 			MetamodelTables.Operations._Class__getOwningContainmentReference /* getOwningContainmentReference() */,
 			MetamodelTables.Operations._Class__isContainedIn /* isContainedIn(C[1]) */,
 			MetamodelTables.Operations._Class__isContainerFor /* isContainerFor(C[1]) */,
-			MetamodelTables.Operations._Class__isReferencedBy /* isReferencedBy(C[1],OrderedSet(C)) */,
-			MetamodelTables.Operations._Class__isSection /* isSection() */
+			MetamodelTables.Operations._Class__isReferencedBy /* isReferencedBy(C[1],OrderedSet(C)) */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _Section__MetaModelElement = {
 			MetamodelTables.Operations._MetaModelElement__getContainingSection /* getContainingSection() */,
@@ -1874,8 +1871,7 @@ public class MetamodelTables
 			MetamodelTables.Operations._Class__getOwningContainmentReference /* getOwningContainmentReference() */,
 			MetamodelTables.Operations._Class__isContainedIn /* isContainedIn(C[1]) */,
 			MetamodelTables.Operations._Class__isContainerFor /* isContainerFor(C[1]) */,
-			MetamodelTables.Operations._Class__isReferencedBy /* isReferencedBy(C[1],OrderedSet(C)) */,
-			MetamodelTables.Operations._Class__isSection /* isSection() */
+			MetamodelTables.Operations._Class__isReferencedBy /* isReferencedBy(C[1],OrderedSet(C)) */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _SourceSection__MetaModelElement = {
 			MetamodelTables.Operations._MetaModelElement__getContainingSection /* getContainingSection() */,
@@ -1942,8 +1938,7 @@ public class MetamodelTables
 			MetamodelTables.Operations._Class__getOwningContainmentReference /* getOwningContainmentReference() */,
 			MetamodelTables.Operations._Class__isContainedIn /* isContainedIn(C[1]) */,
 			MetamodelTables.Operations._Class__isContainerFor /* isContainerFor(C[1]) */,
-			MetamodelTables.Operations._Class__isReferencedBy /* isReferencedBy(C[1],OrderedSet(C)) */,
-			MetamodelTables.Operations._Class__isSection /* isSection() */
+			MetamodelTables.Operations._Class__isReferencedBy /* isReferencedBy(C[1],OrderedSet(C)) */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _SourceSectionClass__MetaModelElement = {
 			MetamodelTables.Operations._MetaModelElement__getContainingSection /* getContainingSection() */,
@@ -2072,8 +2067,7 @@ public class MetamodelTables
 			MetamodelTables.Operations._Class__getOwningContainmentReference /* getOwningContainmentReference() */,
 			MetamodelTables.Operations._Class__isContainedIn /* isContainedIn(C[1]) */,
 			MetamodelTables.Operations._Class__isContainerFor /* isContainerFor(C[1]) */,
-			MetamodelTables.Operations._Class__isReferencedBy /* isReferencedBy(C[1],OrderedSet(C)) */,
-			MetamodelTables.Operations._Class__isSection /* isSection() */
+			MetamodelTables.Operations._Class__isReferencedBy /* isReferencedBy(C[1],OrderedSet(C)) */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _TargetSection__MetaModelElement = {
 			MetamodelTables.Operations._MetaModelElement__getContainingSection /* getContainingSection() */,
@@ -2140,8 +2134,7 @@ public class MetamodelTables
 			MetamodelTables.Operations._Class__getOwningContainmentReference /* getOwningContainmentReference() */,
 			MetamodelTables.Operations._Class__isContainedIn /* isContainedIn(C[1]) */,
 			MetamodelTables.Operations._Class__isContainerFor /* isContainerFor(C[1]) */,
-			MetamodelTables.Operations._Class__isReferencedBy /* isReferencedBy(C[1],OrderedSet(C)) */,
-			MetamodelTables.Operations._Class__isSection /* isSection() */
+			MetamodelTables.Operations._Class__isReferencedBy /* isReferencedBy(C[1],OrderedSet(C)) */
 		};
 		private static final /*@NonNull*/ ExecutorOperation[] _TargetSectionClass__MetaModelElement = {
 			MetamodelTables.Operations._MetaModelElement__getContainingSection /* getContainingSection() */,

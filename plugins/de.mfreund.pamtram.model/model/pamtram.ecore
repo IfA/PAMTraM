@@ -216,7 +216,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="eClassMatchesParentEReference" value="Tuple {&#xD;&#xA;&#x9;message : String = 'The eClass \'' + self.eClass.name + '\' is not allowed by the containing reference!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self = self.getContainingSection() or self.eClass.oclType() = OclVoid then &#xD;&#xA;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;let parentEReference = self.oclContainer().oclAsType(pamtram::metamodel::Reference).eReference in&#xD;&#xA;&#x9;&#x9;&#x9;if parentEReference.oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;parentEReference.oclAsType(ecore::EReference).eReferenceType.isSuperTypeOf(self.eClass.oclAsType(ecore::EClass)) &#xD;&#xA;&#x9;&#x9;&#x9;endif&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
         <details key="cardinalityIsValid" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The cardinality of a Class must be specified as \'CardinalityType::ONE\' when the upper bound of the containing Reference is \'1\'!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self = self.getContainingSection() or self.eClass.oclType() = OclVoid then &#xD;&#xA;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;let parentEReference = self.oclContainer().oclAsType(pamtram::metamodel::Reference).eReference in &#xD;&#xA;&#x9;&#x9;&#x9;if parentEReference.oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;not ((self.cardinality &lt;> pamtram::metamodel::CardinalityType::ONE) and (self.oclContainer().oclAsType(pamtram::metamodel::Reference).eReference.oclAsType(ecore::EReference).upperBound = 1))&#xD;&#xA;&#x9;&#x9;&#x9;endif&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
-        <details key="containerIsValid" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The \'container\' refrence must point to the containing Class!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self.isSection() or self.container = null then true else self.container = self.oclContainer().oclContainer() endif&#xD;&#xA;}.status"/>
+        <details key="containerIsValid" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The \'container\' refrence must point to the containing Class!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self.oclIsKindOf(Section) = true or self.container = null then true else self.container = self.oclContainer().oclContainer() endif&#xD;&#xA;}.status"/>
       </eAnnotations>
       <eTypeParameters name="C">
         <eBounds eClassifier="#//metamodel/Class">
@@ -246,11 +246,6 @@
         <eParameters name="containedClass" lowerBound="1">
           <eGenericType eTypeParameter="#//metamodel/Class/C"/>
         </eParameters>
-      </eOperations>
-      <eOperations name="isSection" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="return (this instanceof Section);"/>
-        </eAnnotations>
       </eOperations>
       <eOperations name="isContainedIn" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

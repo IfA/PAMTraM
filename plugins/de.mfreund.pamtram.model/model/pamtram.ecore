@@ -406,7 +406,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ContainerParameter">
       <eStructuralFeatures xsi:type="ecore:EReference" name="class" lowerBound="1"
-          eType="#//metamodel/TargetSectionClass" containment="true"/>
+          eType="#//metamodel/TargetSection" containment="true"/>
       <eGenericSuperTypes eClassifier="#//metamodel/LibraryParameter">
         <eTypeArguments eClassifier="ecore:EClass ../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//AbstractContainerParameter">
           <eTypeArguments/>

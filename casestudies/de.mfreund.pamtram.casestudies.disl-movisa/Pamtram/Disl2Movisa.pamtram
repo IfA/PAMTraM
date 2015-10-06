@@ -2,7 +2,7 @@
 <pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:pamtram="http://mfreund.de/pamtram">
   <sourceSectionModel xsi:type="pamtram:SourceSectionModel">
     <metaModelPackage xsi:type="ecore:EPackage" href="http://disl#/"/>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="DislRoot">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="DislRoot">
       <eClass xsi:type="ecore:EClass" href="http://disl#//Disl"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="head">
         <eReference xsi:type="ecore:EReference" href="http://disl#//Disl/head"/>
@@ -27,7 +27,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="Interface" cardinality="ONE__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Interface" cardinality="ONE__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.0">
       <eClass xsi:type="ecore:EClass" href="http://disl#//Interface"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="behavior">
         <eReference xsi:type="ecore:EReference" href="http://disl#//Interface/behavior"/>
@@ -55,7 +55,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Interface/state"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="InterfaceChangeTransition" container="//@sourceSectionModel.0/@metaModelSections.1/@references.0/@value.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="InterfaceChangeTransition" container="//@sourceSectionModel.0/@metaModelSections.1/@references.0/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://disl#//Transition"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="action">
         <eReference xsi:type="ecore:EReference" href="http://disl#//Transition/action"/>
@@ -84,7 +84,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="SetConstantBooleanStatement" container="//@sourceSectionModel.0/@metaModelSections.1/@references.0/@value.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="SetConstantBooleanStatement" container="//@sourceSectionModel.0/@metaModelSections.1/@references.0/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://disl#//Transition"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="action">
         <eReference xsi:type="ecore:EReference" href="http://disl#//Transition/action"/>
@@ -136,7 +136,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="SetConstantIntegerStatement" container="//@sourceSectionModel.0/@metaModelSections.1/@references.0/@value.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="SetConstantIntegerStatement" container="//@sourceSectionModel.0/@metaModelSections.1/@references.0/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://disl#//Transition"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="action">
         <eReference xsi:type="ecore:EReference" href="http://disl#//Transition/action"/>
@@ -188,7 +188,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="SetVariableIntegerStatement" container="//@sourceSectionModel.0/@metaModelSections.1/@references.0/@value.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="SetVariableIntegerStatement" container="//@sourceSectionModel.0/@metaModelSections.1/@references.0/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://disl#//Transition"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="action">
         <eReference xsi:type="ecore:EReference" href="http://disl#//Transition/action"/>
@@ -252,7 +252,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="CommandWidget" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.1/@references.1/@value.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="CommandWidget" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.1/@references.1/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://disl#//Widget"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Widget/genericWidget"/>
@@ -262,7 +262,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Widget/id"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="CommandPart" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.1/@references.2/@value.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="CommandPart" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.1/@references.2/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://disl#//Part"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="property">
         <eReference xsi:type="ecore:EReference" href="http://disl#//Part/property"/>
@@ -330,7 +330,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Part/genericWidget"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="CommandSelectedRule" container="//@sourceSectionModel.0/@metaModelSections.1/@references.0/@value.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="CommandSelectedRule" container="//@sourceSectionModel.0/@metaModelSections.1/@references.0/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://disl#//Rule"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="condition">
         <eReference xsi:type="ecore:EReference" href="http://disl#//Rule/condition"/>
@@ -369,7 +369,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Rule/interface"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="TextfieldWidget" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.1/@references.1/@value.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="TextfieldWidget" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.1/@references.1/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://disl#//Widget"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Widget/genericWidget"/>
@@ -379,7 +379,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Widget/id"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="TextfieldPart" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.1/@references.2/@value.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="TextfieldPart" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.1/@references.2/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://disl#//Part"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="property">
         <eReference xsi:type="ecore:EReference" href="http://disl#//Part/property"/>
@@ -461,7 +461,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Part/genericWidget"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="TextboxWidget" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.1/@references.1/@value.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="TextboxWidget" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.1/@references.1/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://disl#//Widget"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Widget/genericWidget"/>
@@ -471,7 +471,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Widget/id"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="TextboxPart" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.1/@references.2/@value.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="TextboxPart" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.1/@references.2/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://disl#//Part"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="property">
         <eReference xsi:type="ecore:EReference" href="http://disl#//Part/property"/>
@@ -567,7 +567,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Part/genericWidget"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="ChoiceGroupWidget" container="//@sourceSectionModel.0/@metaModelSections.1/@references.1/@value.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="ChoiceGroupWidget" container="//@sourceSectionModel.0/@metaModelSections.1/@references.1/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://disl#//Widget"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="widget">
         <eReference xsi:type="ecore:EReference" href="http://disl#//Widget/widget"/>
@@ -590,7 +590,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Widget/id"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="ChoiceGroupPart" container="//@sourceSectionModel.0/@metaModelSections.1/@references.2/@value.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="ChoiceGroupPart" container="//@sourceSectionModel.0/@metaModelSections.1/@references.2/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://disl#//Part"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="property">
         <eReference xsi:type="ecore:EReference" href="http://disl#//Part/property"/>
@@ -672,7 +672,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Part/genericWidget"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="ChoiceGroupVariableFieldPart" container="//@sourceSectionModel.0/@metaModelSections.1/@references.2/@value.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="ChoiceGroupVariableFieldPart" container="//@sourceSectionModel.0/@metaModelSections.1/@references.2/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://disl#//Part"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="property">
         <eReference xsi:type="ecore:EReference" href="http://disl#//Part/property"/>
@@ -712,7 +712,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Part/genericWidget"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="ChoiceGroupChangedRule" container="//@sourceSectionModel.0/@metaModelSections.1/@references.0/@value.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="ChoiceGroupChangedRule" container="//@sourceSectionModel.0/@metaModelSections.1/@references.0/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://disl#//Rule"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="condition">
         <eReference xsi:type="ecore:EReference" href="http://disl#//Rule/condition"/>
@@ -751,7 +751,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Rule/interface"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="VariableBoxWidget" container="//@sourceSectionModel.0/@metaModelSections.1/@references.1/@value.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="VariableBoxWidget" container="//@sourceSectionModel.0/@metaModelSections.1/@references.1/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://disl#//Widget"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="genericWidget">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Widget/genericWidget"/>
@@ -761,7 +761,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Widget/id"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="VariableBoxPart" container="//@sourceSectionModel.0/@metaModelSections.1/@references.2/@value.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="VariableBoxPart" container="//@sourceSectionModel.0/@metaModelSections.1/@references.2/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://disl#//Part"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="property">
         <eReference xsi:type="ecore:EReference" href="http://disl#//Part/property"/>
@@ -843,7 +843,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Part/genericWidget"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="VariableBoxValueChangedRule" container="//@sourceSectionModel.0/@metaModelSections.1/@references.0/@value.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="VariableBoxValueChangedRule" container="//@sourceSectionModel.0/@metaModelSections.1/@references.0/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://disl#//Rule"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="condition">
         <eReference xsi:type="ecore:EReference" href="http://disl#//Rule/condition"/>
@@ -882,14 +882,14 @@
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Rule/interface"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="InterfaceChange" container="//@sourceSectionModel.0/@metaModelSections.2/@references.0/@value.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="InterfaceChange" container="//@sourceSectionModel.0/@metaModelSections.2/@references.0/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://disl#//InterfaceChange"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="interfaceId">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//InterfaceChange/interfaceId"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Ende" type="EXCLUSION" value="Ende"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="IntegerVariable">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="IntegerVariable">
       <eClass xsi:type="ecore:EClass" href="http://disl#//Variable"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="value">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Variable/value"/>
@@ -917,7 +917,7 @@
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="widgetpointer_Constraint" value="none"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="BooleanVariable">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="BooleanVariable">
       <eClass xsi:type="ecore:EClass" href="http://disl#//Variable"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="value">
         <attribute xsi:type="ecore:EAttribute" href="http://disl#//Variable/value"/>
@@ -948,7 +948,7 @@
   </sourceSectionModel>
   <targetSectionModel xsi:type="pamtram:TargetSectionModel">
     <metaModelPackage xsi:type="ecore:EPackage" href="http://stefan-hennig.de/movisa#/"/>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="VisualizationApplicationModel">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="VisualizationApplicationModel">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//VisualizationApplicationModel"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="AlgorithmDomain">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//VisualizationApplicationModel/AlgorithmDomain"/>
@@ -1230,32 +1230,32 @@
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//MovisaModel/MovisaBuildVersion"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="Panel" cardinality="ONE__INFINITY" container="//@targetSectionModel.0/@metaModelSections.0/@references.1/@value.0">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="Panel" cardinality="ONE__INFINITY" container="//@targetSectionModel.0/@metaModelSections.0/@references.1/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/Panel"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="name" value="">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
       <attributes xsi:type="metamodel:VirtualAttribute" name="stateType"/>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="UIComponentSignal" cardinality="ZERO__INFINITY" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@references.0/@value.3">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="UIComponentSignal" cardinality="ZERO__INFINITY" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@references.0/@value.3">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//algorithm/Signal"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="signalName" unique="true">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="NavFlowSignal" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@references.0/@value.5">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="NavFlowSignal" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@references.0/@value.5">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//algorithm/Signal"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="signalName" unique="true">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="PanelTransitionSignal" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@references.0/@value.4">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="PanelTransitionSignal" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@references.0/@value.4">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//algorithm/Signal"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="signalName" unique="true">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="ChangeViewNavFlow" container="//@targetSectionModel.0/@metaModelSections.0/@references.1/@value.0">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="ChangeViewNavFlow" container="//@targetSectionModel.0/@metaModelSections.0/@references.1/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/ChangeViewNavigationFlow"/>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="source" value="//@targetSectionModel.0/@metaModelSections.1">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/NavigationFlow/Source"/>
@@ -1270,7 +1270,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="Button" container="//@targetSectionModel.0/@metaModelSections.1">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="Button" container="//@targetSectionModel.0/@metaModelSections.1">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/Button"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
@@ -1280,7 +1280,7 @@
       </attributes>
       <attributes xsi:type="metamodel:VirtualAttribute" name="widgetId"/>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="ButtonRepresentation" container="//@targetSectionModel.0/@metaModelSections.6">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="ButtonRepresentation" container="//@targetSectionModel.0/@metaModelSections.6">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/ButtonRepresentation"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="Position">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Representation/Position"/>
@@ -1397,7 +1397,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//presentation/ButtonRepresentation/ToggleButton"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="ButtonInteraction" container="//@targetSectionModel.0/@metaModelSections.6">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="ButtonInteraction" container="//@targetSectionModel.0/@metaModelSections.6">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/ButtonInteraction"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="CommonTrigger">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Interaction/CommonTrigger"/>
@@ -1424,7 +1424,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="TextLabel" container="//@targetSectionModel.0/@metaModelSections.1">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="TextLabel" container="//@targetSectionModel.0/@metaModelSections.1">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/TextLabel"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
@@ -1434,7 +1434,7 @@
       </attributes>
       <attributes xsi:type="metamodel:VirtualAttribute" name="widgetId"/>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="TextLabelRepresentation">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="TextLabelRepresentation">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/TextLabelRepresentation"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="Position">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Representation/Position"/>
@@ -1569,7 +1569,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//presentation/TextLabelRepresentation/MultiLine"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="TextDefinition">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="TextDefinition">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/TextDefinition"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="TranslatedTextItem">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/TextDefinition/TranslatedTextItem"/>
@@ -1587,7 +1587,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="Input" container="//@targetSectionModel.0/@metaModelSections.1">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="Input" container="//@targetSectionModel.0/@metaModelSections.1">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/Input"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
@@ -1597,7 +1597,7 @@
       </attributes>
       <attributes xsi:type="metamodel:VirtualAttribute" name="widgetId"/>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="InputRepresentation" container="//@targetSectionModel.0/@metaModelSections.12">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="InputRepresentation" container="//@targetSectionModel.0/@metaModelSections.12">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/InputRepresentation"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="Position">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Representation/Position"/>
@@ -1708,7 +1708,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//presentation/InputRepresentation/ShowCharactersSimultaneously"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="InputInteraction" container="//@targetSectionModel.0/@metaModelSections.12">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="InputInteraction" container="//@targetSectionModel.0/@metaModelSections.12">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/InputInteraction"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="CommonTrigger">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Interaction/CommonTrigger"/>
@@ -1735,7 +1735,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="DropDown" container="//@targetSectionModel.0/@metaModelSections.1">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="DropDown" container="//@targetSectionModel.0/@metaModelSections.1">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/DropDown"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
@@ -1745,7 +1745,7 @@
       </attributes>
       <attributes xsi:type="metamodel:VirtualAttribute" name="widgetId"/>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="DropDownRepresentation" container="//@targetSectionModel.0/@metaModelSections.15">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="DropDownRepresentation" container="//@targetSectionModel.0/@metaModelSections.15">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/DropDownRepresentation"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="Position">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Representation/Position"/>
@@ -1842,7 +1842,7 @@
       </references>
       <attributes xsi:type="metamodel:VirtualAttribute" name="widgetId"/>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="DropDownOption" container="//@targetSectionModel.0/@metaModelSections.16">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="DropDownOption" container="//@targetSectionModel.0/@metaModelSections.16">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/DropDownOption"/>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Label">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/DropDownOption/Label"/>
@@ -1851,7 +1851,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//presentation/DropDownOption/Value"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="DropDownInteraction" container="//@targetSectionModel.0/@metaModelSections.15">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="DropDownInteraction" container="//@targetSectionModel.0/@metaModelSections.15">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/DropDownInteraction"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedEffect">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Interaction/OwnedEffect"/>
@@ -1878,7 +1878,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="RadioButtonGroup" container="//@targetSectionModel.0/@metaModelSections.1">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="RadioButtonGroup" container="//@targetSectionModel.0/@metaModelSections.1">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/RadioButtonGroup"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
@@ -1888,7 +1888,7 @@
       </attributes>
       <attributes xsi:type="metamodel:VirtualAttribute" name="widgetId"/>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="RadioButtonGroupRepresentation">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="RadioButtonGroupRepresentation">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/RadioButtonGroupRepresentation"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="Position">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Representation/Position"/>
@@ -1985,13 +1985,13 @@
       </references>
       <attributes xsi:type="metamodel:VirtualAttribute" name="widgetId"/>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="RadioButton" container="//@targetSectionModel.0/@metaModelSections.19">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="RadioButton" container="//@targetSectionModel.0/@metaModelSections.19">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/RadioButton"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="RadioButtonRepresentation">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="RadioButtonRepresentation">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/RadioButtonRepresentation"/>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Text" value="//@targetSectionModel.0/@metaModelSections.11">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/TextContainingWidgetRepresentation/Text"/>
@@ -2003,7 +2003,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//presentation/RadioButtonRepresentation/Value"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="RadioButtonInteraction">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="RadioButtonInteraction">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/RadioButtonInteraction"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedEffect">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Interaction/OwnedEffect"/>
@@ -2030,7 +2030,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="State" cardinality="ZERO__INFINITY" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@references.0/@value.7/@references.0/@value.0">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="State" cardinality="ZERO__INFINITY" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@references.0/@value.7/@references.0/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//algorithm/State"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="StateActivityBlock">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//algorithm/State/StateActivityBlock"/>
@@ -2045,7 +2045,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="Transition" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@references.0/@value.7/@references.0/@value.0">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="Transition" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@references.0/@value.7/@references.0/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//algorithm/Transition"/>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Target">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//algorithm/Transition/Target"/>
@@ -2060,7 +2060,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="TransitionWithoutTrigger" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@references.0/@value.7/@references.0/@value.0">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="TransitionWithoutTrigger" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@references.0/@value.7/@references.0/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//algorithm/Transition"/>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Target">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//algorithm/Transition/Target"/>
@@ -2072,7 +2072,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="Reception" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@references.0/@value.7">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="Reception" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@references.0/@value.7">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//algorithm/Reception"/>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Signal">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//algorithm/Reception/Signal"/>
@@ -2081,7 +2081,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="IntegerDataItem">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="IntegerDataItem">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//clientdata/DataItem"/>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Dimension" value="//@targetSectionModel.0/@metaModelSections.31">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//clientdata/DataItem/Dimension"/>
@@ -2108,7 +2108,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//clientdata/DataItem/MinValue"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="BooleanDataItem">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="BooleanDataItem">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//clientdata/DataItem"/>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Dimension" value="//@targetSectionModel.0/@metaModelSections.31">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//clientdata/DataItem/Dimension"/>
@@ -2135,7 +2135,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//clientdata/DataItem/MinValue"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="DataItemChangedSignal" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@references.0/@value.6">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="DataItemChangedSignal" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@references.0/@value.6">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//algorithm/Signal"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
@@ -2144,7 +2144,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="IntegerDimension">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="IntegerDimension">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//clientdata/Dimension"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name" unique="true" value="IntegerDimension">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
@@ -2159,7 +2159,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//clientdata/Dimension/Unit"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="ControlFlow" container="//@targetSectionModel.0/@metaModelSections.24/@references.0/@value.0">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="ControlFlow" container="//@targetSectionModel.0/@metaModelSections.24/@references.0/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//algorithm/actions/ControlFlow"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
@@ -2171,7 +2171,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//algorithm/actions/ActivityEdge/Guard"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="ObjectFlow" container="//@targetSectionModel.0/@metaModelSections.24/@references.0/@value.0">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="ObjectFlow" container="//@targetSectionModel.0/@metaModelSections.24/@references.0/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//algorithm/actions/ObjectFlow"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Comment">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
@@ -2183,7 +2183,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//algorithm/actions/ActivityEdge/Guard"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="AcceptEventAction" container="//@targetSectionModel.0/@metaModelSections.24/@references.0/@value.0">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="AcceptEventAction" container="//@targetSectionModel.0/@metaModelSections.24/@references.0/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//algorithm/actions/AcceptEventAction"/>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="OutgoingControlFlow" value="//@targetSectionModel.0/@metaModelSections.32">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//algorithm/actions/ActivityNode/OutgoingControlFlow"/>
@@ -2198,7 +2198,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="WriteBooleanDataItemAction" container="//@targetSectionModel.0/@metaModelSections.24/@references.0/@value.0">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="WriteBooleanDataItemAction" container="//@targetSectionModel.0/@metaModelSections.24/@references.0/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//algorithm/actions/WriteDataItemAction"/>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="IncomingControlFlow" value="//@targetSectionModel.0/@metaModelSections.32">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//algorithm/actions/ActivityNode/IncomingControlFlow"/>
@@ -2237,7 +2237,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="WriteIntegerDataItemAction" container="//@targetSectionModel.0/@metaModelSections.24/@references.0/@value.0">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="WriteIntegerDataItemAction" container="//@targetSectionModel.0/@metaModelSections.24/@references.0/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//algorithm/actions/WriteDataItemAction"/>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="IncomingControlFlow" value="//@targetSectionModel.0/@metaModelSections.32">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//algorithm/actions/ActivityNode/IncomingControlFlow"/>
@@ -2276,7 +2276,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="BooleanValueSpecificationAction" container="//@targetSectionModel.0/@metaModelSections.24/@references.0/@value.0">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="BooleanValueSpecificationAction" container="//@targetSectionModel.0/@metaModelSections.24/@references.0/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//algorithm/actions/ValueSpecificationAction"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="Result">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//algorithm/actions/ValueSpecificationAction/Result"/>
@@ -2312,7 +2312,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//algorithm/actions/ValueSpecificationAction/Value"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="IntegerValueSpecificationAction" container="//@targetSectionModel.0/@metaModelSections.24/@references.0/@value.0">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="IntegerValueSpecificationAction" container="//@targetSectionModel.0/@metaModelSections.24/@references.0/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//algorithm/actions/ValueSpecificationAction"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="Result">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//algorithm/actions/ValueSpecificationAction/Result"/>
@@ -2348,7 +2348,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//algorithm/actions/ValueSpecificationAction/Value"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="Class->ConstantBooleanValueSpecification">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="Class->ConstantBooleanValueSpecification">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//algorithm/Class"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedBehavior">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//algorithm/Class/OwnedBehavior"/>
@@ -2555,7 +2555,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//algorithm/Class/MovisaRuntimeInstance"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="Class->ConstantIntegerValueSpecification">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="Class->ConstantIntegerValueSpecification">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//algorithm/Class"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedBehavior">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//algorithm/Class/OwnedBehavior"/>
@@ -2762,7 +2762,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//algorithm/Class/MovisaRuntimeInstance"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="Class->VariableIntegerValueSpecification">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="Class->VariableIntegerValueSpecification">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//algorithm/Class"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="OwnedBehavior">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//algorithm/Class/OwnedBehavior"/>

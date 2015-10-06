@@ -53,7 +53,7 @@ public class SectionItemProvider extends ClassItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Section<?, ?, ?>)object).getName();
+		String label = ((Section<?, ?, ?, ?>)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Section_type") :
 			getString("_UI_Section_type") + " " + label;

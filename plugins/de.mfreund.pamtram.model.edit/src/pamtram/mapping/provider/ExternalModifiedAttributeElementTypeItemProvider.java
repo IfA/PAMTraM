@@ -63,7 +63,7 @@ public class ExternalModifiedAttributeElementTypeItemProvider extends ModifiedAt
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ExternalModifiedAttributeElementType<?, ?, ?>)object).getName();
+		String label = ((ExternalModifiedAttributeElementType<?, ?, ?, ?>)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ExternalModifiedAttributeElementType_type") :
 			getString("_UI_ExternalModifiedAttributeElementType_type") + " " + label;

@@ -68,10 +68,10 @@ public class LocalModifiedAttributeElementTypeItemProvider extends ModifiedAttri
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((LocalModifiedAttributeElementType<?, ?, ?>)object).getName();
+		String label = ((LocalModifiedAttributeElementType<?, ?, ?, ?>)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_LocalModifiedAttributeElementType_type") :
-			getString("_UI_LocalModifiedAttributeElementType_type") + " " + label;
+				getString("_UI_LocalModifiedAttributeElementType_type") :
+					getString("_UI_LocalModifiedAttributeElementType_type") + " " + label;
 	}
 
 
@@ -124,7 +124,7 @@ public class LocalModifiedAttributeElementTypeItemProvider extends ModifiedAttri
 			public Collection<?> getChoiceOfValues(Object object) {
 
 				//the parent Mapping Hint Group
-				EObject parent=((ModifiedAttributeElementType<?,?,?>) object).eContainer();
+				EObject parent=((ModifiedAttributeElementType<?,?,?,?>) object).eContainer();
 				// the parent mapping
 				Mapping mapping;
 				while(true){

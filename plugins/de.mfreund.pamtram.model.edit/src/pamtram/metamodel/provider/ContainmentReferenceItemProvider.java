@@ -164,9 +164,9 @@ extends ReferenceItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ContainmentReference.class)) {
-		case MetamodelPackage.CONTAINMENT_REFERENCE__VALUE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case MetamodelPackage.CONTAINMENT_REFERENCE__VALUE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

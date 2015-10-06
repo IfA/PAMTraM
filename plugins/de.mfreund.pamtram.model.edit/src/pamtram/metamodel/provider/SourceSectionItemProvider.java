@@ -8,7 +8,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import pamtram.metamodel.MetamodelPackage;
 
 /**
  * This is the item provider adapter for a {@link pamtram.metamodel.SourceSection} object.
@@ -38,8 +40,31 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addReferencingMappingsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Referencing Mappings feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addReferencingMappingsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SourceSection_referencingMappings_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SourceSection_referencingMappings_feature", "_UI_SourceSection_type"),
+				 MetamodelPackage.Literals.SOURCE_SECTION__REFERENCING_MAPPINGS,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**

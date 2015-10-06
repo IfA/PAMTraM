@@ -21,6 +21,8 @@ import pamtram.condition.ComplexCondition;
  *   <li>{@link pamtram.mapping.Mapping#getMappingHintGroups <em>Mapping Hint Groups</em>}</li>
  *   <li>{@link pamtram.mapping.Mapping#getImportedMappingHintGroups <em>Imported Mapping Hint Groups</em>}</li>
  *   <li>{@link pamtram.mapping.Mapping#getGlobalVariables <em>Global Variables</em>}</li>
+ *   <li>{@link pamtram.mapping.Mapping#isIsAbstract <em>Is Abstract</em>}</li>
+ *   <li>{@link pamtram.mapping.Mapping#getExtend <em>Extend</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getMapping()
@@ -105,6 +107,50 @@ public interface Mapping extends MappingType {
 	 * @generated
 	 */
 	EList<GlobalAttribute> getGlobalVariables();
+
+	/**
+	 * Returns the value of the '<em><b>Is Abstract</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Abstract</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Abstract</em>' attribute.
+	 * @see #setIsAbstract(boolean)
+	 * @see pamtram.mapping.MappingPackage#getMapping_IsAbstract()
+	 * @model default="false" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!Mapping!isAbstract'"
+	 * @generated
+	 */
+	boolean isIsAbstract();
+
+	/**
+	 * Sets the value of the '{@link pamtram.mapping.Mapping#isIsAbstract <em>Is Abstract</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Abstract</em>' attribute.
+	 * @see #isIsAbstract()
+	 * @generated
+	 */
+	void setIsAbstract(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Extend</b></em>' reference list.
+	 * The list contents are of type {@link pamtram.mapping.Mapping}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Extend</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Extend</em>' reference list.
+	 * @see pamtram.mapping.MappingPackage#getMapping_Extend()
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!Mapping!extend'"
+	 * @generated
+	 */
+	EList<Mapping> getExtend();
 
 	/**
 	 * <!-- begin-user-doc -->

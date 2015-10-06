@@ -3,12 +3,16 @@
 package pamtram.metamodel.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.IdResolver;
@@ -28,6 +32,7 @@ import org.eclipse.ocl.pivot.values.SetValue;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.MetamodelTables;
+import pamtram.metamodel.Section;
 import pamtram.metamodel.TargetSection;
 
 /**
@@ -38,12 +43,42 @@ import pamtram.metamodel.TargetSection;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link pamtram.metamodel.impl.TargetSectionImpl#isIsAbstract <em>Is Abstract</em>}</li>
+ *   <li>{@link pamtram.metamodel.impl.TargetSectionImpl#getExtend <em>Extend</em>}</li>
  *   <li>{@link pamtram.metamodel.impl.TargetSectionImpl#getReferencingMappingHintGroups <em>Referencing Mapping Hint Groups</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class TargetSectionImpl extends TargetSectionClassImpl implements TargetSection {
+	/**
+	 * The default value of the '{@link #isIsAbstract() <em>Is Abstract</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsAbstract()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_ABSTRACT_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isIsAbstract() <em>Is Abstract</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsAbstract()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isAbstract = IS_ABSTRACT_EDEFAULT;
+	/**
+	 * The cached value of the '{@link #getExtend() <em>Extend</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExtend()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<TargetSection> extend;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,6 +96,39 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	@Override
 	protected EClass eStaticClass() {
 		return MetamodelPackage.Literals.TARGET_SECTION;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isIsAbstract() {
+		return isAbstract;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsAbstract(boolean newIsAbstract) {
+		boolean oldIsAbstract = isAbstract;
+		isAbstract = newIsAbstract;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.TARGET_SECTION__IS_ABSTRACT, oldIsAbstract, isAbstract));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<TargetSection> getExtend() {
+		if (extend == null) {
+			extend = new EObjectResolvingEList<TargetSection>(TargetSection.class, this, MetamodelPackage.TARGET_SECTION__EXTEND);
+		}
+		return extend;
 	}
 
 	/**
@@ -164,6 +232,10 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case MetamodelPackage.TARGET_SECTION__IS_ABSTRACT:
+				return isIsAbstract();
+			case MetamodelPackage.TARGET_SECTION__EXTEND:
+				return getExtend();
 			case MetamodelPackage.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS:
 				return getReferencingMappingHintGroups();
 		}
@@ -175,9 +247,51 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case MetamodelPackage.TARGET_SECTION__IS_ABSTRACT:
+				setIsAbstract((Boolean)newValue);
+				return;
+			case MetamodelPackage.TARGET_SECTION__EXTEND:
+				getExtend().clear();
+				getExtend().addAll((Collection<? extends TargetSection>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case MetamodelPackage.TARGET_SECTION__IS_ABSTRACT:
+				setIsAbstract(IS_ABSTRACT_EDEFAULT);
+				return;
+			case MetamodelPackage.TARGET_SECTION__EXTEND:
+				getExtend().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case MetamodelPackage.TARGET_SECTION__IS_ABSTRACT:
+				return isAbstract != IS_ABSTRACT_EDEFAULT;
+			case MetamodelPackage.TARGET_SECTION__EXTEND:
+				return extend != null && !extend.isEmpty();
 			case MetamodelPackage.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS:
 				return !getReferencingMappingHintGroups().isEmpty();
 		}
@@ -190,13 +304,63 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	 * @generated
 	 */
 	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == Section.class) {
+			switch (derivedFeatureID) {
+				case MetamodelPackage.TARGET_SECTION__IS_ABSTRACT: return MetamodelPackage.SECTION__IS_ABSTRACT;
+				case MetamodelPackage.TARGET_SECTION__EXTEND: return MetamodelPackage.SECTION__EXTEND;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == Section.class) {
+			switch (baseFeatureID) {
+				case MetamodelPackage.SECTION__IS_ABSTRACT: return MetamodelPackage.TARGET_SECTION__IS_ABSTRACT;
+				case MetamodelPackage.SECTION__EXTEND: return MetamodelPackage.TARGET_SECTION__EXTEND;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.TARGET_SECTION___IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP_1:
+			case MetamodelPackage.TARGET_SECTION___IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP:
 				return isReferencedByMappingHintGroup((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (isAbstract: ");
+		result.append(isAbstract);
+		result.append(')');
+		return result.toString();
 	}
 
 } //TargetSectionImpl

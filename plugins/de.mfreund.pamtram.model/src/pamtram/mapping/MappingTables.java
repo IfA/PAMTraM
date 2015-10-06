@@ -178,6 +178,7 @@ public class MappingTables
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_GlobalAttribute = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_GlobalAttribute);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_GlobalAttributeImporter = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_GlobalAttributeImporter);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_MappedAttributeValueExpander = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_MappedAttributeValueExpander);
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Mapping = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_Mapping);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_MappingHintGroupImporter = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_MappingHintGroupImporter);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_ModifiableHint = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_ModifiableHint);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_ModifiedAttributeElementType = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_ModifiedAttributeElementType);
@@ -192,6 +193,7 @@ public class MappingTables
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_EReference = TypeId.ORDERED_SET.getSpecializedId(MappingTables.CLSSid_EReference);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_ExpandableHint = TypeId.ORDERED_SET.getSpecializedId(MappingTables.CLSSid_ExpandableHint);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_GlobalAttribute = TypeId.ORDERED_SET.getSpecializedId(MappingTables.CLSSid_GlobalAttribute);
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Mapping = TypeId.ORDERED_SET.getSpecializedId(MappingTables.CLSSid_Mapping);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_MappingHint = TypeId.ORDERED_SET.getSpecializedId(MappingTables.CLSSid_MappingHint);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_MappingHintGroupImporter = TypeId.ORDERED_SET.getSpecializedId(MappingTables.CLSSid_MappingHintGroupImporter);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_MappingHintGroupType = TypeId.ORDERED_SET.getSpecializedId(MappingTables.CLSSid_MappingHintGroupType);
@@ -906,9 +908,12 @@ public class MappingTables
 		public static final /*@NonNull*/ ExecutorProperty _MappedAttributeValueExpander__hintsToExpand = new EcoreExecutorProperty(MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND, Types._MappedAttributeValueExpander, 0);
 
 		public static final /*@NonNull*/ ExecutorProperty _Mapping__condition = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__CONDITION, Types._Mapping, 0);
-		public static final /*@NonNull*/ ExecutorProperty _Mapping__globalVariables = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__GLOBAL_VARIABLES, Types._Mapping, 1);
-		public static final /*@NonNull*/ ExecutorProperty _Mapping__importedMappingHintGroups = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__IMPORTED_MAPPING_HINT_GROUPS, Types._Mapping, 2);
-		public static final /*@NonNull*/ ExecutorProperty _Mapping__mappingHintGroups = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS, Types._Mapping, 3);
+		public static final /*@NonNull*/ ExecutorProperty _Mapping__extend = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__EXTEND, Types._Mapping, 1);
+		public static final /*@NonNull*/ ExecutorProperty _Mapping__globalVariables = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__GLOBAL_VARIABLES, Types._Mapping, 2);
+		public static final /*@NonNull*/ ExecutorProperty _Mapping__importedMappingHintGroups = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__IMPORTED_MAPPING_HINT_GROUPS, Types._Mapping, 3);
+		public static final /*@NonNull*/ ExecutorProperty _Mapping__isAbstract = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__IS_ABSTRACT, Types._Mapping, 4);
+		public static final /*@NonNull*/ ExecutorProperty _Mapping__mappingHintGroups = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS, Types._Mapping, 5);
+		public static final /*@NonNull*/ ExecutorProperty _Mapping__Mapping__extend = new ExecutorPropertyWithImplementation("Mapping", Types._Mapping, 6, new EcoreLibraryOppositeProperty(MappingPackage.Literals.MAPPING__EXTEND));
 
 		public static final /*@NonNull*/ ExecutorProperty _MappingHint__MappingHintGroupType__mappingHints = new ExecutorPropertyWithImplementation("MappingHintGroupType", Types._MappingHint, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS));
 
@@ -3750,10 +3755,13 @@ public class MappingTables
 
 		private static final /*@NonNull*/ ExecutorProperty[] _Mapping = {
 			MappingTables.Properties._Mapping__condition,
+			MappingTables.Properties._Mapping__extend,
 			MappingTables.Properties._Mapping__globalVariables,
 			MappingTables.Properties._Mapping__importedMappingHintGroups,
+			MappingTables.Properties._Mapping__isAbstract,
 			MappingTables.Properties._Mapping__mappingHintGroups,
-			MappingTables.Properties._MappingType__sourceMMSection
+			MappingTables.Properties._MappingType__sourceMMSection,
+			MappingTables.Properties._Mapping__Mapping__extend
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _MappingHint = {

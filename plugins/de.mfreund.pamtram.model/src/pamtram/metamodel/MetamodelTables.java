@@ -128,7 +128,8 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_1 = ValueUtil.integerValueOf("1");
     public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_2 = ValueUtil.integerValueOf("2");
     public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_4 = ValueUtil.integerValueOf("4");
-    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_TMPLid__1 = TypeId.ORDERED_SET.getSpecializedId(IdManager.getTemplateParameterId(1));
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_TMPLid__1 = TypeId.ORDERED_SET.getSpecializedId(IdManager.getTemplateParameterId(0));
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_TMPLid__2 = TypeId.ORDERED_SET.getSpecializedId(IdManager.getTemplateParameterId(1));
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_ActualAttribute_c_c_attributeMatchesParentEClass = "ActualAttribute::attributeMatchesParentEClass";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_Class_c_c_cardinalityIsValid = "Class::cardinalityIsValid";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_Class_c_c_containerIsValid = "Class::containerIsValid";
@@ -722,6 +723,9 @@ public class MetamodelTables
 
 		public static final /*@NonNull*/ ExecutorProperty _Reference__eReference = new EcoreExecutorProperty(MetamodelPackage.Literals.REFERENCE__EREFERENCE, Types._Reference, 0);
 		public static final /*@NonNull*/ ExecutorProperty _Reference__owningClass = new EcoreExecutorProperty(MetamodelPackage.Literals.REFERENCE__OWNING_CLASS, Types._Reference, 1);
+
+		public static final /*@NonNull*/ ExecutorProperty _Section__extend = new EcoreExecutorProperty(MetamodelPackage.Literals.SECTION__EXTEND, Types._Section, 0);
+		public static final /*@NonNull*/ ExecutorProperty _Section__isAbstract = new EcoreExecutorProperty(MetamodelPackage.Literals.SECTION__IS_ABSTRACT, Types._Section, 1);
 
 		public static final /*@NonNull*/ ExecutorProperty _SourceSection__referencingMappings = new EcoreExecutorProperty(MetamodelPackage.Literals.SOURCE_SECTION__REFERENCING_MAPPINGS, Types._SourceSection, 0);
 
@@ -2706,6 +2710,8 @@ public class MetamodelTables
 			MetamodelTables.Properties._Class__cardinality,
 			MetamodelTables.Properties._Class__container,
 			MetamodelTables.Properties._Class__eClass,
+			MetamodelTables.Properties._Section__extend,
+			MetamodelTables.Properties._Section__isAbstract,
 			MetamodelTables.Properties._Class__references
 		};
 
@@ -2714,6 +2720,8 @@ public class MetamodelTables
 			MetamodelTables.Properties._Class__cardinality,
 			MetamodelTables.Properties._Class__container,
 			MetamodelTables.Properties._Class__eClass,
+			MetamodelTables.Properties._Section__extend,
+			MetamodelTables.Properties._Section__isAbstract,
 			MetamodelTables.Properties._Class__references,
 			MetamodelTables.Properties._SourceSection__referencingMappings,
 			MetamodelTables.Properties._SourceSectionClass__MetaModelSectionReference__value
@@ -2757,6 +2765,8 @@ public class MetamodelTables
 			MetamodelTables.Properties._Class__cardinality,
 			MetamodelTables.Properties._Class__container,
 			MetamodelTables.Properties._Class__eClass,
+			MetamodelTables.Properties._Section__extend,
+			MetamodelTables.Properties._Section__isAbstract,
 			MetamodelTables.Properties._Class__references,
 			MetamodelTables.Properties._TargetSection__referencingMappingHintGroups,
 			MetamodelTables.Properties._TargetSection__ContainerParameter__class

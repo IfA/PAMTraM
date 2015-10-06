@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.IdResolver;
@@ -51,6 +52,8 @@ import pamtram.mapping.MappingTables;
  *   <li>{@link pamtram.mapping.impl.MappingImpl#getMappingHintGroups <em>Mapping Hint Groups</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingImpl#getImportedMappingHintGroups <em>Imported Mapping Hint Groups</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingImpl#getGlobalVariables <em>Global Variables</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.MappingImpl#isIsAbstract <em>Is Abstract</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.MappingImpl#getExtend <em>Extend</em>}</li>
  * </ul>
  *
  * @generated
@@ -95,6 +98,36 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 * @ordered
 	 */
 	protected EList<GlobalAttribute> globalVariables;
+
+	/**
+	 * The default value of the '{@link #isIsAbstract() <em>Is Abstract</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsAbstract()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_ABSTRACT_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIsAbstract() <em>Is Abstract</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsAbstract()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isAbstract = IS_ABSTRACT_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getExtend() <em>Extend</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExtend()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Mapping> extend;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -197,6 +230,39 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 			globalVariables = new EObjectContainmentEList<GlobalAttribute>(GlobalAttribute.class, this, MappingPackage.MAPPING__GLOBAL_VARIABLES);
 		}
 		return globalVariables;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isIsAbstract() {
+		return isAbstract;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsAbstract(boolean newIsAbstract) {
+		boolean oldIsAbstract = isAbstract;
+		isAbstract = newIsAbstract;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING__IS_ABSTRACT, oldIsAbstract, isAbstract));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Mapping> getExtend() {
+		if (extend == null) {
+			extend = new EObjectResolvingEList<Mapping>(Mapping.class, this, MappingPackage.MAPPING__EXTEND);
+		}
+		return extend;
 	}
 
 	/**
@@ -418,6 +484,10 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 				return getImportedMappingHintGroups();
 			case MappingPackage.MAPPING__GLOBAL_VARIABLES:
 				return getGlobalVariables();
+			case MappingPackage.MAPPING__IS_ABSTRACT:
+				return isIsAbstract();
+			case MappingPackage.MAPPING__EXTEND:
+				return getExtend();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -446,6 +516,13 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 				getGlobalVariables().clear();
 				getGlobalVariables().addAll((Collection<? extends GlobalAttribute>)newValue);
 				return;
+			case MappingPackage.MAPPING__IS_ABSTRACT:
+				setIsAbstract((Boolean)newValue);
+				return;
+			case MappingPackage.MAPPING__EXTEND:
+				getExtend().clear();
+				getExtend().addAll((Collection<? extends Mapping>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -470,6 +547,12 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 			case MappingPackage.MAPPING__GLOBAL_VARIABLES:
 				getGlobalVariables().clear();
 				return;
+			case MappingPackage.MAPPING__IS_ABSTRACT:
+				setIsAbstract(IS_ABSTRACT_EDEFAULT);
+				return;
+			case MappingPackage.MAPPING__EXTEND:
+				getExtend().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -490,6 +573,10 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 				return importedMappingHintGroups != null && !importedMappingHintGroups.isEmpty();
 			case MappingPackage.MAPPING__GLOBAL_VARIABLES:
 				return globalVariables != null && !globalVariables.isEmpty();
+			case MappingPackage.MAPPING__IS_ABSTRACT:
+				return isAbstract != IS_ABSTRACT_EDEFAULT;
+			case MappingPackage.MAPPING__EXTEND:
+				return extend != null && !extend.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -507,12 +594,28 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 				return getActiveMappingHintGroups();
 			case MappingPackage.MAPPING___GET_ACTIVE_IMPORTED_MAPPING_HINT_GROUPS:
 				return getActiveImportedMappingHintGroups();
-			case MappingPackage.MAPPING___CONTAINS_HINT_GROUPS__DIAGNOSTICCHAIN_MAP_1:
+			case MappingPackage.MAPPING___CONTAINS_HINT_GROUPS__DIAGNOSTICCHAIN_MAP:
 				return containsHintGroups((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case MappingPackage.MAPPING___CONTAINS_DEACTIVATED_HINT_GROUPS__DIAGNOSTICCHAIN_MAP_1:
+			case MappingPackage.MAPPING___CONTAINS_DEACTIVATED_HINT_GROUPS__DIAGNOSTICCHAIN_MAP:
 				return containsDeactivatedHintGroups((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (isAbstract: ");
+		result.append(isAbstract);
+		result.append(')');
+		return result.toString();
 	}
 
 } //MappingImpl

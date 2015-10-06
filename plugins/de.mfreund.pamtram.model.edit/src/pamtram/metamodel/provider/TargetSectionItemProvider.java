@@ -44,7 +44,7 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addIsAbstractPropertyDescriptor(object);
+			addAbstractPropertyDescriptor(object);
 			addExtendPropertyDescriptor(object);
 			addReferencingMappingHintGroupsPropertyDescriptor(object);
 		}
@@ -52,19 +52,19 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Is Abstract feature.
+	 * This adds a property descriptor for the Abstract feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsAbstractPropertyDescriptor(Object object) {
+	protected void addAbstractPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Section_isAbstract_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Section_isAbstract_feature", "_UI_Section_type"),
-				 MetamodelPackage.Literals.SECTION__IS_ABSTRACT,
+				 getString("_UI_Section_abstract_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Section_abstract_feature", "_UI_Section_type"),
+				 MetamodelPackage.Literals.SECTION__ABSTRACT,
 				 true,
 				 false,
 				 false,
@@ -136,7 +136,7 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return (((TargetSection) object).isIsAbstract() ? "<<abstract>> " : "") + super.getText(object);
+		return (((TargetSection) object).isAbstract() ? "<<abstract>> " : "") + super.getText(object);
 	}
 
 
@@ -152,7 +152,7 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(TargetSection.class)) {
-			case MetamodelPackage.TARGET_SECTION__IS_ABSTRACT:
+			case MetamodelPackage.TARGET_SECTION__ABSTRACT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

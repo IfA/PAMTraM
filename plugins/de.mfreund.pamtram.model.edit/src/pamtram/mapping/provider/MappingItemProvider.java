@@ -50,26 +50,26 @@ extends MappingTypeItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addIsAbstractPropertyDescriptor(object);
+			addAbstractPropertyDescriptor(object);
 			addExtendPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Is Abstract feature.
+	 * This adds a property descriptor for the Abstract feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsAbstractPropertyDescriptor(Object object) {
+	protected void addAbstractPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Mapping_isAbstract_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Mapping_isAbstract_feature", "_UI_Mapping_type"),
-				 MappingPackage.Literals.MAPPING__IS_ABSTRACT,
+				 getString("_UI_Mapping_abstract_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Mapping_abstract_feature", "_UI_Mapping_type"),
+				 MappingPackage.Literals.MAPPING__ABSTRACT,
 				 true,
 				 false,
 				 false,
@@ -184,7 +184,7 @@ extends MappingTypeItemProvider {
 	@Override
 	public String getText(Object object) {
 		String label = ((Mapping)object).getName();
-		return (((Mapping) object).isIsAbstract() ? "<<abstract>> " : "") + 
+		return (((Mapping) object).isAbstract() ? "<<abstract>> " : "") + 
 				(label == null || label.length() == 0 ? "" : label);
 	}
 
@@ -200,7 +200,7 @@ extends MappingTypeItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Mapping.class)) {
-			case MappingPackage.MAPPING__IS_ABSTRACT:
+			case MappingPackage.MAPPING__ABSTRACT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case MappingPackage.MAPPING__CONDITION:

@@ -45,26 +45,26 @@ public class SectionItemProvider extends ClassItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addIsAbstractPropertyDescriptor(object);
+			addAbstractPropertyDescriptor(object);
 			addExtendPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Is Abstract feature.
+	 * This adds a property descriptor for the Abstract feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsAbstractPropertyDescriptor(Object object) {
+	protected void addAbstractPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Section_isAbstract_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Section_isAbstract_feature", "_UI_Section_type"),
-				 MetamodelPackage.Literals.SECTION__IS_ABSTRACT,
+				 getString("_UI_Section_abstract_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Section_abstract_feature", "_UI_Section_type"),
+				 MetamodelPackage.Literals.SECTION__ABSTRACT,
 				 true,
 				 false,
 				 false,
@@ -122,7 +122,7 @@ public class SectionItemProvider extends ClassItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Section.class)) {
-			case MetamodelPackage.SECTION__IS_ABSTRACT:
+			case MetamodelPackage.SECTION__ABSTRACT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

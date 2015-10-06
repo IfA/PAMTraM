@@ -69,8 +69,8 @@ import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.TargetSectionClass;
+import pamtram.metamodel.SourceSection;
+import pamtram.metamodel.TargetSection;
 import pamtram.provider.PamtramEditPlugin;
 
 
@@ -259,10 +259,10 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 			}
 		}
 		for (SourceSectionModel ssm : pamtram.getSourceSectionModel()) {
-			// add an  empty class to each source section model
-			SourceSectionClass  sourceClass = metamodelFactory.createSourceSectionClass();
-			sourceClass.setName("source");
-			ssm.getMetaModelSections().add(sourceClass);			
+			// add an  empty source section to each source section model
+			SourceSection sourceSection = metamodelFactory.createSourceSection();
+			sourceSection.setName("source");
+			ssm.getMetaModelSections().add(sourceSection);			
 		}
 
 		// add a target section model
@@ -271,11 +271,11 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 		if(ePackageSpecificationPage.getTargetEPackage() != null) {
 			pamtram.getTargetSectionModel().get(0).setMetaModelPackage(ePackageSpecificationPage.getTargetEPackage());
 		}
-		// add an empty class to the target section model
+		// add an empty target section to the target section model
 		MappingHintGroup  mappingHintGroup = mappingFactory.createMappingHintGroup();
-		TargetSectionClass targetClass = metamodelFactory.createTargetSectionClass();
-		targetClass.setName("target");
-		pamtram.getTargetSectionModel().get(0).getMetaModelSections().add(targetClass);
+		TargetSection targetSection = metamodelFactory.createTargetSection();
+		targetSection.setName("target");
+		pamtram.getTargetSectionModel().get(0).getMetaModelSections().add(targetSection);
 
 		// add a mapping model
 		pamtram.getMappingModel().add(pamtramFactory.createMappingModel());
@@ -283,7 +283,7 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 		Mapping mapping = mappingFactory.createMapping();
 		mapping.setSourceMMSection(pamtram.getSourceSectionModel().get(0).getMetaModelSections().get(0));
 		mapping.getMappingHintGroups().add(mappingHintGroup);
-		mappingHintGroup.setTargetMMSection(targetClass);
+		mappingHintGroup.setTargetMMSection(targetSection);
 		pamtram.getMappingModel().get(0).getMapping().add(mapping);
 
 		return pamtram;

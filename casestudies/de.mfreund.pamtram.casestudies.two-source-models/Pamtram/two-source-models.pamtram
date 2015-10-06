@@ -2,7 +2,7 @@
 <pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:pamtram="http://mfreund.de/pamtram">
   <sourceSectionModel name="Disl">
     <metaModelPackage href="http://disl#/"/>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="Interface">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Interface">
       <eClass href="http://disl#//Interface"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
         <attribute href="http://disl#//Interface/id"/>
@@ -11,7 +11,7 @@
   </sourceSectionModel>
   <sourceSectionModel name="w3caui">
     <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="AbstractInteractionUnit">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="AbstractInteractionUnit">
       <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="name">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/name"/>
@@ -20,13 +20,13 @@
   </sourceSectionModel>
   <targetSectionModel>
     <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="Panel">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="Panel">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/Panel"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="Button">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="Button">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>

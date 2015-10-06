@@ -8,10 +8,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-
-import pamtram.metamodel.SourceSection;
 
 /**
  * This is the item provider adapter for a {@link pamtram.metamodel.SourceSection} object.
@@ -49,27 +46,24 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	 * This returns SourceSection.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/SourceSection"));
+		return super.getImage(object);
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((SourceSection)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_SourceSection_type") :
-			getString("_UI_SourceSection_type") + " " + label;
+		return super.getText(object);
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

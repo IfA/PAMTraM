@@ -29,6 +29,7 @@ import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.MappingTables;
 import pamtram.mapping.ModelConnectionHintTargetAttribute;
+import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionReference;
@@ -84,7 +85,7 @@ public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeEle
 		 *   in
 		 *     let
 		 *       status : OclAny[?] = let
-		 *         targetMMSection : metamodel::TargetSectionClass[1] = self.oclContainer()
+		 *         targetMMSection : metamodel::TargetSection[1] = self.oclContainer()
 		 *         .oclContainer()
 		 *         .oclAsType(MappingHintGroupType).targetMMSection
 		 *       in
@@ -124,7 +125,7 @@ public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeEle
 		        final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
 		        final /*@Nullable*/ /*@Thrown*/ Object oclContainer_0 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, oclContainer);
 		        final /*@NonNull*/ /*@Thrown*/ MappingHintGroupType oclAsType = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_0, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0));
-		        final /*@NonNull*/ /*@Thrown*/ TargetSectionClass targetMMSection = oclAsType.getTargetMMSection();
+		        final /*@NonNull*/ /*@Thrown*/ TargetSection targetMMSection = oclAsType.getTargetMMSection();
 		        CAUGHT_targetMMSection = targetMMSection;
 		    }
 		    catch (Exception e) {
@@ -200,7 +201,7 @@ public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeEle
 		                if (CAUGHT_targetMMSection instanceof InvalidValueException) {
 		                    throw (InvalidValueException)CAUGHT_targetMMSection;
 		                }
-		                final /*@NonNull*/ /*@Thrown*/ EClass eClass_0 = ((TargetSectionClass)CAUGHT_targetMMSection).getEClass();
+		                final /*@NonNull*/ /*@Thrown*/ EClass eClass_0 = ((TargetSection)CAUGHT_targetMMSection).getEClass();
 		                final /*@Thrown*/ boolean isSuperTypeOf = eReferenceType.isSuperTypeOf(eClass_0);
 		                CAUGHT_isSuperTypeOf = isSuperTypeOf;
 		            }
@@ -241,7 +242,7 @@ public class ModelConnectionHintTargetAttributeImpl extends ModifiedAttributeEle
 		    final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer_2 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
 		    final /*@Nullable*/ /*@Thrown*/ Object oclContainer_3 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, oclContainer_2);
 		    final /*@NonNull*/ /*@Thrown*/ MappingHintGroupType oclAsType_2 = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_3, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_1));
-		    final /*@NonNull*/ /*@Thrown*/ TargetSectionClass targetMMSection_0 = oclAsType_2.getTargetMMSection();
+		    final /*@NonNull*/ /*@Thrown*/ TargetSection targetMMSection_0 = oclAsType_2.getTargetMMSection();
 		    final /*@NonNull*/ /*@Thrown*/ EClass eClass_1 = targetMMSection_0.getEClass();
 		    final /*@Nullable*/ /*@Thrown*/ String name = eClass_1.getName();
 		    final /*@NonNull*/ /*@NonInvalid*/ String sum = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(MappingTables.STR_The_32_type_32_of_32_the_32_parent_32_hint_32_group_39_s_32_target_32_section_32_o_39, name));

@@ -31,7 +31,9 @@ import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.MappingTables;
 import pamtram.metamodel.MetaModelElement;
+import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionClass;
 
 /**
@@ -285,7 +287,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 		        final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
 		        final /*@Nullable*/ /*@Thrown*/ Object oclContainer_0 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, oclContainer);
 		        final /*@NonNull*/ /*@Thrown*/ Mapping oclAsType = ClassUtil.nonNullState((Mapping)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_0, TYP_pamtram_c_c_mapping_c_c_Mapping));
-		        final /*@NonNull*/ /*@Thrown*/ SourceSectionClass sourceMMSection = oclAsType.getSourceMMSection();
+		        final /*@NonNull*/ /*@Thrown*/ SourceSection sourceMMSection = oclAsType.getSourceMMSection();
 		        final /*@NonNull*/ /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType_0 = ClassUtil.nonNullState((org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(evaluator, sourceMMSection));
 		        final /*@Thrown*/ boolean eq_0 = oclType_0.getTypeId() == TYP_OclVoid_1.getTypeId();
 		        CAUGHT_eq_0 = eq_0;
@@ -308,7 +310,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 		        final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer_1 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
 		        final /*@Nullable*/ /*@Thrown*/ Object oclContainer_2 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, oclContainer_1);
 		        final /*@NonNull*/ /*@Thrown*/ Mapping oclAsType_0 = ClassUtil.nonNullState((Mapping)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_2, TYP_pamtram_c_c_mapping_c_c_Mapping_0));
-		        final /*@NonNull*/ /*@Thrown*/ SourceSectionClass sourceMMSection_0 = oclAsType_0.getSourceMMSection();
+		        final /*@NonNull*/ /*@Thrown*/ SourceSection sourceMMSection_0 = oclAsType_0.getSourceMMSection();
 		        final /*@Thrown*/ boolean eq_1 = getContainingSection.equals(sourceMMSection_0);
 		        status = eq_1;
 		    }
@@ -398,7 +400,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0 = idResolver.getClass(MappingTables.CLSSid_MappingHintGroupType, null);
 		        final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
 		        final /*@NonNull*/ /*@Thrown*/ MappingHintGroupType oclAsType = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0));
-		        final /*@NonNull*/ /*@Thrown*/ TargetSectionClass targetMMSection = oclAsType.getTargetMMSection();
+		        final /*@NonNull*/ /*@Thrown*/ TargetSection targetMMSection = oclAsType.getTargetMMSection();
 		        final /*@NonNull*/ /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType_0 = ClassUtil.nonNullState((org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(evaluator, targetMMSection));
 		        final /*@Thrown*/ boolean eq_0 = oclType_0.getTypeId() == TYP_OclVoid_1.getTypeId();
 		        CAUGHT_eq_0 = eq_0;
@@ -420,7 +422,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 		        final /*@NonNull*/ /*@Thrown*/ Object getContainingSection = ((MetaModelElement)target_0).getContainingSection();
 		        final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer_0 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
 		        final /*@NonNull*/ /*@Thrown*/ MappingHintGroupType oclAsType_0 = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_0, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_1));
-		        final /*@NonNull*/ /*@Thrown*/ TargetSectionClass targetMMSection_0 = oclAsType_0.getTargetMMSection();
+		        final /*@NonNull*/ /*@Thrown*/ TargetSection targetMMSection_0 = oclAsType_0.getTargetMMSection();
 		        final /*@Thrown*/ boolean eq_1 = getContainingSection.equals(targetMMSection_0);
 		        status = eq_1;
 		    }

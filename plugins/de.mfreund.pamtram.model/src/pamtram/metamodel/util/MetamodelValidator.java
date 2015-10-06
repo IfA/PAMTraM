@@ -31,11 +31,14 @@ import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.RegExMatcher;
+import pamtram.metamodel.Section;
+import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionContainmentReference;
 import pamtram.metamodel.SourceSectionReference;
 import pamtram.metamodel.SubstringMatcher;
+import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionContainmentReference;
@@ -94,20 +97,20 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	public static final int CLASS__ECLASS_MATCHES_PARENT_EREFERENCE = 3;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Is Referenced By Mapping' of 'Source Section Class'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Is Referenced By Mapping' of 'Source Section'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int SOURCE_SECTION_CLASS__IS_REFERENCED_BY_MAPPING = 4;
+	public static final int SOURCE_SECTION__IS_REFERENCED_BY_MAPPING = 4;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Is Referenced By Mapping Hint Group' of 'Target Section Class'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Is Referenced By Mapping Hint Group' of 'Target Section'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int TARGET_SECTION_CLASS__IS_REFERENCED_BY_MAPPING_HINT_GROUP = 5;
+	public static final int TARGET_SECTION__IS_REFERENCED_BY_MAPPING_HINT_GROUP = 5;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'EReference Matches Parent EClass' of 'Reference'.
@@ -207,6 +210,12 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 			return validateMetaModelElement((MetaModelElement<?, ?, ?>)value, diagnostics, context);
 		case MetamodelPackage.CLASS:
 			return validateClass((pamtram.metamodel.Class<?, ?, ?>)value, diagnostics, context);
+		case MetamodelPackage.SECTION:
+			return validateSection((Section<?, ?, ?>)value, diagnostics, context);
+		case MetamodelPackage.SOURCE_SECTION:
+			return validateSourceSection((SourceSection)value, diagnostics, context);
+		case MetamodelPackage.TARGET_SECTION:
+			return validateTargetSection((TargetSection)value, diagnostics, context);
 		case MetamodelPackage.SOURCE_SECTION_CLASS:
 			return validateSourceSectionClass((SourceSectionClass)value, diagnostics, context);
 		case MetamodelPackage.TARGET_SECTION_CLASS:
@@ -390,6 +399,170 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateSection(Section<?, ?, ?> section, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(section, diagnostics, context)) {
+			return false;
+		}
+		boolean result = validate_EveryMultiplicityConforms(section, diagnostics, context);
+		if (result || diagnostics != null) {
+			result &= validate_EveryDataValueConforms(section, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryReferenceIsContained(section, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryBidirectionalReferenceIsPaired(section, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryProxyResolves(section, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_UniqueID(section, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryKeyUnique(section, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryMapEntryUnique(section, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateClass_eClassMatchesParentEReference(section, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateClass_variableCardinalityIsValid(section, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateClass_containerIsValid(section, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateClass_cardinalityIsValid(section, diagnostics, context);
+		}
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSourceSection(SourceSection sourceSection, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(sourceSection, diagnostics, context)) {
+			return false;
+		}
+		boolean result = validate_EveryMultiplicityConforms(sourceSection, diagnostics, context);
+		if (result || diagnostics != null) {
+			result &= validate_EveryDataValueConforms(sourceSection, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryReferenceIsContained(sourceSection, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryBidirectionalReferenceIsPaired(sourceSection, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryProxyResolves(sourceSection, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_UniqueID(sourceSection, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryKeyUnique(sourceSection, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryMapEntryUnique(sourceSection, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateClass_eClassMatchesParentEReference(sourceSection, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateClass_variableCardinalityIsValid(sourceSection, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateClass_containerIsValid(sourceSection, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateClass_cardinalityIsValid(sourceSection, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateSourceSection_isReferencedByMapping(sourceSection, diagnostics, context);
+		}
+		return result;
+	}
+
+	/**
+	 * Validates the isReferencedByMapping constraint of '<em>Source Section</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSourceSection_isReferencedByMapping(SourceSection sourceSection, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return sourceSection.isReferencedByMapping(diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateTargetSection(TargetSection targetSection, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(targetSection, diagnostics, context)) {
+			return false;
+		}
+		boolean result = validate_EveryMultiplicityConforms(targetSection, diagnostics, context);
+		if (result || diagnostics != null) {
+			result &= validate_EveryDataValueConforms(targetSection, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryReferenceIsContained(targetSection, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryBidirectionalReferenceIsPaired(targetSection, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryProxyResolves(targetSection, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_UniqueID(targetSection, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryKeyUnique(targetSection, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validate_EveryMapEntryUnique(targetSection, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateClass_eClassMatchesParentEReference(targetSection, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateClass_variableCardinalityIsValid(targetSection, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateClass_containerIsValid(targetSection, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateClass_cardinalityIsValid(targetSection, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateTargetSection_isReferencedByMappingHintGroup(targetSection, diagnostics, context);
+		}
+		return result;
+	}
+
+	/**
+	 * Validates the isReferencedByMappingHintGroup constraint of '<em>Target Section</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateTargetSection_isReferencedByMappingHintGroup(TargetSection targetSection, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return targetSection.isReferencedByMappingHintGroup(diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateSourceSectionClass(SourceSectionClass sourceSectionClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(sourceSectionClass, diagnostics, context)) {
 			return false;
@@ -428,20 +601,7 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) {
 			result &= validateClass_cardinalityIsValid(sourceSectionClass, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
-			result &= validateSourceSectionClass_isReferencedByMapping(sourceSectionClass, diagnostics, context);
-		}
 		return result;
-	}
-
-	/**
-	 * Validates the isReferencedByMapping constraint of '<em>Source Section Class</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSourceSectionClass_isReferencedByMapping(SourceSectionClass sourceSectionClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return sourceSectionClass.isReferencedByMapping(diagnostics, context);
 	}
 
 	/**
@@ -487,20 +647,7 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) {
 			result &= validateClass_cardinalityIsValid(targetSectionClass, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
-			result &= validateTargetSectionClass_isReferencedByMappingHintGroup(targetSectionClass, diagnostics, context);
-		}
 		return result;
-	}
-
-	/**
-	 * Validates the isReferencedByMappingHintGroup constraint of '<em>Target Section Class</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateTargetSectionClass_isReferencedByMappingHintGroup(TargetSectionClass targetSectionClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return targetSectionClass.isReferencedByMappingHintGroup(diagnostics, context);
 	}
 
 	/**

@@ -583,8 +583,44 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getSourceSection_ReferencingMappings() {
+		return (EReference)sourceSectionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getSourceSection__IsReferencedByMapping__DiagnosticChain_Map() {
+		return sourceSectionEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTargetSection() {
 		return targetSectionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTargetSection_ReferencingMappingHintGroups() {
+		return (EReference)targetSectionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getTargetSection__IsReferencedByMappingHintGroup__DiagnosticChain_Map() {
+		return targetSectionEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -601,44 +637,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSourceSectionClass_ReferencingMappings() {
-		return (EReference)sourceSectionClassEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getSourceSectionClass__IsReferencedByMapping__DiagnosticChain_Map() {
-		return sourceSectionClassEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getTargetSectionClass() {
 		return targetSectionClassEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTargetSectionClass_ReferencingMappingHintGroups() {
-		return (EReference)targetSectionClassEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getTargetSectionClass__IsReferencedByMappingHintGroup__DiagnosticChain_Map() {
-		return targetSectionClassEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -1241,16 +1241,16 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		sectionEClass = createEClass(SECTION);
 
 		sourceSectionEClass = createEClass(SOURCE_SECTION);
+		createEReference(sourceSectionEClass, SOURCE_SECTION__REFERENCING_MAPPINGS);
+		createEOperation(sourceSectionEClass, SOURCE_SECTION___IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP);
 
 		targetSectionEClass = createEClass(TARGET_SECTION);
+		createEReference(targetSectionEClass, TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS);
+		createEOperation(targetSectionEClass, TARGET_SECTION___IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP);
 
 		sourceSectionClassEClass = createEClass(SOURCE_SECTION_CLASS);
-		createEReference(sourceSectionClassEClass, SOURCE_SECTION_CLASS__REFERENCING_MAPPINGS);
-		createEOperation(sourceSectionClassEClass, SOURCE_SECTION_CLASS___IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP);
 
 		targetSectionClassEClass = createEClass(TARGET_SECTION_CLASS);
-		createEReference(targetSectionClassEClass, TARGET_SECTION_CLASS__REFERENCING_MAPPING_HINT_GROUPS);
-		createEOperation(targetSectionClassEClass, TARGET_SECTION_CLASS___IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP);
 
 		libraryParameterEClass = createEClass(LIBRARY_PARAMETER);
 		createEReference(libraryParameterEClass, LIBRARY_PARAMETER__SOURCE);
@@ -1839,32 +1839,32 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEClass(sectionEClass, Section.class, "Section", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(sourceSectionEClass, SourceSection.class, "SourceSection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSourceSection_ReferencingMappings(), theMappingPackage.getMappingType(), null, "referencingMappings", null, 0, -1, SourceSection.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+		op = initEOperation(getSourceSection__IsReferencedByMapping__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "isReferencedByMapping", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(targetSectionEClass, TargetSection.class, "TargetSection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTargetSection_ReferencingMappingHintGroups(), theMappingPackage.getMappingHintGroupType(), null, "referencingMappingHintGroups", null, 0, -1, TargetSection.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+		op = initEOperation(getTargetSection__IsReferencedByMappingHintGroup__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "isReferencedByMappingHintGroup", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(sourceSectionClassEClass, SourceSectionClass.class, "SourceSectionClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSourceSectionClass_ReferencingMappings(), theMappingPackage.getMappingType(), null, "referencingMappings", null, 0, -1, SourceSectionClass.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-
-		op = initEOperation(getSourceSectionClass__IsReferencedByMapping__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "isReferencedByMapping", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(targetSectionClassEClass, TargetSectionClass.class, "TargetSectionClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTargetSectionClass_ReferencingMappingHintGroups(), theMappingPackage.getMappingHintGroupType(), null, "referencingMappingHintGroups", null, 0, -1, TargetSectionClass.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-
-		op = initEOperation(getTargetSectionClass__IsReferencedByMappingHintGroup__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "isReferencedByMappingHintGroup", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(libraryParameterEClass, LibraryParameter.class, "LibraryParameter", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLibraryParameter_Source(), ecorePackage.getEObject(), null, "source", null, 1, 1, LibraryParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2048,13 +2048,13 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 			 "constraints", "eClassMatchesParentEReference variableCardinalityIsValid containerIsValid"
 		   });	
 		addAnnotation
-		  (sourceSectionClassEClass, 
+		  (sourceSectionEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "isReferencedByMapping"
 		   });	
 		addAnnotation
-		  (targetSectionClassEClass, 
+		  (targetSectionEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "isReferencedByMappingHintGroup"

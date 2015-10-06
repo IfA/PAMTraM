@@ -29,6 +29,7 @@ import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.Reference;
+import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 
@@ -72,7 +73,7 @@ public abstract class LocalModifiedAttributeElementTypeImpl<C extends pamtram.me
 		 *   in
 		 *     let
 		 *       status : OclAny[?] = let
-		 *         sourceMMSection : metamodel::SourceSectionClass[1] = self.getMappingHintGroup()
+		 *         sourceMMSection : metamodel::SourceSection[1] = self.getMappingHintGroup()
 		 *         .oclContainer()
 		 *         .oclAsType(Mapping).sourceMMSection
 		 *       in
@@ -111,7 +112,7 @@ public abstract class LocalModifiedAttributeElementTypeImpl<C extends pamtram.me
 		        final /*@NonNull*/ /*@Thrown*/ NamedElement getMappingHintGroup = ((ModifiedAttributeElementType)this).getMappingHintGroup();
 		        final /*@Nullable*/ /*@Thrown*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, getMappingHintGroup);
 		        final /*@NonNull*/ /*@Thrown*/ Mapping oclAsType = ClassUtil.nonNullState((Mapping)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_mapping_c_c_Mapping_0));
-		        final /*@NonNull*/ /*@Thrown*/ SourceSectionClass sourceMMSection = oclAsType.getSourceMMSection();
+		        final /*@NonNull*/ /*@Thrown*/ SourceSection sourceMMSection = oclAsType.getSourceMMSection();
 		        CAUGHT_sourceMMSection = sourceMMSection;
 		    }
 		    catch (Exception e) {
@@ -206,7 +207,7 @@ public abstract class LocalModifiedAttributeElementTypeImpl<C extends pamtram.me
 		    final /*@NonNull*/ /*@Thrown*/ NamedElement getMappingHintGroup_0 = ((ModifiedAttributeElementType)this).getMappingHintGroup();
 		    final /*@Nullable*/ /*@Thrown*/ Object oclContainer_0 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, getMappingHintGroup_0);
 		    final /*@NonNull*/ /*@Thrown*/ Mapping oclAsType_4 = ClassUtil.nonNullState((Mapping)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_0, TYP_pamtram_c_c_mapping_c_c_Mapping_1));
-		    final /*@NonNull*/ /*@Thrown*/ SourceSectionClass sourceMMSection_0 = oclAsType_4.getSourceMMSection();
+		    final /*@NonNull*/ /*@Thrown*/ SourceSection sourceMMSection_0 = oclAsType_4.getSourceMMSection();
 		    final /*@Nullable*/ /*@Thrown*/ String name_0 = sourceMMSection_0.getName();
 		    final /*@NonNull*/ /*@NonInvalid*/ String sum_1 = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(sum_0, name_0));
 		    final /*@NonNull*/ /*@NonInvalid*/ String sum_2 = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(sum_1, MappingTables.STR__39_32_or_32_in_32_one_32_of_32_its_32_sub_m_sections_33));

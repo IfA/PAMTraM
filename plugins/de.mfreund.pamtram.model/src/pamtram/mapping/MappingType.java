@@ -4,7 +4,7 @@ package pamtram.mapping;
 
 import pamtram.DeactivatableElement;
 import pamtram.NamedElement;
-import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.SourceSection;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,13 +32,13 @@ public interface MappingType extends NamedElement, DeactivatableElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source MM Section</em>' reference.
-	 * @see #setSourceMMSection(SourceSectionClass)
+	 * @see #setSourceMMSection(SourceSection)
 	 * @see pamtram.mapping.MappingPackage#getMappingType_SourceMMSection()
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!MappingType!sourceMMSection'"
 	 * @generated
 	 */
-	SourceSectionClass getSourceMMSection();
+	SourceSection getSourceMMSection();
 
 	/**
 	 * Sets the value of the '{@link pamtram.mapping.MappingType#getSourceMMSection <em>Source MM Section</em>}' reference.
@@ -48,6 +48,6 @@ public interface MappingType extends NamedElement, DeactivatableElement {
 	 * @see #getSourceMMSection()
 	 * @generated
 	 */
-	void setSourceMMSection(SourceSectionClass value);
+	void setSourceMMSection(SourceSection value);
 
 } // MappingType

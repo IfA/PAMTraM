@@ -17,6 +17,7 @@ import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
+import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionClass;
 
 /**
@@ -42,7 +43,7 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	 * @generated
 	 * @ordered
 	 */
-	protected TargetSectionClass targetMMSection;
+	protected TargetSection targetMMSection;
 
 	/**
 	 * The cached value of the '{@link #getMappingHints() <em>Mapping Hints</em>}' containment reference list.
@@ -79,10 +80,10 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	 * @generated
 	 */
 	@Override
-	public TargetSectionClass getTargetMMSection() {
+	public TargetSection getTargetMMSection() {
 		if (targetMMSection != null && targetMMSection.eIsProxy()) {
 			InternalEObject oldTargetMMSection = (InternalEObject)targetMMSection;
-			targetMMSection = (TargetSectionClass)eResolveProxy(oldTargetMMSection);
+			targetMMSection = (TargetSection)eResolveProxy(oldTargetMMSection);
 			if (targetMMSection != oldTargetMMSection) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MAPPING_HINT_GROUP_TYPE__TARGET_MM_SECTION, oldTargetMMSection, targetMMSection));
@@ -96,7 +97,7 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TargetSectionClass basicGetTargetMMSection() {
+	public TargetSection basicGetTargetMMSection() {
 		return targetMMSection;
 	}
 
@@ -105,13 +106,13 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTargetMMSectionGen(TargetSectionClass newTargetMMSection) {
-		TargetSectionClass oldTargetMMSection = targetMMSection;
+	public void setTargetMMSection(TargetSection newTargetMMSection) {
+		TargetSection oldTargetMMSection = targetMMSection;
 		targetMMSection = newTargetMMSection;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP_TYPE__TARGET_MM_SECTION, oldTargetMMSection, targetMMSection));
 	}
-	
+
 	/**
 	 * Before setting the {@link newTargetMMSection}, update the name.
 	 */
@@ -175,7 +176,7 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__TARGET_MM_SECTION:
-				setTargetMMSection((TargetSectionClass)newValue);
+				setTargetMMSection((TargetSection)newValue);
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS:
 				getMappingHints().clear();
@@ -194,7 +195,7 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__TARGET_MM_SECTION:
-				setTargetMMSection((TargetSectionClass)null);
+				setTargetMMSection((TargetSection)null);
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS:
 				getMappingHints().clear();

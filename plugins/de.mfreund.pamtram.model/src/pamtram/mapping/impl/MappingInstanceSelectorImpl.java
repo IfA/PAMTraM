@@ -34,7 +34,7 @@ import pamtram.mapping.MappingPackage;
 import pamtram.mapping.MappingTables;
 import pamtram.mapping.Matcher;
 import pamtram.metamodel.MetaModelElement;
-import pamtram.metamodel.TargetSectionClass;
+import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 
 /**
@@ -200,7 +200,7 @@ public class MappingInstanceSelectorImpl extends MappingHintImpl implements Mapp
 		 *       then true
 		 *       else
 		 *         let
-		 *           targetMMSection : metamodel::TargetSectionClass[1] = if
+		 *           targetMMSection : metamodel::TargetSection[1] = if
 		 *             self.oclContainer()
 		 *             .oclIsKindOf(MappingHintGroupType)
 		 *           then
@@ -254,17 +254,17 @@ public class MappingInstanceSelectorImpl extends MappingHintImpl implements Mapp
 		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0 = idResolver.getClass(MappingTables.CLSSid_MappingHintGroupType, null);
 		        final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
 		        final /*@Thrown*/ boolean oclIsKindOf = ClassUtil.nonNullState(OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0).booleanValue());
-		        /*@NonNull*/ /*@Thrown*/ TargetSectionClass targetMMSection_1;
+		        /*@NonNull*/ /*@Thrown*/ TargetSection targetMMSection_1;
 		        if (oclIsKindOf) {
 		            final /*@NonNull*/ /*@Thrown*/ MappingHintGroupType oclAsType = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0));
-		            final /*@NonNull*/ /*@Thrown*/ TargetSectionClass targetMMSection = oclAsType.getTargetMMSection();
+		            final /*@NonNull*/ /*@Thrown*/ TargetSection targetMMSection = oclAsType.getTargetMMSection();
 		            targetMMSection_1 = targetMMSection;
 		        }
 		        else {
 		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupImporter = idResolver.getClass(MappingTables.CLSSid_MappingHintGroupImporter, null);
 		            final /*@NonNull*/ /*@Thrown*/ MappingHintGroupImporter oclAsType_0 = ClassUtil.nonNullState((MappingHintGroupImporter)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupImporter));
 		            final /*@NonNull*/ /*@Thrown*/ ExportedMappingHintGroup hintGroup = oclAsType_0.getHintGroup();
-		            final /*@NonNull*/ /*@Thrown*/ TargetSectionClass targetMMSection_0 = hintGroup.getTargetMMSection();
+		            final /*@NonNull*/ /*@Thrown*/ TargetSection targetMMSection_0 = hintGroup.getTargetMMSection();
 		            targetMMSection_1 = targetMMSection_0;
 		        }
 		        final /*@NonNull*/ /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType_0 = ClassUtil.nonNullState((org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(evaluator, targetMMSection_1));

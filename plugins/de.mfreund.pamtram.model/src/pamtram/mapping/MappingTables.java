@@ -121,8 +121,10 @@ public class MappingTables
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_NamedElement = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("NamedElement", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_OclElement = MappingTables.PACKid_$metamodel$.getClassId("OclElement", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_PAMTraM = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("PAMTraM", 0);
+    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_SourceSection = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SourceSection", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_SourceSectionAttribute = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SourceSectionAttribute", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_SourceSectionClass = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SourceSectionClass", 0);
+    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_TargetSection = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("TargetSection", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_TargetSectionAttribute = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("TargetSectionAttribute", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_TargetSectionClass = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("TargetSectionClass", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_TargetSectionNonContainmentReference = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("TargetSectionNonContainmentReference", 0);
@@ -180,8 +182,8 @@ public class MappingTables
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_ModifiableHint = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_ModifiableHint);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_ModifiedAttributeElementType = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_ModifiedAttributeElementType);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_PAMTraM = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_PAMTraM);
-    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_SourceSectionClass = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_SourceSectionClass);
-    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_TargetSectionClass = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_TargetSectionClass);
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_SourceSection = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_SourceSection);
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_TargetSection = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_TargetSection);
     public static final /*@NonNull*/ /*@NonInvalid*/ EnumerationLiteralId ELITid_ONE = MappingTables.ENUMid_CardinalityType.getEnumerationLiteralId("ONE");
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_AttributeMappingSourceInterface = TypeId.ORDERED_SET.getSpecializedId(MappingTables.CLSSid_AttributeMappingSourceInterface);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_AttributeMatcherSourceInterface = TypeId.ORDERED_SET.getSpecializedId(MappingTables.CLSSid_AttributeMatcherSourceInterface);

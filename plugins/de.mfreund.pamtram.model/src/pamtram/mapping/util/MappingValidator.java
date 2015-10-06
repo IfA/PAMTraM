@@ -28,6 +28,7 @@ import pamtram.mapping.ExternalMappedAttributeValueAppender;
 import pamtram.mapping.ExternalMappedAttributeValueExpander;
 import pamtram.mapping.ExternalMappedAttributeValuePrepender;
 import pamtram.mapping.ExternalModifiedAttributeElementType;
+import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.GlobalValue;
@@ -330,6 +331,8 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 			return validateMappedAttributeValuePrepender((MappedAttributeValuePrepender)value, diagnostics, context);
 		case MappingPackage.MAPPED_ATTRIBUTE_VALUE_APPENDER:
 			return validateMappedAttributeValueAppender((MappedAttributeValueAppender)value, diagnostics, context);
+		case MappingPackage.FIXED_VALUE:
+			return validateFixedValue((FixedValue)value, diagnostics, context);
 		case MappingPackage.GLOBAL_ATTRIBUTE:
 			return validateGlobalAttribute((GlobalAttribute)value, diagnostics, context);
 		case MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER:
@@ -578,10 +581,10 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 			result &= validate_EveryMapEntryUnique(cardinalityMapping, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
-			result &= validateCardinalityMapping_noCardinalityMappingForSourceSectionRoot(cardinalityMapping, diagnostics, context);
+			result &= validateCardinalityMapping_sourceClassMatchesSection(cardinalityMapping, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
-			result &= validateCardinalityMapping_sourceClassMatchesSection(cardinalityMapping, diagnostics, context);
+			result &= validateCardinalityMapping_sourceClassIsVariableCardinality(cardinalityMapping, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
 			result &= validateCardinalityMapping_targetClassMatchesSection(cardinalityMapping, diagnostics, context);
@@ -590,7 +593,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 			result &= validateCardinalityMapping_targetClassIsVariableCardinality(cardinalityMapping, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
-			result &= validateCardinalityMapping_sourceClassIsVariableCardinality(cardinalityMapping, diagnostics, context);
+			result &= validateCardinalityMapping_noCardinalityMappingForSourceSectionRoot(cardinalityMapping, diagnostics, context);
 		}
 		return result;
 	}
@@ -677,10 +680,10 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 			result &= validate_EveryMapEntryUnique(mappingInstanceSelector, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
-			result &= validateMappingInstanceSelector_affectedReferenceMatchesSection(mappingInstanceSelector, diagnostics, context);
+			result &= validateMappingInstanceSelector_affectedReferenceIsNonContainment(mappingInstanceSelector, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
-			result &= validateMappingInstanceSelector_affectedReferenceIsNonContainment(mappingInstanceSelector, diagnostics, context);
+			result &= validateMappingInstanceSelector_affectedReferenceMatchesSection(mappingInstanceSelector, diagnostics, context);
 		}
 		return result;
 	}
@@ -1210,6 +1213,15 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 			result &= validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(mappedAttributeValueAppender, diagnostics, context);
 		}
 		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateFixedValue(FixedValue fixedValue, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(fixedValue, diagnostics, context);
 	}
 
 	/**

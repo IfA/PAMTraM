@@ -5,7 +5,7 @@ package pamtram.mapping;
 import org.eclipse.emf.common.util.EList;
 
 import pamtram.NamedElement;
-import pamtram.metamodel.TargetSectionClass;
+import pamtram.metamodel.TargetSection;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,13 +34,13 @@ public interface MappingHintGroupType extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target MM Section</em>' reference.
-	 * @see #setTargetMMSection(TargetSectionClass)
+	 * @see #setTargetMMSection(TargetSection)
 	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupType_TargetMMSection()
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!MappingHintGroupType!targetMMSection'"
 	 * @generated
 	 */
-	TargetSectionClass getTargetMMSection();
+	TargetSection getTargetMMSection();
 
 	/**
 	 * Sets the value of the '{@link pamtram.mapping.MappingHintGroupType#getTargetMMSection <em>Target MM Section</em>}' reference.
@@ -50,7 +50,7 @@ public interface MappingHintGroupType extends NamedElement {
 	 * @see #getTargetMMSection()
 	 * @generated
 	 */
-	void setTargetMMSection(TargetSectionClass value);
+	void setTargetMMSection(TargetSection value);
 
 	/**
 	 * Returns the value of the '<em><b>Mapping Hints</b></em>' containment reference list.

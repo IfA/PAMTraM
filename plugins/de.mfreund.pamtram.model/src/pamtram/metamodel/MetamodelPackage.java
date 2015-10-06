@@ -552,22 +552,13 @@ public interface MetamodelPackage extends EPackage {
 	int SOURCE_SECTION_CLASS__ATTRIBUTES = CLASS__ATTRIBUTES;
 
 	/**
-	 * The feature id for the '<em><b>Referencing Mappings</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOURCE_SECTION_CLASS__REFERENCING_MAPPINGS = CLASS_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Source Section Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 1;
+	int SOURCE_SECTION_CLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -669,22 +660,13 @@ public interface MetamodelPackage extends EPackage {
 	int SOURCE_SECTION_CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP = CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Is Referenced By Mapping</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOURCE_SECTION_CLASS___IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP = CLASS_OPERATION_COUNT + 0;
-
-	/**
 	 * The number of operations of the '<em>Source Section Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS_OPERATION_COUNT = CLASS_OPERATION_COUNT + 1;
+	int SOURCE_SECTION_CLASS_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.metamodel.impl.SourceSectionImpl <em>Source Section</em>}' class.
@@ -757,7 +739,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION__REFERENCING_MAPPINGS = SOURCE_SECTION_CLASS__REFERENCING_MAPPINGS;
+	int SOURCE_SECTION__REFERENCING_MAPPINGS = SOURCE_SECTION_CLASS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Source Section</em>' class.
@@ -766,7 +748,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_FEATURE_COUNT = SOURCE_SECTION_CLASS_FEATURE_COUNT + 0;
+	int SOURCE_SECTION_FEATURE_COUNT = SOURCE_SECTION_CLASS_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -874,7 +856,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION___IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP = SOURCE_SECTION_CLASS___IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP;
+	int SOURCE_SECTION___IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP = SOURCE_SECTION_CLASS_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Source Section</em>' class.
@@ -883,7 +865,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_OPERATION_COUNT = SOURCE_SECTION_CLASS_OPERATION_COUNT + 0;
+	int SOURCE_SECTION_OPERATION_COUNT = SOURCE_SECTION_CLASS_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.metamodel.impl.TargetSectionClassImpl <em>Target Section Class</em>}' class.
@@ -950,22 +932,13 @@ public interface MetamodelPackage extends EPackage {
 	int TARGET_SECTION_CLASS__ATTRIBUTES = CLASS__ATTRIBUTES;
 
 	/**
-	 * The feature id for the '<em><b>Referencing Mapping Hint Groups</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TARGET_SECTION_CLASS__REFERENCING_MAPPING_HINT_GROUPS = CLASS_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Target Section Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 1;
+	int TARGET_SECTION_CLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -1067,22 +1040,13 @@ public interface MetamodelPackage extends EPackage {
 	int TARGET_SECTION_CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP = CLASS___ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Is Referenced By Mapping Hint Group</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TARGET_SECTION_CLASS___IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP = CLASS_OPERATION_COUNT + 0;
-
-	/**
 	 * The number of operations of the '<em>Target Section Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS_OPERATION_COUNT = CLASS_OPERATION_COUNT + 1;
+	int TARGET_SECTION_CLASS_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.metamodel.impl.TargetSectionImpl <em>Target Section</em>}' class.
@@ -1155,7 +1119,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS = TARGET_SECTION_CLASS__REFERENCING_MAPPING_HINT_GROUPS;
+	int TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS = TARGET_SECTION_CLASS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Target Section</em>' class.
@@ -1164,7 +1128,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_FEATURE_COUNT = TARGET_SECTION_CLASS_FEATURE_COUNT + 0;
+	int TARGET_SECTION_FEATURE_COUNT = TARGET_SECTION_CLASS_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -1272,7 +1236,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION___IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP = TARGET_SECTION_CLASS___IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP;
+	int TARGET_SECTION___IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP = TARGET_SECTION_CLASS_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Target Section</em>' class.
@@ -1281,7 +1245,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_OPERATION_COUNT = TARGET_SECTION_CLASS_OPERATION_COUNT + 0;
+	int TARGET_SECTION_OPERATION_COUNT = TARGET_SECTION_CLASS_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.metamodel.impl.LibraryParameterImpl <em>Library Parameter</em>}' class.
@@ -3769,6 +3733,27 @@ public interface MetamodelPackage extends EPackage {
 	EClass getSourceSection();
 
 	/**
+	 * Returns the meta object for the reference list '{@link pamtram.metamodel.SourceSection#getReferencingMappings <em>Referencing Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Referencing Mappings</em>'.
+	 * @see pamtram.metamodel.SourceSection#getReferencingMappings()
+	 * @see #getSourceSection()
+	 * @generated
+	 */
+	EReference getSourceSection_ReferencingMappings();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.metamodel.SourceSection#isReferencedByMapping(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Is Referenced By Mapping</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Referenced By Mapping</em>' operation.
+	 * @see pamtram.metamodel.SourceSection#isReferencedByMapping(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getSourceSection__IsReferencedByMapping__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.TargetSection <em>Target Section</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3777,6 +3762,27 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getTargetSection();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.metamodel.TargetSection#getReferencingMappingHintGroups <em>Referencing Mapping Hint Groups</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Referencing Mapping Hint Groups</em>'.
+	 * @see pamtram.metamodel.TargetSection#getReferencingMappingHintGroups()
+	 * @see #getTargetSection()
+	 * @generated
+	 */
+	EReference getTargetSection_ReferencingMappingHintGroups();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.metamodel.TargetSection#isReferencedByMappingHintGroup(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Is Referenced By Mapping Hint Group</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Referenced By Mapping Hint Group</em>' operation.
+	 * @see pamtram.metamodel.TargetSection#isReferencedByMappingHintGroup(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getTargetSection__IsReferencedByMappingHintGroup__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.SourceSectionClass <em>Source Section Class</em>}'.
@@ -3789,27 +3795,6 @@ public interface MetamodelPackage extends EPackage {
 	EClass getSourceSectionClass();
 
 	/**
-	 * Returns the meta object for the reference list '{@link pamtram.metamodel.SourceSectionClass#getReferencingMappings <em>Referencing Mappings</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Referencing Mappings</em>'.
-	 * @see pamtram.metamodel.SourceSectionClass#getReferencingMappings()
-	 * @see #getSourceSectionClass()
-	 * @generated
-	 */
-	EReference getSourceSectionClass_ReferencingMappings();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.metamodel.SourceSectionClass#isReferencedByMapping(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Is Referenced By Mapping</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Is Referenced By Mapping</em>' operation.
-	 * @see pamtram.metamodel.SourceSectionClass#isReferencedByMapping(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getSourceSectionClass__IsReferencedByMapping__DiagnosticChain_Map();
-
-	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.TargetSectionClass <em>Target Section Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3818,27 +3803,6 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getTargetSectionClass();
-
-	/**
-	 * Returns the meta object for the reference list '{@link pamtram.metamodel.TargetSectionClass#getReferencingMappingHintGroups <em>Referencing Mapping Hint Groups</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Referencing Mapping Hint Groups</em>'.
-	 * @see pamtram.metamodel.TargetSectionClass#getReferencingMappingHintGroups()
-	 * @see #getTargetSectionClass()
-	 * @generated
-	 */
-	EReference getTargetSectionClass_ReferencingMappingHintGroups();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.metamodel.TargetSectionClass#isReferencedByMappingHintGroup(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Is Referenced By Mapping Hint Group</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Is Referenced By Mapping Hint Group</em>' operation.
-	 * @see pamtram.metamodel.TargetSectionClass#isReferencedByMappingHintGroup(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getTargetSectionClass__IsReferencedByMappingHintGroup__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.metamodel.LibraryParameter <em>Library Parameter</em>}'.
@@ -4666,6 +4630,22 @@ public interface MetamodelPackage extends EPackage {
 		EClass SOURCE_SECTION = eINSTANCE.getSourceSection();
 
 		/**
+		 * The meta object literal for the '<em><b>Referencing Mappings</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SOURCE_SECTION__REFERENCING_MAPPINGS = eINSTANCE.getSourceSection_ReferencingMappings();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Referenced By Mapping</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation SOURCE_SECTION___IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP = eINSTANCE.getSourceSection__IsReferencedByMapping__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.TargetSectionImpl <em>Target Section</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4674,6 +4654,22 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass TARGET_SECTION = eINSTANCE.getTargetSection();
+
+		/**
+		 * The meta object literal for the '<em><b>Referencing Mapping Hint Groups</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS = eINSTANCE.getTargetSection_ReferencingMappingHintGroups();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Referenced By Mapping Hint Group</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation TARGET_SECTION___IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTargetSection__IsReferencedByMappingHintGroup__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.SourceSectionClassImpl <em>Source Section Class</em>}' class.
@@ -4686,22 +4682,6 @@ public interface MetamodelPackage extends EPackage {
 		EClass SOURCE_SECTION_CLASS = eINSTANCE.getSourceSectionClass();
 
 		/**
-		 * The meta object literal for the '<em><b>Referencing Mappings</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SOURCE_SECTION_CLASS__REFERENCING_MAPPINGS = eINSTANCE.getSourceSectionClass_ReferencingMappings();
-
-		/**
-		 * The meta object literal for the '<em><b>Is Referenced By Mapping</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation SOURCE_SECTION_CLASS___IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP = eINSTANCE.getSourceSectionClass__IsReferencedByMapping__DiagnosticChain_Map();
-
-		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.TargetSectionClassImpl <em>Target Section Class</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4710,22 +4690,6 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass TARGET_SECTION_CLASS = eINSTANCE.getTargetSectionClass();
-
-		/**
-		 * The meta object literal for the '<em><b>Referencing Mapping Hint Groups</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TARGET_SECTION_CLASS__REFERENCING_MAPPING_HINT_GROUPS = eINSTANCE.getTargetSectionClass_ReferencingMappingHintGroups();
-
-		/**
-		 * The meta object literal for the '<em><b>Is Referenced By Mapping Hint Group</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation TARGET_SECTION_CLASS___IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTargetSectionClass__IsReferencedByMappingHintGroup__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.metamodel.impl.LibraryParameterImpl <em>Library Parameter</em>}' class.

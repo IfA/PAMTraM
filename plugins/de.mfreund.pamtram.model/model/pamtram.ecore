@@ -79,6 +79,13 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SectionModel" abstract="true" eSuperTypes="#//NamedElement">
+    <eTypeParameters name="S">
+      <eBounds eClassifier="#//metamodel/Section">
+        <eTypeArguments eTypeParameter="#//SectionModel/C"/>
+        <eTypeArguments eTypeParameter="#//SectionModel/R"/>
+        <eTypeArguments eTypeParameter="#//SectionModel/A"/>
+      </eBounds>
+    </eTypeParameters>
     <eTypeParameters name="C">
       <eBounds eClassifier="#//metamodel/Class">
         <eTypeArguments eTypeParameter="#//SectionModel/C"/>
@@ -104,11 +111,12 @@
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="metaModelSections" upperBound="-1"
         containment="true">
-      <eGenericType eTypeParameter="#//SectionModel/C"/>
+      <eGenericType eTypeParameter="#//SectionModel/S"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SourceSectionModel">
     <eGenericSuperTypes eClassifier="#//SectionModel">
+      <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
       <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
       <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
       <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
@@ -118,6 +126,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="libraryElements" upperBound="-1"
         eType="#//metamodel/LibraryEntry" containment="true"/>
     <eGenericSuperTypes eClassifier="#//SectionModel">
+      <eTypeArguments eClassifier="#//metamodel/TargetSection"/>
       <eTypeArguments eClassifier="#//metamodel/TargetSectionClass"/>
       <eTypeArguments eClassifier="#//metamodel/TargetSectionReference"/>
       <eTypeArguments eClassifier="#//metamodel/TargetSectionAttribute"/>
@@ -184,6 +193,11 @@
           <details key="body" value="Class section = this.getContainingSection();&#xD;&#xA;&#xD;&#xA;EObject container = section.eContainer();&#xD;&#xA;while(!(container instanceof SectionModel)) {&#xD;&#xA;&#x9;// we have reached the root element&#xD;&#xA;&#x9;if(container == null) {&#xD;&#xA;&#x9;&#x9;return null;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;container = container.eContainer();&#xD;&#xA;}&#xD;&#xA;return (SectionModel) container;"/>
         </eAnnotations>
         <eGenericType eClassifier="#//SectionModel">
+          <eTypeArguments eClassifier="#//metamodel/Section">
+            <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/C"/>
+            <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/R"/>
+            <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/A"/>
+          </eTypeArguments>
           <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/C"/>
           <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/R"/>
           <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/A"/>
@@ -286,6 +300,50 @@
         <eTypeArguments eTypeParameter="#//metamodel/Class/C"/>
         <eTypeArguments eTypeParameter="#//metamodel/Class/R"/>
         <eTypeArguments eTypeParameter="#//metamodel/Class/A"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Section" abstract="true">
+      <eTypeParameters name="C">
+        <eBounds eClassifier="#//metamodel/Class">
+          <eTypeArguments eTypeParameter="#//metamodel/Section/C"/>
+          <eTypeArguments eTypeParameter="#//metamodel/Section/R"/>
+          <eTypeArguments eTypeParameter="#//metamodel/Section/A"/>
+        </eBounds>
+      </eTypeParameters>
+      <eTypeParameters name="R">
+        <eBounds eClassifier="#//metamodel/Reference">
+          <eTypeArguments eTypeParameter="#//metamodel/Section/C"/>
+          <eTypeArguments eTypeParameter="#//metamodel/Section/R"/>
+          <eTypeArguments eTypeParameter="#//metamodel/Section/A"/>
+        </eBounds>
+      </eTypeParameters>
+      <eTypeParameters name="A">
+        <eBounds eClassifier="#//metamodel/Attribute">
+          <eTypeArguments eTypeParameter="#//metamodel/Section/C"/>
+          <eTypeArguments eTypeParameter="#//metamodel/Section/R"/>
+          <eTypeArguments eTypeParameter="#//metamodel/Section/A"/>
+        </eBounds>
+      </eTypeParameters>
+      <eGenericSuperTypes eClassifier="#//metamodel/Class">
+        <eTypeArguments eTypeParameter="#//metamodel/Section/C"/>
+        <eTypeArguments eTypeParameter="#//metamodel/Section/R"/>
+        <eTypeArguments eTypeParameter="#//metamodel/Section/A"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SourceSection">
+      <eGenericSuperTypes eClassifier="#//metamodel/SourceSectionClass"/>
+      <eGenericSuperTypes eClassifier="#//metamodel/Section">
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
+        <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TargetSection">
+      <eGenericSuperTypes eClassifier="#//metamodel/TargetSectionClass"/>
+      <eGenericSuperTypes eClassifier="#//metamodel/Section">
+        <eTypeArguments eClassifier="#//metamodel/TargetSectionClass"/>
+        <eTypeArguments eClassifier="#//metamodel/TargetSectionReference"/>
+        <eTypeArguments eClassifier="#//metamodel/TargetSectionAttribute"/>
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SourceSectionClass">

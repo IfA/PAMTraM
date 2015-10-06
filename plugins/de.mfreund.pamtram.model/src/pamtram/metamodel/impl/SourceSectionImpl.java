@@ -6,10 +6,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
+import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -24,6 +25,7 @@ import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.SetValue;
+
 import pamtram.mapping.MappingType;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.MetamodelTables;
@@ -65,8 +67,9 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
+	@Override
 	public EList<MappingType> getReferencingMappings() {
 		/**
 		 * mapping::MappingType.allInstances()->select(m | self = m.sourceMMSection)
@@ -79,24 +82,27 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 		/*@NonNull*/ Iterator<?> ITERATOR_m = allInstances.iterator();
 		/*@NonNull*/ /*@Thrown*/ SetValue select;
 		while (true) {
-		    if (!ITERATOR_m.hasNext()) {
-		        select = accumulator;
-		        break;
-		    }
-		    /*@NonNull*/ /*@NonInvalid*/ MappingType m = (MappingType)ITERATOR_m.next();
-		    /**
-		     * self = m.sourceMMSection
-		     */
-		    final /*@NonNull*/ /*@Thrown*/ SourceSection sourceMMSection = m.getSourceMMSection();
-		    final /*@Thrown*/ boolean eq = this.equals(sourceMMSection);
-		    //
-		    if (eq == ValueUtil.TRUE_VALUE) {
-		        accumulator.add(m);
-		    }
+			if (!ITERATOR_m.hasNext()) {
+				select = accumulator;
+				break;
+			}
+			/*@NonNull*/ /*@NonInvalid*/ MappingType m = (MappingType)ITERATOR_m.next();
+			/**
+			 * self = m.sourceMMSection
+			 */
+			final /*@NonNull*/ /*@Thrown*/ SourceSection sourceMMSection = m.getSourceMMSection();
+			final /*@Thrown*/ boolean eq = this.equals(sourceMMSection);
+			//
+			if (eq == ValueUtil.TRUE_VALUE) {
+				accumulator.add(m);
+			}
 		}
 		final List<MappingType> UNBOXED_select = select.asEcoreObjects(idResolver, pamtram.mapping.MappingType.class);
 		assert UNBOXED_select != null;
-		return (EList<MappingType>)UNBOXED_select;
+		// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=474307
+		return new EcoreEList.UnmodifiableEList.FastCompare<> 
+		(this, MetamodelPackage.Literals.SOURCE_SECTION__REFERENCING_MAPPINGS, UNBOXED_select.size(), UNBOXED_select.toArray()); 
+		//		return (EList<MappingType>)UNBOXED_select;
 	}
 
 	/**
@@ -104,6 +110,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isReferencedByMapping(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		/**
 		 * 
@@ -124,25 +131,25 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		/*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
 		try {
-		    final /*@NonNull*/ /*@Thrown*/ List<MappingType> referencingMappings = this.getReferencingMappings();
-		    final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_referencingMappings = idResolver.createOrderedSetOfAll(MetamodelTables.ORD_CLSSid_MappingType, referencingMappings);
-		    final /*@NonNull*/ /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(BOXED_referencingMappings));
-		    final /*@Thrown*/ boolean status = ClassUtil.nonNullState(OclComparableGreaterThanOperation.INSTANCE.evaluate(evaluator, size, MetamodelTables.INT_0).booleanValue());
-		    CAUGHT_status = status;
+			final /*@NonNull*/ /*@Thrown*/ List<MappingType> referencingMappings = this.getReferencingMappings();
+			final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_referencingMappings = idResolver.createOrderedSetOfAll(MetamodelTables.ORD_CLSSid_MappingType, referencingMappings);
+			final /*@NonNull*/ /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(BOXED_referencingMappings));
+			final /*@Thrown*/ boolean status = ClassUtil.nonNullState(OclComparableGreaterThanOperation.INSTANCE.evaluate(evaluator, size, MetamodelTables.INT_0).booleanValue());
+			CAUGHT_status = status;
 		}
 		catch (Exception e) {
-		    CAUGHT_status = ValueUtil.createInvalidValue(e);
+			CAUGHT_status = ValueUtil.createInvalidValue(e);
 		}
 		if (CAUGHT_status instanceof InvalidValueException) {
-		    throw (InvalidValueException)CAUGHT_status;
+			throw (InvalidValueException)CAUGHT_status;
 		}
 		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
 		/*@Nullable*/ /*@NonInvalid*/ String message_0;
 		if (ne) {
-		    message_0 = MetamodelTables.STR_The_32_section_32_is_32_not_32_referenced_32_by_32_any_32_mapping_33;
+			message_0 = MetamodelTables.STR_The_32_section_32_is_32_not_32_referenced_32_by_32_any_32_mapping_33;
 		}
 		else {
-		    message_0 = null;
+			message_0 = null;
 		}
 		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, MetamodelTables.STR_SourceSection_c_c_isReferencedByMapping, this, null, diagnostics, context, message_0, MetamodelTables.INT_2, CAUGHT_status, MetamodelTables.INT_0).booleanValue());
 		return Boolean.TRUE == logDiagnostic;
@@ -156,8 +163,8 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.SOURCE_SECTION__REFERENCING_MAPPINGS:
-				return getReferencingMappings();
+		case MetamodelPackage.SOURCE_SECTION__REFERENCING_MAPPINGS:
+			return getReferencingMappings();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -170,8 +177,8 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.SOURCE_SECTION__REFERENCING_MAPPINGS:
-				return !getReferencingMappings().isEmpty();
+		case MetamodelPackage.SOURCE_SECTION__REFERENCING_MAPPINGS:
+			return !getReferencingMappings().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -185,8 +192,8 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.SOURCE_SECTION___IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP:
-				return isReferencedByMapping((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+		case MetamodelPackage.SOURCE_SECTION___IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP_2:
+			return isReferencedByMapping((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

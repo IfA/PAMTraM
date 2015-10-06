@@ -13,7 +13,6 @@ import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.MappingType;
 import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -82,6 +81,7 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isDeactivated() {
 		return deactivated;
 	}
@@ -91,6 +91,7 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDeactivated(boolean newDeactivated) {
 		boolean oldDeactivated = deactivated;
 		deactivated = newDeactivated;
@@ -130,7 +131,7 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSourceMMSection(SourceSection newSourceMMSection) {
+	public void setSourceMMSectionGen(SourceSection newSourceMMSection) {
 		SourceSection oldSourceMMSection = sourceMMSection;
 		sourceMMSection = newSourceMMSection;
 		if (eNotificationRequired())
@@ -141,10 +142,10 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 	 * Before setting the {@link newSourceMMSection}, update the name.
 	 */
 	@Override
-	public void setSourceMMSection(SourceSectionClass newSourceMMSection) {
+	public void setSourceMMSection(SourceSection newSourceMMSection) {
 		setNameDerived(sourceMMSection, newSourceMMSection, null, "Mapping");
 		setSourceMMSectionGen(newSourceMMSection);
-		
+
 	}
 
 	/**

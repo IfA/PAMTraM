@@ -12,7 +12,6 @@ import pamtram.SectionModel;
 import pamtram.impl.NamedElementImpl;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.AttributeParameter;
-import pamtram.metamodel.Class;
 import pamtram.metamodel.ContainerParameter;
 import pamtram.metamodel.ExternalReferenceParameter;
 import pamtram.metamodel.LibraryEntry;
@@ -66,14 +65,13 @@ public abstract class MetaModelElementImpl<C extends pamtram.metamodel.Class<C, 
 	@Override
 	public C getContainingSection() {
 		MetaModelElement<C,R,A> element = this;
-				
+		
 		// move upwards in the hierarchy
 		while(element.eContainer() instanceof MetaModelElement) {
 			element = (MetaModelElement<C,R,A>) element.eContainer();
 		}
 		
-		if(element instanceof pamtram.metamodel.Class &&
-				(element.eContainer() instanceof SectionModel || element.eContainer() instanceof ContainerParameter)) {
+		if(element instanceof Section || element.eContainer() instanceof ContainerParameter) {
 			// we have found the section
 			return (C) element;
 		} else if((element instanceof TargetSectionAttribute && element.eContainer() instanceof AttributeParameter) || 
@@ -108,7 +106,7 @@ public abstract class MetaModelElementImpl<C extends pamtram.metamodel.Class<C, 
 	 */
 	@Override
 	public SectionModel<Section<C, R, A>, C, R, A> getContainingSectionModel() {
-		Class section = this.getContainingSection();
+		C section = this.getContainingSection();
 		
 		EObject container = section.eContainer();
 		while(!(container instanceof SectionModel)) {
@@ -118,7 +116,7 @@ public abstract class MetaModelElementImpl<C extends pamtram.metamodel.Class<C, 
 			}
 			container = container.eContainer();
 		}
-		return (SectionModel) container;
+		return (SectionModel<Section<C, R, A>, C, R, A>) container;
 	}
 
 	/**

@@ -162,7 +162,7 @@ public interface Class<C extends Class<C, R, A>, R extends Reference<C, R, A>, A
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.equals(this.getContainingSection());'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (this instanceof Section);'"
 	 * @generated
 	 */
 	boolean isSection();

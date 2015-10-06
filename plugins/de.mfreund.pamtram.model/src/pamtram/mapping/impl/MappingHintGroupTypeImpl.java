@@ -18,7 +18,6 @@ import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.metamodel.TargetSection;
-import pamtram.metamodel.TargetSectionClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -106,7 +105,7 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTargetMMSection(TargetSection newTargetMMSection) {
+	public void setTargetMMSectionGen(TargetSection newTargetMMSection) {
 		TargetSection oldTargetMMSection = targetMMSection;
 		targetMMSection = newTargetMMSection;
 		if (eNotificationRequired())
@@ -117,7 +116,7 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	 * Before setting the {@link newTargetMMSection}, update the name.
 	 */
 	@Override
-	public void setTargetMMSection(TargetSectionClass newTargetMMSection) {
+	public void setTargetMMSection(TargetSection newTargetMMSection) {
 		setNameDerived(targetMMSection, newTargetMMSection, null, null);
 		setTargetMMSectionGen(newTargetMMSection);
 	}

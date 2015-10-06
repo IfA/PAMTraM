@@ -6,10 +6,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
+import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -24,6 +25,7 @@ import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.SetValue;
+
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.MetamodelTables;
@@ -65,8 +67,9 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
+	@Override
 	public EList<MappingHintGroupType> getReferencingMappingHintGroups() {
 		/**
 		 * 
@@ -81,24 +84,27 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 		/*@NonNull*/ Iterator<?> ITERATOR_mhg = allInstances.iterator();
 		/*@NonNull*/ /*@Thrown*/ SetValue select;
 		while (true) {
-		    if (!ITERATOR_mhg.hasNext()) {
-		        select = accumulator;
-		        break;
-		    }
-		    /*@NonNull*/ /*@NonInvalid*/ MappingHintGroupType mhg = (MappingHintGroupType)ITERATOR_mhg.next();
-		    /**
-		     * self = mhg.targetMMSection
-		     */
-		    final /*@NonNull*/ /*@Thrown*/ TargetSection targetMMSection = mhg.getTargetMMSection();
-		    final /*@Thrown*/ boolean eq = this.equals(targetMMSection);
-		    //
-		    if (eq == ValueUtil.TRUE_VALUE) {
-		        accumulator.add(mhg);
-		    }
+			if (!ITERATOR_mhg.hasNext()) {
+				select = accumulator;
+				break;
+			}
+			/*@NonNull*/ /*@NonInvalid*/ MappingHintGroupType mhg = (MappingHintGroupType)ITERATOR_mhg.next();
+			/**
+			 * self = mhg.targetMMSection
+			 */
+			final /*@NonNull*/ /*@Thrown*/ TargetSection targetMMSection = mhg.getTargetMMSection();
+			final /*@Thrown*/ boolean eq = this.equals(targetMMSection);
+			//
+			if (eq == ValueUtil.TRUE_VALUE) {
+				accumulator.add(mhg);
+			}
 		}
 		final List<MappingHintGroupType> UNBOXED_select = select.asEcoreObjects(idResolver, pamtram.mapping.MappingHintGroupType.class);
 		assert UNBOXED_select != null;
-		return (EList<MappingHintGroupType>)UNBOXED_select;
+		// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=474307
+		return new EcoreEList.UnmodifiableEList.FastCompare<> 
+		(this, MetamodelPackage.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS, UNBOXED_select.size(), UNBOXED_select.toArray()); 
+		//		return (EList<MappingType>)UNBOXED_select;
 	}
 
 	/**
@@ -106,6 +112,7 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isReferencedByMappingHintGroup(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		/**
 		 * 
@@ -126,25 +133,25 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		/*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
 		try {
-		    final /*@NonNull*/ /*@Thrown*/ List<MappingHintGroupType> referencingMappingHintGroups = this.getReferencingMappingHintGroups();
-		    final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_referencingMappingHintGroups = idResolver.createOrderedSetOfAll(MetamodelTables.ORD_CLSSid_MappingHintGroupType, referencingMappingHintGroups);
-		    final /*@NonNull*/ /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(BOXED_referencingMappingHintGroups));
-		    final /*@Thrown*/ boolean status = ClassUtil.nonNullState(OclComparableGreaterThanOperation.INSTANCE.evaluate(evaluator, size, MetamodelTables.INT_0).booleanValue());
-		    CAUGHT_status = status;
+			final /*@NonNull*/ /*@Thrown*/ List<MappingHintGroupType> referencingMappingHintGroups = this.getReferencingMappingHintGroups();
+			final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_referencingMappingHintGroups = idResolver.createOrderedSetOfAll(MetamodelTables.ORD_CLSSid_MappingHintGroupType, referencingMappingHintGroups);
+			final /*@NonNull*/ /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(BOXED_referencingMappingHintGroups));
+			final /*@Thrown*/ boolean status = ClassUtil.nonNullState(OclComparableGreaterThanOperation.INSTANCE.evaluate(evaluator, size, MetamodelTables.INT_0).booleanValue());
+			CAUGHT_status = status;
 		}
 		catch (Exception e) {
-		    CAUGHT_status = ValueUtil.createInvalidValue(e);
+			CAUGHT_status = ValueUtil.createInvalidValue(e);
 		}
 		if (CAUGHT_status instanceof InvalidValueException) {
-		    throw (InvalidValueException)CAUGHT_status;
+			throw (InvalidValueException)CAUGHT_status;
 		}
 		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
 		/*@Nullable*/ /*@NonInvalid*/ String message_0;
 		if (ne) {
-		    message_0 = MetamodelTables.STR_The_32_section_32_is_32_not_32_referenced_32_by_32_any_32_hint_32_group_32_and_32_will_32_not_32_be_32;
+			message_0 = MetamodelTables.STR_The_32_section_32_is_32_not_32_referenced_32_by_32_any_32_hint_32_group_32_and_32_will_32_not_32_be_32;
 		}
 		else {
-		    message_0 = null;
+			message_0 = null;
 		}
 		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, MetamodelTables.STR_TargetSection_c_c_isReferencedByMappingHintGroup, this, null, diagnostics, context, message_0, MetamodelTables.INT_2, CAUGHT_status, MetamodelTables.INT_0).booleanValue());
 		return Boolean.TRUE == logDiagnostic;
@@ -158,8 +165,8 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS:
-				return getReferencingMappingHintGroups();
+		case MetamodelPackage.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS:
+			return getReferencingMappingHintGroups();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -172,8 +179,8 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS:
-				return !getReferencingMappingHintGroups().isEmpty();
+		case MetamodelPackage.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS:
+			return !getReferencingMappingHintGroups().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -187,8 +194,8 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.TARGET_SECTION___IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP:
-				return isReferencedByMappingHintGroup((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+		case MetamodelPackage.TARGET_SECTION___IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP_2:
+			return isReferencedByMappingHintGroup((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

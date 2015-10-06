@@ -21,7 +21,7 @@ import pamtram.condition.ComplexCondition;
  *   <li>{@link pamtram.mapping.Mapping#getMappingHintGroups <em>Mapping Hint Groups</em>}</li>
  *   <li>{@link pamtram.mapping.Mapping#getImportedMappingHintGroups <em>Imported Mapping Hint Groups</em>}</li>
  *   <li>{@link pamtram.mapping.Mapping#getGlobalVariables <em>Global Variables</em>}</li>
- *   <li>{@link pamtram.mapping.Mapping#isIsAbstract <em>Is Abstract</em>}</li>
+ *   <li>{@link pamtram.mapping.Mapping#isAbstract <em>Abstract</em>}</li>
  *   <li>{@link pamtram.mapping.Mapping#getExtend <em>Extend</em>}</li>
  * </ul>
  *
@@ -109,32 +109,32 @@ public interface Mapping extends MappingType {
 	EList<GlobalAttribute> getGlobalVariables();
 
 	/**
-	 * Returns the value of the '<em><b>Is Abstract</b></em>' attribute.
+	 * Returns the value of the '<em><b>Abstract</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Is Abstract</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Abstract</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Abstract</em>' attribute.
-	 * @see #setIsAbstract(boolean)
-	 * @see pamtram.mapping.MappingPackage#getMapping_IsAbstract()
+	 * @return the value of the '<em>Abstract</em>' attribute.
+	 * @see #setAbstract(boolean)
+	 * @see pamtram.mapping.MappingPackage#getMapping_Abstract()
 	 * @model default="false" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!Mapping!isAbstract'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!Mapping!abstract'"
 	 * @generated
 	 */
-	boolean isIsAbstract();
+	boolean isAbstract();
 
 	/**
-	 * Sets the value of the '{@link pamtram.mapping.Mapping#isIsAbstract <em>Is Abstract</em>}' attribute.
+	 * Sets the value of the '{@link pamtram.mapping.Mapping#isAbstract <em>Abstract</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Abstract</em>' attribute.
-	 * @see #isIsAbstract()
+	 * @param value the new value of the '<em>Abstract</em>' attribute.
+	 * @see #isAbstract()
 	 * @generated
 	 */
-	void setIsAbstract(boolean value);
+	void setAbstract(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Extend</b></em>' reference list.

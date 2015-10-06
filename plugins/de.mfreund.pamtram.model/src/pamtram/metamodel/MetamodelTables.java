@@ -138,6 +138,7 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_MetaModelSectionReference_c_c_valuesMatchReferenceType = "MetaModelSectionReference::valuesMatchReferenceType";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_NonContainmentReference_c_c_eReferenceIsNonContainment = "NonContainmentReference::eReferenceIsNonContainment";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_Reference_c_c_eReferenceMatchesParentEClass = "Reference::eReferenceMatchesParentEClass";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_Section_c_c_extendsValidSections = "Section::extendsValidSections";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_SourceSectionAttribute_c_c_attributeMatchesParentEClass = "SourceSectionAttribute::attributeMatchesParentEClass";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_SourceSection_c_c_isReferencedByMapping = "SourceSection::isReferencedByMapping";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_TargetSection_c_c_isReferencedByMappingHintGroup = "TargetSection::isReferencedByMappingHintGroup";
@@ -146,6 +147,7 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_eAttribute_32_39 = "The eAttribute \'";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_eClass_32_39 = "The eClass \'";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_eReference_32_39 = "The eReference \'";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_section_32_extends_32_a_32_section_32_that_32_is_32_either_32_not_32_abstract_32_or_32_tha = "The section extends a section that is either not abstract or that references an EClass of a different (super-)type!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_section_32_is_32_not_32_referenced_32_by_32_any_32_hint_32_group_32_and_32_will_32_not_32_be_32 = "The section is not referenced by any hint group and will not be instantiated!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_section_32_is_32_not_32_referenced_32_by_32_any_32_mapping_33 = "The section is not referenced by any mapping!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR__32_of_32_the_32_selected_32_target_32_Classes_32_o_Value_e_32_are_32_not_32_allowed_32_by_32_the_32_s = " of the selected target Classes (Value) are not allowed by the selected eReference \'";
@@ -658,6 +660,9 @@ public class MetamodelTables
 		public static final /*@NonNull*/ ExecutorOperation _MetaModelElement__isLibraryEntry = new ExecutorOperation("isLibraryEntry", Parameters._, Types._MetaModelElement,
 			2, TemplateParameters.EMPTY_LIST, null);
 
+		public static final /*@NonNull*/ ExecutorOperation _Section__extendsOnlyValidSections = new ExecutorOperation("extendsOnlyValidSections", Parameters._, Types._Section,
+			0, TemplateParameters.EMPTY_LIST, null);
+
 		public static final /*@NonNull*/ ExecutorOperation _SourceSectionReference__getValuesGeneric = new ExecutorOperation("getValuesGeneric", Parameters._, Types._SourceSectionReference,
 			0, TemplateParameters.EMPTY_LIST, null);
 
@@ -724,8 +729,8 @@ public class MetamodelTables
 		public static final /*@NonNull*/ ExecutorProperty _Reference__eReference = new EcoreExecutorProperty(MetamodelPackage.Literals.REFERENCE__EREFERENCE, Types._Reference, 0);
 		public static final /*@NonNull*/ ExecutorProperty _Reference__owningClass = new EcoreExecutorProperty(MetamodelPackage.Literals.REFERENCE__OWNING_CLASS, Types._Reference, 1);
 
-		public static final /*@NonNull*/ ExecutorProperty _Section__extend = new EcoreExecutorProperty(MetamodelPackage.Literals.SECTION__EXTEND, Types._Section, 0);
-		public static final /*@NonNull*/ ExecutorProperty _Section__isAbstract = new EcoreExecutorProperty(MetamodelPackage.Literals.SECTION__IS_ABSTRACT, Types._Section, 1);
+		public static final /*@NonNull*/ ExecutorProperty _Section__abstract = new EcoreExecutorProperty(MetamodelPackage.Literals.SECTION__ABSTRACT, Types._Section, 0);
+		public static final /*@NonNull*/ ExecutorProperty _Section__extend = new EcoreExecutorProperty(MetamodelPackage.Literals.SECTION__EXTEND, Types._Section, 1);
 
 		public static final /*@NonNull*/ ExecutorProperty _SourceSection__referencingMappings = new EcoreExecutorProperty(MetamodelPackage.Literals.SOURCE_SECTION__REFERENCING_MAPPINGS, Types._SourceSection, 0);
 
@@ -1842,7 +1847,9 @@ public class MetamodelTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 
-		private static final /*@NonNull*/ ExecutorOperation[] _Section__Section = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _Section__Section = {
+			MetamodelTables.Operations._Section__extendsOnlyValidSections /* extendsOnlyValidSections() */
+		};
 		private static final /*@NonNull*/ ExecutorOperation[] _Section__Class_1 = {
 			MetamodelTables.Operations._Class__getOwningContainmentReference /* getOwningContainmentReference() */,
 			MetamodelTables.Operations._Class__isContainedIn /* isContainedIn(C[1]) */,
@@ -1911,7 +1918,9 @@ public class MetamodelTables
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final /*@NonNull*/ ExecutorOperation[] _SourceSection__Section = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _SourceSection__Section = {
+			MetamodelTables.Operations._Section__extendsOnlyValidSections /* extendsOnlyValidSections() */
+		};
 		private static final /*@NonNull*/ ExecutorOperation[] _SourceSection__SourceSectionClass = {};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _SourceSectionAttribute__SourceSectionAttribute = {};
@@ -2107,7 +2116,9 @@ public class MetamodelTables
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final /*@NonNull*/ ExecutorOperation[] _TargetSection__Section = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _TargetSection__Section = {
+			MetamodelTables.Operations._Section__extendsOnlyValidSections /* extendsOnlyValidSections() */
+		};
 		private static final /*@NonNull*/ ExecutorOperation[] _TargetSection__TargetSectionClass = {};
 
 		private static final /*@NonNull*/ ExecutorOperation[] _TargetSectionAttribute__TargetSectionAttribute = {};
@@ -2706,22 +2717,22 @@ public class MetamodelTables
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _Section = {
+			MetamodelTables.Properties._Section__abstract,
 			MetamodelTables.Properties._Class__attributes,
 			MetamodelTables.Properties._Class__cardinality,
 			MetamodelTables.Properties._Class__container,
 			MetamodelTables.Properties._Class__eClass,
 			MetamodelTables.Properties._Section__extend,
-			MetamodelTables.Properties._Section__isAbstract,
 			MetamodelTables.Properties._Class__references
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _SourceSection = {
+			MetamodelTables.Properties._Section__abstract,
 			MetamodelTables.Properties._Class__attributes,
 			MetamodelTables.Properties._Class__cardinality,
 			MetamodelTables.Properties._Class__container,
 			MetamodelTables.Properties._Class__eClass,
 			MetamodelTables.Properties._Section__extend,
-			MetamodelTables.Properties._Section__isAbstract,
 			MetamodelTables.Properties._Class__references,
 			MetamodelTables.Properties._SourceSection__referencingMappings,
 			MetamodelTables.Properties._SourceSectionClass__MetaModelSectionReference__value
@@ -2761,12 +2772,12 @@ public class MetamodelTables
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _TargetSection = {
+			MetamodelTables.Properties._Section__abstract,
 			MetamodelTables.Properties._Class__attributes,
 			MetamodelTables.Properties._Class__cardinality,
 			MetamodelTables.Properties._Class__container,
 			MetamodelTables.Properties._Class__eClass,
 			MetamodelTables.Properties._Section__extend,
-			MetamodelTables.Properties._Section__isAbstract,
 			MetamodelTables.Properties._Class__references,
 			MetamodelTables.Properties._TargetSection__referencingMappingHintGroups,
 			MetamodelTables.Properties._TargetSection__ContainerParameter__class

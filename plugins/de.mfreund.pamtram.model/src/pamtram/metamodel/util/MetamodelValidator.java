@@ -96,12 +96,20 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	public static final int CLASS__ECLASS_MATCHES_PARENT_EREFERENCE = 3;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Extends Valid Sections' of 'Section'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int SECTION__EXTENDS_VALID_SECTIONS = 4;
+
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Is Referenced By Mapping' of 'Source Section'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int SOURCE_SECTION__IS_REFERENCED_BY_MAPPING = 4;
+	public static final int SOURCE_SECTION__IS_REFERENCED_BY_MAPPING = 5;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Is Referenced By Mapping Hint Group' of 'Target Section'.
@@ -109,7 +117,7 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int TARGET_SECTION__IS_REFERENCED_BY_MAPPING_HINT_GROUP = 5;
+	public static final int TARGET_SECTION__IS_REFERENCED_BY_MAPPING_HINT_GROUP = 6;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'EReference Matches Parent EClass' of 'Reference'.
@@ -117,7 +125,7 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int REFERENCE__EREFERENCE_MATCHES_PARENT_ECLASS = 6;
+	public static final int REFERENCE__EREFERENCE_MATCHES_PARENT_ECLASS = 7;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'EReference Is Containment' of 'Containment Reference'.
@@ -125,7 +133,7 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CONTAINMENT_REFERENCE__EREFERENCE_IS_CONTAINMENT = 7;
+	public static final int CONTAINMENT_REFERENCE__EREFERENCE_IS_CONTAINMENT = 8;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'EReference Is Non Containment' of 'Non Containment Reference'.
@@ -133,7 +141,7 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int NON_CONTAINMENT_REFERENCE__EREFERENCE_IS_NON_CONTAINMENT = 8;
+	public static final int NON_CONTAINMENT_REFERENCE__EREFERENCE_IS_NON_CONTAINMENT = 9;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Values Match Reference Type' of 'Meta Model Section Reference'.
@@ -141,7 +149,7 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int META_MODEL_SECTION_REFERENCE__VALUES_MATCH_REFERENCE_TYPE = 9;
+	public static final int META_MODEL_SECTION_REFERENCE__VALUES_MATCH_REFERENCE_TYPE = 10;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Attribute Matches Parent EClass' of 'Source Section Attribute'.
@@ -149,7 +157,7 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE_MATCHES_PARENT_ECLASS = 10;
+	public static final int SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE_MATCHES_PARENT_ECLASS = 11;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Attribute Matches Parent EClass' of 'Actual Attribute'.
@@ -157,7 +165,7 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ACTUAL_ATTRIBUTE__ATTRIBUTE_MATCHES_PARENT_ECLASS = 11;
+	public static final int ACTUAL_ATTRIBUTE__ATTRIBUTE_MATCHES_PARENT_ECLASS = 12;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -165,7 +173,7 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 11;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 12;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -402,7 +410,20 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 		if (result || diagnostics != null) {
 			result &= validateClass_eClassMatchesParentEReference(section, diagnostics, context);
 		}
+		if (result || diagnostics != null) {
+			result &= validateSection_extendsValidSections(section, diagnostics, context);
+		}
 		return result;
+	}
+
+	/**
+	 * Validates the extendsValidSections constraint of '<em>Section</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSection_extendsValidSections(Section<?, ?, ?, ?> section, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return section.extendsValidSections(diagnostics, context);
 	}
 
 	/**
@@ -444,6 +465,9 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 		}
 		if (result || diagnostics != null) {
 			result &= validateClass_eClassMatchesParentEReference(sourceSection, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateSection_extendsValidSections(sourceSection, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
 			result &= validateSourceSection_isReferencedByMapping(sourceSection, diagnostics, context);
@@ -500,6 +524,9 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 		}
 		if (result || diagnostics != null) {
 			result &= validateClass_eClassMatchesParentEReference(targetSection, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateSection_extendsValidSections(targetSection, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
 			result &= validateTargetSection_isReferencedByMappingHintGroup(targetSection, diagnostics, context);

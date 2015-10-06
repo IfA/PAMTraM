@@ -907,11 +907,11 @@ public class MappingTables
 
 		public static final /*@NonNull*/ ExecutorProperty _MappedAttributeValueExpander__hintsToExpand = new EcoreExecutorProperty(MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND, Types._MappedAttributeValueExpander, 0);
 
-		public static final /*@NonNull*/ ExecutorProperty _Mapping__condition = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__CONDITION, Types._Mapping, 0);
-		public static final /*@NonNull*/ ExecutorProperty _Mapping__extend = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__EXTEND, Types._Mapping, 1);
-		public static final /*@NonNull*/ ExecutorProperty _Mapping__globalVariables = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__GLOBAL_VARIABLES, Types._Mapping, 2);
-		public static final /*@NonNull*/ ExecutorProperty _Mapping__importedMappingHintGroups = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__IMPORTED_MAPPING_HINT_GROUPS, Types._Mapping, 3);
-		public static final /*@NonNull*/ ExecutorProperty _Mapping__isAbstract = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__IS_ABSTRACT, Types._Mapping, 4);
+		public static final /*@NonNull*/ ExecutorProperty _Mapping__abstract = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__ABSTRACT, Types._Mapping, 0);
+		public static final /*@NonNull*/ ExecutorProperty _Mapping__condition = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__CONDITION, Types._Mapping, 1);
+		public static final /*@NonNull*/ ExecutorProperty _Mapping__extend = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__EXTEND, Types._Mapping, 2);
+		public static final /*@NonNull*/ ExecutorProperty _Mapping__globalVariables = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__GLOBAL_VARIABLES, Types._Mapping, 3);
+		public static final /*@NonNull*/ ExecutorProperty _Mapping__importedMappingHintGroups = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__IMPORTED_MAPPING_HINT_GROUPS, Types._Mapping, 4);
 		public static final /*@NonNull*/ ExecutorProperty _Mapping__mappingHintGroups = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS, Types._Mapping, 5);
 		public static final /*@NonNull*/ ExecutorProperty _Mapping__Mapping__extend = new ExecutorPropertyWithImplementation("Mapping", Types._Mapping, 6, new EcoreLibraryOppositeProperty(MappingPackage.Literals.MAPPING__EXTEND));
 
@@ -3754,11 +3754,11 @@ public class MappingTables
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _Mapping = {
+			MappingTables.Properties._Mapping__abstract,
 			MappingTables.Properties._Mapping__condition,
 			MappingTables.Properties._Mapping__extend,
 			MappingTables.Properties._Mapping__globalVariables,
 			MappingTables.Properties._Mapping__importedMappingHintGroups,
-			MappingTables.Properties._Mapping__isAbstract,
 			MappingTables.Properties._Mapping__mappingHintGroups,
 			MappingTables.Properties._MappingType__sourceMMSection,
 			MappingTables.Properties._Mapping__Mapping__extend

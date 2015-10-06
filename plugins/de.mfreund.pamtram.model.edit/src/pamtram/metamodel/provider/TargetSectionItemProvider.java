@@ -12,6 +12,7 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.TargetSection;
 
@@ -58,18 +59,18 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	 */
 	protected void addIsAbstractPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+		(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Section_isAbstract_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Section_isAbstract_feature", "_UI_Section_type"),
-				 MetamodelPackage.Literals.SECTION__IS_ABSTRACT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
+						getResourceLocator(),
+						getString("_UI_Section_isAbstract_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Section_isAbstract_feature", "_UI_Section_type"),
+						MetamodelPackage.Literals.SECTION__IS_ABSTRACT,
+						true,
+						false,
+						false,
+						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+						null,
+						null));
 	}
 
 	/**
@@ -102,18 +103,18 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	 */
 	protected void addReferencingMappingHintGroupsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+		(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_TargetSection_referencingMappingHintGroups_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetSection_referencingMappingHintGroups_feature", "_UI_TargetSection_type"),
-				 MetamodelPackage.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS,
-				 false,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+						getResourceLocator(),
+						getString("_UI_TargetSection_referencingMappingHintGroups_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_TargetSection_referencingMappingHintGroups_feature", "_UI_TargetSection_type"),
+						MetamodelPackage.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS,
+						false,
+						false,
+						false,
+						null,
+						null,
+						null));
 	}
 
 	/**
@@ -135,7 +136,7 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return super.getText(object);
+		return (((TargetSection) object).isIsAbstract() ? "<<abstract>> " : "") + super.getText(object);
 	}
 
 
@@ -151,9 +152,9 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(TargetSection.class)) {
-			case MetamodelPackage.TARGET_SECTION__IS_ABSTRACT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case MetamodelPackage.TARGET_SECTION__IS_ABSTRACT:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

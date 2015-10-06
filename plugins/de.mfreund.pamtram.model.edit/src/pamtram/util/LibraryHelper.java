@@ -33,6 +33,7 @@ import pamtram.metamodel.ExternalReferenceParameter;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.LibraryParameter;
 import pamtram.metamodel.MetaModelElement;
+import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionContainmentReference;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
@@ -433,11 +434,11 @@ public class LibraryHelper {
 				param.setName(contParameter.eClass().getName());
 				param.setSource(contParameter.getSource());
 
-				TargetSectionClass clazz = MetamodelFactoryImpl.eINSTANCE.createTargetSectionClass();
-				clazz.setEClass(contParameter.getSource().eClass());
-				clazz.setName(contParameter.getSource().eClass().getName());
+				TargetSection section = MetamodelFactoryImpl.eINSTANCE.createTargetSection();
+				section.setEClass(contParameter.getSource().eClass());
+				section.setName(contParameter.getSource().eClass().getName());
 
-				param.setClass(clazz);
+				param.setClass(section);
 
 				pamtramLibEntry.getParameters().add(param);
 

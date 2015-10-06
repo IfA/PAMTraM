@@ -20,7 +20,7 @@ public class WizardData {
 	private SectionType sectionType;
 	private EPackage ePackage;
 	private EObject eObject;
-	private LinkedList<Section<?, ?, ?>> createdEObjects;
+	private LinkedList<Section<?, ?, ?, ?>> createdEObjects;
 
 	/**
 	 * The {@link PAMTraM} instance into that the generated section shall be stored.
@@ -96,11 +96,11 @@ public class WizardData {
 		return this;
 	}
 
-	public LinkedList<Section<?, ?, ?>> getCreatedEObjects() {
+	public LinkedList<Section<?, ?, ?, ?>> getCreatedEObjects() {
 		return createdEObjects;
 	}
 
-	public void setCreatedEObjects(LinkedList<Section<?, ?, ?>> created) {
+	public void setCreatedEObjects(LinkedList<Section<?, ?, ?, ?>> created) {
 		this.createdEObjects = created;
 	}
 

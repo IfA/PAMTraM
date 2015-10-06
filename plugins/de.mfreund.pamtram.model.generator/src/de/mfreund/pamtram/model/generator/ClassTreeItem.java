@@ -10,13 +10,13 @@ import pamtram.metamodel.Reference;
 
 public class ClassTreeItem {
 
-	private pamtram.metamodel.Class<?, ?, ?> classObject;
-	private Reference<?, ?, ?> referenceObject;
+	private pamtram.metamodel.Class<?, ?, ?, ?> classObject;
+	private Reference<?, ?, ?, ?> referenceObject;
 
 	// private constructor to force using the factory methods
 	private ClassTreeItem(){}
 
-	public static ClassTreeItem createClassTreeItem(pamtram.metamodel.Class<?, ?, ?> classObject, Reference<?, ?, ?> referenceObject) {
+	public static ClassTreeItem createClassTreeItem(pamtram.metamodel.Class<?, ?, ?, ?> classObject, Reference<?, ?, ?, ?> referenceObject) {
 
 		ClassTreeItem ret = createClassTreeItem(classObject);
 		ret.setReferenceObject(referenceObject);
@@ -24,7 +24,7 @@ public class ClassTreeItem {
 		return ret;
 	}
 
-	public static ClassTreeItem createClassTreeItem(pamtram.metamodel.Class<?, ?, ?> classObject) {
+	public static ClassTreeItem createClassTreeItem(pamtram.metamodel.Class<?, ?, ?, ?> classObject) {
 
 		ClassTreeItem ret = new ClassTreeItem();
 		ret.setClassObject(classObject);
@@ -33,7 +33,7 @@ public class ClassTreeItem {
 
 	}
 
-	public static ClassTreeItem[] createClassTreeItems(pamtram.metamodel.Class<?, ?, ?>[] classObjects) {
+	public static ClassTreeItem[] createClassTreeItems(pamtram.metamodel.Class<?, ?, ?, ?>[] classObjects) {
 
 		ClassTreeItem[] ret = new ClassTreeItem[classObjects.length];
 
@@ -43,35 +43,35 @@ public class ClassTreeItem {
 		return ret;
 	}
 
-	public static ClassTreeItem[] createClassTreeItems(HashMap<pamtram.metamodel.Class<?, ?, ?>, Reference<?, ?, ?>> classObjectMap) {
+	public static ClassTreeItem[] createClassTreeItems(HashMap<pamtram.metamodel.Class<?, ?, ?, ?>, Reference<?, ?, ?, ?>> classObjectMap) {
 
 		ClassTreeItem[] ret = new ClassTreeItem[classObjectMap.keySet().size()];
 
 		for (int i=0; i<classObjectMap.keySet().size(); i++) {
-			pamtram.metamodel.Class<?, ?, ?> obj = (Class<?, ?, ?>) classObjectMap.keySet().toArray()[i];
+			pamtram.metamodel.Class<?, ?, ?, ?> obj = (Class<?, ?, ?, ?>) classObjectMap.keySet().toArray()[i];
 			ret[i] = createClassTreeItem(obj, classObjectMap.get(obj));
 		}
 		return ret;
 	}
 
-	public pamtram.metamodel.Class<?, ?, ?> getClassObject() {
+	public pamtram.metamodel.Class<?, ?, ?, ?> getClassObject() {
 		return classObject;
 	}
-	public void setClassObject(pamtram.metamodel.Class<?, ?, ?> classObject) {
+	public void setClassObject(pamtram.metamodel.Class<?, ?, ?, ?> classObject) {
 		this.classObject = classObject;
 	}
-	public Reference<?, ?, ?> getReferenceObject() {
+	public Reference<?, ?, ?, ?> getReferenceObject() {
 		return referenceObject;
 	}
-	public void setReferenceObject(Reference<?, ?, ?> referenceObject) {
+	public void setReferenceObject(Reference<?, ?, ?, ?> referenceObject) {
 		this.referenceObject = referenceObject;
 	}
 	@SuppressWarnings("unchecked")
-	public EList<Reference<?, ?, ?>> getReferences() {
-		return (EList<Reference<?, ?, ?>>) classObject.getReferences();
+	public EList<Reference<?, ?, ?, ?>> getReferences() {
+		return (EList<Reference<?, ?, ?, ?>>) classObject.getReferences();
 	}
 	@SuppressWarnings("unchecked")
-	public EList<Attribute<?, ?, ?>> getAttributes() {
-		return (EList<Attribute<?, ?, ?>>) classObject.getAttributes();
+	public EList<Attribute<?, ?, ?, ?>> getAttributes() {
+		return (EList<Attribute<?, ?, ?, ?>>) classObject.getAttributes();
 	}
 }

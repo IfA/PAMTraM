@@ -45,7 +45,7 @@ public class GeneratorWizard extends Wizard {
 	@Override
 	public boolean performFinish() {
 
-		for(MetaModelElement<?, ?, ?> element : two.getElementsToExclude()) {
+		for(MetaModelElement<?, ?, ?, ?> element : two.getElementsToExclude()) {
 
 			Collection<Setting> crossReferences = EcoreUtil.UsageCrossReferencer.find(element, wizardData.getCreatedEObjects());
 			for (Setting setting : crossReferences) {
@@ -64,7 +64,7 @@ public class GeneratorWizard extends Wizard {
 		}
 
 		// merge duplicate items
-		LinkedList<Section<?, ?, ?>> sectionsToAdd = 
+		LinkedList<Section<?, ?, ?, ?>> sectionsToAdd = 
 				wizardData.getGenerator().mergeDuplicates(wizardData.getCreatedEObjects());
 
 
@@ -88,7 +88,7 @@ public class GeneratorWizard extends Wizard {
 		} else {
 
 			// now that we now which of the sections are unique, we can add those to the pamtram model
-			((EList<Class<?, ?, ?>>) wizardData.getSectionModel().getMetaModelSections()).addAll(sectionsToAdd);
+			((EList<Class<?, ?, ?, ?>>) wizardData.getSectionModel().getMetaModelSections()).addAll(sectionsToAdd);
 
 			// finally, we save the model
 			try {
@@ -113,7 +113,7 @@ public class GeneratorWizard extends Wizard {
 	public boolean canFinish() {
 		// the wizard can finish if the eobjects to be created are set
 		// (this is necessary to disable the finish button on the first page)
-		LinkedList<Section<?, ?, ?>> createdEObjects = this.wizardData.getCreatedEObjects();
+		LinkedList<Section<?, ?, ?, ?>> createdEObjects = this.wizardData.getCreatedEObjects();
 		return (createdEObjects != null && createdEObjects.size() > 0);
 	}
 

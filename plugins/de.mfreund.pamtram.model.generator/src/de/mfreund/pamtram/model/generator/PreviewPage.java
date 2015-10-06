@@ -53,18 +53,18 @@ public class PreviewPage extends WizardPage {
 		public void widgetSelected(SelectionEvent e) {
 			TreeItem item = (TreeItem) e.item;
 
-			List<Attribute<?, ?, ?>> lines = new ArrayList<>();
+			List<Attribute<?, ?, ?, ?>> lines = new ArrayList<>();
 
 			if(item.getData() instanceof pamtram.metamodel.Class) {
 				// populate the attribute view
 				lines.addAll(
-						((pamtram.metamodel.Class<?, ?, ?>)item.getData()).getAttributes());
+						((pamtram.metamodel.Class<?, ?, ?, ?>)item.getData()).getAttributes());
 			}
 
 			propertiesViewer.setInput(lines);
 
 			// set the 'checked' states of the attributes
-			for(Attribute<?, ?, ?> att : lines) {
+			for(Attribute<?, ?, ?, ?> att : lines) {
 				// the attribute has been shown before -> reuse last setting
 				if(!elementsToExclude.contains(att)) {
 					propertiesViewer.setChecked(att, true);
@@ -85,7 +85,7 @@ public class PreviewPage extends WizardPage {
 	private ContainerCheckedTreeViewer viewer;
 	private CheckboxTableViewer propertiesViewer;
 	private WizardData wizardData;
-	private ArrayList<MetaModelElement<?, ?, ?>> elementsToExclude = new ArrayList<>();
+	private ArrayList<MetaModelElement<?, ?, ?, ?>> elementsToExclude = new ArrayList<>();
 
 	/**
 	 * This is the one adapter factory used for providing views of the model.
@@ -140,7 +140,7 @@ public class PreviewPage extends WizardPage {
 				/*for(TreeItem item : viewer.getTree().getItems()) {
 					populateTreeItemMap(item);					
 				}*/
-				for (pamtram.metamodel.Class<?, ?, ?> clazz : wizardData.getCreatedEObjects()) {
+				for (pamtram.metamodel.Class<?, ?, ?, ?> clazz : wizardData.getCreatedEObjects()) {
 					viewer.setSubtreeChecked(clazz, true);
 				}
 				// collapse the tree (NOTE: 'collapseAll()' cannot be used as this disposes the tree items)  
@@ -163,7 +163,7 @@ public class PreviewPage extends WizardPage {
 		MetaModelSectionGenerator generator = new MetaModelSectionGenerator(pamtram, eObject, sectionType);
 		wizardData.setGenerator(generator);
 
-		LinkedList<Section<?, ?, ?>> created = generator.generate();
+		LinkedList<Section<?, ?, ?, ?>> created = generator.generate();
 
 		wizardData.setCreatedEObjects(created);
 
@@ -199,7 +199,7 @@ public class PreviewPage extends WizardPage {
 			@Override
 			public Object[] getChildren(Object object) {
 				if(object instanceof pamtram.metamodel.Class) {
-					return ((pamtram.metamodel.Class<?, ?, ?>) object).getReferences().toArray();
+					return ((pamtram.metamodel.Class<?, ?, ?, ?>) object).getReferences().toArray();
 				} else {
 					return super.getChildren(object);
 				}
@@ -207,7 +207,7 @@ public class PreviewPage extends WizardPage {
 			@Override
 			public boolean hasChildren(Object object) {
 				if(object instanceof pamtram.metamodel.Class) {
-					return !((pamtram.metamodel.Class<?, ?, ?>) object).getReferences().isEmpty();
+					return !((pamtram.metamodel.Class<?, ?, ?, ?>) object).getReferences().isEmpty();
 				} else {
 					return super.hasChildren(object);
 				}
@@ -222,8 +222,8 @@ public class PreviewPage extends WizardPage {
 			// update the value in the hashmap
 			public void checkStateChanged(CheckStateChangedEvent event) {
 				if(event.getElement() instanceof MetaModelElement) {
-					MetaModelElement<?, ?, ?> element = 
-							(MetaModelElement<?, ?, ?>) event.getElement();
+					MetaModelElement<?, ?, ?, ?> element = 
+							(MetaModelElement<?, ?, ?, ?>) event.getElement();
 					if(event.getChecked()) {
 						if(elementsToExclude.contains(element)) {
 							elementsToExclude.remove(element);
@@ -265,7 +265,7 @@ public class PreviewPage extends WizardPage {
 			@Override
 			// update the value in the hashmap
 			public void checkStateChanged(CheckStateChangedEvent event) {
-				Attribute<?, ?, ?> att = (Attribute<?, ?, ?>) event.getElement();
+				Attribute<?, ?, ?, ?> att = (Attribute<?, ?, ?, ?>) event.getElement();
 				if(event.getChecked()) {
 					if(elementsToExclude.contains(att)) {
 						elementsToExclude.remove(att);
@@ -297,7 +297,7 @@ public class PreviewPage extends WizardPage {
 			@Override
 			public String getText(Object element) {
 				Object[] line = (Object[]) element;
-				return ((pamtram.metamodel.Attribute<?, ?, ?>) line[0]).getName();
+				return ((pamtram.metamodel.Attribute<?, ?, ?, ?>) line[0]).getName();
 			}
 		});
 
@@ -324,7 +324,7 @@ public class PreviewPage extends WizardPage {
 		return viewerColumn;
 	}
 
-	public ArrayList<MetaModelElement<?, ?, ?>> getElementsToExclude() {
+	public ArrayList<MetaModelElement<?, ?, ?, ?>> getElementsToExclude() {
 		return this.elementsToExclude;
 	}
 }

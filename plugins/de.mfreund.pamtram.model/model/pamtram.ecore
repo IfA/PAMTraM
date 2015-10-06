@@ -81,6 +81,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="SectionModel" abstract="true" eSuperTypes="#//NamedElement">
     <eTypeParameters name="S">
       <eBounds eClassifier="#//metamodel/Section">
+        <eTypeArguments eTypeParameter="#//SectionModel/S"/>
         <eTypeArguments eTypeParameter="#//SectionModel/C"/>
         <eTypeArguments eTypeParameter="#//SectionModel/R"/>
         <eTypeArguments eTypeParameter="#//SectionModel/A"/>
@@ -88,6 +89,7 @@
     </eTypeParameters>
     <eTypeParameters name="C">
       <eBounds eClassifier="#//metamodel/Class">
+        <eTypeArguments eTypeParameter="#//SectionModel/S"/>
         <eTypeArguments eTypeParameter="#//SectionModel/C"/>
         <eTypeArguments eTypeParameter="#//SectionModel/R"/>
         <eTypeArguments eTypeParameter="#//SectionModel/A"/>
@@ -95,6 +97,7 @@
     </eTypeParameters>
     <eTypeParameters name="R">
       <eBounds eClassifier="#//metamodel/Reference">
+        <eTypeArguments eTypeParameter="#//SectionModel/S"/>
         <eTypeArguments eTypeParameter="#//SectionModel/C"/>
         <eTypeArguments eTypeParameter="#//SectionModel/R"/>
         <eTypeArguments eTypeParameter="#//SectionModel/A"/>
@@ -102,6 +105,7 @@
     </eTypeParameters>
     <eTypeParameters name="A">
       <eBounds eClassifier="#//metamodel/Attribute">
+        <eTypeArguments eTypeParameter="#//SectionModel/S"/>
         <eTypeArguments eTypeParameter="#//SectionModel/C"/>
         <eTypeArguments eTypeParameter="#//SectionModel/R"/>
         <eTypeArguments eTypeParameter="#//SectionModel/A"/>
@@ -161,8 +165,17 @@
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="MetaModelElement" abstract="true"
         eSuperTypes="#//NamedElement">
+      <eTypeParameters name="S">
+        <eBounds eClassifier="#//metamodel/Section">
+          <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/S"/>
+          <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/C"/>
+          <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/R"/>
+          <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/A"/>
+        </eBounds>
+      </eTypeParameters>
       <eTypeParameters name="C">
         <eBounds eClassifier="#//metamodel/Class">
+          <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/S"/>
           <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/C"/>
           <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/R"/>
           <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/A"/>
@@ -170,6 +183,7 @@
       </eTypeParameters>
       <eTypeParameters name="R">
         <eBounds eClassifier="#//metamodel/Reference">
+          <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/S"/>
           <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/C"/>
           <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/R"/>
           <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/A"/>
@@ -177,6 +191,7 @@
       </eTypeParameters>
       <eTypeParameters name="A">
         <eBounds eClassifier="#//metamodel/Attribute">
+          <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/S"/>
           <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/C"/>
           <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/R"/>
           <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/A"/>
@@ -193,11 +208,7 @@
           <details key="body" value="C section = this.getContainingSection();&#xD;&#xA;&#xD;&#xA;EObject container = section.eContainer();&#xD;&#xA;while(!(container instanceof SectionModel)) {&#xD;&#xA;&#x9;// we have reached the root element&#xD;&#xA;&#x9;if(container == null) {&#xD;&#xA;&#x9;&#x9;return null;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;container = container.eContainer();&#xD;&#xA;}&#xD;&#xA;return (SectionModel&lt;Section&lt;C, R, A>, C, R, A>) container;"/>
         </eAnnotations>
         <eGenericType eClassifier="#//SectionModel">
-          <eTypeArguments eClassifier="#//metamodel/Section">
-            <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/C"/>
-            <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/R"/>
-            <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/A"/>
-          </eTypeArguments>
+          <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/S"/>
           <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/C"/>
           <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/R"/>
           <eTypeArguments eTypeParameter="#//metamodel/MetaModelElement/A"/>
@@ -218,8 +229,17 @@
         <details key="cardinalityIsValid" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The cardinality of a Class must be specified as \'CardinalityType::ONE\' when the upper bound of the containing Reference is \'1\'!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self = self.getContainingSection() or self.eClass.oclType() = OclVoid then &#xD;&#xA;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;let parentEReference = self.oclContainer().oclAsType(pamtram::metamodel::Reference).eReference in &#xD;&#xA;&#x9;&#x9;&#x9;if parentEReference.oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;not ((self.cardinality &lt;> pamtram::metamodel::CardinalityType::ONE) and (self.oclContainer().oclAsType(pamtram::metamodel::Reference).eReference.oclAsType(ecore::EReference).upperBound = 1))&#xD;&#xA;&#x9;&#x9;&#x9;endif&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
         <details key="containerIsValid" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The \'container\' refrence must point to the containing Class!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self.oclIsKindOf(Section) = true or self.container = null then true else self.container = self.oclContainer().oclContainer() endif&#xD;&#xA;}.status"/>
       </eAnnotations>
+      <eTypeParameters name="S">
+        <eBounds eClassifier="#//metamodel/Section">
+          <eTypeArguments eTypeParameter="#//metamodel/Class/S"/>
+          <eTypeArguments eTypeParameter="#//metamodel/Class/C"/>
+          <eTypeArguments eTypeParameter="#//metamodel/Class/R"/>
+          <eTypeArguments eTypeParameter="#//metamodel/Class/A"/>
+        </eBounds>
+      </eTypeParameters>
       <eTypeParameters name="C">
         <eBounds eClassifier="#//metamodel/Class">
+          <eTypeArguments eTypeParameter="#//metamodel/Class/S"/>
           <eTypeArguments eTypeParameter="#//metamodel/Class/C"/>
           <eTypeArguments eTypeParameter="#//metamodel/Class/R"/>
           <eTypeArguments eTypeParameter="#//metamodel/Class/A"/>
@@ -227,6 +247,7 @@
       </eTypeParameters>
       <eTypeParameters name="R">
         <eBounds eClassifier="#//metamodel/Reference">
+          <eTypeArguments eTypeParameter="#//metamodel/Class/S"/>
           <eTypeArguments eTypeParameter="#//metamodel/Class/C"/>
           <eTypeArguments eTypeParameter="#//metamodel/Class/R"/>
           <eTypeArguments eTypeParameter="#//metamodel/Class/A"/>
@@ -234,6 +255,7 @@
       </eTypeParameters>
       <eTypeParameters name="A">
         <eBounds eClassifier="#//metamodel/Attribute">
+          <eTypeArguments eTypeParameter="#//metamodel/Class/S"/>
           <eTypeArguments eTypeParameter="#//metamodel/Class/C"/>
           <eTypeArguments eTypeParameter="#//metamodel/Class/R"/>
           <eTypeArguments eTypeParameter="#//metamodel/Class/A"/>
@@ -260,6 +282,7 @@
           <details key="body" value="if(this.eContainer() instanceof ContainmentReference&lt;?,?,?>) {&#xD;&#xA;&#x9;return (ContainmentReference&lt;C,R,A>) this.eContainer();&#xD;&#xA;} else {&#xD;&#xA;&#x9;return null;&#xD;&#xA;}"/>
         </eAnnotations>
         <eGenericType eClassifier="#//metamodel/ContainmentReference">
+          <eTypeArguments eTypeParameter="#//metamodel/Class/S"/>
           <eTypeArguments eTypeParameter="#//metamodel/Class/C"/>
           <eTypeArguments eTypeParameter="#//metamodel/Class/R"/>
           <eTypeArguments eTypeParameter="#//metamodel/Class/A"/>
@@ -292,14 +315,24 @@
         <eGenericType eTypeParameter="#//metamodel/Class/A"/>
       </eStructuralFeatures>
       <eGenericSuperTypes eClassifier="#//metamodel/MetaModelElement">
+        <eTypeArguments eTypeParameter="#//metamodel/Class/S"/>
         <eTypeArguments eTypeParameter="#//metamodel/Class/C"/>
         <eTypeArguments eTypeParameter="#//metamodel/Class/R"/>
         <eTypeArguments eTypeParameter="#//metamodel/Class/A"/>
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Section" abstract="true">
+      <eTypeParameters name="S">
+        <eBounds eClassifier="#//metamodel/Section">
+          <eTypeArguments eTypeParameter="#//metamodel/Section/S"/>
+          <eTypeArguments eTypeParameter="#//metamodel/Section/C"/>
+          <eTypeArguments eTypeParameter="#//metamodel/Section/R"/>
+          <eTypeArguments eTypeParameter="#//metamodel/Section/A"/>
+        </eBounds>
+      </eTypeParameters>
       <eTypeParameters name="C">
         <eBounds eClassifier="#//metamodel/Class">
+          <eTypeArguments eTypeParameter="#//metamodel/Section/S"/>
           <eTypeArguments eTypeParameter="#//metamodel/Section/C"/>
           <eTypeArguments eTypeParameter="#//metamodel/Section/R"/>
           <eTypeArguments eTypeParameter="#//metamodel/Section/A"/>
@@ -307,6 +340,7 @@
       </eTypeParameters>
       <eTypeParameters name="R">
         <eBounds eClassifier="#//metamodel/Reference">
+          <eTypeArguments eTypeParameter="#//metamodel/Section/S"/>
           <eTypeArguments eTypeParameter="#//metamodel/Section/C"/>
           <eTypeArguments eTypeParameter="#//metamodel/Section/R"/>
           <eTypeArguments eTypeParameter="#//metamodel/Section/A"/>
@@ -314,12 +348,14 @@
       </eTypeParameters>
       <eTypeParameters name="A">
         <eBounds eClassifier="#//metamodel/Attribute">
+          <eTypeArguments eTypeParameter="#//metamodel/Section/S"/>
           <eTypeArguments eTypeParameter="#//metamodel/Section/C"/>
           <eTypeArguments eTypeParameter="#//metamodel/Section/R"/>
           <eTypeArguments eTypeParameter="#//metamodel/Section/A"/>
         </eBounds>
       </eTypeParameters>
       <eGenericSuperTypes eClassifier="#//metamodel/Class">
+        <eTypeArguments eTypeParameter="#//metamodel/Section/S"/>
         <eTypeArguments eTypeParameter="#//metamodel/Section/C"/>
         <eTypeArguments eTypeParameter="#//metamodel/Section/R"/>
         <eTypeArguments eTypeParameter="#//metamodel/Section/A"/>
@@ -341,6 +377,7 @@
       </eStructuralFeatures>
       <eGenericSuperTypes eClassifier="#//metamodel/SourceSectionClass"/>
       <eGenericSuperTypes eClassifier="#//metamodel/Section">
+        <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
@@ -362,6 +399,7 @@
       </eStructuralFeatures>
       <eGenericSuperTypes eClassifier="#//metamodel/TargetSectionClass"/>
       <eGenericSuperTypes eClassifier="#//metamodel/Section">
+        <eTypeArguments eClassifier="#//metamodel/TargetSection"/>
         <eTypeArguments eClassifier="#//metamodel/TargetSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/TargetSectionReference"/>
         <eTypeArguments eClassifier="#//metamodel/TargetSectionAttribute"/>
@@ -369,6 +407,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SourceSectionClass">
       <eGenericSuperTypes eClassifier="#//metamodel/Class">
+        <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
@@ -376,6 +415,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TargetSectionClass">
       <eGenericSuperTypes eClassifier="#//metamodel/Class">
+        <eTypeArguments eClassifier="#//metamodel/TargetSection"/>
         <eTypeArguments eClassifier="#//metamodel/TargetSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/TargetSectionReference"/>
         <eTypeArguments eClassifier="#//metamodel/TargetSectionAttribute"/>
@@ -442,8 +482,17 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="eReferenceMatchesParentEClass" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The eReference \'' + self.eReference.name + '\' is not allowed by the containing Class!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self.isLibraryEntry() or self.eReference.oclType() = OclVoid then &#xD;&#xA;&#x9;&#x9;&#x9;true else &#xD;&#xA;&#x9;&#x9;&#x9;let parentEClass = self.oclContainer().oclAsType(pamtram::metamodel::Class).eClass in&#xD;&#xA;&#x9;&#x9;&#x9;if parentEClass.oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;parentEClass.oclAsType(ecore::EClass).eAllReferences->includes(self.eReference)&#xD;&#xA;&#x9;&#x9;&#x9;endif&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
       </eAnnotations>
+      <eTypeParameters name="S">
+        <eBounds eClassifier="#//metamodel/Section">
+          <eTypeArguments eTypeParameter="#//metamodel/Reference/S"/>
+          <eTypeArguments eTypeParameter="#//metamodel/Reference/C"/>
+          <eTypeArguments eTypeParameter="#//metamodel/Reference/R"/>
+          <eTypeArguments eTypeParameter="#//metamodel/Reference/A"/>
+        </eBounds>
+      </eTypeParameters>
       <eTypeParameters name="C">
         <eBounds eClassifier="#//metamodel/Class">
+          <eTypeArguments eTypeParameter="#//metamodel/Reference/S"/>
           <eTypeArguments eTypeParameter="#//metamodel/Reference/C"/>
           <eTypeArguments eTypeParameter="#//metamodel/Reference/R"/>
           <eTypeArguments eTypeParameter="#//metamodel/Reference/A"/>
@@ -451,6 +500,7 @@
       </eTypeParameters>
       <eTypeParameters name="R">
         <eBounds eClassifier="#//metamodel/Reference">
+          <eTypeArguments eTypeParameter="#//metamodel/Reference/S"/>
           <eTypeArguments eTypeParameter="#//metamodel/Reference/C"/>
           <eTypeArguments eTypeParameter="#//metamodel/Reference/R"/>
           <eTypeArguments eTypeParameter="#//metamodel/Reference/A"/>
@@ -458,6 +508,7 @@
       </eTypeParameters>
       <eTypeParameters name="A">
         <eBounds eClassifier="#//metamodel/Attribute">
+          <eTypeArguments eTypeParameter="#//metamodel/Reference/S"/>
           <eTypeArguments eTypeParameter="#//metamodel/Reference/C"/>
           <eTypeArguments eTypeParameter="#//metamodel/Reference/R"/>
           <eTypeArguments eTypeParameter="#//metamodel/Reference/A"/>
@@ -470,6 +521,7 @@
         <eGenericType eTypeParameter="#//metamodel/Reference/C"/>
       </eStructuralFeatures>
       <eGenericSuperTypes eClassifier="#//metamodel/MetaModelElement">
+        <eTypeArguments eTypeParameter="#//metamodel/Reference/S"/>
         <eTypeArguments eTypeParameter="#//metamodel/Reference/C"/>
         <eTypeArguments eTypeParameter="#//metamodel/Reference/R"/>
         <eTypeArguments eTypeParameter="#//metamodel/Reference/A"/>
@@ -482,8 +534,17 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="eReferenceIsContainment" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The eReference \'' + self.eReference.name + '\' is no containment reference!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self.eReference.oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;self.eReference.containment=true&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
       </eAnnotations>
+      <eTypeParameters name="S">
+        <eBounds eClassifier="#//metamodel/Section">
+          <eTypeArguments eTypeParameter="#//metamodel/ContainmentReference/S"/>
+          <eTypeArguments eTypeParameter="#//metamodel/ContainmentReference/C"/>
+          <eTypeArguments eTypeParameter="#//metamodel/ContainmentReference/R"/>
+          <eTypeArguments eTypeParameter="#//metamodel/ContainmentReference/A"/>
+        </eBounds>
+      </eTypeParameters>
       <eTypeParameters name="C">
         <eBounds eClassifier="#//metamodel/Class">
+          <eTypeArguments eTypeParameter="#//metamodel/ContainmentReference/S"/>
           <eTypeArguments eTypeParameter="#//metamodel/ContainmentReference/C"/>
           <eTypeArguments eTypeParameter="#//metamodel/ContainmentReference/R"/>
           <eTypeArguments eTypeParameter="#//metamodel/ContainmentReference/A"/>
@@ -491,6 +552,7 @@
       </eTypeParameters>
       <eTypeParameters name="R">
         <eBounds eClassifier="#//metamodel/Reference">
+          <eTypeArguments eTypeParameter="#//metamodel/ContainmentReference/S"/>
           <eTypeArguments eTypeParameter="#//metamodel/ContainmentReference/C"/>
           <eTypeArguments eTypeParameter="#//metamodel/ContainmentReference/R"/>
           <eTypeArguments eTypeParameter="#//metamodel/ContainmentReference/A"/>
@@ -498,6 +560,7 @@
       </eTypeParameters>
       <eTypeParameters name="A">
         <eBounds eClassifier="#//metamodel/Attribute">
+          <eTypeArguments eTypeParameter="#//metamodel/ContainmentReference/S"/>
           <eTypeArguments eTypeParameter="#//metamodel/ContainmentReference/C"/>
           <eTypeArguments eTypeParameter="#//metamodel/ContainmentReference/R"/>
           <eTypeArguments eTypeParameter="#//metamodel/ContainmentReference/A"/>
@@ -508,6 +571,7 @@
         <eGenericType eTypeParameter="#//metamodel/ContainmentReference/C"/>
       </eStructuralFeatures>
       <eGenericSuperTypes eClassifier="#//metamodel/Reference">
+        <eTypeArguments eTypeParameter="#//metamodel/ContainmentReference/S"/>
         <eTypeArguments eTypeParameter="#//metamodel/ContainmentReference/C"/>
         <eTypeArguments eTypeParameter="#//metamodel/ContainmentReference/R"/>
         <eTypeArguments eTypeParameter="#//metamodel/ContainmentReference/A"/>
@@ -520,8 +584,17 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="eReferenceIsNonContainment" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The eReference \'' + self.eReference.name + '\' is no non-containment reference!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;if self.eReference.oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;self.eReference.containment=false&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
       </eAnnotations>
+      <eTypeParameters name="S">
+        <eBounds eClassifier="#//metamodel/Section">
+          <eTypeArguments eTypeParameter="#//metamodel/NonContainmentReference/S"/>
+          <eTypeArguments eTypeParameter="#//metamodel/NonContainmentReference/C"/>
+          <eTypeArguments eTypeParameter="#//metamodel/NonContainmentReference/R"/>
+          <eTypeArguments eTypeParameter="#//metamodel/NonContainmentReference/A"/>
+        </eBounds>
+      </eTypeParameters>
       <eTypeParameters name="C">
         <eBounds eClassifier="#//metamodel/Class">
+          <eTypeArguments eTypeParameter="#//metamodel/NonContainmentReference/S"/>
           <eTypeArguments eTypeParameter="#//metamodel/NonContainmentReference/C"/>
           <eTypeArguments eTypeParameter="#//metamodel/NonContainmentReference/R"/>
           <eTypeArguments eTypeParameter="#//metamodel/NonContainmentReference/A"/>
@@ -529,6 +602,7 @@
       </eTypeParameters>
       <eTypeParameters name="R">
         <eBounds eClassifier="#//metamodel/Reference">
+          <eTypeArguments eTypeParameter="#//metamodel/NonContainmentReference/S"/>
           <eTypeArguments eTypeParameter="#//metamodel/NonContainmentReference/C"/>
           <eTypeArguments eTypeParameter="#//metamodel/NonContainmentReference/R"/>
           <eTypeArguments eTypeParameter="#//metamodel/NonContainmentReference/A"/>
@@ -536,6 +610,7 @@
       </eTypeParameters>
       <eTypeParameters name="A">
         <eBounds eClassifier="#//metamodel/Attribute">
+          <eTypeArguments eTypeParameter="#//metamodel/NonContainmentReference/S"/>
           <eTypeArguments eTypeParameter="#//metamodel/NonContainmentReference/C"/>
           <eTypeArguments eTypeParameter="#//metamodel/NonContainmentReference/R"/>
           <eTypeArguments eTypeParameter="#//metamodel/NonContainmentReference/A"/>
@@ -545,6 +620,7 @@
         <eGenericType eTypeParameter="#//metamodel/NonContainmentReference/C"/>
       </eStructuralFeatures>
       <eGenericSuperTypes eClassifier="#//metamodel/Reference">
+        <eTypeArguments eTypeParameter="#//metamodel/NonContainmentReference/S"/>
         <eTypeArguments eTypeParameter="#//metamodel/NonContainmentReference/C"/>
         <eTypeArguments eTypeParameter="#//metamodel/NonContainmentReference/R"/>
         <eTypeArguments eTypeParameter="#//metamodel/NonContainmentReference/A"/>
@@ -557,6 +633,7 @@
         </eAnnotations>
       </eOperations>
       <eGenericSuperTypes eClassifier="#//metamodel/Reference">
+        <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
@@ -569,6 +646,7 @@
         </eAnnotations>
       </eOperations>
       <eGenericSuperTypes eClassifier="#//metamodel/Reference">
+        <eTypeArguments eClassifier="#//metamodel/TargetSection"/>
         <eTypeArguments eClassifier="#//metamodel/TargetSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/TargetSectionReference"/>
         <eTypeArguments eClassifier="#//metamodel/TargetSectionAttribute"/>
@@ -576,6 +654,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TargetSectionContainmentReference">
       <eGenericSuperTypes eClassifier="#//metamodel/ContainmentReference">
+        <eTypeArguments eClassifier="#//metamodel/TargetSection"/>
         <eTypeArguments eClassifier="#//metamodel/TargetSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/TargetSectionReference"/>
         <eTypeArguments eClassifier="#//metamodel/TargetSectionAttribute"/>
@@ -584,6 +663,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TargetSectionNonContainmentReference">
       <eGenericSuperTypes eClassifier="#//metamodel/NonContainmentReference">
+        <eTypeArguments eClassifier="#//metamodel/TargetSection"/>
         <eTypeArguments eClassifier="#//metamodel/TargetSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/TargetSectionReference"/>
         <eTypeArguments eClassifier="#//metamodel/TargetSectionAttribute"/>
@@ -592,6 +672,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SourceSectionContainmentReference">
       <eGenericSuperTypes eClassifier="#//metamodel/ContainmentReference">
+        <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
@@ -609,8 +690,17 @@
           eType="#//metamodel/SourceSectionClass"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Attribute" abstract="true">
+      <eTypeParameters name="S">
+        <eBounds eClassifier="#//metamodel/Section">
+          <eTypeArguments eTypeParameter="#//metamodel/Attribute/S"/>
+          <eTypeArguments eTypeParameter="#//metamodel/Attribute/C"/>
+          <eTypeArguments eTypeParameter="#//metamodel/Attribute/R"/>
+          <eTypeArguments eTypeParameter="#//metamodel/Attribute/A"/>
+        </eBounds>
+      </eTypeParameters>
       <eTypeParameters name="C">
         <eBounds eClassifier="#//metamodel/Class">
+          <eTypeArguments eTypeParameter="#//metamodel/Attribute/S"/>
           <eTypeArguments eTypeParameter="#//metamodel/Attribute/C"/>
           <eTypeArguments eTypeParameter="#//metamodel/Attribute/R"/>
           <eTypeArguments eTypeParameter="#//metamodel/Attribute/A"/>
@@ -618,6 +708,7 @@
       </eTypeParameters>
       <eTypeParameters name="R">
         <eBounds eClassifier="#//metamodel/Reference">
+          <eTypeArguments eTypeParameter="#//metamodel/Attribute/S"/>
           <eTypeArguments eTypeParameter="#//metamodel/Attribute/C"/>
           <eTypeArguments eTypeParameter="#//metamodel/Attribute/R"/>
           <eTypeArguments eTypeParameter="#//metamodel/Attribute/A"/>
@@ -625,6 +716,7 @@
       </eTypeParameters>
       <eTypeParameters name="A">
         <eBounds eClassifier="#//metamodel/Attribute">
+          <eTypeArguments eTypeParameter="#//metamodel/Attribute/S"/>
           <eTypeArguments eTypeParameter="#//metamodel/Attribute/C"/>
           <eTypeArguments eTypeParameter="#//metamodel/Attribute/R"/>
           <eTypeArguments eTypeParameter="#//metamodel/Attribute/A"/>
@@ -635,6 +727,7 @@
         <eGenericType eTypeParameter="#//metamodel/Attribute/C"/>
       </eStructuralFeatures>
       <eGenericSuperTypes eClassifier="#//metamodel/MetaModelElement">
+        <eTypeArguments eTypeParameter="#//metamodel/Attribute/S"/>
         <eTypeArguments eTypeParameter="#//metamodel/Attribute/C"/>
         <eTypeArguments eTypeParameter="#//metamodel/Attribute/R"/>
         <eTypeArguments eTypeParameter="#//metamodel/Attribute/A"/>
@@ -652,6 +745,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="valueConstraint" upperBound="-1"
           eType="#//metamodel/AttributeValueConstraint" containment="true"/>
       <eGenericSuperTypes eClassifier="#//metamodel/Attribute">
+        <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
@@ -663,6 +757,7 @@
           defaultValueLiteral="false"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eGenericSuperTypes eClassifier="#//metamodel/Attribute">
+        <eTypeArguments eClassifier="#//metamodel/TargetSection"/>
         <eTypeArguments eClassifier="#//metamodel/TargetSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/TargetSectionReference"/>
         <eTypeArguments eClassifier="#//metamodel/TargetSectionAttribute"/>
@@ -899,6 +994,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeMatcherSourceElement">
       <eGenericSuperTypes eClassifier="#//mapping/LocalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
@@ -940,8 +1036,17 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ModifiedAttributeElementType" abstract="true"
         eSuperTypes="#//NamedElement">
+      <eTypeParameters name="S">
+        <eBounds eClassifier="#//metamodel/Section">
+          <eTypeArguments eTypeParameter="#//mapping/ModifiedAttributeElementType/S"/>
+          <eTypeArguments eTypeParameter="#//mapping/ModifiedAttributeElementType/C"/>
+          <eTypeArguments eTypeParameter="#//mapping/ModifiedAttributeElementType/R"/>
+          <eTypeArguments eTypeParameter="#//mapping/ModifiedAttributeElementType/A"/>
+        </eBounds>
+      </eTypeParameters>
       <eTypeParameters name="C">
         <eBounds eClassifier="#//metamodel/Class">
+          <eTypeArguments eTypeParameter="#//mapping/ModifiedAttributeElementType/S"/>
           <eTypeArguments eTypeParameter="#//mapping/ModifiedAttributeElementType/C"/>
           <eTypeArguments eTypeParameter="#//mapping/ModifiedAttributeElementType/R"/>
           <eTypeArguments eTypeParameter="#//mapping/ModifiedAttributeElementType/A"/>
@@ -949,6 +1054,7 @@
       </eTypeParameters>
       <eTypeParameters name="R">
         <eBounds eClassifier="#//metamodel/Reference">
+          <eTypeArguments eTypeParameter="#//mapping/ModifiedAttributeElementType/S"/>
           <eTypeArguments eTypeParameter="#//mapping/ModifiedAttributeElementType/C"/>
           <eTypeArguments eTypeParameter="#//mapping/ModifiedAttributeElementType/R"/>
           <eTypeArguments eTypeParameter="#//mapping/ModifiedAttributeElementType/A"/>
@@ -956,6 +1062,7 @@
       </eTypeParameters>
       <eTypeParameters name="A">
         <eBounds eClassifier="#//metamodel/Attribute">
+          <eTypeArguments eTypeParameter="#//mapping/ModifiedAttributeElementType/S"/>
           <eTypeArguments eTypeParameter="#//mapping/ModifiedAttributeElementType/C"/>
           <eTypeArguments eTypeParameter="#//mapping/ModifiedAttributeElementType/R"/>
           <eTypeArguments eTypeParameter="#//mapping/ModifiedAttributeElementType/A"/>
@@ -980,8 +1087,17 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="sourceAttributeMatchesSectionOrContainedSection" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The source attribute \'' + self.source.oclAsType(pamtram::metamodel::Attribute).name + '\' is not referenced by the source section of the parent hint group \'' + self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection.name + '\' or in one of its sub-sections!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;let sourceMMSection = self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection in&#xD;&#xA;&#x9;&#x9;if self.source.oclType() = OclVoid or sourceMMSection.oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;self.source.oclAsType(pamtram::metamodel::MetaModelElement).getContainingSection() = sourceMMSection or &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;self.source.oclAsType(pamtram::metamodel::SourceSectionAttribute).getContainingSection().oclAsType(pamtram::metamodel::SourceSection).isReferencedBy(sourceMMSection, null)&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
       </eAnnotations>
+      <eTypeParameters name="S">
+        <eBounds eClassifier="#//metamodel/Section">
+          <eTypeArguments eTypeParameter="#//mapping/LocalModifiedAttributeElementType/S"/>
+          <eTypeArguments eTypeParameter="#//mapping/LocalModifiedAttributeElementType/C"/>
+          <eTypeArguments eTypeParameter="#//mapping/LocalModifiedAttributeElementType/R"/>
+          <eTypeArguments eTypeParameter="#//mapping/LocalModifiedAttributeElementType/A"/>
+        </eBounds>
+      </eTypeParameters>
       <eTypeParameters name="C">
         <eBounds eClassifier="#//metamodel/Class">
+          <eTypeArguments eTypeParameter="#//mapping/LocalModifiedAttributeElementType/S"/>
           <eTypeArguments eTypeParameter="#//mapping/LocalModifiedAttributeElementType/C"/>
           <eTypeArguments eTypeParameter="#//mapping/LocalModifiedAttributeElementType/R"/>
           <eTypeArguments eTypeParameter="#//mapping/LocalModifiedAttributeElementType/A"/>
@@ -989,6 +1105,7 @@
       </eTypeParameters>
       <eTypeParameters name="R">
         <eBounds eClassifier="#//metamodel/Reference">
+          <eTypeArguments eTypeParameter="#//mapping/LocalModifiedAttributeElementType/S"/>
           <eTypeArguments eTypeParameter="#//mapping/LocalModifiedAttributeElementType/C"/>
           <eTypeArguments eTypeParameter="#//mapping/LocalModifiedAttributeElementType/R"/>
           <eTypeArguments eTypeParameter="#//mapping/LocalModifiedAttributeElementType/A"/>
@@ -996,12 +1113,14 @@
       </eTypeParameters>
       <eTypeParameters name="A">
         <eBounds eClassifier="#//metamodel/Attribute">
+          <eTypeArguments eTypeParameter="#//mapping/LocalModifiedAttributeElementType/S"/>
           <eTypeArguments eTypeParameter="#//mapping/LocalModifiedAttributeElementType/C"/>
           <eTypeArguments eTypeParameter="#//mapping/LocalModifiedAttributeElementType/R"/>
           <eTypeArguments eTypeParameter="#//mapping/LocalModifiedAttributeElementType/A"/>
         </eBounds>
       </eTypeParameters>
       <eGenericSuperTypes eClassifier="#//mapping/ModifiedAttributeElementType">
+        <eTypeArguments eTypeParameter="#//mapping/LocalModifiedAttributeElementType/S"/>
         <eTypeArguments eTypeParameter="#//mapping/LocalModifiedAttributeElementType/C"/>
         <eTypeArguments eTypeParameter="#//mapping/LocalModifiedAttributeElementType/R"/>
         <eTypeArguments eTypeParameter="#//mapping/LocalModifiedAttributeElementType/A"/>
@@ -1036,6 +1155,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingSourceElement">
       <eGenericSuperTypes eClassifier="#//mapping/LocalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
@@ -1044,6 +1164,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ModelConnectionHintSourceElement">
       <eGenericSuperTypes eClassifier="#//mapping/LocalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
@@ -1058,6 +1179,7 @@
         <details key="sourceMatchesPossibleContainerType" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The type of the parent hint group\'s target section (\'' + self.oclContainer().oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection.eClass.name + &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'\') cannot be connected to (contained in) the type of the class containing the target attribute (\'' + self.source.oclAsType(pamtram::metamodel::TargetSectionAttribute).oclContainer().oclAsType(pamtram::metamodel::Class).name + '\')!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;let targetMMSection = self.oclContainer().oclContainer().oclAsType(pamtram::mapping::MappingHintGroupType).targetMMSection in&#xD;&#xA;&#x9;&#x9;if self.source.oclType() = OclVoid or targetMMSection.oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;self.source.oclAsType(pamtram::metamodel::TargetSectionAttribute).oclContainer().oclAsType(pamtram::metamodel::Class).eClass.eAllContainments->exists(r : ecore::EReference | r.eReferenceType.isSuperTypeOf(targetMMSection.eClass))&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
       </eAnnotations>
       <eGenericSuperTypes eClassifier="#//mapping/ModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//metamodel/TargetSection"/>
         <eTypeArguments eClassifier="#//metamodel/TargetSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/TargetSectionReference"/>
         <eTypeArguments eClassifier="#//metamodel/TargetSectionAttribute"/>
@@ -1083,6 +1205,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="LocalMappedAttributeValueExpander">
       <eGenericSuperTypes eClassifier="#//mapping/LocalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
@@ -1121,6 +1244,7 @@
         abstract="true" interface="true" eSuperTypes="#//mapping/MappingHintSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingExternalSourceElement">
       <eGenericSuperTypes eClassifier="#//mapping/ExternalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
@@ -1135,8 +1259,17 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="sourceAttributeMatchesContainerSection" value="Tuple {&#xD;&#xA;&#x9;message : String = &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;'The source attribute \'' + self.source.oclAsType(pamtram::metamodel::Attribute).name + '\' is not part of a container section of the source section of the parent hint group \'' + self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection.name + '\'!',&#xD;&#xA;&#x9;severity : Integer = 4,&#xD;&#xA;&#x9;status : Boolean = &#xD;&#xA;&#x9;&#x9;let sourceMMSection = self.getMappingHintGroup().oclContainer().oclAsType(pamtram::mapping::Mapping).sourceMMSection in&#xD;&#xA;&#x9;&#x9;if self.source.oclType() = OclVoid or sourceMMSection.oclType() = OclVoid then&#xD;&#xA;&#x9;&#x9;&#x9;true else&#xD;&#xA;&#x9;&#x9;&#x9;self.source.oclAsType(pamtram::metamodel::SourceSectionAttribute).getContainingSection().oclAsType(pamtram::metamodel::SourceSection).isContainerFor(sourceMMSection.oclAsType(pamtram::metamodel::SourceSection))&#xD;&#xA;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;endif&#xD;&#xA;}.status"/>
       </eAnnotations>
+      <eTypeParameters name="S">
+        <eBounds eClassifier="#//metamodel/Section">
+          <eTypeArguments eTypeParameter="#//mapping/ExternalModifiedAttributeElementType/S"/>
+          <eTypeArguments eTypeParameter="#//mapping/ExternalModifiedAttributeElementType/C"/>
+          <eTypeArguments eTypeParameter="#//mapping/ExternalModifiedAttributeElementType/R"/>
+          <eTypeArguments eTypeParameter="#//mapping/ExternalModifiedAttributeElementType/A"/>
+        </eBounds>
+      </eTypeParameters>
       <eTypeParameters name="C">
         <eBounds eClassifier="#//metamodel/Class">
+          <eTypeArguments eTypeParameter="#//mapping/ExternalModifiedAttributeElementType/S"/>
           <eTypeArguments eTypeParameter="#//mapping/ExternalModifiedAttributeElementType/C"/>
           <eTypeArguments eTypeParameter="#//mapping/ExternalModifiedAttributeElementType/R"/>
           <eTypeArguments eTypeParameter="#//mapping/ExternalModifiedAttributeElementType/A"/>
@@ -1144,6 +1277,7 @@
       </eTypeParameters>
       <eTypeParameters name="R">
         <eBounds eClassifier="#//metamodel/Reference">
+          <eTypeArguments eTypeParameter="#//mapping/ExternalModifiedAttributeElementType/S"/>
           <eTypeArguments eTypeParameter="#//mapping/ExternalModifiedAttributeElementType/C"/>
           <eTypeArguments eTypeParameter="#//mapping/ExternalModifiedAttributeElementType/R"/>
           <eTypeArguments eTypeParameter="#//mapping/ExternalModifiedAttributeElementType/A"/>
@@ -1151,12 +1285,14 @@
       </eTypeParameters>
       <eTypeParameters name="A">
         <eBounds eClassifier="#//metamodel/Attribute">
+          <eTypeArguments eTypeParameter="#//mapping/ExternalModifiedAttributeElementType/S"/>
           <eTypeArguments eTypeParameter="#//mapping/ExternalModifiedAttributeElementType/C"/>
           <eTypeArguments eTypeParameter="#//mapping/ExternalModifiedAttributeElementType/R"/>
           <eTypeArguments eTypeParameter="#//mapping/ExternalModifiedAttributeElementType/A"/>
         </eBounds>
       </eTypeParameters>
       <eGenericSuperTypes eClassifier="#//mapping/ModifiedAttributeElementType">
+        <eTypeArguments eTypeParameter="#//mapping/ExternalModifiedAttributeElementType/S"/>
         <eTypeArguments eTypeParameter="#//mapping/ExternalModifiedAttributeElementType/C"/>
         <eTypeArguments eTypeParameter="#//mapping/ExternalModifiedAttributeElementType/R"/>
         <eTypeArguments eTypeParameter="#//mapping/ExternalModifiedAttributeElementType/A"/>
@@ -1164,6 +1300,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ModelConnectionHintExternalSourceElement">
       <eGenericSuperTypes eClassifier="#//mapping/ExternalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
@@ -1172,6 +1309,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeMatcherExternalSourceElement">
       <eGenericSuperTypes eClassifier="#//mapping/ExternalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>
@@ -1181,6 +1319,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="ExternalMappedAttributeValueExpander"
         abstract="true">
       <eGenericSuperTypes eClassifier="#//mapping/ExternalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//metamodel/SourceSection"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionReference"/>
         <eTypeArguments eClassifier="#//metamodel/SourceSectionAttribute"/>

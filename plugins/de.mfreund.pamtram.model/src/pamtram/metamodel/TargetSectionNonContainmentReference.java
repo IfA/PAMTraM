@@ -14,5 +14,5 @@ package pamtram.metamodel;
  * @model
  * @generated
  */
-public interface TargetSectionNonContainmentReference extends NonContainmentReference<TargetSectionClass, TargetSectionReference, TargetSectionAttribute>, TargetSectionReference {
+public interface TargetSectionNonContainmentReference extends NonContainmentReference<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute>, TargetSectionReference {
 } // TargetSectionNonContainmentReference

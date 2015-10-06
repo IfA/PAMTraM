@@ -1882,19 +1882,34 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		ConditionPackage theConditionPackage = (ConditionPackage)EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI);
 
 		// Create type parameters
+		ETypeParameter modifiedAttributeElementTypeEClass_S = addETypeParameter(modifiedAttributeElementTypeEClass, "S");
 		ETypeParameter modifiedAttributeElementTypeEClass_C = addETypeParameter(modifiedAttributeElementTypeEClass, "C");
 		ETypeParameter modifiedAttributeElementTypeEClass_R = addETypeParameter(modifiedAttributeElementTypeEClass, "R");
 		ETypeParameter modifiedAttributeElementTypeEClass_A = addETypeParameter(modifiedAttributeElementTypeEClass, "A");
+		ETypeParameter localModifiedAttributeElementTypeEClass_S = addETypeParameter(localModifiedAttributeElementTypeEClass, "S");
 		ETypeParameter localModifiedAttributeElementTypeEClass_C = addETypeParameter(localModifiedAttributeElementTypeEClass, "C");
 		ETypeParameter localModifiedAttributeElementTypeEClass_R = addETypeParameter(localModifiedAttributeElementTypeEClass, "R");
 		ETypeParameter localModifiedAttributeElementTypeEClass_A = addETypeParameter(localModifiedAttributeElementTypeEClass, "A");
+		ETypeParameter externalModifiedAttributeElementTypeEClass_S = addETypeParameter(externalModifiedAttributeElementTypeEClass, "S");
 		ETypeParameter externalModifiedAttributeElementTypeEClass_C = addETypeParameter(externalModifiedAttributeElementTypeEClass, "C");
 		ETypeParameter externalModifiedAttributeElementTypeEClass_R = addETypeParameter(externalModifiedAttributeElementTypeEClass, "R");
 		ETypeParameter externalModifiedAttributeElementTypeEClass_A = addETypeParameter(externalModifiedAttributeElementTypeEClass, "A");
 
 		// Set bounds for type parameters
-		EGenericType g1 = createEGenericType(theMetamodelPackage.getClass_());
-		EGenericType g2 = createEGenericType(modifiedAttributeElementTypeEClass_C);
+		EGenericType g1 = createEGenericType(theMetamodelPackage.getSection());
+		EGenericType g2 = createEGenericType(modifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(modifiedAttributeElementTypeEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(modifiedAttributeElementTypeEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(modifiedAttributeElementTypeEClass_A);
+		g1.getETypeArguments().add(g2);
+		modifiedAttributeElementTypeEClass_S.getEBounds().add(g1);
+		g1 = createEGenericType(theMetamodelPackage.getClass_());
+		g2 = createEGenericType(modifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(modifiedAttributeElementTypeEClass_C);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(modifiedAttributeElementTypeEClass_R);
 		g1.getETypeArguments().add(g2);
@@ -1902,6 +1917,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		g1.getETypeArguments().add(g2);
 		modifiedAttributeElementTypeEClass_C.getEBounds().add(g1);
 		g1 = createEGenericType(theMetamodelPackage.getReference());
+		g2 = createEGenericType(modifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(modifiedAttributeElementTypeEClass_C);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(modifiedAttributeElementTypeEClass_R);
@@ -1910,6 +1927,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		g1.getETypeArguments().add(g2);
 		modifiedAttributeElementTypeEClass_R.getEBounds().add(g1);
 		g1 = createEGenericType(theMetamodelPackage.getAttribute());
+		g2 = createEGenericType(modifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(modifiedAttributeElementTypeEClass_C);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(modifiedAttributeElementTypeEClass_R);
@@ -1917,7 +1936,19 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		g2 = createEGenericType(modifiedAttributeElementTypeEClass_A);
 		g1.getETypeArguments().add(g2);
 		modifiedAttributeElementTypeEClass_A.getEBounds().add(g1);
+		g1 = createEGenericType(theMetamodelPackage.getSection());
+		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_A);
+		g1.getETypeArguments().add(g2);
+		localModifiedAttributeElementTypeEClass_S.getEBounds().add(g1);
 		g1 = createEGenericType(theMetamodelPackage.getClass_());
+		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_C);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_R);
@@ -1926,6 +1957,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		g1.getETypeArguments().add(g2);
 		localModifiedAttributeElementTypeEClass_C.getEBounds().add(g1);
 		g1 = createEGenericType(theMetamodelPackage.getReference());
+		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_C);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_R);
@@ -1934,6 +1967,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		g1.getETypeArguments().add(g2);
 		localModifiedAttributeElementTypeEClass_R.getEBounds().add(g1);
 		g1 = createEGenericType(theMetamodelPackage.getAttribute());
+		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_C);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_R);
@@ -1941,7 +1976,19 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_A);
 		g1.getETypeArguments().add(g2);
 		localModifiedAttributeElementTypeEClass_A.getEBounds().add(g1);
+		g1 = createEGenericType(theMetamodelPackage.getSection());
+		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_A);
+		g1.getETypeArguments().add(g2);
+		externalModifiedAttributeElementTypeEClass_S.getEBounds().add(g1);
 		g1 = createEGenericType(theMetamodelPackage.getClass_());
+		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_C);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_R);
@@ -1950,6 +1997,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		g1.getETypeArguments().add(g2);
 		externalModifiedAttributeElementTypeEClass_C.getEBounds().add(g1);
 		g1 = createEGenericType(theMetamodelPackage.getReference());
+		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_C);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_R);
@@ -1958,6 +2007,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		g1.getETypeArguments().add(g2);
 		externalModifiedAttributeElementTypeEClass_R.getEBounds().add(g1);
 		g1 = createEGenericType(theMetamodelPackage.getAttribute());
+		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_C);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_R);
@@ -1988,6 +2039,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		attributeMatcherEClass.getESuperTypes().add(this.getModifiableHint());
 		attributeMatcherEClass.getESuperTypes().add(this.getExpandableHint());
 		g1 = createEGenericType(this.getLocalModifiedAttributeElementType());
+		g2 = createEGenericType(theMetamodelPackage.getSourceSection());
+		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theMetamodelPackage.getSourceSectionClass());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theMetamodelPackage.getSourceSectionReference());
@@ -2007,6 +2060,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		stringPrependerEClass.getESuperTypes().add(this.getAttributeValueModifier());
 		modifiedAttributeElementTypeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		g1 = createEGenericType(this.getModifiedAttributeElementType());
+		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_C);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_R);
@@ -2019,6 +2074,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		exportedMappingHintGroupEClass.getESuperTypes().add(this.getMappingHintGroupType());
 		modelConnectionHintEClass.getESuperTypes().add(this.getMappingHintBaseType());
 		g1 = createEGenericType(this.getLocalModifiedAttributeElementType());
+		g2 = createEGenericType(theMetamodelPackage.getSourceSection());
+		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theMetamodelPackage.getSourceSectionClass());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theMetamodelPackage.getSourceSectionReference());
@@ -2029,6 +2086,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		g1 = createEGenericType(this.getAttributeMappingSourceInterface());
 		attributeMappingSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getLocalModifiedAttributeElementType());
+		g2 = createEGenericType(theMetamodelPackage.getSourceSection());
+		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theMetamodelPackage.getSourceSectionClass());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theMetamodelPackage.getSourceSectionReference());
@@ -2039,6 +2098,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		g1 = createEGenericType(this.getModelConnectionHintSourceInterface());
 		modelConnectionHintSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getModifiedAttributeElementType());
+		g2 = createEGenericType(theMetamodelPackage.getTargetSection());
+		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theMetamodelPackage.getTargetSectionClass());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theMetamodelPackage.getTargetSectionReference());
@@ -2050,6 +2111,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		hintImporterMappingHintEClass.getESuperTypes().add(this.getMappingHintType());
 		mappedAttributeValueExpanderEClass.getESuperTypes().add(this.getHintImporterMappingHint());
 		g1 = createEGenericType(this.getLocalModifiedAttributeElementType());
+		g2 = createEGenericType(theMetamodelPackage.getSourceSection());
+		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theMetamodelPackage.getSourceSectionClass());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theMetamodelPackage.getSourceSectionReference());
@@ -2074,6 +2137,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		mappingHintSourceInterfaceEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		modelConnectionHintSourceInterfaceEClass.getESuperTypes().add(this.getMappingHintSourceInterface());
 		g1 = createEGenericType(this.getExternalModifiedAttributeElementType());
+		g2 = createEGenericType(theMetamodelPackage.getSourceSection());
+		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theMetamodelPackage.getSourceSectionClass());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theMetamodelPackage.getSourceSectionReference());
@@ -2084,6 +2149,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		g1 = createEGenericType(this.getAttributeMappingSourceInterface());
 		attributeMappingExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getModifiedAttributeElementType());
+		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_C);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_R);
@@ -2092,6 +2159,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		g1.getETypeArguments().add(g2);
 		externalModifiedAttributeElementTypeEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getExternalModifiedAttributeElementType());
+		g2 = createEGenericType(theMetamodelPackage.getSourceSection());
+		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theMetamodelPackage.getSourceSectionClass());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theMetamodelPackage.getSourceSectionReference());
@@ -2102,6 +2171,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		g1 = createEGenericType(this.getModelConnectionHintSourceInterface());
 		modelConnectionHintExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getExternalModifiedAttributeElementType());
+		g2 = createEGenericType(theMetamodelPackage.getSourceSection());
+		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theMetamodelPackage.getSourceSectionClass());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theMetamodelPackage.getSourceSectionReference());
@@ -2112,6 +2183,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		g1 = createEGenericType(this.getAttributeMatcherSourceInterface());
 		attributeMatcherExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getExternalModifiedAttributeElementType());
+		g2 = createEGenericType(theMetamodelPackage.getSourceSection());
+		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theMetamodelPackage.getSourceSectionClass());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theMetamodelPackage.getSourceSectionReference());

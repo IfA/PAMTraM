@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.Reference;
+import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 import pamtram.metamodel.SourceSectionClass;
 import pamtram.metamodel.SourceSectionReference;
@@ -20,7 +21,7 @@ import pamtram.metamodel.SourceSectionReference;
  *
  * @generated
  */
-public class SourceSectionClassImpl extends ClassImpl<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements SourceSectionClass {
+public class SourceSectionClassImpl extends ClassImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements SourceSectionClass {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -13,5 +13,5 @@ package pamtram.metamodel;
  * @model abstract="true"
  * @generated
  */
-public interface Section<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends pamtram.metamodel.Class<C, R, A> {
+public interface Section<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends pamtram.metamodel.Class<S, C, R, A> {
 } // Section

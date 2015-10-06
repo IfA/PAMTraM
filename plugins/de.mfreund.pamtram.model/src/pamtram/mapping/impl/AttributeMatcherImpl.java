@@ -279,14 +279,14 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 		 *         .eReferenceType.oclAsType(ecore::EClass)
 		 *         .isSuperTypeOf(
 		 *           self.targetAttribute.oclContainer()
-		 *           .oclAsType(metamodel::Class(C, R, A)).eClass)
+		 *           .oclAsType(metamodel::Class(S, C, R, A)).eClass)
 		 *       endif
 		 *     in
 		 *       let
 		 *         message : String[?] = if status <> true
 		 *         then 'The type of the class containing the target attribute (\'' +
 		 *           self.targetAttribute.oclContainer()
-		 *           .oclAsType(metamodel::Class(C, R, A)).eClass.name + '\') is not allowed by the affected reference of the parent mapping instance selector that ' + 'requires a (sub-)type of \'' +
+		 *           .oclAsType(metamodel::Class(S, C, R, A)).eClass.name + '\') is not allowed by the affected reference of the parent mapping instance selector that ' + 'requires a (sub-)type of \'' +
 		 *           self.oclContainer()
 		 *           .oclAsType(MappingInstanceSelector)
 		 *           .affectedReference.eReference.oclAsType(ecore::EReference)
@@ -337,7 +337,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ecore_c_c_EClass = idResolver.getClass(MappingTables.CLSSid_EClass, null);
 		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ecore_c_c_EReference_0 = idResolver.getClass(MappingTables.CLSSid_EReference, null);
 		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingInstanceSelector_0 = idResolver.getClass(MappingTables.CLSSid_MappingInstanceSelector, null);
-		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Class_o_C_44_R_44_A_e = idResolver.getClass(MappingTables.CLSSid_Class_0, null);
+		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Class_o_S_44_C_44_R_44_A_e = idResolver.getClass(MappingTables.CLSSid_Class_0, null);
 		        final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer_0 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
 		        final /*@NonNull*/ /*@Thrown*/ MappingInstanceSelector oclAsType_0 = ClassUtil.nonNullState((MappingInstanceSelector)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_0, TYP_pamtram_c_c_mapping_c_c_MappingInstanceSelector_0));
 		        final /*@NonNull*/ /*@Thrown*/ TargetSectionNonContainmentReference affectedReference_0 = oclAsType_0.getAffectedReference();
@@ -348,7 +348,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 		        final /*@NonNull*/ /*@Thrown*/ EClass oclAsType_2 = ClassUtil.nonNullState((EClass)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, eReferenceType, TYP_ecore_c_c_EClass));
 		        final /*@NonNull*/ /*@Thrown*/ TargetSectionAttribute targetAttribute_0 = this.getTargetAttribute();
 		        final /*@Nullable*/ /*@Thrown*/ Object oclContainer_1 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, targetAttribute_0);
-		        final /*@NonNull*/ /*@Thrown*/ pamtram.metamodel.Class oclAsType_3 = ClassUtil.nonNullState((pamtram.metamodel.Class)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_1, TYP_pamtram_c_c_metamodel_c_c_Class_o_C_44_R_44_A_e));
+		        final /*@NonNull*/ /*@Thrown*/ pamtram.metamodel.Class oclAsType_3 = ClassUtil.nonNullState((pamtram.metamodel.Class)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_1, TYP_pamtram_c_c_metamodel_c_c_Class_o_S_44_C_44_R_44_A_e));
 		        final /*@NonNull*/ /*@Thrown*/ EClass eClass = oclAsType_3.getEClass();
 		        final /*@Thrown*/ boolean isSuperTypeOf = oclAsType_2.isSuperTypeOf(eClass);
 		        status = isSuperTypeOf;
@@ -367,10 +367,10 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 		    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ecore_c_c_EClass_0 = idResolver.getClass(MappingTables.CLSSid_EClass, null);
 		    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ecore_c_c_EReference_1 = idResolver.getClass(MappingTables.CLSSid_EReference, null);
 		    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingInstanceSelector_1 = idResolver.getClass(MappingTables.CLSSid_MappingInstanceSelector, null);
-		    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Class_o_C_44_R_44_A_e_0 = idResolver.getClass(MappingTables.CLSSid_Class_0, null);
+		    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Class_o_S_44_C_44_R_44_A_e_0 = idResolver.getClass(MappingTables.CLSSid_Class_0, null);
 		    final /*@NonNull*/ /*@Thrown*/ TargetSectionAttribute targetAttribute_1 = this.getTargetAttribute();
 		    final /*@Nullable*/ /*@Thrown*/ Object oclContainer_2 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, targetAttribute_1);
-		    final /*@NonNull*/ /*@Thrown*/ pamtram.metamodel.Class oclAsType_4 = ClassUtil.nonNullState((pamtram.metamodel.Class)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_2, TYP_pamtram_c_c_metamodel_c_c_Class_o_C_44_R_44_A_e_0));
+		    final /*@NonNull*/ /*@Thrown*/ pamtram.metamodel.Class oclAsType_4 = ClassUtil.nonNullState((pamtram.metamodel.Class)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_2, TYP_pamtram_c_c_metamodel_c_c_Class_o_S_44_C_44_R_44_A_e_0));
 		    final /*@NonNull*/ /*@Thrown*/ EClass eClass_0 = oclAsType_4.getEClass();
 		    final /*@Nullable*/ /*@Thrown*/ String name = eClass_0.getName();
 		    final /*@NonNull*/ /*@NonInvalid*/ String sum = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(MappingTables.STR_The_32_type_32_of_32_the_32_class_32_containing_32_the_32_target_32_attribute_32_o_39, name));

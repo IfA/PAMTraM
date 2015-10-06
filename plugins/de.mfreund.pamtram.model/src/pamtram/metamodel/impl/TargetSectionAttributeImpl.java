@@ -6,6 +6,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionReference;
@@ -24,7 +25,7 @@ import pamtram.metamodel.TargetSectionReference;
  *
  * @generated
  */
-public abstract class TargetSectionAttributeImpl extends AttributeImpl<TargetSectionClass, TargetSectionReference, TargetSectionAttribute> implements TargetSectionAttribute {
+public abstract class TargetSectionAttributeImpl extends AttributeImpl<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute> implements TargetSectionAttribute {
 	/**
 	 * The default value of the '{@link #isUnique() <em>Unique</em>}' attribute.
 	 * <!-- begin-user-doc -->

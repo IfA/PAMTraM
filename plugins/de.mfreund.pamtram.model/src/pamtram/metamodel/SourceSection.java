@@ -24,7 +24,7 @@ import pamtram.mapping.MappingType;
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='isReferencedByMapping'"
  * @generated
  */
-public interface SourceSection extends SourceSectionClass, Section<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> {
+public interface SourceSection extends SourceSectionClass, Section<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> {
 
 	/**
 	 * Returns the value of the '<em><b>Referencing Mappings</b></em>' reference list.

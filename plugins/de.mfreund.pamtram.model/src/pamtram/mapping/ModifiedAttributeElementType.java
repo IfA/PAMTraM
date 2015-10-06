@@ -8,6 +8,7 @@ import pamtram.NamedElement;
 
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.Reference;
+import pamtram.metamodel.Section;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +27,7 @@ import pamtram.metamodel.Reference;
  * @model abstract="true"
  * @generated
  */
-public interface ModifiedAttributeElementType<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends NamedElement {
+public interface ModifiedAttributeElementType<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -39,7 +40,7 @@ public interface ModifiedAttributeElementType<C extends pamtram.metamodel.Class<
 	 * @see #setSource(Attribute)
 	 * @see pamtram.mapping.MappingPackage#getModifiedAttributeElementType_Source()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!ModifiedAttributeElementType{C,R,A}!source'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!ModifiedAttributeElementType{S,C,R,A}!source'"
 	 * @generated
 	 */
 	A getSource();
@@ -65,7 +66,7 @@ public interface ModifiedAttributeElementType<C extends pamtram.metamodel.Class<
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Modifier</em>' reference list.
 	 * @see pamtram.mapping.MappingPackage#getModifiedAttributeElementType_Modifier()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!ModifiedAttributeElementType{C,R,A}!modifier'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!ModifiedAttributeElementType{S,C,R,A}!modifier'"
 	 * @generated
 	 */
 	EList<AttributeValueModifierSet> getModifier();

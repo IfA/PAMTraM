@@ -19,7 +19,7 @@ package pamtram.metamodel;
  * @model abstract="true"
  * @generated
  */
-public interface Attribute<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends MetaModelElement<C, R, A> {
+public interface Attribute<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends MetaModelElement<S, C, R, A> {
 
 	/**
 	 * Returns the value of the '<em><b>Owning Class</b></em>' container reference.
@@ -34,7 +34,7 @@ public interface Attribute<C extends pamtram.metamodel.Class<C, R, A>, R extends
 	 * @see pamtram.metamodel.MetamodelPackage#getAttribute_OwningClass()
 	 * @see pamtram.metamodel.Class#getAttributes
 	 * @model opposite="attributes" transient="false" changeable="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!Attribute{C,R,A}!owningClass'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!Attribute{S,C,R,A}!owningClass'"
 	 * @generated
 	 */
 	C getOwningClass();

@@ -31,7 +31,7 @@ import pamtram.metamodel.VirtualAttribute;
  *
  * @generated
  */
-public abstract class MetaModelElementImpl<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends NamedElementImpl implements MetaModelElement<C, R, A> {
+public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends NamedElementImpl implements MetaModelElement<S, C, R, A> {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,24 +63,24 @@ public abstract class MetaModelElementImpl<C extends pamtram.metamodel.Class<C, 
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public C getContainingSection() {
-		MetaModelElement<C,R,A> element = this;
+	public S getContainingSection() {
+		MetaModelElement<S,C,R,A> element = this;
 		
 		// move upwards in the hierarchy
 		while(element.eContainer() instanceof MetaModelElement) {
-			element = (MetaModelElement<C,R,A>) element.eContainer();
+			element = (MetaModelElement<S,C,R,A>) element.eContainer();
 		}
 		
 		if(element instanceof Section || element.eContainer() instanceof ContainerParameter) {
 			// we have found the section
-			return (C) element;
+			return (S) element;
 		} else if((element instanceof TargetSectionAttribute && element.eContainer() instanceof AttributeParameter) || 
 				(element instanceof TargetSectionNonContainmentReference) && element.eContainer() instanceof ExternalReferenceParameter) {
 			LibraryEntry libEntry = (LibraryEntry) element.eContainer().eContainer();
 			for (LibraryParameter<?> param : libEntry.getParameters()) {
 				//TODO if multiple container parameters exist, there might need to be additional logic
 				if(param instanceof ContainerParameter) {
-					return (C) ((ContainerParameter) param).getClass_();
+					return (S) ((ContainerParameter) param).getClass_();
 				}
 			}
 			return null;
@@ -89,7 +89,7 @@ public abstract class MetaModelElementImpl<C extends pamtram.metamodel.Class<C, 
 			for (LibraryParameter<?> param : libEntry.getParameters()) {
 				//TODO if multiple container parameters exist, there might need to be additional logic
 				if(param instanceof ContainerParameter) {
-					return (C) ((ContainerParameter) param).getClass_();
+					return (S) ((ContainerParameter) param).getClass_();
 				}
 			}
 			return null;
@@ -105,8 +105,8 @@ public abstract class MetaModelElementImpl<C extends pamtram.metamodel.Class<C, 
 	 * @generated
 	 */
 	@Override
-	public SectionModel<Section<C, R, A>, C, R, A> getContainingSectionModel() {
-		C section = this.getContainingSection();
+	public SectionModel<S, C, R, A> getContainingSectionModel() {
+		S section = this.getContainingSection();
 		
 		EObject container = section.eContainer();
 		while(!(container instanceof SectionModel)) {
@@ -116,7 +116,7 @@ public abstract class MetaModelElementImpl<C extends pamtram.metamodel.Class<C, 
 			}
 			container = container.eContainer();
 		}
-		return (SectionModel<Section<C, R, A>, C, R, A>) container;
+		return (SectionModel<S, C, R, A>) container;
 	}
 
 	/**

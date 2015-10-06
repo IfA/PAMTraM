@@ -29,6 +29,7 @@ import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.MetaModelElement;
 import pamtram.metamodel.Reference;
+import pamtram.metamodel.Section;
 import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
 
@@ -39,7 +40,7 @@ import pamtram.metamodel.SourceSectionAttribute;
  *
  * @generated
  */
-public abstract class ExternalModifiedAttributeElementTypeImpl<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends ModifiedAttributeElementTypeImpl<C, R, A> implements ExternalModifiedAttributeElementType<C, R, A> {
+public abstract class ExternalModifiedAttributeElementTypeImpl<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ModifiedAttributeElementTypeImpl<S, C, R, A> implements ExternalModifiedAttributeElementType<S, C, R, A> {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -91,7 +92,7 @@ public abstract class ExternalModifiedAttributeElementTypeImpl<C extends pamtram
 		 *       let
 		 *         message : String[?] = if status <> true
 		 *         then 'The source attribute \'' +
-		 *           self.source.oclAsType(metamodel::Attribute(C, R, A)).name + '\' is not part of a container section of the source section of the parent hint group \'' +
+		 *           self.source.oclAsType(metamodel::Attribute(S, C, R, A)).name + '\' is not part of a container section of the source section of the parent hint group \'' +
 		 *           self.getMappingHintGroup()
 		 *           .oclContainer()
 		 *           .oclAsType(Mapping).sourceMMSection.name + '\'!'
@@ -174,9 +175,9 @@ public abstract class ExternalModifiedAttributeElementTypeImpl<C extends pamtram
 		/*@Nullable*/ /*@NonInvalid*/ String message_0;
 		if (ne) {
 		    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_Mapping_1 = idResolver.getClass(MappingTables.CLSSid_Mapping, null);
-		    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Attribute_o_C_44_R_44_A_e_0 = idResolver.getClass(MappingTables.CLSSid_Attribute, null);
+		    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Attribute_o_S_44_C_44_R_44_A_e_0 = idResolver.getClass(MappingTables.CLSSid_Attribute, null);
 		    final /*@NonNull*/ /*@Thrown*/ Object source_1 = this.getSource();
-		    final /*@NonNull*/ /*@Thrown*/ Attribute oclAsType_3 = ClassUtil.nonNullState((Attribute)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, source_1, TYP_pamtram_c_c_metamodel_c_c_Attribute_o_C_44_R_44_A_e_0));
+		    final /*@NonNull*/ /*@Thrown*/ Attribute oclAsType_3 = ClassUtil.nonNullState((Attribute)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, source_1, TYP_pamtram_c_c_metamodel_c_c_Attribute_o_S_44_C_44_R_44_A_e_0));
 		    final /*@Nullable*/ /*@Thrown*/ String name = oclAsType_3.getName();
 		    final /*@NonNull*/ /*@NonInvalid*/ String sum = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(MappingTables.STR_The_32_source_32_attribute_32_39, name));
 		    final /*@NonNull*/ /*@NonInvalid*/ String sum_0 = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(sum, MappingTables.STR__39_32_is_32_not_32_part_32_of_32_a_32_container_32_section_32_of_32_the_32_source_32_section_32_of_32_th));

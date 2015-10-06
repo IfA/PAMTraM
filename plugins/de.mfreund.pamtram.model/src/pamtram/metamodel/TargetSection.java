@@ -24,7 +24,7 @@ import pamtram.mapping.MappingHintGroupType;
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='isReferencedByMappingHintGroup'"
  * @generated
  */
-public interface TargetSection extends TargetSectionClass, Section<TargetSectionClass, TargetSectionReference, TargetSectionAttribute> {
+public interface TargetSection extends TargetSectionClass, Section<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute> {
 
 	/**
 	 * Returns the value of the '<em><b>Referencing Mapping Hint Groups</b></em>' reference list.

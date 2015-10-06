@@ -36,6 +36,7 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
+
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.CardinalityType;
 import pamtram.metamodel.ContainmentReference;
@@ -64,7 +65,7 @@ import pamtram.metamodel.Section;
  *
  * @generated
  */
-public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> extends MetaModelElementImpl<C, R, A> implements pamtram.metamodel.Class<C, R, A> {
+public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends MetaModelElementImpl<S, C, R, A> implements pamtram.metamodel.Class<S, C, R, A> {
 	/**
 	 * The cached value of the '{@link #getEClass() <em>EClass</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -330,8 +331,8 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 			if(!(ref.getEReference().isContainment())) {
 				continue;
 			}
-			if(ref instanceof ContainmentReference<?,?,?>){
-				containedClasses.addAll(((ContainmentReference<C,R,A>) ref).getValue());
+			if(ref instanceof ContainmentReference<?,?,?,?>){
+				containedClasses.addAll(((ContainmentReference<S,C,R,A>) ref).getValue());
 			} else if(ref instanceof MetaModelSectionReference) {
 				containedClasses.addAll((Collection<? extends C>) ((MetaModelSectionReference) ref).getValue());
 			}
@@ -356,9 +357,9 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public ContainmentReference<C, R, A> getOwningContainmentReference() {
-		if(this.eContainer() instanceof ContainmentReference<?,?,?>) {
-			return (ContainmentReference<C,R,A>) this.eContainer();
+	public ContainmentReference<S, C, R, A> getOwningContainmentReference() {
+		if(this.eContainer() instanceof ContainmentReference<?,?,?,?>) {
+			return (ContainmentReference<S,C,R,A>) this.eContainer();
 		} else {
 			return null;
 		}
@@ -380,12 +381,12 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 		// collect all classes that are referenced
 		for (R ref : referencingClass.getReferences()) {
 
-			if(ref instanceof ContainmentReference<?,?,?>){
-				classes.addAll(((ContainmentReference<C,R,A>) ref).getValue());
+			if(ref instanceof ContainmentReference<?,?,?,?>){
+				classes.addAll(((ContainmentReference<S,C,R,A>) ref).getValue());
 			} else if(ref instanceof MetaModelSectionReference) {
 				classes.addAll((Collection<? extends C>) ((MetaModelSectionReference) ref).getValue());
 			} else if(ref instanceof NonContainmentReference){
-				classes.addAll(((NonContainmentReference<C,R,A>) ref).getValue());
+				classes.addAll(((NonContainmentReference<S,C,R,A>) ref).getValue());
 			}
 		}
 
@@ -417,7 +418,7 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 		 *   in
 		 *     let
 		 *       status : OclAny[1] = if
-		 *         self.oclIsKindOf(Section(C, R, A)) = true or self.container = null
+		 *         self.oclIsKindOf(Section(S, C, R, A)) = true or self.container = null
 		 *       then true
 		 *       else self.container = self.oclContainer().oclContainer()
 		 *       endif
@@ -434,8 +435,8 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		/*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
 		try {
-		    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Section_o_C_44_R_44_A_e = idResolver.getClass(MetamodelTables.CLSSid_Section, null);
-		    final /*@NonInvalid*/ boolean oclIsKindOf = ClassUtil.nonNullState(OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, this, TYP_pamtram_c_c_metamodel_c_c_Section_o_C_44_R_44_A_e).booleanValue());
+		    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e = idResolver.getClass(MetamodelTables.CLSSid_Section, null);
+		    final /*@NonInvalid*/ boolean oclIsKindOf = ClassUtil.nonNullState(OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, this, TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e).booleanValue());
 		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_eq;
 		    try {
 		        final /*@Nullable*/ /*@Thrown*/ Object container = this.getContainer();
@@ -500,14 +501,14 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 		 *       else
 		 *         let
 		 *           parentEReference : ecore::EReference[1] = self.oclContainer()
-		 *           .oclAsType(Reference(C, R, A)).eReference
+		 *           .oclAsType(Reference(S, C, R, A)).eReference
 		 *         in
 		 *           if parentEReference.oclType() = OclVoid
 		 *           then true
 		 *           else
 		 *             not (self.cardinality <> CardinalityType::ONE and
 		 *               self.oclContainer()
-		 *               .oclAsType(Reference(C, R, A))
+		 *               .oclAsType(Reference(S, C, R, A))
 		 *               .eReference.oclAsType(ecore::EReference).upperBound = 1
 		 *             )
 		 *           endif
@@ -554,9 +555,9 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 		        status = ValueUtil.TRUE_VALUE;
 		    }
 		    else {
-		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Reference_o_C_44_R_44_A_e_0 = idResolver.getClass(MetamodelTables.CLSSid_Reference, null);
+		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Reference_o_S_44_C_44_R_44_A_e_0 = idResolver.getClass(MetamodelTables.CLSSid_Reference, null);
 		        final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
-		        final /*@NonNull*/ /*@Thrown*/ Reference oclAsType = ClassUtil.nonNullState((Reference)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_metamodel_c_c_Reference_o_C_44_R_44_A_e_0));
+		        final /*@NonNull*/ /*@Thrown*/ Reference oclAsType = ClassUtil.nonNullState((Reference)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_metamodel_c_c_Reference_o_S_44_C_44_R_44_A_e_0));
 		        final /*@NonNull*/ /*@Thrown*/ EReference parentEReference = oclAsType.getEReference();
 		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid_1 = idResolver.getClass(TypeId.OCL_VOID, null);
 		        final /*@NonNull*/ /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType_0 = ClassUtil.nonNullState((org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(evaluator, parentEReference));
@@ -635,7 +636,7 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 		 *       else
 		 *         let
 		 *           parentEReference : ecore::EReference[1] = self.oclContainer()
-		 *           .oclAsType(Reference(C, R, A)).eReference
+		 *           .oclAsType(Reference(S, C, R, A)).eReference
 		 *         in
 		 *           if parentEReference.oclType() = OclVoid
 		 *           then true
@@ -687,9 +688,9 @@ public abstract class ClassImpl<C extends pamtram.metamodel.Class<C, R, A>, R ex
 		        status = ValueUtil.TRUE_VALUE;
 		    }
 		    else {
-		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Reference_o_C_44_R_44_A_e = idResolver.getClass(MetamodelTables.CLSSid_Reference, null);
+		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Reference_o_S_44_C_44_R_44_A_e = idResolver.getClass(MetamodelTables.CLSSid_Reference, null);
 		        final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
-		        final /*@NonNull*/ /*@Thrown*/ Reference oclAsType = ClassUtil.nonNullState((Reference)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_metamodel_c_c_Reference_o_C_44_R_44_A_e));
+		        final /*@NonNull*/ /*@Thrown*/ Reference oclAsType = ClassUtil.nonNullState((Reference)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_pamtram_c_c_metamodel_c_c_Reference_o_S_44_C_44_R_44_A_e));
 		        final /*@NonNull*/ /*@Thrown*/ EReference parentEReference = oclAsType.getEReference();
 		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclVoid_0 = idResolver.getClass(TypeId.OCL_VOID, null);
 		        final /*@NonNull*/ /*@Thrown*/ org.eclipse.ocl.pivot.Class oclType_0 = ClassUtil.nonNullState((org.eclipse.ocl.pivot.Class)OclAnyOclTypeOperation.INSTANCE.evaluate(evaluator, parentEReference));

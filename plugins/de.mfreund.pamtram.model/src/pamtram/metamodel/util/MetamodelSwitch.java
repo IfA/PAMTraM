@@ -98,14 +98,14 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
 			case MetamodelPackage.META_MODEL_ELEMENT: {
-				MetaModelElement<?, ?, ?> metaModelElement = (MetaModelElement<?, ?, ?>)theEObject;
+				MetaModelElement<?, ?, ?, ?> metaModelElement = (MetaModelElement<?, ?, ?, ?>)theEObject;
 				T result = caseMetaModelElement(metaModelElement);
 				if (result == null) result = caseNamedElement(metaModelElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case MetamodelPackage.CLASS: {
-				pamtram.metamodel.Class<?, ?, ?> class_ = (pamtram.metamodel.Class<?, ?, ?>)theEObject;
+				pamtram.metamodel.Class<?, ?, ?, ?> class_ = (pamtram.metamodel.Class<?, ?, ?, ?>)theEObject;
 				T result = caseClass(class_);
 				if (result == null) result = caseMetaModelElement(class_);
 				if (result == null) result = caseNamedElement(class_);
@@ -113,7 +113,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case MetamodelPackage.SECTION: {
-				Section<?, ?, ?> section = (Section<?, ?, ?>)theEObject;
+				Section<?, ?, ?, ?> section = (Section<?, ?, ?, ?>)theEObject;
 				T result = caseSection(section);
 				if (result == null) result = caseClass(section);
 				if (result == null) result = caseMetaModelElement(section);
@@ -199,7 +199,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case MetamodelPackage.REFERENCE: {
-				Reference<?, ?, ?> reference = (Reference<?, ?, ?>)theEObject;
+				Reference<?, ?, ?, ?> reference = (Reference<?, ?, ?, ?>)theEObject;
 				T result = caseReference(reference);
 				if (result == null) result = caseMetaModelElement(reference);
 				if (result == null) result = caseNamedElement(reference);
@@ -207,7 +207,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case MetamodelPackage.CONTAINMENT_REFERENCE: {
-				ContainmentReference<?, ?, ?> containmentReference = (ContainmentReference<?, ?, ?>)theEObject;
+				ContainmentReference<?, ?, ?, ?> containmentReference = (ContainmentReference<?, ?, ?, ?>)theEObject;
 				T result = caseContainmentReference(containmentReference);
 				if (result == null) result = caseReference(containmentReference);
 				if (result == null) result = caseMetaModelElement(containmentReference);
@@ -216,7 +216,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case MetamodelPackage.NON_CONTAINMENT_REFERENCE: {
-				NonContainmentReference<?, ?, ?> nonContainmentReference = (NonContainmentReference<?, ?, ?>)theEObject;
+				NonContainmentReference<?, ?, ?, ?> nonContainmentReference = (NonContainmentReference<?, ?, ?, ?>)theEObject;
 				T result = caseNonContainmentReference(nonContainmentReference);
 				if (result == null) result = caseReference(nonContainmentReference);
 				if (result == null) result = caseMetaModelElement(nonContainmentReference);
@@ -286,7 +286,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case MetamodelPackage.ATTRIBUTE: {
-				Attribute<?, ?, ?> attribute = (Attribute<?, ?, ?>)theEObject;
+				Attribute<?, ?, ?, ?> attribute = (Attribute<?, ?, ?, ?>)theEObject;
 				T result = caseAttribute(attribute);
 				if (result == null) result = caseMetaModelElement(attribute);
 				if (result == null) result = caseNamedElement(attribute);
@@ -405,7 +405,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> T caseMetaModelElement(MetaModelElement<C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseMetaModelElement(MetaModelElement<S, C, R, A> object) {
 		return null;
 	}
 
@@ -420,7 +420,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> T caseClass(pamtram.metamodel.Class<C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseClass(pamtram.metamodel.Class<S, C, R, A> object) {
 		return null;
 	}
 
@@ -435,7 +435,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> T caseSection(Section<C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseSection(Section<S, C, R, A> object) {
 		return null;
 	}
 
@@ -585,7 +585,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> T caseReference(Reference<C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseReference(Reference<S, C, R, A> object) {
 		return null;
 	}
 
@@ -600,7 +600,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> T caseContainmentReference(ContainmentReference<C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseContainmentReference(ContainmentReference<S, C, R, A> object) {
 		return null;
 	}
 
@@ -615,7 +615,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> T caseNonContainmentReference(NonContainmentReference<C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseNonContainmentReference(NonContainmentReference<S, C, R, A> object) {
 		return null;
 	}
 
@@ -720,7 +720,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> T caseAttribute(Attribute<C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseAttribute(Attribute<S, C, R, A> object) {
 		return null;
 	}
 

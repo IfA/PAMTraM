@@ -98,15 +98,15 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	protected MetamodelSwitch<Adapter> modelSwitch =
 		new MetamodelSwitch<Adapter>() {
 			@Override
-			public <C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> Adapter caseMetaModelElement(MetaModelElement<C, R, A> object) {
+			public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseMetaModelElement(MetaModelElement<S, C, R, A> object) {
 				return createMetaModelElementAdapter();
 			}
 			@Override
-			public <C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> Adapter caseClass(pamtram.metamodel.Class<C, R, A> object) {
+			public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseClass(pamtram.metamodel.Class<S, C, R, A> object) {
 				return createClassAdapter();
 			}
 			@Override
-			public <C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> Adapter caseSection(Section<C, R, A> object) {
+			public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseSection(Section<S, C, R, A> object) {
 				return createSectionAdapter();
 			}
 			@Override
@@ -146,15 +146,15 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 				return createLibraryEntryAdapter();
 			}
 			@Override
-			public <C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> Adapter caseReference(Reference<C, R, A> object) {
+			public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseReference(Reference<S, C, R, A> object) {
 				return createReferenceAdapter();
 			}
 			@Override
-			public <C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> Adapter caseContainmentReference(ContainmentReference<C, R, A> object) {
+			public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseContainmentReference(ContainmentReference<S, C, R, A> object) {
 				return createContainmentReferenceAdapter();
 			}
 			@Override
-			public <C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> Adapter caseNonContainmentReference(NonContainmentReference<C, R, A> object) {
+			public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseNonContainmentReference(NonContainmentReference<S, C, R, A> object) {
 				return createNonContainmentReferenceAdapter();
 			}
 			@Override
@@ -182,7 +182,7 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 				return createMetaModelSectionReferenceAdapter();
 			}
 			@Override
-			public <C extends pamtram.metamodel.Class<C, R, A>, R extends Reference<C, R, A>, A extends Attribute<C, R, A>> Adapter caseAttribute(Attribute<C, R, A> object) {
+			public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseAttribute(Attribute<S, C, R, A> object) {
 				return createAttributeAdapter();
 			}
 			@Override

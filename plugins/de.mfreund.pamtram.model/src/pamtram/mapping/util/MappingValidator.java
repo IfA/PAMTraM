@@ -304,9 +304,9 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		case MappingPackage.STRING_PREPENDER:
 			return validateStringPrepender((StringPrepender)value, diagnostics, context);
 		case MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE:
-			return validateModifiedAttributeElementType((ModifiedAttributeElementType<?, ?, ?>)value, diagnostics, context);
+			return validateModifiedAttributeElementType((ModifiedAttributeElementType<?, ?, ?, ?>)value, diagnostics, context);
 		case MappingPackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE:
-			return validateLocalModifiedAttributeElementType((LocalModifiedAttributeElementType<?, ?, ?>)value, diagnostics, context);
+			return validateLocalModifiedAttributeElementType((LocalModifiedAttributeElementType<?, ?, ?, ?>)value, diagnostics, context);
 		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER:
 			return validateMappingHintGroupImporter((MappingHintGroupImporter)value, diagnostics, context);
 		case MappingPackage.EXPORTED_MAPPING_HINT_GROUP:
@@ -346,7 +346,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 		case MappingPackage.ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT:
 			return validateAttributeMappingExternalSourceElement((AttributeMappingExternalSourceElement)value, diagnostics, context);
 		case MappingPackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE:
-			return validateExternalModifiedAttributeElementType((ExternalModifiedAttributeElementType<?, ?, ?>)value, diagnostics, context);
+			return validateExternalModifiedAttributeElementType((ExternalModifiedAttributeElementType<?, ?, ?, ?>)value, diagnostics, context);
 		case MappingPackage.MODEL_CONNECTION_HINT_EXTERNAL_SOURCE_ELEMENT:
 			return validateModelConnectionHintExternalSourceElement((ModelConnectionHintExternalSourceElement)value, diagnostics, context);
 		case MappingPackage.ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT:
@@ -581,10 +581,10 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 			result &= validate_EveryMapEntryUnique(cardinalityMapping, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
-			result &= validateCardinalityMapping_sourceClassMatchesSection(cardinalityMapping, diagnostics, context);
+			result &= validateCardinalityMapping_noCardinalityMappingForSourceSectionRoot(cardinalityMapping, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
-			result &= validateCardinalityMapping_sourceClassIsVariableCardinality(cardinalityMapping, diagnostics, context);
+			result &= validateCardinalityMapping_sourceClassMatchesSection(cardinalityMapping, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
 			result &= validateCardinalityMapping_targetClassMatchesSection(cardinalityMapping, diagnostics, context);
@@ -593,7 +593,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 			result &= validateCardinalityMapping_targetClassIsVariableCardinality(cardinalityMapping, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
-			result &= validateCardinalityMapping_noCardinalityMappingForSourceSectionRoot(cardinalityMapping, diagnostics, context);
+			result &= validateCardinalityMapping_sourceClassIsVariableCardinality(cardinalityMapping, diagnostics, context);
 		}
 		return result;
 	}
@@ -680,10 +680,10 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 			result &= validate_EveryMapEntryUnique(mappingInstanceSelector, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
-			result &= validateMappingInstanceSelector_affectedReferenceIsNonContainment(mappingInstanceSelector, diagnostics, context);
+			result &= validateMappingInstanceSelector_affectedReferenceMatchesSection(mappingInstanceSelector, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
-			result &= validateMappingInstanceSelector_affectedReferenceMatchesSection(mappingInstanceSelector, diagnostics, context);
+			result &= validateMappingInstanceSelector_affectedReferenceIsNonContainment(mappingInstanceSelector, diagnostics, context);
 		}
 		return result;
 	}
@@ -878,7 +878,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateModifiedAttributeElementType(ModifiedAttributeElementType<?, ?, ?> modifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateModifiedAttributeElementType(ModifiedAttributeElementType<?, ?, ?, ?> modifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(modifiedAttributeElementType, diagnostics, context);
 	}
 
@@ -887,7 +887,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<?, ?, ?> localModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<?, ?, ?, ?> localModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(localModifiedAttributeElementType, diagnostics, context)) {
 			return false;
 		}
@@ -925,7 +925,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(LocalModifiedAttributeElementType<?, ?, ?> localModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(LocalModifiedAttributeElementType<?, ?, ?, ?> localModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return localModifiedAttributeElementType.sourceAttributeMatchesSectionOrContainedSection(diagnostics, context);
 	}
 
@@ -1349,7 +1349,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<?, ?, ?> externalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<?, ?, ?, ?> externalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(externalModifiedAttributeElementType, diagnostics, context)) {
 			return false;
 		}
@@ -1387,7 +1387,7 @@ public class MappingValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(ExternalModifiedAttributeElementType<?, ?, ?> externalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(ExternalModifiedAttributeElementType<?, ?, ?, ?> externalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return externalModifiedAttributeElementType.sourceAttributeMatchesContainerSection(diagnostics, context);
 	}
 

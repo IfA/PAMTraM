@@ -12,5 +12,5 @@ package pamtram.metamodel;
  * @model
  * @generated
  */
-public interface TargetSectionClass extends pamtram.metamodel.Class<TargetSectionClass, TargetSectionReference, TargetSectionAttribute> {
+public interface TargetSectionClass extends pamtram.metamodel.Class<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute> {
 } // TargetSectionClass

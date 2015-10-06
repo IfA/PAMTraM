@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EReference;
@@ -15,9 +16,10 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import pamtram.metamodel.Class;
 import pamtram.metamodel.ContainmentReference;
 import pamtram.metamodel.MetamodelFactory;
-import pamtram.metamodel.Class;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.impl.ReferenceImpl;
 
@@ -28,7 +30,7 @@ import pamtram.metamodel.impl.ReferenceImpl;
  * @generated
  */
 public class ContainmentReferenceItemProvider
-	extends ReferenceItemProvider {
+extends ReferenceItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -91,41 +93,41 @@ public class ContainmentReferenceItemProvider
 	 */
 	@Override
 	protected void addEReferencePropertyDescriptor(Object object) {
-		
+
 		itemPropertyDescriptors.add
-	      (new ItemPropertyDescriptor
-	        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-	         getResourceLocator(),
-	         getString("_UI_Reference_eReference_feature"),
-	         getString("_UI_PropertyDescriptor_description", "_UI_Reference_eReference_feature", "_UI_Reference_type"),
-	         MetamodelPackage.Literals.REFERENCE__EREFERENCE,
-	         true,
-	         false,
-	         true,
-	         null,
-	         null,
-	         null)
-	       {
-	        @Override
-	        public Collection<?> getChoiceOfValues(Object object)
-	        {
-	        	List<Object> choiceOfValues = new ArrayList<Object>();
-	        	
-	        	// make sure that only those references can be selected that belong to the parent eClass
-	        	pamtram.metamodel.Class parent = (Class) ((ReferenceImpl) object).eContainer();
-	        	Iterator<EReference> it = parent.getEClass().getEAllReferences().iterator(); 
-	        	
-	        	// filter the choices further so that only containment references are displayed
-	        	while(it.hasNext()) {
-	        		EReference ref = it.next();
-	        		if(ref.isContainment()) {
-	        			choiceOfValues.add(ref);
-	        		}
-	        	}
-	        	
-	        	return choiceOfValues;
-	        }
-	      });
+		(new ItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_Reference_eReference_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Reference_eReference_feature", "_UI_Reference_type"),
+						MetamodelPackage.Literals.REFERENCE__EREFERENCE,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null)
+		{
+			@Override
+			public Collection<?> getChoiceOfValues(Object object)
+			{
+				List<Object> choiceOfValues = new ArrayList<Object>();
+
+				// make sure that only those references can be selected that belong to the parent eClass
+				pamtram.metamodel.Class parent = (Class) ((ReferenceImpl) object).eContainer();
+				Iterator<EReference> it = parent.getEClass().getEAllReferences().iterator(); 
+
+				// filter the choices further so that only containment references are displayed
+				while(it.hasNext()) {
+					EReference ref = it.next();
+					if(ref.isContainment()) {
+						choiceOfValues.add(ref);
+					}
+				}
+
+				return choiceOfValues;
+			}
+		});
 	}
 
 	/**
@@ -162,9 +164,9 @@ public class ContainmentReferenceItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ContainmentReference.class)) {
-			case MetamodelPackage.CONTAINMENT_REFERENCE__VALUE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case MetamodelPackage.CONTAINMENT_REFERENCE__VALUE:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -174,31 +176,33 @@ public class ContainmentReferenceItemProvider
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE,
-				 MetamodelFactory.eINSTANCE.createSourceSectionClass()));
+						MetamodelFactory.eINSTANCE.createSourceSectionClass()));
+
+		// SourceSections may only be top-level elements in sections
+		//		newChildDescriptors.add
+		//			(createChildParameter
+		//				(MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE,
+		//				 MetamodelFactory.eINSTANCE.createSourceSection()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE,
-				 MetamodelFactory.eINSTANCE.createSourceSection()));
+						MetamodelFactory.eINSTANCE.createTargetSectionClass()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE,
-				 MetamodelFactory.eINSTANCE.createTargetSectionClass()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE,
-				 MetamodelFactory.eINSTANCE.createTargetSection()));
+		// TargetSections may only be top-level elements in sections
+		//		newChildDescriptors.add
+		//			(createChildParameter
+		//				(MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE,
+		//				 MetamodelFactory.eINSTANCE.createTargetSection()));
 	}
 
 }

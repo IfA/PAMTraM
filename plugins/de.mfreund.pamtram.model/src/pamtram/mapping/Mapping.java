@@ -22,7 +22,6 @@ import pamtram.condition.ComplexCondition;
  *   <li>{@link pamtram.mapping.Mapping#getImportedMappingHintGroups <em>Imported Mapping Hint Groups</em>}</li>
  *   <li>{@link pamtram.mapping.Mapping#getGlobalVariables <em>Global Variables</em>}</li>
  *   <li>{@link pamtram.mapping.Mapping#isAbstract <em>Abstract</em>}</li>
- *   <li>{@link pamtram.mapping.Mapping#getExtend <em>Extend</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getMapping()
@@ -135,22 +134,6 @@ public interface Mapping extends MappingType {
 	 * @generated
 	 */
 	void setAbstract(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Extend</b></em>' reference list.
-	 * The list contents are of type {@link pamtram.mapping.Mapping}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Extend</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Extend</em>' reference list.
-	 * @see pamtram.mapping.MappingPackage#getMapping_Extend()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!Mapping!extend'"
-	 * @generated
-	 */
-	EList<Mapping> getExtend();
 
 	/**
 	 * <!-- begin-user-doc -->

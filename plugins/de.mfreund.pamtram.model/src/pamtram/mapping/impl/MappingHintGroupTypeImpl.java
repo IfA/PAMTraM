@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.impl.NamedElementImpl;
@@ -29,6 +30,7 @@ import pamtram.metamodel.TargetSection;
  * <ul>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupTypeImpl#getTargetMMSection <em>Target MM Section</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupTypeImpl#getMappingHints <em>Mapping Hints</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.MappingHintGroupTypeImpl#getExtend <em>Extend</em>}</li>
  * </ul>
  *
  * @generated
@@ -53,6 +55,16 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	 * @ordered
 	 */
 	protected EList<MappingHint> mappingHints;
+
+	/**
+	 * The cached value of the '{@link #getExtend() <em>Extend</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExtend()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<MappingHintGroupType> extend;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -139,6 +151,18 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<MappingHintGroupType> getExtend() {
+		if (extend == null) {
+			extend = new EObjectResolvingEList<MappingHintGroupType>(MappingHintGroupType.class, this, MappingPackage.MAPPING_HINT_GROUP_TYPE__EXTEND);
+		}
+		return extend;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -161,6 +185,8 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 				return basicGetTargetMMSection();
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS:
 				return getMappingHints();
+			case MappingPackage.MAPPING_HINT_GROUP_TYPE__EXTEND:
+				return getExtend();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -181,6 +207,10 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 				getMappingHints().clear();
 				getMappingHints().addAll((Collection<? extends MappingHint>)newValue);
 				return;
+			case MappingPackage.MAPPING_HINT_GROUP_TYPE__EXTEND:
+				getExtend().clear();
+				getExtend().addAll((Collection<? extends MappingHintGroupType>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -199,6 +229,9 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS:
 				getMappingHints().clear();
 				return;
+			case MappingPackage.MAPPING_HINT_GROUP_TYPE__EXTEND:
+				getExtend().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -215,6 +248,8 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 				return targetMMSection != null;
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS:
 				return mappingHints != null && !mappingHints.isEmpty();
+			case MappingPackage.MAPPING_HINT_GROUP_TYPE__EXTEND:
+				return extend != null && !extend.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -18,6 +18,7 @@ import pamtram.metamodel.TargetSection;
  * <ul>
  *   <li>{@link pamtram.mapping.MappingHintGroupType#getTargetMMSection <em>Target MM Section</em>}</li>
  *   <li>{@link pamtram.mapping.MappingHintGroupType#getMappingHints <em>Mapping Hints</em>}</li>
+ *   <li>{@link pamtram.mapping.MappingHintGroupType#getExtend <em>Extend</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getMappingHintGroupType()
@@ -68,5 +69,21 @@ public interface MappingHintGroupType extends NamedElement {
 	 * @generated
 	 */
 	EList<MappingHint> getMappingHints();
+
+	/**
+	 * Returns the value of the '<em><b>Extend</b></em>' reference list.
+	 * The list contents are of type {@link pamtram.mapping.MappingHintGroupType}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Extend</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Extend</em>' reference list.
+	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupType_Extend()
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/mapping!MappingHintGroupType!extend'"
+	 * @generated
+	 */
+	EList<MappingHintGroupType> getExtend();
 
 } // MappingHintGroupType

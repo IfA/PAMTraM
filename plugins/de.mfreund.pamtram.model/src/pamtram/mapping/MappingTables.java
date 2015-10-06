@@ -178,8 +178,8 @@ public class MappingTables
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_GlobalAttribute = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_GlobalAttribute);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_GlobalAttributeImporter = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_GlobalAttributeImporter);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_MappedAttributeValueExpander = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_MappedAttributeValueExpander);
-    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Mapping = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_Mapping);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_MappingHintGroupImporter = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_MappingHintGroupImporter);
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_MappingHintGroupType = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_MappingHintGroupType);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_ModifiableHint = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_ModifiableHint);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_ModifiedAttributeElementType = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_ModifiedAttributeElementType);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_PAMTraM = TypeId.BAG.getSpecializedId(MappingTables.CLSSid_PAMTraM);
@@ -193,7 +193,6 @@ public class MappingTables
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_EReference = TypeId.ORDERED_SET.getSpecializedId(MappingTables.CLSSid_EReference);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_ExpandableHint = TypeId.ORDERED_SET.getSpecializedId(MappingTables.CLSSid_ExpandableHint);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_GlobalAttribute = TypeId.ORDERED_SET.getSpecializedId(MappingTables.CLSSid_GlobalAttribute);
-    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Mapping = TypeId.ORDERED_SET.getSpecializedId(MappingTables.CLSSid_Mapping);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_MappingHint = TypeId.ORDERED_SET.getSpecializedId(MappingTables.CLSSid_MappingHint);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_MappingHintGroupImporter = TypeId.ORDERED_SET.getSpecializedId(MappingTables.CLSSid_MappingHintGroupImporter);
     public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_MappingHintGroupType = TypeId.ORDERED_SET.getSpecializedId(MappingTables.CLSSid_MappingHintGroupType);
@@ -909,11 +908,9 @@ public class MappingTables
 
 		public static final /*@NonNull*/ ExecutorProperty _Mapping__abstract = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__ABSTRACT, Types._Mapping, 0);
 		public static final /*@NonNull*/ ExecutorProperty _Mapping__condition = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__CONDITION, Types._Mapping, 1);
-		public static final /*@NonNull*/ ExecutorProperty _Mapping__extend = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__EXTEND, Types._Mapping, 2);
-		public static final /*@NonNull*/ ExecutorProperty _Mapping__globalVariables = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__GLOBAL_VARIABLES, Types._Mapping, 3);
-		public static final /*@NonNull*/ ExecutorProperty _Mapping__importedMappingHintGroups = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__IMPORTED_MAPPING_HINT_GROUPS, Types._Mapping, 4);
-		public static final /*@NonNull*/ ExecutorProperty _Mapping__mappingHintGroups = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS, Types._Mapping, 5);
-		public static final /*@NonNull*/ ExecutorProperty _Mapping__Mapping__extend = new ExecutorPropertyWithImplementation("Mapping", Types._Mapping, 6, new EcoreLibraryOppositeProperty(MappingPackage.Literals.MAPPING__EXTEND));
+		public static final /*@NonNull*/ ExecutorProperty _Mapping__globalVariables = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__GLOBAL_VARIABLES, Types._Mapping, 2);
+		public static final /*@NonNull*/ ExecutorProperty _Mapping__importedMappingHintGroups = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__IMPORTED_MAPPING_HINT_GROUPS, Types._Mapping, 3);
+		public static final /*@NonNull*/ ExecutorProperty _Mapping__mappingHintGroups = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS, Types._Mapping, 4);
 
 		public static final /*@NonNull*/ ExecutorProperty _MappingHint__MappingHintGroupType__mappingHints = new ExecutorPropertyWithImplementation("MappingHintGroupType", Types._MappingHint, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS));
 
@@ -924,9 +921,11 @@ public class MappingTables
 		public static final /*@NonNull*/ ExecutorProperty _MappingHintGroupImporter__mappingHints = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS, Types._MappingHintGroupImporter, 2);
 		public static final /*@NonNull*/ ExecutorProperty _MappingHintGroupImporter__Mapping__importedMappingHintGroups = new ExecutorPropertyWithImplementation("Mapping", Types._MappingHintGroupImporter, 3, new EcoreLibraryOppositeProperty(MappingPackage.Literals.MAPPING__IMPORTED_MAPPING_HINT_GROUPS));
 
-		public static final /*@NonNull*/ ExecutorProperty _MappingHintGroupType__mappingHints = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS, Types._MappingHintGroupType, 0);
-		public static final /*@NonNull*/ ExecutorProperty _MappingHintGroupType__targetMMSection = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__TARGET_MM_SECTION, Types._MappingHintGroupType, 1);
-		public static final /*@NonNull*/ ExecutorProperty _MappingHintGroupType__Mapping__mappingHintGroups = new ExecutorPropertyWithImplementation("Mapping", Types._MappingHintGroupType, 2, new EcoreLibraryOppositeProperty(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS));
+		public static final /*@NonNull*/ ExecutorProperty _MappingHintGroupType__extend = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__EXTEND, Types._MappingHintGroupType, 0);
+		public static final /*@NonNull*/ ExecutorProperty _MappingHintGroupType__mappingHints = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS, Types._MappingHintGroupType, 1);
+		public static final /*@NonNull*/ ExecutorProperty _MappingHintGroupType__targetMMSection = new EcoreExecutorProperty(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__TARGET_MM_SECTION, Types._MappingHintGroupType, 2);
+		public static final /*@NonNull*/ ExecutorProperty _MappingHintGroupType__Mapping__mappingHintGroups = new ExecutorPropertyWithImplementation("Mapping", Types._MappingHintGroupType, 3, new EcoreLibraryOppositeProperty(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS));
+		public static final /*@NonNull*/ ExecutorProperty _MappingHintGroupType__MappingHintGroupType__extend = new ExecutorPropertyWithImplementation("MappingHintGroupType", Types._MappingHintGroupType, 4, new EcoreLibraryOppositeProperty(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__EXTEND));
 
 		public static final /*@NonNull*/ ExecutorProperty _MappingHintType__MappingHintGroupImporter__mappingHints = new ExecutorPropertyWithImplementation("MappingHintGroupImporter", Types._MappingHintType, 0, new EcoreLibraryOppositeProperty(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS));
 
@@ -3655,10 +3654,12 @@ public class MappingTables
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _ExportedMappingHintGroup = {
+			MappingTables.Properties._MappingHintGroupType__extend,
 			MappingTables.Properties._MappingHintGroupType__mappingHints,
 			MappingTables.Properties._MappingHintGroupType__targetMMSection,
 			MappingTables.Properties._MappingHintGroupType__Mapping__mappingHintGroups,
-			MappingTables.Properties._ExportedMappingHintGroup__MappingHintGroupImporter__hintGroup
+			MappingTables.Properties._ExportedMappingHintGroup__MappingHintGroupImporter__hintGroup,
+			MappingTables.Properties._MappingHintGroupType__MappingHintGroupType__extend
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _ExpressionHint = {
@@ -3756,12 +3757,10 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorProperty[] _Mapping = {
 			MappingTables.Properties._Mapping__abstract,
 			MappingTables.Properties._Mapping__condition,
-			MappingTables.Properties._Mapping__extend,
 			MappingTables.Properties._Mapping__globalVariables,
 			MappingTables.Properties._Mapping__importedMappingHintGroups,
 			MappingTables.Properties._Mapping__mappingHintGroups,
-			MappingTables.Properties._MappingType__sourceMMSection,
-			MappingTables.Properties._Mapping__Mapping__extend
+			MappingTables.Properties._MappingType__sourceMMSection
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _MappingHint = {
@@ -3772,10 +3771,12 @@ public class MappingTables
 		private static final /*@NonNull*/ ExecutorProperty[] _MappingHintBaseType = {};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _MappingHintGroup = {
+			MappingTables.Properties._MappingHintGroupType__extend,
 			MappingTables.Properties._MappingHintGroupType__mappingHints,
 			MappingTables.Properties._MappingHintGroup__modelConnectionMatcher,
 			MappingTables.Properties._MappingHintGroupType__targetMMSection,
-			MappingTables.Properties._MappingHintGroupType__Mapping__mappingHintGroups
+			MappingTables.Properties._MappingHintGroupType__Mapping__mappingHintGroups,
+			MappingTables.Properties._MappingHintGroupType__MappingHintGroupType__extend
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _MappingHintGroupImporter = {
@@ -3786,9 +3787,11 @@ public class MappingTables
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _MappingHintGroupType = {
+			MappingTables.Properties._MappingHintGroupType__extend,
 			MappingTables.Properties._MappingHintGroupType__mappingHints,
 			MappingTables.Properties._MappingHintGroupType__targetMMSection,
-			MappingTables.Properties._MappingHintGroupType__Mapping__mappingHintGroups
+			MappingTables.Properties._MappingHintGroupType__Mapping__mappingHintGroups,
+			MappingTables.Properties._MappingHintGroupType__MappingHintGroupType__extend
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _MappingHintSourceInterface = {};

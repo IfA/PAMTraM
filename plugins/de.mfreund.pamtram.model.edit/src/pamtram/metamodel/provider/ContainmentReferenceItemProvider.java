@@ -188,7 +188,17 @@ public class ContainmentReferenceItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE,
+				 MetamodelFactory.eINSTANCE.createSourceSection()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE,
 				 MetamodelFactory.eINSTANCE.createTargetSectionClass()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE,
+				 MetamodelFactory.eINSTANCE.createTargetSection()));
 	}
 
 }

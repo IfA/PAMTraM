@@ -110,7 +110,7 @@ public class SectionModelItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((SectionModel<?, ?, ?>)object).getName();
+		String label = ((SectionModel<?, ?, ?, ?>)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_SectionModel_type") :
 			getString("_UI_SectionModel_type") + " " + label;
@@ -149,12 +149,12 @@ public class SectionModelItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS,
-				 MetamodelFactory.eINSTANCE.createSourceSectionClass()));
+				 MetamodelFactory.eINSTANCE.createSourceSection()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS,
-				 MetamodelFactory.eINSTANCE.createTargetSectionClass()));
+				 MetamodelFactory.eINSTANCE.createTargetSection()));
 	}
 
 }

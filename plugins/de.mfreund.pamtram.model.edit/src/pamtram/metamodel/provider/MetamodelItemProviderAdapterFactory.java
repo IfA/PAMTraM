@@ -80,6 +80,52 @@ public class MetamodelItemProviderAdapterFactory extends MetamodelAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.SourceSection} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SourceSectionItemProvider sourceSectionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.metamodel.SourceSection}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSourceSectionAdapter() {
+		if (sourceSectionItemProvider == null) {
+			sourceSectionItemProvider = new SourceSectionItemProvider(this);
+		}
+
+		return sourceSectionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.TargetSection} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TargetSectionItemProvider targetSectionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.metamodel.TargetSection}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTargetSectionAdapter() {
+		if (targetSectionItemProvider == null) {
+			targetSectionItemProvider = new TargetSectionItemProvider(this);
+		}
+
+		return targetSectionItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link pamtram.metamodel.SourceSectionClass} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -51,7 +51,6 @@ extends MappingTypeItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addAbstractPropertyDescriptor(object);
-			addExtendPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -74,28 +73,6 @@ extends MappingTypeItemProvider {
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Extend feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addExtendPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Mapping_extend_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Mapping_extend_feature", "_UI_Mapping_type"),
-				 MappingPackage.Literals.MAPPING__EXTEND,
-				 true,
-				 false,
-				 true,
-				 null,
 				 null,
 				 null));
 	}

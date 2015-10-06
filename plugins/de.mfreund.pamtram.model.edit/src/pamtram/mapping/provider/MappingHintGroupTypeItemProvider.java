@@ -58,6 +58,7 @@ public class MappingHintGroupTypeItemProvider extends NamedElementItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addTargetMMSectionPropertyDescriptor(object);
+			addExtendPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -76,6 +77,28 @@ public class MappingHintGroupTypeItemProvider extends NamedElementItemProvider {
 				 getString("_UI_MappingHintGroupType_targetMMSection_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_MappingHintGroupType_targetMMSection_feature", "_UI_MappingHintGroupType_type"),
 				 MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__TARGET_MM_SECTION,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Extend feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addExtendPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_MappingHintGroupType_extend_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MappingHintGroupType_extend_feature", "_UI_MappingHintGroupType_type"),
+				 MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__EXTEND,
 				 true,
 				 false,
 				 true,

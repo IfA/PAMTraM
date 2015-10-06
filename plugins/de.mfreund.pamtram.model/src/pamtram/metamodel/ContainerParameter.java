@@ -31,13 +31,13 @@ public interface ContainerParameter extends LibraryParameter<AbstractContainerPa
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Class</em>' containment reference.
-	 * @see #setClass(TargetSectionClass)
+	 * @see #setClass(TargetSection)
 	 * @see pamtram.metamodel.MetamodelPackage#getContainerParameter_Class()
 	 * @model containment="true" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://mfreund.de/pamtram/metamodel!ContainerParameter!class'"
 	 * @generated
 	 */
-	TargetSectionClass getClass_();
+	TargetSection getClass_();
 
 	/**
 	 * Sets the value of the '{@link pamtram.metamodel.ContainerParameter#getClass_ <em>Class</em>}' containment reference.
@@ -47,6 +47,6 @@ public interface ContainerParameter extends LibraryParameter<AbstractContainerPa
 	 * @see #getClass_()
 	 * @generated
 	 */
-	void setClass(TargetSectionClass value);
+	void setClass(TargetSection value);
 
 } // ContainerParameter

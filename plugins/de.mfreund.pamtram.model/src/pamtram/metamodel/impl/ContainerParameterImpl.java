@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import pamtram.metamodel.ContainerParameter;
 import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.TargetSectionClass;
+import pamtram.metamodel.TargetSection;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,7 +37,7 @@ public class ContainerParameterImpl extends LibraryParameterImpl<AbstractContain
 	 * @generated
 	 * @ordered
 	 */
-	protected TargetSectionClass class_;
+	protected TargetSection class_;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -74,7 +74,7 @@ public class ContainerParameterImpl extends LibraryParameterImpl<AbstractContain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TargetSectionClass getClass_() {
+	public TargetSection getClass_() {
 		return class_;
 	}
 
@@ -83,8 +83,8 @@ public class ContainerParameterImpl extends LibraryParameterImpl<AbstractContain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetClass(TargetSectionClass newClass, NotificationChain msgs) {
-		TargetSectionClass oldClass = class_;
+	public NotificationChain basicSetClass(TargetSection newClass, NotificationChain msgs) {
+		TargetSection oldClass = class_;
 		class_ = newClass;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.CONTAINER_PARAMETER__CLASS, oldClass, newClass);
@@ -98,7 +98,7 @@ public class ContainerParameterImpl extends LibraryParameterImpl<AbstractContain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setClass(TargetSectionClass newClass) {
+	public void setClass(TargetSection newClass) {
 		if (newClass != class_) {
 			NotificationChain msgs = null;
 			if (class_ != null)
@@ -149,7 +149,7 @@ public class ContainerParameterImpl extends LibraryParameterImpl<AbstractContain
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MetamodelPackage.CONTAINER_PARAMETER__CLASS:
-				setClass((TargetSectionClass)newValue);
+				setClass((TargetSection)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -164,7 +164,7 @@ public class ContainerParameterImpl extends LibraryParameterImpl<AbstractContain
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MetamodelPackage.CONTAINER_PARAMETER__CLASS:
-				setClass((TargetSectionClass)null);
+				setClass((TargetSection)null);
 				return;
 		}
 		super.eUnset(featureID);

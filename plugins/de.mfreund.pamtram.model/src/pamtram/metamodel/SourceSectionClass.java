@@ -22,7 +22,7 @@ import pamtram.mapping.MappingType;
  * </ul>
  *
  * @see pamtram.metamodel.MetamodelPackage#getSourceSectionClass()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='isReferencedByMapping'"
  * @generated
  */
 public interface SourceSectionClass extends pamtram.metamodel.Class<SourceSectionClass, SourceSectionReference, SourceSectionAttribute> {

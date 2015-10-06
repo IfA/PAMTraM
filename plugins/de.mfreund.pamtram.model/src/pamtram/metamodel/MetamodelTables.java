@@ -115,6 +115,7 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_SectionModel = MetamodelTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Orphanage.getClassId("SectionModel", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_SourceSectionAttribute = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SourceSectionAttribute", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_SourceSectionClass = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SourceSectionClass", 0);
+    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_TargetSection = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("TargetSection", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_TargetSectionClass = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("TargetSectionClass", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_TargetSectionModel = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("TargetSectionModel", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_TargetSectionNonContainmentReference = MetamodelTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("TargetSectionNonContainmentReference", 0);
@@ -721,11 +722,12 @@ public class MetamodelTables
 		public static final /*@NonNull*/ ExecutorProperty _SourceSectionClass__referencingMappings = new EcoreExecutorProperty(MetamodelPackage.Literals.SOURCE_SECTION_CLASS__REFERENCING_MAPPINGS, Types._SourceSectionClass, 0);
 		public static final /*@NonNull*/ ExecutorProperty _SourceSectionClass__MetaModelSectionReference__value = new ExecutorPropertyWithImplementation("MetaModelSectionReference", Types._SourceSectionClass, 1, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.META_MODEL_SECTION_REFERENCE__VALUE));
 
+		public static final /*@NonNull*/ ExecutorProperty _TargetSection__ContainerParameter__class = new ExecutorPropertyWithImplementation("ContainerParameter", Types._TargetSection, 0, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.CONTAINER_PARAMETER__CLASS));
+
 		public static final /*@NonNull*/ ExecutorProperty _TargetSectionAttribute__unique = new EcoreExecutorProperty(MetamodelPackage.Literals.TARGET_SECTION_ATTRIBUTE__UNIQUE, Types._TargetSectionAttribute, 0);
 		public static final /*@NonNull*/ ExecutorProperty _TargetSectionAttribute__value = new EcoreExecutorProperty(MetamodelPackage.Literals.TARGET_SECTION_ATTRIBUTE__VALUE, Types._TargetSectionAttribute, 1);
 
 		public static final /*@NonNull*/ ExecutorProperty _TargetSectionClass__referencingMappingHintGroups = new EcoreExecutorProperty(MetamodelPackage.Literals.TARGET_SECTION_CLASS__REFERENCING_MAPPING_HINT_GROUPS, Types._TargetSectionClass, 0);
-		public static final /*@NonNull*/ ExecutorProperty _TargetSectionClass__ContainerParameter__class = new ExecutorPropertyWithImplementation("ContainerParameter", Types._TargetSectionClass, 1, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.CONTAINER_PARAMETER__CLASS));
 
 		public static final /*@NonNull*/ ExecutorProperty _TargetSectionNonContainmentReference__ExternalReferenceParameter__reference = new ExecutorPropertyWithImplementation("ExternalReferenceParameter", Types._TargetSectionNonContainmentReference, 0, new EcoreLibraryOppositeProperty(MetamodelPackage.Literals.EXTERNAL_REFERENCE_PARAMETER__REFERENCE));
 
@@ -2757,7 +2759,7 @@ public class MetamodelTables
 			MetamodelTables.Properties._Class__eClass,
 			MetamodelTables.Properties._Class__references,
 			MetamodelTables.Properties._TargetSectionClass__referencingMappingHintGroups,
-			MetamodelTables.Properties._TargetSectionClass__ContainerParameter__class
+			MetamodelTables.Properties._TargetSection__ContainerParameter__class
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _TargetSectionAttribute = {
@@ -2772,8 +2774,7 @@ public class MetamodelTables
 			MetamodelTables.Properties._Class__container,
 			MetamodelTables.Properties._Class__eClass,
 			MetamodelTables.Properties._Class__references,
-			MetamodelTables.Properties._TargetSectionClass__referencingMappingHintGroups,
-			MetamodelTables.Properties._TargetSectionClass__ContainerParameter__class
+			MetamodelTables.Properties._TargetSectionClass__referencingMappingHintGroups
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty[] _TargetSectionContainmentReference = {

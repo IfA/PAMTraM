@@ -2,7 +2,7 @@
 <pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:movisalib="http://www.et.tu-dresden.de/ifa/agtele/genlib/movisalib" xmlns:pamtram="http://mfreund.de/pamtram">
   <sourceSectionModel>
     <metaModelPackage href="http://gfai.de/stgml.xsd#/"/>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="sourceContainer">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="sourceContainer">
       <eClass href="http://gfai.de/stgml.xsd#//ScxmlType"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="rootStateRef">
         <eReference href="http://gfai.de/stgml.xsd#//ScxmlType/state"/>
@@ -102,7 +102,7 @@
         <attribute href="http://gfai.de/stgml.xsd#//ScxmlType/version"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="ExtData &quot;Roles&quot;">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="ExtData &quot;Roles&quot;">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
@@ -142,7 +142,7 @@
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Roles" value="Roles"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="ExtData &quot;SignalInterface/AlertInterface&quot;">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="ExtData &quot;SignalInterface/AlertInterface&quot;">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
@@ -226,7 +226,7 @@
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="AlertInterface" value="AlertInterface"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="ExtData &quot;FunctionInterface&quot;">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="ExtData &quot;FunctionInterface&quot;">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
@@ -333,7 +333,7 @@
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="FunctionInterface" value="FunctionInterface"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="State" cardinality="ZERO__INFINITY">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="State" cardinality="ZERO__INFINITY">
       <eClass href="http://gfai.de/stgml.xsd#//State"/>
       <references xsi:type="metamodel:MetaModelSectionReference" name="transition" value="//@sourceSectionModel.0/@metaModelSections.5 //@sourceSectionModel.0/@metaModelSections.6">
         <eReference href="http://gfai.de/stgml.xsd#//State/transition"/>
@@ -343,7 +343,7 @@
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="LOGIN" type="EXCLUSION" value="LOGIN"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="Transition" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.4">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Transition" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.4">
       <eClass href="http://gfai.de/stgml.xsd#//Transition"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="Event">
         <attribute href="http://gfai.de/stgml.xsd#//Transition/event"/>
@@ -353,7 +353,7 @@
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="LOGIN" type="EXCLUSION" value="LOGIN"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="LoginTransition" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.4">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="LoginTransition" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.4">
       <eClass href="http://gfai.de/stgml.xsd#//Transition"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="Event">
         <attribute href="http://gfai.de/stgml.xsd#//Transition/event"/>
@@ -363,14 +363,14 @@
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="LOGIN" value="LOGIN"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="Layer" container="//@sourceSectionModel.0/@metaModelSections.0/@references.2/@value.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Layer" container="//@sourceSectionModel.0/@metaModelSections.0/@references.2/@value.0">
       <eClass href="http://gfai.de/stgml.xsd#//Layer"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="layerName">
         <attribute href="http://gfai.de/stgml.xsd#//Layer/name"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="LOGIN" type="EXCLUSION" value="LOGIN"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="viObject Output Bool" container="//@sourceSectionModel.0/@metaModelSections.7">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="viObject Output Bool" container="//@sourceSectionModel.0/@metaModelSections.7">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="externalData">
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
@@ -401,7 +401,7 @@
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/label"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="viObject Output Double" container="//@sourceSectionModel.0/@metaModelSections.7">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="viObject Output Double" container="//@sourceSectionModel.0/@metaModelSections.7">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="externaldata">
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
@@ -432,7 +432,7 @@
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/label"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="viObject Input Bool" container="//@sourceSectionModel.0/@metaModelSections.7">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="viObject Input Bool" container="//@sourceSectionModel.0/@metaModelSections.7">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="externaldata">
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
@@ -463,7 +463,7 @@
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/label"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="viObject Input Double" container="//@sourceSectionModel.0/@metaModelSections.7">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="viObject Input Double" container="//@sourceSectionModel.0/@metaModelSections.7">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="externaldata">
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
@@ -494,7 +494,7 @@
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/label"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="viObject FunctionButton" container="//@sourceSectionModel.0/@metaModelSections.7">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="viObject FunctionButton" container="//@sourceSectionModel.0/@metaModelSections.7">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="externaldata">
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
@@ -525,7 +525,7 @@
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/label"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="viObject NavigatorButton" container="//@sourceSectionModel.0/@metaModelSections.7">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="viObject NavigatorButton" container="//@sourceSectionModel.0/@metaModelSections.7">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="ctrltype = &quot;NavigatorButton&quot;">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
@@ -552,7 +552,7 @@
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ALERT" type="EXCLUSION" value="ALERT"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="viObject AlertButton" container="//@sourceSectionModel.0/@metaModelSections.7">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="viObject AlertButton" container="//@sourceSectionModel.0/@metaModelSections.7">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="ctrltype = &quot;NavigatorButton&quot;">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
@@ -578,7 +578,7 @@
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="ALERT" value="ALERT"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="viObject container Rectangle" container="//@sourceSectionModel.0/@metaModelSections.7">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="viObject container Rectangle" container="//@sourceSectionModel.0/@metaModelSections.7">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="ctrltype = &quot;StructureComponentControl&quot;">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
@@ -604,7 +604,7 @@
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/label"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="Viobject AlertInterface" container="//@sourceSectionModel.0/@metaModelSections.7">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Viobject AlertInterface" container="//@sourceSectionModel.0/@metaModelSections.7">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="ctrltype = &quot;AlertInterface&quot;">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
@@ -627,7 +627,7 @@
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Rectangle" value="Rectangle"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="ExternalData == Stopper" container="//@sourceSectionModel.0/@metaModelSections.21">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="ExternalData == Stopper" container="//@sourceSectionModel.0/@metaModelSections.21">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
@@ -847,7 +847,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="ExternalData == MatFlow" container="//@sourceSectionModel.0/@metaModelSections.15">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="ExternalData == MatFlow" container="//@sourceSectionModel.0/@metaModelSections.15">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
@@ -874,7 +874,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="ExternalData == Station" container="//@sourceSectionModel.0/@metaModelSections.15">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="ExternalData == Station" container="//@sourceSectionModel.0/@metaModelSections.15">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
@@ -920,7 +920,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="ExternalData == Fork/Merge" container="//@sourceSectionModel.0/@metaModelSections.21">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="ExternalData == Fork/Merge" container="//@sourceSectionModel.0/@metaModelSections.21">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
@@ -956,7 +956,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="viObject container Ellipse" container="//@sourceSectionModel.0/@metaModelSections.7">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="viObject container Ellipse" container="//@sourceSectionModel.0/@metaModelSections.7">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="ctrltype = &quot;StructureComponentControl&quot;">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
@@ -979,7 +979,7 @@
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Ellipse" value="Ellipse"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="ExternalData == Conveyor (Rect)" container="//@sourceSectionModel.0/@metaModelSections.15">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="ExternalData == Conveyor (Rect)" container="//@sourceSectionModel.0/@metaModelSections.15">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
@@ -1013,7 +1013,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="ExternalData == Conveyor (Ellipse)" container="//@sourceSectionModel.0/@metaModelSections.21">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="ExternalData == Conveyor (Ellipse)" container="//@sourceSectionModel.0/@metaModelSections.21">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
@@ -1048,7 +1048,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="ExternalData == ClassPath (no Stations)" container="//@sourceSectionModel.0/@metaModelSections.15">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="ExternalData == ClassPath (no Stations)" container="//@sourceSectionModel.0/@metaModelSections.15">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
@@ -1094,7 +1094,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="Signal  Integer (ExternalDataElement)" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.2/@references.0/@value.1">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Signal  Integer (ExternalDataElement)" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.2/@references.0/@value.1">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
@@ -1137,7 +1137,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="Signal Double (ExternalDataElement)" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.2/@references.0/@value.1">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Signal Double (ExternalDataElement)" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.2/@references.0/@value.1">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
@@ -1180,7 +1180,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="Signal Boolean (ExternalDataElement)" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.2/@references.0/@value.1">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Signal Boolean (ExternalDataElement)" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.2/@references.0/@value.1">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
@@ -1223,7 +1223,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="Signal String (ExternalDataElement)" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.2/@references.0/@value.1">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Signal String (ExternalDataElement)" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.2/@references.0/@value.1">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
@@ -1269,7 +1269,7 @@
   </sourceSectionModel>
   <targetSectionModel>
     <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="VisualizationApplicationModel">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="VisualizationApplicationModel">
       <eClass href="http://stefan-hennig.de/movisa#//VisualizationApplicationModel"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="AlgorithmDomain">
         <eReference href="http://stefan-hennig.de/movisa#//VisualizationApplicationModel/AlgorithmDomain"/>
@@ -2481,7 +2481,7 @@
         <attribute href="http://stefan-hennig.de/movisa#//MovisaModel/Version"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="OpcUaItem Sig/FuncInterface" cardinality="ZERO__INFINITY" container="//@targetSectionModel.0/@metaModelSections.0/@references.1/@value.0/@references.1/@value.0/@references.0/@value.0">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="OpcUaItem Sig/FuncInterface" cardinality="ZERO__INFINITY" container="//@targetSectionModel.0/@metaModelSections.0/@references.1/@value.0/@references.1/@value.0/@references.0/@value.0">
       <eClass href="http://stefan-hennig.de/movisa#//clientdata/opcua/DataVariable"/>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="IsAccessedVia @ Double">
         <eReference href="http://stefan-hennig.de/movisa#//clientdata/ServerDataItem/IsAccessedVia"/>
@@ -2496,47 +2496,47 @@
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="UABaseDataType @ Double" cardinality="ZERO__INFINITY" container="//@targetSectionModel.0/@metaModelSections.1">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="UABaseDataType @ Double" cardinality="ZERO__INFINITY" container="//@targetSectionModel.0/@metaModelSections.1">
       <eClass href="http://stefan-hennig.de/movisa#//clientdata/opcua/Double"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Double">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
       <attributes xsi:type="metamodel:VirtualAttribute" name="VirtualName" unique="true" value=""/>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="UABaseDataType @ Boolean" cardinality="ZERO__INFINITY">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="UABaseDataType @ Boolean" cardinality="ZERO__INFINITY">
       <eClass href="http://stefan-hennig.de/movisa#//clientdata/opcua/Boolean"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Boolean">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
       <attributes xsi:type="metamodel:VirtualAttribute" name="VirtualName" unique="true" value=""/>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="UABaseDataType @ Int" cardinality="ZERO__INFINITY" container="//@targetSectionModel.0/@metaModelSections.1">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="UABaseDataType @ Int" cardinality="ZERO__INFINITY" container="//@targetSectionModel.0/@metaModelSections.1">
       <eClass href="http://stefan-hennig.de/movisa#//clientdata/opcua/Int32"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="Int32">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
       <attributes xsi:type="metamodel:VirtualAttribute" name="VirtualName" unique="true" value=""/>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="UABaseDataType @ String" cardinality="ZERO__INFINITY" container="//@targetSectionModel.0/@metaModelSections.1">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="UABaseDataType @ String" cardinality="ZERO__INFINITY" container="//@targetSectionModel.0/@metaModelSections.1">
       <eClass href="http://stefan-hennig.de/movisa#//clientdata/opcua/String"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="String">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
       <attributes xsi:type="metamodel:VirtualAttribute" name="VirtualName" unique="true" value=""/>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="Signal (Sig/FuncInterface)" cardinality="ZERO__INFINITY" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@references.0/@value.6">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="Signal (Sig/FuncInterface)" cardinality="ZERO__INFINITY" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@references.0/@value.6">
       <eClass href="http://stefan-hennig.de/movisa#//algorithm/Signal"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Signal  (Sig/FuncInterface) Name" unique="true" value="">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="Panel">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="Panel">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/Panel"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Panel Name" unique="true" value="cardinalityTestValue">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="ChangeViewNavigationFlow" cardinality="ZERO__INFINITY" container="//@targetSectionModel.0/@metaModelSections.0/@references.2/@value.0">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="ChangeViewNavigationFlow" cardinality="ZERO__INFINITY" container="//@targetSectionModel.0/@metaModelSections.0/@references.2/@value.0">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/ChangeViewNavigationFlow"/>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="navSource" value="//@targetSectionModel.0/@metaModelSections.7">
         <eReference href="http://stefan-hennig.de/movisa#//presentation/NavigationFlow/Source"/>
@@ -2551,13 +2551,13 @@
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="Signal (&quot;NavFlowTriggers&quot;)" cardinality="ZERO__INFINITY" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@references.0/@value.4">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="Signal (&quot;NavFlowTriggers&quot;)" cardinality="ZERO__INFINITY" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@references.0/@value.4">
       <eClass href="http://stefan-hennig.de/movisa#//algorithm/Signal"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name NavFlowTriggers" unique="true">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="DataItem (Sig-/FuncInterface)" cardinality="ZERO__INFINITY">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="DataItem (Sig-/FuncInterface)" cardinality="ZERO__INFINITY">
       <eClass href="http://stefan-hennig.de/movisa#//clientdata/DataItem"/>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="SignalOnChange" value="//@targetSectionModel.0/@metaModelSections.6">
         <eReference href="http://stefan-hennig.de/movisa#//clientdata/DataItem/SignalOnChange"/>
@@ -2587,7 +2587,7 @@
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="MonitoredItem" cardinality="ZERO__INFINITY" container="//@targetSectionModel.0/@metaModelSections.0/@references.1/@value.0/@references.0/@value.0/@references.2/@value.0">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="MonitoredItem" cardinality="ZERO__INFINITY" container="//@targetSectionModel.0/@metaModelSections.0/@references.1/@value.0/@references.0/@value.0/@references.2/@value.0">
       <eClass href="http://stefan-hennig.de/movisa#//clientdata/MonitoredItem"/>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="ItemToMonitor" value="//@targetSectionModel.0/@metaModelSections.10">
         <eReference href="http://stefan-hennig.de/movisa#//clientdata/MonitoredItem/DataItemToMonitor"/>
@@ -2602,7 +2602,7 @@
         <attribute href="http://stefan-hennig.de/movisa#//clientdata/MonitoredItem/SamplingRate"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="TextLabel @ ValueOutput:Bool" cardinality="ZERO__INFINITY">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="TextLabel @ ValueOutput:Bool" cardinality="ZERO__INFINITY">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/TextLabel"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="TextLabelRepresentation">
         <eReference href="http://stefan-hennig.de/movisa#//presentation/TextLabel/Representation"/>
@@ -2899,7 +2899,7 @@
         <attribute href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="TextLabel @LabelOutput:Bool" cardinality="ZERO__INFINITY">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="TextLabel @LabelOutput:Bool" cardinality="ZERO__INFINITY">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/TextLabel"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="TextLabelRepresentation">
         <eReference href="http://stefan-hennig.de/movisa#//presentation/TextLabel/Representation"/>
@@ -3122,7 +3122,7 @@
       </attributes>
       <attributes xsi:type="metamodel:VirtualAttribute" name="cardErsatzTest"/>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="Textdef">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="Textdef">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/TextDefinition"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="TranslatedTextItem">
         <eReference href="http://stefan-hennig.de/movisa#//presentation/TextDefinition/TranslatedTextItem"/>
@@ -3140,7 +3140,7 @@
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="TextLabel @ValueOutput:Double" cardinality="ZERO__INFINITY">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="TextLabel @ValueOutput:Double" cardinality="ZERO__INFINITY">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/TextLabel"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="TextLabelRepresentation">
         <eReference href="http://stefan-hennig.de/movisa#//presentation/TextLabel/Representation"/>
@@ -3380,7 +3380,7 @@
         <attribute href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="TextLabel @LabelOutput:Double" cardinality="ZERO__INFINITY">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="TextLabel @LabelOutput:Double" cardinality="ZERO__INFINITY">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/TextLabel"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="TextLabelRepresentation">
         <eReference href="http://stefan-hennig.de/movisa#//presentation/TextLabel/Representation"/>
@@ -3587,7 +3587,7 @@
         <attribute href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="Input : Bool" cardinality="ZERO__INFINITY">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="Input : Bool" cardinality="ZERO__INFINITY">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/CheckBox"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="Repr. Input :Bool">
         <eReference href="http://stefan-hennig.de/movisa#//presentation/CheckBox/Representation"/>
@@ -3872,7 +3872,7 @@
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="FunctionButton" cardinality="ZERO__INFINITY">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="FunctionButton" cardinality="ZERO__INFINITY">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="FunctionButtonRepresentation">
         <eReference href="http://stefan-hennig.de/movisa#//presentation/Button/Representation"/>
@@ -4133,7 +4133,7 @@
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="NavigatorButton" cardinality="ZERO__INFINITY">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="NavigatorButton" cardinality="ZERO__INFINITY">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="NavigatorButtonRepresentation">
         <eReference href="http://stefan-hennig.de/movisa#//presentation/Button/Representation"/>
@@ -4322,7 +4322,7 @@
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="AlertButtonAnimation" container="//@targetSectionModel.0/@metaModelSections.19">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="AlertButtonAnimation" container="//@targetSectionModel.0/@metaModelSections.19">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/ButtonAnimation"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="RepresentationAnimation">
         <eReference href="http://stefan-hennig.de/movisa#//presentation/Animation/RepresentationAnimation"/>
@@ -4409,7 +4409,7 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="Image Conveyor" cardinality="ZERO__INFINITY">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="Image Conveyor" cardinality="ZERO__INFINITY">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/Image"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="representation">
         <eReference href="http://stefan-hennig.de/movisa#//presentation/Image/Representation"/>
@@ -4571,7 +4571,7 @@
         <attribute href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="Image Station">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="Image Station">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/Image"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="representation">
         <eReference href="http://stefan-hennig.de/movisa#//presentation/Image/Representation"/>
@@ -4730,7 +4730,7 @@
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="FixedImage StationImage" container="//@targetSectionModel.0/@metaModelSections.0/@references.2/@value.0/@references.1/@value.0">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="FixedImage StationImage" container="//@targetSectionModel.0/@metaModelSections.0/@references.2/@value.0/@references.1/@value.0">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/FixedImage"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name" unique="true" value="">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>

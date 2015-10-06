@@ -322,6 +322,13 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAbstract" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           defaultValueLiteral="false"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="extend" upperBound="-1">
+        <eGenericType eClassifier="#//metamodel/Section">
+          <eTypeArguments eTypeParameter="#//metamodel/Section/C"/>
+          <eTypeArguments eTypeParameter="#//metamodel/Section/R"/>
+          <eTypeArguments eTypeParameter="#//metamodel/Section/A"/>
+        </eGenericType>
+      </eStructuralFeatures>
       <eGenericSuperTypes eClassifier="#//metamodel/Class">
         <eTypeArguments eTypeParameter="#//metamodel/Section/C"/>
         <eTypeArguments eTypeParameter="#//metamodel/Section/R"/>
@@ -800,6 +807,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAbstract" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           defaultValueLiteral="false"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="extend" upperBound="-1"
+          eType="#//mapping/Mapping"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MappingHintGroupType" abstract="true"
         eSuperTypes="#//NamedElement">

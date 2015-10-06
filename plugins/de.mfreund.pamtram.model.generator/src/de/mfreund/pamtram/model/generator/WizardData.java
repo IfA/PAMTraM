@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 
 import pamtram.PAMTraM;
 import pamtram.SectionModel;
-import pamtram.metamodel.Class;
+import pamtram.metamodel.Section;
 import pamtram.presentation.PamtramEditor;
 
 public class WizardData {
@@ -20,7 +20,7 @@ public class WizardData {
 	private SectionType sectionType;
 	private EPackage ePackage;
 	private EObject eObject;
-	private LinkedList<Class<?, ?, ?>> createdEObjects;
+	private LinkedList<Section<?, ?, ?>> createdEObjects;
 
 	/**
 	 * The {@link PAMTraM} instance into that the generated section shall be stored.
@@ -30,7 +30,7 @@ public class WizardData {
 	/**
 	 * The {@link SectionModel} instance into that the generated sections shall be stored.
 	 */
-	private SectionModel<?, ?, ?> sectionModel;
+	private SectionModel<?, ?, ?, ?> sectionModel;
 
 	/**
 	 * The {@link PamtramEditor} used to edit the given {@link #pamtram}. If there is currently no editor used, this will be '<em>null</em>'.
@@ -96,11 +96,11 @@ public class WizardData {
 		return this;
 	}
 
-	public LinkedList<Class<?, ?, ?>> getCreatedEObjects() {
+	public LinkedList<Section<?, ?, ?>> getCreatedEObjects() {
 		return createdEObjects;
 	}
 
-	public void setCreatedEObjects(LinkedList<Class<?, ?, ?>> created) {
+	public void setCreatedEObjects(LinkedList<Section<?, ?, ?>> created) {
 		this.createdEObjects = created;
 	}
 
@@ -149,14 +149,14 @@ public class WizardData {
 	/**
 	 * @return the sectionModel
 	 */
-	public SectionModel<?, ?, ?> getSectionModel() {
+	public SectionModel<?, ?, ?, ?> getSectionModel() {
 		return sectionModel;
 	}
 
 	/**
 	 * @param sectionModel the sectionModel to set
 	 */
-	public void setSectionModel(SectionModel<?, ?, ?> sectionModel) {
+	public void setSectionModel(SectionModel<?, ?, ?, ?> sectionModel) {
 		this.sectionModel = sectionModel;
 	}
 

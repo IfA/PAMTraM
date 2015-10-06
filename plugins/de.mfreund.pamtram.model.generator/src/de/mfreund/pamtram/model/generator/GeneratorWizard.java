@@ -18,6 +18,7 @@ import org.eclipse.ui.PlatformUI;
 import pamtram.PamtramPackage;
 import pamtram.metamodel.Class;
 import pamtram.metamodel.MetaModelElement;
+import pamtram.metamodel.Section;
 
 public class GeneratorWizard extends Wizard {
 
@@ -63,7 +64,7 @@ public class GeneratorWizard extends Wizard {
 		}
 
 		// merge duplicate items
-		LinkedList<Class<?, ?, ?>> sectionsToAdd = 
+		LinkedList<Section<?, ?, ?>> sectionsToAdd = 
 				wizardData.getGenerator().mergeDuplicates(wizardData.getCreatedEObjects());
 
 
@@ -112,7 +113,7 @@ public class GeneratorWizard extends Wizard {
 	public boolean canFinish() {
 		// the wizard can finish if the eobjects to be created are set
 		// (this is necessary to disable the finish button on the first page)
-		LinkedList<Class<?, ?, ?>> createdEObjects = this.wizardData.getCreatedEObjects();
+		LinkedList<Section<?, ?, ?>> createdEObjects = this.wizardData.getCreatedEObjects();
 		return (createdEObjects != null && createdEObjects.size() > 0);
 	}
 

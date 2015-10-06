@@ -36,6 +36,7 @@ import de.mfreund.pamtram.model.generator.provider.ResultPageTableViewerLabelPro
 import pamtram.PAMTraM;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.MetaModelElement;
+import pamtram.metamodel.Section;
 import pamtram.metamodel.provider.MetamodelItemProviderAdapterFactory;
 
 public class PreviewPage extends WizardPage {
@@ -162,7 +163,7 @@ public class PreviewPage extends WizardPage {
 		MetaModelSectionGenerator generator = new MetaModelSectionGenerator(pamtram, eObject, sectionType);
 		wizardData.setGenerator(generator);
 
-		LinkedList<pamtram.metamodel.Class<?, ?, ?>> created = generator.generate();
+		LinkedList<Section<?, ?, ?>> created = generator.generate();
 
 		wizardData.setCreatedEObjects(created);
 

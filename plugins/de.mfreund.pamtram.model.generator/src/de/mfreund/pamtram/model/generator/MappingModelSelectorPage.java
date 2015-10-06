@@ -347,9 +347,9 @@ public class MappingModelSelectorPage extends WizardPage {
 		}
 
 		@SuppressWarnings("unchecked")
-		EList<SectionModel<?, ?, ?>> sectionModels = (EList<SectionModel<?, ?, ?>>) (wizardData.getSectionType() == SectionType.SOURCE ? wizardData.getPamtram().getSourceSectionModel() : wizardData.getPamtram().getTargetSectionModel());
+		EList<SectionModel<?, ?, ?, ?>> sectionModels = (EList<SectionModel<?, ?, ?, ?>>) (wizardData.getSectionType() == SectionType.SOURCE ? wizardData.getPamtram().getSourceSectionModel() : wizardData.getPamtram().getTargetSectionModel());
 		String prefix = (wizardData.getSectionType() == SectionType.SOURCE ? "SourceSectionModel " : "TargetSectionModel ");
-		for (SectionModel<?, ?, ?> sectionModel : sectionModels) {
+		for (SectionModel<?, ?, ?, ?> sectionModel : sectionModels) {
 			modelSelectionList.add(prefix + (sectionModel.getName() != null ? sectionModel.getName() : ""));
 		}
 	}

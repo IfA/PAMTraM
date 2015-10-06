@@ -24,13 +24,14 @@ import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.Reference;
+import pamtram.metamodel.Section;
+import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionAttribute;
-import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.TargetSectionClass;
+import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 
 /**
- * This class is responsible for the generation of {@link pamtram.metamodel.Class MetaModelSections} from
+ * This class is responsible for the generation of {@link Section MetaModelSections} from
  * excerpts of a model.
  * 
  * @author mfreund
@@ -55,12 +56,12 @@ public class MetaModelSectionGenerator {
 	/**
 	 * This contains a map of metamodel section that have been created so far
 	 */
-	private HashMap<EObject, pamtram.metamodel.Class<?, ?, ?>> created; 
+	private HashMap<EObject, Section<?, ?, ?>> created; 
 
 	/**
 	 * This contains a list of metamodel (sub-)sections that are not yet contained by the pamtram or by another class
 	 */
-	private ArrayList<Class<?, ?, ?>> dangling;
+	private ArrayList<Section<?, ?, ?>> dangling;
 
 	/**
 	 * This creates an instance.
@@ -86,11 +87,11 @@ public class MetaModelSectionGenerator {
 	 * 
 	 * @return The generated Section(s).
 	 */
-	public LinkedList<Class<?, ?, ?>> generate() {
+	public LinkedList<Section<?, ?, ?>> generate() {
 
-		Class<?, ?, ?> metaModelSection = createMetaModelSection(source);
+		Section<?, ?, ?> metaModelSection = createMetaModelSection(source);
 
-		LinkedList<Class<?, ?, ?>> ret = new LinkedList<>();
+		LinkedList<Section<?, ?, ?>> ret = new LinkedList<>();
 		ret.add(metaModelSection);
 		ret.addAll(dangling);
 
@@ -101,27 +102,27 @@ public class MetaModelSectionGenerator {
 	 * This method recursively generates the containment structure of the Section.
 	 * 
 	 * @param source The {@link EObject source object} for which the structure shall be created.
-	 * @return The created {@link Class section}.
+	 * @return The created {@link Section section}.
 	 */
 	@SuppressWarnings("unchecked")
-	private Class<?, ?, ?> createMetaModelSection(EObject source) {
+	private Section<?, ?, ?> createMetaModelSection(EObject source) {
 		EClass eClass = source.eClass();
 
 		// the class as the root element of the section
-		Class<?, ?, ?> clazz;
+		Section<?, ?, ?> section;
 		if(sectionType == SectionType.SOURCE) {
-			clazz = MetamodelFactory.eINSTANCE.createSourceSectionClass();
+			section = MetamodelFactory.eINSTANCE.createSourceSection();
 		} else {
-			clazz = MetamodelFactory.eINSTANCE.createTargetSectionClass();
+			section = MetamodelFactory.eINSTANCE.createTargetSection();
 		}
-		clazz.setEClass(eClass);;
-		clazz.setName(eClass.getName());
+		section.setEClass(eClass);;
+		section.setName(eClass.getName());
 
 		// add the attributes to the class
-		createAttributes(source, clazz);
+		createAttributes(source, section);
 
 		// add the class to the map of created elements
-		created.put(source, clazz);
+		created.put(source, section);
 
 		ArrayList<EReference> eAllContainments = new ArrayList<>();
 		ArrayList<EReference> eAllNonContainments = new ArrayList<>();
@@ -174,7 +175,7 @@ public class MetaModelSectionGenerator {
 			// add the created reference to the list of references of the current class
 			// and thus complete the metamodel section
 			if(containmentReference.getValue().size() > 0) {
-				((EList<Reference<?, ?, ?>>) clazz.getReferences()).add(containmentReference);
+				((EList<Reference<?, ?, ?>>) section.getReferences()).add(containmentReference);
 			} else {
 				EcoreUtil.remove(containmentReference);;
 			}
@@ -208,22 +209,22 @@ public class MetaModelSectionGenerator {
 			for(EObject eObject : referenced) {
 
 				// check if a section representing the eObject already exists
-				Class<?, ?, ?> existing = created.get(eObject);
+				Section<?, ?, ?> existing = created.get(eObject);
 				if(existing != null) {
 					// link the existing class
 					if(sectionType == SectionType.SOURCE) {
-						((MetaModelSectionReference) nonContainmentReference).getValue().add((SourceSectionClass) existing); 
+						((MetaModelSectionReference) nonContainmentReference).getValue().add((SourceSection) existing); 
 					} else {
-						((TargetSectionNonContainmentReference) nonContainmentReference).getValue().add((TargetSectionClass) existing); 
+						((TargetSectionNonContainmentReference) nonContainmentReference).getValue().add((TargetSection) existing); 
 					}
 				} else {
 					// create a new metamodel section beginning at the object and link it to the mapping model
-					Class<?, ?, ?> metaModelSection = createMetaModelSection(eObject);
+					Section<?, ?, ?> metaModelSection = createMetaModelSection(eObject);
 					dangling.add(metaModelSection);
 					if(sectionType == SectionType.SOURCE) {
-						((MetaModelSectionReference) nonContainmentReference).getValue().add((SourceSectionClass) metaModelSection); 
+						((MetaModelSectionReference) nonContainmentReference).getValue().add((SourceSection) metaModelSection); 
 					} else {
-						((TargetSectionNonContainmentReference) nonContainmentReference).getValue().add((TargetSectionClass) metaModelSection); 
+						((TargetSectionNonContainmentReference) nonContainmentReference).getValue().add((TargetSection) metaModelSection); 
 					}
 				}
 			}
@@ -231,13 +232,13 @@ public class MetaModelSectionGenerator {
 			// link the created metamodel section to the current section
 			if(sectionType == SectionType.SOURCE) {
 				if(((MetaModelSectionReference) nonContainmentReference).getValue().size() > 0) {
-					((EList<Reference<?, ?, ?>>) clazz.getReferences()).add(nonContainmentReference);
+					((EList<Reference<?, ?, ?>>) section.getReferences()).add(nonContainmentReference);
 				} else {
 					EcoreUtil.delete(nonContainmentReference);;
 				}
 			} else {
 				if(((TargetSectionNonContainmentReference) nonContainmentReference).getValue().size() > 0) {
-					((EList<Reference<?, ?, ?>>) clazz.getReferences()).add(nonContainmentReference);
+					((EList<Reference<?, ?, ?>>) section.getReferences()).add(nonContainmentReference);
 				} else {
 					EcoreUtil.delete(nonContainmentReference);
 				}
@@ -245,7 +246,7 @@ public class MetaModelSectionGenerator {
 
 		}
 
-		return clazz;
+		return section;
 	}
 
 	/**
@@ -288,7 +289,7 @@ public class MetaModelSectionGenerator {
 	}
 
 	/**
-	 * This method can be called to check if one or more of the generated {@link Class sections} represent duplicates
+	 * This method can be called to check if one or more of the generated {@link Section sections} represent duplicates
 	 * of sections that are already present in the {@link PAMTraM} model. If duplicates exists, these are not added to
 	 * the PAMTraM model but deleted instead. Additionally, all cross-references to the duplicate sections are redirected
 	 * to the original sections in the PAMTraM model.
@@ -297,17 +298,17 @@ public class MetaModelSectionGenerator {
 	 * merged with sections from the PAMTraM model.
 	 * @return The list of '<em>unique</em>' sections (after deleting duplicates).
 	 */
-	public LinkedList<Class<?, ?, ?>> mergeDuplicates(LinkedList<Class<?, ?, ?>> created) {
+	public LinkedList<Section<?, ?, ?>> mergeDuplicates(LinkedList<Section<?, ?, ?>> created) {
 
-		LinkedList<Class<?, ?, ?>> createdSections = new LinkedList<>(created);
+		LinkedList<Section<?, ?, ?>> createdSections = new LinkedList<>(created);
 
 		@SuppressWarnings("unchecked")
-		EList<Class<?, ? , ?>> sections = 
-		(EList<Class<?, ?, ?>>) (sectionType == SectionType.SOURCE ? pamtram.getSourceSections() : pamtram.getTargetSections());
+		EList<Section<?, ? , ?>> sections = 
+		(EList<Section<?, ?, ?>>) (sectionType == SectionType.SOURCE ? pamtram.getSourceSections() : pamtram.getTargetSections());
 
 		ArrayList<Class<?, ?, ?>> duplicateSections = new ArrayList<>();
 
-		for (Class<?, ?, ?> createdSection : createdSections) {
+		for (Section<?, ?, ?> createdSection : createdSections) {
 			if(compare(createdSection, sections)) {
 				duplicateSections.add(createdSection);
 			}
@@ -318,16 +319,16 @@ public class MetaModelSectionGenerator {
 	}
 
 	/**
-	 * This compares to {@link Class sections} and, if the sections are equivalent, deletes the '<em>createdSection</em>' and
+	 * This compares to {@link Section sections} and, if the sections are equivalent, deletes the '<em>createdSection</em>' and
 	 * redirects all cross-references to it to the existing '<em>pamtramSections</em>'.
 	 * 
-	 * @param createdSection The {@link Class section} that shall be compared to the sections from the PAMTraM model.
+	 * @param createdSection The {@link Section section} that shall be compared to the sections from the PAMTraM model.
 	 * @param pamtramSections The list of {@link Class sections} from the PAMTraM model that the '<em>createdSection</em> shall
 	 * be compared to.
 	 * @return '<em><b>true<b/></em>' if the createdSection matches one (or more) of the pamtramSections, '<em><b>false</b></em>'
 	 * otherwise
 	 */
-	private boolean compare(Class<?, ?, ?> createdSection, EList<Class<?, ?, ?>> pamtramSections) {
+	private boolean compare(Section<?, ?, ?> createdSection, EList<Section<?, ?, ?>> pamtramSections) {
 
 		ArrayList<Class<?, ?, ?>> potentialMatches = new ArrayList<>();
 		for (Class<?, ?, ?> section : pamtramSections) {

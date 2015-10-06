@@ -290,7 +290,7 @@ public class PamtramEditorMainPage extends SashForm {
 					/*
 					 * This keeps track of the elements in the target viewer that correspond to the currently selected element.
 					 */
-					LinkedList<pamtram.metamodel.Class<?, ?, ?>> targets = new LinkedList<>();
+					LinkedList<pamtram.metamodel.Class<?, ?, ?, ?>> targets = new LinkedList<>();
 
 					/*
 					 * This keeps track of the elements in the library target viewer that correspond to the currently selected element.
@@ -431,16 +431,16 @@ public class PamtramEditorMainPage extends SashForm {
 					 * If a ModifiedAttributeElementType is selected, select the source attribute that
 					 * it represents and the target attribute of a possible parent AttributeMapping.
 					 */
-				}  else if(item.getData() instanceof ModifiedAttributeElementType<?,?,?>) {
-					ModifiedAttributeElementType<?,?,?> modifiedAttribute = 
-							(ModifiedAttributeElementType<?,?,?>) item.getData();
+				}  else if(item.getData() instanceof ModifiedAttributeElementType<?,?,?,?>) {
+					ModifiedAttributeElementType<?,?,?,?> modifiedAttribute = 
+							(ModifiedAttributeElementType<?,?,?,?>) item.getData();
 
-					Attribute<?, ?, ?> target = null;
+					Attribute<?, ?, ?, ?> target = null;
 					if(modifiedAttribute.eContainer() instanceof AttributeMapping){
 						target = ((AttributeMapping) modifiedAttribute.eContainer()).getTarget();
 					}
 
-					Attribute<?, ?, ?> source = modifiedAttribute.getSource();
+					Attribute<?, ?, ?, ?> source = modifiedAttribute.getSource();
 
 					setSourceTargetViewerSelections(source, target);
 
@@ -450,8 +450,8 @@ public class PamtramEditorMainPage extends SashForm {
 					 */
 				}  else if(item.getData() instanceof GlobalAttributeImporter){
 					GlobalAttributeImporter importer = (GlobalAttributeImporter) item.getData();
-					Attribute<?, ?, ?> target = ((AttributeMapping) importer.eContainer()).getTarget();
-					Attribute<?, ?, ?> source = importer.getSourceAttribute();
+					Attribute<?, ?, ?, ?> target = ((AttributeMapping) importer.eContainer()).getTarget();
+					Attribute<?, ?, ?, ?> source = importer.getSourceAttribute();
 
 					setSourceTargetViewerSelections(source, target);
 
@@ -461,9 +461,9 @@ public class PamtramEditorMainPage extends SashForm {
 					 */
 				} else if(item.getData() instanceof AttributeMapping) {
 					AttributeMapping mapping = (AttributeMapping) item.getData();
-					Attribute<?, ?, ?> target = mapping.getTarget();
+					Attribute<?, ?, ?, ?> target = mapping.getTarget();
 
-					List<Attribute<?, ?, ?>> sources = new LinkedList<>();
+					List<Attribute<?, ?, ?, ?>> sources = new LinkedList<>();
 					for(AttributeMappingSourceInterface c : mapping.getSourceAttributeMappings()){
 						if(c.getSourceAttribute() != null){
 							sources.add(c.getSourceAttribute());
@@ -479,8 +479,8 @@ public class PamtramEditorMainPage extends SashForm {
 
 					CardinalityMapping mapping = (CardinalityMapping) item.getData();
 
-					pamtram.metamodel.Class<?, ?, ?> source = mapping.getSource();
-					pamtram.metamodel.Class<?, ?, ?> target = mapping.getTarget();
+					pamtram.metamodel.Class<?, ?, ?, ?> source = mapping.getSource();
+					pamtram.metamodel.Class<?, ?, ?, ?> target = mapping.getTarget();
 
 					setSourceTargetViewerSelections(source, target);
 
@@ -491,7 +491,7 @@ public class PamtramEditorMainPage extends SashForm {
 
 					MappingInstanceSelector selector = (MappingInstanceSelector) item.getData();
 
-					NonContainmentReference<?, ?, ?> reference = selector.getAffectedReference();
+					NonContainmentReference<?, ?, ?, ?> reference = selector.getAffectedReference();
 
 					setSourceTargetViewerSelections(null, reference);
 
@@ -532,8 +532,8 @@ public class PamtramEditorMainPage extends SashForm {
 
 					ModelConnectionHint hint = (ModelConnectionHint) item.getData();
 
-					ArrayList<Attribute<?, ?, ?>> sources = new ArrayList<>();
-					ArrayList<Attribute<?, ?, ?>> targets = new ArrayList<>();
+					ArrayList<Attribute<?, ?, ?, ?>> sources = new ArrayList<>();
+					ArrayList<Attribute<?, ?, ?, ?>> targets = new ArrayList<>();
 
 					for(ModelConnectionHintSourceInterface sourceElement : hint.getSourceElements() ){
 						sources.add(sourceElement.getSourceAttribute());

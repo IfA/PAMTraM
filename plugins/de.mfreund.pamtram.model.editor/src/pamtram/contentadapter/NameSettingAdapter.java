@@ -50,7 +50,7 @@ final class NameSettingAdapter extends PamtramChildContentAdapter {
 	private void handleReferenceNotification(Notification n) {
 
 		// the notifying reference
-		Reference<?,?,?> ref = (Reference<?,?,?>) n.getNotifier();
+		Reference<?,?,?,?> ref = (Reference<?,?,?,?>) n.getNotifier();
 
 		if (n.getFeature() == MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE){
 
@@ -58,7 +58,7 @@ final class NameSettingAdapter extends PamtramChildContentAdapter {
 
 				if(ref.getEReference() != null) {
 					// set the type of the reference as default value for the eClass reference
-					((pamtram.metamodel.Class<?,?,?>) n.getNewValue()).
+					((pamtram.metamodel.Class<?,?,?,?>) n.getNewValue()).
 					setEClass(ref.getEReference().getEReferenceType());
 				}
 			}
@@ -73,10 +73,10 @@ final class NameSettingAdapter extends PamtramChildContentAdapter {
 			if (n.getFeature() == MetamodelPackage.Literals.CLASS__REFERENCES){
 				if(n.getNewValue() instanceof ContainmentReference) {
 					// the notifying class
-					pamtram.metamodel.Class<?,?,?> c = (Class<?,?,?>) n.getNotifier();
+					pamtram.metamodel.Class<?,?,?,?> c = (Class<?,?,?,?>) n.getNotifier();
 
 					// the created containment reference
-					ContainmentReference<?,?,?> ref = (ContainmentReference<?,?,?>) n.getNewValue();
+					ContainmentReference<?,?,?,?> ref = (ContainmentReference<?,?,?,?>) n.getNewValue();
 
 					if(c.getEClass() != null && ! c.getEClass().getEAllContainments().isEmpty()) {
 						// set the first containment reference type of the class as default value for 

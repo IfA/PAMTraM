@@ -2,13 +2,13 @@
 <pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:pamtram="http://mfreund.de/pamtram">
   <sourceSectionModel>
     <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="Confirmation">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Confirmation">
       <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractUserInterfaceModel"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="abstractInteractionUnit">
         <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractUserInterfaceModel/abstractInteractionUnit"/>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="AbstractInteractionUnit">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="AbstractInteractionUnit">
       <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="aggregatedIn">
         <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/aggregatedIn"/>
@@ -17,7 +17,7 @@
   </sourceSectionModel>
   <targetSectionModel>
     <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="VisualizationApplicationModel">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="VisualizationApplicationModel">
       <eClass href="http://stefan-hennig.de/movisa#//VisualizationApplicationModel"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="VisAppModel">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>

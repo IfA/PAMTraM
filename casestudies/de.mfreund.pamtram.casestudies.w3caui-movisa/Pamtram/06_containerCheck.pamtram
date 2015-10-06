@@ -2,16 +2,16 @@
 <pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:pamtram="http://mfreund.de/pamtram">
   <sourceSectionModel>
     <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="AbstractUserInterfaceModel">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="AbstractUserInterfaceModel">
       <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractUserInterfaceModel"/>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="AbstractInteractionUnit" container="//@sourceSectionModel.0/@metaModelSections.0">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="AbstractInteractionUnit" container="//@sourceSectionModel.0/@metaModelSections.0">
       <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="Confirmation" container="//@sourceSectionModel.0/@metaModelSections.1">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Confirmation" container="//@sourceSectionModel.0/@metaModelSections.1">
       <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="id">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/id"/>
@@ -20,7 +20,7 @@
   </sourceSectionModel>
   <targetSectionModel>
     <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="Button" cardinality="ZERO__INFINITY">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="Button" cardinality="ZERO__INFINITY">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="Name">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>

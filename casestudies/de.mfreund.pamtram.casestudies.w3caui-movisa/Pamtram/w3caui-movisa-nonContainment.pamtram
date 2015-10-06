@@ -2,10 +2,10 @@
 <pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:pamtram="http://mfreund.de/pamtram">
   <sourceSectionModel xsi:type="pamtram:SourceSectionModel">
     <metaModelPackage xsi:type="ecore:EPackage" href="http://www.w3.org/2013/mbui-aui-modified#/0"/>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="Root">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Root">
       <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui-modified#/0/AbstractUserInterfaceModel"/>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="sequentialComposition">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="sequentialComposition">
       <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui-modified#/0/Composition"/>
       <references xsi:type="metamodel:MetaModelSectionReference" name="associatedWith" value="//@sourceSectionModel.0/@metaModelSections.2">
         <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui-modified#/0/Composition/associatedWith"/>
@@ -15,7 +15,7 @@
         <valueConstraint xsi:type="metamodel:EqualityMatcher" value="sequential"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="Panel" cardinality="ONE__INFINITY">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="Panel" cardinality="ONE__INFINITY">
       <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui-modified#/0/AbstractInteractionUnit"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="aggregatedIn">
         <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui-modified#/0/AbstractInteractionUnit/aggregatedIn"/>
@@ -34,7 +34,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui-modified#/0/AbstractInteractionUnit/id"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="CheckBoxArray" cardinality="ZERO__INFINITY">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="CheckBoxArray" cardinality="ZERO__INFINITY">
       <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui-modified#/0/AbstractInteractionUnit"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="aggregatedIn">
         <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui-modified#/0/AbstractInteractionUnit/aggregatedIn"/>
@@ -87,7 +87,7 @@
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="grouping" value="grouping"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="CheckBox" cardinality="ONE__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.3">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="CheckBox" cardinality="ONE__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.3">
       <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui-modified#/0/AbstractInteractionUnit"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="eventSupport">
         <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui-modified#/0/AbstractInteractionUnit/eventSupport"/>
@@ -126,7 +126,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui-modified#/0/AbstractInteractionUnit/id"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSectionClass" name="output" cardinality="ZERO__INFINITY">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="output" cardinality="ZERO__INFINITY">
       <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui-modified#/0/AbstractInteractionUnit"/>
       <references xsi:type="metamodel:SourceSectionContainmentReference" name="eventSupport">
         <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui-modified#/0/AbstractInteractionUnit/eventSupport"/>
@@ -151,7 +151,7 @@
   </sourceSectionModel>
   <targetSectionModel xsi:type="pamtram:TargetSectionModel">
     <metaModelPackage xsi:type="ecore:EPackage" href="http://stefan-hennig.de/movisa#/"/>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="VisualizationApplicationModel">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="VisualizationApplicationModel">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//VisualizationApplicationModel"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="AlgorithmDomain">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//VisualizationApplicationModel/AlgorithmDomain"/>
@@ -364,7 +364,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//MovisaModel/Version"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="CheckBoxArray">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="CheckBoxArray">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/CheckBoxArray"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="Representation">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/CheckBoxArray/Representation"/>
@@ -448,7 +448,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="CheckBox" cardinality="ONE__INFINITY">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="CheckBox" cardinality="ONE__INFINITY">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/CheckBox"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="Representation">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/CheckBox/Representation"/>
@@ -463,13 +463,13 @@
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="Panel" cardinality="ONE__INFINITY">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="Panel" cardinality="ONE__INFINITY">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/Panel"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="PanelName">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="TextDefinition">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="TextDefinition">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/TextDefinition"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="TranslatedTextItem">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/TextDefinition/TranslatedTextItem"/>
@@ -487,7 +487,7 @@
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="NewViewNavigationFlow" container="//@targetSectionModel.0/@metaModelSections.0/@references.2/@value.0">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="NewViewNavigationFlow" container="//@targetSectionModel.0/@metaModelSections.0/@references.2/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/NewViewNavigationFlow"/>
       <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Source" value="//@targetSectionModel.0/@metaModelSections.0/@references.2/@value.0/@references.0/@value.0">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/NavigationFlow/Source"/>
@@ -496,7 +496,7 @@
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/NavigationFlow/Target"/>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSectionClass" name="TextLabel">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="TextLabel">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/TextLabel"/>
       <attributes xsi:type="metamodel:ActualAttribute" name="TextLabelName">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>

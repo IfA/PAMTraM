@@ -110,7 +110,7 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 
 				for (TargetSection val : values) {
 					// only abstract sections that have a matching eClass can be used as extended section
-					if(val.isAbstract() && (val.eClass() == targetSection.eClass() || val.getEClass().getESuperTypes().contains(targetSection.getEClass()))) {
+					if(val.isAbstract() && (val.getEClass() == targetSection.getEClass() || targetSection.getEClass().getEAllSuperTypes().contains(val.getEClass()))) {
 						ret.add(val);
 					}
 				}

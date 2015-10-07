@@ -25,6 +25,7 @@ import pamtram.metamodel.ContainerParameter;
 import pamtram.metamodel.MetamodelFactory;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.Reference;
+import pamtram.metamodel.Section;
 
 /**
  * This is the item provider adapter for a {@link pamtram.metamodel.Class} object.
@@ -33,7 +34,7 @@ import pamtram.metamodel.Reference;
  * @generated
  */
 public class ClassItemProvider
-	extends MetaModelElementItemProvider {
+extends MetaModelElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -70,20 +71,20 @@ public class ClassItemProvider
 	 */
 	protected void addEClassPropertyDescriptorGen(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+		(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Class_eClass_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Class_eClass_feature", "_UI_Class_type"),
-				 MetamodelPackage.Literals.CLASS__ECLASS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+						getResourceLocator(),
+						getString("_UI_Class_eClass_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Class_eClass_feature", "_UI_Class_type"),
+						MetamodelPackage.Literals.CLASS__ECLASS,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null));
 	}
-	
+
 	/**
 	 * This adds a property descriptor for the EClass feature.
 	 * <!-- begin-user-doc -->
@@ -91,88 +92,91 @@ public class ClassItemProvider
 	 */
 	protected void addEClassPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+		(new ItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Class_eClass_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Class_eClass_feature", "_UI_Class_type"),
-				 MetamodelPackage.Literals.CLASS__ECLASS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null)
-			   {
-				@Override
-				public Collection<?> getChoiceOfValues(Object object) {
-					
-					Class section = ((pamtram.metamodel.Class) object).getContainingSection();
-					SectionModel sectionModel = section.getContainingSectionModel();
-					
-					List<EClass> choiceOfValues = new LinkedList<EClass>();
-					
-					/*
-					 * If we have a container parameter with a specified source, we do not need to scan package contents.
-					 * Instead, the user may only select the eClass of the specified source element. 
-					 */
-					if(section.eContainer() instanceof ContainerParameter &&
-							((ContainerParameter) section.eContainer()).getSource() != null) {
-						choiceOfValues.add(((ContainerParameter) section.eContainer()).getSource().eClass());
-						return choiceOfValues;
+						getResourceLocator(),
+						getString("_UI_Class_eClass_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Class_eClass_feature", "_UI_Class_type"),
+						MetamodelPackage.Literals.CLASS__ECLASS,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null)
+		{
+			@Override
+			public Collection<?> getChoiceOfValues(Object object) {
+
+				Class section = ((pamtram.metamodel.Class) object).getContainingSection();
+				SectionModel sectionModel = section.getContainingSectionModel();
+
+				List<EClass> choiceOfValues = new LinkedList<EClass>();
+
+				/*
+				 * If we have a container parameter with a specified source, we do not need to scan package contents.
+				 * Instead, the user may only select the eClass of the specified source element. 
+				 */
+				if(section.eContainer() instanceof ContainerParameter &&
+						((ContainerParameter) section.eContainer()).getSource() != null) {
+					choiceOfValues.add(((ContainerParameter) section.eContainer()).getSource().eClass());
+					return choiceOfValues;
+				}
+
+				List<EPackage> packagesToScan=new LinkedList<EPackage>();
+
+				packagesToScan.add(sectionModel.getMetaModelPackage());
+
+				List<EClass> documentRoot=new LinkedList<EClass>();//this should only contain one element but we need to implement this in a generic way...												
+
+				while(packagesToScan.size()>0){
+					EPackage pkg=packagesToScan.remove(0);
+					EClass docroot=ExtendedMetaData.INSTANCE.getDocumentRoot(pkg);
+					if(docroot!=null){
+						documentRoot.add(docroot);
 					}
-					
-					List<EPackage> packagesToScan=new LinkedList<EPackage>();
-					
-					packagesToScan.add(sectionModel.getMetaModelPackage());
-					
-					List<EClass> documentRoot=new LinkedList<EClass>();//this should only contain one element but we need to implement this in a generic way...												
-					
-					while(packagesToScan.size()>0){
-						EPackage pkg=packagesToScan.remove(0);
-						EClass docroot=ExtendedMetaData.INSTANCE.getDocumentRoot(pkg);
-						if(docroot!=null){
-						 documentRoot.add(docroot);
-						}
-						
-						packagesToScan.addAll(pkg.getESubpackages());
-						for(EClassifier c : pkg.getEClassifiers()){
-							if(c instanceof EClass){
-								EClass cl=(EClass)c;
-								if(!cl.isAbstract() && !documentRoot.contains(cl)){
+
+					packagesToScan.addAll(pkg.getESubpackages());
+					for(EClassifier c : pkg.getEClassifiers()){
+						if(c instanceof EClass){
+							EClass cl=(EClass)c;
+							if(!documentRoot.contains(cl)){
+								// abstract EClasses are only allowed for abstract sections
+								if(!cl.isAbstract() || (object instanceof Section<?, ?, ?, ?> && ((Section<?,?,?,?>) object).isAbstract())) {
 									choiceOfValues.add((EClass) c);
 								}
 							}
 						}
 					}
-					
-					if(section.equals(object)){ // top level-section
-						return choiceOfValues;
-					} else { //not a top-level section
-						List<EClass> newChoiceOfValues = new LinkedList<EClass>();
-						pamtram.metamodel.Reference ref=(Reference) ((pamtram.metamodel.Class)object).eContainer();
-						if(ref.getEReference() != null){
-							if(!(ref.getEReference().getEType() instanceof EClass)) {
-								throw new RuntimeException("Type checks can only be performed for instances of type 'EClass'");
-							} else {
-								EClass refClass=(EClass) ref.getEReference().getEType();
-								
-								for(EClass c : choiceOfValues){
-									if(refClass.isSuperTypeOf(c)) {
-										newChoiceOfValues.add(c);
-									}
-								}
-								return newChoiceOfValues;
-								
-							}
-							
-						}
-			
-					} 
-					return super.getChoiceOfValues(object);
 				}
 
-			   });
+				if(section.equals(object)){ // top level-section
+					return choiceOfValues;
+				} else { //not a top-level section
+					List<EClass> newChoiceOfValues = new LinkedList<EClass>();
+					pamtram.metamodel.Reference ref=(Reference) ((pamtram.metamodel.Class)object).eContainer();
+					if(ref.getEReference() != null){
+						if(!(ref.getEReference().getEType() instanceof EClass)) {
+							throw new RuntimeException("Type checks can only be performed for instances of type 'EClass'");
+						} else {
+							EClass refClass=(EClass) ref.getEReference().getEType();
+
+							for(EClass c : choiceOfValues){
+								if(refClass.isSuperTypeOf(c)) {
+									newChoiceOfValues.add(c);
+								}
+							}
+							return newChoiceOfValues;
+
+						}
+
+					}
+
+				} 
+				return super.getChoiceOfValues(object);
+			}
+
+		});
 	}
 
 	/**
@@ -183,18 +187,18 @@ public class ClassItemProvider
 	 */
 	protected void addCardinalityPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+		(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Class_cardinality_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Class_cardinality_feature", "_UI_Class_type"),
-				 MetamodelPackage.Literals.CLASS__CARDINALITY,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+						getResourceLocator(),
+						getString("_UI_Class_cardinality_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Class_cardinality_feature", "_UI_Class_type"),
+						MetamodelPackage.Literals.CLASS__CARDINALITY,
+						true,
+						false,
+						false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+						null,
+						null));
 	}
 
 	/**
@@ -205,18 +209,18 @@ public class ClassItemProvider
 	 */
 	protected void addContainerPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+		(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Class_container_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Class_container_feature", "_UI_Class_type"),
-				 MetamodelPackage.Literals.CLASS__CONTAINER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+						getResourceLocator(),
+						getString("_UI_Class_container_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Class_container_feature", "_UI_Class_type"),
+						MetamodelPackage.Literals.CLASS__CONTAINER,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null));
 	}
 
 	/**
@@ -273,7 +277,7 @@ public class ClassItemProvider
 	public String getText(Object object) {
 		String label = ((pamtram.metamodel.Class)object).getName();
 		EClass eClass = ((pamtram.metamodel.Class)object).getEClass();
-		
+
 		String ret = "";
 		if(label != null && label.length() != 0) {
 			ret += label;
@@ -281,9 +285,9 @@ public class ClassItemProvider
 		if(eClass != null && eClass.getEPackage() != null) {
 			ret += (ret.equals("") ?
 					"(" + eClass.getEPackage().getNsPrefix() + "::" + eClass.getName() + ")" :
-					" (" + eClass.getEPackage().getNsPrefix() + "::" + eClass.getName() + ")");
+						" (" + eClass.getEPackage().getNsPrefix() + "::" + eClass.getName() + ")");
 		}
-		
+
 		return ret;
 	}
 
@@ -299,13 +303,13 @@ public class ClassItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(pamtram.metamodel.Class.class)) {
-			case MetamodelPackage.CLASS__CARDINALITY:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case MetamodelPackage.CLASS__REFERENCES:
-			case MetamodelPackage.CLASS__ATTRIBUTES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case MetamodelPackage.CLASS__CARDINALITY:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case MetamodelPackage.CLASS__REFERENCES:
+		case MetamodelPackage.CLASS__ATTRIBUTES:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -322,39 +326,39 @@ public class ClassItemProvider
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MetamodelPackage.Literals.CLASS__REFERENCES,
-				 MetamodelFactory.eINSTANCE.createTargetSectionContainmentReference()));
+						MetamodelFactory.eINSTANCE.createTargetSectionContainmentReference()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MetamodelPackage.Literals.CLASS__REFERENCES,
-				 MetamodelFactory.eINSTANCE.createTargetSectionNonContainmentReference()));
+						MetamodelFactory.eINSTANCE.createTargetSectionNonContainmentReference()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MetamodelPackage.Literals.CLASS__REFERENCES,
-				 MetamodelFactory.eINSTANCE.createSourceSectionContainmentReference()));
+						MetamodelFactory.eINSTANCE.createSourceSectionContainmentReference()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MetamodelPackage.Literals.CLASS__REFERENCES,
-				 MetamodelFactory.eINSTANCE.createMetaModelSectionReference()));
+						MetamodelFactory.eINSTANCE.createMetaModelSectionReference()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
-				 MetamodelFactory.eINSTANCE.createSourceSectionAttribute()));
+						MetamodelFactory.eINSTANCE.createSourceSectionAttribute()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
-				 MetamodelFactory.eINSTANCE.createActualAttribute()));
+						MetamodelFactory.eINSTANCE.createActualAttribute()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
-				 MetamodelFactory.eINSTANCE.createVirtualAttribute()));
+						MetamodelFactory.eINSTANCE.createVirtualAttribute()));
 	}
 
 }

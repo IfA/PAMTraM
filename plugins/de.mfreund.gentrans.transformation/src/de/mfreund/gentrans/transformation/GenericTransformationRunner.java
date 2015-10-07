@@ -345,6 +345,12 @@ public class GenericTransformationRunner {
 			return;
 		}
 
+		/* 
+		 * before we can use the PAMTraM model, we need merge all extended HintGroups or Sections;
+		 * that way, we get a 'clean' model (without any extensions) that we can handle in a normal way
+		 */
+		pamtramModel.mergeExtends();
+
 		// find active mappings and resolve ambiguities as far as possible without user
 		// input
 		final List<Mapping> suitableMappings = pamtramModel.getActiveMappings();

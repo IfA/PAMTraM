@@ -367,7 +367,7 @@
       </eTypeParameters>
       <eOperations name="extendsOnlyValidSections" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="if(this.getEClass() == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;for (S extend : this.getExtend()) {&#xD;&#xA;&#x9;if(!extend.isAbstract() || extend.getEClass() != null &amp;&amp; !(this.getEClass() == extend.getEClass()) &amp;&amp; !(this.getEClass().getESuperTypes().contains(extend.getEClass()))) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return true;"/>
+          <details key="body" value="if(this.getEClass() == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;for (S extend : this.getExtend()) {&#xD;&#xA;&#x9;if(!extend.isAbstract() || extend.getEClass() != null &amp;&amp; !(this.getEClass() == extend.getEClass()) &amp;&amp; !(this.getEClass().getEAllSuperTypes().contains(extend.getEClass()))) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return true;"/>
         </eAnnotations>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" lowerBound="1"

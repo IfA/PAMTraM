@@ -18,8 +18,8 @@ import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
-
 import org.eclipse.ocl.pivot.values.InvalidValueException;
+
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.MetamodelTables;
@@ -93,6 +93,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isAbstract() {
 		return abstract_;
 	}
@@ -102,6 +103,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAbstract(boolean newAbstract) {
 		boolean oldAbstract = abstract_;
 		abstract_ = newAbstract;
@@ -136,7 +138,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 		}
 		
 		for (S extend : this.getExtend()) {
-			if(!extend.isAbstract() || extend.getEClass() != null && !(this.getEClass() == extend.getEClass()) && !(this.getEClass().getESuperTypes().contains(extend.getEClass()))) {
+			if(!extend.isAbstract() || extend.getEClass() != null && !(this.getEClass() == extend.getEClass()) && !(this.getEClass().getEAllSuperTypes().contains(extend.getEClass()))) {
 				return false;
 			}
 		}
@@ -271,7 +273,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 		switch (operationID) {
 			case MetamodelPackage.SECTION___EXTENDS_ONLY_VALID_SECTIONS:
 				return extendsOnlyValidSections();
-			case MetamodelPackage.SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP:
+			case MetamodelPackage.SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_1:
 				return extendsValidSections((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

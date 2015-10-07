@@ -73,7 +73,7 @@ public interface Section<S extends Section<S, C, R, A>, C extends pamtram.metamo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='if(this.getEClass() == null) {\r\n\treturn true;\r\n}\r\n\r\nfor (S extend : this.getExtend()) {\r\n\tif(!extend.isAbstract() || extend.getEClass() != null && !(this.getEClass() == extend.getEClass()) && !(this.getEClass().getESuperTypes().contains(extend.getEClass()))) {\r\n\t\treturn false;\r\n\t}\r\n}\r\n\r\nreturn true;'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='if(this.getEClass() == null) {\r\n\treturn true;\r\n}\r\n\r\nfor (S extend : this.getExtend()) {\r\n\tif(!extend.isAbstract() || extend.getEClass() != null && !(this.getEClass() == extend.getEClass()) && !(this.getEClass().getEAllSuperTypes().contains(extend.getEClass()))) {\r\n\t\treturn false;\r\n\t}\r\n}\r\n\r\nreturn true;'"
 	 * @generated
 	 */
 	boolean extendsOnlyValidSections();

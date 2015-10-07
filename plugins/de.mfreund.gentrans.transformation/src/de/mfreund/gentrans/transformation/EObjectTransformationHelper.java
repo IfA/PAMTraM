@@ -58,9 +58,9 @@ public class EObjectTransformationHelper {
 			try {
 				return attr.getEType().getEPackage().getEFactoryInstance()
 						.convertToString(attr.getEAttributeType(), srcAttr);
-			} catch (final IllegalArgumentException e) {// TODO
+			} catch (final Exception e) {
 				e.printStackTrace(System.out);
-				return null;
+				return srcAttr.toString();
 			}
 		} else {
 			return null;

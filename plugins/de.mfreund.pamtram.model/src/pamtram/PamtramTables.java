@@ -267,6 +267,9 @@ public class PamtramTables
 		public static final /*@NonNull*/ ExecutorOperation _MappingModel__getActiveMappings = new ExecutorOperation("getActiveMappings", Parameters._, Types._MappingModel,
 			0, TemplateParameters.EMPTY_LIST, null);
 
+		public static final /*@NonNull*/ ExecutorOperation _PAMTraM__mergeExtends = new ExecutorOperation("mergeExtends", Parameters._, Types._PAMTraM,
+			0, TemplateParameters.EMPTY_LIST, null);
+
 		static {
 			Init.initEnd();
 		}
@@ -509,7 +512,9 @@ public class PamtramTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 
-		private static final /*@NonNull*/ ExecutorOperation[] _PAMTraM__PAMTraM = {};
+		private static final /*@NonNull*/ ExecutorOperation[] _PAMTraM__PAMTraM = {
+			PamtramTables.Operations._PAMTraM__mergeExtends /* mergeExtends() */
+		};
 		private static final /*@NonNull*/ ExecutorOperation[] _PAMTraM__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,

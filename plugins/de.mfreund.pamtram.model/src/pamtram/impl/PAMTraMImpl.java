@@ -10,9 +10,12 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -20,6 +23,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.IdResolver;
@@ -47,7 +51,10 @@ import pamtram.TransformationModel;
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.GlobalValue;
 import pamtram.mapping.Mapping;
+import pamtram.mapping.MappingHintGroupType;
+import pamtram.metamodel.SourceSection;
 import pamtram.metamodel.SourceSectionClass;
+import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionClass;
 
 /**
@@ -215,11 +222,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		transformationModel = newTransformationModel;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PamtramPackage.PAM_TRA_M__TRANSFORMATION_MODEL, oldTransformationModel, newTransformationModel);
-			if (msgs == null) {
-				msgs = notification;
-			} else {
-				msgs.add(notification);
-			}
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -233,20 +236,15 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	public void setTransformationModel(TransformationModel newTransformationModel) {
 		if (newTransformationModel != transformationModel) {
 			NotificationChain msgs = null;
-			if (transformationModel != null) {
+			if (transformationModel != null)
 				msgs = ((InternalEObject)transformationModel).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PamtramPackage.PAM_TRA_M__TRANSFORMATION_MODEL, null, msgs);
-			}
-			if (newTransformationModel != null) {
+			if (newTransformationModel != null)
 				msgs = ((InternalEObject)newTransformationModel).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PamtramPackage.PAM_TRA_M__TRANSFORMATION_MODEL, null, msgs);
-			}
 			msgs = basicSetTransformationModel(newTransformationModel, msgs);
-			if (msgs != null) {
-				msgs.dispatch();
-			}
+			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired()) {
+		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PamtramPackage.PAM_TRA_M__TRANSFORMATION_MODEL, newTransformationModel, newTransformationModel));
-		}
 	}
 
 	/**
@@ -447,23 +445,23 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		/*@Nullable*/ Iterator<?> ITERATOR_s = BOXED_mappingModel.iterator();
 		/*@NonNull*/ /*@Thrown*/ SequenceValue collect;
 		while (true) {
-			if (!ITERATOR_s.hasNext()) {
-				collect = accumulator;
-				break;
-			}
-			/*@Nullable*/ /*@NonInvalid*/ MappingModel s = (MappingModel)ITERATOR_s.next();
-			/**
-			 * s.globalValues
-			 */
-			if (s == null) {
-				throw new InvalidValueException("Null source for \'\'http://mfreund.de/pamtram\'::MappingModel::globalValues\'");
-			}
-			final /*@NonNull*/ /*@Thrown*/ List<GlobalValue> globalValues = s.getGlobalValues();
-			final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_globalValues = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_GlobalValue, globalValues);
-			//
-			for (Object value : BOXED_globalValues.flatten().getElements()) {
-				accumulator.add(value);
-			}
+		    if (!ITERATOR_s.hasNext()) {
+		        collect = accumulator;
+		        break;
+		    }
+		    /*@Nullable*/ /*@NonInvalid*/ MappingModel s = (MappingModel)ITERATOR_s.next();
+		    /**
+		     * s.globalValues
+		     */
+		    if (s == null) {
+		        throw new InvalidValueException("Null source for \'\'http://mfreund.de/pamtram\'::MappingModel::globalValues\'");
+		    }
+		    final /*@NonNull*/ /*@Thrown*/ List<GlobalValue> globalValues = s.getGlobalValues();
+		    final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_globalValues = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_GlobalValue, globalValues);
+		    //
+		    for (Object value : BOXED_globalValues.flatten().getElements()) {
+		        accumulator.add(value);
+		    }
 		}
 		final List<GlobalValue> UNBOXED_collect = collect.asEcoreObjects(idResolver, pamtram.mapping.GlobalValue.class);
 		assert UNBOXED_collect != null;
@@ -489,27 +487,110 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		/*@Nullable*/ Iterator<?> ITERATOR_s = BOXED_mappingModel.iterator();
 		/*@NonNull*/ /*@Thrown*/ SequenceValue collect;
 		while (true) {
-			if (!ITERATOR_s.hasNext()) {
-				collect = accumulator;
-				break;
-			}
-			/*@Nullable*/ /*@NonInvalid*/ MappingModel s = (MappingModel)ITERATOR_s.next();
-			/**
-			 * s.modifierSets
-			 */
-			if (s == null) {
-				throw new InvalidValueException("Null source for \'\'http://mfreund.de/pamtram\'::MappingModel::modifierSets\'");
-			}
-			final /*@NonNull*/ /*@Thrown*/ List<AttributeValueModifierSet> modifierSets = s.getModifierSets();
-			final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_modifierSets = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_AttributeValueModifierSet, modifierSets);
-			//
-			for (Object value : BOXED_modifierSets.flatten().getElements()) {
-				accumulator.add(value);
-			}
+		    if (!ITERATOR_s.hasNext()) {
+		        collect = accumulator;
+		        break;
+		    }
+		    /*@Nullable*/ /*@NonInvalid*/ MappingModel s = (MappingModel)ITERATOR_s.next();
+		    /**
+		     * s.modifierSets
+		     */
+		    if (s == null) {
+		        throw new InvalidValueException("Null source for \'\'http://mfreund.de/pamtram\'::MappingModel::modifierSets\'");
+		    }
+		    final /*@NonNull*/ /*@Thrown*/ List<AttributeValueModifierSet> modifierSets = s.getModifierSets();
+		    final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_modifierSets = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_AttributeValueModifierSet, modifierSets);
+		    //
+		    for (Object value : BOXED_modifierSets.flatten().getElements()) {
+		        accumulator.add(value);
+		    }
 		}
 		final List<AttributeValueModifierSet> UNBOXED_collect = collect.asEcoreObjects(idResolver, pamtram.mapping.AttributeValueModifierSet.class);
 		assert UNBOXED_collect != null;
 		return (EList<AttributeValueModifierSet>)UNBOXED_collect;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void mergeExtends() {
+		
+		//TODO handle hierarchical extensions (an extended section extends other sections
+		//TODO implement a more sophisticated merging strategy that takes into account overwriting of hints?
+		
+		for (Mapping mapping : getMappings()) {
+		
+			/*
+			 * First, we created a self-contaied copy of every extended mapping hint gruop, source section and 
+			 * target section so that we do not mess up with other mappings that extend those elements.
+			 */
+			BasicEList<MappingHintGroupType> extendedMappingHintGroups = new BasicEList<>();
+			UniqueEList<SourceSection> sourceSectionOfExtendedMappings = new UniqueEList<>();
+			UniqueEList<TargetSection> targetSectionOfExtendedMappings = new UniqueEList<>();
+		
+			for (MappingHintGroupType hintGroup : mapping.getMappingHintGroups()) {
+				for (MappingHintGroupType extend : hintGroup.getExtend()) {
+					extendedMappingHintGroups.add(extend);
+					sourceSectionOfExtendedMappings.add(((Mapping) extend.eContainer()).getSourceMMSection());
+					targetSectionOfExtendedMappings.add(extend.getTargetMMSection());
+				}
+			}
+		
+			EList<EObject> objectsToCopy = new BasicEList<>();
+			objectsToCopy.addAll(extendedMappingHintGroups);
+			objectsToCopy.addAll(sourceSectionOfExtendedMappings);
+			objectsToCopy.addAll(targetSectionOfExtendedMappings);
+		
+			Collection<EObject> copiedObject = EcoreUtil.copyAll(objectsToCopy);
+		
+			BasicEList<MappingHintGroupType> extendedMappingHintGroupsCopy = new BasicEList<>();
+			UniqueEList<SourceSection> sourceSectionOfExtendedMappingsCopy = new UniqueEList<>();
+			UniqueEList<TargetSection> targetSectionOfExtendedMappingsCopy = new UniqueEList<>();
+		
+			Iterator<EObject> it = copiedObject.iterator();
+			for (int i = 0; i < extendedMappingHintGroups.size(); i++) {
+				extendedMappingHintGroupsCopy.add((MappingHintGroupType) it.next());
+			}
+			for (int i = 0; i < sourceSectionOfExtendedMappings.size(); i++) {
+				sourceSectionOfExtendedMappingsCopy.add((SourceSection) it.next());
+			}
+			for (int i = 0; i < targetSectionOfExtendedMappings.size(); i++) {
+				targetSectionOfExtendedMappingsCopy.add((TargetSection) it.next());
+			}
+		
+			/*
+			 * First, we need to merge each HintGroup with those HintGroups that it extends
+			 */
+			for (MappingHintGroupType hintGroup : mapping.getMappingHintGroups()) {
+				for (MappingHintGroupType extend : hintGroup.getExtend()) {
+					/*
+					 *  we can always take the first hint group without any further checking because we iterate in the same
+					 *  order as above
+					 */
+					hintGroup.getMappingHints().addAll(extendedMappingHintGroupsCopy.remove(0).getMappingHints());
+					/*
+					 * The same is for the target sections of the hint groups
+					 */
+					TargetSection copy = targetSectionOfExtendedMappingsCopy.remove(0);
+					hintGroup.getTargetMMSection().getAttributes().addAll(copy.getAttributes());
+					hintGroup.getTargetMMSection().getReferences().addAll(copy.getReferences());
+				}
+			}
+			assert extendedMappingHintGroups.isEmpty();
+		
+			/*
+			 * Now, we merge all SourceSections.
+			 */
+			for (SourceSection sourceSection : sourceSectionOfExtendedMappingsCopy) {
+				//Therefore, we first merge all attributes...
+				mapping.getSourceMMSection().getAttributes().addAll(sourceSection.getAttributes());
+				// ...and then all references.
+				mapping.getSourceMMSection().getReferences().addAll(sourceSection.getReferences());
+			}
+		}
 	}
 
 	/**
@@ -541,45 +622,45 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		/*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
 		try {
-			final /*@NonNull*/ /*@Thrown*/ List<SourceSectionModel> sourceSectionModel = this.getSourceSectionModel();
-			final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_sourceSectionModel = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_SourceSectionModel, sourceSectionModel);
-			/*@NonNull*/ /*@Thrown*/ SequenceValue.Accumulator accumulator = ValueUtil.createSequenceAccumulatorValue(PamtramTables.SEQ_CLSSid_EPackage);
-			/*@Nullable*/ Iterator<?> ITERATOR_s = BOXED_sourceSectionModel.iterator();
-			/*@NonNull*/ /*@Thrown*/ SequenceValue collect;
-			while (true) {
-				if (!ITERATOR_s.hasNext()) {
-					collect = accumulator;
-					break;
-				}
-				/*@Nullable*/ /*@NonInvalid*/ SourceSectionModel s = (SourceSectionModel)ITERATOR_s.next();
-				/**
-				 * s.metaModelPackage
-				 */
-				if (s == null) {
-					throw new InvalidValueException("Null source for \'\'http://mfreund.de/pamtram\'::SectionModel::metaModelPackage\'");
-				}
-				final /*@NonNull*/ /*@Thrown*/ EPackage metaModelPackage = s.getMetaModelPackage();
-				//
-				accumulator.add(metaModelPackage);
-			}
-			final /*@NonNull*/ /*@Thrown*/ SetValue asSet = ClassUtil.nonNullState(CollectionAsSetOperation.INSTANCE.evaluate(collect));
-			final /*@NonNull*/ /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(asSet));
-			final /*@Thrown*/ boolean status = ClassUtil.nonNullState(OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, size, PamtramTables.INT_1).booleanValue());
-			CAUGHT_status = status;
+		    final /*@NonNull*/ /*@Thrown*/ List<SourceSectionModel> sourceSectionModel = this.getSourceSectionModel();
+		    final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_sourceSectionModel = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_SourceSectionModel, sourceSectionModel);
+		    /*@NonNull*/ /*@Thrown*/ SequenceValue.Accumulator accumulator = ValueUtil.createSequenceAccumulatorValue(PamtramTables.SEQ_CLSSid_EPackage);
+		    /*@Nullable*/ Iterator<?> ITERATOR_s = BOXED_sourceSectionModel.iterator();
+		    /*@NonNull*/ /*@Thrown*/ SequenceValue collect;
+		    while (true) {
+		        if (!ITERATOR_s.hasNext()) {
+		            collect = accumulator;
+		            break;
+		        }
+		        /*@Nullable*/ /*@NonInvalid*/ SourceSectionModel s = (SourceSectionModel)ITERATOR_s.next();
+		        /**
+		         * s.metaModelPackage
+		         */
+		        if (s == null) {
+		            throw new InvalidValueException("Null source for \'\'http://mfreund.de/pamtram\'::SectionModel::metaModelPackage\'");
+		        }
+		        final /*@NonNull*/ /*@Thrown*/ EPackage metaModelPackage = s.getMetaModelPackage();
+		        //
+		        accumulator.add(metaModelPackage);
+		    }
+		    final /*@NonNull*/ /*@Thrown*/ SetValue asSet = ClassUtil.nonNullState(CollectionAsSetOperation.INSTANCE.evaluate(collect));
+		    final /*@NonNull*/ /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(asSet));
+		    final /*@Thrown*/ boolean status = ClassUtil.nonNullState(OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, size, PamtramTables.INT_1).booleanValue());
+		    CAUGHT_status = status;
 		}
 		catch (Exception e) {
-			CAUGHT_status = ValueUtil.createInvalidValue(e);
+		    CAUGHT_status = ValueUtil.createInvalidValue(e);
 		}
 		if (CAUGHT_status instanceof InvalidValueException) {
-			throw (InvalidValueException)CAUGHT_status;
+		    throw (InvalidValueException)CAUGHT_status;
 		}
 		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
 		/*@Nullable*/ /*@NonInvalid*/ String message_0;
 		if (ne) {
-			message_0 = PamtramTables.STR_Not_32_all_32_SourceSectionModels_32_specify_32_the_32_same_32_EPackage_32_This_32_is_32_c;
+		    message_0 = PamtramTables.STR_Not_32_all_32_SourceSectionModels_32_specify_32_the_32_same_32_EPackage_32_This_32_is_32_c;
 		}
 		else {
-			message_0 = null;
+		    message_0 = null;
 		}
 		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PamtramTables.STR_PAMTraM_c_c_sourceSectionModelsHaveSameEPackage, this, null, diagnostics, context, message_0, PamtramTables.INT_4, CAUGHT_status, PamtramTables.INT_0).booleanValue());
 		return Boolean.TRUE == logDiagnostic;
@@ -614,45 +695,45 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		/*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
 		try {
-			final /*@NonNull*/ /*@Thrown*/ List<TargetSectionModel> targetSectionModel = this.getTargetSectionModel();
-			final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_targetSectionModel = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_TargetSectionModel, targetSectionModel);
-			/*@NonNull*/ /*@Thrown*/ SequenceValue.Accumulator accumulator = ValueUtil.createSequenceAccumulatorValue(PamtramTables.SEQ_CLSSid_EPackage);
-			/*@Nullable*/ Iterator<?> ITERATOR_s = BOXED_targetSectionModel.iterator();
-			/*@NonNull*/ /*@Thrown*/ SequenceValue collect;
-			while (true) {
-				if (!ITERATOR_s.hasNext()) {
-					collect = accumulator;
-					break;
-				}
-				/*@Nullable*/ /*@NonInvalid*/ TargetSectionModel s = (TargetSectionModel)ITERATOR_s.next();
-				/**
-				 * s.metaModelPackage
-				 */
-				if (s == null) {
-					throw new InvalidValueException("Null source for \'\'http://mfreund.de/pamtram\'::SectionModel::metaModelPackage\'");
-				}
-				final /*@NonNull*/ /*@Thrown*/ EPackage metaModelPackage = s.getMetaModelPackage();
-				//
-				accumulator.add(metaModelPackage);
-			}
-			final /*@NonNull*/ /*@Thrown*/ SetValue asSet = ClassUtil.nonNullState(CollectionAsSetOperation.INSTANCE.evaluate(collect));
-			final /*@NonNull*/ /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(asSet));
-			final /*@Thrown*/ boolean status = ClassUtil.nonNullState(OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, size, PamtramTables.INT_1).booleanValue());
-			CAUGHT_status = status;
+		    final /*@NonNull*/ /*@Thrown*/ List<TargetSectionModel> targetSectionModel = this.getTargetSectionModel();
+		    final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_targetSectionModel = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_TargetSectionModel, targetSectionModel);
+		    /*@NonNull*/ /*@Thrown*/ SequenceValue.Accumulator accumulator = ValueUtil.createSequenceAccumulatorValue(PamtramTables.SEQ_CLSSid_EPackage);
+		    /*@Nullable*/ Iterator<?> ITERATOR_s = BOXED_targetSectionModel.iterator();
+		    /*@NonNull*/ /*@Thrown*/ SequenceValue collect;
+		    while (true) {
+		        if (!ITERATOR_s.hasNext()) {
+		            collect = accumulator;
+		            break;
+		        }
+		        /*@Nullable*/ /*@NonInvalid*/ TargetSectionModel s = (TargetSectionModel)ITERATOR_s.next();
+		        /**
+		         * s.metaModelPackage
+		         */
+		        if (s == null) {
+		            throw new InvalidValueException("Null source for \'\'http://mfreund.de/pamtram\'::SectionModel::metaModelPackage\'");
+		        }
+		        final /*@NonNull*/ /*@Thrown*/ EPackage metaModelPackage = s.getMetaModelPackage();
+		        //
+		        accumulator.add(metaModelPackage);
+		    }
+		    final /*@NonNull*/ /*@Thrown*/ SetValue asSet = ClassUtil.nonNullState(CollectionAsSetOperation.INSTANCE.evaluate(collect));
+		    final /*@NonNull*/ /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(asSet));
+		    final /*@Thrown*/ boolean status = ClassUtil.nonNullState(OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, size, PamtramTables.INT_1).booleanValue());
+		    CAUGHT_status = status;
 		}
 		catch (Exception e) {
-			CAUGHT_status = ValueUtil.createInvalidValue(e);
+		    CAUGHT_status = ValueUtil.createInvalidValue(e);
 		}
 		if (CAUGHT_status instanceof InvalidValueException) {
-			throw (InvalidValueException)CAUGHT_status;
+		    throw (InvalidValueException)CAUGHT_status;
 		}
 		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
 		/*@Nullable*/ /*@NonInvalid*/ String message_0;
 		if (ne) {
-			message_0 = PamtramTables.STR_Not_32_all_32_TargetSectionModels_32_specify_32_the_32_same_32_EPackage_32_This_32_is_32_c;
+		    message_0 = PamtramTables.STR_Not_32_all_32_TargetSectionModels_32_specify_32_the_32_same_32_EPackage_32_This_32_is_32_c;
 		}
 		else {
-			message_0 = null;
+		    message_0 = null;
 		}
 		final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PamtramTables.STR_PAMTraM_c_c_targetSectionModelsHaveSameEPackage, this, null, diagnostics, context, message_0, PamtramTables.INT_4, CAUGHT_status, PamtramTables.INT_0).booleanValue());
 		return Boolean.TRUE == logDiagnostic;
@@ -666,14 +747,14 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL:
-			return ((InternalEList<?>)getSourceSectionModel()).basicRemove(otherEnd, msgs);
-		case PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODEL:
-			return ((InternalEList<?>)getTargetSectionModel()).basicRemove(otherEnd, msgs);
-		case PamtramPackage.PAM_TRA_M__MAPPING_MODEL:
-			return ((InternalEList<?>)getMappingModel()).basicRemove(otherEnd, msgs);
-		case PamtramPackage.PAM_TRA_M__TRANSFORMATION_MODEL:
-			return basicSetTransformationModel(null, msgs);
+			case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL:
+				return ((InternalEList<?>)getSourceSectionModel()).basicRemove(otherEnd, msgs);
+			case PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODEL:
+				return ((InternalEList<?>)getTargetSectionModel()).basicRemove(otherEnd, msgs);
+			case PamtramPackage.PAM_TRA_M__MAPPING_MODEL:
+				return ((InternalEList<?>)getMappingModel()).basicRemove(otherEnd, msgs);
+			case PamtramPackage.PAM_TRA_M__TRANSFORMATION_MODEL:
+				return basicSetTransformationModel(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -686,28 +767,28 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case PamtramPackage.PAM_TRA_M__CONTEXT_META_MODEL_PACKAGE:
-			return getContextMetaModelPackage();
-		case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL:
-			return getSourceSectionModel();
-		case PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODEL:
-			return getTargetSectionModel();
-		case PamtramPackage.PAM_TRA_M__MAPPING_MODEL:
-			return getMappingModel();
-		case PamtramPackage.PAM_TRA_M__TRANSFORMATION_MODEL:
-			return getTransformationModel();
-		case PamtramPackage.PAM_TRA_M__SOURCE_SECTIONS:
-			return getSourceSections();
-		case PamtramPackage.PAM_TRA_M__TARGET_SECTIONS:
-			return getTargetSections();
-		case PamtramPackage.PAM_TRA_M__MAPPINGS:
-			return getMappings();
-		case PamtramPackage.PAM_TRA_M__ACTIVE_MAPPINGS:
-			return getActiveMappings();
-		case PamtramPackage.PAM_TRA_M__GLOBAL_VALUES:
-			return getGlobalValues();
-		case PamtramPackage.PAM_TRA_M__MODIFIER_SETS:
-			return getModifierSets();
+			case PamtramPackage.PAM_TRA_M__CONTEXT_META_MODEL_PACKAGE:
+				return getContextMetaModelPackage();
+			case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL:
+				return getSourceSectionModel();
+			case PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODEL:
+				return getTargetSectionModel();
+			case PamtramPackage.PAM_TRA_M__MAPPING_MODEL:
+				return getMappingModel();
+			case PamtramPackage.PAM_TRA_M__TRANSFORMATION_MODEL:
+				return getTransformationModel();
+			case PamtramPackage.PAM_TRA_M__SOURCE_SECTIONS:
+				return getSourceSections();
+			case PamtramPackage.PAM_TRA_M__TARGET_SECTIONS:
+				return getTargetSections();
+			case PamtramPackage.PAM_TRA_M__MAPPINGS:
+				return getMappings();
+			case PamtramPackage.PAM_TRA_M__ACTIVE_MAPPINGS:
+				return getActiveMappings();
+			case PamtramPackage.PAM_TRA_M__GLOBAL_VALUES:
+				return getGlobalValues();
+			case PamtramPackage.PAM_TRA_M__MODIFIER_SETS:
+				return getModifierSets();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -721,25 +802,25 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case PamtramPackage.PAM_TRA_M__CONTEXT_META_MODEL_PACKAGE:
-			getContextMetaModelPackage().clear();
-			getContextMetaModelPackage().addAll((Collection<? extends EPackage>)newValue);
-			return;
-		case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL:
-			getSourceSectionModel().clear();
-			getSourceSectionModel().addAll((Collection<? extends SourceSectionModel>)newValue);
-			return;
-		case PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODEL:
-			getTargetSectionModel().clear();
-			getTargetSectionModel().addAll((Collection<? extends TargetSectionModel>)newValue);
-			return;
-		case PamtramPackage.PAM_TRA_M__MAPPING_MODEL:
-			getMappingModel().clear();
-			getMappingModel().addAll((Collection<? extends MappingModel>)newValue);
-			return;
-		case PamtramPackage.PAM_TRA_M__TRANSFORMATION_MODEL:
-			setTransformationModel((TransformationModel)newValue);
-			return;
+			case PamtramPackage.PAM_TRA_M__CONTEXT_META_MODEL_PACKAGE:
+				getContextMetaModelPackage().clear();
+				getContextMetaModelPackage().addAll((Collection<? extends EPackage>)newValue);
+				return;
+			case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL:
+				getSourceSectionModel().clear();
+				getSourceSectionModel().addAll((Collection<? extends SourceSectionModel>)newValue);
+				return;
+			case PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODEL:
+				getTargetSectionModel().clear();
+				getTargetSectionModel().addAll((Collection<? extends TargetSectionModel>)newValue);
+				return;
+			case PamtramPackage.PAM_TRA_M__MAPPING_MODEL:
+				getMappingModel().clear();
+				getMappingModel().addAll((Collection<? extends MappingModel>)newValue);
+				return;
+			case PamtramPackage.PAM_TRA_M__TRANSFORMATION_MODEL:
+				setTransformationModel((TransformationModel)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -752,21 +833,21 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case PamtramPackage.PAM_TRA_M__CONTEXT_META_MODEL_PACKAGE:
-			getContextMetaModelPackage().clear();
-			return;
-		case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL:
-			getSourceSectionModel().clear();
-			return;
-		case PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODEL:
-			getTargetSectionModel().clear();
-			return;
-		case PamtramPackage.PAM_TRA_M__MAPPING_MODEL:
-			getMappingModel().clear();
-			return;
-		case PamtramPackage.PAM_TRA_M__TRANSFORMATION_MODEL:
-			setTransformationModel((TransformationModel)null);
-			return;
+			case PamtramPackage.PAM_TRA_M__CONTEXT_META_MODEL_PACKAGE:
+				getContextMetaModelPackage().clear();
+				return;
+			case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL:
+				getSourceSectionModel().clear();
+				return;
+			case PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODEL:
+				getTargetSectionModel().clear();
+				return;
+			case PamtramPackage.PAM_TRA_M__MAPPING_MODEL:
+				getMappingModel().clear();
+				return;
+			case PamtramPackage.PAM_TRA_M__TRANSFORMATION_MODEL:
+				setTransformationModel((TransformationModel)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -779,28 +860,28 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case PamtramPackage.PAM_TRA_M__CONTEXT_META_MODEL_PACKAGE:
-			return contextMetaModelPackage != null && !contextMetaModelPackage.isEmpty();
-		case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL:
-			return sourceSectionModel != null && !sourceSectionModel.isEmpty();
-		case PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODEL:
-			return targetSectionModel != null && !targetSectionModel.isEmpty();
-		case PamtramPackage.PAM_TRA_M__MAPPING_MODEL:
-			return mappingModel != null && !mappingModel.isEmpty();
-		case PamtramPackage.PAM_TRA_M__TRANSFORMATION_MODEL:
-			return transformationModel != null;
-		case PamtramPackage.PAM_TRA_M__SOURCE_SECTIONS:
-			return !getSourceSections().isEmpty();
-		case PamtramPackage.PAM_TRA_M__TARGET_SECTIONS:
-			return !getTargetSections().isEmpty();
-		case PamtramPackage.PAM_TRA_M__MAPPINGS:
-			return !getMappings().isEmpty();
-		case PamtramPackage.PAM_TRA_M__ACTIVE_MAPPINGS:
-			return !getActiveMappings().isEmpty();
-		case PamtramPackage.PAM_TRA_M__GLOBAL_VALUES:
-			return !getGlobalValues().isEmpty();
-		case PamtramPackage.PAM_TRA_M__MODIFIER_SETS:
-			return !getModifierSets().isEmpty();
+			case PamtramPackage.PAM_TRA_M__CONTEXT_META_MODEL_PACKAGE:
+				return contextMetaModelPackage != null && !contextMetaModelPackage.isEmpty();
+			case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL:
+				return sourceSectionModel != null && !sourceSectionModel.isEmpty();
+			case PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODEL:
+				return targetSectionModel != null && !targetSectionModel.isEmpty();
+			case PamtramPackage.PAM_TRA_M__MAPPING_MODEL:
+				return mappingModel != null && !mappingModel.isEmpty();
+			case PamtramPackage.PAM_TRA_M__TRANSFORMATION_MODEL:
+				return transformationModel != null;
+			case PamtramPackage.PAM_TRA_M__SOURCE_SECTIONS:
+				return !getSourceSections().isEmpty();
+			case PamtramPackage.PAM_TRA_M__TARGET_SECTIONS:
+				return !getTargetSections().isEmpty();
+			case PamtramPackage.PAM_TRA_M__MAPPINGS:
+				return !getMappings().isEmpty();
+			case PamtramPackage.PAM_TRA_M__ACTIVE_MAPPINGS:
+				return !getActiveMappings().isEmpty();
+			case PamtramPackage.PAM_TRA_M__GLOBAL_VALUES:
+				return !getGlobalValues().isEmpty();
+			case PamtramPackage.PAM_TRA_M__MODIFIER_SETS:
+				return !getModifierSets().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -814,10 +895,13 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case PamtramPackage.PAM_TRA_M___SOURCE_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_4:
-			return sourceSectionModelsHaveSameEPackage((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-		case PamtramPackage.PAM_TRA_M___TARGET_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_4:
-			return targetSectionModelsHaveSameEPackage((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PamtramPackage.PAM_TRA_M___MERGE_EXTENDS:
+				mergeExtends();
+				return null;
+			case PamtramPackage.PAM_TRA_M___SOURCE_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_3:
+				return sourceSectionModelsHaveSameEPackage((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PamtramPackage.PAM_TRA_M___TARGET_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_3:
+				return targetSectionModelsHaveSameEPackage((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

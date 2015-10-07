@@ -412,7 +412,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 		if (baseClass == Section.class) {
 			switch (baseOperationID) {
 				case MetamodelPackage.SECTION___EXTENDS_ONLY_VALID_SECTIONS: return MetamodelPackage.SOURCE_SECTION___EXTENDS_ONLY_VALID_SECTIONS;
-				case MetamodelPackage.SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP: return MetamodelPackage.SOURCE_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP;
+				case MetamodelPackage.SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_4: return MetamodelPackage.SOURCE_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_4;
 				default: return -1;
 			}
 		}
@@ -428,11 +428,11 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MetamodelPackage.SOURCE_SECTION___IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP:
+			case MetamodelPackage.SOURCE_SECTION___IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP_4:
 				return isReferencedByMapping((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case MetamodelPackage.SOURCE_SECTION___EXTENDS_ONLY_VALID_SECTIONS:
 				return extendsOnlyValidSections();
-			case MetamodelPackage.SOURCE_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP:
+			case MetamodelPackage.SOURCE_SECTION___EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP_4:
 				return extendsValidSections((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

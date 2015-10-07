@@ -81,7 +81,7 @@ public interface MappingModel extends NamedElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<Mapping> mappings = getMapping();\r\nEList<Mapping> activeMappings = new BasicEList<>();\r\nfor (Mapping mapping : mappings) {\r\n\tif(!mapping.isDeactivated()) {\r\n\t\tactiveMappings.add(mapping);\r\n\t}\r\n}\r\nreturn activeMappings;'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<Mapping> mappings = getMapping();\r\nEList<Mapping> activeMappings = new BasicEList<>();\r\nfor (Mapping mapping : mappings) {\r\n\tif(!mapping.isDeactivated() && !mapping.isAbstract()) {\r\n\t\tactiveMappings.add(mapping);\r\n\t}\r\n}\r\nreturn activeMappings;'"
 	 * @generated
 	 */
 	EList<Mapping> getActiveMappings();

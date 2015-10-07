@@ -126,7 +126,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * This returns the active mappings (the subset of the defined mappings ({@link #mapping}) 
-	 * for that {@link Mapping#isDeactivated()} returns '<em>false</em>').
+	 * for that {@link Mapping#isDeactivated()} and {@link Mapping#isAbstract()} both return '<em>false</em>').
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -135,7 +135,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 		EList<Mapping> mappings = getMapping();
 		EList<Mapping> activeMappings = new BasicEList<>();
 		for (Mapping mapping : mappings) {
-			if(!mapping.isDeactivated()) {
+			if(!mapping.isDeactivated() && !mapping.isAbstract()) {
 				activeMappings.add(mapping);
 			}
 		}

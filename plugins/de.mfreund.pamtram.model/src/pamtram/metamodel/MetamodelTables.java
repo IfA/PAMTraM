@@ -138,6 +138,7 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_MetaModelSectionReference_c_c_valuesMatchReferenceType = "MetaModelSectionReference::valuesMatchReferenceType";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_NonContainmentReference_c_c_eReferenceIsNonContainment = "NonContainmentReference::eReferenceIsNonContainment";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_Reference_c_c_eReferenceMatchesParentEClass = "Reference::eReferenceMatchesParentEClass";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_Section_c_c_containerMatchesExtendContainer = "Section::containerMatchesExtendContainer";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_Section_c_c_extendsValidSections = "Section::extendsValidSections";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_SourceSectionAttribute_c_c_attributeMatchesParentEClass = "SourceSectionAttribute::attributeMatchesParentEClass";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_SourceSection_c_c_isReferencedByMapping = "SourceSection::isReferencedByMapping";
@@ -148,6 +149,7 @@ public class MetamodelTables
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_eClass_32_39 = "The eClass \'";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_eReference_32_39 = "The eReference \'";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_section_32_extends_32_a_32_section_32_that_32_is_32_either_32_not_32_abstract_32_or_32_tha = "The section extends a section that is either not abstract or that references an EClass of a different (super-)type!";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_section_32_extends_32_a_32_section_32_that_32_specifies_32_a_32_different_32_contain = "The section extends a section that specifies a different container!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_section_32_is_32_not_32_referenced_32_by_32_any_32_hint_32_group_32_and_32_will_32_not_32_be_32 = "The section is not referenced by any hint group and will not be instantiated!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_The_32_section_32_is_32_not_32_referenced_32_by_32_any_32_mapping_33 = "The section is not referenced by any mapping!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR__32_of_32_the_32_selected_32_target_32_Classes_32_o_Value_e_32_are_32_not_32_allowed_32_by_32_the_32_s = " of the selected target Classes (Value) are not allowed by the selected eReference \'";

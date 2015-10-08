@@ -4,6 +4,7 @@ package pamtram.metamodel.util;
 
 import java.util.Map;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
@@ -104,12 +105,20 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	public static final int SECTION__EXTENDS_VALID_SECTIONS = 4;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Container Matches Extend Container' of 'Section'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int SECTION__CONTAINER_MATCHES_EXTEND_CONTAINER = 5;
+
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Is Referenced By Mapping' of 'Source Section'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int SOURCE_SECTION__IS_REFERENCED_BY_MAPPING = 5;
+	public static final int SOURCE_SECTION__IS_REFERENCED_BY_MAPPING = 6;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Is Referenced By Mapping Hint Group' of 'Target Section'.
@@ -117,7 +126,7 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int TARGET_SECTION__IS_REFERENCED_BY_MAPPING_HINT_GROUP = 6;
+	public static final int TARGET_SECTION__IS_REFERENCED_BY_MAPPING_HINT_GROUP = 7;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'EReference Matches Parent EClass' of 'Reference'.
@@ -125,7 +134,7 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int REFERENCE__EREFERENCE_MATCHES_PARENT_ECLASS = 7;
+	public static final int REFERENCE__EREFERENCE_MATCHES_PARENT_ECLASS = 8;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'EReference Is Containment' of 'Containment Reference'.
@@ -133,7 +142,7 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CONTAINMENT_REFERENCE__EREFERENCE_IS_CONTAINMENT = 8;
+	public static final int CONTAINMENT_REFERENCE__EREFERENCE_IS_CONTAINMENT = 9;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'EReference Is Non Containment' of 'Non Containment Reference'.
@@ -141,7 +150,7 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int NON_CONTAINMENT_REFERENCE__EREFERENCE_IS_NON_CONTAINMENT = 9;
+	public static final int NON_CONTAINMENT_REFERENCE__EREFERENCE_IS_NON_CONTAINMENT = 10;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Values Match Reference Type' of 'Meta Model Section Reference'.
@@ -149,7 +158,7 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int META_MODEL_SECTION_REFERENCE__VALUES_MATCH_REFERENCE_TYPE = 10;
+	public static final int META_MODEL_SECTION_REFERENCE__VALUES_MATCH_REFERENCE_TYPE = 11;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Attribute Matches Parent EClass' of 'Source Section Attribute'.
@@ -157,7 +166,7 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE_MATCHES_PARENT_ECLASS = 11;
+	public static final int SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE_MATCHES_PARENT_ECLASS = 12;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Attribute Matches Parent EClass' of 'Actual Attribute'.
@@ -165,7 +174,7 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ACTUAL_ATTRIBUTE__ATTRIBUTE_MATCHES_PARENT_ECLASS = 12;
+	public static final int ACTUAL_ATTRIBUTE__ATTRIBUTE_MATCHES_PARENT_ECLASS = 13;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -173,7 +182,7 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 12;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 13;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -329,13 +338,16 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 			result &= validate_EveryMapEntryUnique(class_, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
+			result &= validateClass_eClassMatchesParentEReference(class_, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateClass_variableCardinalityIsValid(class_, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
 			result &= validateClass_containerIsValid(class_, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
 			result &= validateClass_cardinalityIsValid(class_, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= validateClass_eClassMatchesParentEReference(class_, diagnostics, context);
 		}
 		return result;
 	}
@@ -348,6 +360,34 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 */
 	public boolean validateClass_eClassMatchesParentEReference(pamtram.metamodel.Class<?, ?, ?, ?> class_, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return class_.eClassMatchesParentEReference(diagnostics, context);
+	}
+
+	/**
+	 * Validates the variableCardinalityIsValid constraint of '<em>Class</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateClass_variableCardinalityIsValid(pamtram.metamodel.Class<?, ?, ?, ?> class_, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+				(createDiagnostic
+						(Diagnostic.ERROR,
+								DIAGNOSTIC_SOURCE,
+								0,
+								"_UI_GenericConstraint_diagnostic",
+								new Object[] { "variableCardinalityIsValid", getObjectLabel(class_, context) },
+								new Object[] { class_ },
+								context));
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -402,16 +442,22 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 			result &= validate_EveryMapEntryUnique(section, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
+			result &= validateClass_eClassMatchesParentEReference(section, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateClass_variableCardinalityIsValid(section, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
 			result &= validateClass_containerIsValid(section, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
 			result &= validateClass_cardinalityIsValid(section, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
-			result &= validateClass_eClassMatchesParentEReference(section, diagnostics, context);
+			result &= validateSection_extendsValidSections(section, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
-			result &= validateSection_extendsValidSections(section, diagnostics, context);
+			result &= validateSection_containerMatchesExtendContainer(section, diagnostics, context);
 		}
 		return result;
 	}
@@ -424,6 +470,16 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 	 */
 	public boolean validateSection_extendsValidSections(Section<?, ?, ?, ?> section, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return section.extendsValidSections(diagnostics, context);
+	}
+
+	/**
+	 * Validates the containerMatchesExtendContainer constraint of '<em>Section</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSection_containerMatchesExtendContainer(Section<?, ?, ?, ?> section, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return section.containerMatchesExtendContainer(diagnostics, context);
 	}
 
 	/**
@@ -458,16 +514,22 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 			result &= validate_EveryMapEntryUnique(sourceSection, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
+			result &= validateClass_eClassMatchesParentEReference(sourceSection, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateClass_variableCardinalityIsValid(sourceSection, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
 			result &= validateClass_containerIsValid(sourceSection, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
 			result &= validateClass_cardinalityIsValid(sourceSection, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
-			result &= validateClass_eClassMatchesParentEReference(sourceSection, diagnostics, context);
+			result &= validateSection_extendsValidSections(sourceSection, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
-			result &= validateSection_extendsValidSections(sourceSection, diagnostics, context);
+			result &= validateSection_containerMatchesExtendContainer(sourceSection, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
 			result &= validateSourceSection_isReferencedByMapping(sourceSection, diagnostics, context);
@@ -517,16 +579,22 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 			result &= validate_EveryMapEntryUnique(targetSection, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
+			result &= validateClass_eClassMatchesParentEReference(targetSection, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateClass_variableCardinalityIsValid(targetSection, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
 			result &= validateClass_containerIsValid(targetSection, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
 			result &= validateClass_cardinalityIsValid(targetSection, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
-			result &= validateClass_eClassMatchesParentEReference(targetSection, diagnostics, context);
+			result &= validateSection_extendsValidSections(targetSection, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
-			result &= validateSection_extendsValidSections(targetSection, diagnostics, context);
+			result &= validateSection_containerMatchesExtendContainer(targetSection, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
 			result &= validateTargetSection_isReferencedByMappingHintGroup(targetSection, diagnostics, context);
@@ -576,13 +644,16 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 			result &= validate_EveryMapEntryUnique(sourceSectionClass, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
+			result &= validateClass_eClassMatchesParentEReference(sourceSectionClass, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateClass_variableCardinalityIsValid(sourceSectionClass, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
 			result &= validateClass_containerIsValid(sourceSectionClass, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
 			result &= validateClass_cardinalityIsValid(sourceSectionClass, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= validateClass_eClassMatchesParentEReference(sourceSectionClass, diagnostics, context);
 		}
 		return result;
 	}
@@ -619,13 +690,16 @@ public class MetamodelValidator extends OCLinEcoreEObjectValidator {
 			result &= validate_EveryMapEntryUnique(targetSectionClass, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
+			result &= validateClass_eClassMatchesParentEReference(targetSectionClass, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
+			result &= validateClass_variableCardinalityIsValid(targetSectionClass, diagnostics, context);
+		}
+		if (result || diagnostics != null) {
 			result &= validateClass_containerIsValid(targetSectionClass, diagnostics, context);
 		}
 		if (result || diagnostics != null) {
 			result &= validateClass_cardinalityIsValid(targetSectionClass, diagnostics, context);
-		}
-		if (result || diagnostics != null) {
-			result &= validateClass_eClassMatchesParentEReference(targetSectionClass, diagnostics, context);
 		}
 		return result;
 	}

@@ -341,7 +341,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getPAMTraM__SourceSectionModelsHaveSameEPackage__DiagnosticChain_Map() {
+	public EOperation getPAMTraM__SourceSectionModelsHaveSameEPackage__DiagnosticChain_Map_4() {
 		return pamTraMEClass.getEOperations().get(1);
 	}
 
@@ -350,7 +350,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getPAMTraM__TargetSectionModelsHaveSameEPackage__DiagnosticChain_Map() {
+	public EOperation getPAMTraM__TargetSectionModelsHaveSameEPackage__DiagnosticChain_Map_4() {
 		return pamTraMEClass.getEOperations().get(2);
 	}
 
@@ -518,8 +518,8 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		createEReference(pamTraMEClass, PAM_TRA_M__GLOBAL_VALUES);
 		createEReference(pamTraMEClass, PAM_TRA_M__MODIFIER_SETS);
 		createEOperation(pamTraMEClass, PAM_TRA_M___MERGE_EXTENDS);
-		createEOperation(pamTraMEClass, PAM_TRA_M___SOURCE_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP);
-		createEOperation(pamTraMEClass, PAM_TRA_M___TARGET_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP);
+		createEOperation(pamTraMEClass, PAM_TRA_M___SOURCE_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_4);
+		createEOperation(pamTraMEClass, PAM_TRA_M___TARGET_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_4);
 
 		sectionModelEClass = createEClass(SECTION_MODEL);
 		createEReference(sectionModelEClass, SECTION_MODEL__META_MODEL_PACKAGE);
@@ -669,7 +669,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 
 		initEOperation(getPAMTraM__MergeExtends(), null, "mergeExtends", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		EOperation op = initEOperation(getPAMTraM__SourceSectionModelsHaveSameEPackage__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "sourceSectionModelsHaveSameEPackage", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = initEOperation(getPAMTraM__SourceSectionModelsHaveSameEPackage__DiagnosticChain_Map_4(), ecorePackage.getEBoolean(), "sourceSectionModelsHaveSameEPackage", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -678,7 +678,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getPAMTraM__TargetSectionModelsHaveSameEPackage__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "targetSectionModelsHaveSameEPackage", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getPAMTraM__TargetSectionModelsHaveSameEPackage__DiagnosticChain_Map_4(), ecorePackage.getEBoolean(), "targetSectionModelsHaveSameEPackage", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());

@@ -637,6 +637,43 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 				concreteSection.getAttributes().addAll(attributesToAdd);
 				concreteSection.getReferences().addAll(referencesToAdd);
 
+
+				/*
+				 * Now, we redirect references from MappingHints to elements from the abstract section to the elements from the concrete sections. 
+				 * Here, we only handle references from concrete mappings as the references from abstract mappings (and thus from extended hint
+				 * groups) are handled afterwards when these hint groups are copied.
+				 */
+				ArrayList<Mapping> concreteMappings = new ArrayList<>();
+				for (Mapping mapping : getMappings()) {
+					if(!mapping.isAbstract()) {
+						concreteMappings.add(mapping);
+					}
+				}
+				Map<EObject, Collection<Setting>> refsToAbstractSection = EcoreUtil.UsageCrossReferencer.findAll(abstractToConcreteElementMap.keySet(), concreteMappings);
+				for (EObject referencedObject : refsToAbstractSection.keySet()) {
+					for (Setting setting : refsToAbstractSection.get(referencedObject)) {
+
+						// this is the element referencing the abstract section (it should be an element of a mapping hint)
+						EObject hintElement = setting.getEObject().eContainer();
+						MappingHintGroupType hintGroup = null;
+						if(hintElement instanceof MappingHintGroupType) {
+							hintGroup = (MappingHintGroupType) hintElement;
+						} else if(hintElement.eContainer() instanceof MappingHintGroupType) {
+							hintGroup = (MappingHintGroupType) hintElement.eContainer();
+						} else {
+							hintGroup = (MappingHintGroupType) hintElement.eContainer().eContainer();
+						}
+
+						// check if the hint group or its parent mapping equals the section that we just added the concrete elements to
+						if(concreteSection.equals(hintGroup.getTargetMMSection()) || 
+								concreteSection.equals(((Mapping) hintGroup.eContainer()).getSourceMMSection())) {
+
+							// redirect the reference (we can always use the 'last' of the concrete objects as we just added it above
+							setting.set(abstractToConcreteElementMap.get(referencedObject).getLast());
+						}
+					}
+				}
+
 			}
 		}
 
@@ -652,7 +689,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 			}
 		}
 
-		// collect each abstract hint group as well as the concrete hint groups that
+		// collect each abstract hint group as well as the concrete hint groups that reference them
 		HashMap<MappingHintGroupType, LinkedList<MappingHintGroupType>> abstractToConcreteHintGroupMap = new HashMap<>();
 		Map<EObject, Collection<Setting>> mappingSettings = EcoreUtil.CrossReferencer.find(getMappings());
 		for (EObject element : mappingSettings.keySet()) {

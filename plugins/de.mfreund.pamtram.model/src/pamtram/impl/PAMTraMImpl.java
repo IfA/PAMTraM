@@ -670,7 +670,9 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 						// check if the hint group or its parent mapping equals the section that we just added the concrete elements to
 						if(concreteSection.equals(hintGroup.getTargetMMSection()) || 
-								concreteSection.equals(((Mapping) hintGroup.eContainer()).getSourceMMSection())) {
+								concreteSection.isContainerFor(hintGroup.getTargetMMSection()) ||
+								concreteSection.equals(((Mapping) hintGroup.eContainer()).getSourceMMSection()) || 
+								concreteSection.isContainerFor(((Mapping) hintGroup.eContainer()).getSourceMMSection())) {
 
 							// redirect the reference (we can always use the 'last' of the concrete objects as we just added it above
 							setting.set(abstractToConcreteElementMap.get(referencedObject).getLast());

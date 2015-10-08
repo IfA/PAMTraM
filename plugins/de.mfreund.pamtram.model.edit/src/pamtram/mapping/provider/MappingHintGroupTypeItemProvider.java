@@ -114,6 +114,10 @@ public class MappingHintGroupTypeItemProvider extends NamedElementItemProvider {
 
 				MappingHintGroupType mhg = (MappingHintGroupType) object;
 
+				if(mhg.getTargetMMSection() == null) {
+					return new BasicEList<EObject>();
+				}
+
 				Collection<MappingHintGroupType> values = (Collection<MappingHintGroupType>) super.getChoiceOfValues(object);
 				Collection<MappingHintGroupType> ret = new BasicEList<>();
 

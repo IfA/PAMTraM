@@ -121,6 +121,7 @@ public class MappingTables
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_NamedElement = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("NamedElement", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_OclElement = MappingTables.PACKid_$metamodel$.getClassId("OclElement", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_PAMTraM = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram.getClassId("PAMTraM", 0);
+    public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_Section = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("Section", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_SourceSection = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SourceSection", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_SourceSectionAttribute = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SourceSectionAttribute", 0);
     public static final /*@NonNull*/ /*@NonInvalid*/ ClassId CLSSid_SourceSectionClass = MappingTables.PACKid_http_c_s_s_mfreund_de_s_pamtram_s_metamodel.getClassId("SourceSectionClass", 0);
@@ -134,6 +135,7 @@ public class MappingTables
     public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_1 = ValueUtil.integerValueOf("1");
     public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_2 = ValueUtil.integerValueOf("2");
     public static final /*@NonNull*/ /*@NonInvalid*/ IntegerValue INT_4 = ValueUtil.integerValueOf("4");
+    public static final /*@NonNull*/ /*@NonInvalid*/ CollectionTypeId ORD_TMPLid_ = TypeId.ORDERED_SET.getSpecializedId(IdManager.getTemplateParameterId(0));
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_AttributeMapping_c_c_targetAttributeMatchesSection = "AttributeMapping::targetAttributeMatchesSection";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_AttributeMatcher_c_c_targetMatchesAffectedReferenceType = "AttributeMatcher::targetMatchesAffectedReferenceType";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR_CardinalityMapping_c_c_noCardinalityMappingForSourceSectionRoot = "CardinalityMapping::noCardinalityMappingForSourceSectionRoot";
@@ -169,7 +171,7 @@ public class MappingTables
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_32_is_32_not_32_part_32_of_32_the_32_target_32_section_32_referenced_32_by_32_parent_32_hint_32_gr = "\' is not part of the target section referenced by parent hint group ";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_32_is_32_not_32_part_32_of_32_the_32_target_32_section_32_referenced_32_by_32_parent_32_hint_32_gr_0 = "\' is not part of the target section referenced by parent hint group \'";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_32_is_32_not_32_referenced_32_by_32_the_32_source_32_section_32_of_32_the_32_parent_32_hint_32_gro = "\' is not referenced by the source section of the parent hint group \'";
-    public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_32_or_32_in_32_one_32_of_32_its_32_sub_m_sections_33 = "\' or in one of its sub-sections!";
+    public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_32_or_32_in_32_one_32_of_32_its_32_extended_32_sections_s_sub_m_sections_33 = "\' or in one of its extended sections/sub-sections!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_33 = "\'!";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_e_32_cannot_32_be_32_connected_32_to_32_o_contained_32_in_e_32_the_32_type_32_of_32_the_32_class_32_c = "\') cannot be connected to (contained in) the type of the class containing the target attribute (\'";
     public static final /*@NonNull*/ /*@NonInvalid*/ String STR__39_e_32_is_32_not_32_allowed_32_by_32_the_32_affected_32_reference_32_of_32_the_32_parent_32_mappin = "\') is not allowed by the affected reference of the parent mapping instance selector that ";

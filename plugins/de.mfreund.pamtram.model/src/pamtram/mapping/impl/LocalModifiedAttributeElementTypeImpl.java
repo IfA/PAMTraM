@@ -3,6 +3,8 @@
 package pamtram.mapping.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
@@ -17,9 +19,11 @@ import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclTypeOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.library.string.StringConcatOperation;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import pamtram.NamedElement;
 import pamtram.mapping.LocalModifiedAttributeElementType;
 import pamtram.mapping.Mapping;
@@ -87,7 +91,19 @@ public abstract class LocalModifiedAttributeElementTypeImpl<S extends Section<S,
 		 *           self.source.oclAsType(metamodel::SourceSectionAttribute)
 		 *           .getContainingSection()
 		 *           .oclAsType(metamodel::SourceSection)
-		 *           .isReferencedBy(sourceMMSection, null)
+		 *           .isReferencedBy(sourceMMSection, null) or
+		 *           sourceMMSection.oclAsType(metamodel::Section(S, C, R, A))
+		 *           .extend->exists(e | e =
+		 *             self.source.oclAsType(metamodel::SourceSectionAttribute)
+		 *             .getContainingSection()
+		 *             .oclAsType(metamodel::Section(S, C, R, A))) or
+		 *           sourceMMSection.oclAsType(metamodel::Section(S, C, R, A))
+		 *           .extend->exists(e |
+		 *             self.source.oclAsType(metamodel::SourceSectionAttribute)
+		 *             .getContainingSection()
+		 *             .oclAsType(metamodel::Section(S, C, R, A))
+		 *             .isReferencedBy(
+		 *               e.oclAsType(metamodel::Section(S, C, R, A)), null))
 		 *         endif
 		 *     in
 		 *       let
@@ -96,7 +112,7 @@ public abstract class LocalModifiedAttributeElementTypeImpl<S extends Section<S,
 		 *           self.source.oclAsType(metamodel::Attribute(S, C, R, A)).name + '\' is not referenced by the source section of the parent hint group \'' +
 		 *           self.getMappingHintGroup()
 		 *           .oclContainer()
-		 *           .oclAsType(Mapping).sourceMMSection.name + '\' or in one of its sub-sections!'
+		 *           .oclAsType(Mapping).sourceMMSection.name + '\' or in one of its extended sections/sub-sections!'
 		 *         else null
 		 *         endif
 		 *       in
@@ -151,40 +167,183 @@ public abstract class LocalModifiedAttributeElementTypeImpl<S extends Section<S,
 		        symbol_0 = ValueUtil.TRUE_VALUE;
 		    }
 		    else {
-		        /*@NonNull*/ /*@Caught*/ Object CAUGHT_eq_1;
+		        /*@Nullable*/ /*@Caught*/ Object CAUGHT_or_1;
 		        try {
-		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_MetaModelElement_o_S_44_C_44_R_44_A_e = idResolver.getClass(MappingTables.CLSSid_MetaModelElement, null);
-		            final /*@NonNull*/ /*@Thrown*/ Object source_0 = this.getSource();
-		            final /*@NonNull*/ /*@Thrown*/ MetaModelElement oclAsType_0 = ClassUtil.nonNullState((MetaModelElement)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, source_0, TYP_pamtram_c_c_metamodel_c_c_MetaModelElement_o_S_44_C_44_R_44_A_e));
-		            final /*@NonNull*/ /*@Thrown*/ Object getContainingSection = oclAsType_0.getContainingSection();
+		            /*@Nullable*/ /*@Caught*/ Object CAUGHT_or_0;
+		            try {
+		                /*@NonNull*/ /*@Caught*/ Object CAUGHT_eq_1;
+		                try {
+		                    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_MetaModelElement_o_S_44_C_44_R_44_A_e = idResolver.getClass(MappingTables.CLSSid_MetaModelElement, null);
+		                    final /*@NonNull*/ /*@Thrown*/ Object source_0 = this.getSource();
+		                    final /*@NonNull*/ /*@Thrown*/ MetaModelElement oclAsType_0 = ClassUtil.nonNullState((MetaModelElement)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, source_0, TYP_pamtram_c_c_metamodel_c_c_MetaModelElement_o_S_44_C_44_R_44_A_e));
+		                    final /*@NonNull*/ /*@Thrown*/ Object getContainingSection = oclAsType_0.getContainingSection();
+		                    if (CAUGHT_sourceMMSection instanceof InvalidValueException) {
+		                        throw (InvalidValueException)CAUGHT_sourceMMSection;
+		                    }
+		                    final /*@Thrown*/ boolean eq_1 = getContainingSection.equals(CAUGHT_sourceMMSection);
+		                    CAUGHT_eq_1 = eq_1;
+		                }
+		                catch (Exception e) {
+		                    CAUGHT_eq_1 = ValueUtil.createInvalidValue(e);
+		                }
+		                /*@NonNull*/ /*@Caught*/ Object CAUGHT_isReferencedBy;
+		                try {
+		                    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_SourceSection = idResolver.getClass(MappingTables.CLSSid_SourceSection, null);
+		                    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_SourceSectionAttribute = idResolver.getClass(MappingTables.CLSSid_SourceSectionAttribute, null);
+		                    final /*@NonNull*/ /*@Thrown*/ Object source_1 = this.getSource();
+		                    final /*@NonNull*/ /*@Thrown*/ SourceSectionAttribute oclAsType_1 = ClassUtil.nonNullState((SourceSectionAttribute)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, source_1, TYP_pamtram_c_c_metamodel_c_c_SourceSectionAttribute));
+		                    final /*@NonNull*/ /*@Thrown*/ Object getContainingSection_0 = ((MetaModelElement)oclAsType_1).getContainingSection();
+		                    final /*@NonNull*/ /*@Thrown*/ SourceSection oclAsType_2 = ClassUtil.nonNullState((SourceSection)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, getContainingSection_0, TYP_pamtram_c_c_metamodel_c_c_SourceSection));
+		                    if (CAUGHT_sourceMMSection instanceof InvalidValueException) {
+		                        throw (InvalidValueException)CAUGHT_sourceMMSection;
+		                    }
+		                    final /*@Thrown*/ boolean isReferencedBy = ((pamtram.metamodel.Class)oclAsType_2).isReferencedBy((pamtram.metamodel.Class)CAUGHT_sourceMMSection, null);
+		                    CAUGHT_isReferencedBy = isReferencedBy;
+		                }
+		                catch (Exception e) {
+		                    CAUGHT_isReferencedBy = ValueUtil.createInvalidValue(e);
+		                }
+		                final /*@Nullable*/ /*@Thrown*/ Boolean or_0 = BooleanOrOperation.INSTANCE.evaluate(CAUGHT_eq_1, CAUGHT_isReferencedBy);
+		                CAUGHT_or_0 = or_0;
+		            }
+		            catch (Exception e) {
+		                CAUGHT_or_0 = ValueUtil.createInvalidValue(e);
+		            }
+		            /*@NonNull*/ /*@Caught*/ Object CAUGHT_exists;
+		            try {
+		                final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e_0 = idResolver.getClass(MappingTables.CLSSid_Section, null);
+		                if (CAUGHT_sourceMMSection instanceof InvalidValueException) {
+		                    throw (InvalidValueException)CAUGHT_sourceMMSection;
+		                }
+		                final /*@NonNull*/ /*@Thrown*/ Section oclAsType_3 = ClassUtil.nonNullState((Section)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, CAUGHT_sourceMMSection, TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e_0));
+		                final /*@NonNull*/ /*@Thrown*/ List<? extends Object> extend = oclAsType_3.getExtend();
+		                final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_extend = idResolver.createOrderedSetOfAll(MappingTables.ORD_TMPLid_, extend);
+		                /*@Nullable*/ /*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
+		                /*@Nullable*/ Iterator<?> ITERATOR_e_0 = BOXED_extend.iterator();
+		                /*@Thrown*/ boolean exists;
+		                while (true) {
+		                    if (!ITERATOR_e_0.hasNext()) {
+		                        if (accumulator == ValueUtil.FALSE_VALUE) {
+		                            exists = ValueUtil.FALSE_VALUE;
+		                        }
+		                        else {
+		                            throw (InvalidValueException)accumulator;
+		                        }
+		                        break;
+		                    }
+		                    /*@Nullable*/ /*@NonInvalid*/ Object e_0 = (Object)ITERATOR_e_0.next();
+		                    /**
+		                     * e =
+		                     * self.source.oclAsType(metamodel::SourceSectionAttribute)
+		                     * .getContainingSection()
+		                     * .oclAsType(metamodel::Section(S, C, R, A))
+		                     */
+		                    /*@NonNull*/ /*@Caught*/ Object CAUGHT_eq_2;
+		                    try {
+		                        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_SourceSectionAttribute_0 = idResolver.getClass(MappingTables.CLSSid_SourceSectionAttribute, null);
+		                        final /*@NonNull*/ /*@Thrown*/ Object source_2 = this.getSource();
+		                        final /*@NonNull*/ /*@Thrown*/ SourceSectionAttribute oclAsType_4 = ClassUtil.nonNullState((SourceSectionAttribute)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, source_2, TYP_pamtram_c_c_metamodel_c_c_SourceSectionAttribute_0));
+		                        final /*@NonNull*/ /*@Thrown*/ Object getContainingSection_1 = ((MetaModelElement)oclAsType_4).getContainingSection();
+		                        final /*@NonNull*/ /*@Thrown*/ Section oclAsType_5 = ClassUtil.nonNullState((Section)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, getContainingSection_1, TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e_0));
+		                        final /*@Thrown*/ boolean eq_2 = oclAsType_5.equals(e_0);
+		                        CAUGHT_eq_2 = eq_2;
+		                    }
+		                    catch (Exception e) {
+		                        CAUGHT_eq_2 = ValueUtil.createInvalidValue(e);
+		                    }
+		                    //
+		                    if (CAUGHT_eq_2 == ValueUtil.TRUE_VALUE) {					// Normal successful body evaluation result
+		                        exists = ValueUtil.TRUE_VALUE;
+		                        break;														// Stop immediately 
+		                    }
+		                    else if (CAUGHT_eq_2 == ValueUtil.FALSE_VALUE) {				// Normal unsuccessful body evaluation result
+		                        ;															// Carry on
+		                    }
+		                    else if (CAUGHT_eq_2 instanceof InvalidValueException) {		// Abnormal exception evaluation result
+		                        accumulator = CAUGHT_eq_2;									// Cache an exception failure
+		                    }
+		                    else {															// Impossible badly typed result
+		                        accumulator = new InvalidValueException(PivotMessages.NonBooleanBody, "exists");
+		                    }
+		                }
+		                CAUGHT_exists = exists;
+		            }
+		            catch (Exception e) {
+		                CAUGHT_exists = ValueUtil.createInvalidValue(e);
+		            }
+		            final /*@Nullable*/ /*@Thrown*/ Boolean or_1 = BooleanOrOperation.INSTANCE.evaluate(CAUGHT_or_0, CAUGHT_exists);
+		            CAUGHT_or_1 = or_1;
+		        }
+		        catch (Exception e) {
+		            CAUGHT_or_1 = ValueUtil.createInvalidValue(e);
+		        }
+		        /*@NonNull*/ /*@Caught*/ Object CAUGHT_exists_0;
+		        try {
+		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e_3 = idResolver.getClass(MappingTables.CLSSid_Section, null);
 		            if (CAUGHT_sourceMMSection instanceof InvalidValueException) {
 		                throw (InvalidValueException)CAUGHT_sourceMMSection;
 		            }
-		            final /*@Thrown*/ boolean eq_1 = getContainingSection.equals(CAUGHT_sourceMMSection);
-		            CAUGHT_eq_1 = eq_1;
-		        }
-		        catch (Exception e) {
-		            CAUGHT_eq_1 = ValueUtil.createInvalidValue(e);
-		        }
-		        /*@NonNull*/ /*@Caught*/ Object CAUGHT_isReferencedBy;
-		        try {
-		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_SourceSection = idResolver.getClass(MappingTables.CLSSid_SourceSection, null);
-		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_SourceSectionAttribute = idResolver.getClass(MappingTables.CLSSid_SourceSectionAttribute, null);
-		            final /*@NonNull*/ /*@Thrown*/ Object source_1 = this.getSource();
-		            final /*@NonNull*/ /*@Thrown*/ SourceSectionAttribute oclAsType_1 = ClassUtil.nonNullState((SourceSectionAttribute)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, source_1, TYP_pamtram_c_c_metamodel_c_c_SourceSectionAttribute));
-		            final /*@NonNull*/ /*@Thrown*/ Object getContainingSection_0 = ((MetaModelElement)oclAsType_1).getContainingSection();
-		            final /*@NonNull*/ /*@Thrown*/ SourceSection oclAsType_2 = ClassUtil.nonNullState((SourceSection)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, getContainingSection_0, TYP_pamtram_c_c_metamodel_c_c_SourceSection));
-		            if (CAUGHT_sourceMMSection instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_sourceMMSection;
+		            final /*@NonNull*/ /*@Thrown*/ Section oclAsType_6 = ClassUtil.nonNullState((Section)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, CAUGHT_sourceMMSection, TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e_3));
+		            final /*@NonNull*/ /*@Thrown*/ List<? extends Object> extend_0 = oclAsType_6.getExtend();
+		            final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_extend_0 = idResolver.createOrderedSetOfAll(MappingTables.ORD_TMPLid_, extend_0);
+		            /*@Nullable*/ /*@Thrown*/ Object accumulator_0 = ValueUtil.FALSE_VALUE;
+		            /*@Nullable*/ Iterator<?> ITERATOR_e_1 = BOXED_extend_0.iterator();
+		            /*@Thrown*/ boolean exists_0;
+		            while (true) {
+		                if (!ITERATOR_e_1.hasNext()) {
+		                    if (accumulator_0 == ValueUtil.FALSE_VALUE) {
+		                        exists_0 = ValueUtil.FALSE_VALUE;
+		                    }
+		                    else {
+		                        throw (InvalidValueException)accumulator_0;
+		                    }
+		                    break;
+		                }
+		                /*@Nullable*/ /*@NonInvalid*/ Object e_1 = (Object)ITERATOR_e_1.next();
+		                /**
+		                 * 
+		                 * self.source.oclAsType(metamodel::SourceSectionAttribute)
+		                 * .getContainingSection()
+		                 * .oclAsType(metamodel::Section(S, C, R, A))
+		                 * .isReferencedBy(
+		                 *   e.oclAsType(metamodel::Section(S, C, R, A)), null)
+		                 */
+		                /*@NonNull*/ /*@Caught*/ Object CAUGHT_isReferencedBy_0;
+		                try {
+		                    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_SourceSectionAttribute_1 = idResolver.getClass(MappingTables.CLSSid_SourceSectionAttribute, null);
+		                    final /*@NonNull*/ /*@Thrown*/ Object source_3 = this.getSource();
+		                    final /*@NonNull*/ /*@Thrown*/ SourceSectionAttribute oclAsType_7 = ClassUtil.nonNullState((SourceSectionAttribute)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, source_3, TYP_pamtram_c_c_metamodel_c_c_SourceSectionAttribute_1));
+		                    final /*@NonNull*/ /*@Thrown*/ Object getContainingSection_2 = ((MetaModelElement)oclAsType_7).getContainingSection();
+		                    final /*@NonNull*/ /*@Thrown*/ Section oclAsType_8 = ClassUtil.nonNullState((Section)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, getContainingSection_2, TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e_3));
+		                    final /*@NonNull*/ /*@Thrown*/ Section oclAsType_9 = ClassUtil.nonNullState((Section)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, e_1, TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e_3));
+		                    final /*@Thrown*/ boolean isReferencedBy_0 = ((pamtram.metamodel.Class)oclAsType_8).isReferencedBy((pamtram.metamodel.Class)oclAsType_9, null);
+		                    CAUGHT_isReferencedBy_0 = isReferencedBy_0;
+		                }
+		                catch (Exception e) {
+		                    CAUGHT_isReferencedBy_0 = ValueUtil.createInvalidValue(e);
+		                }
+		                //
+		                if (CAUGHT_isReferencedBy_0 == ValueUtil.TRUE_VALUE) {					// Normal successful body evaluation result
+		                    exists_0 = ValueUtil.TRUE_VALUE;
+		                    break;														// Stop immediately 
+		                }
+		                else if (CAUGHT_isReferencedBy_0 == ValueUtil.FALSE_VALUE) {				// Normal unsuccessful body evaluation result
+		                    ;															// Carry on
+		                }
+		                else if (CAUGHT_isReferencedBy_0 instanceof InvalidValueException) {		// Abnormal exception evaluation result
+		                    accumulator_0 = CAUGHT_isReferencedBy_0;									// Cache an exception failure
+		                }
+		                else {															// Impossible badly typed result
+		                    accumulator_0 = new InvalidValueException(PivotMessages.NonBooleanBody, "exists");
+		                }
 		            }
-		            final /*@Thrown*/ boolean isReferencedBy = ((pamtram.metamodel.Class)oclAsType_2).isReferencedBy((pamtram.metamodel.Class)CAUGHT_sourceMMSection, null);
-		            CAUGHT_isReferencedBy = isReferencedBy;
+		            CAUGHT_exists_0 = exists_0;
 		        }
 		        catch (Exception e) {
-		            CAUGHT_isReferencedBy = ValueUtil.createInvalidValue(e);
+		            CAUGHT_exists_0 = ValueUtil.createInvalidValue(e);
 		        }
-		        final /*@Nullable*/ /*@Thrown*/ Boolean or_0 = BooleanOrOperation.INSTANCE.evaluate(CAUGHT_eq_1, CAUGHT_isReferencedBy);
-		        symbol_0 = or_0;
+		        final /*@Nullable*/ /*@Thrown*/ Boolean or_2 = BooleanOrOperation.INSTANCE.evaluate(CAUGHT_or_1, CAUGHT_exists_0);
+		        symbol_0 = or_2;
 		    }
 		    CAUGHT_symbol_0 = symbol_0;
 		}
@@ -199,18 +358,18 @@ public abstract class LocalModifiedAttributeElementTypeImpl<S extends Section<S,
 		if (ne) {
 		    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_Mapping_1 = idResolver.getClass(MappingTables.CLSSid_Mapping, null);
 		    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Attribute_o_S_44_C_44_R_44_A_e = idResolver.getClass(MappingTables.CLSSid_Attribute, null);
-		    final /*@NonNull*/ /*@Thrown*/ Object source_2 = this.getSource();
-		    final /*@NonNull*/ /*@Thrown*/ Attribute oclAsType_3 = ClassUtil.nonNullState((Attribute)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, source_2, TYP_pamtram_c_c_metamodel_c_c_Attribute_o_S_44_C_44_R_44_A_e));
-		    final /*@Nullable*/ /*@Thrown*/ String name = oclAsType_3.getName();
+		    final /*@NonNull*/ /*@Thrown*/ Object source_4 = this.getSource();
+		    final /*@NonNull*/ /*@Thrown*/ Attribute oclAsType_10 = ClassUtil.nonNullState((Attribute)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, source_4, TYP_pamtram_c_c_metamodel_c_c_Attribute_o_S_44_C_44_R_44_A_e));
+		    final /*@Nullable*/ /*@Thrown*/ String name = oclAsType_10.getName();
 		    final /*@NonNull*/ /*@NonInvalid*/ String sum = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(MappingTables.STR_The_32_source_32_attribute_32_39, name));
 		    final /*@NonNull*/ /*@NonInvalid*/ String sum_0 = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(sum, MappingTables.STR__39_32_is_32_not_32_referenced_32_by_32_the_32_source_32_section_32_of_32_the_32_parent_32_hint_32_gro));
 		    final /*@NonNull*/ /*@Thrown*/ NamedElement getMappingHintGroup_0 = ((ModifiedAttributeElementType)this).getMappingHintGroup();
 		    final /*@Nullable*/ /*@Thrown*/ Object oclContainer_0 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, getMappingHintGroup_0);
-		    final /*@NonNull*/ /*@Thrown*/ Mapping oclAsType_4 = ClassUtil.nonNullState((Mapping)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_0, TYP_pamtram_c_c_mapping_c_c_Mapping_1));
-		    final /*@NonNull*/ /*@Thrown*/ SourceSection sourceMMSection_0 = oclAsType_4.getSourceMMSection();
+		    final /*@NonNull*/ /*@Thrown*/ Mapping oclAsType_11 = ClassUtil.nonNullState((Mapping)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_0, TYP_pamtram_c_c_mapping_c_c_Mapping_1));
+		    final /*@NonNull*/ /*@Thrown*/ SourceSection sourceMMSection_0 = oclAsType_11.getSourceMMSection();
 		    final /*@Nullable*/ /*@Thrown*/ String name_0 = sourceMMSection_0.getName();
 		    final /*@NonNull*/ /*@NonInvalid*/ String sum_1 = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(sum_0, name_0));
-		    final /*@NonNull*/ /*@NonInvalid*/ String sum_2 = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(sum_1, MappingTables.STR__39_32_or_32_in_32_one_32_of_32_its_32_sub_m_sections_33));
+		    final /*@NonNull*/ /*@NonInvalid*/ String sum_2 = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(sum_1, MappingTables.STR__39_32_or_32_in_32_one_32_of_32_its_32_extended_32_sections_s_sub_m_sections_33));
 		    message_0 = sum_2;
 		}
 		else {
@@ -229,7 +388,7 @@ public abstract class LocalModifiedAttributeElementTypeImpl<S extends Section<S,
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP_1:
+			case MappingPackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP:
 				return sourceAttributeMatchesSectionOrContainedSection((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

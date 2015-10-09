@@ -279,23 +279,11 @@
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="Rectangle" value="Rectangle"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="viObject container Ellipse" container="//@sourceSectionModel.0/@metaModelSections.4">
+    <metaModelSections xsi:type="metamodel:SourceSection" name="viObject container Ellipse" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="ctrltype = &quot;StructureComponentControl&quot;">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
         <valueConstraint xsi:type="metamodel:EqualityMatcher" name="StructureComponentControl" value="StructureComponentControl"/>
-      </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="x">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/x"/>
-      </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="y">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/y"/>
-      </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="width">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/width"/>
-      </attributes>
-      <attributes xsi:type="metamodel:SourceSectionAttribute" name="height">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/height"/>
       </attributes>
       <attributes xsi:type="metamodel:SourceSectionAttribute" name="grType == &quot;Ellipse&quot;">
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/grtype"/>
@@ -2409,7 +2397,16 @@
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="TextLabel @ ValueOutput:Bool" cardinality="ZERO__INFINITY">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="TextLabel Base" abstract="true">
+      <eClass href="http://stefan-hennig.de/movisa#//presentation/TextLabel"/>
+      <attributes xsi:type="metamodel:ActualAttribute" name="Name">
+        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+      </attributes>
+      <attributes xsi:type="metamodel:ActualAttribute" name="RoleRestrictionComment TODO" value="RoleRestrictionComment TODO">
+        <attribute href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
+      </attributes>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:TargetSection" name="TextLabel @ ValueOutput:Bool" cardinality="ZERO__INFINITY" extend="//@targetSectionModel.1/@metaModelSections.2">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/TextLabel"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="TextLabelRepresentation">
         <eReference href="http://stefan-hennig.de/movisa#//presentation/TextLabel/Representation"/>
@@ -2678,10 +2675,10 @@
                 <eReference href="http://stefan-hennig.de/movisa#//presentation/DiscreteAnimationRecord/OwnedComparator"/>
                 <value xsi:type="metamodel:TargetSectionClass" name="BooleanComparison">
                   <eClass href="http://stefan-hennig.de/movisa#//presentation/BooleanComparison"/>
-                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="falseEval" value="//@targetSectionModel.1/@metaModelSections.2/@references.1/@value.0/@references.1/@value.0/@references.1/@value.1">
+                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="falseEval" value="//@targetSectionModel.1/@metaModelSections.3/@references.1/@value.0/@references.1/@value.0/@references.1/@value.1">
                     <eReference href="http://stefan-hennig.de/movisa#//presentation/Comparator/FalseEvaluation"/>
                   </references>
-                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="trueEval" value="//@targetSectionModel.1/@metaModelSections.2/@references.1/@value.0/@references.1/@value.0/@references.1/@value.0">
+                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="trueEval" value="//@targetSectionModel.1/@metaModelSections.3/@references.1/@value.0/@references.1/@value.0/@references.1/@value.0">
                     <eReference href="http://stefan-hennig.de/movisa#//presentation/Comparator/TrueEvaluation"/>
                   </references>
                   <attributes xsi:type="metamodel:ActualAttribute" name="TextLabelRepBooleanCompName">
@@ -2699,14 +2696,8 @@
           </references>
         </value>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Name">
-        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
-      </attributes>
-      <attributes xsi:type="metamodel:ActualAttribute" name="RoleRestrictionComment TODO" value="RoleRestrictionComment TODO">
-        <attribute href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
-      </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="TextLabel @LabelOutput:Bool" cardinality="ZERO__INFINITY">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="TextLabel @LabelOutput:Bool" cardinality="ZERO__INFINITY" extend="//@targetSectionModel.1/@metaModelSections.2">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/TextLabel"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="TextLabelRepresentation">
         <eReference href="http://stefan-hennig.de/movisa#//presentation/TextLabel/Representation"/>
@@ -2856,7 +2847,7 @@
               </attributes>
             </value>
           </references>
-          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Text @ Label Output:Bool" value="//@targetSectionModel.1/@metaModelSections.4">
+          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Text @ Label Output:Bool" value="//@targetSectionModel.1/@metaModelSections.5">
             <eReference href="http://stefan-hennig.de/movisa#//presentation/TextContainingWidgetRepresentation/Text"/>
           </references>
           <references xsi:type="metamodel:TargetSectionContainmentReference" name="color">
@@ -2921,13 +2912,6 @@
           </references>
         </value>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Name Label">
-        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
-      </attributes>
-      <attributes xsi:type="metamodel:ActualAttribute" name="RoleRestrictionComment TODO" value="RoleRestrictionComment TODO">
-        <attribute href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
-      </attributes>
-      <attributes xsi:type="metamodel:VirtualAttribute" name="cardErsatzTest"/>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:TargetSection" name="Textdef">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/TextDefinition"/>
@@ -2947,7 +2931,7 @@
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="TextLabel @ValueOutput:Double" cardinality="ZERO__INFINITY">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="TextLabel @ValueOutput:Double" cardinality="ZERO__INFINITY" extend="//@targetSectionModel.1/@metaModelSections.2">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/TextLabel"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="TextLabelRepresentation">
         <eReference href="http://stefan-hennig.de/movisa#//presentation/TextLabel/Representation"/>
@@ -3180,14 +3164,8 @@
           </references>
         </value>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Name  (Out:Double)">
-        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
-      </attributes>
-      <attributes xsi:type="metamodel:ActualAttribute" name="RoleRestrictionComment TODO" value="RoleRestrictionComment TODO">
-        <attribute href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
-      </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="TextLabel @LabelOutput:Double" cardinality="ZERO__INFINITY">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="TextLabel @LabelOutput:Double" cardinality="ZERO__INFINITY" extend="//@targetSectionModel.1/@metaModelSections.2">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/TextLabel"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="TextLabelRepresentation">
         <eReference href="http://stefan-hennig.de/movisa#//presentation/TextLabel/Representation"/>
@@ -3337,7 +3315,7 @@
               </attributes>
             </value>
           </references>
-          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Text @ Label Output:Double" value="//@targetSectionModel.1/@metaModelSections.4">
+          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Text @ Label Output:Double" value="//@targetSectionModel.1/@metaModelSections.5">
             <eReference href="http://stefan-hennig.de/movisa#//presentation/TextContainingWidgetRepresentation/Text"/>
           </references>
           <references xsi:type="metamodel:TargetSectionContainmentReference" name="border">
@@ -3387,12 +3365,6 @@
           </references>
         </value>
       </references>
-      <attributes xsi:type="metamodel:ActualAttribute" name="Name Label @Output:Double">
-        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
-      </attributes>
-      <attributes xsi:type="metamodel:ActualAttribute" name="RoleRestrictionComment TODO" value="RoleRestrictionComment TODO">
-        <attribute href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
-      </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:TargetSection" name="Input : Bool" cardinality="ZERO__INFINITY">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/CheckBox"/>
@@ -3553,7 +3525,7 @@
               </attributes>
             </value>
           </references>
-          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Text" value="//@targetSectionModel.1/@metaModelSections.4">
+          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Text" value="//@targetSectionModel.1/@metaModelSections.5">
             <eReference href="http://stefan-hennig.de/movisa#//presentation/TextContainingWidgetRepresentation/Text"/>
           </references>
           <references xsi:type="metamodel:TargetSectionContainmentReference" name="format">
@@ -3638,7 +3610,7 @@
             <eReference href="http://stefan-hennig.de/movisa#//presentation/Interaction/OwnedEffect"/>
             <value xsi:type="metamodel:TargetSectionClass" name="WriteEnteredDataEffect">
               <eClass href="http://stefan-hennig.de/movisa#//presentation/WriteEnteredDataEffect"/>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="widget" value="//@targetSectionModel.1/@metaModelSections.7">
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="widget" value="//@targetSectionModel.1/@metaModelSections.8">
                 <eReference href="http://stefan-hennig.de/movisa#//presentation/WriteEnteredDataEffect/ValueContainingWidget"/>
               </references>
               <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="DataItem @ WriteDataEffect @ Input:Bool" value="//@targetSectionModel.2/@metaModelSections.5">
@@ -3653,7 +3625,7 @@
             <eReference href="http://stefan-hennig.de/movisa#//presentation/Interaction/CommonTrigger"/>
             <value xsi:type="metamodel:TargetSectionClass" name="Click">
               <eClass href="http://stefan-hennig.de/movisa#//presentation/Click"/>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="effect" value="//@targetSectionModel.1/@metaModelSections.7/@references.2/@value.0/@references.0/@value.0">
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="effect" value="//@targetSectionModel.1/@metaModelSections.8/@references.2/@value.0/@references.0/@value.0">
                 <eReference href="http://stefan-hennig.de/movisa#//presentation/Trigger/Effect"/>
               </references>
               <attributes xsi:type="metamodel:ActualAttribute" name="Click Name">
@@ -3665,7 +3637,7 @@
             <eReference href="http://stefan-hennig.de/movisa#//presentation/CheckBoxInteraction/SubmitTrigger"/>
             <value xsi:type="metamodel:TargetSectionClass" name="Sumbit">
               <eClass href="http://stefan-hennig.de/movisa#//presentation/Submit"/>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="effect" value="//@targetSectionModel.1/@metaModelSections.7/@references.2/@value.0/@references.0/@value.0">
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="effect" value="//@targetSectionModel.1/@metaModelSections.8/@references.2/@value.0/@references.0/@value.0">
                 <eReference href="http://stefan-hennig.de/movisa#//presentation/Trigger/Effect"/>
               </references>
               <attributes xsi:type="metamodel:ActualAttribute" name="SumbitTrigger Name">
@@ -3829,7 +3801,7 @@
               </attributes>
             </value>
           </references>
-          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Text FunctionButton" value="//@targetSectionModel.1/@metaModelSections.4">
+          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Text FunctionButton" value="//@targetSectionModel.1/@metaModelSections.5">
             <eReference href="http://stefan-hennig.de/movisa#//presentation/TextContainingWidgetRepresentation/Text"/>
           </references>
         </value>
@@ -3857,7 +3829,7 @@
             <eReference href="http://stefan-hennig.de/movisa#//presentation/Interaction/CommonTrigger"/>
             <value xsi:type="metamodel:TargetSectionClass" name="Click">
               <eClass href="http://stefan-hennig.de/movisa#//presentation/Click"/>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="writeEffect" value="//@targetSectionModel.1/@metaModelSections.8/@references.1/@value.0/@references.0/@value.0">
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="writeEffect" value="//@targetSectionModel.1/@metaModelSections.9/@references.1/@value.0/@references.0/@value.0">
                 <eReference href="http://stefan-hennig.de/movisa#//presentation/Trigger/Effect"/>
               </references>
               <attributes xsi:type="metamodel:ActualAttribute" name="ClickTriggerName">
@@ -3882,10 +3854,10 @@
                 <eReference href="http://stefan-hennig.de/movisa#//presentation/DiscreteAnimationRecord/OwnedComparator"/>
                 <value xsi:type="metamodel:TargetSectionClass" name="rAnimComp">
                   <eClass href="http://stefan-hennig.de/movisa#//presentation/BooleanComparison"/>
-                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="trueEval" value="//@targetSectionModel.1/@metaModelSections.8/@references.2/@value.0/@references.0/@value.0/@references.2/@value.0">
+                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="trueEval" value="//@targetSectionModel.1/@metaModelSections.9/@references.2/@value.0/@references.0/@value.0/@references.2/@value.0">
                     <eReference href="http://stefan-hennig.de/movisa#//presentation/Comparator/TrueEvaluation"/>
                   </references>
-                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="falseEval" value="//@targetSectionModel.1/@metaModelSections.8/@references.2/@value.0/@references.0/@value.0/@references.2/@value.1">
+                  <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="falseEval" value="//@targetSectionModel.1/@metaModelSections.9/@references.2/@value.0/@references.0/@value.0/@references.2/@value.1">
                     <eReference href="http://stefan-hennig.de/movisa#//presentation/Comparator/FalseEvaluation"/>
                   </references>
                   <attributes xsi:type="metamodel:ActualAttribute" name="rAnimCompName">
@@ -4090,7 +4062,7 @@
               </attributes>
             </value>
           </references>
-          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Text NavButton" value="//@targetSectionModel.1/@metaModelSections.4">
+          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="Text NavButton" value="//@targetSectionModel.1/@metaModelSections.5">
             <eReference href="http://stefan-hennig.de/movisa#//presentation/TextContainingWidgetRepresentation/Text"/>
           </references>
         </value>
@@ -4115,7 +4087,7 @@
             <eReference href="http://stefan-hennig.de/movisa#//presentation/Interaction/CommonTrigger"/>
             <value xsi:type="metamodel:TargetSectionClass" name="Click">
               <eClass href="http://stefan-hennig.de/movisa#//presentation/Click"/>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="writeEffect" value="//@targetSectionModel.1/@metaModelSections.9/@references.1/@value.0/@references.0/@value.0">
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="writeEffect" value="//@targetSectionModel.1/@metaModelSections.10/@references.1/@value.0/@references.0/@value.0">
                 <eReference href="http://stefan-hennig.de/movisa#//presentation/Trigger/Effect"/>
               </references>
               <attributes xsi:type="metamodel:ActualAttribute" name="ClickTriggerName">
@@ -4129,7 +4101,7 @@
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="AlertButtonAnimation" container="//@targetSectionModel.1/@metaModelSections.9">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="AlertButtonAnimation" container="//@targetSectionModel.1/@metaModelSections.10">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/ButtonAnimation"/>
       <references xsi:type="metamodel:TargetSectionContainmentReference" name="RepresentationAnimation">
         <eReference href="http://stefan-hennig.de/movisa#//presentation/Animation/RepresentationAnimation"/>
@@ -4139,10 +4111,10 @@
             <eReference href="http://stefan-hennig.de/movisa#//presentation/DiscreteAnimationRecord/OwnedComparator"/>
             <value xsi:type="metamodel:TargetSectionClass" name="BooleanComparison">
               <eClass href="http://stefan-hennig.de/movisa#//presentation/BooleanComparison"/>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="FalseEvaluation" value="//@targetSectionModel.1/@metaModelSections.10/@references.0/@value.0/@references.1/@value.1">
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="FalseEvaluation" value="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.1/@value.1">
                 <eReference href="http://stefan-hennig.de/movisa#//presentation/Comparator/FalseEvaluation"/>
               </references>
-              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="TrueEvaluation" value="//@targetSectionModel.1/@metaModelSections.10/@references.0/@value.0/@references.1/@value.0">
+              <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="TrueEvaluation" value="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.1/@value.0">
                 <eReference href="http://stefan-hennig.de/movisa#//presentation/Comparator/TrueEvaluation"/>
               </references>
               <attributes xsi:type="metamodel:ActualAttribute" name="Name" value="isFlash">
@@ -5311,72 +5283,72 @@
   </mappingModel>
   <mappingModel name="UIElements">
     <mapping name="viObject BaseMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.0" abstract="true">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Out Bool Label" targetMMSection="//@targetSectionModel.1/@metaModelSections.3">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepFormatName@Bool:Out Label" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.2/@value.0/@attributes.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Out Bool Label" targetMMSection="//@targetSectionModel.1/@metaModelSections.4">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepFormatName@Bool:Out Label" target="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.2/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.31 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepAlignmentName@Bool:Out Label" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.3/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepAlignmentName@Bool:Out Label" target="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.3/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.32 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Text @ Label Output:Bool" affectedReference="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.4">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.1/@metaModelSections.4/@attributes.0">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Text @ Label Output:Bool" affectedReference="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.4">
+          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.1/@metaModelSections.5/@attributes.0">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.40 //@mappingModel.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="textLabelName" target="//@targetSectionModel.1/@metaModelSections.3/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="textLabelName" target="//@targetSectionModel.1/@metaModelSections.2/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.34 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosXValue" expression="round(variableLabelXOffset+x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosXValue" expression="round(variableLabelXOffset+x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosYValue" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosYValue" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="h" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="width" expression="round(w/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="width" expression="round(w/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="w" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="height" expression="round(boolOutHeightFactor*h/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="height" expression="round(boolOutHeightFactor*h/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="h" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="posName" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.1/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="posName" target="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.1/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.43 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="fontName" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.2/@value.0/@references.0/@value.0/@attributes.2">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="fontName" target="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.2/@value.0/@references.0/@value.0/@attributes.2">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepSizeName (Bool:Output Label)" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepSizeName (Bool:Output Label)" target="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.25 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepSizeHeightName(Bool:Output Label)" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepSizeHeightName(Bool:Output Label)" target="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.27 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepSizeWidthName(Bool:Output Label)" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepSizeWidthName(Bool:Output Label)" target="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.26 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosXName(Bool:Output Label)" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosXName(Bool:Output Label)" target="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.28 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosYName(Bool:Output Label)" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosYName(Bool:Output Label)" target="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.29 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosZName(Bool:Output Label)" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosZName(Bool:Output Label)" target="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.30 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="backGroundColor" affectedReference="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.5/@value.0/@references.1">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="backGroundColor" affectedReference="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.5/@value.0/@references.1">
           <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModel.0/@metaModelSections.0/@references.2/@value.0/@references.0/@value.0/@references.0/@value.11"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepBorderName" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.6/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepBorderName" target="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.6/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.36 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="Border Padding Name" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.6/@value.0/@references.1/@value.0/@attributes.2">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="Border Padding Name" target="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.6/@value.0/@references.1/@value.0/@attributes.2">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="Border Width Name" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.6/@value.0/@references.2/@value.0/@attributes.2">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="Border Width Name" target="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.6/@value.0/@references.2/@value.0/@attributes.2">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
@@ -5385,23 +5357,103 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Out EverythingElse Label" targetMMSection="//@targetSectionModel.1/@metaModelSections.6">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepFormatName@Double:Out Label" target="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.2/@value.0/@attributes.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Out EverythingElse Label" targetMMSection="//@targetSectionModel.1/@metaModelSections.7">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepFormatName@Double:Out Label" target="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@references.2/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.31 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepAlignmentName@Double:Out Label" target="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.3/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepAlignmentName@Double:Out Label" target="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@references.3/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.32 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Text @ Label Output:Double" affectedReference="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.4">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.1/@metaModelSections.4/@attributes.0">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Text @ Label Output:Double" affectedReference="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@references.4">
+          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.1/@metaModelSections.5/@attributes.0">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.40 //@mappingModel.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="textLabelName" target="//@targetSectionModel.1/@metaModelSections.6/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="textLabelName" target="//@targetSectionModel.1/@metaModelSections.2/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.34 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosXValue" expression="round(variableLabelXOffset+x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosXValue" expression="round(variableLabelXOffset+x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosYValue" expression="round(doubleLabelYOffset+((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="h" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="width" expression="round(w/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="w" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="height" expression="round(doubleOutHeightFactor*h/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="h" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="Name Position" target="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@references.1/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.43 //@mappingModel.0/@modifierSets.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="Name fontsize" target="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@references.2/@value.0/@references.0/@value.0/@attributes.2">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepSizeName (Double:Output Label)" target="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.25 //@mappingModel.0/@modifierSets.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepSizeHeightName(Double:Output Label)" target="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.27 //@mappingModel.0/@modifierSets.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepSizeWidthName(Double:Output Label)" target="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.26 //@mappingModel.0/@modifierSets.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosXName(Double:Output Label)" target="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.28 //@mappingModel.0/@modifierSets.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosYName(Double:Output Label)" target="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.29 //@mappingModel.0/@modifierSets.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosZName(Double:Output Label)" target="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.30 //@mappingModel.0/@modifierSets.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepBorderName@Double:Out" target="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@references.5/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.36 //@mappingModel.0/@modifierSets.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="Name Border Padding" target="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@references.5/@value.0/@references.1/@value.0/@attributes.2">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="Name Border Width" target="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@references.5/@value.0/@references.2/@value.0/@attributes.2">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.2"/>
+        </mappingHints>
+        <modelConnectionMatcher name="TextLabel Bool:Out">
+          <targetAttributes name="Panel Name" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.2"/>
+          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+        </modelConnectionMatcher>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefefinition" targetMMSection="//@targetSectionModel.1/@metaModelSections.5">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="Label value name @Bool:Out" target="//@targetSectionModel.1/@metaModelSections.5/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.40 //@mappingModel.0/@modifierSets.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="Label value value @Bool:Out" target="//@targetSectionModel.1/@metaModelSections.5/@references.0/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
+        </mappingHints>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Out EverythingElse" targetMMSection="//@targetSectionModel.1/@metaModelSections.6">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepFormatName@Double:Out" target="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.2/@value.0/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.31 //@mappingModel.0/@modifierSets.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepAlignmentName@Double:Out" target="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.3/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.32 //@mappingModel.0/@modifierSets.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepColorName@Double:Out" target="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.4/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.35 //@mappingModel.0/@modifierSets.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepBorderName@Double:Out" target="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.5/@value.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.36 //@mappingModel.0/@modifierSets.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="textLabelName" target="//@targetSectionModel.1/@metaModelSections.2/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.33 //@mappingModel.0/@modifierSets.2"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosXValue" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="PosYValue" expression="round(doubleLabelYOffset+((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1">
@@ -5414,34 +5466,13 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="height" expression="round(doubleOutHeightFactor*h/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="h" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="Name Position" target="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.1/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="Name position" target="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.1/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.43 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="Name fontsize" target="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.2/@value.0/@references.0/@value.0/@attributes.2">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.2"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepSizeName (Double:Output Label)" target="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.0/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.25 //@mappingModel.0/@modifierSets.2"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepSizeHeightName(Double:Output Label)" target="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.27 //@mappingModel.0/@modifierSets.2"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepSizeWidthName(Double:Output Label)" target="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.26 //@mappingModel.0/@modifierSets.2"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosXName(Double:Output Label)" target="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.28 //@mappingModel.0/@modifierSets.2"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosYName(Double:Output Label)" target="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.29 //@mappingModel.0/@modifierSets.2"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosZName(Double:Output Label)" target="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.30 //@mappingModel.0/@modifierSets.2"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepBorderName@Double:Out" target="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.5/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.36 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="Name Border Padding" target="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.5/@value.0/@references.1/@value.0/@attributes.2">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
@@ -5451,81 +5482,22 @@
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <modelConnectionMatcher name="TextLabel Bool:Out">
-          <targetAttributes name="Panel Name" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.2"/>
-          <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
-        </modelConnectionMatcher>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefefinition" targetMMSection="//@targetSectionModel.1/@metaModelSections.4">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="Label value name @Bool:Out" target="//@targetSectionModel.1/@metaModelSections.4/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.40 //@mappingModel.0/@modifierSets.2"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="Label value value @Bool:Out" target="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4"/>
-        </mappingHints>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Out EverythingElse" targetMMSection="//@targetSectionModel.1/@metaModelSections.5">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepFormatName@Double:Out" target="//@targetSectionModel.1/@metaModelSections.5/@references.0/@value.0/@references.2/@value.0/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.31 //@mappingModel.0/@modifierSets.2"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepAlignmentName@Double:Out" target="//@targetSectionModel.1/@metaModelSections.5/@references.0/@value.0/@references.3/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.32 //@mappingModel.0/@modifierSets.2"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepColorName@Double:Out" target="//@targetSectionModel.1/@metaModelSections.5/@references.0/@value.0/@references.4/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.35 //@mappingModel.0/@modifierSets.2"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepBorderName@Double:Out" target="//@targetSectionModel.1/@metaModelSections.5/@references.0/@value.0/@references.5/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.36 //@mappingModel.0/@modifierSets.2"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="textLabelName" target="//@targetSectionModel.1/@metaModelSections.5/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.33 //@mappingModel.0/@modifierSets.2"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosXValue" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.5/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosYValue" expression="round(doubleLabelYOffset+((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.5/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="h" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="width" expression="round(w/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="w" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="height" expression="round(doubleOutHeightFactor*h/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="h" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="Name position" target="//@targetSectionModel.1/@metaModelSections.5/@references.0/@value.0/@references.1/@value.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.43 //@mappingModel.0/@modifierSets.2"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="Name fontsize" target="//@targetSectionModel.1/@metaModelSections.5/@references.0/@value.0/@references.2/@value.0/@references.0/@value.0/@attributes.2">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.2"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="Name Border Padding" target="//@targetSectionModel.1/@metaModelSections.5/@references.0/@value.0/@references.5/@value.0/@references.1/@value.0/@attributes.2">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.2"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="Name Border Width" target="//@targetSectionModel.1/@metaModelSections.5/@references.0/@value.0/@references.5/@value.0/@references.2/@value.0/@attributes.2">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.2"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepSizeName @Double:Out" target="//@targetSectionModel.1/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepSizeName @Double:Out" target="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.25 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepSizeHeightName @Double:Out" target="//@targetSectionModel.1/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepSizeHeightName @Double:Out" target="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.27 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepSizeWidthName @Double:Out" target="//@targetSectionModel.1/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepSizeWidthName @Double:Out" target="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.26 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosXName @Double:Out" target="//@targetSectionModel.1/@metaModelSections.5/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosXName @Double:Out" target="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.28 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosYName @Double:Out" target="//@targetSectionModel.1/@metaModelSections.5/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosYName @Double:Out" target="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.29 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosZName @Double:Out" target="//@targetSectionModel.1/@metaModelSections.5/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosZName @Double:Out" target="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.30 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
         <modelConnectionMatcher name="TextLabel Bool:Out">
@@ -5533,74 +5505,74 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NavigatorButton button" targetMMSection="//@targetSectionModel.1/@metaModelSections.9">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="BUttonName" target="//@targetSectionModel.1/@metaModelSections.9/@attributes.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NavigatorButton button" targetMMSection="//@targetSectionModel.1/@metaModelSections.10">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="BUttonName" target="//@targetSectionModel.1/@metaModelSections.10/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.7 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="RepSizeName" target="//@targetSectionModel.1/@metaModelSections.9/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="RepSizeName" target="//@targetSectionModel.1/@metaModelSections.10/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.25 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosName" target="//@targetSectionModel.1/@metaModelSections.9/@references.0/@value.0/@references.1/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosName" target="//@targetSectionModel.1/@metaModelSections.10/@references.0/@value.0/@references.1/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.43 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="FormatName" target="//@targetSectionModel.1/@metaModelSections.9/@references.0/@value.0/@references.2/@value.0/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="FormatName" target="//@targetSectionModel.1/@metaModelSections.10/@references.0/@value.0/@references.2/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.31 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="AlignmentName" target="//@targetSectionModel.1/@metaModelSections.9/@references.0/@value.0/@references.3/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="AlignmentName" target="//@targetSectionModel.1/@metaModelSections.10/@references.0/@value.0/@references.3/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.32 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="FontSizeName" target="//@targetSectionModel.1/@metaModelSections.9/@references.0/@value.0/@references.2/@value.0/@references.0/@value.0/@attributes.2">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="FontSizeName" target="//@targetSectionModel.1/@metaModelSections.10/@references.0/@value.0/@references.2/@value.0/@references.0/@value.0/@attributes.2">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="HeightName" target="//@targetSectionModel.1/@metaModelSections.9/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="HeightName" target="//@targetSectionModel.1/@metaModelSections.10/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.27 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="WidthName" target="//@targetSectionModel.1/@metaModelSections.9/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="WidthName" target="//@targetSectionModel.1/@metaModelSections.10/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.26 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosXName" target="//@targetSectionModel.1/@metaModelSections.9/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosXName" target="//@targetSectionModel.1/@metaModelSections.10/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.28 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosYName" target="//@targetSectionModel.1/@metaModelSections.9/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosYName" target="//@targetSectionModel.1/@metaModelSections.10/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.29 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosZName" target="//@targetSectionModel.1/@metaModelSections.9/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosZName" target="//@targetSectionModel.1/@metaModelSections.10/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.30 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosXValue" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.9/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosXValue" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.10/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosYValue" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.9/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosYValue" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.10/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="h" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="width" expression="round(w/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.9/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="width" expression="round(w/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.10/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="w" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="height" expression="round(h/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.9/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="height" expression="round(h/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.10/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="h" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Text" affectedReference="//@targetSectionModel.1/@metaModelSections.9/@references.0/@value.0/@references.4">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.1/@metaModelSections.4/@attributes.0">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Text" affectedReference="//@targetSectionModel.1/@metaModelSections.10/@references.0/@value.0/@references.4">
+          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.1/@metaModelSections.5/@attributes.0">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.40 //@mappingModel.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="ClickTriggerName" target="//@targetSectionModel.1/@metaModelSections.9/@references.1/@value.0/@references.1/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="ClickTriggerName" target="//@targetSectionModel.1/@metaModelSections.10/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.5 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="SendSignalEffectName" target="//@targetSectionModel.1/@metaModelSections.9/@references.1/@value.0/@references.0/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="SendSignalEffectName" target="//@targetSectionModel.1/@metaModelSections.10/@references.1/@value.0/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.6 //@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
@@ -5611,87 +5583,87 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Output Bool" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.3">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Bool:Out" targetMMSection="//@targetSectionModel.1/@metaModelSections.2">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepFormatName" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.2/@value.0/@attributes.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Bool:Out" targetMMSection="//@targetSectionModel.1/@metaModelSections.3">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepFormatName" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.2/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.31 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepAlignmentName" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.3/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepAlignmentName" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.3/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.32 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="textLabelName" target="//@targetSectionModel.1/@metaModelSections.2/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.33 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepColorName" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.4/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepColorName" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.4/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.35 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepBorderName" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.5/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepBorderName" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.5/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.36 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelColorAnimationOnName" target="//@targetSectionModel.1/@metaModelSections.2/@references.1/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelColorAnimationOnName" target="//@targetSectionModel.1/@metaModelSections.3/@references.1/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.37 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelColorAnimationOffName" target="//@targetSectionModel.1/@metaModelSections.2/@references.1/@value.0/@references.1/@value.0/@references.1/@value.1/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelColorAnimationOffName" target="//@targetSectionModel.1/@metaModelSections.3/@references.1/@value.0/@references.1/@value.0/@references.1/@value.1/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.38 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepBooleanCompName" target="//@targetSectionModel.1/@metaModelSections.2/@references.1/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepBooleanCompName" target="//@targetSectionModel.1/@metaModelSections.3/@references.1/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.32 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger vo" affectedReference="//@targetSectionModel.1/@metaModelSections.2/@references.1/@value.0/@references.0/@value.0/@references.0">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger vo" affectedReference="//@targetSectionModel.1/@metaModelSections.3/@references.1/@value.0/@references.0/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.3/@metaModelSections.0/@attributes.0">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="valueBrowsePath (Bool)" source="//@sourceSectionModel.2/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.2 //@mappingModel.0/@modifierSets.47 //@mappingModel.0/@modifierSets.15"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger repAn" affectedReference="//@targetSectionModel.1/@metaModelSections.2/@references.1/@value.0/@references.1/@value.0/@references.0">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger repAn" affectedReference="//@targetSectionModel.1/@metaModelSections.3/@references.1/@value.0/@references.1/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.3/@metaModelSections.0/@attributes.0">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="valueBrowsePath (Bool)" source="//@sourceSectionModel.2/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.2 //@mappingModel.0/@modifierSets.47 //@mappingModel.0/@modifierSets.15"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosXValue" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosXValue" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosYValue" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosYValue" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="h" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="width" expression="round(w/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="width" expression="round(w/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="w" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="height" expression="round(boolOutHeightFactor*h/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="height" expression="round(boolOutHeightFactor*h/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="h" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="positionName" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.1/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="positionName" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.1/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.43 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="Font Name " target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.2/@value.0/@references.0/@value.0/@attributes.2">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="Font Name " target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.2/@value.0/@references.0/@value.0/@attributes.2">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="Border Padding Name" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.5/@value.0/@references.1/@value.0/@attributes.2">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="Border Padding Name" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.5/@value.0/@references.1/@value.0/@attributes.2">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="Border Width Name" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.5/@value.0/@references.2/@value.0/@attributes.2">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="Border Width Name" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.5/@value.0/@references.2/@value.0/@attributes.2">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepSizeName @Bool:Out" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepSizeName @Bool:Out" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.25 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepSizeHeightName @Bool:Out" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepSizeHeightName @Bool:Out" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.27 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepSizeWidthName @Bool:Out" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepSizeWidthName @Bool:Out" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.26 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosXName @Bool:Out" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosXName @Bool:Out" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.28 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosYName @Bool:Out" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosYName @Bool:Out" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.29 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosZName @Bool:Out" target="//@targetSectionModel.1/@metaModelSections.2/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosZName @Bool:Out" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.30 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
         <modelConnectionMatcher name="TextLabel Bool:Out">
@@ -5699,41 +5671,41 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel @LabelOutput:Bool" targetMMSection="//@targetSectionModel.1/@metaModelSections.3" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0"/>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDef @ Bool:Out" targetMMSection="//@targetSectionModel.1/@metaModelSections.4" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.2"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel @LabelOutput:Bool" targetMMSection="//@targetSectionModel.1/@metaModelSections.4" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDef @ Bool:Out" targetMMSection="//@targetSectionModel.1/@metaModelSections.5" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.2"/>
     </mapping>
     <mapping name="Output Double" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.4">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Double:Out" targetMMSection="//@targetSectionModel.1/@metaModelSections.5" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.3">
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger vo" affectedReference="//@targetSectionModel.1/@metaModelSections.5/@references.1/@value.0/@references.0/@value.0/@references.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Double:Out" targetMMSection="//@targetSectionModel.1/@metaModelSections.6" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.3">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger vo" affectedReference="//@targetSectionModel.1/@metaModelSections.6/@references.1/@value.0/@references.0/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.3/@metaModelSections.0/@attributes.0">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="valueBrowsePath (Double)" source="//@sourceSectionModel.2/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.2 //@mappingModel.0/@modifierSets.47 //@mappingModel.0/@modifierSets.15"/>
           </matcher>
         </mappingHints>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Double:Out Label" targetMMSection="//@targetSectionModel.1/@metaModelSections.6" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.1"/>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDef @ Double:Out" targetMMSection="//@targetSectionModel.1/@metaModelSections.4" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.2"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Double:Out Label" targetMMSection="//@targetSectionModel.1/@metaModelSections.7" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.1"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDef @ Double:Out" targetMMSection="//@targetSectionModel.1/@metaModelSections.5" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.2"/>
     </mapping>
     <mapping name="Input Bool" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.5">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDef @ Bool:In" targetMMSection="//@targetSectionModel.1/@metaModelSections.4" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.2"/>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Double:In" targetMMSection="//@targetSectionModel.1/@metaModelSections.5" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.3">
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger vo" affectedReference="//@targetSectionModel.1/@metaModelSections.5/@references.1/@value.0/@references.0/@value.0/@references.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDef @ Bool:In" targetMMSection="//@targetSectionModel.1/@metaModelSections.5" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.2"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Double:In" targetMMSection="//@targetSectionModel.1/@metaModelSections.6" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.3">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger vo" affectedReference="//@targetSectionModel.1/@metaModelSections.6/@references.1/@value.0/@references.0/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.3/@metaModelSections.0/@attributes.0">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="valueBrowsePath (Bool)" source="//@sourceSectionModel.2/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.2 //@mappingModel.0/@modifierSets.47 //@mappingModel.0/@modifierSets.15"/>
           </matcher>
         </mappingHints>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Double:Out Label" targetMMSection="//@targetSectionModel.1/@metaModelSections.6" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.1"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Double:Out Label" targetMMSection="//@targetSectionModel.1/@metaModelSections.7" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.1"/>
     </mapping>
     <mapping name="Input Double" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.6">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Double:In" targetMMSection="//@targetSectionModel.1/@metaModelSections.5" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.3">
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger vo" affectedReference="//@targetSectionModel.1/@metaModelSections.5/@references.1/@value.0/@references.0/@value.0/@references.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Double:In" targetMMSection="//@targetSectionModel.1/@metaModelSections.6" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.3">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger vo" affectedReference="//@targetSectionModel.1/@metaModelSections.6/@references.1/@value.0/@references.0/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.3/@metaModelSections.0/@attributes.0">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="valueBrowsePath (Double)" source="//@sourceSectionModel.2/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.2 //@mappingModel.0/@modifierSets.47 //@mappingModel.0/@modifierSets.15"/>
           </matcher>
         </mappingHints>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDef @ Double:In" targetMMSection="//@targetSectionModel.1/@metaModelSections.4" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.2"/>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Double:Out Label" targetMMSection="//@targetSectionModel.1/@metaModelSections.6" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.1"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDef @ Double:In" targetMMSection="//@targetSectionModel.1/@metaModelSections.5" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.2"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Double:Out Label" targetMMSection="//@targetSectionModel.1/@metaModelSections.7" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.1"/>
     </mapping>
     <mapping name="FunctionButton" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.7">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetMMSection="//@targetSectionModel.1/@libraryElements.4/@parameters.4/@class">
@@ -5779,27 +5751,27 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="NavigatorButton" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.8">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NavigatorButton button" targetMMSection="//@targetSectionModel.1/@metaModelSections.9" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.4">
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="sendSignal" affectedReference="//@targetSectionModel.1/@metaModelSections.9/@references.1/@value.0/@references.0/@value.0/@references.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NavigatorButton button" targetMMSection="//@targetSectionModel.1/@metaModelSections.10" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.4">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="sendSignal" affectedReference="//@targetSectionModel.1/@metaModelSections.10/@references.1/@value.0/@references.0/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.3/@metaModelSections.1/@attributes.0">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="send" source="//@sourceSectionModel.1/@metaModelSections.8/@attributes.1" modifier="//@mappingModel.0/@modifierSets.24 //@mappingModel.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDef NavButton" targetMMSection="//@targetSectionModel.1/@metaModelSections.4" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.2"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDef NavButton" targetMMSection="//@targetSectionModel.1/@metaModelSections.5" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.2"/>
     </mapping>
     <mapping name="AlertButton" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.9">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NavigatorButton button" targetMMSection="//@targetSectionModel.1/@metaModelSections.9" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.4">
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="sendSignal" affectedReference="//@targetSectionModel.1/@metaModelSections.9/@references.1/@value.0/@references.0/@value.0/@references.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NavigatorButton button" targetMMSection="//@targetSectionModel.1/@metaModelSections.10" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.4">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="sendSignal" affectedReference="//@targetSectionModel.1/@metaModelSections.10/@references.1/@value.0/@references.0/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.3/@metaModelSections.1/@attributes.0">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="send" source="//@sourceSectionModel.1/@metaModelSections.9/@attributes.1" modifier="//@mappingModel.0/@modifierSets.24 //@mappingModel.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDef NavButton" targetMMSection="//@targetSectionModel.1/@metaModelSections.4" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.2"/>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="AlertButtonAnimation" targetMMSection="//@targetSectionModel.1/@metaModelSections.10">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDef NavButton" targetMMSection="//@targetSectionModel.1/@metaModelSections.5" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.2"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="AlertButtonAnimation" targetMMSection="//@targetSectionModel.1/@metaModelSections.11">
         <modelConnectionMatcher>
-          <targetAttributes name="Name NavButton" source="//@targetSectionModel.1/@metaModelSections.9/@attributes.0"/>
+          <targetAttributes name="Name NavButton" source="//@targetSectionModel.1/@metaModelSections.10/@attributes.0"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.7 //@mappingModel.0/@modifierSets.2"/>
         </modelConnectionMatcher>
@@ -5836,147 +5808,147 @@
   </mappingModel>
   <mappingModel name="TransportSystem">
     <mapping name="ConveyorCorner" sourceMMSection="//@sourceSectionModel.2/@metaModelSections.8">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Image ConveyorCorner" targetMMSection="//@targetSectionModel.1/@metaModelSections.11">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="ImageName" target="//@targetSectionModel.1/@metaModelSections.11/@attributes.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Image ConveyorCorner" targetMMSection="//@targetSectionModel.1/@metaModelSections.12">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="ImageName" target="//@targetSectionModel.1/@metaModelSections.12/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.8/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.44 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="RepSizeName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="RepSizeName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.8/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.25 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.1/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.8/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.43 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="FormatName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.2/@value.0/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="FormatName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.2/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.8/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.31 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="AlignmentName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.3/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="AlignmentName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.3/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.8/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.32 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="FontSizeName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.2/@value.0/@references.0/@value.0/@attributes.2">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="FontSizeName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.2/@value.0/@references.0/@value.0/@attributes.2">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.8/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="HeightName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="HeightName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.8/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.27 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="WidthName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="WidthName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.8/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.26 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosXName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosXName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.8/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.28 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosYName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosYName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.8/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.29 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosZName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosZName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.8/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.30 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosXValue" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.7"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosXValue" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosYValue" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.8"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.9"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosYValue" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.4"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.5"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="width" expression="w-w+conveyorWidth" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="w" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.3"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="width" expression="w-w+conveyorWidth" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="w" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="height" expression="conveyorWidth" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.4"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="height" expression="conveyorWidth" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="imgResource" affectedReference="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.4">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.1/@metaModelSections.12/@attributes.0">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.6"/>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="imgResource" affectedReference="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.4">
+          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.1/@metaModelSections.13/@attributes.0">
+            <sourceAttributes xsi:type="mapping:AttributeMatcherExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.2"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="RepPosZValueMapping" expression="transportLayerZIndex" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.1"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="RepPosZValueMapping" expression="transportLayerZIndex" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
         </mappingHints>
         <modelConnectionMatcher name="Image">
           <targetAttributes name="Panel Name" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.2"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layer" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="FixedImage" targetMMSection="//@targetSectionModel.1/@metaModelSections.12">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.1/@metaModelSections.12/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.6"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="FixedImage" targetMMSection="//@targetSectionModel.1/@metaModelSections.13">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.1/@metaModelSections.13/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="UrlMapping" resultModifier="//@mappingModel.0/@modifierSets.51" target="//@targetSectionModel.1/@metaModelSections.12/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.6"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="UrlMapping" resultModifier="//@mappingModel.0/@modifierSets.51" target="//@targetSectionModel.1/@metaModelSections.13/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.2"/>
         </mappingHints>
       </mappingHintGroups>
     </mapping>
     <mapping name="ConveyorStraight" sourceMMSection="//@sourceSectionModel.2/@metaModelSections.7">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Image ConveyorStraight" targetMMSection="//@targetSectionModel.1/@metaModelSections.11">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="ImageName" target="//@targetSectionModel.1/@metaModelSections.11/@attributes.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Image ConveyorStraight" targetMMSection="//@targetSectionModel.1/@metaModelSections.12">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="ImageName" target="//@targetSectionModel.1/@metaModelSections.12/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.7/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.44 //@mappingModel.0/@modifierSets.2 //@mappingModel.0/@modifierSets.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="RepSizeName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="RepSizeName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.7/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.25 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.1/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.7/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.43 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="FormatName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.2/@value.0/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="FormatName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.2/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.7/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.31 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="AlignmentName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.3/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="AlignmentName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.3/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.7/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.32 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="FontSizeName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.2/@value.0/@references.0/@value.0/@attributes.2">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="FontSizeName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.2/@value.0/@references.0/@value.0/@attributes.2">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.7/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="HeightName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="HeightName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.7/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.27 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="WidthName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="WidthName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.7/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.26 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosXName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosXName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.7/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.28 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosYName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosYName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.7/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.29 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosZName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosZName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.7/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.30 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosXValue" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosXValue" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosYValue" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosYValue" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.1"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="width" expression="max(conveyorWidth,round(w/max(xmax/(xRes-100.0),ymax/(yRes-100.0))))" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="width" expression="max(conveyorWidth,round(w/max(xmax/(xRes-100.0),ymax/(yRes-100.0))))" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="w" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="height" expression="max(conveyorWidth,round(h/max(xmax/(xRes-100.0),ymax/(yRes-100.0))))" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="height" expression="max(conveyorWidth,round(h/max(xmax/(xRes-100.0),ymax/(yRes-100.0))))" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="imgResource" affectedReference="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.4">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.1/@metaModelSections.12/@attributes.0">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="imgResource" affectedReference="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.4">
+          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.1/@metaModelSections.13/@attributes.0">
             <sourceAttributes xsi:type="mapping:AttributeMatcherExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel.1/@metaModelSections.10/@attributes.2"/>
           </matcher>
         </mappingHints>
@@ -5985,11 +5957,11 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layer" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="FixedImage" targetMMSection="//@targetSectionModel.1/@metaModelSections.12">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.1/@metaModelSections.12/@attributes.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="FixedImage" targetMMSection="//@targetSectionModel.1/@metaModelSections.13">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.1/@metaModelSections.13/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel.1/@metaModelSections.10/@attributes.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="UrlMapping" resultModifier="//@mappingModel.0/@modifierSets.51" target="//@targetSectionModel.1/@metaModelSections.12/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="UrlMapping" resultModifier="//@mappingModel.0/@modifierSets.51" target="//@targetSectionModel.1/@metaModelSections.13/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel.1/@metaModelSections.10/@attributes.2"/>
         </mappingHints>
       </mappingHintGroups>
@@ -6018,21 +5990,21 @@
     <mapping name="Stopper" sourceMMSection="//@sourceSectionModel.2/@metaModelSections.3">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SimpleContainer" targetMMSection="//@targetSectionModel.1/@libraryElements.2/@parameters.4/@class">
         <mappingHints xsi:type="mapping:AttributeMapping" name="PosXValue based on the SignalInterfaceNumber" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))+stopperHorizontalInDirection*conveyorWidth*sigInterfaceNumber" target="//@targetSectionModel.1/@libraryElements.2/@parameters.2/@attribute">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.7"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.3"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="sigInterfaceNumber" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.3/@attributes.0" modifier="//@mappingModel.0/@modifierSets.50"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="stopperHorizontalInDirection" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.10"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="stopperHorizontalInDirection" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.6"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="PosYValue based on the SignalInterfaceNumber" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))+stopperVerticalInDirection*conveyorWidth*sigInterfaceNumber" target="//@targetSectionModel.1/@libraryElements.2/@parameters.3/@attribute">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.8"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.9"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="stopperVerticalInDirection" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.11"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.4"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.5"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="stopperVerticalInDirection" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.7"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="sigInterfaceNumber" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.3/@attributes.0" modifier="//@mappingModel.0/@modifierSets.50"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="width" expression="conveyorWidth" target="//@targetSectionModel.1/@libraryElements.2/@parameters.0/@attribute">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="w" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.3"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="w" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="height" expression="conveyorWidth" target="//@targetSectionModel.1/@libraryElements.2/@parameters.1/@attribute">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.4"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="PointsTo CarrierID" affectedReference="//@targetSectionModel.1/@libraryElements.2/@parameters.5/@reference">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.2/@metaModelSections.0/@attributes.2">
@@ -6167,83 +6139,83 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="Fork and Merge" sourceMMSection="//@sourceSectionModel.2/@metaModelSections.6">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Fork" targetMMSection="//@targetSectionModel.1/@metaModelSections.11">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="ImageName" target="//@targetSectionModel.1/@metaModelSections.11/@attributes.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Fork" targetMMSection="//@targetSectionModel.1/@metaModelSections.12">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="ImageName" target="//@targetSectionModel.1/@metaModelSections.12/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.6/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.44 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="RepSizeName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="RepSizeName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.6/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.25 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.1/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.6/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.43 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="FormatName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.2/@value.0/@attributes.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="FormatName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.2/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.6/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.31 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="AlignmentName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.3/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="AlignmentName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.3/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.6/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.32 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="FontSizeName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.2/@value.0/@references.0/@value.0/@attributes.2">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="FontSizeName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.2/@value.0/@references.0/@value.0/@attributes.2">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.6/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="HeightName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="HeightName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.6/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.27 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="WidthName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="WidthName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.6/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.26 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosXName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosXName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.6/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.28 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosYName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosYName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.6/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.29 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosZName" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosZName" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="imgName" source="//@sourceSectionModel.2/@metaModelSections.6/@references.0/@value.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.30 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosXValue" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.7"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosXValue" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PosYValue" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.8"/>
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.9"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PosYValue" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.4"/>
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.5"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="width" expression="w-w+conveyorWidth" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="w" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.3"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="width" expression="w-w+conveyorWidth" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="w" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="height" expression="conveyorWidth" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.4"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="height" expression="conveyorWidth" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="imgResource" affectedReference="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.4">
-          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.1/@metaModelSections.12/@attributes.0">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.6"/>
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="imgResource" affectedReference="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.4">
+          <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.1/@metaModelSections.13/@attributes.0">
+            <sourceAttributes xsi:type="mapping:AttributeMatcherExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.2"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="RepPosZValueMapping" expression="transportLayerZIndex" target="//@targetSectionModel.1/@metaModelSections.11/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.1"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="RepPosZValueMapping" expression="transportLayerZIndex" target="//@targetSectionModel.1/@metaModelSections.12/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
         </mappingHints>
         <modelConnectionMatcher name="Image">
           <targetAttributes name="Panel Name" source="//@targetSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.2"/>
           <sourceElements xsi:type="mapping:ModelConnectionHintExternalSourceElement" name="layerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="FixedImage" targetMMSection="//@targetSectionModel.1/@metaModelSections.12">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.1/@metaModelSections.12/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.6"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="FixedImage" targetMMSection="//@targetSectionModel.1/@metaModelSections.13">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.1/@metaModelSections.13/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="UrlMapping" resultModifier="//@mappingModel.0/@modifierSets.51" target="//@targetSectionModel.1/@metaModelSections.12/@attributes.1">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.6"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="UrlMapping" resultModifier="//@mappingModel.0/@modifierSets.51" target="//@targetSectionModel.1/@metaModelSections.13/@attributes.1">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModel.1/@metaModelSections.12/@attributes.2"/>
         </mappingHints>
       </mappingHintGroups>
     </mapping>

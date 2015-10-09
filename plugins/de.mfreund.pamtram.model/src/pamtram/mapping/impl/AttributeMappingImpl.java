@@ -4,6 +4,7 @@ package pamtram.mapping.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -20,6 +21,7 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.classifier.ClassifierOclContainerOperation;
+import org.eclipse.ocl.pivot.library.collection.CollectionIncludesOperation;
 import org.eclipse.ocl.pivot.library.logical.BooleanOrOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclTypeOperation;
@@ -28,6 +30,7 @@ import org.eclipse.ocl.pivot.library.string.StringConcatOperation;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingExternalSourceElement;
 import pamtram.mapping.AttributeMappingSourceElement;
@@ -40,6 +43,7 @@ import pamtram.mapping.MappingPackage;
 import pamtram.mapping.MappingTables;
 import pamtram.mapping.ModifiableHint;
 import pamtram.metamodel.MetaModelElement;
+import pamtram.metamodel.Section;
 import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionAttribute;
 
@@ -272,7 +276,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 		 *   let severity : Integer[1] = 4
 		 *   in
 		 *     let
-		 *       status : OclAny[1] = if
+		 *       status : OclAny[?] = if
 		 *         self.target.oclType() = OclVoid or
 		 *         self.oclContainer()
 		 *         .oclAsType(MappingHintGroupType)
@@ -281,7 +285,11 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 		 *       else
 		 *         self.target.getContainingSection() =
 		 *         self.oclContainer()
-		 *         .oclAsType(MappingHintGroupType).targetMMSection
+		 *         .oclAsType(MappingHintGroupType).targetMMSection or
+		 *         self.oclContainer()
+		 *         .oclAsType(MappingHintGroupType)
+		 *         .targetMMSection.oclAsType(metamodel::Section(S, C, R, A))
+		 *         .extend->includes(self.target.getContainingSection())
 		 *       endif
 		 *     in
 		 *       let
@@ -296,7 +304,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 		 */
 		final /*@NonNull*/ /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final /*@NonNull*/ /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		/*@NonNull*/ /*@Caught*/ Object CAUGHT_status;
+		/*@Nullable*/ /*@Caught*/ Object CAUGHT_status;
 		try {
 		    /*@NonNull*/ /*@Caught*/ Object CAUGHT_eq;
 		    try {
@@ -327,19 +335,45 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 		    if (or == null) {
 		        throw new InvalidValueException("Null if condition");
 		    }
-		    /*@Thrown*/ boolean status;
+		    /*@Nullable*/ /*@Thrown*/ Boolean status;
 		    if (or) {
 		        status = ValueUtil.TRUE_VALUE;
 		    }
 		    else {
-		        final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0 = idResolver.getClass(MappingTables.CLSSid_MappingHintGroupType, null);
-		        final /*@NonNull*/ /*@Thrown*/ TargetSectionAttribute target_0 = this.getTarget();
-		        final /*@NonNull*/ /*@Thrown*/ Object getContainingSection = ((MetaModelElement)target_0).getContainingSection();
-		        final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer_0 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
-		        final /*@NonNull*/ /*@Thrown*/ MappingHintGroupType oclAsType_0 = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_0, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0));
-		        final /*@NonNull*/ /*@Thrown*/ TargetSection targetMMSection_0 = oclAsType_0.getTargetMMSection();
-		        final /*@Thrown*/ boolean eq_1 = getContainingSection.equals(targetMMSection_0);
-		        status = eq_1;
+		        /*@NonNull*/ /*@Caught*/ Object CAUGHT_eq_1;
+		        try {
+		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0 = idResolver.getClass(MappingTables.CLSSid_MappingHintGroupType, null);
+		            final /*@NonNull*/ /*@Thrown*/ TargetSectionAttribute target_0 = this.getTarget();
+		            final /*@NonNull*/ /*@Thrown*/ Object getContainingSection = ((MetaModelElement)target_0).getContainingSection();
+		            final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer_0 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
+		            final /*@NonNull*/ /*@Thrown*/ MappingHintGroupType oclAsType_0 = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_0, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_0));
+		            final /*@NonNull*/ /*@Thrown*/ TargetSection targetMMSection_0 = oclAsType_0.getTargetMMSection();
+		            final /*@Thrown*/ boolean eq_1 = getContainingSection.equals(targetMMSection_0);
+		            CAUGHT_eq_1 = eq_1;
+		        }
+		        catch (Exception e) {
+		            CAUGHT_eq_1 = ValueUtil.createInvalidValue(e);
+		        }
+		        /*@NonNull*/ /*@Caught*/ Object CAUGHT_includes;
+		        try {
+		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_1 = idResolver.getClass(MappingTables.CLSSid_MappingHintGroupType, null);
+		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e = idResolver.getClass(MappingTables.CLSSid_Section, null);
+		            final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer_1 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
+		            final /*@NonNull*/ /*@Thrown*/ MappingHintGroupType oclAsType_1 = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_1, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_1));
+		            final /*@NonNull*/ /*@Thrown*/ TargetSection targetMMSection_1 = oclAsType_1.getTargetMMSection();
+		            final /*@NonNull*/ /*@Thrown*/ Section oclAsType_2 = ClassUtil.nonNullState((Section)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, targetMMSection_1, TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e));
+		            final /*@NonNull*/ /*@Thrown*/ List<? extends Object> extend = oclAsType_2.getExtend();
+		            final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_extend = idResolver.createOrderedSetOfAll(MappingTables.ORD_TMPLid_, extend);
+		            final /*@NonNull*/ /*@Thrown*/ TargetSectionAttribute target_1 = this.getTarget();
+		            final /*@NonNull*/ /*@Thrown*/ Object getContainingSection_0 = ((MetaModelElement)target_1).getContainingSection();
+		            final /*@Thrown*/ boolean includes = ClassUtil.nonNullState(CollectionIncludesOperation.INSTANCE.evaluate(BOXED_extend, getContainingSection_0).booleanValue());
+		            CAUGHT_includes = includes;
+		        }
+		        catch (Exception e) {
+		            CAUGHT_includes = ValueUtil.createInvalidValue(e);
+		        }
+		        final /*@Nullable*/ /*@Thrown*/ Boolean or_0 = BooleanOrOperation.INSTANCE.evaluate(CAUGHT_eq_1, CAUGHT_includes);
+		        status = or_0;
 		    }
 		    CAUGHT_status = status;
 		}
@@ -352,14 +386,14 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 		final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
 		/*@Nullable*/ /*@NonInvalid*/ String message_0;
 		if (ne) {
-		    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_1 = idResolver.getClass(MappingTables.CLSSid_MappingHintGroupType, null);
-		    final /*@NonNull*/ /*@Thrown*/ TargetSectionAttribute target_1 = this.getTarget();
-		    final /*@Nullable*/ /*@Thrown*/ String name = target_1.getName();
+		    final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_2 = idResolver.getClass(MappingTables.CLSSid_MappingHintGroupType, null);
+		    final /*@NonNull*/ /*@Thrown*/ TargetSectionAttribute target_2 = this.getTarget();
+		    final /*@Nullable*/ /*@Thrown*/ String name = target_2.getName();
 		    final /*@NonNull*/ /*@NonInvalid*/ String sum = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(MappingTables.STR_The_32_target_32_attribute_32_39, name));
 		    final /*@NonNull*/ /*@NonInvalid*/ String sum_0 = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(sum, MappingTables.STR__39_32_is_32_not_32_part_32_of_32_the_32_target_32_section_32_referenced_32_by_32_parent_32_hint_32_gr));
-		    final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer_1 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
-		    final /*@NonNull*/ /*@Thrown*/ MappingHintGroupType oclAsType_1 = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_1, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_1));
-		    final /*@Nullable*/ /*@Thrown*/ String name_0 = oclAsType_1.getName();
+		    final /*@Nullable*/ /*@NonInvalid*/ Object oclContainer_2 = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
+		    final /*@NonNull*/ /*@Thrown*/ MappingHintGroupType oclAsType_3 = ClassUtil.nonNullState((MappingHintGroupType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer_2, TYP_pamtram_c_c_mapping_c_c_MappingHintGroupType_2));
+		    final /*@Nullable*/ /*@Thrown*/ String name_0 = oclAsType_3.getName();
 		    final /*@NonNull*/ /*@NonInvalid*/ String sum_1 = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(sum_0, name_0));
 		    final /*@NonNull*/ /*@NonInvalid*/ String sum_2 = ClassUtil.nonNullState(StringConcatOperation.INSTANCE.evaluate(sum_1, MappingTables.STR__33));
 		    message_0 = sum_2;
@@ -544,7 +578,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 				return getLocalSourceElements();
 			case MappingPackage.ATTRIBUTE_MAPPING___GET_EXTERNAL_SOURCE_ELEMENTS:
 				return getExternalSourceElements();
-			case MappingPackage.ATTRIBUTE_MAPPING___TARGET_ATTRIBUTE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP_2:
+			case MappingPackage.ATTRIBUTE_MAPPING___TARGET_ATTRIBUTE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP_3:
 				return targetAttributeMatchesSection((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

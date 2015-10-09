@@ -211,11 +211,11 @@ public abstract class LocalModifiedAttributeElementTypeImpl<S extends Section<S,
 		            }
 		            /*@NonNull*/ /*@Caught*/ Object CAUGHT_exists;
 		            try {
-		                final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e_0 = idResolver.getClass(MappingTables.CLSSid_Section, null);
+		                final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e_1 = idResolver.getClass(MappingTables.CLSSid_Section, null);
 		                if (CAUGHT_sourceMMSection instanceof InvalidValueException) {
 		                    throw (InvalidValueException)CAUGHT_sourceMMSection;
 		                }
-		                final /*@NonNull*/ /*@Thrown*/ Section oclAsType_3 = ClassUtil.nonNullState((Section)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, CAUGHT_sourceMMSection, TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e_0));
+		                final /*@NonNull*/ /*@Thrown*/ Section oclAsType_3 = ClassUtil.nonNullState((Section)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, CAUGHT_sourceMMSection, TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e_1));
 		                final /*@NonNull*/ /*@Thrown*/ List<? extends Object> extend = oclAsType_3.getExtend();
 		                final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_extend = idResolver.createOrderedSetOfAll(MappingTables.ORD_TMPLid_, extend);
 		                /*@Nullable*/ /*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
@@ -244,7 +244,7 @@ public abstract class LocalModifiedAttributeElementTypeImpl<S extends Section<S,
 		                        final /*@NonNull*/ /*@Thrown*/ Object source_2 = this.getSource();
 		                        final /*@NonNull*/ /*@Thrown*/ SourceSectionAttribute oclAsType_4 = ClassUtil.nonNullState((SourceSectionAttribute)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, source_2, TYP_pamtram_c_c_metamodel_c_c_SourceSectionAttribute_0));
 		                        final /*@NonNull*/ /*@Thrown*/ Object getContainingSection_1 = ((MetaModelElement)oclAsType_4).getContainingSection();
-		                        final /*@NonNull*/ /*@Thrown*/ Section oclAsType_5 = ClassUtil.nonNullState((Section)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, getContainingSection_1, TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e_0));
+		                        final /*@NonNull*/ /*@Thrown*/ Section oclAsType_5 = ClassUtil.nonNullState((Section)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, getContainingSection_1, TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e_1));
 		                        final /*@Thrown*/ boolean eq_2 = oclAsType_5.equals(e_0);
 		                        CAUGHT_eq_2 = eq_2;
 		                    }
@@ -279,11 +279,11 @@ public abstract class LocalModifiedAttributeElementTypeImpl<S extends Section<S,
 		        }
 		        /*@NonNull*/ /*@Caught*/ Object CAUGHT_exists_0;
 		        try {
-		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e_3 = idResolver.getClass(MappingTables.CLSSid_Section, null);
+		            final /*@NonNull*/ /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e_4 = idResolver.getClass(MappingTables.CLSSid_Section, null);
 		            if (CAUGHT_sourceMMSection instanceof InvalidValueException) {
 		                throw (InvalidValueException)CAUGHT_sourceMMSection;
 		            }
-		            final /*@NonNull*/ /*@Thrown*/ Section oclAsType_6 = ClassUtil.nonNullState((Section)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, CAUGHT_sourceMMSection, TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e_3));
+		            final /*@NonNull*/ /*@Thrown*/ Section oclAsType_6 = ClassUtil.nonNullState((Section)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, CAUGHT_sourceMMSection, TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e_4));
 		            final /*@NonNull*/ /*@Thrown*/ List<? extends Object> extend_0 = oclAsType_6.getExtend();
 		            final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_extend_0 = idResolver.createOrderedSetOfAll(MappingTables.ORD_TMPLid_, extend_0);
 		            /*@Nullable*/ /*@Thrown*/ Object accumulator_0 = ValueUtil.FALSE_VALUE;
@@ -314,8 +314,8 @@ public abstract class LocalModifiedAttributeElementTypeImpl<S extends Section<S,
 		                    final /*@NonNull*/ /*@Thrown*/ Object source_3 = this.getSource();
 		                    final /*@NonNull*/ /*@Thrown*/ SourceSectionAttribute oclAsType_7 = ClassUtil.nonNullState((SourceSectionAttribute)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, source_3, TYP_pamtram_c_c_metamodel_c_c_SourceSectionAttribute_1));
 		                    final /*@NonNull*/ /*@Thrown*/ Object getContainingSection_2 = ((MetaModelElement)oclAsType_7).getContainingSection();
-		                    final /*@NonNull*/ /*@Thrown*/ Section oclAsType_8 = ClassUtil.nonNullState((Section)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, getContainingSection_2, TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e_3));
-		                    final /*@NonNull*/ /*@Thrown*/ Section oclAsType_9 = ClassUtil.nonNullState((Section)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, e_1, TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e_3));
+		                    final /*@NonNull*/ /*@Thrown*/ Section oclAsType_8 = ClassUtil.nonNullState((Section)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, getContainingSection_2, TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e_4));
+		                    final /*@NonNull*/ /*@Thrown*/ Section oclAsType_9 = ClassUtil.nonNullState((Section)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, e_1, TYP_pamtram_c_c_metamodel_c_c_Section_o_S_44_C_44_R_44_A_e_4));
 		                    final /*@Thrown*/ boolean isReferencedBy_0 = ((pamtram.metamodel.Class)oclAsType_8).isReferencedBy((pamtram.metamodel.Class)oclAsType_9, null);
 		                    CAUGHT_isReferencedBy_0 = isReferencedBy_0;
 		                }
@@ -388,7 +388,7 @@ public abstract class LocalModifiedAttributeElementTypeImpl<S extends Section<S,
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP_2:
+			case MappingPackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP_3:
 				return sourceAttributeMatchesSectionOrContainedSection((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

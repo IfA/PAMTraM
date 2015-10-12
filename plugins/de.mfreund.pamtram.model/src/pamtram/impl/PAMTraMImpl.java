@@ -864,7 +864,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 						}
 
 						if(found == false) {
-							throw new RuntimeException("Internal error! Now target found for redirection of element '" + referencedObject + "'.");
+							throw new RuntimeException("Internal error! No target found for redirection of element '" + referencedObject + "'.");
 						}
 
 						for (Setting setting : refsToAbstractSection.get(referencedObject)) {

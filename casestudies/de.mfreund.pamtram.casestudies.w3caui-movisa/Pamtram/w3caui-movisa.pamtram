@@ -3255,6 +3255,9 @@
     <modifierSets name="prependNavigateTo">
       <modifier xsi:type="mapping:StringPrepender" name="Navigate_to_" string="Navigate_to_"/>
     </modifierSets>
+    <modifierSets name="append _ClickedSignal">
+      <modifier xsi:type="mapping:StringAppender" name="_ClickedSignal" string="_ClickedSignal"/>
+    </modifierSets>
   </mappingModel>
   <mappingModel name="AIUs">
     <mapping name="NavigationMapping" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.1">
@@ -3443,6 +3446,13 @@
     </mapping>
   </mappingModel>
   <mappingModel name="AIUs - Input">
+    <mapping name="AIU Input base" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.0" abstract="true">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Input Clicked Signal" targetMMSection="//@targetSectionModel.4/@metaModelSections.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="SignalNameMapping" target="//@targetSectionModel.4/@metaModelSections.0/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.12"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mapping>
     <mapping name="ConfirmationButtonMapping" sourceMMSection="//@sourceSectionModel.2/@metaModelSections.0">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetMMSection="//@targetSectionModel.2/@metaModelSections.0">
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Text" affectedReference="//@targetSectionModel.2/@metaModelSections.0/@references.0/@value.0/@references.0">
@@ -3461,7 +3471,7 @@
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Signal" affectedReference="//@targetSectionModel.2/@metaModelSections.0/@references.1/@value.0/@references.1/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.4/@metaModelSections.0/@attributes.0">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.12"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Effect" affectedReference="//@targetSectionModel.2/@metaModelSections.0/@references.1/@value.0/@references.0/@value.0/@references.0">
@@ -3486,11 +3496,7 @@
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="defaultValue" source="//@sourceSectionModel.2/@metaModelSections.0/@references.0/@value.0/@references.0/@value.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetMMSection="//@targetSectionModel.4/@metaModelSections.0">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="SignalNameMapping" target="//@targetSectionModel.4/@metaModelSections.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
-        </mappingHints>
-      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetMMSection="//@targetSectionModel.4/@metaModelSections.0" extend="//@mappingModel.2/@mapping.0/@mappingHintGroups.0"/>
     </mapping>
     <mapping name="dynamicConfirmationButtonMapping" sourceMMSection="//@sourceSectionModel.2/@metaModelSections.1">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefinition" targetMMSection="//@targetSectionModel.1/@metaModelSections.7">
@@ -3518,7 +3524,7 @@
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Signal" affectedReference="//@targetSectionModel.2/@metaModelSections.0/@references.1/@value.0/@references.1/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.4/@metaModelSections.0/@attributes.0">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.12"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Effect" affectedReference="//@targetSectionModel.2/@metaModelSections.0/@references.1/@value.0/@references.0/@value.0/@references.0">
@@ -3535,11 +3541,7 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetMMSection="//@targetSectionModel.4/@metaModelSections.0">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="SignalNameMapping" target="//@targetSectionModel.4/@metaModelSections.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
-        </mappingHints>
-      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetMMSection="//@targetSectionModel.4/@metaModelSections.0" extend="//@mappingModel.2/@mapping.0/@mappingHintGroups.0"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ButtonAnimation" targetMMSection="//@targetSectionModel.1/@metaModelSections.2">
         <modelConnectionMatcher>
           <targetAttributes name="ButtonName" source="//@targetSectionModel.2/@metaModelSections.0/@attributes.0"/>
@@ -3644,7 +3646,7 @@
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Signal" affectedReference="//@targetSectionModel.2/@metaModelSections.7/@references.1/@value.0/@references.1/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.4/@metaModelSections.0/@attributes.0">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.4"/>
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.12"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Effect" affectedReference="//@targetSectionModel.2/@metaModelSections.7/@references.1/@value.0/@references.0/@value.0/@references.0">
@@ -3661,11 +3663,7 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetMMSection="//@targetSectionModel.4/@metaModelSections.0">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="SignalNameMapping" target="//@targetSectionModel.4/@metaModelSections.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.4"/>
-        </mappingHints>
-      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetMMSection="//@targetSectionModel.4/@metaModelSections.0" extend="//@mappingModel.2/@mapping.0/@mappingHintGroups.0"/>
     </mapping>
     <mapping name="dynamicDropDownMapping" sourceMMSection="//@sourceSectionModel.2/@metaModelSections.10">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="DropDown" targetMMSection="//@targetSectionModel.2/@metaModelSections.7">
@@ -3680,7 +3678,7 @@
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Signal" affectedReference="//@targetSectionModel.2/@metaModelSections.7/@references.1/@value.0/@references.1/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.4/@metaModelSections.0/@attributes.0">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.4"/>
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.12"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Effect" affectedReference="//@targetSectionModel.2/@metaModelSections.7/@references.1/@value.0/@references.0/@value.0/@references.0">
@@ -3703,11 +3701,7 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetMMSection="//@targetSectionModel.4/@metaModelSections.0">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="SignalNameMapping" target="//@targetSectionModel.4/@metaModelSections.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.4"/>
-        </mappingHints>
-      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetMMSection="//@targetSectionModel.4/@metaModelSections.0" extend="//@mappingModel.2/@mapping.0/@mappingHintGroups.0"/>
     </mapping>
     <mapping name="DropDownElementMapping" sourceMMSection="//@sourceSectionModel.2/@metaModelSections.11">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="DropDownOption" targetMMSection="//@targetSectionModel.2/@metaModelSections.9">
@@ -3749,7 +3743,7 @@
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Signal" affectedReference="//@targetSectionModel.2/@metaModelSections.12/@references.1/@value.0/@references.1/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.4/@metaModelSections.0/@attributes.0">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.5"/>
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.12"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Effect" affectedReference="//@targetSectionModel.2/@metaModelSections.12/@references.1/@value.0/@references.0/@value.0/@references.0">
@@ -3771,11 +3765,7 @@
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetMMSection="//@targetSectionModel.4/@metaModelSections.0">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="SignalNameMapping" target="//@targetSectionModel.4/@metaModelSections.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.5"/>
-        </mappingHints>
-      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetMMSection="//@targetSectionModel.4/@metaModelSections.0" extend="//@mappingModel.2/@mapping.0/@mappingHintGroups.0"/>
     </mapping>
     <mapping name="dynamicInputMapping" sourceMMSection="//@sourceSectionModel.2/@metaModelSections.14">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Input" targetMMSection="//@targetSectionModel.2/@metaModelSections.12">
@@ -3790,7 +3780,7 @@
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Signal" affectedReference="//@targetSectionModel.2/@metaModelSections.12/@references.1/@value.0/@references.1/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.4/@metaModelSections.0/@attributes.0">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.5"/>
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.12"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="InputSignalNameMapping" target="//@targetSectionModel.2/@metaModelSections.12/@references.1/@value.0/@references.1/@value.0/@attributes.0">
@@ -3826,11 +3816,7 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetMMSection="//@targetSectionModel.4/@metaModelSections.0">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="SignalNameMapping" target="//@targetSectionModel.4/@metaModelSections.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.5"/>
-        </mappingHints>
-      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetMMSection="//@targetSectionModel.4/@metaModelSections.0" extend="//@mappingModel.2/@mapping.0/@mappingHintGroups.0"/>
     </mapping>
     <mapping name="CheckBoxMapping" sourceMMSection="//@sourceSectionModel.2/@metaModelSections.7">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefinition" targetMMSection="//@targetSectionModel.1/@metaModelSections.7">
@@ -3861,7 +3847,7 @@
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Signal" affectedReference="//@targetSectionModel.2/@metaModelSections.2/@references.1/@value.0/@references.1/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.4/@metaModelSections.0/@attributes.0">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3"/>
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.12"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Effect" affectedReference="//@targetSectionModel.2/@metaModelSections.2/@references.1/@value.0/@references.0/@value.0/@references.0">
@@ -3876,11 +3862,7 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetMMSection="//@targetSectionModel.4/@metaModelSections.0">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="SignalNameMapping" target="//@targetSectionModel.4/@metaModelSections.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3"/>
-        </mappingHints>
-      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetMMSection="//@targetSectionModel.4/@metaModelSections.0" extend="//@mappingModel.2/@mapping.0/@mappingHintGroups.0"/>
     </mapping>
     <mapping name="dynamicCheckBoxMapping" sourceMMSection="//@sourceSectionModel.2/@metaModelSections.8">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefinition" targetMMSection="//@targetSectionModel.1/@metaModelSections.7">
@@ -3908,7 +3890,7 @@
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Signal" affectedReference="//@targetSectionModel.2/@metaModelSections.2/@references.1/@value.0/@references.1/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.4/@metaModelSections.0/@attributes.0">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3"/>
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.12"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Effect" affectedReference="//@targetSectionModel.2/@metaModelSections.2/@references.1/@value.0/@references.0/@value.0/@references.0">
@@ -3932,11 +3914,7 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetMMSection="//@targetSectionModel.4/@metaModelSections.0">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="SignalNameMapping" target="//@targetSectionModel.4/@metaModelSections.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3"/>
-        </mappingHints>
-      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetMMSection="//@targetSectionModel.4/@metaModelSections.0" extend="//@mappingModel.2/@mapping.0/@mappingHintGroups.0"/>
     </mapping>
     <mapping name="RadioButtonMapping" sourceMMSection="//@sourceSectionModel.2/@metaModelSections.11">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="RadioButton" targetMMSection="//@targetSectionModel.2/@metaModelSections.6">
@@ -3956,7 +3934,7 @@
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Signal" affectedReference="//@targetSectionModel.2/@metaModelSections.6/@references.1/@value.0/@references.1/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.4/@metaModelSections.0/@attributes.0">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.2"/>
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.12"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Effect" affectedReference="//@targetSectionModel.2/@metaModelSections.6/@references.1/@value.0/@references.0/@value.0/@references.0">
@@ -3980,11 +3958,7 @@
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetMMSection="//@targetSectionModel.4/@metaModelSections.0">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="SignalNameMapping" target="//@targetSectionModel.4/@metaModelSections.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.2"/>
-        </mappingHints>
-      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetMMSection="//@targetSectionModel.4/@metaModelSections.0" extend="//@mappingModel.2/@mapping.0/@mappingHintGroups.0"/>
     </mapping>
     <mapping name="dynamicRadioButtonMapping" sourceMMSection="//@sourceSectionModel.2/@metaModelSections.12">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefinition" targetMMSection="//@targetSectionModel.1/@metaModelSections.7">
@@ -4012,7 +3986,7 @@
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Signal" affectedReference="//@targetSectionModel.2/@metaModelSections.6/@references.1/@value.0/@references.1/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.4/@metaModelSections.0/@attributes.0">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.2"/>
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.12"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Effect" affectedReference="//@targetSectionModel.2/@metaModelSections.6/@references.1/@value.0/@references.0/@value.0/@references.0">
@@ -4034,11 +4008,7 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetMMSection="//@targetSectionModel.4/@metaModelSections.0">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="SignalNameMapping" target="//@targetSectionModel.4/@metaModelSections.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.2"/>
-        </mappingHints>
-      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetMMSection="//@targetSectionModel.4/@metaModelSections.0" extend="//@mappingModel.2/@mapping.0/@mappingHintGroups.0"/>
     </mapping>
     <mapping name="inOutMapping" sourceMMSection="//@sourceSectionModel.2/@metaModelSections.4">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Input" targetMMSection="//@targetSectionModel.2/@metaModelSections.12">
@@ -4056,7 +4026,7 @@
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Signal" affectedReference="//@targetSectionModel.2/@metaModelSections.12/@references.1/@value.0/@references.1/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.4/@metaModelSections.0/@attributes.0">
-            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.5"/>
+            <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.12"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Effect" affectedReference="//@targetSectionModel.2/@metaModelSections.12/@references.1/@value.0/@references.0/@value.0/@references.0">
@@ -4076,11 +4046,7 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetMMSection="//@targetSectionModel.4/@metaModelSections.0">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="SignalNameMapping" target="//@targetSectionModel.4/@metaModelSections.0/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.5"/>
-        </mappingHints>
-      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetMMSection="//@targetSectionModel.4/@metaModelSections.0" extend="//@mappingModel.2/@mapping.0/@mappingHintGroups.0"/>
     </mapping>
     <mapping name="dynamicSliderMapping" sourceMMSection="//@sourceSectionModel.2/@metaModelSections.3">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Slider" targetMMSection="//@targetSectionModel.2/@metaModelSections.10">

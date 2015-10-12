@@ -57,6 +57,7 @@ import pamtram.TransformationModel;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.CardinalityMapping;
+import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.GlobalValue;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
@@ -547,360 +548,379 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void mergeExtends() {
-				//TODO handle hierarchical extensions (an extended section extends other sections
-				//TODO implement a more sophisticated merging strategy that takes into account overwriting of hints?
+		//TODO handle hierarchical extensions (an extended section extends other sections
+		//TODO implement a more sophisticated merging strategy that takes into account overwriting of hints?
 		
-				/*
-				 * First, we collect each abstract source and target section as well as the concrete sections that
-				 * reference them
-				 */
-				HashMap<Section, LinkedList<Section>> abstractToConcreteSectionMap = new HashMap<>();
-				Map<EObject, Collection<Setting>> sourceSettings = EcoreUtil.CrossReferencer.find(getSourceSections());
-				for (Section section : getSourceSections()) {
-					if(section.isAbstract()) {
-						LinkedList<Section> concreteSections = new LinkedList<>();
-						for (Setting setting : sourceSettings.get(section)) {
-							if(setting.getEStructuralFeature().equals(MetamodelPackageImpl.eINSTANCE.getSection_Extend())) {
-								concreteSections.add((Section) setting.getEObject());
-							}
-						}
-						abstractToConcreteSectionMap.put(section, concreteSections);
+		/*
+		 * First, we collect each abstract source and target section as well as the concrete sections that
+		 * reference them
+		 */
+		HashMap<Section, LinkedList<Section>> abstractToConcreteSectionMap = new HashMap<>();
+		Map<EObject, Collection<Setting>> sourceSettings = EcoreUtil.CrossReferencer.find(getSourceSections());
+		for (Section section : getSourceSections()) {
+			if(section.isAbstract()) {
+				LinkedList<Section> concreteSections = new LinkedList<>();
+				for (Setting setting : sourceSettings.get(section)) {
+					if(setting.getEStructuralFeature().equals(MetamodelPackageImpl.eINSTANCE.getSection_Extend())) {
+						concreteSections.add((Section) setting.getEObject());
 					}
 				}
-				Map<EObject, Collection<Setting>> targetSettings = EcoreUtil.CrossReferencer.find(getTargetSections());
-				for (Section section : getTargetSections()) {
-					if(section.isAbstract()) {
-						LinkedList<Section> concreteSections = new LinkedList<>();
-						for (Setting setting : targetSettings.get(section)) {
-							if(setting.getEStructuralFeature().equals(MetamodelPackageImpl.eINSTANCE.getSection_Extend())) {
-								concreteSections.add((Section) setting.getEObject());
-							}
-						}
-						abstractToConcreteSectionMap.put(section, concreteSections);
+				abstractToConcreteSectionMap.put(section, concreteSections);
+			}
+		}
+		Map<EObject, Collection<Setting>> targetSettings = EcoreUtil.CrossReferencer.find(getTargetSections());
+		for (Section section : getTargetSections()) {
+			if(section.isAbstract()) {
+				LinkedList<Section> concreteSections = new LinkedList<>();
+				for (Setting setting : targetSettings.get(section)) {
+					if(setting.getEStructuralFeature().equals(MetamodelPackageImpl.eINSTANCE.getSection_Extend())) {
+						concreteSections.add((Section) setting.getEObject());
 					}
 				}
+				abstractToConcreteSectionMap.put(section, concreteSections);
+			}
+		}
 		
-				ArrayList<Mapping> concreteMappings = new ArrayList<>();
-				for (Mapping mapping : getMappings()) {
-					if(!mapping.isAbstract()) {
-						concreteMappings.add(mapping);
+		ArrayList<Mapping> concreteMappings = new ArrayList<>();
+		for (Mapping mapping : getMappings()) {
+			if(!mapping.isAbstract()) {
+				concreteMappings.add(mapping);
+			}
+		}
+		
+		/*
+		 * Now, we copy all elements from the abstract sections to the concrete sections
+		 * that extend them. In this process, we store the associations between the elements from
+		 * the abstract sections and the copied elements in a map.
+		 */
+		HashMap<EObject, LinkedList<EObject>> abstractToConcreteElementMap = new HashMap<>();
+		for (Section abstractSection : abstractToConcreteSectionMap.keySet()) {
+			for (Section concreteSection : abstractToConcreteSectionMap.get(abstractSection)) {
+		
+				Section copiedSection = EcoreUtil.copy(abstractSection);
+		
+				TreeIterator<EObject> originalIterator = EcoreUtil.getAllContents(Collections.singleton(abstractSection));
+				TreeIterator<EObject> copyIterator = EcoreUtil.getAllContents(Collections.singleton(copiedSection));
+		
+				// these lists will store the elements that we will add to the concrete section
+				ArrayList<Attribute> attributesToAdd = new ArrayList<>();
+				ArrayList<Reference> referencesToAdd = new ArrayList<>();
+		
+				while(originalIterator.hasNext()) {
+					assert copyIterator.hasNext();
+		
+					EObject originalNext = originalIterator.next();
+					EObject copyNext = copyIterator.next();
+		
+					// if the element is the section itself, we skip it
+					if(originalNext instanceof Section) {
+						continue;
 					}
-				}
 		
-				/*
-				 * Now, we copy all elements from the abstract sections to the concrete sections
-				 * that extend them. In this process, we store the associations between the elements from
-				 * the abstract sections and the copied elements in a map.
-				 */
-				HashMap<EObject, LinkedList<EObject>> abstractToConcreteElementMap = new HashMap<>();
-				for (Section abstractSection : abstractToConcreteSectionMap.keySet()) {
-					for (Section concreteSection : abstractToConcreteSectionMap.get(abstractSection)) {
-		
-						Section copiedSection = EcoreUtil.copy(abstractSection);
-		
-						TreeIterator<EObject> originalIterator = EcoreUtil.getAllContents(Collections.singleton(abstractSection));
-						TreeIterator<EObject> copyIterator = EcoreUtil.getAllContents(Collections.singleton(copiedSection));
-		
-						// these lists will store the elements that we will add to the concrete section
-						ArrayList<Attribute> attributesToAdd = new ArrayList<>();
-						ArrayList<Reference> referencesToAdd = new ArrayList<>();
-		
-						while(originalIterator.hasNext()) {
-							assert copyIterator.hasNext();
-		
-							EObject originalNext = originalIterator.next();
-							EObject copyNext = copyIterator.next();
-		
-							// if the element is the section itself, we skip it
-							if(originalNext instanceof Section) {
-								continue;
-							}
-		
-							// if the element is a top-level element below the section, we add it to the concrete section
-							if(originalNext.eContainer().equals(abstractSection)) {
-								if(copyNext instanceof Attribute) {
-									attributesToAdd.add((Attribute) copyNext);
-								} else if(copyNext instanceof Reference) {
-									referencesToAdd.add((Reference) copyNext);
-								} else {
-									throw new RuntimeException("Unsupported element type '" + copyNext.eClass().getName() + "' encountered when merging extends!");
-								}
-							}
-		
-							// in any case, we fill the abstractToConcreteElementMap
-							LinkedList<EObject> vals = abstractToConcreteElementMap.get(originalNext);
-							if(vals == null) {
-								vals = new LinkedList<>();
-							}
-							vals.add(copyNext);
-							abstractToConcreteElementMap.put(originalNext, vals);
-		
-							//TODO do we need to redirect references to these elements???
+					// if the element is a top-level element below the section, we add it to the concrete section
+					if(originalNext.eContainer().equals(abstractSection)) {
+						if(copyNext instanceof Attribute) {
+							attributesToAdd.add((Attribute) copyNext);
+						} else if(copyNext instanceof Reference) {
+							referencesToAdd.add((Reference) copyNext);
+						} else {
+							throw new RuntimeException("Unsupported element type '" + copyNext.eClass().getName() + "' encountered when merging extends!");
 						}
-		
-						/*
-						 * now, we add the collected elements to the concrete section; we have to do this
-						 * after the process of iterating over the contents - otherwise, the TreeIterator will throw
-						 * IndexOutOfBoundsExceptions
-						 */
-						concreteSection.getAttributes().addAll(attributesToAdd);
-						concreteSection.getReferences().addAll(referencesToAdd);
-		
-		
-						/*
-						 * Now, we redirect references from MappingHints to elements from the abstract section to the elements from the concrete sections. 
-						 * Here, we only handle references from concrete mappings as the references from abstract mappings (and thus from extended hint
-						 * groups) are handled afterwards when these hint groups are copied.
-						 */
-						Map<EObject, Collection<Setting>> refsToAbstractSection = EcoreUtil.UsageCrossReferencer.findAll(abstractToConcreteElementMap.keySet(), concreteMappings);
-						for (EObject referencedObject : refsToAbstractSection.keySet()) {
-		
-		
-							for (Setting setting : refsToAbstractSection.get(referencedObject)) {
-		
-								// this is the element referencing the abstract section (it should be an element of a mapping hint)
-								EObject hintElement = setting.getEObject().eContainer();
-								MappingHintGroupType hintGroup = null;
-								if(hintElement instanceof MappingHintGroupType) {
-									hintGroup = (MappingHintGroupType) hintElement;
-								} else if(hintElement.eContainer() instanceof MappingHintGroupType) {
-									hintGroup = (MappingHintGroupType) hintElement.eContainer();
-								} else {
-									hintGroup = (MappingHintGroupType) hintElement.eContainer().eContainer();
-								}
-		
-								/* 
-								 * check if the hint group or its parent mapping equals the section that we just added the concrete elements to
-								 */
-								if(concreteSection.equals(hintGroup.getTargetMMSection()) || 
-										concreteSection.isContainerFor(hintGroup.getTargetMMSection()) ||
-										concreteSection.equals(((Mapping) hintGroup.eContainer()).getSourceMMSection()) || 
-										concreteSection.isContainerFor(((Mapping) hintGroup.eContainer()).getSourceMMSection())) {
-		
-									if(setting.getEStructuralFeature().equals(MappingPackageImpl.eINSTANCE.getModifiedAttributeElementType_Source()) && 
-											setting.getEObject() instanceof ModelConnectionHintTargetAttribute) {
-										// do nothing as ModelConnectionHints are handled below separately
-									} else {
-										// redirect the reference (we can always use the 'last' of the concrete objects as we just added it above
-										setting.set(abstractToConcreteElementMap.get(referencedObject).getLast());
-									}
-		
-								}
-							}
-		
-						}
-		
 					}
+		
+					// in any case, we fill the abstractToConcreteElementMap
+					LinkedList<EObject> vals = abstractToConcreteElementMap.get(originalNext);
+					if(vals == null) {
+						vals = new LinkedList<>();
+					}
+					vals.add(copyNext);
+					abstractToConcreteElementMap.put(originalNext, vals);
+		
+					//TODO do we need to redirect references to these elements???
 				}
 		
 				/*
-				 * Now, we handle the ModelConnectionHints that we skipped above. We can do this now as we now know all concrete TargetSections that
-				 * are a possible match for each ModelConnectionHint that points to an abstract TargetSection.
+				 * now, we add the collected elements to the concrete section; we have to do this
+				 * after the process of iterating over the contents - otherwise, the TreeIterator will throw
+				 * IndexOutOfBoundsExceptions
 				 */
-				for (Section abstractSection : abstractToConcreteSectionMap.keySet()) {
-					for (Section concreteSection : abstractToConcreteSectionMap.get(abstractSection)) {
-						/*
-						 * as ModelConnectionHints will get treated differently (see below), we store the ModelConnectionHintTargetAttributes
-						 * holding the referneces to the Attributes in the abstract section and will delete these later
-						 */
-						ArrayList<ModelConnectionHintTargetAttribute> mchTargetAttributesToDelete = new ArrayList<>();
+				concreteSection.getAttributes().addAll(attributesToAdd);
+				concreteSection.getReferences().addAll(referencesToAdd);
 		
-						Map<EObject, Collection<Setting>> refsToAbstractSection = EcoreUtil.UsageCrossReferencer.findAll(abstractToConcreteElementMap.keySet(), concreteMappings);
-						for (EObject referencedObject : refsToAbstractSection.keySet()) {
-		
-		
-							for (Setting setting : refsToAbstractSection.get(referencedObject)) {
-		
-								// this is the element referencing the abstract section (it should be an element of a mapping hint)
-								EObject hintElement = setting.getEObject().eContainer();
-								MappingHintGroupType hintGroup = null;
-								if(hintElement instanceof MappingHintGroupType) {
-									hintGroup = (MappingHintGroupType) hintElement;
-								} else if(hintElement.eContainer() instanceof MappingHintGroupType) {
-									hintGroup = (MappingHintGroupType) hintElement.eContainer();
-								} else {
-									hintGroup = (MappingHintGroupType) hintElement.eContainer().eContainer();
-								}
-		
-								/* 
-								 * check if the hint group or its parent mapping equals the section that we just added the concrete elements to or
-								 * if we are dealing with a model ModelConnectionHintTargetAttribute
-								 */
-								if(setting.getEStructuralFeature().equals(MappingPackageImpl.eINSTANCE.getModifiedAttributeElementType_Source()) && 
-										setting.getEObject() instanceof ModelConnectionHintTargetAttribute) {
-		
-									// in this case, we must not simply redirect but we create a new ModelConnectionHintTargetAttribute
-									ModelConnectionHintTargetAttribute original = (ModelConnectionHintTargetAttribute) setting.getEObject();
-		
-									for (EObject concreteTargetSectionAttribute : abstractToConcreteElementMap.get(referencedObject)) {
-										ModelConnectionHintTargetAttribute copy = MappingFactoryImpl.eINSTANCE.createModelConnectionHintTargetAttribute();
-										copy.setName(original.getName());
-										copy.getModifier().addAll(original.getModifier());
-										copy.setSource((TargetSectionAttribute) concreteTargetSectionAttribute);
-		
-										((ModelConnectionHint) (setting.getEObject().eContainer())).getTargetAttributes().add(copy);								
-									}
-		
-		
-									mchTargetAttributesToDelete.add((ModelConnectionHintTargetAttribute) setting.getEObject());
-								}
-							}
-		
-						}
-		
-						for (ModelConnectionHintTargetAttribute mchTargetAttribute : mchTargetAttributesToDelete) {
-							EcoreUtil.delete(mchTargetAttribute);
-						}
-					}
-				}
 		
 				/*
-				 * Finally, we can copy the abstract hint groups
+				 * Now, we redirect references from MappingHints to elements from the abstract section to the elements from the concrete sections. 
+				 * Here, we only handle references from concrete mappings as the references from abstract mappings (and thus from extended hint
+				 * groups) are handled afterwards when these hint groups are copied.
 				 */
+				Map<EObject, Collection<Setting>> refsToAbstractSection = EcoreUtil.UsageCrossReferencer.findAll(abstractToConcreteElementMap.keySet(), concreteMappings);
+				for (EObject referencedObject : refsToAbstractSection.keySet()) {
 		
-				// collect all abstract mappings
-				ArrayList<Mapping> abstractMappings = new ArrayList<>();
-				for (Mapping mapping : this.getMappings()) {
-					if(mapping.isAbstract()) {
-						abstractMappings.add(mapping);
-					}
-				}
 		
-				// collect each abstract hint group as well as the concrete hint groups that reference them
-				HashMap<MappingHintGroupType, LinkedList<MappingHintGroupType>> abstractToConcreteHintGroupMap = new HashMap<>();
-				Map<EObject, Collection<Setting>> mappingSettings = EcoreUtil.CrossReferencer.find(getMappings());
-				for (EObject element : mappingSettings.keySet()) {
-					if(element instanceof MappingHintGroupType && ((Mapping)(element.eContainer())).isAbstract()) {
-						LinkedList<MappingHintGroupType> concreteHintGroups = new LinkedList<>();
-						for (Setting setting : mappingSettings.get(element)) {
-							if(setting.getEStructuralFeature().equals(MappingPackageImpl.eINSTANCE.getMappingHintGroupType_Extend())) {
-								concreteHintGroups.add((MappingHintGroupType) setting.getEObject());
-							}
+					for (Setting setting : refsToAbstractSection.get(referencedObject)) {
+		
+						// this is the element referencing the abstract section (it should be an element of a mapping hint)
+						EObject hintElement = setting.getEObject().eContainer();
+						MappingHintGroupType hintGroup = null;
+						if(hintElement instanceof MappingHintGroupType) {
+							hintGroup = (MappingHintGroupType) hintElement;
+						} else if(hintElement.eContainer() instanceof MappingHintGroupType) {
+							hintGroup = (MappingHintGroupType) hintElement.eContainer();
+						} else {
+							hintGroup = (MappingHintGroupType) hintElement.eContainer().eContainer();
 						}
-						abstractToConcreteHintGroupMap.put((MappingHintGroupType) element, concreteHintGroups);
-					}
-				}
-		
-				// copy the hints to the concrete hint groups
-				for (MappingHintGroupType abstractHintGroup : abstractToConcreteHintGroupMap.keySet()) {
-					for (MappingHintGroupType concreteHintGroup : abstractToConcreteHintGroupMap.get(abstractHintGroup)) {
-		
-						Collection<MappingHintBaseType> hintsToCopy = new BasicEList<>();
-						/*
-						 * Collect all hints that will get copied. Those are all mapping hints (including ModelConnectionHints) that are not
-						 * 'overwritten' by hints of the concrete HintGroup.
-						 */
-						for (MappingHint abstractHint : abstractHintGroup.getMappingHints()) {
-							EObject hintTarget = null;
-							if(abstractHint instanceof AttributeMapping) {
-								hintTarget = ((AttributeMapping) abstractHint).getTarget();
-							} else if(abstractHint instanceof MappingInstanceSelector) {
-								hintTarget = ((MappingInstanceSelector) abstractHint).getAffectedReference();
-							} else if(abstractHint instanceof CardinalityMapping) {
-								hintTarget = ((CardinalityMapping) abstractHint).getTarget();
-							} else {
-								throw new RuntimeException("Unsupported hint type '" + abstractHint.eClass().getName() + "' in HintGroup '" + 
-										abstractHintGroup.getName() + "': These kind of hints are not supported yet in abstract HintGroups!");
-							}
-		
-							if(abstractToConcreteElementMap.get(hintTarget) == null || abstractToConcreteElementMap.get(hintTarget).isEmpty() || concreteHintGroup.getMappingHints().isEmpty() || 
-									EcoreUtil.UsageCrossReferencer.findAll(abstractToConcreteElementMap.get(hintTarget), concreteHintGroup.getMappingHints()).isEmpty()) {
-								hintsToCopy.add(abstractHint);
-							}
-		
-						}
-						// model connection hints need to be handled separately
-						if(abstractHintGroup instanceof MappingHintGroup && concreteHintGroup instanceof MappingHintGroup && 
-								((MappingHintGroup) concreteHintGroup).getModelConnectionMatcher() == null) {
-							hintsToCopy.add(((MappingHintGroup) abstractHintGroup).getModelConnectionMatcher());
-						}
-		
-						Collection<MappingHintBaseType> copiedHints = EcoreUtil.copyAll(hintsToCopy);
 		
 						/* 
-						 * make sure that all references to elements from the abstract sections are redirected to the concrete sections
-						 * that we created earlier
+						 * check if the hint group or its parent mapping equals the section that we just added the concrete elements to
 						 */
-						for (MappingHintBaseType copiedHint : copiedHints) {
+						if(concreteSection.equals(hintGroup.getTargetMMSection()) || 
+								concreteSection.isContainerFor(hintGroup.getTargetMMSection()) ||
+								concreteSection.equals(((Mapping) hintGroup.eContainer()).getSourceMMSection()) || 
+								concreteSection.isContainerFor(((Mapping) hintGroup.eContainer()).getSourceMMSection())) {
 		
-							/* 
-							 * these are the references from the copied hint (that will get added to the concrete hint group) to elements from
-							 * abstract sections
-							 */
-							Map<EObject, Collection<Setting>> refsToAbstractSection = EcoreUtil.UsageCrossReferencer.findAll(abstractToConcreteElementMap.keySet(), copiedHint);
-							for (EObject referencedObject : refsToAbstractSection.keySet()) {
-		
-								/* 
-								 * these are possible targets for the redirection of references to the referenced object
-								 * (source and target sections as well as their containers)
-								 */
-								LinkedList<EObject> possibleTargets = abstractToConcreteElementMap.get(referencedObject);
-		
-								ArrayList<Section> sourceAndTargetSections = new ArrayList<>();
-								SourceSection sourceSection = ((Mapping) concreteHintGroup.eContainer()).getSourceMMSection();
-								do {
-									sourceAndTargetSections.add(sourceSection);
-									sourceSection = (sourceSection.getContainer() == null ? null : sourceSection.getContainer().getContainingSection());
-								} while (sourceSection != null);
-								TargetSection targetSection = concreteHintGroup.getTargetMMSection();
-								do {
-									sourceAndTargetSections.add(targetSection);
-									targetSection = (targetSection.getContainer() == null ? null : targetSection.getContainer().getContainingSection());
-								} while (targetSection != null);
-		
-								boolean found = false;
-								EObject target = null; // this will contain the new value for the reference
-								for (EObject possibleTarget : possibleTargets) {
-									Section containingSection = ((MetaModelElement) possibleTarget).getContainingSection();
-									if(sourceAndTargetSections.contains(containingSection)) {
-										if(found == false ) {
-											found = true;
-											target = possibleTarget;
-										} else {
-											// this should not happen, should it?
-											throw new RuntimeException("Internal error! Multiple targets found for redirection of element '" + referencedObject + "' in.");
-										}
-		
-									}
-								}
-		
-								if(found == false) {
-									throw new RuntimeException("Internal error! No target found for redirection of element '" + referencedObject + "'.");
-								}
-		
-								for (Setting setting : refsToAbstractSection.get(referencedObject)) {
-									setting.set(target);
-								}
-							}
-		
-						}
-		
-						// Finally, we add the copied hints to the concrete hint group
-						for (MappingHintBaseType copiedHint : copiedHints) {
-							if(copiedHint instanceof ModelConnectionHint) {
-								((MappingHintGroup) concreteHintGroup).setModelConnectionMatcher((ModelConnectionHint) copiedHint);	
+							if(setting.getEStructuralFeature().equals(MappingPackageImpl.eINSTANCE.getModifiedAttributeElementType_Source()) && 
+									setting.getEObject() instanceof ModelConnectionHintTargetAttribute) {
+								// do nothing as ModelConnectionHints are handled below separately
 							} else {
-								concreteHintGroup.getMappingHints().add((MappingHint) copiedHint);					
+								// redirect the reference (we can always use the 'last' of the concrete objects as we just added it above
+								setting.set(abstractToConcreteElementMap.get(referencedObject).getLast());
 							}
 		
 						}
 					}
+		
 				}
 		
+			}
+		}
+		
+		/*
+		 * Now, we handle the ModelConnectionHints that we skipped above. We can do this now as we now know all concrete TargetSections that
+		 * are a possible match for each ModelConnectionHint that points to an abstract TargetSection.
+		 */
+		for (Section abstractSection : abstractToConcreteSectionMap.keySet()) {
+			for (Section concreteSection : abstractToConcreteSectionMap.get(abstractSection)) {
 				/*
-				 * At the end, we clear the values of the 'extend' references of the concrete elements as these
-				 * are no longer needed.
+				 * as ModelConnectionHints will get treated differently (see below), we store the ModelConnectionHintTargetAttributes
+				 * holding the referneces to the Attributes in the abstract section and will delete these later
 				 */
-				for (Entry<Section, LinkedList<Section>> entry : abstractToConcreteSectionMap.entrySet()) {
-					for (Section concreteSection : entry.getValue()) {
-						concreteSection.getExtend().remove(entry.getKey());
+				ArrayList<ModelConnectionHintTargetAttribute> mchTargetAttributesToDelete = new ArrayList<>();
+		
+				Map<EObject, Collection<Setting>> refsToAbstractSection = EcoreUtil.UsageCrossReferencer.findAll(abstractToConcreteElementMap.keySet(), concreteMappings);
+				for (EObject referencedObject : refsToAbstractSection.keySet()) {
+		
+		
+					for (Setting setting : refsToAbstractSection.get(referencedObject)) {
+		
+						// this is the element referencing the abstract section (it should be an element of a mapping hint)
+						EObject hintElement = setting.getEObject().eContainer();
+						MappingHintGroupType hintGroup = null;
+						if(hintElement instanceof MappingHintGroupType) {
+							hintGroup = (MappingHintGroupType) hintElement;
+						} else if(hintElement.eContainer() instanceof MappingHintGroupType) {
+							hintGroup = (MappingHintGroupType) hintElement.eContainer();
+						} else {
+							hintGroup = (MappingHintGroupType) hintElement.eContainer().eContainer();
+						}
+		
+						/* 
+						 * check if the hint group or its parent mapping equals the section that we just added the concrete elements to or
+						 * if we are dealing with a model ModelConnectionHintTargetAttribute
+						 */
+						if(setting.getEStructuralFeature().equals(MappingPackageImpl.eINSTANCE.getModifiedAttributeElementType_Source()) && 
+								setting.getEObject() instanceof ModelConnectionHintTargetAttribute) {
+		
+							// in this case, we must not simply redirect but we create a new ModelConnectionHintTargetAttribute
+							ModelConnectionHintTargetAttribute original = (ModelConnectionHintTargetAttribute) setting.getEObject();
+		
+							for (EObject concreteTargetSectionAttribute : abstractToConcreteElementMap.get(referencedObject)) {
+								ModelConnectionHintTargetAttribute copy = MappingFactoryImpl.eINSTANCE.createModelConnectionHintTargetAttribute();
+								copy.setName(original.getName());
+								copy.getModifier().addAll(original.getModifier());
+								copy.setSource((TargetSectionAttribute) concreteTargetSectionAttribute);
+		
+								((ModelConnectionHint) (setting.getEObject().eContainer())).getTargetAttributes().add(copy);								
+							}
+		
+		
+							mchTargetAttributesToDelete.add((ModelConnectionHintTargetAttribute) setting.getEObject());
+						}
+					}
+		
+				}
+		
+				for (ModelConnectionHintTargetAttribute mchTargetAttribute : mchTargetAttributesToDelete) {
+					EcoreUtil.delete(mchTargetAttribute);
+				}
+			}
+		}
+		
+		/*
+		 * Finally, we can copy the abstract hint groups
+		 */
+		
+		// collect all abstract mappings
+		ArrayList<Mapping> abstractMappings = new ArrayList<>();
+		for (Mapping mapping : this.getMappings()) {
+			if(mapping.isAbstract()) {
+				abstractMappings.add(mapping);
+			}
+		}
+		
+		// collect each abstract hint group as well as the concrete hint groups that reference them
+		HashMap<MappingHintGroupType, LinkedList<MappingHintGroupType>> abstractToConcreteHintGroupMap = new HashMap<>();
+		Map<EObject, Collection<Setting>> mappingSettings = EcoreUtil.CrossReferencer.find(getMappings());
+		for (EObject element : mappingSettings.keySet()) {
+			if(element instanceof MappingHintGroupType && ((Mapping)(element.eContainer())).isAbstract()) {
+				LinkedList<MappingHintGroupType> concreteHintGroups = new LinkedList<>();
+				for (Setting setting : mappingSettings.get(element)) {
+					if(setting.getEStructuralFeature().equals(MappingPackageImpl.eINSTANCE.getMappingHintGroupType_Extend())) {
+						concreteHintGroups.add((MappingHintGroupType) setting.getEObject());
 					}
 				}
-				for (Entry<MappingHintGroupType, LinkedList<MappingHintGroupType>> entry : abstractToConcreteHintGroupMap.entrySet()) {
-					for (MappingHintGroupType concreteHintGroup : entry.getValue()) {
-						concreteHintGroup.getExtend().remove(entry.getKey());
+				abstractToConcreteHintGroupMap.put((MappingHintGroupType) element, concreteHintGroups);
+			}
+		}
+		
+		// copy the hints to the concrete hint groups
+		for (MappingHintGroupType abstractHintGroup : abstractToConcreteHintGroupMap.keySet()) {
+			for (MappingHintGroupType concreteHintGroup : abstractToConcreteHintGroupMap.get(abstractHintGroup)) {
+		
+				Collection<MappingHintBaseType> hintsToCopy = new BasicEList<>();
+				/*
+				 * Collect all hints that will get copied. Those are all mapping hints (including ModelConnectionHints) that are not
+				 * 'overwritten' by hints of the concrete HintGroup.
+				 */
+				for (MappingHint abstractHint : abstractHintGroup.getMappingHints()) {
+					EObject hintTarget = null;
+					if(abstractHint instanceof AttributeMapping) {
+						hintTarget = ((AttributeMapping) abstractHint).getTarget();
+					} else if(abstractHint instanceof MappingInstanceSelector) {
+						hintTarget = ((MappingInstanceSelector) abstractHint).getAffectedReference();
+					} else if(abstractHint instanceof CardinalityMapping) {
+						hintTarget = ((CardinalityMapping) abstractHint).getTarget();
+					} else {
+						throw new RuntimeException("Unsupported hint type '" + abstractHint.eClass().getName() + "' in HintGroup '" + 
+								abstractHintGroup.getName() + "': These kind of hints are not supported yet in abstract HintGroups!");
 					}
+		
+					if(abstractToConcreteElementMap.get(hintTarget) == null || abstractToConcreteElementMap.get(hintTarget).isEmpty() || concreteHintGroup.getMappingHints().isEmpty() || 
+							EcoreUtil.UsageCrossReferencer.findAll(abstractToConcreteElementMap.get(hintTarget), concreteHintGroup.getMappingHints()).isEmpty()) {
+						hintsToCopy.add(abstractHint);
+					}
+		
 				}
+				// model connection hints need to be handled separately
+				if(abstractHintGroup instanceof MappingHintGroup && concreteHintGroup instanceof MappingHintGroup && 
+						((MappingHintGroup) concreteHintGroup).getModelConnectionMatcher() == null) {
+					hintsToCopy.add(((MappingHintGroup) abstractHintGroup).getModelConnectionMatcher());
+				}
+		
+				Collection<MappingHintBaseType> copiedHints = EcoreUtil.copyAll(hintsToCopy);
+		
+				/* 
+				 * make sure that all references to elements from the abstract sections are redirected to the concrete sections
+				 * that we created earlier
+				 */
+				for (MappingHintBaseType copiedHint : copiedHints) {
+		
+					/* 
+					 * these are the references from the copied hint (that will get added to the concrete hint group) to elements from
+					 * abstract sections
+					 */
+					Map<EObject, Collection<Setting>> refsToAbstractSection = EcoreUtil.UsageCrossReferencer.findAll(abstractToConcreteElementMap.keySet(), copiedHint);
+					for (EObject referencedObject : refsToAbstractSection.keySet()) {
+		
+						/*
+						 * based on the type of hint element that we are handling (local or external), source and target 
+						 * sections or their containers are checked
+						 */
+						boolean local = true;
+						if(refsToAbstractSection.get(referencedObject).size() > 1) {
+							throw new RuntimeException("Internal Error! The hint '" + copiedHint.getName() + "' in the hint group '" + abstractHintGroup.getName() + 
+									"' holds multiple references to the same object of an abstract section ('" + referencedObject + "'.");
+						}
+						if(refsToAbstractSection.get(referencedObject).iterator().next().getEObject() instanceof ExternalModifiedAttributeElementType) {
+							local = false;
+						}
+						ArrayList<Section> sourceAndTargetSections = new ArrayList<>();
+						SourceSection sourceSection = ((Mapping) concreteHintGroup.eContainer()).getSourceMMSection();
+						if(local) {
+							sourceAndTargetSections.add(sourceSection);
+						} else {
+							while (sourceSection.getContainer() != null) {
+								sourceSection = sourceSection.getContainer().getContainingSection();
+								sourceAndTargetSections.add(sourceSection);
+							}
+						}
+						TargetSection targetSection = concreteHintGroup.getTargetMMSection();
+						if(local) {
+							sourceAndTargetSections.add(targetSection);
+						} else {
+							while (targetSection.getContainer() != null) {
+								targetSection = targetSection.getContainer().getContainingSection();
+								sourceAndTargetSections.add(targetSection);
+							} 
+						}
+		
+						/* 
+						 * these are possible targets for the redirection of references to the referenced object
+						 */
+						LinkedList<EObject> possibleTargets = abstractToConcreteElementMap.get(referencedObject);
+		
+						boolean found = false;
+						EObject target = null; // this will contain the new value for the reference
+						for (EObject possibleTarget : possibleTargets) {
+							Section containingSection = ((MetaModelElement) possibleTarget).getContainingSection();
+							if(sourceAndTargetSections.contains(containingSection)) {
+								if(found == false ) {
+									found = true;
+									target = possibleTarget;
+								} else {
+									// this should not happen, should it?
+									throw new RuntimeException("Internal error! Multiple targets found for redirection of element '" + referencedObject + "' in.");
+								}
+		
+							}
+						}
+		
+						if(found == false) {
+							throw new RuntimeException("Internal error! No target found for redirection of element '" + referencedObject + "'.");
+						}
+		
+						for (Setting setting : refsToAbstractSection.get(referencedObject)) {
+							setting.set(target);
+						}
+					}
+		
+				}
+		
+				// Finally, we add the copied hints to the concrete hint group
+				for (MappingHintBaseType copiedHint : copiedHints) {
+					if(copiedHint instanceof ModelConnectionHint) {
+						((MappingHintGroup) concreteHintGroup).setModelConnectionMatcher((ModelConnectionHint) copiedHint);	
+					} else {
+						concreteHintGroup.getMappingHints().add((MappingHint) copiedHint);					
+					}
+		
+				}
+			}
+		}
+		
+		/*
+		 * At the end, we clear the values of the 'extend' references of the concrete elements as these
+		 * are no longer needed.
+		 */
+		for (Entry<Section, LinkedList<Section>> entry : abstractToConcreteSectionMap.entrySet()) {
+			for (Section concreteSection : entry.getValue()) {
+				concreteSection.getExtend().remove(entry.getKey());
+			}
+		}
+		for (Entry<MappingHintGroupType, LinkedList<MappingHintGroupType>> entry : abstractToConcreteHintGroupMap.entrySet()) {
+			for (MappingHintGroupType concreteHintGroup : entry.getValue()) {
+				concreteHintGroup.getExtend().remove(entry.getKey());
+			}
+		}
 	}
 
 	/**
@@ -1250,9 +1270,9 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 			case PamtramPackage.PAM_TRA_M___MERGE_EXTENDS:
 				mergeExtends();
 				return null;
-			case PamtramPackage.PAM_TRA_M___SOURCE_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP:
+			case PamtramPackage.PAM_TRA_M___SOURCE_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_1:
 				return sourceSectionModelsHaveSameEPackage((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case PamtramPackage.PAM_TRA_M___TARGET_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP:
+			case PamtramPackage.PAM_TRA_M___TARGET_SECTION_MODELS_HAVE_SAME_EPACKAGE__DIAGNOSTICCHAIN_MAP_1:
 				return targetSectionModelsHaveSameEPackage((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

@@ -2630,7 +2630,10 @@
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="TextLabel @ ValueOutput:Bool" cardinality="ZERO__INFINITY" extend="//@targetSectionModel.1/@metaModelSections.2 //@targetSectionModel.1/@metaModelSections.4 //@targetSectionModel.1/@metaModelSections.3">
+    <metaModelSections xsi:type="metamodel:TargetSection" name="TextLabel Input/Output" cardinality="ZERO__INFINITY" extend="//@targetSectionModel.1/@metaModelSections.2 //@targetSectionModel.1/@metaModelSections.4 //@targetSectionModel.1/@metaModelSections.3">
+      <eClass href="http://stefan-hennig.de/movisa#//presentation/TextLabel"/>
+    </metaModelSections>
+    <metaModelSections xsi:type="metamodel:TargetSection" name="TextLabel Input/Output Label" cardinality="ZERO__INFINITY" extend="//@targetSectionModel.1/@metaModelSections.2 //@targetSectionModel.1/@metaModelSections.3">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/TextLabel"/>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:TargetSection" name="Color OutBoolOff" cardinality="ZERO__INFINITY">
@@ -2705,10 +2708,10 @@
         <eReference href="http://stefan-hennig.de/movisa#//presentation/DiscreteAnimationRecord/OwnedComparator"/>
         <value xsi:type="metamodel:TargetSectionClass" name="BooleanComparison">
           <eClass href="http://stefan-hennig.de/movisa#//presentation/BooleanComparison"/>
-          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="falseEval" value="//@targetSectionModel.1/@metaModelSections.9/@references.1/@value.1">
+          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="falseEval" value="//@targetSectionModel.1/@metaModelSections.10/@references.1/@value.1">
             <eReference href="http://stefan-hennig.de/movisa#//presentation/Comparator/FalseEvaluation"/>
           </references>
-          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="trueEval" value="//@targetSectionModel.1/@metaModelSections.9/@references.1/@value.0">
+          <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="trueEval" value="//@targetSectionModel.1/@metaModelSections.10/@references.1/@value.0">
             <eReference href="http://stefan-hennig.de/movisa#//presentation/Comparator/TrueEvaluation"/>
           </references>
           <attributes xsi:type="metamodel:ActualAttribute" name="TextLabelRepBooleanCompName">
@@ -2722,9 +2725,6 @@
           </attributes>
         </value>
       </references>
-    </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="TextLabel @LabelOutput:Bool" cardinality="ZERO__INFINITY" extend="//@targetSectionModel.1/@metaModelSections.2 //@targetSectionModel.1/@metaModelSections.3">
-      <eClass href="http://stefan-hennig.de/movisa#//presentation/TextLabel"/>
     </metaModelSections>
     <metaModelSections xsi:type="metamodel:TargetSection" name="Textdef">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/TextDefinition"/>
@@ -4546,8 +4546,8 @@
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="SOLID" value="SOLID"/>
         </mappingHints>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabelColor Bool:Out Off" targetMMSection="//@targetSectionModel.1/@metaModelSections.6">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepColorName" target="//@targetSectionModel.1/@metaModelSections.6/@attributes.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabelColor Bool:Out Off" targetMMSection="//@targetSectionModel.1/@metaModelSections.7">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepColorName" target="//@targetSectionModel.1/@metaModelSections.7/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.35 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
         <modelConnectionMatcher>
@@ -4556,17 +4556,17 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.33 //@mappingModel.0/@modifierSets.2"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabelColorAnimation OutBool" targetMMSection="//@targetSectionModel.1/@metaModelSections.9">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelColorAnimationOnName" target="//@targetSectionModel.1/@metaModelSections.9/@references.1/@value.0/@attributes.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabelColorAnimation OutBool" targetMMSection="//@targetSectionModel.1/@metaModelSections.10">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelColorAnimationOnName" target="//@targetSectionModel.1/@metaModelSections.10/@references.1/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.37 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelColorAnimationOffName" target="//@targetSectionModel.1/@metaModelSections.9/@references.1/@value.1/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelColorAnimationOffName" target="//@targetSectionModel.1/@metaModelSections.10/@references.1/@value.1/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.38 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepBooleanCompName" target="//@targetSectionModel.1/@metaModelSections.9/@references.2/@value.0/@attributes.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepBooleanCompName" target="//@targetSectionModel.1/@metaModelSections.10/@references.2/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.32 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger repAn" affectedReference="//@targetSectionModel.1/@metaModelSections.9/@references.0">
+        <mappingHints xsi:type="mapping:MappingInstanceSelector" name="Trigger repAn" affectedReference="//@targetSectionModel.1/@metaModelSections.10/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" targetAttribute="//@targetSectionModel.3/@metaModelSections.0/@attributes.0">
             <sourceAttributes xsi:type="mapping:AttributeMatcherSourceElement" name="valueBrowsePath (Bool)" source="//@sourceSectionModel.2/@metaModelSections.12/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifier="//@mappingModel.0/@modifierSets.2 //@mappingModel.0/@modifierSets.47 //@mappingModel.0/@modifierSets.15"/>
           </matcher>
@@ -4577,7 +4577,7 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.33 //@mappingModel.0/@modifierSets.2"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Bool:Out Label" targetMMSection="//@targetSectionModel.1/@metaModelSections.10" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Bool:Out Label" targetMMSection="//@targetSectionModel.1/@metaModelSections.6" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="textLabelName" target="//@targetSectionModel.1/@metaModelSections.2/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.34 //@mappingModel.0/@modifierSets.2"/>
@@ -4595,8 +4595,8 @@
           </matcher>
         </mappingHints>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabelLabelColor Transparent" targetMMSection="//@targetSectionModel.1/@metaModelSections.8">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepColorName" target="//@targetSectionModel.1/@metaModelSections.8/@attributes.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabelLabelColor Transparent" targetMMSection="//@targetSectionModel.1/@metaModelSections.9">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepColorName" target="//@targetSectionModel.1/@metaModelSections.9/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.35 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
         <modelConnectionMatcher>
@@ -4630,8 +4630,8 @@
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="SOLID" value="SOLID"/>
         </mappingHints>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabelColor Double:Out" targetMMSection="//@targetSectionModel.1/@metaModelSections.7">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepColorName" target="//@targetSectionModel.1/@metaModelSections.7/@attributes.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabelColor Double:Out" targetMMSection="//@targetSectionModel.1/@metaModelSections.8">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepColorName" target="//@targetSectionModel.1/@metaModelSections.8/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.35 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
         <modelConnectionMatcher>
@@ -4640,7 +4640,7 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.33 //@mappingModel.0/@modifierSets.2"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Double:Out Label" targetMMSection="//@targetSectionModel.1/@metaModelSections.10" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Double:Out Label" targetMMSection="//@targetSectionModel.1/@metaModelSections.6" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="textLabelName" target="//@targetSectionModel.1/@metaModelSections.2/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.3 //@mappingModel.0/@modifierSets.2"/>
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.34 //@mappingModel.0/@modifierSets.2"/>
@@ -4683,8 +4683,8 @@
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="SOLID" value="SOLID"/>
         </mappingHints>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabelColor Bool:In" targetMMSection="//@targetSectionModel.1/@metaModelSections.7">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepColorName" target="//@targetSectionModel.1/@metaModelSections.7/@attributes.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabelColor Bool:In" targetMMSection="//@targetSectionModel.1/@metaModelSections.8">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepColorName" target="//@targetSectionModel.1/@metaModelSections.8/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.35 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
         <modelConnectionMatcher>
@@ -4693,7 +4693,7 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.33 //@mappingModel.0/@modifierSets.2"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Bool:In Label" targetMMSection="//@targetSectionModel.1/@metaModelSections.10" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Bool:In Label" targetMMSection="//@targetSectionModel.1/@metaModelSections.6" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosXValue" expression="round(variableLabelXOffset+x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
         </mappingHints>
@@ -4736,8 +4736,8 @@
           <sourceAttributeMappings xsi:type="mapping:FixedValue" name="SOLID" value="SOLID"/>
         </mappingHints>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabelColor Double:In" targetMMSection="//@targetSectionModel.1/@metaModelSections.7">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepColorName" target="//@targetSectionModel.1/@metaModelSections.7/@attributes.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabelColor Double:In" targetMMSection="//@targetSectionModel.1/@metaModelSections.8">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepColorName" target="//@targetSectionModel.1/@metaModelSections.8/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.35 //@mappingModel.0/@modifierSets.2"/>
         </mappingHints>
         <modelConnectionMatcher>
@@ -4746,7 +4746,7 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="label" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.4" modifier="//@mappingModel.0/@modifierSets.33 //@mappingModel.0/@modifierSets.2"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Double:In Label" targetMMSection="//@targetSectionModel.1/@metaModelSections.10" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Double:In Label" targetMMSection="//@targetSectionModel.1/@metaModelSections.6" extend="//@mappingModel.1/@mapping.0/@mappingHintGroups.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelRepPosXValue" expression="round(variableLabelXOffset+x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="x" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
         </mappingHints>

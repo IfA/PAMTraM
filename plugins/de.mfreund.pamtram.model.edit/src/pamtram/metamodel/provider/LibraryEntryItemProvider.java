@@ -103,18 +103,18 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 	 */
 	protected void addLibraryFilePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+		(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_LibraryEntry_libraryFile_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LibraryEntry_libraryFile_feature", "_UI_LibraryEntry_type"),
-				 MetamodelPackage.Literals.LIBRARY_ENTRY__LIBRARY_FILE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+						getResourceLocator(),
+						getString("_UI_LibraryEntry_libraryFile_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_LibraryEntry_libraryFile_feature", "_UI_LibraryEntry_type"),
+						MetamodelPackage.Literals.LIBRARY_ENTRY__LIBRARY_FILE,
+						true,
+						false,
+						false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+						null,
+						null));
 	}
 
 	/**
@@ -230,7 +230,7 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
@@ -245,12 +245,12 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((LibraryEntry)object).getLibraryFile();
-    	StyledString styledLabel = new StyledString();
+		String label = ((LibraryEntry)object).getPath().getValue();
+		StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
 			styledLabel.append(getString("_UI_LibraryEntry_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {

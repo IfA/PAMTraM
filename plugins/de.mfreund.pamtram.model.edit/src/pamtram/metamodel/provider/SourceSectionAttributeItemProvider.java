@@ -30,7 +30,7 @@ import pamtram.metamodel.SourceSectionAttribute;
  * @generated
  */
 public class SourceSectionAttributeItemProvider
-	extends AttributeItemProvider {
+extends AttributeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -64,29 +64,29 @@ public class SourceSectionAttributeItemProvider
 	 */
 	protected void addAttributePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+		(new ItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SourceSectionAttribute_attribute_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SourceSectionAttribute_attribute_feature", "_UI_SourceSectionAttribute_type"),
-				 MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null){
+						getResourceLocator(),
+						getString("_UI_SourceSectionAttribute_attribute_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_SourceSectionAttribute_attribute_feature", "_UI_SourceSectionAttribute_type"),
+						MetamodelPackage.Literals.SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null){
 
-				@Override
-				public Collection<?> getChoiceOfValues(Object object) {
+			@Override
+			public Collection<?> getChoiceOfValues(Object object) {
 
-					pamtram.metamodel.Class owner=((pamtram.metamodel.Class)((Attribute) object).eContainer());
-					if(owner.getEClass() != null){
-						return owner.getEClass().getEAllAttributes();
-					} else {
-						return new ArrayList<Object>();
-					}					
-				}
+				pamtram.metamodel.Class owner=((pamtram.metamodel.Class)((Attribute) object).eContainer());
+				if(owner.getEClass() != null){
+					return owner.getEClass().getEAllAttributes();
+				} else {
+					return new ArrayList<Object>();
+				}					
+			}
 		});
 	}
 
@@ -134,28 +134,22 @@ public class SourceSectionAttributeItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return super.getText(object);
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((SourceSectionAttribute)object).getName();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_SourceSectionAttribute_type"), StyledString.Style.QUALIFIER_STYLER); 
-		} else {
-			styledLabel.append(getString("_UI_SourceSectionAttribute_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
-		}
-		return styledLabel;
+		return super.getStyledText(object);
 	}
 
 	/**

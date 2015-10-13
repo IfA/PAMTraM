@@ -12,10 +12,9 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-
 import org.eclipse.emf.edit.provider.StyledString;
+
 import pamtram.metamodel.ActualAttribute;
-import pamtram.metamodel.Attribute;
 import pamtram.metamodel.AttributeParameter;
 import pamtram.metamodel.MetamodelPackage;
 
@@ -26,7 +25,7 @@ import pamtram.metamodel.MetamodelPackage;
  * @generated
  */
 public class ActualAttributeItemProvider
-	extends TargetSectionAttributeItemProvider {
+extends TargetSectionAttributeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -60,33 +59,33 @@ public class ActualAttributeItemProvider
 	 */
 	protected void addAttributePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+		(new ItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ActualAttribute_attribute_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ActualAttribute_attribute_feature", "_UI_ActualAttribute_type"),
-				 MetamodelPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null){
+						getResourceLocator(),
+						getString("_UI_ActualAttribute_attribute_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_ActualAttribute_attribute_feature", "_UI_ActualAttribute_type"),
+						MetamodelPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null){
 
-				@Override
-				public Collection<?> getChoiceOfValues(Object object) {
-					ActualAttribute att = (ActualAttribute) object;
+			@Override
+			public Collection<?> getChoiceOfValues(Object object) {
+				ActualAttribute att = (ActualAttribute) object;
 
-					// in case of a 'normal' TargetSectionClass, the attribute of this class can be chosen
-					if(att.getOwningClass() != null) {
-						return att.getOwningClass().getEClass().getEAllAttributes();
+				// in case of a 'normal' TargetSectionClass, the attribute of this class can be chosen
+				if(att.getOwningClass() != null) {
+					return att.getOwningClass().getEClass().getEAllAttributes();
 					// in case of an AttributeParameter, the attribute of its source can be chosen
-					} else if(att.eContainer() instanceof AttributeParameter && 
-							((AttributeParameter) att.eContainer()).getSource() != null) {
-						return ((AttributeParameter) att.eContainer()).getSource().eClass().getEAllAttributes();
-					}
-					return new ArrayList<Object>();
+				} else if(att.eContainer() instanceof AttributeParameter && 
+						((AttributeParameter) att.eContainer()).getSource() != null) {
+					return ((AttributeParameter) att.eContainer()).getSource().eClass().getEAllAttributes();
 				}
+				return new ArrayList<Object>();
+			}
 		});
 	}
 
@@ -104,38 +103,22 @@ public class ActualAttributeItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Attribute)object).getName();
-		String ret = (label == null || label.length() == 0 ?
-			"" :
-			label);
-		
-		String value = ((ActualAttribute)object).getValue();
-		if(value != null && !value.equals("")) {
-			ret += " (\"" + value + "\")";
-		}
-		
-		return ret;
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((ActualAttribute)object).getName();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_ActualAttribute_type"), StyledString.Style.QUALIFIER_STYLER); 
-		} else {
-			styledLabel.append(getString("_UI_ActualAttribute_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
-		}
-		return styledLabel;
+		return super.getStyledText(object);
 	}
 
 	/**

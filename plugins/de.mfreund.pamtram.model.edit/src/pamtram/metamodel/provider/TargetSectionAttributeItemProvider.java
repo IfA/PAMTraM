@@ -108,27 +108,28 @@ public class TargetSectionAttributeItemProvider extends AttributeItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return super.getText(object);
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((TargetSectionAttribute)object).getName();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_TargetSectionAttribute_type"), StyledString.Style.QUALIFIER_STYLER); 
-		} else {
-			styledLabel.append(getString("_UI_TargetSectionAttribute_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+		StyledString styledLabel = (StyledString) super.getStyledText(object);
+
+		String value = ((TargetSectionAttribute)object).getValue();
+		if(value != null && !value.equals("")) {
+			styledLabel.append(" (\"" + value + "\")", StyledString.Style.COUNTER_STYLER);
 		}
+
 		return styledLabel;
 	}
 

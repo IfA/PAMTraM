@@ -158,28 +158,28 @@ extends MappingTypeItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Mapping)object).getName();
-		return (((Mapping) object).isAbstract() ? "<<abstract>> " : "") + 
-				(label == null || label.length() == 0 ? "" : label);
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
 		String label = ((Mapping)object).getName();
-    	StyledString styledLabel = new StyledString();
+		StyledString styledLabel = new StyledString();
+
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_Mapping_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(""); 
 		} else {
-			styledLabel.append(getString("_UI_Mapping_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(label, ((Mapping) object).isAbstract() ? StyledString.Style.QUALIFIER_STYLER : StyledString.Style.NO_STYLE);
 		}
 		return styledLabel;
 	}

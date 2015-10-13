@@ -28,7 +28,7 @@ import pamtram.mapping.ModelConnectionHint;
  * @generated
  */
 public class MappingHintGroupItemProvider
-	extends MappingHintGroupTypeItemProvider {
+extends MappingHintGroupTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -133,18 +133,11 @@ public class MappingHintGroupItemProvider
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((MappingHintGroup)object).getName();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_MappingHintGroup_type"), StyledString.Style.QUALIFIER_STYLER); 
-		} else {
-			styledLabel.append(getString("_UI_MappingHintGroup_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
-		}
-		return styledLabel;
+		return super.getStyledText(object);
 	}
 
 	/**
@@ -185,7 +178,7 @@ public class MappingHintGroupItemProvider
 				(MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER,
 				 MappingFactory.eINSTANCE.createModelConnectionHint()));
 	}
-	
+
 	/**
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
@@ -196,23 +189,23 @@ public class MappingHintGroupItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-		
+
 		newChildDescriptors.add
 		(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER,
 						MappingFactory.eINSTANCE.createModelConnectionHintWithSourceAndTarget()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER,
-				 MappingFactory.eINSTANCE.createModelConnectionHint()));
-		
+						MappingFactory.eINSTANCE.createModelConnectionHint()));
+
 	}
-	
+
 	@Override
 	public String getCreateChildText(Object owner, Object feature,
 			Object child, Collection<?> selection) {
-		
+
 		// provide labels for the custom child descriptors
 		if(child instanceof ModelConnectionHint) {
 			ModelConnectionHint modelConnectionHint = (ModelConnectionHint) child;

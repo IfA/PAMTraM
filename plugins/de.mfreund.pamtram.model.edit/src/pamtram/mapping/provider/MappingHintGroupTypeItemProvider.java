@@ -3,6 +3,7 @@
 package pamtram.mapping.provider;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -201,17 +202,28 @@ public class MappingHintGroupTypeItemProvider extends NamedElementItemProvider {
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((MappingHintGroupType)object).getName();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_MappingHintGroupType_type"), StyledString.Style.QUALIFIER_STYLER); 
-		} else {
-			styledLabel.append(getString("_UI_MappingHintGroupType_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+
+		MappingHintGroupType mhg = (MappingHintGroupType) object;
+		String label = mhg.getName();
+
+		StyledString styledLabel = new StyledString();
+		if (label != null && label.length() >= 0) {
+			styledLabel.append(label);
 		}
+
+		// add the 'extends'
+		if(!mhg.getExtend().isEmpty()) {
+			ArrayList<String> extend = new ArrayList<>();
+			for (Object e : mhg.getExtend()) {
+				extend.add(((MappingHintGroupType) e).getName());
+			}
+			styledLabel.append(" -> " + String.join(", ", extend), StyledString.Style.DECORATIONS_STYLER);
+		}
+
 		return styledLabel;
 	}
 

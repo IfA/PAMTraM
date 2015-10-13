@@ -60,18 +60,18 @@ extends NamedElementItemProvider {
 	 */
 	protected void addMetaModelPackagePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-		(createItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_SectionModel_metaModelPackage_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_SectionModel_metaModelPackage_feature", "_UI_SectionModel_type"),
-						PamtramPackage.Literals.SECTION_MODEL__META_MODEL_PACKAGE,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+				 getResourceLocator(),
+				 getString("_UI_SectionModel_metaModelPackage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SectionModel_metaModelPackage_feature", "_UI_SectionModel_type"),
+				 PamtramPackage.Literals.SECTION_MODEL__META_MODEL_PACKAGE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -148,9 +148,9 @@ extends NamedElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SectionModel.class)) {
-		case PamtramPackage.SECTION_MODEL__META_MODEL_SECTIONS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case PamtramPackage.SECTION_MODEL__META_MODEL_SECTIONS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -167,14 +167,14 @@ extends NamedElementItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS,
-						MetamodelFactory.eINSTANCE.createSourceSection()));
+				 MetamodelFactory.eINSTANCE.createSourceSection()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS,
-						MetamodelFactory.eINSTANCE.createTargetSection()));
+				 MetamodelFactory.eINSTANCE.createTargetSection()));
 	}
 
 }

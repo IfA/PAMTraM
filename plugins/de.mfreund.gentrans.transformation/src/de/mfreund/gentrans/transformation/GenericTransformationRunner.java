@@ -351,6 +351,24 @@ public class GenericTransformationRunner {
 		 */
 		pamtramModel.mergeExtends();
 
+		/*
+		 * Save a copy of the merged pamtram model for debug purposes.
+		 */
+		//		
+		//		// the URI of the pamtram resource
+		//		final URI pamtramUri2 = URI.createPlatformResourceURI(pamtramPath + "_bak", true);
+		//
+		//		// load the pamtram model
+		//		XMIResource pamtramResource = 
+		//				(XMIResource) resourceSet.createResource(pamtramUri2);
+		//		pamtramResource.getContents().add(pamtramModel);
+		//		try {
+		//			pamtramResource.save(null);
+		//		} catch (IOException e1) {
+		//			e1.printStackTrace();
+		//		}
+
+
 		// find active mappings and resolve ambiguities as far as possible without user
 		// input
 		final List<Mapping> suitableMappings = pamtramModel.getActiveMappings();

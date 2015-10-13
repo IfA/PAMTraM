@@ -4106,6 +4106,13 @@
     </mapping>
   </mappingModel>
   <mappingModel name="AIUs - Output">
+    <mapping name="AIU Output base" sourceMMSection="//@sourceSectionModel.1/@metaModelSections.0" abstract="true">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Output Text Definition" targetMMSection="//@targetSectionModel.1/@metaModelSections.7">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.1/@metaModelSections.7/@attributes.0">
+          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mapping>
     <mapping name="TextLabelMapping" sourceMMSection="//@sourceSectionModel.3/@metaModelSections.2">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel" targetMMSection="//@targetSectionModel.3/@metaModelSections.0">
         <mappingHints xsi:type="mapping:MappingInstanceSelector" name="TextLabelText" affectedReference="//@targetSectionModel.3/@metaModelSections.0/@references.0/@value.0/@references.0">
@@ -4128,22 +4135,16 @@
           <sourceElements xsi:type="mapping:ModelConnectionHintSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.10"/>
         </modelConnectionMatcher>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ValueTextDefinition" targetMMSection="//@targetSectionModel.1/@metaModelSections.7">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ValueTextDefinition" targetMMSection="//@targetSectionModel.1/@metaModelSections.7" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="defaultValue" source="//@sourceSectionModel.3/@metaModelSections.2/@references.0/@value.0/@references.0/@value.0/@attributes.2"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.1/@metaModelSections.7/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
     </mapping>
     <mapping name="dynamicTextLabelMapping" sourceMMSection="//@sourceSectionModel.3/@metaModelSections.3">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ValueTextDefinition" targetMMSection="//@targetSectionModel.1/@metaModelSections.7">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ValueTextDefinition" targetMMSection="//@targetSectionModel.1/@metaModelSections.7" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="defaultValue" source="//@sourceSectionModel.3/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0/@attributes.2"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.1/@metaModelSections.7/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel" targetMMSection="//@targetSectionModel.3/@metaModelSections.0">
@@ -4327,12 +4328,9 @@
       </mappingHintGroups>
     </mapping>
     <mapping name="guidanceMapping" sourceMMSection="//@sourceSectionModel.3/@metaModelSections.4">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ValueTextDefinition" targetMMSection="//@targetSectionModel.1/@metaModelSections.7">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ValueTextDefinition" targetMMSection="//@targetSectionModel.1/@metaModelSections.7" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@attributes.0">
           <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="defaultValue" source="//@sourceSectionModel.3/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0"/>
-        </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.1/@metaModelSections.7/@attributes.0">
-          <sourceAttributeMappings xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.1/@metaModelSections.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ToolTipText" targetMMSection="//@targetSectionModel.3/@metaModelSections.9">

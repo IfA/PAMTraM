@@ -62,18 +62,18 @@ public class SectionItemProvider extends ClassItemProvider {
 	 */
 	protected void addAbstractPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-		(createItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Section_abstract_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Section_abstract_feature", "_UI_Section_type"),
-						MetamodelPackage.Literals.SECTION__ABSTRACT,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
+				 getResourceLocator(),
+				 getString("_UI_Section_abstract_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Section_abstract_feature", "_UI_Section_type"),
+				 MetamodelPackage.Literals.SECTION__ABSTRACT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -84,18 +84,18 @@ public class SectionItemProvider extends ClassItemProvider {
 	 */
 	protected void addExtendPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-		(createItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Section_extend_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Section_extend_feature", "_UI_Section_type"),
-						MetamodelPackage.Literals.SECTION__EXTEND,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+				 getResourceLocator(),
+				 getString("_UI_Section_extend_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Section_extend_feature", "_UI_Section_type"),
+				 MetamodelPackage.Literals.SECTION__EXTEND,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -162,9 +162,9 @@ public class SectionItemProvider extends ClassItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Section.class)) {
-		case MetamodelPackage.SECTION__ABSTRACT:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case MetamodelPackage.SECTION__ABSTRACT:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

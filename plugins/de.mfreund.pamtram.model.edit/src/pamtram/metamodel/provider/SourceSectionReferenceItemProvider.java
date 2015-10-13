@@ -11,7 +11,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 import org.eclipse.emf.edit.provider.StyledString;
-import pamtram.metamodel.SourceSectionReference;
 
 /**
  * This is the item provider adapter for a {@link pamtram.metamodel.SourceSectionReference} object.
@@ -20,7 +19,7 @@ import pamtram.metamodel.SourceSectionReference;
  * @generated
  */
 public class SourceSectionReferenceItemProvider
-	extends ReferenceItemProvider {
+extends ReferenceItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -50,29 +49,22 @@ public class SourceSectionReferenceItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((SourceSectionReference)object).getName();
-		return label;
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((SourceSectionReference)object).getName();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_SourceSectionReference_type"), StyledString.Style.QUALIFIER_STYLER); 
-		} else {
-			styledLabel.append(getString("_UI_SourceSectionReference_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
-		}
-		return styledLabel;
+		return super.getStyledText(object);
 	}
 
 	/**

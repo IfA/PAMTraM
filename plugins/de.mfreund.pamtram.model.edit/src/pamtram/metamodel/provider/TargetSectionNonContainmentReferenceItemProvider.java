@@ -33,7 +33,7 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
  * @generated
  */
 public class TargetSectionNonContainmentReferenceItemProvider
-	extends NonContainmentReferenceItemProvider {
+extends NonContainmentReferenceItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -67,47 +67,47 @@ public class TargetSectionNonContainmentReferenceItemProvider
 	@Override
 	protected void addValuePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+		(new ItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_TargetSectionNonContainmentReference_value_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetSectionNonContainmentReference_value_feature", "_UI_TargetSectionNonContainmentReference_type"),
-				 MetamodelPackage.Literals.NON_CONTAINMENT_REFERENCE__VALUE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null){
+						getResourceLocator(),
+						getString("_UI_TargetSectionNonContainmentReference_value_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_TargetSectionNonContainmentReference_value_feature", "_UI_TargetSectionNonContainmentReference_type"),
+						MetamodelPackage.Literals.NON_CONTAINMENT_REFERENCE__VALUE,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null){
 
-					@Override
-					public Collection<?> getChoiceOfValues(Object object) {
-						Collection<?> superChoices=super.getChoiceOfValues(object);
-						
-						EClass refClass =null;
-						try{
-							refClass=((TargetSectionNonContainmentReference)object).getEReference().getEReferenceType();
-						} catch(Exception e){
-							return superChoices;
-						}
-							List<TargetSectionClass> choices=new LinkedList<TargetSectionClass>();
-							Iterator<?>  it=superChoices.iterator();
-							while(it.hasNext()){
-								Object next=it.next();
-								if(next instanceof TargetSectionClass){
-									if(((TargetSectionClass) next).getEClass() != null){
-										if(refClass.isSuperTypeOf(((TargetSectionClass) next).getEClass())){
-											choices.add((TargetSectionClass) next);
-										}
-									}
-								}
+			@Override
+			public Collection<?> getChoiceOfValues(Object object) {
+				Collection<?> superChoices=super.getChoiceOfValues(object);
+
+				EClass refClass =null;
+				try{
+					refClass=((TargetSectionNonContainmentReference)object).getEReference().getEReferenceType();
+				} catch(Exception e){
+					return superChoices;
+				}
+				List<TargetSectionClass> choices=new LinkedList<TargetSectionClass>();
+				Iterator<?>  it=superChoices.iterator();
+				while(it.hasNext()){
+					Object next=it.next();
+					if(next instanceof TargetSectionClass){
+						if(((TargetSectionClass) next).getEClass() != null){
+							if(refClass.isSuperTypeOf(((TargetSectionClass) next).getEClass())){
+								choices.add((TargetSectionClass) next);
 							}
-							
-							return choices;
+						}
 					}
-				
-				
-			});
+				}
+
+				return choices;
+			}
+
+
+		});
 	}
 
 	/**
@@ -124,28 +124,22 @@ public class TargetSectionNonContainmentReferenceItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return super.getText(object);
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((TargetSectionNonContainmentReference)object).getName();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_TargetSectionNonContainmentReference_type"), StyledString.Style.QUALIFIER_STYLER); 
-		} else {
-			styledLabel.append(getString("_UI_TargetSectionNonContainmentReference_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
-		}
-		return styledLabel;
+		return super.getStyledText(object);
 	}
 
 	/**
@@ -172,12 +166,12 @@ public class TargetSectionNonContainmentReferenceItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
-	
+
 	@Override
 	protected Command createDragAndDropCommand(EditingDomain domain,
 			Object owner, float location, int operations, int operation,
 			Collection<?> collection) {
-		
+
 		EList<TargetSectionClass> values = new BasicEList<TargetSectionClass>();
 		for (Object value : collection) {
 			if(value instanceof TargetSectionClass) {
@@ -187,7 +181,7 @@ public class TargetSectionNonContainmentReferenceItemProvider
 						operation, collection); 
 			}
 		}
-		
+
 		if(values.isEmpty()) {
 			return super.createDragAndDropCommand(domain, owner, location, operations,
 					operation, collection); 

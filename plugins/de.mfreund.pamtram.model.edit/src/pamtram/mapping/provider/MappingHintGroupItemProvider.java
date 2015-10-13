@@ -63,18 +63,18 @@ extends MappingHintGroupTypeItemProvider {
 	 */
 	protected void addDeactivatedPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+		(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DeactivatableElement_deactivated_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DeactivatableElement_deactivated_feature", "_UI_DeactivatableElement_type"),
-				 PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
+						getResourceLocator(),
+						getString("_UI_DeactivatableElement_deactivated_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_DeactivatableElement_deactivated_feature", "_UI_DeactivatableElement_type"),
+						PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED,
+						true,
+						false,
+						false,
+						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+						null,
+						null));
 	}
 
 	/**
@@ -137,7 +137,15 @@ extends MappingHintGroupTypeItemProvider {
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		return super.getStyledText(object);
+
+		StyledString styledLabel = (StyledString) super.getStyledText(object);
+
+		if(((MappingHintGroup) object).isDeactivated()) {
+			return new StyledString(styledLabel.getString(), StyledString.Style.newBuilder().setStrikedout(true).toStyle());
+		} else {
+			return styledLabel;
+
+		}
 	}
 
 	/**
@@ -152,12 +160,12 @@ extends MappingHintGroupTypeItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MappingHintGroup.class)) {
-			case MappingPackage.MAPPING_HINT_GROUP__DEACTIVATED:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case MappingPackage.MAPPING_HINT_GROUP__DEACTIVATED:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case MappingPackage.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -174,9 +182,9 @@ extends MappingHintGroupTypeItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER,
-				 MappingFactory.eINSTANCE.createModelConnectionHint()));
+						MappingFactory.eINSTANCE.createModelConnectionHint()));
 	}
 
 	/**

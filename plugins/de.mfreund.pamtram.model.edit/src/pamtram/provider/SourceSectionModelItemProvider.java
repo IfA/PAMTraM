@@ -5,11 +5,11 @@ package pamtram.provider;
 
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
-import pamtram.SourceSectionModel;
 
 /**
  * This is the item provider adapter for a {@link pamtram.SourceSectionModel} object.
@@ -18,7 +18,7 @@ import pamtram.SourceSectionModel;
  * @generated
  */
 public class SourceSectionModelItemProvider
-	extends SectionModelItemProvider {
+extends SectionModelItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -70,18 +70,11 @@ public class SourceSectionModelItemProvider
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((SourceSectionModel)object).getName();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_SourceSectionModel_type"), StyledString.Style.QUALIFIER_STYLER); 
-		} else {
-			styledLabel.append(getString("_UI_SourceSectionModel_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
-		}
-		return styledLabel;
+		return super.getStyledText(object);
 	}
 
 	/**

@@ -13,6 +13,7 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import pamtram.PamtramPackage;
 import pamtram.SectionModel;
 import pamtram.metamodel.MetamodelFactory;
@@ -24,7 +25,7 @@ import pamtram.metamodel.MetamodelFactory;
  * @generated
  */
 public class SectionModelItemProvider
-	extends NamedElementItemProvider {
+extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -59,18 +60,18 @@ public class SectionModelItemProvider
 	 */
 	protected void addMetaModelPackagePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+		(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SectionModel_metaModelPackage_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SectionModel_metaModelPackage_feature", "_UI_SectionModel_type"),
-				 PamtramPackage.Literals.SECTION_MODEL__META_MODEL_PACKAGE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+						getResourceLocator(),
+						getString("_UI_SectionModel_metaModelPackage_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_SectionModel_metaModelPackage_feature", "_UI_SectionModel_type"),
+						PamtramPackage.Literals.SECTION_MODEL__META_MODEL_PACKAGE,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null));
 	}
 
 	/**
@@ -118,17 +119,20 @@ public class SectionModelItemProvider
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
 		String label = ((SectionModel<?, ?, ?, ?>)object).getName();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_SectionModel_type"), StyledString.Style.QUALIFIER_STYLER); 
-		} else {
-			styledLabel.append(getString("_UI_SectionModel_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+		StyledString styledLabel = new StyledString();
+		if (label != null && label.length() > 0) {
+			styledLabel.append(" " + label);
 		}
+
+		if(((SectionModel<?, ?, ?, ?>)object).getMetaModelPackage() != null) {
+			styledLabel.append(" (" + ((SectionModel<?, ?, ?, ?>)object).getMetaModelPackage().getNsPrefix() + ")", StyledString.Style.QUALIFIER_STYLER);
+		}
+
 		return styledLabel;
 	}
 
@@ -144,9 +148,9 @@ public class SectionModelItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SectionModel.class)) {
-			case PamtramPackage.SECTION_MODEL__META_MODEL_SECTIONS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case PamtramPackage.SECTION_MODEL__META_MODEL_SECTIONS:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -163,14 +167,14 @@ public class SectionModelItemProvider
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS,
-				 MetamodelFactory.eINSTANCE.createSourceSection()));
+						MetamodelFactory.eINSTANCE.createSourceSection()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS,
-				 MetamodelFactory.eINSTANCE.createTargetSection()));
+						MetamodelFactory.eINSTANCE.createTargetSection()));
 	}
 
 }

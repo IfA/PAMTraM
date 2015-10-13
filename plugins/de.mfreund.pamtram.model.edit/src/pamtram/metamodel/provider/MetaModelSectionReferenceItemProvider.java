@@ -20,6 +20,7 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
+import org.eclipse.emf.edit.provider.StyledString;
 import pamtram.mapping.commands.BasicDragAndDropAddCommand;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
@@ -129,6 +130,24 @@ public class MetaModelSectionReferenceItemProvider extends SourceSectionReferenc
 		return super.getText(object);
 	}
 	
+
+	/**
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getStyledText(Object object) {
+		String label = ((MetaModelSectionReference)object).getName();
+    	StyledString styledLabel = new StyledString();
+		if (label == null || label.length() == 0) {
+			styledLabel.append(getString("_UI_MetaModelSectionReference_type"), StyledString.Style.QUALIFIER_STYLER); 
+		} else {
+			styledLabel.append(getString("_UI_MetaModelSectionReference_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+		}
+		return styledLabel;
+	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

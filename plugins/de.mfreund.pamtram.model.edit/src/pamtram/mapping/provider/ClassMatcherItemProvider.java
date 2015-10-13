@@ -13,6 +13,7 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
+import org.eclipse.emf.edit.provider.StyledString;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.MappingPackage;
 
@@ -98,7 +99,18 @@ public class ClassMatcherItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ClassMatcher_type");
+		return ((StyledString)getStyledText(object)).getString();
+	}
+
+	/**
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getStyledText(Object object) {
+		return new StyledString(getString("_UI_ClassMatcher_type"));
 	}
 
 	/**

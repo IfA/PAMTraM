@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.SectionModel;
@@ -71,18 +72,18 @@ extends MetaModelElementItemProvider {
 	 */
 	protected void addEClassPropertyDescriptorGen(Object object) {
 		itemPropertyDescriptors.add
-		(createItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Class_eClass_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Class_eClass_feature", "_UI_Class_type"),
-						MetamodelPackage.Literals.CLASS__ECLASS,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+				 getResourceLocator(),
+				 getString("_UI_Class_eClass_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Class_eClass_feature", "_UI_Class_type"),
+				 MetamodelPackage.Literals.CLASS__ECLASS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -187,18 +188,18 @@ extends MetaModelElementItemProvider {
 	 */
 	protected void addCardinalityPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-		(createItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Class_cardinality_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Class_cardinality_feature", "_UI_Class_type"),
-						MetamodelPackage.Literals.CLASS__CARDINALITY,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+				 getResourceLocator(),
+				 getString("_UI_Class_cardinality_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Class_cardinality_feature", "_UI_Class_type"),
+				 MetamodelPackage.Literals.CLASS__CARDINALITY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -209,18 +210,18 @@ extends MetaModelElementItemProvider {
 	 */
 	protected void addContainerPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-		(createItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Class_container_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Class_container_feature", "_UI_Class_type"),
-						MetamodelPackage.Literals.CLASS__CONTAINER,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+				 getResourceLocator(),
+				 getString("_UI_Class_container_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Class_container_feature", "_UI_Class_type"),
+				 MetamodelPackage.Literals.CLASS__CONTAINER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -292,6 +293,24 @@ extends MetaModelElementItemProvider {
 	}
 
 	/**
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getStyledText(Object object) {
+		String label = ((pamtram.metamodel.Class<?, ?, ?, ?>)object).getName();
+    	StyledString styledLabel = new StyledString();
+		if (label == null || label.length() == 0) {
+			styledLabel.append(getString("_UI_Class_type"), StyledString.Style.QUALIFIER_STYLER); 
+		} else {
+			styledLabel.append(getString("_UI_Class_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+		}
+		return styledLabel;
+	}
+
+	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
@@ -303,13 +322,13 @@ extends MetaModelElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(pamtram.metamodel.Class.class)) {
-		case MetamodelPackage.CLASS__CARDINALITY:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case MetamodelPackage.CLASS__REFERENCES:
-		case MetamodelPackage.CLASS__ATTRIBUTES:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case MetamodelPackage.CLASS__CARDINALITY:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case MetamodelPackage.CLASS__REFERENCES:
+			case MetamodelPackage.CLASS__ATTRIBUTES:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -326,39 +345,39 @@ extends MetaModelElementItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MetamodelPackage.Literals.CLASS__REFERENCES,
-						MetamodelFactory.eINSTANCE.createTargetSectionContainmentReference()));
+				 MetamodelFactory.eINSTANCE.createTargetSectionContainmentReference()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MetamodelPackage.Literals.CLASS__REFERENCES,
-						MetamodelFactory.eINSTANCE.createTargetSectionNonContainmentReference()));
+				 MetamodelFactory.eINSTANCE.createTargetSectionNonContainmentReference()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MetamodelPackage.Literals.CLASS__REFERENCES,
-						MetamodelFactory.eINSTANCE.createSourceSectionContainmentReference()));
+				 MetamodelFactory.eINSTANCE.createSourceSectionContainmentReference()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MetamodelPackage.Literals.CLASS__REFERENCES,
-						MetamodelFactory.eINSTANCE.createMetaModelSectionReference()));
+				 MetamodelFactory.eINSTANCE.createMetaModelSectionReference()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
-						MetamodelFactory.eINSTANCE.createSourceSectionAttribute()));
+				 MetamodelFactory.eINSTANCE.createSourceSectionAttribute()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
-						MetamodelFactory.eINSTANCE.createActualAttribute()));
+				 MetamodelFactory.eINSTANCE.createActualAttribute()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MetamodelPackage.Literals.CLASS__ATTRIBUTES,
-						MetamodelFactory.eINSTANCE.createVirtualAttribute()));
+				 MetamodelFactory.eINSTANCE.createVirtualAttribute()));
 	}
 
 }

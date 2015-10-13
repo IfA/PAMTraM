@@ -8,6 +8,8 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.StyledString;
+import pamtram.metamodel.SourceSectionContainmentReference;
 
 /**
  * This is the item provider adapter for a {@link pamtram.metamodel.SourceSectionContainmentReference} object.
@@ -60,6 +62,24 @@ public class SourceSectionContainmentReferenceItemProvider
 	@Override
 	public String getText(Object object) {
 		return super.getText(object);
+	}
+
+	/**
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getStyledText(Object object) {
+		String label = ((SourceSectionContainmentReference)object).getName();
+    	StyledString styledLabel = new StyledString();
+		if (label == null || label.length() == 0) {
+			styledLabel.append(getString("_UI_SourceSectionContainmentReference_type"), StyledString.Style.QUALIFIER_STYLER); 
+		} else {
+			styledLabel.append(getString("_UI_SourceSectionContainmentReference_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+		}
+		return styledLabel;
 	}
 
 	/**

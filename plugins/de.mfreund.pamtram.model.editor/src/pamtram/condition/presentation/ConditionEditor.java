@@ -59,6 +59,7 @@ import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.edit.ui.provider.DecoratingColumLabelProvider;
+import org.eclipse.emf.edit.ui.provider.DelegatingStyledCellLabelProvider;
 import org.eclipse.emf.edit.ui.provider.DiagnosticDecorator;
 import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
 import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
@@ -396,7 +397,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 										}
 										else {
 											if ((delta.getFlags() & IResourceDelta.MARKERS) != 0) {
-												DiagnosticDecorator.DiagnosticAdapter.update(resource, markerHelper.getMarkerDiagnostics(resource, (IFile)delta.getResource(), false));
+												DiagnosticDecorator.Styled.DiagnosticAdapter.update(resource, markerHelper.getMarkerDiagnostics(resource, (IFile)delta.getResource(), false));
 											}
 											if ((delta.getFlags() & IResourceDelta.CONTENT) != 0) {
 												if (!savedResources.remove(resource)) {
@@ -936,12 +937,12 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 			setCurrentViewer(selectionViewer);
 
 			selectionViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-			selectionViewer.setLabelProvider(new DecoratingColumLabelProvider(new AdapterFactoryLabelProvider(adapterFactory), new DiagnosticDecorator(editingDomain, selectionViewer, PamtramEditorPlugin.getPlugin().getDialogSettings())));
+			selectionViewer.setLabelProvider(new DelegatingStyledCellLabelProvider(new DecoratingColumLabelProvider.StyledLabelProvider(new AdapterFactoryLabelProvider.StyledLabelProvider(adapterFactory, selectionViewer), new DiagnosticDecorator.Styled(editingDomain, selectionViewer, PamtramEditorPlugin.getPlugin().getDialogSettings()))));
 			selectionViewer.setInput(editingDomain.getResourceSet());
 			selectionViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
 
 			new AdapterFactoryTreeEditor(selectionViewer.getTree(), adapterFactory);
-			new ColumnViewerInformationControlToolTipSupport(selectionViewer, new DiagnosticDecorator.EditingDomainLocationListener(editingDomain, selectionViewer));
+			new ColumnViewerInformationControlToolTipSupport(selectionViewer, new DiagnosticDecorator.Styled.EditingDomainLocationListener(editingDomain, selectionViewer));
 
 			createContextMenuFor(selectionViewer);
 			int pageIndex = addPage(tree);
@@ -1073,10 +1074,10 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 					// Set up the tree viewer.
 					//
 					contentOutlineViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-					contentOutlineViewer.setLabelProvider(new DecoratingColumLabelProvider(new AdapterFactoryLabelProvider(adapterFactory), new DiagnosticDecorator(editingDomain, contentOutlineViewer, PamtramEditorPlugin.getPlugin().getDialogSettings())));
+					contentOutlineViewer.setLabelProvider(new DelegatingStyledCellLabelProvider(new DecoratingColumLabelProvider.StyledLabelProvider(new AdapterFactoryLabelProvider.StyledLabelProvider(adapterFactory, contentOutlineViewer), new DiagnosticDecorator.Styled(editingDomain, contentOutlineViewer, PamtramEditorPlugin.getPlugin().getDialogSettings()))));
 					contentOutlineViewer.setInput(editingDomain.getResourceSet());
 
-					new ColumnViewerInformationControlToolTipSupport(contentOutlineViewer, new DiagnosticDecorator.EditingDomainLocationListener(editingDomain, contentOutlineViewer));
+					new ColumnViewerInformationControlToolTipSupport(contentOutlineViewer, new DiagnosticDecorator.Styled.EditingDomainLocationListener(editingDomain, contentOutlineViewer));
 
 					// Make sure our popups work.
 					//

@@ -5,6 +5,7 @@ package pamtram.metamodel.provider;
 
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -12,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
+
 import pamtram.mapping.commands.BasicDragAndDropSetCommand;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.SourceSectionClass;
@@ -23,7 +25,7 @@ import pamtram.metamodel.SourceSectionClass;
  * @generated
  */
 public class SourceSectionClassItemProvider
-	extends ClassItemProvider {
+extends ClassItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -63,28 +65,22 @@ public class SourceSectionClassItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return super.getText(object);
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((SourceSectionClass)object).getName();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_SourceSectionClass_type"), StyledString.Style.QUALIFIER_STYLER); 
-		} else {
-			styledLabel.append(getString("_UI_SourceSectionClass_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
-		}
-		return styledLabel;
+		return super.getStyledText(object);
 	}
 
 	/**
@@ -111,7 +107,7 @@ public class SourceSectionClassItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
-	
+
 	@Override
 	protected Command createDragAndDropCommand(EditingDomain domain,
 			Object owner, float location, int operations, int operation,
@@ -121,13 +117,13 @@ public class SourceSectionClassItemProvider
 			if(collection.size() == 1) {
 				Object value = collection.iterator().next();
 				if(value instanceof SourceSectionClass) {
-			
+
 					return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
 							MetamodelPackage.Literals.CLASS__CONTAINER, value, 0);
 				}
 			}
 		}
-		
+
 		return super.createDragAndDropCommand(domain, owner, location, operations,
 				operation, collection); 
 	}

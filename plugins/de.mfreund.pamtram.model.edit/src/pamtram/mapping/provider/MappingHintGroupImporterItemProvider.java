@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.PamtramPackage;
@@ -72,18 +73,18 @@ public class MappingHintGroupImporterItemProvider extends NamedElementItemProvid
 	 */
 	protected void addDeactivatedPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+		(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DeactivatableElement_deactivated_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DeactivatableElement_deactivated_feature", "_UI_DeactivatableElement_type"),
-				 PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
+						getResourceLocator(),
+						getString("_UI_DeactivatableElement_deactivated_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_DeactivatableElement_deactivated_feature", "_UI_DeactivatableElement_type"),
+						PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED,
+						true,
+						false,
+						false,
+						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+						null,
+						null));
 	}
 
 	/**
@@ -94,18 +95,18 @@ public class MappingHintGroupImporterItemProvider extends NamedElementItemProvid
 	 */
 	protected void addHintGroupPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+		(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MappingHintGroupImporter_hintGroup_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MappingHintGroupImporter_hintGroup_feature", "_UI_MappingHintGroupImporter_type"),
-				 MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+						getResourceLocator(),
+						getString("_UI_MappingHintGroupImporter_hintGroup_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_MappingHintGroupImporter_hintGroup_feature", "_UI_MappingHintGroupImporter_type"),
+						MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null));
 	}
 
 	/**
@@ -115,43 +116,43 @@ public class MappingHintGroupImporterItemProvider extends NamedElementItemProvid
 	 */
 	protected void addContainerPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+		(new ItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MappingHintGroupImporter_container_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MappingHintGroupImporter_container_feature", "_UI_MappingHintGroupImporter_type"),
-				 MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__CONTAINER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null){
+						getResourceLocator(),
+						getString("_UI_MappingHintGroupImporter_container_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_MappingHintGroupImporter_container_feature", "_UI_MappingHintGroupImporter_type"),
+						MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__CONTAINER,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null){
 
-					@Override
-					public Collection<?> getChoiceOfValues(Object object) {
-						List<TargetSectionClass> choiceOfValues=new LinkedList<TargetSectionClass>();
-						
-						Mapping mapping= (Mapping) ((EObject)object).eContainer();
-						
-						for(MappingHintGroupType g : mapping.getMappingHintGroups()){
-							if(g.getTargetMMSection() != null && g instanceof MappingHintGroup){
-								choiceOfValues.add(g.getTargetMMSection());
-								TreeIterator<EObject> it=g.getTargetMMSection().eAllContents();
-								while(it.hasNext()){
-									EObject next=it.next();
-									if(next instanceof TargetSectionClass){
-										choiceOfValues.add((TargetSectionClass) next);
-									}
-								}	
+			@Override
+			public Collection<?> getChoiceOfValues(Object object) {
+				List<TargetSectionClass> choiceOfValues=new LinkedList<TargetSectionClass>();
+
+				Mapping mapping= (Mapping) ((EObject)object).eContainer();
+
+				for(MappingHintGroupType g : mapping.getMappingHintGroups()){
+					if(g.getTargetMMSection() != null && g instanceof MappingHintGroup){
+						choiceOfValues.add(g.getTargetMMSection());
+						TreeIterator<EObject> it=g.getTargetMMSection().eAllContents();
+						while(it.hasNext()){
+							EObject next=it.next();
+							if(next instanceof TargetSectionClass){
+								choiceOfValues.add((TargetSectionClass) next);
 							}
-						}
-						
-						return choiceOfValues;
+						}	
 					}
-				
-				
-			});
+				}
+
+				return choiceOfValues;
+			}
+
+
+		});
 	}
 
 	/**
@@ -203,12 +204,38 @@ public class MappingHintGroupImporterItemProvider extends NamedElementItemProvid
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((MappingHintGroupImporter)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_MappingHintGroupImporter_type") :
-			getString("_UI_MappingHintGroupImporter_type") + " " + label;
+		return ((StyledString)getStyledText(object)).getString();
 	}
-	
+
+
+	/**
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public Object getStyledText(Object object) {
+
+		MappingHintGroupImporter mhg = (MappingHintGroupImporter) object;
+		String label = mhg.getName();
+
+		StyledString styledLabel = new StyledString();
+		if (label != null && label.length() >= 0) {
+			styledLabel.append(label);
+		}
+
+		if(mhg.getHintGroup() != null) {
+			styledLabel.append(" imports " + mhg.getHintGroup().getName(), StyledString.Style.DECORATIONS_STYLER);
+		}
+
+		if(mhg.isDeactivated()) {
+			return new StyledString(styledLabel.getString(), StyledString.Style.newBuilder().setStrikedout(true).toStyle());
+		} else {
+			return styledLabel;
+
+		}
+	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -222,12 +249,12 @@ public class MappingHintGroupImporterItemProvider extends NamedElementItemProvid
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MappingHintGroupImporter.class)) {
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -244,44 +271,44 @@ public class MappingHintGroupImporterItemProvider extends NamedElementItemProvid
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
-				 MappingFactory.eINSTANCE.createAttributeMapping()));
+						MappingFactory.eINSTANCE.createAttributeMapping()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
-				 MappingFactory.eINSTANCE.createCardinalityMapping()));
+						MappingFactory.eINSTANCE.createCardinalityMapping()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
-				 MappingFactory.eINSTANCE.createMappingInstanceSelector()));
+						MappingFactory.eINSTANCE.createMappingInstanceSelector()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
-				 MappingFactory.eINSTANCE.createLocalMappedAttributeValueExpander()));
+						MappingFactory.eINSTANCE.createLocalMappedAttributeValueExpander()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
-				 MappingFactory.eINSTANCE.createMappedAttributeValuePrepender()));
+						MappingFactory.eINSTANCE.createMappedAttributeValuePrepender()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
-				 MappingFactory.eINSTANCE.createMappedAttributeValueAppender()));
+						MappingFactory.eINSTANCE.createMappedAttributeValueAppender()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
-				 MappingFactory.eINSTANCE.createExternalMappedAttributeValuePrepender()));
+						MappingFactory.eINSTANCE.createExternalMappedAttributeValuePrepender()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
-				 MappingFactory.eINSTANCE.createExternalMappedAttributeValueAppender()));
+						MappingFactory.eINSTANCE.createExternalMappedAttributeValueAppender()));
 	}
 
 	/**

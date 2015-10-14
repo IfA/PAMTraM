@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.mapping.AttributeValueModifierSet;
@@ -26,7 +27,7 @@ import pamtram.provider.PamtramEditPlugin;
  * @generated
  */
 public class AttributeValueModifierSetItemProvider
-	extends NamedElementItemProvider {
+extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -102,8 +103,26 @@ public class AttributeValueModifierSetItemProvider
 	public String getText(Object object) {
 		String label = ((AttributeValueModifierSet)object).getName();
 		return label == null || label.length() == 0 ?
-			"ModifierSet" :
-				"ModifierSet " + label;
+				"ModifierSet" :
+					"ModifierSet " + label;
+	}
+
+	/**
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public Object getStyledText(Object object) {
+		String label = ((AttributeValueModifierSet)object).getName();
+		StyledString styledLabel = new StyledString();
+		if (label == null || label.length() == 0) {
+			styledLabel.append("Modifier Set", StyledString.Style.QUALIFIER_STYLER); 
+		} else {
+			styledLabel.append("Modifier Set", StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+		}
+		return styledLabel;
 	}
 
 	/**
@@ -118,9 +137,9 @@ public class AttributeValueModifierSetItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(AttributeValueModifierSet.class)) {
-			case MappingPackage.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case MappingPackage.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -137,34 +156,34 @@ public class AttributeValueModifierSetItemProvider
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER,
-				 MappingFactory.eINSTANCE.createSubstringReplacer()));
+						MappingFactory.eINSTANCE.createSubstringReplacer()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER,
-				 MappingFactory.eINSTANCE.createStringAppender()));
+						MappingFactory.eINSTANCE.createStringAppender()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER,
-				 MappingFactory.eINSTANCE.createUniqueNumberAppender()));
+						MappingFactory.eINSTANCE.createUniqueNumberAppender()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER,
-				 MappingFactory.eINSTANCE.createStringPrepender()));
+						MappingFactory.eINSTANCE.createStringPrepender()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER,
-				 MappingFactory.eINSTANCE.createMatchToLowerCaseConverter()));
+						MappingFactory.eINSTANCE.createMatchToLowerCaseConverter()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER,
-				 MappingFactory.eINSTANCE.createMatchToUpperCaseConverter()));
+						MappingFactory.eINSTANCE.createMatchToUpperCaseConverter()));
 	}
 
 	/**

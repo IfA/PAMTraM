@@ -3,7 +3,9 @@
 package pamtram.metamodel.provider;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -12,9 +14,12 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.StyledString;
+import org.eclipse.emf.edit.provider.StyledString.Fragment;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.Section;
 import pamtram.metamodel.TargetSection;
 
 /**
@@ -60,18 +65,18 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	 */
 	protected void addAbstractPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-		(createItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Section_abstract_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Section_abstract_feature", "_UI_Section_type"),
-						MetamodelPackage.Literals.SECTION__ABSTRACT,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
+				 getResourceLocator(),
+				 getString("_UI_Section_abstract_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Section_abstract_feature", "_UI_Section_type"),
+				 MetamodelPackage.Literals.SECTION__ABSTRACT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -129,18 +134,18 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	 */
 	protected void addReferencingMappingHintGroupsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-		(createItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_TargetSection_referencingMappingHintGroups_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_TargetSection_referencingMappingHintGroups_feature", "_UI_TargetSection_type"),
-						MetamodelPackage.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS,
-						false,
-						false,
-						false,
-						null,
-						null,
-						null));
+				 getResourceLocator(),
+				 getString("_UI_TargetSection_referencingMappingHintGroups_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TargetSection_referencingMappingHintGroups_feature", "_UI_TargetSection_type"),
+				 MetamodelPackage.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -167,6 +172,46 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 
 
 	/**
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public Object getStyledText(Object object) {
+		Section section = (Section) object;
+
+		StyledString styledLabel = new StyledString();
+
+		if(!section.isAbstract() || section.getName() == null || section.getName().isEmpty()) {
+			styledLabel.append((StyledString) super.getStyledText(object));
+		} else {
+			Iterator<Fragment> it = ((StyledString) super.getStyledText(object)).iterator();
+			while(it.hasNext()) {
+				Fragment next = it.next();
+				if(next.getString().equals(section.getName())) {
+					// use the 'qualifier styler' for the label
+					styledLabel.append(next.getString(), StyledString.Style.QUALIFIER_STYLER);
+				} else {
+					// every other fragment is added as is
+					styledLabel.append(next.getString(), next.getStyle());
+				}
+			}
+		}
+
+		// add the 'extends'
+		if(!section.getExtend().isEmpty()) {
+			ArrayList<String> extend = new ArrayList<>();
+			for (Object e : section.getExtend()) {
+				extend.add(((Section) e).getName());
+			}
+			styledLabel.append(" -> " + String.join(", ", extend), StyledString.Style.DECORATIONS_STYLER);
+		}
+
+		return styledLabel;
+	}
+
+	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
@@ -178,9 +223,9 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(TargetSection.class)) {
-		case MetamodelPackage.TARGET_SECTION__ABSTRACT:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case MetamodelPackage.TARGET_SECTION__ABSTRACT:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

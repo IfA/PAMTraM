@@ -5,6 +5,7 @@ package pamtram.provider;
 
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -13,11 +14,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry;
 import pamtram.PamtramPackage;
 import pamtram.TargetSectionModel;
 import pamtram.mapping.commands.DeleteLibraryEntryCommand;
-import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry;
 
 /**
  * This is the item provider adapter for a {@link pamtram.TargetSectionModel} object.
@@ -26,7 +29,7 @@ import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry;
  * @generated
  */
 public class TargetSectionModelItemProvider
-	extends SectionModelItemProvider {
+extends SectionModelItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -101,10 +104,18 @@ public class TargetSectionModelItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((TargetSectionModel)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_TargetSectionModel_type") :
-			getString("_UI_TargetSectionModel_type") + " " + label;
+		return ((StyledString)getStyledText(object)).getString();
+	}
+
+	/**
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public Object getStyledText(Object object) {
+		return super.getStyledText(object);
 	}
 
 	/**
@@ -137,7 +148,7 @@ public class TargetSectionModelItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
-	
+
 	/**
 	 * If one or more library entries are to be deleted, this does not use the default command but instead
 	 * the custom {@link DeleteLibraryEntryCommand} that also removes the resource that holds the 

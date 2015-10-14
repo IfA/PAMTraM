@@ -17,6 +17,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.mapping.MappingFactory;
@@ -35,7 +36,7 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
  * @generated
  */
 public class MappingInstanceSelectorItemProvider
-	extends MappingHintItemProvider {
+extends MappingHintItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -69,44 +70,44 @@ public class MappingInstanceSelectorItemProvider
 	 */
 	protected void addAffectedReferencePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+		(new ItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MappingInstanceSelector_affectedReference_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MappingInstanceSelector_affectedReference_feature", "_UI_MappingInstanceSelector_type"),
-				 MappingPackage.Literals.MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null){
+						getResourceLocator(),
+						getString("_UI_MappingInstanceSelector_affectedReference_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_MappingInstanceSelector_affectedReference_feature", "_UI_MappingInstanceSelector_type"),
+						MappingPackage.Literals.MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null){
 
-					@Override
-					public Collection<?> getChoiceOfValues(Object object) {
-						TargetSectionClass target=null;
-						if(((MappingInstanceSelector)object).eContainer() instanceof MappingHintGroupType){
-							target=((MappingHintGroupType) ((MappingInstanceSelector)object).eContainer()).getTargetMMSection();
-						} else if(((MappingInstanceSelector)object).eContainer() instanceof MappingHintGroupImporter){
-							target=((MappingHintGroupImporter) ((MappingInstanceSelector)object).eContainer()).getHintGroup().getTargetMMSection();
-						}
-						
-						TreeIterator<EObject> it =target.eAllContents();
-						List<EObject> vals= new ArrayList<EObject>();
-						
-						while(it.hasNext()){
-							EObject next=it.next();
-							if(next instanceof TargetSectionNonContainmentReference){
-								vals.add(next);
-							}
-						}
-						
-						return vals;
+			@Override
+			public Collection<?> getChoiceOfValues(Object object) {
+				TargetSectionClass target=null;
+				if(((MappingInstanceSelector)object).eContainer() instanceof MappingHintGroupType){
+					target=((MappingHintGroupType) ((MappingInstanceSelector)object).eContainer()).getTargetMMSection();
+				} else if(((MappingInstanceSelector)object).eContainer() instanceof MappingHintGroupImporter){
+					target=((MappingHintGroupImporter) ((MappingInstanceSelector)object).eContainer()).getHintGroup().getTargetMMSection();
+				}
+
+				TreeIterator<EObject> it =target.eAllContents();
+				List<EObject> vals= new ArrayList<EObject>();
+
+				while(it.hasNext()){
+					EObject next=it.next();
+					if(next instanceof TargetSectionNonContainmentReference){
+						vals.add(next);
 					}
-				
-				
-				
-			});
+				}
+
+				return vals;
+			}
+
+
+
+		});
 	}
 
 	/**
@@ -158,10 +159,31 @@ public class MappingInstanceSelectorItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((MappingInstanceSelector)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_MappingInstanceSelector_type") :
-			getString("_UI_MappingInstanceSelector_type") + " " + label;
+		return ((StyledString)getStyledText(object)).getString();
+	}
+
+	/**
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public Object getStyledText(Object object) {
+
+		MappingInstanceSelector mis = ((MappingInstanceSelector)object);
+		StyledString styledLabel = new StyledString();
+
+		String label = mis.getName();
+		if((label == null || label.isEmpty()) && mis.getAffectedReference() != null) {
+			label = mis.getAffectedReference().getName();
+		}
+
+		if(label != null) {
+			styledLabel.append(label);
+		}
+
+		return styledLabel;
 	}
 
 	/**
@@ -176,9 +198,9 @@ public class MappingInstanceSelectorItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MappingInstanceSelector.class)) {
-			case MappingPackage.MAPPING_INSTANCE_SELECTOR__MATCHER:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case MappingPackage.MAPPING_INSTANCE_SELECTOR__MATCHER:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -195,33 +217,33 @@ public class MappingInstanceSelectorItemProvider
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MAPPING_INSTANCE_SELECTOR__MATCHER,
-				 MappingFactory.eINSTANCE.createAttributeMatcher()));
+						MappingFactory.eINSTANCE.createAttributeMatcher()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MAPPING_INSTANCE_SELECTOR__MATCHER,
-				 MappingFactory.eINSTANCE.createClassMatcher()));
+						MappingFactory.eINSTANCE.createClassMatcher()));
 	}
-	
+
 	@Override
 	protected Command createDragAndDropCommand(EditingDomain domain,
 			Object owner, float location, int operations, int operation,
 			Collection<?> collection) {
-		
-		
+
+
 		if(collection.size() == 1) {
 			Object value = collection.iterator().next();
 			if(value instanceof TargetSectionNonContainmentReference) {
-		
+
 				return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
 						MappingPackage.Literals.MAPPING_INSTANCE_SELECTOR__AFFECTED_REFERENCE, value, 0);
 			}
 		}
-		
+
 		return super.createDragAndDropCommand(domain, owner, location, operations,
-					operation, collection); 
+				operation, collection); 
 	}
 
 }

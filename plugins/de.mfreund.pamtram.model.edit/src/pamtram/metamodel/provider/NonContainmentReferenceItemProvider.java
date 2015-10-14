@@ -7,12 +7,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+
+import org.eclipse.emf.edit.provider.StyledString;
 import pamtram.metamodel.Class;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.impl.ReferenceImpl;
@@ -24,7 +27,7 @@ import pamtram.metamodel.impl.ReferenceImpl;
  * @generated
  */
 public class NonContainmentReferenceItemProvider
-	extends ReferenceItemProvider {
+extends ReferenceItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -52,7 +55,7 @@ public class NonContainmentReferenceItemProvider
 	}
 
 
-	
+
 	/**
 	 * This adds a property descriptor for the Value feature.
 	 * <!-- begin-user-doc -->
@@ -82,41 +85,41 @@ public class NonContainmentReferenceItemProvider
 	 */
 	@Override
 	protected void addEReferencePropertyDescriptor(Object object) {
-		
+
 		itemPropertyDescriptors.add
-	      (new ItemPropertyDescriptor
-	        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-	         getResourceLocator(),
-	         getString("_UI_Reference_eReference_feature"),
-	         getString("_UI_PropertyDescriptor_description", "_UI_Reference_eReference_feature", "_UI_Reference_type"),
-	         MetamodelPackage.Literals.REFERENCE__EREFERENCE,
-	         true,
-	         false,
-	         true,
-	         null,
-	         null,
-	         null)
-	       {
-	        @Override
-	        public Collection<?> getChoiceOfValues(Object object)
-	        {
-	        	List<Object> choiceOfValues = new ArrayList<Object>();
-	        	
-	        	// make sure that only those references can be selected that belong to the parent eClass
-	        	pamtram.metamodel.Class parent = (Class) ((ReferenceImpl) object).eContainer();
-	        	Iterator<EReference> it = parent.getEClass().getEAllReferences().iterator(); 
-	        	
-	        	// filter the choices further so that only non-containment references are displayed
-	        	while(it.hasNext()) {
-	        		EReference ref = it.next();
-	        		if(!(ref.isContainment())) {
-	        			choiceOfValues.add(ref);
-	        		}
-	        	}
-	        	
-	        	return choiceOfValues;
-	        }
-	      });
+		(new ItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_Reference_eReference_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Reference_eReference_feature", "_UI_Reference_type"),
+						MetamodelPackage.Literals.REFERENCE__EREFERENCE,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null)
+		{
+			@Override
+			public Collection<?> getChoiceOfValues(Object object)
+			{
+				List<Object> choiceOfValues = new ArrayList<Object>();
+
+				// make sure that only those references can be selected that belong to the parent eClass
+				pamtram.metamodel.Class parent = (Class) ((ReferenceImpl) object).eContainer();
+				Iterator<EReference> it = parent.getEClass().getEAllReferences().iterator(); 
+
+				// filter the choices further so that only non-containment references are displayed
+				while(it.hasNext()) {
+					EReference ref = it.next();
+					if(!(ref.isContainment())) {
+						choiceOfValues.add(ref);
+					}
+				}
+
+				return choiceOfValues;
+			}
+		});
 	}
 
 	/**
@@ -134,11 +137,22 @@ public class NonContainmentReferenceItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return super.getText(object);
+		return ((StyledString)getStyledText(object)).getString();
+	}
+
+	/**
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public Object getStyledText(Object object) {
+		return super.getStyledText(object);
 	}
 
 	/**

@@ -11,9 +11,10 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import pamtram.PamtramPackage;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingPackage;
@@ -27,7 +28,7 @@ import pamtram.provider.PamtramEditPlugin;
  * @generated
  */
 public class InstantiableMappingHintGroupItemProvider 
-	extends NamedElementItemProvider {
+extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -62,18 +63,18 @@ public class InstantiableMappingHintGroupItemProvider
 	 */
 	protected void addDeactivatedPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+		(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DeactivatableElement_deactivated_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DeactivatableElement_deactivated_feature", "_UI_DeactivatableElement_type"),
-				 PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
+						getResourceLocator(),
+						getString("_UI_DeactivatableElement_deactivated_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_DeactivatableElement_deactivated_feature", "_UI_DeactivatableElement_type"),
+						PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED,
+						true,
+						false,
+						false,
+						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+						null,
+						null));
 	}
 
 	/**
@@ -95,12 +96,34 @@ public class InstantiableMappingHintGroupItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((InstantiableMappingHintGroup)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_InstantiableMappingHintGroup_type") :
-			getString("_UI_InstantiableMappingHintGroup_type") + " " + label;
+		return ((StyledString)getStyledText(object)).getString();
 	}
-	
+
+
+	/**
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public Object getStyledText(Object object) {
+
+		InstantiableMappingHintGroup mhg = (InstantiableMappingHintGroup) object;
+		String label = mhg.getName();
+
+		StyledString styledLabel = new StyledString();
+		if (label != null && label.length() >= 0) {
+			styledLabel.append(label);
+		}
+
+		if(mhg.isDeactivated()) {
+			return new StyledString(styledLabel.getString(), StyledString.Style.newBuilder().setStrikedout(true).toStyle());
+		} else {
+			return styledLabel;
+
+		}
+	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -114,9 +137,9 @@ public class InstantiableMappingHintGroupItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(InstantiableMappingHintGroup.class)) {
-			case MappingPackage.INSTANTIABLE_MAPPING_HINT_GROUP__DEACTIVATED:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case MappingPackage.INSTANTIABLE_MAPPING_HINT_GROUP__DEACTIVATED:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

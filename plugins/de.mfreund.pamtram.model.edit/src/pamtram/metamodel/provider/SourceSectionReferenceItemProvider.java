@@ -10,7 +10,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
-import pamtram.metamodel.SourceSectionReference;
+import org.eclipse.emf.edit.provider.StyledString;
 
 /**
  * This is the item provider adapter for a {@link pamtram.metamodel.SourceSectionReference} object.
@@ -19,7 +19,7 @@ import pamtram.metamodel.SourceSectionReference;
  * @generated
  */
 public class SourceSectionReferenceItemProvider
-	extends ReferenceItemProvider {
+extends ReferenceItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -49,11 +49,22 @@ public class SourceSectionReferenceItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((SourceSectionReference)object).getName();
-		return label;
+		return ((StyledString)getStyledText(object)).getString();
+	}
+
+	/**
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public Object getStyledText(Object object) {
+		return super.getStyledText(object);
 	}
 
 	/**

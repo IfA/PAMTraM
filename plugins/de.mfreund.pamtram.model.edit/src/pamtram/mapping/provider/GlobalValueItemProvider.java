@@ -8,9 +8,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
@@ -19,7 +17,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.mapping.GlobalValue;
 import pamtram.mapping.MappingPackage;
-
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 
@@ -64,18 +61,18 @@ public class GlobalValueItemProvider extends NamedElementItemProvider {
 	 */
 	protected void addValuePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+		(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_GlobalValue_value_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GlobalValue_value_feature", "_UI_GlobalValue_type"),
-				 MappingPackage.Literals.GLOBAL_VALUE__VALUE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
-				 null,
-				 null));
+						getResourceLocator(),
+						getString("_UI_GlobalValue_value_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_GlobalValue_value_feature", "_UI_GlobalValue_type"),
+						MappingPackage.Literals.GLOBAL_VALUE__VALUE,
+						true,
+						false,
+						false,
+						ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+						null,
+						null));
 	}
 
 	/**
@@ -99,23 +96,27 @@ public class GlobalValueItemProvider extends NamedElementItemProvider {
 	public String getText(Object object) {
 		return ((StyledString)getStyledText(object)).getString();
 	}
-	
+
 
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((GlobalValue)object).getName();
-    	StyledString styledLabel = new StyledString();
+		GlobalValue gv = ((GlobalValue)object);
+		String label = gv.getName();
+		StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
 			styledLabel.append(getString("_UI_GlobalValue_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
 			styledLabel.append(getString("_UI_GlobalValue_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
+
+		styledLabel.append(" = \"" + gv.getValue() + "\"", StyledString.Style.COUNTER_STYLER);
+
 		return styledLabel;
 	}
 
@@ -131,9 +132,9 @@ public class GlobalValueItemProvider extends NamedElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(GlobalValue.class)) {
-			case MappingPackage.GLOBAL_VALUE__VALUE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case MappingPackage.GLOBAL_VALUE__VALUE:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

@@ -3,7 +3,7 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.mfreund.pamtram.model/src" modelPluginID="de.mfreund.pamtram.model"
     modelName="Pamtram" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
-    usedGenPackages="../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.genmodel#//genlibrary"
+    providerRootExtendsClass="pamtram.util.PamtramItemProviderAdapter" usedGenPackages="../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.genmodel#//genlibrary"
     operationReflection="true" importOrganizing="true" decoration="Live" styleProviders="true">
   <foreignModel>pamtram.ecore</foreignModel>
   <genPackages prefix="Pamtram" disposableProviderFactory="true" generateModelWizard="false"

@@ -14,6 +14,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
+import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.mapping.ClassMatcher;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.MappingPackage;
@@ -134,6 +135,12 @@ extends MatcherItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(ClassMatcher.class)) {
+			case MappingPackage.CLASS_MATCHER__TARGET_CLASS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 

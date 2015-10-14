@@ -3,6 +3,7 @@
 package pamtram.mapping.provider;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -20,6 +21,7 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.mapping.AttributeMatcher;
+import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.MappingPackage;
@@ -34,7 +36,7 @@ import pamtram.metamodel.TargetSectionClass;
  * @generated
  */
 public class AttributeMatcherItemProvider
-	extends MatcherItemProvider {
+extends MatcherItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -71,18 +73,18 @@ public class AttributeMatcherItemProvider
 	 */
 	protected void addExpressionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+		(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ExpressionHint_expression_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ExpressionHint_expression_feature", "_UI_ExpressionHint_type"),
-				 MappingPackage.Literals.EXPRESSION_HINT__EXPRESSION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+						getResourceLocator(),
+						getString("_UI_ExpressionHint_expression_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_ExpressionHint_expression_feature", "_UI_ExpressionHint_type"),
+						MappingPackage.Literals.EXPRESSION_HINT__EXPRESSION,
+						true,
+						false,
+						false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+						null,
+						null));
 	}
 
 	/**
@@ -93,18 +95,18 @@ public class AttributeMatcherItemProvider
 	 */
 	protected void addResultModifierPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+		(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ModifiableHint_resultModifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
-				 MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+						getResourceLocator(),
+						getString("_UI_ModifiableHint_resultModifier_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
+						MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null));
 	}
 
 	/**
@@ -114,37 +116,37 @@ public class AttributeMatcherItemProvider
 	 */
 	protected void addTargetAttributePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+		(new ItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AttributeMatcher_targetAttribute_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeMatcher_targetAttribute_feature", "_UI_AttributeMatcher_type"),
-				 MappingPackage.Literals.ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null){
+						getResourceLocator(),
+						getString("_UI_AttributeMatcher_targetAttribute_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_AttributeMatcher_targetAttribute_feature", "_UI_AttributeMatcher_type"),
+						MappingPackage.Literals.ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null){
 
-					@Override
-					public Collection<?> getChoiceOfValues(Object object) {
-						//the parent MappingInstanceSelector
-						Collection<TargetSectionAttribute> choices=new LinkedList<TargetSectionAttribute>();
-						Collection<TargetSectionClass>refClasses=((MappingInstanceSelector) ((EObject) object).eContainer()).getAffectedReference().getValue();
+			@Override
+			public Collection<?> getChoiceOfValues(Object object) {
+				//the parent MappingInstanceSelector
+				Collection<TargetSectionAttribute> choices=new LinkedList<TargetSectionAttribute>();
+				Collection<TargetSectionClass>refClasses=((MappingInstanceSelector) ((EObject) object).eContainer()).getAffectedReference().getValue();
 
-						/*
-						 * Only show attributes that belong to an Class that was modeled as the reference's value
-						 */
-						for(TargetSectionClass val : refClasses){
-							choices.addAll(val.getAttributes());
-						}
-						
-						return choices;
-					}
-				
-				
-			});
+				/*
+				 * Only show attributes that belong to an Class that was modeled as the reference's value
+				 */
+				for(TargetSectionClass val : refClasses){
+					choices.addAll(val.getAttributes());
+				}
+
+				return choices;
+			}
+
+
+		});
 	}
 
 	/**
@@ -203,17 +205,30 @@ public class AttributeMatcherItemProvider
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((AttributeMatcher)object).getExpression();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_AttributeMatcher_type"), StyledString.Style.QUALIFIER_STYLER); 
-		} else {
-			styledLabel.append(getString("_UI_AttributeMatcher_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+
+		AttributeMatcher am = ((AttributeMatcher)object);
+		StyledString styledLabel = new StyledString();
+
+		String label = (am.getTargetAttribute() != null ? am.getTargetAttribute().getName() : null);
+
+		if(label != null) {
+			styledLabel.append(label);
 		}
+
+		if(am.getExpression() != null && !am.getExpression().isEmpty()) {
+			styledLabel.append(" == " + am.getExpression(), StyledString.Style.COUNTER_STYLER);
+		} else {
+			ArrayList<String> sources = new ArrayList<>();
+			for (AttributeMatcherSourceInterface source : am.getSourceAttributes()) {
+				sources.add(source.getName());
+			} 
+			styledLabel.append(" == " + String.join(" + ", sources), StyledString.Style.COUNTER_STYLER);
+		}
+
 		return styledLabel;
 	}
 
@@ -229,12 +244,12 @@ public class AttributeMatcherItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(AttributeMatcher.class)) {
-			case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -251,43 +266,43 @@ public class AttributeMatcherItemProvider
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES,
-				 MappingFactory.eINSTANCE.createAttributeMatcherSourceElement()));
+						MappingFactory.eINSTANCE.createAttributeMatcherSourceElement()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES,
-				 MappingFactory.eINSTANCE.createFixedValue()));
+						MappingFactory.eINSTANCE.createFixedValue()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES,
-				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
+						MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES,
-				 MappingFactory.eINSTANCE.createAttributeMatcherExternalSourceElement()));
+						MappingFactory.eINSTANCE.createAttributeMatcherExternalSourceElement()));
 	}
-	
+
 	@Override
 	protected Command createDragAndDropCommand(EditingDomain domain,
 			Object owner, float location, int operations, int operation,
 			Collection<?> collection) {
-		
-		
+
+
 		if(collection.size() == 1) {
 			Object value = collection.iterator().next();
 			if(value instanceof TargetSectionAttribute) {
-		
+
 				return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
 						MappingPackage.Literals.ATTRIBUTE_MATCHER__TARGET_ATTRIBUTE, value, 0);
 			}
 		}
-		
+
 		return super.createDragAndDropCommand(domain, owner, location, operations,
-					operation, collection); 
+				operation, collection); 
 	}
 
 }

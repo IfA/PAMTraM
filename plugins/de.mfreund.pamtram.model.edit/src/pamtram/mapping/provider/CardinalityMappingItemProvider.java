@@ -16,8 +16,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-
 import org.eclipse.emf.edit.provider.StyledString;
+
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupImporter;
@@ -35,7 +35,7 @@ import pamtram.metamodel.SourceSectionClass;
  * @generated
  */
 public class CardinalityMappingItemProvider
-	extends MappingHintItemProvider {
+extends MappingHintItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -71,18 +71,18 @@ public class CardinalityMappingItemProvider
 	 */
 	protected void addSourcePropertyDescriptorGen(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+		(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_CardinalityMapping_source_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CardinalityMapping_source_feature", "_UI_CardinalityMapping_type"),
-				 MappingPackage.Literals.CARDINALITY_MAPPING__SOURCE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+						getResourceLocator(),
+						getString("_UI_CardinalityMapping_source_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_CardinalityMapping_source_feature", "_UI_CardinalityMapping_type"),
+						MappingPackage.Literals.CARDINALITY_MAPPING__SOURCE,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null));
 	}
 
 	/**
@@ -92,70 +92,70 @@ public class CardinalityMappingItemProvider
 	 */
 	protected void addSourcePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+		(new ItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_CardinalityMapping_source_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CardinalityMapping_source_feature", "_UI_CardinalityMapping_type"),
-				 MappingPackage.Literals.CARDINALITY_MAPPING__SOURCE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null)
-			   {
-				@Override
-				public Collection<?> getChoiceOfValues(Object object) {
+						getResourceLocator(),
+						getString("_UI_CardinalityMapping_source_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_CardinalityMapping_source_feature", "_UI_CardinalityMapping_type"),
+						MappingPackage.Literals.CARDINALITY_MAPPING__SOURCE,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null)
+		{
+			@Override
+			public Collection<?> getChoiceOfValues(Object object) {
 
-					// the parent mapping
-					Mapping mapping = null;
-					if(((CardinalityMapping)object).eContainer() instanceof MappingHintGroupType){
-							mapping=(Mapping)((MappingHintGroupType) ((CardinalityMapping)object).eContainer()).eContainer();
-					} else if(((CardinalityMapping)object).eContainer() instanceof MappingHintGroupImporter){
-							mapping=(Mapping)((MappingHintGroupImporter) ((CardinalityMapping)object).eContainer()).eContainer();
-					}
-
-					
-					// the source section
-					SourceSectionClass source = mapping.getSourceMMSection();
-
-					List<Object> choiceOfValues = new ArrayList<Object>();
-					
-					// iterate over all elements and return the attributes as possible options
-					Set<SourceSectionClass> scanned=new HashSet<SourceSectionClass>();
-					List<SourceSectionClass> sectionsToScan=new ArrayList<SourceSectionClass>();
-					sectionsToScan.add(source);
-					
-					while(sectionsToScan.size() > 0){
-						SourceSectionClass classToScan=sectionsToScan.remove(0);
-						scanned.add(classToScan);
-						
-						if(!((SourceSectionClass) classToScan).getCardinality().equals(CardinalityType.ONE)){
-								choiceOfValues.add(classToScan);									
-						}
-						
-						Iterator<EObject> it = classToScan.eAllContents();
-						while(it.hasNext()) {
-							EObject next = it.next();
-							if(next instanceof SourceSectionClass) {
-								if(!((SourceSectionClass) next).getCardinality().equals(CardinalityType.ONE)){
-									choiceOfValues.add(next);									
-								}
-							} else if(next instanceof MetaModelSectionReference){
-								List<SourceSectionClass> vals=new ArrayList<SourceSectionClass>();
-								vals.addAll(((MetaModelSectionReference) next).getValue());
-								vals.removeAll(scanned);
-								sectionsToScan.addAll(vals);
-							}
-						}
-					}
-					
-					return choiceOfValues;
+				// the parent mapping
+				Mapping mapping = null;
+				if(((CardinalityMapping)object).eContainer() instanceof MappingHintGroupType){
+					mapping=(Mapping)((MappingHintGroupType) ((CardinalityMapping)object).eContainer()).eContainer();
+				} else if(((CardinalityMapping)object).eContainer() instanceof MappingHintGroupImporter){
+					mapping=(Mapping)((MappingHintGroupImporter) ((CardinalityMapping)object).eContainer()).eContainer();
 				}
-			   });
+
+
+				// the source section
+				SourceSectionClass source = mapping.getSourceMMSection();
+
+				List<Object> choiceOfValues = new ArrayList<Object>();
+
+				// iterate over all elements and return the attributes as possible options
+				Set<SourceSectionClass> scanned=new HashSet<SourceSectionClass>();
+				List<SourceSectionClass> sectionsToScan=new ArrayList<SourceSectionClass>();
+				sectionsToScan.add(source);
+
+				while(sectionsToScan.size() > 0){
+					SourceSectionClass classToScan=sectionsToScan.remove(0);
+					scanned.add(classToScan);
+
+					if(!classToScan.getCardinality().equals(CardinalityType.ONE)){
+						choiceOfValues.add(classToScan);									
+					}
+
+					Iterator<EObject> it = classToScan.eAllContents();
+					while(it.hasNext()) {
+						EObject next = it.next();
+						if(next instanceof SourceSectionClass) {
+							if(!((SourceSectionClass) next).getCardinality().equals(CardinalityType.ONE)){
+								choiceOfValues.add(next);									
+							}
+						} else if(next instanceof MetaModelSectionReference){
+							List<SourceSectionClass> vals=new ArrayList<SourceSectionClass>();
+							vals.addAll(((MetaModelSectionReference) next).getValue());
+							vals.removeAll(scanned);
+							sectionsToScan.addAll(vals);
+						}
+					}
+				}
+
+				return choiceOfValues;
+			}
+		});
 	}
-	
+
 	/**
 	 * This adds a property descriptor for the Target feature.
 	 * <!-- begin-user-doc -->
@@ -164,18 +164,18 @@ public class CardinalityMappingItemProvider
 	 */
 	protected void addTargetPropertyDescriptorGen(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+		(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_CardinalityMapping_target_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CardinalityMapping_target_feature", "_UI_CardinalityMapping_type"),
-				 MappingPackage.Literals.CARDINALITY_MAPPING__TARGET,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+						getResourceLocator(),
+						getString("_UI_CardinalityMapping_target_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_CardinalityMapping_target_feature", "_UI_CardinalityMapping_type"),
+						MappingPackage.Literals.CARDINALITY_MAPPING__TARGET,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null));
 	}
 
 	/**
@@ -185,29 +185,29 @@ public class CardinalityMappingItemProvider
 	 */
 	protected void addTargetPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+		(new ItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_CardinalityMapping_target_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CardinalityMapping_target_feature", "_UI_CardinalityMapping_type"),
-				 MappingPackage.Literals.CARDINALITY_MAPPING__TARGET,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null)
-			   {
-				@Override
-				public Collection<?> getChoiceOfValues(Object object) {
-					
+						getResourceLocator(),
+						getString("_UI_CardinalityMapping_target_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_CardinalityMapping_target_feature", "_UI_CardinalityMapping_type"),
+						MappingPackage.Literals.CARDINALITY_MAPPING__TARGET,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null)
+		{
+			@Override
+			public Collection<?> getChoiceOfValues(Object object) {
+
 
 				// the target section
 				Class target = null;
 				if(((CardinalityMapping)object).eContainer() instanceof MappingHintGroupType){
-						target=(Class)((MappingHintGroupType) ((CardinalityMapping)object).eContainer()).getTargetMMSection();
+					target=((MappingHintGroupType) ((CardinalityMapping)object).eContainer()).getTargetMMSection();
 				} else if(((CardinalityMapping)object).eContainer() instanceof MappingHintGroupImporter){
-						target=(Class)((MappingHintGroupImporter) ((CardinalityMapping)object).eContainer()).getHintGroup().getTargetMMSection();
+					target=((MappingHintGroupImporter) ((CardinalityMapping)object).eContainer()).getHintGroup().getTargetMMSection();
 				}
 
 				List<Object> choiceOfValues = new ArrayList<Object>();
@@ -224,15 +224,15 @@ public class CardinalityMappingItemProvider
 					EObject next = it.next();
 					if (next instanceof pamtram.metamodel.Class
 							&& ((pamtram.metamodel.Class) next)
-									.getCardinality().getValue() != CardinalityType.ONE_VALUE) {
+							.getCardinality().getValue() != CardinalityType.ONE_VALUE) {
 						choiceOfValues.add(next);
 					}
 				}
-					
-					
-					return choiceOfValues;
-				}
-			   });
+
+
+				return choiceOfValues;
+			}
+		});
 	}
 
 	/**
@@ -261,17 +261,25 @@ public class CardinalityMappingItemProvider
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((CardinalityMapping)object).getName();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_CardinalityMapping_type"), StyledString.Style.QUALIFIER_STYLER); 
-		} else {
-			styledLabel.append(getString("_UI_CardinalityMapping_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+
+		CardinalityMapping cm = (CardinalityMapping)object;
+
+		StyledString styledLabel = new StyledString();
+
+		if(cm.getSource() != null) {
+			styledLabel.append(cm.getSource().getName());
 		}
+		styledLabel.append(".cardinality", StyledString.Style.COUNTER_STYLER);
+		styledLabel.append(" -> ", StyledString.Style.COUNTER_STYLER);
+		if(cm.getTarget() != null) {
+			styledLabel.append(cm.getTarget().getName());
+		}
+		styledLabel.append(".cardinality", StyledString.Style.COUNTER_STYLER);
+
 		return styledLabel;
 	}
 

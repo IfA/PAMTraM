@@ -3,17 +3,22 @@
 package pamtram.mapping.provider;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModelConnectionHint;
+import pamtram.mapping.ModelConnectionHintSourceInterface;
+import pamtram.mapping.ModelConnectionHintTargetAttribute;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.ModelConnectionHint} object.
@@ -22,7 +27,7 @@ import pamtram.mapping.ModelConnectionHint;
  * @generated
  */
 public class ModelConnectionHintItemProvider
-	extends MappingHintBaseTypeItemProvider {
+extends MappingHintBaseTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -105,17 +110,25 @@ public class ModelConnectionHintItemProvider
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((ModelConnectionHint)object).getName();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_ModelConnectionHint_type"), StyledString.Style.QUALIFIER_STYLER); 
-		} else {
-			styledLabel.append(getString("_UI_ModelConnectionHint_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
-		}
+		ModelConnectionHint mch = ((ModelConnectionHint)object);
+		StyledString styledLabel = new StyledString();
+
+		ArrayList<String> targets = new ArrayList<>();
+		for (ModelConnectionHintTargetAttribute target : mch.getTargetAttributes()) {
+			targets.add(target.getName());
+		} 
+		styledLabel.append(String.join(", ", targets), StyledString.Style.COUNTER_STYLER);
+
+		ArrayList<String> sources = new ArrayList<>();
+		for (ModelConnectionHintSourceInterface source : mch.getSourceElements()) {
+			sources.add(source.getName());
+		} 
+		styledLabel.append(" == " + String.join(" + ", sources), StyledString.Style.COUNTER_STYLER);
+
 		return styledLabel;
 	}
 
@@ -131,10 +144,10 @@ public class ModelConnectionHintItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ModelConnectionHint.class)) {
-			case MappingPackage.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES:
-			case MappingPackage.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case MappingPackage.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES:
+		case MappingPackage.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -151,29 +164,29 @@ public class ModelConnectionHintItemProvider
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES,
-				 MappingFactory.eINSTANCE.createModelConnectionHintTargetAttribute()));
+						MappingFactory.eINSTANCE.createModelConnectionHintTargetAttribute()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS,
-				 MappingFactory.eINSTANCE.createModelConnectionHintSourceElement()));
+						MappingFactory.eINSTANCE.createModelConnectionHintSourceElement()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS,
-				 MappingFactory.eINSTANCE.createFixedValue()));
+						MappingFactory.eINSTANCE.createFixedValue()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS,
-				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
+						MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS,
-				 MappingFactory.eINSTANCE.createModelConnectionHintExternalSourceElement()));
+						MappingFactory.eINSTANCE.createModelConnectionHintExternalSourceElement()));
 	}
 
 }

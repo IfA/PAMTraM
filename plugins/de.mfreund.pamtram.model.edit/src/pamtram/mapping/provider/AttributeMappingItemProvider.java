@@ -23,6 +23,7 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.mapping.AttributeMapping;
+import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHintGroupImporter;
@@ -40,7 +41,7 @@ import pamtram.metamodel.TargetSectionClass;
  * @generated
  */
 public class AttributeMappingItemProvider
-	extends MappingHintItemProvider {
+extends MappingHintItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -68,7 +69,7 @@ public class AttributeMappingItemProvider
 		}
 		return itemPropertyDescriptors;
 	}
-	
+
 
 
 	/**
@@ -79,20 +80,20 @@ public class AttributeMappingItemProvider
 	 */
 	protected void addTargetPropertyDescriptorGen(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+		(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AttributeMapping_target_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeMapping_target_feature", "_UI_AttributeMapping_type"),
-				 MappingPackage.Literals.ATTRIBUTE_MAPPING__TARGET,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+						getResourceLocator(),
+						getString("_UI_AttributeMapping_target_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_AttributeMapping_target_feature", "_UI_AttributeMapping_type"),
+						MappingPackage.Literals.ATTRIBUTE_MAPPING__TARGET,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null));
 	}
-	
+
 	/**
 	 * This adds a property descriptor for the Target feature.
 	 * <!-- begin-user-doc -->
@@ -100,21 +101,21 @@ public class AttributeMappingItemProvider
 	 */
 	protected void addTargetPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+		(new ItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AttributeMapping_target_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeMapping_target_feature", "_UI_AttributeMapping_type"),
-				 MappingPackage.Literals.ATTRIBUTE_MAPPING__TARGET,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null)
-			   {
-				@Override
-				public Collection<?> getChoiceOfValues(Object object) {
+						getResourceLocator(),
+						getString("_UI_AttributeMapping_target_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_AttributeMapping_target_feature", "_UI_AttributeMapping_type"),
+						MappingPackage.Literals.ATTRIBUTE_MAPPING__TARGET,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null)
+		{
+			@Override
+			public Collection<?> getChoiceOfValues(Object object) {
 
 				AttributeMapping attrMapping=(AttributeMapping) object;
 
@@ -125,7 +126,7 @@ public class AttributeMappingItemProvider
 				} else if(attrMapping.eContainer() instanceof MappingHintGroupImporter){
 					target=((MappingHintGroupImporter)attrMapping.eContainer()).getHintGroup().getTargetMMSection();
 				}
-				
+
 
 				List<Object> choiceOfValues = new ArrayList<Object>();
 
@@ -139,9 +140,9 @@ public class AttributeMappingItemProvider
 					}
 				}
 
-					return choiceOfValues;
-				}
-			   });
+				return choiceOfValues;
+			}
+		});
 	}
 
 	/**
@@ -152,18 +153,18 @@ public class AttributeMappingItemProvider
 	 */
 	protected void addExpressionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+		(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ExpressionHint_expression_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ExpressionHint_expression_feature", "_UI_ExpressionHint_type"),
-				 MappingPackage.Literals.EXPRESSION_HINT__EXPRESSION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+						getResourceLocator(),
+						getString("_UI_ExpressionHint_expression_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_ExpressionHint_expression_feature", "_UI_ExpressionHint_type"),
+						MappingPackage.Literals.EXPRESSION_HINT__EXPRESSION,
+						true,
+						false,
+						false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+						null,
+						null));
 	}
 
 	/**
@@ -174,18 +175,18 @@ public class AttributeMappingItemProvider
 	 */
 	protected void addResultModifierPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+		(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ModifiableHint_resultModifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
-				 MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+						getResourceLocator(),
+						getString("_UI_ModifiableHint_resultModifier_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
+						MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null));
 	}
 
 	/**
@@ -244,17 +245,33 @@ public class AttributeMappingItemProvider
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((AttributeMapping)object).getName();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_AttributeMapping_type"), StyledString.Style.QUALIFIER_STYLER); 
-		} else {
-			styledLabel.append(getString("_UI_AttributeMapping_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+
+		AttributeMapping am = ((AttributeMapping)object);
+		StyledString styledLabel = new StyledString();
+
+		String label = am.getName();
+		if((label == null || label.isEmpty()) && am.getTarget() != null) {
+			label = am.getTarget().getName();
 		}
+
+		if(label != null) {
+			styledLabel.append(label);
+		}
+
+		if(am.getExpression() != null && !am.getExpression().isEmpty()) {
+			styledLabel.append(" = " + am.getExpression(), StyledString.Style.COUNTER_STYLER);
+		} else {
+			ArrayList<String> sources = new ArrayList<>();
+			for (AttributeMappingSourceInterface source : am.getSourceAttributeMappings()) {
+				sources.add(source.getName());
+			} 
+			styledLabel.append(" = " + String.join(" + ", sources), StyledString.Style.COUNTER_STYLER);
+		}
+
 		return styledLabel;
 	}
 
@@ -270,12 +287,12 @@ public class AttributeMappingItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(AttributeMapping.class)) {
-			case MappingPackage.ATTRIBUTE_MAPPING__EXPRESSION:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case MappingPackage.ATTRIBUTE_MAPPING__EXPRESSION:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -292,41 +309,41 @@ public class AttributeMappingItemProvider
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS,
-				 MappingFactory.eINSTANCE.createAttributeMappingSourceElement()));
+						MappingFactory.eINSTANCE.createAttributeMappingSourceElement()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS,
-				 MappingFactory.eINSTANCE.createFixedValue()));
+						MappingFactory.eINSTANCE.createFixedValue()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS,
-				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
+						MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ATTRIBUTE_MAPPINGS,
-				 MappingFactory.eINSTANCE.createAttributeMappingExternalSourceElement()));
+						MappingFactory.eINSTANCE.createAttributeMappingExternalSourceElement()));
 	}
-	
+
 	@Override
 	protected Command createDragAndDropCommand(EditingDomain domain,
 			Object owner, float location, int operations, int operation,
 			Collection<?> collection) {
-		
-		
+
+
 		if(collection.size() == 1) {
 			Object value = collection.iterator().next();
 			if(value instanceof TargetSectionAttribute) {
-		
+
 				return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
 						MappingPackage.Literals.ATTRIBUTE_MAPPING__TARGET, value, 0);
 			}
 		}
-		
+
 		EList<AttributeValueModifierSet> values = new BasicEList<AttributeValueModifierSet>();
 		for (Object value : collection) {
 			if(value instanceof AttributeValueModifierSet) {
@@ -336,7 +353,7 @@ public class AttributeMappingItemProvider
 						operation, collection); 
 			}
 		}
-		
+
 		if(values.isEmpty()) {
 			return super.createDragAndDropCommand(domain, owner, location, operations,
 					operation, collection); 

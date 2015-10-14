@@ -12,8 +12,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-
 import org.eclipse.emf.edit.provider.StyledString;
+
+import pamtram.mapping.ClassMatcher;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.MappingPackage;
 
@@ -24,7 +25,7 @@ import pamtram.mapping.MappingPackage;
  * @generated
  */
 public class ClassMatcherItemProvider
-	extends MatcherItemProvider {
+extends MatcherItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -58,26 +59,26 @@ public class ClassMatcherItemProvider
 	 */
 	protected void addTargetClassPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+		(new ItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ClassMatcher_targetClass_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ClassMatcher_targetClass_feature", "_UI_ClassMatcher_type"),
-				 MappingPackage.Literals.CLASS_MATCHER__TARGET_CLASS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null){
+						getResourceLocator(),
+						getString("_UI_ClassMatcher_targetClass_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_ClassMatcher_targetClass_feature", "_UI_ClassMatcher_type"),
+						MappingPackage.Literals.CLASS_MATCHER__TARGET_CLASS,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null){
 
-				@Override
-				public Collection<?> getChoiceOfValues(Object object) {
-					return ((MappingInstanceSelector) ((EObject) object).eContainer()).getAffectedReference().getValue();
-				}
+			@Override
+			public Collection<?> getChoiceOfValues(Object object) {
+				return ((MappingInstanceSelector) ((EObject) object).eContainer()).getAffectedReference().getValue();
+			}
 
 
-			});
+		});
 	}
 
 	/**
@@ -106,11 +107,21 @@ public class ClassMatcherItemProvider
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		return new StyledString(getString("_UI_ClassMatcher_type"));
+		ClassMatcher am = ((ClassMatcher)object);
+		StyledString styledLabel = new StyledString();
+
+		String label = (am.getTargetClass() != null ? am.getTargetClass().getName() : "");
+
+		styledLabel.append("TargetSectionClass ");
+
+
+		styledLabel.append(" == " + label, StyledString.Style.COUNTER_STYLER);
+
+		return styledLabel;
 	}
 
 	/**

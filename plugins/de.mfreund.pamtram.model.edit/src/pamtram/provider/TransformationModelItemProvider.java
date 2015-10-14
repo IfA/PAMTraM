@@ -17,13 +17,13 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.PamtramPackage;
 import pamtram.TransformationModel;
 import pamtram.transformation.TransformationFactory;
+import pamtram.util.PamtramItemProviderAdapter;
 
 /**
  * This is the item provider adapter for a {@link pamtram.TransformationModel} object.
@@ -32,7 +32,7 @@ import pamtram.transformation.TransformationFactory;
  * @generated
  */
 public class TransformationModelItemProvider
-	extends ItemProviderAdapter
+	extends PamtramItemProviderAdapter
 	implements
 		IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IItemStyledLabelProvider {
 	/**

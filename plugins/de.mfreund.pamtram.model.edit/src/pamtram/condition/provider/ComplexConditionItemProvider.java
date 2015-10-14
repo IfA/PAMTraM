@@ -16,10 +16,9 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-
 import org.eclipse.emf.edit.provider.StyledString;
 import pamtram.provider.PamtramEditPlugin;
+import pamtram.util.PamtramItemProviderAdapter;
 
 /**
  * This is the item provider adapter for a {@link pamtram.condition.ComplexCondition} object.
@@ -28,7 +27,7 @@ import pamtram.provider.PamtramEditPlugin;
  * @generated
  */
 public class ComplexConditionItemProvider
-	extends ItemProviderAdapter
+	extends PamtramItemProviderAdapter
 	implements
 		IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IItemStyledLabelProvider {
 	/**

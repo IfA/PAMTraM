@@ -144,10 +144,10 @@ extends MappingHintBaseTypeItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ModelConnectionHint.class)) {
-		case MappingPackage.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES:
-		case MappingPackage.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case MappingPackage.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES:
+			case MappingPackage.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -164,29 +164,29 @@ extends MappingHintBaseTypeItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES,
-						MappingFactory.eINSTANCE.createModelConnectionHintTargetAttribute()));
+				 MappingFactory.eINSTANCE.createModelConnectionHintTargetAttribute()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS,
-						MappingFactory.eINSTANCE.createModelConnectionHintSourceElement()));
+				 MappingFactory.eINSTANCE.createModelConnectionHintSourceElement()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS,
-						MappingFactory.eINSTANCE.createFixedValue()));
+				 MappingFactory.eINSTANCE.createFixedValue()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS,
-						MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
+				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS,
-						MappingFactory.eINSTANCE.createModelConnectionHintExternalSourceElement()));
+				 MappingFactory.eINSTANCE.createModelConnectionHintExternalSourceElement()));
 	}
 
 }

@@ -63,18 +63,18 @@ extends NamedElementItemProvider {
 	 */
 	protected void addDeactivatedPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-		(createItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_DeactivatableElement_deactivated_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_DeactivatableElement_deactivated_feature", "_UI_DeactivatableElement_type"),
-						PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
+				 getResourceLocator(),
+				 getString("_UI_DeactivatableElement_deactivated_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DeactivatableElement_deactivated_feature", "_UI_DeactivatableElement_type"),
+				 PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -137,9 +137,9 @@ extends NamedElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(InstantiableMappingHintGroup.class)) {
-		case MappingPackage.INSTANTIABLE_MAPPING_HINT_GROUP__DEACTIVATED:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case MappingPackage.INSTANTIABLE_MAPPING_HINT_GROUP__DEACTIVATED:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

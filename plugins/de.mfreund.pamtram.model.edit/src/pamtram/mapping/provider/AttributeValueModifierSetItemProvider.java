@@ -137,9 +137,9 @@ extends NamedElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(AttributeValueModifierSet.class)) {
-		case MappingPackage.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case MappingPackage.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -156,34 +156,34 @@ extends NamedElementItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER,
-						MappingFactory.eINSTANCE.createSubstringReplacer()));
+				 MappingFactory.eINSTANCE.createSubstringReplacer()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER,
-						MappingFactory.eINSTANCE.createStringAppender()));
+				 MappingFactory.eINSTANCE.createStringAppender()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER,
-						MappingFactory.eINSTANCE.createUniqueNumberAppender()));
+				 MappingFactory.eINSTANCE.createUniqueNumberAppender()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER,
-						MappingFactory.eINSTANCE.createStringPrepender()));
+				 MappingFactory.eINSTANCE.createStringPrepender()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER,
-						MappingFactory.eINSTANCE.createMatchToLowerCaseConverter()));
+				 MappingFactory.eINSTANCE.createMatchToLowerCaseConverter()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_VALUE_MODIFIER_SET__MODIFIER,
-						MappingFactory.eINSTANCE.createMatchToUpperCaseConverter()));
+				 MappingFactory.eINSTANCE.createMatchToUpperCaseConverter()));
 	}
 
 	/**

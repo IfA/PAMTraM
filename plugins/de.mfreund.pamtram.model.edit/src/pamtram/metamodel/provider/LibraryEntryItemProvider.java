@@ -28,7 +28,6 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptorDecorator;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -36,6 +35,7 @@ import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.GenLibraryPackage;
 import pamtram.metamodel.LibraryEntry;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.provider.PamtramEditPlugin;
+import pamtram.util.PamtramItemProviderAdapter;
 
 /**
  * This is the item provider adapter for a {@link pamtram.metamodel.LibraryEntry} object.
@@ -44,7 +44,7 @@ import pamtram.provider.PamtramEditPlugin;
  * @generated
  */
 public class LibraryEntryItemProvider 
-extends ItemProviderAdapter
+extends PamtramItemProviderAdapter
 implements
 IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IItemStyledLabelProvider {
 
@@ -103,18 +103,18 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 	 */
 	protected void addLibraryFilePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-		(createItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_LibraryEntry_libraryFile_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_LibraryEntry_libraryFile_feature", "_UI_LibraryEntry_type"),
-						MetamodelPackage.Literals.LIBRARY_ENTRY__LIBRARY_FILE,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+				 getResourceLocator(),
+				 getString("_UI_LibraryEntry_libraryFile_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LibraryEntry_libraryFile_feature", "_UI_LibraryEntry_type"),
+				 MetamodelPackage.Literals.LIBRARY_ENTRY__LIBRARY_FILE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -234,10 +234,7 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((LibraryEntry)object).getPath().getValue();
-		return label == null || label.length() == 0 ?
-				getString("_UI_LibraryEntry_type") :
-					getString("_UI_LibraryEntry_type") + " " + label;
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 

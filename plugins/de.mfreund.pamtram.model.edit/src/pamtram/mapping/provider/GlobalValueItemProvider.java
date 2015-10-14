@@ -61,18 +61,18 @@ public class GlobalValueItemProvider extends NamedElementItemProvider {
 	 */
 	protected void addValuePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-		(createItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_GlobalValue_value_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_GlobalValue_value_feature", "_UI_GlobalValue_type"),
-						MappingPackage.Literals.GLOBAL_VALUE__VALUE,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.REAL_VALUE_IMAGE,
-						null,
-						null));
+				 getResourceLocator(),
+				 getString("_UI_GlobalValue_value_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GlobalValue_value_feature", "_UI_GlobalValue_type"),
+				 MappingPackage.Literals.GLOBAL_VALUE__VALUE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -132,9 +132,9 @@ public class GlobalValueItemProvider extends NamedElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(GlobalValue.class)) {
-		case MappingPackage.GLOBAL_VALUE__VALUE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case MappingPackage.GLOBAL_VALUE__VALUE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

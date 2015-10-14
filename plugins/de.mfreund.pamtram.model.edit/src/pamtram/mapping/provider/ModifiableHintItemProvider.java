@@ -19,12 +19,11 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-
 import org.eclipse.emf.edit.provider.StyledString;
 import pamtram.mapping.MappingPackage;
 
 import pamtram.provider.PamtramEditPlugin;
+import pamtram.util.PamtramItemProviderAdapter;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.ModifiableHint} object.
@@ -33,7 +32,7 @@ import pamtram.provider.PamtramEditPlugin;
  * @generated
  */
 public class ModifiableHintItemProvider 
-	extends ItemProviderAdapter
+	extends PamtramItemProviderAdapter
 	implements
 		IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IItemStyledLabelProvider {
 	/**

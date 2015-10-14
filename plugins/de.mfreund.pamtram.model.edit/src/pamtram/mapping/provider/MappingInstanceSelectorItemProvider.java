@@ -198,9 +198,9 @@ extends MappingHintItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MappingInstanceSelector.class)) {
-		case MappingPackage.MAPPING_INSTANCE_SELECTOR__MATCHER:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case MappingPackage.MAPPING_INSTANCE_SELECTOR__MATCHER:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -217,14 +217,14 @@ extends MappingHintItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.MAPPING_INSTANCE_SELECTOR__MATCHER,
-						MappingFactory.eINSTANCE.createAttributeMatcher()));
+				 MappingFactory.eINSTANCE.createAttributeMatcher()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.MAPPING_INSTANCE_SELECTOR__MATCHER,
-						MappingFactory.eINSTANCE.createClassMatcher()));
+				 MappingFactory.eINSTANCE.createClassMatcher()));
 	}
 
 	@Override

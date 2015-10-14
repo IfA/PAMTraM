@@ -73,18 +73,18 @@ public class MappingHintGroupImporterItemProvider extends NamedElementItemProvid
 	 */
 	protected void addDeactivatedPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-		(createItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_DeactivatableElement_deactivated_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_DeactivatableElement_deactivated_feature", "_UI_DeactivatableElement_type"),
-						PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
+				 getResourceLocator(),
+				 getString("_UI_DeactivatableElement_deactivated_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DeactivatableElement_deactivated_feature", "_UI_DeactivatableElement_type"),
+				 PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -95,18 +95,18 @@ public class MappingHintGroupImporterItemProvider extends NamedElementItemProvid
 	 */
 	protected void addHintGroupPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-		(createItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_MappingHintGroupImporter_hintGroup_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_MappingHintGroupImporter_hintGroup_feature", "_UI_MappingHintGroupImporter_type"),
-						MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+				 getResourceLocator(),
+				 getString("_UI_MappingHintGroupImporter_hintGroup_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MappingHintGroupImporter_hintGroup_feature", "_UI_MappingHintGroupImporter_type"),
+				 MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -249,12 +249,12 @@ public class MappingHintGroupImporterItemProvider extends NamedElementItemProvid
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MappingHintGroupImporter.class)) {
-		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -271,44 +271,44 @@ public class MappingHintGroupImporterItemProvider extends NamedElementItemProvid
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
-						MappingFactory.eINSTANCE.createAttributeMapping()));
+				 MappingFactory.eINSTANCE.createAttributeMapping()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
-						MappingFactory.eINSTANCE.createCardinalityMapping()));
+				 MappingFactory.eINSTANCE.createCardinalityMapping()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
-						MappingFactory.eINSTANCE.createMappingInstanceSelector()));
+				 MappingFactory.eINSTANCE.createMappingInstanceSelector()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
-						MappingFactory.eINSTANCE.createLocalMappedAttributeValueExpander()));
+				 MappingFactory.eINSTANCE.createLocalMappedAttributeValueExpander()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
-						MappingFactory.eINSTANCE.createMappedAttributeValuePrepender()));
+				 MappingFactory.eINSTANCE.createMappedAttributeValuePrepender()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
-						MappingFactory.eINSTANCE.createMappedAttributeValueAppender()));
+				 MappingFactory.eINSTANCE.createMappedAttributeValueAppender()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
-						MappingFactory.eINSTANCE.createExternalMappedAttributeValuePrepender()));
+				 MappingFactory.eINSTANCE.createExternalMappedAttributeValuePrepender()));
 
 		newChildDescriptors.add
-		(createChildParameter
+			(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
-						MappingFactory.eINSTANCE.createExternalMappedAttributeValueAppender()));
+				 MappingFactory.eINSTANCE.createExternalMappedAttributeValueAppender()));
 	}
 
 	/**

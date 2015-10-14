@@ -71,18 +71,18 @@ extends MappingHintItemProvider {
 	 */
 	protected void addSourcePropertyDescriptorGen(Object object) {
 		itemPropertyDescriptors.add
-		(createItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_CardinalityMapping_source_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_CardinalityMapping_source_feature", "_UI_CardinalityMapping_type"),
-						MappingPackage.Literals.CARDINALITY_MAPPING__SOURCE,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+				 getResourceLocator(),
+				 getString("_UI_CardinalityMapping_source_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CardinalityMapping_source_feature", "_UI_CardinalityMapping_type"),
+				 MappingPackage.Literals.CARDINALITY_MAPPING__SOURCE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -164,18 +164,18 @@ extends MappingHintItemProvider {
 	 */
 	protected void addTargetPropertyDescriptorGen(Object object) {
 		itemPropertyDescriptors.add
-		(createItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_CardinalityMapping_target_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_CardinalityMapping_target_feature", "_UI_CardinalityMapping_type"),
-						MappingPackage.Literals.CARDINALITY_MAPPING__TARGET,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+				 getResourceLocator(),
+				 getString("_UI_CardinalityMapping_target_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CardinalityMapping_target_feature", "_UI_CardinalityMapping_type"),
+				 MappingPackage.Literals.CARDINALITY_MAPPING__TARGET,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**

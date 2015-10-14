@@ -263,7 +263,13 @@ public class TreeViewerGroup extends FilteredTree{
 		TreeViewer treeViewer = super.doCreateTreeViewer(parent, style);
 		treeViewer.setLabelProvider(new DelegatingStyledCellLabelProvider(new DecoratingColumLabelProvider.StyledLabelProvider(
 				new AdapterFactoryLabelProvider.StyledLabelProvider(adapterFactory, treeViewer), 
-				new DiagnosticDecorator.Styled(editingDomain, treeViewer, PamtramEditorPlugin.getPlugin().getDialogSettings()))));
+				new DiagnosticDecorator.Styled(editingDomain, treeViewer, PamtramEditorPlugin.getPlugin().getDialogSettings())) {
+			@Override
+			public String getToolTipText(Object element) {
+				String toolTip = super.getToolTipText(element);
+				return (toolTip == null ? (element instanceof EObject ? "Element Type: " + ((EObject) element).eClass().getName() : null) : toolTip);
+			}
+		}));
 		treeViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 		new ColumnViewerInformationControlToolTipSupport(
 				treeViewer, 

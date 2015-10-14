@@ -9,8 +9,6 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
-import org.eclipse.emf.edit.ui.provider.DecoratingColumLabelProvider;
-import org.eclipse.emf.edit.ui.provider.DiagnosticDecorator;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.wizard.WizardDialog;
@@ -240,15 +238,8 @@ public class PamtramEditorMainPage extends SashForm {
 		deactivationListener = new DeactivationListenerAdapter(editor.getPamtramContentAdapter(), mappingViewer);
 		editor.getPamtramContentAdapter().addSubAdapter(deactivationListener);
 		/*
-		 * Use a special label and content provider.
+		 * Use a special content provider.
 		 */
-		if(mappingViewer.getLabelProvider() instanceof DecoratingColumLabelProvider) {
-			mappingViewer.setLabelProvider(new DecoratingColumLabelProvider(
-					new MappingViewerLabelProvider(adapterFactory), 
-					new DiagnosticDecorator(editor.getEditingDomain(), mappingViewer, PamtramEditorPlugin.getPlugin().getDialogSettings())));
-		} else {
-			mappingViewer.setLabelProvider(new MappingViewerLabelProvider(adapterFactory));
-		}
 		mappingViewer.setContentProvider(new MappingContentProvider(adapterFactory));
 		mappingViewer.setInput(editor.pamtram);
 		mappingViewer.getTree().addSelectionListener(new SelectionListener2() {

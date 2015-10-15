@@ -19,6 +19,7 @@ import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.mapping.ModelConnectionHintSourceInterface;
 import pamtram.mapping.ModelConnectionHintTargetAttribute;
+import pamtram.mapping.impl.MappingPackageImpl;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.ModelConnectionHint} object.
@@ -71,6 +72,16 @@ extends MappingHintBaseTypeItemProvider {
 		return childrenFeatures;
 	}
 
+	@Override
+	public Collection<? extends EStructuralFeature> getLabelRelatedChildrenFeatures(Object object) {
+		if(labelRelatedChildrenFeatures == null) {
+			labelRelatedChildrenFeatures = new ArrayList<>();
+			labelRelatedChildrenFeatures.add(MappingPackageImpl.eINSTANCE.getModelConnectionHint_SourceElements());
+			labelRelatedChildrenFeatures.add(MappingPackageImpl.eINSTANCE.getModelConnectionHint_TargetAttributes());
+		}
+		return labelRelatedChildrenFeatures;
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -114,6 +125,9 @@ extends MappingHintBaseTypeItemProvider {
 	 */
 	@Override
 	public Object getStyledText(Object object) {
+
+		initializeLabelRelatedChildrenFeatureNotifications(object);
+
 		ModelConnectionHint mch = ((ModelConnectionHint)object);
 		StyledString styledLabel = new StyledString();
 
@@ -139,17 +153,23 @@ extends MappingHintBaseTypeItemProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void notifyChanged(Notification notification) {
+	public void notifyChangedGen(Notification notification) {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ModelConnectionHint.class)) {
-			case MappingPackage.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES:
-			case MappingPackage.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case MappingPackage.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES:
+		case MappingPackage.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
+	}
+
+	@Override
+	public void notifyChanged(Notification notification) {
+
+		handleLabelRelatedChildrenFeatureChangeNotification(notification);		
+		notifyChangedGen(notification);
 	}
 
 	/**
@@ -164,29 +184,29 @@ extends MappingHintBaseTypeItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MODEL_CONNECTION_HINT__TARGET_ATTRIBUTES,
-				 MappingFactory.eINSTANCE.createModelConnectionHintTargetAttribute()));
+						MappingFactory.eINSTANCE.createModelConnectionHintTargetAttribute()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS,
-				 MappingFactory.eINSTANCE.createModelConnectionHintSourceElement()));
+						MappingFactory.eINSTANCE.createModelConnectionHintSourceElement()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS,
-				 MappingFactory.eINSTANCE.createFixedValue()));
+						MappingFactory.eINSTANCE.createFixedValue()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS,
-				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
+						MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MODEL_CONNECTION_HINT__SOURCE_ELEMENTS,
-				 MappingFactory.eINSTANCE.createModelConnectionHintExternalSourceElement()));
+						MappingFactory.eINSTANCE.createModelConnectionHintExternalSourceElement()));
 	}
 
 }

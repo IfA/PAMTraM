@@ -214,7 +214,7 @@ extends MappingHintItemProvider {
 			labelRelatedChildrenFeatures.add(MappingPackageImpl.eINSTANCE.getAttributeMapping_SourceAttributeMappings());
 			labelRelatedChildrenFeatures.add(MappingPackageImpl.eINSTANCE.getAttributeMapping_Target());
 			/*
-			 * we do not need to add the 'expression' feature here as notifications for this feature are already generated
+			 * we do not need to add the 'expression' feature here as notifications for this attribute are already generated
 			 * automatically as its 'Notify' property in the genmodel is set to 'true'
 			 */
 		}

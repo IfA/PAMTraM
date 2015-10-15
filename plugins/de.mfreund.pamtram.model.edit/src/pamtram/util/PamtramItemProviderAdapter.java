@@ -19,8 +19,9 @@ import pamtram.impl.PamtramPackageImpl;
 
 /**
  * This {@link ItemProviderAdapter} adds the ability to define a list of '<em>labelRelatedChildrenFeatures</em>'. Changes
- * of the elements held by these features will trigger an update of the parent's label. If the children are of type
- * {@link NamedElement}, a change of their {@link NamedElement#getName()} will also trigger an update of the parent's label. 
+ * of the elements held by these features will trigger an update of the parent's label (similar to setting the 'Notify' property
+ * in the genmodel to 'true'). If the children are of type {@link NamedElement}, a change of their {@link NamedElement#getName()} 
+ * will also trigger an update of the parent's label - this cannot be realized with the genmodel setting 'Notify'.
  * 
  * @author mfreund
  */

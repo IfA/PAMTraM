@@ -26,6 +26,7 @@ import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.commands.BasicDragAndDropSetCommand;
+import pamtram.mapping.impl.MappingPackageImpl;
 import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.TargetSectionClass;
 
@@ -73,18 +74,18 @@ extends MatcherItemProvider {
 	 */
 	protected void addExpressionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+		(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ExpressionHint_expression_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ExpressionHint_expression_feature", "_UI_ExpressionHint_type"),
-				 MappingPackage.Literals.EXPRESSION_HINT__EXPRESSION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+						getResourceLocator(),
+						getString("_UI_ExpressionHint_expression_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_ExpressionHint_expression_feature", "_UI_ExpressionHint_type"),
+						MappingPackage.Literals.EXPRESSION_HINT__EXPRESSION,
+						true,
+						false,
+						false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+						null,
+						null));
 	}
 
 	/**
@@ -95,18 +96,18 @@ extends MatcherItemProvider {
 	 */
 	protected void addResultModifierPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+		(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ModifiableHint_resultModifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
-				 MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+						getResourceLocator(),
+						getString("_UI_ModifiableHint_resultModifier_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
+						MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null));
 	}
 
 	/**
@@ -166,6 +167,16 @@ extends MatcherItemProvider {
 		return childrenFeatures;
 	}
 
+	@Override
+	public Collection<? extends EStructuralFeature> getLabelRelatedChildrenFeatures(Object object) {
+		if(labelRelatedChildrenFeatures == null) {
+			labelRelatedChildrenFeatures = new ArrayList<>();
+			labelRelatedChildrenFeatures.add(MappingPackageImpl.eINSTANCE.getAttributeMatcher_SourceAttributes());
+			labelRelatedChildrenFeatures.add(MappingPackageImpl.eINSTANCE.getAttributeMatcher_TargetAttribute());
+		}
+		return labelRelatedChildrenFeatures;
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -210,6 +221,8 @@ extends MatcherItemProvider {
 	@Override
 	public Object getStyledText(Object object) {
 
+		initializeLabelRelatedChildrenFeatureNotifications(object);
+
 		AttributeMatcher am = ((AttributeMatcher)object);
 		StyledString styledLabel = new StyledString();
 
@@ -239,19 +252,24 @@ extends MatcherItemProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void notifyChanged(Notification notification) {
+	public void notifyChangedGen(Notification notification) {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(AttributeMatcher.class)) {
-			case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
+	}
+
+	@Override
+	public void notifyChanged(Notification notification) {
+		handleLabelRelatedChildrenFeatureChangeNotification(notification);
+		notifyChangedGen(notification);
 	}
 
 	/**
@@ -266,24 +284,24 @@ extends MatcherItemProvider {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES,
-				 MappingFactory.eINSTANCE.createAttributeMatcherSourceElement()));
+						MappingFactory.eINSTANCE.createAttributeMatcherSourceElement()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES,
-				 MappingFactory.eINSTANCE.createFixedValue()));
+						MappingFactory.eINSTANCE.createFixedValue()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES,
-				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
+						MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ATTRIBUTES,
-				 MappingFactory.eINSTANCE.createAttributeMatcherExternalSourceElement()));
+						MappingFactory.eINSTANCE.createAttributeMatcherExternalSourceElement()));
 	}
 
 	@Override

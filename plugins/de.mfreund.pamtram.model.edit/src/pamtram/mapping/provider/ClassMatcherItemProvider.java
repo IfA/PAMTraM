@@ -3,21 +3,24 @@
 package pamtram.mapping.provider;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
-
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import pamtram.mapping.ClassMatcher;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.impl.MappingPackageImpl;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.ClassMatcher} object.
@@ -82,6 +85,15 @@ extends MatcherItemProvider {
 		});
 	}
 
+	@Override
+	public Collection<? extends EStructuralFeature> getLabelRelatedChildrenFeatures(Object object) {
+		if(labelRelatedChildrenFeatures == null) {
+			labelRelatedChildrenFeatures = new ArrayList<>();
+			labelRelatedChildrenFeatures.add(MappingPackageImpl.eINSTANCE.getClassMatcher_TargetClass());
+		}
+		return labelRelatedChildrenFeatures;
+	}
+
 	/**
 	 * This returns ClassMatcher.gif.
 	 * <!-- begin-user-doc -->
@@ -112,6 +124,9 @@ extends MatcherItemProvider {
 	 */
 	@Override
 	public Object getStyledText(Object object) {
+
+		initializeLabelRelatedChildrenFeatureNotifications(object);
+
 		ClassMatcher am = ((ClassMatcher)object);
 		StyledString styledLabel = new StyledString();
 
@@ -132,16 +147,21 @@ extends MatcherItemProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void notifyChanged(Notification notification) {
+	public void notifyChangedGen(Notification notification) {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ClassMatcher.class)) {
-			case MappingPackage.CLASS_MATCHER__TARGET_CLASS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case MappingPackage.CLASS_MATCHER__TARGET_CLASS:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
+	}
+
+	@Override
+	public void notifyChanged(Notification notification) {
+		handleLabelRelatedChildrenFeatureChangeNotification(notification);
+		notifyChangedGen(notification);
 	}
 
 	/**

@@ -11,6 +11,8 @@ import java.util.Set;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IChangeNotifier;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.ItemProvider;
@@ -53,9 +55,23 @@ public interface INamedElementChildrenChangeNotifier extends IChangeNotifier {
 	public default void registerNotifyChangedListener(final EObject parent,
 			final NamedElement child, AdapterFactory adapterFactory) {
 
+		// we will use this adapter factory to adapt the child
+		AdapterFactory factory = adapterFactory;
+
 		// we will add the INotifyChangedListener to this ItemProvider
 		NamedElementItemProvider sourceItemItemprovider = (NamedElementItemProvider) 
 				adapterFactory.adapt(child, NamedElementItemProvider.class);
+
+		if(sourceItemItemprovider == null && factory instanceof ComposeableAdapterFactory) {
+			// try to find a suitable AdapterFactory
+			factory = ((ComposeableAdapterFactory) factory).getRootAdapterFactory();
+			if(factory instanceof ComposedAdapterFactory) {
+				factory = ((ComposedAdapterFactory) factory).getFactoryForType(child);
+				if(factory != null) {
+					sourceItemItemprovider = (NamedElementItemProvider) factory.adapt(child, NamedElementItemProvider.class);
+				}
+			}
+		}
 
 		// initialize the map if necessary
 		if (!childrenToParentMap.containsKey(child)) {

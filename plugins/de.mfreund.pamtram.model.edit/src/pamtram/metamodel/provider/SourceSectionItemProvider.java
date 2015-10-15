@@ -11,6 +11,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
@@ -21,6 +22,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.Section;
 import pamtram.metamodel.SourceSection;
+import pamtram.metamodel.impl.MetamodelPackageImpl;
 
 /**
  * This is the item provider adapter for a {@link pamtram.metamodel.SourceSection} object.
@@ -65,18 +67,18 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	 */
 	protected void addAbstractPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+		(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Section_abstract_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Section_abstract_feature", "_UI_Section_type"),
-				 MetamodelPackage.Literals.SECTION__ABSTRACT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
+						getResourceLocator(),
+						getString("_UI_Section_abstract_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Section_abstract_feature", "_UI_Section_type"),
+						MetamodelPackage.Literals.SECTION__ABSTRACT,
+						true,
+						false,
+						false,
+						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+						null,
+						null));
 	}
 
 	/**
@@ -132,18 +134,27 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	 */
 	protected void addReferencingMappingsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+		(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SourceSection_referencingMappings_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SourceSection_referencingMappings_feature", "_UI_SourceSection_type"),
-				 MetamodelPackage.Literals.SOURCE_SECTION__REFERENCING_MAPPINGS,
-				 false,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+						getResourceLocator(),
+						getString("_UI_SourceSection_referencingMappings_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_SourceSection_referencingMappings_feature", "_UI_SourceSection_type"),
+						MetamodelPackage.Literals.SOURCE_SECTION__REFERENCING_MAPPINGS,
+						false,
+						false,
+						false,
+						null,
+						null,
+						null));
+	}
+
+	@Override
+	protected Collection<? extends EStructuralFeature> getLabelRelatedChildrenFeatures(Object object) {
+		if(labelRelatedChildrenFeatures == null) {
+			labelRelatedChildrenFeatures = new ArrayList<>();
+			labelRelatedChildrenFeatures.add(MetamodelPackageImpl.eINSTANCE.getSection_Extend());
+		}
+		return labelRelatedChildrenFeatures;
 	}
 
 	/**
@@ -177,6 +188,9 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	 */
 	@Override
 	public Object getStyledText(Object object) {
+
+		initializeLabelRelatedChildrenFeatureNotifications(object);
+
 		Section section = (Section) object;
 
 		StyledString styledLabel = new StyledString();
@@ -216,16 +230,21 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void notifyChanged(Notification notification) {
+	public void notifyChangedGen(Notification notification) {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SourceSection.class)) {
-			case MetamodelPackage.SOURCE_SECTION__ABSTRACT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case MetamodelPackage.SOURCE_SECTION__ABSTRACT:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
+	}
+
+	@Override
+	public void notifyChanged(Notification notification) {
+		handleLabelRelatedChildrenFeatureChangeNotification(notification);
+		notifyChangedGen(notification);
 	}
 
 	/**

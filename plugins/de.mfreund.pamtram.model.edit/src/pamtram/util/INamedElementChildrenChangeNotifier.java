@@ -55,6 +55,10 @@ public interface INamedElementChildrenChangeNotifier extends IChangeNotifier {
 	public default void registerNotifyChangedListener(final EObject parent,
 			final NamedElement child, AdapterFactory adapterFactory) {
 
+		if(parent == null || child == null) {
+			return;
+		}
+
 		// we will use this adapter factory to adapt the child
 		AdapterFactory factory = adapterFactory;
 

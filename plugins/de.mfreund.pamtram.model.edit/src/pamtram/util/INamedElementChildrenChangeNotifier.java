@@ -89,8 +89,14 @@ public interface INamedElementChildrenChangeNotifier extends IChangeNotifier {
 			sourceItemItemprovider.addListener(new INotifyChangedListener() {
 				@Override
 				public void notifyChanged(Notification notification) {
-					if (child.equals(notification.getNotifier()) || 
-							(notification instanceof ViewerNotification && child.equals(((ViewerNotification) notification).getElement()))) {
+					Object element;
+					if (notification instanceof ViewerNotification) {
+						element = ((ViewerNotification) notification).getElement();
+					} else {
+						element = notification.getNotifier();
+					}
+
+					if(element != null && element.equals(child)) {
 						fireNotifyChanged(new ViewerNotification(notification,
 								parent, false, true));
 					}

@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.StyledString;
 import pamtram.mapping.AttributeValueModifierSet;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiedAttributeElementType;
@@ -110,12 +111,27 @@ public class ModifiedAttributeElementTypeItemProvider extends NamedElementItemPr
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ModifiedAttributeElementType<?, ?, ?, ?>)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ModifiedAttributeElementType_type") :
-			getString("_UI_ModifiedAttributeElementType_type") + " " + label;
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
+
+	/**
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getStyledText(Object object) {
+		String label = ((ModifiedAttributeElementType<?, ?, ?, ?>)object).getName();
+    	StyledString styledLabel = new StyledString();
+		if (label == null || label.length() == 0) {
+			styledLabel.append(getString("_UI_ModifiedAttributeElementType_type"), StyledString.Style.QUALIFIER_STYLER); 
+		} else {
+			styledLabel.append(getString("_UI_ModifiedAttributeElementType_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+		}
+		return styledLabel;
+	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

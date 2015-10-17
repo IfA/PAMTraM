@@ -9,6 +9,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.metamodel.AttributeParameter;
 import pamtram.metamodel.MetamodelPackage;
@@ -94,12 +95,27 @@ public class AttributeParameterItemProvider extends LibraryParameterItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((AttributeParameter)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_AttributeParameter_type") :
-			getString("_UI_AttributeParameter_type") + " " + label;
+		return ((StyledString)getStyledText(object)).getString();
 	}
 	
+
+	/**
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getStyledText(Object object) {
+		String label = ((AttributeParameter)object).getName();
+    	StyledString styledLabel = new StyledString();
+		if (label == null || label.length() == 0) {
+			styledLabel.append(getString("_UI_AttributeParameter_type"), StyledString.Style.QUALIFIER_STYLER); 
+		} else {
+			styledLabel.append(getString("_UI_AttributeParameter_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+		}
+		return styledLabel;
+	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.PAMTraM;
@@ -157,12 +158,37 @@ extends MappingTypeItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
+		return ((StyledString)getStyledText(object)).getString();
+	}
+
+	/**
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public Object getStyledText(Object object) {
 		String label = ((Mapping)object).getName();
-		return (((Mapping) object).isAbstract() ? "<<abstract>> " : "") + 
-				(label == null || label.length() == 0 ? "" : label);
+		StyledString styledLabel = new StyledString();
+
+		if (label == null || label.length() == 0) {
+			styledLabel.append(""); 
+		} else {
+			styledLabel.append(label, ((Mapping) object).isAbstract() ? StyledString.Style.QUALIFIER_STYLER : StyledString.Style.NO_STYLE);
+		}
+
+		if(((Mapping) object).isDeactivated()) {
+			return new StyledString(styledLabel.getString(), StyledString.Style.newBuilder().setStrikedout(true).toStyle());
+		} else {
+			return styledLabel;
+
+		}
+
 	}
 
 	/**

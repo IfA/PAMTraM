@@ -11,7 +11,9 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import pamtram.PamtramPackage;
 import pamtram.SectionModel;
 import pamtram.metamodel.MetamodelFactory;
@@ -23,7 +25,7 @@ import pamtram.metamodel.MetamodelFactory;
  * @generated
  */
 public class SectionModelItemProvider
-	extends NamedElementItemProvider {
+extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -110,10 +112,28 @@ public class SectionModelItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
+		return ((StyledString)getStyledText(object)).getString();
+	}
+
+	/**
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public Object getStyledText(Object object) {
 		String label = ((SectionModel<?, ?, ?, ?>)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_SectionModel_type") :
-			getString("_UI_SectionModel_type") + " " + label;
+		StyledString styledLabel = new StyledString();
+		if (label != null && label.length() > 0) {
+			styledLabel.append(" " + label);
+		}
+
+		if(((SectionModel<?, ?, ?, ?>)object).getMetaModelPackage() != null) {
+			styledLabel.append(" (" + ((SectionModel<?, ?, ?, ?>)object).getMetaModelPackage().getNsPrefix() + ")", StyledString.Style.QUALIFIER_STYLER);
+		}
+
+		return styledLabel;
 	}
 
 	/**

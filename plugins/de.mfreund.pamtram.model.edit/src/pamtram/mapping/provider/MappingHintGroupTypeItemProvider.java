@@ -3,6 +3,7 @@
 package pamtram.mapping.provider;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.mapping.AttributeMapping;
@@ -28,6 +30,7 @@ import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.commands.BasicDragAndDropSetCommand;
+import pamtram.mapping.impl.MappingPackageImpl;
 import pamtram.metamodel.TargetSectionClass;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
@@ -171,6 +174,15 @@ public class MappingHintGroupTypeItemProvider extends NamedElementItemProvider {
 		return childrenFeatures;
 	}
 
+	@Override
+	public Collection<? extends EStructuralFeature> getLabelRelatedChildrenFeatures(Object object) {
+		if(labelRelatedChildrenFeatures == null) {
+			labelRelatedChildrenFeatures = new ArrayList<>();
+			labelRelatedChildrenFeatures.add(MappingPackageImpl.eINSTANCE.getMappingHintGroupType_Extend());
+		}
+		return labelRelatedChildrenFeatures;
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -192,12 +204,40 @@ public class MappingHintGroupTypeItemProvider extends NamedElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((MappingHintGroupType)object).getName();
-		return label == null || label.length() == 0 ?
-				getString("_UI_MappingHintGroupType_type") :
-					getString("_UI_MappingHintGroupType_type") + " " + label;
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
+
+	/**
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public Object getStyledText(Object object) {
+
+		initializeLabelRelatedChildrenFeatureNotifications(object);
+
+		MappingHintGroupType mhg = (MappingHintGroupType) object;
+		String label = mhg.getName();
+
+		StyledString styledLabel = new StyledString();
+		if (label != null && label.length() >= 0) {
+			styledLabel.append(label);
+		}
+
+		// add the 'extends'
+		if(!mhg.getExtend().isEmpty()) {
+			ArrayList<String> extend = new ArrayList<>();
+			for (Object e : mhg.getExtend()) {
+				extend.add(((MappingHintGroupType) e).getName());
+			}
+			styledLabel.append(" -> " + String.join(", ", extend), StyledString.Style.DECORATIONS_STYLER);
+		}
+
+		return styledLabel;
+	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -206,8 +246,7 @@ public class MappingHintGroupTypeItemProvider extends NamedElementItemProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void notifyChanged(Notification notification) {
+	public void notifyChangedGen(Notification notification) {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MappingHintGroupType.class)) {
@@ -216,6 +255,12 @@ public class MappingHintGroupTypeItemProvider extends NamedElementItemProvider {
 			return;
 		}
 		super.notifyChanged(notification);
+	}
+
+	@Override
+	public void notifyChanged(Notification notification) {
+		handleLabelRelatedChildrenFeatureChangeNotification(notification);
+		notifyChangedGen(notification);
 	}
 
 	/**

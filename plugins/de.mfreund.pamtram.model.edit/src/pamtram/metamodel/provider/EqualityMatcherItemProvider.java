@@ -11,9 +11,10 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import pamtram.metamodel.AttributeValueConstraintType;
 import pamtram.metamodel.EqualityMatcher;
 import pamtram.metamodel.MetamodelPackage;
@@ -27,7 +28,7 @@ import pamtram.provider.PamtramEditPlugin;
  * @generated
  */
 public class EqualityMatcherItemProvider
-	extends NamedElementItemProvider {
+extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -143,14 +144,34 @@ public class EqualityMatcherItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
+		return ((StyledString)getStyledText(object)).getString();
+	}
+
+	/**
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public Object getStyledText(Object object) {
+
 		String label = ((EqualityMatcher)object).getName();
 		String value = ((EqualityMatcher)object).getValue();
-		return label == null || label.length() == 0 ?
-			(value == null ? "" : value) :
-			getString("_UI_EqualityMatcher_type") + " " + label;
+
+		StyledString styledLabel = new StyledString();
+
+		if(value != null) {
+			styledLabel.append(value, StyledString.Style.COUNTER_STYLER); 
+		} else {
+			styledLabel.append(label == null || label.length() == 0 ? "" : label);
+		}
+
+		return styledLabel;
 	}
 
 	/**

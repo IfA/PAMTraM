@@ -8,17 +8,15 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.mapping.GlobalValue;
 import pamtram.mapping.MappingPackage;
-
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 
@@ -96,12 +94,31 @@ public class GlobalValueItemProvider extends NamedElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((GlobalValue)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_GlobalValue_type") :
-			getString("_UI_GlobalValue_type") + " " + label;
+		return ((StyledString)getStyledText(object)).getString();
 	}
-	
+
+
+	/**
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public Object getStyledText(Object object) {
+		GlobalValue gv = ((GlobalValue)object);
+		String label = gv.getName();
+		StyledString styledLabel = new StyledString();
+		if (label == null || label.length() == 0) {
+			styledLabel.append(getString("_UI_GlobalValue_type"), StyledString.Style.QUALIFIER_STYLER); 
+		} else {
+			styledLabel.append(getString("_UI_GlobalValue_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+		}
+
+		styledLabel.append(" = \"" + gv.getValue() + "\"", StyledString.Style.COUNTER_STYLER);
+
+		return styledLabel;
+	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

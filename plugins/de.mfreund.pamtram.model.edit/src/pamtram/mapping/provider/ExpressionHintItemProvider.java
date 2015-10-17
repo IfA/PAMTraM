@@ -16,16 +16,18 @@ import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.mapping.ExpressionHint;
 import pamtram.mapping.MappingPackage;
 
 import pamtram.provider.PamtramEditPlugin;
+import pamtram.util.PamtramItemProviderAdapter;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.ExpressionHint} object.
@@ -34,13 +36,9 @@ import pamtram.provider.PamtramEditPlugin;
  * @generated
  */
 public class ExpressionHintItemProvider 
-	extends ItemProviderAdapter
+	extends PamtramItemProviderAdapter
 	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+		IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IItemStyledLabelProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -97,12 +95,27 @@ public class ExpressionHintItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ExpressionHint)object).getExpression();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ExpressionHint_type") :
-			getString("_UI_ExpressionHint_type") + " " + label;
+		return ((StyledString)getStyledText(object)).getString();
 	}
 	
+
+	/**
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getStyledText(Object object) {
+		String label = ((ExpressionHint)object).getExpression();
+    	StyledString styledLabel = new StyledString();
+		if (label == null || label.length() == 0) {
+			styledLabel.append(getString("_UI_ExpressionHint_type"), StyledString.Style.QUALIFIER_STYLER); 
+		} else {
+			styledLabel.append(getString("_UI_ExpressionHint_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+		}
+		return styledLabel;
+	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

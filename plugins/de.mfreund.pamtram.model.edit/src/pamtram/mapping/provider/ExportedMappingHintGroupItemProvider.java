@@ -9,8 +9,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-
-import pamtram.mapping.ExportedMappingHintGroup;
+import org.eclipse.emf.edit.provider.StyledString;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.ExportedMappingHintGroup} object.
@@ -63,12 +62,26 @@ public class ExportedMappingHintGroupItemProvider extends MappingHintGroupTypeIt
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ExportedMappingHintGroup)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ExportedMappingHintGroup_type") :
-			getString("_UI_ExportedMappingHintGroup_type") + " " + label;
+		return ((StyledString)getStyledText(object)).getString();
 	}
-	
+
+
+	/**
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public Object getStyledText(Object object) {
+		StyledString styledLabel = new StyledString();
+
+		styledLabel.append("Exported ", StyledString.Style.QUALIFIER_STYLER);
+
+		styledLabel.append((StyledString) super.getStyledText(object));
+
+		return styledLabel;
+	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.metamodel.Class;
 import pamtram.metamodel.MetamodelPackage;
@@ -26,7 +27,7 @@ import pamtram.metamodel.Reference;
  * @generated
  */
 public class ReferenceItemProvider
-	extends MetaModelElementItemProvider {
+extends MetaModelElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -60,64 +61,78 @@ public class ReferenceItemProvider
 	 */
 	protected void addEReferencePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+		(new ItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Reference_eReference_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Reference_eReference_feature", "_UI_Reference_type"),
-				 MetamodelPackage.Literals.REFERENCE__EREFERENCE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null){
+						getResourceLocator(),
+						getString("_UI_Reference_eReference_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Reference_eReference_feature", "_UI_Reference_type"),
+						MetamodelPackage.Literals.REFERENCE__EREFERENCE,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null){
 
-					@Override
-					public Collection<?> getChoiceOfValues(Object object) {
-			        	
-			        	// make sure that only those references can be selected that belong to the parent eClass
-			        	pamtram.metamodel.Class parent = (Class) ((Reference) object).eContainer();
-			        	return parent.getEClass().getEAllReferences(); 
+			@Override
+			public Collection<?> getChoiceOfValues(Object object) {
 
-					}
-				
-				
-			});
+				// make sure that only those references can be selected that belong to the parent eClass
+				pamtram.metamodel.Class parent = (Class) ((Reference) object).eContainer();
+				return parent.getEClass().getEAllReferences(); 
+
+			}
+
+
+		});
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
+		return ((StyledString)getStyledText(object)).getString();
+	}
+
+	/**
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public Object getStyledText(Object object) {
+
 		String label = ((Reference)object).getName();
-		
 		EReference eReference = ((pamtram.metamodel.Reference)object).getEReference();
-		
-		String ret = "";
+
+		StyledString styledLabel = new StyledString();
+
 		if(label != null && label.length() != 0) {
-			ret += label;
+			styledLabel.append(label);
 		}
+
 		if(eReference != null) {
 			EClass eClass = (EClass) eReference.eContainer();
 			EPackage ePackage = eClass.getEPackage();
+
 			if(ePackage != null) {
-				ret += (ret.equals("") ?
+				styledLabel.append(styledLabel.toString().equals("") ?
 						"(" + ePackage.getNsPrefix() + "::" :
-						" (" + ePackage.getNsPrefix() + "::");
-				ret += eClass.getName() + "." + eReference.getName() + ")";
+							" (" + ePackage.getNsPrefix() + "::", StyledString.Style.QUALIFIER_STYLER);
+				styledLabel.append(eClass.getName() + "." + eReference.getName() + ")", StyledString.Style.QUALIFIER_STYLER);
 			} else {
-				ret += (ret.equals("") ?
+				styledLabel.append((styledLabel.toString().equals("") ?
 						"(" + eClass.getName() + "." + eReference.getName() + ")" :
-						" (" + eClass.getName() + "." + eReference.getName() + ")");
+							" (" + eClass.getName() + "." + eReference.getName() + ")"), StyledString.Style.QUALIFIER_STYLER);
 			}
 		}
-		
-		return ret;
+
+		return styledLabel;
 	}
 
 	/**

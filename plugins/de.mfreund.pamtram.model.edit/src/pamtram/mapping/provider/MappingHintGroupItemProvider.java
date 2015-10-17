@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.PamtramPackage;
@@ -27,7 +28,7 @@ import pamtram.mapping.ModelConnectionHint;
  * @generated
  */
 public class MappingHintGroupItemProvider
-	extends MappingHintGroupTypeItemProvider {
+extends MappingHintGroupTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -125,10 +126,26 @@ public class MappingHintGroupItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((MappingHintGroup)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_MappingHintGroup_type") :
-			getString("_UI_MappingHintGroup_type") + " " + label;
+		return ((StyledString)getStyledText(object)).getString();
+	}
+
+	/**
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public Object getStyledText(Object object) {
+
+		StyledString styledLabel = (StyledString) super.getStyledText(object);
+
+		if(((MappingHintGroup) object).isDeactivated()) {
+			return new StyledString(styledLabel.getString(), StyledString.Style.newBuilder().setStrikedout(true).toStyle());
+		} else {
+			return styledLabel;
+
+		}
 	}
 
 	/**
@@ -169,7 +186,7 @@ public class MappingHintGroupItemProvider
 				(MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER,
 				 MappingFactory.eINSTANCE.createModelConnectionHint()));
 	}
-	
+
 	/**
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
@@ -180,23 +197,23 @@ public class MappingHintGroupItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-		
+
 		newChildDescriptors.add
 		(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER,
 						MappingFactory.eINSTANCE.createModelConnectionHintWithSourceAndTarget()));
 
 		newChildDescriptors.add
-			(createChildParameter
+		(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP__MODEL_CONNECTION_MATCHER,
-				 MappingFactory.eINSTANCE.createModelConnectionHint()));
-		
+						MappingFactory.eINSTANCE.createModelConnectionHint()));
+
 	}
-	
+
 	@Override
 	public String getCreateChildText(Object owner, Object feature,
 			Object child, Collection<?> selection) {
-		
+
 		// provide labels for the custom child descriptors
 		if(child instanceof ModelConnectionHint) {
 			ModelConnectionHint modelConnectionHint = (ModelConnectionHint) child;

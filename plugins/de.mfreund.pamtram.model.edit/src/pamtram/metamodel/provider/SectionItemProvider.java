@@ -3,17 +3,20 @@
 package pamtram.metamodel.provider;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.StyledString;
+import org.eclipse.emf.edit.provider.StyledString.Fragment;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.Section;
 
@@ -103,12 +106,49 @@ public class SectionItemProvider extends ClassItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Section<?, ?, ?, ?>)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Section_type") :
-			getString("_UI_Section_type") + " " + label;
+		return ((StyledString)getStyledText(object)).getString();
 	}
-	
+
+
+	/**
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public Object getStyledText(Object object) {
+		Section section = (Section) object;
+
+		StyledString styledLabel = new StyledString();
+
+		if(!section.isAbstract() || section.getName() == null || section.getName().isEmpty()) {
+			styledLabel.append((StyledString) super.getStyledText(object));
+		} else {
+			Iterator<Fragment> it = ((StyledString) super.getStyledText(object)).iterator();
+			while(it.hasNext()) {
+				Fragment next = it.next();
+				if(next.getString().equals(section.getName())) {
+					// use the 'qualifier styler' for the label
+					styledLabel.append(next.getString(), StyledString.Style.QUALIFIER_STYLER);
+				} else {
+					// every other fragment is added as is
+					styledLabel.append(next.getString(), next.getStyle());
+				}
+			}
+		}
+
+		// add the 'extends'
+		if(!section.getExtend().isEmpty()) {
+			ArrayList<String> extend = new ArrayList<>();
+			for (Object e : section.getExtend()) {
+				extend.add(((Section) e).getName());
+			}
+			styledLabel.append(" -> " + String.join(", ", extend), StyledString.Style.DECORATIONS_STYLER);
+		}
+
+		return styledLabel;
+	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

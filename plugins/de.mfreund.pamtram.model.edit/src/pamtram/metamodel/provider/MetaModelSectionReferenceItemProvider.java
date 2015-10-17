@@ -20,6 +20,7 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
+import org.eclipse.emf.edit.provider.StyledString;
 import pamtram.mapping.commands.BasicDragAndDropAddCommand;
 import pamtram.metamodel.MetaModelSectionReference;
 import pamtram.metamodel.MetamodelPackage;
@@ -65,47 +66,47 @@ public class MetaModelSectionReferenceItemProvider extends SourceSectionReferenc
 	 */
 	protected void addValuePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+		(new ItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MetaModelSectionReference_value_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MetaModelSectionReference_value_feature", "_UI_MetaModelSectionReference_type"),
-				 MetamodelPackage.Literals.META_MODEL_SECTION_REFERENCE__VALUE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null){
+						getResourceLocator(),
+						getString("_UI_MetaModelSectionReference_value_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_MetaModelSectionReference_value_feature", "_UI_MetaModelSectionReference_type"),
+						MetamodelPackage.Literals.META_MODEL_SECTION_REFERENCE__VALUE,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null){
 
-				@Override
-				public Collection<?> getChoiceOfValues(Object object) {
-					Collection<?> superChoices=super.getChoiceOfValues(object);
-					
-					EClass refClass =null;
-					try{
-						refClass=((MetaModelSectionReference)object).getEReference().getEReferenceType();
-					} catch(Exception e){
-						return superChoices;
-					}
-						List<SourceSectionClass> choices=new LinkedList<SourceSectionClass>();
-						Iterator<?>  it=superChoices.iterator();
-						while(it.hasNext()){
-							Object next=it.next();
-							if(next instanceof SourceSectionClass){
-								if(((SourceSectionClass) next).getEClass() != null){
-									if(refClass.isSuperTypeOf(((SourceSectionClass) next).getEClass())){
-										choices.add((SourceSectionClass) next);
-									}
-								}
+			@Override
+			public Collection<?> getChoiceOfValues(Object object) {
+				Collection<?> superChoices=super.getChoiceOfValues(object);
+
+				EClass refClass =null;
+				try{
+					refClass=((MetaModelSectionReference)object).getEReference().getEReferenceType();
+				} catch(Exception e){
+					return superChoices;
+				}
+				List<SourceSectionClass> choices=new LinkedList<SourceSectionClass>();
+				Iterator<?>  it=superChoices.iterator();
+				while(it.hasNext()){
+					Object next=it.next();
+					if(next instanceof SourceSectionClass){
+						if(((SourceSectionClass) next).getEClass() != null){
+							if(refClass.isSuperTypeOf(((SourceSectionClass) next).getEClass())){
+								choices.add((SourceSectionClass) next);
 							}
 						}
-						
-						return choices;
+					}
 				}
-				
-				
-			});
+
+				return choices;
+			}
+
+
+		});
 	}
 
 	/**
@@ -123,12 +124,24 @@ public class MetaModelSectionReferenceItemProvider extends SourceSectionReferenc
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return super.getText(object);
+		return ((StyledString)getStyledText(object)).getString();
 	}
-	
+
+
+	/**
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public Object getStyledText(Object object) {
+		return super.getStyledText(object);
+	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -159,10 +172,9 @@ public class MetaModelSectionReferenceItemProvider extends SourceSectionReferenc
 	protected Command createDragAndDropCommand(EditingDomain domain,
 			Object owner, float location, int operations, int operation,
 			Collection<?> collection) {
-		
+
 		EList<SourceSectionClass> values = new BasicEList<SourceSectionClass>();
-		for(Iterator<?> iter = collection.iterator(); iter.hasNext(); ) {
-			Object value = iter.next();
+		for (Object value : collection) {
 			if(value instanceof SourceSectionClass) {
 				values.add((SourceSectionClass) value);
 			} else {
@@ -170,7 +182,7 @@ public class MetaModelSectionReferenceItemProvider extends SourceSectionReferenc
 						operation, collection); 
 			}
 		}
-		
+
 		if(values.isEmpty()) {
 			return super.createDragAndDropCommand(domain, owner, location, operations,
 					operation, collection); 

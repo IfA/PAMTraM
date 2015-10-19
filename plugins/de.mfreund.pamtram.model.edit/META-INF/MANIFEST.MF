@@ -7,7 +7,7 @@ Bundle-ClassPath: .
 Bundle-Activator: pamtram.provider.PamtramEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: pamtram.condition.provider,
  pamtram.converter,
  pamtram.mapping.commands,

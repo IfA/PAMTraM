@@ -49,8 +49,6 @@
         versionRange="4.0.0"/>
     <repository
         url="http://download.eclipse.org/epsilon/updates/"/>
-    <repository
-        url="${ocl.examples.location}"/>
   </setupTask>
   <setupTask
       xsi:type="setup:CompoundTask"
@@ -121,17 +119,6 @@
         key="/instance/org.eclipse.egit.ui/resourcehistory_show_all_branches"
         value="true"/>
     <description>This sets a bunch of preferences.</description>
-  </setupTask>
-  <setupTask
-      xsi:type="setup:VariableTask"
-      id="ocl.examples.location"
-      name="ocl.examples.location"
-      label="OCL examples update site location">
-    <description>
-      This is the path to the update site where version 6.0.1+ of the 'OCL examples' is located.
-
-      Note: This variable will be removed in the future as soon as version 6.0.1+ is included in the official OCL repository.
-    </description>
   </setupTask>
   <stream name="master">
     <setupTask

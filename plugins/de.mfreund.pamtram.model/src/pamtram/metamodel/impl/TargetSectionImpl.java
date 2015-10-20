@@ -14,7 +14,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -142,7 +141,7 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<MappingHintGroupType> getReferencingMappingHintGroups() {
@@ -159,27 +158,24 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 		/*@NonNull*/ Iterator<?> ITERATOR_mhg = allInstances.iterator();
 		/*@NonNull*/ /*@Thrown*/ SetValue select;
 		while (true) {
-			if (!ITERATOR_mhg.hasNext()) {
-				select = accumulator;
-				break;
-			}
-			/*@NonNull*/ /*@NonInvalid*/ MappingHintGroupType mhg = (MappingHintGroupType)ITERATOR_mhg.next();
-			/**
-			 * self = mhg.targetMMSection
-			 */
-			final /*@NonNull*/ /*@Thrown*/ TargetSection targetMMSection = mhg.getTargetMMSection();
-			final /*@Thrown*/ boolean eq = this.equals(targetMMSection);
-			//
-			if (eq == ValueUtil.TRUE_VALUE) {
-				accumulator.add(mhg);
-			}
+		    if (!ITERATOR_mhg.hasNext()) {
+		        select = accumulator;
+		        break;
+		    }
+		    /*@NonNull*/ /*@NonInvalid*/ MappingHintGroupType mhg = (MappingHintGroupType)ITERATOR_mhg.next();
+		    /**
+		     * self = mhg.targetMMSection
+		     */
+		    final /*@NonNull*/ /*@Thrown*/ TargetSection targetMMSection = mhg.getTargetMMSection();
+		    final /*@Thrown*/ boolean eq = this.equals(targetMMSection);
+		    //
+		    if (eq == ValueUtil.TRUE_VALUE) {
+		        accumulator.add(mhg);
+		    }
 		}
 		final List<MappingHintGroupType> UNBOXED_select = select.asEcoreObjects(idResolver, pamtram.mapping.MappingHintGroupType.class);
 		assert UNBOXED_select != null;
-		// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=474307
-		return new EcoreEList.UnmodifiableEList.FastCompare<> 
-		(this, MetamodelPackage.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS, UNBOXED_select.size(), UNBOXED_select.toArray()); 
-		//		return (EList<MappingType>)UNBOXED_select;
+		return (EList<MappingHintGroupType>)UNBOXED_select;
 	}
 
 	/**
@@ -305,6 +301,7 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean containerMatchesExtendContainer(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		/**
 		 * 

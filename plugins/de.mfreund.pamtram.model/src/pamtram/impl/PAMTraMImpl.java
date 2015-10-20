@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
@@ -271,7 +270,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
@@ -287,36 +286,33 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		/*@Nullable*/ Iterator<?> ITERATOR_s = BOXED_sourceSectionModel.iterator();
 		/*@NonNull*/ /*@Thrown*/ SequenceValue collect;
 		while (true) {
-			if (!ITERATOR_s.hasNext()) {
-				collect = accumulator;
-				break;
-			}
-			/*@Nullable*/ /*@NonInvalid*/ SourceSectionModel s = (SourceSectionModel)ITERATOR_s.next();
-			/**
-			 * s.metaModelSections
-			 */
-			if (s == null) {
-				throw new InvalidValueException("Null source for \'\'http://mfreund.de/pamtram\'::SectionModel::metaModelSections\'");
-			}
-			final /*@NonNull*/ /*@Thrown*/ List<? extends Object> metaModelSections = s.getMetaModelSections();
-			final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_metaModelSections = idResolver.createOrderedSetOfAll(PamtramTables.ORD_TMPLid_, metaModelSections);
-			//
-			for (Object value : BOXED_metaModelSections.flatten().getElements()) {
-				accumulator.add(value);
-			}
+		    if (!ITERATOR_s.hasNext()) {
+		        collect = accumulator;
+		        break;
+		    }
+		    /*@Nullable*/ /*@NonInvalid*/ SourceSectionModel s = (SourceSectionModel)ITERATOR_s.next();
+		    /**
+		     * s.metaModelSections
+		     */
+		    if (s == null) {
+		        throw new InvalidValueException("Null source for \'\'http://mfreund.de/pamtram\'::SectionModel::metaModelSections\'");
+		    }
+		    final /*@NonNull*/ /*@Thrown*/ List<? extends Object> metaModelSections = s.getMetaModelSections();
+		    final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_metaModelSections = idResolver.createOrderedSetOfAll(PamtramTables.ORD_TMPLid_, metaModelSections);
+		    //
+		    for (Object value : BOXED_metaModelSections.flatten().getElements()) {
+		        accumulator.add(value);
+		    }
 		}
 		final List<? extends Object> UNBOXED_collect = collect.asEcoreObjects(idResolver, Object.class);
 		assert UNBOXED_collect != null;
-		// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=474307
-		return new EcoreEList.UnmodifiableEList.FastCompare<> 
-		(this, PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTIONS, UNBOXED_collect.size(), UNBOXED_collect.toArray()); 
-		//		return (EList<SourceSectionClass>)UNBOXED_collect;
+		return (EList<SourceSection>)UNBOXED_collect;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
@@ -332,36 +328,33 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		/*@Nullable*/ Iterator<?> ITERATOR_s = BOXED_targetSectionModel.iterator();
 		/*@NonNull*/ /*@Thrown*/ SequenceValue collect;
 		while (true) {
-			if (!ITERATOR_s.hasNext()) {
-				collect = accumulator;
-				break;
-			}
-			/*@Nullable*/ /*@NonInvalid*/ TargetSectionModel s = (TargetSectionModel)ITERATOR_s.next();
-			/**
-			 * s.metaModelSections
-			 */
-			if (s == null) {
-				throw new InvalidValueException("Null source for \'\'http://mfreund.de/pamtram\'::SectionModel::metaModelSections\'");
-			}
-			final /*@NonNull*/ /*@Thrown*/ List<? extends Object> metaModelSections = s.getMetaModelSections();
-			final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_metaModelSections = idResolver.createOrderedSetOfAll(PamtramTables.ORD_TMPLid_, metaModelSections);
-			//
-			for (Object value : BOXED_metaModelSections.flatten().getElements()) {
-				accumulator.add(value);
-			}
+		    if (!ITERATOR_s.hasNext()) {
+		        collect = accumulator;
+		        break;
+		    }
+		    /*@Nullable*/ /*@NonInvalid*/ TargetSectionModel s = (TargetSectionModel)ITERATOR_s.next();
+		    /**
+		     * s.metaModelSections
+		     */
+		    if (s == null) {
+		        throw new InvalidValueException("Null source for \'\'http://mfreund.de/pamtram\'::SectionModel::metaModelSections\'");
+		    }
+		    final /*@NonNull*/ /*@Thrown*/ List<? extends Object> metaModelSections = s.getMetaModelSections();
+		    final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_metaModelSections = idResolver.createOrderedSetOfAll(PamtramTables.ORD_TMPLid_, metaModelSections);
+		    //
+		    for (Object value : BOXED_metaModelSections.flatten().getElements()) {
+		        accumulator.add(value);
+		    }
 		}
 		final List<? extends Object> UNBOXED_collect = collect.asEcoreObjects(idResolver, Object.class);
 		assert UNBOXED_collect != null;
-		// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=474307
-		return new EcoreEList.UnmodifiableEList.FastCompare<> 
-		(this, PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTIONS, UNBOXED_collect.size(), UNBOXED_collect.toArray()); 
-		//		return (EList<TargetSectionClass>)UNBOXED_collect;
+		return (EList<TargetSection>)UNBOXED_collect;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
@@ -377,36 +370,33 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		/*@Nullable*/ Iterator<?> ITERATOR_s = BOXED_mappingModel.iterator();
 		/*@NonNull*/ /*@Thrown*/ SequenceValue collect;
 		while (true) {
-			if (!ITERATOR_s.hasNext()) {
-				collect = accumulator;
-				break;
-			}
-			/*@Nullable*/ /*@NonInvalid*/ MappingModel s = (MappingModel)ITERATOR_s.next();
-			/**
-			 * s.mapping
-			 */
-			if (s == null) {
-				throw new InvalidValueException("Null source for \'\'http://mfreund.de/pamtram\'::MappingModel::mapping\'");
-			}
-			final /*@NonNull*/ /*@Thrown*/ List<Mapping> mapping = s.getMapping();
-			final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_mapping = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_Mapping, mapping);
-			//
-			for (Object value : BOXED_mapping.flatten().getElements()) {
-				accumulator.add(value);
-			}
+		    if (!ITERATOR_s.hasNext()) {
+		        collect = accumulator;
+		        break;
+		    }
+		    /*@Nullable*/ /*@NonInvalid*/ MappingModel s = (MappingModel)ITERATOR_s.next();
+		    /**
+		     * s.mapping
+		     */
+		    if (s == null) {
+		        throw new InvalidValueException("Null source for \'\'http://mfreund.de/pamtram\'::MappingModel::mapping\'");
+		    }
+		    final /*@NonNull*/ /*@Thrown*/ List<Mapping> mapping = s.getMapping();
+		    final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_mapping = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_Mapping, mapping);
+		    //
+		    for (Object value : BOXED_mapping.flatten().getElements()) {
+		        accumulator.add(value);
+		    }
 		}
 		final List<Mapping> UNBOXED_collect = collect.asEcoreObjects(idResolver, pamtram.mapping.Mapping.class);
 		assert UNBOXED_collect != null;
-		// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=474307
-		return new EcoreEList.UnmodifiableEList.FastCompare<> 
-		(this, PamtramPackage.Literals.PAM_TRA_M__MAPPINGS, UNBOXED_collect.size(), UNBOXED_collect.toArray()); 
-		//		return (EList<Mapping>)UNBOXED_collect;
+		return (EList<Mapping>)UNBOXED_collect;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<Mapping> getActiveMappings() {
@@ -421,30 +411,27 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		/*@Nullable*/ Iterator<?> ITERATOR_m = BOXED_mappingModel.iterator();
 		/*@NonNull*/ /*@Thrown*/ SequenceValue collect;
 		while (true) {
-			if (!ITERATOR_m.hasNext()) {
-				collect = accumulator;
-				break;
-			}
-			/*@Nullable*/ /*@NonInvalid*/ MappingModel m = (MappingModel)ITERATOR_m.next();
-			/**
-			 * m.getActiveMappings()
-			 */
-			if (m == null) {
-				throw new InvalidValueException("Null source for \'pamtram::MappingModel::getActiveMappings() : OrderedSet(pamtram::mapping::Mapping)\'");
-			}
-			final /*@NonNull*/ /*@Thrown*/ List<Mapping> getActiveMappings = m.getActiveMappings();
-			final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_getActiveMappings = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_Mapping, getActiveMappings);
-			//
-			for (Object value : BOXED_getActiveMappings.flatten().getElements()) {
-				accumulator.add(value);
-			}
+		    if (!ITERATOR_m.hasNext()) {
+		        collect = accumulator;
+		        break;
+		    }
+		    /*@Nullable*/ /*@NonInvalid*/ MappingModel m = (MappingModel)ITERATOR_m.next();
+		    /**
+		     * m.getActiveMappings()
+		     */
+		    if (m == null) {
+		        throw new InvalidValueException("Null source for \'pamtram::MappingModel::getActiveMappings() : OrderedSet(pamtram::mapping::Mapping)\'");
+		    }
+		    final /*@NonNull*/ /*@Thrown*/ List<Mapping> getActiveMappings = m.getActiveMappings();
+		    final /*@NonNull*/ /*@Thrown*/ OrderedSetValue BOXED_getActiveMappings = idResolver.createOrderedSetOfAll(PamtramTables.ORD_CLSSid_Mapping, getActiveMappings);
+		    //
+		    for (Object value : BOXED_getActiveMappings.flatten().getElements()) {
+		        accumulator.add(value);
+		    }
 		}
 		final List<Mapping> UNBOXED_collect = collect.asEcoreObjects(idResolver, pamtram.mapping.Mapping.class);
 		assert UNBOXED_collect != null;
-		// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=474307
-		return new EcoreEList.UnmodifiableEList.FastCompare<> 
-		(this, PamtramPackage.Literals.PAM_TRA_M__ACTIVE_MAPPINGS, UNBOXED_collect.size(), UNBOXED_collect.toArray()); 
-		//		return (EList<Mapping>)UNBOXED_select;
+		return (EList<Mapping>)UNBOXED_collect;
 	}
 
 	/**

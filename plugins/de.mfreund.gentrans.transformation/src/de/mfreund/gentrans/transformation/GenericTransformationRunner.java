@@ -669,7 +669,7 @@ public class GenericTransformationRunner {
 					/*
 					 * Instantiate the target section.
 					 */
-					final LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection = 
+					final LinkedHashMap<TargetSectionClass, LinkedList<EObjectWrapper>> instancesBySection = 
 							targetSectionInstantiator.instantiateTargetSectionFirstPass(
 									g.getTargetMMSection(),
 									(MappingHintGroup) g, g.getMappingHints(),
@@ -867,7 +867,7 @@ public class GenericTransformationRunner {
 								// ImportedMappingHints
 							}
 						}
-						final LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection = 
+						final LinkedHashMap<TargetSectionClass, LinkedList<EObjectWrapper>> instancesBySection = 
 								targetSectionInstantiator.instantiateTargetSectionFirstPass(
 										expGrp.getTargetMMSection(), g, hints,
 										selMap.getHintValues(),
@@ -978,7 +978,7 @@ public class GenericTransformationRunner {
 								}
 							} else {// link using container attribute or nothing
 
-								final LinkedList<EObjectTransformationHelper> containerInstances = expandingResult.getTargetSectionRegistry()
+								final LinkedList<EObjectWrapper> containerInstances = expandingResult.getTargetSectionRegistry()
 										.getFlattenedPamtramClassInstances(section
 												.getContainer());
 
@@ -986,7 +986,7 @@ public class GenericTransformationRunner {
 								 * fetch ALL instances created by the MH-Group in question => less user input and possibly shorter
 								 * processing time
 								 */
-								final LinkedList<EObjectTransformationHelper> rootInstances = expandingResult.getTargetSectionRegistry()
+								final LinkedList<EObjectWrapper> rootInstances = expandingResult.getTargetSectionRegistry()
 										.getPamtramClassInstances(section).get(g);
 
 								/*
@@ -1022,10 +1022,10 @@ public class GenericTransformationRunner {
 					if (i.getContainer() != null) {
 						for (final MappingInstanceStorage selMap : matchingResult.getSelectedMappingsByMapping()
 								.get(m)) {
-							final LinkedList<EObjectTransformationHelper> rootInstances = selMap
+							final LinkedList<EObjectWrapper> rootInstances = selMap
 									.getInstances(i, g.getTargetMMSection());
 							if (rootInstances.size() > 0) {
-								final LinkedList<EObjectTransformationHelper> containerInstances = new LinkedList<>();
+								final LinkedList<EObjectWrapper> containerInstances = new LinkedList<>();
 
 								// get container instances created by this
 								// mapping instance
@@ -1036,7 +1036,7 @@ public class GenericTransformationRunner {
 									}
 
 									if (group instanceof MappingHintGroup) {
-										final LinkedList<EObjectTransformationHelper> insts = selMap
+										final LinkedList<EObjectWrapper> insts = selMap
 												.getInstances(
 														(MappingHintGroup) group,
 														i.getContainer());
@@ -1064,8 +1064,8 @@ public class GenericTransformationRunner {
 						// specified
 						// (target section container == global instance search)
 					} else {
-						final LinkedList<EObjectTransformationHelper> containerInstances = new LinkedList<>();
-						final LinkedList<EObjectTransformationHelper> rootInstances = expandingResult.getTargetSectionRegistry()
+						final LinkedList<EObjectWrapper> containerInstances = new LinkedList<>();
+						final LinkedList<EObjectWrapper> rootInstances = expandingResult.getTargetSectionRegistry()
 								.getPamtramClassInstances(
 										g.getTargetMMSection()).get(i);
 						final Set<EClass> containerClasses = new HashSet<>();

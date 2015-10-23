@@ -292,7 +292,7 @@ public class SourceSectionMatcher implements CancellationListener {
 				 * There is no other choice but to let the user decide which mapping to apply.					
 				 */
 				final NamedElementItemSelectorDialogRunner<Mapping> dialog = new NamedElementItemSelectorDialogRunner<>(
-						"Please select a Mapping for the source element\n'" + EObjectTransformationHelper.asString(element)+ "'", 
+						"Please select a Mapping for the source element\n'" + EObjectWrapper.asString(element)+ "'", 
 						new ArrayList<>(applicableMappings.keySet()), 
 						0);
 				Display.getDefault().syncExec(dialog);

@@ -53,7 +53,7 @@ class MappingInstanceStorage {
 	/**
 	 * Generated EObjects sorted by TargetSectionCLass
 	 */
-	private final LinkedHashMap<InstantiableMappingHintGroup, LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>> instancesBySection;
+	private final LinkedHashMap<InstantiableMappingHintGroup, LinkedHashMap<TargetSectionClass, LinkedList<EObjectWrapper>>> instancesBySection;
 
 	/**
 	 * This contains the hint values that shall be used when instantiating, linking, and expanding the target section(s). 
@@ -126,7 +126,7 @@ class MappingInstanceStorage {
 	 */
 	void addInstances(final InstantiableMappingHintGroup grp,
 			final TargetSectionClass section,
-			final Collection<EObjectTransformationHelper> insts) {
+			final Collection<EObjectWrapper> insts) {
 		generateInstancesCollectionsIfNeeded(grp, section);
 		instancesBySection.get(grp).get(section).addAll(insts);
 	}
@@ -185,12 +185,12 @@ class MappingInstanceStorage {
 		if (!instancesBySection.containsKey(grp)) {
 			instancesBySection
 			.put(grp,
-					new LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>>());
+					new LinkedHashMap<TargetSectionClass, LinkedList<EObjectWrapper>>());
 		}
 
 		if (!instancesBySection.get(grp).containsKey(section)) {
 			instancesBySection.get(grp).put(section,
-					new LinkedList<EObjectTransformationHelper>());
+					new LinkedList<EObjectWrapper>());
 		}
 	}
 
@@ -216,7 +216,7 @@ class MappingInstanceStorage {
 	 * @param section
 	 * @return
 	 */
-	LinkedList<EObjectTransformationHelper> getInstances(
+	LinkedList<EObjectWrapper> getInstances(
 			final InstantiableMappingHintGroup group,
 			final TargetSectionClass section) {
 		if (instancesBySection.containsKey(group)) {
@@ -235,7 +235,7 @@ class MappingInstanceStorage {
 	 * @return generated target section instances associated with the
 	 *         MappingHintGroup
 	 */
-	LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> getInstancesBySection(
+	LinkedHashMap<TargetSectionClass, LinkedList<EObjectWrapper>> getInstancesBySection(
 			final InstantiableMappingHintGroup group) {
 		return instancesBySection.get(group);
 	}

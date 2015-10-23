@@ -17,7 +17,7 @@ import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.selectors.GenericItemSelectorDialogRunner;
 import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunner;
-import de.mfreund.gentrans.transformation.util.CancellationListener;
+import de.mfreund.gentrans.transformation.util.ICancellable;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.ModelConnectionHint;
@@ -31,7 +31,7 @@ import pamtram.metamodel.TargetSectionClass;
  *
  * @author mfreund
  */
-public class TargetSectionConnector implements CancellationListener {
+public class TargetSectionConnector implements ICancellable {
 
 	/**
 	 * This list stores those {@link ModelConnectionPath ModelConnectionPaths} that have beepreviously selected 

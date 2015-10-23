@@ -20,7 +20,7 @@ import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.selectors.NamedElementItemSelectorDialogRunner;
-import de.mfreund.gentrans.transformation.util.CancellationListener;
+import de.mfreund.gentrans.transformation.util.ICancellable;
 import pamtram.SourceSectionModel;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingExternalSourceElement;
@@ -68,7 +68,7 @@ import pamtram.metamodel.SourceSectionReference;
  * @author mfreund
  * @version 2.0
  */
-public class SourceSectionMatcher implements CancellationListener {
+public class SourceSectionMatcher implements ICancellable {
 
 	/**
 	 * The {@link ContainmentTree} for the source model that we try to match.

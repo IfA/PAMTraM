@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.eclipse.ui.console.MessageConsoleStream;
 
-import de.mfreund.gentrans.transformation.util.CancellationListener;
+import de.mfreund.gentrans.transformation.util.ICancellable;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.metamodel.TargetSectionClass;
 
@@ -26,7 +26,7 @@ import pamtram.metamodel.TargetSectionClass;
  * @version 1.0
  *
  */
-public class TargetSectionRegistry implements CancellationListener {
+public class TargetSectionRegistry implements ICancellable {
 
 	/**
 	 * Attribute value registry, needed when applying model connection hints

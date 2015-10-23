@@ -26,7 +26,7 @@ import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
 import de.mfreund.gentrans.transformation.selectors.GenericItemSelectorDialogRunner;
 import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunner;
-import de.mfreund.gentrans.transformation.util.CancellationListener;
+import de.mfreund.gentrans.transformation.util.ICancellable;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractAttributeParameter;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
@@ -64,7 +64,7 @@ import pamtram.util.GenLibraryManager;
  * @version 1.0
  *
  */
-class TargetSectionInstantiator implements CancellationListener {
+class TargetSectionInstantiator implements ICancellable {
 	/**
 	 * find Attribute mapping to determine cardinality
 	 *

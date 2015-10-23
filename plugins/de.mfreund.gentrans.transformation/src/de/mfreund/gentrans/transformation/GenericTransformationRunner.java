@@ -37,7 +37,7 @@ import org.eclipse.ui.progress.UIJob;
 
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
-import de.mfreund.gentrans.transformation.util.CancellationListener;
+import de.mfreund.gentrans.transformation.util.ICancellable;
 import de.mfreund.gentrans.transformation.util.MonitorWrapper;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 import pamtram.PAMTraM;
@@ -85,7 +85,7 @@ public class GenericTransformationRunner {
 	/**
 	 * This keeps track of objects that need to be canceled when the user requests an early termination of the transformation.
 	 */
-	private final List<CancellationListener> objectsToCancel;
+	private final List<ICancellable> objectsToCancel;
 
 	/**
 	 * File paths of the source models to be transformed
@@ -418,7 +418,7 @@ public class GenericTransformationRunner {
 	 */
 	public void cancel() {
 		isCancelled = true;
-		for (final CancellationListener l : objectsToCancel) {
+		for (final ICancellable l : objectsToCancel) {
 			l.cancel();
 		}
 	}

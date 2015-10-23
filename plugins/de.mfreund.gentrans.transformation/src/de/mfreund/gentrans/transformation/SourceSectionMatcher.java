@@ -20,7 +20,7 @@ import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.selectors.NamedElementItemSelectorDialogRunner;
-import de.mfreund.gentrans.transformation.util.ICancellable;
+import de.mfreund.gentrans.transformation.util.CancellableElement;
 import pamtram.SourceSectionModel;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingExternalSourceElement;
@@ -68,7 +68,7 @@ import pamtram.metamodel.SourceSectionReference;
  * @author mfreund
  * @version 2.0
  */
-public class SourceSectionMatcher implements ICancellable {
+public class SourceSectionMatcher extends CancellableElement {
 
 	/**
 	 * The {@link ContainmentTree} for the source model that we try to match.
@@ -144,12 +144,6 @@ public class SourceSectionMatcher implements ICancellable {
 	private final MessageConsoleStream consoleStream;
 
 	/**
-	 * This keeps track if the user chose to abort the transformation in one of the possible dialogues
-	 * ('<em>true</em>' if a user action was triggered to abort the transformation).
-	 */
-	private boolean abortTransformation;
-
-	/**
 	 * Registry for values of {@link GlobalAttribute GlobalAttributes}. Only the latest value found is
 	 * saved (GlobalAttributes really only make sense for elements that appear only once in the source model).
 	 */
@@ -201,7 +195,7 @@ public class SourceSectionMatcher implements ICancellable {
 		this.deepestSourceSectionClassesByAttributeMatcher = new LinkedHashMap<>();
 		this.deepestSourceSectionClassesByModelConnectionHint = new LinkedHashMap<>();
 		this.consoleStream = consoleStream;
-		this.abortTransformation = false;
+		this.canceled = false;
 		this.globalAttributeValues = new HashMap<>();
 		this.attributeValueModifierExecutor = attributeValuemodifier;
 		this.constraintsWithErrors = new HashSet<>();
@@ -229,20 +223,6 @@ public class SourceSectionMatcher implements ICancellable {
 	 */
 	public LinkedHashMap<SourceSectionClass, Set<EObject>> getMatchedSections() {
 		return matchedSections;
-	}
-
-	@Override
-	public void cancel() {
-		abortTransformation = true;
-
-	}
-
-	/**
-	 * @return '<em><b>true</b></em>' when user action was triggered to abort the transformation, '<em><b>false</b></em>' otherwise
-	 */
-	@Override
-	public boolean isCancelled() {
-		return abortTransformation;
 	}
 
 	/**
@@ -297,7 +277,7 @@ public class SourceSectionMatcher implements ICancellable {
 						0);
 				Display.getDefault().syncExec(dialog);
 				if (dialog.wasTransformationStopRequested()) {
-					abortTransformation = true;
+					canceled = true;
 					return null;
 				}
 
@@ -369,7 +349,7 @@ public class SourceSectionMatcher implements ICancellable {
 							m.getSourceMMSection(),
 							new MappingInstanceStorage());
 
-					if (abortTransformation) {
+					if (canceled) {
 						return null;
 					}
 
@@ -772,7 +752,7 @@ public class SourceSectionMatcher implements ICancellable {
 								refByClassMap.get(c) instanceof MetaModelSectionReference
 								|| usedOkay, hints,
 								globalAttributes, c, changedRefsAndHints);
-						if (abortTransformation) {
+						if (canceled) {
 							return false;
 						}
 					}
@@ -785,7 +765,7 @@ public class SourceSectionMatcher implements ICancellable {
 								refByClassMap.get(c) instanceof MetaModelSectionReference
 								|| usedOkay, hints,
 								globalAttributes, c, changedRefsAndHints);
-						if (abortTransformation) {
+						if (canceled) {
 							return false;
 						}
 						if (res != null) {
@@ -862,7 +842,7 @@ public class SourceSectionMatcher implements ICancellable {
 								refByClassMap.get(val) instanceof MetaModelSectionReference
 								|| usedOkay, hints,
 								globalAttributes, val, changedRefsAndHints);
-						if (abortTransformation) {
+						if (canceled) {
 							return false;
 						}
 

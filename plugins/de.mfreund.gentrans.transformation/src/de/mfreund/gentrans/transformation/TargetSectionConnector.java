@@ -17,7 +17,7 @@ import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.selectors.GenericItemSelectorDialogRunner;
 import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunner;
-import de.mfreund.gentrans.transformation.util.ICancellable;
+import de.mfreund.gentrans.transformation.util.CancellableElement;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.ModelConnectionHint;
@@ -31,7 +31,7 @@ import pamtram.metamodel.TargetSectionClass;
  *
  * @author mfreund
  */
-public class TargetSectionConnector implements ICancellable {
+public class TargetSectionConnector extends CancellableElement {
 
 	/**
 	 * This list stores those {@link ModelConnectionPath ModelConnectionPaths} that have beepreviously selected 
@@ -61,12 +61,6 @@ public class TargetSectionConnector implements ICancellable {
 	 * are evaluated here.
 	 */
 	private final AttributeValueModifierExecutor attributeValuemodifier;
-
-	/**
-	 * This keeps track of the status of the transformation ('<em>true</em>' meaning that the transformation has been
-	 * aborted by the user.
-	 */
-	private boolean transformationAborted;
 
 	/**
 	 * The maximum length for connection paths that shall be considered by this TargetSectionConnector. If 'maxPathLength'
@@ -105,7 +99,7 @@ public class TargetSectionConnector implements ICancellable {
 		this.targetSectionRegistry = targetSectionRegistry;
 		this.targetModel = targetModel;
 		this.consoleStream = consoleStream;
-		this.transformationAborted = false;
+		this.canceled = false;
 		this.attributeValuemodifier = attributeValuemodifier;
 		this.maxPathLength = maxPathLength;
 		this.unlinkeableElements = new LinkedHashMap<>();
@@ -132,12 +126,6 @@ public class TargetSectionConnector implements ICancellable {
 	 */
 	private void addToTargetModelRoot(final EObjectWrapper helper) {
 		targetModel.getContents().add(helper.getEObject());
-	}
-
-	@Override
-	public void cancel() {
-		transformationAborted = true;
-
 	}
 
 	/**
@@ -179,7 +167,7 @@ public class TargetSectionConnector implements ICancellable {
 			boolean failed = false;
 			if (!possibleRoot.isAbstract()) {
 				for (final EClass c : unlinkeableElements.keySet()) {
-					if (transformationAborted) {
+					if (canceled) {
 						return;
 					}
 					if (targetSectionRegistry.getConnections(c, possibleRoot,
@@ -194,7 +182,7 @@ public class TargetSectionConnector implements ICancellable {
 			}
 		}
 
-		if (transformationAborted) {
+		if (canceled) {
 			return;
 		}
 
@@ -294,7 +282,7 @@ public class TargetSectionConnector implements ICancellable {
 												fittingPaths.indexOf(chosenPath));
 								Display.getDefault().syncExec(dialog);
 								if (dialog.wasTransformationStopRequested()) {
-									transformationAborted = true;
+									canceled = true;
 									return;
 								}
 								chosenPath = dialog.getSelection();
@@ -314,14 +302,6 @@ public class TargetSectionConnector implements ICancellable {
 			}
 
 		}
-	}
-
-	/**
-	 * @return true when the transformation was aborted by the user
-	 */
-	@Override
-	public boolean isCancelled() {
-		return transformationAborted;
 	}
 
 	/**
@@ -520,7 +500,7 @@ public class TargetSectionConnector implements ICancellable {
 
 				instanceNames.add(instNamesAsList);
 			}
-			if (transformationAborted) {
+			if (canceled) {
 				return;
 			}
 			final PathAndInstanceSelectorRunner dialog = new PathAndInstanceSelectorRunner(
@@ -536,7 +516,7 @@ public class TargetSectionConnector implements ICancellable {
 			// option to not do
 			// anything
 			if (dialog.wasTransformationStopRequested()) {
-				transformationAborted = true;
+				canceled = true;
 				return;
 			}
 			// now ask user
@@ -708,7 +688,7 @@ public class TargetSectionConnector implements ICancellable {
 			} else if (contInstsByHintVal.get(hintVal).size() > 1) {// let
 				// user
 				// decide
-				if (transformationAborted) {
+				if (canceled) {
 					return;
 				}
 				final GenericItemSelectorDialogRunner<EObjectWrapper> dialog = new GenericItemSelectorDialogRunner<>(
@@ -721,7 +701,7 @@ public class TargetSectionConnector implements ICancellable {
 						new LinkedList<>(contInstsByHintVal.get(hintVal)), 0);
 				Display.getDefault().syncExec(dialog);
 				if (dialog.wasTransformationStopRequested()) {
-					transformationAborted = true;
+					canceled = true;
 					return;
 				}
 				rootInstancesByContainer.put(dialog.getSelection(),
@@ -801,7 +781,7 @@ public class TargetSectionConnector implements ICancellable {
 				}
 				final int instSize = rootInstancesByContainer.get(
 						container).size();
-				if (transformationAborted) {
+				if (canceled) {
 					return;
 				}
 				final GenericItemSelectorDialogRunner<ModelConnectionPath> dialog = new GenericItemSelectorDialogRunner<>(
@@ -815,7 +795,7 @@ public class TargetSectionConnector implements ICancellable {
 								pathsToConsider.indexOf(standardPath));
 				Display.getDefault().syncExec(dialog);
 				if (dialog.wasTransformationStopRequested()) {
-					transformationAborted = true;
+					canceled = true;
 					return;
 				}
 				modelConnectionPath = dialog.getSelection();

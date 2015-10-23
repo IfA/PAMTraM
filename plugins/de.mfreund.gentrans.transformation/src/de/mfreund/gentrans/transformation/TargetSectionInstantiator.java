@@ -26,7 +26,7 @@ import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
 import de.mfreund.gentrans.transformation.selectors.GenericItemSelectorDialogRunner;
 import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunner;
-import de.mfreund.gentrans.transformation.util.ICancellable;
+import de.mfreund.gentrans.transformation.util.CancellableElement;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractAttributeParameter;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
@@ -64,7 +64,7 @@ import pamtram.util.GenLibraryManager;
  * @version 1.0
  *
  */
-class TargetSectionInstantiator implements ICancellable {
+class TargetSectionInstantiator extends CancellableElement {
 	/**
 	 * find Attribute mapping to determine cardinality
 	 *
@@ -156,11 +156,6 @@ class TargetSectionInstantiator implements ICancellable {
 	private final MessageConsoleStream consoleStream;
 
 	/**
-	 * abort transformation if true
-	 */
-	private boolean transformationAborted;
-
-	/**
 	 * Registry for values of global Variables that can be mapped to double
 	 */
 	private final Map<String, Double> globalVarValueDoubles;
@@ -212,7 +207,7 @@ class TargetSectionInstantiator implements ICancellable {
 		this.attributeValueRegistry = attributeValueRegistry;
 		this.consoleStream = consoleStream;
 		this.transformationRunner = transformationRunner;
-		transformationAborted = false;
+		canceled = false;
 		//		this.attributeValuemodifier = attributeValuemodifier;
 		wrongCardinalityContainmentRefs = new HashSet<>();
 
@@ -293,17 +288,6 @@ class TargetSectionInstantiator implements ICancellable {
 			source.eSet(ref.getEReference(), newRefs);
 
 		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see de.mfreund.gentrans.transformation.CancellationListener#cancel()
-	 */
-	@Override
-	public void cancel() {
-		transformationAborted = true;
-
 	}
 
 	/**
@@ -871,7 +855,7 @@ class TargetSectionInstantiator implements ICancellable {
 										} else if (fittingVals.size() > 1) {// let
 											// user
 											// decide
-											if (transformationAborted) {
+											if (canceled) {
 												return;
 											}
 											final GenericItemSelectorDialogRunner<EObjectWrapper> dialog = new GenericItemSelectorDialogRunner<>(
@@ -884,7 +868,7 @@ class TargetSectionInstantiator implements ICancellable {
 													dialog);
 
 											if (dialog.wasTransformationStopRequested()) {
-												transformationAborted = true;
+												canceled = true;
 												return;
 											}
 											targetInst = dialog.getSelection();
@@ -950,7 +934,7 @@ class TargetSectionInstantiator implements ICancellable {
 												targetInstance = insts.get(0);
 											} else if (insts.size() > 1) {
 												// Dialog
-												if (transformationAborted) {
+												if (canceled) {
 													return;
 												}
 												final GenericItemSelectorDialogRunner<EObjectWrapper> dialog = new GenericItemSelectorDialogRunner<>(
@@ -970,7 +954,7 @@ class TargetSectionInstantiator implements ICancellable {
 
 												if (dialog
 														.wasTransformationStopRequested()) {
-													transformationAborted = true;
+													canceled = true;
 													return;
 												}
 												targetInstance = dialog
@@ -1172,7 +1156,7 @@ class TargetSectionInstantiator implements ICancellable {
 									}
 								} else if (instances.size() > 1) {
 									// Dialog
-									if (transformationAborted) {
+									if (canceled) {
 										return;
 									}
 									final GenericItemSelectorDialogRunner<EObjectWrapper> dialog = new GenericItemSelectorDialogRunner<>(
@@ -1193,7 +1177,7 @@ class TargetSectionInstantiator implements ICancellable {
 									Display.getDefault().syncExec(dialog);
 
 									if (dialog.wasTransformationStopRequested()) {
-										transformationAborted = true;
+										canceled = true;
 										return;
 									}
 									if(!targetSectionClass.isLibraryEntry()) {
@@ -1264,7 +1248,7 @@ class TargetSectionInstantiator implements ICancellable {
 							} else if (targetInstancesToConsider.values()
 									.size() > 1) {
 								// Dialog
-								if (transformationAborted) {
+								if (canceled) {
 									return;
 								}
 								final PathAndInstanceSelectorRunner dialog = new PathAndInstanceSelectorRunner(
@@ -1284,7 +1268,7 @@ class TargetSectionInstantiator implements ICancellable {
 								Display.getDefault().syncExec(dialog);
 
 								if (dialog.wasTransformationStopRequested()) {
-									transformationAborted = true;
+									canceled = true;
 									return;
 								}
 								targetInstance = targetInstancesToConsider
@@ -1361,7 +1345,7 @@ class TargetSectionInstantiator implements ICancellable {
 					instantiateTargetSectionSecondPass(val, mappingName, group,
 							groupTargetSection, hints, hintValues,
 							instancesBySection);
-					if (transformationAborted) {
+					if (canceled) {
 						return;
 					}
 				}
@@ -1423,14 +1407,6 @@ class TargetSectionInstantiator implements ICancellable {
 		}
 		return successful;
 
-	}
-
-	/**
-	 * @return true if transformation was aborted
-	 */
-	@Override
-	public boolean isCancelled() {
-		return transformationAborted;
 	}
 
 }

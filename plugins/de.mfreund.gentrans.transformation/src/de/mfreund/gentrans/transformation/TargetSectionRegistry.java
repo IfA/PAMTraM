@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.eclipse.ui.console.MessageConsoleStream;
 
-import de.mfreund.gentrans.transformation.util.ICancellable;
+import de.mfreund.gentrans.transformation.util.CancellableElement;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.metamodel.TargetSectionClass;
 
@@ -26,7 +26,7 @@ import pamtram.metamodel.TargetSectionClass;
  * @version 1.0
  *
  */
-public class TargetSectionRegistry implements ICancellable {
+public class TargetSectionRegistry extends CancellableElement {
 
 	/**
 	 * Attribute value registry, needed when applying model connection hints
@@ -71,11 +71,6 @@ public class TargetSectionRegistry implements ICancellable {
 	private final MessageConsoleStream consoleStream;
 
 	/**
-	 * Transformation was cancelled?
-	 */
-	private boolean transFormationCancelled;
-
-	/**
 	 * Constructor
 	 *
 	 * @param consoleStream
@@ -93,7 +88,7 @@ public class TargetSectionRegistry implements ICancellable {
 		targetClassReferencesRegistry = new LinkedHashMap<>(); // ==refsToThis
 		containmentReferenceSourcesRegistry = new LinkedHashMap<>(); // ==sources
 		this.attrValRegistry = attrValRegistry;
-		transFormationCancelled = false;
+		canceled = false;
 		analyseTargetMetaModel(targetMetaModel);
 	}
 
@@ -242,16 +237,6 @@ public class TargetSectionRegistry implements ICancellable {
 						targetClassReferencesRegistry.get(e));
 			}
 		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.mfreund.gentrans.transformation.CancellationListener#cancel()
-	 */
-	@Override
-	public void cancel() {
-		transFormationCancelled = true;
 	}
 
 	/**
@@ -451,14 +436,4 @@ public class TargetSectionRegistry implements ICancellable {
 				.get(eClass) : new LinkedList<EObjectWrapper>();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * de.mfreund.gentrans.transformation.CancellationListener#isCancelled()
-	 */
-	@Override
-	public boolean isCancelled() {
-		return transFormationCancelled;
-	}
 }

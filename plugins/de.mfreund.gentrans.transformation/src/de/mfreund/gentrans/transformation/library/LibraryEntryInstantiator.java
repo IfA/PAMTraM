@@ -139,10 +139,6 @@ public class LibraryEntryInstantiator {
 
 				ContainerParameter contParam = (ContainerParameter) param;
 
-				assert mappingGroup instanceof MappingHintGroup;
-				assert ((LibraryEntry) (((MappingHintGroup) mappingGroup).getTargetMMSection().eContainer().eContainer())).getOriginalLibraryEntry().equals(
-						((LibraryEntry) (contParam.getClass_().eContainer().eContainer())).getOriginalLibraryEntry());
-
 				/*
 				 * As the root instance of the LibraryEntry has already been instantiated by the 
 				 * transformation algorithm, we do not have to determine the the container. Instead, we just

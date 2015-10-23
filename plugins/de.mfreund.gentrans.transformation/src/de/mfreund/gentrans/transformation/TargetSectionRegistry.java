@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.eclipse.ui.console.MessageConsoleStream;
 
-import de.mfreund.gentrans.transformation.util.CancellationListener;
+import de.mfreund.gentrans.transformation.util.CancellableElement;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.metamodel.TargetSectionClass;
 
@@ -26,7 +26,7 @@ import pamtram.metamodel.TargetSectionClass;
  * @version 1.0
  *
  */
-public class TargetSectionRegistry implements CancellationListener {
+public class TargetSectionRegistry extends CancellableElement {
 
 	/**
 	 * Attribute value registry, needed when applying model connection hints
@@ -36,13 +36,13 @@ public class TargetSectionRegistry implements CancellationListener {
 	/**
 	 * Map of instantiated EObjects, sorted by TargetSectionClass
 	 */
-	private final LinkedHashMap<EClass, LinkedList<EObjectTransformationHelper>> targetClassInstanceRegistry;
+	private final LinkedHashMap<EClass, LinkedList<EObjectWrapper>> targetClassInstanceRegistry;
 
 	/**
 	 * Map of instantiated EObjects, sorted by TargetSectionClass and
 	 * MappingHintGroup
 	 */
-	private final LinkedHashMap<TargetSectionClass, LinkedHashMap<InstantiableMappingHintGroup, LinkedList<EObjectTransformationHelper>>> targetClassInstanceByHintGroupRegistry;
+	private final LinkedHashMap<TargetSectionClass, LinkedHashMap<InstantiableMappingHintGroup, LinkedList<EObjectWrapper>>> targetClassInstanceByHintGroupRegistry;
 	/**
 	 * Child classes for each class (if there are any)
 	 */
@@ -71,11 +71,6 @@ public class TargetSectionRegistry implements CancellationListener {
 	private final MessageConsoleStream consoleStream;
 
 	/**
-	 * Transformation was cancelled?
-	 */
-	private boolean transFormationCancelled;
-
-	/**
 	 * Constructor
 	 *
 	 * @param consoleStream
@@ -93,7 +88,7 @@ public class TargetSectionRegistry implements CancellationListener {
 		targetClassReferencesRegistry = new LinkedHashMap<>(); // ==refsToThis
 		containmentReferenceSourcesRegistry = new LinkedHashMap<>(); // ==sources
 		this.attrValRegistry = attrValRegistry;
-		transFormationCancelled = false;
+		canceled = false;
 		analyseTargetMetaModel(targetMetaModel);
 	}
 
@@ -109,10 +104,10 @@ public class TargetSectionRegistry implements CancellationListener {
 
 		if (!targetClassInstanceRegistry.containsKey(eClass)) {
 			targetClassInstanceRegistry.put(eClass,
-					new LinkedList<EObjectTransformationHelper>());
+					new LinkedList<EObjectWrapper>());
 		}
 		targetClassInstanceRegistry.get(eClass).add(
-				new EObjectTransformationHelper(instance, attrValRegistry));
+				new EObjectWrapper(instance, attrValRegistry));
 
 	}
 
@@ -123,27 +118,27 @@ public class TargetSectionRegistry implements CancellationListener {
 	 * @param group
 	 * @param targetSection
 	 */
-	void addClassInstance(final EObjectTransformationHelper instance,
+	void addClassInstance(final EObjectWrapper instance,
 			final InstantiableMappingHintGroup group,
 			final TargetSectionClass targetSection) {
 		final EClass eClass = instance.getEObject().eClass();
 
 		if (!targetClassInstanceRegistry.containsKey(eClass)) {
 			targetClassInstanceRegistry.put(eClass,
-					new LinkedList<EObjectTransformationHelper>());
+					new LinkedList<EObjectWrapper>());
 		}
 		targetClassInstanceRegistry.get(eClass).add(instance);
 
 		if (!targetClassInstanceByHintGroupRegistry.containsKey(targetSection)) {
 			targetClassInstanceByHintGroupRegistry
 			.put(targetSection,
-					new LinkedHashMap<InstantiableMappingHintGroup, LinkedList<EObjectTransformationHelper>>());
+					new LinkedHashMap<InstantiableMappingHintGroup, LinkedList<EObjectWrapper>>());
 		}
 
 		if (!targetClassInstanceByHintGroupRegistry.get(targetSection)
 				.containsKey(group)) {
 			targetClassInstanceByHintGroupRegistry.get(targetSection).put(
-					group, new LinkedList<EObjectTransformationHelper>());
+					group, new LinkedList<EObjectWrapper>());
 		}
 
 		targetClassInstanceByHintGroupRegistry.get(targetSection).get(group)
@@ -242,16 +237,6 @@ public class TargetSectionRegistry implements CancellationListener {
 						targetClassReferencesRegistry.get(e));
 			}
 		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.mfreund.gentrans.transformation.CancellationListener#cancel()
-	 */
-	@Override
-	public void cancel() {
-		transFormationCancelled = true;
 	}
 
 	/**
@@ -367,14 +352,14 @@ public class TargetSectionRegistry implements CancellationListener {
 	 * @param c
 	 * @return instances of a specific MappingHintgroup
 	 */
-	public LinkedList<EObjectTransformationHelper> getFlattenedPamtramClassInstances(
+	public LinkedList<EObjectWrapper> getFlattenedPamtramClassInstances(
 			final TargetSectionClass c) {
-		final LinkedList<EObjectTransformationHelper> flat = new LinkedList<>();
+		final LinkedList<EObjectWrapper> flat = new LinkedList<>();
 		if (!targetClassInstanceByHintGroupRegistry.containsKey(c)) {
 			return flat;
 		}
 
-		for (final LinkedList<EObjectTransformationHelper> l : targetClassInstanceByHintGroupRegistry
+		for (final LinkedList<EObjectWrapper> l : targetClassInstanceByHintGroupRegistry
 				.get(c).values()) {
 			flat.addAll(l);
 		}
@@ -394,7 +379,7 @@ public class TargetSectionRegistry implements CancellationListener {
 	 * @param c
 	 * @return instance map of all MappingHintGroups
 	 */
-	public LinkedHashMap<InstantiableMappingHintGroup, LinkedList<EObjectTransformationHelper>> getPamtramClassInstances(
+	public LinkedHashMap<InstantiableMappingHintGroup, LinkedList<EObjectWrapper>> getPamtramClassInstances(
 			final TargetSectionClass c) {
 		if (!targetClassInstanceByHintGroupRegistry.containsKey(c)) {
 			return new LinkedHashMap<>();
@@ -444,21 +429,11 @@ public class TargetSectionRegistry implements CancellationListener {
 	 * @param eClass
 	 * @return All instances of the specified metamodel Class
 	 */
-	public LinkedList<EObjectTransformationHelper> getTargetClassInstances(
+	public LinkedList<EObjectWrapper> getTargetClassInstances(
 			final EClass eClass) {
 
 		return targetClassInstanceRegistry.containsKey(eClass) ? targetClassInstanceRegistry
-				.get(eClass) : new LinkedList<EObjectTransformationHelper>();
+				.get(eClass) : new LinkedList<EObjectWrapper>();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * de.mfreund.gentrans.transformation.CancellationListener#isCancelled()
-	 */
-	@Override
-	public boolean isCancelled() {
-		return transFormationCancelled;
-	}
 }

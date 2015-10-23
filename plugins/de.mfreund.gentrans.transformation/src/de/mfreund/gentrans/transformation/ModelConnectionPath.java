@@ -410,14 +410,14 @@ final class ModelConnectionPath {
 	 *
 	 * @param rootObject The {@link EObject} that shall contain the list of 'objectsToConnect' after the instantiation
 	 * of the path. 
-	 * @param objectsToConnect The list of {@link EObjectTransformationHelper objects} that shall be connected to the 
+	 * @param objectsToConnect The list of {@link EObjectWrapper objects} that shall be connected to the 
 	 * 'rootObject' via this path.
 	 * @return A list of objects that could not be connected (possibly because the capacity of the path was not large
 	 * enough).
 	 */
-	List<EObjectTransformationHelper> instantiate(
+	List<EObjectWrapper> instantiate(
 			final EObject rootObject,
-			final Collection<EObjectTransformationHelper> objectsToConnect) {
+			final Collection<EObjectWrapper> objectsToConnect) {
 
 		return instantiateMissingPath(getInvertedPathElementList(),
 				rootObject, new LinkedList<>(objectsToConnect));
@@ -432,15 +432,15 @@ final class ModelConnectionPath {
 	 * top-down).
 	 * @param rootObject The {@link EObject} that shall contain the list of 'objectsToConnect' after the instantiation
 	 * of the path. 
-	 * @param objectsToConnect The list of {@link EObjectTransformationHelper objects} that shall be connected to the 
+	 * @param objectsToConnect The list of {@link EObjectWrapper objects} that shall be connected to the 
 	 * 'rootObject' via this path.
 	 * @returns unLinkedInstances A list of objects that could not be connected (possibly because the capacity of the path was not large
 	 * enough).
 	 */
-	private List<EObjectTransformationHelper> instantiateMissingPath(
+	private List<EObjectWrapper> instantiateMissingPath(
 			final LinkedList<EObject> invertedPath,
 			final EObject rootObject,
-			List<EObjectTransformationHelper> objectsToConnect) {
+			List<EObjectWrapper> objectsToConnect) {
 
 		final LinkedList<EObject> pathCopy = new LinkedList<>();
 		pathCopy.addAll(invertedPath);
@@ -532,7 +532,7 @@ final class ModelConnectionPath {
 					final EList<EObject> targetInstL = (EList<EObject>) targetInst;
 					newTarget.addAll(targetInstL);
 				}
-				for (final EObjectTransformationHelper inst : objectsToConnect) {
+				for (final EObjectWrapper inst : objectsToConnect) {
 					newTarget.add(inst.getEObject());
 				}
 

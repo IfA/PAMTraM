@@ -14,7 +14,7 @@ import pamtram.metamodel.TargetSectionAttribute;
 import pamtram.metamodel.VirtualAttribute;
 
 /**
- * This class is a wrapper for {@link EObject EObjects} that have been created during the transformation and
+ * This class provides wrapper functionality for {@link EObject EObjects} that have been created during the transformation and
  * extends an EObject in a way that not only values of {@link ActualAttribute ActualAttributes} but also of
  * {@link VirtualAttribute VirtualAttributes} are stored.
  * <p />
@@ -26,7 +26,7 @@ import pamtram.metamodel.VirtualAttribute;
  * 
  * @author mfreund
  */
-public class EObjectTransformationHelper {
+public class EObjectWrapper {
 
 	/**
 	 * The actual {@link EObject} that is wrapped by this.
@@ -54,7 +54,7 @@ public class EObjectTransformationHelper {
 	 *           The {@link AttributeValueRegistry} that values to be {@link #setAttributeValue(TargetSectionAttribute, String) set} 
 	 * will be registered in.
 	 */
-	public EObjectTransformationHelper(final EObject eObject,
+	public EObjectWrapper(final EObject eObject,
 			final AttributeValueRegistry attrValRegistry) {
 
 		this.eObject = eObject;

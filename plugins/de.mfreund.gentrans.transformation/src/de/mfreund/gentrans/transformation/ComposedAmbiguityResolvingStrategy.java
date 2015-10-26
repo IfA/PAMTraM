@@ -36,13 +36,12 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 	}
 
 	@Override
-	public List<Mapping> resolveMatchingAmbiguity(List<Mapping> choices, EObject element) {
+	public List<Mapping> resolveMatchingAmbiguity(List<Mapping> choices, EObject element) throws Exception {
 
-		if(choices == null) {
-			return null;
+		List<Mapping> ret = new ArrayList<>();
+		if(choices != null) {
+			ret.addAll(choices);			
 		}
-
-		List<Mapping> ret = new ArrayList<>(choices);
 
 		if(ret.size() <= 1) {
 			return ret;
@@ -50,7 +49,9 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 
 		for (IAmbiguityResolvingStrategy strategy : composedStrategies) {
 			ret = strategy.resolveMatchingAmbiguity(ret, element);
-			if(ret.size() <= 1) {
+			if(ret == null) {
+				return null;
+			} else if(ret.size() <= 1) {
 				break;
 			}
 		}
@@ -60,13 +61,12 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 
 	@Override
 	public List<EObjectWrapper> resolveJoiningAmbiguity(List<EObjectWrapper> choices, EObjectWrapper element,
-			ModelConnectionHint modelConnectionHint, String hintValue) {
+			ModelConnectionHint modelConnectionHint, String hintValue) throws Exception {
 
-		if(choices == null) {
-			return null;
+		List<EObjectWrapper> ret = new ArrayList<>();
+		if(choices != null) {
+			ret.addAll(choices);			
 		}
-
-		List<EObjectWrapper> ret = new ArrayList<>(choices);
 
 		if(ret.size() <= 1) {
 			return ret;
@@ -74,7 +74,9 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 
 		for (IAmbiguityResolvingStrategy strategy : composedStrategies) {
 			ret = strategy.resolveJoiningAmbiguity(ret, element, modelConnectionHint, hintValue);
-			if(ret.size() <= 1) {
+			if(ret == null) {
+				return null;
+			} else if(ret.size() <= 1) {
 				break;
 			}
 		}
@@ -85,13 +87,12 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 	@Override
 	public List<EObjectWrapper> resolveLinkingAmbiguity(List<EObjectWrapper> choices,
 			TargetSectionNonContainmentReference reference, MappingInstanceSelector mappingInstanceSelector,
-			EObjectWrapper sourceElement) {
+			EObjectWrapper sourceElement) throws Exception {
 
-		if(choices == null) {
-			return null;
+		List<EObjectWrapper> ret = new ArrayList<>();
+		if(choices != null) {
+			ret.addAll(choices);			
 		}
-
-		List<EObjectWrapper> ret = new ArrayList<>(choices);
 
 		if(ret.size() <= 1) {
 			return ret;
@@ -99,7 +100,9 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 
 		for (IAmbiguityResolvingStrategy strategy : composedStrategies) {
 			ret = strategy.resolveLinkingAmbiguity(ret, reference, mappingInstanceSelector, sourceElement);
-			if(ret.size() <= 1) {
+			if(ret == null) {
+				return null;
+			} else if(ret.size() <= 1) {
 				break;
 			}
 		}
@@ -108,13 +111,12 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 	}
 
 	@Override
-	public List<EClass> resolveRootElementAmbiguity(List<EClass> choices) {
+	public List<EClass> resolveRootElementAmbiguity(List<EClass> choices) throws Exception {
 
-		if(choices == null) {
-			return null;
+		List<EClass> ret = new ArrayList<>();
+		if(choices != null) {
+			ret.addAll(choices);			
 		}
-
-		List<EClass> ret = new ArrayList<>(choices);
 
 		if(ret.size() <= 1) {
 			return ret;
@@ -122,7 +124,9 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 
 		for (IAmbiguityResolvingStrategy strategy : composedStrategies) {
 			ret = strategy.resolveRootElementAmbiguity(ret);
-			if(ret.size() <= 1) {
+			if(ret == null) {
+				return null;
+			} else if(ret.size() <= 1) {
 				break;
 			}
 		}

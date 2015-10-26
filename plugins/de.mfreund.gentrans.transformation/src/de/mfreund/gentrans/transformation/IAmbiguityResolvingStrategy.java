@@ -25,7 +25,7 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
  * <p />
  * <b>Note:</b> A default implementation exists for every method that does not resolve any ambiguities but simply
  * returns a copy of the possible options. This allows for concrete strategies to only implement a strategy for
- * some situations. 
+ * some situations.
  * 
  * @author mfreund
  */
@@ -39,14 +39,17 @@ public interface IAmbiguityResolvingStrategy {
 	 * 
 	 * @param choices The list of applicable {@link Mapping Mappings} for the given 'element'.
 	 * @param element The source {@link EObject element} for that a Mapping shall be selected.
-	 * @return The list of choices after applying the resolving strategy (this should be a sub-set of '<em>choices</em>'). 
+	 * @return The list of choices after applying the resolving strategy (this should be a sub-set of '<em>choices</em>').
+	 * @throws Exception If an error occured while applying the resolving strategy. 
 	 */
 	public default List<Mapping> resolveMatchingAmbiguity(
 			List<Mapping> choices,
-			EObject element) {
-	
+			EObject element) throws Exception {
+
 		List<Mapping> ret = new ArrayList<>();
-		ret.addAll(choices);
+		if(choices != null) {
+			ret.addAll(choices);			
+		}
 		return ret;
 	}
 
@@ -62,15 +65,18 @@ public interface IAmbiguityResolvingStrategy {
 	 * @param hintValue The target attribute value that has been calculated by the given 'modelConnectionHint' and that is ambiguous (present in multiple
 	 * instances). This is '<em><b>null</b></em>' if the given 'modelConnectionHint' is <em>null</em>.
 	 * @return The list of choices after applying the resolving strategy (this should be a sub-set of '<em>choices</em>').
+	 * @throws Exception If an error occured while applying the resolving strategy. 
 	 */
 	public default List<EObjectWrapper> resolveJoiningAmbiguity(
 			List<EObjectWrapper> choices, 
 			EObjectWrapper element,
 			ModelConnectionHint modelConnectionHint,
-			String hintValue) {
-	
+			String hintValue) throws Exception {
+
 		List<EObjectWrapper> ret = new ArrayList<>();
-		ret.addAll(choices);
+		if(choices != null) {
+			ret.addAll(choices);			
+		}
 		return ret;
 	}
 
@@ -80,13 +86,16 @@ public interface IAmbiguityResolvingStrategy {
 	 * needs to be created.
 	 * 
 	 * @param choices The list of {@link EClass EClasses} that can be chosen as root element for the target model.
-	 * @return The list of choices after applying the resolving strategy (this should be a sub-set of '<em>choices</em>'). 
+	 * @return The list of choices after applying the resolving strategy (this should be a sub-set of '<em>choices</em>').
+	 * @throws Exception If an error occured while applying the resolving strategy.  
 	 */
 	public default List<EClass> resolveRootElementAmbiguity(
-			List<EClass> choices) {
-	
+			List<EClass> choices) throws Exception {
+
 		List<EClass> ret = new ArrayList<>();
-		ret.addAll(choices);
+		if(choices != null) {
+			ret.addAll(choices);			
+		}
 		return ret;
 	}
 
@@ -102,15 +111,18 @@ public interface IAmbiguityResolvingStrategy {
 	 * no MappingInstanceSelector was defined for the given '<em>reference</em>'.
 	 * @param sourceElement The {@link EObjectWrapper element} for that the target of the given 'reference' shall be chosen.
 	 * @return The list of choices after applying the resolving strategy (this should be a sub-set of '<em>choices</em>').
+	 * @throws Exception If an error occured while applying the resolving strategy. 
 	 */
 	public default List<EObjectWrapper> resolveLinkingAmbiguity(
 			List<EObjectWrapper> choices,
 			TargetSectionNonContainmentReference reference,
 			MappingInstanceSelector mappingInstanceSelector,
-			EObjectWrapper sourceElement) {
+			EObjectWrapper sourceElement) throws Exception {
 
 		List<EObjectWrapper> ret = new ArrayList<>();
-		ret.addAll(choices);
+		if(choices != null) {
+			ret.addAll(choices);			
+		}
 		return ret;
 	}
 }

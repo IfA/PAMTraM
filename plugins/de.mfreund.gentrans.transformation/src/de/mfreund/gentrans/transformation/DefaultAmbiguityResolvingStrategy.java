@@ -25,9 +25,7 @@ public class DefaultAmbiguityResolvingStrategy implements IAmbiguityResolvingStr
 	@Override
 	public List<Mapping> resolveMatchingAmbiguity(List<Mapping> choices, EObject element) {
 
-		if(choices == null) {
-			return null;
-		} else if(choices.size() == 0) {
+		if(choices == null || choices.size() == 0) {
 			return new ArrayList<>();
 		} else {
 			return new ArrayList<>(Arrays.asList(choices.get(0)));
@@ -38,9 +36,7 @@ public class DefaultAmbiguityResolvingStrategy implements IAmbiguityResolvingStr
 	public List<EObjectWrapper> resolveJoiningAmbiguity(List<EObjectWrapper> choices, EObjectWrapper element,
 			ModelConnectionHint modelConnectionHint, String hintValue) {
 
-		if(choices == null) {
-			return null;
-		} else if(choices.size() == 0) {
+		if(choices == null || choices.size() == 0) {
 			return new ArrayList<>();
 		} else {
 			return new ArrayList<>(Arrays.asList(choices.get(0)));
@@ -52,9 +48,7 @@ public class DefaultAmbiguityResolvingStrategy implements IAmbiguityResolvingStr
 			TargetSectionNonContainmentReference reference, MappingInstanceSelector mappingInstanceSelector,
 			EObjectWrapper sourceElement) {
 
-		if(choices == null) {
-			return null;
-		} else if(choices.size() == 0) {
+		if(choices == null || choices.size() == 0) {
 			return new ArrayList<>();
 		} else {
 			return new ArrayList<>(Arrays.asList(choices.get(0)));
@@ -64,9 +58,7 @@ public class DefaultAmbiguityResolvingStrategy implements IAmbiguityResolvingStr
 	@Override
 	public List<EClass> resolveRootElementAmbiguity(List<EClass> choices) {
 
-		if(choices == null) {
-			return null;
-		} else if(choices.size() == 0) {
+		if(choices == null || choices.size() == 0) {
 			return new ArrayList<>();
 		} else {
 			return new ArrayList<>(Arrays.asList(choices.get(0)));

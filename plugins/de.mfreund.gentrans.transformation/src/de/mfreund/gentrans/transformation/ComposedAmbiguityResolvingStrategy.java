@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
+import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 
 /**
@@ -124,6 +125,31 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 
 		for (IAmbiguityResolvingStrategy strategy : composedStrategies) {
 			ret = strategy.resolveRootElementAmbiguity(ret);
+			if(ret == null) {
+				return null;
+			} else if(ret.size() <= 1) {
+				break;
+			}
+		}
+
+		return ret;
+	}
+
+	@Override
+	public List<ModelConnectionPath> resolveConnectionPathAmbiguity(List<ModelConnectionPath> choices,
+			TargetSection section) throws Exception {
+
+		List<ModelConnectionPath> ret = new ArrayList<>();
+		if(choices != null) {
+			ret.addAll(choices);			
+		}
+
+		if(ret.size() <= 1) {
+			return ret;
+		}
+
+		for (IAmbiguityResolvingStrategy strategy : composedStrategies) {
+			ret = strategy.resolveConnectionPathAmbiguity(ret, section);
 			if(ret == null) {
 				return null;
 			} else if(ret.size() <= 1) {

@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
+import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 
 /**
@@ -57,6 +58,17 @@ public class DefaultAmbiguityResolvingStrategy implements IAmbiguityResolvingStr
 
 	@Override
 	public List<EClass> resolveRootElementAmbiguity(List<EClass> choices) {
+
+		if(choices == null || choices.size() == 0) {
+			return new ArrayList<>();
+		} else {
+			return new ArrayList<>(Arrays.asList(choices.get(0)));
+		}
+	}
+
+	@Override
+	public List<ModelConnectionPath> resolveConnectionPathAmbiguity(List<ModelConnectionPath> choices,
+			TargetSection section) throws Exception {
 
 		if(choices == null || choices.size() == 0) {
 			return new ArrayList<>();

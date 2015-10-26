@@ -10,6 +10,7 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.metamodel.NonContainmentReference;
+import pamtram.metamodel.TargetSection;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 
 /**
@@ -93,6 +94,27 @@ public interface IAmbiguityResolvingStrategy {
 			List<EClass> choices) throws Exception {
 
 		List<EClass> ret = new ArrayList<>();
+		if(choices != null) {
+			ret.addAll(choices);			
+		}
+		return ret;
+	}
+
+	/**
+	 * Resolve ambiguities that arise when selecting a {@link ModelConnectionPath} to connect a {@link TargetSection} to
+	 * a certain container {@link EClass} This method is called when multiple possible ModelConnectionPaths have been determined for the given 
+	 * 'section' during the '<em>joining</em>' step of the transformation.
+	 * 
+	 * @param choices The list of {@link ModelConnectionPath ModelConnectionPaths} that can be chosen to connect the given 'section'.
+	 * @param section The {@link TargetSection} that shall be connected to a certain {@link EClass} (represented by the 
+	 * {@link ModelConnectionPath#getPathRootClass() root class} of every of the given ModelConnectionPaths).
+	 * @return The list of choices after applying the resolving strategy (this should be a sub-set of '<em>choices</em>').
+	 * @throws Exception If an error occured while applying the resolving strategy.  
+	 */
+	public default List<ModelConnectionPath> resolveConnectionPathAmbiguity(
+			List<ModelConnectionPath> choices, TargetSection section) throws Exception {
+
+		List<ModelConnectionPath> ret = new ArrayList<>();
 		if(choices != null) {
 			ret.addAll(choices);			
 		}

@@ -231,10 +231,18 @@ public class GenericTransformationRunner {
 	 * 			  Whether ambiguities shall only be resolved once or for every instance.
 	 * @param targetLibraryContextDescriptor
 	 * 			  The descriptor for the target library context to be used during the transformation.
+	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} that shall be used to 
+	 * resolve ambiguities that arise during the execution of the transformation. If this is '<em>null</em>', the 
+	 * {@link DefaultAmbiguityResolvingStrategy} will be used.
 	 */
-	private GenericTransformationRunner(final ArrayList<String> sourceFilePaths,
-			final String pamtramPath, final String targetFilePath, int maxPathLength,
-			boolean onlyAskOnceOnAmbiguousMappings, LibraryContextDescriptor targetLibraryContextDescriptor) {
+	private GenericTransformationRunner(
+			final ArrayList<String> sourceFilePaths,
+			final String pamtramPath, 
+			final String targetFilePath, 
+			int maxPathLength,
+			boolean onlyAskOnceOnAmbiguousMappings, 
+			LibraryContextDescriptor targetLibraryContextDescriptor,
+			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 		super();
 		isCancelled = false;
 		this.sourceModels = new ArrayList<>();
@@ -244,7 +252,7 @@ public class GenericTransformationRunner {
 		this.maxPathLength = maxPathLength;
 		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
 		this.targetLibraryContextDescriptor = targetLibraryContextDescriptor;
-		this.ambiguityResolvingStrategy = new DefaultAmbiguityResolvingStrategy();
+		this.ambiguityResolvingStrategy = (ambiguityResolvingStrategy != null ? ambiguityResolvingStrategy : new DefaultAmbiguityResolvingStrategy());
 		consoleStream = findConsole("de.mfreund.gentrans.transformation_" + hashCode()).newMessageStream();
 		objectsToCancel = new LinkedList<>();
 		// brings the console view to the front
@@ -262,15 +270,19 @@ public class GenericTransformationRunner {
 	 *            File path to the transformation target
 	 * @param targetLibraryContextDescriptor
 	 * 			  The descriptor for the target library context to be used during the transformation.
+	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} that shall be used to 
+	 * resolve ambiguities that arise during the execution of the transformation. If this is '<em>null</em>', the 
+	 * {@link DefaultAmbiguityResolvingStrategy} will be used.
 	 * @return An instance of {@link GenericTransformationRunner}.
 	 */
 	public static GenericTransformationRunner createInstanceFromSourcePaths(
 			final ArrayList<String> sourceFilePaths,
 			final String pamtramPath,
 			final String targetFilePath, 
-			LibraryContextDescriptor targetLibraryContextDescriptor) {
+			LibraryContextDescriptor targetLibraryContextDescriptor,
+			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 
-		return new GenericTransformationRunner(sourceFilePaths, pamtramPath, targetFilePath, -1, true, targetLibraryContextDescriptor);
+		return new GenericTransformationRunner(sourceFilePaths, pamtramPath, targetFilePath, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
 	}
 
 	/**
@@ -284,16 +296,20 @@ public class GenericTransformationRunner {
 	 *            File path to the transformation target
 	 * @param targetLibraryContextDescriptor
 	 * 			  The descriptor for the target library context to be used during the transformation.
+	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} that shall be used to 
+	 * resolve ambiguities that arise during the execution of the transformation. If this is '<em>null</em>', the 
+	 * {@link DefaultAmbiguityResolvingStrategy} will be used.
 	 * @return An instance of {@link GenericTransformationRunner}.
 	 */
 	public static GenericTransformationRunner createInstanceFromSourcePaths(
 			final ArrayList<String> sourceFilePaths,
 			final PAMTraM pamtramModel, 
 			final String targetFilePath, 
-			LibraryContextDescriptor targetLibraryContextDescriptor) {
+			LibraryContextDescriptor targetLibraryContextDescriptor,
+			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 
 		GenericTransformationRunner instance = 
-				new GenericTransformationRunner(sourceFilePaths, null, targetFilePath, -1, true, targetLibraryContextDescriptor);
+				new GenericTransformationRunner(sourceFilePaths, null, targetFilePath, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
 		instance.pamtramModel = pamtramModel;
 		return instance;
 	}
@@ -309,16 +325,20 @@ public class GenericTransformationRunner {
 	 *            File path to the transformation target
 	 * @param targetLibraryContextDescriptor
 	 * 			  The descriptor for the target library context to be used during the transformation.
+	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} that shall be used to 
+	 * resolve ambiguities that arise during the execution of the transformation. If this is '<em>null</em>', the 
+	 * {@link DefaultAmbiguityResolvingStrategy} will be used.
 	 * @return An instance of {@link GenericTransformationRunner}.
 	 */
 	public static GenericTransformationRunner createInstanceFromSourceModels(
 			final ArrayList<EObject> sourceModels,
 			final PAMTraM pamtramModel, 
 			final String targetFilePath, 
-			LibraryContextDescriptor targetLibraryContextDescriptor) {
+			LibraryContextDescriptor targetLibraryContextDescriptor,
+			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 
 		GenericTransformationRunner instance = 
-				new GenericTransformationRunner(null, null, targetFilePath, -1, true, targetLibraryContextDescriptor);
+				new GenericTransformationRunner(null, null, targetFilePath, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
 		instance.pamtramModel = pamtramModel;
 		instance.sourceModels = sourceModels;
 		return instance;

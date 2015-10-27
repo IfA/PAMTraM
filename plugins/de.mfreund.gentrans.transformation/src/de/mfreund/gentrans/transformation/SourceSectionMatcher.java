@@ -15,11 +15,9 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.congrace.exp4j.ExpressionBuilder;
-import de.mfreund.gentrans.transformation.selectors.NamedElementItemSelectorDialogRunner;
 import de.mfreund.gentrans.transformation.util.CancellableElement;
 import pamtram.SourceSectionModel;
 import pamtram.mapping.AttributeMapping;
@@ -103,6 +101,12 @@ public class SourceSectionMatcher extends CancellableElement {
 	private boolean onlyAskOnceOnAmbiguousMappings;
 
 	/**
+	 * This is the {@link IAmbiguityResolvingStrategy} that shall be used to 
+	 * resolve ambiguities that arise during the execution of the transformation.
+	 */
+	private IAmbiguityResolvingStrategy ambiguityResolvingStrategy;
+
+	/**
 	 * We save any user selection for a particular set of possible {@link Mapping Mappings} so that
 	 * we don't have to ask twice for the same combination of possible mappings.
 	 */
@@ -170,6 +174,7 @@ public class SourceSectionMatcher extends CancellableElement {
 	 *            A list of {@link Mapping Mappings} that shall be used in the <em>matching</em> process.
 	 * @param onlyAskOnceOnAmbiguousMappings If ambiguous {@link Mapping Mappings} should be resolved only once or on a per-element basis.
 	 * @param attributeValuemodifier The {@link AttributeValueModifierExecutor} that shall be used for modifying attribute values.
+	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} to be used.
 	 * @param consoleStream
 	 *           The {@link MessageConsoleStream} that shall be used to print messages.
 	 */
@@ -178,6 +183,7 @@ public class SourceSectionMatcher extends CancellableElement {
 			final List<Mapping> mappingsToChooseFrom,
 			boolean onlyAskOnceOnAmbiguousMappings, 
 			final AttributeValueModifierExecutor attributeValuemodifier,
+			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy,
 			final MessageConsoleStream consoleStream) {
 
 		/*
@@ -189,6 +195,7 @@ public class SourceSectionMatcher extends CancellableElement {
 		this.mappingHints = new LinkedHashMap<>();
 		this.mappingsToChooseFrom = mappingsToChooseFrom;
 		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
+		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
 		this.ambiguousMappingSelections = new HashMap<>();
 		this.commonContainerClassOfComplexHints = new HashMap<>();
 		this.deepestSourceSectionClassesByAttributeMapping = new LinkedHashMap<>();
@@ -269,20 +276,29 @@ public class SourceSectionMatcher extends CancellableElement {
 				ret = applicableMappings.get(ambiguousMappingSelections.get(applicableMappings.keySet()));
 			} else {
 				/*
-				 * There is no other choice but to let the user decide which mapping to apply.					
+				 * Consult the specified resolving strategy to resolve the ambiguity.				
 				 */
-				final NamedElementItemSelectorDialogRunner<Mapping> dialog = new NamedElementItemSelectorDialogRunner<>(
-						"Please select a Mapping for the source element\n'" + EObjectWrapper.asString(element)+ "'", 
-						new ArrayList<>(applicableMappings.keySet()), 
-						0);
-				Display.getDefault().syncExec(dialog);
-				if (dialog.wasTransformationStopRequested()) {
+				try {
+					List<Mapping> resolved = ambiguityResolvingStrategy.resolveMatchingAmbiguity(new ArrayList<>(applicableMappings.keySet()), element);
+					ret = applicableMappings.get(resolved.get(0));
+					ambiguousMappingSelections.put(applicableMappings.keySet(), resolved.get(0));
+				} catch (Exception e) {
+					consoleStream.println(e.getMessage());
 					canceled = true;
 					return null;
 				}
-
-				ret = applicableMappings.get(dialog.getSelection());
-				ambiguousMappingSelections.put(applicableMappings.keySet(), dialog.getSelection());
+				//				final NamedElementItemSelectorDialogRunner<Mapping> dialog = new NamedElementItemSelectorDialogRunner<>(
+				//						"Please select a Mapping for the source element\n'" + EObjectWrapper.asString(element)+ "'", 
+				//						new ArrayList<>(applicableMappings.keySet()), 
+				//						0);
+				//				Display.getDefault().syncExec(dialog);
+				//				if (dialog.wasTransformationStopRequested()) {
+				//					canceled = true;
+				//					return null;
+				//				}
+				//
+				//				ret = applicableMappings.get(dialog.getSelection());
+				//				ambiguousMappingSelections.put(applicableMappings.keySet(), dialog.getSelection());
 			}
 		}
 

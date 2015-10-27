@@ -535,7 +535,7 @@ public class GenericTransformationRunner {
 		 * Create the source section matcher that finds applicable mappings
 		 */
 		final SourceSectionMatcher sourceSectionMatcher = new SourceSectionMatcher(
-				containmentTree, suitableMappings, onlyAskOnceOnAmbiguousMappings, attributeValueModifier, consoleStream);
+				containmentTree, suitableMappings, onlyAskOnceOnAmbiguousMappings, attributeValueModifier, ambiguityResolvingStrategy, consoleStream);
 		objectsToCancel.add(sourceSectionMatcher);
 
 		/*
@@ -653,7 +653,7 @@ public class GenericTransformationRunner {
 		targetSectionInstantiator = new TargetSectionInstantiator(
 				targetSectionRegistry, attrValueRegistry,
 				matchingResult.getGlobalAttributeValues(),
-				attributeValuemodifier, globalValues, consoleStream, this);
+				attributeValuemodifier, globalValues, consoleStream, this, ambiguityResolvingStrategy);
 		objectsToCancel.add(targetSectionInstantiator);
 
 		/*
@@ -942,7 +942,7 @@ public class GenericTransformationRunner {
 		targetSectionConnector = new TargetSectionConnector(
 				expandingResult.getTargetSectionRegistry(),
 				attributeValueModifier, targetModel, maxPathLength,
-				consoleStream);
+				ambiguityResolvingStrategy, consoleStream);
 		objectsToCancel.add(targetSectionConnector);
 		final double workUnit = 250.0 / suitableMappings.size();
 		double accumulatedWork = 0;
@@ -976,7 +976,7 @@ public class GenericTransformationRunner {
 												new LinkedList<>(selMap.getInstances((MappingHintGroup) g, section)),
 												section,
 												m.getName(),
-												g.getName(),
+												g,
 												((MappingHintGroup) g).getModelConnectionMatcher(),
 												selMap.getHintValues().getHintValues(((MappingHintGroup) g).getModelConnectionMatcher()));
 										if (targetSectionConnector.isCancelled()) {
@@ -1006,7 +1006,7 @@ public class GenericTransformationRunner {
 
 								targetSectionConnector.linkToTargetModelNoConnectionHint(
 										rootInstances, section,
-										m.getName(), g.getName(),
+										m.getName(), g,
 										section.getContainer() != null ? new HashSet<>(Arrays.asList(section.getContainer().getEClass())) : null,
 												containerInstances);
 								if (targetSectionConnector.isCancelled()) {
@@ -1059,7 +1059,7 @@ public class GenericTransformationRunner {
 								targetSectionConnector.linkToTargetModelNoConnectionHint(
 										rootInstances,
 										g.getTargetMMSection(),
-										m.getName(), g.getName(),
+										m.getName(), g,
 										new HashSet<>(Arrays.asList(i.getContainer().getEClass())),
 										containerInstances);
 								if (targetSectionConnector.isCancelled()) {
@@ -1094,7 +1094,7 @@ public class GenericTransformationRunner {
 								targetSectionConnector.linkToTargetModelNoConnectionHint(
 										rootInstances,
 										g.getTargetMMSection(),
-										m.getName(), g.getName(),
+										m.getName(), g,
 										containerClasses,
 										containerInstances);
 								if (targetSectionConnector.isCancelled()) {
@@ -1495,7 +1495,7 @@ public class GenericTransformationRunner {
 
 
 		final SourceSectionMatcher sourceSectionMapper = new SourceSectionMatcher(
-				containmentTree, suitableMappings, onlyAskOnceOnAmbiguousMappings, attributeValueModifier, consoleStream);
+				containmentTree, suitableMappings, onlyAskOnceOnAmbiguousMappings, attributeValueModifier, ambiguityResolvingStrategy, consoleStream);
 
 		/*
 		 * now start mapping each one of the references. We automatically start

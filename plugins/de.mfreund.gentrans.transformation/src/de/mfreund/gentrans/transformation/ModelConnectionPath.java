@@ -26,7 +26,7 @@ import de.mfreund.gentrans.transformation.util.Pair;
  * @author mfreund
  *
  */
-final class ModelConnectionPath {
+public final class ModelConnectionPath {
 
 	/**
 	 * This holds the list of path elements.
@@ -61,7 +61,7 @@ final class ModelConnectionPath {
 	 * @param maxPathLength The maximum number of segments that the path may consist of ('<em>0</em>' indicating that only direct connections
 	 * without any intermediary elements are allowed). 
 	 */
-	static void findPathsFromContainerToClassToConnect(
+	public static void findPathsFromContainerToClassToConnect(
 			final TargetSectionRegistry registry, final EClass elementClass,
 			final EClass containerClass, final int maxPathLength) {
 
@@ -128,7 +128,7 @@ final class ModelConnectionPath {
 	 * @param maxPathLength The maximum number of segments that the path may consist of ('<em>0</em>' indicating that only direct connections
 	 * without any intermediary elements are allowed). 
 	 */
-	static void findPathsToInstances(final TargetSectionRegistry registry,
+	public static void findPathsToInstances(final TargetSectionRegistry registry,
 			final EClass pathStartClass, final int maxPathLength) {
 
 		// this list holds pairs of EClasses and possible child EClasses
@@ -198,7 +198,7 @@ final class ModelConnectionPath {
 	 * @param minimumCapacity The minimumCapacity that has to be satisfied by the paths.
 	 * @return The subset of the given paths that satisfies the minimumCapacity.
 	 */
-	static LinkedList<ModelConnectionPath> findPathsWithMinimumCapacity(
+	public static LinkedList<ModelConnectionPath> findPathsWithMinimumCapacity(
 			final LinkedList<ModelConnectionPath> paths,
 			final EObject startInstance, final int minimumCapacity) {
 		final LinkedList<ModelConnectionPath> pathsToConsider = new LinkedList<>();
@@ -308,7 +308,7 @@ final class ModelConnectionPath {
 	 * @return The capacity of this path for the given 'parentInstance' ('<em>-1</em>' is 
 	 * returned for paths with unbounded capacity).
 	 */
-	int getCapacity(final EObject parentInstance) {
+	public int getCapacity(final EObject parentInstance) {
 
 		// gets toggled every loop, to help us separate refs from types
 		boolean use = false;
@@ -386,7 +386,7 @@ final class ModelConnectionPath {
 	 * 
 	 * @return The EClass of the end of the path.
 	 */
-	EClass getPathRootClass() {
+	public EClass getPathRootClass() {
 		return (EClass) pathElements.getLast();
 
 	}
@@ -415,7 +415,7 @@ final class ModelConnectionPath {
 	 * @return A list of objects that could not be connected (possibly because the capacity of the path was not large
 	 * enough).
 	 */
-	List<EObjectWrapper> instantiate(
+	public List<EObjectWrapper> instantiate(
 			final EObject rootObject,
 			final Collection<EObjectWrapper> objectsToConnect) {
 
@@ -575,7 +575,7 @@ final class ModelConnectionPath {
 	 * 
 	 * @return The number of elements in the path.
 	 */
-	int size() {
+	public int size() {
 		return pathElements.size();
 	}
 

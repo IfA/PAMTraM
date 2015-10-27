@@ -181,7 +181,7 @@ public class EObjectWrapper {
 	 * @param eObject The {@link EObject} for that the String representation shall be created.
 	 * @return The String representation.
 	 */
-	static String asString(final EObject eObject) {
+	public static String asString(final EObject eObject) {
 		String returnString = eObject.eClass().getName() + " (HashCode: "
 				+ eObject.hashCode() + ")";
 		for (final EAttribute a : eObject.eClass().getEAllAttributes()) {

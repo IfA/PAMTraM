@@ -148,7 +148,9 @@ public class GenericTransformationRunner {
 	/**
 	 * Determines whether the user should be asked every time an ambiguous
 	 * mapping was detected, or if we should reuse user decisions
+	 *
 	 */
+	//TODO this should probably be moved to the 'UserDecisionStrategy'
 	private boolean onlyAskOnceOnAmbiguousMappings;
 
 	/**
@@ -180,6 +182,12 @@ public class GenericTransformationRunner {
 	 * be used during the transformation.
 	 */
 	private LibraryContextDescriptor targetLibraryContextDescriptor;
+
+	/**
+	 * This is the {@link IAmbiguityResolvingStrategy} that shall be used to 
+	 * resolve ambiguities that arise during the execution of the transformation.
+	 */
+	private IAmbiguityResolvingStrategy ambiguityResolvingStrategy;
 
 	/**
 	 * This is the {@link TargetSectionInstantiator} that can be used to create new target sections.
@@ -236,6 +244,7 @@ public class GenericTransformationRunner {
 		this.maxPathLength = maxPathLength;
 		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
 		this.targetLibraryContextDescriptor = targetLibraryContextDescriptor;
+		this.ambiguityResolvingStrategy = new DefaultAmbiguityResolvingStrategy();
 		consoleStream = findConsole("de.mfreund.gentrans.transformation_" + hashCode()).newMessageStream();
 		objectsToCancel = new LinkedList<>();
 		// brings the console view to the front

@@ -9,11 +9,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 import pamtram.mapping.Mapping;
-import pamtram.mapping.MappingHintGroup;
+import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.metamodel.NonContainmentReference;
 import pamtram.metamodel.TargetSection;
+import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 
 /**
@@ -63,7 +64,8 @@ public interface IAmbiguityResolvingStrategy {
 	 * 'element' or if the evaluation of the defined ModelConnectionHint delivered multiple possible container elements. 
 	 * 
 	 * @param choices The list of {@link EObjectWrapper elements} that can be chosen as container element.
-	 * @param element The {@link EObjectWrapper element} that shall be connected to a container element.
+	 * @param sectionInstances The list of {@link EObjectWrapper instances} that shall be connected to a container element.
+	 * @param hintGroup  The {@link MappingHintGroupType} that was responsible for instantiating the given 'sectionInstances'.
 	 * @param modelConnectionHint The {@link ModelConnectionHint} that produced the ambiguous choices. This is '<em><b>null</b></em>' if
 	 * no ModelConnectionHint was defined for the given '<em>element</em>'.
 	 * @param hintValue The target attribute value that has been calculated by the given 'modelConnectionHint' and that is ambiguous (present in multiple
@@ -73,8 +75,9 @@ public interface IAmbiguityResolvingStrategy {
 	 */
 	public default List<EObjectWrapper> resolveJoiningAmbiguity(
 			List<EObjectWrapper> choices, 
-			EObjectWrapper element,
-			ModelConnectionHint modelConnectionHint,
+			List<EObjectWrapper> sectionInstances,
+			MappingHintGroupType hintGroup,
+			ModelConnectionHint modelConnectionHint, 
 			String hintValue) throws Exception {
 
 		List<EObjectWrapper> ret = new ArrayList<>();
@@ -136,12 +139,12 @@ public interface IAmbiguityResolvingStrategy {
 	 * @param section The {@link TargetSection} that shall be connected to a certain {@link EClass} (represented by the 
 	 * {@link ModelConnectionPath#getPathRootClass() root class} of every of the given ModelConnectionPaths).
 	 * @param sectionInstances The list of {@link EObjectWrapper instances} of the given 'section' that need to be connected.
-	 * @param hintGroup The {@link MappingHintGroup} that was responsible for instantiating the given 'sectionInstances'.
+	 * @param hintGroup The {@link MappingHintGroupType} that was responsible for instantiating the given 'sectionInstances'.
 	 * @return The {@link HashMap} that contains the choices after applying the resolving strategy.
 	 * @throws Exception If an error occured while applying the resolving strategy.  
 	 */
 	public default HashMap<ModelConnectionPath, List<EObjectWrapper>> resolveConnectionPathAmbiguity(
-			HashMap<ModelConnectionPath, List<EObjectWrapper>> choices, TargetSection section, List<EObjectWrapper> sectionInstances, MappingHintGroup hintGroup) throws Exception {
+			HashMap<ModelConnectionPath, List<EObjectWrapper>> choices, TargetSection section, List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup) throws Exception {
 
 		HashMap<ModelConnectionPath, List<EObjectWrapper>> ret = new HashMap<>();
 		if(choices != null) {
@@ -160,21 +163,49 @@ public interface IAmbiguityResolvingStrategy {
 	 * 
 	 * @param choices The list of {@link EObjectWrapper elements} that can be chosen as target. 
 	 * @param reference The {@link TargetSectionNonContainmentReference} whose target shall be set.
+	 * @param hintGroup The {@link MappingHintGroupType} that was responsible for instantiating the given 'sectionInstances'.
 	 * @param mappingInstanceSelector The {@link MappingInstanceSelector} that produced the ambiguous choices. This is '<em><b>null</b></em>' if
 	 * no MappingInstanceSelector was defined for the given '<em>reference</em>'.
-	 * @param sourceElement The {@link EObjectWrapper element} for that the target of the given 'reference' shall be chosen.
+	 * @param sourceElement The {@link EObjectWrapper element} for that the target of the given 'reference' shall be chosen or '<em><b>null</b></em>'
+	 * if a target shall be determined for every possible instance.
 	 * @return The list of choices after applying the resolving strategy (this should be a sub-set of '<em>choices</em>').
 	 * @throws Exception If an error occured while applying the resolving strategy. 
 	 */
 	public default List<EObjectWrapper> resolveLinkingAmbiguity(
 			List<EObjectWrapper> choices,
 			TargetSectionNonContainmentReference reference,
-			MappingInstanceSelector mappingInstanceSelector,
-			EObjectWrapper sourceElement) throws Exception {
+			MappingHintGroupType hintGroup,
+			MappingInstanceSelector mappingInstanceSelector, EObjectWrapper sourceElement) throws Exception {
 
 		List<EObjectWrapper> ret = new ArrayList<>();
 		if(choices != null) {
 			ret.addAll(choices);			
+		}
+		return ret;
+	}
+
+	/**
+	 * Resolve ambiguities that arise when selecting the target {@link EObjectWrapper element} for a {@link NonContainmentReference}
+	 * during the '<em>linking</em>' step of the transformation. This method is only called if no {@link MappingInstanceSelector} 
+	 * has been defined and there are multiple possible {@link TargetSection TargetSections} and associated {@link EObjectWrapper instances}. 
+	 * 
+	 * @param choices  A {@link HashMap} that contains the @ {@link TargetSectionClass TargetSections} and associated lists of 
+	 * {@link EObjectWrapper elements} that can be chosen as target. 
+	 * @param reference The {@link TargetSectionNonContainmentReference} whose target shall be set.
+	 * @param hintGroup The {@link MappingHintGroupType} that was responsible for instantiating the given 'sectionInstances'.
+	 * @return The list of choices after applying the resolving strategy (this should be a sub-set of '<em>choices</em>').
+	 * @throws Exception If an error occured while applying the resolving strategy. 
+	 */
+	public default HashMap<TargetSectionClass, List<EObjectWrapper>> resolveLinkingAmbiguity(
+			HashMap<TargetSectionClass, List<EObjectWrapper>> choices,
+			TargetSectionNonContainmentReference reference,
+			MappingHintGroupType hintGroup) throws Exception {
+
+		HashMap<TargetSectionClass, List<EObjectWrapper>> ret = new HashMap<>();
+		if(choices != null) {
+			for (Entry<TargetSectionClass, List<EObjectWrapper>> entry : choices.entrySet()) {
+				ret.put(entry.getKey(), new ArrayList<>(entry.getValue()));
+			}
 		}
 		return ret;
 	}

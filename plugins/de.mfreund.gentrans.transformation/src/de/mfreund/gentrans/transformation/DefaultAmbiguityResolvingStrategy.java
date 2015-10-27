@@ -10,9 +10,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 import pamtram.mapping.Mapping;
+import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.metamodel.TargetSection;
+import pamtram.metamodel.TargetSectionClass;
 import pamtram.metamodel.TargetSectionNonContainmentReference;
 
 /**
@@ -36,8 +38,8 @@ public class DefaultAmbiguityResolvingStrategy implements IAmbiguityResolvingStr
 	}
 
 	@Override
-	public List<EObjectWrapper> resolveJoiningAmbiguity(List<EObjectWrapper> choices, EObjectWrapper element,
-			ModelConnectionHint modelConnectionHint, String hintValue) {
+	public List<EObjectWrapper> resolveJoiningAmbiguity(List<EObjectWrapper> choices, List<EObjectWrapper> element,
+			MappingHintGroupType hintGroup, ModelConnectionHint modelConnectionHint, String hintValue) {
 
 		if(choices == null || choices.size() == 0) {
 			return new ArrayList<>();
@@ -48,8 +50,8 @@ public class DefaultAmbiguityResolvingStrategy implements IAmbiguityResolvingStr
 
 	@Override
 	public List<EObjectWrapper> resolveLinkingAmbiguity(List<EObjectWrapper> choices,
-			TargetSectionNonContainmentReference reference, MappingInstanceSelector mappingInstanceSelector,
-			EObjectWrapper sourceElement) {
+			TargetSectionNonContainmentReference reference, MappingHintGroupType hintGroup,
+			MappingInstanceSelector mappingInstanceSelector, EObjectWrapper sourceElement) {
 
 		if(choices == null || choices.size() == 0) {
 			return new ArrayList<>();
@@ -81,13 +83,30 @@ public class DefaultAmbiguityResolvingStrategy implements IAmbiguityResolvingStr
 
 	@Override
 	public HashMap<ModelConnectionPath, List<EObjectWrapper>> resolveConnectionPathAmbiguity(
-			HashMap<ModelConnectionPath, List<EObjectWrapper>> choices, TargetSection section) throws Exception {
+			HashMap<ModelConnectionPath, List<EObjectWrapper>> choices, TargetSection section, List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup) throws Exception {
 
 		if(choices == null || choices.isEmpty()) {
 			return new HashMap<>();
 		} else {
 			HashMap<ModelConnectionPath, List<EObjectWrapper>> ret = new HashMap<>();
 			Entry<ModelConnectionPath, List<EObjectWrapper>> firstEntry = choices.entrySet().iterator().next();
+			ArrayList<EObjectWrapper> eObjectList = new ArrayList<>();
+			eObjectList.add(firstEntry.getValue().get(0));
+			ret.put(firstEntry.getKey(), eObjectList);
+			return ret;
+		}
+	}
+
+	@Override
+	public HashMap<TargetSectionClass, List<EObjectWrapper>> resolveLinkingAmbiguity(
+			HashMap<TargetSectionClass, List<EObjectWrapper>> choices, TargetSectionNonContainmentReference reference,
+			MappingHintGroupType hintGroup) throws Exception {
+
+		if(choices == null || choices.isEmpty()) {
+			return new HashMap<>();
+		} else {
+			HashMap<TargetSectionClass, List<EObjectWrapper>> ret = new HashMap<>();
+			Entry<TargetSectionClass, List<EObjectWrapper>> firstEntry = choices.entrySet().iterator().next();
 			ArrayList<EObjectWrapper> eObjectList = new ArrayList<>();
 			eObjectList.add(firstEntry.getValue().get(0));
 			ret.put(firstEntry.getKey(), eObjectList);

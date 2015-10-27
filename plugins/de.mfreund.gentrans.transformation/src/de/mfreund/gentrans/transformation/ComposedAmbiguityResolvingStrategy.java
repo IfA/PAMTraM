@@ -1,7 +1,9 @@
 package de.mfreund.gentrans.transformation;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -153,6 +155,33 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 			if(ret == null) {
 				return null;
 			} else if(ret.size() <= 1) {
+				break;
+			}
+		}
+
+		return ret;
+	}
+
+	@Override
+	public HashMap<ModelConnectionPath, List<EObjectWrapper>> resolveConnectionPathAmbiguity(
+			HashMap<ModelConnectionPath, List<EObjectWrapper>> choices, TargetSection section) throws Exception {
+
+		HashMap<ModelConnectionPath, List<EObjectWrapper>> ret = new HashMap<>();
+		if(choices != null) {
+			for (Entry<ModelConnectionPath, List<EObjectWrapper>> entry : choices.entrySet()) {
+				ret.put(entry.getKey(), new ArrayList<>(entry.getValue()));
+			}
+		}
+
+		if(ret.entrySet().isEmpty() || (ret.entrySet().size() == 1 && ret.entrySet().iterator().next().getValue().size() <= 1)) {
+			return ret;
+		}
+
+		for (IAmbiguityResolvingStrategy strategy : composedStrategies) {
+			ret = strategy.resolveConnectionPathAmbiguity(ret, section);
+			if(ret == null) {
+				return null;
+			} else if(ret.entrySet().isEmpty() || (ret.entrySet().size() == 1 && ret.entrySet().iterator().next().getValue().size() <= 1)) {
 				break;
 			}
 		}

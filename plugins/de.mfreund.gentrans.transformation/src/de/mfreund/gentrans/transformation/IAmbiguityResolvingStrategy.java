@@ -1,12 +1,15 @@
 package de.mfreund.gentrans.transformation;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 import pamtram.mapping.Mapping;
+import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.mapping.ModelConnectionHint;
 import pamtram.metamodel.NonContainmentReference;
@@ -117,6 +120,34 @@ public interface IAmbiguityResolvingStrategy {
 		List<ModelConnectionPath> ret = new ArrayList<>();
 		if(choices != null) {
 			ret.addAll(choices);			
+		}
+		return ret;
+	}
+
+	/**
+	 * Resolve ambiguities that arise when selecting a {@link ModelConnectionPath} to connect a {@link TargetSection} to
+	 * a certain container {@link EClass} This method is called when multiple possible ModelConnectionPaths have been determined for the given 
+	 * 'section' during the '<em>joining</em>' step of the transformation and multiple possible instances of this EClass exist in 
+	 * the target model. Consequently, ambiguities have to be resolve both for the ModelConnectionPath to use as well as for the concrete
+	 * instance (the concrete model element) to connect to.
+	 * 
+	 * @param choices A {@link HashMap} that contains the {@link ModelConnectionPath ModelConnectionPaths} and the associated lists of
+	 * {@link EObjectWrapper EObjectWrappers} that can be chosen to connect the given 'section'.
+	 * @param section The {@link TargetSection} that shall be connected to a certain {@link EClass} (represented by the 
+	 * {@link ModelConnectionPath#getPathRootClass() root class} of every of the given ModelConnectionPaths).
+	 * @param sectionInstances The list of {@link EObjectWrapper instances} of the given 'section' that need to be connected.
+	 * @param hintGroup The {@link MappingHintGroup} that was responsible for instantiating the given 'sectionInstances'.
+	 * @return The {@link HashMap} that contains the choices after applying the resolving strategy.
+	 * @throws Exception If an error occured while applying the resolving strategy.  
+	 */
+	public default HashMap<ModelConnectionPath, List<EObjectWrapper>> resolveConnectionPathAmbiguity(
+			HashMap<ModelConnectionPath, List<EObjectWrapper>> choices, TargetSection section, List<EObjectWrapper> sectionInstances, MappingHintGroup hintGroup) throws Exception {
+
+		HashMap<ModelConnectionPath, List<EObjectWrapper>> ret = new HashMap<>();
+		if(choices != null) {
+			for (Entry<ModelConnectionPath, List<EObjectWrapper>> entry : choices.entrySet()) {
+				ret.put(entry.getKey(), new ArrayList<>(entry.getValue()));
+			}
 		}
 		return ret;
 	}

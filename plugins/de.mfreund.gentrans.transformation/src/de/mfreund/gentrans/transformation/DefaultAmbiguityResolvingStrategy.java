@@ -2,7 +2,9 @@ package de.mfreund.gentrans.transformation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -76,4 +78,21 @@ public class DefaultAmbiguityResolvingStrategy implements IAmbiguityResolvingStr
 			return new ArrayList<>(Arrays.asList(choices.get(0)));
 		}
 	}
+
+	@Override
+	public HashMap<ModelConnectionPath, List<EObjectWrapper>> resolveConnectionPathAmbiguity(
+			HashMap<ModelConnectionPath, List<EObjectWrapper>> choices, TargetSection section) throws Exception {
+
+		if(choices == null || choices.isEmpty()) {
+			return new HashMap<>();
+		} else {
+			HashMap<ModelConnectionPath, List<EObjectWrapper>> ret = new HashMap<>();
+			Entry<ModelConnectionPath, List<EObjectWrapper>> firstEntry = choices.entrySet().iterator().next();
+			ArrayList<EObjectWrapper> eObjectList = new ArrayList<>();
+			eObjectList.add(firstEntry.getValue().get(0));
+			ret.put(firstEntry.getKey(), eObjectList);
+			return ret;
+		}
+	}
+
 }

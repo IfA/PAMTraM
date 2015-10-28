@@ -1802,8 +1802,10 @@ public class GenericTransformationRunner {
 		}
 
 		/**
-		 * This constructs an instance for a matching process that has not been canceled.
+		 * This constructs an instance.
 		 * 
+		 * @param canceled '<em><b>true</b></em>' indicates that the matching process was canceled, '<em><b>false</b></em>' indicates that
+		 * the matching process completed successfully.
 		 * @param selectedMappings The list of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
 		 * process.
 		 * @param selectedMappingsByMapping The map of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
@@ -1830,7 +1832,7 @@ public class GenericTransformationRunner {
 		 * @return An instance of {@link MatchingResult} indicating that the matching was canceled.
 		 */
 		public static MatchingResult createMatchingCanceledResult() {
-			return new MatchingResult(false, null, null, null, null);
+			return new MatchingResult(true, null, null, null, null);
 		}
 
 		/**

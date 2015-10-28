@@ -148,7 +148,9 @@ public class GenericTransformationRunner {
 	/**
 	 * Determines whether the user should be asked every time an ambiguous
 	 * mapping was detected, or if we should reuse user decisions
+	 *
 	 */
+	//TODO this should probably be moved to the 'UserDecisionStrategy'
 	private boolean onlyAskOnceOnAmbiguousMappings;
 
 	/**
@@ -180,6 +182,12 @@ public class GenericTransformationRunner {
 	 * be used during the transformation.
 	 */
 	private LibraryContextDescriptor targetLibraryContextDescriptor;
+
+	/**
+	 * This is the {@link IAmbiguityResolvingStrategy} that shall be used to 
+	 * resolve ambiguities that arise during the execution of the transformation.
+	 */
+	private IAmbiguityResolvingStrategy ambiguityResolvingStrategy;
 
 	/**
 	 * This is the {@link TargetSectionInstantiator} that can be used to create new target sections.
@@ -223,10 +231,18 @@ public class GenericTransformationRunner {
 	 * 			  Whether ambiguities shall only be resolved once or for every instance.
 	 * @param targetLibraryContextDescriptor
 	 * 			  The descriptor for the target library context to be used during the transformation.
+	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} that shall be used to 
+	 * resolve ambiguities that arise during the execution of the transformation. If this is '<em>null</em>', the 
+	 * {@link DefaultAmbiguityResolvingStrategy} will be used.
 	 */
-	private GenericTransformationRunner(final ArrayList<String> sourceFilePaths,
-			final String pamtramPath, final String targetFilePath, int maxPathLength,
-			boolean onlyAskOnceOnAmbiguousMappings, LibraryContextDescriptor targetLibraryContextDescriptor) {
+	private GenericTransformationRunner(
+			final ArrayList<String> sourceFilePaths,
+			final String pamtramPath, 
+			final String targetFilePath, 
+			int maxPathLength,
+			boolean onlyAskOnceOnAmbiguousMappings, 
+			LibraryContextDescriptor targetLibraryContextDescriptor,
+			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 		super();
 		isCancelled = false;
 		this.sourceModels = new ArrayList<>();
@@ -236,6 +252,22 @@ public class GenericTransformationRunner {
 		this.maxPathLength = maxPathLength;
 		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
 		this.targetLibraryContextDescriptor = targetLibraryContextDescriptor;
+
+		/* 
+		 * make sure that all ambiguities are resolved completely by requiring an instance of
+		 * 'DefaultAmbiguityResolvingStrategy' to be participating in the resolving process
+		 */
+		if(ambiguityResolvingStrategy == null) {
+			this.ambiguityResolvingStrategy = new DefaultAmbiguityResolvingStrategy();
+		} else if(ambiguityResolvingStrategy instanceof DefaultAmbiguityResolvingStrategy) {
+			this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
+		} else {
+			ArrayList<IAmbiguityResolvingStrategy> composed = new ArrayList<>();
+			composed.add(ambiguityResolvingStrategy);
+			composed.add(new DefaultAmbiguityResolvingStrategy());
+			this.ambiguityResolvingStrategy = new ComposedAmbiguityResolvingStrategy(composed);
+		}
+
 		consoleStream = findConsole("de.mfreund.gentrans.transformation_" + hashCode()).newMessageStream();
 		objectsToCancel = new LinkedList<>();
 		// brings the console view to the front
@@ -253,15 +285,19 @@ public class GenericTransformationRunner {
 	 *            File path to the transformation target
 	 * @param targetLibraryContextDescriptor
 	 * 			  The descriptor for the target library context to be used during the transformation.
+	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} that shall be used to 
+	 * resolve ambiguities that arise during the execution of the transformation. If this is '<em>null</em>', the 
+	 * {@link DefaultAmbiguityResolvingStrategy} will be used.
 	 * @return An instance of {@link GenericTransformationRunner}.
 	 */
 	public static GenericTransformationRunner createInstanceFromSourcePaths(
 			final ArrayList<String> sourceFilePaths,
 			final String pamtramPath,
 			final String targetFilePath, 
-			LibraryContextDescriptor targetLibraryContextDescriptor) {
+			LibraryContextDescriptor targetLibraryContextDescriptor,
+			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 
-		return new GenericTransformationRunner(sourceFilePaths, pamtramPath, targetFilePath, -1, true, targetLibraryContextDescriptor);
+		return new GenericTransformationRunner(sourceFilePaths, pamtramPath, targetFilePath, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
 	}
 
 	/**
@@ -275,16 +311,20 @@ public class GenericTransformationRunner {
 	 *            File path to the transformation target
 	 * @param targetLibraryContextDescriptor
 	 * 			  The descriptor for the target library context to be used during the transformation.
+	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} that shall be used to 
+	 * resolve ambiguities that arise during the execution of the transformation. If this is '<em>null</em>', the 
+	 * {@link DefaultAmbiguityResolvingStrategy} will be used.
 	 * @return An instance of {@link GenericTransformationRunner}.
 	 */
 	public static GenericTransformationRunner createInstanceFromSourcePaths(
 			final ArrayList<String> sourceFilePaths,
 			final PAMTraM pamtramModel, 
 			final String targetFilePath, 
-			LibraryContextDescriptor targetLibraryContextDescriptor) {
+			LibraryContextDescriptor targetLibraryContextDescriptor,
+			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 
 		GenericTransformationRunner instance = 
-				new GenericTransformationRunner(sourceFilePaths, null, targetFilePath, -1, true, targetLibraryContextDescriptor);
+				new GenericTransformationRunner(sourceFilePaths, null, targetFilePath, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
 		instance.pamtramModel = pamtramModel;
 		return instance;
 	}
@@ -300,16 +340,20 @@ public class GenericTransformationRunner {
 	 *            File path to the transformation target
 	 * @param targetLibraryContextDescriptor
 	 * 			  The descriptor for the target library context to be used during the transformation.
+	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} that shall be used to 
+	 * resolve ambiguities that arise during the execution of the transformation. If this is '<em>null</em>', the 
+	 * {@link DefaultAmbiguityResolvingStrategy} will be used.
 	 * @return An instance of {@link GenericTransformationRunner}.
 	 */
 	public static GenericTransformationRunner createInstanceFromSourceModels(
 			final ArrayList<EObject> sourceModels,
 			final PAMTraM pamtramModel, 
 			final String targetFilePath, 
-			LibraryContextDescriptor targetLibraryContextDescriptor) {
+			LibraryContextDescriptor targetLibraryContextDescriptor,
+			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 
 		GenericTransformationRunner instance = 
-				new GenericTransformationRunner(null, null, targetFilePath, -1, true, targetLibraryContextDescriptor);
+				new GenericTransformationRunner(null, null, targetFilePath, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
 		instance.pamtramModel = pamtramModel;
 		instance.sourceModels = sourceModels;
 		return instance;
@@ -526,7 +570,7 @@ public class GenericTransformationRunner {
 		 * Create the source section matcher that finds applicable mappings
 		 */
 		final SourceSectionMatcher sourceSectionMatcher = new SourceSectionMatcher(
-				containmentTree, suitableMappings, onlyAskOnceOnAmbiguousMappings, attributeValueModifier, consoleStream);
+				containmentTree, suitableMappings, onlyAskOnceOnAmbiguousMappings, attributeValueModifier, ambiguityResolvingStrategy, consoleStream);
 		objectsToCancel.add(sourceSectionMatcher);
 
 		/*
@@ -644,7 +688,7 @@ public class GenericTransformationRunner {
 		targetSectionInstantiator = new TargetSectionInstantiator(
 				targetSectionRegistry, attrValueRegistry,
 				matchingResult.getGlobalAttributeValues(),
-				attributeValuemodifier, globalValues, consoleStream, this);
+				attributeValuemodifier, globalValues, consoleStream, this, ambiguityResolvingStrategy);
 		objectsToCancel.add(targetSectionInstantiator);
 
 		/*
@@ -933,7 +977,7 @@ public class GenericTransformationRunner {
 		targetSectionConnector = new TargetSectionConnector(
 				expandingResult.getTargetSectionRegistry(),
 				attributeValueModifier, targetModel, maxPathLength,
-				consoleStream);
+				ambiguityResolvingStrategy, consoleStream);
 		objectsToCancel.add(targetSectionConnector);
 		final double workUnit = 250.0 / suitableMappings.size();
 		double accumulatedWork = 0;
@@ -967,7 +1011,7 @@ public class GenericTransformationRunner {
 												new LinkedList<>(selMap.getInstances((MappingHintGroup) g, section)),
 												section,
 												m.getName(),
-												g.getName(),
+												g,
 												((MappingHintGroup) g).getModelConnectionMatcher(),
 												selMap.getHintValues().getHintValues(((MappingHintGroup) g).getModelConnectionMatcher()));
 										if (targetSectionConnector.isCancelled()) {
@@ -997,7 +1041,7 @@ public class GenericTransformationRunner {
 
 								targetSectionConnector.linkToTargetModelNoConnectionHint(
 										rootInstances, section,
-										m.getName(), g.getName(),
+										m.getName(), g,
 										section.getContainer() != null ? new HashSet<>(Arrays.asList(section.getContainer().getEClass())) : null,
 												containerInstances);
 								if (targetSectionConnector.isCancelled()) {
@@ -1050,7 +1094,7 @@ public class GenericTransformationRunner {
 								targetSectionConnector.linkToTargetModelNoConnectionHint(
 										rootInstances,
 										g.getTargetMMSection(),
-										m.getName(), g.getName(),
+										m.getName(), g,
 										new HashSet<>(Arrays.asList(i.getContainer().getEClass())),
 										containerInstances);
 								if (targetSectionConnector.isCancelled()) {
@@ -1085,7 +1129,7 @@ public class GenericTransformationRunner {
 								targetSectionConnector.linkToTargetModelNoConnectionHint(
 										rootInstances,
 										g.getTargetMMSection(),
-										m.getName(), g.getName(),
+										m.getName(), g,
 										containerClasses,
 										containerInstances);
 								if (targetSectionConnector.isCancelled()) {
@@ -1486,7 +1530,7 @@ public class GenericTransformationRunner {
 
 
 		final SourceSectionMatcher sourceSectionMapper = new SourceSectionMatcher(
-				containmentTree, suitableMappings, onlyAskOnceOnAmbiguousMappings, attributeValueModifier, consoleStream);
+				containmentTree, suitableMappings, onlyAskOnceOnAmbiguousMappings, attributeValueModifier, ambiguityResolvingStrategy, consoleStream);
 
 		/*
 		 * now start mapping each one of the references. We automatically start
@@ -1773,8 +1817,10 @@ public class GenericTransformationRunner {
 		}
 
 		/**
-		 * This constructs an instance for a matching process that has not been canceled.
+		 * This constructs an instance.
 		 * 
+		 * @param canceled '<em><b>true</b></em>' indicates that the matching process was canceled, '<em><b>false</b></em>' indicates that
+		 * the matching process completed successfully.
 		 * @param selectedMappings The list of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
 		 * process.
 		 * @param selectedMappingsByMapping The map of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
@@ -1801,7 +1847,7 @@ public class GenericTransformationRunner {
 		 * @return An instance of {@link MatchingResult} indicating that the matching was canceled.
 		 */
 		public static MatchingResult createMatchingCanceledResult() {
-			return new MatchingResult(false, null, null, null, null);
+			return new MatchingResult(true, null, null, null, null);
 		}
 
 		/**

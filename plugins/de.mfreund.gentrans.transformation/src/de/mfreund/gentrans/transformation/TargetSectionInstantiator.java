@@ -18,14 +18,11 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
-import de.mfreund.gentrans.transformation.selectors.GenericItemSelectorDialogRunner;
-import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunner;
 import de.mfreund.gentrans.transformation.util.CancellableElement;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractAttributeParameter;
@@ -41,6 +38,7 @@ import pamtram.mapping.GlobalValue;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
+import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.AttributeParameter;
@@ -183,6 +181,12 @@ class TargetSectionInstantiator extends CancellableElement {
 	private final GenericTransformationRunner transformationRunner;
 
 	/**
+	 * This is the {@link IAmbiguityResolvingStrategy} that shall be used to 
+	 * resolve ambiguities that arise during the execution of the transformation.
+	 */
+	private IAmbiguityResolvingStrategy ambiguityResolvingStrategy;
+
+	/**
 	 * @param targetSectionRegistry
 	 *            target section registry used when instantiating classes
 	 * @param attributeValueRegistry
@@ -202,11 +206,13 @@ class TargetSectionInstantiator extends CancellableElement {
 			final AttributeValueModifierExecutor attributeValuemodifier,
 			final List<GlobalValue> globalVals,
 			final MessageConsoleStream consoleStream,
-			final GenericTransformationRunner transformationRunner) {
+			final GenericTransformationRunner transformationRunner,
+			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 		this.targetSectionRegistry = targetSectionRegistry;
 		this.attributeValueRegistry = attributeValueRegistry;
 		this.consoleStream = consoleStream;
 		this.transformationRunner = transformationRunner;
+		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
 		canceled = false;
 		//		this.attributeValuemodifier = attributeValuemodifier;
 		wrongCardinalityContainmentRefs = new HashSet<>();
@@ -829,9 +835,9 @@ class TargetSectionInstantiator extends CancellableElement {
 											attrValStr = calculator.calculateAttributeValue(null, hSel,
 													newHintValues);
 										}
-										final EObjectWrapper srcInst = instancesToConsider
-												.remove(0);
+										final EObjectWrapper srcInst = instancesToConsider.remove(0);
 										final List<EObjectWrapper> fittingVals = new LinkedList<>();
+
 										for (final EObjectWrapper targetInst : targetInstances) {
 											// get Attribute value
 											final String targetValStr = targetInst
@@ -843,8 +849,7 @@ class TargetSectionInstantiator extends CancellableElement {
 													fittingVals.add(targetInst);
 												}
 											} else {
-												consoleStream
-												.println("Problemo?");
+												consoleStream.println("Problemo?");
 											}
 										}
 										// select targetInst
@@ -852,26 +857,25 @@ class TargetSectionInstantiator extends CancellableElement {
 										if (fittingVals.size() == 1) {
 											targetInst = fittingVals.get(0);
 
-										} else if (fittingVals.size() > 1) {// let
-											// user
-											// decide
+										} else if (fittingVals.size() > 1) {
+
 											if (canceled) {
 												return;
 											}
-											final GenericItemSelectorDialogRunner<EObjectWrapper> dialog = new GenericItemSelectorDialogRunner<>(
-													"The MappingInstanceSelector '" + h.getName() + " of Mapping" + mappingName + "(Group: "
-															+ group.getName() + ")' has a Matcher that points to a target element with more than one instance. "
-															+ "Please choose to which element the Reference '" + ref.getName()
-															+ "' of the following element should point to:\n\n" + srcInst.toString(),
-															fittingVals, 0);
-											Display.getDefault().syncExec(
-													dialog);
 
-											if (dialog.wasTransformationStopRequested()) {
-												canceled = true;
+											/*
+											 * Consult the specified resolving strategy to resolve the ambiguity.				
+											 */
+											try {
+												List<EObjectWrapper> resolved = ambiguityResolvingStrategy.linkingSelectTargetInstance(
+														fittingVals, ((MappingInstanceSelector) h).getAffectedReference(), (MappingHintGroupType) group, (MappingInstanceSelector) h, srcInst);
+												targetInst = resolved.get(0);
+											} catch (Exception e) {
+												consoleStream.println(e.getMessage());
+												cancel();
 												return;
 											}
-											targetInst = dialog.getSelection();
+
 										} else {
 											consoleStream.println("The MappigInstanceSelector " + hSel.getName() + " (Mapping: " + mappingName
 													+ ", Group: " + group.getName() + " ) has an AttributeMatcher that picked up the value '"
@@ -937,43 +941,46 @@ class TargetSectionInstantiator extends CancellableElement {
 												if (canceled) {
 													return;
 												}
-												final GenericItemSelectorDialogRunner<EObjectWrapper> dialog = new GenericItemSelectorDialogRunner<>(
-														"The MappingInstanceSelector '"
-																+ h.getName()
-																+ " of Mapping"
-																+ mappingName
-																+ "(Group: "
-																+ group.getName()
-																+ ")' has a Matcher that points to a target element with more than one instance. "
-																+ "Please choose to which element the Reference '"
-																+ ref.getName()
-																+ "' of the affected elements should point to.",
-																insts, 0);
-												Display.getDefault().syncExec(
-														dialog);
 
-												if (dialog
-														.wasTransformationStopRequested()) {
-													canceled = true;
+												/*
+												 * Consult the specified resolving strategy to resolve the ambiguity.				
+												 */
+												try {
+													List<EObjectWrapper> resolved = ambiguityResolvingStrategy.linkingSelectTargetInstance(
+															insts, ((MappingInstanceSelector) h).getAffectedReference(), null, (MappingInstanceSelector) h, null);
+													targetInstance = resolved.get(0);
+												} catch (Exception e) {
+													consoleStream.println(e.getMessage());
+													cancel();
 													return;
 												}
-												targetInstance = dialog
-														.getSelection();
+
+												//												final GenericItemSelectorDialogRunner<EObjectWrapper> dialog = new GenericItemSelectorDialogRunner<>(
+												//														"The MappingInstanceSelector '"
+												//																+ h.getName()
+												//																+ " of Mapping"
+												//																+ mappingName
+												//																+ "(Group: "
+												//																+ group.getName()
+												//																+ ")' has a Matcher that points to a target element with more than one instance. "
+												//																+ "Please choose to which element the Reference '"
+												//																+ ref.getName()
+												//																+ "' of the affected elements should point to.",
+												//																insts, 0);
+												//												Display.getDefault().syncExec(
+												//														dialog);
+												//
+												//												if (dialog
+												//														.wasTransformationStopRequested()) {
+												//													canceled = true;
+												//													return;
+												//												}
+												//												targetInstance = dialog
+												//														.getSelection();
 											} else {
-												consoleStream
-												.println("The MappingInstanceSelector '"
-														+ h.getName()
-														+ " of Mapping"
-														+ mappingName
-														+ "(Group: "
-														+ group.getName()
-														+ ")' has a Matcher that points to the target class "
-														+ matcherTargetClass
-														.getName()
-														+ " (Section: "
-														+ matcherTargetClass
-														.getContainingSection()
-														.getName()
+												consoleStream.println("The MappingInstanceSelector '" + h.getName() + " of Mapping" + mappingName + "(Group: "
+														+ group.getName() + ")' has a Matcher that points to the target class " + matcherTargetClass.getName()
+														+ " (Section: " + matcherTargetClass.getContainingSection().getName()
 														+ "). Sadly, no instances of this Class were created.");
 											}
 
@@ -1159,29 +1166,44 @@ class TargetSectionInstantiator extends CancellableElement {
 									if (canceled) {
 										return;
 									}
-									final GenericItemSelectorDialogRunner<EObjectWrapper> dialog = new GenericItemSelectorDialogRunner<>(
-											"There was more than one target element found for the NonContainmmentReference '"
-													+ ref.getName()
-													+ "' of TargetMMSection "
-													+ groupTargetSection.getName()
-													+ "(Section: "
-													+ targetSectionClass.getName()
-													+ ") in Mapping "
-													+ mappingName
-													+ "(Group: "
-													+ group.getName()
-													+ ") ."
-													+ "Please select a target element for the following source:\n"
-													+ source.toString(),
-													instances, 0);
-									Display.getDefault().syncExec(dialog);
 
-									if (dialog.wasTransformationStopRequested()) {
-										canceled = true;
+									/*
+									 * Consult the specified resolving strategy to resolve the ambiguity.				
+									 */
+									EObjectWrapper targetInstance = null;
+									try {
+										List<EObjectWrapper> resolved = ambiguityResolvingStrategy.linkingSelectTargetInstance(
+												instances, ref, (MappingHintGroupType) group, null, source);
+										targetInstance = resolved.get(0);
+									} catch (Exception e) {
+										consoleStream.println(e.getMessage());
+										cancel();
 										return;
 									}
+
+									//									final GenericItemSelectorDialogRunner<EObjectWrapper> dialog = new GenericItemSelectorDialogRunner<>(
+									//											"There was more than one target element found for the NonContainmmentReference '"
+									//													+ ref.getName()
+									//													+ "' of TargetMMSection "
+									//													+ groupTargetSection.getName()
+									//													+ "(Section: "
+									//													+ targetSectionClass.getName()
+									//													+ ") in Mapping "
+									//													+ mappingName
+									//													+ "(Group: "
+									//													+ group.getName()
+									//													+ ") ."
+									//													+ "Please select a target element for the following source:\n"
+									//													+ source.toString(),
+									//													instances, 0);
+									//									Display.getDefault().syncExec(dialog);
+									//
+									//									if (dialog.wasTransformationStopRequested()) {
+									//										canceled = true;
+									//										return;
+									//									}
 									if(!targetSectionClass.isLibraryEntry()) {
-										addValueToReference(ref, dialog.getSelection().getEObject(), source.getEObject());
+										addValueToReference(ref, targetInstance.getEObject(), source.getEObject());
 									} else {
 										/* 
 										 * for library entries, we cannot simply add the value as the reference we are handling is not part of the targetSectionClass;
@@ -1192,12 +1214,11 @@ class TargetSectionInstantiator extends CancellableElement {
 										ExternalReferenceParameter extRefParam = (ExternalReferenceParameter) specificLibEntry.getParameters().get(genericLibEntry.getParameters().indexOf(ref.eContainer()));
 										@SuppressWarnings("unchecked")
 										AbstractExternalReferenceParameter<EObject, EObject> originalParam = (AbstractExternalReferenceParameter<EObject, EObject>) extRefParam.getOriginalParameter();
-										originalParam.setTarget(dialog.getSelection().getEObject());
+										originalParam.setTarget(targetInstance.getEObject());
 									}
 
 								} else {
-									consoleStream
-									.println("No suitable refernce target found for non-cont. reference '"
+									consoleStream.println("No suitable refernce target found for non-cont. reference '"
 											+ ref.getName()
 											+ "' of the following instance of target class "
 											+ targetSectionClass
@@ -1241,51 +1262,42 @@ class TargetSectionInstantiator extends CancellableElement {
 								}
 							}
 
+							// the EObjectWrapper that will be set as target of the non-containment reference
 							EObjectWrapper targetInstance = null;
+
 							if (targetInstancesToConsider.values().size() == 1) {
-								targetInstance = targetInstancesToConsider
-										.values().iterator().next();
-							} else if (targetInstancesToConsider.values()
-									.size() > 1) {
-								// Dialog
+
+								targetInstance = targetInstancesToConsider.values().iterator().next();
+
+							} else if (targetInstancesToConsider.values().size() > 1) {
+
 								if (canceled) {
 									return;
 								}
-								final PathAndInstanceSelectorRunner dialog = new PathAndInstanceSelectorRunner(
-										"There was more than one target element found for the NonContainmmentReference '"
-												+ ref.getName()
-												+ "' of TargetMMSection "
-												+ groupTargetSection.getName()
-												+ "(Section: "
-												+ targetSectionClass.getName()
-												+ ") in Mapping "
-												+ mappingName
-												+ "(Group: "
-												+ group.getName()
-												+ ") ."
-												+ "Please select a target Class and element.",
-												targetSectionChoices, instanceChoices);
-								Display.getDefault().syncExec(dialog);
 
-								if (dialog.wasTransformationStopRequested()) {
-									canceled = true;
+								/*
+								 * Consult the specified resolving strategy to resolve the ambiguity.				
+								 */
+								HashMap<TargetSectionClass, List<EObjectWrapper>> choices = new HashMap<>();
+								for (TargetSectionClass targetSection : refValueClone) {
+									choices.put(targetSection, new ArrayList<>(targetSectionRegistry
+											.getFlattenedPamtramClassInstances(targetSection)));
+								}
+								try {
+									HashMap<TargetSectionClass, List<EObjectWrapper>> resolved = ambiguityResolvingStrategy.linkingSelectTargetSectionAndInstance(choices, ref, (MappingHintGroupType) group);
+									targetInstance = resolved.entrySet().iterator().next().getValue().get(0);
+								} catch (Exception e) {
+									consoleStream.println(e.getMessage());
+									cancel();
 									return;
 								}
-								targetInstance = targetInstancesToConsider
-										.get(dialog.getInstance());
+
 							} else {
-								consoleStream
-								.println("No suitable hint targets found for non-cont reference '"
-										+ ref.getName()
-										+ "' of TargetMMSection "
-										+ groupTargetSection.getName()
-										+ "(Section: "
-										+ targetSectionClass.getName()
-										+ ") in Mapping "
-										+ mappingName
-										+ "(Group: "
-										+ group.getName()
-										+ ").");
+								consoleStream.println("No suitable hint targets found for non-cont reference '" + ref.getName()
+								+ "' of TargetMMSection " + groupTargetSection.getName()
+								+ "(Section: " + targetSectionClass.getName()
+								+ ") in Mapping " + mappingName
+								+ "(Group: " + group.getName() + ").");
 							}
 
 							if (targetInstance != null) {

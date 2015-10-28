@@ -252,7 +252,22 @@ public class GenericTransformationRunner {
 		this.maxPathLength = maxPathLength;
 		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
 		this.targetLibraryContextDescriptor = targetLibraryContextDescriptor;
-		this.ambiguityResolvingStrategy = (ambiguityResolvingStrategy != null ? ambiguityResolvingStrategy : new DefaultAmbiguityResolvingStrategy());
+
+		/* 
+		 * make sure that all ambiguities are resolved completely by requiring an instance of
+		 * 'DefaultAmbiguityResolvingStrategy' to be participating in the resolving process
+		 */
+		if(ambiguityResolvingStrategy == null) {
+			this.ambiguityResolvingStrategy = new DefaultAmbiguityResolvingStrategy();
+		} else if(ambiguityResolvingStrategy instanceof DefaultAmbiguityResolvingStrategy) {
+			this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
+		} else {
+			ArrayList<IAmbiguityResolvingStrategy> composed = new ArrayList<>();
+			composed.add(ambiguityResolvingStrategy);
+			composed.add(new DefaultAmbiguityResolvingStrategy());
+			this.ambiguityResolvingStrategy = new ComposedAmbiguityResolvingStrategy(composed);
+		}
+
 		consoleStream = findConsole("de.mfreund.gentrans.transformation_" + hashCode()).newMessageStream();
 		objectsToCancel = new LinkedList<>();
 		// brings the console view to the front

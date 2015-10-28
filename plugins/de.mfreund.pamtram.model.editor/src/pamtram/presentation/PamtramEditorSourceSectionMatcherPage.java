@@ -38,6 +38,7 @@ import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.ide.ResourceUtil;
 
 import de.mfreund.gentrans.transformation.GenericTransformationRunner;
+import de.mfreund.gentrans.transformation.UserDecisionResolvingStrategy;
 import pamtram.contentprovider.MappingContentProvider;
 import pamtram.contentprovider.SourceSectionContentProvider;
 import pamtram.mapping.MappingType;
@@ -312,7 +313,7 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm {
 		// Create a transformation runner and use it to get the matching source sections
 		GenericTransformationRunner tr = 
 				GenericTransformationRunner.createInstanceFromSourceModels(
-						new ArrayList<EObject>(Arrays.asList(contents.get(0))), editor.pamtram, targetFile, null);
+						new ArrayList<EObject>(Arrays.asList(contents.get(0))), editor.pamtram, targetFile, null, new UserDecisionResolvingStrategy());
 
 		matchedSections = tr.mapSections();
 

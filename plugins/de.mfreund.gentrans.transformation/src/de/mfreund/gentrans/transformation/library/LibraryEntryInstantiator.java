@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.AttributeValueCalculator;
-import de.mfreund.gentrans.transformation.EObjectTransformationHelper;
+import de.mfreund.gentrans.transformation.EObjectWrapper;
 import de.mfreund.gentrans.transformation.HintValueStorage;
 import de.mfreund.gentrans.transformation.TargetSectionConnector;
 import de.mfreund.gentrans.transformation.TargetSectionRegistry;
@@ -51,10 +51,10 @@ public class LibraryEntryInstantiator {
 	}
 
 	/**
-	 * This is the {@link EObjectTransformationHelper} that wraps the concrete root instance
+	 * This is the {@link EObjectWrapper} that wraps the concrete root instance
 	 * that has been created during the transformation for this {@link #libraryEntry}.
 	 */
-	private EObjectTransformationHelper transformationHelper;
+	private EObjectWrapper transformationHelper;
 
 	/**
 	 * The {@link InstantiableMappingHintGroup} associated with the library entry.
@@ -81,7 +81,7 @@ public class LibraryEntryInstantiator {
 	 * This creates an instance.
 	 * 
 	 * @param libraryEntry The {@link LibraryEntry} to be instantiated.
-	 * @param transformationHelper The {@link EObjectTransformationHelper} that wraps one root instance
+	 * @param transformationHelper The {@link EObjectWrapper} that wraps one root instance
 	 * 			that has been created during the transformation for this {@link #libraryEntry}.
 	 * @param mappingGroup The {@link InstantiableMappingHintGroup} associated with the library entry.
 	 * @param mappingHints A list of {@link MappingHint}s that are part of the {@link #mappingGroup}.
@@ -91,7 +91,7 @@ public class LibraryEntryInstantiator {
 	 */
 	public LibraryEntryInstantiator(
 			LibraryEntry libraryEntry, 
-			EObjectTransformationHelper transformationHelper, 
+			EObjectWrapper transformationHelper, 
 			InstantiableMappingHintGroup mappingGroup,
 			List<MappingHint> mappingHints,
 			HintValueStorage hintValues,
@@ -139,17 +139,13 @@ public class LibraryEntryInstantiator {
 
 				ContainerParameter contParam = (ContainerParameter) param;
 
-				assert mappingGroup instanceof MappingHintGroup;
-				assert ((LibraryEntry) (((MappingHintGroup) mappingGroup).getTargetMMSection().eContainer().eContainer())).getOriginalLibraryEntry().equals(
-						((LibraryEntry) (contParam.getClass_().eContainer().eContainer())).getOriginalLibraryEntry());
-
 				/*
 				 * As the root instance of the LibraryEntry has already been instantiated by the 
 				 * transformation algorithm, we do not have to determine the the container. Instead, we just
 				 * delete the created root instance (represented by the 'transformationHelpder) and use its 
 				 * container as parameter for the library entry.
 				 */
-				LinkedList<EObjectTransformationHelper> rootInstances = targetSectionRegistry.getPamtramClassInstances(((MappingHintGroup) mappingGroup).getTargetMMSection()).get(mappingGroup);
+				LinkedList<EObjectWrapper> rootInstances = targetSectionRegistry.getPamtramClassInstances(((MappingHintGroup) mappingGroup).getTargetMMSection()).get(mappingGroup);
 				rootInstances.remove(transformationHelper);
 				((AbstractContainerParameter<EObject, EObject>) (contParam.getOriginalParameter())).setContainer(transformationHelper.getEObject().eContainer());
 				EcoreUtil.delete(transformationHelper.getEObject());

@@ -15,12 +15,10 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.congrace.exp4j.ExpressionBuilder;
-import de.mfreund.gentrans.transformation.selectors.NamedElementItemSelectorDialogRunner;
-import de.mfreund.gentrans.transformation.util.CancellationListener;
+import de.mfreund.gentrans.transformation.util.CancellableElement;
 import pamtram.SourceSectionModel;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingExternalSourceElement;
@@ -68,7 +66,7 @@ import pamtram.metamodel.SourceSectionReference;
  * @author mfreund
  * @version 2.0
  */
-public class SourceSectionMatcher implements CancellationListener {
+public class SourceSectionMatcher extends CancellableElement {
 
 	/**
 	 * The {@link ContainmentTree} for the source model that we try to match.
@@ -101,6 +99,12 @@ public class SourceSectionMatcher implements CancellationListener {
 	 * If ambiguous {@link Mapping Mappings} should be resolved only once or on a per-element basis.
 	 */
 	private boolean onlyAskOnceOnAmbiguousMappings;
+
+	/**
+	 * This is the {@link IAmbiguityResolvingStrategy} that shall be used to 
+	 * resolve ambiguities that arise during the execution of the transformation.
+	 */
+	private IAmbiguityResolvingStrategy ambiguityResolvingStrategy;
 
 	/**
 	 * We save any user selection for a particular set of possible {@link Mapping Mappings} so that
@@ -144,12 +148,6 @@ public class SourceSectionMatcher implements CancellationListener {
 	private final MessageConsoleStream consoleStream;
 
 	/**
-	 * This keeps track if the user chose to abort the transformation in one of the possible dialogues
-	 * ('<em>true</em>' if a user action was triggered to abort the transformation).
-	 */
-	private boolean abortTransformation;
-
-	/**
 	 * Registry for values of {@link GlobalAttribute GlobalAttributes}. Only the latest value found is
 	 * saved (GlobalAttributes really only make sense for elements that appear only once in the source model).
 	 */
@@ -176,6 +174,7 @@ public class SourceSectionMatcher implements CancellationListener {
 	 *            A list of {@link Mapping Mappings} that shall be used in the <em>matching</em> process.
 	 * @param onlyAskOnceOnAmbiguousMappings If ambiguous {@link Mapping Mappings} should be resolved only once or on a per-element basis.
 	 * @param attributeValuemodifier The {@link AttributeValueModifierExecutor} that shall be used for modifying attribute values.
+	 * @param ambiguityResolvingStrategy The {@link IAmbiguityResolvingStrategy} to be used.
 	 * @param consoleStream
 	 *           The {@link MessageConsoleStream} that shall be used to print messages.
 	 */
@@ -184,6 +183,7 @@ public class SourceSectionMatcher implements CancellationListener {
 			final List<Mapping> mappingsToChooseFrom,
 			boolean onlyAskOnceOnAmbiguousMappings, 
 			final AttributeValueModifierExecutor attributeValuemodifier,
+			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy,
 			final MessageConsoleStream consoleStream) {
 
 		/*
@@ -195,13 +195,14 @@ public class SourceSectionMatcher implements CancellationListener {
 		this.mappingHints = new LinkedHashMap<>();
 		this.mappingsToChooseFrom = mappingsToChooseFrom;
 		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
+		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
 		this.ambiguousMappingSelections = new HashMap<>();
 		this.commonContainerClassOfComplexHints = new HashMap<>();
 		this.deepestSourceSectionClassesByAttributeMapping = new LinkedHashMap<>();
 		this.deepestSourceSectionClassesByAttributeMatcher = new LinkedHashMap<>();
 		this.deepestSourceSectionClassesByModelConnectionHint = new LinkedHashMap<>();
 		this.consoleStream = consoleStream;
-		this.abortTransformation = false;
+		this.canceled = false;
 		this.globalAttributeValues = new HashMap<>();
 		this.attributeValueModifierExecutor = attributeValuemodifier;
 		this.constraintsWithErrors = new HashSet<>();
@@ -229,20 +230,6 @@ public class SourceSectionMatcher implements CancellationListener {
 	 */
 	public LinkedHashMap<SourceSectionClass, Set<EObject>> getMatchedSections() {
 		return matchedSections;
-	}
-
-	@Override
-	public void cancel() {
-		abortTransformation = true;
-
-	}
-
-	/**
-	 * @return '<em><b>true</b></em>' when user action was triggered to abort the transformation, '<em><b>false</b></em>' otherwise
-	 */
-	@Override
-	public boolean isCancelled() {
-		return abortTransformation;
 	}
 
 	/**
@@ -288,21 +275,19 @@ public class SourceSectionMatcher implements CancellationListener {
 				// the user already chose a mapping for this selection of mappings before so that we can reuse this
 				ret = applicableMappings.get(ambiguousMappingSelections.get(applicableMappings.keySet()));
 			} else {
+
 				/*
-				 * There is no other choice but to let the user decide which mapping to apply.					
+				 * Consult the specified resolving strategy to resolve the ambiguity.				
 				 */
-				final NamedElementItemSelectorDialogRunner<Mapping> dialog = new NamedElementItemSelectorDialogRunner<>(
-						"Please select a Mapping for the source element\n'" + EObjectTransformationHelper.asString(element)+ "'", 
-						new ArrayList<>(applicableMappings.keySet()), 
-						0);
-				Display.getDefault().syncExec(dialog);
-				if (dialog.wasTransformationStopRequested()) {
-					abortTransformation = true;
+				try {
+					List<Mapping> resolved = ambiguityResolvingStrategy.matchingSelectMapping(new ArrayList<>(applicableMappings.keySet()), element);
+					ret = applicableMappings.get(resolved.get(0));
+					ambiguousMappingSelections.put(applicableMappings.keySet(), resolved.get(0));
+				} catch (Exception e) {
+					consoleStream.println(e.getMessage());
+					canceled = true;
 					return null;
 				}
-
-				ret = applicableMappings.get(dialog.getSelection());
-				ambiguousMappingSelections.put(applicableMappings.keySet(), dialog.getSelection());
 			}
 		}
 
@@ -369,7 +354,7 @@ public class SourceSectionMatcher implements CancellationListener {
 							m.getSourceMMSection(),
 							new MappingInstanceStorage());
 
-					if (abortTransformation) {
+					if (canceled) {
 						return null;
 					}
 
@@ -772,7 +757,7 @@ public class SourceSectionMatcher implements CancellationListener {
 								refByClassMap.get(c) instanceof MetaModelSectionReference
 								|| usedOkay, hints,
 								globalAttributes, c, changedRefsAndHints);
-						if (abortTransformation) {
+						if (canceled) {
 							return false;
 						}
 					}
@@ -785,7 +770,7 @@ public class SourceSectionMatcher implements CancellationListener {
 								refByClassMap.get(c) instanceof MetaModelSectionReference
 								|| usedOkay, hints,
 								globalAttributes, c, changedRefsAndHints);
-						if (abortTransformation) {
+						if (canceled) {
 							return false;
 						}
 						if (res != null) {
@@ -862,7 +847,7 @@ public class SourceSectionMatcher implements CancellationListener {
 								refByClassMap.get(val) instanceof MetaModelSectionReference
 								|| usedOkay, hints,
 								globalAttributes, val, changedRefsAndHints);
-						if (abortTransformation) {
+						if (canceled) {
 							return false;
 						}
 

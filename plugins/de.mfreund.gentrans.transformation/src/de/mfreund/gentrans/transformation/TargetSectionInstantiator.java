@@ -18,15 +18,12 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
-import de.mfreund.gentrans.transformation.selectors.GenericItemSelectorDialogRunner;
-import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunner;
-import de.mfreund.gentrans.transformation.util.CancellationListener;
+import de.mfreund.gentrans.transformation.util.CancellableElement;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractAttributeParameter;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
@@ -41,6 +38,7 @@ import pamtram.mapping.GlobalValue;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
+import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
 import pamtram.metamodel.ActualAttribute;
 import pamtram.metamodel.AttributeParameter;
@@ -64,7 +62,7 @@ import pamtram.util.GenLibraryManager;
  * @version 1.0
  *
  */
-class TargetSectionInstantiator implements CancellationListener {
+class TargetSectionInstantiator extends CancellableElement {
 	/**
 	 * find Attribute mapping to determine cardinality
 	 *
@@ -156,11 +154,6 @@ class TargetSectionInstantiator implements CancellationListener {
 	private final MessageConsoleStream consoleStream;
 
 	/**
-	 * abort transformation if true
-	 */
-	private boolean transformationAborted;
-
-	/**
 	 * Registry for values of global Variables that can be mapped to double
 	 */
 	private final Map<String, Double> globalVarValueDoubles;
@@ -172,10 +165,10 @@ class TargetSectionInstantiator implements CancellationListener {
 	private ArrayList<LibraryEntryInstantiator> libEntryInstantiators = new ArrayList<>();
 
 	/**
-	 * This relates temporarily created elements for LibraryEntries (represented by an {@link EObjectTransformationHelper}) to
+	 * This relates temporarily created elements for LibraryEntries (represented by an {@link EObjectWrapper}) to
 	 * their {@link LibraryEntryInstantiator}. 
 	 */
-	private HashMap<EObjectTransformationHelper, LibraryEntryInstantiator> libEntryInstantiatorMap = new HashMap<>();
+	private HashMap<EObjectWrapper, LibraryEntryInstantiator> libEntryInstantiatorMap = new HashMap<>();
 
 	/**
 	 * An instance of {@link AttributeValueCalculator} that is used to calculate attribute values.
@@ -186,6 +179,12 @@ class TargetSectionInstantiator implements CancellationListener {
 	 * The parent {@link GenericTransformationRunner}.
 	 */
 	private final GenericTransformationRunner transformationRunner;
+
+	/**
+	 * This is the {@link IAmbiguityResolvingStrategy} that shall be used to 
+	 * resolve ambiguities that arise during the execution of the transformation.
+	 */
+	private IAmbiguityResolvingStrategy ambiguityResolvingStrategy;
 
 	/**
 	 * @param targetSectionRegistry
@@ -207,12 +206,14 @@ class TargetSectionInstantiator implements CancellationListener {
 			final AttributeValueModifierExecutor attributeValuemodifier,
 			final List<GlobalValue> globalVals,
 			final MessageConsoleStream consoleStream,
-			final GenericTransformationRunner transformationRunner) {
+			final GenericTransformationRunner transformationRunner,
+			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 		this.targetSectionRegistry = targetSectionRegistry;
 		this.attributeValueRegistry = attributeValueRegistry;
 		this.consoleStream = consoleStream;
 		this.transformationRunner = transformationRunner;
-		transformationAborted = false;
+		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
+		canceled = false;
 		//		this.attributeValuemodifier = attributeValuemodifier;
 		wrongCardinalityContainmentRefs = new HashSet<>();
 
@@ -295,17 +296,6 @@ class TargetSectionInstantiator implements CancellationListener {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see de.mfreund.gentrans.transformation.CancellationListener#cancel()
-	 */
-	@Override
-	public void cancel() {
-		transformationAborted = true;
-
-	}
-
 	/**
 	 * instantiate targetModelSection (first pass: attributes and containment
 	 * references)
@@ -323,12 +313,12 @@ class TargetSectionInstantiator implements CancellationListener {
 	 *            higher up in the section hierarchy.
 	 * @return
 	 */
-	private LinkedList<EObjectTransformationHelper> instantiateTargetSectionFirstPass(
+	private LinkedList<EObjectWrapper> instantiateTargetSectionFirstPass(
 			final TargetSectionClass metamodelSection,
 			final InstantiableMappingHintGroup mappingGroup,
 			final List<MappingHint> mappingHints,
 			final HintValueStorage hintValues,
-			final Map<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instBySection,
+			final Map<TargetSectionClass, LinkedList<EObjectWrapper>> instBySection,
 			final String mappingName,
 			final Map<EClass, Map<EAttribute, Set<String>>> sectionAttributeValues) {
 
@@ -429,7 +419,7 @@ class TargetSectionInstantiator implements CancellationListener {
 
 		if (cardinality > 0) {
 			// instantiate self(s)
-			final LinkedList<EObjectTransformationHelper> instances = new LinkedList<>();
+			final LinkedList<EObjectWrapper> instances = new LinkedList<>();
 			for (int i = 0; i < cardinality; i++) {
 
 				// create the eObject
@@ -437,7 +427,7 @@ class TargetSectionInstantiator implements CancellationListener {
 						.getEFactoryInstance()
 						.create(metamodelSection.getEClass());
 				// create an EObjectTransformationHelper that wraps the eObject and more stuff
-				EObjectTransformationHelper instTransformationHelper = new EObjectTransformationHelper(inst,
+				EObjectWrapper instTransformationHelper = new EObjectWrapper(inst,
 						attributeValueRegistry); 
 				instances.add(instTransformationHelper);
 
@@ -473,7 +463,7 @@ class TargetSectionInstantiator implements CancellationListener {
 			 * doesn't change while we are using this
 			 */
 			final Map<TargetSectionAttribute, List<String>> attributeValues = new HashMap<>();
-			final LinkedList<EObjectTransformationHelper> markedForDelete = new LinkedList<>();
+			final LinkedList<EObjectWrapper> markedForDelete = new LinkedList<>();
 
 			EList<TargetSectionAttribute> attributes = metamodelSection.getAttributes();
 
@@ -525,7 +515,7 @@ class TargetSectionInstantiator implements CancellationListener {
 				}
 				// create attribute values
 				for(int i=0; i<instances.size(); i++) {
-					EObjectTransformationHelper instance = instances.get(i);
+					EObjectWrapper instance = instances.get(i);
 					String attrValue = calculator.calculateAttributeValue(attr, hintFound, attrHintValues);
 
 					// Check if value is unique and was already used, mark
@@ -572,7 +562,7 @@ class TargetSectionInstantiator implements CancellationListener {
 			 * register) the actual attribute values of the instances that will
 			 * not get deleted
 			 */
-			for (final EObjectTransformationHelper instance : instances) {
+			for (final EObjectWrapper instance : instances) {
 				final boolean noDelete = !markedForDelete.contains(instance);
 				for (final TargetSectionAttribute attr : attributeValues
 						.keySet()) {
@@ -618,11 +608,11 @@ class TargetSectionInstantiator implements CancellationListener {
 					.getReferences()) {
 				if (ref instanceof TargetSectionContainmentReference) {
 					// now instantiate section
-					for (final EObjectTransformationHelper instance : instances) {
-						final LinkedList<EObjectTransformationHelper> childInstances = new LinkedList<>();
+					for (final EObjectWrapper instance : instances) {
+						final LinkedList<EObjectWrapper> childInstances = new LinkedList<>();
 						for (final TargetSectionClass val : ((TargetSectionContainmentReference) ref)
 								.getValue()) {// instantiate targets
-							final LinkedList<EObjectTransformationHelper> children = instantiateTargetSectionFirstPass(
+							final LinkedList<EObjectWrapper> children = instantiateTargetSectionFirstPass(
 									val, mappingGroup, mappingHints,
 									hintValues, instBySection,
 									mappingName, sectionAttributeValues);
@@ -663,7 +653,7 @@ class TargetSectionInstantiator implements CancellationListener {
 										childInstances.getFirst().getEObject());
 							} else {
 								final LinkedList<EObject> childEObjects = new LinkedList<>();
-								for (final EObjectTransformationHelper o : childInstances) {
+								for (final EObjectWrapper o : childInstances) {
 									childEObjects.add(o.getEObject());
 								}
 								instance.getEObject().eSet(ref.getEReference(),
@@ -679,7 +669,7 @@ class TargetSectionInstantiator implements CancellationListener {
 			instances.removeAll(markedForDelete);
 
 			// All went well...
-			for (final EObjectTransformationHelper instance : instances) {
+			for (final EObjectWrapper instance : instances) {
 				// Add instance to map of targetMetaModel
 				targetSectionRegistry.addClassInstance(instance, mappingGroup,
 						metamodelSection);
@@ -687,7 +677,7 @@ class TargetSectionInstantiator implements CancellationListener {
 			if (instBySection.containsKey(metamodelSection)) {
 				instBySection.get(metamodelSection).addAll(instances);
 			} else {
-				final LinkedList<EObjectTransformationHelper> instClone = new LinkedList<>();
+				final LinkedList<EObjectWrapper> instClone = new LinkedList<>();
 				instClone.addAll(instances);
 				instBySection.put(metamodelSection, instClone);
 			}
@@ -721,14 +711,14 @@ class TargetSectionInstantiator implements CancellationListener {
 	 * @param mappingName
 	 * @return Map of target section instances
 	 */
-	LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instantiateTargetSectionFirstPass(
+	LinkedHashMap<TargetSectionClass, LinkedList<EObjectWrapper>> instantiateTargetSectionFirstPass(
 			final TargetSectionClass metamodelSection,
 			final InstantiableMappingHintGroup mappingGroup,
 			final List<MappingHint> mappingHints,
 			final HintValueStorage hintValues,
 			final String mappingName) {
 
-		final LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instBySection = new LinkedHashMap<>();
+		final LinkedHashMap<TargetSectionClass, LinkedList<EObjectWrapper>> instBySection = new LinkedHashMap<>();
 
 		/*
 		 * Now, perform the first-run instantiation.
@@ -762,7 +752,7 @@ class TargetSectionInstantiator implements CancellationListener {
 			final TargetSectionClass groupTargetSection,
 			final List<MappingHint> hints,
 			final HintValueStorage hintValues,
-			final LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection) {
+			final LinkedHashMap<TargetSectionClass, LinkedList<EObjectWrapper>> instancesBySection) {
 		/*
 		 * only go on if any instances of this section were created
 		 */
@@ -804,14 +794,14 @@ class TargetSectionInstantiator implements CancellationListener {
 											.getMatcher();
 									hintFound = true;
 									// now search for target attributes
-									final LinkedList<EObjectTransformationHelper> targetInstances = targetSectionRegistry
+									final LinkedList<EObjectWrapper> targetInstances = targetSectionRegistry
 											.getFlattenedPamtramClassInstances(matcher
 													.getTargetAttribute()
 													.getOwningClass());
 
 									// instances are sorted in the same order as
 									// hintValues
-									final LinkedList<EObjectTransformationHelper> instancesToConsider = new LinkedList<>();
+									final LinkedList<EObjectWrapper> instancesToConsider = new LinkedList<>();
 									instancesToConsider.addAll(instancesBySection.get(targetSectionClass));
 									/*
 									 * Sizes of instances and attributeHints
@@ -845,10 +835,10 @@ class TargetSectionInstantiator implements CancellationListener {
 											attrValStr = calculator.calculateAttributeValue(null, hSel,
 													newHintValues);
 										}
-										final EObjectTransformationHelper srcInst = instancesToConsider
-												.remove(0);
-										final List<EObjectTransformationHelper> fittingVals = new LinkedList<>();
-										for (final EObjectTransformationHelper targetInst : targetInstances) {
+										final EObjectWrapper srcInst = instancesToConsider.remove(0);
+										final List<EObjectWrapper> fittingVals = new LinkedList<>();
+
+										for (final EObjectWrapper targetInst : targetInstances) {
 											// get Attribute value
 											final String targetValStr = targetInst
 													.getAttributeValue(matcher
@@ -859,35 +849,33 @@ class TargetSectionInstantiator implements CancellationListener {
 													fittingVals.add(targetInst);
 												}
 											} else {
-												consoleStream
-												.println("Problemo?");
+												consoleStream.println("Problemo?");
 											}
 										}
 										// select targetInst
-										EObjectTransformationHelper targetInst = null;
+										EObjectWrapper targetInst = null;
 										if (fittingVals.size() == 1) {
 											targetInst = fittingVals.get(0);
 
-										} else if (fittingVals.size() > 1) {// let
-											// user
-											// decide
-											if (transformationAborted) {
-												return;
-											}
-											final GenericItemSelectorDialogRunner<EObjectTransformationHelper> dialog = new GenericItemSelectorDialogRunner<>(
-													"The MappingInstanceSelector '" + h.getName() + " of Mapping" + mappingName + "(Group: "
-															+ group.getName() + ")' has a Matcher that points to a target element with more than one instance. "
-															+ "Please choose to which element the Reference '" + ref.getName()
-															+ "' of the following element should point to:\n\n" + srcInst.toString(),
-															fittingVals, 0);
-											Display.getDefault().syncExec(
-													dialog);
+										} else if (fittingVals.size() > 1) {
 
-											if (dialog.wasTransformationStopRequested()) {
-												transformationAborted = true;
+											if (canceled) {
 												return;
 											}
-											targetInst = dialog.getSelection();
+
+											/*
+											 * Consult the specified resolving strategy to resolve the ambiguity.				
+											 */
+											try {
+												List<EObjectWrapper> resolved = ambiguityResolvingStrategy.linkingSelectTargetInstance(
+														fittingVals, ((MappingInstanceSelector) h).getAffectedReference(), (MappingHintGroupType) group, (MappingInstanceSelector) h, srcInst);
+												targetInst = resolved.get(0);
+											} catch (Exception e) {
+												consoleStream.println(e.getMessage());
+												cancel();
+												return;
+											}
+
 										} else {
 											consoleStream.println("The MappigInstanceSelector " + hSel.getName() + " (Mapping: " + mappingName
 													+ ", Group: " + group.getName() + " ) has an AttributeMatcher that picked up the value '"
@@ -931,7 +919,7 @@ class TargetSectionInstantiator implements CancellationListener {
 											// select any of the targetInstances
 											// available for the reference
 											// target
-											final LinkedList<EObjectTransformationHelper> instancesToConsider = instancesBySection
+											final LinkedList<EObjectWrapper> instancesToConsider = instancesBySection
 													.get(targetSectionClass);
 
 											final TargetSectionClass matcherTargetClass = ((ClassMatcher) hSel
@@ -942,59 +930,62 @@ class TargetSectionInstantiator implements CancellationListener {
 											 * select potential instances
 											 * globally
 											 */
-											final LinkedList<EObjectTransformationHelper> insts = targetSectionRegistry
+											final LinkedList<EObjectWrapper> insts = targetSectionRegistry
 													.getFlattenedPamtramClassInstances(matcherTargetClass);
 
-											EObjectTransformationHelper targetInstance = null;
+											EObjectWrapper targetInstance = null;
 											if (insts.size() == 1) {
 												targetInstance = insts.get(0);
 											} else if (insts.size() > 1) {
 												// Dialog
-												if (transformationAborted) {
+												if (canceled) {
 													return;
 												}
-												final GenericItemSelectorDialogRunner<EObjectTransformationHelper> dialog = new GenericItemSelectorDialogRunner<>(
-														"The MappingInstanceSelector '"
-																+ h.getName()
-																+ " of Mapping"
-																+ mappingName
-																+ "(Group: "
-																+ group.getName()
-																+ ")' has a Matcher that points to a target element with more than one instance. "
-																+ "Please choose to which element the Reference '"
-																+ ref.getName()
-																+ "' of the affected elements should point to.",
-																insts, 0);
-												Display.getDefault().syncExec(
-														dialog);
 
-												if (dialog
-														.wasTransformationStopRequested()) {
-													transformationAborted = true;
+												/*
+												 * Consult the specified resolving strategy to resolve the ambiguity.				
+												 */
+												try {
+													List<EObjectWrapper> resolved = ambiguityResolvingStrategy.linkingSelectTargetInstance(
+															insts, ((MappingInstanceSelector) h).getAffectedReference(), null, (MappingInstanceSelector) h, null);
+													targetInstance = resolved.get(0);
+												} catch (Exception e) {
+													consoleStream.println(e.getMessage());
+													cancel();
 													return;
 												}
-												targetInstance = dialog
-														.getSelection();
+
+												//												final GenericItemSelectorDialogRunner<EObjectWrapper> dialog = new GenericItemSelectorDialogRunner<>(
+												//														"The MappingInstanceSelector '"
+												//																+ h.getName()
+												//																+ " of Mapping"
+												//																+ mappingName
+												//																+ "(Group: "
+												//																+ group.getName()
+												//																+ ")' has a Matcher that points to a target element with more than one instance. "
+												//																+ "Please choose to which element the Reference '"
+												//																+ ref.getName()
+												//																+ "' of the affected elements should point to.",
+												//																insts, 0);
+												//												Display.getDefault().syncExec(
+												//														dialog);
+												//
+												//												if (dialog
+												//														.wasTransformationStopRequested()) {
+												//													canceled = true;
+												//													return;
+												//												}
+												//												targetInstance = dialog
+												//														.getSelection();
 											} else {
-												consoleStream
-												.println("The MappingInstanceSelector '"
-														+ h.getName()
-														+ " of Mapping"
-														+ mappingName
-														+ "(Group: "
-														+ group.getName()
-														+ ")' has a Matcher that points to the target class "
-														+ matcherTargetClass
-														.getName()
-														+ " (Section: "
-														+ matcherTargetClass
-														.getContainingSection()
-														.getName()
+												consoleStream.println("The MappingInstanceSelector '" + h.getName() + " of Mapping" + mappingName + "(Group: "
+														+ group.getName() + ")' has a Matcher that points to the target class " + matcherTargetClass.getName()
+														+ " (Section: " + matcherTargetClass.getContainingSection().getName()
 														+ "). Sadly, no instances of this Class were created.");
 											}
 
 											if (targetInstance != null) {
-												for (final EObjectTransformationHelper inst : instancesToConsider) {// same
+												for (final EObjectWrapper inst : instancesToConsider) {// same
 													// action
 													// for
 													// every
@@ -1082,32 +1073,32 @@ class TargetSectionInstantiator implements CancellationListener {
 						 */
 						if (foundLocalNonContRefTargets.size() > 0) {
 							// get source instances for the reference
-							final LinkedList<EObjectTransformationHelper> sourceInstances = new LinkedList<>();
+							final LinkedList<EObjectWrapper> sourceInstances = new LinkedList<>();
 							sourceInstances.addAll(instancesBySection
 									.get(targetSectionClass));
 
 							// get root instances of groups targetMMSection
-							final LinkedList<EObjectTransformationHelper> rootInstances = instancesBySection
+							final LinkedList<EObjectWrapper> rootInstances = instancesBySection
 									.get(groupTargetSection);
 
 							// get target instances for the reference
-							final LinkedList<EObjectTransformationHelper> targetInstances = new LinkedList<>();
+							final LinkedList<EObjectWrapper> targetInstances = new LinkedList<>();
 							for (final TargetSectionClass section : foundLocalNonContRefTargets) {
 								targetInstances.addAll(instancesBySection
 										.get(section));
 							}
 
 							// now sort instances by root
-							final LinkedHashMap<EObjectTransformationHelper, EObjectTransformationHelper> rootBySourceInstance = new LinkedHashMap<>();
-							final LinkedHashMap<EObjectTransformationHelper, LinkedList<EObjectTransformationHelper>> targetInstancesByRoot = new LinkedHashMap<>();
+							final LinkedHashMap<EObjectWrapper, EObjectWrapper> rootBySourceInstance = new LinkedHashMap<>();
+							final LinkedHashMap<EObjectWrapper, LinkedList<EObjectWrapper>> targetInstancesByRoot = new LinkedHashMap<>();
 
-							for (final EObjectTransformationHelper root : rootInstances) {
+							for (final EObjectWrapper root : rootInstances) {
 								targetInstancesByRoot
 								.put(root,
-										new LinkedList<EObjectTransformationHelper>());
+										new LinkedList<EObjectWrapper>());
 
 								// check if root node itself is a target
-								for (final EObjectTransformationHelper t : targetInstances) {
+								for (final EObjectWrapper t : targetInstances) {
 									if (t.getEObject()
 											.equals(root.getEObject())) {
 										targetInstancesByRoot.get(root).add(
@@ -1127,7 +1118,7 @@ class TargetSectionInstantiator implements CancellationListener {
 
 									boolean found = false;
 
-									for (final EObjectTransformationHelper h : sourceInstances) {
+									for (final EObjectWrapper h : sourceInstances) {
 										if (h.getEObject().equals(next)) {
 											rootBySourceInstance.put(h, root);
 											sourceInstances.remove(h);
@@ -1137,7 +1128,7 @@ class TargetSectionInstantiator implements CancellationListener {
 									}
 
 									if (!found) {
-										for (final EObjectTransformationHelper t : targetInstances) {
+										for (final EObjectWrapper t : targetInstances) {
 											if (t.getEObject().equals(next)) {
 												targetInstancesByRoot.get(root)
 												.add(t);
@@ -1151,9 +1142,9 @@ class TargetSectionInstantiator implements CancellationListener {
 							}
 							// now select targetInstance for each source
 							// instance
-							for (final EObjectTransformationHelper source : rootBySourceInstance
+							for (final EObjectWrapper source : rootBySourceInstance
 									.keySet()) {
-								final List<EObjectTransformationHelper> instances = targetInstancesByRoot
+								final List<EObjectWrapper> instances = targetInstancesByRoot
 										.get(rootBySourceInstance.get(source));
 								if (instances.size() == 1) {
 									if(!targetSectionClass.isLibraryEntry()) {
@@ -1172,32 +1163,47 @@ class TargetSectionInstantiator implements CancellationListener {
 									}
 								} else if (instances.size() > 1) {
 									// Dialog
-									if (transformationAborted) {
+									if (canceled) {
 										return;
 									}
-									final GenericItemSelectorDialogRunner<EObjectTransformationHelper> dialog = new GenericItemSelectorDialogRunner<>(
-											"There was more than one target element found for the NonContainmmentReference '"
-													+ ref.getName()
-													+ "' of TargetMMSection "
-													+ groupTargetSection.getName()
-													+ "(Section: "
-													+ targetSectionClass.getName()
-													+ ") in Mapping "
-													+ mappingName
-													+ "(Group: "
-													+ group.getName()
-													+ ") ."
-													+ "Please select a target element for the following source:\n"
-													+ source.toString(),
-													instances, 0);
-									Display.getDefault().syncExec(dialog);
 
-									if (dialog.wasTransformationStopRequested()) {
-										transformationAborted = true;
+									/*
+									 * Consult the specified resolving strategy to resolve the ambiguity.				
+									 */
+									EObjectWrapper targetInstance = null;
+									try {
+										List<EObjectWrapper> resolved = ambiguityResolvingStrategy.linkingSelectTargetInstance(
+												instances, ref, (MappingHintGroupType) group, null, source);
+										targetInstance = resolved.get(0);
+									} catch (Exception e) {
+										consoleStream.println(e.getMessage());
+										cancel();
 										return;
 									}
+
+									//									final GenericItemSelectorDialogRunner<EObjectWrapper> dialog = new GenericItemSelectorDialogRunner<>(
+									//											"There was more than one target element found for the NonContainmmentReference '"
+									//													+ ref.getName()
+									//													+ "' of TargetMMSection "
+									//													+ groupTargetSection.getName()
+									//													+ "(Section: "
+									//													+ targetSectionClass.getName()
+									//													+ ") in Mapping "
+									//													+ mappingName
+									//													+ "(Group: "
+									//													+ group.getName()
+									//													+ ") ."
+									//													+ "Please select a target element for the following source:\n"
+									//													+ source.toString(),
+									//													instances, 0);
+									//									Display.getDefault().syncExec(dialog);
+									//
+									//									if (dialog.wasTransformationStopRequested()) {
+									//										canceled = true;
+									//										return;
+									//									}
 									if(!targetSectionClass.isLibraryEntry()) {
-										addValueToReference(ref, dialog.getSelection().getEObject(), source.getEObject());
+										addValueToReference(ref, targetInstance.getEObject(), source.getEObject());
 									} else {
 										/* 
 										 * for library entries, we cannot simply add the value as the reference we are handling is not part of the targetSectionClass;
@@ -1208,12 +1214,11 @@ class TargetSectionInstantiator implements CancellationListener {
 										ExternalReferenceParameter extRefParam = (ExternalReferenceParameter) specificLibEntry.getParameters().get(genericLibEntry.getParameters().indexOf(ref.eContainer()));
 										@SuppressWarnings("unchecked")
 										AbstractExternalReferenceParameter<EObject, EObject> originalParam = (AbstractExternalReferenceParameter<EObject, EObject>) extRefParam.getOriginalParameter();
-										originalParam.setTarget(dialog.getSelection().getEObject());
+										originalParam.setTarget(targetInstance.getEObject());
 									}
 
 								} else {
-									consoleStream
-									.println("No suitable refernce target found for non-cont. reference '"
+									consoleStream.println("No suitable refernce target found for non-cont. reference '"
 											+ ref.getName()
 											+ "' of the following instance of target class "
 											+ targetSectionClass
@@ -1232,7 +1237,7 @@ class TargetSectionInstantiator implements CancellationListener {
 							 * target
 							 */
 						} else {
-							final LinkedHashMap<String, EObjectTransformationHelper> targetInstancesToConsider = new LinkedHashMap<>();
+							final LinkedHashMap<String, EObjectWrapper> targetInstancesToConsider = new LinkedHashMap<>();
 							final LinkedList<String> targetSectionChoices = new LinkedList<>();
 							final LinkedList<List<String>> instanceChoices = new LinkedList<>();
 
@@ -1241,13 +1246,13 @@ class TargetSectionInstantiator implements CancellationListener {
 										+ " (Section: "
 										+ v.getContainingSection().getName()
 										+ ")";
-								final LinkedList<EObjectTransformationHelper> insts = targetSectionRegistry
+								final LinkedList<EObjectWrapper> insts = targetSectionRegistry
 										.getFlattenedPamtramClassInstances(v);
 
 								if (insts.size() > 0) {
 									targetSectionChoices.add(classString);
 									final LinkedList<String> choices = new LinkedList<>();
-									for (final EObjectTransformationHelper i : insts) {
+									for (final EObjectWrapper i : insts) {
 										final String description = i.toString();
 										targetInstancesToConsider.put(
 												description, i);
@@ -1257,55 +1262,46 @@ class TargetSectionInstantiator implements CancellationListener {
 								}
 							}
 
-							EObjectTransformationHelper targetInstance = null;
-							if (targetInstancesToConsider.values().size() == 1) {
-								targetInstance = targetInstancesToConsider
-										.values().iterator().next();
-							} else if (targetInstancesToConsider.values()
-									.size() > 1) {
-								// Dialog
-								if (transformationAborted) {
-									return;
-								}
-								final PathAndInstanceSelectorRunner dialog = new PathAndInstanceSelectorRunner(
-										"There was more than one target element found for the NonContainmmentReference '"
-												+ ref.getName()
-												+ "' of TargetMMSection "
-												+ groupTargetSection.getName()
-												+ "(Section: "
-												+ targetSectionClass.getName()
-												+ ") in Mapping "
-												+ mappingName
-												+ "(Group: "
-												+ group.getName()
-												+ ") ."
-												+ "Please select a target Class and element.",
-												targetSectionChoices, instanceChoices);
-								Display.getDefault().syncExec(dialog);
+							// the EObjectWrapper that will be set as target of the non-containment reference
+							EObjectWrapper targetInstance = null;
 
-								if (dialog.wasTransformationStopRequested()) {
-									transformationAborted = true;
+							if (targetInstancesToConsider.values().size() == 1) {
+
+								targetInstance = targetInstancesToConsider.values().iterator().next();
+
+							} else if (targetInstancesToConsider.values().size() > 1) {
+
+								if (canceled) {
 									return;
 								}
-								targetInstance = targetInstancesToConsider
-										.get(dialog.getInstance());
+
+								/*
+								 * Consult the specified resolving strategy to resolve the ambiguity.				
+								 */
+								HashMap<TargetSectionClass, List<EObjectWrapper>> choices = new HashMap<>();
+								for (TargetSectionClass targetSection : refValueClone) {
+									choices.put(targetSection, new ArrayList<>(targetSectionRegistry
+											.getFlattenedPamtramClassInstances(targetSection)));
+								}
+								try {
+									HashMap<TargetSectionClass, List<EObjectWrapper>> resolved = ambiguityResolvingStrategy.linkingSelectTargetSectionAndInstance(choices, ref, (MappingHintGroupType) group);
+									targetInstance = resolved.entrySet().iterator().next().getValue().get(0);
+								} catch (Exception e) {
+									consoleStream.println(e.getMessage());
+									cancel();
+									return;
+								}
+
 							} else {
-								consoleStream
-								.println("No suitable hint targets found for non-cont reference '"
-										+ ref.getName()
-										+ "' of TargetMMSection "
-										+ groupTargetSection.getName()
-										+ "(Section: "
-										+ targetSectionClass.getName()
-										+ ") in Mapping "
-										+ mappingName
-										+ "(Group: "
-										+ group.getName()
-										+ ").");
+								consoleStream.println("No suitable hint targets found for non-cont reference '" + ref.getName()
+								+ "' of TargetMMSection " + groupTargetSection.getName()
+								+ "(Section: " + targetSectionClass.getName()
+								+ ") in Mapping " + mappingName
+								+ "(Group: " + group.getName() + ").");
 							}
 
 							if (targetInstance != null) {
-								for (final EObjectTransformationHelper inst : instancesBySection
+								for (final EObjectWrapper inst : instancesBySection
 										.get(targetSectionClass)) {
 									if(!targetSectionClass.isLibraryEntry()) {
 										addValueToReference(ref, targetInstance.getEObject(), inst.getEObject());
@@ -1351,7 +1347,7 @@ class TargetSectionInstantiator implements CancellationListener {
 			final TargetSectionClass groupTargetSection,
 			final List<MappingHint> hints,
 			final HintValueStorage hintValues,
-			final LinkedHashMap<TargetSectionClass, LinkedList<EObjectTransformationHelper>> instancesBySection) {
+			final LinkedHashMap<TargetSectionClass, LinkedList<EObjectWrapper>> instancesBySection) {
 
 		for (final TargetSectionReference ref : targetSectionClass
 				.getReferences()) {
@@ -1361,7 +1357,7 @@ class TargetSectionInstantiator implements CancellationListener {
 					instantiateTargetSectionSecondPass(val, mappingName, group,
 							groupTargetSection, hints, hintValues,
 							instancesBySection);
-					if (transformationAborted) {
+					if (canceled) {
 						return;
 					}
 				}
@@ -1423,14 +1419,6 @@ class TargetSectionInstantiator implements CancellationListener {
 		}
 		return successful;
 
-	}
-
-	/**
-	 * @return true if transformation was aborted
-	 */
-	@Override
-	public boolean isCancelled() {
-		return transformationAborted;
 	}
 
 }

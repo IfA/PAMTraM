@@ -220,7 +220,7 @@ public class TargetSectionConnector extends CancellableElement {
 				 */
 				try {
 					List<EClass> resolved = ambiguityResolvingStrategy.resolveRootElementAmbiguity(new ArrayList<>(possibleContainers.values()));
-					rootClass = possibleContainers.get(resolved.get(0));
+					rootClass = resolved.get(0);
 				} catch (Exception e) {
 					consoleStream.println(e.getMessage());
 					cancel();

@@ -209,17 +209,12 @@ public class TargetSectionConnector extends CancellableElement {
 			if (common.size() == 1) {
 				rootClass = common.iterator().next();
 			} else {
-				final Map<String, EClass> possibleContainers = new LinkedHashMap<>();
-
-				for (final EClass c : common) {
-					possibleContainers.put(c.getName(), c);
-				}
 
 				/*
 				 * Consult the specified resolving strategy to resolve the ambiguity.				
 				 */
 				try {
-					List<EClass> resolved = ambiguityResolvingStrategy.joiningSelectRootElement(new ArrayList<>(possibleContainers.values()));
+					List<EClass> resolved = ambiguityResolvingStrategy.joiningSelectRootElement(new ArrayList<>(common));
 					rootClass = resolved.get(0);
 				} catch (Exception e) {
 					consoleStream.println(e.getMessage());
@@ -227,16 +222,6 @@ public class TargetSectionConnector extends CancellableElement {
 					return;
 				}
 
-				//				final GenericItemSelectorDialogRunner<String> dialog = new GenericItemSelectorDialogRunner<>(
-				//						"There was more than one target model element that could not be connected to a root element. Therefore "
-				//								+ "a model root element needs to be created. Please select a fitting class:",
-				//								new LinkedList<>(possibleContainers.keySet()), 0);
-				//				Display.getDefault().syncExec(dialog);
-				//				if (dialog.wasTransformationStopRequested()) {
-				//					cancel();
-				//					return;
-				//				}
-				//				rootClass = possibleContainers.get(dialog.getSelection());
 			}
 
 			final EObject containerInstance = rootClass.getEPackage()
@@ -278,20 +263,8 @@ public class TargetSectionConnector extends CancellableElement {
 						}
 
 						if (fittingPaths.size() > 0) {
-							// get shortest path
-							ModelConnectionPath chosenPath = fittingPaths
-									.get(0);
-							int chosenPathSize = chosenPath.size();
-							for (final ModelConnectionPath p : fittingPaths) {// get
-								/*
-								 * one of the shortest paths
-								 */
-								final int pSize = p.size();
-								if (pSize < chosenPathSize) {
-									chosenPath = p;
-									chosenPathSize = pSize;
-								}
-							}
+
+							ModelConnectionPath chosenPath = fittingPaths.get(0);
 
 							if (fittingPaths.size() > 1) {
 								/*
@@ -305,18 +278,6 @@ public class TargetSectionConnector extends CancellableElement {
 									cancel();
 									return;
 								}
-								//								final GenericItemSelectorDialogRunner<ModelConnectionPath> dialog = new GenericItemSelectorDialogRunner<>(
-								//										"Please choose one of the possible connections for connecting the "
-								//												+ "instances of the target section '" + tSection.getName() + "' (EClass: '"
-								//												+ c.getName() + "') to the model root element of the type '" + rootClass.getName() + "'.",
-								//												fittingPaths,
-								//												fittingPaths.indexOf(chosenPath));
-								//								Display.getDefault().syncExec(dialog);
-								//								if (dialog.wasTransformationStopRequested()) {
-								//									canceled = true;
-								//									return;
-								//								}
-								//								chosenPath = dialog.getSelection();
 							}
 
 							// now instantiate path
@@ -521,16 +482,6 @@ public class TargetSectionConnector extends CancellableElement {
 				return;
 			}
 
-			final LinkedList<String> namesAsList = new LinkedList<>();
-			namesAsList.addAll(pathNames.keySet());
-			final List<List<String>> instanceNames = new LinkedList<>();
-
-			for (final String k : namesAsList) {
-				final LinkedList<String> instNamesAsList = new LinkedList<>();
-				instNamesAsList.addAll(instancesByPath.get(k).keySet());
-
-				instanceNames.add(instNamesAsList);
-			}
 			if (canceled) {
 				return;
 			}
@@ -552,25 +503,6 @@ public class TargetSectionConnector extends CancellableElement {
 				cancel();
 				return;
 			}
-
-			//			final PathAndInstanceSelectorRunner dialog = new PathAndInstanceSelectorRunner(
-			//					rootInstances.size() + " Instance" + (rootInstances.size() > 1 ? "s" : "") + " of the TargetSection '"
-			//							+ section.getName() + "', created by the mapping '" + mappingName + " (Group: " + mappingGroupName
-			//							+ ")', " + (rootInstances.size() > 1 ? "have" : "has a") + " root element" + (rootInstances.size() > 1 ? "s" : "")
-			//							+ " of the type '" + classToConnect.getName()+ "'. "
-			//							+ (rootInstances.size() > 1 ? "Theese need" : "It needs") + " to be put at a sensible position in the target model. "
-			//							+ "Please choose one of the possible connections to other existing target model elements"
-			//							+ " below.", namesAsList, instanceNames);
-			//
-			//			Display.getDefault().syncExec(dialog); // TODO Maybe add
-			//			// option to not do
-			//			// anything
-			//			if (dialog.wasTransformationStopRequested()) {
-			//				canceled = true;
-			//				return;
-			//			}
-			//			// now ask user
-			//			modelConnectionPath = pathNames.get(dialog.getPath());
 
 			consoleStream.println(section.getName() + "(" + mappingName + "): " + modelConnectionPath.toString());
 
@@ -729,21 +661,22 @@ public class TargetSectionConnector extends CancellableElement {
 		// now select targetInst
 		final LinkedHashMap<EObjectWrapper, LinkedHashSet<EObjectWrapper>> rootInstancesByContainer = new LinkedHashMap<>();
 		for (final String hintVal : rootInstancesByHintVal.keySet()) {
+
+			if (isCancelled()) {
+				return;
+			}
+
 			if (contInstsByHintVal.get(hintVal).size() == 1) {
+
 				rootInstancesByContainer.put(contInstsByHintVal
 						.get(hintVal).iterator().next(),
 						rootInstancesByHintVal.get(hintVal));
-			} else if (contInstsByHintVal.get(hintVal).size() > 1) {// let
-				// user
-				// decide
-				if (canceled) {
-					return;
-				}
+
+			} else if (contInstsByHintVal.get(hintVal).size() > 1) {
 
 				/*
 				 * Consult the specified resolving strategy to resolve the ambiguity.				
 				 */
-
 				try {
 					List<EObjectWrapper> resolved = ambiguityResolvingStrategy.joiningSelectContainerInstance(
 							new LinkedList<>(contInstsByHintVal.get(hintVal)), new LinkedList<>(rootInstancesByHintVal.get(hintVal)), null, connectionHint, hintVal);
@@ -753,22 +686,6 @@ public class TargetSectionConnector extends CancellableElement {
 					cancel();
 					return;
 				}
-
-				//				final GenericItemSelectorDialogRunner<EObjectWrapper> dialog = new GenericItemSelectorDialogRunner<>(
-				//						"The ModelConnectionHint '" + connectionHint.getName() + " (Mapping :" + mappingName + ", Group: " + mappingGroupName
-				//						+ ")' points to a non-unique Attribute. Please choose under which elements " + 
-				//						(rootInstancesByHintVal.get(hintVal).size() > 1 ? 
-				//								"theese " + rootInstancesByHintVal.get(hintVal).size()+ "elements" : 
-				//									"this " + rootInstancesByHintVal.get(hintVal).size() + "element")
-				//						+ " should be inserted.\n\n" + "Attribute value: " + hintVal,
-				//						new LinkedList<>(contInstsByHintVal.get(hintVal)), 0);
-				//				Display.getDefault().syncExec(dialog);
-				//				if (dialog.wasTransformationStopRequested()) {
-				//					canceled = true;
-				//					return;
-				//				}
-				//				rootInstancesByContainer.put(dialog.getSelection(),
-				//						rootInstancesByHintVal.get(hintVal));
 
 			} else {
 				consoleStream.println("The ModelConnectionHint '" + connectionHint.getName() + " of MappingHintGroup " + mappingGroup.getName()
@@ -830,20 +747,8 @@ public class TargetSectionConnector extends CancellableElement {
 			if (pathsToConsider.size() == 1) {// only one path to choose
 				// from
 				modelConnectionPath = pathsToConsider.iterator().next();
-			} else if (pathsToConsider.size() > 0) {// user decides
-				ModelConnectionPath standardPath = pathsToConsider.get(0);// get shortest path
+			} else if (pathsToConsider.size() > 0) {
 
-				for (final ModelConnectionPath p : pathsToConsider) {// prepare
-					// user
-					// selections
-
-					if (p.size() < standardPath.size())
-					{
-						standardPath = p;// save shortest path
-					}
-				}
-				final int instSize = rootInstancesByContainer.get(
-						container).size();
 				if (canceled) {
 					return;
 				}
@@ -851,7 +756,6 @@ public class TargetSectionConnector extends CancellableElement {
 				/*
 				 * Consult the specified resolving strategy to resolve the ambiguity.				
 				 */
-
 				try {
 					List<ModelConnectionPath> resolved = ambiguityResolvingStrategy.joiningSelectConnectionPath(pathsToConsider, section);
 					modelConnectionPath = resolved.get(0);
@@ -860,21 +764,7 @@ public class TargetSectionConnector extends CancellableElement {
 					cancel();
 					return;
 				}
-				//				final GenericItemSelectorDialogRunner<ModelConnectionPath> dialog = new GenericItemSelectorDialogRunner<>(
-				//						instSize + " Instance" + (instSize > 1 ? "s" : "") + " of the TargetSection '" + section.getName() + "', created by the mapping '"
-				//								+ mappingName + " (Group: " + mappingGroup.getName() + ")', " + (instSize > 1 ? "have" : "has a") + " root element" + (instSize > 1 ? "s" : "")
-				//								+ " of the type '" + section.getEClass().getName() + "'. "
-				//								+ (instSize > 1 ? "Theese need" : "It needs") + " to be put at a sensible position in the target model. "
-				//								+ "Please choose one of the possible connections to other existing target model elements"
-				//								+ " below. Your selection will be remembered for the ConnectionHint '" + connectionHint.getName() + "'.",
-				//								pathsToConsider,
-				//								pathsToConsider.indexOf(standardPath));
-				//				Display.getDefault().syncExec(dialog);
-				//				if (dialog.wasTransformationStopRequested()) {
-				//					canceled = true;
-				//					return;
-				//				}
-				//				modelConnectionPath = dialog.getSelection();
+
 			} else {
 				consoleStream.println("Could not find a path that leads to the container specified by the ModelConnectionHint of "
 						+ mappingName + "::" + mappingGroup.getName());

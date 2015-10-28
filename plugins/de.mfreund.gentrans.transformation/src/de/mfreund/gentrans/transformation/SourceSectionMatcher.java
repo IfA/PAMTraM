@@ -275,6 +275,7 @@ public class SourceSectionMatcher extends CancellableElement {
 				// the user already chose a mapping for this selection of mappings before so that we can reuse this
 				ret = applicableMappings.get(ambiguousMappingSelections.get(applicableMappings.keySet()));
 			} else {
+
 				/*
 				 * Consult the specified resolving strategy to resolve the ambiguity.				
 				 */
@@ -287,18 +288,6 @@ public class SourceSectionMatcher extends CancellableElement {
 					canceled = true;
 					return null;
 				}
-				//				final NamedElementItemSelectorDialogRunner<Mapping> dialog = new NamedElementItemSelectorDialogRunner<>(
-				//						"Please select a Mapping for the source element\n'" + EObjectWrapper.asString(element)+ "'", 
-				//						new ArrayList<>(applicableMappings.keySet()), 
-				//						0);
-				//				Display.getDefault().syncExec(dialog);
-				//				if (dialog.wasTransformationStopRequested()) {
-				//					canceled = true;
-				//					return null;
-				//				}
-				//
-				//				ret = applicableMappings.get(dialog.getSelection());
-				//				ambiguousMappingSelections.put(applicableMappings.keySet(), dialog.getSelection());
 			}
 		}
 

@@ -835,9 +835,9 @@ class TargetSectionInstantiator extends CancellableElement {
 											attrValStr = calculator.calculateAttributeValue(null, hSel,
 													newHintValues);
 										}
-										final EObjectWrapper srcInst = instancesToConsider
-												.remove(0);
+										final EObjectWrapper srcInst = instancesToConsider.remove(0);
 										final List<EObjectWrapper> fittingVals = new LinkedList<>();
+
 										for (final EObjectWrapper targetInst : targetInstances) {
 											// get Attribute value
 											final String targetValStr = targetInst
@@ -849,8 +849,7 @@ class TargetSectionInstantiator extends CancellableElement {
 													fittingVals.add(targetInst);
 												}
 											} else {
-												consoleStream
-												.println("Problemo?");
+												consoleStream.println("Problemo?");
 											}
 										}
 										// select targetInst
@@ -858,9 +857,8 @@ class TargetSectionInstantiator extends CancellableElement {
 										if (fittingVals.size() == 1) {
 											targetInst = fittingVals.get(0);
 
-										} else if (fittingVals.size() > 1) {// let
-											// user
-											// decide
+										} else if (fittingVals.size() > 1) {
+
 											if (canceled) {
 												return;
 											}
@@ -878,20 +876,6 @@ class TargetSectionInstantiator extends CancellableElement {
 												return;
 											}
 
-											//											final GenericItemSelectorDialogRunner<EObjectWrapper> dialog = new GenericItemSelectorDialogRunner<>(
-											//													"The MappingInstanceSelector '" + h.getName() + " of Mapping" + mappingName + "(Group: "
-											//															+ group.getName() + ")' has a Matcher that points to a target element with more than one instance. "
-											//															+ "Please choose to which element the Reference '" + ref.getName()
-											//															+ "' of the following element should point to:\n\n" + srcInst.toString(),
-											//															fittingVals, 0);
-											//											Display.getDefault().syncExec(
-											//													dialog);
-											//
-											//											if (dialog.wasTransformationStopRequested()) {
-											//												canceled = true;
-											//												return;
-											//											}
-											//											targetInst = dialog.getSelection();
 										} else {
 											consoleStream.println("The MappigInstanceSelector " + hSel.getName() + " (Mapping: " + mappingName
 													+ ", Group: " + group.getName() + " ) has an AttributeMatcher that picked up the value '"
@@ -1278,13 +1262,15 @@ class TargetSectionInstantiator extends CancellableElement {
 								}
 							}
 
+							// the EObjectWrapper that will be set as target of the non-containment reference
 							EObjectWrapper targetInstance = null;
+
 							if (targetInstancesToConsider.values().size() == 1) {
-								targetInstance = targetInstancesToConsider
-										.values().iterator().next();
-							} else if (targetInstancesToConsider.values()
-									.size() > 1) {
-								// Dialog
+
+								targetInstance = targetInstancesToConsider.values().iterator().next();
+
+							} else if (targetInstancesToConsider.values().size() > 1) {
+
 								if (canceled) {
 									return;
 								}
@@ -1293,7 +1279,6 @@ class TargetSectionInstantiator extends CancellableElement {
 								 * Consult the specified resolving strategy to resolve the ambiguity.				
 								 */
 								HashMap<TargetSectionClass, List<EObjectWrapper>> choices = new HashMap<>();
-								EObjectWrapper inst; // the instance that will be the container
 								for (TargetSectionClass targetSection : refValueClone) {
 									choices.put(targetSection, new ArrayList<>(targetSectionRegistry
 											.getFlattenedPamtramClassInstances(targetSection)));
@@ -1307,41 +1292,12 @@ class TargetSectionInstantiator extends CancellableElement {
 									return;
 								}
 
-								//								final PathAndInstanceSelectorRunner dialog = new PathAndInstanceSelectorRunner(
-								//										"There was more than one target element found for the NonContainmmentReference '"
-								//												+ ref.getName()
-								//												+ "' of TargetMMSection "
-								//												+ groupTargetSection.getName()
-								//												+ "(Section: "
-								//												+ targetSectionClass.getName()
-								//												+ ") in Mapping "
-								//												+ mappingName
-								//												+ "(Group: "
-								//												+ group.getName()
-								//												+ ") ."
-								//												+ "Please select a target Class and element.",
-								//												targetSectionChoices, instanceChoices);
-								//								Display.getDefault().syncExec(dialog);
-								//
-								//								if (dialog.wasTransformationStopRequested()) {
-								//									canceled = true;
-								//									return;
-								//								}
-								//								targetInstance = targetInstancesToConsider
-								//										.get(dialog.getInstance());
 							} else {
-								consoleStream
-								.println("No suitable hint targets found for non-cont reference '"
-										+ ref.getName()
-										+ "' of TargetMMSection "
-										+ groupTargetSection.getName()
-										+ "(Section: "
-										+ targetSectionClass.getName()
-										+ ") in Mapping "
-										+ mappingName
-										+ "(Group: "
-										+ group.getName()
-										+ ").");
+								consoleStream.println("No suitable hint targets found for non-cont reference '" + ref.getName()
+								+ "' of TargetMMSection " + groupTargetSection.getName()
+								+ "(Section: " + targetSectionClass.getName()
+								+ ") in Mapping " + mappingName
+								+ "(Group: " + group.getName() + ").");
 							}
 
 							if (targetInstance != null) {

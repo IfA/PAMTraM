@@ -30,7 +30,7 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
 public class UserDecisionResolvingStrategy implements IAmbiguityResolvingStrategy {
 
 	@Override
-	public List<Mapping> resolveMatchingAmbiguity(List<Mapping> choices, EObject element) {
+	public List<Mapping> resolveMatchingAmbiguity(List<Mapping> choices, EObject element) throws Exception {
 
 		final NamedElementItemSelectorDialogRunner<Mapping> dialog = new NamedElementItemSelectorDialogRunner<>(
 				"Please select a Mapping for the source element\n'" + EObjectWrapper.asString(element)+ "'", 
@@ -38,7 +38,7 @@ public class UserDecisionResolvingStrategy implements IAmbiguityResolvingStrateg
 				0);
 		Display.getDefault().syncExec(dialog);
 		if (dialog.wasTransformationStopRequested()) {
-			return null;
+			throw new UserAbortException();
 		}
 		return new ArrayList<>(Arrays.asList(dialog.getSelection()));
 	}
@@ -58,7 +58,7 @@ public class UserDecisionResolvingStrategy implements IAmbiguityResolvingStrateg
 						classNames, 0);
 		Display.getDefault().syncExec(dialog);
 		if (dialog.wasTransformationStopRequested()) {
-			return null;
+			throw new UserAbortException();
 		}
 		return new ArrayList<>(Arrays.asList(choices.get(classNames.indexOf(dialog.getSelection()))));
 	}
@@ -89,7 +89,7 @@ public class UserDecisionResolvingStrategy implements IAmbiguityResolvingStrateg
 						choices.indexOf(chosenPath));
 		Display.getDefault().syncExec(dialog);
 		if (dialog.wasTransformationStopRequested()) {
-			return null;
+			throw new UserAbortException();
 		}
 		return new ArrayList<>(Arrays.asList(dialog.getSelection()));
 	}
@@ -120,7 +120,7 @@ public class UserDecisionResolvingStrategy implements IAmbiguityResolvingStrateg
 
 		Display.getDefault().syncExec(dialog); // TODO Maybe add option to not do anything
 		if (dialog.wasTransformationStopRequested()) {
-			return null;
+			throw new UserAbortException();
 		}
 
 		ModelConnectionPath retPath = null;
@@ -167,7 +167,7 @@ public class UserDecisionResolvingStrategy implements IAmbiguityResolvingStrateg
 				choices, 0);
 		Display.getDefault().syncExec(dialog);
 		if (dialog.wasTransformationStopRequested()) {
-			return null;
+			throw new UserAbortException();
 		}
 
 		return Arrays.asList(dialog.getSelection());
@@ -199,7 +199,7 @@ public class UserDecisionResolvingStrategy implements IAmbiguityResolvingStrateg
 				dialog);
 
 		if (dialog.wasTransformationStopRequested()) {
-			return null;
+			throw new UserAbortException();
 		}
 		return Arrays.asList(dialog.getSelection());
 	}
@@ -237,7 +237,7 @@ public class UserDecisionResolvingStrategy implements IAmbiguityResolvingStrateg
 		Display.getDefault().syncExec(dialog);
 
 		if (dialog.wasTransformationStopRequested()) {
-			return null;
+			throw new UserAbortException();
 		}
 
 		TargetSectionClass retSection = null;

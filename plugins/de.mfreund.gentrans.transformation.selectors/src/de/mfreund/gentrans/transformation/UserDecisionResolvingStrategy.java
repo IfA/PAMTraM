@@ -10,9 +10,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.widgets.Display;
 
-import de.mfreund.gentrans.transformation.EObjectWrapper;
-import de.mfreund.gentrans.transformation.IAmbiguityResolvingStrategy;
-import de.mfreund.gentrans.transformation.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.selectors.GenericItemSelectorDialogRunner;
 import de.mfreund.gentrans.transformation.selectors.NamedElementItemSelectorDialogRunner;
 import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunner;
@@ -215,7 +212,7 @@ public class UserDecisionResolvingStrategy implements IAmbiguityResolvingStrateg
 		List<String> namesAsList = new ArrayList<>();
 		List<List<String>> instanceNames = new ArrayList<>();
 		for (Entry<TargetSectionClass, List<EObjectWrapper>> entry : choices.entrySet()) {
-			namesAsList.add(entry.getKey().toString());
+			namesAsList.add(entry.getKey().getName() + " (Section: " + entry.getKey().getContainingSection().getName() + ")");
 			ArrayList<String> instanceNameList = new ArrayList<>();
 			for (EObjectWrapper wrapper : entry.getValue()) {
 				instanceNameList.add(wrapper.toString());
@@ -245,13 +242,13 @@ public class UserDecisionResolvingStrategy implements IAmbiguityResolvingStrateg
 
 		TargetSectionClass retSection = null;
 		for (TargetSectionClass section : choices.keySet()) {
-			if(dialog.getPath().equals(section.toString())) {
+			if(dialog.getPath().equals(section.getName() + " (Section: " + section.getContainingSection().getName() + ")")) {
 				retSection = section;
 				break;
 			}
 		}
 		if(retSection == null) {
-			throw new RuntimeException("Internal Error! Could not determine chosen target sectioh...");
+			throw new RuntimeException("Internal Error! Could not determine chosen target section...");
 		}
 		EObjectWrapper retWrapper = null;
 		for (EObjectWrapper wrapper : choices.get(retSection)) {

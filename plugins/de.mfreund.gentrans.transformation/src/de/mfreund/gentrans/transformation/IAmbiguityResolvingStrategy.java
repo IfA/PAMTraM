@@ -28,6 +28,11 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
  * to return a sub-set of these options. If the strategy was able to completely resolve the ambiguities (the choices
  * could be narrowed down to a single one), this sub-set will only contain one single element.
  * <p />
+ * <b>Note:</b> The naming scheme of the methods always indicates in which of the four steps of the transformation
+ * the ambiguity that needs to be resolved occurs by starting with the step's name. For example, ambiguities that
+ * need to be resolved in the method {@link #matchingSelectMapping(List, EObject)} occur in the '<em>matching</em>'
+ * step of the transformation. 
+ * <br />
  * <b>Note:</b> A default implementation exists for every method that does not resolve any ambiguities but simply
  * returns a copy of the possible options. This allows for concrete strategies to only implement a strategy for
  * some situations.
@@ -47,7 +52,7 @@ public interface IAmbiguityResolvingStrategy {
 	 * @return The list of choices after applying the resolving strategy (this should be a sub-set of '<em>choices</em>').
 	 * @throws Exception If an error occured while applying the resolving strategy. 
 	 */
-	public default List<Mapping> resolveMatchingAmbiguity(
+	public default List<Mapping> matchingSelectMapping(
 			List<Mapping> choices,
 			EObject element) throws Exception {
 
@@ -73,7 +78,7 @@ public interface IAmbiguityResolvingStrategy {
 	 * @return The list of choices after applying the resolving strategy (this should be a sub-set of '<em>choices</em>').
 	 * @throws Exception If an error occured while applying the resolving strategy. 
 	 */
-	public default List<EObjectWrapper> resolveJoiningAmbiguity(
+	public default List<EObjectWrapper> joiningSelectContainerInstance(
 			List<EObjectWrapper> choices, 
 			List<EObjectWrapper> sectionInstances,
 			MappingHintGroupType hintGroup,
@@ -81,25 +86,6 @@ public interface IAmbiguityResolvingStrategy {
 			String hintValue) throws Exception {
 
 		List<EObjectWrapper> ret = new ArrayList<>();
-		if(choices != null) {
-			ret.addAll(choices);			
-		}
-		return ret;
-	}
-
-	/**
-	 * Resolve ambiguities that arise when selecting a common root element for the target model. This method is called when
-	 * multiple root elements remain after the '<em>joining</em>' step of the transformation and a common root element
-	 * needs to be created.
-	 * 
-	 * @param choices The list of {@link EClass EClasses} that can be chosen as root element for the target model.
-	 * @return The list of choices after applying the resolving strategy (this should be a sub-set of '<em>choices</em>').
-	 * @throws Exception If an error occured while applying the resolving strategy.  
-	 */
-	public default List<EClass> resolveRootElementAmbiguity(
-			List<EClass> choices) throws Exception {
-
-		List<EClass> ret = new ArrayList<>();
 		if(choices != null) {
 			ret.addAll(choices);			
 		}
@@ -117,7 +103,7 @@ public interface IAmbiguityResolvingStrategy {
 	 * @return The list of choices after applying the resolving strategy (this should be a sub-set of '<em>choices</em>').
 	 * @throws Exception If an error occured while applying the resolving strategy.  
 	 */
-	public default List<ModelConnectionPath> resolveConnectionPathAmbiguity(
+	public default List<ModelConnectionPath> joiningSelectConnectionPath(
 			List<ModelConnectionPath> choices, TargetSection section) throws Exception {
 
 		List<ModelConnectionPath> ret = new ArrayList<>();
@@ -143,7 +129,7 @@ public interface IAmbiguityResolvingStrategy {
 	 * @return The {@link HashMap} that contains the choices after applying the resolving strategy.
 	 * @throws Exception If an error occured while applying the resolving strategy.  
 	 */
-	public default HashMap<ModelConnectionPath, List<EObjectWrapper>> resolveConnectionPathAmbiguity(
+	public default HashMap<ModelConnectionPath, List<EObjectWrapper>> joiningSelectConnectionPathAndContainerInstance(
 			HashMap<ModelConnectionPath, List<EObjectWrapper>> choices, TargetSection section, List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup) throws Exception {
 
 		HashMap<ModelConnectionPath, List<EObjectWrapper>> ret = new HashMap<>();
@@ -151,6 +137,25 @@ public interface IAmbiguityResolvingStrategy {
 			for (Entry<ModelConnectionPath, List<EObjectWrapper>> entry : choices.entrySet()) {
 				ret.put(entry.getKey(), new ArrayList<>(entry.getValue()));
 			}
+		}
+		return ret;
+	}
+
+	/**
+	 * Resolve ambiguities that arise when selecting a common root element for the target model. This method is called when
+	 * multiple root elements remain after the '<em>joining</em>' step of the transformation and a common root element
+	 * needs to be created.
+	 * 
+	 * @param choices The list of {@link EClass EClasses} that can be chosen as root element for the target model.
+	 * @return The list of choices after applying the resolving strategy (this should be a sub-set of '<em>choices</em>').
+	 * @throws Exception If an error occured while applying the resolving strategy.  
+	 */
+	public default List<EClass> joiningSelectRootElement(
+			List<EClass> choices) throws Exception {
+
+		List<EClass> ret = new ArrayList<>();
+		if(choices != null) {
+			ret.addAll(choices);			
 		}
 		return ret;
 	}
@@ -171,7 +176,7 @@ public interface IAmbiguityResolvingStrategy {
 	 * @return The list of choices after applying the resolving strategy (this should be a sub-set of '<em>choices</em>').
 	 * @throws Exception If an error occured while applying the resolving strategy. 
 	 */
-	public default List<EObjectWrapper> resolveLinkingAmbiguity(
+	public default List<EObjectWrapper> linkingSelectTargetInstance(
 			List<EObjectWrapper> choices,
 			TargetSectionNonContainmentReference reference,
 			MappingHintGroupType hintGroup,
@@ -196,7 +201,7 @@ public interface IAmbiguityResolvingStrategy {
 	 * @return The list of choices after applying the resolving strategy (this should be a sub-set of '<em>choices</em>').
 	 * @throws Exception If an error occured while applying the resolving strategy. 
 	 */
-	public default HashMap<TargetSectionClass, List<EObjectWrapper>> resolveLinkingAmbiguity(
+	public default HashMap<TargetSectionClass, List<EObjectWrapper>> linkingSelectTargetSectionAndInstance(
 			HashMap<TargetSectionClass, List<EObjectWrapper>> choices,
 			TargetSectionNonContainmentReference reference,
 			MappingHintGroupType hintGroup) throws Exception {

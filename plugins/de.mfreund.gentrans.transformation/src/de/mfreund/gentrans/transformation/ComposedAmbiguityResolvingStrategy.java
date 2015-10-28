@@ -41,7 +41,7 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 	}
 
 	@Override
-	public List<Mapping> resolveMatchingAmbiguity(List<Mapping> choices, EObject element) throws Exception {
+	public List<Mapping> matchingSelectMapping(List<Mapping> choices, EObject element) throws Exception {
 
 		List<Mapping> ret = new ArrayList<>();
 		if(choices != null) {
@@ -53,7 +53,7 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 		}
 
 		for (IAmbiguityResolvingStrategy strategy : composedStrategies) {
-			ret = strategy.resolveMatchingAmbiguity(ret, element);
+			ret = strategy.matchingSelectMapping(ret, element);
 			if(ret == null) {
 				return null;
 			} else if(ret.size() <= 1) {
@@ -65,7 +65,7 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 	}
 
 	@Override
-	public List<EObjectWrapper> resolveJoiningAmbiguity(List<EObjectWrapper> choices, List<EObjectWrapper> element,
+	public List<EObjectWrapper> joiningSelectContainerInstance(List<EObjectWrapper> choices, List<EObjectWrapper> element,
 			MappingHintGroupType hintGroup, ModelConnectionHint modelConnectionHint, String hintValue) throws Exception {
 
 		List<EObjectWrapper> ret = new ArrayList<>();
@@ -78,7 +78,7 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 		}
 
 		for (IAmbiguityResolvingStrategy strategy : composedStrategies) {
-			ret = strategy.resolveJoiningAmbiguity(ret, element, hintGroup, modelConnectionHint, hintValue);
+			ret = strategy.joiningSelectContainerInstance(ret, element, hintGroup, modelConnectionHint, hintValue);
 			if(ret == null) {
 				return null;
 			} else if(ret.size() <= 1) {
@@ -90,7 +90,7 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 	}
 
 	@Override
-	public List<EObjectWrapper> resolveLinkingAmbiguity(List<EObjectWrapper> choices,
+	public List<EObjectWrapper> linkingSelectTargetInstance(List<EObjectWrapper> choices,
 			TargetSectionNonContainmentReference reference, MappingHintGroupType hintGroup,
 			MappingInstanceSelector mappingInstanceSelector, EObjectWrapper sourceElement) throws Exception {
 
@@ -104,7 +104,7 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 		}
 
 		for (IAmbiguityResolvingStrategy strategy : composedStrategies) {
-			ret = strategy.resolveLinkingAmbiguity(ret, reference, hintGroup, mappingInstanceSelector, sourceElement);
+			ret = strategy.linkingSelectTargetInstance(ret, reference, hintGroup, mappingInstanceSelector, sourceElement);
 			if(ret == null) {
 				return null;
 			} else if(ret.size() <= 1) {
@@ -116,7 +116,7 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 	}
 
 	@Override
-	public List<EClass> resolveRootElementAmbiguity(List<EClass> choices) throws Exception {
+	public List<EClass> joiningSelectRootElement(List<EClass> choices) throws Exception {
 
 		List<EClass> ret = new ArrayList<>();
 		if(choices != null) {
@@ -128,7 +128,7 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 		}
 
 		for (IAmbiguityResolvingStrategy strategy : composedStrategies) {
-			ret = strategy.resolveRootElementAmbiguity(ret);
+			ret = strategy.joiningSelectRootElement(ret);
 			if(ret == null) {
 				return null;
 			} else if(ret.size() <= 1) {
@@ -140,7 +140,7 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 	}
 
 	@Override
-	public List<ModelConnectionPath> resolveConnectionPathAmbiguity(List<ModelConnectionPath> choices,
+	public List<ModelConnectionPath> joiningSelectConnectionPath(List<ModelConnectionPath> choices,
 			TargetSection section) throws Exception {
 
 		List<ModelConnectionPath> ret = new ArrayList<>();
@@ -153,7 +153,7 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 		}
 
 		for (IAmbiguityResolvingStrategy strategy : composedStrategies) {
-			ret = strategy.resolveConnectionPathAmbiguity(ret, section);
+			ret = strategy.joiningSelectConnectionPath(ret, section);
 			if(ret == null) {
 				return null;
 			} else if(ret.size() <= 1) {
@@ -165,7 +165,7 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 	}
 
 	@Override
-	public HashMap<ModelConnectionPath, List<EObjectWrapper>> resolveConnectionPathAmbiguity(
+	public HashMap<ModelConnectionPath, List<EObjectWrapper>> joiningSelectConnectionPathAndContainerInstance(
 			HashMap<ModelConnectionPath, List<EObjectWrapper>> choices, TargetSection section, List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup) throws Exception {
 
 		HashMap<ModelConnectionPath, List<EObjectWrapper>> ret = new HashMap<>();
@@ -180,7 +180,7 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 		}
 
 		for (IAmbiguityResolvingStrategy strategy : composedStrategies) {
-			ret = strategy.resolveConnectionPathAmbiguity(ret, section, sectionInstances, hintGroup);
+			ret = strategy.joiningSelectConnectionPathAndContainerInstance(ret, section, sectionInstances, hintGroup);
 			if(ret == null) {
 				return null;
 			} else if(ret.entrySet().isEmpty() || (ret.entrySet().size() == 1 && ret.entrySet().iterator().next().getValue().size() <= 1)) {
@@ -192,7 +192,7 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 	}
 
 	@Override
-	public HashMap<TargetSectionClass, List<EObjectWrapper>> resolveLinkingAmbiguity(
+	public HashMap<TargetSectionClass, List<EObjectWrapper>> linkingSelectTargetSectionAndInstance(
 			HashMap<TargetSectionClass, List<EObjectWrapper>> choices, TargetSectionNonContainmentReference reference,
 			MappingHintGroupType hintGroup) throws Exception {
 
@@ -208,7 +208,7 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 		}
 
 		for (IAmbiguityResolvingStrategy strategy : composedStrategies) {
-			ret = strategy.resolveLinkingAmbiguity(ret, reference, hintGroup);
+			ret = strategy.linkingSelectTargetSectionAndInstance(ret, reference, hintGroup);
 			if(ret == null) {
 				return null;
 			} else if(ret.entrySet().isEmpty() || (ret.entrySet().size() == 1 && ret.entrySet().iterator().next().getValue().size() <= 1)) {

@@ -279,7 +279,7 @@ public class SourceSectionMatcher extends CancellableElement {
 				 * Consult the specified resolving strategy to resolve the ambiguity.				
 				 */
 				try {
-					List<Mapping> resolved = ambiguityResolvingStrategy.resolveMatchingAmbiguity(new ArrayList<>(applicableMappings.keySet()), element);
+					List<Mapping> resolved = ambiguityResolvingStrategy.matchingSelectMapping(new ArrayList<>(applicableMappings.keySet()), element);
 					ret = applicableMappings.get(resolved.get(0));
 					ambiguousMappingSelections.put(applicableMappings.keySet(), resolved.get(0));
 				} catch (Exception e) {

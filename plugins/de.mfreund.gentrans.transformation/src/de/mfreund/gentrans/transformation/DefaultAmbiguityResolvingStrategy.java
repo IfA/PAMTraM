@@ -31,7 +31,7 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
 public class DefaultAmbiguityResolvingStrategy implements IAmbiguityResolvingStrategy {
 
 	@Override
-	public List<Mapping> resolveMatchingAmbiguity(List<Mapping> choices, EObject element) {
+	public List<Mapping> matchingSelectMapping(List<Mapping> choices, EObject element) {
 
 		if(choices == null || choices.size() == 0) {
 			return new ArrayList<>();
@@ -41,7 +41,7 @@ public class DefaultAmbiguityResolvingStrategy implements IAmbiguityResolvingStr
 	}
 
 	@Override
-	public List<EObjectWrapper> resolveJoiningAmbiguity(List<EObjectWrapper> choices, List<EObjectWrapper> element,
+	public List<EObjectWrapper> joiningSelectContainerInstance(List<EObjectWrapper> choices, List<EObjectWrapper> element,
 			MappingHintGroupType hintGroup, ModelConnectionHint modelConnectionHint, String hintValue) {
 
 		if(choices == null || choices.size() == 0) {
@@ -52,7 +52,7 @@ public class DefaultAmbiguityResolvingStrategy implements IAmbiguityResolvingStr
 	}
 
 	@Override
-	public List<EObjectWrapper> resolveLinkingAmbiguity(List<EObjectWrapper> choices,
+	public List<EObjectWrapper> linkingSelectTargetInstance(List<EObjectWrapper> choices,
 			TargetSectionNonContainmentReference reference, MappingHintGroupType hintGroup,
 			MappingInstanceSelector mappingInstanceSelector, EObjectWrapper sourceElement) {
 
@@ -64,7 +64,7 @@ public class DefaultAmbiguityResolvingStrategy implements IAmbiguityResolvingStr
 	}
 
 	@Override
-	public List<EClass> resolveRootElementAmbiguity(List<EClass> choices) {
+	public List<EClass> joiningSelectRootElement(List<EClass> choices) {
 
 		if(choices == null || choices.size() == 0) {
 			return new ArrayList<>();
@@ -74,7 +74,7 @@ public class DefaultAmbiguityResolvingStrategy implements IAmbiguityResolvingStr
 	}
 
 	@Override
-	public List<ModelConnectionPath> resolveConnectionPathAmbiguity(List<ModelConnectionPath> choices,
+	public List<ModelConnectionPath> joiningSelectConnectionPath(List<ModelConnectionPath> choices,
 			TargetSection section) throws Exception {
 
 		if(choices == null || choices.size() == 0) {
@@ -85,7 +85,7 @@ public class DefaultAmbiguityResolvingStrategy implements IAmbiguityResolvingStr
 	}
 
 	@Override
-	public HashMap<ModelConnectionPath, List<EObjectWrapper>> resolveConnectionPathAmbiguity(
+	public HashMap<ModelConnectionPath, List<EObjectWrapper>> joiningSelectConnectionPathAndContainerInstance(
 			HashMap<ModelConnectionPath, List<EObjectWrapper>> choices, TargetSection section, List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup) throws Exception {
 
 		if(choices == null || choices.isEmpty()) {
@@ -101,7 +101,7 @@ public class DefaultAmbiguityResolvingStrategy implements IAmbiguityResolvingStr
 	}
 
 	@Override
-	public HashMap<TargetSectionClass, List<EObjectWrapper>> resolveLinkingAmbiguity(
+	public HashMap<TargetSectionClass, List<EObjectWrapper>> linkingSelectTargetSectionAndInstance(
 			HashMap<TargetSectionClass, List<EObjectWrapper>> choices, TargetSectionNonContainmentReference reference,
 			MappingHintGroupType hintGroup) throws Exception {
 

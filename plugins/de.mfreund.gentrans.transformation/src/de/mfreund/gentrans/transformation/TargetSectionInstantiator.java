@@ -869,7 +869,7 @@ class TargetSectionInstantiator extends CancellableElement {
 											 * Consult the specified resolving strategy to resolve the ambiguity.				
 											 */
 											try {
-												List<EObjectWrapper> resolved = ambiguityResolvingStrategy.resolveLinkingAmbiguity(
+												List<EObjectWrapper> resolved = ambiguityResolvingStrategy.linkingSelectTargetInstance(
 														fittingVals, ((MappingInstanceSelector) h).getAffectedReference(), (MappingHintGroupType) group, (MappingInstanceSelector) h, srcInst);
 												targetInst = resolved.get(0);
 											} catch (Exception e) {
@@ -962,7 +962,7 @@ class TargetSectionInstantiator extends CancellableElement {
 												 * Consult the specified resolving strategy to resolve the ambiguity.				
 												 */
 												try {
-													List<EObjectWrapper> resolved = ambiguityResolvingStrategy.resolveLinkingAmbiguity(
+													List<EObjectWrapper> resolved = ambiguityResolvingStrategy.linkingSelectTargetInstance(
 															insts, ((MappingInstanceSelector) h).getAffectedReference(), null, (MappingInstanceSelector) h, null);
 													targetInstance = resolved.get(0);
 												} catch (Exception e) {
@@ -1188,7 +1188,7 @@ class TargetSectionInstantiator extends CancellableElement {
 									 */
 									EObjectWrapper targetInstance = null;
 									try {
-										List<EObjectWrapper> resolved = ambiguityResolvingStrategy.resolveLinkingAmbiguity(
+										List<EObjectWrapper> resolved = ambiguityResolvingStrategy.linkingSelectTargetInstance(
 												instances, ref, (MappingHintGroupType) group, null, source);
 										targetInstance = resolved.get(0);
 									} catch (Exception e) {
@@ -1299,7 +1299,7 @@ class TargetSectionInstantiator extends CancellableElement {
 											.getFlattenedPamtramClassInstances(targetSection)));
 								}
 								try {
-									HashMap<TargetSectionClass, List<EObjectWrapper>> resolved = ambiguityResolvingStrategy.resolveLinkingAmbiguity(choices, ref, (MappingHintGroupType) group);
+									HashMap<TargetSectionClass, List<EObjectWrapper>> resolved = ambiguityResolvingStrategy.linkingSelectTargetSectionAndInstance(choices, ref, (MappingHintGroupType) group);
 									targetInstance = resolved.entrySet().iterator().next().getValue().get(0);
 								} catch (Exception e) {
 									consoleStream.println(e.getMessage());

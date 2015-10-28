@@ -30,7 +30,7 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
 public class UserDecisionResolvingStrategy implements IAmbiguityResolvingStrategy {
 
 	@Override
-	public List<Mapping> resolveMatchingAmbiguity(List<Mapping> choices, EObject element) throws Exception {
+	public List<Mapping> matchingSelectMapping(List<Mapping> choices, EObject element) throws Exception {
 
 		final NamedElementItemSelectorDialogRunner<Mapping> dialog = new NamedElementItemSelectorDialogRunner<>(
 				"Please select a Mapping for the source element\n'" + EObjectWrapper.asString(element)+ "'", 
@@ -44,7 +44,7 @@ public class UserDecisionResolvingStrategy implements IAmbiguityResolvingStrateg
 	}
 
 	@Override
-	public List<EClass> resolveRootElementAmbiguity(List<EClass> choices) throws Exception {
+	public List<EClass> joiningSelectRootElement(List<EClass> choices) throws Exception {
 
 		ArrayList<String> classNames = new ArrayList<>();
 
@@ -64,7 +64,7 @@ public class UserDecisionResolvingStrategy implements IAmbiguityResolvingStrateg
 	}
 
 	@Override
-	public List<ModelConnectionPath> resolveConnectionPathAmbiguity(List<ModelConnectionPath> choices,
+	public List<ModelConnectionPath> joiningSelectConnectionPath(List<ModelConnectionPath> choices,
 			TargetSection section) throws Exception {
 
 		// get shortest path
@@ -95,7 +95,7 @@ public class UserDecisionResolvingStrategy implements IAmbiguityResolvingStrateg
 	}
 
 	@Override
-	public HashMap<ModelConnectionPath, List<EObjectWrapper>> resolveConnectionPathAmbiguity(
+	public HashMap<ModelConnectionPath, List<EObjectWrapper>> joiningSelectConnectionPathAndContainerInstance(
 			HashMap<ModelConnectionPath, List<EObjectWrapper>> choices, TargetSection section, List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup) throws Exception {
 
 		List<String> namesAsList = new ArrayList<>();
@@ -150,7 +150,7 @@ public class UserDecisionResolvingStrategy implements IAmbiguityResolvingStrateg
 	}
 
 	@Override
-	public List<EObjectWrapper> resolveJoiningAmbiguity(
+	public List<EObjectWrapper> joiningSelectContainerInstance(
 			List<EObjectWrapper> choices, 
 			List<EObjectWrapper> sectionInstances,
 			MappingHintGroupType hintGroup,
@@ -174,7 +174,7 @@ public class UserDecisionResolvingStrategy implements IAmbiguityResolvingStrateg
 	}
 
 	@Override
-	public List<EObjectWrapper> resolveLinkingAmbiguity(List<EObjectWrapper> choices,
+	public List<EObjectWrapper> linkingSelectTargetInstance(List<EObjectWrapper> choices,
 			TargetSectionNonContainmentReference reference, MappingHintGroupType hintGroup,
 			MappingInstanceSelector mappingInstanceSelector, EObjectWrapper sourceElement) throws Exception {
 
@@ -205,7 +205,7 @@ public class UserDecisionResolvingStrategy implements IAmbiguityResolvingStrateg
 	}
 
 	@Override
-	public HashMap<TargetSectionClass, List<EObjectWrapper>> resolveLinkingAmbiguity(
+	public HashMap<TargetSectionClass, List<EObjectWrapper>> linkingSelectTargetSectionAndInstance(
 			HashMap<TargetSectionClass, List<EObjectWrapper>> choices, TargetSectionNonContainmentReference reference,
 			MappingHintGroupType hintGroup) throws Exception {
 

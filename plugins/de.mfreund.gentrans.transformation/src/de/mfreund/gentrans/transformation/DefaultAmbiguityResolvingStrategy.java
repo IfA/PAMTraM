@@ -22,6 +22,9 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
  * <p />
  * Any call to a method defined by the {@link IAmbiguityResolvingStrategy} interface will simply return the first element
  * in the list of choices.
+ * <p />
+ * <b>Note:</b> Making use of this strategy guarantees that all ambiguities will be completely resolved so that only a single option
+ * remains for any possible combination of choices.
  * 
  * @author mfreund
  */

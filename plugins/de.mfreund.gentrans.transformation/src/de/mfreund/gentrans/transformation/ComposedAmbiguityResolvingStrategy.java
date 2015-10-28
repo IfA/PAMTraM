@@ -29,7 +29,7 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 	/**
 	 * This keeps track of the strategies that this ComposedStrategy composes.
 	 */
-	private ArrayList<IAmbiguityResolvingStrategy> composedStrategies;
+	protected ArrayList<IAmbiguityResolvingStrategy> composedStrategies;
 
 	/**
 	 * This creates an instance.

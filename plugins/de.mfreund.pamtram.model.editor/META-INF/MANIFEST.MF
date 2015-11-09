@@ -24,5 +24,5 @@ Require-Bundle: org.eclipse.core.runtime,
  de.mfreund.pamtram,
  de.mfreund.pamtram.ui,
  org.eclipse.core.expressions;bundle-version="3.4.600",
- de.mfreund.gentrans.transformation.selectors;bundle-version="1.4.0"
+ de.mfreund.gentrans.transformation.resolving.user;bundle-version="1.4.0"
 Bundle-ActivationPolicy: lazy

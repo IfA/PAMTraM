@@ -38,7 +38,7 @@ import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.ide.ResourceUtil;
 
 import de.mfreund.gentrans.transformation.GenericTransformationRunner;
-import de.mfreund.gentrans.transformation.UserDecisionResolvingStrategy;
+import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrategy;
 import pamtram.contentprovider.MappingContentProvider;
 import pamtram.contentprovider.SourceSectionContentProvider;
 import pamtram.mapping.MappingType;

@@ -18,8 +18,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 import org.osgi.framework.Bundle;
 
-import de.mfreund.gentrans.transformation.UserDecisionResolvingStrategy;
 import de.mfreund.gentrans.transformation.handler.GenericTransformationJob;
+import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrategy;
 import de.mfreund.pamtram.util.ResourceHelper;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryContext;

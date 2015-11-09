@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation.resolving.wizards;
+package de.mfreund.gentrans.transformation.resolving;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;

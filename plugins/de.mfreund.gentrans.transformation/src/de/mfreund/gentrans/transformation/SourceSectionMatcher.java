@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.congrace.exp4j.ExpressionBuilder;
+import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.util.CancellableElement;
 import pamtram.SourceSectionModel;
 import pamtram.mapping.AttributeMapping;

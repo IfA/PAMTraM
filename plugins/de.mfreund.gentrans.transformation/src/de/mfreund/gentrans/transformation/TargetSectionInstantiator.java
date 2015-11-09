@@ -23,6 +23,7 @@ import org.eclipse.ui.console.MessageConsoleStream;
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
 import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
+import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.util.CancellableElement;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractAttributeParameter;

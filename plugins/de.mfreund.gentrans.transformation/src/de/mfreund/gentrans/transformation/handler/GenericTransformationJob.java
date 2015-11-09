@@ -9,9 +9,9 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.jobs.Job;
 
-import de.mfreund.gentrans.transformation.DefaultAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner;
-import de.mfreund.gentrans.transformation.IAmbiguityResolvingStrategy;
+import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStrategy;
+import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 import pamtram.PAMTraM;
 

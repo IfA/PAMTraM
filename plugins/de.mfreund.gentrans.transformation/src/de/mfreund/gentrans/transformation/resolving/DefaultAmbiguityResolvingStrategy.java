@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation;
+package de.mfreund.gentrans.transformation.resolving;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,6 +9,8 @@ import java.util.Map.Entry;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
+import de.mfreund.gentrans.transformation.EObjectWrapper;
+import de.mfreund.gentrans.transformation.ModelConnectionPath;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;

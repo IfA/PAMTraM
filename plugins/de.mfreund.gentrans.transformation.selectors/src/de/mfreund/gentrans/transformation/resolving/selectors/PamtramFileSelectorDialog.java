@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation.selectors;
+package de.mfreund.gentrans.transformation.resolving.selectors;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;

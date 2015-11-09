@@ -4,4 +4,4 @@
  *
  * @author mfreund
  */
-package de.mfreund.gentrans.transformation;
+package de.mfreund.gentrans.transformation.resolving;

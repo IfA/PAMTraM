@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation.selectors;
+package de.mfreund.gentrans.transformation.resolving.selectors;
 
 import java.util.List;
 

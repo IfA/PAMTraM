@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation.selectors;
+package de.mfreund.gentrans.transformation.resolving.selectors;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,18 +6,23 @@ import java.util.List;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
+import pamtram.NamedElement;
+
 /**
  * @author Sascha Steffen
- * @version 1.0 Dialog for selecting elements by the .toString() they return.
+ * @version 1.0
  *
- * @param <AnyType>
+ *          Dialog for selecting NamedElements by their name.
+ *
+ * @param <NamedElementSubClass>
  *            will be returned by getSelection()
  */
-public class GenericItemSelectorDialogRunner<AnyType> implements Runnable {
-	private final List<AnyType> listItems;
+public class NamedElementItemSelectorDialogRunner<NamedElementSubClass extends NamedElement>
+		implements Runnable {
+	private final List<NamedElementSubClass> listItems;
 	private final String message;
 
-	private AnyType selection;
+	private NamedElementSubClass selection;
 
 	private final int standardSelection;
 
@@ -28,8 +33,9 @@ public class GenericItemSelectorDialogRunner<AnyType> implements Runnable {
 	 * @param listItems
 	 * @param standardSelection
 	 */
-	public GenericItemSelectorDialogRunner(final String message,
-			final List<AnyType> listItems, final int standardSelection) {
+	public NamedElementItemSelectorDialogRunner(final String message,
+			final List<NamedElementSubClass> listItems,
+			final int standardSelection) {
 		transformationStopRequested = false;
 		selection = listItems.get(0);
 		this.message = message;
@@ -38,9 +44,9 @@ public class GenericItemSelectorDialogRunner<AnyType> implements Runnable {
 	}
 
 	/**
-	 * @return selected <AnyType>
+	 * @return selected <NamedElementSubClass>
 	 */
-	public AnyType getSelection() {
+	public NamedElementSubClass getSelection() {
 		return selection;
 	}
 
@@ -55,8 +61,8 @@ public class GenericItemSelectorDialogRunner<AnyType> implements Runnable {
 		final Shell shell = new Shell(display);
 		final ArrayList<String> newListItems = new ArrayList<String>(
 				listItems.size());
-		for (final AnyType i : listItems) {
-			newListItems.add(i.toString());
+		for (final NamedElement i : listItems) {
+			newListItems.add(i.getName());
 		}
 		final ItemSelectorDialog d = new ItemSelectorDialog(shell, message,
 				newListItems, standardSelection);

@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation;
+package de.mfreund.gentrans.transformation.resolving;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,10 +10,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.widgets.Display;
 
+import de.mfreund.gentrans.transformation.EObjectWrapper;
+import de.mfreund.gentrans.transformation.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
-import de.mfreund.gentrans.transformation.selectors.GenericItemSelectorDialogRunner;
-import de.mfreund.gentrans.transformation.selectors.NamedElementItemSelectorDialogRunner;
-import de.mfreund.gentrans.transformation.selectors.PathAndInstanceSelectorRunner;
+import de.mfreund.gentrans.transformation.resolving.selectors.GenericItemSelectorDialogRunner;
+import de.mfreund.gentrans.transformation.resolving.selectors.NamedElementItemSelectorDialogRunner;
+import de.mfreund.gentrans.transformation.resolving.selectors.PathAndInstanceSelectorRunner;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;

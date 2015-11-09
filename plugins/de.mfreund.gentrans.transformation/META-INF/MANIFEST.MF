@@ -23,4 +23,5 @@ Bundle-ClassPath: lib/exp4j-0.3.11.jar,
  .
 Export-Package: de.mfreund.gentrans.transformation,
  de.mfreund.gentrans.transformation.handler,
- de.mfreund.gentrans.transformation.library
+ de.mfreund.gentrans.transformation.library,
+ de.mfreund.gentrans.transformation.resolving

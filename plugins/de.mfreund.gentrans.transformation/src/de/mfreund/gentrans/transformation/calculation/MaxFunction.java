@@ -1,24 +1,24 @@
-package de.mfreund.gentrans.transformation.CalculatorFunctions;
+package de.mfreund.gentrans.transformation.calculation;
 
 import de.congrace.exp4j.CustomFunction;
 import de.congrace.exp4j.InvalidCustomFunctionException;
 
 /**
- * Provides a min(a,b) Function for exp4j
- * 
+ * Provides a max(a,b) Function for exp4j
+ *
  * @author Sascha Steffen
  * @version 1.0
  *
  */
-public class MinFunction extends CustomFunction {
+public class MaxFunction extends CustomFunction {
 
 	/**
-	 * Takes 2 args. Returns the smaller value (java.lang.Math.min).
+	 * Takes 2 args. Returns the greater value (java.lang.Math.max).
 	 *
 	 * @throws InvalidCustomFunctionException
 	 */
-	public MinFunction() throws InvalidCustomFunctionException {
-		super("min", 2);
+	public MaxFunction() throws InvalidCustomFunctionException {
+		super("max", 2);
 	}
 
 	/*
@@ -28,7 +28,7 @@ public class MinFunction extends CustomFunction {
 	 */
 	@Override
 	public double applyFunction(final double... args) {
-		return java.lang.Math.min(args[0], args[1]);
+		return java.lang.Math.max(args[0], args[1]);
 	}
 
 }

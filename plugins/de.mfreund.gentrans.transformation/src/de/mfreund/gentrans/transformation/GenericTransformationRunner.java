@@ -37,6 +37,9 @@ import org.eclipse.ui.progress.UIJob;
 
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
+import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
+import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStrategy;
+import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.util.ICancellable;
 import de.mfreund.gentrans.transformation.util.MonitorWrapper;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;

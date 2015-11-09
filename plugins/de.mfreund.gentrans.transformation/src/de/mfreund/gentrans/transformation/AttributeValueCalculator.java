@@ -16,9 +16,9 @@ import pamtram.mapping.ModifiableHint;
 import pamtram.metamodel.TargetSectionAttribute;
 import de.congrace.exp4j.ExpressionBuilder;
 import de.congrace.exp4j.InvalidCustomFunctionException;
-import de.mfreund.gentrans.transformation.CalculatorFunctions.MaxFunction;
-import de.mfreund.gentrans.transformation.CalculatorFunctions.MinFunction;
-import de.mfreund.gentrans.transformation.CalculatorFunctions.RoundFunction;
+import de.mfreund.gentrans.transformation.calculation.MaxFunction;
+import de.mfreund.gentrans.transformation.calculation.MinFunction;
+import de.mfreund.gentrans.transformation.calculation.RoundFunction;
 
 /**
  * This class can be used to calculate values of {@link TargetSectionAttribute}s.

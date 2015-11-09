@@ -4,3 +4,4 @@ Bundle-Name: de.mfreund.gentrans.transformation.resolving.history
 Bundle-SymbolicName: de.mfreund.gentrans.transformation.resolving.history; singleton:=true
 Bundle-Version: 0.1.0.qualifier
 Require-Bundle: org.eclipse.emf.ecore
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

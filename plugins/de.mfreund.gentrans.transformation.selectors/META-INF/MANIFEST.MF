@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: InstanceSelector
 Bundle-SymbolicName: de.mfreund.gentrans.transformation.selectors;singleton:=true
 Bundle-Version: 1.4.0.qualifier
-Bundle-Activator: de.mfreund.gentrans.transformation.resolving.selectors.Activator
+Bundle-Activator: de.mfreund.gentrans.transformation.resolving.wizards.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.jface,
  de.mfreund.pamtram.model,
@@ -11,4 +11,4 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Export-Package: de.mfreund.gentrans.transformation.resolving,
- de.mfreund.gentrans.transformation.resolving.selectors
+ de.mfreund.gentrans.transformation.resolving.wizards

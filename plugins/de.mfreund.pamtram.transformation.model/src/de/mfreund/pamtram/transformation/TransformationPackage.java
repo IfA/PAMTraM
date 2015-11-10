@@ -139,22 +139,13 @@ public interface TransformationPackage extends EPackage {
 	int TRANSFORMATION__TRANSFORMATION_MAPPINGS = 7;
 
 	/**
-	 * The feature id for the '<em><b>Transformation Hint Groups</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSFORMATION__TRANSFORMATION_HINT_GROUPS = 8;
-
-	/**
 	 * The number of structural features of the '<em>Transformation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORMATION_FEATURE_COUNT = 9;
+	int TRANSFORMATION_FEATURE_COUNT = 8;
 
 	/**
 	 * The number of operations of the '<em>Transformation</em>' class.
@@ -194,13 +185,22 @@ public interface TransformationPackage extends EPackage {
 	int TRANSFORMATION_MAPPING__ASSOCIATED_MAPPING = 1;
 
 	/**
+	 * The feature id for the '<em><b>Transformation Hint Groups</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSFORMATION_MAPPING__TRANSFORMATION_HINT_GROUPS = 2;
+
+	/**
 	 * The number of structural features of the '<em>Mapping</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORMATION_MAPPING_FEATURE_COUNT = 2;
+	int TRANSFORMATION_MAPPING_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Mapping</em>' class.
@@ -357,17 +357,6 @@ public interface TransformationPackage extends EPackage {
 	EReference getTransformation_TransformationMappings();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link de.mfreund.pamtram.transformation.Transformation#getTransformationHintGroups <em>Transformation Hint Groups</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Transformation Hint Groups</em>'.
-	 * @see de.mfreund.pamtram.transformation.Transformation#getTransformationHintGroups()
-	 * @see #getTransformation()
-	 * @generated
-	 */
-	EReference getTransformation_TransformationHintGroups();
-
-	/**
 	 * Returns the meta object for class '{@link de.mfreund.pamtram.transformation.TransformationMapping <em>Mapping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -398,6 +387,17 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTransformationMapping_AssociatedMapping();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link de.mfreund.pamtram.transformation.TransformationMapping#getTransformationHintGroups <em>Transformation Hint Groups</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Transformation Hint Groups</em>'.
+	 * @see de.mfreund.pamtram.transformation.TransformationMapping#getTransformationHintGroups()
+	 * @see #getTransformationMapping()
+	 * @generated
+	 */
+	EReference getTransformationMapping_TransformationHintGroups();
 
 	/**
 	 * Returns the meta object for class '{@link de.mfreund.pamtram.transformation.TransformationMappingHintGroup <em>Mapping Hint Group</em>}'.
@@ -529,14 +529,6 @@ public interface TransformationPackage extends EPackage {
 		EReference TRANSFORMATION__TRANSFORMATION_MAPPINGS = eINSTANCE.getTransformation_TransformationMappings();
 
 		/**
-		 * The meta object literal for the '<em><b>Transformation Hint Groups</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TRANSFORMATION__TRANSFORMATION_HINT_GROUPS = eINSTANCE.getTransformation_TransformationHintGroups();
-
-		/**
 		 * The meta object literal for the '{@link de.mfreund.pamtram.transformation.impl.TransformationMappingImpl <em>Mapping</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -561,6 +553,14 @@ public interface TransformationPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TRANSFORMATION_MAPPING__ASSOCIATED_MAPPING = eINSTANCE.getTransformationMapping_AssociatedMapping();
+
+		/**
+		 * The meta object literal for the '<em><b>Transformation Hint Groups</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TRANSFORMATION_MAPPING__TRANSFORMATION_HINT_GROUPS = eINSTANCE.getTransformationMapping_TransformationHintGroups();
 
 		/**
 		 * The meta object literal for the '{@link de.mfreund.pamtram.transformation.impl.TransformationMappingHintGroupImpl <em>Mapping Hint Group</em>}' class.

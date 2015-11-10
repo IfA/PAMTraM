@@ -27,7 +27,6 @@ import pamtram.PAMTraM;
  *   <li>{@link de.mfreund.pamtram.transformation.Transformation#getSourceModels <em>Source Models</em>}</li>
  *   <li>{@link de.mfreund.pamtram.transformation.Transformation#getTargetModels <em>Target Models</em>}</li>
  *   <li>{@link de.mfreund.pamtram.transformation.Transformation#getTransformationMappings <em>Transformation Mappings</em>}</li>
- *   <li>{@link de.mfreund.pamtram.transformation.Transformation#getTransformationHintGroups <em>Transformation Hint Groups</em>}</li>
  * </ul>
  *
  * @see de.mfreund.pamtram.transformation.TransformationPackage#getTransformation()
@@ -212,21 +211,5 @@ public interface Transformation extends EObject {
 	 * @generated
 	 */
 	EList<TransformationMapping> getTransformationMappings();
-
-	/**
-	 * Returns the value of the '<em><b>Transformation Hint Groups</b></em>' containment reference list.
-	 * The list contents are of type {@link de.mfreund.pamtram.transformation.TransformationMappingHintGroup}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Transformation Hint Groups</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Transformation Hint Groups</em>' containment reference list.
-	 * @see de.mfreund.pamtram.transformation.TransformationPackage#getTransformation_TransformationHintGroups()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<TransformationMappingHintGroup> getTransformationHintGroups();
 
 } // Transformation

@@ -197,15 +197,6 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransformation_TransformationHintGroups() {
-		return (EReference)transformationEClass.getEStructuralFeatures().get(8);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getTransformationMapping() {
 		return transformationMappingEClass;
 	}
@@ -226,6 +217,15 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 	 */
 	public EReference getTransformationMapping_AssociatedMapping() {
 		return (EReference)transformationMappingEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTransformationMapping_TransformationHintGroups() {
+		return (EReference)transformationMappingEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -292,11 +292,11 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 		createEReference(transformationEClass, TRANSFORMATION__SOURCE_MODELS);
 		createEReference(transformationEClass, TRANSFORMATION__TARGET_MODELS);
 		createEReference(transformationEClass, TRANSFORMATION__TRANSFORMATION_MAPPINGS);
-		createEReference(transformationEClass, TRANSFORMATION__TRANSFORMATION_HINT_GROUPS);
 
 		transformationMappingEClass = createEClass(TRANSFORMATION_MAPPING);
 		createEReference(transformationMappingEClass, TRANSFORMATION_MAPPING__SOURCE_ELEMENT);
 		createEReference(transformationMappingEClass, TRANSFORMATION_MAPPING__ASSOCIATED_MAPPING);
+		createEReference(transformationMappingEClass, TRANSFORMATION_MAPPING__TRANSFORMATION_HINT_GROUPS);
 
 		transformationMappingHintGroupEClass = createEClass(TRANSFORMATION_MAPPING_HINT_GROUP);
 		createEReference(transformationMappingHintGroupEClass, TRANSFORMATION_MAPPING_HINT_GROUP__TARGET_ELEMENTS);
@@ -346,11 +346,11 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 		initEReference(getTransformation_SourceModels(), ecorePackage.getEObject(), null, "sourceModels", null, 1, -1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransformation_TargetModels(), ecorePackage.getEObject(), null, "targetModels", null, 1, -1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransformation_TransformationMappings(), this.getTransformationMapping(), null, "transformationMappings", null, 0, -1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTransformation_TransformationHintGroups(), this.getTransformationMappingHintGroup(), null, "transformationHintGroups", null, 0, -1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(transformationMappingEClass, TransformationMapping.class, "TransformationMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTransformationMapping_SourceElement(), ecorePackage.getEObject(), null, "sourceElement", null, 1, 1, TransformationMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransformationMapping_AssociatedMapping(), theMappingPackage.getMapping(), null, "associatedMapping", null, 1, 1, TransformationMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransformationMapping_TransformationHintGroups(), this.getTransformationMappingHintGroup(), null, "transformationHintGroups", null, 0, -1, TransformationMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(transformationMappingHintGroupEClass, TransformationMappingHintGroup.class, "TransformationMappingHintGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTransformationMappingHintGroup_TargetElements(), ecorePackage.getEObject(), null, "targetElements", null, 1, -1, TransformationMappingHintGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

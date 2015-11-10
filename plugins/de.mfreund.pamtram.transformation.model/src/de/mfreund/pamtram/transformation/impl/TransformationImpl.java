@@ -4,7 +4,6 @@ package de.mfreund.pamtram.transformation.impl;
 
 import de.mfreund.pamtram.transformation.Transformation;
 import de.mfreund.pamtram.transformation.TransformationMapping;
-import de.mfreund.pamtram.transformation.TransformationMappingHintGroup;
 import de.mfreund.pamtram.transformation.TransformationPackage;
 
 import java.util.Collection;
@@ -43,7 +42,6 @@ import pamtram.PAMTraM;
  *   <li>{@link de.mfreund.pamtram.transformation.impl.TransformationImpl#getSourceModels <em>Source Models</em>}</li>
  *   <li>{@link de.mfreund.pamtram.transformation.impl.TransformationImpl#getTargetModels <em>Target Models</em>}</li>
  *   <li>{@link de.mfreund.pamtram.transformation.impl.TransformationImpl#getTransformationMappings <em>Transformation Mappings</em>}</li>
- *   <li>{@link de.mfreund.pamtram.transformation.impl.TransformationImpl#getTransformationHintGroups <em>Transformation Hint Groups</em>}</li>
  * </ul>
  *
  * @generated
@@ -168,16 +166,6 @@ public class TransformationImpl extends MinimalEObjectImpl.Container implements 
 	 * @ordered
 	 */
 	protected EList<TransformationMapping> transformationMappings;
-
-	/**
-	 * The cached value of the '{@link #getTransformationHintGroups() <em>Transformation Hint Groups</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTransformationHintGroups()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<TransformationMappingHintGroup> transformationHintGroups;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -366,18 +354,6 @@ public class TransformationImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TransformationMappingHintGroup> getTransformationHintGroups() {
-		if (transformationHintGroups == null) {
-			transformationHintGroups = new EObjectContainmentEList<TransformationMappingHintGroup>(TransformationMappingHintGroup.class, this, TransformationPackage.TRANSFORMATION__TRANSFORMATION_HINT_GROUPS);
-		}
-		return transformationHintGroups;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -389,8 +365,6 @@ public class TransformationImpl extends MinimalEObjectImpl.Container implements 
 				return ((InternalEList<?>)getTargetModels()).basicRemove(otherEnd, msgs);
 			case TransformationPackage.TRANSFORMATION__TRANSFORMATION_MAPPINGS:
 				return ((InternalEList<?>)getTransformationMappings()).basicRemove(otherEnd, msgs);
-			case TransformationPackage.TRANSFORMATION__TRANSFORMATION_HINT_GROUPS:
-				return ((InternalEList<?>)getTransformationHintGroups()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -419,8 +393,6 @@ public class TransformationImpl extends MinimalEObjectImpl.Container implements 
 				return getTargetModels();
 			case TransformationPackage.TRANSFORMATION__TRANSFORMATION_MAPPINGS:
 				return getTransformationMappings();
-			case TransformationPackage.TRANSFORMATION__TRANSFORMATION_HINT_GROUPS:
-				return getTransformationHintGroups();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -461,10 +433,6 @@ public class TransformationImpl extends MinimalEObjectImpl.Container implements 
 				getTransformationMappings().clear();
 				getTransformationMappings().addAll((Collection<? extends TransformationMapping>)newValue);
 				return;
-			case TransformationPackage.TRANSFORMATION__TRANSFORMATION_HINT_GROUPS:
-				getTransformationHintGroups().clear();
-				getTransformationHintGroups().addAll((Collection<? extends TransformationMappingHintGroup>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -501,9 +469,6 @@ public class TransformationImpl extends MinimalEObjectImpl.Container implements 
 			case TransformationPackage.TRANSFORMATION__TRANSFORMATION_MAPPINGS:
 				getTransformationMappings().clear();
 				return;
-			case TransformationPackage.TRANSFORMATION__TRANSFORMATION_HINT_GROUPS:
-				getTransformationHintGroups().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -532,8 +497,6 @@ public class TransformationImpl extends MinimalEObjectImpl.Container implements 
 				return targetModels != null && !targetModels.isEmpty();
 			case TransformationPackage.TRANSFORMATION__TRANSFORMATION_MAPPINGS:
 				return transformationMappings != null && !transformationMappings.isEmpty();
-			case TransformationPackage.TRANSFORMATION__TRANSFORMATION_HINT_GROUPS:
-				return transformationHintGroups != null && !transformationHintGroups.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

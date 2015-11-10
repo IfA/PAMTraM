@@ -2,6 +2,7 @@
  */
 package de.mfreund.pamtram.transformation;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 import pamtram.mapping.Mapping;
@@ -17,6 +18,7 @@ import pamtram.mapping.Mapping;
  * <ul>
  *   <li>{@link de.mfreund.pamtram.transformation.TransformationMapping#getSourceElement <em>Source Element</em>}</li>
  *   <li>{@link de.mfreund.pamtram.transformation.TransformationMapping#getAssociatedMapping <em>Associated Mapping</em>}</li>
+ *   <li>{@link de.mfreund.pamtram.transformation.TransformationMapping#getTransformationHintGroups <em>Transformation Hint Groups</em>}</li>
  * </ul>
  *
  * @see de.mfreund.pamtram.transformation.TransformationPackage#getTransformationMapping()
@@ -75,5 +77,21 @@ public interface TransformationMapping extends EObject {
 	 * @generated
 	 */
 	void setAssociatedMapping(Mapping value);
+
+	/**
+	 * Returns the value of the '<em><b>Transformation Hint Groups</b></em>' containment reference list.
+	 * The list contents are of type {@link de.mfreund.pamtram.transformation.TransformationMappingHintGroup}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Transformation Hint Groups</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Transformation Hint Groups</em>' containment reference list.
+	 * @see de.mfreund.pamtram.transformation.TransformationPackage#getTransformationMapping_TransformationHintGroups()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<TransformationMappingHintGroup> getTransformationHintGroups();
 
 } // TransformationMapping

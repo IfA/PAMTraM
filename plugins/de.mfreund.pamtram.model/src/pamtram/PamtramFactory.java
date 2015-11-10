@@ -58,15 +58,6 @@ public interface PamtramFactory extends EFactory {
 	MappingModel createMappingModel();
 
 	/**
-	 * Returns a new object of class '<em>Transformation Model</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Transformation Model</em>'.
-	 * @generated
-	 */
-	TransformationModel createTransformationModel();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

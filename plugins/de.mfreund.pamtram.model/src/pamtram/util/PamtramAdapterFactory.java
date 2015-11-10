@@ -10,14 +10,6 @@ import pamtram.*;
 import pamtram.metamodel.Attribute;
 import pamtram.metamodel.Reference;
 import pamtram.metamodel.Section;
-import pamtram.MappingModel;
-import pamtram.NamedElement;
-import pamtram.PAMTraM;
-import pamtram.PamtramPackage;
-import pamtram.SectionModel;
-import pamtram.SourceSectionModel;
-import pamtram.TargetSectionModel;
-import pamtram.TransformationModel;
 
 /**
  * <!-- begin-user-doc -->
@@ -102,10 +94,6 @@ public class PamtramAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseMappingModel(MappingModel object) {
 				return createMappingModelAdapter();
-			}
-			@Override
-			public Adapter caseTransformationModel(TransformationModel object) {
-				return createTransformationModelAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -222,20 +210,6 @@ public class PamtramAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMappingModelAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.TransformationModel <em>Transformation Model</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.TransformationModel
-	 * @generated
-	 */
-	public Adapter createTransformationModelAdapter() {
 		return null;
 	}
 

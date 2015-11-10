@@ -33,14 +33,6 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated pamtram -->
       <package
-            uri="http://mfreund.de/pamtram/transformation"
-            class="pamtram.transformation.TransformationPackage"
-            genModel="model/pamtram.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated pamtram -->
-      <package
             uri="http://mfreund.de/pamtram/mapping"
             class="pamtram.mapping.MappingPackage"
             genModel="model/pamtram.genmodel"/>

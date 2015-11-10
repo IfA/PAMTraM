@@ -3,7 +3,9 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="transformation" nsURI="http://mfreund.de/pamtram/transformation"
     nsPrefix="transformation">
   <eClassifiers xsi:type="ecore:EClass" name="Transformation">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="executionDate" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startDate" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="endDate" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

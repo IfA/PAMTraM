@@ -1,6 +1,17 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: de.mfreund.pamtram.transformation.model
-Bundle-SymbolicName: de.mfreund.pamtram.transformation.model; singleton:=true
+Bundle-Name: %pluginName
+Bundle-SymbolicName: de.mfreund.pamtram.transformation.model;singleton:=true
 Bundle-Version: 0.1.0.qualifier
-Require-Bundle: org.eclipse.emf.ecore
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: de.mfreund.pamtram.transformation,
+ de.mfreund.pamtram.transformation.impl,
+ de.mfreund.pamtram.transformation.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ de.tud.et.ifa.agtele.genlibrary;visibility:=reexport,
+ de.mfreund.pamtram.model;visibility:=reexport
+Bundle-ActivationPolicy: lazy

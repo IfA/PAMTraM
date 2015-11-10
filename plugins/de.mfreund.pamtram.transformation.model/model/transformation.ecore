@@ -20,14 +20,14 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transformationMappings"
         upperBound="-1" eType="#//TransformationMapping" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="transformationHintGroups"
-        upperBound="-1" eType="#//TransformationMappingHintGroup" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TransformationMapping">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElement" lowerBound="1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="associatedMapping" lowerBound="1"
         eType="ecore:EClass ../../de.mfreund.pamtram.model/model/pamtram.ecore#//mapping/Mapping"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transformationHintGroups"
+        upperBound="-1" eType="#//TransformationMappingHintGroup" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TransformationMappingHintGroup">
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetElements" lowerBound="1"

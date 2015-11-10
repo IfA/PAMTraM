@@ -237,7 +237,6 @@ public class PAMTraMItemProvider
 			childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL);
 			childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL);
 			childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL);
-			childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__TRANSFORMATION_MODEL);
 		}
 		return childrenFeatures;
 	}
@@ -303,7 +302,6 @@ public class PAMTraMItemProvider
 			case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL:
 			case PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODEL:
 			case PamtramPackage.PAM_TRA_M__MAPPING_MODEL:
-			case PamtramPackage.PAM_TRA_M__TRANSFORMATION_MODEL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -335,11 +333,6 @@ public class PAMTraMItemProvider
 			(createChildParameter
 				(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL,
 				 PamtramFactory.eINSTANCE.createMappingModel()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.PAM_TRA_M__TRANSFORMATION_MODEL,
-				 PamtramFactory.eINSTANCE.createTransformationModel()));
 	}
 
 	/**

@@ -165,29 +165,6 @@ public class PamtramItemProviderAdapterFactory extends PamtramAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.TransformationModel} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected TransformationModelItemProvider transformationModelItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.TransformationModel}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createTransformationModelAdapter() {
-		if (transformationModelItemProvider == null) {
-			transformationModelItemProvider = new TransformationModelItemProvider(this);
-		}
-
-		return transformationModelItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -290,7 +267,6 @@ public class PamtramItemProviderAdapterFactory extends PamtramAdapterFactory imp
 		if (sourceSectionModelItemProvider != null) sourceSectionModelItemProvider.dispose();
 		if (targetSectionModelItemProvider != null) targetSectionModelItemProvider.dispose();
 		if (mappingModelItemProvider != null) mappingModelItemProvider.dispose();
-		if (transformationModelItemProvider != null) transformationModelItemProvider.dispose();
 	}
 
 }

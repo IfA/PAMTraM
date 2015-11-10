@@ -125,7 +125,7 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTransformation_ExecutionDate() {
+	public EAttribute getTransformation_StartDate() {
 		return (EAttribute)transformationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -134,7 +134,7 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTransformation_Name() {
+	public EAttribute getTransformation_EndDate() {
 		return (EAttribute)transformationEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -143,7 +143,7 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTransformation_Id() {
+	public EAttribute getTransformation_Name() {
 		return (EAttribute)transformationEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -152,8 +152,8 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransformation_PamtramInstance() {
-		return (EReference)transformationEClass.getEStructuralFeatures().get(3);
+	public EAttribute getTransformation_Id() {
+		return (EAttribute)transformationEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -161,7 +161,7 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransformation_SourceModels() {
+	public EReference getTransformation_PamtramInstance() {
 		return (EReference)transformationEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -170,7 +170,7 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransformation_TargetModels() {
+	public EReference getTransformation_SourceModels() {
 		return (EReference)transformationEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -179,7 +179,7 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransformation_TransformationMappings() {
+	public EReference getTransformation_TargetModels() {
 		return (EReference)transformationEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -188,8 +188,17 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransformation_TransformationHintGroups() {
+	public EReference getTransformation_TransformationMappings() {
 		return (EReference)transformationEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTransformation_TransformationHintGroups() {
+		return (EReference)transformationEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -275,7 +284,8 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 
 		// Create classes and their features
 		transformationEClass = createEClass(TRANSFORMATION);
-		createEAttribute(transformationEClass, TRANSFORMATION__EXECUTION_DATE);
+		createEAttribute(transformationEClass, TRANSFORMATION__START_DATE);
+		createEAttribute(transformationEClass, TRANSFORMATION__END_DATE);
 		createEAttribute(transformationEClass, TRANSFORMATION__NAME);
 		createEAttribute(transformationEClass, TRANSFORMATION__ID);
 		createEReference(transformationEClass, TRANSFORMATION__PAMTRAM_INSTANCE);
@@ -328,7 +338,8 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(transformationEClass, Transformation.class, "Transformation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTransformation_ExecutionDate(), ecorePackage.getEDate(), "executionDate", null, 1, 1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTransformation_StartDate(), ecorePackage.getEDate(), "startDate", null, 1, 1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTransformation_EndDate(), ecorePackage.getEDate(), "endDate", null, 1, 1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTransformation_Name(), ecorePackage.getEString(), "name", null, 0, 1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTransformation_Id(), ecorePackage.getEString(), "id", null, 1, 1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransformation_PamtramInstance(), thePamtramPackage.getPAMTraM(), null, "pamtramInstance", null, 1, 1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

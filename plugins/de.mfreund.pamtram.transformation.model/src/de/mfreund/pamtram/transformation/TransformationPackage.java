@@ -67,13 +67,22 @@ public interface TransformationPackage extends EPackage {
 	int TRANSFORMATION = 0;
 
 	/**
-	 * The feature id for the '<em><b>Execution Date</b></em>' attribute.
+	 * The feature id for the '<em><b>Start Date</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORMATION__EXECUTION_DATE = 0;
+	int TRANSFORMATION__START_DATE = 0;
+
+	/**
+	 * The feature id for the '<em><b>End Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSFORMATION__END_DATE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -82,7 +91,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORMATION__NAME = 1;
+	int TRANSFORMATION__NAME = 2;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -91,7 +100,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORMATION__ID = 2;
+	int TRANSFORMATION__ID = 3;
 
 	/**
 	 * The feature id for the '<em><b>Pamtram Instance</b></em>' containment reference.
@@ -100,7 +109,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORMATION__PAMTRAM_INSTANCE = 3;
+	int TRANSFORMATION__PAMTRAM_INSTANCE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Source Models</b></em>' containment reference list.
@@ -109,7 +118,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORMATION__SOURCE_MODELS = 4;
+	int TRANSFORMATION__SOURCE_MODELS = 5;
 
 	/**
 	 * The feature id for the '<em><b>Target Models</b></em>' containment reference list.
@@ -118,7 +127,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORMATION__TARGET_MODELS = 5;
+	int TRANSFORMATION__TARGET_MODELS = 6;
 
 	/**
 	 * The feature id for the '<em><b>Transformation Mappings</b></em>' containment reference list.
@@ -127,7 +136,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORMATION__TRANSFORMATION_MAPPINGS = 6;
+	int TRANSFORMATION__TRANSFORMATION_MAPPINGS = 7;
 
 	/**
 	 * The feature id for the '<em><b>Transformation Hint Groups</b></em>' containment reference list.
@@ -136,7 +145,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORMATION__TRANSFORMATION_HINT_GROUPS = 7;
+	int TRANSFORMATION__TRANSFORMATION_HINT_GROUPS = 8;
 
 	/**
 	 * The number of structural features of the '<em>Transformation</em>' class.
@@ -145,7 +154,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORMATION_FEATURE_COUNT = 8;
+	int TRANSFORMATION_FEATURE_COUNT = 9;
 
 	/**
 	 * The number of operations of the '<em>Transformation</em>' class.
@@ -260,15 +269,26 @@ public interface TransformationPackage extends EPackage {
 	EClass getTransformation();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.mfreund.pamtram.transformation.Transformation#getExecutionDate <em>Execution Date</em>}'.
+	 * Returns the meta object for the attribute '{@link de.mfreund.pamtram.transformation.Transformation#getStartDate <em>Start Date</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Execution Date</em>'.
-	 * @see de.mfreund.pamtram.transformation.Transformation#getExecutionDate()
+	 * @return the meta object for the attribute '<em>Start Date</em>'.
+	 * @see de.mfreund.pamtram.transformation.Transformation#getStartDate()
 	 * @see #getTransformation()
 	 * @generated
 	 */
-	EAttribute getTransformation_ExecutionDate();
+	EAttribute getTransformation_StartDate();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.mfreund.pamtram.transformation.Transformation#getEndDate <em>End Date</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>End Date</em>'.
+	 * @see de.mfreund.pamtram.transformation.Transformation#getEndDate()
+	 * @see #getTransformation()
+	 * @generated
+	 */
+	EAttribute getTransformation_EndDate();
 
 	/**
 	 * Returns the meta object for the attribute '{@link de.mfreund.pamtram.transformation.Transformation#getName <em>Name</em>}'.
@@ -445,12 +465,20 @@ public interface TransformationPackage extends EPackage {
 		EClass TRANSFORMATION = eINSTANCE.getTransformation();
 
 		/**
-		 * The meta object literal for the '<em><b>Execution Date</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Start Date</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TRANSFORMATION__EXECUTION_DATE = eINSTANCE.getTransformation_ExecutionDate();
+		EAttribute TRANSFORMATION__START_DATE = eINSTANCE.getTransformation_StartDate();
+
+		/**
+		 * The meta object literal for the '<em><b>End Date</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRANSFORMATION__END_DATE = eINSTANCE.getTransformation_EndDate();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.

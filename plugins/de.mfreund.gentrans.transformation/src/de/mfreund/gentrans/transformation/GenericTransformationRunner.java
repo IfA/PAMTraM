@@ -513,6 +513,13 @@ public class GenericTransformationRunner {
 		}
 
 		/*
+		 * populate the transformation model
+		 */
+		this.transformationModel.setPamtramInstance(pamtramModel);
+		this.transformationModel.getSourceModels().addAll(sourceModels);
+		this.transformationModel.getTargetModels().add(targetModel.getContents().get(0));
+
+		/*
 		 * save the transformation model
 		 */
 		try {

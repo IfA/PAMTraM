@@ -35,7 +35,8 @@ import pamtram.PAMTraM;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.mfreund.pamtram.transformation.impl.TransformationImpl#getExecutionDate <em>Execution Date</em>}</li>
+ *   <li>{@link de.mfreund.pamtram.transformation.impl.TransformationImpl#getStartDate <em>Start Date</em>}</li>
+ *   <li>{@link de.mfreund.pamtram.transformation.impl.TransformationImpl#getEndDate <em>End Date</em>}</li>
  *   <li>{@link de.mfreund.pamtram.transformation.impl.TransformationImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.mfreund.pamtram.transformation.impl.TransformationImpl#getId <em>Id</em>}</li>
  *   <li>{@link de.mfreund.pamtram.transformation.impl.TransformationImpl#getPamtramInstance <em>Pamtram Instance</em>}</li>
@@ -49,24 +50,44 @@ import pamtram.PAMTraM;
  */
 public class TransformationImpl extends MinimalEObjectImpl.Container implements Transformation {
 	/**
-	 * The default value of the '{@link #getExecutionDate() <em>Execution Date</em>}' attribute.
+	 * The default value of the '{@link #getStartDate() <em>Start Date</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExecutionDate()
+	 * @see #getStartDate()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Date EXECUTION_DATE_EDEFAULT = null;
+	protected static final Date START_DATE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getExecutionDate() <em>Execution Date</em>}' attribute.
+	 * The cached value of the '{@link #getStartDate() <em>Start Date</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExecutionDate()
+	 * @see #getStartDate()
 	 * @generated
 	 * @ordered
 	 */
-	protected Date executionDate = EXECUTION_DATE_EDEFAULT;
+	protected Date startDate = START_DATE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getEndDate() <em>End Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEndDate()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Date END_DATE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getEndDate() <em>End Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEndDate()
+	 * @generated
+	 * @ordered
+	 */
+	protected Date endDate = END_DATE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -182,8 +203,8 @@ public class TransformationImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Date getExecutionDate() {
-		return executionDate;
+	public Date getStartDate() {
+		return startDate;
 	}
 
 	/**
@@ -191,11 +212,32 @@ public class TransformationImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExecutionDate(Date newExecutionDate) {
-		Date oldExecutionDate = executionDate;
-		executionDate = newExecutionDate;
+	public void setStartDate(Date newStartDate) {
+		Date oldStartDate = startDate;
+		startDate = newStartDate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TransformationPackage.TRANSFORMATION__EXECUTION_DATE, oldExecutionDate, executionDate));
+			eNotify(new ENotificationImpl(this, Notification.SET, TransformationPackage.TRANSFORMATION__START_DATE, oldStartDate, startDate));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEndDate(Date newEndDate) {
+		Date oldEndDate = endDate;
+		endDate = newEndDate;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TransformationPackage.TRANSFORMATION__END_DATE, oldEndDate, endDate));
 	}
 
 	/**
@@ -361,8 +403,10 @@ public class TransformationImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case TransformationPackage.TRANSFORMATION__EXECUTION_DATE:
-				return getExecutionDate();
+			case TransformationPackage.TRANSFORMATION__START_DATE:
+				return getStartDate();
+			case TransformationPackage.TRANSFORMATION__END_DATE:
+				return getEndDate();
 			case TransformationPackage.TRANSFORMATION__NAME:
 				return getName();
 			case TransformationPackage.TRANSFORMATION__ID:
@@ -390,8 +434,11 @@ public class TransformationImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case TransformationPackage.TRANSFORMATION__EXECUTION_DATE:
-				setExecutionDate((Date)newValue);
+			case TransformationPackage.TRANSFORMATION__START_DATE:
+				setStartDate((Date)newValue);
+				return;
+			case TransformationPackage.TRANSFORMATION__END_DATE:
+				setEndDate((Date)newValue);
 				return;
 			case TransformationPackage.TRANSFORMATION__NAME:
 				setName((String)newValue);
@@ -430,8 +477,11 @@ public class TransformationImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case TransformationPackage.TRANSFORMATION__EXECUTION_DATE:
-				setExecutionDate(EXECUTION_DATE_EDEFAULT);
+			case TransformationPackage.TRANSFORMATION__START_DATE:
+				setStartDate(START_DATE_EDEFAULT);
+				return;
+			case TransformationPackage.TRANSFORMATION__END_DATE:
+				setEndDate(END_DATE_EDEFAULT);
 				return;
 			case TransformationPackage.TRANSFORMATION__NAME:
 				setName(NAME_EDEFAULT);
@@ -466,8 +516,10 @@ public class TransformationImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case TransformationPackage.TRANSFORMATION__EXECUTION_DATE:
-				return EXECUTION_DATE_EDEFAULT == null ? executionDate != null : !EXECUTION_DATE_EDEFAULT.equals(executionDate);
+			case TransformationPackage.TRANSFORMATION__START_DATE:
+				return START_DATE_EDEFAULT == null ? startDate != null : !START_DATE_EDEFAULT.equals(startDate);
+			case TransformationPackage.TRANSFORMATION__END_DATE:
+				return END_DATE_EDEFAULT == null ? endDate != null : !END_DATE_EDEFAULT.equals(endDate);
 			case TransformationPackage.TRANSFORMATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case TransformationPackage.TRANSFORMATION__ID:
@@ -496,8 +548,10 @@ public class TransformationImpl extends MinimalEObjectImpl.Container implements 
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (executionDate: ");
-		result.append(executionDate);
+		result.append(" (startDate: ");
+		result.append(startDate);
+		result.append(", endDate: ");
+		result.append(endDate);
 		result.append(", name: ");
 		result.append(name);
 		result.append(", id: ");

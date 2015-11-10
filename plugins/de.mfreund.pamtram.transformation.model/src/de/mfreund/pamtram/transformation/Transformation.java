@@ -19,7 +19,8 @@ import pamtram.PAMTraM;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link de.mfreund.pamtram.transformation.Transformation#getExecutionDate <em>Execution Date</em>}</li>
+ *   <li>{@link de.mfreund.pamtram.transformation.Transformation#getStartDate <em>Start Date</em>}</li>
+ *   <li>{@link de.mfreund.pamtram.transformation.Transformation#getEndDate <em>End Date</em>}</li>
  *   <li>{@link de.mfreund.pamtram.transformation.Transformation#getName <em>Name</em>}</li>
  *   <li>{@link de.mfreund.pamtram.transformation.Transformation#getId <em>Id</em>}</li>
  *   <li>{@link de.mfreund.pamtram.transformation.Transformation#getPamtramInstance <em>Pamtram Instance</em>}</li>
@@ -35,30 +36,56 @@ import pamtram.PAMTraM;
  */
 public interface Transformation extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Execution Date</b></em>' attribute.
+	 * Returns the value of the '<em><b>Start Date</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Execution Date</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Start Date</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Execution Date</em>' attribute.
-	 * @see #setExecutionDate(Date)
-	 * @see de.mfreund.pamtram.transformation.TransformationPackage#getTransformation_ExecutionDate()
+	 * @return the value of the '<em>Start Date</em>' attribute.
+	 * @see #setStartDate(Date)
+	 * @see de.mfreund.pamtram.transformation.TransformationPackage#getTransformation_StartDate()
 	 * @model required="true"
 	 * @generated
 	 */
-	Date getExecutionDate();
+	Date getStartDate();
 
 	/**
-	 * Sets the value of the '{@link de.mfreund.pamtram.transformation.Transformation#getExecutionDate <em>Execution Date</em>}' attribute.
+	 * Sets the value of the '{@link de.mfreund.pamtram.transformation.Transformation#getStartDate <em>Start Date</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Execution Date</em>' attribute.
-	 * @see #getExecutionDate()
+	 * @param value the new value of the '<em>Start Date</em>' attribute.
+	 * @see #getStartDate()
 	 * @generated
 	 */
-	void setExecutionDate(Date value);
+	void setStartDate(Date value);
+
+	/**
+	 * Returns the value of the '<em><b>End Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>End Date</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>End Date</em>' attribute.
+	 * @see #setEndDate(Date)
+	 * @see de.mfreund.pamtram.transformation.TransformationPackage#getTransformation_EndDate()
+	 * @model required="true"
+	 * @generated
+	 */
+	Date getEndDate();
+
+	/**
+	 * Sets the value of the '{@link de.mfreund.pamtram.transformation.Transformation#getEndDate <em>End Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>End Date</em>' attribute.
+	 * @see #getEndDate()
+	 * @generated
+	 */
+	void setEndDate(Date value);
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.

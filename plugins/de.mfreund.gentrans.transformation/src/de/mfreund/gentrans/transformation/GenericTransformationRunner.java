@@ -512,8 +512,38 @@ public class GenericTransformationRunner {
 
 		}
 
-		// save the transformation
-		//TODO		
+		/*
+		 * save the transformation model
+		 */
+		try {
+			final XMIResourceFactoryImpl resFactory = new XMIResourceFactoryImpl();
+			final URI transformationModelUri = URI.createPlatformResourceURI(transformationModelPath, true);
+			XMIResource transformationModelResource = (XMIResource) resFactory.createResource(transformationModelUri);
+			transformationModelResource.getContents().add(this.transformationModel);
+			transformationModelResource.setEncoding("UTF-8");
+			final Map<Object, Object> options = new LinkedHashMap<>();
+			options.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
+			options.put(XMLResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.TRUE);
+			transformationModelResource.save(Collections.EMPTY_MAP);
+
+		} catch (final Exception e) {
+			MessageDialog.openError(PlatformUI.getWorkbench()
+					.getActiveWorkbenchWindow().getShell(), "Error",
+					"The XMI resource for the TransformationModel could not be created.");
+			e.printStackTrace();
+			return;
+		}
+
+		try {
+			final long endTime = System.nanoTime();
+			writePamtramMessage("Transformation done. Time: "
+					+ Math.ceil((endTime - startTime) / 100000000L) / 10.0 + "s");
+		} catch (final Exception e) {
+			MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Error",
+					"The XMI resource could not be saved.");
+			e.printStackTrace();
+			return;
+		}
 
 	}
 

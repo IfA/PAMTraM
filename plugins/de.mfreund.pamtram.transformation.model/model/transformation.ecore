@@ -7,11 +7,30 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pamtramInstance" lowerBound="1"
+        eType="ecore:EClass ../../de.mfreund.pamtram.model/model/pamtram.ecore#//PAMTraM"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceModels" lowerBound="1"
         upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetModels" lowerBound="1"
         upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transformationMappings"
+        upperBound="-1" eType="#//TransformationMapping" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transformationHintGroups"
+        upperBound="-1" eType="#//TransformationMappingHintGroup" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TransformationMapping">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElement" lowerBound="1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="associatedMapping" lowerBound="1"
+        eType="ecore:EClass ../../de.mfreund.pamtram.model/model/pamtram.ecore#//mapping/Mapping"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TransformationMappingHintGroup">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetElements" lowerBound="1"
+        upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="associatedMappingHintGroup"
+        lowerBound="1" eType="ecore:EClass ../../de.mfreund.pamtram.model/model/pamtram.ecore#//mapping/InstantiableMappingHintGroup"/>
   </eClassifiers>
 </ecore:EPackage>

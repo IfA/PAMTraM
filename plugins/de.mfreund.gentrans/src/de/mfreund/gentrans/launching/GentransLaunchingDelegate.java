@@ -2,6 +2,7 @@ package de.mfreund.gentrans.launching;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -55,6 +56,9 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 				"Pamtram" + Path.SEPARATOR + configuration.getAttribute("pamtramFile", "");
 		String targetFile = project + Path.SEPARATOR + 
 				"Target" + Path.SEPARATOR + configuration.getAttribute("targetFile", "");
+		//TODO maybe let the user configure this in the launch configuration
+		String transformationFile = project + Path.SEPARATOR + 
+				"Pamtram" + Path.SEPARATOR + "transformation" + Path.SEPARATOR + (new Date()).toString().replaceAll(" ", "-").replaceAll(":", "-") + ".transformation";
 
 		//get the settings
 		int maxPathLength=configuration.getAttribute("maxPathLength", -1);
@@ -76,7 +80,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		new LibraryContextDescriptor(configuration.getAttribute("targetLibPath", ""), (Class<LibraryContext>) targetLibContextClass, (Class<LibraryPathParser>) targetLibParserClass);
 
 		GenericTransformationJob job = new GenericTransformationJob(
-				"GenTrans", sourceFiles, pamtramFile, targetFile, targetLibraryContextDescriptor, new UserDecisionResolvingStrategy());
+				"GenTrans", sourceFiles, pamtramFile, targetFile, transformationFile, targetLibraryContextDescriptor, new UserDecisionResolvingStrategy());
 		job.getGenTransRunner().setMaxPathLength(maxPathLength);
 		job.getGenTransRunner().setOnlyAskOnceOnAmbiguousMappings(rememberAmbiguousMappingChoice);
 

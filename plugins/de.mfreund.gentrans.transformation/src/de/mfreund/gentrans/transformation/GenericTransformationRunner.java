@@ -3,6 +3,7 @@ package de.mfreund.gentrans.transformation;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -42,6 +43,9 @@ import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStr
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.util.ICancellable;
 import de.mfreund.gentrans.transformation.util.MonitorWrapper;
+import de.mfreund.pamtram.transformation.Transformation;
+import de.mfreund.pamtram.transformation.TransformationFactory;
+import de.mfreund.pamtram.transformation.TransformationMapping;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 import pamtram.PAMTraM;
 import pamtram.mapping.AttributeMapping;
@@ -119,6 +123,14 @@ public class GenericTransformationRunner {
 	 * The target model resource where the result of the transformation shall be stored
 	 */
 	private XMIResource targetModel;
+
+	/**
+	 * The {@link Transformation} where the context of this generic transformation including
+	 * the associated source, target and pamtram model(s) as well as all {@link TransformationMapping TransformationMappings}
+	 * are stored. This will be returned at the end of the generic transformation and could e.g. be used to reason
+	 * about the performed transformation by means of additional algorithms.
+	 */
+	private Transformation transformationModel;
 
 	/**
 	 * A {@link MessageConsoleStream message output stream} (Console view) that can be used to print messages to the user
@@ -255,6 +267,12 @@ public class GenericTransformationRunner {
 		this.maxPathLength = maxPathLength;
 		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
 		this.targetLibraryContextDescriptor = targetLibraryContextDescriptor;
+
+		/*
+		 * create the TransformationModel where the context of the transformation is stored
+		 */
+		this.transformationModel = TransformationFactory.eINSTANCE.createTransformation();
+		this.transformationModel.setId(Integer.toString(hashCode()));
 
 		/* 
 		 * make sure that all ambiguities are resolved completely by requiring an instance of
@@ -394,6 +412,9 @@ public class GenericTransformationRunner {
 			return;
 		}
 
+		// set the start date (after loading all models)
+		this.transformationModel.setStartDate(new Date());
+
 		/* 
 		 * before we can use the PAMTraM model, we need merge all extended HintGroups or Sections;
 		 * that way, we get a 'clean' model (without any extensions) that we can handle in a normal way
@@ -437,6 +458,9 @@ public class GenericTransformationRunner {
 			throw e;
 		}
 
+		// set the end date (before storing)
+		this.transformationModel.setEndDate(new Date());
+
 		if (successful && !isCancelled) {
 			// save targetModel
 			try {
@@ -457,6 +481,9 @@ public class GenericTransformationRunner {
 			}
 
 		}
+
+		// save the transformation
+		//TODO		
 
 	}
 

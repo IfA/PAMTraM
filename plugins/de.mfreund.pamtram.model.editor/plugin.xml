@@ -62,17 +62,6 @@ null
 
 null
 null
-   <extension point="org.eclipse.ui.editors">
-      <!-- @generated pamtram -->
-      <editor
-            id="pamtram.transformation.presentation.TransformationEditorID"
-            name="%_UI_TransformationEditor_label"
-            icon="icons/full/obj16/TransformationModelFile.gif"
-            extensions="transformation"
-            class="pamtram.transformation.presentation.TransformationEditor"
-            contributorClass="pamtram.transformation.presentation.TransformationActionBarContributor">
-      </editor>
-   </extension>
    <extension
          point="org.eclipse.ui.commands">
       <command

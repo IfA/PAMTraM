@@ -11,8 +11,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: pamtram.condition.presentation,
  pamtram.mapping.presentation,
  pamtram.metamodel.presentation,
- pamtram.presentation,
- pamtram.transformation.presentation
+ pamtram.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
  de.mfreund.pamtram.model.edit;visibility:=reexport,

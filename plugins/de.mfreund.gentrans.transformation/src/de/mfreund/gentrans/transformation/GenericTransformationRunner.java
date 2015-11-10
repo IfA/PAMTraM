@@ -133,6 +133,30 @@ public class GenericTransformationRunner {
 	private Transformation transformationModel;
 
 	/**
+	 * This is the file path where the {@link #transformationModel} will be stored after the transformation.
+	 * If this is set to '<em>null</em>', the transformation model will not be stored.
+	 */
+	private String transformationModelPath;
+
+	/**
+	 * This is the getter for the {@link #transformationModelPath}.
+	 * 
+	 * @return The path where the {@link #transformationModel} will be stored after the transformation.
+	 */
+	public String getTransformationModelPath() {
+		return transformationModelPath;
+	}
+
+	/**
+	 * This is the setter for the {@link #transformationModelPath}.
+	 * 
+	 * @param transformationModelPath The path where the {@link #transformationModel} shall be stored after the transformation.
+	 */
+	public void setTransformationModelPath(String transformationModelPath) {
+		this.transformationModelPath = transformationModelPath;
+	}
+
+	/**
 	 * A {@link MessageConsoleStream message output stream} (Console view) that can be used to print messages to the user
 	 */
 	private final MessageConsoleStream consoleStream;
@@ -240,6 +264,10 @@ public class GenericTransformationRunner {
 	 *            Path to the transformation model
 	 * @param targetFilePath
 	 *            File path to the transformation target
+	 * @param transformationModelPath
+	 * 				This is the file path where an instance of {@link Transformation} that contains information
+	 * about the execution will be stored after the transformation.
+	 * If this is set to '<em>null</em>', the transformation model will not be stored.
 	 * @param maxPathLength
 	 * 			  Maximum length of connection paths between target sections.
 	 * @param onlyAskOnceOnAmbiguousMappings
@@ -254,6 +282,7 @@ public class GenericTransformationRunner {
 			final ArrayList<String> sourceFilePaths,
 			final String pamtramPath, 
 			final String targetFilePath, 
+			final String transformationModelPath,
 			int maxPathLength,
 			boolean onlyAskOnceOnAmbiguousMappings, 
 			LibraryContextDescriptor targetLibraryContextDescriptor,
@@ -264,6 +293,7 @@ public class GenericTransformationRunner {
 		this.sourceFilePaths = sourceFilePaths;
 		this.pamtramPath = pamtramPath;
 		this.targetFilePath = targetFilePath;
+		this.setTransformationModelPath(transformationModelPath);
 		this.maxPathLength = maxPathLength;
 		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
 		this.targetLibraryContextDescriptor = targetLibraryContextDescriptor;
@@ -318,7 +348,7 @@ public class GenericTransformationRunner {
 			LibraryContextDescriptor targetLibraryContextDescriptor,
 			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 
-		return new GenericTransformationRunner(sourceFilePaths, pamtramPath, targetFilePath, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
+		return new GenericTransformationRunner(sourceFilePaths, pamtramPath, targetFilePath, null, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
 	}
 
 	/**
@@ -345,7 +375,7 @@ public class GenericTransformationRunner {
 			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 
 		GenericTransformationRunner instance = 
-				new GenericTransformationRunner(sourceFilePaths, null, targetFilePath, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
+				new GenericTransformationRunner(sourceFilePaths, null, targetFilePath, null, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
 		instance.pamtramModel = pamtramModel;
 		return instance;
 	}
@@ -374,7 +404,7 @@ public class GenericTransformationRunner {
 			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 
 		GenericTransformationRunner instance = 
-				new GenericTransformationRunner(null, null, targetFilePath, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
+				new GenericTransformationRunner(null, null, targetFilePath, null, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
 		instance.pamtramModel = pamtramModel;
 		instance.sourceModels = sourceModels;
 		return instance;

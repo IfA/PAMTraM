@@ -252,6 +252,11 @@ public class GenericTransformationRunner {
 	private TargetSectionConnector targetSectionConnector;
 
 	/**
+	 * This describes the result of the transformation (after calling {@link #runTransformation(IProgressMonitor)}). 
+	 */
+	private TransformationResult transformationResult;
+
+	/**
 	 * This is the Getter for the {@link #targetSectionConnector}.
 	 * @return The {@link #targetSectionConnector} used by the transformation runner.
 	 */
@@ -301,6 +306,7 @@ public class GenericTransformationRunner {
 		this.maxPathLength = maxPathLength;
 		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
 		this.targetLibraryContextDescriptor = targetLibraryContextDescriptor;
+		this.transformationResult = null;
 
 		/*
 		 * create the TransformationModel where the context of the transformation is stored
@@ -478,7 +484,6 @@ public class GenericTransformationRunner {
 		final List<Mapping> suitableMappings = pamtramModel.getActiveMappings();
 		// TODO apply contextModel
 
-		TransformationResult transformationResult = null;
 		try {
 			/*
 			 * try to execute all active mappings (this includes the 4 resp. 5 main steps of
@@ -514,36 +519,12 @@ public class GenericTransformationRunner {
 				return;
 			}
 
+			/*
+			 * populate and store the transformation model if necessary
+			 */
+			generateTransformationModel();
 		}
 
-		/*
-		 * populate the transformation model
-		 */
-		this.transformationModel.setPamtramInstance(pamtramModel);
-		this.transformationModel.getSourceModels().addAll(sourceModels);
-		this.transformationModel.getTargetModels().add(targetModel.getContents().get(0));
-
-		/*
-		 * save the transformation model
-		 */
-		try {
-			final XMIResourceFactoryImpl resFactory = new XMIResourceFactoryImpl();
-			final URI transformationModelUri = URI.createPlatformResourceURI(transformationModelPath, true);
-			XMIResource transformationModelResource = (XMIResource) resFactory.createResource(transformationModelUri);
-			transformationModelResource.getContents().add(this.transformationModel);
-			transformationModelResource.setEncoding("UTF-8");
-			final Map<Object, Object> options = new LinkedHashMap<>();
-			options.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
-			options.put(XMLResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.TRUE);
-			transformationModelResource.save(Collections.EMPTY_MAP);
-
-		} catch (final Exception e) {
-			MessageDialog.openError(PlatformUI.getWorkbench()
-					.getActiveWorkbenchWindow().getShell(), "Error",
-					"The XMI resource for the TransformationModel could not be created.");
-			e.printStackTrace();
-			return;
-		}
 
 	}
 
@@ -803,14 +784,6 @@ public class GenericTransformationRunner {
 		for (final MappingInstanceStorage selMap : matchingResult.getSelectedMappings()) {
 
 			/*
-			 * Create a TransformationMapping for the mapping
-			 */
-			TransformationMapping transformationMapping = TransformationFactory.eINSTANCE.createTransformationMapping();
-			transformationMapping.setAssociatedMapping(selMap.getMapping());
-			transformationMapping.setSourceElement(selMap.getAssociatedSourceModelElement());
-			this.transformationModel.getTransformationMappings().add(transformationMapping);
-
-			/*
 			 * Iterate over all mapping hint group (except inactive and empty ones)
 			 */
 			for (final MappingHintGroupType g : selMap.getMapping()
@@ -844,18 +817,6 @@ public class GenericTransformationRunner {
 							 */
 							selMap.addInstances((MappingHintGroup) g, section,
 									instancesBySection.get(section));
-						}
-
-						/*
-						 * Create a TransformationMappingHintGroup for the mapping hint group
-						 */
-						if(g instanceof InstantiableMappingHintGroup) {
-							TransformationMappingHintGroup transformationMappingHintGroup = TransformationFactory.eINSTANCE.createTransformationMappingHintGroup();
-							transformationMappingHintGroup.setAssociatedMappingHintGroup((InstantiableMappingHintGroup) g);
-							for (EObjectWrapper instance : instancesBySection.get(g.getTargetMMSection())) {
-								transformationMappingHintGroup.getTargetElements().add(instance.getEObject());
-							}					
-							transformationMapping.getTransformationHintGroups().add(transformationMappingHintGroup);
 						}
 					}
 				}
@@ -1044,16 +1005,6 @@ public class GenericTransformationRunner {
 							for (final TargetSectionClass section : instancesBySection.keySet()) {
 								selMap.addInstances(g, section, instancesBySection.get(section));
 							}
-
-							/*
-							 * Create a TransformationMappingHintGroup for the hint group
-							 */
-							TransformationMappingHintGroup transformationMappingHintGroup = TransformationFactory.eINSTANCE.createTransformationMappingHintGroup();
-							transformationMappingHintGroup.setAssociatedMappingHintGroup(g);
-							for (EObjectWrapper instance : instancesBySection.get(g.getHintGroup().getTargetMMSection())) {
-								transformationMappingHintGroup.getTargetElements().add(instance.getEObject());
-							}		
-							transformationMapping.getTransformationHintGroups().add(transformationMappingHintGroup);
 						}
 					}
 
@@ -1791,6 +1742,109 @@ public class GenericTransformationRunner {
 			MessageDialog.openError(PlatformUI.getWorkbench()
 					.getActiveWorkbenchWindow().getShell(), "Error",
 					"The XMI resource for the targetModel output could not be created.");
+			e.printStackTrace();
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * This populates the contents of the {@link #transformationModel} and stores it to the path denoted by 
+	 * {@link #transformationModelPath}.
+	 * <p/>
+	 * <b>Note:</b> If {@link #transformationModelPath} is set to '<em>null</em>', this does nothing.
+	 * 
+	 * @return '<em><b>true</b></em>' if the resource has successfully been created, '<em><b>false</b></em>' otherwise.
+	 */
+	private boolean generateTransformationModel() {
+
+		/*
+		 * nothing to be done
+		 */
+		if(this.transformationModelPath == null) {
+			return false;
+		}
+
+		/*
+		 * populate the transformation model
+		 */
+		this.transformationModel.setPamtramInstance(pamtramModel);
+		this.transformationModel.getSourceModels().addAll(sourceModels);
+		this.transformationModel.getTargetModels().add(targetModel.getContents().get(0));
+
+		if(this.transformationResult.getMatchingResult() == null) {
+			return false;
+		}
+
+		/*
+		 * Iterate over all selected mappings
+		 */
+		for (final MappingInstanceStorage selMap : this.transformationResult.getMatchingResult().getSelectedMappings()) {
+
+			/*
+			 * Create a TransformationMapping for the mapping
+			 */
+			TransformationMapping transformationMapping = TransformationFactory.eINSTANCE.createTransformationMapping();
+			transformationMapping.setAssociatedMapping(selMap.getMapping());
+			transformationMapping.setSourceElement(selMap.getAssociatedSourceModelElement());
+			this.transformationModel.getTransformationMappings().add(transformationMapping);
+
+			/*
+			 * Create a TransformationMappingHintGroup for each mapping hint group
+			 */
+			{
+				/*
+				 * Iterate over all mapping hint group (except inactive and empty ones)
+				 */
+				for (final MappingHintGroupType g : selMap.getMapping().getActiveMappingHintGroups()) {
+					if (g.getTargetMMSection() != null && g instanceof InstantiableMappingHintGroup) {
+
+						/*
+						 * Create a TransformationMappingHintGroup for the mapping hint group
+						 */
+						TransformationMappingHintGroup transformationMappingHintGroup = TransformationFactory.eINSTANCE.createTransformationMappingHintGroup();
+						transformationMappingHintGroup.setAssociatedMappingHintGroup((InstantiableMappingHintGroup) g);
+						for (EObjectWrapper instance : selMap.getInstancesBySection((InstantiableMappingHintGroup) g).get(g.getTargetMMSection())) {
+							transformationMappingHintGroup.getTargetElements().add(instance.getEObject());
+						}					
+						transformationMapping.getTransformationHintGroups().add(transformationMappingHintGroup);
+					}
+				}
+				for (final MappingHintGroupImporter g : selMap.getMapping().getActiveImportedMappingHintGroups()) {
+					if (g.getHintGroup() != null && g.getHintGroup().getTargetMMSection() != null) {
+
+						/*
+						 * Create a TransformationMappingHintGroup for the mapping hint group
+						 */
+						TransformationMappingHintGroup transformationMappingHintGroup = TransformationFactory.eINSTANCE.createTransformationMappingHintGroup();
+						transformationMappingHintGroup.setAssociatedMappingHintGroup(g);
+						for (EObjectWrapper instance : selMap.getInstancesBySection(g).get(g.getHintGroup().getTargetMMSection())) {
+							transformationMappingHintGroup.getTargetElements().add(instance.getEObject());
+						}					
+						transformationMapping.getTransformationHintGroups().add(transformationMappingHintGroup);
+					}
+				}
+			}
+		}
+
+		/*
+		 * save the transformation model
+		 */
+		try {
+			final XMIResourceFactoryImpl resFactory = new XMIResourceFactoryImpl();
+			final URI transformationModelUri = URI.createPlatformResourceURI(transformationModelPath, true);
+			XMIResource transformationModelResource = (XMIResource) resFactory.createResource(transformationModelUri);
+			transformationModelResource.getContents().add(this.transformationModel);
+			transformationModelResource.setEncoding("UTF-8");
+			final Map<Object, Object> options = new LinkedHashMap<>();
+			options.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
+			options.put(XMLResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.TRUE);
+			transformationModelResource.save(Collections.EMPTY_MAP);
+
+		} catch (final Exception e) {
+			MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Error",
+					"The XMI resource for the TransformationModel could not be created.");
 			e.printStackTrace();
 			return false;
 		}

@@ -46,6 +46,7 @@ import de.mfreund.gentrans.transformation.util.MonitorWrapper;
 import de.mfreund.pamtram.transformation.Transformation;
 import de.mfreund.pamtram.transformation.TransformationFactory;
 import de.mfreund.pamtram.transformation.TransformationMapping;
+import de.mfreund.pamtram.transformation.TransformationMappingHintGroup;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 import pamtram.PAMTraM;
 import pamtram.mapping.AttributeMapping;
@@ -60,6 +61,7 @@ import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.GlobalValue;
+import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappedAttributeValuePrepender;
 import pamtram.mapping.Mapping;
@@ -800,6 +802,14 @@ public class GenericTransformationRunner {
 		for (final MappingInstanceStorage selMap : matchingResult.getSelectedMappings()) {
 
 			/*
+			 * Create a TransformationMapping for the mapping
+			 */
+			TransformationMapping transformationMapping = TransformationFactory.eINSTANCE.createTransformationMapping();
+			transformationMapping.setAssociatedMapping(selMap.getMapping());
+			transformationMapping.setSourceElement(selMap.getAssociatedSourceModelElement());
+			this.transformationModel.getTransformationMappings().add(transformationMapping);
+
+			/*
 			 * Iterate over all mapping hint group (except inactive and empty ones)
 			 */
 			for (final MappingHintGroupType g : selMap.getMapping()
@@ -827,13 +837,24 @@ public class GenericTransformationRunner {
 									+ "'");
 						}
 					} else {
-						for (final TargetSectionClass section : instancesBySection
-								.keySet()) {
+						for (final TargetSectionClass section : instancesBySection.keySet()) {
 							/*
 							 * Store the created instance(s).
 							 */
 							selMap.addInstances((MappingHintGroup) g, section,
 									instancesBySection.get(section));
+						}
+
+						/*
+						 * Create a TransformationMappingHintGroup for the mapping hint group
+						 */
+						if(g instanceof InstantiableMappingHintGroup) {
+							TransformationMappingHintGroup transformationMappingHintGroup = TransformationFactory.eINSTANCE.createTransformationMappingHintGroup();
+							transformationMappingHintGroup.setAssociatedMappingHintGroup((InstantiableMappingHintGroup) g);
+							for (EObjectWrapper instance : instancesBySection.get(g.getTargetMMSection())) {
+								transformationMappingHintGroup.getTargetElements().add(instance.getEObject());
+							}					
+							transformationMapping.getTransformationHintGroups().add(transformationMappingHintGroup);
 						}
 					}
 				}
@@ -1019,11 +1040,19 @@ public class GenericTransformationRunner {
 								.getName() + "' using mapping rule '" + selMap.getMapping().getName() + "'");
 							}
 						} else {
-							for (final TargetSectionClass section : instancesBySection
-									.keySet()) {
-								selMap.addInstances(g, section,
-										instancesBySection.get(section));
+							for (final TargetSectionClass section : instancesBySection.keySet()) {
+								selMap.addInstances(g, section, instancesBySection.get(section));
 							}
+
+							/*
+							 * Create a TransformationMappingHintGroup for the hint group
+							 */
+							TransformationMappingHintGroup transformationMappingHintGroup = TransformationFactory.eINSTANCE.createTransformationMappingHintGroup();
+							transformationMappingHintGroup.setAssociatedMappingHintGroup(g);
+							for (EObjectWrapper instance : instancesBySection.get(g.getHintGroup().getTargetMMSection())) {
+								transformationMappingHintGroup.getTargetElements().add(instance.getEObject());
+							}		
+							transformationMapping.getTransformationHintGroups().add(transformationMappingHintGroup);
 						}
 					}
 

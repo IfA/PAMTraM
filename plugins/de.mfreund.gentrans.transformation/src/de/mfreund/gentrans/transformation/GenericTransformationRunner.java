@@ -3,6 +3,7 @@ package de.mfreund.gentrans.transformation;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -37,13 +38,20 @@ import org.eclipse.ui.progress.UIJob;
 
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
+import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.ExpandingResult;
+import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.MatchingResult;
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.util.ICancellable;
 import de.mfreund.gentrans.transformation.util.MonitorWrapper;
+import de.mfreund.pamtram.transformation.Transformation;
+import de.mfreund.pamtram.transformation.TransformationFactory;
+import de.mfreund.pamtram.transformation.TransformationMapping;
+import de.mfreund.pamtram.transformation.TransformationMappingHintGroup;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 import pamtram.PAMTraM;
+import pamtram.TargetSectionModel;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
@@ -56,6 +64,7 @@ import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.GlobalValue;
+import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappedAttributeValuePrepender;
 import pamtram.mapping.Mapping;
@@ -119,6 +128,38 @@ public class GenericTransformationRunner {
 	 * The target model resource where the result of the transformation shall be stored
 	 */
 	private XMIResource targetModel;
+
+	/**
+	 * The {@link Transformation} where the context of this generic transformation including
+	 * the associated source, target and pamtram model(s) as well as all {@link TransformationMapping TransformationMappings}
+	 * are stored. This will be returned at the end of the generic transformation and could e.g. be used to reason
+	 * about the performed transformation by means of additional algorithms.
+	 */
+	private Transformation transformationModel;
+
+	/**
+	 * This is the file path where the {@link #transformationModel} will be stored after the transformation.
+	 * If this is set to '<em>null</em>', the transformation model will not be stored.
+	 */
+	private String transformationModelPath;
+
+	/**
+	 * This is the getter for the {@link #transformationModelPath}.
+	 * 
+	 * @return The path where the {@link #transformationModel} will be stored after the transformation.
+	 */
+	public String getTransformationModelPath() {
+		return transformationModelPath;
+	}
+
+	/**
+	 * This is the setter for the {@link #transformationModelPath}.
+	 * 
+	 * @param transformationModelPath The path where the {@link #transformationModel} shall be stored after the transformation.
+	 */
+	public void setTransformationModelPath(String transformationModelPath) {
+		this.transformationModelPath = transformationModelPath;
+	}
 
 	/**
 	 * A {@link MessageConsoleStream message output stream} (Console view) that can be used to print messages to the user
@@ -212,6 +253,11 @@ public class GenericTransformationRunner {
 	private TargetSectionConnector targetSectionConnector;
 
 	/**
+	 * This describes the result of the transformation (after calling {@link #runTransformation(IProgressMonitor)}). 
+	 */
+	private TransformationResult transformationResult;
+
+	/**
 	 * This is the Getter for the {@link #targetSectionConnector}.
 	 * @return The {@link #targetSectionConnector} used by the transformation runner.
 	 */
@@ -228,6 +274,10 @@ public class GenericTransformationRunner {
 	 *            Path to the transformation model
 	 * @param targetFilePath
 	 *            File path to the transformation target
+	 * @param transformationModelPath
+	 * 				This is the file path where an instance of {@link Transformation} that contains information
+	 * about the execution will be stored after the transformation.
+	 * If this is set to '<em>null</em>', the transformation model will not be stored.
 	 * @param maxPathLength
 	 * 			  Maximum length of connection paths between target sections.
 	 * @param onlyAskOnceOnAmbiguousMappings
@@ -242,6 +292,7 @@ public class GenericTransformationRunner {
 			final ArrayList<String> sourceFilePaths,
 			final String pamtramPath, 
 			final String targetFilePath, 
+			final String transformationModelPath,
 			int maxPathLength,
 			boolean onlyAskOnceOnAmbiguousMappings, 
 			LibraryContextDescriptor targetLibraryContextDescriptor,
@@ -252,9 +303,17 @@ public class GenericTransformationRunner {
 		this.sourceFilePaths = sourceFilePaths;
 		this.pamtramPath = pamtramPath;
 		this.targetFilePath = targetFilePath;
+		this.setTransformationModelPath(transformationModelPath);
 		this.maxPathLength = maxPathLength;
 		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
 		this.targetLibraryContextDescriptor = targetLibraryContextDescriptor;
+		this.transformationResult = null;
+
+		/*
+		 * create the TransformationModel where the context of the transformation is stored
+		 */
+		this.transformationModel = TransformationFactory.eINSTANCE.createTransformation();
+		this.transformationModel.setId(Integer.toString(hashCode()));
 
 		/* 
 		 * make sure that all ambiguities are resolved completely by requiring an instance of
@@ -300,7 +359,7 @@ public class GenericTransformationRunner {
 			LibraryContextDescriptor targetLibraryContextDescriptor,
 			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 
-		return new GenericTransformationRunner(sourceFilePaths, pamtramPath, targetFilePath, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
+		return new GenericTransformationRunner(sourceFilePaths, pamtramPath, targetFilePath, null, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
 	}
 
 	/**
@@ -327,7 +386,7 @@ public class GenericTransformationRunner {
 			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 
 		GenericTransformationRunner instance = 
-				new GenericTransformationRunner(sourceFilePaths, null, targetFilePath, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
+				new GenericTransformationRunner(sourceFilePaths, null, targetFilePath, null, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
 		instance.pamtramModel = pamtramModel;
 		return instance;
 	}
@@ -356,7 +415,7 @@ public class GenericTransformationRunner {
 			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 
 		GenericTransformationRunner instance = 
-				new GenericTransformationRunner(null, null, targetFilePath, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
+				new GenericTransformationRunner(null, null, targetFilePath, null, -1, true, targetLibraryContextDescriptor, ambiguityResolvingStrategy);
 		instance.pamtramModel = pamtramModel;
 		instance.sourceModels = sourceModels;
 		return instance;
@@ -394,6 +453,9 @@ public class GenericTransformationRunner {
 			return;
 		}
 
+		// set the start date (after loading all models)
+		this.transformationModel.setStartDate(new Date());
+
 		/* 
 		 * before we can use the PAMTraM model, we need merge all extended HintGroups or Sections;
 		 * that way, we get a 'clean' model (without any extensions) that we can handle in a normal way
@@ -423,13 +485,12 @@ public class GenericTransformationRunner {
 		final List<Mapping> suitableMappings = pamtramModel.getActiveMappings();
 		// TODO apply contextModel
 
-		boolean successful = false;
 		try {
 			/*
 			 * try to execute all active mappings (this includes the 4 resp. 5 main steps of
 			 * the transformation
 			 */
-			successful = executeMappings(targetModel, sourceModels, pamtramModel, suitableMappings,
+			transformationResult = executeMappings(targetModel, sourceModels, pamtramModel, suitableMappings,
 					monitorWrapper); 			
 		} catch (RuntimeException e) {
 			consoleStream.println(e.getMessage());
@@ -437,7 +498,10 @@ public class GenericTransformationRunner {
 			throw e;
 		}
 
-		if (successful && !isCancelled) {
+		// set the end date (before storing)
+		this.transformationModel.setEndDate(new Date());
+
+		if (transformationResult != null && transformationResult.getOverallResult() && !isCancelled) {
 			// save targetModel
 			try {
 				// try to save the xmi resource
@@ -456,7 +520,12 @@ public class GenericTransformationRunner {
 				return;
 			}
 
+			/*
+			 * populate and store the transformation model if necessary
+			 */
+			generateTransformationModel();
 		}
+
 
 	}
 
@@ -482,9 +551,14 @@ public class GenericTransformationRunner {
 	 * @param monitor The {@link IProgressMonitor monitor} that shall be used to visualize the progress of the transformation.
 	 * @return '<em><b>true</b></em>' if the transformation was performed successfully, '<em><b>false</b></em>' otherwise
 	 */
-	private boolean executeMappings(final XMIResource targetModel, final ArrayList<EObject> sourceModels,
+	private TransformationResult executeMappings(final XMIResource targetModel, final ArrayList<EObject> sourceModels,
 			final PAMTraM pamtramModel, final List<Mapping> suitableMappings,
 			final IProgressMonitor monitor) {
+
+		/*
+		 * The TransformationResult that we will return in the end.
+		 */
+		TransformationResult transformationResult = new TransformationResult();
 
 		// generate storage objects and generators
 		final AttributeValueModifierExecutor attributeValueModifier = new AttributeValueModifierExecutor(
@@ -494,9 +568,10 @@ public class GenericTransformationRunner {
 		 * Perform the 'matching' step of the transformation
 		 */
 		MatchingResult matchingResult = performMatching(sourceModels, suitableMappings, attributeValueModifier, monitor);
+		transformationResult.setMatchingResult(matchingResult);
 
 		if(matchingResult.isCanceled()) {
-			return false;
+			return transformationResult;
 		}
 
 		/*
@@ -505,15 +580,17 @@ public class GenericTransformationRunner {
 		ExpandingResult expandingResult = performExpanding(
 				matchingResult, pamtramModel.getGlobalValues(), monitor,
 				attributeValueModifier);
+		transformationResult.setExpandingResult(expandingResult);
 
 		/*
 		 * Perform the 'joining' step of the transformation
 		 */
 		boolean joiningResult = performJoining(targetModel, suitableMappings,
 				expandingResult, attributeValueModifier, matchingResult, monitor); 
+		transformationResult.setJoiningResult(joiningResult);
 
 		if (!joiningResult) {
-			return false;
+			return transformationResult;
 		}
 
 		/*
@@ -521,9 +598,10 @@ public class GenericTransformationRunner {
 		 */
 		boolean linkingResult = performLinking(matchingResult,
 				targetSectionInstantiator, monitor);
+		transformationResult.setLinkingResult(linkingResult);
 
 		if(!linkingResult) {
-			return false;
+			return transformationResult;
 		}
 
 		/*
@@ -531,10 +609,11 @@ public class GenericTransformationRunner {
 		 */
 		if(targetModel.getContents().isEmpty()) {
 			consoleStream.println("Something seems to be wrong! Target model is empty!");
-			return false;
 		} else {
-			return performInstantiatingLibraryEntries(targetModel.getContents().get(0), monitor);
+			boolean libEntryExpandingResult = performInstantiatingLibraryEntries(targetModel.getContents().get(0), monitor);
+			transformationResult.setLibEntryExpandingResult(libEntryExpandingResult);
 		}
+		return transformationResult;
 
 	}
 
@@ -733,8 +812,7 @@ public class GenericTransformationRunner {
 									+ "'");
 						}
 					} else {
-						for (final TargetSectionClass section : instancesBySection
-								.keySet()) {
+						for (final TargetSectionClass section : instancesBySection.keySet()) {
 							/*
 							 * Store the created instance(s).
 							 */
@@ -925,10 +1003,8 @@ public class GenericTransformationRunner {
 								.getName() + "' using mapping rule '" + selMap.getMapping().getName() + "'");
 							}
 						} else {
-							for (final TargetSectionClass section : instancesBySection
-									.keySet()) {
-								selMap.addInstances(g, section,
-										instancesBySection.get(section));
+							for (final TargetSectionClass section : instancesBySection.keySet()) {
+								selMap.addInstances(g, section, instancesBySection.get(section));
 							}
 						}
 					}
@@ -1675,6 +1751,114 @@ public class GenericTransformationRunner {
 	}
 
 	/**
+	 * This populates the contents of the {@link #transformationModel} and stores it to the path denoted by 
+	 * {@link #transformationModelPath}.
+	 * <p/>
+	 * <b>Note:</b> If {@link #transformationModelPath} is set to '<em>null</em>', this does nothing.
+	 * 
+	 * @return '<em><b>true</b></em>' if the resource has successfully been created, '<em><b>false</b></em>' otherwise.
+	 */
+	private boolean generateTransformationModel() {
+
+		/*
+		 * nothing to be done
+		 */
+		if(this.transformationModelPath == null) {
+			return false;
+		}
+
+		/*
+		 * populate the transformation model
+		 */
+		this.transformationModel.setPamtramInstance(pamtramModel); // add pamtram model
+		for (TargetSectionModel targetSectionModel : pamtramModel.getTargetSectionModel()) { // add (external) library entries
+			for (LibraryEntry libEntry : targetSectionModel.getLibraryElements()) {
+				this.transformationModel.getLibraryEntries().add(libEntry.getOriginalLibraryEntry());
+			}
+		}
+		this.transformationModel.getSourceModels().addAll(sourceModels); // add source models
+		this.transformationModel.getTargetModels().add(targetModel.getContents().get(0)); // add target models
+
+		if(this.transformationResult.getMatchingResult() == null) {
+			return false;
+		}
+
+		/*
+		 * Iterate over all selected mappings
+		 */
+		for (final MappingInstanceStorage selMap : this.transformationResult.getMatchingResult().getSelectedMappings()) {
+
+			/*
+			 * Create a TransformationMapping for the mapping
+			 */
+			TransformationMapping transformationMapping = TransformationFactory.eINSTANCE.createTransformationMapping();
+			transformationMapping.setAssociatedMapping(selMap.getMapping());
+			transformationMapping.setSourceElement(selMap.getAssociatedSourceModelElement());
+			this.transformationModel.getTransformationMappings().add(transformationMapping);
+
+			/*
+			 * Create a TransformationMappingHintGroup for each mapping hint group
+			 */
+			{
+				/*
+				 * Iterate over all mapping hint group (except inactive and empty ones)
+				 */
+				for (final MappingHintGroupType g : selMap.getMapping().getActiveMappingHintGroups()) {
+					if (g.getTargetMMSection() != null && g instanceof InstantiableMappingHintGroup) {
+
+						/*
+						 * Create a TransformationMappingHintGroup for the mapping hint group
+						 */
+						TransformationMappingHintGroup transformationMappingHintGroup = TransformationFactory.eINSTANCE.createTransformationMappingHintGroup();
+						transformationMappingHintGroup.setAssociatedMappingHintGroup((InstantiableMappingHintGroup) g);
+						for (EObjectWrapper instance : selMap.getInstancesBySection((InstantiableMappingHintGroup) g).get(g.getTargetMMSection())) {
+							transformationMappingHintGroup.getTargetElements().add(instance.getEObject());
+						}					
+						transformationMapping.getTransformationHintGroups().add(transformationMappingHintGroup);
+					}
+				}
+				for (final MappingHintGroupImporter g : selMap.getMapping().getActiveImportedMappingHintGroups()) {
+					if (g.getHintGroup() != null && g.getHintGroup().getTargetMMSection() != null) {
+
+						/*
+						 * Create a TransformationMappingHintGroup for the mapping hint group
+						 */
+						TransformationMappingHintGroup transformationMappingHintGroup = TransformationFactory.eINSTANCE.createTransformationMappingHintGroup();
+						transformationMappingHintGroup.setAssociatedMappingHintGroup(g);
+						for (EObjectWrapper instance : selMap.getInstancesBySection(g).get(g.getHintGroup().getTargetMMSection())) {
+							transformationMappingHintGroup.getTargetElements().add(instance.getEObject());
+						}					
+						transformationMapping.getTransformationHintGroups().add(transformationMappingHintGroup);
+					}
+				}
+			}
+		}
+
+		/*
+		 * save the transformation model
+		 */
+		try {
+			final XMIResourceFactoryImpl resFactory = new XMIResourceFactoryImpl();
+			final URI transformationModelUri = URI.createPlatformResourceURI(transformationModelPath, true);
+			XMIResource transformationModelResource = (XMIResource) resFactory.createResource(transformationModelUri);
+			transformationModelResource.getContents().add(this.transformationModel);
+			transformationModelResource.setEncoding("UTF-8");
+			final Map<Object, Object> options = new LinkedHashMap<>();
+			options.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
+			options.put(XMLResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.TRUE);
+			transformationModelResource.save(Collections.EMPTY_MAP);
+
+		} catch (final Exception e) {
+			MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Error",
+					"The XMI resource for the TransformationModel could not be created.");
+			e.printStackTrace();
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
 	 * Find an existing output console for the transformation or create a new one. 
 	 * Copied from: @see <a href="http://wiki.eclipse.org/FAQ_How_do_I_write_to_the_console_from_a_plug-in%3F"
 	 * >Eclipse FAQ</a>
@@ -1732,211 +1916,343 @@ public class GenericTransformationRunner {
 	}
 
 	/**
-	 * This class encapsulates the various results of the <em>matching</em> process during a generic transformation:
+	 * This class encapsulates the results of the various steps performed during a generic transformation:
 	 * <br />
 	 * <ul>
-	 * 	<li>the status of the matching process,</li>
-	 * 	<li>a list of selected {@link MappingInstanceStorage mappings},</li>
-	 *  <li>a map of selected {@link MappingInstanceStorage mappings}, associated with the {@link Mapping} that they represent,</li>
-	 *  <li>{@link HintValueStorage exported hint values},</li>
-	 *  <li>a map describing values for {@link GlobalAttribute GlobalAttributes}</li>
+	 * 	<li> a {@link MatchingResult} containing the results of the <em>matching</em> process,</li>
+	 * 	<li> an {@link ExpandingResult} containing the results of the <em>expanding</em> process,</li>
+	 *  <li> a boolean indicating the result of the <em>joining</em> process,</li>
+	 *  <li> a boolean indicating the result of the <em>linking</em> process, and</li>
+	 *  <li> a boolean indicating the result of the <em>library entry expanding</em> process.</li>
 	 * </ul>
+	 * 
 	 * @author mfreund
-	 *
 	 */
-	static class MatchingResult {
+	static class TransformationResult {
 
 		/**
-		 * This describes the status of the matching process, '<em><b>true</b></em>' meaning that the matching process has been
-		 * canceled, '<em><b>false</b></em>' otherwise.
+		 * This class encapsulates the various results of the <em>matching</em> process during a generic transformation:
+		 * <br />
+		 * <ul>
+		 * 	<li>the status of the matching process,</li>
+		 * 	<li>a list of selected {@link MappingInstanceStorage mappings},</li>
+		 *  <li>a map of selected {@link MappingInstanceStorage mappings}, associated with the {@link Mapping} that they represent,</li>
+		 *  <li>{@link HintValueStorage exported hint values},</li>
+		 *  <li>a map describing values for {@link GlobalAttribute GlobalAttributes}</li>
+		 * </ul>
+		 * @author mfreund
+		 *
 		 */
-		private final boolean canceled;
+		static class MatchingResult {
 
-		/**
-		 * This is the getter for the {@link #canceled}.
-		 * @return The status of the matching process, '<em><b>true</b></em>' meaning that the matching process has been
-		 * canceled, '<em><b>false</b></em>' otherwise.
-		 */
-		boolean isCanceled() {
-			return canceled; 
+			/**
+			 * This describes the status of the matching process, '<em><b>true</b></em>' meaning that the matching process has been
+			 * canceled, '<em><b>false</b></em>' otherwise.
+			 */
+			private final boolean canceled;
+
+			/**
+			 * This is the getter for the {@link #canceled}.
+			 * @return The status of the matching process, '<em><b>true</b></em>' meaning that the matching process has been
+			 * canceled, '<em><b>false</b></em>' otherwise.
+			 */
+			boolean isCanceled() {
+				return canceled; 
+			}
+
+			/**
+			 * This is the list of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
+			 * process.
+			 */
+			private final LinkedList<MappingInstanceStorage> selectedMappings;
+
+			/**
+			 * This is the getter for the {@link #selectedMappings}.
+			 * @return The list of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
+			 * process.
+			 */
+			LinkedList<MappingInstanceStorage> getSelectedMappings() {
+				return this.selectedMappings;
+			}
+
+			/**
+			 * This the map of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
+			 * process associated with the {@link Mapping} that they represent.
+			 */
+			private final LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping;
+
+			/**
+			 * This is the getter for the {@link #selectedMappingsByMapping}.
+			 * @return The map of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
+			 * process associated with the {@link Mapping} that they represent. 
+			 */
+			LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> getSelectedMappingsByMapping() {
+				return selectedMappingsByMapping;
+			}
+
+			/**
+			 * This is the {@link HintValueStorage} containing values for exported mapping hints.
+			 */
+			private final HintValueStorage exportedMappingHints;
+
+			/**
+			 * This is the getter for the {@link #exportedMappingHints}.
+			 * @return The {@link HintValueStorage} containing values for exported mapping hints.
+			 */
+			HintValueStorage getExportedMappingHints() {
+				return exportedMappingHints;
+			}
+
+			/**
+			 * This is the map of values for global attributes associated with the {@link GlobalAttribute} that
+			 * they represent.
+			 */
+			private final Map<GlobalAttribute, String> globalAttributeValues;
+
+			/**
+			 * This is the getter for the {@link #globalAttributeValues}.
+			 * @return The map of values for global attributes associated with the {@link GlobalAttribute} that
+			 * they represent.
+			 */
+			Map<GlobalAttribute, String> getGlobalAttributeValues() {
+				return globalAttributeValues;
+			}
+
+			/**
+			 * This constructs an instance.
+			 * 
+			 * @param canceled '<em><b>true</b></em>' indicates that the matching process was canceled, '<em><b>false</b></em>' indicates that
+			 * the matching process completed successfully.
+			 * @param selectedMappings The list of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
+			 * process.
+			 * @param selectedMappingsByMapping The map of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
+			 * process associated with the {@link Mapping} that they represent. 
+			 * @param exportedMappingHints The {@link HintValueStorage} containing values for exported mapping hints.
+			 * @param globalAttributeValues The map of values for global attributes associated with the {@link GlobalAttribute} that
+			 * they represent.
+			 */
+			private MatchingResult(
+					boolean canceled,
+					LinkedList<MappingInstanceStorage> selectedMappings, 
+					LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping,
+					HintValueStorage exportedMappingHints,
+					Map<GlobalAttribute, String> globalAttributeValues) {
+				this.canceled = canceled;
+				this.selectedMappings = selectedMappings;
+				this.selectedMappingsByMapping = selectedMappingsByMapping;
+				this.exportedMappingHints = exportedMappingHints;
+				this.globalAttributeValues = globalAttributeValues;
+			}
+
+			/**
+			 * This constructs an instance for a matching process that has been canceled.
+			 * @return An instance of {@link MatchingResult} indicating that the matching was canceled.
+			 */
+			public static MatchingResult createMatchingCanceledResult() {
+				return new MatchingResult(true, null, null, null, null);
+			}
+
+			/**
+			 * This constructs an instance for a matching process that has finished successfully.
+			 * @param selectedMappings The list of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
+			 * process.
+			 * @param selectedMappingsByMapping The map of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
+			 * process associated with the {@link Mapping} that they represent. 
+			 * @param exportedMappingHints The {@link HintValueStorage} containing values for exported mapping hints.
+			 * @param globalAttributeValues The map of values for global attributes associated with the {@link GlobalAttribute} that
+			 * they represent.
+			 * @return An instance of {@link MatchingResult} indicating that the matching has completed successfully.
+			 */
+			public static MatchingResult createMatchingCompletedResult(
+					LinkedList<MappingInstanceStorage> selectedMappings, 
+					LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping,
+					HintValueStorage exportedMappingHints,
+					Map<GlobalAttribute, String> globalAttributeValues) {
+				return new MatchingResult(false, selectedMappings, selectedMappingsByMapping, exportedMappingHints, globalAttributeValues);
+			}
 		}
 
 		/**
-		 * This is the list of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
-		 * process.
+		 * This class encapsulates the various results of the <em>expanding</em> process during a generic transformation:
+		 * <br />
+		 * <ul>
+		 * 	<li>an {@link AttributeValueRegistry} containing registered attribute values,</li>
+		 *  <li>a {@link TargetSectionRegistry} containing/representing created target sections</li>
+		 * </ul>
+		 * @author mfreund
+		 *
 		 */
-		private final LinkedList<MappingInstanceStorage> selectedMappings;
+		static class ExpandingResult {
 
-		/**
-		 * This is the getter for the {@link #selectedMappings}.
-		 * @return The list of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
-		 * process.
-		 */
-		LinkedList<MappingInstanceStorage> getSelectedMappings() {
-			return this.selectedMappings;
+			/**
+			 * An {@link AttributeValueRegistry} containing registered attribute values.
+			 */
+			private final AttributeValueRegistry attributeValueRegistry;
+
+			/**
+			 * This is the getter for the {@link #attributeValueRegistry}.
+			 * @return An {@link AttributeValueRegistry} containing registered attribute values.
+			 */
+			AttributeValueRegistry getAttributeValueRegistry() {
+				return attributeValueRegistry;
+			}
+
+			/**
+			 * A {@link TargetSectionRegistry} containing/representing created target sections.
+			 */
+			private final TargetSectionRegistry targetSectionRegistry;
+
+			/**
+			 * This is the getter for the {@link #targetSectionRegistry}.
+			 * return A {@link TargetSectionRegistry} containing/representing created target sections.
+			 */
+			TargetSectionRegistry getTargetSectionRegistry() {
+				return targetSectionRegistry;
+			}
+
+			/**
+			 * This constructs an instance for an expanding process.
+			 * 
+			 * @param attributeValueRegistry The {@link AttributeValueRegistry} containing registered attribute values.
+			 * @param targetSectionRegistry The {@link TargetSectionRegistry} containing/representing created target sections.
+			 */
+			private ExpandingResult(
+					AttributeValueRegistry attributeValueRegistry, 
+					TargetSectionRegistry targetSectionRegistry) {
+
+				this.attributeValueRegistry = attributeValueRegistry;
+				this.targetSectionRegistry = targetSectionRegistry;
+			}
+
+			/**
+			 * This constructs an instance for an expanding process.
+			 * 
+			 * @param attributeValueRegistry The {@link AttributeValueRegistry} containing registered attribute values.
+			 * @param targetSectionRegistry The {@link TargetSectionRegistry} containing/representing created target sections.
+			 * @return An instance of {@link ExpandingResult}.
+			 */
+			public static ExpandingResult createExpandingResult(
+					AttributeValueRegistry attributeValueRegistry, 
+					TargetSectionRegistry targetSectionRegistry) {
+
+				return new ExpandingResult(attributeValueRegistry, targetSectionRegistry); 
+			}
 		}
 
 		/**
-		 * This the map of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
-		 * process associated with the {@link Mapping} that they represent.
+		 * An instance of {@link MatchingResult} containing the results of the <em>matching</em> process.
 		 */
-		private final LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping;
+		private MatchingResult matchingResult;
 
 		/**
-		 * This is the getter for the {@link #selectedMappingsByMapping}.
-		 * @return The map of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
-		 * process associated with the {@link Mapping} that they represent. 
+		 * An instance of {@link ExpandingResult} containing the results of the <em>expanding</em> process.
 		 */
-		LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> getSelectedMappingsByMapping() {
-			return selectedMappingsByMapping;
+		private ExpandingResult expandingResult;
+
+		/**
+		 * A boolean indicating the result of the <em>joining</em> process.
+		 */
+		private boolean joiningResult;
+
+		/**
+		 * A boolean indicating the result of the <em>linking</em> process.
+		 */
+		private boolean linkingResult;
+
+		/**
+		 * A boolean indicating the result of the <em>library entry expanding</em> process.
+		 */
+		private boolean libEntryExpandingResult;
+
+		/**
+		 * @return the matchingResult
+		 */
+		public MatchingResult getMatchingResult() {
+			return matchingResult;
 		}
 
 		/**
-		 * This is the {@link HintValueStorage} containing values for exported mapping hints.
+		 * @param matchingResult the matchingResult to set
 		 */
-		private final HintValueStorage exportedMappingHints;
-
-		/**
-		 * This is the getter for the {@link #exportedMappingHints}.
-		 * @return The {@link HintValueStorage} containing values for exported mapping hints.
-		 */
-		HintValueStorage getExportedMappingHints() {
-			return exportedMappingHints;
+		public void setMatchingResult(MatchingResult matchingResult) {
+			this.matchingResult = matchingResult;
 		}
 
 		/**
-		 * This is the map of values for global attributes associated with the {@link GlobalAttribute} that
-		 * they represent.
+		 * @return the expandingResult
 		 */
-		private final Map<GlobalAttribute, String> globalAttributeValues;
-
-		/**
-		 * This is the getter for the {@link #globalAttributeValues}.
-		 * @return The map of values for global attributes associated with the {@link GlobalAttribute} that
-		 * they represent.
-		 */
-		Map<GlobalAttribute, String> getGlobalAttributeValues() {
-			return globalAttributeValues;
+		public ExpandingResult getExpandingResult() {
+			return expandingResult;
 		}
 
 		/**
-		 * This constructs an instance.
+		 * @param expandingResult the expandingResult to set
+		 */
+		public void setExpandingResult(ExpandingResult expandingResult) {
+			this.expandingResult = expandingResult;
+		}
+
+		/**
+		 * @return the joiningResult
+		 */
+		public boolean isJoiningResult() {
+			return joiningResult;
+		}
+
+		/**
+		 * @param joiningResult the joiningResult to set
+		 */
+		public void setJoiningResult(boolean joiningResult) {
+			this.joiningResult = joiningResult;
+		}
+
+		/**
+		 * @return the linkingResult
+		 */
+		public boolean isLinkingResult() {
+			return linkingResult;
+		}
+
+		/**
+		 * @param linkingResult the linkingResult to set
+		 */
+		public void setLinkingResult(boolean linkingResult) {
+			this.linkingResult = linkingResult;
+		}
+
+		/**
+		 * @return the libEntryExpandingResult
+		 */
+		public boolean isLibEntryExpandingResult() {
+			return libEntryExpandingResult;
+		}
+
+		/**
+		 * @param libEntryExpandingResult the libEntryExpandingResult to set
+		 */
+		public void setLibEntryExpandingResult(boolean libEntryExpandingResult) {
+			this.libEntryExpandingResult = libEntryExpandingResult;
+		}
+
+		/**
+		 * Returns the overall status of the transformation.
 		 * 
-		 * @param canceled '<em><b>true</b></em>' indicates that the matching process was canceled, '<em><b>false</b></em>' indicates that
-		 * the matching process completed successfully.
-		 * @param selectedMappings The list of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
-		 * process.
-		 * @param selectedMappingsByMapping The map of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
-		 * process associated with the {@link Mapping} that they represent. 
-		 * @param exportedMappingHints The {@link HintValueStorage} containing values for exported mapping hints.
-		 * @param globalAttributeValues The map of values for global attributes associated with the {@link GlobalAttribute} that
-		 * they represent.
+		 * @return '<em><b>true</b></em>' if and only if every phase of the transformation completed successfully; '<em><b>false</b></em>' otherwise.
 		 */
-		private MatchingResult(
-				boolean canceled,
-				LinkedList<MappingInstanceStorage> selectedMappings, 
-				LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping,
-				HintValueStorage exportedMappingHints,
-				Map<GlobalAttribute, String> globalAttributeValues) {
-			this.canceled = canceled;
-			this.selectedMappings = selectedMappings;
-			this.selectedMappingsByMapping = selectedMappingsByMapping;
-			this.exportedMappingHints = exportedMappingHints;
-			this.globalAttributeValues = globalAttributeValues;
-		}
-
-		/**
-		 * This constructs an instance for a matching process that has been canceled.
-		 * @return An instance of {@link MatchingResult} indicating that the matching was canceled.
-		 */
-		public static MatchingResult createMatchingCanceledResult() {
-			return new MatchingResult(true, null, null, null, null);
-		}
-
-		/**
-		 * This constructs an instance for a matching process that has finished successfully.
-		 * @param selectedMappings The list of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
-		 * process.
-		 * @param selectedMappingsByMapping The map of {@link MappingInstanceStorage mappings} that have been selected during the <em>matching</em>
-		 * process associated with the {@link Mapping} that they represent. 
-		 * @param exportedMappingHints The {@link HintValueStorage} containing values for exported mapping hints.
-		 * @param globalAttributeValues The map of values for global attributes associated with the {@link GlobalAttribute} that
-		 * they represent.
-		 * @return An instance of {@link MatchingResult} indicating that the matching has completed successfully.
-		 */
-		public static MatchingResult createMatchingCompletedResult(
-				LinkedList<MappingInstanceStorage> selectedMappings, 
-				LinkedHashMap<Mapping, LinkedList<MappingInstanceStorage>> selectedMappingsByMapping,
-				HintValueStorage exportedMappingHints,
-				Map<GlobalAttribute, String> globalAttributeValues) {
-			return new MatchingResult(false, selectedMappings, selectedMappingsByMapping, exportedMappingHints, globalAttributeValues);
-		}
-	}
-
-	/**
-	 * This class encapsulates the various results of the <em>expanding</em> process during a generic transformation:
-	 * <br />
-	 * <ul>
-	 * 	<li>an {@link AttributeValueRegistry} containing registered attribute values,</li>
-	 *  <li>a {@link TargetSectionRegistry} containing/representing created target sections</li>
-	 * </ul>
-	 * @author mfreund
-	 *
-	 */
-	static class ExpandingResult {
-
-		/**
-		 * An {@link AttributeValueRegistry} containing registered attribute values.
-		 */
-		private final AttributeValueRegistry attributeValueRegistry;
-
-		/**
-		 * This is the getter for the {@link #attributeValueRegistry}.
-		 * @return An {@link AttributeValueRegistry} containing registered attribute values.
-		 */
-		AttributeValueRegistry getAttributeValueRegistry() {
-			return attributeValueRegistry;
-		}
-
-		/**
-		 * A {@link TargetSectionRegistry} containing/representing created target sections.
-		 */
-		private final TargetSectionRegistry targetSectionRegistry;
-
-		/**
-		 * This is the getter for the {@link #targetSectionRegistry}.
-		 * return A {@link TargetSectionRegistry} containing/representing created target sections.
-		 */
-		TargetSectionRegistry getTargetSectionRegistry() {
-			return targetSectionRegistry;
-		}
-
-		/**
-		 * This constructs an instance for an expanding process.
-		 * 
-		 * @param attributeValueRegistry The {@link AttributeValueRegistry} containing registered attribute values.
-		 * @param targetSectionRegistry The {@link TargetSectionRegistry} containing/representing created target sections.
-		 */
-		private ExpandingResult(
-				AttributeValueRegistry attributeValueRegistry, 
-				TargetSectionRegistry targetSectionRegistry) {
-
-			this.attributeValueRegistry = attributeValueRegistry;
-			this.targetSectionRegistry = targetSectionRegistry;
-		}
-
-		/**
-		 * This constructs an instance for an expanding process.
-		 * 
-		 * @param attributeValueRegistry The {@link AttributeValueRegistry} containing registered attribute values.
-		 * @param targetSectionRegistry The {@link TargetSectionRegistry} containing/representing created target sections.
-		 * @return An instance of {@link ExpandingResult}.
-		 */
-		public static ExpandingResult createExpandingResult(
-				AttributeValueRegistry attributeValueRegistry, 
-				TargetSectionRegistry targetSectionRegistry) {
-
-			return new ExpandingResult(attributeValueRegistry, targetSectionRegistry); 
+		public boolean getOverallResult() {
+			if(getMatchingResult() == null || getMatchingResult().isCanceled()) {
+				return false;
+			} else if(getExpandingResult() == null) {
+				return false;
+			} else if(!isJoiningResult()) {
+				return false;
+			} else if(!isLinkingResult()) {
+				return false;
+			} else if(!isLibEntryExpandingResult()) {
+				return false;
+			} else {
+				return true;
+			}
 		}
 	}
 }

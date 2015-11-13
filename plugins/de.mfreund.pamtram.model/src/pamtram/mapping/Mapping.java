@@ -25,7 +25,7 @@ import pamtram.condition.ComplexCondition;
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getMapping()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='containsHintGroups containsDeactivatedHintGroups'"
+ * @model
  * @generated
  */
 public interface Mapping extends MappingType {

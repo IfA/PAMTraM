@@ -5,13 +5,11 @@
 package pamtram.validation;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EPackage;
 
 import pamtram.MappingModel;
 import pamtram.SourceSectionModel;
 import pamtram.TargetSectionModel;
-import pamtram.TransformationModel;
 
 /**
  * A sample validator interface for {@link pamtram.PAMTraM}.
@@ -26,5 +24,4 @@ public interface PAMTraMValidator {
 	boolean validateSourceSectionModel(SourceSectionModel value);
 	boolean validateTargetSectionModel(TargetSectionModel value);
 	boolean validateMappingModel(MappingModel value);
-	boolean validateTransformationModel(TransformationModel value);
 }

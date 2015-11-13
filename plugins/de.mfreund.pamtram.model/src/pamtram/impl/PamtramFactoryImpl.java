@@ -13,7 +13,6 @@ import pamtram.PamtramFactory;
 import pamtram.PamtramPackage;
 import pamtram.SourceSectionModel;
 import pamtram.TargetSectionModel;
-import pamtram.TransformationModel;
 
 /**
  * <!-- begin-user-doc -->
@@ -63,7 +62,6 @@ public class PamtramFactoryImpl extends EFactoryImpl implements PamtramFactory {
 			case PamtramPackage.SOURCE_SECTION_MODEL: return createSourceSectionModel();
 			case PamtramPackage.TARGET_SECTION_MODEL: return createTargetSectionModel();
 			case PamtramPackage.MAPPING_MODEL: return createMappingModel();
-			case PamtramPackage.TRANSFORMATION_MODEL: return createTransformationModel();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -107,16 +105,6 @@ public class PamtramFactoryImpl extends EFactoryImpl implements PamtramFactory {
 	public MappingModel createMappingModel() {
 		MappingModelImpl mappingModel = new MappingModelImpl();
 		return mappingModel;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TransformationModel createTransformationModel() {
-		TransformationModelImpl transformationModel = new TransformationModelImpl();
-		return transformationModel;
 	}
 
 	/**

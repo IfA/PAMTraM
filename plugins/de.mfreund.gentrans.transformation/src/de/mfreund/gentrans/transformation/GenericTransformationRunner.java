@@ -51,6 +51,7 @@ import de.mfreund.pamtram.transformation.TransformationMapping;
 import de.mfreund.pamtram.transformation.TransformationMappingHintGroup;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 import pamtram.PAMTraM;
+import pamtram.TargetSectionModel;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
@@ -1769,9 +1770,14 @@ public class GenericTransformationRunner {
 		/*
 		 * populate the transformation model
 		 */
-		this.transformationModel.setPamtramInstance(pamtramModel);
-		this.transformationModel.getSourceModels().addAll(sourceModels);
-		this.transformationModel.getTargetModels().add(targetModel.getContents().get(0));
+		this.transformationModel.setPamtramInstance(pamtramModel); // add pamtram model
+		for (TargetSectionModel targetSectionModel : pamtramModel.getTargetSectionModel()) { // add (external) library entries
+			for (LibraryEntry libEntry : targetSectionModel.getLibraryElements()) {
+				this.transformationModel.getLibraryEntries().add(libEntry.getOriginalLibraryEntry());
+			}
+		}
+		this.transformationModel.getSourceModels().addAll(sourceModels); // add source models
+		this.transformationModel.getTargetModels().add(targetModel.getContents().get(0)); // add target models
 
 		if(this.transformationResult.getMatchingResult() == null) {
 			return false;

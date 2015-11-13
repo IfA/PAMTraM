@@ -6,6 +6,7 @@ import de.mfreund.pamtram.transformation.Transformation;
 import de.mfreund.pamtram.transformation.TransformationMapping;
 import de.mfreund.pamtram.transformation.TransformationPackage;
 
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry;
 import java.util.Collection;
 import java.util.Date;
 
@@ -39,6 +40,7 @@ import pamtram.PAMTraM;
  *   <li>{@link de.mfreund.pamtram.transformation.impl.TransformationImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.mfreund.pamtram.transformation.impl.TransformationImpl#getId <em>Id</em>}</li>
  *   <li>{@link de.mfreund.pamtram.transformation.impl.TransformationImpl#getPamtramInstance <em>Pamtram Instance</em>}</li>
+ *   <li>{@link de.mfreund.pamtram.transformation.impl.TransformationImpl#getLibraryEntries <em>Library Entries</em>}</li>
  *   <li>{@link de.mfreund.pamtram.transformation.impl.TransformationImpl#getSourceModels <em>Source Models</em>}</li>
  *   <li>{@link de.mfreund.pamtram.transformation.impl.TransformationImpl#getTargetModels <em>Target Models</em>}</li>
  *   <li>{@link de.mfreund.pamtram.transformation.impl.TransformationImpl#getTransformationMappings <em>Transformation Mappings</em>}</li>
@@ -136,6 +138,16 @@ public class TransformationImpl extends MinimalEObjectImpl.Container implements 
 	 * @ordered
 	 */
 	protected PAMTraM pamtramInstance;
+
+	/**
+	 * The cached value of the '{@link #getLibraryEntries() <em>Library Entries</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLibraryEntries()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<LibraryEntry> libraryEntries;
 
 	/**
 	 * The cached value of the '{@link #getSourceModels() <em>Source Models</em>}' containment reference list.
@@ -318,6 +330,18 @@ public class TransformationImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<LibraryEntry> getLibraryEntries() {
+		if (libraryEntries == null) {
+			libraryEntries = new EObjectContainmentEList<LibraryEntry>(LibraryEntry.class, this, TransformationPackage.TRANSFORMATION__LIBRARY_ENTRIES);
+		}
+		return libraryEntries;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<EObject> getSourceModels() {
 		if (sourceModels == null) {
 			sourceModels = new EObjectContainmentEList<EObject>(EObject.class, this, TransformationPackage.TRANSFORMATION__SOURCE_MODELS);
@@ -359,6 +383,8 @@ public class TransformationImpl extends MinimalEObjectImpl.Container implements 
 		switch (featureID) {
 			case TransformationPackage.TRANSFORMATION__PAMTRAM_INSTANCE:
 				return basicSetPamtramInstance(null, msgs);
+			case TransformationPackage.TRANSFORMATION__LIBRARY_ENTRIES:
+				return ((InternalEList<?>)getLibraryEntries()).basicRemove(otherEnd, msgs);
 			case TransformationPackage.TRANSFORMATION__SOURCE_MODELS:
 				return ((InternalEList<?>)getSourceModels()).basicRemove(otherEnd, msgs);
 			case TransformationPackage.TRANSFORMATION__TARGET_MODELS:
@@ -387,6 +413,8 @@ public class TransformationImpl extends MinimalEObjectImpl.Container implements 
 				return getId();
 			case TransformationPackage.TRANSFORMATION__PAMTRAM_INSTANCE:
 				return getPamtramInstance();
+			case TransformationPackage.TRANSFORMATION__LIBRARY_ENTRIES:
+				return getLibraryEntries();
 			case TransformationPackage.TRANSFORMATION__SOURCE_MODELS:
 				return getSourceModels();
 			case TransformationPackage.TRANSFORMATION__TARGET_MODELS:
@@ -420,6 +448,10 @@ public class TransformationImpl extends MinimalEObjectImpl.Container implements 
 				return;
 			case TransformationPackage.TRANSFORMATION__PAMTRAM_INSTANCE:
 				setPamtramInstance((PAMTraM)newValue);
+				return;
+			case TransformationPackage.TRANSFORMATION__LIBRARY_ENTRIES:
+				getLibraryEntries().clear();
+				getLibraryEntries().addAll((Collection<? extends LibraryEntry>)newValue);
 				return;
 			case TransformationPackage.TRANSFORMATION__SOURCE_MODELS:
 				getSourceModels().clear();
@@ -460,6 +492,9 @@ public class TransformationImpl extends MinimalEObjectImpl.Container implements 
 			case TransformationPackage.TRANSFORMATION__PAMTRAM_INSTANCE:
 				setPamtramInstance((PAMTraM)null);
 				return;
+			case TransformationPackage.TRANSFORMATION__LIBRARY_ENTRIES:
+				getLibraryEntries().clear();
+				return;
 			case TransformationPackage.TRANSFORMATION__SOURCE_MODELS:
 				getSourceModels().clear();
 				return;
@@ -491,6 +526,8 @@ public class TransformationImpl extends MinimalEObjectImpl.Container implements 
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 			case TransformationPackage.TRANSFORMATION__PAMTRAM_INSTANCE:
 				return pamtramInstance != null;
+			case TransformationPackage.TRANSFORMATION__LIBRARY_ENTRIES:
+				return libraryEntries != null && !libraryEntries.isEmpty();
 			case TransformationPackage.TRANSFORMATION__SOURCE_MODELS:
 				return sourceModels != null && !sourceModels.isEmpty();
 			case TransformationPackage.TRANSFORMATION__TARGET_MODELS:

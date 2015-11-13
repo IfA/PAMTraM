@@ -8,6 +8,7 @@ import de.mfreund.pamtram.transformation.TransformationMapping;
 import de.mfreund.pamtram.transformation.TransformationMappingHintGroup;
 import de.mfreund.pamtram.transformation.TransformationPackage;
 
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.GenLibraryPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -170,7 +171,7 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransformation_SourceModels() {
+	public EReference getTransformation_LibraryEntries() {
 		return (EReference)transformationEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -179,7 +180,7 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransformation_TargetModels() {
+	public EReference getTransformation_SourceModels() {
 		return (EReference)transformationEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -188,8 +189,17 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransformation_TransformationMappings() {
+	public EReference getTransformation_TargetModels() {
 		return (EReference)transformationEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTransformation_TransformationMappings() {
+		return (EReference)transformationEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -289,6 +299,7 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 		createEAttribute(transformationEClass, TRANSFORMATION__NAME);
 		createEAttribute(transformationEClass, TRANSFORMATION__ID);
 		createEReference(transformationEClass, TRANSFORMATION__PAMTRAM_INSTANCE);
+		createEReference(transformationEClass, TRANSFORMATION__LIBRARY_ENTRIES);
 		createEReference(transformationEClass, TRANSFORMATION__SOURCE_MODELS);
 		createEReference(transformationEClass, TRANSFORMATION__TARGET_MODELS);
 		createEReference(transformationEClass, TRANSFORMATION__TRANSFORMATION_MAPPINGS);
@@ -328,6 +339,7 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 
 		// Obtain other dependent packages
 		PamtramPackage thePamtramPackage = (PamtramPackage)EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI);
+		GenLibraryPackage theGenLibraryPackage = (GenLibraryPackage)EPackage.Registry.INSTANCE.getEPackage(GenLibraryPackage.eNS_URI);
 		MappingPackage theMappingPackage = (MappingPackage)EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI);
 
 		// Create type parameters
@@ -343,6 +355,7 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 		initEAttribute(getTransformation_Name(), ecorePackage.getEString(), "name", null, 0, 1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTransformation_Id(), ecorePackage.getEString(), "id", null, 1, 1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransformation_PamtramInstance(), thePamtramPackage.getPAMTraM(), null, "pamtramInstance", null, 1, 1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransformation_LibraryEntries(), theGenLibraryPackage.getLibraryEntry(), null, "libraryEntries", null, 0, -1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransformation_SourceModels(), ecorePackage.getEObject(), null, "sourceModels", null, 1, -1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransformation_TargetModels(), ecorePackage.getEObject(), null, "targetModels", null, 1, -1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransformation_TransformationMappings(), this.getTransformationMapping(), null, "transformationMappings", null, 0, -1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -112,13 +112,22 @@ public interface TransformationPackage extends EPackage {
 	int TRANSFORMATION__PAMTRAM_INSTANCE = 4;
 
 	/**
+	 * The feature id for the '<em><b>Library Entries</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSFORMATION__LIBRARY_ENTRIES = 5;
+
+	/**
 	 * The feature id for the '<em><b>Source Models</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORMATION__SOURCE_MODELS = 5;
+	int TRANSFORMATION__SOURCE_MODELS = 6;
 
 	/**
 	 * The feature id for the '<em><b>Target Models</b></em>' containment reference list.
@@ -127,7 +136,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORMATION__TARGET_MODELS = 6;
+	int TRANSFORMATION__TARGET_MODELS = 7;
 
 	/**
 	 * The feature id for the '<em><b>Transformation Mappings</b></em>' containment reference list.
@@ -136,7 +145,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORMATION__TRANSFORMATION_MAPPINGS = 7;
+	int TRANSFORMATION__TRANSFORMATION_MAPPINGS = 8;
 
 	/**
 	 * The number of structural features of the '<em>Transformation</em>' class.
@@ -145,7 +154,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORMATION_FEATURE_COUNT = 8;
+	int TRANSFORMATION_FEATURE_COUNT = 9;
 
 	/**
 	 * The number of operations of the '<em>Transformation</em>' class.
@@ -322,6 +331,17 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTransformation_PamtramInstance();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link de.mfreund.pamtram.transformation.Transformation#getLibraryEntries <em>Library Entries</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Library Entries</em>'.
+	 * @see de.mfreund.pamtram.transformation.Transformation#getLibraryEntries()
+	 * @see #getTransformation()
+	 * @generated
+	 */
+	EReference getTransformation_LibraryEntries();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link de.mfreund.pamtram.transformation.Transformation#getSourceModels <em>Source Models</em>}'.
@@ -503,6 +523,14 @@ public interface TransformationPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TRANSFORMATION__PAMTRAM_INSTANCE = eINSTANCE.getTransformation_PamtramInstance();
+
+		/**
+		 * The meta object literal for the '<em><b>Library Entries</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TRANSFORMATION__LIBRARY_ENTRIES = eINSTANCE.getTransformation_LibraryEntries();
 
 		/**
 		 * The meta object literal for the '<em><b>Source Models</b></em>' containment reference list feature.

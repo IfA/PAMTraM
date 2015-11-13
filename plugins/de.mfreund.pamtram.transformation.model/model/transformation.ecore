@@ -12,6 +12,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="pamtramInstance" lowerBound="1"
         eType="ecore:EClass ../../de.mfreund.pamtram.model/model/pamtram.ecore#//PAMTraM"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="libraryEntries" upperBound="-1"
+        eType="ecore:EClass ../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//LibraryEntry"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceModels" lowerBound="1"
         upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>

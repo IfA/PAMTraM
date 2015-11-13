@@ -146,7 +146,7 @@ public class LibraryEntryInstantiator {
 				 * container as parameter for the library entry.
 				 */
 				LinkedList<EObjectWrapper> rootInstances = targetSectionRegistry.getPamtramClassInstances(((MappingHintGroup) mappingGroup).getTargetMMSection()).get(mappingGroup);
-				rootInstances.remove(transformationHelper);
+				//				rootInstances.remove(transformationHelper);
 				((AbstractContainerParameter<EObject, EObject>) (contParam.getOriginalParameter())).setContainer(transformationHelper.getEObject().eContainer());
 				EcoreUtil.delete(transformationHelper.getEObject());
 				targetSectionRegistry.getPamtramClassInstances(((MappingHintGroup) mappingGroup).getTargetMMSection()).put(mappingGroup, rootInstances);				
@@ -221,7 +221,14 @@ public class LibraryEntryInstantiator {
 		/*
 		 * Finally, insert the library entry into the target model as all parameters have been filled out
 		 */
-		manager.insertIntoTargetModel(targetModel, libEntryToInsert, newPath);
+		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry insertedEntry = 
+				manager.insertIntoTargetModel(targetModel, libEntryToInsert, newPath);
+
+		/*
+		 * Now, we update the eObject wrapped by the 'transformationHelper' so this will point to the right element if any
+		 * further algorithms try to evaluate this.
+		 */
+		transformationHelper.setEObject(insertedEntry.getParameterDescription().getContainerParameters().get(0).getSource());
 
 		return true;
 	}

@@ -31,7 +31,7 @@ public class EObjectWrapper {
 	/**
 	 * The actual {@link EObject} that is wrapped by this.
 	 */
-	private final EObject eObject;
+	private EObject eObject;
 
 	/**
 	 * The {@link AttributeValueRegistry} that values to be {@link #setAttributeValue(TargetSectionAttribute, String) set} 
@@ -54,7 +54,7 @@ public class EObjectWrapper {
 	 *           The {@link AttributeValueRegistry} that values to be {@link #setAttributeValue(TargetSectionAttribute, String) set} 
 	 * will be registered in.
 	 */
-	public EObjectWrapper(final EObject eObject,
+	public EObjectWrapper(EObject eObject,
 			final AttributeValueRegistry attrValRegistry) {
 
 		this.eObject = eObject;
@@ -69,6 +69,14 @@ public class EObjectWrapper {
 	 */
 	public EObject getEObject() {
 		return eObject;
+	}
+
+	/**
+	 * This is the setter for the {@link #eObject}.
+	 * @param eObject The actual {@link EObject} that this shall wrap.
+	 */
+	public void setEObject(EObject eObject) {
+		this.eObject = eObject;
 	}
 
 	/**

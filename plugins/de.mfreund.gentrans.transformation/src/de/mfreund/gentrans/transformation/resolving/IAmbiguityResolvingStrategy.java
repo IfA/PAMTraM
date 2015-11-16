@@ -43,6 +43,12 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
  */
 public interface IAmbiguityResolvingStrategy {
 
+	/**
+	 * Initialize the strategy.
+	 */
+	public default void init() {
+		return;
+	}
 
 	/**
 	 * Resolve ambiguities that arise when selecting a {@link Mapping} for a given 'element' in the '<em>matching</em>' step

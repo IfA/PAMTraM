@@ -33,6 +33,11 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
 public class DefaultAmbiguityResolvingStrategy implements IAmbiguityResolvingStrategy {
 
 	@Override
+	public void init() {
+		return;
+	}
+
+	@Override
 	public List<Mapping> matchingSelectMapping(List<Mapping> choices, EObject element) {
 
 		if(choices == null || choices.size() == 0) {

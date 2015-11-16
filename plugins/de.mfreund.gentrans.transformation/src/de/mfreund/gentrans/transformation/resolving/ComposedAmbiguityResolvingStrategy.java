@@ -42,6 +42,14 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 		this.composedStrategies = composedStrategies; 
 	}
 
+	/**
+	 * Initialize the strategy.
+	 */
+	@Override
+	public void init() {
+		return;
+	}
+
 	@Override
 	public List<Mapping> matchingSelectMapping(List<Mapping> choices, EObject element) throws Exception {
 

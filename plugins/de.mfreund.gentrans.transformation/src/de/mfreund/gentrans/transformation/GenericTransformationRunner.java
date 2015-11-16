@@ -453,10 +453,6 @@ public class GenericTransformationRunner {
 			return;
 		}
 
-		// initialize the ambiguity resolving strategy
-		writePamtramMessage("Initializing ambiguity resolving strategy");
-		ambiguityResolvingStrategy.init(pamtramModel, sourceModels);
-
 		// set the start date (after loading all models)
 		this.transformationModel.setStartDate(new Date());
 
@@ -465,6 +461,10 @@ public class GenericTransformationRunner {
 		 * that way, we get a 'clean' model (without any extensions) that we can handle in a normal way
 		 */
 		pamtramModel.mergeExtends();
+
+		// initialize the ambiguity resolving strategy
+		writePamtramMessage("Initializing ambiguity resolving strategy");
+		ambiguityResolvingStrategy.init(pamtramModel, sourceModels);
 
 		/*
 		 * Save a copy of the merged pamtram model for debug purposes.

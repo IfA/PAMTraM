@@ -43,11 +43,13 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 	}
 
 	/**
-	 * Initialize the strategy.
+	 * Initialize each child strategy strategy.
 	 */
 	@Override
 	public void init() {
-		return;
+		for (IAmbiguityResolvingStrategy strategy : composedStrategies) {
+			strategy.init();
+		}
 	}
 
 	@Override

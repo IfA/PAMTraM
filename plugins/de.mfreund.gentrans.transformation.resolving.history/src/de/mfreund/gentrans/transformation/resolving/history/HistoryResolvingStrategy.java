@@ -3,6 +3,7 @@ package de.mfreund.gentrans.transformation.resolving.history;
 import java.util.ArrayList;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
@@ -10,6 +11,7 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.pamtram.transformation.Transformation;
+import pamtram.PAMTraM;
 
 /**
  * This class implements a concrete {@link ComposedAmbiguityResolvingStrategy} that consults previous resolving 
@@ -35,6 +37,16 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	 */
 	private Transformation transformationModel;
 
+	/**
+	 * This keeps track of the {@link PAMTraM} instance that the current transformation operates on.
+	 */
+	private PAMTraM pamtramModel;
+
+	/**
+	 * This keeps track of the list of {@link EObject sourceModels} that serve as input to the current transformation.
+	 */
+	private ArrayList<EObject> sourceModels;
+
 	private HistoryResolvingStrategy(ArrayList<IAmbiguityResolvingStrategy> composedStrategies) {
 		super(composedStrategies);
 	}
@@ -52,11 +64,16 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	}
 
 	@Override
-	public void init() {
+	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels) {
 
+		this.pamtramModel = pamtramModel;
+		this.sourceModels = sourceModels;
 		loadTransformationModel();
 	}
 
+	/**
+	 * Load the {@link #transformationModel} from the given {@link #transformationModelPath}. 
+	 */
 	private void loadTransformationModel() {
 
 		ResourceSet resourceSet = new ResourceSetImpl();

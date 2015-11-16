@@ -437,10 +437,6 @@ public class GenericTransformationRunner {
 
 		monitorWrapper.beginTask("GenTrans", 1000);
 
-		// initialize the ambiguity resolving strategy
-		writePamtramMessage("Initializing ambiguity resolving strategy");
-		ambiguityResolvingStrategy.init();
-
 		// Create a resource set.
 		ResourceSet resourceSet = new ResourceSetImpl();
 
@@ -456,6 +452,10 @@ public class GenericTransformationRunner {
 		if(!createTargetModel(resourceSet)) {
 			return;
 		}
+
+		// initialize the ambiguity resolving strategy
+		writePamtramMessage("Initializing ambiguity resolving strategy");
+		ambiguityResolvingStrategy.init();
 
 		// set the start date (after loading all models)
 		this.transformationModel.setStartDate(new Date());

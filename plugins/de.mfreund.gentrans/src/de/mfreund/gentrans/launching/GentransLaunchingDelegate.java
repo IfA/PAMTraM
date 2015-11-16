@@ -1,8 +1,10 @@
 package de.mfreund.gentrans.launching;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -56,9 +58,14 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 				"Pamtram" + Path.SEPARATOR + configuration.getAttribute("pamtramFile", "");
 		String targetFile = project + Path.SEPARATOR + 
 				"Target" + Path.SEPARATOR + configuration.getAttribute("targetFile", "");
-		//TODO maybe let the user configure this in the launch configuration
-		String transformationFile = project + Path.SEPARATOR + 
-				"Pamtram" + Path.SEPARATOR + "transformation" + Path.SEPARATOR + (new Date()).toString().replaceAll(" ", "-").replaceAll(":", "-") + ".transformation";
+
+		// determine the name of the transformation file from the current date
+		String transformationFile = null;
+		if(configuration.getAttribute("storeTransformation", false)) {
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+			transformationFile = project + Path.SEPARATOR + "Pamtram" + Path.SEPARATOR + "transformation" + Path.SEPARATOR + 
+					df.format(Calendar.getInstance().getTime()) + ".transformation" ;
+		}
 
 		//get the settings
 		int maxPathLength=configuration.getAttribute("maxPathLength", -1);

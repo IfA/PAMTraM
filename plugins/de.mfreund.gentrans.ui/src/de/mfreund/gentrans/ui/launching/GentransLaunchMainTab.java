@@ -286,10 +286,6 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 				updateLaunchConfigurationDialog();
 			}
 		});
-		new Label(fileGroup, SWT.NONE);
-		new Label(fileGroup, SWT.NONE);
-		new Label(fileGroup, SWT.NONE);
-
 
 		// a group for specific GenTrans settings
 		Group settingsGroup = new Group(comp, SWT.NONE);
@@ -329,11 +325,15 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		onlyAskOnceForAmbiguousMappings.setText("Remember choices for ambiguous Mappings");
 
 		createTransformationModel = new Button(settingsGroup, SWT.CHECK);
+		createTransformationModel.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				updateLaunchConfigurationDialog();
+			}
+		});
 		createTransformationModel.setToolTipText("Whether a TransformationModel shall be created in the folder 'Pamtram/transformation' for every executed transformation. This trace model can be used for further reasoning about the executed transformation...");
 		createTransformationModel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 2, 1));
 		createTransformationModel.setText("Create transformation model");
-		new Label(settingsGroup, SWT.NONE);
-		new Label(settingsGroup, SWT.NONE);
 
 	}
 
@@ -374,6 +374,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			//settings
 			pathLengthSpinner.setSelection(configuration.getAttribute("maxPathLength", -1));
 			onlyAskOnceForAmbiguousMappings.setSelection(configuration.getAttribute("rememberAmbiguousMappingChoice", true));
+			createTransformationModel.setSelection(configuration.getAttribute("storeTransformation", false));
 		} catch (CoreException e) {
 			setErrorMessage(e.getMessage());
 		}
@@ -390,6 +391,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		//settings
 		configuration.setAttribute("maxPathLength", pathLengthSpinner.getSelection());
 		configuration.setAttribute("rememberAmbiguousMappingChoice", onlyAskOnceForAmbiguousMappings.getSelection());
+		configuration.setAttribute("storeTransformation", createTransformationModel.getSelection());
 	}
 
 	@Override
@@ -527,6 +529,9 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
 			//set the ambiguous Mappings choice
 			workingCopy.setAttribute("rememberAmbiguousMappingChoice", true);
+
+			//set whether a TransformationModel shall be created
+			workingCopy.setAttribute("storeTransformation", false);
 
 		} else {
 			return;

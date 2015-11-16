@@ -437,6 +437,9 @@ public class GenericTransformationRunner {
 
 		monitorWrapper.beginTask("GenTrans", 1000);
 
+		// initialize the ambiguity resolving strategy
+		ambiguityResolvingStrategy.init();
+
 		// Create a resource set.
 		ResourceSet resourceSet = new ResourceSetImpl();
 

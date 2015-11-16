@@ -56,7 +56,13 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	//CheckBox for setting wether user should be askedd only once which mapping tdouse
 	private Button onlyAskOnceForAmbiguousMappings;
 
-	private List sourceFileList;
+	/**
+	 * This CheckBox controls whether a TransformationModel representing the results of the transformation 
+	 * shall be created at the end of every executed transformation.
+	 */
+	private Button createTransformationModel;
+
+	public List sourceFileList;
 
 	/**
 	 * @wbp.parser.entryPoint
@@ -321,6 +327,13 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		});
 		onlyAskOnceForAmbiguousMappings.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 2, 1));
 		onlyAskOnceForAmbiguousMappings.setText("Remember choices for ambiguous Mappings");
+
+		createTransformationModel = new Button(settingsGroup, SWT.CHECK);
+		createTransformationModel.setToolTipText("Whether a TransformationModel shall be created in the folder 'Pamtram/transformation' for every executed transformation. This trace model can be used for further reasoning about the executed transformation...");
+		createTransformationModel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 2, 1));
+		createTransformationModel.setText("Create transformation model");
+		new Label(settingsGroup, SWT.NONE);
+		new Label(settingsGroup, SWT.NONE);
 
 	}
 

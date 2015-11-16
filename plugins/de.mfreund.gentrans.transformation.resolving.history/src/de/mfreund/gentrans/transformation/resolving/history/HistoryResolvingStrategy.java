@@ -2,6 +2,11 @@ package de.mfreund.gentrans.transformation.resolving.history;
 
 import java.util.ArrayList;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMIResource;
+
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.pamtram.transformation.Transformation;
@@ -25,6 +30,11 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	 */
 	private String transformationModelPath;
 
+	/**
+	 * The {@link Transformation TransformationModel} to be used to consult previous resolving results.
+	 */
+	private Transformation transformationModel;
+
 	private HistoryResolvingStrategy(ArrayList<IAmbiguityResolvingStrategy> composedStrategies) {
 		super(composedStrategies);
 	}
@@ -39,6 +49,28 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	public  HistoryResolvingStrategy(ArrayList<IAmbiguityResolvingStrategy> composedStrategies, String transformationModelPath) {
 		this(composedStrategies);
 		this.transformationModelPath = transformationModelPath;
+	}
+
+	@Override
+	public void init() {
+
+		loadTransformationModel();
+	}
+
+	private void loadTransformationModel() {
+
+		ResourceSet resourceSet = new ResourceSetImpl();
+
+		// the URI of the transformation model resource
+		final URI transformationModelUri = URI.createPlatformResourceURI(transformationModelPath, true);
+
+		// load the transformation model
+		XMIResource transformationModelResource = 
+				(XMIResource) resourceSet.getResource(transformationModelUri, true);
+		if(!(transformationModelResource.getContents().get(0) instanceof Transformation)) {
+			throw new RuntimeException("The transformation model does not contain a stored transformation.");
+		}
+		transformationModel = (Transformation) transformationModelResource.getContents().get(0);
 	}
 
 }

@@ -56,9 +56,10 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 				"Pamtram" + Path.SEPARATOR + configuration.getAttribute("pamtramFile", "");
 		String targetFile = project + Path.SEPARATOR + 
 				"Target" + Path.SEPARATOR + configuration.getAttribute("targetFile", "");
-		//TODO maybe let the user configure this in the launch configuration
-		String transformationFile = project + Path.SEPARATOR + 
-				"Pamtram" + Path.SEPARATOR + "transformation" + Path.SEPARATOR + (new Date()).toString().replaceAll(" ", "-").replaceAll(":", "-") + ".transformation";
+		String transformationFile = configuration.getAttribute("storeTransformation", false) ? 
+				project + Path.SEPARATOR + "Pamtram" + Path.SEPARATOR + "transformation" + Path.SEPARATOR + 
+				(new Date()).toString().replaceAll(" ", "-").replaceAll(":", "-") + ".transformation" :
+					null;
 
 		//get the settings
 		int maxPathLength=configuration.getAttribute("maxPathLength", -1);

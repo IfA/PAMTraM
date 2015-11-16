@@ -455,7 +455,7 @@ public class GenericTransformationRunner {
 
 		// initialize the ambiguity resolving strategy
 		writePamtramMessage("Initializing ambiguity resolving strategy");
-		ambiguityResolvingStrategy.init();
+		ambiguityResolvingStrategy.init(pamtramModel, sourceModels);
 
 		// set the start date (after loading all models)
 		this.transformationModel.setStartDate(new Date());

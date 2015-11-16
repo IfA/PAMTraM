@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import de.mfreund.gentrans.transformation.EObjectWrapper;
 import de.mfreund.gentrans.transformation.ModelConnectionPath;
+import pamtram.PAMTraM;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
@@ -33,7 +34,7 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
 public class DefaultAmbiguityResolvingStrategy implements IAmbiguityResolvingStrategy {
 
 	@Override
-	public void init() {
+	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels) {
 		return;
 	}
 

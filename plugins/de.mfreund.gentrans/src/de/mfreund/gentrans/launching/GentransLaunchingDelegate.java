@@ -100,7 +100,9 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 			transformationModelPath = project + Path.SEPARATOR + "Pamtram" + Path.SEPARATOR + "transformation" + 
 					Path.SEPARATOR + transformationFolder.members()[transformationFolder.members().length-1].getName();
 		}
-		resolvingStrategy = new HistoryResolvingStrategy(new ArrayList<>(Arrays.asList(new UserDecisionResolvingStrategy())), transformationModelPath);
+		resolvingStrategy = (transformationModelPath == null ? 
+				new UserDecisionResolvingStrategy() : 
+					new HistoryResolvingStrategy(new ArrayList<>(Arrays.asList(new UserDecisionResolvingStrategy())), transformationModelPath));
 
 		GenericTransformationJob job = new GenericTransformationJob(
 				"GenTrans", sourceFiles, pamtramFile, targetFile, transformationFile, targetLibraryContextDescriptor, resolvingStrategy);

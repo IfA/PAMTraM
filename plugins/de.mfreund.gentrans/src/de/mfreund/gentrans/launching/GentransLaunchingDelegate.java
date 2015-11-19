@@ -67,8 +67,9 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		String transformationFile = null;
 		if(configuration.getAttribute("storeTransformation", false)) {
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+			String currentDate = df.format(Calendar.getInstance().getTime());
 			transformationFile = project + Path.SEPARATOR + "Pamtram" + Path.SEPARATOR + "transformation" + Path.SEPARATOR + 
-					df.format(Calendar.getInstance().getTime()) + ".transformation" ;
+					currentDate + Path.SEPARATOR + currentDate + ".transformation" ;
 		}
 
 		//get the settings

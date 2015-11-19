@@ -1839,18 +1839,60 @@ public class GenericTransformationRunner {
 		}
 
 		/*
-		 * save the transformation model
+		 * save the transformation model and create copies of all referenced resources
 		 */
+		final XMIResourceFactoryImpl resFactory = new XMIResourceFactoryImpl();
+		final URI transformationModelUri = URI.createPlatformResourceURI(transformationModelPath, true);
+		final URI transformationFolderUri = transformationModelUri.trimSegments(1);
+		final Map<Object, Object> options = new LinkedHashMap<>();
+		options.put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE); // suppress 'document root' element in case of xml models
+
 		try {
-			final XMIResourceFactoryImpl resFactory = new XMIResourceFactoryImpl();
-			final URI transformationModelUri = URI.createPlatformResourceURI(transformationModelPath, true);
+
+			/*
+			 * copy the library entries
+			 */
+			for (de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry libraryEntry : this.transformationModel.getLibraryEntries()) {
+				URI libEntryUri = transformationFolderUri.
+						appendSegment(libraryEntry.eResource().getURI().trimSegments(1).lastSegment()).
+						appendSegment(libraryEntry.eResource().getURI().lastSegment());
+				XMIResource libEntryResource = (XMIResource) resFactory.createResource(libEntryUri);
+				libEntryResource.getContents().add(libraryEntry);
+				libEntryResource.save(options);
+			}
+
+			/*
+			 * copy the pamtram instance
+			 */
+			XMIResource pamtramModelResource = (XMIResource) resFactory.createResource(transformationFolderUri.appendSegment(this.transformationModel.getPamtramInstance().eResource().getURI().lastSegment()));
+			pamtramModelResource.getContents().add(this.transformationModel.getPamtramInstance());
+			pamtramModelResource.save(options);
+
+			/*
+			 * copy the source models
+			 */
+			for (EObject sourceModel : this.transformationModel.getSourceModels()) {
+				XMLResource sourceModelResource = (XMLResource) resFactory.createResource(transformationFolderUri.appendSegment(sourceModel.eResource().getURI().lastSegment()));
+				sourceModelResource.getContents().add(sourceModel);
+				sourceModelResource.save(options);
+			}
+
+			/*
+			 * copy the target models
+			 */
+			for (EObject targetModel : this.transformationModel.getTargetModels()) {
+				XMLResource targetModelResource = (XMLResource) resFactory.createResource(transformationFolderUri.appendSegment(targetModel.eResource().getURI().lastSegment()));
+				targetModelResource.getContents().add(targetModel);
+				targetModelResource.save(options);
+			}
+
+			/*
+			 * save the transformation model
+			 */
 			XMIResource transformationModelResource = (XMIResource) resFactory.createResource(transformationModelUri);
 			transformationModelResource.getContents().add(this.transformationModel);
 			transformationModelResource.setEncoding("UTF-8");
-			final Map<Object, Object> options = new LinkedHashMap<>();
-			options.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
-			options.put(XMLResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.TRUE);
-			transformationModelResource.save(Collections.EMPTY_MAP);
+			transformationModelResource.save(options);
 
 		} catch (final Exception e) {
 			MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Error",

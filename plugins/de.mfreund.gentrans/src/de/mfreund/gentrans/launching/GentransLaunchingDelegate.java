@@ -94,13 +94,23 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		// the strategy that shall be used to resolve ambiguities
 		IAmbiguityResolvingStrategy resolvingStrategy;
 		//		resolvingStrategy = new UserDecisionResolvingStrategy();
+
+		// try to determine the location of the last stored transformation model
 		String transformationModelPath = null;
 		IFolder transformationFolder =  
 				ResourcesPlugin.getWorkspace().getRoot().getProject(project).getFolder("Pamtram").getFolder("transformation");
 		if(transformationFolder.exists() && transformationFolder.members().length > 0) {
-			transformationModelPath = project + Path.SEPARATOR + "Pamtram" + Path.SEPARATOR + "transformation" + 
-					Path.SEPARATOR + transformationFolder.members()[transformationFolder.members().length-1].getName();
+			String transformationName = transformationFolder.members()[transformationFolder.members().length-1].getName();
+			if(transformationFolder.getFolder(transformationName).getFile(transformationName + ".transformation").exists()) {
+				transformationModelPath = project + Path.SEPARATOR + "Pamtram" + Path.SEPARATOR + "transformation" + 
+						Path.SEPARATOR + transformationName + Path.SEPARATOR + transformationName + ".transformation" ;				
+			}
 		}
+
+		/*
+		 * use the HistoryResolvingStrategy if a transformation to use could be determined, otherwise fall back to the
+		 * UserDecisionResolvingStrategy
+		 */
 		resolvingStrategy = (transformationModelPath == null ? 
 				new UserDecisionResolvingStrategy() : 
 					new HistoryResolvingStrategy(new ArrayList<>(Arrays.asList(new UserDecisionResolvingStrategy())), transformationModelPath));

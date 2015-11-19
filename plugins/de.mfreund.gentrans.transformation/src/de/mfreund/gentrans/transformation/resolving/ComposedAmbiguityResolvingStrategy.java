@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import de.mfreund.gentrans.transformation.EObjectWrapper;
 import de.mfreund.gentrans.transformation.ModelConnectionPath;
+import pamtram.PAMTraM;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
@@ -40,6 +41,16 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 	 */
 	public ComposedAmbiguityResolvingStrategy(ArrayList<IAmbiguityResolvingStrategy> composedStrategies) {
 		this.composedStrategies = composedStrategies; 
+	}
+
+	/**
+	 * Initialize each child strategy.
+	 */
+	@Override
+	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels) {
+		for (IAmbiguityResolvingStrategy strategy : composedStrategies) {
+			strategy.init(pamtramModel, sourceModels);
+		}
 	}
 
 	@Override

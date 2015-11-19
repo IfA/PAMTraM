@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import de.mfreund.gentrans.transformation.EObjectWrapper;
 import de.mfreund.gentrans.transformation.ModelConnectionPath;
+import pamtram.PAMTraM;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingInstanceSelector;
@@ -43,6 +44,15 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
  */
 public interface IAmbiguityResolvingStrategy {
 
+	/**
+	 * Initialize the strategy.
+	 * 
+	 * @param pamtramModel The {@link PAMTraM} instance that the current transformation operates on.
+	 * @param sourceModels The list of {@link EObject sourceModels} that serve as input to the current transformation.
+	 */
+	public default void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels) {
+		return;
+	}
 
 	/**
 	 * Resolve ambiguities that arise when selecting a {@link Mapping} for a given 'element' in the '<em>matching</em>' step

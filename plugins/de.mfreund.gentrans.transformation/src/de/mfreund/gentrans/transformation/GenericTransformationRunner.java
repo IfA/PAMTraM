@@ -462,6 +462,10 @@ public class GenericTransformationRunner {
 		 */
 		pamtramModel.mergeExtends();
 
+		// initialize the ambiguity resolving strategy
+		writePamtramMessage("Initializing ambiguity resolving strategy");
+		ambiguityResolvingStrategy.init(pamtramModel, sourceModels);
+
 		/*
 		 * Save a copy of the merged pamtram model for debug purposes.
 		 */

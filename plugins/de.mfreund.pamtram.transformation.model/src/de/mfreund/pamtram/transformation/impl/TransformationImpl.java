@@ -288,6 +288,29 @@ public class TransformationImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	public PAMTraM getPamtramInstance() {
+		if (pamtramInstance != null && pamtramInstance.eIsProxy()) {
+			InternalEObject oldPamtramInstance = (InternalEObject)pamtramInstance;
+			pamtramInstance = (PAMTraM)eResolveProxy(oldPamtramInstance);
+			if (pamtramInstance != oldPamtramInstance) {
+				InternalEObject newPamtramInstance = (InternalEObject)pamtramInstance;
+				NotificationChain msgs = oldPamtramInstance.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TransformationPackage.TRANSFORMATION__PAMTRAM_INSTANCE, null, null);
+				if (newPamtramInstance.eInternalContainer() == null) {
+					msgs = newPamtramInstance.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TransformationPackage.TRANSFORMATION__PAMTRAM_INSTANCE, null, msgs);
+				}
+				if (msgs != null) msgs.dispatch();
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TransformationPackage.TRANSFORMATION__PAMTRAM_INSTANCE, oldPamtramInstance, pamtramInstance));
+			}
+		}
+		return pamtramInstance;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PAMTraM basicGetPamtramInstance() {
 		return pamtramInstance;
 	}
 
@@ -332,7 +355,7 @@ public class TransformationImpl extends MinimalEObjectImpl.Container implements 
 	 */
 	public EList<LibraryEntry> getLibraryEntries() {
 		if (libraryEntries == null) {
-			libraryEntries = new EObjectContainmentEList<LibraryEntry>(LibraryEntry.class, this, TransformationPackage.TRANSFORMATION__LIBRARY_ENTRIES);
+			libraryEntries = new EObjectContainmentEList.Resolving<LibraryEntry>(LibraryEntry.class, this, TransformationPackage.TRANSFORMATION__LIBRARY_ENTRIES);
 		}
 		return libraryEntries;
 	}
@@ -344,7 +367,7 @@ public class TransformationImpl extends MinimalEObjectImpl.Container implements 
 	 */
 	public EList<EObject> getSourceModels() {
 		if (sourceModels == null) {
-			sourceModels = new EObjectContainmentEList<EObject>(EObject.class, this, TransformationPackage.TRANSFORMATION__SOURCE_MODELS);
+			sourceModels = new EObjectContainmentEList.Resolving<EObject>(EObject.class, this, TransformationPackage.TRANSFORMATION__SOURCE_MODELS);
 		}
 		return sourceModels;
 	}
@@ -356,7 +379,7 @@ public class TransformationImpl extends MinimalEObjectImpl.Container implements 
 	 */
 	public EList<EObject> getTargetModels() {
 		if (targetModels == null) {
-			targetModels = new EObjectContainmentEList<EObject>(EObject.class, this, TransformationPackage.TRANSFORMATION__TARGET_MODELS);
+			targetModels = new EObjectContainmentEList.Resolving<EObject>(EObject.class, this, TransformationPackage.TRANSFORMATION__TARGET_MODELS);
 		}
 		return targetModels;
 	}
@@ -368,7 +391,7 @@ public class TransformationImpl extends MinimalEObjectImpl.Container implements 
 	 */
 	public EList<TransformationMapping> getTransformationMappings() {
 		if (transformationMappings == null) {
-			transformationMappings = new EObjectContainmentEList<TransformationMapping>(TransformationMapping.class, this, TransformationPackage.TRANSFORMATION__TRANSFORMATION_MAPPINGS);
+			transformationMappings = new EObjectContainmentEList.Resolving<TransformationMapping>(TransformationMapping.class, this, TransformationPackage.TRANSFORMATION__TRANSFORMATION_MAPPINGS);
 		}
 		return transformationMappings;
 	}
@@ -412,7 +435,8 @@ public class TransformationImpl extends MinimalEObjectImpl.Container implements 
 			case TransformationPackage.TRANSFORMATION__ID:
 				return getId();
 			case TransformationPackage.TRANSFORMATION__PAMTRAM_INSTANCE:
-				return getPamtramInstance();
+				if (resolve) return getPamtramInstance();
+				return basicGetPamtramInstance();
 			case TransformationPackage.TRANSFORMATION__LIBRARY_ENTRIES:
 				return getLibraryEntries();
 			case TransformationPackage.TRANSFORMATION__SOURCE_MODELS:

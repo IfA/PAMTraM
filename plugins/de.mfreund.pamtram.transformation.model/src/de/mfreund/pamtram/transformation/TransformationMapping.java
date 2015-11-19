@@ -89,7 +89,7 @@ public interface TransformationMapping extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Transformation Hint Groups</em>' containment reference list.
 	 * @see de.mfreund.pamtram.transformation.TransformationPackage#getTransformationMapping_TransformationHintGroups()
-	 * @model containment="true"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<TransformationMappingHintGroup> getTransformationHintGroups();

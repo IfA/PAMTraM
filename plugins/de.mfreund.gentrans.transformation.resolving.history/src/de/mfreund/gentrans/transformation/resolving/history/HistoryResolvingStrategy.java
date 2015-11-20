@@ -1,6 +1,8 @@
 package de.mfreund.gentrans.transformation.resolving.history;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.Comparison;
@@ -18,7 +20,6 @@ import org.eclipse.emf.compare.scope.IComparisonScope;
 import org.eclipse.emf.compare.utils.UseIdentifiers;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
@@ -60,6 +61,12 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	 */
 	private ArrayList<EObject> sourceModels;
 
+	/**
+	 * This will contain the result of the comparison process between the current PAMTraM model and the 'old' PAMTraM model
+	 * that is part of the {@link #transformationModel}.
+	 */
+	private Comparison pamtramCompareResult;
+
 	private HistoryResolvingStrategy(ArrayList<IAmbiguityResolvingStrategy> composedStrategies) {
 		super(composedStrategies);
 	}
@@ -77,7 +84,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	}
 
 	@Override
-	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels) {
+	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels) throws IOException {
 
 		this.pamtramModel = pamtramModel;
 		this.sourceModels = sourceModels;
@@ -87,10 +94,15 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 
 	/**
 	 * Load the {@link #transformationModel} from the given {@link #transformationModelPath}. 
+	 * @throws IOException 
 	 */
-	private void loadTransformationModel() {
+	private void loadTransformationModel() throws IOException {
 
-		ResourceSet resourceSet = new ResourceSetImpl();
+		/*
+		 * We need to load the transformation model to the same ResourceSet as the pamtram model, otherwise
+		 * strange things happen in the EMFcompare process (changes are shown even nothing has changed).
+		 */
+		ResourceSet resourceSet = this.pamtramModel.eResource().getResourceSet();
 
 		// the URI of the transformation model resource
 		final URI transformationModelUri = URI.createPlatformResourceURI(transformationModelPath, true);
@@ -98,10 +110,12 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		// load the transformation model
 		XMIResource transformationModelResource = 
 				(XMIResource) resourceSet.getResource(transformationModelUri, true);
+		transformationModelResource.load(Collections.EMPTY_MAP);
 		if(!(transformationModelResource.getContents().get(0) instanceof Transformation)) {
 			throw new RuntimeException("The transformation model does not contain a stored transformation.");
 		}
 		transformationModel = (Transformation) transformationModelResource.getContents().get(0);
+
 	}
 
 	/**
@@ -111,10 +125,17 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	 * <p/>
 	 * Note: This is taken from <a href="https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Using_The_Compare_APIs">
 	 * https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Using_The_Compare_APIs</a>.
+	 * 
+	 * @throws IOException If one of the involved resources cannot be (re)loaded. 
 	 */
-	private void initializeEMFCompare() {
+	private void initializeEMFCompare() throws IOException {
 
-		IEObjectMatcher matcher = DefaultMatchEngine.createDefaultEObjectMatcher(UseIdentifiers.NEVER);
+		/*
+		 * Initialize EMFCompare 
+		 */
+		ResourceSet resourceSet = this.transformationModel.eResource().getResourceSet();
+
+		IEObjectMatcher matcher = DefaultMatchEngine.createDefaultEObjectMatcher(UseIdentifiers.WHEN_AVAILABLE);
 		IComparisonFactory comparisonFactory = new DefaultComparisonFactory(new DefaultEqualityHelperFactory());
 
 		IMatchEngine.Factory matchEngineFactory = new MatchEngineFactoryImpl(matcher, comparisonFactory);
@@ -122,12 +143,20 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		IMatchEngine.Factory.Registry matchEngineRegistry = new MatchEngineFactoryRegistryImpl();
 		matchEngineRegistry.add(matchEngineFactory);
 
-		IComparisonScope scope = new DefaultComparisonScope(this.pamtramModel, this.transformationModel.getPamtramInstance(), null);
+		/*
+		 * Compare the Pamtram resources
+		 */
+		URI pamtramUri =  this.transformationModel.getPamtramInstance().eResource().getURI();
+		XMIResource pamtramResource = (XMIResource) resourceSet.getResource(pamtramUri, true);
+		pamtramResource.unload(); // reload the resource as the compare process will show strange differences
+		pamtramResource.load(Collections.EMPTY_MAP);
+
+		IComparisonScope scope = new DefaultComparisonScope(this.pamtramModel.eResource(), pamtramResource, null);
 		EMFCompare comparator = EMFCompare.builder().setMatchEngineFactoryRegistry(matchEngineRegistry).build();
 
-		Comparison compareResult = comparator.compare(scope);
+		pamtramCompareResult = comparator.compare(scope);
 
-		System.out.println();
+
 	}
 
 }

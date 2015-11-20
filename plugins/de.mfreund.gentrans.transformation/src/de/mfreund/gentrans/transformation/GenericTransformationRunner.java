@@ -462,27 +462,17 @@ public class GenericTransformationRunner {
 		 */
 		pamtramModel.mergeExtends();
 
-		// initialize the ambiguity resolving strategy
-		writePamtramMessage("Initializing ambiguity resolving strategy");
-		ambiguityResolvingStrategy.init(pamtramModel, sourceModels);
-
 		/*
-		 * Save a copy of the merged pamtram model for debug purposes.
+		 * initialize the ambiguity resolving strategy
 		 */
-		//		
-		//		// the URI of the pamtram resource
-		//		final URI pamtramUri2 = URI.createPlatformResourceURI(pamtramPath + "_bak", true);
-		//
-		//		// load the pamtram model
-		//		XMIResource pamtramResource = 
-		//				(XMIResource) resourceSet.createResource(pamtramUri2);
-		//		pamtramResource.getContents().add(pamtramModel);
-		//		try {
-		//			pamtramResource.save(null);
-		//		} catch (IOException e1) {
-		//			e1.printStackTrace();
-		//		}
-
+		writePamtramMessage("Initializing ambiguity resolving strategy");
+		try {
+			ambiguityResolvingStrategy.init(pamtramModel, sourceModels);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+			consoleStream.println("Internal error. Switching to DefaultAmbiguityResolvingStrategy...");
+			ambiguityResolvingStrategy = new DefaultAmbiguityResolvingStrategy();
+		}
 
 		// find active mappings and resolve ambiguities as far as possible without user
 		// input

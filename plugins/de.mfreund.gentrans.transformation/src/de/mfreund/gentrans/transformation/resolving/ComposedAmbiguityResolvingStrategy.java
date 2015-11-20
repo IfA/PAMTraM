@@ -45,9 +45,10 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 
 	/**
 	 * Initialize each child strategy.
+	 * @throws Exception 
 	 */
 	@Override
-	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels) {
+	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels) throws Exception {
 		for (IAmbiguityResolvingStrategy strategy : composedStrategies) {
 			strategy.init(pamtramModel, sourceModels);
 		}

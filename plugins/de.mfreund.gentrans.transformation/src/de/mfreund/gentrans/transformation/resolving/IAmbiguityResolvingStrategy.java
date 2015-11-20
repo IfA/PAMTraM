@@ -49,8 +49,9 @@ public interface IAmbiguityResolvingStrategy {
 	 * 
 	 * @param pamtramModel The {@link PAMTraM} instance that the current transformation operates on.
 	 * @param sourceModels The list of {@link EObject sourceModels} that serve as input to the current transformation.
+	 * @throws Exception 
 	 */
-	public default void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels) {
+	public default void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels) throws Exception {
 		return;
 	}
 

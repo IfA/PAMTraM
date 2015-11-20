@@ -170,7 +170,7 @@ public class TransformationMappingImpl extends MinimalEObjectImpl.Container impl
 	 */
 	public EList<TransformationMappingHintGroup> getTransformationHintGroups() {
 		if (transformationHintGroups == null) {
-			transformationHintGroups = new EObjectContainmentEList<TransformationMappingHintGroup>(TransformationMappingHintGroup.class, this, TransformationPackage.TRANSFORMATION_MAPPING__TRANSFORMATION_HINT_GROUPS);
+			transformationHintGroups = new EObjectContainmentEList.Resolving<TransformationMappingHintGroup>(TransformationMappingHintGroup.class, this, TransformationPackage.TRANSFORMATION_MAPPING__TRANSFORMATION_HINT_GROUPS);
 		}
 		return transformationHintGroups;
 	}

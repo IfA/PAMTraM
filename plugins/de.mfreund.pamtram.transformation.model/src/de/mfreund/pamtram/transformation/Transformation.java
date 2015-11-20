@@ -151,7 +151,7 @@ public interface Transformation extends EObject {
 	 * @return the value of the '<em>Pamtram Instance</em>' containment reference.
 	 * @see #setPamtramInstance(PAMTraM)
 	 * @see de.mfreund.pamtram.transformation.TransformationPackage#getTransformation_PamtramInstance()
-	 * @model containment="true" required="true"
+	 * @model containment="true" resolveProxies="true" required="true"
 	 * @generated
 	 */
 	PAMTraM getPamtramInstance();
@@ -177,7 +177,7 @@ public interface Transformation extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Library Entries</em>' containment reference list.
 	 * @see de.mfreund.pamtram.transformation.TransformationPackage#getTransformation_LibraryEntries()
-	 * @model containment="true"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<LibraryEntry> getLibraryEntries();
@@ -193,7 +193,7 @@ public interface Transformation extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source Models</em>' containment reference list.
 	 * @see de.mfreund.pamtram.transformation.TransformationPackage#getTransformation_SourceModels()
-	 * @model containment="true" required="true"
+	 * @model containment="true" resolveProxies="true" required="true"
 	 * @generated
 	 */
 	EList<EObject> getSourceModels();
@@ -209,7 +209,7 @@ public interface Transformation extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target Models</em>' containment reference list.
 	 * @see de.mfreund.pamtram.transformation.TransformationPackage#getTransformation_TargetModels()
-	 * @model containment="true" required="true"
+	 * @model containment="true" resolveProxies="true" required="true"
 	 * @generated
 	 */
 	EList<EObject> getTargetModels();
@@ -225,7 +225,7 @@ public interface Transformation extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Transformation Mappings</em>' containment reference list.
 	 * @see de.mfreund.pamtram.transformation.TransformationPackage#getTransformation_TransformationMappings()
-	 * @model containment="true"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<TransformationMapping> getTransformationMappings();

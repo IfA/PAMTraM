@@ -89,7 +89,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		this.pamtramModel = pamtramModel;
 		this.sourceModels = sourceModels;
 		loadTransformationModel();
-		initializeEMFCompare();
+		performEMFCompare();
 	}
 
 	/**
@@ -128,7 +128,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	 * 
 	 * @throws IOException If one of the involved resources cannot be (re)loaded. 
 	 */
-	private void initializeEMFCompare() throws IOException {
+	private void performEMFCompare() throws IOException {
 
 		/*
 		 * Initialize EMFCompare 

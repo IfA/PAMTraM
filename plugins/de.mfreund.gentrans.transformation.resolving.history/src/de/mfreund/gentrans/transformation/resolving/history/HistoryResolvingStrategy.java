@@ -7,6 +7,11 @@ import java.util.Collections;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.Comparison;
 import org.eclipse.emf.compare.EMFCompare;
+import org.eclipse.emf.compare.Match;
+import org.eclipse.emf.compare.diff.DefaultDiffEngine;
+import org.eclipse.emf.compare.diff.DiffBuilder;
+import org.eclipse.emf.compare.diff.FeatureFilter;
+import org.eclipse.emf.compare.diff.IDiffProcessor;
 import org.eclipse.emf.compare.match.DefaultComparisonFactory;
 import org.eclipse.emf.compare.match.DefaultEqualityHelperFactory;
 import org.eclipse.emf.compare.match.DefaultMatchEngine;
@@ -19,6 +24,8 @@ import org.eclipse.emf.compare.scope.DefaultComparisonScope;
 import org.eclipse.emf.compare.scope.IComparisonScope;
 import org.eclipse.emf.compare.utils.UseIdentifiers;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
@@ -27,6 +34,7 @@ import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingSt
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.pamtram.transformation.Transformation;
 import pamtram.PAMTraM;
+import pamtram.metamodel.MetamodelPackage;
 
 /**
  * This class implements a concrete {@link ComposedAmbiguityResolvingStrategy} that consults previous resolving 
@@ -98,6 +106,8 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		this.sourceCompareResults = new ArrayList<>();
 		loadTransformationModel();
 		performEMFCompare();
+
+		System.out.println("Number of differences between the pamtram models: " + pamtramCompareResult.getDifferences().size());
 	}
 
 	/**
@@ -160,7 +170,32 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		pamtramResource.load(Collections.EMPTY_MAP);
 
 		IComparisonScope scope = new DefaultComparisonScope(this.pamtramModel.eResource(), pamtramResource, null);
-		EMFCompare comparator = EMFCompare.builder().setMatchEngineFactoryRegistry(matchEngineRegistry).build();
+		IDiffProcessor diffProcessor = new DiffBuilder();
+		EMFCompare comparator = EMFCompare.builder().
+				setMatchEngineFactoryRegistry(matchEngineRegistry).
+				setDiffEngine(new DefaultDiffEngine(diffProcessor) {
+					@Override
+					protected FeatureFilter createFeatureFilter() {
+						return new FeatureFilter() {
+							@Override
+							protected boolean isIgnoredReference(Match match, EReference reference) {
+								/*
+								 * We forget about the 'source' reference of library parameters as the comparison process will report
+								 * false changes to references of this type as the referenced objects are not contained in the resource 
+								 * in focus (cf. https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Changing_the_FeatureFilter).
+								 */
+								return reference.equals(MetamodelPackage.Literals.LIBRARY_PARAMETER__SOURCE) ||
+										super.isIgnoredReference(match, reference);
+							}
+
+							@Override
+							public boolean checkForOrderingChanges(EStructuralFeature feature) {
+								return false;
+							}
+						};
+					}
+				}).
+				build();
 
 		pamtramCompareResult = comparator.compare(scope);
 

@@ -4,8 +4,10 @@ import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
@@ -22,7 +24,9 @@ import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 import org.osgi.framework.Bundle;
 
 import de.mfreund.gentrans.transformation.handler.GenericTransformationJob;
+import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrategy;
+import de.mfreund.gentrans.transformation.resolving.history.HistoryResolvingStrategy;
 import de.mfreund.pamtram.util.ResourceHelper;
 import de.tud.et.ifa.agtele.genlibrary.LibraryContextDescriptor;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryContext;
@@ -63,8 +67,9 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		String transformationFile = null;
 		if(configuration.getAttribute("storeTransformation", false)) {
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+			String currentDate = df.format(Calendar.getInstance().getTime());
 			transformationFile = project + Path.SEPARATOR + "Pamtram" + Path.SEPARATOR + "transformation" + Path.SEPARATOR + 
-					df.format(Calendar.getInstance().getTime()) + ".transformation" ;
+					currentDate + Path.SEPARATOR + currentDate + ".transformation" ;
 		}
 
 		//get the settings
@@ -86,8 +91,32 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		LibraryContextDescriptor targetLibraryContextDescriptor = 
 		new LibraryContextDescriptor(configuration.getAttribute("targetLibPath", ""), (Class<LibraryContext>) targetLibContextClass, (Class<LibraryPathParser>) targetLibParserClass);
 
+		// the strategy that shall be used to resolve ambiguities
+		IAmbiguityResolvingStrategy resolvingStrategy;
+		//		resolvingStrategy = new UserDecisionResolvingStrategy();
+
+		// try to determine the location of the last stored transformation model
+		String transformationModelPath = null;
+		IFolder transformationFolder =  
+				ResourcesPlugin.getWorkspace().getRoot().getProject(project).getFolder("Pamtram").getFolder("transformation");
+		if(transformationFolder.exists() && transformationFolder.members().length > 0) {
+			String transformationName = transformationFolder.members()[transformationFolder.members().length-1].getName();
+			if(transformationFolder.getFolder(transformationName).getFile(transformationName + ".transformation").exists()) {
+				transformationModelPath = project + Path.SEPARATOR + "Pamtram" + Path.SEPARATOR + "transformation" + 
+						Path.SEPARATOR + transformationName + Path.SEPARATOR + transformationName + ".transformation" ;				
+			}
+		}
+
+		/*
+		 * use the HistoryResolvingStrategy if a transformation to use could be determined, otherwise fall back to the
+		 * UserDecisionResolvingStrategy
+		 */
+		resolvingStrategy = (transformationModelPath == null ? 
+				new UserDecisionResolvingStrategy() : 
+					new HistoryResolvingStrategy(new ArrayList<>(Arrays.asList(new UserDecisionResolvingStrategy())), transformationModelPath));
+
 		GenericTransformationJob job = new GenericTransformationJob(
-				"GenTrans", sourceFiles, pamtramFile, targetFile, transformationFile, targetLibraryContextDescriptor, new UserDecisionResolvingStrategy());
+				"GenTrans", sourceFiles, pamtramFile, targetFile, transformationFile, targetLibraryContextDescriptor, resolvingStrategy);
 		job.getGenTransRunner().setMaxPathLength(maxPathLength);
 		job.getGenTransRunner().setOnlyAskOnceOnAmbiguousMappings(rememberAmbiguousMappingChoice);
 

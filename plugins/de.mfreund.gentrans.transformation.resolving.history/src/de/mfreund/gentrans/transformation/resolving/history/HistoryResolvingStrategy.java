@@ -21,6 +21,7 @@ import org.eclipse.emf.compare.utils.UseIdentifiers;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
@@ -67,6 +68,12 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	 */
 	private Comparison pamtramCompareResult;
 
+	/**
+	 * This will contain a list of results of the comparison processes between the current source models and the 'old' source models
+	 * that are part of the {@link #transformationModel}.
+	 */
+	private ArrayList<Comparison> sourceCompareResults;
+
 	private HistoryResolvingStrategy(ArrayList<IAmbiguityResolvingStrategy> composedStrategies) {
 		super(composedStrategies);
 	}
@@ -88,6 +95,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 
 		this.pamtramModel = pamtramModel;
 		this.sourceModels = sourceModels;
+		this.sourceCompareResults = new ArrayList<>();
 		loadTransformationModel();
 		performEMFCompare();
 	}
@@ -156,6 +164,24 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 
 		pamtramCompareResult = comparator.compare(scope);
 
+		/*
+		 * Compare the source models (only if the number of models match)
+		 */
+		if(sourceModels.size() == this.transformationModel.getSourceModels().size()) {
+
+			for (int i=0; i<sourceModels.size(); i++) {
+				URI sourceUri =  this.transformationModel.getSourceModels().get(i).eResource().getURI();
+				XMLResource sourceResource = (XMLResource) resourceSet.getResource(sourceUri, true);
+				sourceResource.unload(); // reload the resource as the compare process will show strange differences
+				sourceResource.load(Collections.EMPTY_MAP);
+
+				IComparisonScope sourceScope = new DefaultComparisonScope(this.sourceModels.get(i).eResource(), sourceResource, null);
+				EMFCompare sourceComparator = EMFCompare.builder().setMatchEngineFactoryRegistry(matchEngineRegistry).build();
+
+				sourceCompareResults.add(sourceComparator.compare(sourceScope));
+
+			}
+		}
 
 	}
 

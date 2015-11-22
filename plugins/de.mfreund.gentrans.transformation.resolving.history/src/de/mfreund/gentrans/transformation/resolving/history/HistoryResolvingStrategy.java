@@ -1,17 +1,40 @@
 package de.mfreund.gentrans.transformation.resolving.history;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.compare.Comparison;
+import org.eclipse.emf.compare.EMFCompare;
+import org.eclipse.emf.compare.Match;
+import org.eclipse.emf.compare.diff.DefaultDiffEngine;
+import org.eclipse.emf.compare.diff.DiffBuilder;
+import org.eclipse.emf.compare.diff.FeatureFilter;
+import org.eclipse.emf.compare.diff.IDiffProcessor;
+import org.eclipse.emf.compare.match.DefaultComparisonFactory;
+import org.eclipse.emf.compare.match.DefaultEqualityHelperFactory;
+import org.eclipse.emf.compare.match.DefaultMatchEngine;
+import org.eclipse.emf.compare.match.IComparisonFactory;
+import org.eclipse.emf.compare.match.IMatchEngine;
+import org.eclipse.emf.compare.match.eobject.IEObjectMatcher;
+import org.eclipse.emf.compare.match.impl.MatchEngineFactoryImpl;
+import org.eclipse.emf.compare.match.impl.MatchEngineFactoryRegistryImpl;
+import org.eclipse.emf.compare.scope.DefaultComparisonScope;
+import org.eclipse.emf.compare.scope.IComparisonScope;
+import org.eclipse.emf.compare.utils.UseIdentifiers;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.pamtram.transformation.Transformation;
 import pamtram.PAMTraM;
+import pamtram.metamodel.MetamodelPackage;
 
 /**
  * This class implements a concrete {@link ComposedAmbiguityResolvingStrategy} that consults previous resolving 
@@ -47,6 +70,18 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	 */
 	private ArrayList<EObject> sourceModels;
 
+	/**
+	 * This will contain the result of the comparison process between the current PAMTraM model and the 'old' PAMTraM model
+	 * that is part of the {@link #transformationModel}.
+	 */
+	private Comparison pamtramCompareResult;
+
+	/**
+	 * This will contain a list of results of the comparison processes between the current source models and the 'old' source models
+	 * that are part of the {@link #transformationModel}.
+	 */
+	private ArrayList<Comparison> sourceCompareResults;
+
 	private HistoryResolvingStrategy(ArrayList<IAmbiguityResolvingStrategy> composedStrategies) {
 		super(composedStrategies);
 	}
@@ -64,19 +99,28 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	}
 
 	@Override
-	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels) {
+	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels) throws IOException {
 
 		this.pamtramModel = pamtramModel;
 		this.sourceModels = sourceModels;
+		this.sourceCompareResults = new ArrayList<>();
 		loadTransformationModel();
+		performEMFCompare();
+
+		System.out.println("Number of differences between the pamtram models: " + pamtramCompareResult.getDifferences().size());
 	}
 
 	/**
 	 * Load the {@link #transformationModel} from the given {@link #transformationModelPath}. 
+	 * @throws IOException 
 	 */
-	private void loadTransformationModel() {
+	private void loadTransformationModel() throws IOException {
 
-		ResourceSet resourceSet = new ResourceSetImpl();
+		/*
+		 * We need to load the transformation model to the same ResourceSet as the pamtram model, otherwise
+		 * strange things happen in the EMFcompare process (changes are shown even nothing has changed).
+		 */
+		ResourceSet resourceSet = this.pamtramModel.eResource().getResourceSet();
 
 		// the URI of the transformation model resource
 		final URI transformationModelUri = URI.createPlatformResourceURI(transformationModelPath, true);
@@ -84,10 +128,96 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		// load the transformation model
 		XMIResource transformationModelResource = 
 				(XMIResource) resourceSet.getResource(transformationModelUri, true);
+		transformationModelResource.load(Collections.EMPTY_MAP);
 		if(!(transformationModelResource.getContents().get(0) instanceof Transformation)) {
 			throw new RuntimeException("The transformation model does not contain a stored transformation.");
 		}
 		transformationModel = (Transformation) transformationModelResource.getContents().get(0);
+
+	}
+
+	/**
+	 * Initialize the comparison scope, configure the comparison and compare both the PAMTraM models (the one
+	 * stored as part of the {@link #transformationModel} and the {@link #pamtramModel}) as well as the
+	 * source models (those stored as part of the {@link #transformationModel} and the {@link #sourceModels}).
+	 * <p/>
+	 * Note: This is taken from <a href="https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Using_The_Compare_APIs">
+	 * https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Using_The_Compare_APIs</a>.
+	 * 
+	 * @throws IOException If one of the involved resources cannot be (re)loaded. 
+	 */
+	private void performEMFCompare() throws IOException {
+
+		/*
+		 * Initialize EMFCompare 
+		 */
+		ResourceSet resourceSet = this.transformationModel.eResource().getResourceSet();
+
+		IEObjectMatcher matcher = DefaultMatchEngine.createDefaultEObjectMatcher(UseIdentifiers.WHEN_AVAILABLE);
+		IComparisonFactory comparisonFactory = new DefaultComparisonFactory(new DefaultEqualityHelperFactory());
+
+		IMatchEngine.Factory matchEngineFactory = new MatchEngineFactoryImpl(matcher, comparisonFactory);
+		matchEngineFactory.setRanking(20);
+		IMatchEngine.Factory.Registry matchEngineRegistry = new MatchEngineFactoryRegistryImpl();
+		matchEngineRegistry.add(matchEngineFactory);
+
+		/*
+		 * Compare the Pamtram resources
+		 */
+		URI pamtramUri =  this.transformationModel.getPamtramInstance().eResource().getURI();
+		XMIResource pamtramResource = (XMIResource) resourceSet.getResource(pamtramUri, true);
+		pamtramResource.unload(); // reload the resource as the compare process will show strange differences
+		pamtramResource.load(Collections.EMPTY_MAP);
+
+		IComparisonScope scope = new DefaultComparisonScope(this.pamtramModel.eResource(), pamtramResource, null);
+		IDiffProcessor diffProcessor = new DiffBuilder();
+		EMFCompare comparator = EMFCompare.builder().
+				setMatchEngineFactoryRegistry(matchEngineRegistry).
+				setDiffEngine(new DefaultDiffEngine(diffProcessor) {
+					@Override
+					protected FeatureFilter createFeatureFilter() {
+						return new FeatureFilter() {
+							@Override
+							protected boolean isIgnoredReference(Match match, EReference reference) {
+								/*
+								 * We forget about the 'source' reference of library parameters as the comparison process will report
+								 * false changes to references of this type as the referenced objects are not contained in the resource 
+								 * in focus (cf. https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Changing_the_FeatureFilter).
+								 */
+								return reference.equals(MetamodelPackage.Literals.LIBRARY_PARAMETER__SOURCE) ||
+										super.isIgnoredReference(match, reference);
+							}
+
+							@Override
+							public boolean checkForOrderingChanges(EStructuralFeature feature) {
+								return false;
+							}
+						};
+					}
+				}).
+				build();
+
+		pamtramCompareResult = comparator.compare(scope);
+
+		/*
+		 * Compare the source models (only if the number of models match)
+		 */
+		if(sourceModels.size() == this.transformationModel.getSourceModels().size()) {
+
+			for (int i=0; i<sourceModels.size(); i++) {
+				URI sourceUri =  this.transformationModel.getSourceModels().get(i).eResource().getURI();
+				XMLResource sourceResource = (XMLResource) resourceSet.getResource(sourceUri, true);
+				sourceResource.unload(); // reload the resource as the compare process will show strange differences
+				sourceResource.load(Collections.EMPTY_MAP);
+
+				IComparisonScope sourceScope = new DefaultComparisonScope(this.sourceModels.get(i).eResource(), sourceResource, null);
+				EMFCompare sourceComparator = EMFCompare.builder().setMatchEngineFactoryRegistry(matchEngineRegistry).build();
+
+				sourceCompareResults.add(sourceComparator.compare(sourceScope));
+
+			}
+		}
+
 	}
 
 }

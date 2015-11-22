@@ -2,7 +2,9 @@ package de.mfreund.gentrans.transformation.resolving.history;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.Comparison;
@@ -33,7 +35,9 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.pamtram.transformation.Transformation;
+import de.mfreund.pamtram.transformation.TransformationMapping;
 import pamtram.PAMTraM;
+import pamtram.mapping.Mapping;
 import pamtram.metamodel.MetamodelPackage;
 
 /**
@@ -73,12 +77,18 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	/**
 	 * This will contain the result of the comparison process between the current PAMTraM model and the 'old' PAMTraM model
 	 * that is part of the {@link #transformationModel}.
+	 * <p />
+	 * Note: The <em>left</em> side of this comparison represents the current PAMTraM model, the <em>right</em> side 
+	 * represents the 'old' model (part of the transformation model).
 	 */
 	private Comparison pamtramCompareResult;
 
 	/**
 	 * This will contain a list of results of the comparison processes between the current source models and the 'old' source models
 	 * that are part of the {@link #transformationModel}.
+	 * <p />
+	 * Note: The <em>left</em> sides of these comparisons represent the current source models, the <em>right</em> sides 
+	 * represent the 'old' models (part of the transformation model).
 	 */
 	private ArrayList<Comparison> sourceCompareResults;
 
@@ -220,4 +230,79 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 
 	}
 
+	/**
+	 * Consult the list of {@link TransformationMapping TransformationMappings} stored in the 
+	 * {@link #transformationModel} in order to retrieve the corresponding selection for the given
+	 * list of choices. If a corresponding choice is found, reuse it; otherwise, forward the decision
+	 * to the list of {@link ComposedAmbiguityResolvingStrategy#composedStrategies}.
+	 */
+	@Override
+	public List<Mapping> matchingSelectMapping(List<Mapping> choices, EObject element) throws Exception {
+
+		/*
+		 * First, we need to check if we can find a match for the given 'element'.
+		 */
+		Match match = getSourceModelMatch(element);
+		if(match == null || match.getRight() == null) {
+			return super.matchingSelectMapping(choices, element);			
+		}
+
+		// the matched element from the 'old' source model 
+		EObject matchedElement = match.getRight();
+
+		/*
+		 * Now, we can determine the mapping that was used in the 'old' transformation.
+		 */
+		TransformationMapping oldTransformationMapping = null;
+		for(TransformationMapping transformationMapping : this.transformationModel.getTransformationMappings()) {
+			if(transformationMapping.getSourceElement().equals(matchedElement)) {
+				oldTransformationMapping = transformationMapping;
+				break;
+			}
+		}
+
+		if(oldTransformationMapping == null) {
+			return super.matchingSelectMapping(choices, element);
+		}
+
+		/*
+		 * Last, we can check if the 'old' mapping is an option in the given list of 'choices' (of course,
+		 * we have to consult the 'pamtramCompareResult' to get the matching mapping).
+		 */
+		Match mappingMatch = pamtramCompareResult.getMatch(oldTransformationMapping.getAssociatedMapping());
+		if(mappingMatch == null || mappingMatch.getLeft() == null || !(mappingMatch.getLeft() instanceof Mapping) ||
+				!choices.contains(mappingMatch.getLeft())) {
+			return super.matchingSelectMapping(choices, element);
+		}
+
+		System.out.println("Reusing choice during 'matchingSelectMapping': " + ((Mapping) (mappingMatch.getLeft())).getName());
+		return Arrays.asList((Mapping) (mappingMatch.getLeft()));
+
+	}
+
+	/**
+	 * This is a convenience method to find a match for the given source model element in one of the stored 
+	 * {@link #sourceCompareResults}. This method simply iterates over all compare results.
+	 * 
+	 * @param objectToMatch An element from a source model for that a match shall be found.
+	 * @return The {@link Match} for the given source model element or '<em>null</em>' if no
+	 * match could be found.
+	 */
+	private Match getSourceModelMatch(EObject objectToMatch) {
+
+		Match foundMatch = null;
+
+		/*
+		 * Iterate over all of the stored 'sourceCompareResults' and try to find 
+		 * a match for the given 'objectToMatch'.
+		 */
+		for (Comparison compareResult : sourceCompareResults) {
+			foundMatch = compareResult.getMatch(objectToMatch);
+			if(foundMatch != null) {
+				break;
+			}
+		}
+
+		return foundMatch;
+	}
 }

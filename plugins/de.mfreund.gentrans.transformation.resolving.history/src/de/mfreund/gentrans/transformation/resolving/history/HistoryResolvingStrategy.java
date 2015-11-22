@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.Comparison;
 import org.eclipse.emf.compare.EMFCompare;
@@ -38,6 +39,7 @@ import de.mfreund.pamtram.transformation.Transformation;
 import de.mfreund.pamtram.transformation.TransformationMapping;
 import pamtram.PAMTraM;
 import pamtram.mapping.Mapping;
+import pamtram.mapping.MappingType;
 import pamtram.metamodel.MetamodelPackage;
 
 /**
@@ -266,14 +268,36 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		}
 
 		/*
-		 * Last, we can check if the 'old' mapping is an option in the given list of 'choices' (of course,
-		 * we have to consult the 'pamtramCompareResult' to get the matching mapping).
+		 * Finally, we check if the list of choices is the 'same' list of choices as in the 'old' transformation 
+		 * (we do not want to blindly reuse a choice even if there are changes in the list of mappings that
+		 * we can choose from).
 		 */
-		Match mappingMatch = pamtramCompareResult.getMatch(oldTransformationMapping.getAssociatedMapping());
-		if(mappingMatch == null || mappingMatch.getLeft() == null || !(mappingMatch.getLeft() instanceof Mapping) ||
-				!choices.contains(mappingMatch.getLeft())) {
+		EList<MappingType> oldChoices = oldTransformationMapping.getAssociatedMapping().getSourceMMSection().getReferencingMappings();
+		ArrayList<MappingType> oldChoicesWithoutDeactivated = new ArrayList<>(oldChoices);
+		for (MappingType oldChoice : oldChoices) {
+			// sort out deactivated elements
+			if(oldChoice.isDeactivated()) {
+				oldChoicesWithoutDeactivated.remove(oldChoice);
+			}
+		}
+		if(oldChoicesWithoutDeactivated.size() != choices.size()) {
 			return super.matchingSelectMapping(choices, element);
 		}
+		for (MappingType oldChoice : oldChoicesWithoutDeactivated) {
+			// find a matching 'new' choice
+			Match matchingNewChoice = pamtramCompareResult.getMatch(oldChoice);
+			if(matchingNewChoice == null || matchingNewChoice.getLeft() == null || !(matchingNewChoice.getLeft() instanceof Mapping) ||
+					!choices.contains(matchingNewChoice.getLeft())) {
+				return super.matchingSelectMapping(choices, element);
+			}
+		}
+
+		/*
+		 * Now, we are sure that the current list of choices matches the old one (and thus that
+		 * the 'old' choice is also an option in the current list of choices). Thus, we may safely reuse
+		 * the old choice.
+		 */
+		Match mappingMatch = pamtramCompareResult.getMatch(oldTransformationMapping.getAssociatedMapping());
 
 		System.out.println("Reusing choice during 'matchingSelectMapping': " + ((Mapping) (mappingMatch.getLeft())).getName());
 		return Arrays.asList((Mapping) (mappingMatch.getLeft()));

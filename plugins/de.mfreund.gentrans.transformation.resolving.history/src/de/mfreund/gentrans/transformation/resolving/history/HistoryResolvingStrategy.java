@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
@@ -26,6 +27,7 @@ import org.eclipse.emf.compare.match.impl.MatchEngineFactoryRegistryImpl;
 import org.eclipse.emf.compare.scope.DefaultComparisonScope;
 import org.eclipse.emf.compare.scope.IComparisonScope;
 import org.eclipse.emf.compare.utils.UseIdentifiers;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -331,29 +333,66 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		 * result. Thus, we simply get the first one.
 		 */
 		EObject instantiatedElement = null;
-		for (TransformationMapping transformationMapping : this.transformationModel.getTransformationMappings()) {
-			for (TransformationMappingHintGroup transformationHintGroup : transformationMapping.getTransformationHintGroups()) {
-				if(matchedSection.getReferencingMappingHintGroups().contains(transformationHintGroup.getAssociatedMappingHintGroup())) {
-					if(!transformationHintGroup.getTargetElements().isEmpty()) {
-						instantiatedElement = transformationHintGroup.getTargetElements().get(0);
-						break;
-					}
-				}
 
+		outerloop:
+			for (TransformationMapping transformationMapping : this.transformationModel.getTransformationMappings()) {
+				for (TransformationMappingHintGroup transformationHintGroup : transformationMapping.getTransformationHintGroups()) {
+					if(matchedSection.getReferencingMappingHintGroups().contains(transformationHintGroup.getAssociatedMappingHintGroup())) {
+						if(!transformationHintGroup.getTargetElements().isEmpty()) {
+							instantiatedElement = transformationHintGroup.getTargetElements().get(0);
+							break outerloop;
+						}
+					}
+
+				}
 			}
-		}
 
 		if(instantiatedElement == null) {
 			return super.joiningSelectConnectionPath(choices, section);			
 		}
 
-
 		/*
 		 * Finally, we can check which ModelConnectionPath was used to connect the 
 		 * 'instantiatedElement'.
 		 */
+		ModelConnectionPath usedPath = null;
 		for (ModelConnectionPath modelConnectionPath : choices) {
-			for(int i=0; i<modelConnectionPath.size(); i
+
+			usedPath = modelConnectionPath;
+
+			/*
+			 * Iterate over every element of the path and check if it was used to connect
+			 * the given 'instantiatedElement'.
+			 */
+			EObject currentElement = instantiatedElement;
+			Iterator<EObject> pathElementIterator = modelConnectionPath.getPathElements().iterator();
+			while(pathElementIterator.hasNext()) {
+				EObject pathElement = pathElementIterator.next();
+				if(pathElement instanceof EClass) {
+					if(!(currentElement.eClass().equals(pathElement))) {
+						usedPath = null;
+						break;
+					}
+				} else if(pathElement instanceof EReference) {
+					if(!(currentElement.eContainingFeature().equals(pathElement))) {
+						usedPath = null;
+						break;
+					} else {
+						currentElement = currentElement.eContainer();
+					}
+				}
+			}
+			//we have found our path
+			if(usedPath != null) {
+				break;
+			}
+		}
+
+		if(usedPath == null) {
+			return super.joiningSelectConnectionPath(choices, section);			
+		} else {
+			System.out.println("Reusing choice during 'joiningSelectConnectionPath': " + usedPath);
+			return Arrays.asList(usedPath);
 		}
 
 	}

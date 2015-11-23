@@ -354,6 +354,11 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 
 	}
 
+	/**
+	 * This consults the {@link #transformationModel} in order to determine which of the given 
+	 * '<em>choices</em>' was used during the 'old' transformation for joining the given
+	 * '<em>section</em>'.
+	 */
 	@Override
 	public List<ModelConnectionPath> joiningSelectConnectionPath(List<ModelConnectionPath> choices,
 			TargetSection section) throws Exception {
@@ -430,6 +435,29 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 			return Arrays.asList(usedPath);
 		}
 
+	}
+
+	/**
+	 * This consults the {@link #transformationModel} in order to determine which root class
+	 * was used during the 'old' transformation.
+	 */
+	@Override
+	public List<EClass> joiningSelectRootElement(List<EClass> choices) throws Exception {
+
+		/*
+		 * Determine the root element from the 'old' transformation model.
+		 * Note: Up to now, we always simply use the first target model as multiple target
+		 * models are not yet supported. This should probably be changed one day...
+		 */
+		EObject targetModelRoot = this.transformationModel.getTargetModels().get(0);
+		EClass targetModelRootClass = targetModelRoot.eClass();
+
+		if(choices.contains(targetModelRootClass)) {
+			System.out.println("Reusing choice during 'joiningSelectRootElement': " + targetModelRootClass.getName());
+			return Arrays.asList(targetModelRootClass);
+		} else {
+			return super.joiningSelectRootElement(choices);
+		}
 	}
 
 	/**

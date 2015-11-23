@@ -38,6 +38,15 @@ public final class ModelConnectionPath {
 	private LinkedList<EObject> pathElements;
 
 	/**
+	 * This is the getter for the list of {@link #pathElements}.
+	 * 
+	 * @return The elements forming this path. 
+	 */
+	public LinkedList<EObject> getPathElements() {
+		return this.pathElements;
+	}
+
+	/**
 	 * The registry of created target section instances that this ModelConnectionPath is associated with. Instances of
 	 * ModelConnectionPath that are created e.g. by {@link #findPathsFromContainerToClassToConnect(TargetSectionRegistry, EClass, EClass, int)}
 	 * are added to this registry.

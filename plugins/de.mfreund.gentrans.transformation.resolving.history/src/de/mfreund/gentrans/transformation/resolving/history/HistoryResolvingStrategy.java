@@ -569,8 +569,12 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 							@Override
 							protected boolean isIgnoredReference(Match match, EReference reference) {
 
-								return !reference.isContainment() ||
-										super.isIgnoredReference(match, reference);
+								/*
+								 * as the sections are not yet joined and linked, we do at all take references
+								 * into account during comparing container instances; consequently, we only compare 
+								 * attributes
+								 */
+								return true;
 							}
 
 							@Override
@@ -582,8 +586,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 				}).
 				build();
 
-		int numberOfDifferences = -1;
-		EObjectWrapper containerInstanceToUse = null;
+		ArrayList<EObjectWrapper> containerInstancesToUse = new ArrayList<>();
 		for (EObjectWrapper containerInstance : choices.get(usedPath)) {
 			IComparisonScope scope = new DefaultComparisonScope(containerInstance.getEObject(), usedInstance, null);
 			Comparison comparison = comparator.compare(scope);
@@ -591,19 +594,18 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 			if(match == null || match.getLeft() == null) {
 				continue;
 			}
-			if(numberOfDifferences == -1 || match.getDifferences().size() < numberOfDifferences) {
-				numberOfDifferences = match.getDifferences().size();
-				containerInstanceToUse = containerInstance;
+			if(match.getDifferences().isEmpty()) {
+				containerInstancesToUse.add(containerInstance);
 			}
 		}
 
-		if(containerInstanceToUse == null) {
+		if(containerInstancesToUse.isEmpty()) {
 			return super.joiningSelectConnectionPathAndContainerInstance(choices, section, sectionInstances, hintGroup);	
 		} else {
-			System.out.println("Reusing choice during 'joiningSelectConnectionPathAndInstance': " + usedPath + "; " + containerInstanceToUse);
+			System.out.println("Reusing choice during 'joiningSelectConnectionPathAndInstance': " + usedPath + "; " + containerInstancesToUse);
 			HashMap<ModelConnectionPath, List<EObjectWrapper>> ret = new HashMap<>();
-			ret.put(usedPath, Arrays.asList(containerInstanceToUse));
-			return ret;
+			ret.put(usedPath, containerInstancesToUse);
+			return  super.joiningSelectConnectionPathAndContainerInstance(ret, section, sectionInstances, hintGroup);
 		}
 
 	}

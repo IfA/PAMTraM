@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -43,6 +45,9 @@ import de.mfreund.pamtram.transformation.TransformationMapping;
 import de.mfreund.pamtram.transformation.TransformationMappingHintGroup;
 import pamtram.PAMTraM;
 import pamtram.mapping.Mapping;
+import pamtram.mapping.MappingHintGroup;
+import pamtram.mapping.MappingHintGroupImporter;
+import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingType;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.TargetSection;
@@ -99,6 +104,14 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	 */
 	private ArrayList<Comparison> sourceCompareResults;
 
+	/**
+	 * This map is filled once during the {@link #init(PAMTraM, ArrayList)} method and contains associations between
+	 * {@link TargetSection TargetSections} and lists of {@link TransformationMappingHintGroup TransformationMappingHintGroups}
+	 * that are contained in the {@link #transformationModel}. It can be used to retrieve all hint groups from the 
+	 * transformation model that were responsible for instantiating a certain target section.
+	 */
+	private Map<TargetSection, List<TransformationMappingHintGroup>> targetSectionToTransformationHintGroups;
+
 	private HistoryResolvingStrategy(ArrayList<IAmbiguityResolvingStrategy> composedStrategies) {
 		super(composedStrategies);
 	}
@@ -125,6 +138,38 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		performEMFCompare();
 
 		System.out.println("Number of differences between the pamtram models: " + pamtramCompareResult.getDifferences().size());
+
+		buildTargetSectionToTransformationHintGroupMap();
+	}
+
+	/**
+	 * Fill the {@link #targetSectionToTransformationHintGroups} map by iterating over the transformation model.
+	 */
+	private void buildTargetSectionToTransformationHintGroupMap() {
+		targetSectionToTransformationHintGroups = new HashMap<>();
+		for (TransformationMapping transformationMapping : this.transformationModel.getTransformationMappings()) {
+			for (TransformationMappingHintGroup transformationHintGroup : transformationMapping.getTransformationHintGroups()) {
+				MappingHintGroupType hintGroup = null;
+				if(transformationHintGroup.getAssociatedMappingHintGroup() instanceof MappingHintGroup) {
+					hintGroup = ((MappingHintGroup) (transformationHintGroup.getAssociatedMappingHintGroup()));
+				} else if(transformationHintGroup.getAssociatedMappingHintGroup() instanceof MappingHintGroupImporter) {
+					hintGroup = ((MappingHintGroupImporter) (transformationHintGroup.getAssociatedMappingHintGroup())).getHintGroup();
+				} else {
+					continue;
+				}
+				TargetSection section = hintGroup.getTargetMMSection();
+				if(section == null) {
+					continue;
+				}
+				List<TransformationMappingHintGroup> hintGroups = new ArrayList<>();
+				if(targetSectionToTransformationHintGroups.containsKey(section)) {
+					hintGroups = targetSectionToTransformationHintGroups.get(section);
+				}
+				hintGroups.add(transformationHintGroup);
+				targetSectionToTransformationHintGroups.put(section, hintGroups);
+
+			}
+		}
 	}
 
 	/**
@@ -326,26 +371,16 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 
 		/*
 		 * Now, we try to determine an element from the 'old' target model that represents the found 'matchedSection'.
-		 * Therefore, we first determine a TransformationHintGroup of which the associated MappingHintGroup
-		 * was responsible for instantiating the 'matchedSection'. That way, we can determine the
-		 * instantiated ModelConnectionPath from the source model. Thereby, it should not be relevant which
-		 * of the (possible multiple) TransformationHintGroups we determine as all should lead to the same
+		 * Therefore, we get a TransformationHintGroup of which the associated MappingHintGroup
+		 * was responsible for instantiating the 'matchedSection' from the map 'targetSectionToTransformationHintGroups'. 
+		 * That way, we can determine the instantiated ModelConnectionPath from the source model. Thereby, it should not 
+		 * be relevant which of the (possible multiple) TransformationHintGroups we determine as all should lead to the same
 		 * result. Thus, we simply get the first one.
 		 */
-		EObject instantiatedElement = null;
-
-		outerloop:
-			for (TransformationMapping transformationMapping : this.transformationModel.getTransformationMappings()) {
-				for (TransformationMappingHintGroup transformationHintGroup : transformationMapping.getTransformationHintGroups()) {
-					if(matchedSection.getReferencingMappingHintGroups().contains(transformationHintGroup.getAssociatedMappingHintGroup())) {
-						if(!transformationHintGroup.getTargetElements().isEmpty()) {
-							instantiatedElement = transformationHintGroup.getTargetElements().get(0);
-							break outerloop;
-						}
-					}
-
-				}
-			}
+		if(!targetSectionToTransformationHintGroups.containsKey(matchedSection)) {
+			return super.joiningSelectConnectionPath(choices, section);
+		}
+		EObject instantiatedElement = targetSectionToTransformationHintGroups.get(matchedSection).get(0).getTargetElements().get(0);
 
 		if(instantiatedElement == null) {
 			return super.joiningSelectConnectionPath(choices, section);			

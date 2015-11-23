@@ -498,7 +498,7 @@ public class TargetSectionConnector extends CancellableElement {
 			try {
 				HashMap<ModelConnectionPath, List<EObjectWrapper>> resolved = ambiguityResolvingStrategy.joiningSelectConnectionPathAndContainerInstance(choices, section, rootInstances, mappingGroup);
 				modelConnectionPath = resolved.entrySet().iterator().next().getKey();
-				inst = instancesByPath.get(modelConnectionPath).get(resolved.entrySet().iterator().next().getValue().get(0));
+				inst = instancesByPath.get(modelConnectionPath.toString()).get(resolved.entrySet().iterator().next().getValue().get(0).toString());
 			} catch (Exception e) {
 				consoleStream.println(e.getMessage());
 				cancel();

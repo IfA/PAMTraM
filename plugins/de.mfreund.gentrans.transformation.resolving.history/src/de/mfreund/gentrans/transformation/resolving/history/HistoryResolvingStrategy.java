@@ -33,14 +33,17 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 
+import de.mfreund.gentrans.transformation.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.pamtram.transformation.Transformation;
 import de.mfreund.pamtram.transformation.TransformationMapping;
+import de.mfreund.pamtram.transformation.TransformationMappingHintGroup;
 import pamtram.PAMTraM;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingType;
 import pamtram.metamodel.MetamodelPackage;
+import pamtram.metamodel.TargetSection;
 
 /**
  * This class implements a concrete {@link ComposedAmbiguityResolvingStrategy} that consults previous resolving 
@@ -301,6 +304,57 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 
 		System.out.println("Reusing choice during 'matchingSelectMapping': " + ((Mapping) (mappingMatch.getLeft())).getName());
 		return Arrays.asList((Mapping) (mappingMatch.getLeft()));
+
+	}
+
+	@Override
+	public List<ModelConnectionPath> joiningSelectConnectionPath(List<ModelConnectionPath> choices,
+			TargetSection section) throws Exception {
+
+		/*
+		 * First, we need to check if we can find a match for the given 'section'.
+		 */
+		Match match = pamtramCompareResult.getMatch(section);
+		if(match == null || match.getRight() == null || !(match.getRight() instanceof TargetSection)) {
+			return super.joiningSelectConnectionPath(choices, section);		
+		}
+
+		// the matched section from the 'old' pamtram model
+		TargetSection matchedSection = (TargetSection) match.getRight();
+
+		/*
+		 * Now, we try to determine an element from the 'old' target model that represents the found 'matchedSection'.
+		 * Therefore, we first determine a TransformationHintGroup of which the associated MappingHintGroup
+		 * was responsible for instantiating the 'matchedSection'. That way, we can determine the
+		 * instantiated ModelConnectionPath from the source model. Thereby, it should not be relevant which
+		 * of the (possible multiple) TransformationHintGroups we determine as all should lead to the same
+		 * result. Thus, we simply get the first one.
+		 */
+		EObject instantiatedElement = null;
+		for (TransformationMapping transformationMapping : this.transformationModel.getTransformationMappings()) {
+			for (TransformationMappingHintGroup transformationHintGroup : transformationMapping.getTransformationHintGroups()) {
+				if(matchedSection.getReferencingMappingHintGroups().contains(transformationHintGroup.getAssociatedMappingHintGroup())) {
+					if(!transformationHintGroup.getTargetElements().isEmpty()) {
+						instantiatedElement = transformationHintGroup.getTargetElements().get(0);
+						break;
+					}
+				}
+
+			}
+		}
+
+		if(instantiatedElement == null) {
+			return super.joiningSelectConnectionPath(choices, section);			
+		}
+
+
+		/*
+		 * Finally, we can check which ModelConnectionPath was used to connect the 
+		 * 'instantiatedElement'.
+		 */
+		for (ModelConnectionPath modelConnectionPath : choices) {
+			for(int i=0; i<modelConnectionPath.size(); i
+		}
 
 	}
 

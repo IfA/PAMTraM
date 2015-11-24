@@ -20,7 +20,6 @@ import org.eclipse.emf.compare.diff.DefaultDiffEngine;
 import org.eclipse.emf.compare.diff.DiffBuilder;
 import org.eclipse.emf.compare.diff.FeatureFilter;
 import org.eclipse.emf.compare.diff.IDiffEngine;
-import org.eclipse.emf.compare.diff.IDiffProcessor;
 import org.eclipse.emf.compare.match.DefaultComparisonFactory;
 import org.eclipse.emf.compare.match.DefaultEqualityHelperFactory;
 import org.eclipse.emf.compare.match.DefaultMatchEngine;
@@ -505,9 +504,9 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		}
 
 		/*
-		 * Now, check if the 'old' and the current 'sectionInstances' are equivalent. As we cannot rely on EMFCompare here
-		 * (we have not compared anything for the target models (only for source and pamtram models), we simply compare
-		 * if the number has not changed.
+		 * Now, check if the 'old' and the current 'sectionInstances' are equivalent. Here, we simply check if the counts
+		 * match - a more thorough comparison could be performed via EMFCompare but this should take quite a bit of time
+		 * as we have to cross-compare every instance.
 		 */
 		if(oldSectionInstances.isEmpty() || oldSectionInstances.size() != sectionInstances.size()) {
 			return super.joiningSelectConnectionPathAndContainerInstance(choices, section, sectionInstances, hintGroup);
@@ -559,49 +558,35 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 
 		/*
 		 * Before returning, we have to identify the 'container instance' (represented by an EObjectWrapper) that
-		 * corresponds to the determined 'usedInstance'. Again, we cannot rely on EMFCompare so that we simply
-		 * select one instance with the same name.
+		 * corresponds to the determined 'usedInstance'. Therefore, we compare the 'container instances and the 'usedInstance'
+		 * and select this/these instance(s) that could be matched without any differences. 
 		 */
 
-		/*
-		 * Initialize EMFCompare 
-		 */
-		ResourceSet resourceSet = this.transformationModel.eResource().getResourceSet();
-
-		IEObjectMatcher matcher = DefaultMatchEngine.createDefaultEObjectMatcher(UseIdentifiers.WHEN_AVAILABLE);
-		IComparisonFactory comparisonFactory = new DefaultComparisonFactory(new DefaultEqualityHelperFactory());
-
-		IMatchEngine.Factory matchEngineFactory = new MatchEngineFactoryImpl(matcher, comparisonFactory);
-		matchEngineFactory.setRanking(20);
-		IMatchEngine.Factory.Registry matchEngineRegistry = new MatchEngineFactoryRegistryImpl();
-		matchEngineRegistry.add(matchEngineFactory);
-		IDiffProcessor diffProcessor = new DiffBuilder();
-		EMFCompare comparator = EMFCompare.builder().
-				setMatchEngineFactoryRegistry(matchEngineRegistry).
-				setDiffEngine(new DefaultDiffEngine(diffProcessor) {
+		// create a comparator first
+		EMFCompare comparator = getComparator(new DefaultDiffEngine(new DiffBuilder()) {
+			@Override
+			protected FeatureFilter createFeatureFilter() {
+				return new FeatureFilter() {
 					@Override
-					protected FeatureFilter createFeatureFilter() {
-						return new FeatureFilter() {
-							@Override
-							protected boolean isIgnoredReference(Match match, EReference reference) {
+					protected boolean isIgnoredReference(Match match, EReference reference) {
 
-								/*
-								 * as the sections are not yet joined and linked, we do at all take references
-								 * into account during comparing container instances; consequently, we only compare 
-								 * attributes
-								 */
-								return true;
-							}
-
-							@Override
-							public boolean checkForOrderingChanges(EStructuralFeature feature) {
-								return false;
-							}
-						};
+						/*
+						 * as the sections are not yet joined and linked, we do not at all take references
+						 * into account during comparing container instances; consequently, we only compare 
+						 * attributes
+						 */
+						return true;
 					}
-				}).
-				build();
 
+					@Override
+					public boolean checkForOrderingChanges(EStructuralFeature feature) {
+						return false;
+					}
+				};
+			}
+		});
+
+		// now, compare every instance
 		ArrayList<EObjectWrapper> containerInstancesToUse = new ArrayList<>();
 		for (EObjectWrapper containerInstance : choices.get(usedPath)) {
 			IComparisonScope scope = new DefaultComparisonScope(containerInstance.getEObject(), usedInstance, null);
@@ -611,6 +596,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 				continue;
 			}
 			if(match.getDifferences().isEmpty()) {
+				// we have found a matching instance that can be used
 				containerInstancesToUse.add(containerInstance);
 			}
 		}

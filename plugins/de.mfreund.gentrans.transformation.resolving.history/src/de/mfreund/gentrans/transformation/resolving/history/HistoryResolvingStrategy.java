@@ -141,14 +141,24 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	@Override
 	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels) throws IOException {
 
+		/*
+		 * initialize the models to be used by this strategy
+		 */
 		this.pamtramModel = pamtramModel;
 		this.sourceModels = sourceModels;
-		this.sourceCompareResults = new ArrayList<>();
 		loadTransformationModel();
-		performEMFCompare();
 
-		System.out.println("Number of differences between the pamtram models: " + pamtramCompareResult.getDifferences().size());
+		/*
+		 * compare old and new models
+		 */
+		this.pamtramCompareResult = null;
+		this.sourceCompareResults = new ArrayList<>();
+		comparePamtramModels();
+		compareSourceModels();
 
+		/*
+		 * initialize 'targetSectionToTransformationHintGroups' map
+		 */
 		buildTargetSectionToTransformationHintGroupMap();
 	}
 
@@ -209,15 +219,20 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	}
 
 	/**
-	 * Initialize the comparison scope, configure the comparison and compare both the PAMTraM models (the one
-	 * stored as part of the {@link #transformationModel} and the {@link #pamtramModel}) as well as the
-	 * source models (those stored as part of the {@link #transformationModel} and the {@link #sourceModels}).
+	 * Compare both PAMTraM models (the one stored as part of the {@link #transformationModel} and the {@link #pamtramModel}) 
+	 * and store the result in the {@link #pamtramCompareResult} field.
 	 * 
 	 * @throws IOException If one of the involved resources cannot be (re)loaded. 
 	 */
-	private void performEMFCompare() throws IOException {
+	private void comparePamtramModels() throws IOException {
 
 		ResourceSet resourceSet = this.transformationModel.eResource().getResourceSet();
+
+		/*
+		 * We need to reload the pamtram resource that is part of the transformation model as otherwise the
+		 * compare process will show strange differences even if there should not be any.
+		 * TODO This might have to do something with the cross-resource containments and proxy resolving...
+		 */
 		URI pamtramUri =  this.transformationModel.getPamtramInstance().eResource().getURI();
 		XMIResource pamtramResource = (XMIResource) resourceSet.getResource(pamtramUri, true);
 		pamtramResource.unload(); // reload the resource as the compare process will show strange differences otherwise
@@ -251,6 +266,18 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		});
 		pamtramCompareResult = comparator.compare(scope);
 
+	}
+
+	/**
+	 * Compare the source models (those stored as part of the {@link #transformationModel} and the {@link #sourceModels})
+	 * and store the results in the {@link #pamtramCompareResult} field.
+	 * 
+	 * @throws IOException If one of the involved resources cannot be (re)loaded. 
+	 */
+	private void compareSourceModels() throws IOException {
+
+		ResourceSet resourceSet = this.transformationModel.eResource().getResourceSet();
+
 		/*
 		 * Compare the source models (only if the number of models match)
 		 */
@@ -263,7 +290,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 				sourceResource.load(Collections.EMPTY_MAP);
 
 				IComparisonScope sourceScope = new DefaultComparisonScope(this.sourceModels.get(i).eResource(), sourceResource, null);
-				EMFCompare sourceComparator = EMFCompare.builder().setMatchEngineFactoryRegistry(matchEngineRegistry).build();
+				EMFCompare sourceComparator = getComparator(null);
 
 				sourceCompareResults.add(sourceComparator.compare(sourceScope));
 

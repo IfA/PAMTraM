@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 
+import de.mfreund.gentrans.transformation.EObjectWrapper;
 import de.mfreund.gentrans.transformation.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
@@ -433,6 +434,178 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		} else {
 			System.out.println("Reusing choice during 'joiningSelectConnectionPath': " + usedPath);
 			return Arrays.asList(usedPath);
+		}
+
+	}
+
+	@Override
+	public HashMap<ModelConnectionPath, List<EObjectWrapper>> joiningSelectConnectionPathAndContainerInstance(
+			HashMap<ModelConnectionPath, List<EObjectWrapper>> choices, 
+			TargetSection section,
+			List<EObjectWrapper> sectionInstances, 
+			MappingHintGroupType hintGroup) throws Exception {
+
+		/*
+		 * First, we need to check if we can find a match for the given 'section' and 'hintGroup'.
+		 */
+		Match sectionMatch = pamtramCompareResult.getMatch(section);
+		Match hintGroupMatch = pamtramCompareResult.getMatch(hintGroup);
+		if(sectionMatch == null || sectionMatch.getRight() == null || !(sectionMatch.getRight() instanceof TargetSection) ||
+				hintGroupMatch == null || hintGroupMatch.getRight() == null || !(hintGroupMatch.getRight() instanceof MappingHintGroupType)) {
+			return super.joiningSelectConnectionPathAndContainerInstance(choices, section, sectionInstances, hintGroup);
+		}
+
+		// the matched section/hintGroup from the 'old' pamtram model
+		TargetSection matchedSection = (TargetSection) sectionMatch.getRight();
+		MappingHintGroupType matchedHintGroup = (MappingHintGroupType) hintGroupMatch.getRight();
+
+		/*
+		 * Now, we determine the elements from the 'old' target model that correspond to the given 'sectionInstances'.
+		 * Therefore, we make use of the map 'targetSectionToTransformationHintGroups' and collect all instantiated
+		 * target elements from all TransformationMappingHintGroups that represent the given 'hintGroup' (and thus
+		 * the given 'section').
+		 */
+		if(!targetSectionToTransformationHintGroups.containsKey(matchedSection)) {
+			return super.joiningSelectConnectionPathAndContainerInstance(choices, section, sectionInstances, hintGroup);
+		}
+		List<EObject> oldSectionInstances = new ArrayList<>();
+		for (TransformationMappingHintGroup transformationMappingHintGroup : targetSectionToTransformationHintGroups.get(matchedSection)) {
+
+			/*
+			 * As only 'InstantiableHintGroups' are stored in the transformation model whereas
+			 * the given 'matchedHintGroup' is of type 'MappingHintGroupType' we need to determine the corresponding
+			 * 'MappingHintGroupType' for each 'transformationMappingHintGroup'.
+			 */
+			MappingHintGroupType mappingHintGroupType = null;
+			if(transformationMappingHintGroup.getAssociatedMappingHintGroup() instanceof MappingHintGroup) {
+				mappingHintGroupType = (MappingHintGroupType) transformationMappingHintGroup.getAssociatedMappingHintGroup();
+			} else if(transformationMappingHintGroup.getAssociatedMappingHintGroup() instanceof MappingHintGroupImporter) {
+				mappingHintGroupType = ((MappingHintGroupImporter) transformationMappingHintGroup.getAssociatedMappingHintGroup()).getHintGroup();
+			}
+			if(mappingHintGroupType != null && mappingHintGroupType.equals(matchedHintGroup)) {
+				oldSectionInstances.addAll(transformationMappingHintGroup.getTargetElements());
+			}
+
+		}
+
+		/*
+		 * Now, check if the 'old' and the current 'sectionInstances' are equivalent. As we cannot rely on EMFCompare here
+		 * (we have not compared anything for the target models (only for source and pamtram models), we simply compare
+		 * if the number has not changed.
+		 */
+		if(oldSectionInstances.isEmpty() || oldSectionInstances.size() != sectionInstances.size()) {
+			return super.joiningSelectConnectionPathAndContainerInstance(choices, section, sectionInstances, hintGroup);
+		}
+
+		/*
+		 * Finally, we can check which ModelConnectionPath and Instance was used to connect the 
+		 * 'sectionInstances'. As all of the 'sectionInstances' should be connected to the same
+		 * element (and via the same path), we examplarily use only the first of the 'sectionInstances'.
+		 */
+		ModelConnectionPath usedPath = null;
+		EObject usedInstance = null;
+		for (ModelConnectionPath modelConnectionPath : choices.keySet()) {
+
+			usedPath = modelConnectionPath;
+
+			/*
+			 * Iterate over every element of the path and check if it was used to connect
+			 * the given 'instantiatedElement'.
+			 */
+			EObject currentElement = oldSectionInstances.get(0);
+			Iterator<EObject> pathElementIterator = modelConnectionPath.getPathElements().iterator();
+			while(pathElementIterator.hasNext()) {
+				EObject pathElement = pathElementIterator.next();
+				if(pathElement instanceof EClass) {
+					if(!(currentElement.eClass().equals(pathElement))) {
+						usedPath = null;
+						break;
+					}
+				} else if(pathElement instanceof EReference) {
+					if(!(currentElement.eContainingFeature().equals(pathElement))) {
+						usedPath = null;
+						break;
+					} else {
+						currentElement = currentElement.eContainer();
+					}
+				}
+			}
+			//we have found our path
+			if(usedPath != null) {
+				usedInstance = currentElement;
+				break;
+			}
+		}
+
+		if(usedPath == null || usedInstance == null) {
+			return super.joiningSelectConnectionPathAndContainerInstance(choices, section, sectionInstances, hintGroup);		
+		}
+
+		/*
+		 * Before returning, we have to identify the 'container instance' (represented by an EObjectWrapper) that
+		 * corresponds to the determined 'usedInstance'. Again, we cannot rely on EMFCompare so that we simply
+		 * select one instance with the same name.
+		 */
+
+		/*
+		 * Initialize EMFCompare 
+		 */
+		ResourceSet resourceSet = this.transformationModel.eResource().getResourceSet();
+
+		IEObjectMatcher matcher = DefaultMatchEngine.createDefaultEObjectMatcher(UseIdentifiers.WHEN_AVAILABLE);
+		IComparisonFactory comparisonFactory = new DefaultComparisonFactory(new DefaultEqualityHelperFactory());
+
+		IMatchEngine.Factory matchEngineFactory = new MatchEngineFactoryImpl(matcher, comparisonFactory);
+		matchEngineFactory.setRanking(20);
+		IMatchEngine.Factory.Registry matchEngineRegistry = new MatchEngineFactoryRegistryImpl();
+		matchEngineRegistry.add(matchEngineFactory);
+		IDiffProcessor diffProcessor = new DiffBuilder();
+		EMFCompare comparator = EMFCompare.builder().
+				setMatchEngineFactoryRegistry(matchEngineRegistry).
+				setDiffEngine(new DefaultDiffEngine(diffProcessor) {
+					@Override
+					protected FeatureFilter createFeatureFilter() {
+						return new FeatureFilter() {
+							@Override
+							protected boolean isIgnoredReference(Match match, EReference reference) {
+
+								/*
+								 * as the sections are not yet joined and linked, we do at all take references
+								 * into account during comparing container instances; consequently, we only compare 
+								 * attributes
+								 */
+								return true;
+							}
+
+							@Override
+							public boolean checkForOrderingChanges(EStructuralFeature feature) {
+								return false;
+							}
+						};
+					}
+				}).
+				build();
+
+		ArrayList<EObjectWrapper> containerInstancesToUse = new ArrayList<>();
+		for (EObjectWrapper containerInstance : choices.get(usedPath)) {
+			IComparisonScope scope = new DefaultComparisonScope(containerInstance.getEObject(), usedInstance, null);
+			Comparison comparison = comparator.compare(scope);
+			Match match = comparison.getMatch(usedInstance);
+			if(match == null || match.getLeft() == null) {
+				continue;
+			}
+			if(match.getDifferences().isEmpty()) {
+				containerInstancesToUse.add(containerInstance);
+			}
+		}
+
+		if(containerInstancesToUse.isEmpty()) {
+			return super.joiningSelectConnectionPathAndContainerInstance(choices, section, sectionInstances, hintGroup);	
+		} else {
+			System.out.println("Reusing choice during 'joiningSelectConnectionPathAndInstance': " + usedPath + "; " + containerInstancesToUse);
+			HashMap<ModelConnectionPath, List<EObjectWrapper>> ret = new HashMap<>();
+			ret.put(usedPath, containerInstancesToUse);
+			return  super.joiningSelectConnectionPathAndContainerInstance(ret, section, sectionInstances, hintGroup);
 		}
 
 	}

@@ -454,6 +454,11 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 
 	}
 
+	/**
+	 * This consults the {@link #transformationModel} in order to determine which of the given
+	 * '<em>choices</em>' was used during the 'old' transformation for joining the given
+	 * '<em>element</em>'.
+	 */
 	@Override
 	public List<EObjectWrapper> joiningSelectContainerInstance(List<EObjectWrapper> choices,
 			List<EObjectWrapper> element, MappingHintGroupType hintGroup, ModelConnectionHint modelConnectionHint,
@@ -507,7 +512,10 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		 * current 'sectionInstances' by comparing them ('oldSectionInstances' might represent more
 		 * elements than 'sectionInstances' does as this method is called multiple times). As all of the 
 		 * 'sectionInstances' should be connected to the same element, we examplarily use only the 
-		 * first of the 'sectionInstances'.
+		 * first of the 'sectionInstances'. However, if we find multiple matches (part of the old transformation)
+		 * for this one 'sectionInstance', we must not proceed as we cannot guarantee that those did
+		 * not result from different choices. In that case, we try to determine another 'sectionInstance'
+		 * for that we can determine a unique match.
 		 */
 		EObject oldSectionInstanceToUse = null;
 
@@ -535,16 +543,27 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 			}
 		});
 
-		for (EObject oldSectionInstance : oldSectionInstances) {
-			IComparisonScope scope = new DefaultComparisonScope(element.get(0).getEObject(), oldSectionInstance, null);
-			Comparison comparison = comparator.compare(scope);
-			Match match = comparison.getMatch(element.get(0).getEObject());
-			if(match == null || match.getRight() == null) {
-				continue;
+		for (int i = 0; i < element.size(); i++) {
+			for (EObject oldSectionInstance : oldSectionInstances) {
+				IComparisonScope scope = new DefaultComparisonScope(element.get(i).getEObject(), oldSectionInstance, null);
+				Comparison comparison = comparator.compare(scope);
+				Match match = comparison.getMatch(element.get(0).getEObject());
+				if(match == null || match.getRight() == null) {
+					continue;
+				}
+				if(match.getDifferences().isEmpty()) {
+					if(oldSectionInstanceToUse != null) {
+						// we have found another match so that we need to try to find a unique match for one of the other choices
+						oldSectionInstanceToUse = null;
+						break;
+					} else {
+						// we have found a matching instance that could be used
+						oldSectionInstanceToUse = oldSectionInstance;						
+					}
+				}
 			}
-			if(match.getDifferences().isEmpty()) {
-				// we have found a matching instance that can be used
-				oldSectionInstanceToUse = oldSectionInstance;
+			if(oldSectionInstanceToUse != null) {
+				// we have found a unique match
 				break;
 			}
 		}

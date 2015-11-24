@@ -52,6 +52,7 @@ import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingType;
+import pamtram.mapping.ModelConnectionHint;
 import pamtram.metamodel.MetamodelPackage;
 import pamtram.metamodel.TargetSection;
 
@@ -453,6 +454,162 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 
 	}
 
+	/**
+	 * This consults the {@link #transformationModel} in order to determine which of the given
+	 * '<em>choices</em>' was used during the 'old' transformation for joining the given
+	 * '<em>element</em>'.
+	 */
+	@Override
+	public List<EObjectWrapper> joiningSelectContainerInstance(List<EObjectWrapper> choices,
+			List<EObjectWrapper> element, MappingHintGroupType hintGroup, ModelConnectionHint modelConnectionHint,
+			String hintValue) throws Exception {
+
+		/*
+		 * First, we need to check if we can find a match for the given 'section' and 'hintGroup'.
+		 */
+		Match sectionMatch = pamtramCompareResult.getMatch(hintGroup.getTargetMMSection());
+		Match hintGroupMatch = pamtramCompareResult.getMatch(hintGroup);
+		if(sectionMatch == null || sectionMatch.getRight() == null || !(sectionMatch.getRight() instanceof TargetSection) ||
+				hintGroupMatch == null || hintGroupMatch.getRight() == null || !(hintGroupMatch.getRight() instanceof MappingHintGroupType)) {
+			return super.joiningSelectContainerInstance(choices, element, hintGroup, modelConnectionHint, hintValue);
+		}
+
+		// the matched section/hintGroup from the 'old' pamtram model
+		TargetSection matchedSection = (TargetSection) sectionMatch.getRight();
+		MappingHintGroupType matchedHintGroup = (MappingHintGroupType) hintGroupMatch.getRight();
+
+		/*
+		 * Now, we determine the elements from the 'old' target model that correspond to the given 'sectionInstances'.
+		 * Therefore, we make use of the map 'targetSectionToTransformationHintGroups' and collect all instantiated
+		 * target elements from all TransformationMappingHintGroups that represent the given 'hintGroup' (and thus
+		 * the given 'section').
+		 */
+		if(!targetSectionToTransformationHintGroups.containsKey(matchedSection)) {
+			return super.joiningSelectContainerInstance(choices, element, hintGroup, modelConnectionHint, hintValue);
+		}
+		List<EObject> oldSectionInstances = new ArrayList<>();
+		for (TransformationMappingHintGroup transformationMappingHintGroup : targetSectionToTransformationHintGroups.get(matchedSection)) {
+
+			/*
+			 * As only 'InstantiableHintGroups' are stored in the transformation model whereas
+			 * the given 'matchedHintGroup' is of type 'MappingHintGroupType' we need to determine the corresponding
+			 * 'MappingHintGroupType' for each 'transformationMappingHintGroup'.
+			 */
+			MappingHintGroupType mappingHintGroupType = null;
+			if(transformationMappingHintGroup.getAssociatedMappingHintGroup() instanceof MappingHintGroup) {
+				mappingHintGroupType = (MappingHintGroupType) transformationMappingHintGroup.getAssociatedMappingHintGroup();
+			} else if(transformationMappingHintGroup.getAssociatedMappingHintGroup() instanceof MappingHintGroupImporter) {
+				mappingHintGroupType = ((MappingHintGroupImporter) transformationMappingHintGroup.getAssociatedMappingHintGroup()).getHintGroup();
+			}
+			if(mappingHintGroupType != null && mappingHintGroupType.equals(matchedHintGroup)) {
+				oldSectionInstances.addAll(transformationMappingHintGroup.getTargetElements());
+			}
+
+		}
+
+		/*
+		 * Now, we determine one of the 'oldSectionInstances' that actually represents one of the
+		 * current 'sectionInstances' by comparing them ('oldSectionInstances' might represent more
+		 * elements than 'sectionInstances' does as this method is called multiple times). As all of the 
+		 * 'sectionInstances' should be connected to the same element, we examplarily use only the 
+		 * first of the 'sectionInstances'. However, if we find multiple matches (part of the old transformation)
+		 * for this one 'sectionInstance', we must not proceed as we cannot guarantee that those did
+		 * not result from different choices. In that case, we try to determine another 'sectionInstance'
+		 * for that we can determine a unique match.
+		 */
+		EObject oldSectionInstanceToUse = null;
+
+		// create a comparator first
+		EMFCompare comparator = getComparator(new DefaultDiffEngine(new DiffBuilder()) {
+			@Override
+			protected FeatureFilter createFeatureFilter() {
+				return new FeatureFilter() {
+					@Override
+					protected boolean isIgnoredReference(Match match, EReference reference) {
+
+						/*
+						 * as the sections are not yet joined and linked, we do not at all take references
+						 * into account during comparing container instances; consequently, we only compare 
+						 * attributes
+						 */
+						return true;
+					}
+
+					@Override
+					public boolean checkForOrderingChanges(EStructuralFeature feature) {
+						return false;
+					}
+				};
+			}
+		});
+
+		for (int i = 0; i < element.size(); i++) {
+			for (EObject oldSectionInstance : oldSectionInstances) {
+				IComparisonScope scope = new DefaultComparisonScope(element.get(i).getEObject(), oldSectionInstance, null);
+				Comparison comparison = comparator.compare(scope);
+				Match match = comparison.getMatch(element.get(0).getEObject());
+				if(match == null || match.getRight() == null) {
+					continue;
+				}
+				if(match.getDifferences().isEmpty()) {
+					if(oldSectionInstanceToUse != null) {
+						// we have found another match so that we need to try to find a unique match for one of the other choices
+						oldSectionInstanceToUse = null;
+						break;
+					} else {
+						// we have found a matching instance that could be used
+						oldSectionInstanceToUse = oldSectionInstance;						
+					}
+				}
+			}
+			if(oldSectionInstanceToUse != null) {
+				// we have found a unique match
+				break;
+			}
+		}
+		if(oldSectionInstanceToUse == null) {
+			return super.joiningSelectContainerInstance(choices, element, hintGroup, modelConnectionHint, hintValue);
+		}
+
+		/*
+		 * Finally, we can check which Instance was used to connect the 
+		 * 'oldSectionInstanceToUse'. Therefore, we iterate upward in the containment hierarchy and compare
+		 * the elements along this path to the possible 'containerInstances'. 
+		 */
+		EObject sectionInstanceContainer = oldSectionInstanceToUse;	
+		ArrayList<EObjectWrapper> containerInstancesToUse = new ArrayList<>();
+		while((sectionInstanceContainer = sectionInstanceContainer.eContainer()) != null) {
+			for (EObjectWrapper containerInstance : choices) {
+				IComparisonScope scope = new DefaultComparisonScope(containerInstance.getEObject(), sectionInstanceContainer, null);
+				Comparison comparison = comparator.compare(scope);
+				Match match = comparison.getMatch(sectionInstanceContainer);
+				if(match == null || match.getLeft() == null) {
+					continue;
+				}
+				if(match.getDifferences().isEmpty()) {
+					// we have found a matching instance that can be used
+					containerInstancesToUse.add(containerInstance);
+				}
+			}
+			if(!containerInstancesToUse.isEmpty()) {
+				break;
+			}
+		}
+
+		if(containerInstancesToUse.isEmpty()) {
+			return super.joiningSelectContainerInstance(choices, element, hintGroup, modelConnectionHint, hintValue);	
+		} else {
+			System.out.println("Reusing choice during 'joiningSelectContainerInstance': " + containerInstancesToUse);
+			return super.joiningSelectContainerInstance(containerInstancesToUse, element, hintGroup, modelConnectionHint, hintValue);	
+		}
+
+	}
+
+	/**
+	 * This consults the {@link #transformationModel} in order to determine which of the
+	 * given '<em>choices</em>' (connection path and container instance) was used during the 
+	 * 'old' transformation for joining the given '<em>sectionInstances</em>'.
+	 */
 	@Override
 	public HashMap<ModelConnectionPath, List<EObjectWrapper>> joiningSelectConnectionPathAndContainerInstance(
 			HashMap<ModelConnectionPath, List<EObjectWrapper>> choices, 

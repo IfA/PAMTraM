@@ -1771,7 +1771,7 @@ public class GenericTransformationRunner {
 			}
 		}
 		this.transformationModel.getSourceModels().addAll(sourceModels); // add source models
-		this.transformationModel.getTargetModels().add(targetModel.getContents().get(0)); // add target models
+		this.transformationModel.getTargetModels().addAll(targetModel.getContents()); // add target models
 
 		if(this.transformationResult.getMatchingResult() == null) {
 			return false;
@@ -1870,10 +1870,26 @@ public class GenericTransformationRunner {
 			/*
 			 * copy the target models
 			 */
+			final ResourceSetImpl targetResourceSet = new ResourceSetImpl();
 			for (EObject targetModel : this.transformationModel.getTargetModels()) {
-				XMLResource targetModelResource = (XMLResource) resFactory.createResource(transformationFolderUri.appendSegment(targetModel.eResource().getURI().lastSegment()));
+
+				/*
+				 * As multiple target models can be contained in the same resource, we first check if there already exists
+				 * a resource for the target model. Only if no resource exists, we create a new one.
+				 */
+				URI targetModelUri = transformationFolderUri.appendSegment(targetModel.eResource().getURI().lastSegment());
+				XMLResource targetModelResource = null;
+				try {
+					targetModelResource = (XMIResource) targetResourceSet.getResource(targetModelUri, false);
+					targetModelResource.load(Collections.EMPTY_MAP);
+				} catch (Exception e) {
+					targetModelResource = (XMIResource) targetResourceSet.createResource(targetModelUri);
+				}
 				targetModelResource.getContents().add(targetModel);
-				targetModelResource.save(options);
+			}
+			// save all target model resources
+			for (Resource targetModelResource : targetResourceSet.getResources()) {
+				targetModelResource.save(options);				
 			}
 
 			/*

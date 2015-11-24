@@ -680,7 +680,7 @@ public class TargetSectionConnector extends CancellableElement {
 				 */
 				try {
 					List<EObjectWrapper> resolved = ambiguityResolvingStrategy.joiningSelectContainerInstance(
-							new LinkedList<>(contInstsByHintVal.get(hintVal)), new LinkedList<>(rootInstancesByHintVal.get(hintVal)), null, connectionHint, hintVal);
+							new LinkedList<>(contInstsByHintVal.get(hintVal)), new LinkedList<>(rootInstancesByHintVal.get(hintVal)), mappingGroup, connectionHint, hintVal);
 					rootInstancesByContainer.put(resolved.get(0), rootInstancesByHintVal.get(hintVal));
 				} catch (Exception e) {
 					consoleStream.println(e.getMessage());

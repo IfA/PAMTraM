@@ -31,6 +31,11 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
  */
 public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStrategy {
 
+	/**
+	 * This prefix will be added to {@link #printMessage(String, String) messages} printed after user selections.
+	 */
+	private static final String userDecisionPrefix = "User";
+
 	@Override
 	public List<Mapping> matchingSelectMapping(List<Mapping> choices, EObject element) throws Exception {
 
@@ -42,6 +47,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		if (dialog.wasTransformationStopRequested()) {
 			throw new UserAbortException();
 		}
+		printMessage(dialog.getSelection().getName(), userDecisionPrefix);
 		return new ArrayList<>(Arrays.asList(dialog.getSelection()));
 	}
 
@@ -62,6 +68,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		if (dialog.wasTransformationStopRequested()) {
 			throw new UserAbortException();
 		}
+		printMessage(dialog.getSelection(), userDecisionPrefix);
 		return new ArrayList<>(Arrays.asList(choices.get(classNames.indexOf(dialog.getSelection()))));
 	}
 
@@ -93,6 +100,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		if (dialog.wasTransformationStopRequested()) {
 			throw new UserAbortException();
 		}
+		printMessage(dialog.getSelection().toString(), userDecisionPrefix);
 		return new ArrayList<>(Arrays.asList(dialog.getSelection()));
 	}
 
@@ -147,6 +155,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		}
 		HashMap<ModelConnectionPath, List<EObjectWrapper>> ret = new HashMap<>();
 		ret.put(retPath, Arrays.asList(retWrapper));
+		printMessage(retPath + "-->" + retWrapper.toString(), userDecisionPrefix);
 		return ret;
 
 	}
@@ -172,6 +181,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 			throw new UserAbortException();
 		}
 
+		printMessage(dialog.getSelection().toString(), userDecisionPrefix);
 		return Arrays.asList(dialog.getSelection());
 	}
 
@@ -203,6 +213,8 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		if (dialog.wasTransformationStopRequested()) {
 			throw new UserAbortException();
 		}
+
+		printMessage(dialog.getSelection().toString(), userDecisionPrefix);
 		return Arrays.asList(dialog.getSelection());
 	}
 
@@ -264,6 +276,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		}
 		HashMap<TargetSectionClass, List<EObjectWrapper>> ret = new HashMap<>();
 		ret.put(retSection, Arrays.asList(retWrapper));
+		printMessage(retSection.getName() + "-->" + retWrapper.toString(), userDecisionPrefix);
 		return ret;
 	}
 }

@@ -86,16 +86,6 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	private Transformation transformationModel;
 
 	/**
-	 * This keeps track of the {@link PAMTraM} instance that the current transformation operates on.
-	 */
-	private PAMTraM pamtramModel;
-
-	/**
-	 * This keeps track of the list of {@link EObject sourceModels} that serve as input to the current transformation.
-	 */
-	private ArrayList<EObject> sourceModels;
-
-	/**
 	 * This will contain the result of the comparison process between the current PAMTraM model and the 'old' PAMTraM model
 	 * that is part of the {@link #transformationModel}.
 	 * <p />
@@ -138,13 +128,13 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	}
 
 	@Override
-	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels) throws IOException {
+	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels) throws Exception {
+
+		super.init(pamtramModel, sourceModels);
 
 		/*
-		 * initialize the models to be used by this strategy
+		 * load the transformation model to be used by this strategy
 		 */
-		this.pamtramModel = pamtramModel;
-		this.sourceModels = sourceModels;
 		loadTransformationModel();
 
 		/*

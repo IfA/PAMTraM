@@ -121,12 +121,6 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	 */
 	private Map<TargetSection, List<TransformationMappingHintGroup>> targetSectionToTransformationHintGroups;
 
-	/**
-	 * The {@link IMatchEngine.Factory.Registry} to be used during the creation of new {@link EMFCompare} objects
-	 * by {@link #getComparator(IDiffEngine)}.
-	 */
-	private IMatchEngine.Factory.Registry matchEngineRegistry;
-
 	private HistoryResolvingStrategy(ArrayList<IAmbiguityResolvingStrategy> composedStrategies) {
 		super(composedStrategies);
 	}
@@ -247,7 +241,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		 * Compare the Pamtram resources
 		 */
 		IComparisonScope scope = new DefaultComparisonScope(this.pamtramModel.eResource(), pamtramResource, null);
-		EMFCompare comparator = getComparator(new DefaultDiffEngine(new DiffBuilder()) {
+		EMFCompare comparator = EMFComparatorFactory.getComparator(new DefaultDiffEngine(new DiffBuilder()) {
 			@Override
 			protected FeatureFilter createFeatureFilter() {
 				return new FeatureFilter() {
@@ -295,7 +289,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 				sourceResource.load(Collections.EMPTY_MAP);
 
 				IComparisonScope sourceScope = new DefaultComparisonScope(this.sourceModels.get(i).eResource(), sourceResource, null);
-				EMFCompare sourceComparator = getComparator(null);
+				EMFCompare sourceComparator = EMFComparatorFactory.getComparator(null);
 
 				sourceCompareResults.add(sourceComparator.compare(sourceScope));
 
@@ -525,7 +519,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		EObject oldSectionInstanceToUse = null;
 
 		// create a comparator first
-		EMFCompare comparator = getIgnoringReferenceChangesComparator();
+		EMFCompare comparator = EMFComparatorFactory.getIgnoringReferenceChangesComparator();
 
 		for (int i = 0; i < element.size(); i++) {
 			for (EObject oldSectionInstance : oldSectionInstances) {
@@ -704,7 +698,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		 */
 
 		// create a comparator first
-		EMFCompare comparator = getIgnoringReferenceChangesComparator();
+		EMFCompare comparator = EMFComparatorFactory.getIgnoringReferenceChangesComparator();
 
 		// now, compare every instance
 		ArrayList<EObjectWrapper> containerInstancesToUse = new ArrayList<>();
@@ -763,7 +757,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		/*
 		 * First, we need to check if we can find a match for the given 'sourceElement' in the 'old' target model.
 		 */
-		EMFCompare comparator = getIgnoringNonContainmentReferenceChangesComparator();
+		EMFCompare comparator = EMFComparatorFactory.getIgnoringNonContainmentReferenceChangesComparator();
 		IComparisonScope scope = new DefaultComparisonScope(EcoreUtil.getRootContainer(sourceElement.getEObject()), this.transformationModel.getTargetModels().get(0), null);
 		Comparison comparison = comparator.compare(scope);
 		Match match = comparison.getMatch(sourceElement.getEObject());
@@ -905,7 +899,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		 * Finally, we have to determine which of the new choices matches the given combination of
 		 * 'old' element and class. Therefore, we once more rely on EMFCompare.
 		 */
-		EMFCompare comparator = getIgnoringReferenceChangesComparator();
+		EMFCompare comparator = EMFComparatorFactory.getIgnoringReferenceChangesComparator();
 		TargetSectionClass usedTargetSectionClass = null;
 		ArrayList<EObjectWrapper> targetInstancesToUse = new ArrayList<>();
 		for (TargetSectionClass targetSectionClass : choices.keySet()) {
@@ -940,114 +934,6 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 
 
 	/**
-	 * This returns an {@link EMFCompare} object that can be used to compare {@link Notifier Notifiers}.
-	 * It makes use of a default implementation of {@link IEObjectMatcher} and - unless a custom
-	 * implementation is provides via the '<em>diffEngine</em>' parameter - of a default implementation of
-	 * {@link IDiffEngine}.
-	 * <p/>
-	 * Note: This is taken from <a href="https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Using_The_Compare_APIs">
-	 * https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Using_The_Compare_APIs</a>.
-	 * 
-	 * @param diffEngine The {@link IDiffEngine} to be used during comparisons. If this is '<em><b>null</b></em>',
-	 * a default implementation will be used.
-	 * @return An instance of {@link EMFCompare} that can be used to compare {@link Notifier Notifiers}.
-	 */
-	private EMFCompare getComparator(IDiffEngine diffEngine) {
-
-		/*
-		 * Initialize the match engine registry (this has to be done only once.
-		 */
-		if(matchEngineRegistry == null) {
-			IEObjectMatcher matcher = DefaultMatchEngine.createDefaultEObjectMatcher(UseIdentifiers.WHEN_AVAILABLE);
-			IComparisonFactory comparisonFactory = new DefaultComparisonFactory(new DefaultEqualityHelperFactory());
-
-			IMatchEngine.Factory matchEngineFactory = new MatchEngineFactoryImpl(matcher, comparisonFactory);
-			matchEngineFactory.setRanking(20);
-			matchEngineRegistry = new MatchEngineFactoryRegistryImpl();
-			matchEngineRegistry.add(matchEngineFactory);			
-		}
-
-		/*
-		 * Create a new comparator with the specified diff engine.
-		 */
-		Builder builder = EMFCompare.builder().
-				setMatchEngineFactoryRegistry(matchEngineRegistry);
-		if(diffEngine != null) {
-			builder.setDiffEngine(diffEngine);
-		}
-		return builder.build();
-
-	}
-
-	/**
-	 * This returns an {@link EMFCompare} object that can be used to compare {@link Notifier Notifiers}.
-	 * It makes use of a default implementation of {@link IEObjectMatcher} and of an implementation of
-	 * {@link IDiffEngine} that <b>ignores any changes to {@link EReference EReferences}</b>. Consequently, only changes to the
-	 * elements themselves (including attribute changes) are marked as {@link Diff Differences} - changes to
-	 * contained or referenced elements are not marked!
-	 * <p/>
-	 * Note: This is taken from <a href="https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Using_The_Compare_APIs">
-	 * https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Using_The_Compare_APIs</a>.
-	 * 
-	 * @return An instance of {@link EMFCompare} that can be used to compare {@link Notifier Notifiers}.
-	 */
-	private EMFCompare getIgnoringReferenceChangesComparator() {
-		return getComparator(new DefaultDiffEngine(new DiffBuilder()) {
-			@Override
-			protected FeatureFilter createFeatureFilter() {
-				return new FeatureFilter() {
-					@Override
-					protected boolean isIgnoredReference(Match match, EReference reference) {
-						/*
-						 * We ignore changes to references (cf. https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Changing_the_FeatureFilter).
-						 */
-						return true;
-					}
-
-					@Override
-					public boolean checkForOrderingChanges(EStructuralFeature feature) {
-						return false;
-					}
-				};
-			}
-		});
-	}
-
-	/**
-	 * This returns an {@link EMFCompare} object that can be used to compare {@link Notifier Notifiers}.
-	 * It makes use of a default implementation of {@link IEObjectMatcher} and of an implementation of
-	 * {@link IDiffEngine} that <b>ignores any changes to non-containment {@link EReference EReferences}</b>. Consequently, only changes to the
-	 * elements themselves (including attribute changes and changes to contained elements) are marked as {@link Diff Differences} - changes to
-	 * referenced elements are not marked!
-	 * <p/>
-	 * Note: This is taken from <a href="https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Using_The_Compare_APIs">
-	 * https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Using_The_Compare_APIs</a>.
-	 * 
-	 * @return An instance of {@link EMFCompare} that can be used to compare {@link Notifier Notifiers}.
-	 */
-	private EMFCompare getIgnoringNonContainmentReferenceChangesComparator() {
-		return getComparator(new DefaultDiffEngine(new DiffBuilder()) {
-			@Override
-			protected FeatureFilter createFeatureFilter() {
-				return new FeatureFilter() {
-					@Override
-					protected boolean isIgnoredReference(Match match, EReference reference) {
-						/*
-						 * We ignore changes to non-containment references (cf. https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Changing_the_FeatureFilter).
-						 */
-						return !reference.isContainment();
-					}
-
-					@Override
-					public boolean checkForOrderingChanges(EStructuralFeature feature) {
-						return false;
-					}
-				};
-			}
-		});
-	}
-
-	/**
 	 * This is a convenience method to find a match for the given source model element in one of the stored 
 	 * {@link #sourceCompareResults}. This method simply iterates over all compare results.
 	 * 
@@ -1071,5 +957,123 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		}
 
 		return foundMatch;
+	}
+
+	private static class EMFComparatorFactory {
+
+		/**
+		 * The {@link IMatchEngine.Factory.Registry} to be used during the creation of new {@link EMFCompare} objects
+		 * by {@link #getComparator(IDiffEngine)}.
+		 */
+		private static IMatchEngine.Factory.Registry matchEngineRegistry;
+
+		/**
+		 * This returns an {@link EMFCompare} object that can be used to compare {@link Notifier Notifiers}.
+		 * It makes use of a default implementation of {@link IEObjectMatcher} and - unless a custom
+		 * implementation is provides via the '<em>diffEngine</em>' parameter - of a default implementation of
+		 * {@link IDiffEngine}.
+		 * <p/>
+		 * Note: This is taken from <a href="https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Using_The_Compare_APIs">
+		 * https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Using_The_Compare_APIs</a>.
+		 * 
+		 * @param diffEngine The {@link IDiffEngine} to be used during comparisons. If this is '<em><b>null</b></em>',
+		 * a default implementation will be used.
+		 * @return An instance of {@link EMFCompare} that can be used to compare {@link Notifier Notifiers}.
+		 */
+		private static EMFCompare getComparator(IDiffEngine diffEngine) {
+
+			/*
+			 * Initialize the match engine registry (this has to be done only once.
+			 */
+			if(matchEngineRegistry == null) {
+				IEObjectMatcher matcher = DefaultMatchEngine.createDefaultEObjectMatcher(UseIdentifiers.WHEN_AVAILABLE);
+				IComparisonFactory comparisonFactory = new DefaultComparisonFactory(new DefaultEqualityHelperFactory());
+
+				IMatchEngine.Factory matchEngineFactory = new MatchEngineFactoryImpl(matcher, comparisonFactory);
+				matchEngineFactory.setRanking(20);
+				matchEngineRegistry = new MatchEngineFactoryRegistryImpl();
+				matchEngineRegistry.add(matchEngineFactory);			
+			}
+
+			/*
+			 * Create a new comparator with the specified diff engine.
+			 */
+			Builder builder = EMFCompare.builder().
+					setMatchEngineFactoryRegistry(matchEngineRegistry);
+			if(diffEngine != null) {
+				builder.setDiffEngine(diffEngine);
+			}
+			return builder.build();
+
+		}
+
+		/**
+		 * This returns an {@link EMFCompare} object that can be used to compare {@link Notifier Notifiers}.
+		 * It makes use of a default implementation of {@link IEObjectMatcher} and of an implementation of
+		 * {@link IDiffEngine} that <b>ignores any changes to {@link EReference EReferences}</b>. Consequently, only changes to the
+		 * elements themselves (including attribute changes) are marked as {@link Diff Differences} - changes to
+		 * contained or referenced elements are not marked!
+		 * <p/>
+		 * Note: This is taken from <a href="https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Using_The_Compare_APIs">
+		 * https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Using_The_Compare_APIs</a>.
+		 * 
+		 * @return An instance of {@link EMFCompare} that can be used to compare {@link Notifier Notifiers}.
+		 */
+		private static EMFCompare getIgnoringReferenceChangesComparator() {
+			return getComparator(new DefaultDiffEngine(new DiffBuilder()) {
+				@Override
+				protected FeatureFilter createFeatureFilter() {
+					return new FeatureFilter() {
+						@Override
+						protected boolean isIgnoredReference(Match match, EReference reference) {
+							/*
+							 * We ignore changes to references (cf. https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Changing_the_FeatureFilter).
+							 */
+							return true;
+						}
+
+						@Override
+						public boolean checkForOrderingChanges(EStructuralFeature feature) {
+							return false;
+						}
+					};
+				}
+			});
+		}
+
+		/**
+		 * This returns an {@link EMFCompare} object that can be used to compare {@link Notifier Notifiers}.
+		 * It makes use of a default implementation of {@link IEObjectMatcher} and of an implementation of
+		 * {@link IDiffEngine} that <b>ignores any changes to non-containment {@link EReference EReferences}</b>. Consequently, only changes to the
+		 * elements themselves (including attribute changes and changes to contained elements) are marked as {@link Diff Differences} - changes to
+		 * referenced elements are not marked!
+		 * <p/>
+		 * Note: This is taken from <a href="https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Using_The_Compare_APIs">
+		 * https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Using_The_Compare_APIs</a>.
+		 * 
+		 * @return An instance of {@link EMFCompare} that can be used to compare {@link Notifier Notifiers}.
+		 */
+		private static EMFCompare getIgnoringNonContainmentReferenceChangesComparator() {
+			return getComparator(new DefaultDiffEngine(new DiffBuilder()) {
+				@Override
+				protected FeatureFilter createFeatureFilter() {
+					return new FeatureFilter() {
+						@Override
+						protected boolean isIgnoredReference(Match match, EReference reference) {
+							/*
+							 * We ignore changes to non-containment references (cf. https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Changing_the_FeatureFilter).
+							 */
+							return !reference.isContainment();
+						}
+
+						@Override
+						public boolean checkForOrderingChanges(EStructuralFeature feature) {
+							return false;
+						}
+					};
+				}
+			});
+		}
+
 	}
 }

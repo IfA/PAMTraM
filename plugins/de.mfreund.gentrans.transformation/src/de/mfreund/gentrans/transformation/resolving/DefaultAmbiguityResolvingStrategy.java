@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.EObjectWrapper;
 import de.mfreund.gentrans.transformation.ModelConnectionPath;
@@ -34,7 +35,7 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
 public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvingStrategy {
 
 	@Override
-	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels) {
+	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels, MessageConsoleStream messageStream) {
 		return;
 	}
 

@@ -467,7 +467,7 @@ public class GenericTransformationRunner {
 		 */
 		writePamtramMessage("Initializing ambiguity resolving strategy");
 		try {
-			ambiguityResolvingStrategy.init(pamtramModel, sourceModels);
+			ambiguityResolvingStrategy.init(pamtramModel, sourceModels, consoleStream);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 			consoleStream.println("Internal error. Switching to DefaultAmbiguityResolvingStrategy...");

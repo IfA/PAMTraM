@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.EObjectWrapper;
 import de.mfreund.gentrans.transformation.ModelConnectionPath;
@@ -50,9 +51,10 @@ public interface IAmbiguityResolvingStrategy {
 	 * 
 	 * @param pamtramModel The {@link PAMTraM} instance that the current transformation operates on.
 	 * @param sourceModels The list of {@link EObject sourceModels} that serve as input to the current transformation.
+	 * @param messageStream A {@link MessageConsoleStream} that can be used to print messages.
 	 * @throws Exception If an error occurs during the initialization of the strategy.
 	 */
-	public default void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels) throws Exception {
+	public default void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels, MessageConsoleStream messageStream) throws Exception {
 		return;
 	}
 

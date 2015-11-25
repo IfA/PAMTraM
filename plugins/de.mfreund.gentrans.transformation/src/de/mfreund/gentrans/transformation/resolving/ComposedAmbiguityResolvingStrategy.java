@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.EObjectWrapper;
 import de.mfreund.gentrans.transformation.ModelConnectionPath;
@@ -48,12 +49,12 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 	 * @throws Exception 
 	 */
 	@Override
-	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels) throws Exception {
+	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels, MessageConsoleStream messageStream) throws Exception {
 
-		super.init(pamtramModel, sourceModels);
+		super.init(pamtramModel, sourceModels, messageStream);
 
 		for (IAmbiguityResolvingStrategy strategy : composedStrategies) {
-			strategy.init(pamtramModel, sourceModels);
+			strategy.init(pamtramModel, sourceModels, messageStream);
 		}
 	}
 

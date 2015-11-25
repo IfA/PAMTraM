@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.EObjectWrapper;
 import de.mfreund.gentrans.transformation.ModelConnectionPath;
@@ -27,7 +28,7 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
  * 
  * @author mfreund
  */
-public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingStrategy {
+public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvingStrategy {
 
 	/**
 	 * This keeps track of the strategies that this ComposedStrategy composes.
@@ -48,9 +49,14 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 	 * @throws Exception 
 	 */
 	@Override
-	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels) throws Exception {
+	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels, MessageConsoleStream messageStream) throws Exception {
+
+		super.init(pamtramModel, sourceModels, messageStream);
+
+		printMessage("\t--> Init composed stragies:");
+
 		for (IAmbiguityResolvingStrategy strategy : composedStrategies) {
-			strategy.init(pamtramModel, sourceModels);
+			strategy.init(pamtramModel, sourceModels, messageStream);
 		}
 	}
 

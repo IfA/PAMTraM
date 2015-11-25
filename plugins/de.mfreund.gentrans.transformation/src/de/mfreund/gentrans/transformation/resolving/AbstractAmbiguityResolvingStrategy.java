@@ -64,7 +64,7 @@ public abstract class AbstractAmbiguityResolvingStrategy implements IAmbiguityRe
 	 */
 	protected void printMessage(String message, String prefix) {
 		if(messageStream != null) {
-			messageStream.println("[" + prefix + "] " + message);
+			messageStream.println("[" + prefix + "]" + message);
 		}
 	}
 }

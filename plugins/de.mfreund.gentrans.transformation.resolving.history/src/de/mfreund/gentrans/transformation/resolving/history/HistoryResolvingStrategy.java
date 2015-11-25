@@ -925,7 +925,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		 * Finally, we have to determine which of the new choices matches the given combination of
 		 * 'old' element and class. Therefore, we once more rely on EMFCompare.
 		 */
-		EMFCompare comparator = EMFComparatorFactory.getIgnoreAllReferenceChangesComparator();
+		EMFCompare comparator = EMFComparatorFactory.getIgnoreNonContainmentReferenceChangesComparator();
 		TargetSectionClass usedTargetSectionClass = null;
 		ArrayList<EObjectWrapper> targetInstancesToUse = new ArrayList<>();
 		for (TargetSectionClass targetSectionClass : choices.keySet()) {

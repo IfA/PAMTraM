@@ -1,11 +1,11 @@
 package de.mfreund.gentrans.ui.launching;
 
 /**
- * A POJO to describe the strategies to be applied to resolve ambiguities.
+ * A POJO to describe all settings necessary to launch a new generic transformation.
  * 
  * @author mfreund
  */
-class AmbiguityResolvingContext {
+class GentransLaunchContext {
 
 	/**
 	 * Whether the '<em>HistoryResolvingStrategy</em>' shall be applied to resolve ambiguites.

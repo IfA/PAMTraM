@@ -31,7 +31,7 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 	/**
 	 * This keeps track of the various settings to be changed in this tab.
 	 */
-	private AmbiguityResolvingContext ambiguityResolvingContext = new AmbiguityResolvingContext();
+	private GentransLaunchContext ambiguityResolvingContext = new GentransLaunchContext();
 	private Button btnEnableUser;
 
 	/**

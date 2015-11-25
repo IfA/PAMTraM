@@ -12,7 +12,6 @@ import org.eclipse.swt.widgets.Display;
 
 import de.mfreund.gentrans.transformation.EObjectWrapper;
 import de.mfreund.gentrans.transformation.ModelConnectionPath;
-import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.wizards.GenericItemSelectorDialogRunner;
 import de.mfreund.gentrans.transformation.resolving.wizards.NamedElementItemSelectorDialogRunner;
 import de.mfreund.gentrans.transformation.resolving.wizards.PathAndInstanceSelectorRunner;
@@ -30,7 +29,7 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
  * 
  * @author mfreund
  */
-public class UserDecisionResolvingStrategy implements IAmbiguityResolvingStrategy {
+public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStrategy {
 
 	@Override
 	public List<Mapping> matchingSelectMapping(List<Mapping> choices, EObject element) throws Exception {

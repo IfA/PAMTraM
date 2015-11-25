@@ -22,7 +22,8 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
 
 /**
  * This interface may be implemented to expose a concrete strategy to resolve ambiguities that
- * arise during the execution of a generic transformation.
+ * arise during the execution of a generic transformation. Instead of directly implementing this interface,
+ * clients should consider extending {@link AbstractAmbiguityResolvingStrategy}.
  * <p />
  * Ambiguities may arise in different situations during the generic transformation (e.g. during the selection
  * of a mapping to be applied or during the selection of a concrete model connection path to be used to connect
@@ -49,7 +50,7 @@ public interface IAmbiguityResolvingStrategy {
 	 * 
 	 * @param pamtramModel The {@link PAMTraM} instance that the current transformation operates on.
 	 * @param sourceModels The list of {@link EObject sourceModels} that serve as input to the current transformation.
-	 * @throws Exception 
+	 * @throws Exception If an error occurs during the initialization of the strategy.
 	 */
 	public default void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels) throws Exception {
 		return;

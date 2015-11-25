@@ -27,7 +27,7 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
  * 
  * @author mfreund
  */
-public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingStrategy {
+public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvingStrategy {
 
 	/**
 	 * This keeps track of the strategies that this ComposedStrategy composes.
@@ -49,6 +49,9 @@ public class ComposedAmbiguityResolvingStrategy implements IAmbiguityResolvingSt
 	 */
 	@Override
 	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels) throws Exception {
+
+		super.init(pamtramModel, sourceModels);
+
 		for (IAmbiguityResolvingStrategy strategy : composedStrategies) {
 			strategy.init(pamtramModel, sourceModels);
 		}

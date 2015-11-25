@@ -31,7 +31,7 @@ import pamtram.metamodel.TargetSectionNonContainmentReference;
  * 
  * @author mfreund
  */
-public class DefaultAmbiguityResolvingStrategy implements IAmbiguityResolvingStrategy {
+public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvingStrategy {
 
 	@Override
 	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels) {

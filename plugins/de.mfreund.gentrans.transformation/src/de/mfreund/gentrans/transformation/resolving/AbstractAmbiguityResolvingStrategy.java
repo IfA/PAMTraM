@@ -25,18 +25,46 @@ public abstract class AbstractAmbiguityResolvingStrategy implements IAmbiguityRe
 	protected ArrayList<EObject> sourceModels;
 
 	/**
-	 * This keeps track of the {@link MessageConsoleStream} that can be used to print messages.
+	 * This keeps track of the {@link MessageConsoleStream} that can be used to print messages. Messages can be written
+	 * via {@link #printMessage(String)} or {@link #printMessage(String, String)}.
 	 */
-	protected MessageConsoleStream messageStream;
+	private MessageConsoleStream messageStream;
 
 	@Override
 	public void init(PAMTraM pamtramModel, ArrayList<EObject> sourceModels, MessageConsoleStream messageStream) throws Exception {
 
-		messageStream.println("Initializing strategy '" + this.getClass().getSimpleName() + "'...");
+		this.messageStream = messageStream;
+
+		printMessage("Initializing strategy '" + this.getClass().getSimpleName() + "'...");
 
 		this.pamtramModel = pamtramModel;
 		this.sourceModels = sourceModels;
-		this.messageStream = messageStream;
 	}
 
+	/**
+	 * This prints a message to the {@link #messageStream}.
+	 * <p/>
+	 * Note: If '<em>messageStream</em>' is '<em>null</em>' a call of this method will do nothing.
+	 * 
+	 * @param message The message to print.
+	 */
+	protected void printMessage(String message) {
+		if(messageStream != null) {
+			messageStream.println(message);
+		}
+	}
+
+	/**
+	 * This prints a prefixed message to the {@link #messageStream}. The message will be formatted as follows: <br />
+	 * "[prefix] message".
+	 * <p/>
+	 * Note: If '<em>messageStream</em>' is '<em>null</em>' a call of this method will do nothing.
+	 * 
+	 * @param message The message to print.
+	 */
+	protected void printMessage(String message, String prefix) {
+		if(messageStream != null) {
+			messageStream.println("[" + prefix + "] " + message);
+		}
+	}
 }

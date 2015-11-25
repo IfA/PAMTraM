@@ -6,7 +6,7 @@ import org.eclipse.debug.ui.ILaunchConfigurationDialog;
 import org.eclipse.debug.ui.ILaunchConfigurationTab;
 
 public class GentransLaunchConfigurationTabGroup extends
-		AbstractLaunchConfigurationTabGroup {
+AbstractLaunchConfigurationTabGroup {
 
 	public GentransLaunchConfigurationTabGroup() {
 		// TODO Auto-generated constructor stub
@@ -15,9 +15,10 @@ public class GentransLaunchConfigurationTabGroup extends
 	@Override
 	public void createTabs(ILaunchConfigurationDialog dialog, String mode) {
 		ILaunchConfigurationTab[] tabs = new ILaunchConfigurationTab[] {
-			new GentransLaunchMainTab(),
-			new GentransLaunchLibraryTab(),
-			new CommonTab()
+				new GentransLaunchMainTab(),
+				new GentransLaunchAmbiguityTab(),
+				new GentransLaunchLibraryTab(),
+				new CommonTab()
 		};
 		setTabs(tabs);
 	}
